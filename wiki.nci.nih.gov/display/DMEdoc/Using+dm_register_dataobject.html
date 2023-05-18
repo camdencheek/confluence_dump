@@ -1,0 +1,326 @@
+If your user account has the Write or Own permission level on an existing collection in DME, and if that existing collection has been configured to contain data files, you can register a data file into that collection. If the file is larger than ten GB, register it from a Globus endpoint or an AWS S3 bucket rather than from your local system. (To update metadata, refer to
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=393448022" rel="nofollow">
+  Updating Data File Metadata via the CLU
+</a>
+.)  The character limit for each metadata value is 2700.To register a data file:
+<ol>
+  <li>
+    Choose whether to register from your local system, a Globus endpoint, or an S3 bucket.
+    <ul>
+      <li>
+        To register from your local system, plan to use the source file parameter to specify the file that you want to register.
+      </li>
+      <li>
+        To register from Globus or S3, plan to use a JSON file to specify the file that you want to register.
+      </li>
+    </ul>
+  </li>
+  <li>
+    In your local system, create a JSON file that specifies the metadata for the new data file. The contents of this file depend on the source of your data:
+    <ul>
+      <li>
+        If you are registering from your local system, specify the metadata that you want to include. Click the following link to view the syntax:
+        Syntax
+        {
+        &#34;extractMetadata&#34; : true,
+        &#34;metadataEntries&#34;: [
+        {
+        &#34;attribute&#34;: &#34;description&#34;,
+        &#34;value&#34;: &#34;my-dataObject-description&#34;
+        },
+        {
+        &#34;attribute&#34;: &#34;example_date&#34;,
+        &#34;value&#34;: &#34;20201231&#34;,
+        &#34;dateFormat&#34;: &#34;yyyyMMdd&#34;
+        }
+        ]
+        }
+
+        To extract metadata from the header of TIFF or BMP image files, include the following line:
+
+
+
+
+
+
+
+
+
+
+
+        &#34;extractMetadata&#34; : true,
+      </li>
+      <li>
+        If you are registering from a Globus endpoint, specify that endpoint, the file path on that endpoint, and the metadata that you want to include. Click the following link to view the syntax:
+        Syntax
+        {
+        &#34;globusUploadSource&#34;: [
+        &#34;sourceLocation&#34;: {
+        &#34;fileContainerId&#34;: &#34;globus-shared-endpoint-uid&#34;,
+        &#34;fileId&#34;: &#34;file-path-on-shared-globus-endpoint&#34;
+        }
+        ],
+        &#34;metadataEntries&#34;: [
+        {
+        &#34;attribute&#34;: &#34;description&#34;,
+        &#34;value&#34;: &#34;my-file-description&#34;
+        },
+        {
+        &#34;attribute&#34;: &#34;example_date&#34;,
+        &#34;value&#34;: &#34;20201231&#34;,
+        &#34;dateFormat&#34;: &#34;yyyyMMdd&#34;
+        }
+        ]
+        }
+      </li>
+      <li>
+        If you are registering from AWS S3, specify the S3 bucket, path, access key, secret access key, region, and the metadata that you want to include. Click the following link to view the syntax:
+        Syntax
+        {
+        &#34;s3UploadSource&#34;: [
+        &#34;sourceLocation&#34;: {
+        &#34;fileContainerId&#34;: &#34;s3-bucket-name&#34;,
+        &#34;fileId&#34;: &#34;s3-object-key&#34;
+        },
+        &#34;account&#34; : {
+        &#34;accessKey&#34; : &#34;aws-access-key&#34;,
+        &#34;secretKey&#34; : &#34;aws-secret-key&#34;,
+        &#34;region&#34; :&#34;aws-region&#34;
+        }
+        ],
+        &#34;metadataEntries&#34;: [
+        {
+        &#34;attribute&#34;: &#34;description&#34;,
+        &#34;value&#34;: &#34;my-file-description&#34;
+        },
+        {
+        &#34;attribute&#34;: &#34;example_date&#34;,
+        &#34;value&#34;: &#34;20201231&#34;,
+        &#34;dateFormat&#34;: &#34;yyyyMMdd&#34;
+        }
+        ]
+        }
+      </li>
+      <li>
+        If you are registering from Google Cloud storage, specify the storage location, access token, and the metadata that you want to include. (For instructions on generating the access token, refer to
+        <a href="https://cloud.google.com/storage/docs/reference/libraries#setting_up_authentication" rel="nofollow">
+          https://cloud.google.com/storage/docs/reference/libraries#setting_up_authentication
+        </a>
+        <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+          <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+        </a>
+        .) Click the following link to view the syntax:
+        Syntax
+        {
+        	&#34;googleCloudStorageUploadSource&#34;: {
+        		&#34;sourceLocation&#34;: {
+        			&#34;fileContainerId&#34;: &#34;dme-upload-bucket&#34;,
+        			&#34;fileId&#34;: &#34;api-docs_UAT.json&#34;
+        		},
+        		&#34;accessToken&#34;: &#34;accessToken&#34;,
+        		&#34;accessTokenType&#34;: &#34;SERVICE_ACCOUNT&#34;
+        	},
+        &#34;metadataEntries&#34;: [
+        {
+        &#34;attribute&#34;: &#34;description&#34;,
+        &#34;value&#34;: &#34;my-file-description&#34;
+        },
+        {
+        &#34;attribute&#34;: &#34;example_date&#34;,
+        &#34;value&#34;: &#34;20201231&#34;,
+        &#34;dateFormat&#34;: &#34;yyyyMMdd&#34;
+        }
+        ]
+        }
+      </li>
+    </ul>
+  </li>
+  <li>
+    For each date attribute, specify one of the following date formats, and specify the date value in that format:
+    <ul>
+      <li>
+        yyyyMMdd
+      </li>
+      <li>
+        yyyy.MM.dd
+      </li>
+      <li>
+        yyyy-MM-dd
+      </li>
+      <li>
+        yyyy/MM/dd
+      </li>
+      <li>
+        MM/dd/yyyy
+      </li>
+      <li>
+        MM-dd-yyyy
+      </li>
+      <li>
+        MM.dd.yyyy
+      </li>
+    </ul>
+    The system parses your date using the date format you specify. Then however, if the date attribute has a metadata validation rule in a different format, the system stores the date in the format specified by that rule.
+  </li>
+  <li>
+    In your JSON file, if you want to create a parent collection for the data file you are registering (or update the metadata of a parent collection), also specify the metadata for the parent collection. Click the following link to view the syntax:
+    Syntax
+    {
+    &#34;metadataEntries&#34;: [
+    {
+    &#34;attribute&#34;: &#34;description&#34;,
+    &#34;value&#34;: &#34;my-file-description&#34;
+    },
+    {
+    &#34;attribute&#34;: &#34;my-second-attribute-name&#34;,
+    &#34;value&#34;: &#34;my-second-attribute-description&#34;
+    }
+    ],
+    &#34;createParentCollections&#34;: true,
+    	&#34;parentCollectionsBulkMetadataEntries&#34;: {
+    		&#34;pathsMetadataEntries&#34;: [{
+    			&#34;path&#34;: &#34;/Example_Archive/PI_Lab1/Project_New&#34;,
+    			&#34;pathMetadataEntries&#34;: [{
+    					&#34;attribute&#34;: &#34;collection_type&#34;,
+    					&#34;value&#34;: &#34;Folder&#34;
+    				},
+    				{
+    					&#34;attribute&#34;: &#34;example info&#34;,
+    					&#34;value&#34;: &#34;123456&#34;
+    				}]
+    		}]
+    	}
+    }
+  </li>
+  <li>
+    Run the following command:
+
+
+
+
+
+
+
+
+
+
+
+    dm_register_dataobject [optional parameters] &lt;description.json&gt; &lt;destination-path&gt; [source-file]
+
+
+    The following table describes each parameter:
+    <table>
+      <colgroup>
+        <col/>
+        <col/>
+      </colgroup>
+      <tbody>
+        <tr>
+          <th>
+            Parameter
+          </th>
+          <th>
+            Description
+          </th>
+        </tr>
+        <tr>
+          <td>
+            [-h]
+          </td>
+          <td>
+            If you want to print a usage (help) message for this command, specify this option.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            [-D &lt;REST-response&gt;]
+          </td>
+          <td>
+            An optional parameter, specifying a path and filename in your local system. The system always creates a response file:
+            <ul>
+              <li>
+                If you specify this parameter, the system saves the response from the server to the specified file in the specified location.
+              </li>
+              <li>
+                If you omit this parameter, the system saves the file as dataObject-registration-response-header.tmp in your home directory.
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            [-o &lt;output-json-file&gt;]
+          </td>
+          <td>
+            An optional parameter, specifying a path and filename in your local system. The system always creates an output file:
+            <ul>
+              <li>
+                If you specify this parameter, the system saves the output to the specified file in the specified location.
+              </li>
+              <li>
+                If you omit this parameter, the system saves the output as dataObject-registration-response-message.json.tmp in your home directory.
+              </li>
+            </ul>
+            If the command is successful, the output file is empty.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            &lt;description.json&gt;
+          </td>
+          <td>
+            A path to the JSON file that specifies the metadata for the new data file.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            &lt;destination-path&gt;
+          </td>
+          <td>
+            A path within DME, including the name of the file you intend to register. Specify where you want the system to create the new data file. (If you specify an existing data file, this command updates the metadata for that data file. For details, refer to
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=393448022" rel="nofollow">
+              Updating Data File Metadata via the CLU
+            </a>
+            .)
+          </td>
+        </tr>
+        <tr>
+          <td>
+            [source-file]
+          </td>
+          <td>
+            A path to a file in your local system:
+            <ul>
+              <li>
+                If you are registering from your local system, use this parameter to specify the file that you want to register.
+              </li>
+              <li>
+                If you are registering from Globus or S3, omit this parameter.
+              </li>
+            </ul>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+</ol>
+For example, the following command registers the data.txt file from the JaneDoe folder in the local system to the Project_New collection in DME:
+
+
+
+
+
+
+
+
+
+
+
+dm_register_dataobject /cygdrive/c/Users/JaneDoe/my-metadata.json /Example_Archive/PI_Lab1/Project_New/Data.txt /cygdrive/c/Users/JaneDoe/data.txt
+
+
+If you registered the file from a Globus endpoint, you can view the progress of the registration in the GUI. For instructions, refer to
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=408652735" rel="nofollow">
+  Viewing Registration Status
+</a>
+.

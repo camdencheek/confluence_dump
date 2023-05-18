@@ -1,0 +1,160 @@
+A text search allows you to query many of the database fields, DICOM image tag data and their values, and annotation files that are not available in the Simple search. You can also use the text search to query for content of DICOM Structured Reports (DICOM SR) and strains from mouse and rat collections. Refer to the
+<a href="http://dicom.nema.org/medical/dicom/current/output/html/part06.html#chapter_6" rel="nofollow">
+  DICOM Data Dictionary
+</a>
+for tags or field names you can use in a text search and
+<a href="http://dicom.nema.org/dicom/2013/output/chtml/part20/sect_A.3.html" rel="nofollow">
+  Structure of DICOM SR Documents
+</a>
+for a description of the fields in a DICOM SR.DICOM Examples
+<ul>
+  <li>
+    Enter pancreas in the Text Search box and find all subjects associated with the value pancreas.
+  </li>
+  <li>
+    Query using the attribute:searchTerm technique: for example, Body Part Examined:pancreas. In this example, the colon interprets the DICOM field from the value.
+  </li>
+  <li>
+    Query by DICOM codes, such as 0018,0015:pancreas. 0018,0015 is the DICOM code for Body Part Examined.
+  </li>
+  <li>
+    Query by DICOM SR attributes, such as 0008,0104 for Code Meaning. Entering 0008,0104:tonsil, returns all subjects with a Code Meaning that includes the word &#34;tonsil,&#34; and 0008,0104:tonsil adenoid returns all subjects with a Code Meaning that includes both &#34;tonsil&#34; and &#34;adenoid.&#34;
+  </li>
+  <li>
+    Use a wildcard search such as Body Part Examined:panc* to find all subjects associated with values beginning with panc, including pancreas, pancreatic duct, and pancreatic duct and bile duct systems.
+  </li>
+</ul>
+Examples for Strains
+<ul>
+  <li>
+    Query for the strain name or parts of the strain name or use a value name pair to construct the query. You can query by the Mouse Genome Informatics (MGI) number or query for MGI in the coding scheme designator field. Examples follow.
+  </li>
+  <li>
+    Strain Description (0010,0212) = &#34;NOD.Cg-Prkdc&lt;scid&gt; Il2rg&lt;tm1Wjl&gt;/SzJ&#34;
+  </li>
+  <li>
+    Strain Nomenclature (0010,0213) = &#34;MGI_2013&#34;
+  </li>
+  <li>
+    Strain Code Sequence (0010,0219):
+    <ul>
+      <li>
+         Code Value (0008,0100) = &#34;3577020&#34;
+      </li>
+      <li>
+         Coding Scheme Designator (0008,0102) = &#34;MGI&#34;
+      </li>
+      <li>
+         Code Meaning I0008,0103) = &#34;NOD.Cg-Prkdc&lt;scid&gt; Il2rg&lt;tm1Wjl&gt;/SzJ&#34;
+      </li>
+    </ul>
+  </li>
+</ul>
+The text search does have some restrictions. These are:
+<ul>
+  <li>
+    The text string you use must have more than one character. The search won&#39;t return any values if the text string has only one character.
+  </li>
+  <li>
+    Do not use a forward slash (/) in your text string.
+  </li>
+  <li>
+    Do not use complex searches with AND or OR statements (text search supports
+    <a href="http://lucene.apache.org/core/2_9_4/queryparsersyntax.html" rel="nofollow">
+      Lucene syntax
+    </a>
+     but only a single field can be searched at a time).
+  </li>
+</ul>
+To perform a text search
+<ol>
+  <li>
+    On the TCIA home page, click Text Search or Search Images &gt; Text Search. The Text Search page appears.
+    <img alt="Text Search tab with an empty text box, Clear button, and Search button" width="300" src="http://wiki.cancerimagingarchive.net/download/thumbnails/70228675/TextSearchTab.png?version=1&amp;modificationDate=1599156130175&amp;api=v2">
+  </li>
+  <li>
+    In the Text Search box, enter a text string of two characters or more.
+  </li>
+  <li>
+    Click
+    <img alt="Search button" width="65" src="http://wiki.cancerimagingarchive.net/download/thumbnails/70228675/SearchButton.png?version=1&amp;modificationDate=1599156130254&amp;api=v2">
+    .The search results appear.
+    <img alt="TCIA text search results on the term glioma" width="1000" src="http://wiki.cancerimagingarchive.net/download/attachments/70228675/SearchResultsText.png?version=4&amp;modificationDate=1614042974383&amp;api=v2">
+    Navigation Tips
+    <ul>
+      <li>
+        Click the down arrow next to the Subject ID column header to sort the results alphabetically (A to Z or Z to A) by Subject ID.
+      </li>
+      <li>
+        Click the arrows at the bottom of the table to display the first, previous, next, or last page of results.
+      </li>
+      <li>
+        Click the page number links to move to a specific page of results.
+      </li>
+      <li>
+        In the Show (10) entries box in the bottom left, edit the default 10 to the number of entries you want to see on a search results page.
+      </li>
+    </ul>
+    The following table describes each item in the search results table.
+    <table>
+      <colgroup>
+        <col/>
+        <col/>
+      </colgroup>
+      <tbody>
+        <tr>
+          <th>
+            Search Result
+          </th>
+          <th>
+            Description
+          </th>
+        </tr>
+        <tr>
+          <td colspan="1">
+            <img alt="Caret symbol and cart symbol" width="50" src="http://wiki.cancerimagingarchive.net/download/thumbnails/70228675/CartandCarot.png?version=1&amp;modificationDate=1599156130439&amp;api=v2">
+          </td>
+          <td colspan="1">
+            Click the caret to
+            <a href="#PerformingaTextSearch7.7-ViewingSubjectDetails" rel="nofollow">
+              view the subject details
+            </a>
+            . Click the cart symbol to
+            <a href="#PerformingaTextSearch7.7-AddingDatatotheCart" rel="nofollow">
+              add image series to your cart
+            </a>
+            .
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Collection ID
+          </td>
+          <td>
+            Collection identifier
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Subject ID
+          </td>
+          <td>
+            Click the Subject ID to view all study images for this subject in a DICOM web viewer, a single series&#39; thumbnails, or the DICOM header for the first image in the series. See
+            <a href="https://wiki.cancerimagingarchive.net/display/NBIA/TCIA+Current+Help+Topics#TCIACurrentHelpTopics-SearchResultsStudiesforSubject" rel="nofollow">
+              Search Results (Studies for Subject)
+            </a>
+            .
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Hit
+          </td>
+          <td>
+            The field in the study where the text string you entered as your search criteria appears.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+</ol>

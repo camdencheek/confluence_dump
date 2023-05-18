@@ -1,0 +1,252 @@
+This document is for potential competition organizers. It provides an overview of how competitions work, and describes the processes involved in creating and running CodaLab competitions. Beginners might want to use the
+<a href="https://chalab.lri.fr/" rel="nofollow">
+  ChaLab
+</a>
+ wizard.
+<ul>
+  <li>
+    <a href="#CompetitionRoadmap-HowCompetitionsWork" rel="nofollow">
+      How Competitions Work
+    </a>
+    <ul>
+      <li>
+        <a href="#CompetitionRoadmap-CompetitionBundleFileStructure" rel="nofollow">
+          Competition Bundle File Structure
+        </a>
+      </li>
+      <li>
+        <a href="#CompetitionRoadmap-TypesofCompetition" rel="nofollow">
+          Types of Competition
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#CompetitionRoadmap-CompetitionEndtoEndProcess" rel="nofollow">
+      Competition End to End Process
+    </a>
+    <ul>
+      <li>
+        <a href="#CompetitionRoadmap-PlanningaCompetition" rel="nofollow">
+          Planning a Competition
+        </a>
+      </li>
+      <li>
+        <a href="#CompetitionRoadmap-Howsubmissionsareprocessed" rel="nofollow">
+          How submissions are processed
+        </a>
+      </li>
+      <li>
+        <a href="#CompetitionRoadmap-MakingDataAvailable" rel="nofollow">
+          Making Data Available
+        </a>
+      </li>
+      <li>
+        <a href="#CompetitionRoadmap-CreatinganIngestionProgram" rel="nofollow">
+          Creating an Ingestion Program
+        </a>
+      </li>
+      <li>
+        <a href="#CompetitionRoadmap-CreatingaScoringProgram" rel="nofollow">
+          Creating a Scoring Program
+        </a>
+      </li>
+      <li>
+        <a href="#CompetitionRoadmap-CreatingaStartingKit" rel="nofollow">
+          Creating a Starting Kit
+        </a>
+      </li>
+      <li>
+        <a href="#CompetitionRoadmap-CreatingaCompetitionBundle" rel="nofollow">
+          Creating a Competition Bundle
+        </a>
+      </li>
+      <li>
+        <a href="#CompetitionRoadmap-RunningaCompetition" rel="nofollow">
+          Running a Competition
+        </a>
+      </li>
+    </ul>
+  </li>
+</ul>
+<h1 id="CompetitionRoadmap-HowCompetitionsWork">
+  How Competitions Work
+</h1>
+In a typical CodaLab competition, participants compete to find the best approach for a particular problem. Competitions may be conducted in multiple phases, e.g. development, feedback, and final. The appropriate data is made available to participants at each phase of the competition. During the development and feedback phases, participants have access to training data to develop and refine their algorithms. During the final competition phase, participants are provided with final test data to generate results, which they can then submit to the competition. Results are calculated at the end of each phase, at which point participants can see the competition results on the leaderboard.
+<h2 id="CompetitionRoadmap-CompetitionBundleFileStructure">
+  Competition Bundle File Structure
+</h2>
+Competitions consist of a set of files collectively known as a &#34;bundle&#34;. Although technically CodaLab considers any zipped archive to be a bundle, competition bundles generally contain a specific assortment of files:
+<ul>
+  <li>
+    competition.yaml: Configuration file defining all the features of the competition, and linking to resources needed to organize the competition (html files, data, programs).
+  </li>
+  <li>
+    HTML pages: Descriptive text and instructions to participants.
+  </li>
+  <li>
+    program files: Files that making up the ingestion program, the scoring program, and the starting kit. With the default compute worker and docker on the public instance, we support Python (.py) files and Windows-based binary executables. Via the use of your own docker images and running your own compute workers, you have the flexibility of using any programming language and OS.
+  </li>
+  <li>
+    data files: Contain training data and reference data for the competition.
+  </li>
+</ul>
+This listing gives a general idea of the files which make up a competition, although this can vary depending on the type of competition. Beginners may want to use ChaLab, a
+<a href="https://chalab.lri.fr/" rel="nofollow">
+  wizard
+</a>
+ that guides you step-by-step to build a competition bundle.
+<h2 id="CompetitionRoadmap-TypesofCompetition">
+  Types of Competition
+</h2>
+CodaLab competitions can be set up in several different ways. We provide several templates, which differ in the type of data and complexity of the organization. These three templates are the most basic:
+<ul>
+  <li>
+    <a href="https://github.com/codalab/codalab-competitions/wiki/Example_yellow_world" rel="nofollow">
+      Yellow World
+    </a>
+    : The simplest template with RESULT submission. Competitors submit an answer which is compared with the known correct answer.
+  </li>
+  <li>
+    <a href="https://github.com/codalab/codalab-competitions/wiki/Example_compute_pi" rel="nofollow">
+      Compute Pi
+    </a>
+    : The simplest template with CODE submission. Competitors submit an answer which is compared with the known correct answer.
+  </li>
+  <li>
+    <a href="https://github.com/codalab/codalab-competitions/wiki/Example_iris" rel="nofollow">
+      Iris
+    </a>
+    : A two-phase competition similar to what the
+    <a href="https://chalab.lri.fr/" rel="nofollow">
+      ChaLab wizard
+    </a>
+     can produce, with either result or code submission.
+  </li>
+</ul>
+<a href="https://github.com/codalab/competition-examples/tree/master/developers" rel="nofollow">
+  More complex examples
+</a>
+ are also provided for developers and advanced users.
+<h1 id="CompetitionRoadmap-CompetitionEndtoEndProcess">
+  Competition End to End Process
+</h1>
+In this section we&#39;ll walk through the major segments of the competition creation process.
+<h2 id="CompetitionRoadmap-PlanningaCompetition">
+  Planning a Competition
+</h2>
+The very first step in creating a competition is planning. For help, see the
+<a href="http://www.chalearn.org/tips.html" rel="nofollow">
+  ChaLearn tips
+</a>
+. It is advisable to first start preparing data, a scoring program, and a sample solution. This will be the basis for the &#34;starting kit&#34;, which you can distribute to participants to get started. New in Codalab 1.5: the &#34;ingestion program&#34;, which allows you to parse the submission of participants.
+<h2 id="CompetitionRoadmap-Howsubmissionsareprocessed">
+  How submissions are processed
+</h2>
+The diagram below illustrates how submissions made by participants are processed. They are received by and ingestion program, which decides whether to treat them as &#34;result&#34; submission of &#34;code&#34; submission. Result submissions are directly forwarded to the scoring program whereas code submissions are executed on the platform to produce results. The scoring program compares the results with the solution (known only to the organizers).
+<img alt="Codalab process, which includes the high-level steps of Ingestion, Prediction, and Scoring" src="https://github.com/codalab/codalab-competitions/wiki/images/process.png">
+<h2 id="CompetitionRoadmap-MakingDataAvailable">
+  Making Data Available
+</h2>
+There are several kinds of data an organizer can provide in each phase:
+<ul>
+  <li>
+    Public data: Data available for download from the competition page. Typically this can be sample data in a code submission competition or labeled training data and unlabeled test data in a result submission competition.
+  </li>
+  <li>
+    Input data: Data used as input to the participants&#39; code, in a code submission competition.
+  </li>
+  <li>
+    Reference data: The &#34;solution&#34; of the problem, visible only to the scoring program.
+  </li>
+</ul>
+The data format can freely be chosen by the organizers.Codalab lets you either include data in your competition bundle (as zip files) or upload data in My Competitions&gt;My Datasets, then reference the datasets from your YAML configuration file. You can also switch dataset on-the-fly while your competition is running by re-uploading a dataset and select the new version via the competition editor. See
+<a href="https://github.com/codalab/codalab-competitions/wiki/User_Dataset-Management" rel="nofollow">
+  My Datasets
+</a>
+.
+<h2 id="CompetitionRoadmap-CreatinganIngestionProgram">
+  Creating an Ingestion Program
+</h2>
+The ingestion program receives the submission of participants. You do not necessarily need to write one. Codalab provides a default ingestion program with the following behavior, depending on the type of submission made by the participant:
+<ul>
+  <li>
+    If the submission contains no &#34;metadata&#34; file: treat it as a &#34;result&#34; submission and forward it directly to the &#34;scoring program&#34;.
+  </li>
+  <li>
+    If the submission contains a &#34;metadata&#34; file: execute the command found in the metadata file.
+  </li>
+</ul>
+Each phase may have a different ingestion program. Scenarios in which you may want to have your own ingestion program include:
+<ul>
+  <li>
+    You want participants to submit libraries of functions rather than executables (the ingestion program will then run them with the main function, which is the same for all participants). This allows you to use, for example, the same program to read data for everybody or to call the library functions in cross-validation loops.
+  </li>
+  <li>
+    You organize active learning, query learning, time series prediction, or reinforcement learning competitions in which the code of the participants get progressively exposed to data in an interactive way.
+  </li>
+</ul>
+For more information see
+<a href="https://github.com/codalab/codalab-competitions/wiki/User_Building-an-Ingestion-Program-for-a-Competition" rel="nofollow">
+  Building an Ingestion Program for a Competition
+</a>
+.
+<h2 id="CompetitionRoadmap-CreatingaScoringProgram">
+  Creating a Scoring Program
+</h2>
+The scoring program evaluates the participants&#39; submissions, comparing each submission with a set of reference data (solution), and then passing the resulting scores to the competition leaderboard (&#34;Results&#34; tab).Each phase may have a different scoring program. For more information see
+<a href="https://github.com/codalab/codalab/wiki/User_Building-a-Scoring-Program-for-a-Competition" rel="nofollow">
+  Building a Scoring Program for a Competition
+</a>
+.
+<h2 id="CompetitionRoadmap-CreatingaStartingKit">
+  Creating a Starting Kit
+</h2>
+The starting kit is a &#34;freestyle&#34; bundle created by the organizers, containing everything the participants need to get quickly started. A typical starting kit contains:
+<ul>
+  <li>
+    A README file (use e.g.
+    <a href="http://README.md" rel="nofollow">
+      README.md
+    </a>
+    or README.ipynb to facilitate sharing the starting kit on Github).
+  </li>
+  <li>
+    A sample result submission.
+  </li>
+  <li>
+    A sample code submission. The readme file contains instruction and/or sample code to read/display data, and prepare a sample submission. We provide a
+    <a href="https://github.com/codalab/competition-examples/tree/master/chalab-examples/Iris/starting_kit" rel="nofollow">
+      template starting kit
+    </a>
+     --
+    <a href="https://github.com/codalab/competition-examples/blob/master/chalab-examples/Iris/iris_starting_kit.zip" rel="nofollow">
+      also downloadable as zip
+    </a>
+     -- for the
+    <a href="https://github.com/codalab/codalab-competitions/wiki/Example_iris" rel="nofollow">
+      Iris challenge
+    </a>
+    .
+  </li>
+</ul>
+<h2 id="CompetitionRoadmap-CreatingaCompetitionBundle">
+  Creating a Competition Bundle
+</h2>
+The next step is creating a competition bundle. For detailed instructions, see
+<a href="https://github.com/codalab/codalab-competitions/wiki/User_Building-a-Competition-Bundle" rel="nofollow">
+  Building a Competition Bundle
+</a>
+.
+<h2 id="CompetitionRoadmap-RunningaCompetition">
+  Running a Competition
+</h2>
+Once your competition is up and running, you can manage it from your
+<a href="https://competitions.codalab.org/my/" rel="nofollow">
+  CodaLab Dashboard
+</a>
+. For more details, see
+<a href="https://wiki.nci.nih.gov/display/MEDICI/Running+a+Competition" rel="nofollow">
+  Running a Competition
+</a>
+.

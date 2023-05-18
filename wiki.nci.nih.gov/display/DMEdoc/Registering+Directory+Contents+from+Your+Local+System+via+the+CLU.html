@@ -1,0 +1,363 @@
+If your user account has the Write or Own permission level on an existing collection in DME, and if that existing collection has been configured to contain another collection, you can recursively register data (copy files within folders) from your local system into that existing collection. By default, the dm_register_directory command registers all files and directories in the source directory. The character limit for each metadata value is 2700.Contents of This Page
+<ul>
+  <li>
+    <a href="#RegisteringDirectoryContentsfromYourLocalSystemviatheCLU-RegisteringDirectoryContents" rel="nofollow">
+      Registering Directory Contents
+    </a>
+  </li>
+  <li>
+    <a href="#RegisteringDirectoryContentsfromYourLocalSystemviatheCLU-VerifyingUploadedFiles" rel="nofollow">
+      Verifying Uploaded Files
+    </a>
+  </li>
+  <li>
+    <a href="#RegisteringDirectoryContentsfromYourLocalSystemviatheCLU-Example" rel="nofollow">
+      Example
+    </a>
+  </li>
+</ul>
+<h2 id="RegisteringDirectoryContentsfromYourLocalSystemviatheCLU-RegisteringDirectoryContents">
+  Registering Directory Contents
+</h2>
+<ol>
+  <li>
+    Prepare to run the command.
+    <ol>
+      <li>
+        Make sure that the destination collection (where you want to register your data) already exists. For instructions, refer to the following pages:
+        <ul>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=392069763" rel="nofollow">
+              Creating an Empty Collection via the CLU
+            </a>
+          </li>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=408650972" rel="nofollow">
+              Creating an Empty Collection via the GUI
+            </a>
+          </li>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=384214008" rel="nofollow">
+              Registering Data in Bulk via the GUI
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        Optional: To register a subset of the files in the source directory, prepare to use one of the following options:
+        <ul>
+          <li>
+            You can create a flat list of data files. In each line of this file, specify a relative path to the source path. Plan to use the -l option in the command.
+          </li>
+          <li>
+            You can use regex patterns to exclude files from registration, include files, or both.
+            <ul>
+              <li>
+                To include files in registration, create an include file and plan to use the -i option in the command.
+              </li>
+              <li>
+                To exclude files from registration, create an exclude file and plan to use the -e option in the command.
+              </li>
+            </ul>
+            For information, refer to
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=380865234" rel="nofollow">
+              Specifying Include Criteria
+            </a>
+            . If you proceed with a command that specifies both include and exclude files, the system first identifies files that match any of the include regex patterns. Then the system removes from the registration job the files that match any of the exclude patterns.
+          </li>
+        </ul>
+      </li>
+      <li>
+        Specify the metadata required for the collections and data files you intend to create in DME. For each directory and each data file that you intend to register, create a metadata file with the name &lt;[directory,filename]&gt;.metadata.json. Create each metadata file in the same path as its corresponding directory or data file. For example, for a file named sample.txt, name the corresponding metadata file sample.txt.metadata.json. (Keep in mind that the system registers the metadata files along with the corresponding data, unless you specify otherwise with a flat list or regex patterns.) In each metadata file, specify the metadata that you want to include, as follows:
+        {
+        &#34;metadataEntries&#34;: [
+        {
+        &#34;attribute&#34;: &#34;description&#34;,
+        &#34;value&#34;: &#34;my-dataObject-description&#34;
+        },
+        {
+        &#34;attribute&#34;: &#34;example_date&#34;,
+        &#34;value&#34;: &#34;20201231&#34;,
+        &#34;dateFormat&#34;: &#34;yyyyMMdd&#34;
+        }
+        ]
+        }
+      </li>
+      <li>
+        For each date attribute, specify one of the following date formats, and specify the date value in that format:
+        <ul>
+          <li>
+            yyyyMMdd
+          </li>
+          <li>
+            yyyy.MM.dd
+          </li>
+          <li>
+            yyyy-MM-dd
+          </li>
+          <li>
+            yyyy/MM/dd
+          </li>
+          <li>
+            MM/dd/yyyy
+          </li>
+          <li>
+            MM-dd-yyyy
+          </li>
+          <li>
+            MM.dd.yyyy
+          </li>
+        </ul>
+        The system parses your date using the date format you specify. Then however, if the date attribute has a metadata validation rule in a different format, the system stores the date in the format specified by that rule.
+      </li>
+      <li>
+        Optional: If you want to create a parent collection for the directory contents (or update the metadata of an existing parent collection), also specify in your JSON file the metadata for the parent collection. To view the syntax, click the following link:
+        Syntax
+        {
+        &#34;metadataEntries&#34;: [
+        {
+        &#34;attribute&#34;: &#34;description&#34;,
+        &#34;value&#34;: &#34;description&#34;
+        },
+        {
+        &#34;attribute&#34;: &#34;example_date&#34;,
+        &#34;value&#34;: &#34;20201231&#34;,
+        &#34;dateFormat&#34;: &#34;yyyyMMdd&#34;
+        }
+        ],
+        &#34;createParentCollections&#34;: true,
+        	&#34;parentCollectionsBulkMetadataEntries&#34;: {
+        		&#34;pathsMetadataEntries&#34;: [{
+        			&#34;path&#34;: &#34;/Example_Archive/PI_Lab1/Project_New&#34;,
+        			&#34;pathMetadataEntries&#34;: [{
+        					&#34;attribute&#34;: &#34;collection_type&#34;,
+        					&#34;value&#34;: &#34;Folder&#34;
+        				},
+        				{
+        					&#34;attribute&#34;: &#34;example info&#34;,
+        					&#34;value&#34;: &#34;123456&#34;
+        				}]
+        		}]
+        	}
+        }
+      </li>
+    </ol>
+  </li>
+  <li>
+    Run the following command:
+
+
+
+
+
+
+
+
+
+
+
+    dm_register_directory [optional parameters] &lt;source-path&gt; &lt;destination-path&gt;
+
+
+    The following table describes each option:
+    <table>
+      <colgroup>
+        <col/>
+        <col/>
+      </colgroup>
+      <tbody>
+        <tr>
+          <th>
+            Option
+          </th>
+          <th>
+            Description
+          </th>
+        </tr>
+        <tr>
+          <td>
+            -c
+          </td>
+          <td>
+            If you want to turn on checksum calculation for validation of data transfer, specify this option. By default, the system does not perform this calculation because it can increase the time required to register the data, depending on the file size.
+            <ul>
+              <li>
+                If the collection is 50 MB or larger, the system saves the computed checksum as user metadata (source_checksum). This checksum metadata contains the eTag.
+              </li>
+              <li>
+                If the collection is smaller than that threshold, the system uses the computed checksum to perform checksum verification upon uploading the file. The system also saves the checksum as system metadata (checksum).
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            -d
+          </td>
+          <td>
+            If you want to preview a list of the source file(s)/folder(s) that the system would register based on what you specified as the source path, specify this dry run option. (This option tests only the source path. It does not test the destination path.)
+          </td>
+        </tr>
+        <tr>
+          <td>
+            -e &lt;path-to-exclude-file&gt;
+          </td>
+          <td>
+            If you want to exclude files, specify this option. The system excludes the files that match the patterns specified in the file &lt;path-to-exclude-file&gt;.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            -h
+          </td>
+          <td>
+            If you want to print a usage (help) message for this command, specify this option.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            -i &lt;path-to-include-file&gt;
+          </td>
+          <td>
+            If you want to include files, specify this option. The system includes the files that match at least one of the patterns specified in &lt;path-to-include-file&gt;.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            -l &lt;files-list&gt;
+          </td>
+          <td>
+            If you want to register specific files and exclude all others, specify this option. The system registers the files mentioned in the &lt;files-list&gt; only. In each line of the &lt;files-list&gt; file, specify a relative path to the &lt;source-path&gt;.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            -m
+          </td>
+          <td>
+            If you want to register metadata only (for files that already exist), specify this option. The system does not register files.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            -s
+          </td>
+          <td>
+            If you want to skip the default confirmation prompt and register directly, use this option.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            -t &lt;num-threads&gt;
+          </td>
+          <td>
+            If you want to use this parameter, contact
+            <a href="mailto:NCIDataVault@mail.nih.gov" rel="nofollow">
+              NCIDataVault@mail.nih.gov
+            </a>
+             for guidance.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            -x
+          </td>
+          <td>
+            If you want to extract metadata from the header of TIFF or BMP image files, use this option.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    The following table describes each parameter:
+    <table>
+      <colgroup>
+        <col/>
+        <col/>
+      </colgroup>
+      <tbody>
+        <tr>
+          <th>
+            Parameter
+          </th>
+          <th>
+            Description
+          </th>
+        </tr>
+        <tr>
+          <td>
+            &lt;source-path&gt;
+          </td>
+          <td>
+            A path in your local system, specifying the data that you want to register. The system registers the contents of the folder you specify.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            &lt;destination-path&gt;
+          </td>
+          <td>
+            A path within DME, specifying where you want the system to create the data.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    If the system prompts you to confirm the registration, type Y and press Enter. The command recursively registers files and directories from the directory specified in the &lt;source-path&gt; to the &lt;destination-path&gt;.
+  </li>
+</ol>
+<h2 id="RegisteringDirectoryContentsfromYourLocalSystemviatheCLU-VerifyingUploadedFiles">
+  Verifying Uploaded Files
+</h2>
+To verify uploaded files, use the dm_get_dataobject command. The system-generated metadata data_transfer_status displays ARCHIVED for files successfully uploaded to DME. For details, refer to
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=390467040" rel="nofollow">
+  Retrieving the Metadata of a Data File via the CLU
+</a>
+.
+<h2 id="RegisteringDirectoryContentsfromYourLocalSystemviatheCLU-Example">
+  Example
+</h2>
+To view an example, click the following link:
+ExampleThe following command copies the contents (folders and files) of the JaneDoe folder in the local system to the Project_New collection in DME. (The command does not copy the JaneDoe folder itself.)
+
+
+
+
+
+
+
+
+
+
+
+dm_register_directory -i include.txt -e exclude.txt /cygdrive/c/Users/JaneDoe /Example_Archive/PI_Lab1/Project_New
+
+
+The example command specifies the following include file:
+**/images/**
+**/data/**
+All of the paths in the include file are relative to the source folder, as specified in the command. This file includes the following files:
+<ul>
+  <li>
+    All files in an images folder in the source folder (and subfolders).
+  </li>
+  <li>
+    All files in a data folder in the source folder (and subfolders).
+  </li>
+</ul>
+The example command specifies the following exclude file:
+**.metadata.json
+**/log/**
+*.properties
+All of the paths in the exclude file are relative to the source folder, as specified in the command. This file excludes the following files:
+<ul>
+  <li>
+    All files in the source folder (and subfolders) with filenames that end in .metadata.json.
+  </li>
+  <li>
+    All files in any log folder in the source folder (and subfolders).
+  </li>
+  <li>
+    All files in the source folder with filenames that end in .properties.
+  </li>
+</ul>

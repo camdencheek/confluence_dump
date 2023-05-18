@@ -1,0 +1,202 @@
+If your user account has the Read, Write, or Own permission level on various collections, you can download one or more of those collections, from DME to an Amazon Web Services (AWS) S3 bucket. To download one or more collections to S3:
+<ol>
+  <li>
+    Prepare an S3 bucket, as described in
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=407734581" rel="nofollow">
+      Preparing to Use AWS S3 Bucket for the CLU
+    </a>
+    .
+  </li>
+  <li>
+    Consider whether you want to download a single collection or multiple collections:
+    <ul>
+      <li>
+        To download a single collection: Plan to specify the path for that collection in the command.
+      </li>
+      <li>
+        To download multiple collections: In your local system, use a command line editor (such as vi editor) to create a file that lists the paths for all of the DME collections you want to download, delimited by newline. Plan to use the -f option to specify that file in the command.
+      </li>
+    </ul>
+  </li>
+  <li>
+    Run the following command:
+
+
+
+
+
+
+
+
+
+
+
+    (dm_download_collection_s3 [optional parameters] [DME data path] &lt;destination S3 bucket&gt; &lt;destination-path&gt; [AWS credentials file path])
+
+
+    The following table describes each parameter:
+    <table>
+      <colgroup>
+        <col/>
+        <col/>
+      </colgroup>
+      <tbody>
+        <tr>
+          <th>
+            Parameter
+          </th>
+          <th>
+            Description
+          </th>
+        </tr>
+        <tr>
+          <td>
+            [-D &lt;REST-response&gt;]
+          </td>
+          <td>
+            An optional parameter, specifying a path and filename in your local system. The system always creates a response file:
+            <ul>
+              <li>
+                If you specify this parameter, the system saves the response from the server to the specified file in the specified location.
+              </li>
+              <li>
+                If you omit this parameter, the system saves the file as download-collection-response-header.tmp in your home directory.
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            [-o &lt;output-json-file&gt;]
+          </td>
+          <td>
+            An optional parameter, specifying a path and filename in your local system. The system always creates an output file:
+            <ul>
+              <li>
+                If you specify this parameter, the system saves the output to the specified file in the specified location.
+              </li>
+              <li>
+                If you omit this parameter, the system saves the output as download-collection-response-message.json.tmp in your home directory.
+              </li>
+            </ul>
+            If the command is successful, the output file is empty.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            [-f &lt;paths-file&gt;]or[DME data path]
+          </td>
+          <td>
+            One or more paths within DME. Select one of the following methods to specify the collection or collections that you want to download:
+            <ul>
+              <li>
+                To specify multiple collections, use the -f parameter to specify a path and filename in your local system, of a file that lists the paths for all of the DME collections you want to download, delimited by newline.
+              </li>
+              <li>
+                To specify a single collection, specify the path for the DME collection you want to download.
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            &lt;destination S3 bucket&gt;
+          </td>
+          <td>
+            The name of the destination S3 bucket.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            &lt;destination path&gt;
+          </td>
+          <td>
+            The path to and the name of the folder in the destination bucket. Do not begin the path with a slash. If the destination folder structure you specify does not already exist, DME creates it.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            [AWS credentials file path]
+          </td>
+          <td>
+            The location of the credentials file. If your credentials file is in the default location, as noted in
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=407734581" rel="nofollow">
+              Preparing to Use AWS S3 Bucket for the CLU
+            </a>
+            , you can omit this parameter.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+</ol>
+For some examples, consider the following code specified in a credentials file:
+[default]
+aws_access_key_id = SAMPLEACCESSKEY
+aws_secret_access_key = SampleSecretAccessKey
+region = us-east-1
+Single Collection ExampleThe following example uses the credentials file in a non-default location to download a collection from DME.
+
+
+
+
+
+
+
+
+
+
+
+dm_download_collection_s3 /Example_Archive/PI_Lab1/Project_1 bucket1 folder1/subfolder1/ /cygdrive/c/Users/JaneDoe/aws/credentials
+
+
+In this example, the command performs the following:
+<ul>
+  <li>
+    Locates or creates a folder1 folder in the bucket1 bucket.
+  </li>
+  <li>
+    Locates or creates a subfolder1 folder within the folder1 folder.
+  </li>
+  <li>
+    Downloads from DME all files in the Project_1 collection.
+  </li>
+  <li>
+    Saves those files in the subfolder1 folder with the same file names they have in DME.
+  </li>
+</ul>
+Multiple Collections ExampleFor another example, consider the following command.
+
+
+
+
+
+
+
+
+
+
+
+dm_download_collection_s3 -f collection-list.txt bucket1 folder1/subfolder1/
+
+
+With the following code in the specified collection-list.txt file, the above command uses the credentials file in a default location to download multiple collections from various locations in DME.
+/Example_Archive/PI_Lab2/Project_1
+/Example_Archive/PI_Lab2/Project_2
+/Example_Archive/PI_Lab3/Project_1
+
+In this example, the command performs the following:
+<ul>
+  <li>
+    Locates or creates a folder1 folder in the bucket1 bucket.
+  </li>
+  <li>
+    Locates or creates a subfolder1 folder within the folder1 folder.
+  </li>
+  <li>
+    Downloads from DME all files in the collections listed in the specified collection-list.txt file.
+  </li>
+  <li>
+    Saves those files in the subfolder1 folder with the same file names they have in DME.
+  </li>
+</ul>

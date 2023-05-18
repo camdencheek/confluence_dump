@@ -1,0 +1,139 @@
+This page includes the following topics:
+<ul>
+  <li>
+    <a href="#id-8PostInstallationTasksforNBIA6.5-ConfiguringtheCTPServer" rel="nofollow">
+      Configuring the CTP Server
+    </a>
+  </li>
+  <li>
+    <a href="#id-8PostInstallationTasksforNBIA6.5-StartingNBIAStartingUpNBIA" rel="nofollow">
+      Starting NBIA
+    </a>
+  </li>
+  <li>
+    <a href="#id-8PostInstallationTasksforNBIA6.5-CreatinganLDAPAccountforNBIA" rel="nofollow">
+      Creating an LDAP Account for NBIA
+    </a>
+  </li>
+</ul>
+<h2 id="id-8PostInstallationTasksforNBIA6.5-ConfiguringtheCTPServer">
+  Configuring the CTP Server
+</h2>
+CTP directories
+<ul>
+  <li>
+    Because a new CTP installation deletes the file server that keeps files submitted to CTP, the CTP Server Directory and CTP File Storage Directory should point to different locations. In other words, it is important that the CTP server directory and the CTP file storage directory are separate.
+  </li>
+  <li>
+    If the CTP file storage directory is in a Unix-like environment, be sure to add the system user for the NBIA portal to the write access-group. Failure to do so will cause the Online Deletion and Cron Job Deletion tools to fail to function properly.
+  </li>
+</ul>
+To configure the CTP server
+<ol>
+  <li>
+    After installing the CTP client and server, to activate the user authentication in file submission, modify config.xml in the CTP_Client\CTP directory. By default, both the username and password are set to &#34;client&#34;. Specify the username and password in ExportService and DatabaseVerifier sections as follows:
+    &lt;DatabaseVerifier
+
+    class=&#34;org.rsna.ctp.stdstages.DatabaseVerifier&#34;
+
+    name=&#34;DatabaseVerifier&#34;
+
+    password=&#34;client&#34;
+
+    root=&#34;roots/DatabaseVerifier&#34;
+
+    url=&#34;https://127.0.0.1:1111&#34;
+
+    username=&#34;client&#34;
+
+    password=&#34;client&#34;/&gt;
+
+    &lt;ExportService
+
+    name=&#34;HTTP Export&#34;
+
+    class=&#34;org.rsna.ctp.stdstages.HttpExportService&#34;
+
+    root=&#34;roots/http-export&#34;
+
+    username=&#34;client&#34;
+
+    password=&#34;client&#34;
+    url=&#34;https://127.0.0.1:2222&#34;/&gt;
+    On the CTP server, a new user must be created with the same username and password defined in config.xml of the CTP_Client\CTP directory. A &#34;User Manager&#34; in the CTP server given the &#34;import” role can perform this task. The following figure shows the page on which the user manager creates new users:
+    <img alt="CTP user manager" width="700" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/NBIA/8%20-%20Post-Installation%20Tasks%20for%20NBIA%206.5/CTP%20user%20manager.png?api=v2">
+  </li>
+  <li>
+    Use the CTP Database Verifier, shown in the following figure, at the submitting site to ensure that all transmitted data made it into the NBIA database. More information about the CTP Database Verifier can be found at
+    <a href="http://mircwiki.rsna.org/index.php?title=CTP-The_RSNA_Clinical_Trial_Processor#DatabaseVerifier" rel="nofollow">
+      http://mircwiki.rsna.org/index.php?title=CTP-The_RSNA_Clinical_Trial_Processor#DatabaseVerifier
+    </a>
+    .
+    <a href="http://mircwiki.rsna.org/index.php?title=CTP-The_RSNA_Clinical_Trial_Processor#DatabaseVerifier" rel="nofollow">
+      <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+        <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+      </a>
+    </a>
+    <img alt="Datbase verifier" width="700" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/NBIA/8%20-%20Post-Installation%20Tasks%20for%20NBIA%206.5/CTP%20db%20verifier.png?api=v2">
+  </li>
+  <li>
+    While installing NBIA, make sure the following points outside of the NBIA Installation folder to avoid wiping the database.
+    application.base.path.linux = REPLACE_THIS e.g  /usr/local/apps/ncia6_0
+    application.base.path.windows = REPLACE_THIS e.g /usr/local/apps/ncia6_0
+    ctp.server.storage.service.index = REPLACE_THIS  e.g usr/local/apps/ncia/CTP-Server/CTP/Storage
+    ctp.server.storage_service.root = REPLACE_THIS e.g usr/local/apps/ncia/CTP-Server/CTP/Storage/root
+  </li>
+  <li>
+    After installation, check your CTP server. In the config.xml file belonging to the CTP server, make sure that the root points to a directory outside of CTP Server. &#34;Root&#34; field is where the CTP submission files are stored.
+    &lt;StorageService
+    root=&#34;/data/dataset_d01/root&#34; [Change This]
+    &lt;/StorageService&gt;
+  </li>
+</ol>
+<h2 id="id-8PostInstallationTasksforNBIA6.5-StartingNBIAStartingUpNBIA">
+  Starting NBIA
+</h2>
+Note that if Tomcat and CTP are not installed as services, they must be manually started/re-started. The following files start the respective servers.On Windows:Note: &lt;installed-directory&gt; = application.base.path.windows
+<ul>
+  <li>
+    Tomcat:  &lt;installed-directory&gt;/apache-tomcat-7.0.68/bin/startup.bat
+  </li>
+  <li>
+    CTP: &lt;installed-directory&gt;/CTP-server/CTP/ctp.bat
+  </li>
+</ul>
+On Linux:Note: &lt;installed-directory&gt; = application.base.path.linux
+<ul>
+  <li>
+    Tomcat: &lt;installed-directory&gt;/apache-tomcat-7.0.68/bin/startup.sh
+  </li>
+  <li>
+    CTP:  &lt;installed-directory&gt;/CTP-server/CTP/ctp.sh
+  </li>
+</ul>
+<h2 id="id-8PostInstallationTasksforNBIA6.5-CreatinganLDAPAccountforNBIA">
+  Creating an LDAP Account for NBIA
+</h2>
+The way that NBIA is configured during installation determines the way NBIA administrators create users. All new users must already exist in LDAP.During installation, if install.properties specifies the option database.re-create=true, the administrator creates users in the following way.
+<ol>
+  <li>
+    Create an LDAP account with the login name nciadevtest and a password.
+  </li>
+  <li>
+    Log into NBIA using these credentials.
+  </li>
+  <li>
+    Select Admin &gt; User Authorization Tool.
+  </li>
+  <li>
+    <a href="https://wiki.nci.nih.gov/display/NBIA/Configuring+Security+for+Submitted+Data+6.5#ConfiguringSecurityforSubmittedData6.5-AddingaUsertoNBIA" rel="nofollow">
+      Add users to NBIA
+    </a>
+    .
+  </li>
+</ol>
+During installation, if install.properties specifies the option database.re-create=false, the administrator uses his or her existing account, then selects Admin &gt; User Authorization Tool and
+<a href="https://wiki.nci.nih.gov/display/NBIA/Configuring+Security+for+Submitted+Data+6.5#ConfiguringSecurityforSubmittedData6.5-AddingaUsertoNBIA" rel="nofollow">
+  adds users to NBIA
+</a>
+.

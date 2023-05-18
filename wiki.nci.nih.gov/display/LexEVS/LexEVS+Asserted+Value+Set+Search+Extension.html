@@ -1,0 +1,141 @@
+Contents of this Page
+<ul>
+  <li>
+    <a href="#LexEVSAssertedValueSetSearchExtension-SourceAssertedValueSetSearchExtensionClassDiagram" rel="nofollow">
+      SourceAssertedValueSetSearchExtension Class Diagram
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVSAssertedValueSetSearchExtension-LexEVSAssertedValueSetSearchAPI" rel="nofollow">
+      LexEVS Asserted Value Set Search API
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVSAssertedValueSetSearchExtension-AssertedValueSetSearch" rel="nofollow">
+      Asserted Value Set Search
+    </a>
+  </li>
+</ul>
+<h1 id="LexEVSAssertedValueSetSearchExtension-Introduction">
+  Introduction
+</h1>
+The Asserted Value Set Search is an extension of the LexEVS API. It provides extended options value set searches
+<ul>
+  <li>
+    Text Match
+  </li>
+  <li>
+    Search Algorithm Choices
+  </li>
+  <li>
+    Coding Scheme Restrictions for both original source and target value set
+  </li>
+  <li>
+    Boolean flags for anonymous or active designations on the entity
+  </li>
+</ul>
+<h2 id="LexEVSAssertedValueSetSearchExtension-SourceAssertedValueSetSearchExtensionClassDiagram">
+  SourceAssertedValueSetSearchExtension Class Diagram
+</h2>
+<img src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%20Asserted%20Value%20Set%20Search%20Extension/Screen%20Shot%202018-06-14%20at%2010.22.05%20AM.png?api=v2">
+<h2 id="LexEVSAssertedValueSetSearchExtension-LexEVSAssertedValueSetSearchAPI">
+  LexEVS Asserted Value Set Search  API
+</h2>
+LexEVS Asserted Value Set Search Services provides search methods with a variety of inputs
+<ul>
+  <li>
+    Text to Match: unique identifier, presentation, or property value.
+  </li>
+  <li>
+    Algorithm for Match: exact match, contains, lucene query parser type search
+  </li>
+  <li>
+    Coding Scheme Reference: reference to source scheme(s)
+  </li>
+  <li>
+    Coding Scheme Reference: reference to coding scheme representation of a value set
+  </li>
+  <li>
+    Boolean: includes anonymous nodes
+  </li>
+  <li>
+    Boolean: includes inactive nodes
+  </li>
+</ul>
+<h2 id="LexEVSAssertedValueSetSearchExtension-AssertedValueSetSearch">
+  Asserted Value Set Search
+</h2>
+search
+
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Lists matching concept reference based on property or presentation text or other matching criteria
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        String textMatch: Matching text for presentation, property or unique identifier (code)Set&lt;CodingSchemeReference&gt; (optional): Coding scheme representation of asserted value set reference Set&lt;CodingSchemeReference&gt; (not implemented): Resolved Value Sets to Include in search, currently can be included in the asserted groupMatchAlgorithm value: Generally exact or contains matches on text from property, presentation, or codeboolean isAnonymous (optional): Anonymous is normally excluded set to true if you want these included boolean isActive (optional): Inactive entities are normally excluded but can be flagged for inclusion
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        ResolvedConceptRefenerencesIterator:  Iterator over ResolvedConceptRefernences retrieved from the value set
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details:
+      </th>
+      <td>
+        Implementation:   Call this method on the on the search extension to query indexes of asserted value sets  Sample Call:
+        <ul>
+          <li>
+            Step 1: Instantiate SourceAssertedValueSetSearchExtension if it is not done yet:
+            LexBIGService lbsvc;
+            SourceAssertedValueSetSearchExtensionImpl assertedVSsvc;
+            lbsvc = LexBIGServiceImpl.defaultInstance();
+            assertedVSsvc = (SourceAssertedValueSetSearchExtensionImpl) lbsvc
+            .getGenericExtension(&#34;AssertedValueSetSearchExtension&#34;);
+          </li>
+          <li>
+            Step 2: List all the coding scheme representations of the value sets
+            //Instantiate a relevant value set coding scheme reference
+            Set&lt;CodingSchemeReference&gt; refs = new HashSet&lt;CodingSchemeReference&gt;();
+            CodingSchemeReference r = new CodingSchemeReference();
+            r.setCodingScheme(&#34;http://evs.nci.nih.gov/valueset/FDA/C111112&#34;);
+            refs.add(r);
+            //Resolve a set of results as an iterator
+            ResolvedConceptReferencesIterator itr = assertedVSsvc.
+            search(&#34;red&#34;, refs, null,
+            MatchAlgorithm.PROPERTY_EXACT, false, false);
+
+
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>

@@ -1,0 +1,556 @@
+If you decide to use the CLU to perform various activities in DME, the following steps are pre-requisites:
+<ol>
+  <li>
+    If you are using Windows, install Cygwin as described in the following site:
+    <a href="https://www.cygwin.com/" rel="nofollow">
+      https://www.cygwin.com/
+    </a>
+    <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+      <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+    </a>
+    For best results, run Cygwin.bat from C:\cygwin64\ rather than from the Windows Start menu.
+  </li>
+  <li>
+    Check which version of Java is currently installed:
+
+
+
+
+
+
+
+
+
+
+
+    java –version
+
+
+    The command output should display the version of Java. DME requires Java 1.8.x.
+  </li>
+  <li>
+    If Java 1.8.x is not installed, perform the following steps:
+    <ol>
+      <li>
+        Download Java 1.8.x from the following page:
+        <a href="https://www.java.com/en/download/" rel="nofollow">
+          https://www.java.com/en/download/
+        </a>
+        <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+          <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+        </a>
+      </li>
+      <li>
+        Install Java, as described in the following installation instructions:
+        <a href="https://www.java.com/en/download/help/index_installing.xml" rel="nofollow">
+          https://www.java.com/en/download/help/index_installing.xml
+        </a>
+        <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+          <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+        </a>
+      </li>
+      <li>
+        Update your PATH system variable with the Java executable folder (such as c:/jdk1.8_13/bin). For details, refer to the following instructions:
+        <a href="https://java.com/en/download/help/path.xml" rel="nofollow">
+          https://java.com/en/download/help/path.xml
+        </a>
+        <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+          <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+        </a>
+      </li>
+      <li>
+        Check whether you have performed the previous steps correctly by repeating the java -version command.
+      </li>
+    </ol>
+  </li>
+  <li>
+    If the latest version of JDK is not installed, perform the following steps:
+    <ol>
+      <li>
+        Download JDK from the following page:
+        <a href="https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html" rel="nofollow">
+          https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
+        </a>
+        <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+          <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+        </a>
+      </li>
+      <li>
+        Install JDK. For information, refer to the following page:
+        <a href="https://www.oracle.com/technetwork/java/javase/documentation/index.html" rel="nofollow">
+          https://www.oracle.com/technetwork/java/javase/documentation/index.html
+        </a>
+        <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+          <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+        </a>
+      </li>
+    </ol>
+  </li>
+  <li>
+    In a cmd or shell window, type the following command in your working directory to clone DME utilities to your local machine:
+
+
+
+
+
+
+
+
+
+
+
+    Git clone https://github.com/CBIIT/HPC_DME_APIs
+
+
+    The system creates a subdirectory (HPC_DME_APIs) containing all files from that GitHub repository.
+  </li>
+  <li>
+    In the HPC_DME_APIs/utils/ folder, create a copy of the sample configuration file (hpcdme.properties-sample) and rename it (as hpcdme.properties). Edit your hpcdme.properties file to make the following configuration changes:
+    <table>
+      <colgroup>
+        <col/>
+        <col/>
+      </colgroup>
+      <tbody>
+        <tr>
+          <th>
+            Property
+          </th>
+          <th>
+            Instructions
+          </th>
+        </tr>
+        <tr>
+          <td>
+            Server settings
+          </td>
+          <td>
+            If you want to connect to the UAT tier, uncomment the UAT server settings and comment out the Production server settings. By default, the Production server settings are enabled.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            hpc.ssl.keystore.password
+          </td>
+          <td>
+            Contact
+            <a href="mailto:NCIDataVault@mail.nih.gov" rel="nofollow">
+              NCIDataVault@mail.nih.gov
+            </a>
+            to request this password.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            hpc.user
+          </td>
+          <td>
+            Specify your NIH user ID.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            hpc.default.globus.endpoint
+          </td>
+          <td>
+            If you intend to transfer files using Globus, specify the UUID of the Globus endpoint that you want to use. (The following instructions may be helpful:
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=397288799" rel="nofollow">
+              Copying the Globus Shared Endpoint UUID
+            </a>
+            .)
+          </td>
+        </tr>
+        <tr>
+          <td>
+            hpc.server.proxy.port
+          </td>
+          <td>
+            If you intend to use Biowulf, specify the proxy port. To determine the correct port, run the following echo command:
+
+
+
+
+
+
+
+
+
+
+
+            echo $http_proxy
+
+
+            The output includes the port. For example, if the output of the echo command is http://dtn08-e0:3128, then your port is 3128.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            hpc.server.proxy.url
+          </td>
+          <td>
+            If you intend to use Biowulf, specify the proxy URL. To determine the correct URL, ping the output of the echo command. For example:
+
+
+
+
+
+
+
+
+
+
+
+            ping dtn08-e0
+
+
+            The output includes an IP address. Specify that IP address as the URL.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            hpc.error-log.dirhpc.log.file
+          </td>
+          <td>
+            If you are using Windows, consider specifying a non-default location for the error log file. For example:
+            hpc.error-log.dir=log
+            hpc.log.file=log/hpc-cli.log
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    .
+  </li>
+  <li>
+    Configure environment variables:
+    <ol>
+      <li>
+        Navigate to your ~/.bashrc or ~/.profile file, where ~ represents your home directory. For example:
+
+
+
+
+
+
+
+
+
+
+
+        C:\cygwin64\home\&lt;username&gt;
+      </li>
+      <li>
+        Edit your ~/.bashrc or ~/.profile file to append the following commands, where &lt;client_utils_home&gt; is the absolute path to the HPC_DME_APIs\utils\ folder. The following commands define the HPC_DM_UTILS environment variable and update the PATH environment variable to include the path to the scripts folder:
+        export HPC_DM_UTILS=&#34;&lt;client_utils_home&gt;&#34;
+        export PATH=$HPC_DM_UTILS/scripts/:$PATH
+      </li>
+    </ol>
+  </li>
+  <li>
+    If you are using Cygwin on Windows, run the following commands in Cygwin to change end-of-line delimiters from Windows standard to Unix standard in any files involved in CLU setup:
+    <ol>
+      <li>
+        Adjust the line delimiters in the file with your export commands (~/.bashrc or ~/.profile). For example:
+
+
+
+
+
+
+
+
+
+
+
+        sed -i &#34;s/\r$//&#34; ~/.bashrc
+      </li>
+      <li>
+        Adjust the line delimiters in all files in the scripts folder. Use the following command:
+
+
+
+
+
+
+
+
+
+
+
+        sed -i &#34;s/\r$//&#34; $HPC_DM_UTILS/scripts/*
+      </li>
+    </ol>
+  </li>
+  <li>
+    To make the above changes take effect in current Bash session, source the modified file (~/.bashrc or ~/.profile). For example:
+
+
+
+
+
+
+
+
+
+
+
+    source ~/.bashrc
+  </li>
+  <li>
+    Generate a DME API authentication token, as described in
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=392072927" rel="nofollow">
+      Generating a DME API Authentication Token via the CLU
+    </a>
+    .
+  </li>
+  <li>
+    If you want to use Globus or AWS S3, follow the instructions in the following pages:
+    <ul>
+      <li>
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=378145904" rel="nofollow">
+          Preparing to Use Globus
+        </a>
+      </li>
+      <li>
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=407734581" rel="nofollow">
+          Preparing to Use AWS S3 Bucket for the CLU
+        </a>
+      </li>
+    </ul>
+  </li>
+</ol>
+To view a list of DME CLU commands, type
+dm_list_commands
+. To view usage information for any DME CLU command, type the command with the help (-h) parameter. For detailed information on each of the available DME CLU commands, refer to the following pages:
+<ul>
+  <li>
+    Getting Started
+    <ul>
+      <li>
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=392072927" rel="nofollow">
+          Generating a DME API Authentication Token via the CLU
+        </a>
+         — dm_generate_token
+      </li>
+      <li>
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=480348864" rel="nofollow">
+          DME CLU Quick Reference
+        </a>
+        - (most frequently-used commands)
+      </li>
+    </ul>
+  </li>
+  <li>
+    Finding Data
+    <ul>
+      <li>
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=409863405" rel="nofollow">
+          Searching for Data via the CLU
+        </a>
+         — dm_query_dataobject
+      </li>
+    </ul>
+  </li>
+  <li>
+    Using Bookmarks
+    <ul>
+      <li>
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=392071330" rel="nofollow">
+          Adding a Bookmark via the CLU
+        </a>
+         — dm_add_bookmark
+      </li>
+    </ul>
+  </li>
+  <li>
+    Retrieving Metadata
+    <ul>
+      <li>
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=390469450" rel="nofollow">
+          Retrieving the Metadata of a Collection via the CLU
+        </a>
+         — dm_get_collection
+      </li>
+      <li>
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=390467040" rel="nofollow">
+          Retrieving the Metadata of a Data File via the CLU
+        </a>
+         — dm_get_dataobject
+      </li>
+    </ul>
+  </li>
+  <li>
+    Registering Data
+    <ul>
+      <li>
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=392069763" rel="nofollow">
+          Creating an Empty Collection via the CLU
+        </a>
+         — dm_register_collection
+      </li>
+      <li>
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=436536092" rel="nofollow">
+          Registering a Data File via the CLU
+        </a>
+         — dm_register_dataobject, dm_register_dataobject_presigned, dm_register_dataobject_multipart
+      </li>
+      <li>
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=390470399" rel="nofollow">
+          Registering Directory Contents from Your Local System via the CLU
+        </a>
+         — dm_register_directory
+      </li>
+      <li>
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=393448020" rel="nofollow">
+          Updating Collection Metadata via the CLU
+        </a>
+         — dm_register_collection
+      </li>
+      <li>
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=393448022" rel="nofollow">
+          Updating Data File Metadata via the CLU
+        </a>
+         — dm_register_dataobject
+      </li>
+    </ul>
+  </li>
+  <li>
+    Downloading Data
+    <ul>
+      <li>
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=436536109" rel="nofollow">
+          Downloading One or More Files via the CLU
+        </a>
+         — dm_download_dataobject, dm_download_dataobject_presigned, dm_download_dataobject_globus, dm_download_dataobject_s3
+      </li>
+      <li>
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=430605748" rel="nofollow">
+          Using dm_download_collection
+        </a>
+         — dm_download_collection
+      </li>
+      <li>
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=407734565" rel="nofollow">
+          Using dm_download_collection_globus
+        </a>
+         — dm_download_collection_globus
+      </li>
+      <li>
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=408652715" rel="nofollow">
+          Using dm_download_collection_s3
+        </a>
+         — dm_download_collection_s3
+      </li>
+    </ul>
+  </li>
+  <li>
+    Using DME as an Administrator
+    <ul>
+      <li>
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=390471366" rel="nofollow">
+          Registering a User via the CLU
+        </a>
+         — dm_register_user
+      </li>
+      <li>
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=379061178" rel="nofollow">
+          Adding a Bookmark and Permissions via the CLU
+        </a>
+         — dm_add_bookmark
+      </li>
+      <li>
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=390467118" rel="nofollow">
+          Moving or Renaming a Collection or File via the CLU
+        </a>
+         — dm_rename
+      </li>
+      <li>
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=380208865" rel="nofollow">
+          Deleting Data via the CLU
+        </a>
+         — dm_delete_datafile, dm_delete_collection
+      </li>
+    </ul>
+  </li>
+</ul>
+<h3 id="GettingStartedwithDMECLU-ImportantNoteforMacVersion10.12.4/10.12.6">
+  Important Note for Mac Version 10.12.4/10.12.6
+</h3>
+If you want to use DME CLU on a Mac (version 10.12.4/10.12.6) and the version of curl on your machine is OpenSSL 0.9.8zh 14 Jan 2016, perform the following steps to rebuild curl.
+<ol>
+  <li>
+    From a terminal prompt, execute the following command:
+
+
+
+
+
+
+
+
+
+
+
+    /usr/bin/ruby -e &#34;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)
+
+
+    This command downloads and installs Homebrew, a package manager to download, build, and install Mac software.
+  </li>
+  <li>
+    Follow the prompts. The system might request your username/password multiple times.
+  </li>
+  <li>
+    Execute the following command:
+
+
+
+
+
+
+
+
+
+
+
+    brew install curl --with-openssl
+
+
+    This command invokes Homebrew to build and install curl in /usr/local/opt with the latest version of openssl. At the end of the installation, a message appears indicating that this is keg-only. It provides the command to update the PATH so that the system uses your new curl installation, rather than the Mac-supplied one.
+  </li>
+  <li>
+    Execute the command as provided at the end of curl installation, which should be the following command:
+
+
+
+
+
+
+
+
+
+
+
+    export PATH=&#34;/usr/local/opt/curl/bin:$PATH&#34;&#39; &gt;&gt; ~/.bash_profile
+  </li>
+  <li>
+    Confirm the installation: Open a new terminal and check the version of curl with the following command:
+
+
+
+
+
+
+
+
+
+
+
+    curl –-version
+
+
+    The following information should appear:
+    curl 7.58.0 (x86_64-apple-darwin16.7.0) libcurl/7.58.0 OpenSSL/1.0.2n zlib/1.2.8
+    Release-Date: &lt;today’s date or the date you install your new curl&gt;
+    Protocols: dict file ftp ftps gopher http https imap imaps ldap ldaps pop3 pop3s rtsp smb smbs smtp smtps telnet tftp
+    Features: AsynchDNS IPv6 Largefile NTLM NTLM_WB SSL libz TLS-SRP UnixSockets HTTPS-proxy
+  </li>
+</ol>

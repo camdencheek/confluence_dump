@@ -1,0 +1,26 @@
+<h2 id="LoadingtheGraphDatabaseintoArangoDbforaGivenTerminology-ManagingGraphNodeResolutionDatabaseLoads">
+  Managing Graph Node Resolution Database Loads
+</h2>
+The graphing database ArangoDb must be available to LexEVS (See the system requirements
+<a href="https://wiki.nci.nih.gov/display/LexEVS/2+-+LexEVS+6.x+Prerequisite+Software+and+Supported+Platforms" rel="nofollow">
+  here
+</a>
+).  It&#39;s configuration must also be created in the lbconfig.props.  Loading of graphs for multiple terminology versions is not available at this time.  Setting STRICT_ARANGO_REQUIREMENT=false allows LexEVS to start up without an ArangoDb configuration or installation.  Refer to ArangoDb documentation for setting any other variables.Sample lbconfig props configuration
+GRAPH_DB_USER=root
+
+GRAPH_DB_PWD=lexgrid
+
+GRAPH_DB_URL=localhost
+
+GRAPH_DB_PORT=8529
+
+GRAPH_DB_MAX_CONNECTIONS=200
+
+GRAPH_DB_CONNECTION_TIMEOUT_LENGTH=60000
+
+STRICT_ARANGO_REQUIREMENT=false
+<h2 id="LoadingtheGraphDatabaseintoArangoDbforaGivenTerminology-LoadofLexEVSGraphNodesToArangoDb">
+  Load of LexEVS Graph Nodes To ArangoDb
+</h2>
+Loads a set of graph edges and nodes derived from the associations of the target vocabulary -in URI of coding scheme source for target graphs -v  Version of terminology source from which to load graphsLoad Graphing Database
+./LoadGraphDb.sh -in &#34;http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#&#34; -v &#34;18.05b&#34; 

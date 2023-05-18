@@ -1,0 +1,150 @@
+This page contains discussion about the testing that will be needed for ICDC.
+<ul>
+  <li>
+    <a href="#QAProcess-TestingNeeded" rel="nofollow">
+      Testing Needed
+    </a>
+  </li>
+  <li>
+    <a href="#QAProcess-TestingBenchmarks" rel="nofollow">
+      Testing Benchmarks
+    </a>
+    <ul>
+      <li>
+        <a href="#QAProcess-PerformanceTesting" rel="nofollow">
+          Performance Testing
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#QAProcess-QAQuestions&amp;Answers" rel="nofollow">
+      QA Questions &amp; Answers
+    </a>
+  </li>
+</ul>
+<h2 id="QAProcess-TestingNeeded">
+  Testing Needed
+</h2>
+<ol>
+  <li>
+    Section 508 Testing
+    <ul>
+      <li>
+        Tools to use – Chrome WAVE plugin, Chrome axe plugin. The Chrome axe plugin is using the same scanning engine as the HHS scanning tool.
+      </li>
+      <li>
+        Section 508 testing need to start as soon as there are pages developed by the dev team
+      </li>
+    </ul>
+  </li>
+  <li>
+    Performance Testing
+    <ul>
+      <li>
+        Load testing
+      </li>
+      <li>
+        GUI performance (a large volume of data returning per request)
+      </li>
+      <li>
+        REST API performance
+      </li>
+    </ul>
+  </li>
+  <li>
+    Security Testing
+    <ul>
+      <li>
+        System team will perform all security scanning
+      </li>
+      <li>
+        QA team need to have a plan to test application security functionalities
+      </li>
+      <li>
+        Some of this would be static using tools such as Codacy and some Dynamic (Acunetix) and there will be an Audit once we are ready to go into Production later next year.
+      </li>
+    </ul>
+  </li>
+  <li>
+    Functional Testing
+    <ul>
+      <li>
+        This is the meat of all testing, including GUI, REST API, data loading and data integrity
+      </li>
+      <li>
+        More automation is better, but definitely depends on your load
+      </li>
+    </ul>
+  </li>
+  <li>
+    Usability Testing
+    <ul>
+      <li>
+        This is something probably for everyone as GUI is critical the success of the project
+      </li>
+    </ul>
+  </li>
+  <li>
+    Availability Testing
+    <ul>
+      <li>
+        We would want our system to be Highly Available and Fault Tolerant. So things like instance going down, Container going down, DB going down etc. would need to be covered before we hit Production.
+      </li>
+    </ul>
+  </li>
+</ol>
+<h2 id="QAProcess-TestingBenchmarks">
+  Testing Benchmarks
+</h2>
+<ol>
+  <li>
+    <h3 id="QAProcess-PerformanceTesting">
+      Performance Testing
+    </h3>
+  </li>
+</ol>
+<ul>
+  <li>
+    Load Testing - At a minimum, the response time for all queries must be no more than 5 seconds.
+    <ul>
+      <li>
+        This was determined by Amit on 5/4/2019. A basic Page Load Test was performed on ICGC and GDC portals of which the load times were about 5s and 3.5 seconds with regards to the landing pages. We should try to meet less than 3 or 5 seconds load speed especially for light load landing pages. We will be using the following estimated number of concurrent users reported by Broad Institute for concurrency testing: ~14 concurrent distinct users/138 max concurrent last 30 days~66 concurrent API calls/2222 max concurrent last 30 daysWe are using Broad Institute&#39;s stats because their system supports hundreds of scientific researchers who perform gene sequencing (our intended system users).
+      </li>
+    </ul>
+  </li>
+</ul>
+<h2 id="QAProcess-QAQuestions&amp;Answers">
+  QA Questions &amp; Answers
+</h2>
+<ol>
+  <li>
+    Will the dev team be moving code to the testing environment on a frequent, such as daily basis or will they deploy at various predefined intervals?This is entirely up to the what you prefer. I would assume it will be on an on demand basis since you would be running tests in the Test Environment and would not
+  </li>
+  <li>
+    Does QA need to deploy the software release to test environment?
+    <ol>
+      <li>
+        Is it automatic deployment or manual?It would be a matter of deploying it from within Jenkins CI tool.
+      </li>
+      <li>
+        Will the test environment be on the Cloud?All Environments are on the Cloud.
+      </li>
+    </ol>
+  </li>
+  <li>
+    How will we get test data for the test environment?The raw files themselves are in S3. To get the Meta data, we could copy the machine image of our Neo4J from Dev to QA and point the applications to the new machine image which gets deployed in QA
+  </li>
+  <li>
+    Would the test data be the same as production data?For the final QA, it will definitely be so. But even for the initial runs, we would replicate our ‘Production-ish’ Data to add more data sets
+  </li>
+  <li>
+    What browsers will be supported by ICDC? Will Android and IOS mobile devices be also supported?The Browsers that we would be supporting are primarily are Chrome and Firefox which are most popular in the Research Community. Our BA says that we should cover the iPAD (and that screen size devices but nothing smaller and that would probably be post MVP and support for Siri and Alexa Post-Post MVP)
+  </li>
+  <li>
+    Can you elaborate more on testing the data integrity? Will database testing also be needed?This is something I can tell you later once we have had some conversations with Neo4j folks.
+  </li>
+  <li>
+    If there is a UAT, will QA be involved in planning or assisting with that?Upon discussion with John, we (Matt and myself) were told that we would periodically do basic demos to our Steering Committee who would be our initial Users , the Erika and then do our MVP official demos to FNL.
+  </li>
+</ol>

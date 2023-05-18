@@ -1,0 +1,344 @@
+<ul>
+  <li>
+    <a href="#LexEVS6.5.4Architecture-LexEVSGraphResolveFinalProposal" rel="nofollow">
+      LexEVS GraphResolve Final Proposal
+    </a>
+    <ul>
+      <li>
+        <a href="#LexEVS6.5.4Architecture-FinalProposalDescriptionandSignOff" rel="nofollow">
+          Final Proposal Description and Sign Off
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.5.4Architecture-1.CreateaMethod:" rel="nofollow">
+          1. Create a Method:
+        </a>
+        <ul>
+          <li>
+            <a href="#LexEVS6.5.4Architecture-MethodSignature" rel="nofollow">
+              Method Signature
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS6.5.4Architecture-Parameters:" rel="nofollow">
+              Parameters:
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS6.5.4Architecture-MethodBehavior" rel="nofollow">
+              Method Behavior
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#LexEVS6.5.4Architecture-2.Constraints" rel="nofollow">
+          2. Constraints
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.5.4Architecture-3.Features" rel="nofollow">
+          3. Features
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.5.4Architecture-4.Architecture" rel="nofollow">
+          4. Architecture
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.5.4Architecture-5.Migration" rel="nofollow">
+          5. Migration
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.5.4Architecture-ProposalSignoff" rel="nofollow">
+          Proposal Sign off
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#LexEVS6.5.4Architecture-LexEVSRestServiceAPI" rel="nofollow">
+      LexEVS Rest Service API
+    </a>
+    <ul>
+      <li>
+        <a href="#LexEVS6.5.4Architecture-Listofterminologies" rel="nofollow">
+          List of terminologies
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.5.4Architecture-Listofassociations" rel="nofollow">
+          List of associations
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.5.4Architecture-Getinboundedgesforcodingscheme,associationanduniqueid." rel="nofollow">
+          Get inbound edges for coding scheme, association and unique id.
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.5.4Architecture-Getinboundedgesfordepth,codingscheme,associationanduniqueid." rel="nofollow">
+          Get inbound edges for depth, coding scheme, association and unique id.
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.5.4Architecture-Getoutboundedgesforcodingscheme,associationanduniqueid." rel="nofollow">
+          Get outbound edges for coding scheme, association and unique id.
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.5.4Architecture-Getoutboundedgesfordepth,codingscheme,associationanduniqueid." rel="nofollow">
+          Get outbound edges for depth, coding scheme, association and unique id.
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#LexEVS6.5.4Architecture-LexEVSGraphResolveLegacyRequirementsandKnowledgeBase" rel="nofollow">
+      LexEVS GraphResolve Legacy Requirements and Knowledge Base
+    </a>
+    <ul>
+      <li>
+        <a href="#LexEVS6.5.4Architecture-" rel="nofollow"></a>
+      </li>
+      <li>
+        <a href="#LexEVS6.5.4Architecture-UseCase/RequirementsStatement:" rel="nofollow">
+          Use Case/Requirements Statement:
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.5.4Architecture-KnowledgeBase/FAQ" rel="nofollow">
+          Knowledge Base/FAQ
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.5.4Architecture-ProjectTimelineRecord" rel="nofollow">
+          Project Timeline Record
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.5.4Architecture-.1" rel="nofollow"></a>
+      </li>
+    </ul>
+  </li>
+</ul>
+<h2 id="LexEVS6.5.4Architecture-LexEVSGraphResolveFinalProposal">
+  LexEVS GraphResolve Final Proposal
+</h2>
+<h3 id="LexEVS6.5.4Architecture-FinalProposalDescriptionandSignOff">
+  Final Proposal Description and Sign Off
+</h3>
+Requirements:
+<ol>
+  <li>
+    Create a method over the Graph API that allows a CodedNodeSet to be passed as a parameter along with an Enumeration value indicating direction, a value for the depth of the resolution, and one or more associations. Return a List of Minimally populated ResolvedConceptReferences.
+  </li>
+  <li>
+    Constraints:
+    <ul>
+      <li>
+        Will not require current RMI users to update their client jar
+      </li>
+    </ul>
+  </li>
+  <li>
+    Features:
+    <ul>
+      <li>
+        Will provide a loader for the graph database
+      </li>
+      <li>
+        Will provide instructions on the use of the loader, including any dependencies on existing services
+      </li>
+    </ul>
+  </li>
+  <li>
+    Architecture:
+    <ul>
+      <li>
+        Specify which Graph DB will need to be installed on which tiers
+      </li>
+      <li>
+        Specify any other services that need to be installed on which tiers
+      </li>
+    </ul>
+  </li>
+</ol>
+<h3 id="LexEVS6.5.4Architecture-1.CreateaMethod:">
+  1. Create a Method:
+</h3>
+<h4 id="LexEVS6.5.4Architecture-MethodSignature">
+  Method Signature
+</h4>
+public List&lt;ResolvedConceptReference&gt; getAssociatedConcepts(CodedNodeSet cns, Direction direction, int depth,  NameAndValueList association);
+<h4 id="LexEVS6.5.4Architecture-Parameters:">
+  Parameters:
+</h4>
+Parameter cns: This CodedNodeSet must have a set of restrictions appropriate for query building and fully ready to be resolved. Cannot be nullParameter direction: incoming or outgoing edges will be designated by one of these Enumerations.  Cannot be nullParameter depth: This allows depth control of the query including resolving only neighbors or a full resolution if depth is known. Entering -1 allows full resolution,  0 will return nullParameter associations: The name or names of the edges in the graph (Must exist as a supported association the code system).  Null returns all associationsReturn Value List&lt;ResolvedConceptReference&gt;: a list of minimally populated concept references including code, namespace, entity description and coding scheme uri and version. These objects are the result of a graph resolution without any indication of where they existed in the graph before the resolution.
+<h4 id="LexEVS6.5.4Architecture-MethodBehavior">
+  Method Behavior
+</h4>
+This method requires some knowledge of building queries into the LexEVS system&#39;s CodedNodeSet API, including the capabilityof building a CodedNodeSet set of restrictions through restriction method calls.  Within the scope of this method, the CodedNodeSet will be resolved to a ResolvedConceptReferenceList  using the method
+resolveToList(
+
+SortOptionList sortOptions, LocalNameList propertyNames,
+
+PropertyType[] propertyTypes, int maxToReturn)
+
+throws LBInvocationException,LBParameterException;
+The parameter set for this method will be defaulted to the following: SortOptionList: null – No sort options allowedLocalNameList: null – No restrictions on property namesPropertyType: null – No restrictions on property typesint: 10 Maximum return limited to ten entities.Null value for associations will return values for all associations.  Otherwise queries will be generated depending on eachassociation name.Exceptions would be handled in this method and an appropriately messaged RuntimeException would be thrown on failure.The ResolvedConceptReference objects returned contain only the code, name space, entityDescription, coding scheme URI, and coding scheme version.It will not contain any entities or their properties or targetOf or sourceOf links to other entities.
+<h3 id="LexEVS6.5.4Architecture-2.Constraints">
+  2. Constraints
+</h3>
+Initial testing is complete.  Will retest before release. Since this is not implemented in the RMI application we don&#39;t need to require runtime client changes, especially since extensions are called as plugins and not from local client code.
+<h3 id="LexEVS6.5.4Architecture-3.Features">
+  3. Features
+</h3>
+We have a loader complete at this point and it should have the same profile as other loaders.The loader requires a local install of Arangodb along with a configuration of LexEVS where lbconfig.props is updated with connection parameters. Instructions for loader use will be supplied in the usual loader documentation section of the WikiLoader use is documented here:
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=419727132" rel="nofollow">
+  Loading the Graph Database into ArangoDb for a Given Terminology
+</a>
+<h3 id="LexEVS6.5.4Architecture-4.Architecture">
+  4. Architecture
+</h3>
+We will work with the Systems team to get the most optimal installation of Arangodb for each tier.  Each tier will also need to have a tomcat instance with the graph-resolve installed to produce REST services for the Graph Resolution API.  We&#39;ll provide the usual configuration parameters for the REST service that are normally defined for deployment tracks on Jenkins and/or PTE documents.
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=420872914" rel="nofollow">
+  9 - Installing the Graph Node Resolution REST Service
+</a>
+<h3 id="LexEVS6.5.4Architecture-5.Migration">
+  5. Migration
+</h3>
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=420873253" rel="nofollow">
+  LexEVS 6.5.4 Release Notes
+</a>
+<h3 id="LexEVS6.5.4Architecture-ProposalSignoff">
+  Proposal Sign off
+</h3>
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        Federal Sponsor(s)
+      </th>
+      <th>
+        Signature
+      </th>
+    </tr>
+    <tr>
+      <td>
+        Lyubov Remennik
+      </td>
+      <td>
+        via email
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Sherri De Coronado
+      </td>
+      <td>
+        SDC
+      </td>
+    </tr>
+  </tbody>
+</table>
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        User(s)
+      </th>
+      <th>
+        Signature
+      </th>
+    </tr>
+    <tr>
+      <td>
+        Kim Ong
+      </td>
+      <td>
+        via email
+      </td>
+    </tr>
+  </tbody>
+</table>
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        NCI System Architect
+      </th>
+      <th>
+        Signature
+      </th>
+    </tr>
+    <tr>
+      <td>
+        Tracy Safran
+      </td>
+      <td>
+        approved during arch meeting 2020.01.14
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="LexEVS6.5.4Architecture-LexEVSRestServiceAPI">
+  LexEVS Rest Service API
+</h2>
+<h4 id="LexEVS6.5.4Architecture-Listofterminologies">
+  List of terminologies
+</h4>
+base url/databases
+<h4 id="LexEVS6.5.4Architecture-Listofassociations">
+  List of associations
+</h4>
+base url/graphDbs/&lt;coding scheme name from database list&gt;
+<h4 id="LexEVS6.5.4Architecture-Getinboundedgesforcodingscheme,associationanduniqueid.">
+  Get inbound edges for coding scheme, association and unique id.
+</h4>
+base url/getInbound/&lt;coding scheme name&gt;/&lt;association name from graph list&gt;/&lt;entity code&gt;
+<h4 id="LexEVS6.5.4Architecture-Getinboundedgesfordepth,codingscheme,associationanduniqueid.">
+  Get inbound edges for depth, coding scheme, association and unique id.
+</h4>
+base url/getInbound/&lt;depth/&lt;coding scheme name&gt;/&lt;association name from graph list&gt;/&lt;entity code&gt;
+<h4 id="LexEVS6.5.4Architecture-Getoutboundedgesforcodingscheme,associationanduniqueid.">
+  Get outbound edges for coding scheme, association and unique id.
+</h4>
+base url/getOutbound/&lt;coding scheme name&gt;/&lt;association name from graph list&gt;/&lt;entity code&gt;
+<h4 id="LexEVS6.5.4Architecture-Getoutboundedgesfordepth,codingscheme,associationanduniqueid.">
+  Get outbound edges for depth,  coding scheme, association and unique id.
+</h4>
+base url/getOutbound/&lt;depth/&lt;coding scheme name&gt;/&lt;association name from graph list&gt;/&lt;entity code&gt;
+<h2 id="LexEVS6.5.4Architecture-LexEVSGraphResolveLegacyRequirementsandKnowledgeBase">
+  LexEVS GraphResolve Legacy Requirements and Knowledge Base
+</h2>
+<h3 id="LexEVS6.5.4Architecture-"></h3>
+<h3 id="LexEVS6.5.4Architecture-UseCase/RequirementsStatement:">
+  Use Case/Requirements Statement:
+</h3>
+The requirement is to provide an iterator that contains results of a relationship search:(1) Given a coding scheme (name and version) and an association name, such as Anatomical_Structure_Is_a_Physical_Part_Of in NCI Thesaurus,find all source concepts related to any target concept through this specified association such that the target concept matches with a collection of user specified search criteria.(Refer to the NCI Thesaurus Advanced Search web page for user-specified search criteria)(2) Given a coding scheme (name and version) and an association name, such as Anatomical_Structure_Is_a_Physical_Part_Of in NCI Thesaurus,find all target concepts related to any source concept through this specified association such that the source concept matches with a collection of user specified search criteria.(Refer to the NCI Thesaurus Advanced Search web page for user-specified search criteria)(3) If no association name is specified, then search all supported associations.
+<h3 id="LexEVS6.5.4Architecture-KnowledgeBase/FAQ">
+  Knowledge Base/FAQ
+</h3>
+How are we performing searches in The NodeGraphResolutionExtensionImpl classThe search is being performed through the text searches available in the CodedNodeSet API and matched to the methods referencing NCI term browser regular and advanced search methods.  This will be wrapped in a hybrid API where coded node entity codes are being referenced for a resolution against the graph database.  The graph database can return enough information to construct basic ConceptReferences containing entity code and namespace attributes.  The current method signature is for Iterator&lt;ConceptReference&gt; and iterates over the parent or child total graph resolution for one or more text search results.  (I’m currently limiting this to 10).  I am working on getting a query into the LexEVS database that provides a prescreening of any text search results that do not have a valid presence in the designated association.  (either does not participate in the relationship or only participates where it’s target or source is anonymous)Is the graphing database a micro service?We have implemented a spring boot micro service over the instance of Arangodb which is in turn loaded with graph edges from terminologies.  This micro service has an JSON interface that would be available to users.  This service currently only provides complete resolution of parents or children for a given vertex identifier (entity code).  We could provide other options for this service, but this one allows the high performing return of values and therefore an accurate count where appropriate for a given iterator or list.Does this include or support LexEVS Coded Node Graph APIsNo coded node graph API would be included in or supported by the micro service.  It will serve up JSON result lists of code/namespace attributes only.Can it be easily integrated with SPARQL?We currently load the Arango graph database from LexEVS.  There is no current or compelling reason we can&#39;t perform the same load from a triple store.
+<h3 id="LexEVS6.5.4Architecture-ProjectTimelineRecord">
+  Project Timeline Record
+</h3>
+<a href="https://wiki.nci.nih.gov/download/attachments/407734938/Timeline%20for%20LexEVS%20Graph%20Service%20Design%20Discussion%20and%20Implementation.docx?version=1&amp;modificationDate=1576708895000&amp;api=v2" rel="nofollow">
+  Timeline for LexEVS Graph Service Design Discussion and Implementation.docx
+</a>
+<h3 id="LexEVS6.5.4Architecture-.1"></h3>

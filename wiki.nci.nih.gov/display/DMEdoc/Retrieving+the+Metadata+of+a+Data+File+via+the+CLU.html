@@ -1,0 +1,109 @@
+If your user account has the Read, Write, or Own permission level on a data file in DME, the following command allows you to retrieve all metadata associated with that data file:
+
+
+
+
+
+
+
+
+
+
+
+dm_get_dataobject [optional parameters] &lt;dataobject-path&gt;
+
+
+The following table describes each parameter:
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        Parameter
+      </th>
+      <th>
+        Description
+      </th>
+    </tr>
+    <tr>
+      <td>
+        [-h]
+      </td>
+      <td>
+        If you want to print a usage (help) message for this command, specify this option.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        [-D &lt;REST-response&gt;]
+      </td>
+      <td>
+        An optional parameter, specifying a path and filename in your local system. The system always creates a response file:
+        <ul>
+          <li>
+            If you specify this parameter, the system saves the response from the server to the specified file in the specified location.
+          </li>
+          <li>
+            If you omit this parameter, the system saves the file as get-item-response-header.tmp in your home directory.
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        [-o &lt;metadata-file&gt;]
+      </td>
+      <td>
+        An optional parameter, specifying a path and filename in your local system. The system always creates a metadata file:
+        <ul>
+          <li>
+            If you specify this parameter, the system saves the metadata to the specified file in the specified location.
+          </li>
+          <li>
+            If you omit this parameter, the system prints the metadata to standard output and saves the file as get-item-response-message.json.tmp in your home directory.
+          </li>
+        </ul>
+        The metadata includes information about the data file, a list of attribute values for the file, and a list of attribute values for the parent collection.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        &lt;dataobject-path&gt;
+      </td>
+      <td>
+        The path to the data file in DME.
+      </td>
+    </tr>
+  </tbody>
+</table>
+For example, the following command allows you to view the metadata associated with the sample.txt data file:
+
+
+
+
+
+
+
+
+
+
+
+dm_get_dataobject /Example_Archive/PI_Lab1/Project_Orig/sample.txt
+
+
+The basic format of the command output is as follows:
+{
+&#34;dataObjects&#34;: [
+{
+&#34;dataObject&#34;: {...},
+&#34;metadataEntries&#34;: {
+&#34;parentMetadataEntries&#34;: [...],
+&#34;selfMetadataEntries&#34;: [...]
+}
+}
+]
+}
+In this format, the &#34;dataObject&#34; and &#34;selfMetadataEntries&#34; elements provide information about the file you specified, while the &#34;parentMetadataEntries&#34; element provides information about the collection that contains the file you specified. 

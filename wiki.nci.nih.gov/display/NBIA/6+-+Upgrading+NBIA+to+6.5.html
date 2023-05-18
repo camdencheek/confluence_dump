@@ -1,0 +1,89 @@
+This page includes the following topics.
+<ul></ul>
+This section describes upgrading from NBIA 6.4 to 6.5.  You can perform an upgrade to NBIA 6.5 using the command-line installation. A GUI upgrade is not an option for this release.
+<h1 id="id-6UpgradingNBIAto6.5-UpgradingNBIAfrom6.4to6.5">
+  Upgrading NBIA from 6.4 to 6.5
+</h1>
+Upgrading from earlier versions of NBIAIf you have a version of NBIA earlier than 6.4 and want to upgrade, see the upgrade instructions in Upgrading NBIA to 6.4.
+<a href="https://wiki.nci.nih.gov/display/NBIA/6+-+Upgrading+NBIA+from+5.0+to+6.0#id-6-UpgradingNBIAfrom50to60-UpgradingNBIAfrom501to60" rel="nofollow"></a>
+Before You Begin
+<ul>
+  <li>
+    Important! Back up the existing database. You must create a reliable copy of your entire NBIA database---the DDL and DML.
+  </li>
+  <li>
+    Important! Back up the tomcat.home directory. To do this, make a copy of the NBIA.home folder along with any artifacts from the initial installation, such as the property files, already mentioned.
+  </li>
+  <li>
+    Important! You cannot upgrade from NBIA with MySQL to a new NBIA that uses Oracle. You must install a fresh NBIA with Oracle and migrate the data manually. This section assumes you are upgrading from MySQL (to NBIA 6.5 with MySQL). Contact
+    <a href="http://cbiit.nci.nih.gov/support" rel="nofollow">
+      Application Support
+    </a>
+    if you require help with migration.
+  </li>
+</ul>
+If you are performing a new installation, go directly to the
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=373004695" rel="nofollow">
+  installation of version 6.5
+</a>
+.Things to check before the upgradeThe directions in this section presume that you have a valid and functioning NBIA 6.4. Please see above section if you want to upgrade previous versions of NBIA. NBIA 6.5.3.1 is running on an upgraded infrastructure, so please upgrade the infrastructure first. That includes the operating system for Linux system, Java SDK, Apache Ant, and the database as described at the beginning of in this document.The upgrade to a given version of NBIA may add new constraints to the data model. This is typically done in order to stop erroneous submissions from happening. If such submissions have already occurred, there may already be duplicate or corrupt data in the database. The upgrade will fail in such a case, and the corrupt data needs to be cleaned out before the upgrade can be successful.Things to check before the upgradeIf you are using an existing Tomcat installation make sure there are no files or directories in the webapps directory. NBIA should be installed with no other applications on a Tomcat server.
+<h1 id="id-6UpgradingNBIAto6.5-OverviewofPropertiesFiles">
+  Overview of Properties Files
+</h1>
+When you installed the previous version of NBIA, you configured install.properties. To complete the upgrade to the desired NBIA version, you may need to use values in the previous install.properties file to configure values in install.properties for the NBIA command-line installer.Existing database?To make the upgraded NBIA automatically connect with an existing database after the installation, the property
+<a href="http://database.re" rel="nofollow">
+  database.re
+</a>
+-create needs to be set to false for a MySQL database or the property database.drop-schema needs to be set to false for an Oracle database.To perform an upgrade to NBIA 6.5 using the command line, follow these steps.
+<ol>
+  <li>
+    Download the installation zip file described in
+    <a href="https://wiki.nci.nih.gov/display/NBIA/5+-+Installing+the+NBIA+6.5.3.1+Application#id-5-InstallingtheNBIA6.5.3.1Application-DownloadingNBIA6.5.3.1Files" rel="nofollow">
+      Downloading NBIA 6.5 Files
+    </a>
+    to a directory of your choice. Unzip the files into a fresh directory. This documentation refers to this location as the &lt;installer_directory&gt; .  Example: &lt;installer_directory&gt; = C:\NBIA_6_5_installer.
+  </li>
+  <li>
+    Edit the default properties in the &lt;installer_directory&gt;/install.properties file. To do so, open both properties files, the one you configured originally, and the one at NBIA 6.5 &lt;installer_directory&gt;.Duplicate attributesWhere there are duplicate attributes, the values must be the same in both files.In the NBIA 6.5 install.properties file, make sure to set the exclude database to be &#34;true&#34;,   exclude.database=true.  If the database type is MySQL, set  database.re-create=false. The 6.5 installer configures the Tomcat application server and installs NBIA applications. For the database upgrade, it must be done in a separate process. See the
+    <a href="http://wiki.nci.nih.gov#DatabaseUpgrade" rel="nofollow">
+      database upgrade tip
+    </a>
+    below for details.
+  </li>
+  <li>
+    Copy each entry you modified in the NBIA 6.5 install.properties file and paste it in the corresponding location in the install.properties file for NBIA 6.5, replacing the default text, as appropriate. There are new properties for 6.5 that did not exist in 6.4. Consult
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=345671695" rel="nofollow">
+      NBIA 6.5 Properties
+    </a>
+    of this guide for more background on the meaning of the properties. Be sure to use the correct database properties.
+  </li>
+  <li>
+    Record these property values.Default valuesIf you chose not to use the default ports on the Tomcat application server, make sure the ports in the install.properties file match what you chose to use in Tomcat. Be sure to verify that other applications are not using the ports in this file.
+  </li>
+  <li>
+    From the command line, navigate to &lt;
+    installer_directory &gt;/ (Example:cd C:\NBIA_6_5_installer), and type   ant. This initiates the upgrade process, which should take 7 to 15 minutes depending on your system&#39;s speed, power, and memory. The installer configures pre-installed Tomcat application server, installs the NBIA 6.5 portal, CTP server, and NBIA REST service for the NBIA application.
+  </li>
+  <li>
+    Update the database schema.Database upgradeThe database upgrade needs to be performed after the NBIA installation completes. Once an initial installation of NBIA is complete each database upgrade must be made from the same directory due to the way Liquibase determines the uniqueness of each change element. This directory can be determined by inspecting databasechangelog in the database. In the below example all database upgrades should occur from the C:\a\install\working\db\db-upgrade\db-upgrade.xml directory
+    <img alt="Example." height="150" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/NBIA/6%20-%20Upgrading%20NBIA%20to%206.5/image2018-8-16%206:21:5.png?api=v2">
+    <ol>
+      <li>
+        In the &lt;installer_directory&gt;/install.properties, comment out exclude.database=true , that is, put    #    in front of
+        exclude.database=true.
+      </li>
+      <li>
+        From the command line, navigate to &lt;installer_directory&gt; (Example: cd C:\NBIA_6_5_installer), and type  ant build:db:update . The installer upgrades your existing NBIA database on your MySQL  server.
+      </li>
+    </ol>
+  </li>
+  <li>
+    To verify that NBIA upgraded successfully, start up the Tomcat server and open your web browser to [
+    http://tomcat.server.hostname&gt;:&lt;tomcat.server.port&gt;/ncia
+    ](example: [
+    <a href="http://hostname.com:8080/ncia" rel="nofollow">
+      http://hostname.com:8080/ncia
+    </a>
+    ]) and enter   nciadevtest   as the user and   changeme   as the password.
+  </li>
+</ol>

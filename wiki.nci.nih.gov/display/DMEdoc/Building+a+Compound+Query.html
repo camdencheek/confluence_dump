@@ -1,0 +1,91 @@
+Contents of This Page
+<ul>
+  <li>
+    <a href="#BuildingaCompoundQuery-FindingItemsRegisteredbyParticularUsers" rel="nofollow">
+      Finding Items Registered by Particular Users
+    </a>
+  </li>
+  <li>
+    <a href="#BuildingaCompoundQuery-MultipleNestedCompoundQueries" rel="nofollow">
+      Multiple Nested Compound Queries
+    </a>
+  </li>
+</ul>
+<h2 id="BuildingaCompoundQuery-FindingItemsRegisteredbyParticularUsers">
+  Finding Items Registered by Particular Users
+</h2>
+The following example compound query finds only the items registered by the jane_doe user or the john_doe user:
+{
+&#34;compoundQuery&#34;:    {
+&#34;operator&#34;: &#34;OR&#34;,
+&#34;compoundQueries&#34;:       [
+{
+&#34;operator&#34;: &#34;OR&#34;,
+&#34;queries&#34;:             [
+{
+&#34;attribute&#34;: &#34;registered_by&#34;,
+&#34;value&#34;: &#34;jane_doe&#34;,
+&#34;operator&#34;: &#34;EQUAL&#34;
+},
+{
+&#34;attribute&#34;: &#34;registered_by&#34;,
+&#34;value&#34;: &#34;john_doe&#34;,
+&#34;operator&#34;: &#34;EQUAL&#34;
+}
+]
+}
+]
+},
+}
+<h2 id="BuildingaCompoundQuery-MultipleNestedCompoundQueries">
+  Multiple Nested Compound Queries
+</h2>
+The following example contains multiple nested compound queries:
+{
+&#34;compoundQuery&#34;: {
+&#34;compoundQueries&#34;: [{
+&#34;operator&#34;: &#34;AND&#34;,
+&#34;queries&#34;: [{
+&#34;attribute&#34;: &#34;sample_name&#34;,
+&#34;value&#34;: &#34;%Sample1a%&#34;,
+&#34;operator&#34;: &#34;LIKE&#34;
+}, {
+&#34;attribute&#34;: &#34;data_generator&#34;,
+&#34;value&#34;: &#34;%Jane Doe&#34;,
+&#34;operator&#34;: &#34;EQUAL&#34;
+}]
+},
+{
+&#34;operator&#34;: &#34;OR&#34;,
+&#34;queries&#34;: [{
+&#34;attribute&#34;: &#34;initial_sample_volume_ul&#34;,
+&#34;value&#34;: &#34;%1000%&#34;,
+&#34;operator&#34;: &#34;NOT_EQUAL&#34;
+}, {
+&#34;attribute&#34;: &#34;source_file_size&#34;,
+&#34;value&#34;: &#34;%90000000%&#34;,
+&#34;operator&#34;: &#34;NUM_LESS_THAN&#34;
+}]
+}, {
+&#34;operator&#34;: &#34;OR&#34;,
+&#34;queries&#34;: [{
+&#34;attribute&#34;: &#34;source_file_size&#34;,
+&#34;value&#34;: &#34;%80000000000000&amp;&#34;,
+&#34;operator&#34;: &#34;NUM_LESS_OR_EQUAL&#34;
+}, {
+&#34;attribute&#34;: &#34;source_file_size&#34;,
+&#34;value&#34;: &#34;%3715000%&#34;,
+&#34;operator&#34;: &#34;NUM_GREATER_OR_EQUAL&#34;
+}]
+}, {
+&#34;operator&#34;: &#34;OR&#34;,
+&#34;queries&#34;: [{
+&#34;attribute&#34;: &#34;source_file_size&#34;,
+&#34;value&#34;: &#34;%3715000&amp;&#34;,
+&#34;operator&#34;: &#34;NUM_GREATER_THAN&#34;
+}]
+}
+],
+&#34;page&#34;: 1
+}
+} 

@@ -1,0 +1,69 @@
+A bookmark allows you to quickly access a collection or data file of interest. If your user account has the Read, Write, or Own permission level on any collection or data file in DME, you can create a bookmark on that collection or data file. If your user account has the group administrator or system administrator role, the dm_add_bookmark command also allows you to add a bookmark for another user and set permissions for that user at the same time. With the same command, you can provide permissions for a group of users, or for a user account that does not exist as a DME user yet.
+<ol>
+  <li>
+    In your local system, create a JSON file that specifies the path within DME for the bookmark. For general usage information about the dm_add_bookmark command, refer to
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=392071330" rel="nofollow">
+      Adding a Bookmark via the CLU
+    </a>
+    . As an administrator, you can specify additional parameters (userId and permission) in the JSON file:
+    {
+    &#34;path&#34; : &#34;/Path/To/Bookmark&#34;,
+    &#34;userId&#34; : &#34;user ID or group name&#34;,
+    &#34;permission&#34;: &#34;The permission to set for the path, in ALL CAPS&#34;
+    }
+    The system accepts the following capitalized values for the permission field:
+    <ul>
+      <li>
+        OWN
+      </li>
+      <li>
+        WRITE
+      </li>
+      <li>
+        READ
+      </li>
+    </ul>
+  </li>
+  <li>
+    Run the dm_add_bookmark command as described in
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=392071330" rel="nofollow">
+      Adding a Bookmark via the CLU
+    </a>
+    . The system responds as follows:
+    <ul>
+      <li>
+        If your JSON file specifies a bookmark path for an existing DME user, but does not specify a permission level for that user, then the system leaves the existing permission level as it is.
+      </li>
+      <li>
+        If your JSON file specifies an NIH user account that does not exist as a DME user yet, and specifies a permission level for that user, the system creates that user in DME with the specified permission level.
+      </li>
+      <li>
+        The system creates the user in the DOC with which you are affiliated, and does not set a base path.
+      </li>
+    </ul>
+  </li>
+  <li>
+    Ask the specified user or group of users to log out of DME and log in again.
+  </li>
+</ol>
+For example, consider the following command:
+
+
+
+
+
+
+
+
+
+
+
+dm_add_bookmark MyCollection /cygdrive/c/Users/JaneDoe/my-bookmark.json
+
+
+With the following code in the specified my-bookmark.json file, the command gives the doejohn9 user Write access to the PI_Lab1 collection, creates a bookmark named MyCollection for that user, and associates the bookmark with the PI_Lab1 collection:
+{
+&#34;path&#34; : &#34;/Example_Archive/PI_Lab1&#34;,
+&#34;userId&#34; : &#34;doejohn9&#34;,
+&#34;permission&#34;: &#34;WRITE&#34;
+} 

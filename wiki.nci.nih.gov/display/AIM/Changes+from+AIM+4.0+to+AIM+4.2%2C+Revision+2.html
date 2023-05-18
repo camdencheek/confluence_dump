@@ -1,0 +1,58 @@
+The following items have been added to the AIM 4.2.
+<ol>
+  <li>
+    An attribute was added to the AnnotationEntity class. The following is a description of “trackingUniqueIdentifier.”A unique identifier used for tracking a finding or feature, potentially across multiple reporting objects, over time.
+    <img src="https://wiki.nci.nih.gov/download/attachments/embedded-page/AIM/Changes%20from%20AIM%204.0%20to%20AIM%204.2,%20Revision%202/TrackingUniqueIdentifier.png?api=v2">
+  </li>
+  <li>
+    Two attributes were added to the DicomSegmentationEntity class. Their descriptions follow.
+    <img src="https://wiki.nci.nih.gov/download/attachments/embedded-page/AIM/Changes%20from%20AIM%204.0%20to%20AIM%204.2,%20Revision%202/StudyseriesInstanceUid.png?api=v2">
+    “studyInstanceUid” a study instance uid of the DICOM segmentation object.“seriesInstanceUid” a series instance uid of the DICOM segmentation object.
+  </li>
+  <li>
+    The following attributes were added to the AnnotationCollection class:
+    <img alt="Annotation Collection class attributes" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/AIM/Changes%20from%20AIM%204.0%20to%20AIM%204.2,%20Revision%202/AnnotationCollection.png?api=v2">
+    <ol>
+      <li>
+        StudyInstanceUid - type iso:IIDescription: Study Instance UID may or may not be the same as the Study Instance UID from an imaging study. If an annotation collection created is included in the same study as the annotated images, the Study Instance UID would be the same as in the DicomImageReferenceEntity.
+      </li>
+      <li>
+        SeriesInstanceUid - type iso:IIDescription: A new Series Instance UID has to be created.
+      </li>
+      <li>
+        AccessionNumber - type iso:ST, cardinality 0-1Description: accessionNumber may or may not be the same as the SaccessionNumber from an imaging study. If an annotation collection created is included in the same study as the annotated images, the accessionNumber would be the same as in the DicomImageReferenceEntity.
+      </li>
+    </ol>
+  </li>
+  <li>
+    The following attribute was added to the ImageStudy class:
+    <img src="https://wiki.nci.nih.gov/download/attachments/embedded-page/AIM/Changes%20from%20AIM%204.0%20to%20AIM%204.2,%20Revision%202/ImageStudy.png?api=v2">
+    <ul>
+      <li>
+        AccessionNumber - type iso:ST, cardinality 0-1An accession number used to create an imaging order for the imaging study.
+      </li>
+    </ul>
+  </li>
+  <li>
+    New AIM statements were added for the Image Annotations group:
+    <img alt="AIM Image Annotations Group" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/AIM/Changes%20from%20AIM%204.0%20to%20AIM%204.2,%20Revision%202/ImageAnnotationsGroup.png?api=v2">
+    <ol>
+      <li>
+        CalculationEntityReferencesSegmentationEntityStatementA given calculation result is based on the referenced segmentation entity.
+      </li>
+      <li>
+        CalculationEntityReferencesMarkupEntityStatementA given calculation result is based on the markup entity.
+      </li>
+    </ol>
+  </li>
+  <li>
+    The following change was made to the Person class.
+    <img alt="AIM Person Class" height="250" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/AIM/Changes%20from%20AIM%204.0%20to%20AIM%204.2,%20Revision%202/PersonClass.png?api=v2">
+    If the id identifies a group of subjects, sourcePatientGroupId is an identification of a subject within the group. This is common in small animal imaging when multiple subjects are imaged as a group.
+    <ul>
+      <li>
+        sourcePatientGroupId - type iso:ST, cardinality 0-1
+      </li>
+    </ul>
+  </li>
+</ol>

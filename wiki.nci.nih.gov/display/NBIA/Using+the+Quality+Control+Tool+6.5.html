@@ -1,0 +1,468 @@
+NBIA role required to use this feature: NCIA.MANAGE_VISIBILITY_STATUSFor more information about roles, see
+<a href="https://wiki.nci.nih.gov/display/NBIA/National+Biomedical+Imaging+Archive+Administrator%27s+Guide#NationalBiomedicalImagingArchiveAdministrator%27sGuide-CreatingaNewNBIAUser" rel="nofollow">
+  Creating a New NBIA User
+</a>
+.When an image is uploaded to NBIA, it is not made public immediately. A curator takes it through a quality control process to ensure that no private patient data is available, the image is of good quality, and so forth. Using the QC tool as a curator, you can define search criteria to locate image series for you to evaluate. You can then evaluate the submission and assign the QC status to an image or image series.QC tool search visibilityThe QC tool allows a curator to search &#34;non-visible&#34; or &#34;not reviewed&#34; images, whereas a regular user using the search tool can only see approved public images.Topics in this section:
+<ul>
+  <li>
+    <a href="#UsingtheQualityControlTool6.5-ClassicSearch" rel="nofollow">
+      Classic Search
+    </a>
+  </li>
+  <li>
+    <a href="#UsingtheQualityControlTool6.5-DynamicSearchdynamic" rel="nofollow">
+      Dynamic Search
+    </a>
+  </li>
+  <li>
+    <a href="#UsingtheQualityControlTool6.5-UnderstandingQCToolSearchResults" rel="nofollow">
+      Understanding QC Tool Search Results
+    </a>
+    <ul>
+      <li>
+        <a href="#UsingtheQualityControlTool6.5-ViewingImageSeries" rel="nofollow">
+          Viewing Image Series
+        </a>
+      </li>
+      <li>
+        <a href="#UsingtheQualityControlTool6.5-ViewingThumbnails" rel="nofollow">
+          Viewing Thumbnails
+        </a>
+      </li>
+      <li>
+        <a href="#UsingtheQualityControlTool6.5-ViewingImageSeriesintheDICOMViewer" rel="nofollow">
+          Viewing Image Series in the DICOM Viewer
+        </a>
+      </li>
+      <li>
+        <a href="#UsingtheQualityControlTool6.5-ChangingImageSeriesStatus" rel="nofollow">
+          Changing Image Series Status
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#UsingtheQualityControlTool6.5-GeneratingaQCStatusHistoryReport" rel="nofollow">
+      Generating a QC Status History Report
+    </a>
+  </li>
+</ul>
+<h3 id="UsingtheQualityControlTool6.5-ClassicSearch">
+  Classic Search
+</h3>
+To perform a classic search
+<ol>
+  <li>
+    Click Admin &gt; Perform QC. This opens the QC Tool page to the Classic tab, shown below. You can specify basic search criteria on this tab. You can construct more specific search criteria on the
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=374735840" rel="nofollow">
+      Dynamic tab
+    </a>
+    .
+    <img alt="QC Tool, Classic View" height="250" width="766" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/NBIA/Using%20the%20Quality%20Control%20Tool%206.5/QCTool-ClassicView.png?api=v2">
+    Do not click your browser&#39;s Back or Refresh button while following these steps. This logs you out.
+  </li>
+  <li>
+    Check the QC Status for the series you want to locate. The options are described in the following table:
+    <table>
+      <colgroup>
+        <col/>
+        <col/>
+      </colgroup>
+      <tbody>
+        <tr>
+          <th>
+            Submitted Object Status
+          </th>
+          <th>
+            Description
+          </th>
+        </tr>
+        <tr>
+          <td colspan="1">
+            Not Visible
+          </td>
+          <td colspan="1">
+            No images in the series are visible.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Not Yet Reviewed
+          </td>
+          <td>
+            This status (selected by default) is automatically assigned to an image upon submission to the NBIA database.
+          </td>
+        </tr>
+        <tr>
+          <td colspan="1">
+            First Review to Seventh
+          </td>
+          <td colspan="1">
+            A configurable user-defined stage in the workflow of an image series.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            To Be Deleted
+          </td>
+          <td>
+            Selected image series are to be deleted from the system.
+          </td>
+        </tr>
+        <tr>
+          <td colspan="1">
+            Visible
+          </td>
+          <td colspan="1">
+            All images in the series are visible.
+          </td>
+        </tr>
+        <tr>
+          <td colspan="1">
+            Downloadable
+          </td>
+          <td colspan="1">
+            Test the visibility of images in the series. This allows for downloading when set.  It also separates the test cases from released cases.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    In the Collection(s) field, select one collection (site) that you want to search. You cannot search multiple collections (sites) at one time.
+  </li>
+  <li>
+    In the Batch Number field, select the batch number of the images/series for which you want to search. You can also select Any, to find all batches that have a batch number, or None, to find all batches that do not have a batch number.
+  </li>
+  <li>
+    In the Confirmed as COMPLETE field, select Yes to search for a set of images/series that has been confirmed as complete, or No to search for a set of images/series that is ongoing.
+  </li>
+  <li>
+    In the Released field, select Yes to search for images/series that have been released or No to search for images/series that have not been released.
+  </li>
+  <li>
+    To restrict results to a list of patient IDs, in the Patient ID panel, enter the list of patient IDs and select Add Criteria to perform the search. Separate multiple patient IDs with commas.
+    <img alt="Patient ID field with patient IDs" height="91" width="262" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/NBIA/Using%20the%20Quality%20Control%20Tool%206.5/PatientID.png?api=v2">
+  </li>
+  <li>
+    In the From and To boxes, enter the most recent series submission date range by selecting a date in the calendar or by using the format mm/dd/yyyy.
+  </li>
+  <li>
+    Click Submit. NBIA searches for image series that match the criteria you define.
+  </li>
+</ol>
+See also
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=374735840" rel="nofollow">
+  Understanding QC Tool Search Results
+</a>
+.
+<h3 id="UsingtheQualityControlTool6.5-DynamicSearchdynamic">
+  Dynamic Search
+</h3>
+To perform a dynamic search
+<ol>
+  <li>
+    Click Admin &gt; Perform QC. Select the Dynamic tab, shown in the following figure. The Dynamic tab allows you to construct specific search criteria.Do not use the back button nor the refresh button in these steps, either of which will return the page back to the previous page.
+    <img alt="QC Tool, Dynamic View" height="250" width="599" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/NBIA/Using%20the%20Quality%20Control%20Tool%206.5/QCTool-DynamicView.png?api=v2">
+  </li>
+  <li>
+    Check the QC Status for the series you want to locate. The status options are described in the following table.
+    <table>
+      <colgroup>
+        <col/>
+        <col/>
+      </colgroup>
+      <tbody>
+        <tr>
+          <th>
+            QC Status
+          </th>
+          <th>
+            Description
+          </th>
+        </tr>
+        <tr>
+          <td colspan="1">
+            Not Visible
+          </td>
+          <td colspan="1">
+            No images in the series are visible.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Not Yet Reviewed
+          </td>
+          <td>
+            This status (selected by default) is automatically assigned to an image upon submission to the NBIA database.
+          </td>
+        </tr>
+        <tr>
+          <td colspan="1">
+            First Review to Seventh
+          </td>
+          <td colspan="1">
+            A configurable user-defined stage in the workflow of an image series.
+          </td>
+        </tr>
+        <tr>
+          <td colspan="1">
+            To Be Deleted
+          </td>
+          <td colspan="1">
+            Selected image series are to be deleted from the system.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Visible
+          </td>
+          <td>
+            All images in the series are visible.
+          </td>
+        </tr>
+        <tr>
+          <td colspan="1">
+            Downloadable
+          </td>
+          <td colspan="1">
+            Test the visibility of images in the series. This allows for downloading when set.  It also separates the test cases from released cases.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    In the Batch Number field, select the batch number of the images/series for which you want to search. You can also select Any, to find all batches that have a batch number, or None, to find all batches that do not have a batch number.
+  </li>
+  <li>
+    In the Confirmed as COMPLETE field, select Yes to search for a set of images/series that has been confirmed as complete, or No to search for a set of images/series that is ongoing.
+  </li>
+  <li>
+    In the Released field, select Yes to search for images/series that have been released or No to search for images/series that have not been released.
+  </li>
+  <li>
+    In the From and To boxes, enter the most recent submission date range by selecting a date in the calendar or by using the format mm/dd/yyyy.
+  </li>
+  <li>
+    For each criterion you select, click the green (+) symbol. This confirms the selection and displays the criterion above the first Submit button.
+  </li>
+  <li>
+    To select more criteria, do so in the Construct Criteria section. Options under the drop-down arrows change according to the group you select. You can also specify the Boolean AND or OR to express relationships among criteria.
+  </li>
+  <li>
+    Click Submit. NBIA searches for image series that match the criteria you define.
+  </li>
+</ol>
+See also
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=374735840" rel="nofollow">
+  Understanding QC Tool Search Results
+</a>
+.
+<h3 id="UsingtheQualityControlTool6.5-UnderstandingQCToolSearchResults">
+  Understanding QC Tool Search Results
+</h3>
+Curators use the QC tool to work with images that are not yet available to the public.After you submit search criteria in the QC tool, you can do the following on the search results page.
+<ul>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=374735852" rel="nofollow">
+      View the image series
+    </a>
+    meeting your search criteria.
+  </li>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=374735852" rel="nofollow">
+      Assign a new status
+    </a>
+    to one or more image series in your search results.
+  </li>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=374735852" rel="nofollow">
+      Generate a QC Status History report
+    </a>
+    .
+  </li>
+</ul>
+<img alt="QC Tool" width="800" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/NBIA/QC%20Tool%20Search%20Results%206.5/QCTool-Annotated.png?api=v2">
+<h4 id="UsingtheQualityControlTool6.5-ViewingImageSeries">
+  Viewing Image Series
+</h4>
+Your search results appear in a table in the QC Images by Series section of the QC Tool page.
+<img alt="QC Images by Series showing one result" width="800" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/NBIA/QC%20Tool%20Search%20Results%206.5/QCImagesbySeries.png?api=v2">
+In addition to viewing image series details in the table, you can view them as thumbnails or in the DICOM viewer.
+<h4 id="UsingtheQualityControlTool6.5-ViewingThumbnails">
+  Viewing Thumbnails
+</h4>
+In the Thumbnails column, click View to see image series details.The Series Details page appears, displaying the first image in the series on the left and the DICOM tags for the image on the right. If there is more than one image in the series and DICOM tags for each image, you can view an animated slideshow of the images in the series. For more information about the controls in the animated slideshow, see
+<a href="https://wiki.nci.nih.gov/display/NBIA/Working+with+Images+in+NBIA+6.5.3.1#WorkingwithImagesinNBIA6.5.3.1-ViewingImageAnimation" rel="nofollow">
+  Viewing Image Animation
+</a>
+. The DICOM tags change when you view a different image in the series.If the image series modality is Ultrasound, you can view each image in the series in multi-frame, as shown below. You can move to other images in the series by selecting them from the drop-down list.
+<img alt="Series Details page" width="600" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/NBIA/QC%20Tool%20Search%20Results%206.5/SeriesDetailsThumbnails.png?api=v2">
+If the collection you selected for viewing includes sequence information, the annotations show the sequence data identified by a (&gt;) to the left of the Element column, as shown below.
+<img alt="Series Details page showing arrows that indicate sequence data" height="250" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/NBIA/QC%20Tool%20Search%20Results%206.5/SeriesDetailsArrows.png?api=v2">
+<h4 id="UsingtheQualityControlTool6.5-ViewingImageSeriesintheDICOMViewer">
+  Viewing Image Series in the DICOM Viewer
+</h4>
+In the DICOM Viewer column, click View to open the image series in the Oviyam DICOM viewer. For more information, see
+<a href="https://wiki.nci.nih.gov/display/NBIA/NBIA+Help+Topics#NBIAHelpTopics-UnderstandingQCToolSearchResults" rel="nofollow">
+  QC Tool Search Results
+</a>
+.
+<h4 id="UsingtheQualityControlTool6.5-ChangingImageSeriesStatus">
+  Changing Image Series Status
+</h4>
+As a curator, you may need to change the status of one or more images or image series. You can change the status of one or more selected images or image series individually or as a batch update.Before you can change the status of an image or image series, you must
+<a href="https://wiki.nci.nih.gov/display/NBIA/NBIA+Help+Topics#NBIAHelpTopics-ClassicSearch" rel="nofollow">
+  use the QC Tool to find it
+</a>
+. You must then select the image or image series you want to change.Status options include:
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        QC Status
+      </th>
+      <th>
+        Description
+      </th>
+    </tr>
+    <tr>
+      <td>
+        Not Yet Reviewed
+      </td>
+      <td>
+        This status (selected by default) is automatically assigned to an image upon submission to the NBIA database.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Visible
+      </td>
+      <td>
+        All images in the series are visible.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Not Visible
+      </td>
+      <td>
+        No images in the series are visible.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        To Be Deleted
+      </td>
+      <td>
+        Selected image series are to be deleted from the system.
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        First Review to Seventh
+      </td>
+      <td colspan="1">
+        A configurable user-defined stage in the workflow of an image series.
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Downloadable
+      </td>
+      <td colspan="1">
+        Test the visibility of images in the series. This allows for downloading when set. It also separates the test cases from released cases.
+      </td>
+    </tr>
+  </tbody>
+</table>
+If you change the status of an image series, the change is also reflected in any shared lists to which the image series belongs. If you attempt to change the status of an image series that is in a shared list, an alert message appears, detailing to which shared lists the selected image series belong(s).To change image series status
+<ol>
+  <li>
+    Select Admin &gt; Perform QC. The QC Tool page appears.Scroll down to the QC Images by Series section. The images you selected in the Classic search or Dynamic search appear in the table.
+    <img alt="QC Tool, QC Images by Series and Perform Bulk QC Operations" width="800" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/NBIA/QC%20Tool%20Search%20Results%206.5/QCImagesbySeriesBulkQC.png?api=v2">
+  </li>
+  <li>
+    Select the image(s) or series for which you want to change the status.
+    <ul>
+      <li>
+        To select a single image in a series, click View in the Thumbnails column, then use the cine tool to locate the image you want to change.
+      </li>
+      <li>
+        To select a single series, select the box in the search results table corresponding to the image series you want to change.
+      </li>
+      <li>
+        For a bulk update, select multiple image series in the search results table or click Check All, which is above and below the search results table.Selecting images to QCThe Check All and Uncheck All buttons in the QC Images by Series section of the QC Tool page apply to all of the results of your search. The box to the left of the Submission Date column only selects the series in that row of the results table.
+      </li>
+    </ul>
+  </li>
+  <li>
+    In the Perform Bulk QC Operations section, select the new status you want to assign to the selected image or series. If you are applying the status change to many collections at once, click Run in background to run the bulk operation in a separate thread, improving system performance.
+  </li>
+  <li>
+    In the Change Log box, describe the nature of the image status change. This text will be part of the QC Status report you can generate to track changes in visibility. See
+    <a href="https://wiki.nci.nih.gov/display/NBIA/NBIA+Help+Topics#NBIAHelpTopics-GeneratingaQCStatusReport" rel="nofollow">
+      Generating a QC Status Report
+    </a>
+    .
+  </li>
+  <li>
+    Click Update to update the selected image(s) or series.
+  </li>
+</ol>
+After the image series&#39; status has been changed, the status column of the image series in the search results table on the QC Tool page also changes.
+<h3 id="UsingtheQualityControlTool6.5-GeneratingaQCStatusHistoryReport">
+  Generating a QC Status History Report
+</h3>
+To view the status change log from the QC Tool page search results, select the series you want to appear in the report and then click Generate Report.The QC Status History Report appears, displaying all changes that have been made to the status of the series you selected.
+<img alt="QC Status History Report Page" width="700" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/NBIA/Generating%20a%20QC%20Status%20History%20Report%206.5/QCStatusHistoryReport.png?api=v2">
+Click Back to QC Tool to close this window and return to the QC tool.
+<ul>
+  <li>
+    <a href="#UsingtheQualityControlTool6.5-ClassicSearch" rel="nofollow">
+      Classic Search
+    </a>
+  </li>
+  <li>
+    <a href="#UsingtheQualityControlTool6.5-DynamicSearchdynamic" rel="nofollow">
+      Dynamic Search
+    </a>
+  </li>
+  <li>
+    <a href="#UsingtheQualityControlTool6.5-UnderstandingQCToolSearchResults" rel="nofollow">
+      Understanding QC Tool Search Results
+    </a>
+    <ul>
+      <li>
+        <a href="#UsingtheQualityControlTool6.5-ViewingImageSeries" rel="nofollow">
+          Viewing Image Series
+        </a>
+      </li>
+      <li>
+        <a href="#UsingtheQualityControlTool6.5-ViewingThumbnails" rel="nofollow">
+          Viewing Thumbnails
+        </a>
+      </li>
+      <li>
+        <a href="#UsingtheQualityControlTool6.5-ViewingImageSeriesintheDICOMViewer" rel="nofollow">
+          Viewing Image Series in the DICOM Viewer
+        </a>
+      </li>
+      <li>
+        <a href="#UsingtheQualityControlTool6.5-ChangingImageSeriesStatus" rel="nofollow">
+          Changing Image Series Status
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#UsingtheQualityControlTool6.5-GeneratingaQCStatusHistoryReport" rel="nofollow">
+      Generating a QC Status History Report
+    </a>
+  </li>
+</ul>

@@ -1,0 +1,116 @@
+You can delete a collection, including subcollections, files, links, and associated metadata, if the following criteria are all true:
+<ul>
+  <li>
+    Your user account has the group administrator role.
+  </li>
+  <li>
+    You own that collection. For information on the Own permission level, refer to
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=401736325" rel="nofollow">
+      About Permission Levels
+    </a>
+    .
+  </li>
+</ul>
+To delete a collection:
+<ol>
+  <li>
+    Run the following command:
+
+
+
+
+
+
+
+
+
+
+
+    dm_delete_collection [optional parameters] &lt;collection-path&gt;
+
+
+    The following table describes each parameter:
+    <table>
+      <colgroup>
+        <col/>
+        <col/>
+      </colgroup>
+      <tbody>
+        <tr>
+          <th>
+            Parameter
+          </th>
+          <th>
+            Description
+          </th>
+        </tr>
+        <tr>
+          <td>
+            [-f]
+          </td>
+          <td>
+            By default, the system performs a soft deletion. The system retains the specified collection for two years and then permanently deletes it. To perform immediately permanent deletion, include the -f parameter.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            [-r]
+          </td>
+          <td>
+            An optional parameter:
+            <ul>
+              <li>
+                If you specify this parameter, the system deletes all the files and subcollections under the specified collection recursively.
+              </li>
+              <li>
+                If you do not specify this parameter, the system deletes the collection only if it is empty.
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            &lt;collection-path&gt;
+          </td>
+          <td>
+            A path within DME. Specify the collection that you want to delete.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    The system prompts you to confirm the deletion.
+  </li>
+  <li>
+    Type Y and press Enter. If you specified the recursive (-r) parameter, the system asks whether you want to see the data that will be deleted.
+  </li>
+  <li>
+    Respond to the prompt and press Enter. The system lists or describes the data to be deleted and prompts you to confirm the deletion again.
+  </li>
+  <li>
+    Type Y and press Enter. The system responds based on your parameters.
+  </li>
+</ol>
+For example, the following command deletes the  /Example_Archive/downloads collection, all subcollections within that collection, and all files within those collections.
+
+
+
+
+
+
+
+
+
+
+
+dm_delete_collection –r /Example_Archive/downloads
+
+
+For instructions on deleting an empty collection in the GUI, refer to
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=380208876" rel="nofollow">
+  Deleting a Collection via the GUI
+</a>
+. To request deletion of data you do not own or older data, contact
+<a href="mailto:NCIDataVault@mail.nih.gov" rel="nofollow">
+  NCIDataVault@mail.nih.gov
+</a>
+.

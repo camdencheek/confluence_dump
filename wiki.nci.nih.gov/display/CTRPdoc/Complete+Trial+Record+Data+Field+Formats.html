@@ -1,0 +1,222 @@
+The following table lists the data fields by the table in which they are recorded. It also provides the field number (field position in a row); and the format and character limits for each field.
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        Tables
+      </th>
+      <th>
+        Field (Field Position in a Row)
+      </th>
+      <th>
+        Format (Maximum Number of Characters)
+      </th>
+    </tr>
+    <tr>
+      <td>
+        COLLECTIONS
+      </td>
+      <td>
+        Study Identifier (2)
+      </td>
+      <td>
+        Text (35)
+      </td>
+    </tr>
+    <tr>
+      <td>
+        COLLECTIONS
+      </td>
+      <td>
+        Change Code (11)
+      </td>
+      <td>
+        Number (1)
+      </td>
+    </tr>
+    <tr>
+      <td>
+        PATIENTS
+      </td>
+      <td>
+        Study Identifier (2)
+      </td>
+      <td>
+        Text (35)
+      </td>
+    </tr>
+    <tr>
+      <td>
+        PATIENTS
+      </td>
+      <td>
+        Study Subject Identifier (3)
+      </td>
+      <td>
+        Text (20)
+      </td>
+    </tr>
+    <tr>
+      <td>
+        PATIENTS
+      </td>
+      <td>
+        ZIP Code (4)
+      </td>
+      <td>
+        Text (10)
+      </td>
+    </tr>
+    <tr>
+      <td>
+        PATIENTS
+      </td>
+      <td>
+        Country of Residence (5)
+      </td>
+      <td>
+        Text (2)
+      </td>
+    </tr>
+    <tr>
+      <td>
+        PATIENTS
+      </td>
+      <td>
+        Patient&#39;s Date of Birth (6)
+      </td>
+      <td>
+        Date (YYYYMM)
+      </td>
+    </tr>
+    <tr>
+      <td>
+        PATIENTS
+      </td>
+      <td>
+        Gender of a Person (7)
+      </td>
+      <td>
+        Text (10)
+      </td>
+    </tr>
+    <tr>
+      <td>
+        PATIENTS
+      </td>
+      <td>
+        Ethnicity (8)
+      </td>
+      <td>
+        Text (25)
+      </td>
+    </tr>
+    <tr>
+      <td>
+        PATIENTS
+      </td>
+      <td>
+        Payment Method (9)
+      </td>
+      <td>
+        Text (50)
+      </td>
+    </tr>
+    <tr>
+      <td>
+        PATIENTS
+      </td>
+      <td>
+        Subject Registration Date (10)
+      </td>
+      <td>
+        Date (YYYYMMDD)
+      </td>
+    </tr>
+    <tr>
+      <td>
+        PATIENTS
+      </td>
+      <td>
+        Registering Group Identifier (11)
+      </td>
+      <td>
+        Text (25)
+      </td>
+    </tr>
+    <tr>
+      <td>
+        PATIENTS
+      </td>
+      <td>
+        Study Site Identifier (12)
+      </td>
+      <td>
+        Text (25)
+      </td>
+    </tr>
+    <tr>
+      <td>
+        PATIENTS
+      </td>
+      <td>
+        Subject Disease Code (22)
+        <a id="footnote-marker1-0" href="#footnote1" rel="nofollow">
+          1
+        </a>
+      </td>
+      <td>
+        Number (10)
+      </td>
+    </tr>
+    <tr>
+      <td>
+        PATIENT_RACES
+      </td>
+      <td>
+        Study Identifier (2)
+      </td>
+      <td>
+        Text (35)
+      </td>
+    </tr>
+    <tr>
+      <td>
+        PATIENT_RACES
+      </td>
+      <td>
+        Study Subject Identifier (3)
+      </td>
+      <td>
+        Text (20)
+      </td>
+    </tr>
+    <tr>
+      <td>
+        PATIENT_RACES
+      </td>
+      <td>
+        Race (4)
+      </td>
+      <td>
+        Text (45)
+      </td>
+    </tr>
+  </tbody>
+</table>
+The relation between COLLECTIONS, PATIENTS, and PATIENT_RACES is that COLLECTIONS can have multiple PATIENTS, and PATIENTS can have multiple PATIENT_RACES. These relations are maintained through the use of consistent Study Identifier and Study Subject Identifier fields.Using the format table, you can determine that you must enter the Patient&#39;s Date of Birth in the sixth position in a row in the PATIENTS table as YYYYMM. The following diagram contains a typical line of text from a batch file. Brackets with numbers indicate the field position number.
+<img alt="Diagram demonstrating the batch file field format" height="135" width="1132" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/CTRPdoc/Accrual%20Graphics%20v4.4/accrual-batch-file-field-format.png?api=v2">
+In the example above, the fifth field position (5) is null (blank) because it (Country of Residence) is a conditionally required field and in this example is not required.___
+<ol>
+  <li>
+    For trials using ICD-O-3 terminology, use this position for Site and/or Histology Codes. When using both Site and Histology codes, separate them by a semicolon ( ; ).
+    <a href="#footnote-marker1-0" rel="nofollow">
+      ↩
+    </a>
+  </li>
+</ol>

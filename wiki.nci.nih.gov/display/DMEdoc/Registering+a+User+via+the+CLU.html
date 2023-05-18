@@ -1,0 +1,140 @@
+If your user account has the group administrator or system administrator role, you can register an NIH user account in the system, which allows that user to use DME. To register a user:
+<ol>
+  <li>
+    Make sure the user has an NIH user account.
+  </li>
+  <li>
+    In your local system, create a JSON file that specifies the user&#39;s information as follows:
+    {
+    &#34;firstName&#34;: &#34;John&#34;,
+    &#34;lastName&#34;: &#34;Doe&#34;,
+    &#34;defaultBasePath&#34; : &#34;/FNLCR&#34;,
+    &#34;doc&#34; : &#34;FNLCR&#34;,
+    &#34;notifyUser&#34; : &#34;true&#34;
+    }
+    Include the following information in this JSON file:
+    <ul>
+      <li>
+        Consider specifying the user&#39;s first name and last name. Otherwise, the system creates the account using the first and last name associated with the NIH user ID.
+      </li>
+      <li>
+        Specify a default base path for the user.
+      </li>
+      <li>
+        Specify the user&#39;s DOC. If your user account has the group administrator role, the DOC you specify must match your own.
+      </li>
+      <li>
+        If you want the system to send an email notification to the new user, include the notifyUser attribute and set it to true.
+      </li>
+    </ul>
+  </li>
+  <li>
+    Run the following command:
+
+
+
+
+
+
+
+
+
+
+
+    dm_register_user [optional parameters] &lt;userId&gt; &lt;description.json&gt;
+
+
+    The following table describes each parameter:
+    <table>
+      <colgroup>
+        <col/>
+        <col/>
+      </colgroup>
+      <tbody>
+        <tr>
+          <th>
+            Parameter
+          </th>
+          <th>
+            Description
+          </th>
+        </tr>
+        <tr>
+          <td>
+            [-h]
+          </td>
+          <td>
+            If you want to print a usage (help) message for this command, specify this option.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            [-D &lt;REST-response&gt;]
+          </td>
+          <td>
+            An optional parameter, specifying a path and filename in your local system. The system always creates a response file:
+            <ul>
+              <li>
+                If you specify this parameter, the system saves the response from the server to the specified file in the specified location.
+              </li>
+              <li>
+                If you omit this parameter, the system saves the file as register_user-response-header.tmp in your home directory.
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            [-o &lt;output-file&gt;]
+          </td>
+          <td>
+            An optional parameter, specifying a path and filename in your local system. The system always creates an output file:
+            <ul>
+              <li>
+                If you specify this parameter, the system saves the output to the specified file in the specified location.
+              </li>
+              <li>
+                If you omit this parameter, the system saves the output as register_user-response-message.json.tmp in your home directory.
+              </li>
+            </ul>
+            If the command is successful, the output file is empty.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            &lt;userId&gt;
+          </td>
+          <td>
+            Specify the user&#39;s NIH user ID.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            &lt;description.json&gt;
+          </td>
+          <td>
+            A path to the JSON file that specifies the information about the user.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    The system creates the new user with the user role. (To create a user with the group administrator role, contact
+    <a href="mailto:NCIDataVault@mail.nih.gov" rel="nofollow">
+      NCIDataVault@mail.nih.gov
+    </a>
+    .)
+  </li>
+</ol>
+For example, the following command registers the doejohn9 user in the DME system, using information from the user-info.json file:
+
+
+
+
+
+
+
+
+
+
+
+dm_register_user doejohn9 /cygdrive/c/Users/JaneDoe/user-info.json 

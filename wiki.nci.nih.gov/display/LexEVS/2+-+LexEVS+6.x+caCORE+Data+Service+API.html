@@ -1,0 +1,251 @@
+Contents of this Page
+<ul>
+  <li>
+    <a href="#id-2LexEVS6.xcaCOREDataServiceAPI-Introduction" rel="nofollow">
+      Introduction
+    </a>
+  </li>
+  <li>
+    <a href="#id-2LexEVS6.xcaCOREDataServiceAPI-LexEVSDistributed" rel="nofollow">
+      LexEVSDistributed
+    </a>
+    <ul>
+      <li>
+        <a href="#id-2LexEVS6.xcaCOREDataServiceAPI-Overview" rel="nofollow">
+          Overview
+        </a>
+      </li>
+      <li>
+        <a href="#id-2LexEVS6.xcaCOREDataServiceAPI-LexEVSInstallationandConfiguration" rel="nofollow">
+          LexEVS Installation and Configuration
+        </a>
+      </li>
+      <li>
+        <a href="#id-2LexEVS6.xcaCOREDataServiceAPI-UsingthedistributedLexEVSAPI" rel="nofollow">
+          Using the distributed LexEVS API
+        </a>
+      </li>
+      <li>
+        <a href="#id-2LexEVS6.xcaCOREDataServiceAPI-Background:" rel="nofollow">
+          Background:
+        </a>
+      </li>
+      <li>
+        <a href="#id-2LexEVS6.xcaCOREDataServiceAPI-Architecture" rel="nofollow">
+          Architecture
+        </a>
+      </li>
+      <li>
+        <a href="#id-2LexEVS6.xcaCOREDataServiceAPI-LexEVSAnnotations" rel="nofollow">
+          LexEVS Annotations
+        </a>
+      </li>
+    </ul>
+  </li>
+</ul>
+<table>
+  <colgroup>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        LexEVS 6.x Programmers Links
+      </th>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427334" rel="nofollow">
+              Programmer&#39;s Guide Main Page
+            </a>
+            <ul>
+              <li>
+                <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427372" rel="nofollow">
+                  LexEVS API
+                </a>
+              </li>
+              <li>
+                <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427281" rel="nofollow">
+                  LexEVS 6.0 CTS2 API
+                </a>
+              </li>
+              <li>
+                <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=158827343" rel="nofollow">
+                  LexEVS 6.x CTS2 API Quick Start
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427293" rel="nofollow">
+              Value Set and Pick List Guide
+            </a>
+          </li>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=69730353" rel="nofollow">
+              LexEVS 6.0 Main Page
+            </a>
+          </li>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427448" rel="nofollow">
+              LexEVS Current Release
+            </a>
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Data Services are Deprecated in 6.4Data services were deprecated in LexEVS 6.4.1 and removed in 6.5. The Java based remote method invocation will remain available for the time being.These services are replaced by a separate CTS2 compliant web service described in the
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=176325119" rel="nofollow">
+  CTS2 API
+</a>
+.
+<h2 id="id-2LexEVS6.xcaCOREDataServiceAPI-Introduction">
+  Introduction
+</h2>
+The focus of documentation will be the Java based LexEVS remote method invocation service.  Migration NotesSee migration notes below for LexEVS Distributed 6.0, 6.1 to 6.2, 6.3 to 6.4.1, 6.5
+<h2 id="id-2LexEVS6.xcaCOREDataServiceAPI-LexEVSDistributed">
+  LexEVSDistributed
+</h2>
+The Distributed LexEVS Portion of LexEVSAPI extends a subclass of, or in 6.5 and later, implements LexEVSService.   This interface is a framework for calling LexEVS API methods remotely, while enforcing restrictions on proprietary content.
+<a href="http://lexevsapi60.nci.nih.gov/lexevsapi60/docs/org/LexGrid/LexBIG/caCore/interfaces/LexEVSDistributed.html" rel="nofollow">
+  JavaDoc
+</a>
+<a href="https://wiki.nci.nih.gov/x/k4C_E" rel="nofollow">
+  LexEVS Distributed Migration Guide
+</a>
+This is the only caCore API available in 6.5
+<h3 id="id-2LexEVS6.xcaCOREDataServiceAPI-Overview">
+  Overview
+</h3>
+This exposes the LexEVS Service model via a Remote Method Invocation service.
+<h3 id="id-2LexEVS6.xcaCOREDataServiceAPI-LexEVSInstallationandConfiguration">
+  LexEVS Installation and Configuration
+</h3>
+The distributed LexEVS API is strictly a Java interface and requires Internet access for remote connectivity to the caCORE LexEVS server. Client configuration is represented in a client project in github:
+<a href="https://github.com/lexevs/LexEVS_Distributed_Client" rel="nofollow">
+  https://github.com/lexevs/LexEVS_Distributed_Client
+</a>
+<h3 id="id-2LexEVS6.xcaCOREDataServiceAPI-UsingthedistributedLexEVSAPI">
+  Using the distributed LexEVS API
+</h3>
+Example code can be found at the above client project link for a number of use cases.For versions 6.4.1 and above the distributed java client features a mavenized project. This client has a large dependency set.  Maven simplifies dependency resolution.  Cloning and building the Client project provides a local maven repository version of the client jar and pom.Step by step instructions for integration into a maven project in an eclipse environment:
+<ol>
+  <li>
+    Example environment technology includes Java 1.8, Maven 3.2.3, Git, and Eclipse Neon or some other maven enabled Eclipse IDE.
+  </li>
+  <li>
+    This example assumes some familiarity with Eclipse and Maven.
+  </li>
+  <li>
+    Run git clone
+    <a href="https://github.com/lexevs/LexEVS_Distributed_Client.git" rel="nofollow">
+      https://github.com/lexevs/LexEVS_Distributed_Client.git
+    </a>
+  </li>
+  <li>
+    Change working directory to LexEVS_Distributed_Client
+  </li>
+  <li>
+    Run
+    mvn clean install
+    , if tests fail you may add -DskipTests
+  </li>
+  <li>
+    Create a new Java Project in Eclipse
+    <img src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/2%20-%20LexEVS%206.x%20caCORE%20Data%20Service%20API/Screen%20Shot%202016-09-22%20at%2011.22.05%20AM.png?api=v2">
+  </li>
+  <li>
+    Configure as a Maven project
+    <img src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/2%20-%20LexEVS%206.x%20caCORE%20Data%20Service%20API/Screen%20Shot%202016-09-22%20at%2011.23.20%20AM.png?api=v2">
+  </li>
+  <li>
+    Add as dependency to the pom file:
+  </li>
+</ol>
+&lt;dependencies&gt;
+
+&lt;dependency&gt;
+
+	&lt;groupId&gt;lexevs.dist.client&lt;/groupId&gt;
+
+	&lt;artifactId&gt;lexevs.dist.client&lt;/artifactId&gt;
+
+	&lt;version&gt;0.0.1-SNAPSHOT&lt;/version&gt;
+
+&lt;/dependency&gt;
+
+&lt;/dependencies&gt;
+ Users should be able to access a remote service with code similar to the following (Service URL should be adjusted to a valid LexEVS API service such as the one hosted at NCI):
+package org.lexgrid.lexevs.remote.client;
+
+import org.LexGrid.LexBIG.DataModel.Collections.CodingSchemeRenderingList;
+import org.LexGrid.LexBIG.DataModel.InterfaceElements.CodingSchemeRendering;
+import org.LexGrid.LexBIG.Exceptions.LBInvocationException;
+import org.LexGrid.LexBIG.caCore.interfaces.LexEVSDistributed;
+
+import gov.nih.nci.system.client.ApplicationServiceProvider;
+
+public class MavenBasedPrototype {
+
+	LexEVSDistributed lbs = null;
+	private static String serviceUrl = &#34;https://localhost.daplie.com:8443/lexevsapi65&#34;;
+	public void run() throws LBInvocationException{
+		try {
+			lbs = (LexEVSDistributed)ApplicationServiceProvider.getApplicationServiceFromUrl(serviceUrl, &#34;EvsServiceInfo&#34;);
+	}
+		catch(Exception e){
+			System.out.println(&#34;Starting LexEVS Remote Client fails&#34; + e);
+	}
+
+	CodingSchemeRenderingList list = lbs.getSupportedCodingSchemes();
+		for(CodingSchemeRendering rendering: list.getCodingSchemeRendering()){
+			System.out.println(rendering.getCodingSchemeSummary().getFormalName());
+		}
+	}
+
+	public static void main(String[] args) {
+		try {
+			new MavenBasedPrototype().run();
+		} catch (LBInvocationException e) {
+			e.printStackTrace();
+		}
+	}
+}
+
+<h3 id="id-2LexEVS6.xcaCOREDataServiceAPI-Background:">
+  Background:
+</h3>
+<h3 id="id-2LexEVS6.xcaCOREDataServiceAPI-Architecture">
+  Architecture
+</h3>
+The LexEVS API is exposed by the LexEVS caCORE System for remote access through the caCORE System&#39;s LexEVSApplicationService class which implements the LexBIGService interface.The distributed LexEVS API environment will be configured on the LexEVS Server currently at (
+<a href="https://lexevsapi6.nci.nih.gov/lexevsapi64/" rel="nofollow">
+  https://lexevsapi6.nci.nih.gov/lexevsapi64/
+</a>
+).
+<h3 id="id-2LexEVS6.xcaCOREDataServiceAPI-LexEVSAnnotations">
+  LexEVS Annotations
+</h3>
+To address LexEVS DAOs, the LexEVS API integration incorporates:
+<ul>
+  <li>
+    Java annotation marking methods that can be safely executed on the client side
+  </li>
+  <li>
+    This includes classes that can be passed to the client without being wrapped by a proxy
+  </li>
+  <li>
+    Every method in the LexEVS API that is accessible to the caCORE LexEVS user had to be considered and annotated if necessary.
+  </li>
+  <li>
+    Spring Aspect Oriented Programming (AOP) used to proxy the LexEVS classes and intercept calls to methods based on annotations.
+  </li>
+  <li>
+    The LexEVS client wraps every object returned by the LexBIGService inside an AOP Proxy with advice from a LexBIGMethodInterceptor (&#34;the interceptor&#34;).
+  </li>
+</ul>
+The interceptor is responsible for intercepting all client calls on the methods in each object. If a method is marked with the @lgClientSideSafe annotation, it proceeds normally. Otherwise, the object, method name, and parameters are sent to the caCORE LexEVS server for remote execution.  

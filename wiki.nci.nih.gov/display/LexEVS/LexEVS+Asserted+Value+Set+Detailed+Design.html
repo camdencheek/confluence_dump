@@ -1,0 +1,35 @@
+<ul>
+  <li>
+    <a href="#LexEVSAssertedValueSetDetailedDesign-AssertedValueSetsInLexEVS" rel="nofollow">
+      Asserted Value Sets In LexEVS
+    </a>
+    <ul>
+      <li>
+        <a href="#LexEVSAssertedValueSetDetailedDesign-ValueSetsAssertedInTheNCIThesaurus" rel="nofollow">
+          Value Sets Asserted In The NCI Thesaurus
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVSAssertedValueSetDetailedDesign-DefiningAttributesofValueSetsintheAssertingTerminology" rel="nofollow">
+          Defining Attributes of Value Sets in the Asserting Terminology
+        </a>
+      </li>
+    </ul>
+  </li>
+</ul>
+<h1 id="LexEVSAssertedValueSetDetailedDesign-AssertedValueSetsInLexEVS">
+  Asserted Value Sets In LexEVS
+</h1>
+Asserted Value Sets are not a formal model element in LexEVS.  There is no asserted value set object to instantiate, instead these value set representations are expressed directly in the terminology and represented in ways similar to LexEVS models of Value Set Definitions and Coding Schemes.
+<h2 id="LexEVSAssertedValueSetDetailedDesign-ValueSetsAssertedInTheNCIThesaurus">
+  Value Sets Asserted In The NCI Thesaurus
+</h2>
+Value Sets have been asserted directly in the NCI Thesaurus by creating a set of properties and relationships within the original OWL file to describe a &#34;top node,&#34; and a set of related values associated with that node.
+<img height="400" width="622" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%20Asserted%20Value%20Set%20Detailed%20Design/Screen%20Shot%202018-06-11%20at%2012.43.26%20PM.png?api=v2">
+The &#34;top node&#34; is a representation of an OWL class that defines a set of properties, which provide human readable metadata about what this classification of values means.
+<img height="400" width="460" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%20Asserted%20Value%20Set%20Detailed%20Design/Screen%20Shot%202018-06-11%20at%2012.54.12%20PM.png?api=v2">
+This node, the OWL defined relationships that point to it, and a set of properties key to defining aspects of a value set, allow LexEVS to adequately define this, both in terms of a Value Set Definition, and also as a Coding Scheme object.  The API&#39;s that work in conjunction with the externally defined value set definitions and resolved value set coding schemes can receive these objects transparently because they are the same type as previously defined for the legacy API.  Since these Objects have been adequately defined elsewhere in this documentation set, we won&#39;t redefine them here.
+<h2 id="LexEVSAssertedValueSetDetailedDesign-DefiningAttributesofValueSetsintheAssertingTerminology">
+  Defining Attributes of Value Sets in the Asserting Terminology
+</h2>
+Contributing Source:  Describes an agency or group that defines the value setExample: property name:  &#34;Contributing_Source&#34;property value:  &#34;CDISC&#34;Publish Flag:Example:property name: &#34;Publish_Value_Set&#34;property value: &#34;Yes&#34;Asserted Value Set Relation: Defines an association between the members of the value set and its &#34;top node&#34; which is usually the target of this relationshipExample:  &#34;Concept_In_Subset&#34;Asserted Value Set Hierarchy: Defines an association between the value set top nodes without defining membership in a value set with nodes above and below any given node in the hieararchy.Example:  &#34;subClassOf&#34;Concept Domain: An abstraction defining what type conceptual membership is defined semantically for the value set Example:  &#34;Semantic_Type&#34;  

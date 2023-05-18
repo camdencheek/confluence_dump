@@ -1,0 +1,196 @@
+This document describes the process to build and deploy LexEVS and all of its components.
+<h2 id="LexEVSBuildProcess-CreatePTEs">
+  Create PTEs
+</h2>
+PTEs describe the build/deploy process for the NCI systems team to build/deploy our LexEVS artifacts.Create a directory with the name of the release for the LexEVS PTE documents similar to this one:
+<ul>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=393449123" rel="nofollow">
+      LexEVS 6.5.2 Documents
+    </a>
+  </li>
+</ul>
+<h2 id="LexEVSBuildProcess-CreateARCDocuments">
+  Create ARC Documents
+</h2>
+Update LexEVS ARC Documents - Update the tags that will be used in Git.
+<ul>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=393449145" rel="nofollow">
+      LexEVS 6.5.2 High Level ARC Document
+    </a>
+  </li>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=393449136" rel="nofollow">
+      LexEVS 6.5.2 ARC Document
+    </a>
+  </li>
+</ul>
+<h2 id="LexEVSBuildProcess-BuildingLexEVSCode">
+  Building LexEVS Code
+</h2>
+Once the code is tested and ready for a FINAL tag, update the build versions in the property files/pom.xml files
+<ul>
+  <li>
+    LexEVS
+    <ul>
+      <li>
+        Admin GUI Installer
+        <ul>
+          <li>
+            Run the GUI installer for LEXEVS and verify the text and the version is up to date
+          </li>
+        </ul>
+      </li>
+    </ul>
+    <ul>
+      <li>
+        Update /lbPackager/build.properties to the FINAL release
+      </li>
+      <li>
+        Check in to git
+      </li>
+      <li>
+        Tag as 6.5.0.FINAL
+      </li>
+      <li>
+        Build the project
+      </li>
+      <li>
+        Deploy LexEVS artifacts in lbPackager/dist to the NCI sFTP site (caftps.nci.nih.gov)
+      </li>
+      <li>
+        Javadoc should be placed on the wiki for LexEVS.  The Javadoc is generated during the build and is located:
+        <ul>
+          <li>
+            lexevs/lbPackager/antbuild/doc/javadoc/
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    lexevs-remote
+    <ul>
+      <li>
+        Copy the built lexbig.jar and lexbig-test-6.5.0.FINAL-tests.jar to lexevs-remote/LexEVSService/system/lib/
+      </li>
+      <li>
+        Update class path to point to lexbig-test-6.5.0.FINAL-tests.jar
+      </li>
+      <li>
+        Update project version in LexEVSService/conf/deploy.properties
+      </li>
+      <li>
+        Check in to git
+      </li>
+      <li>
+        Build the project
+      </li>
+      <li>
+        Tag as 6.5.0.FINAL
+      </li>
+      <li>
+        Deploy artifacts to the NCI sFTP site (
+        <a href="http://caftps.nci.nih.gov" rel="nofollow">
+          caftps.nci.nih.gov
+        </a>
+        )
+      </li>
+      <li>
+        Javadoc should be placed on the wiki for LexEVS-remote.  The Javadoc is generated during the build and is located:
+        <ul>
+          <li>
+            lexevs-remote/LexEVSService/build/output/lexevsapi65/build
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    lexevs-service (CTS2)
+    <ul>
+      <li>
+        Update pom to pull lexevs  6.5.0.FINAL
+      </li>
+      <li>
+        Update lexevs-version in pom to 1.6.0.FINAL
+      </li>
+      <li>
+        Check in and tag as 1.6.0.FINAL
+      </li>
+      <li>
+        Build the project
+      </li>
+      <li>
+        Deploy artifacts to the NCI sFTP site (
+        <a href="http://caftps.nci.nih.gov" rel="nofollow">
+          caftps.nci.nih.gov
+        </a>
+        )
+      </li>
+    </ul>
+  </li>
+  <li>
+    lexevs-system-test
+  </li>
+</ul>
+<h2 id="LexEVSBuildProcess-Jenkinsbuildscript">
+  Jenkins build script
+</h2>
+Create a new Lexevs-system-test configuration for the new LexEVS branch.  This will run tests on the new branch.
+<ul>
+  <li>
+    <a href="https://nci-jenkins.nci.nih.gov/jenkins/" rel="nofollow">
+      https://nci-jenkins.nci.nih.gov/jenkins/
+    </a>
+  </li>
+</ul>
+<h2 id="LexEVSBuildProcess-UpdateWikiDocumentationforthenewLexEVSRelease">
+  Update Wiki Documentation for the new LexEVS Release
+</h2>
+Update the Release Notes for the LexEVS release.
+<ul>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=190316755" rel="nofollow">
+      LexEVS Release Notes
+    </a>
+  </li>
+</ul>
+Update the release identifiers page.  This page maps LexEVS components to the JIRA project, git branch and tag as well as Maven releases.
+<ul>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=281936126" rel="nofollow">
+      LexEVS Software Release Identifiers
+    </a>
+  </li>
+</ul>
+Create release documents for the new LexEVS version.
+<ul>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=393449063" rel="nofollow">
+      LexEVS 6.5.2 Development Documents
+    </a>
+  </li>
+</ul>
+<h3 id="LexEVSBuildProcess-UpdateGITNCIChannel">
+  Update GIT NCI Channel
+</h3>
+Once LexEVS is released, we need to request someone at NCI create a pull request to pull the FINAL tags/branches of our code for each LexEVS component to the NCIP repository.
+<ul>
+  <li>
+    <a href="https://github.com/NCIP/lexevs" rel="nofollow">
+      https://github.com/NCIP/lexevs
+    </a>
+  </li>
+  <li>
+    <a href="https://github.com/NCIP/lexevs-remote" rel="nofollow">
+      https://github.com/NCIP/lexevs-remote
+    </a>
+  </li>
+  <li>
+    <a href="https://github.com/NCIP/lexevs-service" rel="nofollow">
+      https://github.com/NCIP/lexevs-service
+    </a>
+  </li>
+</ul>

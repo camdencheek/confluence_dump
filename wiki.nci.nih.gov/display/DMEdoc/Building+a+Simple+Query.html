@@ -1,0 +1,66 @@
+When you perform a query, the system requires it in the context of a compoundQuery element with a join operator, even if it contains only one simple query. A simple query consists of the following parts:
+<ul>
+  <li>
+    attribute or attributeMatch
+  </li>
+  <li>
+    value
+  </li>
+  <li>
+    operator
+  </li>
+  <li>
+    levelFilter (optional)
+  </li>
+</ul>
+The following example simple query finds only the collections or data files registered by the jane_doe user:
+{
+		&#34;compoundQuery&#34;:	{
+			&#34;operator&#34;:&#34;AND&#34;,
+			&#34;queries&#34;:	[
+					{
+				&#34;attribute&#34;:&#34;registered_by&#34;,
+				&#34;value&#34;:&#34;jane_doe&#34;,
+				&#34;operator&#34;:&#34;EQUAL&#34;
+					}
+				]
+			}
+}
+The following example simple query finds only the collections or data files, at level 1 or above, in which any attribute equals jane_doe:
+{
+		&#34;compoundQuery&#34;:	{
+			&#34;operator&#34;:&#34;AND&#34;,
+			&#34;queries&#34;:	[
+					{
+				&#34;operator&#34;:&#34;EQUAL&#34;,
+				&#34;value&#34;:&#34;jane_doe&#34;,
+				&#34;levelFilter&#34;:{&#34;level&#34;:1,&#34;operator&#34;:&#34;NUM_GREATER_OR_EQUAL&#34;},
+				&#34;attributeMatch&#34;:&#34;ANY&#34;
+					}
+				]
+			}
+}
+For the operator within each simple query, the valid values are as follows:
+<ul>
+  <li>
+    EQUAL
+  </li>
+  <li>
+    NOT_EQUAL
+  </li>
+  <li>
+    LIKE
+  </li>
+  <li>
+    NUM_LESS_THAN
+  </li>
+  <li>
+    NUM_GREATER_THAN
+  </li>
+  <li>
+    NUM_LESS_OR_EQUAL
+  </li>
+  <li>
+    NUM_GREATER_OR_EQUAL
+  </li>
+</ul>

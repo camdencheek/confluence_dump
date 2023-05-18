@@ -1,0 +1,92 @@
+This page includes the following topics:
+<ul>
+  <li>
+    <a href="#id-7ConfiguringTomcatServersandMySQLServertoRunasServices7.1GA-ConfiguringTomcat7ServersandMySQLServertoRunasServices" rel="nofollow">
+      Configuring Tomcat 7 Servers and MySQL Server to Run as Services
+    </a>
+    <ul>
+      <li>
+        <a href="#id-7ConfiguringTomcatServersandMySQLServertoRunasServices7.1GA-RunningTomcatasaService" rel="nofollow">
+          Running Tomcat as a Service
+        </a>
+      </li>
+      <li>
+        <a href="#id-7ConfiguringTomcatServersandMySQLServertoRunasServices7.1GA-RunningMySQLasaService" rel="nofollow">
+          Running MySQL as a Service
+        </a>
+      </li>
+    </ul>
+  </li>
+</ul>
+<h2 id="id-7ConfiguringTomcatServersandMySQLServertoRunasServices7.1GA-ConfiguringTomcat7ServersandMySQLServertoRunasServices">
+  Configuring Tomcat 7 Servers and MySQL Server to Run as Services
+</h2>
+Continual servicesMySQL, the Tomcat server for NBIA, and the Tomcat server optionally installed for UPT must run continually as services. The instructions in this section cover all of these scenarios. For an NBIA 7.1 GA deployment, there are at least three servers, and if UPT is installed, four servers:
+<ul>
+  <li>
+    Tomcat 7 (for the NBIA application)
+  </li>
+  <li>
+    MySQL 5.5 - Only use this version, as newer versions have not been tested with NBIA.
+  </li>
+  <li>
+    CTP (Clinical Trial Processor)
+  </li>
+</ul>
+<h3 id="id-7ConfiguringTomcatServersandMySQLServertoRunasServices7.1GA-RunningTomcatasaService">
+  Running Tomcat as a Service
+</h3>
+Tomcat with default NBIAThe default NBIA installation runs Tomcat as a command line process using the user currently logged on. Therefore, when you log out as this user, Tomcat is no longer available for NBIA. For that reason, it is recommended that you configure your Tomcat servers to run as a Linux or Windows service. The instructions are contained in this section.To run Tomcat as a service
+<ol>
+  <li>
+    LinuxSee
+    <a href="https://tomcat.apache.org/tomcat-7.0-doc/setup.html" rel="nofollow">
+      https://tomcat.apache.org/tomcat-7.0-doc/setup.html
+    </a>
+    .
+    <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+      <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+    </a>
+    .
+  </li>
+  <li>
+    WindowsTo run an existing Tomcat command line installation see
+    <a href="https://tomcat.apache.org/tomcat-7.0-doc/windows-service-howto.html" rel="nofollow">
+      https://tomcat.apache.org/tomcat-7.0-doc/windows-service-howto.html
+    </a>
+    <a href="http://support.microsoft.com/kb/137890/EN-US/" rel="nofollow">
+      <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+        <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+      </a>
+    </a>
+    Once Tomcat is installed, you will need to provide the Windows Service with the location of jaas.conf in the Tomcat conf directory. Do this by running Configure Tomcat, which was installed with the Windows Service under the Java tab.Example:-Djava.security.auth.login.config==c:/apps/nbia/Tomcat7.68/conf/jaas.config indicates where the files are.
+  </li>
+</ol>
+<img alt="Apache Tomcat 7.0 New Properties" height="290" width="300" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/NBIA/7%20-%20Configuring%20Tomcat%20Servers%20and%20MySQL%20Server%20to%20Run%20as%20Services%207.1%20GA/image2016-8-22%2011:5:41.png?api=v2">
+Important!You need administrator access to complete this task.
+<h3 id="id-7ConfiguringTomcatServersandMySQLServertoRunasServices7.1GA-RunningMySQLasaService">
+  Running MySQL as a Service
+</h3>
+Server installed?It is assumed that your MySQL server was installed as a service. If it was not, follow these recommendations for installing this server as a service.To run MySQL as a service
+<ol>
+  <li>
+    Linux Refer to
+    <a href="https://dev.mysql.com/doc/refman/5.5/en/automatic-start.html" rel="nofollow">
+      https://dev.mysql.com/doc/refman/5.5/en/automatic-start.html
+    </a>
+    <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+      <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+    </a>
+    .
+  </li>
+  <li>
+    Windows When installing MySQL server on Windows, choose the option to run MySQL as a Windows service or refer to
+    <a href="https://dev.mysql.com/doc/refman/5.5/en/windows-start-service.html" rel="nofollow">
+      https://dev.mysql.com/doc/refman/5.5/en/windows-start-service.html
+      <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+        <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+      </a>
+    </a>
+    for starting MySQL as a Windows Service.
+  </li>
+</ol>

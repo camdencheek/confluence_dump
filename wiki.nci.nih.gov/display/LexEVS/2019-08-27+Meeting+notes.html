@@ -1,0 +1,295 @@
+<h2 id="id-20190827Meetingnotes-Date">
+  Date
+</h2>
+27 Aug 2019
+<h2 id="id-20190827Meetingnotes-Attendees">
+  Attendees
+</h2>
+<ul>
+  <li>
+    <a href="https://wiki.nci.nih.gov/display/~safrant" rel="nofollow">
+      Safran, Tracy (NIH/NCI) [C]
+    </a>
+  </li>
+  <li>
+    Kim Ong
+  </li>
+  <li>
+    Jason Lucas
+  </li>
+  <li>
+    Yang Chen
+  </li>
+  <li>
+    Scott Bauer
+  </li>
+  <li>
+    Corey Endle
+  </li>
+</ul>
+<h2 id="id-20190827Meetingnotes-Goals">
+  Goals
+</h2>
+<ul>
+  <li></li>
+</ul>
+<h2 id="id-20190827Meetingnotes-Discussionitems">
+  Discussion items
+</h2>
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        Time
+      </th>
+      <th>
+        Item
+      </th>
+      <th>
+        Who
+      </th>
+      <th>
+        Notes
+      </th>
+    </tr>
+    <tr>
+      <td></td>
+      <td>
+        LexEVS Release
+      </td>
+      <td></td>
+      <td>
+        <ul>
+          <li>
+            Current status - Swathi continuing verification work
+          </li>
+          <li>
+            CTS2/URI Resolver still to be worked on
+            <ul>
+              <li>
+                1.1.1 version on Dev and QA
+              </li>
+              <li>
+                Database updated from Dev
+              </li>
+              <li>
+                6.5.2 never released so those changes going into 6.5.3
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>
+        Data load/reload
+      </td>
+      <td></td>
+      <td>
+        <ul>
+          <li>
+            NCIt
+            <ul>
+              <li>
+                19.08d loaded with concept_status under 6.5.2
+              </li>
+              <li>
+                Will need reload under 6.5.3
+              </li>
+            </ul>
+          </li>
+          <li>
+            Meta
+            <ul>
+              <li>
+                Will be getting new export this month
+              </li>
+              <li>
+                Test previous meta on 6.5.3 on Dev as test?
+              </li>
+            </ul>
+          </li>
+          <li>
+            RRF Standalones
+            <ul>
+              <li>
+                Authority qualifiers
+              </li>
+              <li>
+                Map Rank - 6.5.2
+              </li>
+            </ul>
+          </li>
+          <li>
+            Other - reload needed to create designation. Designation saying coding_scheme vs value_set, etc, stored in registry
+          </li>
+          <li>
+            NCIt not showing designation on Dev - needs further investigation
+            <ul>
+              <li>
+                NPO
+              </li>
+              <li>
+                MGED
+              </li>
+              <li>
+                others ?
+              </li>
+            </ul>
+          </li>
+          <li>
+            Will need to reload MRMAP mappings
+          </li>
+          <li>
+            Will need to reload LgXML mappings
+          </li>
+          <li>
+            URI Resolver
+            <ul>
+              <li>
+                Look at DataQA and add rows for NCIt version
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1"></td>
+      <td colspan="1">
+        NCIt Browser
+      </td>
+      <td colspan="1"></td>
+      <td colspan="1">
+        <ul>
+          <li>
+            Going up at same time as 6.5.3
+          </li>
+          <li>
+            Needed from data
+            <ul>
+              <li>
+                NPO
+              </li>
+              <li>
+                obib
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1"></td>
+      <td colspan="1">
+        AWS
+      </td>
+      <td colspan="1"></td>
+      <td colspan="1">
+        <ul>
+          <li>
+            TT working on Jenkins
+            <ul>
+              <li>
+                Needed for stardog autoload
+              </li>
+              <li>
+                ElasticSearch generation
+              </li>
+            </ul>
+          </li>
+          <li>
+            Other applications being migrated
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1"></td>
+      <td colspan="1">
+        Hardware migration
+      </td>
+      <td colspan="1"></td>
+      <td colspan="1">
+        <ul>
+          <li>
+            Any progress - LexEVS VM for testing.
+            <ul>
+              <li>
+                Has no containers or other setup
+              </li>
+              <li>
+                Need it to have similar setup to Dev
+              </li>
+              <li>
+                ticket submitted last week
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1"></td>
+      <td colspan="1">
+        Iterator
+      </td>
+      <td colspan="1"></td>
+      <td colspan="1">
+        <ul>
+          <li>
+            LexEVS resolves stepwise so iterator is inefficient
+          </li>
+          <li>
+            Scott prototyping an anatomy graph that is much more efficient
+            <ul>
+              <li>
+                Uses ArangoDB
+                <ul>
+                  <li>
+                    Possible Stardog has this functionality?
+                  </li>
+                </ul>
+              </li>
+              <li>
+                For each vocab we would have graphs for each association
+              </li>
+              <li>
+                Based on adjacency matrix
+              </li>
+              <li>
+                Would all be handled by the loader
+              </li>
+              <li>
+                We would need to admin the ArangoDB
+                <ul>
+                  <li>
+                    Actual details about administration would need to be determined
+                  </li>
+                  <li>
+                    Is NoSQL database?
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="id-20190827Meetingnotes-Actionitems">
+  Action items
+</h2>
+<ul>
+  <li>
+    Tracy further research of ArangoDB
+  </li>
+</ul>

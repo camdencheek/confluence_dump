@@ -1,0 +1,126 @@
+A text search allows for searching of many of the database text fields, DICOM image tag data, and annotation files that are not available in the Simple search. Refer to the
+<a href="http://dicom.nema.org/medical/dicom/current/output/html/part06.html#chapter_6" rel="nofollow">
+  DICOM Data Dictionary
+</a>
+ for tags or field names you can use in a text search. A simple example of a text search is to find all subjects associated with the value pancreas by typing pancreas in the Text Search box. You can also use the field:searchTerm technique; for example, Body Part Examined:pancreas. In this example, the colon interprets the DICOM field from the value. Since text search also recognizes DICOM codes, you can also search on 0018,0015:pancreas, which is the DICOM code for Body Part Examined. Additionally, you can use a wildcard search such as Body Part Examined:panc* to find all subjects associated with values beginning with panc, including pancreas, pancreatic duct, and pancreatic duct and bile duct systems.Text search does have some restrictions. These are:
+<ul>
+  <li>
+    The text string you use must have more than one character. The search won&#39;t return any values if the text string has only one character.
+  </li>
+  <li>
+    Do not use a forward slash (/) in your text string.
+  </li>
+  <li>
+    Do not use complex searches with AND or OR statements (text search supports
+    <a href="http://lucene.apache.org/core/2_9_4/queryparsersyntax.html" rel="nofollow">
+      Lucene syntax
+    </a>
+     but only a single field can be searched at a time).
+  </li>
+</ul>
+To perform a text search
+<ol>
+  <li>
+    On the NBIA home page, click Text Search or Search Images &gt; Text Search. The Text Search page appears.
+    <img alt="Text Search tab with an empty text box, Clear button, and Search button" width="350" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/NBIA/Performing%20a%20Text%20Search%207.0/TextSearchTab.png?api=v2">
+  </li>
+  <li>
+    Select the number of search results per page you want the search to return.
+  </li>
+  <li>
+    In the box at the top of the page, enter a text string of two characters or more.
+  </li>
+  <li>
+    Click
+    <img alt="Search button" width="65" src="https://wiki.cancerimagingarchive.net/download/thumbnails/41518454/SearchButton.png?version=1&amp;modificationDate=1545097756953&amp;api=v2">
+    . The search results appear.
+    <img width="700" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/NBIA/Performing%20a%20Text%20Search%207.0/SearchResultsText.png?api=v2">
+  </li>
+</ol>
+Navigation Tips
+<ul>
+  <li>
+    Click the down arrow next to the Subject ID column header to sort the results alphabetically (A to Z or Z to A) by Subject ID.
+  </li>
+  <li>
+    Click the arrows at the bottom of the table to display the first, previous, next, or last page of results.
+  </li>
+  <li>
+    Click the page number links to move to a specific page of results.
+  </li>
+  <li>
+    In the Show (10) entries box in the bottom left, edit the default 10 to the number of entries you want to see on a search results page.
+  </li>
+  <li>
+    For performance Text Search will only return the first 3000 subjects that match the criteria
+  </li>
+</ul>
+The following table describes each item in the search results table.
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        Search Result
+      </th>
+      <th>
+        Description
+      </th>
+    </tr>
+    <tr>
+      <td colspan="1">
+        <img alt="Caret symbol and cart symbol" width="50" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/NBIA/Performing%20a%20Text%20Search%207.0/CartandCarot.png?api=v2">
+      </td>
+      <td colspan="1">
+        Click the caret to
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=384205756" rel="nofollow">
+          view the subject details
+        </a>
+        . Click the cart symbol to
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=384205756" rel="nofollow">
+          add image series to your cart
+        </a>
+        .
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Collection ID
+      </td>
+      <td>
+        Collection identifier
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Subject ID
+      </td>
+      <td>
+        Click the Subject ID to
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=384205756" rel="nofollow">
+          view the details
+        </a>
+        for all study images for this subject, a single series&#39;
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=384205756" rel="nofollow">
+          thumbnails
+        </a>
+        , or the
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=384205756" rel="nofollow">
+          DICOM header
+        </a>
+        for the first image in the series.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Hit
+      </td>
+      <td>
+        The field in the study where the text string that you entered in the search criteria appears.
+      </td>
+    </tr>
+  </tbody>
+</table>

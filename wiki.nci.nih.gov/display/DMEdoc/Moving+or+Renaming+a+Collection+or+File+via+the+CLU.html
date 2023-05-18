@@ -1,0 +1,161 @@
+If your user account has the group administrator or system administrator role, and has the Write or Own permission level on an existing collection in DME (on all collections in the path), you can move one or more data files or collections to that existing collection in the following ways:
+<ul>
+  <li>
+    If that existing collection has been configured to contain another collection, you can move a collection to it.
+  </li>
+  <li>
+    If that existing collection has been configured to contain data files, you can move a file to it.
+  </li>
+</ul>
+You can also rename a collection or file. To move or rename one or more collections or files:
+<ol>
+  <li>
+    In your local system, create a JSON file that specifies a list of source and destination locations, as follows:
+    {
+    &#34;moveRequests&#34;: [
+    {
+    &#34;sourcePath&#34;: &#34;&lt;full path in DME to the file/collection to be moved&gt;&#34;,
+    &#34;destinationPath&#34;: &#34;&lt;full path in DME to the new file/collection&gt;&#34;
+    },
+    {
+    &#34;sourcePath&#34;: &#34;&lt;full path in DME to the file/collection to be moved&gt;&#34;,
+    &#34;destinationPath&#34;: &#34;&lt;full path in DME to the new file/collection&gt;&#34;
+    }
+    ]
+    }
+  </li>
+  <li>
+    Make sure that each sourcePath and destinationPath pair in the JSON file meets the following criteria:
+    <ul>
+      <li>
+        In the value of your destinationPath, the last part (collection name or data file name) is new.
+      </li>
+      <li>
+        In the value of your destinationPath, the parent collection already exists.
+      </li>
+    </ul>
+  </li>
+  <li>
+    Run the following command:
+
+
+
+
+
+
+
+
+
+
+
+    dm_rename [optional parameters] &lt;move-description.json&gt;
+
+
+    The following table describes each parameter:
+    <table>
+      <colgroup>
+        <col/>
+        <col/>
+      </colgroup>
+      <tbody>
+        <tr>
+          <th>
+            Parameter
+          </th>
+          <th>
+            Description
+          </th>
+        </tr>
+        <tr>
+          <td>
+            [-h]
+          </td>
+          <td>
+            If you want to print a usage (help) message for this command, specify this option.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            [-D &lt;REST-response&gt;]
+          </td>
+          <td>
+            An optional parameter, specifying a path and filename in your local system. The system always creates a response file:
+            <ul>
+              <li>
+                If you specify this parameter, the system saves the response from the server to the specified file in the specified location.
+              </li>
+              <li>
+                If you omit this parameter, the system saves the file as rename-response-header.tmp in your home directory.
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            [-o &lt;rename-status-file&gt;]
+          </td>
+          <td>
+            An optional parameter, specifying a path and filename in your local system. The system always creates a status file:
+            <ul>
+              <li>
+                If you specify this parameter, the system saves the status to the specified file in the specified location.
+              </li>
+              <li>
+                If you omit this parameter, the system prints the status to standard output and saves the status as rename-response-message.json.tmp in your home directory.
+              </li>
+            </ul>
+            The status includes a result for each request (each source path and destination path pair). If the system was able to satisfy the request, the result is true. Otherwise, it&#39;s false. The status file provides an explanatory message in these cases.The status also includes an overall result. If all request statuses are true, then the overall result is true. Otherwise, it&#39;s false.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            &lt;move-description.json&gt;
+          </td>
+          <td>
+            A path to the JSON file containing the source and destination locations.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+</ol>
+For example, consider the following command:
+
+
+
+
+
+
+
+
+
+
+
+dm_rename /cygdrive/c/Users/JaneDoe/my-move-list.json
+
+
+With the following code in the my-move-list.json file, the command renames a collection from Project_Orig to Project_New and then renames a file from File_Orig to File_New:
+{
+&#34;moveRequests&#34;: [
+{
+&#34;sourcePath&#34;: &#34;/Example_Archive/PI_Lab2/Project_Orig&#34;,
+&#34;destinationPath&#34;: &#34;/Example_Archive/PI_Lab2/Project_New&#34;
+},
+{
+&#34;sourcePath&#34;: &#34;/Example_Archive/PI_Lab2/Project_2/File_Orig&#34;,
+&#34;destinationPath&#34;: &#34;/Example_Archive/PI_Lab2/Project_2/File_New&#34;
+}
+]
+}
+In this example, each sourcePath and destinationPath pair in the JSON file meets the above-mentioned criteria, as follows:
+<ul>
+  <li>
+    At command runtime, the Project_New collection name and File_New file name do not already exist.
+  </li>
+  <li>
+    At command runtime, the PI_Lab2 collection, Project_Orig collection, Project_2 collection, and File_Orig file already exist.
+  </li>
+  <li>
+    In the first pair, only the Project_New collection name has changed. In the second pair, only the File_New file name has changed.
+  </li>
+</ul>

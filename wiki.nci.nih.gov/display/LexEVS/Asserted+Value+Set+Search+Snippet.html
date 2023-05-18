@@ -1,0 +1,54 @@
+//Instantiate the search extension
+	LexBIGService lbsvc = LexBIGServiceImpl.defaultInstance();
+	SourceAssertedValueSetSearchExtensionImpl assertedVSsvc = null;
+		try {
+	assertedVSsvc = (SourceAssertedValueSetSearchExtensionImpl) lbsvc
+.getGenericExtension(&#34;AssertedValueSetSearchExtension&#34;);
+		} catch (LBException e) {
+	e.printStackTrace();
+		}
+			//Search for results based on an exact match of the unique identifier of the value set member
+ResolvedConceptReferencesIterator itr = assertedVSsvc.
+search(&#34;C48323&#34;, null, null, MatchAlgorithm.CODE_EXACT,
+false, false);
+			while(itr.hasNext()){
+				ResolvedConceptReference ref = itr.next();
+				System.out.println(&#34;description: &#34; + ref.getEntityDescription().getContent()):
+			}
+			//Search for results based on an exact match of the preferred text designation of the value set member
+ResolvedConceptReferencesIterator itr = assertedVSsvc.
+search(&#34;Black&#34;, null, null,
+MatchAlgorithm.PRESENTATION_EXACT, false, false);
+			while(itr.hasNext()){
+				ResolvedConceptReference ref = itr.next();
+				System.out.println(&#34;description: &#34; + ref.getEntityDescription().getContent()):
+			}
+
+//Search for results based on an containing match of the preferred text designation of the value set member
+ResolvedConceptReferencesIterator itr = assertedVSsvc.
+search(&#34;Blinding&#34;, null, null,
+MatchAlgorithm.PRESENTATION_CONTAINS, false, false);
+while(itr.hasNext()){
+ResolvedConceptReference ref = itr.next();
+System.out.println(&#34;description: &#34; + ref.getEntityDescription().getContent()):
+}
+
+			//Search for results based on an lucene query parser match of the preferred text designation of the value set member
+ResolvedConceptReferencesIterator itr = assertedVSsvc.
+search(&#34;BlindingWhite&#34;, null, null,
+MatchAlgorithm.LUCENE, false, false);
+while(itr.hasNext()){
+ResolvedConceptReference ref = itr.next();
+System.out.println(&#34;description: &#34; + ref.getEntityDescription().getContent()):
+}
+
+//Search for results based on an exact match of some property of the value set member
+			//Also, restrict the search to a given value set designation
+			CodingSchemeReference csRef = new CodingSchemeReference();
+	csRef.setCodingScheme(&#34;http://evs.nci.nih.gov/valueset/FDA/C54453&#34;);
+	csRef.setVersionOrTag(Constructors.createCodingSchemeVersionOrTagFromVersion(&#34;0.1.5.1&#34;));
+	ResolvedConceptReferencesIterator itr = assertedVSsvc.search(&#34;Black&#34;, csRef,  MatchAlgorithm.PROPERTY_EXACT);
+			while(itr.hasNext()){
+				ResolvedConceptReference ref = itr.next();
+				System.out.println(&#34;description: &#34; + ref.getEntityDescription().getContent()):
+			} 

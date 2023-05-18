@@ -1,0 +1,1698 @@
+<h1 id="LexEVS6.5.1ReleaseNotes-LexEVS6.5.1ReleaseHighlightsInclude:">
+  LexEVS 6.5.1 Release Highlights Include:
+</h1>
+Note: This release includes all LexEVS 6.5.0 changes.
+<h2 id="LexEVS6.5.1ReleaseNotes-FeaturesofthisRelease">
+  Features of this Release
+</h2>
+<h4 id="LexEVS6.5.1ReleaseNotes-EfficientValueSetResolutionusingSourceAssertedValueSets">
+  Efficient Value Set Resolution using Source Asserted Value Sets
+</h4>
+<ul>
+  <li>
+    The source of value sets is the NCI Thesaurus (NCIt), and since the NCIt contains logical, computable assertions about what value sets are in its system, business logic has moved towards direct access to the code system rather than external defining files.  This has been a collaborative effort with NCIt curators and has resulted in improved loading efficiency of value set definitions and resolved value set coding schemes.
+  </li>
+</ul>
+<h4 id="LexEVS6.5.1ReleaseNotes-DetectionofValueSetUpdates">
+  Detection of Value Set Updates
+</h4>
+<ul>
+  <li>
+    An additional API that detects value set updates has also been made available.  This represents an additional efficiency for value set loading.
+  </li>
+</ul>
+<h4 id="LexEVS6.5.1ReleaseNotes-RepresentationofValueSetHierarchy">
+  Representation of Value Set Hierarchy
+</h4>
+<ul>
+  <li>
+    Other assertions made in the NCIt about the hierarchical style storage of value sets also now have an API as well.  This is specific to the NCIt source at this time.
+  </li>
+</ul>
+<h4 id="LexEVS6.5.1ReleaseNotes-FullyDynamicSourceAssertedValueSetResolution">
+  Fully Dynamic Source Asserted Value Set Resolution
+</h4>
+<ul>
+  <li>
+    Source asserted value set API can fully resolve directly against the source coding scheme.
+  </li>
+</ul>
+<h4 id="LexEVS6.5.1ReleaseNotes-SourceAssertedValueSetSearch">
+  Source Asserted Value Set Search
+</h4>
+<ul>
+  <li>
+    New search API implemented against Value Sets
+  </li>
+</ul>
+<h4 id="LexEVS6.5.1ReleaseNotes-LexEVSServicesSupportforSourceAssertedValueSets">
+  LexEVS Services Support for Source Asserted Value Sets
+</h4>
+<ul>
+  <li>
+    LexEVS Distributed API and LexEVS REST services updated to fully support Source Asserted Value Sets
+  </li>
+</ul>
+<h4 id="LexEVS6.5.1ReleaseNotes-EnhancedLoaders">
+  Enhanced Loaders
+</h4>
+<ul>
+  <li>
+    Continued enhancement of existing LexEVS Loaders
+    <ul>
+      <li>
+        Notably, expanded OWL2 and RRF support for MED-RT
+      </li>
+    </ul>
+  </li>
+</ul>
+<h2 id="LexEVS6.5.1ReleaseNotes-IssuesFixedinthisRelease">
+  Issues Fixed in this Release
+</h2>
+<ul>
+  <li>
+    Numerous fixes were included.
+  </li>
+</ul>
+<h2 id="LexEVS6.5.1ReleaseNotes-LexEVS6.5.1-FeaturesImplemented(43)">
+  LexEVS 6.5.1 - Features Implemented (43)
+</h2>
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th colspan="1">
+        Feature
+      </th>
+      <th colspan="1">
+        Summary
+      </th>
+      <th colspan="1">
+        Type
+      </th>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-3509" rel="nofollow">
+          LEXEVS-3509
+        </a>
+      </td>
+      <td>
+        I would like to add a value set to the VS hierarchy implementation from an outside source
+      </td>
+      <td colspan="1">
+        Improvement
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-3694" rel="nofollow">
+          LEXEVS-3694
+        </a>
+      </td>
+      <td>
+        Change the coding scheme name in ResolvedConceptReference returned by both search and resolution API.
+      </td>
+      <td colspan="1">
+        Improvement
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-3781" rel="nofollow">
+          LEXEVS-3781
+        </a>
+      </td>
+      <td>
+        Increase memory on LoadMetaBatch script
+      </td>
+      <td colspan="1">
+        Improvement
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-3640" rel="nofollow">
+          LEXEVS-3640
+        </a>
+      </td>
+      <td>
+        Place value set nodes in value set hierarchy using contributing source.
+      </td>
+      <td colspan="1">
+        New Feature
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-3406" rel="nofollow">
+          LEXEVS-3406
+        </a>
+      </td>
+      <td>
+        I would like to have a value set service that runs directly against the NCIt
+      </td>
+      <td colspan="1">
+        New Feature
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-3524" rel="nofollow">
+          LEXEVS-3524
+        </a>
+      </td>
+      <td>
+        Allow VS Hiearchy to be resolved from Source Asserted VS API
+      </td>
+      <td colspan="1">
+        New Feature
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-3475" rel="nofollow">
+          LEXEVS-3475
+        </a>
+      </td>
+      <td>
+        Write controller/business logic layer for Source Asserted VS API
+      </td>
+      <td colspan="1">
+        New Feature
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-3476" rel="nofollow">
+          LEXEVS-3476
+        </a>
+      </td>
+      <td>
+        Implement Source Asserted Value Set API
+      </td>
+      <td colspan="1">
+        New Feature
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-3540" rel="nofollow">
+          LEXEVS-3540
+        </a>
+      </td>
+      <td>
+        Implement Resolved Value Set Style API for Asserted Value Sets
+      </td>
+      <td colspan="1">
+        New Feature
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-3545" rel="nofollow">
+          LEXEVS-3545
+        </a>
+      </td>
+      <td>
+        Update the Resolved Value Set API to include access to Asserted Value Sets
+      </td>
+      <td colspan="1">
+        New Feature
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-3565" rel="nofollow">
+          LEXEVS-3565
+        </a>
+      </td>
+      <td>
+        Update and Verify Asserted Value Set Service API for Remote API
+      </td>
+      <td colspan="1">
+        New Feature
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-3564" rel="nofollow">
+          LEXEVS-3564
+        </a>
+      </td>
+      <td>
+        Update and Verify Asserted Value Set Search Service for Remote API
+      </td>
+      <td colspan="1">
+        New Feature
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-3639" rel="nofollow">
+          LEXEVS-3639
+        </a>
+      </td>
+      <td>
+        Change the URI in ResolvedConceptReference returned by Value Set Search and Resolution methods.
+      </td>
+      <td colspan="1">
+        New Feature
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-3642" rel="nofollow">
+          LEXEVS-3642
+        </a>
+      </td>
+      <td>
+        Support search against a specific value set or any collection of value sets.
+      </td>
+      <td colspan="1">
+        New Feature
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-3301" rel="nofollow">
+          LEXEVS-3301
+        </a>
+      </td>
+      <td>
+        I would like LexEVSTreeItem attributes to be made public or publicly accessible
+      </td>
+      <td colspan="1">
+        New Feature
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-2961" rel="nofollow">
+          LEXEVS-2961
+        </a>
+      </td>
+      <td>
+        VS Workflow: Remove Dependency on value set definition files for NCIt defined Value Sets
+      </td>
+      <td colspan="1">
+        New Feature
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-2962" rel="nofollow">
+          LEXEVS-2962
+        </a>
+      </td>
+      <td>
+        VS Workflow: Generate all NCIt sourced resolved value set coding schemes from NCIt source in LexEVS
+      </td>
+      <td colspan="1">
+        New Feature
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-3058" rel="nofollow">
+          LEXEVS-3058
+        </a>
+      </td>
+      <td>
+        Value Set: Value Set Hierarchy will be defined from that in the NCIt and returned in a performant manner
+      </td>
+      <td colspan="1">
+        New Feature
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-2967" rel="nofollow">
+          LEXEVS-2967
+        </a>
+      </td>
+      <td>
+        Value Set - (Browser) Efficient search by code or name - query for value set that this concept matches
+      </td>
+      <td colspan="1">
+        New Feature
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-2966" rel="nofollow">
+          LEXEVS-2966
+        </a>
+      </td>
+      <td>
+        Value Set - (Browser) Efficient retrieval VS definition metadata resolution calls. Faster queries against the definitions themselves.
+      </td>
+      <td colspan="1">
+        New Feature
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-3170" rel="nofollow">
+          LEXEVS-3170
+        </a>
+      </td>
+      <td>
+        Provide ability to add Non-NCIt value sets to asserted vs hierarchy
+      </td>
+      <td colspan="1">
+        New Feature
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-3057" rel="nofollow">
+          LEXEVS-3057
+        </a>
+      </td>
+      <td>
+        Value Set - Definition for LexEVS Value Set Definition Asserted Source Task
+      </td>
+      <td colspan="1">
+        New Feature
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-3074" rel="nofollow">
+          LEXEVS-3074
+        </a>
+      </td>
+      <td>
+        Value Set: Create User Defined property name parameter for Concept Domain
+      </td>
+      <td colspan="1">
+        New Feature
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-3063" rel="nofollow">
+          LEXEVS-3063
+        </a>
+      </td>
+      <td>
+        Implement Value Set Tree Integration for Browser API
+      </td>
+      <td colspan="1">
+        New Feature
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-3165" rel="nofollow">
+          LEXEVS-3165
+        </a>
+      </td>
+      <td>
+        Implement simpler approach to resolving a list of all value sets
+      </td>
+      <td colspan="1">
+        New Feature
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-3203" rel="nofollow">
+          LEXEVS-3203
+        </a>
+      </td>
+      <td>
+        Value Set - Update Resolved Value Set Query Mechanism for Optimized Search
+      </td>
+      <td colspan="1">
+        New Feature
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-3220" rel="nofollow">
+          LEXEVS-3220
+        </a>
+      </td>
+      <td>
+        Determine if a NCIt Asserted Value Set has changed
+      </td>
+      <td colspan="1">
+        New Feature
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-3494" rel="nofollow">
+          LEXEVS-3494
+        </a>
+      </td>
+      <td>
+        Follow up code cleanup test expansion for Asserted Value Set Indexing
+      </td>
+      <td colspan="1">
+        New Feature
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-3474" rel="nofollow">
+          LEXEVS-3474
+        </a>
+      </td>
+      <td>
+        I would like an index access layer to be written for the source asserted value set search
+      </td>
+      <td colspan="1">
+        New Feature
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-3339" rel="nofollow">
+          LEXEVS-3339
+        </a>
+      </td>
+      <td>
+        Modularize the full system test to allow individual modules to be run
+      </td>
+      <td colspan="1">
+        New Feature
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-3473" rel="nofollow">
+          LEXEVS-3473
+        </a>
+      </td>
+      <td>
+        I would like an Index creation layer to be written for Source Asserted Value Sets
+      </td>
+      <td colspan="1">
+        New Feature
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-3477" rel="nofollow">
+          LEXEVS-3477
+        </a>
+      </td>
+      <td>
+        Create Full Unit test suite for the API
+      </td>
+      <td colspan="1">
+        New Feature
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-3547" rel="nofollow">
+          LEXEVS-3547
+        </a>
+      </td>
+      <td>
+        Create and support a value set iterator that pages from the data base
+      </td>
+      <td colspan="1">
+        New Feature
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-3603" rel="nofollow">
+          LEXEVS-3603
+        </a>
+      </td>
+      <td>
+        Iterators for Assserted Value Sets need to be adjusted for RMI
+      </td>
+      <td colspan="1">
+        New Feature
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-3617" rel="nofollow">
+          LEXEVS-3617
+        </a>
+      </td>
+      <td>
+        Update AssertedValueSet Search Extension to work with RMI
+      </td>
+      <td colspan="1">
+        New Feature
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-3518" rel="nofollow">
+          LEXEVS-3518
+        </a>
+      </td>
+      <td>
+        I would like to include external value sets in NCIt asserted value set index
+      </td>
+      <td colspan="1">
+        New Feature
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-3517" rel="nofollow">
+          LEXEVS-3517
+        </a>
+      </td>
+      <td>
+        I would like to include Neoplasm Tree value set entities in asserted VS index
+      </td>
+      <td colspan="1">
+        New Feature
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-3135" rel="nofollow">
+          LEXEVS-3135
+        </a>
+      </td>
+      <td>
+        Default page for lexevsapi6 needs to be updated
+      </td>
+      <td colspan="1">
+        Improvement
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-3749" rel="nofollow">
+          LEXEVS-3749
+        </a>
+      </td>
+      <td>
+        Update
+        <a href="http://lexgrid.org" rel="nofollow">
+          lexgrid.org
+        </a>
+        to be local
+      </td>
+      <td colspan="1">
+        Improvement
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-3789" rel="nofollow">
+          LEXEVS-3789
+        </a>
+      </td>
+      <td>
+        Services don&#39;t start up when asserted value sets are not present.
+      </td>
+      <td colspan="1">
+        Improvement
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-3587" rel="nofollow">
+          LEXEVS-3587
+        </a>
+      </td>
+      <td>
+        Update Lexevs value set loader to work for CTS2 in memory tests
+      </td>
+      <td colspan="1">
+        Improvement
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-3655" rel="nofollow">
+          LEXEVS-3655
+        </a>
+      </td>
+      <td>
+        Update to support CTS2 asserted resolved value set read
+      </td>
+      <td colspan="1">
+        Improvement
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-3739" rel="nofollow">
+          LEXEVS-3739
+        </a>
+      </td>
+      <td>
+        Add ability to determine if Asserted Value Sets exist before requesting them
+      </td>
+      <td colspan="1">
+        Improvement
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="LexEVS6.5.1ReleaseNotes-LexEVS6.5.1-DefectsFixed(29)">
+  LexEVS 6.5.1 - Defects Fixed (29)
+</h2>
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th colspan="1">
+        Defect
+      </th>
+      <th colspan="1">
+        Summary
+      </th>
+      <th colspan="1">
+        Type
+      </th>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-3755" rel="nofollow">
+          LEXEVS-3755
+        </a>
+      </td>
+      <td>
+        LoadUmlsBatch fails to load MED-RT
+      </td>
+      <td colspan="1">
+        Bug
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-3748" rel="nofollow">
+          LEXEVS-3748
+        </a>
+      </td>
+      <td>
+        Unable to retrieve correct namespace of target entities in a mapping coding scheme.
+      </td>
+      <td colspan="1">
+        Bug
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-3741" rel="nofollow">
+          LEXEVS-3741
+        </a>
+      </td>
+      <td>
+        Core.xsd has a typo in the value set namespace declaration
+      </td>
+      <td colspan="1">
+        Bug
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-3137" rel="nofollow">
+          LEXEVS-3137
+        </a>
+      </td>
+      <td>
+        Contains type search breaks on special characters.
+      </td>
+      <td colspan="1">
+        Bug
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-3221" rel="nofollow">
+          LEXEVS-3221
+        </a>
+      </td>
+      <td>
+        Duplicate value sets accessing the same index will fail any queries against either scheme
+      </td>
+      <td colspan="1">
+        Bug
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-3067" rel="nofollow">
+          LEXEVS-3067
+        </a>
+      </td>
+      <td>
+        Value Set: Thread management for resolved value set loads
+      </td>
+      <td colspan="1">
+        Bug
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-3071" rel="nofollow">
+          LEXEVS-3071
+        </a>
+      </td>
+      <td>
+        Value Set Publishing Value Needs to be used to determine VS Loads
+      </td>
+      <td colspan="1">
+        Bug
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-3092" rel="nofollow">
+          LEXEVS-3092
+        </a>
+      </td>
+      <td>
+        Hierarchy Source adjustment in LEXEVS-1300 fix creates an unsupported association
+      </td>
+      <td colspan="1">
+        Bug
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-3101" rel="nofollow">
+          LEXEVS-3101
+        </a>
+      </td>
+      <td>
+        Code clean up including refactoring, additional testing, any minor issues
+      </td>
+      <td colspan="1">
+        Bug
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-3121" rel="nofollow">
+          LEXEVS-3121
+        </a>
+      </td>
+      <td>
+        Value Set (Browser) Create initial index for coding schemes (resolved value sets)
+      </td>
+      <td colspan="1">
+        Bug
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-3277" rel="nofollow">
+          LEXEVS-3277
+        </a>
+      </td>
+      <td>
+        Providing support for failing iterator paging on tree service extension
+      </td>
+      <td colspan="1">
+        Bug
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-3299" rel="nofollow">
+          LEXEVS-3299
+        </a>
+      </td>
+      <td>
+        OWL2 Loader -- ChEBI load runs out of memory
+      </td>
+      <td colspan="1">
+        Bug
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-2712" rel="nofollow">
+          LEXEVS-2712
+        </a>
+      </td>
+      <td>
+        MappingExtension.getMappingCodingSchemesEntityParticipatesIn failure.
+      </td>
+      <td colspan="1">
+        Bug
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-3305" rel="nofollow">
+          LEXEVS-3305
+        </a>
+      </td>
+      <td>
+        Loader - Value Set -- SourceAssertedResolvedValueSetLoad overwrites indexes with same name
+      </td>
+      <td colspan="1">
+        Bug
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-3341" rel="nofollow">
+          LEXEVS-3341
+        </a>
+      </td>
+      <td>
+        NCIt History Load fails silently and throws other extraneous errors
+      </td>
+      <td colspan="1">
+        Bug
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-3376" rel="nofollow">
+          LEXEVS-3376
+        </a>
+      </td>
+      <td>
+        ValueSetDefinition getEntityDescription().getContent() method does not return description.
+      </td>
+      <td colspan="1">
+        Bug
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-3377" rel="nofollow">
+          LEXEVS-3377
+        </a>
+      </td>
+      <td>
+        Value sets with a Publish_Value_Set property set to ‘No’ are being loaded as definitions.
+      </td>
+      <td colspan="1">
+        Bug
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-3386" rel="nofollow">
+          LEXEVS-3386
+        </a>
+      </td>
+      <td>
+        Replace the value of _code (currently, header concept code) by the (source asserted) value set URI.
+      </td>
+      <td colspan="1">
+        Bug
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-3387" rel="nofollow">
+          LEXEVS-3387
+        </a>
+      </td>
+      <td>
+        In the source view value set tree returned by getFullServiceValueSetTree, sort nodes by value set names.
+      </td>
+      <td colspan="1">
+        Bug
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-3388" rel="nofollow">
+          LEXEVS-3388
+        </a>
+      </td>
+      <td>
+        In the terminology view of value set hierarchy returned by getSourceDefinedTree, place the NCIt node first, and then sort the rest of the root nodes by value set names.
+      </td>
+      <td colspan="1">
+        Bug
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-3385" rel="nofollow">
+          LEXEVS-3385
+        </a>
+      </td>
+      <td>
+        Populate _ns attribute in LexEVSTreeItem with proper namespace
+      </td>
+      <td colspan="1">
+        Bug
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-2183" rel="nofollow">
+          LEXEVS-2183
+        </a>
+      </td>
+      <td>
+        Tree Extension: TreeService API returns JSON String containing anonymous nodes.
+      </td>
+      <td colspan="1">
+        Bug
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-3510" rel="nofollow">
+          LEXEVS-3510
+        </a>
+      </td>
+      <td>
+        I would like to Implement a service layer for the asserted value set search mechanism
+      </td>
+      <td colspan="1">
+        Bug
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-3681" rel="nofollow">
+          LEXEVS-3681
+        </a>
+      </td>
+      <td>
+        Serialization Error against the RMI of Resolved Value Set iterator
+      </td>
+      <td colspan="1">
+        Bug
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-3689" rel="nofollow">
+          LEXEVS-3689
+        </a>
+      </td>
+      <td>
+        AssertedValueset iterator cannot advance over paged next call
+      </td>
+      <td colspan="1">
+        Bug
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-3733" rel="nofollow">
+          LEXEVS-3733
+        </a>
+      </td>
+      <td>
+        Search Iterator Regression failure on Source Coding Scheme Name
+      </td>
+      <td colspan="1">
+        Bug
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-3779" rel="nofollow">
+          LEXEVS-3779
+        </a>
+      </td>
+      <td>
+        Orphaned Asserted VS Entity Service is not needed
+      </td>
+      <td colspan="1">
+        Bug
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-3783" rel="nofollow">
+          LEXEVS-3783
+        </a>
+      </td>
+      <td>
+        OWL2Loader manifest causes failed update in asserted value set index
+      </td>
+      <td colspan="1">
+        Bug
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-3830" rel="nofollow">
+          LEXEVS-3830
+        </a>
+      </td>
+      <td>
+        Target Namespace in mapping iterator ResolveConceptRefence incorrect
+      </td>
+      <td colspan="1">
+        Bug
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="LexEVS6.5.1ReleaseNotes-LexEVSRemoteAPI6.5.1-FeaturesImplemented(10)">
+  LexEVS Remote API 6.5.1 - Features Implemented (10)
+</h2>
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        Feature
+      </th>
+      <th>
+        Summary
+      </th>
+      <th colspan="1">
+        Type
+      </th>
+    </tr>
+    <tr>
+      <td colspan="1">
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVSREM-149" rel="nofollow">
+          LEXEVSREM-149
+        </a>
+      </td>
+      <td colspan="1">
+        Updating Codebase to allow Full Value Set Hierarchy Use
+      </td>
+      <td colspan="1">
+        Improvement
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVSREM-147" rel="nofollow">
+          LEXEVSREM-147
+        </a>
+      </td>
+      <td colspan="1">
+        Updating API to provide high performance resolution of value sets
+      </td>
+      <td colspan="1">
+        Improvement
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVSREM-148" rel="nofollow">
+          LEXEVSREM-148
+        </a>
+      </td>
+      <td colspan="1">
+        Create/Improve/Configure for Distributed Complete set of Resolved Value Set Tests
+      </td>
+      <td colspan="1">
+        Improvement
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVSREM-153" rel="nofollow">
+          LEXEVSREM-153
+        </a>
+      </td>
+      <td colspan="1">
+        Updating Tests and Configuration to support LEXEVS-3221
+      </td>
+      <td colspan="1">
+        Improvement
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVSREM-145" rel="nofollow">
+          LEXEVSREM-145
+        </a>
+      </td>
+      <td colspan="1">
+        Support for Value Set Hierarchy in LexEVS Remote API
+      </td>
+      <td colspan="1">
+        New Feature
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVSREM-169" rel="nofollow">
+          LEXEVSREM-169
+        </a>
+      </td>
+      <td colspan="1">
+        I would like to have Source Asserted Values in Resolved VS work in RMI
+      </td>
+      <td colspan="1">
+        New Feature
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVSREM-179" rel="nofollow">
+          LEXEVSREM-179
+        </a>
+      </td>
+      <td colspan="1">
+        Unit testing and any adapatations for RMI Asserted VS Search
+      </td>
+      <td colspan="1">
+        New Feature
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVSREM-213" rel="nofollow">
+          LEXEVSREM-213
+        </a>
+      </td>
+      <td colspan="1">
+        Expand Iterator Tests for Asserted Value Sets
+      </td>
+      <td colspan="1">
+        New Feature
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVSREM-178" rel="nofollow">
+          LEXEVSREM-178
+        </a>
+      </td>
+      <td colspan="1">
+        Remote Service Requires updates to LexEVS source and tests
+      </td>
+      <td colspan="1">
+        Improvement
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVSREM-198" rel="nofollow">
+          LEXEVSREM-198
+        </a>
+      </td>
+      <td colspan="1">
+        Fix remote API tests not running
+      </td>
+      <td colspan="1">
+        New Feature
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="LexEVS6.5.1ReleaseNotes-LexEVSRemoteAPI6.5.1-DefectsFixed(5)">
+  LexEVS Remote API 6.5.1 - Defects Fixed (5)
+</h2>
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        Defect
+      </th>
+      <th>
+        Summary
+      </th>
+      <th colspan="1">
+        Type
+      </th>
+    </tr>
+    <tr>
+      <td colspan="1">
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVSREM-60" rel="nofollow">
+          LEXEVSREM-60
+        </a>
+      </td>
+      <td colspan="1">
+        Tree Extension: TreeExtension ChildTreeNodeIterator method throws exceptions.
+      </td>
+      <td colspan="1">
+        Bug
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVSREM-146" rel="nofollow">
+          LEXEVSREM-146
+        </a>
+      </td>
+      <td>
+        Test jars from LexEVS need to be updated to reflect current tests.
+      </td>
+      <td colspan="1">
+        Bug
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVSREM-194" rel="nofollow">
+          LEXEVSREM-194
+        </a>
+      </td>
+      <td>
+        Update Tests for Distributed Service For Asserted VS Search
+      </td>
+      <td colspan="1">
+        Bug
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVSREM-228" rel="nofollow">
+          LEXEVSREM-228
+        </a>
+      </td>
+      <td>
+        Search on uri for value set fails
+      </td>
+      <td colspan="1">
+        Bug
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVSREM-232" rel="nofollow">
+          LEXEVSREM-232
+        </a>
+      </td>
+      <td>
+        Distributed Tests need updates to accommodate new Hierarchy features
+      </td>
+      <td colspan="1">
+        Bug
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="LexEVS6.5.1ReleaseNotes-LexEVSRemoteClient6.5.1-FeaturesImplemented">
+  LexEVS Remote Client 6.5.1 - Features Implemented
+</h2>
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        Feature
+      </th>
+      <th>
+        Summary
+      </th>
+    </tr>
+    <tr>
+      <td colspan="1"></td>
+      <td colspan="1"></td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="LexEVS6.5.1ReleaseNotes-LexEVSRemoteClient6.5.1-DefectsFixed">
+  LexEVS Remote Client 6.5.1 - Defects Fixed
+</h2>
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        Defect
+      </th>
+      <th>
+        Summary
+      </th>
+    </tr>
+    <tr>
+      <td colspan="1"></td>
+      <td colspan="1"></td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="LexEVS6.5.1ReleaseNotes-LexEVSCTS2Service1.6.1-FeaturesImplemented(13)">
+  LexEVS CTS2 Service 1.6.1 - Features Implemented (13)
+</h2>
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        Feature
+      </th>
+      <th>
+        Summary
+      </th>
+      <th colspan="1">
+        Type
+      </th>
+    </tr>
+    <tr>
+      <td colspan="1">
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVSCTS2-200" rel="nofollow">
+          LEXEVSCTS2-200
+        </a>
+      </td>
+      <td colspan="1">
+        CTS2 Service: Test/Update service with no access to
+        <a href="http://lexgrid.org" rel="nofollow">
+          lexgrid.org
+        </a>
+      </td>
+      <td colspan="1">
+        New Feature
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVSCTS2-156" rel="nofollow">
+          LEXEVSCTS2-156
+        </a>
+      </td>
+      <td colspan="1">
+        Remove dependcies that are no longer used/needed.
+      </td>
+      <td colspan="1">
+        Improvement
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVSCTS2-251" rel="nofollow">
+          LEXEVSCTS2-251
+        </a>
+      </td>
+      <td>
+        Update service to work with asserted value set changes
+      </td>
+      <td colspan="1">
+        New Feature
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVSCTS2-164" rel="nofollow">
+          LEXEVSCTS2-164
+        </a>
+      </td>
+      <td>
+        Remove references to remote API in the POM and code
+      </td>
+      <td colspan="1">
+        Improvement
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVSCTS2-191" rel="nofollow">
+          LEXEVSCTS2-191
+        </a>
+      </td>
+      <td>
+        Upgrade Apache Commons Collections to v3.2.2
+      </td>
+      <td colspan="1">
+        Improvement
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVSCTS2-205" rel="nofollow">
+          LEXEVSCTS2-205
+        </a>
+      </td>
+      <td>
+        Update lexevs-service with latest 6.5.1 jar and fix existing issues
+      </td>
+      <td colspan="1">
+        Improvement
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVSCTS2-224" rel="nofollow">
+          LEXEVSCTS2-224
+        </a>
+      </td>
+      <td>
+        Adjust in Memory load to include load of Asserted Value Set Scheme
+      </td>
+      <td colspan="1">
+        New Feature
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVSCTS2-216" rel="nofollow">
+          LEXEVSCTS2-216
+        </a>
+      </td>
+      <td>
+        Adjust Loader for test to include Asserted Value Set Index Load
+      </td>
+      <td colspan="1">
+        New Feature
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVSCTS2-228" rel="nofollow">
+          LEXEVSCTS2-228
+        </a>
+      </td>
+      <td>
+        Update CTS2 Framework version of maven-surefire-plugin
+      </td>
+      <td colspan="1">
+        Improvement
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVSCTS2-217" rel="nofollow">
+          LEXEVSCTS2-217
+        </a>
+      </td>
+      <td>
+        Update CTS2 for asserted resolved value set read inclusion
+      </td>
+      <td colspan="1">
+        New Feature
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVSCTS2-235" rel="nofollow">
+          LEXEVSCTS2-235
+        </a>
+      </td>
+      <td>
+        Update URLs of WSDLs from http to https
+      </td>
+      <td colspan="1">
+        Improvement
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVSCTS2-236" rel="nofollow">
+          LEXEVSCTS2-236
+        </a>
+      </td>
+      <td>
+        Update test and version of lexevs
+      </td>
+      <td colspan="1">
+        New Feature
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVSCTS2-243" rel="nofollow">
+          LEXEVSCTS2-243
+        </a>
+      </td>
+      <td>
+        Update to support CTS2 framework version with local XSDS
+      </td>
+      <td colspan="1">
+        Improvement
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="LexEVS6.5.1ReleaseNotes-LexEVSCTS2Service1.6.1-DefectsFixed">
+  LexEVS CTS2 Service 1.6.1 - Defects Fixed
+</h2>
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        Defect
+      </th>
+      <th>
+        Summary
+      </th>
+    </tr>
+    <tr>
+      <td colspan="1"></td>
+      <td colspan="1"></td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="LexEVS6.5.1ReleaseNotes-LexEVSCTS2Framework1.4.0-FeaturesImplemented(3)">
+  LexEVS CTS2 Framework 1.4.0 - Features Implemented (3)
+</h2>
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        Feature
+      </th>
+      <th>
+        Summary
+      </th>
+      <th colspan="1">
+        Type
+      </th>
+    </tr>
+    <tr>
+      <td colspan="1">
+        <a href="https://tracker.nci.nih.gov/browse/CTS2FW-78" rel="nofollow">
+          CTS2FW-78
+        </a>
+      </td>
+      <td colspan="1">
+        Update URLs of WSDLs from http to https
+      </td>
+      <td colspan="1">
+        Improvement
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/CTS2FW-36" rel="nofollow">
+          CTS2FW-36
+        </a>
+      </td>
+      <td>
+        CTS2 Framework: Remove Soap Implementation and testing from this Fork
+      </td>
+      <td colspan="1">
+        Improvement
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/CTS2FW-74" rel="nofollow">
+          CTS2FW-74
+        </a>
+      </td>
+      <td>
+        Update XSD references and code to be local
+      </td>
+      <td colspan="1">
+        Improvement
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="LexEVS6.5.1ReleaseNotes-LexEVSCTS2Framework1.4.0-DefectsFixed">
+  LexEVS CTS2 Framework 1.4.0 - Defects Fixed
+</h2>
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        Defect
+      </th>
+      <th>
+        Summary
+      </th>
+    </tr>
+    <tr>
+      <td colspan="1"></td>
+      <td colspan="1"></td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="LexEVS6.5.1ReleaseNotes-URIResolver1.1.0-FeaturesImplemented">
+  URI Resolver 1.1.0 - Features Implemented
+</h2>
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        Feature
+      </th>
+      <th>
+        Summary
+      </th>
+    </tr>
+    <tr>
+      <td colspan="1"></td>
+      <td colspan="1"></td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="LexEVS6.5.1ReleaseNotes-URIResolver1.1.0-DefectsFixed">
+  URI Resolver 1.1.0 - Defects Fixed
+</h2>
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        Defect
+      </th>
+      <th>
+        Summary
+      </th>
+    </tr>
+    <tr>
+      <td colspan="1"></td>
+      <td colspan="1"></td>
+    </tr>
+  </tbody>
+</table>

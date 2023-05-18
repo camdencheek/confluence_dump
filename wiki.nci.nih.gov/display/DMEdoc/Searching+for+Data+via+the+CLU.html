@@ -1,0 +1,124 @@
+If your user account has the Read, Write, or Own permission level on a data file in DME, you can search for that data. You can generate a list of such data files that match a search query. You can also specify a search path to narrow the search. The list provides the full path to each file in DME. New collections and data files appear in search results 30-60 minutes after they were created. To search for data:
+<ol>
+  <li>
+    In your local system, create a JSON file that specifies a search query. For more information, refer to
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=404162040" rel="nofollow">
+      Building a Query to Search for Data via the CLU
+    </a>
+    .
+  </li>
+  <li>
+    Run the following command:
+
+
+
+
+
+
+
+
+
+
+
+    dm_query_dataobject [-D REST-response] [-o output-file] &lt;criteria.json&gt; [search-path]
+
+
+    The following table describes each parameter:
+    <table>
+      <colgroup>
+        <col/>
+        <col/>
+      </colgroup>
+      <tbody>
+        <tr>
+          <th>
+            Parameter
+          </th>
+          <th>
+            Description
+          </th>
+        </tr>
+        <tr>
+          <td>
+            [-D &lt;REST-response&gt;]
+          </td>
+          <td>
+            An optional parameter, specifying a path and filename in your local system. The system always creates a response file:
+            <ul>
+              <li>
+                If you specify this parameter, the system saves the response from the server to the specified file in the specified location.
+              </li>
+              <li>
+                If you omit this parameter, the system saves the file as query-dataobject-response-header.tmp in your home directory.
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            [-o &lt;output-file&gt;]
+          </td>
+          <td>
+            An optional parameter, specifying a path and filename in your local system. The system always creates a query output file:
+            <ul>
+              <li>
+                If you specify this parameter, the system saves the query output to the specified file in the specified location.
+              </li>
+              <li>
+                If you omit this parameter, the system prints the query output to standard output and saves the file as query-dataobject-response-message.json.tmp in your home directory.
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            &lt;criteria.json&gt;
+          </td>
+          <td>
+            A path and filename for a JSON file in your local system, containing the compound query for the search.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            [search-path]
+          </td>
+          <td>
+            An optional parameter, specifying the path to the collection in DME in which you want to search.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+</ol>
+For example, consider the following criteria.json file. When you perform a query, the system requires it in the context of a compoundQuery element with a join operator, even if it contains only one simple query.
+{
+&#34;compoundQuery&#34;: {
+&#34;operator&#34;: &#34;AND&#34;,
+&#34;queries&#34;: [
+{
+&#34;attribute&#34;: &#34;source_file_size&#34;,
+&#34;value&#34;: &#34;10&#34;,
+&#34;operator&#34;: &#34;NUM_LESS_OR_EQUAL&#34;
+}
+]
+},
+&#34;detailedResponse&#34;: false,
+&#34;page&#34;: 1,
+&#34;totalCount&#34;: true
+}
+With the above criteria.json file, the following command generates a list of data files in DME, in Project_1 and subcollections, that are size 10 or smaller. The output provides a total count of results and lists only the first page (the first 100 paths).
+
+
+
+
+
+
+
+
+
+
+
+dm_query_dataobject criteria.json /Example_Archive/PI_Lab1/Project_1
+
+
+To generate the second page (the second 100 paths), set the page indicator to 2. To generate a list with metadata, set detailedResponse to true. 

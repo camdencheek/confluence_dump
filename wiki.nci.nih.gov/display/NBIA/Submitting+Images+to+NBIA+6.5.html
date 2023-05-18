@@ -1,0 +1,517 @@
+This chapter describes how to submit images to NBIA.Topics in this chapter include:
+<ul>
+  <li>
+    <a href="#SubmittingImagestoNBIA6.5-ImageSubmissionOverview" rel="nofollow">
+      Image Submission Overview
+    </a>
+  </li>
+  <li>
+    <a href="#SubmittingImagestoNBIA6.5-InstallationoftheCTPClient/Server" rel="nofollow">
+      Installation of the CTP Client/Server
+    </a>
+    <ul>
+      <li>
+        <a href="#SubmittingImagestoNBIA6.5-ConfiguringtheCTPClient" rel="nofollow">
+          Configuring the CTP Client
+        </a>
+      </li>
+      <li>
+        <a href="#SubmittingImagestoNBIA6.5-AnonymizingDICOMImages" rel="nofollow">
+          Anonymizing DICOM Images
+        </a>
+      </li>
+      <li>
+        <a href="#SubmittingImagestoNBIA6.5-ConfiguringtheCTPServer" rel="nofollow">
+          Configuring the CTP Server
+        </a>
+        <ul>
+          <li>
+            <a href="#SubmittingImagestoNBIA6.5-Troubleshooting" rel="nofollow">
+              Troubleshooting
+            </a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#SubmittingImagestoNBIA6.5-SubmittingImages" rel="nofollow">
+      Submitting Images
+    </a>
+    <ul>
+      <li>
+        <a href="#SubmittingImagestoNBIA6.5-CTPClient:DatabaseVerifier" rel="nofollow">
+          CTP Client: Database Verifier
+        </a>
+      </li>
+      <li>
+        <a href="#SubmittingImagestoNBIA6.5-CTPServer:FileSubmissionConfiguration" rel="nofollow">
+          CTP Server: File Submission Configuration
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#SubmittingImagestoNBIA6.5-VerifyingStatusofaSubmittedImage" rel="nofollow">
+      Verifying Status of a Submitted Image
+    </a>
+    <ul>
+      <li>
+        <a href="#SubmittingImagestoNBIA6.5-Image(s)TransferredtoyourNBIADatabaseRepository" rel="nofollow">
+          Image(s) Transferred to your NBIA Database Repository
+        </a>
+      </li>
+      <li>
+        <a href="#SubmittingImagestoNBIA6.5-TroubleshootingUnsuccessfulImageSubmission" rel="nofollow">
+          Troubleshooting Unsuccessful Image Submission
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#SubmittingImagestoNBIA6.5-AlternativeImageConfiguration/SubmissionMethods" rel="nofollow">
+      Alternative Image Configuration/Submission Methods
+    </a>
+  </li>
+</ul>
+<h2 id="SubmittingImagestoNBIA6.5-ImageSubmissionOverview">
+  Image Submission Overview
+</h2>
+When you submit an image to NBIA using FileSender, the process follows the path illustrated in the following flowchart:
+<img alt="FileSender, CTP Client Anonymizer, Internet, CTP Server, NBIA Database " src="https://wiki.nci.nih.gov/download/attachments/embedded-page/NBIA/Submitting%20Images%20to%20NBIA%206.5/path%20image%20submission75.png?api=v2">
+ In summary, the process involves the following steps. These steps are described in detail in the succeeding sections of this user&#39;s guide.
+<ol>
+  <li>
+    Before submitting data, a collection should be created in the
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=373005724" rel="nofollow">
+      User Authorization Tool (UAT)
+    </a>
+    . Roles such as “READ” and “MANAGE_VISIBILITY_STATUS” can be assigned to users for a given collection in the UAT.
+  </li>
+  <li>
+    Install the FileSender and the CTP (Clinical Trial Processor) client. The CTP is configured for the client (sender) and the server (receiver). This tool anonymizes the data as well as assigns collection information which is required for storage, search and security provisioning of the data.
+  </li>
+  <li>
+    Unzip the file and open both tools on your local machine.
+  </li>
+  <li>
+    In FileSender, locate the image(s) to be submitted.
+  </li>
+  <li>
+    Update the anonymization script.
+  </li>
+  <li>
+    FileSender sends the image(s) to the RSNA Clinical Trial Processor (CTP) client, which anonymizes the data to comply with patient privacy policies.
+  </li>
+  <li>
+    The CTP client forwards the image(s) over the internet to the CTP server, which stores the file(s) in the database.
+  </li>
+  <li>
+    The CTP server transfers the image(s) to your NBIA database repository.
+  </li>
+</ol>
+The submission process can be monitored using the CTP client (to see how many images were sent), CTP server (to see how many images were received) and the
+<a href="https://wiki.cancerimagingarchive.net/display/NBIA/TCIA+Current+Help+Topics#TCIACurrentHelpTopics-ViewingSubmissionReports" rel="nofollow">
+  View Submission Reports
+</a>
+ tool within NBIA to ensure the images were successfully added to the database and file system. The
+<a href="https://wiki.nci.nih.gov/display/NBIA/NBIA+Help+Topics#NBIAHelpTopics-ViewingSubmissionReports" rel="nofollow">
+  View Submission Reports
+</a>
+ tool requires the “VIEW_SUBMISSION_REPORT” role in the UAT.Once receipt of the images is confirmed, users with the “MANAGE_VISIBILITY_STATUS” role can use the
+<a href="https://wiki.nci.nih.gov/display/NBIA/NBIA+Help+Topics#NBIAHelpTopics-UsingtheQualityControlTool" rel="nofollow">
+  QC Tool
+</a>
+ to review images, make them visible to users with read access to the collection, set them as invisible or mark them for deletion. In order for images to be deleted by a user with the “NCIA.SUPER_CURATOR” role must approve the images that are marked for deletion using the
+<a href="https://wiki.nci.nih.gov/display/NBIA/NBIA+Help+Topics#NBIAHelpTopics-ApprovingImageDeletions" rel="nofollow">
+  Approve Deletion
+</a>
+ tool within NBIA. Images that have been approved for deletion will be auto-deleted that night during off-peak hours to save system resources. This two-step process is designed to minimize accidental deletions. See also
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=373005729" rel="nofollow">
+  Alternative Image Configuration/Submission Methods
+</a>
+.You can find the latest documentation for CTP on the
+<a href="http://mircwiki.rsna.org/index.php?title=CTP-The_RSNA_Clinical_Trial_Processor" rel="nofollow">
+  Medical Imaging Research Center
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+site.
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=373005729" rel="nofollow">
+  Return to top of page
+</a>
+<h2 id="SubmittingImagestoNBIA6.5-InstallationoftheCTPClient/Server">
+  Installation of the CTP Client/Server
+</h2>
+To submit images, you must have the CTP client both installed and running on your machine. The installation of the CTP Client/Server is embedded into the NBIA application installation process.For example, the installation path for the CTP in Windows is:
+<ul>
+  <li>
+    C:\apps\nbia\CTP-client
+  </li>
+  <li>
+    C:\apps\nbia\CTP-client\FileSender
+  </li>
+  <li>
+    C:\apps\nbia\CTP-server
+  </li>
+</ul>
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=373005729" rel="nofollow">
+  Return to top of page
+</a>
+<h3 id="SubmittingImagestoNBIA6.5-ConfiguringtheCTPClient">
+  Configuring the CTP Client
+</h3>
+As noted above, to submit images, you must have the FileSender and the CTP client both installed and running on your machine. For information regarding your specific installation issues, contact
+<a href="https://datascience.cancer.gov/about/application-support" rel="nofollow">
+  NCI Application Support
+</a>
+.To configure the CTP client, perform the following steps:
+<ol>
+  <li>
+    To start your local CTP client, execute the ctp.bat (ctp.sh in Linux) in the CTP-Client/CTP folder. In Windows, the file path is: C:\apps\nbia\CTP-client\CTP\ctp.bat.
+  </li>
+  <li>
+    Open a browser and type in the CTP client URL for your local installation. You can find the port number by looking in the config.xml file in the CTP folder. The third line of the standard file is &#34;&lt;Server port=&#34;24080&#34; /&gt;&#34;. If changes are made to this number, the localhost port needed to access the CTP admin page changes in tandem.Example URL for CTP client:
+    <a href="http://localhost:24080/" rel="nofollow">
+      http://localhost:24080/
+    </a>
+    TipYou may want to refer to the helpful information about this part of the
+    <a href="https://wiki.nci.nih.gov/x/PpKPAQ" rel="nofollow">
+      CTP setup
+    </a>
+    on the NCI wiki . Note that CTP only supports 32-bit Java.The CTP Client Console opens in your browser. The following image on the left shows the main menu when you are not logged in. The following image on the right shows the main menu when you are logged in.
+    <table>
+      <colgroup>
+        <col/>
+        <col/>
+      </colgroup>
+      <tbody>
+        <tr>
+          <th>
+            Not logged in
+          </th>
+          <th>
+            Logged in
+          </th>
+        </tr>
+        <tr>
+          <td>
+            <img alt="CTP client main menu when you are not logged in" width="300" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/NBIA/Submitting%20Images%20to%20NBIA%206.5/ctp-server-main-notlogin.bmp?api=v2">
+          </td>
+          <td>
+            <img alt="CTP client main menu when you are logged in" width="300" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/NBIA/Submitting%20Images%20to%20NBIA%206.5/CTP%20client%20logged%20in75.png?api=v2">
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    Not logged in?You do not need to be logged in to the CTP client to review some of the pages. See the first figure. You do need to be logged in to configure the anonymizer.
+  </li>
+  <li>
+    Click the Configuration button. The Configuration page appears.
+  </li>
+  <li>
+    Verify the URL in the bottom section of the page, HTTP Export. This should point to the import service of the CTP server to which the images will be exported from the CTP client. You cannot change the text on this page; it must be changed in the config.xml file referred to in step 2.
+  </li>
+  <li>
+    Once the file(s) are received in the CTP client, they are anonymized there. To configure the anonymization parameters, you must be logged in. Request the login credentials from your administrator.
+  </li>
+  <li>
+    Click the DICOM Anonymizer Configurator button on the CTP client main page. (This option appears only after you are logged in.)
+  </li>
+  <li>
+    Click the hypertext link in the first screen that opens. The DICOM Anonymizer Configurator page appears. On this page, you can enter, verify, or edit anonymization parameters. This customization overrides the default configuration in the da.script file.
+  </li>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=373005729" rel="nofollow">
+      Anonymize your DICOM images
+    </a>
+    .
+  </li>
+</ol>
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=373005729" rel="nofollow">
+  Return to top of page
+</a>
+<h3 id="SubmittingImagestoNBIA6.5-AnonymizingDICOMImages">
+  Anonymizing DICOM Images
+</h3>
+The default configuration for submitting images to NBIA is detailed in the da.script file. You can override that script by customizing anonymization parameters on the DICOM Anonymizer Configurator page, which follows. This page indicates how the image&#39;s DICOM tags are modified to anonymize the data, thus meeting HIPAA regulations to preserve patients&#39; privacy. For example, the patient&#39;s birth date and patient ID are anonymized.
+<img alt="DICOM Anonymizer Configurator page from the CTP client. See text." width="500" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/NBIA/Submitting%20Images%20to%20NBIA%206.5/DICOM%20anonymizer%20configurator80.png?api=v2">
+The following fields on this page are required:
+<ul>
+  <li>
+    PROJECT NAME--This must correspond to whatever you are going to call the collection. The name might indicate the type of data, the research center that provided the data, or the collection type such as CT colonography for CT images of colonography.
+  </li>
+  <li>
+    TRIAL NAME – This must be the same as the project name.
+  </li>
+  <li>
+    SITE NAME – This identifies where data is coming from. Example = BioU. Several different collections could be submitted from there, but all would have same site name. The NBIA user does not see the source site for the data, except when using the Verify Submission feature, described in
+    <a href="https://wiki.nci.nih.gov/display/NBIA/6+-+NBIA+Administration+6.2#id-6-NBIAAdministration6.2-ViewingSubmissionReports" rel="nofollow">
+      Viewing Submission Reports
+    </a>
+    .Authorization controlsAuthorization controls pay attention to the site. So a user, based on permissions, for example, may be able to search on collection X//site A, but not collection X//site B.
+  </li>
+  <li>
+    SITE ID – This is a predetermined, unique ID that always maps to the specific site. This is always constant for a given site and must be used when you submit images to your image repository. Example: BioU = 17. The four values above are required; without them, the submission will fail.
+  </li>
+</ul>
+The following field can also be configured.
+<ul>
+  <li>
+    UID ROOT – This ID, assigned by an NBIA administrator, remains unique for every submitted collection from a particular research center. The anonymizer uses the identifier, typically a prefix for series instance UIDs, to determine the values for DICOM tags.  If you are submitting only to your local isolated system, you, as an administrator, can determine the UID root yourself.
+  </li>
+</ul>
+<ul>
+  <li>
+    If a true globally unique ID Root is obtained, the UID Root will need to be appended by a UID Root End for each collection/site combination that will be submitted to that node of NBIA. This will keep the UIDs truly unique. For example:
+  </li>
+</ul>
+<ul>
+  <li>
+    <ul>
+      <li>
+        UID Root = 555
+      </li>
+      <li>
+        Collection A, Site 1 UID Root End = .1
+      </li>
+      <li>
+        Collection A, Site 2 UID Root End = .2
+      </li>
+      <li>
+        Collection B, Site 1 UID Root End = .3
+      </li>
+      <li>
+        Collection B, Site 2 UID Root End = .4
+      </li>
+      <li>
+        Collection A, Site 1 UID Root = 555.1
+      </li>
+      <li>
+        Collection A, Site 2 UID Root = 555.2
+      </li>
+      <li>
+        Collection B, Site 1 UID Root = 555.3
+      </li>
+    </ul>
+  </li>
+  <li>
+    Collection B, Site 2 UID Root = 555.4Other fields can also be configured. For more information about the configuration and operation, see the
+    <a href="http://mircwiki.rsna.org/index.php?title=The_CTP_DICOM_Anonymizer" rel="nofollow">
+      CTP DICOM Anonymizer documentation
+    </a>
+    <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+      <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+    </a>
+    <a href="http://www.cancer.gov/global/web/policies/exit" rel="nofollow">
+      .
+    </a>
+    Anonymization baselineThe current CTP client contains a WG18 S142-compliant anonymization baseline. For more information about the Working Group 18, Supplement 142 profile, see
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=11670942" rel="nofollow">
+      Incorporation of DICOM WG18 Supplement 142 into CTP
+    </a>
+    .
+  </li>
+</ul>
+Once the CTP client has been configured, you can begin the submission process in FileSender. See
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=373005729" rel="nofollow">
+  Submitting Images
+</a>
+. Once the CTP server has been configured, you can verify that the images have been received and stored in the database. See
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=373005729" rel="nofollow">
+  Verifying Status of a Submitted Image
+</a>
+.
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=373005729" rel="nofollow">
+  Return to top of page
+</a>
+<h3 id="SubmittingImagestoNBIA6.5-ConfiguringtheCTPServer">
+  Configuring the CTP Server
+</h3>
+CTP port numbersNote the slight difference between the port numbers for the CTP client &#34;24080&#34; and the CTP server &#34;23080&#34;.
+<ol>
+  <li>
+    To start your local CTP server, execute the ctp.bat (ctp.sh in Linux) in the CTP-Client/CTP folder. In Windows, the file path is: C:\apps\nbia\CTP-server\CTP\ctp.bat.
+  </li>
+  <li>
+    Open a browser and enter the CTP Server URL for your local installation. You can find the port number by looking in the config.xml file in the CTP folder. The third line of the standard file is &#34;&lt;Server port=&#34;23080&#34; /&gt;&#34;. If changes are made to this number, the localhost port needed to access the CTP admin page changes in tandem. An example URL for the CTP server:
+    <a href="http://localhost:23080/" rel="nofollow">
+      http://localhost:23080/
+    </a>
+  </li>
+</ol>
+The CTP Server Console opens in your browser. To determine the status of an image you have submitted, as described in
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=373005729" rel="nofollow">
+  Submitting Images
+</a>
+, continue with the steps in
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=373005729" rel="nofollow">
+  Verifying Status of a Submitted Image
+</a>
+.
+<h4 id="SubmittingImagestoNBIA6.5-Troubleshooting">
+  Troubleshooting
+</h4>
+If you are not able to use User Manager of CTP server to create or delete a user, check if Apache is the front end server of the CTP server.  If yes, add the following directive to the Apache configuration file at ctpconsole.conf:ProxyPreserveHost On
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=373005729" rel="nofollow">
+  Return to top of page
+</a>
+<h2 id="SubmittingImagestoNBIA6.5-SubmittingImages">
+  Submitting Images
+</h2>
+<ol>
+  <li>
+    To open the FileSender, execute filesender.bat (filesender.sh in Linux) in the CTP-Client/FileSender folder. The FileSender opens to a screen that displays a Source panel on the left and a Destination panel on the right (shown in the following figure.) In Windows, for example, the file path is: C:\apps\nbia\CTP-client\FileSender\FileSender.bat.
+    <img alt="FileSender showing Source and Destination panels." width="600" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/NBIA/Submitting%20Images%20to%20NBIA%206.5/FileSender80.png?api=v2">
+  </li>
+  <li>
+    In the left panel of FileSender, select one image or a folder of images to be submitted (see the previous figure). You cannot select and submit multiple individual images at one time.
+  </li>
+  <li>
+    Select Include Subdirectories if you want subdirectories to your selection to also be submitted.
+  </li>
+  <li>
+    Select the default URL for the destination in the Destination panel. This is the host and port number (the port number for the HttpImportService defined in the config.xml) where the CTP client is located.TipThe CTP client must be started to successfully submit images.
+  </li>
+  <li>
+    Leave the checkboxes at the bottom of the Destination panel checked in the default selections.
+  </li>
+  <li>
+    Click Send to execute the submission process to the CTP client. The Destination panel displays the progress of the task.
+  </li>
+</ol>
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=373005729" rel="nofollow">
+  Return to top of page
+</a>
+<h3 id="SubmittingImagestoNBIA6.5-CTPClient:DatabaseVerifier">
+  CTP Client: Database Verifier
+</h3>
+To verify the images submitted, you must replace the default value in the URL field of the Processor tag or DatabaseVerifier tag in the config.xml of CTP Client.Replace the default value, url=
+<a href="http://localhost:23304" rel="nofollow">
+  http://localhost:23304
+</a>
+ with url=
+<a href="https://ctpsubmission.nci.nih.gov/verifier." rel="nofollow">
+  https://ctpsubmission.nci.nih.gov/verifier.
+</a>
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=373005729" rel="nofollow">
+  Return to top of page
+</a>
+<h3 id="SubmittingImagestoNBIA6.5-CTPServer:FileSubmissionConfiguration">
+  CTP Server: File Submission Configuration
+</h3>
+To submit images using the user-defined username/password, follow these steps on the CTP Server:
+<ol>
+  <li>
+    Click User Manager.
+  </li>
+  <li>
+    Create a username/password. The new username and password should be same in the ExportService section of the configuration file, which is the config.xml of the CTP Client.
+  </li>
+  <li>
+    Make sure to click Import. By default, the Import checkbox is hidden. Click on Show All Roles to view import status.
+    <img alt="User Manager" width="700" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/NBIA/Submitting%20Images%20to%20NBIA%206.5/User%20Manager.png?api=v2">
+  </li>
+  <li>
+    Assign roles to the user using the checkbox. Click Save to save changes.
+  </li>
+</ol>
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=373005729" rel="nofollow">
+  Return to top of page
+</a>
+<h2 id="SubmittingImagestoNBIA6.5-VerifyingStatusofaSubmittedImage">
+  Verifying Status of a Submitted Image
+</h2>
+Once you have submitted one or more images, you can check their submission status. Click the Status button on the main page of the CTP client.All of the fields supply information about the submission, but you might check especially the Last File Received At fields under each section. The following two figures show different examples. Correlate the date and time stamp when the submission was received with the time you sent the image(s). Refresh the page periodically to view the latest status.CTP client showing in the HTTP Import section that a submitted image file has been received
+<img alt="CTP client showing status of a submitted image, in this case Received" width="500" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/NBIA/Submitting%20Images%20to%20NBIA%206.5/ctp-client-status.bmp?api=v2">
+The following figure shows that the file submitted was received by the CTP server, as shown in the Storage section:
+<img alt="Screen shot showing that a submitted file was received by the CTP server, indicated in the Storage section of the page" width="500" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/NBIA/Submitting%20Images%20to%20NBIA%206.5/ctp-server-status.bmp?api=v2">
+The file shown as received in the previous figure is stored in the &#34;storage&#34; location. In windows, the storage location is: C:\apps\nbia\CTP-server\CTP\storage. For example, the path to the file for the Last file stored as shown in the preceding figure is: C:\apps\nbia\CTP-server\CTP\storage\0000000000\000\000.dcm.If the Status tab does not indicate that the file(s) were received, verify the URL on the Destination tab of File Sender.
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=373005729" rel="nofollow">
+  Return to top of page
+</a>
+<h3 id="SubmittingImagestoNBIA6.5-Image(s)TransferredtoyourNBIADatabaseRepository">
+  Image(s) Transferred to your NBIA Database Repository
+</h3>
+Once the CTP Server receives the images, it extracts all the attributes/information related to the images and uploads the data, together with the images(URI) into the NBIA database.Use the
+<a href="https://wiki.nci.nih.gov/display/NBIA/NBIA+Help+Topics#NBIAHelpTopics-ViewingSubmissionReports" rel="nofollow">
+  View Submission Reports
+</a>
+ tool within NBIA to ensure the images were successfully added to the database and file system. The View Submission Reports tool requires the “VIEW_SUBMISSION_REPORT” role in the User Authorization Tool.
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=373005729" rel="nofollow">
+  Return to top of page
+</a>
+<h3 id="SubmittingImagestoNBIA6.5-TroubleshootingUnsuccessfulImageSubmission">
+  Troubleshooting Unsuccessful Image Submission
+</h3>
+<ol>
+  <li>
+    If you suspect your files have not been submitted successfully to the CTP client, click the Quarantines button in the CTP client main page to see if any files have been received there. If no files are quarantined, the quarantine indicators remain at zero.QuarantinesEach stage of processing in CTP can cause a quarantine, therefore, the quarantine count is broken down by stage.
+  </li>
+  <li>
+    To see the list of quarantined files per stage, click the corresponding hyperlink for that stage.
+    <ul>
+      <li>
+        If something is quarantined in the Import stage, the file is likely not a DICOM file.
+      </li>
+      <li>
+        If something is quarantined in the Anonymizer stage, there is likely an error in the anonymization script. Common problems with the anonymization script are:
+        <ul>
+          <li>
+            incorrect syntax (See the
+            <a href="http://mircwiki.rsna.org/index.php?title=CTP-The_RSNA_Clinical_Trial_Processor" rel="nofollow">
+              CTP section of the mircwiki
+              <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+                <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+              </a>
+            </a>
+            for syntax.)
+          </li>
+          <li>
+            referring to parameters that don&#39;t exist. For example, if @PROJECTNAME is referred to in a rule, but not defined as a parameter.
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    If the quarantine feature indicates a file has been sent there, click the corresponding hypertext link. You will be able to view one link to the DICOM header file of the quarantined file.
+  </li>
+  <li>
+    Click the Log button on the CTP client main page.
+  </li>
+  <li>
+    Click the hypertext link to review the activity of the CTP client. This may help you determine the cause of an unsuccessful submission.
+  </li>
+  <li>
+    The same troubleshooting rules apply for CTP server, but the stages are different.
+    <ul>
+      <li>
+        If a quarantine occurs in the storage service, a likely cause is that there is not enough disk space or the drive is not accessible by CTP.
+      </li>
+      <li>
+        If a quarantine occurs in the export service, there is likely something more subtle &#34;wrong&#34; with the DICOM file that NBIA doesn&#39;t like. For example, submitting an image that has the same series instance UID as a different, previously submitted image could cause a quarantine here. Looking in the log may reveal the issue.
+      </li>
+    </ul>
+  </li>
+</ol>
+To troubleshoot server-side submission problems or for other submission issues, contact
+<a href="https://cbiit.cancer.gov/ncip/application-support" rel="nofollow">
+  Application Support
+</a>
+.
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=373005729" rel="nofollow">
+  Return to top of page
+</a>
+<h2 id="SubmittingImagestoNBIA6.5-AlternativeImageConfiguration/SubmissionMethods">
+  Alternative Image Configuration/Submission Methods
+</h2>
+You can use several other alternative methods for configuring and submitting images to the CTP client and/or servers. An example is the PACS radiology machine which takes DICOM images and sends them directly to a CTP server, circumventing the need to send the images and accompanying patient information over the internet. For more information about using these alternative submission methods, contact
+<a href="https://cbiit.cancer.gov/support/support" rel="nofollow">
+  Application Support
+</a>
+.
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=373005729" rel="nofollow">
+  Return to top of page
+</a>

@@ -1,0 +1,183 @@
+If your user account has the Write or Own permission level on an existing collection in DME, you can use a CLU command to update the metadata of a data file in that collection. The character limit for each metadata value is 2700.To update the metadata of a data file:
+<ol>
+  <li>
+     In your local system, create a JSON file that specifies the metadata for the data file:
+    {
+    &#34;metadataEntries&#34;: [
+    {
+    &#34;attribute&#34;: &#34;description&#34;,
+    &#34;value&#34;: &#34;my-dataObject-description&#34;
+    },
+    {
+    &#34;attribute&#34;: &#34;example_date&#34;,
+    &#34;value&#34;: &#34;20201231&#34;,
+    &#34;dateFormat&#34;: &#34;yyyyMMdd&#34;
+    }
+    ]
+    }
+  </li>
+  <li>
+    For each date attribute, specify one of the following date formats, and specify the date value in that format:
+    <ul>
+      <li>
+        yyyyMMdd
+      </li>
+      <li>
+        yyyy.MM.dd
+      </li>
+      <li>
+        yyyy-MM-dd
+      </li>
+      <li>
+        yyyy/MM/dd
+      </li>
+      <li>
+        MM/dd/yyyy
+      </li>
+      <li>
+        MM-dd-yyyy
+      </li>
+      <li>
+        MM.dd.yyyy
+      </li>
+    </ul>
+    The system parses your date using the date format you specify. Then however, if the date attribute has a metadata validation rule in a different format, the system stores the date in the format specified by that rule.
+  </li>
+  <li>
+    In your JSON file, if you want to update the metadata of the parent collection, also specify the metadata for the parent collection. Click the following link to view the syntax:
+    Syntax
+    {
+    &#34;metadataEntries&#34;: [
+    {
+    &#34;attribute&#34;: &#34;project&#34;,
+    &#34;value&#34;: &#34;my-project-name&#34;
+    },
+    {
+    &#34;attribute&#34;: &#34;notes&#34;,
+    &#34;value&#34;: &#34;my-project-notes&#34;
+    }
+    ],
+    &#34;createParentCollections&#34;: true,
+    	&#34;parentCollectionsBulkMetadataEntries&#34;: {
+    		&#34;pathsMetadataEntries&#34;: [{
+    			&#34;path&#34;: &#34;/Example_Archive/PI_Lab1/Project_New&#34;,
+    			&#34;pathMetadataEntries&#34;: [{
+    					&#34;attribute&#34;: &#34;collection_type&#34;,
+    					&#34;value&#34;: &#34;Folder&#34;
+    				},
+    				{
+    					&#34;attribute&#34;: &#34;example info&#34;,
+    					&#34;value&#34;: &#34;123456&#34;
+    				}]
+    		}]
+    	}
+    }
+  </li>
+  <li>
+    Run the following command:
+
+
+
+
+
+
+
+
+
+
+
+    dm_register_dataobject [optional parameters] &lt;description.json&gt; &lt;destination-path&gt;
+
+
+    The following table describes each parameter:
+    <table>
+      <colgroup>
+        <col/>
+        <col/>
+      </colgroup>
+      <tbody>
+        <tr>
+          <th>
+            Parameter
+          </th>
+          <th>
+            Description
+          </th>
+        </tr>
+        <tr>
+          <td>
+            [-h]
+          </td>
+          <td>
+            If you want to print a usage (help) message for this command, specify this option.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            [-D &lt;REST-response&gt;]
+          </td>
+          <td>
+            An optional parameter, specifying a path and filename in your local system. The system always creates a response file:
+            <ul>
+              <li>
+                If you specify this parameter, the system saves the response from the server to the specified file in the specified location.
+              </li>
+              <li>
+                If you omit this parameter, the system saves the file as dataObject-registration-response-header.tmp in your home directory.
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            [-o &lt;output-json-file&gt;]
+          </td>
+          <td>
+            An optional parameter, specifying a path and filename in your local system. The system always creates an output file:
+            <ul>
+              <li>
+                If you specify this parameter, the system saves the output to the specified file in the specified location.
+              </li>
+              <li>
+                If you omit this parameter, the system saves the output as dataObject-registration-response-message.json.tmp in your home directory.
+              </li>
+            </ul>
+            If the command is successful, the output file is empty.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            &lt;description.json&gt;
+          </td>
+          <td>
+            A path within a local system, including the name of the JSON file that specifies the metadata for the data file you intend to update.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            &lt;destination-path&gt;
+          </td>
+          <td>
+            A path  within DME, including the name of the file you intend to update.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+</ol>
+For example, the following command updates the metadata of the data.txt file in the Project1 collection in DME:
+
+
+
+
+
+
+
+
+
+
+
+dm_register_dataobject /cygdrive/c/Users/JaneDoe/my-metadata.json /Example_Archive/PI_Lab1/Project1/data.txt
+
+
+The JSON file must contain metadata for the data file, data.txt.

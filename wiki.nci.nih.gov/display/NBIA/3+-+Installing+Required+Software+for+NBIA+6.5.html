@@ -1,0 +1,273 @@
+This page includes the following topics:
+<ul>
+  <li>
+    <a href="#id-3InstallingRequiredSoftwareforNBIA6.5-InstallingJavaSEDevelopmentKit8" rel="nofollow">
+      Installing Java SE Development Kit 8
+    </a>
+    <ul>
+      <li>
+        <a href="#id-3InstallingRequiredSoftwareforNBIA6.5-JavaSDK8EnvironmentVariables" rel="nofollow">
+          Java SDK 8 Environment Variables
+        </a>
+        <ul>
+          <li>
+            <a href="#id-3InstallingRequiredSoftwareforNBIA6.5-Linux" rel="nofollow">
+              Linux
+            </a>
+          </li>
+          <li>
+            <a href="#id-3InstallingRequiredSoftwareforNBIA6.5-VerifyingtheEnvironmentVariablesinLinux" rel="nofollow">
+              Verifying the Environment Variables in Linux
+            </a>
+          </li>
+          <li>
+            <a href="#id-3InstallingRequiredSoftwareforNBIA6.5-Windows" rel="nofollow">
+              Windows
+            </a>
+          </li>
+          <li>
+            <a href="#id-3InstallingRequiredSoftwareforNBIA6.5-VerifyingtheEnvironmentVariablesinWindows" rel="nofollow">
+              Verifying the Environment Variables in Windows
+            </a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#id-3InstallingRequiredSoftwareforNBIA6.5-InstallingApacheAnt" rel="nofollow">
+      Installing Apache Ant
+    </a>
+    <ul>
+      <li>
+        <a href="#id-3InstallingRequiredSoftwareforNBIA6.5-ApacheAntEnvironmentVariables" rel="nofollow">
+          Apache Ant Environment Variables
+        </a>
+        <ul>
+          <li>
+            <a href="#id-3InstallingRequiredSoftwareforNBIA6.5-Linux.1" rel="nofollow">
+              Linux
+            </a>
+          </li>
+          <li>
+            <a href="#id-3InstallingRequiredSoftwareforNBIA6.5-VerifyingtheEnvironmentVariablesinLinux.1" rel="nofollow">
+              Verifying the Environment Variables in Linux
+            </a>
+          </li>
+          <li>
+            <a href="#id-3InstallingRequiredSoftwareforNBIA6.5-Windows.1" rel="nofollow">
+              Windows
+            </a>
+          </li>
+          <li>
+            <a href="#id-3InstallingRequiredSoftwareforNBIA6.5-VerifyingtheEnvironmentVariablesinWindows.1" rel="nofollow">
+              Verifying the Environment Variables in Windows
+            </a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#id-3InstallingRequiredSoftwareforNBIA6.5-ResolvingtheSSLHandshakeError" rel="nofollow">
+      Resolving the SSLHandshake Error
+    </a>
+  </li>
+</ul>
+<h2 id="id-3InstallingRequiredSoftwareforNBIA6.5-InstallingJavaSEDevelopmentKit8">
+  Installing Java SE Development Kit 8
+</h2>
+<ul>
+  <li>
+    In a Linux environment, unzip the Java SE Development Kit 8 under the command line; for example: tar zxvf jdk-8u101-linux-x64.tar.gz
+  </li>
+  <li>
+    In a Windows environment, click jdk-8u101-windows-x64.exe to install Java SDK 8.
+  </li>
+  <li>
+    After extracting the zip, you must set the environment variables, described in the following section, so that Java is available in the system PATH.
+  </li>
+</ul>
+<h3 id="id-3InstallingRequiredSoftwareforNBIA6.5-JavaSDK8EnvironmentVariables">
+  Java SDK 8 Environment Variables
+</h3>
+Reason for setting variablesThe purpose of setting operating system environment variables is so that the Java SDK is available to run from anywhere in the system.
+<h4 id="id-3InstallingRequiredSoftwareforNBIA6.5-Linux">
+  Linux
+</h4>
+Variables in LinuxThe JAVA_HOME and PATH environment variables are set in /etc/profile. You may need to create the variables, or modify them if they already exist.To set the environmental variables in Linux, follow these steps:
+<ol>
+  <li>
+    As the root user, enter the following in the /etc/profile file. A PATH variable should already be created in this file, so be sure to define the JAVA_HOME and export before the PATH export. Replace &lt;some_path&gt; with the correct path fragment for Java installations.
+    export JAVA_HOME=&lt;some_path&gt;/jdk1.8.0_101
+    export PATH=$JAVA_HOME/bin:$PATH
+  </li>
+  <li>
+    Log out and log back in so that the system recognizes your changes.
+  </li>
+</ol>
+<h4 id="id-3InstallingRequiredSoftwareforNBIA6.5-VerifyingtheEnvironmentVariablesinLinux">
+  Verifying the Environment Variables in Linux
+</h4>
+To verify that environment variables have been set correctly, follow these steps:
+<ol>
+  <li>
+    From the command line, enter:  echo $JAVA_HOME Both of these commands should return the location where you installed these tools.
+  </li>
+  <li>
+    To verify your Java SDK installation, enter  java -version  from a command prompt. You should see java version &#34;1.8.0_101&#34;.
+  </li>
+</ol>
+<h4 id="id-3InstallingRequiredSoftwareforNBIA6.5-Windows">
+  Windows
+</h4>
+Variables in WindowsSet the JAVA_HOME and PATH environment variables in system properties.To set the environmental variables in Windows, follow these steps:
+<ol>
+  <li>
+    In Windows, select Control Panel, then select the Systems application. In the Systems window, select the Advanced tab.
+  </li>
+  <li>
+    On the Advanced tab, select the Environment Variables button. To add a new system variable, select the New button.
+    <img alt="The Edit User Variable dialog box with the Java home variable." src="https://wiki.nci.nih.gov/download/attachments/embedded-page/NBIA/3%20-%20Installing%20Required%20Software%20for%20NBIA%206.5/java8.jpg?api=v2">
+    <ol>
+      <li>
+        In the Variable name text box, enter   JAVA_HOME.
+      </li>
+      <li>
+        In the Variable value text box, enter the location of your Java installation, (for example,   C:\ProgramFiles\Java\jdk1.8.0_101)  |
+      </li>
+    </ol>
+  </li>
+  <li>
+    Select the PATH system environment variable, and select the Edit button. This opens the Edit User Variable dialog box, displayed here as an example.
+    <img alt="Edit System Variable dialog box, described in text" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/NBIA/3%20-%20Installing%20Required%20Software%20for%20NBIA%206.5/P4.bmp?api=v2">
+  </li>
+  <li>
+    In the Variable value text box, prepend the following text in front of the text that already exists in the Variable Value field and click OK.
+    %JAVA_HOME%\bin;
+  </li>
+</ol>
+<h4 id="id-3InstallingRequiredSoftwareforNBIA6.5-VerifyingtheEnvironmentVariablesinWindows">
+  Verifying the Environment Variables in Windows
+</h4>
+To verify that the environment variables have been set correctly, follow these steps:
+<ol>
+  <li>
+    From the command line, enter:  echo %JAVA_HOME% The commands should return the location where you installed these tools.
+  </li>
+  <li>
+    To verify your Java SDK installation, enter   java -version   from a command prompt. You should see java version &#34;1.8.0_101&#34;.
+  </li>
+</ol>
+<h2 id="id-3InstallingRequiredSoftwareforNBIA6.5-InstallingApacheAnt">
+  Installing Apache Ant
+</h2>
+<ul>
+  <li>
+    Unzip the Apache Ant distribution files using a command line unzip tool or a zip utility, such as WinZip. For example, in Linux, the following command can be used:tar zxvf apache-ant-1.8.4-bin.tar.gz
+  </li>
+  <li>
+    After extracting the zip, you must set the environment variables, described in the following section, so that Ant is available in the system PATH.
+  </li>
+</ul>
+<h3 id="id-3InstallingRequiredSoftwareforNBIA6.5-ApacheAntEnvironmentVariables">
+  Apache Ant Environment Variables
+</h3>
+Reason for setting variablesThe purpose of setting operating system environment variables is so that the Ant build tool is available to run from anywhere in the system.
+<h4 id="id-3InstallingRequiredSoftwareforNBIA6.5-Linux.1">
+  Linux
+</h4>
+Variables in LinuxThe ANT_HOME and PATH environment variables are set in /etc/profile. You may need to create the variables or modify them if they already exist.To set the environmental variables in Linux, follow these steps:
+<ol>
+  <li>
+    As the root user, enter the following in the /etc/profile file. A PATH variable should already be created in this file, so be sure to define the ANT_HOME export before the PATH export. Replace &lt;some_path&gt; with the correct path fragment for Ant installations.  export ANT_HOME=&lt;some_path&gt;/apache-ant-1.8.4  export PATH=$ANT_HOME/bin:$PATH
+  </li>
+  <li>
+    Log out and log back in so that the system recognizes your changes.
+  </li>
+</ol>
+<h4 id="id-3InstallingRequiredSoftwareforNBIA6.5-VerifyingtheEnvironmentVariablesinLinux.1">
+  Verifying the Environment Variables in Linux
+</h4>
+To verify that environment variables have been set correctly, follow these steps:
+<ol>
+  <li>
+    From the command line, enter:  echo $ANT_HOME the above commands should return the location where you installed these tools.
+  </li>
+  <li>
+    To verify your Ant installation, enter:  ant -version  from a command prompt. You should see: Apache Ant version 1.8.4 compiled on December 13 2006.
+  </li>
+</ol>
+<h4 id="id-3InstallingRequiredSoftwareforNBIA6.5-Windows.1">
+  Windows
+</h4>
+Variables in WindowsThe ANT_HOME and PATH environment variables are set in system properties.To set the environmental variables in Windows, follow these steps:
+<ol>
+  <li>
+    In Windows, select Control Panel, then select the Systems application. In the Systems window, select the Advanced tab.
+  </li>
+  <li>
+    On the Advanced tab, select the Environment Variables button. To add a new system variable, select the New button.
+    <img alt="The Edit User Variable dialog box with the Ant home variable." src="https://wiki.nci.nih.gov/download/attachments/embedded-page/NBIA/3%20-%20Installing%20Required%20Software%20for%20NBIA%206.5/image2015-4-16%200:12:2.png?api=v2">
+    <ol>
+      <li>
+        In the Variable name  text box, enter   ANT_HOME.
+      </li>
+      <li>
+        In the Variable value text box, enter the location of your Ant installation, (for example,   C:\ProgramFiles\apache-ant-1.8.4)  .
+      </li>
+    </ol>
+  </li>
+  <li>
+    Select the PATH system environment variable, and select the Edit button. This opens the Edit User Variable dialog box, displayed here as an example.
+    <img alt="Edit System Variable dialog box, described in text" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/NBIA/3%20-%20Installing%20Required%20Software%20for%20NBIA%206.5/P4.bmp?api=v2">
+  </li>
+  <li>
+    In the Variable value text box, prepend the following text in front of the text that already exists in the Variable Value field and click OK.  %ANT_HOME%\bin;
+  </li>
+</ol>
+<h4 id="id-3InstallingRequiredSoftwareforNBIA6.5-VerifyingtheEnvironmentVariablesinWindows.1">
+  Verifying the Environment Variables in Windows
+</h4>
+To verify that the environment variables have been set correctly, follow these steps:
+<ol>
+  <li>
+    From the command line, enter: echo %ANT_HOME%the above commands should return the location where you installed these tools.
+  </li>
+  <li>
+    To verify your Ant installation, enter ant -version from a command prompt. You should see Apache Ant(TM) version 1.8.4 compiled on May 22 2012.
+  </li>
+</ol>
+<h2 id="id-3InstallingRequiredSoftwareforNBIA6.5-ResolvingtheSSLHandshakeError">
+  Resolving the SSLHandshake Error
+</h2>
+The build or installation of NBIA is known to fail when it reaches the point of pulling required third-party libraries from the Nexus server. This is due to NCI CBIIT having recently improved the transport layer security on the Nexus server by disabling TLSv1.0, which is used by Java 7 and Ant by default. The error that appears is
+<a href="http://javax.net" rel="nofollow">
+  javax.net
+</a>
+.ssl.SSLHandshakeException: Remote host closed connection during handshake.To resolve this problem, explicitly instruct Java 7 and Ant to use TLSv1.1 and TLSv1.2. The following procedures explain how to configure ANT_OPTS on Windows and Linux systems to work around the SSLHandshake error.Windows:
+<ol>
+  <li>
+    Navigate to Control Panel &gt; System &gt; Advanced System Settings &gt; Environment Variables.
+  </li>
+  <li>
+    In the User Variables section, click New.
+  </li>
+  <li>
+    Enter the variable name: ANT_OPTS
+  </li>
+  <li>
+    Enter the variable value: -Dhttps.protocols=TLSv1.1,TLSv1.2
+  </li>
+</ol>
+Linux:
+<ol>
+  <li>
+    Edit ~/.bashrc or ~/.bash_profile to include the following code:
+    ANT_OPTS=&#34;-Dhttps.protocols=TLSv1.1,TLSv1.2&#34;
+    export ANT_OPTS
+  </li>
+  <li>
+    To apply the changes, exit the command prompt.
+  </li>
+</ol>

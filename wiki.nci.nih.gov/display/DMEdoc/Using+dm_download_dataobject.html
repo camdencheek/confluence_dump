@@ -1,0 +1,164 @@
+If your user account has the Read, Write, or Own permission level on a collection, the following command allows you to download a data file (up to 10 GB) in that collection to your local system:
+<ol>
+  <li>
+    If you intend to download a TAR, ZIP, or TGZ file, consider whether you want the command to extract files from that archive file. To do so, in your local system, create a JSON file that specifies the type of archive file and specifies include patterns. An example follows:
+    {
+    	&#34;synchronousDownloadFilter&#34;: {
+    		&#34;compressedArchiveType&#34;: &#34;TAR&#34;,
+    		&#34;includePatterns&#34;: [&#34;**/*file*&#34;]
+    	}
+    }
+    Keep in mind the following points:
+    <ul>
+      <li>
+        For the compressedArchiveType parameter, specify TAR, ZIP, or TGZ.
+      </li>
+      <li>
+        The 10 GB limit applies to the total size of the TAR, ZIP, or TGZ file, including all of the extracted files.
+      </li>
+      <li>
+        For the includePatterns parameter, consider the following examples:
+        <table>
+          <colgroup>
+            <col/>
+            <col/>
+          </colgroup>
+          <tbody>
+            <tr>
+              <th colspan="1">
+                Description
+              </th>
+              <th colspan="1">
+                Example
+              </th>
+            </tr>
+            <tr>
+              <td>
+                One file
+              </td>
+              <td>
+                [&#34;Downloads/file-1.dmg&#34;]
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Two files
+              </td>
+              <td>
+                [&#34;Downloads/file-1.dmg&#34;, &#34;Downloads/folder/file-2.txt&#34;]
+              </td>
+            </tr>
+            <tr>
+              <td>
+                All files that have &#34;file&#34; in their name, anywhere in the folder structure
+              </td>
+              <td>
+                [&#34;**/*file*&#34;]
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        For details, refer to
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=380865234" rel="nofollow">
+          Specifying Include Criteria
+        </a>
+        .
+      </li>
+    </ul>
+  </li>
+  <li>
+    Run the following command:
+
+
+
+
+
+
+
+
+
+
+
+    dm_download_dataobject [optional parameters] &lt;source-path&gt; &lt;destination-file&gt;
+
+
+    The following table describes each parameter:
+    <table>
+      <colgroup>
+        <col/>
+        <col/>
+      </colgroup>
+      <tbody>
+        <tr>
+          <th>
+            Parameter
+          </th>
+          <th>
+            Description
+          </th>
+        </tr>
+        <tr>
+          <td>
+            [-h]
+          </td>
+          <td>
+            If you want to print a usage (help) message for this command, specify this option.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            [-D &lt;REST-response&gt;]
+          </td>
+          <td>
+            An optional parameter, specifying a path and filename in your local system. The system always creates a response file:
+            <ul>
+              <li>
+                If you specify this parameter, the system saves the response from the server to the specified file in the specified location.
+              </li>
+              <li>
+                If you do not specify this parameter, the system saves the file as download-dataobject-response-header.tmp in your home directory.
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="1">
+            [-f JSON file]
+          </td>
+          <td colspan="1">
+            An optional parameter, specifying the JSON file that specifies the type of archive file and specifies include patterns.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            &lt;source-path&gt;
+          </td>
+          <td>
+            A path within DME. Specify the data file that you want to download.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            &lt;destination-file&gt;
+          </td>
+          <td>
+            A path in your local system. Specify where you want the system to create the downloaded file. The destination folder structure you specify must already exist.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+</ol>
+The following example downloads a sample.txt file from the Project_Orig collection in DME to a JaneDoe folder in Windows.
+
+
+
+
+
+
+
+
+
+
+
+dm_download_dataobject /Example_Archive/PI_Lab1/Project_Orig/sample.txt /cygdrive/c/Users/JaneDoe 

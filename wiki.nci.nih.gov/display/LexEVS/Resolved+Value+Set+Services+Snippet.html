@@ -1,0 +1,29 @@
+//Instantiate the resolved value set service with default parameters allowing the NCIt self asserting value sets to be accessed
+LexEVSResolvedValueSetService service = new LexEVSResolvedValueSetServiceImpl(new AssertedValueSetParameters.Builder().build());
+
+//Get a list of all resolved value sets in a coding scheme representation with entities included
+List&lt;CodingScheme&gt; list = service.listAllResolvedValueSets();
+
+//Get a list of all resolved value sets in a coding scheme representation -- no entity resolution, should be faster
+List&lt;CodingScheme&gt; schemes = service.getMinimalResolvedValueSetSchemes();
+
+//Get a resolved value set in coding scheme form based on the uniquely identifying URI
+URI uri = new URI(&#34;http://evs.nci.nih.gov/valueset/TEST/C48323&#34;);
+CodingScheme ref = service.getResolvedValueSetForValueSetURI(uri);
+//Just get the entities of that value set
+ResolvedConceptReferenceList refs = service.getValueSetEntitiesForURI(uri.toString());
+//Get an iterator instead of a list
+ResolvedConceptReferencesIterator refs = service.getValueSetIteratorForURI(uri.toString());
+
+//Get a resolved value set in coding scheme form based on a partly populated concept reference
+ConceptReference ref = new ConceptReference();
+ref.setCode(&#34;C123434&#34;);
+ref.setCodeNamespace(&#34;ncit&#34;);
+ref.setCodingSchemeName(&#34;NCI Thesaurus&#34;);
+List&lt;CodingScheme&gt; schemes = service.getResolvedValueSetsForConceptReference(ref);
+
+//Search value sets for text match
+//This will match both traditional resolved value sets and asserted value sets
+List&lt;AbsoluteCodingSchemeVersionReference&gt; refs =
+service.getResolvedValueSetsforTextSearch(&#34;blood&#34;,
+MatchAlgorithm.LUCENE);  

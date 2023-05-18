@@ -1,0 +1,198 @@
+You can use a CLU command to create an empty collection in DME. With the same command, you can create a parent collection for the empty collection. This command has the following prerequisites for the existing collection in which you intend to create the empty collection or the parent collection of the empty collection:
+<ul>
+  <li>
+    Your user account has the Write or Own permission level on the existing collection.
+  </li>
+  <li>
+    That existing collection has been configured to contain another collection.
+  </li>
+</ul>
+The character limit for each metadata value is 2700.To create an empty collection:
+<ol>
+  <li>
+    In your local system, create a JSON file that specifies the metadata for the new collection. At a minimum, this file must specify the collection type and all required metadata, as follows:
+    {
+    &#34;metadataEntries&#34;: [
+    {
+    &#34;attribute&#34;: &#34;collection_type&#34;,
+    &#34;value&#34;: &#34;Project&#34;
+    },
+    {
+    &#34;attribute&#34;: &#34;project_start_date&#34;,
+    &#34;value&#34;: &#34;20201231&#34;,
+    &#34;dateFormat&#34;: &#34;yyyyMMdd&#34;
+    }
+    ]
+    }
+    If an attribute has predefined values, specify values that fall within that set of values. For each date attribute, specify one of the following date formats, and specify the date value in that format:
+    <ul>
+      <li>
+        yyyyMMdd
+      </li>
+      <li>
+        yyyy.MM.dd
+      </li>
+      <li>
+        yyyy-MM-dd
+      </li>
+      <li>
+        yyyy/MM/dd
+      </li>
+      <li>
+        MM/dd/yyyy
+      </li>
+      <li>
+        MM-dd-yyyy
+      </li>
+      <li>
+        MM.dd.yyyy
+      </li>
+    </ul>
+    The system parses your date using the date format you specify. Then however, if the date attribute has a metadata validation rule in a different format, the system stores the date in the format specified by that rule.
+  </li>
+  <li>
+    In your JSON file, if you want to create a parent collection for the empty collection (or update the metadata of an existing parent collection), also specify the metadata for the parent collection. Click the following link to view the syntax:
+    Syntax
+    {
+    &#34;metadataEntries&#34;: [{
+    &#34;attribute&#34;: &#34;collection_type&#34;,
+    &#34;value&#34;: &#34;Project&#34;
+    },
+    		{
+    		&#34;attribute&#34;: &#34;project_start_date&#34;,
+    		&#34;value&#34;: &#34;20201231&#34;,
+    		&#34;dateFormat&#34;: &#34;yyyyMMdd&#34;
+    		}],
+    &#34;createParentCollections&#34;: true,
+    	&#34;parentCollectionsBulkMetadataEntries&#34;: {
+    		&#34;pathsMetadataEntries&#34;: [{
+    			&#34;path&#34;: &#34;/Example_Archive/PI_Lab1&#34;,
+    			&#34;pathMetadataEntries&#34;: [{
+    &#34;attribute&#34;: &#34;collection_type&#34;,
+    &#34;value&#34;: &#34;PI_Lab&#34;
+    },
+    {
+    &#34;attribute&#34;: &#34;data_owner&#34;,
+    &#34;value&#34;: &#34;example owner&#34;
+    },
+    {
+    &#34;attribute&#34;: &#34;data_generator&#34;,
+    &#34;value&#34;: &#34;example data generator&#34;
+    }]
+    		}]
+    	}
+    }
+  </li>
+  <li>
+    Run the following command:
+
+
+
+
+
+
+
+
+
+
+
+    dm_register_collection [optional parameters] &lt;description.json&gt; &lt;destination-path&gt;
+
+
+    The following table describes each parameter:
+    <table>
+      <colgroup>
+        <col/>
+        <col/>
+      </colgroup>
+      <tbody>
+        <tr>
+          <th>
+            Parameter
+          </th>
+          <th>
+            Description
+          </th>
+        </tr>
+        <tr>
+          <td>
+            [-h]
+          </td>
+          <td>
+            If you want to print a usage (help) message for this command, specify this option.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            [-D &lt;REST-response&gt;]
+          </td>
+          <td>
+            An optional parameter, specifying a path and filename in your local system. The system always creates a response file:
+            <ul>
+              <li>
+                If you specify this parameter, the system saves the response from the server to the specified file in the specified location.
+              </li>
+              <li>
+                If you omit this parameter, the system saves the file as collection-registration-response-header.tmp in your home directory.
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            [-o &lt;output-json-file&gt;]
+          </td>
+          <td>
+            An optional parameter, specifying a path and filename in your local system. The system always creates an output file:
+            <ul>
+              <li>
+                If you specify this parameter, the system saves the output to the specified file in the specified location.
+              </li>
+              <li>
+                If you omit this parameter, the system saves the output as collection-registration-response-message.json.tmp in your home directory.
+              </li>
+            </ul>
+            If the command is successful, the output file is empty.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            &lt;description.json&gt;
+          </td>
+          <td>
+            A path to the JSON file that specifies the metadata for the new collection.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            &lt;destination-path&gt;
+          </td>
+          <td>
+            A path within DME, including the name of the collection you intend to create. Specify where you want the system to create the new collection. (If you specify an existing collection, this command updates the metadata for that collection. For details, refer to
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=393448020" rel="nofollow">
+              Updating Collection Metadata via the CLU
+            </a>
+            .)
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    The command registers the metadata specified in &lt;description.json&gt; to the &lt;destination-path&gt; in DME.
+  </li>
+</ol>
+For example, the following command creates a Project_New collection within the PI_Lab1 collection and applies to that new collection the metadata in the my-collection.json file:
+
+
+
+
+
+
+
+
+
+
+
+dm_register_collection my-collection.json /Example_Archive/PI_Lab1/Project_New
+
+
+The JSON file must contain metadata for the new collection, Project_New. If the parent collection, PI_Lab1, does not already exist, then the JSON file must also contain metadata for that collection. 

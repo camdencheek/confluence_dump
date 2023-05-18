@@ -1,0 +1,151 @@
+A bookmark allows you to quickly access a collection or data file of interest. If your user account has the Read, Write, or Own permission level on any collection or data file in DME, you can create a bookmark on that collection or data file. To add a bookmark:
+<ol>
+  <li>
+    In your local system, create a JSON file that specifies the path within DME for the bookmark, as follows:
+
+
+
+
+
+
+
+
+
+
+
+    {&#34;path&#34; : &#34;/Path/To/Bookmark&#34;}
+  </li>
+  <li>
+    Run the following command:
+
+
+
+
+
+
+
+
+
+
+
+    dm_add_bookmark [optional parameters] &lt;bookmark_name&gt; &lt;description.json&gt;
+
+
+    The following table describes each parameter:
+    <table>
+      <colgroup>
+        <col/>
+        <col/>
+      </colgroup>
+      <tbody>
+        <tr>
+          <th>
+            Parameter
+          </th>
+          <th>
+            Description
+          </th>
+        </tr>
+        <tr>
+          <td>
+            [-h]
+          </td>
+          <td>
+            If you want to print a usage (help) message for this command, specify this option.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            [-D &lt;REST-response&gt;]
+          </td>
+          <td>
+            An optional parameter, specifying a path and filename in your local system. The system always creates a response file:
+            <ul>
+              <li>
+                If you specify this parameter, the system saves the response from the server to the specified file in the specified location.
+              </li>
+              <li>
+                If you omit this parameter, the system saves the file as add_bookmark-response-header.tmp in your home directory.
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            [-o &lt;status-file&gt;]
+          </td>
+          <td>
+            An optional parameter, specifying a path and filename in your local system. The system always creates a status file:
+            <ul>
+              <li>
+                If you specify this parameter, the system saves the status to the specified file in the specified location.
+              </li>
+              <li>
+                If you omit this parameter, the system saves the status as add_bookmark-response-message.json.tmp in your home directory.
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            &lt;bookmark_name&gt;
+          </td>
+          <td>
+            The name that you want the system to display in the GUI for the bookmark. In this name, the system allows the plus character (+) or the pound character (#), but avoid using other special characters or spaces.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            &lt;description.json&gt;
+          </td>
+          <td>
+            A path to the JSON file that specifies the path for the bookmark.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    If a bookmark already exists in DME for the specified path, an error message appears with the existing bookmark name.
+  </li>
+  <li>
+    To view the bookmark in the GUI, log out of DME and log in again. Refer to
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=373007217" rel="nofollow">
+      Logging In via the GUI
+    </a>
+    .
+  </li>
+</ol>
+For example, consider the following command:
+
+
+
+
+
+
+
+
+
+
+
+dm_add_bookmark MyCollection /cygdrive/c/Users/JaneDoe/my-bookmark.json
+
+
+With the following code in the specified my-bookmark.json file, the command creates a bookmark named MyCollection and associates it with the PI_Lab1 collection:
+
+
+
+
+
+
+
+
+
+
+
+{&#34;path&#34; : &#34;/Example_Archive/PI_Lab1&#34;}
+
+
+If your user account has the group administrator or system administrator role, the dm_add_bookmark command also allows you to add a bookmark for another user and set permissions for that user at the same time. For information, refer to
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=379061178" rel="nofollow">
+  Adding a Bookmark and Permissions via the CLU
+</a>
+. 

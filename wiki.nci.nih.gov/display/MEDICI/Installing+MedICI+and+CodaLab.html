@@ -1,0 +1,364 @@
+<ul>
+  <li>
+    <a href="#InstallingMedICIandCodaLab-CreatingaVirtualMachineonMicrosoftAzure%5CUbuntuServer18.04LTS" rel="nofollow">
+      Creating a Virtual Machine on Microsoft Azure\Ubuntu Server 18.04 LTS
+    </a>
+    <ul>
+      <li>
+        <a href="#InstallingMedICIandCodaLab-IPAddressConfig" rel="nofollow">
+          IP Address Config
+        </a>
+      </li>
+      <li>
+        <a href="#InstallingMedICIandCodaLab-SSHPort" rel="nofollow">
+          SSH Port
+        </a>
+      </li>
+      <li>
+        <a href="#InstallingMedICIandCodaLab-HTTPPort" rel="nofollow">
+          HTTP Port
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#InstallingMedICIandCodaLab-InstallingCodaLab" rel="nofollow">
+      Installing CodaLab
+    </a>
+    <ul>
+      <li>
+        <a href="#InstallingMedICIandCodaLab-Step1-InstallDockerandDocker-Compose" rel="nofollow">
+          Step 1 - Install Docker and Docker-Compose
+        </a>
+        <ul>
+          <li>
+            <a href="#InstallingMedICIandCodaLab-Docker" rel="nofollow">
+              Docker
+            </a>
+          </li>
+          <li>
+            <a href="#InstallingMedICIandCodaLab-Docker-Compose" rel="nofollow">
+              Docker-Compose
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#InstallingMedICIandCodaLab-Step2-GettheSourceCode" rel="nofollow">
+          Step 2 - Get the Source Code
+        </a>
+      </li>
+      <li>
+        <a href="#InstallingMedICIandCodaLab-Step3-Tweakthe.envfileandAzureStorage" rel="nofollow">
+          Step 3 - Tweak the .env file and Azure Storage
+        </a>
+        <ul>
+          <li>
+            <a href="#InstallingMedICIandCodaLab-CreateaStorageAccount" rel="nofollow">
+              Create a Storage Account
+            </a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#InstallingMedICIandCodaLab-AddingaCustomLogo" rel="nofollow">
+      Adding a Custom Logo
+    </a>
+  </li>
+</ul>
+This document explains how to install CodaLab and is an alternative to the more detailed user manual on the
+<a href="https://github.com/codalab/codalab-competitions/wiki" rel="nofollow">
+  CodaLab Wiki
+</a>
+. CodaLab is under active development, so the procedures here are subject to change.Your first step is to decide which virtual machine or computer you want to install MedICI.
+<h1 id="InstallingMedICIandCodaLab-CreatingaVirtualMachineonMicrosoftAzure\UbuntuServer18.04LTS">
+  Creating a Virtual Machine on Microsoft Azure\Ubuntu Server 18.04 LTS
+</h1>
+This tutorial focuses on Ubuntu-based installations on Azure, although instructions on how to do this on Microsoft and Apple operating systems and in AWS are also included.Create a VM in Azure or use a computer with Ubuntu Server 18.04 installed. Once you have an Azure account, go to the
+<a href="https://portal.azure.com/#home" rel="nofollow">
+  Azure home page
+</a>
+. A sidebar with many options or categories appears. You can create either a resource or a resource group and then add resources into it. This tutorial uses the resource group method to demonstrate good organizational practices.
+<ol>
+  <li>
+    Select Resource groups &gt; add.
+    <img alt="Microsoft Azure, Resource groups screen, highlighting the Add button" width="600" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/MEDICI/Installing%20MedICI%20and%20CodaLab/Medici1.png?api=v2">
+  </li>
+  <li>
+    Name the resource group and then decide how you will pay for this service.
+  </li>
+  <li>
+    Click Review + create.
+  </li>
+  <li>
+    Go to the resource group and add a VM:
+    <img alt="Microsoft Azure, Tutorials screen" width="600" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/MEDICI/Installing%20MedICI%20and%20CodaLab/Medici2.png?api=v2">
+  </li>
+  <li>
+    Choose Ubuntu Server 18.04 LTS. The VM creation page appears.
+  </li>
+  <li>
+    Choose the following settings.
+    <img alt="Microsoft Azure, Create a virtual machine screen" width="600" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/MEDICI/Installing%20MedICI%20and%20CodaLab/Medici3.png?api=v2">
+  </li>
+  <li>
+    Now click Review + create. Review the options and then click create. Azure starts creating the VM and then finishes, as shown in the following two images.
+    <img alt="Microsoft Azure, Your deployment is underway screen" width="800" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/MEDICI/Installing%20MedICI%20and%20CodaLab/Medici4.png?api=v2">
+    <img alt="Microsoft Azure, Your deployment is complete page" width="700" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/MEDICI/Installing%20MedICI%20and%20CodaLab/Medici5.png?api=v2">
+  </li>
+</ol>
+<h2 id="InstallingMedICIandCodaLab-IPAddressConfig">
+  IP Address Config
+</h2>
+<ol>
+  <li>
+    Navigate to the VM by clicking Go to resource. Go to the resources home page to get the public IP address so that you can access the machine.
+    <img alt="MedICI-CodaLab-Master page" width="800" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/MEDICI/Installing%20MedICI%20and%20CodaLab/Medici6.png?api=v2">
+  </li>
+  <li>
+    Set the IP address setting to Static. Make a note of the IP address. Click Configure to edit the DNS settings. Click Save.
+    <img alt="MedICI-CodaLab-Master-ip Configuration page" width="600" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/MEDICI/Installing%20MedICI%20and%20CodaLab/Medici7.png?api=v2">
+  </li>
+</ol>
+<h2 id="InstallingMedICIandCodaLab-SSHPort">
+  SSH Port
+</h2>
+We need to configure the machine to be ssh accessible (port 22) and open http (port 80) (
+<a href="https://medium.com/techinpieces/practical-azure-how-to-enable-ssh-on-azure-vm-84d8fba8103e" rel="nofollow">
+  https://medium.com/techinpieces/practical-azure-how-to-enable-ssh-on-azure-vm-84d8fba8103e
+</a>
+). Go to the VM and click Networking. On the right find the button Add inbound port rule. Change Destination port ranges to 22, Protocol to TCP, Priority to 330, and Name to anything you’d like:
+<img alt="Enable_22 screen for MedICI-CodaLab-Master nsg" width="500" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/MEDICI/Installing%20MedICI%20and%20CodaLab/Medici8.png?api=v2">
+Once you have that let’s open a terminal and get inside the machine by typing $ ssh &lt;user&gt;@&lt;public IP address&gt;.
+<img width="500" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/MEDICI/Installing%20MedICI%20and%20CodaLab/Medici9.png?api=v2">
+If you get a message regarding encryption keys, enter y\yes as this is the first time signing into this machine.
+<h2 id="InstallingMedICIandCodaLab-HTTPPort">
+  HTTP Port
+</h2>
+On the right find the button Add inbound port rule. Change the Destination port ranges to 80, Protocol to TCP, Priority to 300, and Name to anything you like.
+<img alt="Enable HTTP screen" width="500" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/MEDICI/Installing%20MedICI%20and%20CodaLab/EnableHTTP.png?api=v2">
+This step is necessary to access the site once you deploy it.
+<h1 id="InstallingMedICIandCodaLab-InstallingCodaLab">
+  Installing CodaLab
+</h1>
+CodaLab has documentation regarding their preferred installation configuration. The two best sources are the following:
+<ul>
+  <li>
+    <a href="https://github.com/codalab/codalab-competitions/wiki" rel="nofollow">
+      https://github.com/codalab/codalab-competitions/wiki
+    </a>
+  </li>
+  <li>
+    <a href="https://codalab-competitions.readthedocs.io/en/latest/" rel="nofollow">
+      https://codalab-competitions.readthedocs.io/en/latest/
+    </a>
+  </li>
+</ul>
+The base code for CodaLab can be set up on different cloud providers (Google Cloud, AWS, Azure). The CodaLab team has made Docker images for AWS and Google cloud that in theory should just run once some settings are established, but require a good working knowledge of Docker. For the purposes of MedICI, it is recommended to follow the “
+<a href="https://github.com/codalab/codalab-competitions/wiki/Setup-Local-Competitions#user-content-get-the-source-code" rel="nofollow">
+  Configure CodaLab from scratch (harder documentation)
+</a>
+” procedure found in the first link above.
+<h2 id="InstallingMedICIandCodaLab-Step1-InstallDockerandDocker-Compose">
+  Step 1 - Install Docker and Docker-Compose
+</h2>
+Before we clone GitHub, we must install docker and docker-compose. Follow the
+<a href="https://docs.docker.com/install/linux/docker-ce/ubuntu/" rel="nofollow">
+  Docker installation instructions
+</a>
+to install on Ubuntu.
+<h3 id="InstallingMedICIandCodaLab-Docker">
+  Docker
+</h3>
+The following are the commands for a basic installation of Docker on Ubuntu.
+$ sudo apt-get remove docker docker-engine docker.io containerd runc
+$ sudo apt-get update
+$ sudo apt-get install \
+apt-transport-https \
+ca-certificates \
+curl \
+gnupg-agent \
+software-properties-common
+$ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+$ sudo apt-key fingerprint 0EBFCD88
+
+$ sudo add-apt-repository \
+&#34;deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+$(lsb_release -cs) \
+stable&#34;
+$ sudo apt-get update
+$ sudo apt-get install docker-ce docker-ce-cli containerd.io
+$ sudo docker run hello-world
+This creates the following result.
+<img width="500" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/MEDICI/Installing%20MedICI%20and%20CodaLab/Docker-Hello-World.png?api=v2">
+Now if we run the docker command, we see the options list that tells us how to use the command, which verifies that Docker is installed and we can use it.
+<h3 id="InstallingMedICIandCodaLab-Docker-Compose">
+  Docker-Compose
+</h3>
+Check to see if docker-compose is installed from the terminal on your new virtual machine. If not, rather than use sudo apt install docker-compose, the CodaLab documentation from
+<a href="https://github.com/codalab/codalab-competitions/wiki/Setup-Local-Competitions#user-content-get-the-source-code" rel="nofollow">
+  Configure CodaLab from scratch (harder documentation)
+</a>
+ says to install it from
+<a href="https://docs.docker.com/compose/install/" rel="nofollow">
+  Docker&#39;s website
+</a>
+. Use the following command.
+sudo curl -L &#34;https://github.com/docker/compose/releases/download/1.25.5/docker-compose-$(uname -s)-$(uname -m)&#34; -o /usr/local/bin/docker-compose
+<img height="111" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/MEDICI/Installing%20MedICI%20and%20CodaLab/image2019-9-17_16-49-35.png?api=v2">
+Now change the permissions in /usr/local/bin/docker-compose to use docker-compose:
+sudo chmod +x /usr/local/bin/docker-compose
+<img height="42" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/MEDICI/Installing%20MedICI%20and%20CodaLab/image2019-9-17_16-50-51.png?api=v2">
+Run docker-compose in the terminal window. The options list appears that tells us how to use this command. This verifies that docker-compose is installed and ready to use.
+<h2 id="InstallingMedICIandCodaLab-Step2-GettheSourceCode">
+  Step 2 - Get the Source Code
+</h2>
+The latest code is located in the
+<a href="https://github.com/codalab/codalab-competitions" rel="nofollow">
+  codalab-competitions
+</a>
+folder in the codalab repository (repo) in GitHub. Both sets of instructions direct you to clone this repository locally to the virtual machine. Since we will be customizing our installation, fork the repository and do the following:
+<ol>
+  <li>
+    Pull the latest changes from the master repo
+    <a href="https://github.com/codalab/codalab-competitions" rel="nofollow">
+      https://github.com/codalab/codalab-competitions
+    </a>
+    into your own repo periodically to make sure you have the latest base code. (repo:
+    <a href="https://github.com/QTIM-Lab/MedICI/" rel="nofollow">
+      https://github.com/QTIM-Lab/MedICI/
+    </a>
+    ). If you need help doing this on your own, see
+    <a href="https://help.github.com/en/articles/fork-a-repo" rel="nofollow">
+      forking a repo
+    </a>
+    , but you can just clone the
+    <a href="https://github.com/QTIM-Lab/MedICI/" rel="nofollow">
+      QTIM-Lab/MedICI repo
+    </a>
+    .
+  </li>
+  <li>
+    Store your customizations on GitHub so that you can clone from this repo for future projects.
+  </li>
+  <li>
+    Clone the MedICI project. This follows CodaLabs instructions but with our GitHub repo instead. Below is a picture of the commands I’ve executed from “
+    <a href="https://github.com/codalab/codalab-competitions/wiki/Setup-Local-Competitions#user-content-get-the-source-code" rel="nofollow">
+      Configure CodaLab from scratch (harder documentation)
+    </a>
+    ”. The green circles represent once inside the “src” folder, the changes that are not in the raw CodaLab github repo. This is the start of our customizations.
+    <img width="600" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/MEDICI/Installing%20MedICI%20and%20CodaLab/image2019-9-17_16-52-10.png?api=v2">
+  </li>
+  <li>
+    Push these changes into your branch. At this point the app should be ready to deploy.
+  </li>
+  <li>
+    Run $ docker compose up -d. You may encounter the following error:
+    <img height="91" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/MEDICI/Installing%20MedICI%20and%20CodaLab/image2019-9-17_16-54-36.png?api=v2">
+    The solution to this error is to run with sudo or add yourself to the docker group:$ sudo docker-compose up -dOr
+    <a href="https://docs.docker.com/install/linux/linux-postinstall/" rel="nofollow">
+      https://docs.docker.com/install/linux/linux-postinstall/
+    </a>
+  </li>
+</ol>
+<ul>
+  <li>
+    <ul>
+      <li>
+        $ sudo groupadd docker (this may be done already)
+      </li>
+      <li>
+        $ sudo usermod -aG docker $USER (now restart the VM)
+      </li>
+      <li>
+        Run $ docker-compose up -d
+      </li>
+      <li>
+        The flag ‘-d’ means to run in detached mode. If you don’t use it, you will notice your command prompt is in a live feed mode telling you everything that is going on with this Docker.
+      </li>
+    </ul>
+  </li>
+</ul>
+<h2 id="InstallingMedICIandCodaLab-Step3-Tweakthe.envfileandAzureStorage">
+  Step 3 - Tweak the .env file and Azure Storage
+</h2>
+The following documentation explains this step:
+<a href="https://codalab-competitions.readthedocs.io/en/latest/" rel="nofollow">
+  https://codalab-competitions.readthedocs.io/en/latest/
+</a>
+<h4 id="InstallingMedICIandCodaLab-CreateaStorageAccount">
+  Create a Storage Account
+</h4>
+Below is the blob storage section for Azure:You may
+<a href="https://azure.microsoft.com/en-us/" rel="nofollow">
+  sign up
+</a>
+for an Azure account, then follow the directions below. You do not have to do this if you&#39;ve already set up S3.
+<ol>
+  <li>
+    Log on to the
+    <a href="https://portal.azure.com/" rel="nofollow">
+      Azure Portal
+    </a>
+    .
+  </li>
+  <li>
+    From the Dashboard, click Storage accounts on the left.
+  </li>
+  <li>
+    Click Add at the top of the page to create a new storage account.
+  </li>
+  <li>
+    If you don&#39;t already have a subscription, create one now. The free trial requires a credit card, and deletes all your storage containers after 90 days, unless you upgrade to a different plan such as &#39;Pay as You Go&#39;.
+  </li>
+  <li>
+    Select the Classic storage account. Refer to the following image for settings.
+    <img alt="medici - Blobs settings page" width="700" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/MEDICI/Installing%20MedICI%20and%20CodaLab/image2019-9-17_16-55-56.png?api=v2">
+  </li>
+  <li>
+    In the dashboard, click All Resources/All Subscriptions and then click  your username. Click Access Keys and copy your account name and access key to .env under AZURE_ACCOUNT_NAME and AZURE_ACCOUNT_KEY.
+  </li>
+  <li>
+    Within that same user account, click on Containers and Add a new container.
+  </li>
+  <li>
+    Create a new container named &#34;bundles&#34;. Set the Access to &#34;Private&#34;.
+  </li>
+  <li>
+    Add another container named &#34;public&#34;. Set the Access to &#34;Public Blob&#34;.
+  </li>
+  <li>
+    Make sure the DEFAULT_FILE_STORAGE .env option is set to codalab.azure_storage.AzureStorage.
+  </li>
+</ol>
+The CodaLab documentation leaves one final step out. We NEED to enable CORS. Click CORS in the image in the previous procedure and add these settings (
+<a href="https://stackoverflow.com/questions/50785255/azure-storage-got-403-url-cors-not-enabled-or-no-matching-rule-found-for-thi" rel="nofollow">
+  https://stackoverflow.com/questions/50785255/azure-storage-got-403-url-cors-not-enabled-or-no-matching-rule-found-for-thi
+</a>
+):
+<img width="700" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/MEDICI/Installing%20MedICI%20and%20CodaLab/image2019-9-17_16-56-34.png?api=v2">
+If you don’t, uploading a competition will present a CORS errors in the browser:
+<img width="700" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/MEDICI/Installing%20MedICI%20and%20CodaLab/image2019-9-17_16-57-58.png?api=v2">
+Once applied, uploading works:
+<img width="700" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/MEDICI/Installing%20MedICI%20and%20CodaLab/image2019-9-17_16-58-44.png?api=v2">
+<h1 id="InstallingMedICIandCodaLab-AddingaCustomLogo">
+  Adding a Custom Logo
+</h1>
+To create a custom logo, follow the Codalab
+<a href="https://github.com/codalab/codalab-competitions/wiki/Customizing-your-self-hosted-instance" rel="nofollow">
+  instructions
+</a>
+but note that you must log in to the database as the super user to use the customizer module. Django doesn’t have a super user by default, so you must create it. To do so, create a secure connection to the virtual machine that hosts your site and run the following command.
+$ docker exec -it django python manage.py createsuperuser
+<img height="240" width="657" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/MEDICI/Installing%20MedICI%20and%20CodaLab/image2019-9-17_17-2-23.png?api=v2">
+You can now return to the CodaLabs
+<a href="https://github.com/codalab/codalab-competitions/wiki/Customizing-your-self-hosted-instance" rel="nofollow">
+  instructions
+</a>
+and navigate to
+<a href="http://your-instance.com/customizer" rel="nofollow">
+  http://your-instance.com/customizer
+</a>
+. Log in with your super user credentials and choose a new file as your logo.

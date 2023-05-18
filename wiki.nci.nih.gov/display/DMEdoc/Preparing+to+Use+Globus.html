@@ -1,0 +1,97 @@
+If you need to move a large volume of data, you can do so using a Globus endpoint. DME uses Globus for high performance transfer of large files. Endpoints represent locations on a file transfer service server, such as Biowulf or gridftp. In DME CLU or GUI, you can choose to use Globus for file transfer. A prerequisite is a GCSv4 Share.For narrated slides demonstrating these instructions, refer to
+<a href="https://wiki.nci.nih.gov/download/attachments/378145904/prep-Globus-slides.pptx?version=2&amp;modificationDate=1668791020000&amp;api=v2" rel="nofollow">
+  prep-Globus-slides.pptx
+</a>
+.To prepare a Globus endpoint:
+<ol>
+  <li>
+    If you do not already have a shareable Globus endpoint, contact
+    <a href="mailto:NCIDataVault@mail.nih.gov" rel="nofollow">
+      NCIDataVault@mail.nih.gov
+    </a>
+     and request one.
+  </li>
+  <li>
+    Log into Globus at the following site:
+    <a href="http://www.globus.org/" rel="nofollow">
+      http://www.globus.org
+    </a>
+    <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+      <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+    </a>
+    Use your NIH user account credentials as described in the following page:
+    <a href="https://docs.globus.org/how-to/get-started/" rel="nofollow">
+      https://docs.globus.org/how-to/get-started/
+    </a>
+    <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+      <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+    </a>
+  </li>
+  <li>
+    If you do not already have a GCSv4 Share in Globus, create one:
+    Instructions to Create a GCSV4 Share
+    <ol>
+      <li>
+        In the Globus File Manager, search for and select NIH HPC Data Transfer (Biowulf). This is a public endpoint.
+        <img alt="Results of searching for NIH HPC Data Transfer in Globus." width="520" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/DMEdoc/Preparing%20to%20Use%20Globus/Globus-NIH-HPC-Data-Transfer.png?api=v2">
+      </li>
+      <li>
+        In the search results, in the row for NIH HPC Data Transfer (Biowulf), click the collection details icon (
+        <img alt="The collection details icon in Globus." width="16" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/DMEdoc/Preparing%20to%20Use%20Globus/kebab-icon.png?api=v2">
+        ). The details page appears. On the Collections tab, click Add GCSv4 Share.
+        <img alt="Collections tab on the NIH HPC Data Transfer page in Globus." width="520" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/DMEdoc/Preparing%20to%20Use%20Globus/Globus-Collections-tab.png?api=v2">
+      </li>
+      <li>
+        On the Create new GCSv4 Share page, browse to or specify the path to the directory where you want to save your data. Click Create GCSv4 Share.
+        <img alt="The Create new GCSV4 Share page in Globus." width="520" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/DMEdoc/Preparing%20to%20Use%20Globus/Globus-guest-collection.png?api=v2">
+      </li>
+    </ol>
+  </li>
+  <li>
+    Share your Globus endpoint:
+    <ol>
+      <li>
+        In the Globus File Manager, navigate to the list of collections by opening the side bar, clicking Collections, and then clicking Shareable by You.
+        <img alt="List of collections that are shareable by you in Globus." width="520" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/DMEdoc/Preparing%20to%20Use%20Globus/Globus-ShareableByYou-tab.png?api=v2">
+      </li>
+      <li>
+        Select your GCSv4 Share. Access the sharing configuration for that collection by clicking Permissions.
+        <img alt="Permissions tab for a particular collection in Globus." width="520" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/DMEdoc/Preparing%20to%20Use%20Globus/Globus-Permissions-tab.png?api=v2">
+      </li>
+      <li>
+        Add permissions by clicking Add Permissions - Share With. In the Share With field, select the option to share with a group. Click Select a Group.
+        <img alt="Add Permissions - Share With page in Globus." width="520" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/DMEdoc/Preparing%20to%20Use%20Globus/Globus-share-with.png?api=v2">
+      </li>
+      <li>
+        Search all groups for &#34;HPCDME-&#34; and select the HPCDME-PROD-App-Accts-Pool-FNLCR group.
+        Instructions to Use UATIf you intend to use the UAT tier of DME, select the HPCDME-DEV-App-Accts-Pool-FNLCR group.
+        <img alt="Search for a Group page in Globus." width="520" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/DMEdoc/Preparing%20to%20Use%20Globus/Globus-search-group.png?api=v2">
+      </li>
+      <li>
+        Select the appropriate permission for the selected group: If you intend to download data from DME to the Globus endpoint, select the write permission.
+        <img alt="Add Permissions - Share With page, with group and permissions selected." width="520" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/DMEdoc/Preparing%20to%20Use%20Globus/Globus-read-write.png?api=v2">
+      </li>
+      <li>
+        Click Add Permission. The system adds the HPCDME Globus group to the list for the current share.
+      </li>
+    </ol>
+  </li>
+</ol>
+Now you can register or download data in the GUI as described in the following pages:
+<ul>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=408650985" rel="nofollow">
+      Registering from a Globus Endpoint via the GUI
+    </a>
+  </li>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=437684971" rel="nofollow">
+      Downloading to a Globus Endpoint via the GUI
+    </a>
+  </li>
+</ul>
+To register or download data via CLU, refer to the additional prerequisites described in
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=382832258" rel="nofollow">
+  Getting Started with DME CLU
+</a>
+. 

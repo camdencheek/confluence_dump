@@ -1,0 +1,174 @@
+To newly install the NBIA 6.5 application and services, follow these steps.
+<ul>
+  <li>
+    <a href="#id-5InstallingtheNBIA6.5Application-DownloadingNBIA6.5Files" rel="nofollow">
+      Downloading NBIA 6.5 Files
+    </a>
+  </li>
+  <li>
+    <a href="#id-5InstallingtheNBIA6.5Application-InstallingNBIA6.5" rel="nofollow">
+      Installing NBIA 6.5
+    </a>
+    <ul>
+      <li>
+        <a href="#id-5InstallingtheNBIA6.5Application-Command-LineMethodofInstallation" rel="nofollow">
+          Command-Line Method of Installation
+        </a>
+        <ul>
+          <li>
+            <a href="#id-5InstallingtheNBIA6.5Application-AboutProperties" rel="nofollow">
+              About Properties
+            </a>
+          </li>
+          <li>
+            <a href="#id-5InstallingtheNBIA6.5Application-InstallingNBIAUsingtheCommand-lineMethod" rel="nofollow">
+              Installing NBIA Using the Command-line Method
+            </a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+Before you begin!
+<ul>
+  <li>
+    You must install NBIA into a pre-installed Tomcat application server. The installation of NBIA will configure the Tomcat for running NBIA Portal and optional NBIA REST Service.
+  </li>
+  <li>
+    You must install NBIA into a pre-existing MySQL database using a connection username/password.
+  </li>
+  <li>
+    To upgrade from NBIA 6.0 to NBIA 6.5, you must perform a fresh deployment of NBIA 6.5, described on this page, and perform an upgrade on the database using the command line installer. For more information, see
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=373004683" rel="nofollow">
+      Upgrading NBIA to 6.5
+    </a>
+    .
+  </li>
+</ul>
+<h1 id="id-5InstallingtheNBIA6.5Application-DownloadingNBIA6.5Files">
+  Downloading NBIA 6.5 Files
+</h1>
+The installation file for NBIA 6.5 is over 255MB. The file can be downloaded from the
+<a href="https://wiki.nci.nih.gov/display/NBIA/National+Biomedical+Imaging+Archive+-+NBIA#NationalBiomedicalImagingArchive-NBIA-NBIAInstallationFilesandReleaseNotes" rel="nofollow">
+  NBIA distribution folder
+</a>
+, which contains the installers and latest release notes. For a command-line installer, download nbia_install_6.5.zip. Remember the download location, as you will be using this file to run the installation in the steps that follow.Server Components in NBIA 6.4.3CTP is installed and configured as part of the NBIA 6.5 installation. You do not need to do anything further to download or install the CTP server. You can also pick and choose the components to install by commenting out or un-commenting the property in the install.properties file.
+exclude.&lt;component name&gt;
+For example, if there is no need to install the CTP server, just remove the &#34;#&#34; in front of the default setting &#34;#exclude.ctp=true&#34;.
+<h1 id="id-5InstallingtheNBIA6.5Application-InstallingNBIA6.5">
+  Installing NBIA 6.5
+</h1>
+<h2 id="id-5InstallingtheNBIA6.5Application-Command-LineMethodofInstallation">
+  Command-Line Method of Installation
+</h2>
+<h3 id="id-5InstallingtheNBIA6.5Application-AboutProperties">
+  About Properties
+</h3>
+An important component of NBIA 6.5 command-line installation is configuring properties. When you perform a command-line installation of NBIA 6.5 for the first time, you work with the install.properties file that is included in NBIA_install_6.5.zip. You can refer to the sample install.properties file,
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=345671695" rel="nofollow">
+  install.properties
+</a>
+, on this wiki. To upgrade from NBIA 6.0 to NBIA 6.5, a fresh deployment of NBIA 6.5 is required with a database upgrade using the command-line installer. For more information, see
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=373004683" rel="nofollow">
+  Upgrading NBIA to 6.5
+</a>
+.In several instances in this section, property values must be modified. Note the following points about changing or entering variables.Tips for working with property files
+<ul>
+  <li>
+    The paths in the .properties files should use forward slashes. For example, you would use application.base.path.window=C:/apps/NBIA, not application.base.path.window=C:\apps\NBIA. If you use backslashes, you will experience undesirable results.
+  </li>
+  <li>
+    You should not put any spaces in the property values of *.properties files (for example, install.properties). In Windows, note that the C:\Documents and Settings{  }&lt;username&gt;  path contains spaces and the installation will likely fail. If you are using Windows, use a path such as C:/apps/NBIA.
+  </li>
+  <li>
+    In the install.properties file, any property value marked with uppercase REPLACE_* must be manually updated with the appropriate value.
+  </li>
+  <li>
+    In each .properties file, any property value marked with lowercase replace_* be optionally updated with the appropriate value.
+  </li>
+  <li>
+    In many of the steps below, there is a reference to a database.system.user for your MySQL server. To determine which users have full privileges to create and manage other databases, type show grants from a MySQL prompt to determine the correct level of privileges.
+  </li>
+  <li>
+    After installing NBIA 6.5, a second properties file, nbia.properties, is created in the lib directory of Tomcat. To edit those properties, shut down Tomcat, edit the file, and then restart Tomcat.
+  </li>
+</ul>
+NBIA port valuesVerify that default port values defined in the install.properties file are not in use on your system by running netstat --a from the command line. If the ports are in use prior to installation, you will likely experience problems with your installation.
+<h3 id="id-5InstallingtheNBIA6.5Application-InstallingNBIAUsingtheCommand-lineMethod">
+  Installing NBIA Using the Command-line Method
+</h3>
+To install a new instance of NBIA 6.5 using the command-line, follow these steps:
+<ol>
+  <li>
+    From the directory where you
+    <a href="https://wiki.nci.nih.gov/display/NBIA/National+Biomedical+Imaging+Archive+-+NBIA#NationalBiomedicalImagingArchive-NBIA-InstallationandDownloads" rel="nofollow">
+      downloaded
+    </a>
+    NBIA_install_6_5.zip, unzip the files into a fresh directory. In this documentation, this location is referred to as the &lt;installer_directory&gt;. Example: &lt;installer directory&gt; = C:\NBIA_6_5_installer.Property values are important!Setting the property values is an important step in the installation process. Before you complete steps 2 and 3, review
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=373004695" rel="nofollow">
+      About Properties
+    </a>
+    . Follow steps 2 and 3 carefully.
+  </li>
+  <li>
+    Open &lt;installer_directory&gt;/install.properties, modify the values for your environment, and save the file. For detailed information on all of the properties, refer to
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=345671695" rel="nofollow">
+      NBIA 6.5 properties documentation
+    </a>
+    . At a minimum, you will likely need to modify the values for the following properties: (System user and password and database name, user, and password should be the same for UPT and NBIA install.properties. For more information, see
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=373004682" rel="nofollow">
+      4 - Installing and Configuring Software for NBIA 6.5
+    </a>
+    .)
+    database.type
+    database.system.userdatabase.system.password
+    database.server
+    database.port
+    database.name
+    database.user
+    database.password
+    authentication.type
+    mail.smtp.server
+    ctp.server.admin.password
+    ctp.client.admin.password
+    tomcat.server.port
+    gov.nih.nci.ncia.tomcat.home
+     gov.nih.nci.NBIA.jboss.public.url
+    gov.nih.nci.NBIA.admin.email
+    gov.nih.nci.NBIA.grid.local.node.name
+    gov.nih.nci.NBIA.imaging.server.url
+    jar-signing.keystore.location=${user.home}/testdownload
+    jar-signing.keystore.password=testdownload
+    jar-signing.keystore.alias=testdownload
+    jar-signing.execution.time=install
+    jar-signing.generate-selfsigned=true
+    WarningMake sure to create the physical locations for the gov.nih.nci.ncia.zip.location and gov.nih.nci.ncia.ftp.location properties in the server. If this is not done, the Download all items link in the View My Basket window does not work.Record these property values!Default valuesYou should not need to modify the other default values as the application uses unique ports to reduce the risk of other applications using the same values. However, be sure to verify that the ports in this file are not being used by other applications.
+  </li>
+  <li>
+    From the command line, navigate to &lt;installer_directory&gt; (Example: cd C:/NBIA_6_5_installer), and type   ant. This initiates the installation process. The anticipated duration is anywhere from 5-20 minutes, depending on your system&#39;s speed, power, and memory. The installer installs the NBIA schema in the specified pre-existing database in your database server. It configures and starts the Tomcat server for the web application and it installs and starts the CTP server.
+  </li>
+  <li>
+    To verify NBIA installation, do the following:
+    <ol>
+      <li>
+        Open your web browser to http://&lt;tomcat.server.hostname&gt;:8080/ncia
+      </li>
+      <li>
+        Refer to the installer_directory;/install.properties file for the correct values.
+      </li>
+      <li>
+        Log in with  ncidevtest  as the user and  changeme  as the password.
+      </li>
+    </ol>
+  </li>
+  <li>
+    After successfully installing NBIA, make a backup of the &lt;installer_directory&gt;/install.properties file in a different directory for future reference.
+  </li>
+  <li>
+    <a href="https://wiki.nci.nih.gov/display/NBIA/8+-+Post-Installation+Tasks+for+NBIA+6.5#id-8-Post-InstallationTasksforNBIA6.5-StartingNBIAStartingUpNBIA" rel="nofollow">
+      Start NBIA
+    </a>
+    .
+  </li>
+</ol>

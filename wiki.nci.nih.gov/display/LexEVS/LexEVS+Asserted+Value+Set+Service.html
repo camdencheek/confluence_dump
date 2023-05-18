@@ -1,0 +1,809 @@
+<ul>
+  <li>
+    <a href="#LexEVSAssertedValueSetService-Introduction" rel="nofollow">
+      Introduction
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVSAssertedValueSetService-SourceAssertedValueSetServiceClassDiagram" rel="nofollow">
+      SourceAssertedValueSetService Class Diagram
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVSAssertedValueSetService-LexEVSAssertedValueSetDefinitionServicesAPI" rel="nofollow">
+      LexEVS Asserted Value Set Definition Services API
+    </a>
+    <ul>
+      <li>
+        <a href="#LexEVSAssertedValueSetService-ListFunctions" rel="nofollow">
+          List Functions
+        </a>
+        <ul>
+          <li>
+            <a href="#LexEVSAssertedValueSetService-ListAllValueSetsAsFullyPopulatedCodingSchemes" rel="nofollow">
+              List All Value Sets As Fully Populated Coding Schemes
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVSAssertedValueSetService-ListallCodingSchemesWithoutEntities" rel="nofollow">
+              List all Coding Schemes Without Entities
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#LexEVSAssertedValueSetService-CodingSchemeReadFunctions" rel="nofollow">
+          Coding Scheme Read Functions
+        </a>
+        <ul>
+          <li>
+            <a href="#LexEVSAssertedValueSetService-GetValueSetsbyConceptReference" rel="nofollow">
+              Get Value Sets by Concept Reference
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVSAssertedValueSetService-GetValueSetsForEntityCode" rel="nofollow">
+              Get Value Sets For Entity Code
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVSAssertedValueSetService-GetaSingleValueSetforItsUniqueURL" rel="nofollow">
+              Get a Single Value Set for Its Unique URL
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVSAssertedValueSetService-GetCodingSchemeReferencesforAnySourceSchemesUsedtoResolveaCodingSchemeRepresentationofaValueSet" rel="nofollow">
+              Get Coding Scheme References for Any Source Schemes Used to Resolve a Coding Scheme Representation of a Value Set
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#LexEVSAssertedValueSetService-ConceptReferenceReadFunctions" rel="nofollow">
+          Concept Reference Read Functions
+        </a>
+        <ul>
+          <li>
+            <a href="#LexEVSAssertedValueSetService-GetResolvedConceptReferencesfortheCodingSchemeUniqueIdentifier" rel="nofollow">
+              Get Resolved Concept References for the Coding Scheme Unique Identifier
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVSAssertedValueSetService-GetTopNodeReferences" rel="nofollow">
+              Get Top Node References
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#LexEVSAssertedValueSetService-SearchFunction" rel="nofollow">
+          Search Function
+        </a>
+        <ul>
+          <li>
+            <a href="#LexEVSAssertedValueSetService-GetaValueSetfromTextMatch" rel="nofollow">
+              Get a Value Set from Text Match
+            </a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#LexEVSAssertedValueSetService-SystemTesting" rel="nofollow">
+      System Testing
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVSAssertedValueSetService-Installation/Packaging" rel="nofollow">
+      Installation / Packaging
+    </a>
+  </li>
+</ul>
+<h1 id="LexEVSAssertedValueSetService-Introduction">
+  Introduction
+</h1>
+The Asserted Value Set services are integrated parts of the LexEVS API. It provides several functions:
+<ul>
+  <li>
+    Getting Source Asserted Value Sets as CodingScheme or Coding Scheme reference objects
+  </li>
+  <li>
+    Getting the entities of Source Asserted Value Sets as ResolvedConceptReference objects as Lists or Iterators
+  </li>
+  <li>
+    Getting a list of all unique identifiers of value set top nodes from this source terminology
+  </li>
+  <li>
+    Getting a list of all schemes used to resolve a given set of values from a resolved value set coding scheme
+  </li>
+</ul>
+Most coding scheme representations and entity reference sets are resolved by the unique URL of the coding scheme.  Some allow a definition of a concept or text match.  All methods offer a resolution service to some set of values.  These mechanisms are largely read functions requiring a listing of known values or an exact match of a unique identifier.  Only one method offers what could be classified as a search.
+<h1 id="LexEVSAssertedValueSetService-SourceAssertedValueSetServiceClassDiagram">
+  SourceAssertedValueSetService Class Diagram
+</h1>
+<img height="250" width="570" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%20Asserted%20Value%20Set%20Service/Screen%20Shot%202018-06-11%20at%202.35.23%20PM.png?api=v2">
+<h1 id="LexEVSAssertedValueSetService-LexEVSAssertedValueSetDefinitionServicesAPI">
+  LexEVS Asserted Value Set Definition Services API
+</h1>
+LexEVS Asserted Value Set Services provides three major functions:
+<ul>
+  <li>
+    List function
+  </li>
+  <li>
+    Read function
+  </li>
+  <li>
+    Search function
+  </li>
+</ul>
+Each of these functions are described in following sections.
+<h2 id="LexEVSAssertedValueSetService-ListFunctions">
+  List Functions
+</h2>
+<ul>
+  <li>
+    List all value sets as coding schemes
+  </li>
+  <li>
+    List all value set entities in the asserted source system
+  </li>
+</ul>
+<h4 id="LexEVSAssertedValueSetService-ListAllValueSetsAsFullyPopulatedCodingSchemes">
+  List All Value Sets As Fully Populated Coding Schemes
+</h4>
+
+listAllSourceAssertedValueSets
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Lists all coding schemes each with its own entity set fully resolved
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        none
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        List&lt;CodingScheme&gt;
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details:
+      </th>
+      <td>
+        Implementation:   Call this method on the associated LexEVS Asserted Value Set service instance to list a full set of coding schemes along with all of their entities  Sample Call:
+        <ul>
+          <li>
+            Step 1: Instantiate SourceAssertedValueSetService if it is not done yet:
+            org.lexgrid.valuesets.SourceAssertedValueSetServiceImpl  assVSServ = new SourceAssertedValueSetServiceImpl(new AssertedValueSetParameters.Builder().build());
+          </li>
+          <li>
+            Step 2: List all the coding scheme representations of the value sets
+            List&lt;CodingScheme&gt; schemes = assVSService.listAllSourceAssertedValueSets();
+
+
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h4 id="LexEVSAssertedValueSetService-ListallCodingSchemesWithoutEntities">
+  List all Coding Schemes Without Entities
+</h4>
+
+getMinimalSourceAssertedValueSetSchemes
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Lists all coding schemes – no entities resolved
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        none
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        List&lt;CodingScheme&gt;
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details:
+      </th>
+      <td>
+        Implementation:   Call this method on the associated LexEVS Asserted Value Set service instance to list a full set of coding schemes minus their entities  Sample Call:
+        <ul>
+          <li>
+            Step 1: Instantiate SourceAssertedValueSetService if it is not done yet:
+            org.lexgrid.valuesets.SourceAssertedValueSetServiceImpl  assVSServ = new SourceAssertedValueSetServiceImpl(new AssertedValueSetParameters.Builder().build());
+          </li>
+          <li>
+            Step 2: List all the coding scheme representations of the value sets
+            List&lt;CodingScheme&gt; schemes = assVSService.getMinimalSourceAssertedValueSetSchemes();
+
+
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="LexEVSAssertedValueSetService-CodingSchemeReadFunctions">
+  Coding Scheme Read Functions
+</h2>
+<ul>
+  <li>
+    Get value sets by concept reference - Input an object that matches namespace and unique code of a value set member to return a list of containing schemes
+  </li>
+  <li>
+    Get value sets by entity code - input is entity code only, no namespace is defined to read the value set that contains this as a value set member
+  </li>
+  <li>
+    Get a single value set for its unique URI - The input should be an unique identifier for a coding scheme representation of a value set in the system
+  </li>
+  <li>
+    Get a value set or value sets defined by a unique entity - The input is a unique entity code that identifies the top node of a given value set
+  </li>
+  <li>
+    Get scheme references for a coding scheme representation - Pulls from a coding scheme those schemes from which the entities of the coding scheme representation of the value set is derived.
+  </li>
+</ul>
+<h4 id="LexEVSAssertedValueSetService-GetValueSetsbyConceptReference">
+  Get Value Sets by Concept Reference
+</h4>
+
+getSourceAssertedValueSetsForConceptReference
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Lists all coding schemes containing a particular concept reference
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        ConceptReference ref - Configurable to contain both the unique identifier and the namespace of the target coding scheme (both are tied to the asserting source in this case)
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        List&lt;CodingScheme&gt;
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        none
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details:
+      </th>
+      <td>
+        Implementation:   Call this method on the associated LexEVS Asserted Value Set service instance to get a coding scheme representation of a vale set containing this concept reference  Sample Call:
+        <ul>
+          <li>
+            Step 1: Instantiate SourceAssertedValueSetService if it is not done yet:
+            org.lexgrid.valuesets.SourceAssertedValueSetServiceImpl  assVSServ = new SourceAssertedValueSetServiceImpl(new AssertedValueSetParameters.Builder().build());
+          </li>
+          <li>
+            Step 2: Construct the ConceptReference object:
+            ConceptReference ref = new ConceptReference();
+            ref.setConceptCode(&#34;C1234&#34;);
+            ref.setCodeNamespace(&#34;ncit&#34;);
+          </li>
+        </ul>
+        <ul>
+          <li>
+            Step 3: List all the coding scheme representations of the value sets
+            List&lt;CodingScheme&gt; schemes = assVSServ.getSourceAssertedValueSetsForConceptReference(ref);
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h4 id="LexEVSAssertedValueSetService-GetValueSetsForEntityCode">
+  Get Value Sets For Entity Code
+</h4>
+
+getSourceAssertedValueSetforTopNodeEntityCode
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Lists all coding schemes that have a top node defined by a unique entity code
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        String matchCode: unique identifier of the top node entity
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        List&lt;CodingScheme&gt;:  Might be more than one value set defined by this top node.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details:
+      </th>
+      <td>
+        Implementation:   Call this method on the associated LexEVS Asserted Value Set service instance to get one or more coding scheme representations of value sets that have a top node defined by this identifier  Sample Call:
+        <ul>
+          <li>
+            Step 1: Instantiate SourceAssertedValueSetService if it is not done yet:
+            org.lexgrid.valuesets.SourceAssertedValueSetServiceImpl  assVSServ = new SourceAssertedValueSetServiceImpl(new AssertedValueSetParameters.Builder().build());
+          </li>
+        </ul>
+        <ul>
+          <li>
+            Step 2: List all the coding schemes defined by the top node designated by the unique identifier
+            List&lt;CodingScheme&gt; schemes = assVSServ.getSourceAssertedValueSetforTopNodeEntityCode(&#34;C12434&#34;);
+
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h4 id="LexEVSAssertedValueSetService-GetaSingleValueSetforItsUniqueURL">
+  Get a Single Value Set for Its Unique URL
+</h4>
+
+getSourceAssertedValueSetForValueSetURI
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Gets a coding scheme representation of a value set based on its unique URI designation
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        URI uri: unique identifier of the top node entity wrapped in a URI object
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        CodingScheme:  The coding scheme representation of the value set represented by this uniquely identifying URI
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details:
+      </th>
+      <td>
+        Implementation:   Call this method on the associated LexEVS Asserted Value Set service instance to get a single coding scheme representation of a value set using it&#39;s unique identifier wrapped in a URI object.  Sample Call:
+        <ul>
+          <li>
+            Step 1: Instantiate SourceAssertedValueSetService if it is not done yet:
+            org.lexgrid.valuesets.SourceAssertedValueSetServiceImpl  assVSServ = new SourceAssertedValueSetServiceImpl(new AssertedValueSetParameters.Builder().build());
+          </li>
+          <li>
+            Step 2: Instantiate a URI object using a string representation of the URI designation
+            URI uri = new URI(&#34;http://evs.nci.nih.gov/valueset/CDISC/C12434&#34;);
+          </li>
+        </ul>
+        <ul>
+          <li>
+            Step 2: List all the coding schemes defined by the top node designated by the unique identifier
+            CodingScheme scheme = assVSServ.getSourceAssertedValueSetForValueSetURI(uri);
+
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h4 id="LexEVSAssertedValueSetService-GetCodingSchemeReferencesforAnySourceSchemesUsedtoResolveaCodingSchemeRepresentationofaValueSet">
+  Get Coding Scheme References for Any Source Schemes Used to Resolve a Coding Scheme Representation of a Value Set
+</h4>
+
+getListOfCodingSchemeVersionsUsedInResolution
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Gets minimal representations of coding schemes based on what was used to resolve a value set
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        CodingScheme cs: CodingScheme object with full metadata populated, entity representation not necessary
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        AbsoluteCodingSchemeVersionReferenceList:  Might be more than one coding scheme that defines this value set
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        none
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details:
+      </th>
+      <td>
+        Implementation:   Call this method on the associated LexEVS Asserted Value Set service instance to determine what coding schemes define the value set.    Sample Call:
+        <ul>
+          <li>
+            Step 1: Instantiate SourceAssertedValueSetService if it is not done yet:
+            org.lexgrid.valuesets.SourceAssertedValueSetServiceImpl  assVSServ = new SourceAssertedValueSetServiceImpl(new AssertedValueSetParameters.Builder().build());
+          </li>
+          <li>
+            Step 2: Get a coding scheme using one of the Asserted Value Set Service methods:
+            CodingScheme cs = assVSServ.getSourceAssertedValueSetForValueSetURI(new URI(&#34;http://evs.nci.nih.gov/valueset/CDISC/C12434&#34;)) ;
+          </li>
+        </ul>
+        <ul>
+          <li>
+            Step  3: List all the coding schemes defined by the top node designated by the unique identifier
+            AbsoluteCodingSchemeVersionReferenceList list = assVSServ.getListOfCodingSchemeVersionsUsedInResolution(cs);
+
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="LexEVSAssertedValueSetService-ConceptReferenceReadFunctions">
+  Concept Reference Read Functions
+</h2>
+<ul>
+  <li>
+    Get references for unique URI identifier - Unique identifier returns all value set members of that coding scheme representation of a value set.
+  </li>
+  <li>
+    Get a list of string unique identifiers of references that are a top node - All top nodes of a system are returned based on the identification of the node that has a reference to the top of the hierarchy
+  </li>
+</ul>
+<h4 id="LexEVSAssertedValueSetService-GetResolvedConceptReferencesfortheCodingSchemeUniqueIdentifier">
+  Get Resolved Concept References for the Coding Scheme Unique Identifier
+</h4>
+
+getSourceAssertedValueSetIteratorForURI
+getSourceAssertedValueSetEntitiesForURI
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Gets Resolved Concept Reference representations of entity values in a value set based on the unique identifier of the coding scheme representation
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        String uri: String representation of the coding scheme unique identifier
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        ResolvedConceptReferenceList or ResolvedConceptReferencesIterator:  Entities listed or iterated over that are members of the value set defined by the unique URI designation
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        none
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details:
+      </th>
+      <td>
+        Implementation:   Call this method on the associated LexEVS Asserted Value Set service instance to get entities from a unique value set  Sample Call:
+        <ul>
+          <li>
+            Step 1: Instantiate SourceAssertedValueSetService if it is not done yet:
+            org.lexgrid.valuesets.SourceAssertedValueSetServiceImpl  assVSServ = new SourceAssertedValueSetServiceImpl(new AssertedValueSetParameters.Builder().build());
+          </li>
+          <li>
+            Step 2: Get an iterator over the entity members of the value set
+            ResolvedConceptReferencesIterator iterator = assVSServ.getSourceAssertedValueSetIteratorForURI(&#34;http://evs.nci.nih.gov/valueset/CDISC/C119014&#34;);
+          </li>
+        </ul>
+        <ul>
+          <li>
+            or get a list
+            ResolvedConceptReferenceList list = assVSServ.getSourceAssertedValueSetEntitiesForURI(&#34;http://evs.nci.nih.gov/valueset/CDISC/C119014&#34;);
+
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h4 id="LexEVSAssertedValueSetService-GetTopNodeReferences">
+  Get Top Node References
+</h4>
+
+ getSourceAssertedValueSetTopNodesForRootCode
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Gets String references to all top node leaves under a root node
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        String rootCode: String representation of the unique identifier of the Asserted Value Set root entity
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        List&lt;String&gt;:  String references to entity top node designations of the Asserted Value Sets
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        none
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details:
+      </th>
+      <td>
+        Implementation:   Call this method on the associated LexEVS Asserted Value Set service instance to get all top node string identifier references  Sample Call:
+        <ul>
+          <li>
+            Step 1: Instantiate SourceAssertedValueSetService if it is not done yet:
+            org.lexgrid.valuesets.SourceAssertedValueSetServiceImpl  assVSServ = new SourceAssertedValueSetServiceImpl(new AssertedValueSetParameters.Builder().build());
+          </li>
+        </ul>
+        <ul>
+          <li>
+            Step 2: Get a list of all the top nodes in the Asserted Value Set system:
+            List&lt;String&gt; list = assVSServ.getSourceAssertedValueSetTopNodesForRootCode(&#34;C54443&#34;);
+
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="LexEVSAssertedValueSetService-SearchFunction">
+  Search Function
+</h2>
+<ul>
+  <li>
+    Get value set coding scheme reference based on a text match for a member entity - Can be used with a text match algorithm determining match type.
+  </li>
+</ul>
+<h4 id="LexEVSAssertedValueSetService-GetaValueSetfromTextMatch">
+  Get a Value Set from Text Match
+</h4>
+
+getSourceAssertedValueSetsforTextSearch
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Gets minimal coding scheme references of value sets for a text match
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        String matchText: Text to match on for contains, exact, other algorithms as allowed.MatchAlgorithm matchType: Type of matching for any given match type in this enum.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        List&lt;AbsoluteCodingSchemeVersionReference&gt;:  String references to entity top node designations of the Asserted Value Sets
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details:
+      </th>
+      <td>
+        Implementation:   Call this method on the associated LexEVS Asserted Value Set service instance to get any coding scheme references that have a member entity with text matching the text and algorithm  Sample Call:
+        <ul>
+          <li>
+            Step 1: Instantiate SourceAssertedValueSetService if it is not done yet:
+            org.lexgrid.valuesets.SourceAssertedValueSetServiceImpl  assVSServ = new SourceAssertedValueSetServiceImpl(new AssertedValueSetParameters.Builder().build());
+          </li>
+        </ul>
+        <ul>
+          <li>
+            Step 2: Get a list of all the top nodes in the Asserted Value Set system:
+            List&lt;AbsoluteCodingSchemeVersionReference&gt; list = assVSServ.getSourceAssertedValueSetsforTextSearch(&#34;blood&#34;, MatchAlgorithm.PRESENTATION_EXACT);
+
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h1 id="LexEVSAssertedValueSetService-SystemTesting">
+  System Testing
+</h1>
+The System test case for the LexEVS Value Set Definition service is performed using the JUnit test suite:edu.mayo.informatics.lexgrid.convert.directConversions.assertedValueSets.SourceAssertedValueSetSearchIndexServiceTestThis API is largely used as support for the LexEVSResolvedValueSetService but both test classes are run as part of regular LexEVS test suite AllTestsNormalConfigs.
+<h1 id="LexEVSAssertedValueSetService-Installation/Packaging">
+  Installation / Packaging
+</h1>
+Value Set Definition Services are integrated parts of core LexEVS API and are packaged and installed with other LexEVS services. 

@@ -1,0 +1,93 @@
+You can delete a data file (or link) and associated metadata, if the following criteria are all true:
+<ul>
+  <li>
+    Your user account has the group administrator role.
+  </li>
+  <li>
+    You own that data file. For information on the Own permission level, refer to
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=401736325" rel="nofollow">
+      About Permission Levels
+    </a>
+    .
+  </li>
+  <li>
+    That data file is less than 90 days old. (This criterion does not apply to links.)
+  </li>
+</ul>
+To delete a data file:
+<ol>
+  <li>
+    Run the following command:
+
+
+
+
+
+
+
+
+
+
+
+    dm_delete_datafile [-f] &lt;file-path&gt;
+
+
+    The following table describes each parameter:
+    <table>
+      <colgroup>
+        <col/>
+        <col/>
+      </colgroup>
+      <tbody>
+        <tr>
+          <th>
+            Parameter
+          </th>
+          <th>
+            Description
+          </th>
+        </tr>
+        <tr>
+          <td>
+            [-f]
+          </td>
+          <td>
+            By default, the system performs a soft deletion. The system retains the file for two years and then permanently deletes it. To perform immediately permanent deletion, include the -f parameter.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            &lt;file-path&gt;
+          </td>
+          <td>
+            A path within DME. Specify the data file that you want to delete.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    The system prompts you to confirm the deletion.
+  </li>
+  <li>
+    Type Y and press Enter. The system responds based on your parameters.
+  </li>
+</ol>
+For example, the following command deletes a file named testfile10 in the  /Example_Archive/downloads collection.
+
+
+
+
+
+
+
+
+
+
+
+dm_delete_datafile /Example_Archive/downloads/testfile10
+
+
+To request deletion of data you do not own or older data, contact
+<a href="mailto:NCIDataVault@mail.nih.gov" rel="nofollow">
+  NCIDataVault@mail.nih.gov
+</a>
+. 

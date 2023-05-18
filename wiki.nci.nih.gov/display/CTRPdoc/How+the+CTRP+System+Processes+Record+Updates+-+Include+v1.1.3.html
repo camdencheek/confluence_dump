@@ -1,0 +1,39 @@
+The CTRP system handles updates differently for different scenarios. Doing so ensures data integrity. How the system processes updates depends on a variety of factors, including the following:
+<ul>
+  <li>
+    Whether the update was to a person or an organization. If the update was to an organization, then it depends on whether the update was to the entity level (which is owned by CTRP), or to the role level (which is owned by CTEP), or to both.
+  </li>
+  <li>
+    What is being updated (just name or both name and address).
+  </li>
+  <li>
+    Who created the record
+  </li>
+  <li>
+    Whether the record has been overwritten.
+  </li>
+</ul>
+When the system considers who created the record, it considers the following user categories:
+<ul>
+  <li>
+    A PO Curator is a member from the PO Curation Team and logs into the PO Curation application.
+  </li>
+  <li>
+    PO User is a broad term to cover any user who accesses PO data. Consider the following examples:
+    <ul>
+      <li>
+        When a Registration application user requests the creation of a new organization, the Registration application is a PO user.
+      </li>
+      <li>
+        When a Protocol Abstraction application user requests the creation of a new organization, the Protocol Abstraction application is a PO user.
+      </li>
+      <li>
+        Someone who is using the PO web services to query person and organization data from PO is a PO User. Cancer Centers and other NCI divisions and centers use PO web services.
+      </li>
+    </ul>
+  </li>
+  <li>
+    A Data Provider is a special and privileged type of PO User. This user is considered a source of person and organization data in PO. The CTEP Enterprise Core Module (ECM) system is the primary data provider for PO.
+  </li>
+</ul>
+In most cases, the system handles modifications by users other than PO Curators as Change Requests. In some cases, PO Curators and Data Providers can update data by overriding existing data. At that time, the system captures information about the user who overrode the data.

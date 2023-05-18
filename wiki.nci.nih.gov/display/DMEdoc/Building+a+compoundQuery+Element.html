@@ -1,0 +1,60 @@
+When you perform a query, the system requires it in the context of a compoundQuery element, even if it contains only one simple query. A compoundQuery element consists of the following parts:
+<ul>
+  <li>
+    Join operator: This operator combines multiple queries. Valid values are as follows:
+    <ul>
+      <li>
+        AND
+      </li>
+      <li>
+        OR
+      </li>
+    </ul>
+  </li>
+  <li>
+    Filtering criteria: These can be a list of one or more simple queries, a list of one or more nested compound queries, or both.
+  </li>
+  <li>
+    Additional optional indicators: The following table describes the additional indicators to consider in your compoundQuery element:
+  </li>
+</ul>
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        Indicator
+      </th>
+      <th>
+        Description
+      </th>
+    </tr>
+    <tr>
+      <td>
+        detailedResponse
+      </td>
+      <td>
+        By default, the search returns only the path of the collections or data files that match the query criteria. If the query specifies true for the detailedResponse indicator, the service returns paths with metadata.
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        page
+      </td>
+      <td colspan="1">
+        By default, the query returns the first 100 results in page 1, the second 100 in page 2, and so on. If the query omits the page indicator, the service fetches page 1. If the query specifies a number for the page indicator, the service returns the specified page of results.
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        totalCount
+      </td>
+      <td colspan="1">
+        If the query specifies true for the totalCount indicator, the service returns a total count of collections or data files matching the query regardless of the query limit and page. The default for this indicator is false, so if the query omits it, the service does not return a total count.
+      </td>
+    </tr>
+  </tbody>
+</table>

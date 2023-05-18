@@ -1,0 +1,47 @@
+<h1 id="SSL/TLSHelp-TLS/SSLCertificatesforContractorHostedWebsites">
+  TLS/SSL Certificates for Contractor Hosted Websites
+</h1>
+<h2 id="SSL/TLSHelp-Requirement">
+  Requirement
+</h2>
+On June 8th 2015, the White House issued policy that all publicly accessible government websites and web services only provide service through a secure connection by December 31, 2016. This policy applies to publicly accessible websites and web services that &#39;are maintained in whole or in part by the Federal Government and operated by an agency, contractor, or other organization on behalf of the agency.’ All web browsing should be conducted using https only, secured via Transport Layer Security (TLS) encryption. This requires use of TLS/SSL certificates for web sites and web services.  The use of HTTPS is encouraged on intranets, but is not explicitly required.  Newly developed websites and services at all Federal agency domains or sub-domains must adhere to the White House issued policy. Details can be found at
+<a href="https://obamawhitehouse.archives.gov/sites/default/files/omb/memoranda/2015/m-15-13.pdf" rel="nofollow">
+  https://obamawhitehouse.archives.gov/sites/default/files/omb/memoranda/2015/m-15-13.pdf
+</a>
+<a href="https://www.whitehouse.gov/sites/default/files/omb/memoranda/2015/m-15-13.pdf" rel="nofollow">
+  (link is external)
+</a>
+Servers should be configured to support:
+<ul>
+  <li>
+    TLS 1.2 and must be configured to support a minimum of TLS 1.1 At a minimum SSL certificates should use SHA-256.
+  </li>
+  <li>
+    Perfect Forward Secrecy (PFS) ciphers and only ciphers with key lengths of 128 bits and above shouldshould be enabled and prioritized.
+  </li>
+  <li>
+    SHA2 signed, key length of above 2048 bits (for everything issued after 1/1/2014).
+  </li>
+  <li>
+    HTTP Strict Transport Security (HSTS) enabled with a max age of at least one year.
+  </li>
+  <li>
+    Redirect all HTTP requests to HTTPS with a server-side redirect.
+  </li>
+  <li>
+    Embed third-party content is discouraged, but where absolutely required, it must be referenced with HTTPS.
+  </li>
+</ul>
+Detailed information can be found at
+<a href="http://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-52r1.pdf" rel="nofollow">
+  http://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-52r1.pdf (link is external)
+</a>
+.
+<h2 id="SSL/TLSHelp-TLS/SSLcertificateacquisition">
+  TLS/SSL certificate acquisition
+</h2>
+Contractors are not issued an TLS/SSL certificate by NCI. Contractors can either request a free certificate from the NIH or obtain a certificate from a commercial vendor, but the latter option (commercial) is not free.  While most contractors have had success getting a free certificate from NIH, some have reported issues such as substantial delays. If you choose to work with the NIH, read the
+<a href="https://ocio.nih.gov/Smartcard/Pages/TLS-Certificates.aspx" rel="nofollow">
+  OCIO TLS Digital certificate guidance process
+</a>
+. If you choose to obtain a certificate from a commercial vendor, NCI will approve certificate requests on the NCI domain names for legitimate and verified contractors. NCI contractors have had success obtaining commercially-provided TLS/SSL certificates on the nci.nih.gov and cancer.gov domains from the following vendors: Digicert, Godaddy, and Comodo.  It is not a requirement to use a particular certificate vendor; we only listed those vendors with whom we have had recent experience.Contractors should allow sufficient lead time for certificate request validation and approval. It may take weeks for the request to be validated and approved depending on the particular vendor&#39;s validation process.If you are requesting a certificate for an NCI domain site, notify nciirm@mail.nih.gov (link sends e-mail)with your company name, company contact name, phone number and email address, the NCI contract project manager, the requested URL DNS name (e.g. ThisNewNCIwebsite.nci.nih.gov ) and the certificate provider you plan to use so we can notify the federal domain owner that a request is forthcoming.If your provider has difficulty getting approval from the federal domain owner, email the NCI at nciirm@mail.nih.gov

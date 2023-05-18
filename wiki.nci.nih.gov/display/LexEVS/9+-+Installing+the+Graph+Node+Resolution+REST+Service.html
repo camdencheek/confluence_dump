@@ -1,0 +1,139 @@
+<h2 id="id-9InstallingtheGraphNodeResolutionRESTService-Prerequisites">
+  Prerequisites
+</h2>
+<ul>
+  <li>
+    ArangoDb 3.5.x
+  </li>
+  <li>
+    Maven 3.3.x
+  </li>
+  <li>
+    Tomcat 8.5
+  </li>
+  <li>
+    Git 1.9.x
+  </li>
+  <li>
+    Java 1.8
+  </li>
+</ul>
+<h2 id="id-9InstallingtheGraphNodeResolutionRESTService-BuildInstructions">
+  Build Instructions
+</h2>
+Clone the Graph Node Resolver project using:
+<table>
+  <colgroup>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <td>
+        git clone
+        <a href="https://github.com/lexevs/graph-resolve.git" rel="nofollow">
+          https://github.com/lexevs/graph-resolve.git
+        </a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Change to the graph-resolve directory:
+<table>
+  <colgroup>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <td>
+        cd graph-resolve
+      </td>
+    </tr>
+  </tbody>
+</table>
+Change to the appropriate version:
+<table>
+  <colgroup>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <td>
+        git checkout v1.0 (or master)
+      </td>
+    </tr>
+  </tbody>
+</table>
+Install ArangoDb for your OS.
+<a href="https://www.arangodb.com/docs/3.5/index.html" rel="nofollow">
+  https://www.arangodb.com/docs/3.5/index.html
+</a>
+Load Sample Data from LexEVS (Requires an install of LexEVS along with the loaded test data from owl file owl2-special-cases-Defined-Annotated)
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=419727132" rel="nofollow">
+  Loading the Graph Database into ArangoDb for a Given Terminology
+</a>
+Find the src.main/resources folder in the graph-resolve root folder and edit the application.properties to match you Arangodb install.
+server.error.whitelabel.enabled=false
+
+
+hostName=localhost:8080
+
+address=127.0.0.1
+
+port=8529
+
+protocol=HTTP_JSON
+
+usr=root
+
+pwd=lexgrid
+Where hostName, address, port, usr, and pwd are all locally determined variables for Arangodb.You will have to pass this password to the container via something like setenv.sh in the /bin or /libexec/bin folder of the Tomcat root install directory since it does not seem to read it here.
+<table>
+  <colgroup>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <td>
+        -Dpwd=&lt;your password&gt;
+      </td>
+    </tr>
+  </tbody>
+</table>
+Build the application with Maven:
+<table>
+  <colgroup>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <td>
+        mvn clean install
+      </td>
+    </tr>
+  </tbody>
+</table>
+You may choose not to install the sample data or other terminologies and append -DskipTests to build without testing
+<table>
+  <colgroup>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <td>
+        mvn clean install -DskipTests
+      </td>
+    </tr>
+  </tbody>
+</table>
+If the build is successful, the resulting war file will be in the target directory.  Deploy to the Tomcat container and start TomcatA suitable smoke test when there is content loaded to Arangodb is:
+https://&lt;my graph resolver uri&gt;/databases
+which should return something like the following:
+{
+	dataBases: [
+	&#34;NCI_Thesaurus&#34;,
+	&#34;NDFRT&#34;,
+	&#34;UMLS_SemNet&#34;,
+	&#34;owl2lexevs&#34;
+	]
+}
+.

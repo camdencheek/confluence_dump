@@ -1,0 +1,162 @@
+This page includes the following topics:
+<ul>
+  <li>
+    <a href="#id-4InstallingandConfiguringSoftwareforNBIA-InstallingandConfiguringMySQL" rel="nofollow">
+      Installing and Configuring MySQL
+    </a>
+    <ul>
+      <li>
+        <a href="#id-4InstallingandConfiguringSoftwareforNBIA-Linux" rel="nofollow">
+          Linux
+        </a>
+      </li>
+      <li>
+        <a href="#id-4InstallingandConfiguringSoftwareforNBIA-Windows" rel="nofollow">
+          Windows
+        </a>
+      </li>
+      <li>
+        <a href="#id-4InstallingandConfiguringSoftwareforNBIA-InitialDatabaseSetup" rel="nofollow">
+          Initial Database Setup
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#id-4InstallingandConfiguringSoftwareforNBIA-InstallingandConfiguringTomcat7.X" rel="nofollow">
+      Installing and Configuring Tomcat 7.X
+    </a>
+  </li>
+</ul>
+<h2 id="id-4InstallingandConfiguringSoftwareforNBIA-InstallingandConfiguringMySQL">
+  Installing and Configuring MySQL
+</h2>
+A MySQL Version 5.5 server must be downloaded, installed, and running for the NBIA installation to work successfully. Do not install later versions as they have not been tested with NBIA.To download and install MySQL, follow the steps outlined on the
+<a href="http://downloads.mysql.com/archives.php?p=mysql-5.1&amp;o=-win" rel="nofollow">
+  MySQL website
+</a>
+.
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+TipConsult the following 2 links to successfully set up secure and well-performing MySQL servers, in preparation for installing NBIA:
+<ul>
+  <li>
+    <a href="http://dev.mysql.com/doc/refman/5.0/en/security-guidelines.html" rel="nofollow">
+      MySQL Security Guide
+    </a>
+    <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+      <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+    </a>
+  </li>
+  <li>
+    Performance –
+    <ul>
+      <li>
+        <a href="http://www.mysql.com/why-mysql/performance/index.html" rel="nofollow">
+          General performance tuning
+        </a>
+        <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+          <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+        </a>
+      </li>
+    </ul>
+  </li>
+</ul>
+More Tips
+<ul>
+  <li>
+    Record the MySQL root username/password you chose when you installed MySQL, as you will need to use this as your database.system.user/ database.system.password later in the NBIA installation process.
+  </li>
+  <li>
+    Note the MySQL port chosen during the MySQL installation process, as you will need to use this as your database.port later in the installation process.
+  </li>
+  <li>
+    As part of the installation process, the default character set is set to latin1 for the NBIA MySQL database.
+  </li>
+</ul>
+Once installed, you must configure MySQL for NBIA (only for Linux).
+<h3 id="id-4InstallingandConfiguringSoftwareforNBIA-Linux">
+  Linux
+</h3>
+Refer the document at
+<a href="http://dev.mysql.com/doc/refman/5.5/en/linux-installation.html" rel="nofollow">
+  http://dev.mysql.com/doc/refman/5.5/en/linux-installation.html
+  <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+    <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+  </a>
+</a>
+for installing MySQL on Linux. By default, in some Linux environments, the identifiers used in the database are case-sensitive, so you must perform the following steps.Table namesNBIA application assumes identifiers in MySQL are case insensitive. And it can be defined in MySQL configuration file. The following steps are applicable to CentOS 6.6 environment.
+<ol>
+  <li>
+    Edit the /etc/mysql/my.cnf or any other my.cnf file which is used to configure your mysql.Under the line [mysqld],  add the line below:
+    lower_case_table_names=1
+  </li>
+  <li>
+    Use the following command to restart the MySQL service for the changes to take effect:
+    sudo service mysql restart
+  </li>
+</ol>
+<h3 id="id-4InstallingandConfiguringSoftwareforNBIA-Windows">
+  Windows
+</h3>
+Download and install MySQL. Refer to the
+<a href="http://dev.mysql.com/doc/refman/5.5/en/index.html" rel="nofollow">
+  MySQL 5.5 Reference Manual
+  <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+    <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+  </a>
+</a>
+for detailed information on
+<a href="http://dev.mysql.com/doc/refman/5.5/en/installing.html" rel="nofollow">
+  Installing and Upgrading MySQL
+  <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+    <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+  </a>
+</a>
+.
+<h3 id="id-4InstallingandConfiguringSoftwareforNBIA-InitialDatabaseSetup">
+  Initial Database Setup
+</h3>
+<ol>
+  <li>
+    Before building and deploying the NBIA application, you must create the corresponding database, adding a new user account whose name should be the same as that defined in the &lt;installer_directory&gt;\install.properties file. For example:
+    database.user=nbia_user
+    database.password=nbia_password
+    database.name=nbiadb
+  </li>
+  <li>
+    Create the above database and user by following these steps:
+    <ol>
+      <li>
+        Connect to the database server: mysql&gt; mysql -h host -u user -p
+      </li>
+      <li>
+        Enter password.
+      </li>
+      <li>
+        Use the following SQL to create a new account:
+      </li>
+    </ol>
+    mysql&gt; CREATE USER &#39;nbia_user&#39;@&#39;localhost&#39; IDENTIFIED BY &#39;nbia_password&#39;;
+    mysql&gt; GRANT ALL PRIVILEGES ON *.* TO &#39;nbia_user&#39;@&#39;localhost&#39;;
+
+    d. Use the following SQL to create the database: nbiadb
+    mysql&gt; CREATE DATABASE nbiadb
+  </li>
+</ol>
+<h2 id="id-4InstallingandConfiguringSoftwareforNBIA-InstallingandConfiguringTomcat7.X">
+  Installing and Configuring Tomcat 7.X
+</h2>
+A Tomcat version 7.X  must be downloaded and installed for the NBIA installation to work successfully. Generally the latest version of Tomcat 7 will have the latest fixes, NBIA has been tested with 7.0.85. Installing Tomcat is beyond the scope of this document. For more information, refer to
+<a href="https://access.redhat.com/documentation/en-US/JBoss_Enterprise_Application_Platform/6.2/pdf/Installation_Guide/JBoss_Enterprise_Application_Platform-6.2-Installation_Guide-en-US.pdf" rel="nofollow">
+  Tomcat 7 Installation Guide
+</a>
+<a href="http://www.cancer.gov/global/web/policies/exit" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/73598628/exit_small.png?version=1&amp;modificationDate=1331098601000&amp;api=v2">
+</a>
+. Note the installation directory of the Tomcat server and use it to set the TOMCAT_HOME and gov.nih.nci.ncia.tomcat.home in the properties.See
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=414909806" rel="nofollow">
+  Configuring Tomcat Servers and MySQL Server to Run as Services
+</a>
+ if you want to run Tomcat as a service.

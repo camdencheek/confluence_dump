@@ -1,0 +1,66 @@
+<h1 id="CompletingtheWebsiteSetup-Environment">
+   Environment
+</h1>
+Note: If you are upgrading from an older version of Codalab that doesn&#39;t use Docker, please make sure you remove your settings/local.py file!
+<h2 id="CompletingtheWebsiteSetup-OnMac/Linux">
+  On Mac/Linux
+</h2>
+Clone the project and make a copy of .env_sample (or .env_production_sample if you&#39;re creating a production server) called .env in the root of the project directory:
+<ol>
+  <li>
+    Install Docker CE (Community Edition) use the
+    <a href="https://download.docker.com/mac/stable/Docker.dmg" rel="nofollow">
+      mac installer here
+    </a>
+    , which is complete with docker-compose.
+    <ul>
+      <li>
+        For Ubuntu, follow
+        <a href="https://docs.docker.com/engine/installation/linux/ubuntu/#install-docker" rel="nofollow">
+          command line installation instructions here
+        </a>
+        ). Note: If you&#39;re using Ubuntu, you&#39;ll also need to install manually install
+        <a href="https://docs.docker.com/compose/install/" rel="nofollow">
+          docker-compose
+        </a>
+        . If you have
+        <a href="https://pip.pypa.io/en/stable/installing/" rel="nofollow">
+          Pip
+        </a>
+         installed on your system, you can do this with pip install docker-compose
+      </li>
+    </ul>
+  </li>
+  <li>
+    git clone
+    <a href="https://github.com/codalab/codalab-competitions.git" rel="nofollow">
+      https://github.com/codalab/codalab-competitions.git
+    </a>
+  </li>
+  <li>
+    cd codalab-competitions
+  </li>
+  <li>
+    cp .env_sample .env
+  </li>
+</ol>
+<h3 id="CompletingtheWebsiteSetup-Editingprojectvariables">
+  Editing project variables
+</h3>
+Open .env in your preferred editor, you&#39;ll fill this in with your storage keys, SSL information, etc.Be sure to replace passwords/secrets!
+# Here are some important settings to consider:
+# =============================================
+# Always set the secret key!
+DJANGO_SECRET_KEY=something-random
+
+# For storage you&#39;ll want to choose AWS or S3, and comment out or delete the other one
+# DEFAULT_FILE_STORAGE=storages.backends.s3boto.S3BotoStorage
+# ... and rest of AWS settings
+#
+# or
+# DEFAULT_FILE_STORAGE=codalab.azure_storage.AzureStorage
+# ... and rest of Azure storage settings
+
+# Change the secrets, passwords, and ports if you&#39;re going to open up the rest,
+# but with just the default setup and port 80 open the only other thing you may have
+# to worry about is SSL. The bottom of this doc has a section on SSL 

@@ -1,0 +1,32 @@
+Contents of this Page
+<ul>
+  <li>
+    <a href="#LoadingAssertedValueSetDefinitionsandIndexes-ManagingAssertedValueSetSupportingLoads" rel="nofollow">
+      Managing Asserted Value Set Supporting Loads
+    </a>
+  </li>
+  <li>
+    <a href="#LoadingAssertedValueSetDefinitionsandIndexes-BatchLoadofLexEVSSourceAssertedValueSetsToDefinition" rel="nofollow">
+      Batch Load of LexEVS Source Asserted Value Sets To Definition
+    </a>
+  </li>
+  <li>
+    <a href="#LoadingAssertedValueSetDefinitionsandIndexes-IndexingLexEVSSourceAssertedValueSets" rel="nofollow">
+      Indexing LexEVS Source Asserted Value Sets
+    </a>
+  </li>
+</ul>
+<h2 id="LoadingAssertedValueSetDefinitionsandIndexes-ManagingAssertedValueSetSupportingLoads">
+  Managing Asserted Value Set Supporting Loads
+</h2>
+Value sets asserted by the NCI Thesaurus can be managed by loading their definitions and indexing their content for search APIs.  This is accomplished in LexEVS installs by navigating to the root install folder and running the following shell scripts in the admin folder. The indexes builder should be run following the completion of the definition load.
+<h2 id="LoadingAssertedValueSetDefinitionsandIndexes-BatchLoadofLexEVSSourceAssertedValueSetsToDefinition">
+  Batch Load of LexEVS Source Asserted Value Sets To Definition
+</h2>
+This admin script defaults to the NCI Thesaurus.  Adding a version is required at this time to define which Thesaurus version is considered production.  Other script designations can further define parameters, but are generally not required-cs, --codingScheme     usage=&#34;Name of Coding Scheme that asserts values sets&#34;-v, --version                 usage=&#34;Version of the coding scheme.&#34;-a, --association            usage=&#34;Relationship name asserted by the Doding Scheme-t, --target                    usage=&#34;Target to Source resolution.&#34;-uri, --uri                      usage=&#34;Base uri to build the coding scheme uri upon&#34;-o, --owner                   usage=&#34;Owner of the value set assertion&#34;-s, --sourceName          usage=&#34;Gives the name of the property to resolve the source value against&#34;Value Set Definition Load
+./SourceAssertedValueSetDefinitionLoad.sh -v 18.03d
+<h2 id="LoadingAssertedValueSetDefinitionsandIndexes-IndexingLexEVSSourceAssertedValueSets">
+  Indexing LexEVS Source Asserted Value Sets
+</h2>
+The options (coding scheme urn and version) below are not required.  If you don&#39;t provide them you can choose from a list of terminologies displayed and input a number based on that display.  The user should choose the PRODUCTION tagged NCI Thesaurus.Asserted Value Set Indexing
+./BuildAssertedValueSetIndex.sh -u &#34;urn:oid:2.16.840.1.113883.3.26.1.1&#34; -v &#34;05.09e&#34;

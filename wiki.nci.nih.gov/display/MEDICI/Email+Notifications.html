@@ -1,0 +1,72 @@
+<ul>
+  <li>
+    <a href="#EmailNotifications-Settings" rel="nofollow">
+      Settings
+    </a>
+  </li>
+  <li>
+    <a href="#EmailNotifications-TestingWithoutSendingE-mails" rel="nofollow">
+      Testing Without Sending E-mails
+    </a>
+  </li>
+</ul>
+The CodaLab website requires the ability to send emails when a user forgets his or her password and requests a password reset.We use the &#34;SendGrid add-on to Windows Azure&#34; to send emails via SMTP.The
+<a href="http://sendgrid.com/" rel="nofollow">
+  SendGrid
+</a>
+ developer documentation explains
+<a href="http://sendgrid.com/docs/Integrate/Frameworks/django.html" rel="nofollow">
+  how to integrate the email service in Django
+</a>
+. In addition, the Django project provides comprehensive documentation:
+<a href="https://docs.djangoproject.com/en/dev/topics/email/" rel="nofollow">
+  https://docs.djangoproject.com/en/dev/topics/email/
+</a>
+. Additional notes are collected below.
+<h1 id="EmailNotifications-Settings">
+  Settings
+</h1>
+The key settings that affect how emailing works follow.
+EMAIL_BACKEND = &#39;django.core.mail.backends.smtp.EmailBackend&#39;
+EMAIL_HOST = &#39;smtp.sendgrid.net&#39;
+EMAIL_HOST_USER = &#39;&lt;insert username&gt;&#39;
+EMAIL_HOST_PASSWORD = &#39;&lt;insert password&gt;&#39;
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = &#39;info@codalab.org&#39;
+SERVER_EMAIL = &#39;info@codalab.org&#39;
+The
+<a href="https://docs.djangoproject.com/en/1.11/ref/contrib/sites/" rel="nofollow">
+  Site
+</a>
+ configuration also plays a role because it defines the domain name associated with the website. The site domain name and a human-readable name of the website are defined in the settings by:CODALAB_SITE_DOMAIN = &#39;codalab.org&#39;
+CODALAB_SITE_NAME = &#39;CodaLab&#39;
+The initialize.py script inserts these names in the database. Recall that initialize.py is located in codalab/scripts and is used to insert constants into the database. To illustrate how the site info is used, consider the email sent to a user resetting his or her password:
+Subject: [CodaLab] Password Reset Email
+From: info@codalab.org
+To: someuser@somewhere.com
+Date: Thu, 03 Oct 2013 22:42:55 -0000
+
+You&#39;re receiving this email because you or someone else has requested a password
+for your user account at codalab.org. It can be safely ignored if you did not request
+a password reset. Click the link below to reset your password.
+
+http://codalab.org/accounts/password/reset/key/1-3le-6640241efe4e5b77f4e5/
+
+In case you forgot, your username is someuser.
+
+Thanks for using our site!
+The subject field of the email uses the verbose name of the site, while the body of the email includes several references to
+<a href="http://codalab.org" rel="nofollow">
+  codalab.org
+</a>
+, which is given by the site&#39;s domain name.
+<h1 id="EmailNotifications-TestingWithoutSendingE-mails">
+  Testing Without Sending E-mails
+</h1>
+As noted in the
+<a href="https://docs.djangoproject.com/en/dev/topics/email/" rel="nofollow">
+  Django documentation
+</a>
+, one can avoid sending emails during development but still see them in the console by setting:EMAIL_BACKEND = &#39;django.core.mail.backends.console.EmailBackend&#39;
+This is the default configuration for the base Dev configuration.

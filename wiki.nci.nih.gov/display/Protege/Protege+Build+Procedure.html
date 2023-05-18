@@ -1,0 +1,158 @@
+<h2 id="ProtegeBuildProcedure-BuildingandInstallingusingJenkins">
+  Building and Installing using Jenkins
+</h2>
+<ol>
+  <li>
+    A new release will be tagged in the github project
+    <a href="https://github.com/ncievs/nci-protege5.git" rel="nofollow">
+      https://github.com/ncievs/nci-protege5.git
+    </a>
+  </li>
+  <li>
+    Navigate to Jenkins at
+    <a href="https://evs-jenkins.nci.nih.gov/jenkins/job/_default/job/_lower/job/_Protege/" rel="nofollow">
+      https://evs-jenkins.nci.nih.gov/jenkins/job/_default/job/_lower/job/_Protege/
+    </a>
+  </li>
+  <li>
+    Choose protege_build &gt; Build with Parameters and select the appropriate tag in the BRANCH_OR_TAG selection box and click Build
+  </li>
+  <li>
+    Review the Console Output for any errors
+  </li>
+  <li>
+    For Dev, choose protege_deploy_dev &gt; Build with Parameters. You should be presented with the same tag. Click Build
+  </li>
+  <li>
+    Review the Console Output for any errors
+  </li>
+  <li>
+    Check the protege dev server and see that the /local/content/protege/protege-server and protege-desktop have been updated
+  </li>
+  <li>
+    Confirm the service has started by checking /local/content/protege/logs/protserv-console.txt for &#34;Admin server has started at port 9091&#34;
+  </li>
+</ol>
+<h2 id="ProtegeBuildProcedure-ManualBuild">
+  Manual Build
+</h2>
+<h3 id="ProtegeBuildProcedure-BuildinganewProtegeversiononDevusingAnt">
+  Building a new Protege version on Dev using Ant
+</h3>
+<ol>
+  <li>
+    A new release will be tagged in the github project https://github.com/ncievs/nci-protege5.git
+  </li>
+  <li>
+    Clone the new release into a new directory in /local/project.  &#34;git clone https://github.com/ncievs/nci-protege5.git nci-protege-V&lt;tag&gt;&#34;
+  </li>
+  <li>
+    Enter into the scripts subdirectory &#34;cd nci-protege-V&lt;tag&gt;/scripts/&#34;
+  </li>
+  <li>
+    Run the build script, passing in the version number &#34;./build.sh &lt;tag&gt; ncievs &gt;&gt; build.log&#34;.
+  </li>
+  <li>
+    Review the output for errors or build failures: &#34;cat build.log | grep FAILURE&#34;
+  </li>
+  <li>
+    Check the structure of the build.  The following folders and files should be present under &lt;build-location&gt;/nci-protege5/scripts/nci-protege5
+    <ul>
+      <li>
+        binaryowl
+      </li>
+      <li>
+        explanation-workbench
+      </li>
+      <li>
+        metaproject
+      </li>
+      <li>
+        nci-protege_&lt;date&gt;.tar.gz
+      </li>
+      <li>
+        nci-protege_&lt;date&gt;.zip
+      </li>
+      <li>
+        owlapi
+      </li>
+      <li>
+        protege
+      </li>
+      <li>
+        protege-server
+      </li>
+      <li>
+        run-protege.sh
+      </li>
+      <li>
+        run-server.sh
+      </li>
+    </ul>
+  </li>
+</ol>
+<h3 id="ProtegeBuildProcedure-Installingtheserverbuild">
+  Installing the server build
+</h3>
+<ol>
+  <li>
+    Navigate to the running instance of protege, on Dev this is /local/content/protege/scripts/
+  </li>
+  <li>
+    Shutdown the protege server: &#34;./shutdown.sh&#34;
+  </li>
+  <li>
+    Archive the previous version of the services, which are these 2 directories in /local/content/protege:
+    <ul>
+      <li>
+        protegeserver
+      </li>
+      <li>
+        protegedesktop
+      </li>
+    </ul>
+  </li>
+  <li>
+    Copy the new protegeserver into the service directory &#34;cp -r &lt;build-location&gt;/nci-protege5/scripts/nci-protege5/protege-server/target/server-distribution/server /local/content/protege/protegeserver&#34;
+  </li>
+  <li>
+    Copy the new protegedesktop into the empty desktop directory &#34;cp -r &lt;build-location&gt;/nci-protege5/scripts/nci-protege5/protege/protege-desktop/target/protege-5.&lt;version&gt;-SNAPSHOT-platform-independent/Protege-5.&lt;version&gt;-SNAPSHOT /local/content/protege/protegedesktop&#34;
+  </li>
+  <li>
+    From the /local/content/protege/scripts directory start the protege server: &#34;./run-background.sh&#34;.  The server should start almost immediately
+  </li>
+  <li>
+    Confirm the service has started by checking /local/content/protege/logs/protserv-console.txt for &#34;Admin server has started at port 9091&#34;
+  </li>
+</ol>
+<h2 id="ProtegeBuildProcedure-Shutdown/StartupofServices">
+  Shutdown/Startup of Services
+</h2>
+<h3 id="ProtegeBuildProcedure-Shutdown">
+  Shutdown
+</h3>
+<ol>
+  <li>
+    Navigate to /local/content/protege/scripts/
+  </li>
+  <li>
+    To shutdown the protegeserver: &#34;./shutdown.sh&#34;
+  </li>
+</ol>
+<h3 id="ProtegeBuildProcedure-Startup">
+  Startup
+</h3>
+<ol>
+  <li>
+    Navigate to /local/content/protege/scripts/
+  </li>
+  <li>
+    To startup protege server: &#34;./run-background.sh&#34;
+  </li>
+  <li>
+    Do &#34;tail ../logs/protserv-console.txt&#34; to check that the protege server is running.
+  </li>
+  <li>
+    Server is started when you see &#34;Admin server has started at port 9091&#34;
+  </li>
+</ol>

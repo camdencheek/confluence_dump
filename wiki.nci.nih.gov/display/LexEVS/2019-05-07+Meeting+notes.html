@@ -1,0 +1,205 @@
+<h2 id="id-20190507Meetingnotes-Date">
+  Date
+</h2>
+07 May 2019
+<h2 id="id-20190507Meetingnotes-Attendees">
+  Attendees
+</h2>
+<ul>
+  <li>
+    <a href="https://wiki.nci.nih.gov/display/~safrant" rel="nofollow">
+      Safran, Tracy (NIH/NCI) [C]
+    </a>
+  </li>
+  <li></li>
+</ul>
+<h2 id="id-20190507Meetingnotes-Goals">
+  Goals
+</h2>
+<ul>
+  <li></li>
+</ul>
+<h2 id="id-20190507Meetingnotes-Discussionitems">
+  Discussion items
+</h2>
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        Time
+      </th>
+      <th>
+        Item
+      </th>
+      <th>
+        Who
+      </th>
+      <th>
+        Notes
+      </th>
+    </tr>
+    <tr>
+      <td></td>
+      <td>
+        LexEVS deployment
+      </td>
+      <td></td>
+      <td>
+        <ul>
+          <li>
+            Data is on QA
+            <ul>
+              <li>
+                New loader uses latest OWL2 API.  Some OWL terminologies might be affected.
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>
+        LexEVS loader on DataQA
+      </td>
+      <td></td>
+      <td>
+        <ul>
+          <li>
+            Barracuda configured on DataQA
+          </li>
+          <li>
+            Metathesaurus dropped Monday 5-6
+          </li>
+          <li>
+            Need to move lexevs loader over. Copy from Dev or is there a new package?
+            <ul>
+              <li>
+                Use 6.5.2.Final package
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1"></td>
+      <td colspan="1">
+        Docker LexEVS?
+      </td>
+      <td colspan="1"></td>
+      <td colspan="1">
+        They have ability to support us to use Docker on Dev to Prod. Tracy T said she was fine with it. Working with Cuong to sort this out. There is a Shady Grove EVS Dev docker server d939-v.  Would connect with Jenkins to deploy everything.  Would be server component only - would not include the indexes in the container and maybe not the data.
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1"></td>
+      <td colspan="1">
+        AWS
+      </td>
+      <td colspan="1"></td>
+      <td colspan="1">
+        <ul>
+          <li>
+            Data copy working?
+          </li>
+          <li>
+            AWS is focused on cost.  Currently Dev is at half of what we requested and is shut down at 6pm each night.
+            <ul>
+              <li>
+                Reactive architecture - boost during heavy loads? Software would need to be able to take advantage.
+              </li>
+              <li>
+                Heavy duty queries might be better on physical blade.
+              </li>
+              <li>
+                Should have complete buy in on one option or the other.
+              </li>
+              <li>
+                Newest servers only around since 2017.
+              </li>
+            </ul>
+          </li>
+          <li>
+            Next steps?
+            <ul>
+              <li>
+                RestAPI QA, Stage, Prod
+                <ul>
+                  <li>
+                    Not approved for all tiers by government.
+                  </li>
+                  <li>
+                    Need to consider Stardog licensing.  We have 5 dev, 1 prod license.
+                    <ul>
+                      <li>
+                        Need to set up SPARQL endpoint if we move Stardog over to AWS
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    UMLS MySQL database - move that to AWS?
+                  </li>
+                  <li>
+                    Stardog left current location in house but EVSRestAPI on AWS.
+                    <ul>
+                      <li>
+                        Needs testing
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                Server migration for rest of stack - based on Glenn Zaiderman&#39;s email of April 16.
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1"></td>
+      <td colspan="1">
+        OBIB
+      </td>
+      <td colspan="1"></td>
+      <td colspan="1">
+        Anything to discuss?  Loader working- need Tree extension testing. 6.5.3
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1"></td>
+      <td colspan="1">
+        Stardog Stage
+      </td>
+      <td colspan="1"></td>
+      <td colspan="1">
+        Still down.  Looks like Stardog environment is corrupt - possible error in 6x deployment.  Wipe and redeploy is TS suggestion
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="id-20190507Meetingnotes-Actionitems">
+  Action items
+</h2>
+<ul>
+  <li>
+    Work on Stage Stardog issues
+  </li>
+  <li>
+    Test AWS Rest API vs in-house Stardog
+  </li>
+  <li>
+    Deploy 6.5.2 loader on DataQA
+  </li>
+  <li>
+    Continue working on Docker
+  </li>
+</ul>
