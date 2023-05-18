@@ -1,0 +1,864 @@
+The information and links on this page are no longer being updated and are provided for reference purposes only.To Print the GuideYou can create a PDF of the guide. For instructions refer to the tip Printing multiple pages. If you want to print a single page, refer to
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=8164401" rel="nofollow">
+  Printing a page
+</a>
+.This document provides instructions for installing caIntegrator Bioconductor.Topics in this document include:
+<ul>
+  <li>
+    <a href="#caIntegratorBioconductorInstallationGuide-Overview" rel="nofollow">
+      Overview
+    </a>
+  </li>
+  <li>
+    <a href="#caIntegratorBioconductorInstallationGuide-Prerequisites" rel="nofollow">
+      Prerequisites
+    </a>
+  </li>
+  <li>
+    <a href="#caIntegratorBioconductorInstallationGuide-InstallDependentPackages" rel="nofollow">
+      Install Dependent Packages
+    </a>
+    <ul>
+      <li>
+        <a href="#caIntegratorBioconductorInstallationGuide-Globus4.0.3" rel="nofollow">
+          Globus 4.0.3
+        </a>
+      </li>
+      <li>
+        <a href="#caIntegratorBioconductorInstallationGuide-ApacheAxis1.4" rel="nofollow">
+          Apache Axis 1.4
+        </a>
+      </li>
+      <li>
+        <a href="#caIntegratorBioconductorInstallationGuide-ActiveMQ4.0.2" rel="nofollow">
+          ActiveMQ 4.0.2
+        </a>
+      </li>
+      <li>
+        <a href="#caIntegratorBioconductorInstallationGuide-R2.9.0" rel="nofollow">
+          R 2.9.0
+        </a>
+      </li>
+      <li>
+        <a href="#caIntegratorBioconductorInstallationGuide-DependentRpackages(RCurl,SJava,RWebServices,RUnit,DNAcopy)" rel="nofollow">
+          Dependent R packages (RCurl, SJava, RWebServices, RUnit, DNAcopy)
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#caIntegratorBioconductorInstallationGuide-InstallcaDNAcopy" rel="nofollow">
+      Install caDNAcopy
+    </a>
+    <ul>
+      <li>
+        <a href="#caIntegratorBioconductorInstallationGuide-caDNAcopyBaseCode" rel="nofollow">
+          caDNAcopy Base Code
+        </a>
+      </li>
+      <li>
+        <a href="#caIntegratorBioconductorInstallationGuide-caDNAcopyRWebService" rel="nofollow">
+          caDNAcopy RWebService
+        </a>
+      </li>
+      <li>
+        <a href="#caIntegratorBioconductorInstallationGuide-caDNAcopyGridService" rel="nofollow">
+          caDNAcopy Grid Service
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#caIntegratorBioconductorInstallationGuide-InstallcaCGHcall" rel="nofollow">
+      Install caCGHcall
+    </a>
+    <ul>
+      <li>
+        <a href="#caIntegratorBioconductorInstallationGuide-caCGHcallBaseCode" rel="nofollow">
+          caCGHcall Base Code
+        </a>
+      </li>
+      <li>
+        <a href="#caIntegratorBioconductorInstallationGuide-caCGHcallRWebService" rel="nofollow">
+          caCGHcall RWebService
+        </a>
+      </li>
+      <li>
+        <a href="#caIntegratorBioconductorInstallationGuide-caCGHcallGridService" rel="nofollow">
+          caCGHcall Grid Service
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#caIntegratorBioconductorInstallationGuide-LaunchBioconductorServices" rel="nofollow">
+      Launch Bioconductor Services
+    </a>
+    <ul>
+      <li>
+        <a href="#caIntegratorBioconductorInstallationGuide-StartingBioconductorServices" rel="nofollow">
+          Starting Bioconductor Services
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#caIntegratorBioconductorInstallationGuide-OptionalImprovements" rel="nofollow">
+      Optional Improvements
+    </a>
+    <ul>
+      <li>
+        <a href="#caIntegratorBioconductorInstallationGuide-ScriptstoStartup/ShutdownBioconductor" rel="nofollow">
+          Scripts to Startup/Shutdown Bioconductor
+        </a>
+      </li>
+      <li>
+        <a href="#caIntegratorBioconductorInstallationGuide-SettingUpCommonLogging" rel="nofollow">
+          Setting Up Common Logging
+        </a>
+      </li>
+    </ul>
+  </li>
+</ul>
+Entering CommandsText in this document formatted as monoface bold type indicates Unix or R commands you should type, as indicated, at the command line.
+<h2 id="caIntegratorBioconductorInstallationGuide-Overview">
+  Overview
+</h2>
+caIntegrator provides the capability to perform segmentation and copy number analysis using either caDNAcopy or caCGHcall. Both of these tools are part of the Bioconductor suite and are implemented as caGrid services wrapping the R Bioconductor code. You can install one or both of these tools either on a separate server from caIntegrator or on the same server.WarningThe R processing associated with caDNAcopy and/or caCGHcall can be very CPU and memory intensive.The current installation instructions only support installation on Linux platforms. Recommended configurations are given at the bottom.
+<h2 id="caIntegratorBioconductorInstallationGuide-Prerequisites">
+  Prerequisites
+</h2>
+The following software packages must be installed prior to beginning the instructions:
+<ul>
+  <li>
+    <a href="https://cds.sun.com/is-bin/INTERSHOP.enfinity/WFS/CDS-CDS_Developer-Site/en_US/-/USD/ViewProductDetail-Start?ProductRef=jdk-6u24-oth-JPR@CDS-CDS_Developer" rel="nofollow">
+      Java Development Kit (JDK) 1.6.x
+    </a>
+    <ul>
+      <li>
+        Ensure that JAVA_HOME is defined, preferably in the user or system profile
+      </li>
+      <li>
+        Ensure that $JAVA_HOME/bin is in PATH
+      </li>
+    </ul>
+  </li>
+</ul>
+<ul>
+  <li>
+    <a href="http://archive.apache.org/dist/ant/binaries/apache-ant-1.7.0-bin.zip" rel="nofollow">
+      Ant 1.7.x
+    </a>
+    <ul>
+      <li>
+        Ensure that ANT_HOME is defined, preferably in the user or system .profile
+      </li>
+      <li>
+        Ensure that $ANT_HOME/bin is in PATH
+      </li>
+    </ul>
+  </li>
+</ul>
+<ul>
+  <li>
+    <a href="http://tomcat.apache.org/download-55.cgi" rel="nofollow">
+      Tomcat 5.5.x
+    </a>
+    <ul>
+      <li>
+        Instructions assume Tomcat is configured to run on port 8080. If you are using another port, substitute it into later instructions
+      </li>
+      <li>
+        Ensure that CATALINA_HOME is set
+      </li>
+      <li>
+        Tomcat may be autostarted or started as part of the Bioconductor launch script (provided later in these instructions)
+      </li>
+    </ul>
+  </li>
+</ul>
+<h2 id="caIntegratorBioconductorInstallationGuide-InstallDependentPackages">
+  Install Dependent Packages
+</h2>
+The caIntegrator Bioconductor installation also depends on several other packages that may not be installed on your system. Summaries of these packages and directions for installing them follow.
+<h3 id="caIntegratorBioconductorInstallationGuide-Globus4.0.3">
+  Globus 4.0.3
+</h3>
+Installs at /usr/local/ws-core-4.0.3
+<ol>
+  <li>
+    <a href="http://www-unix.globus.org/ftppub/gt4/4.0/4.0.3/ws-core/bin/ws-core-4.0.3-bin.tar.gz" rel="nofollow">
+      Download
+    </a>
+  </li>
+  <li>
+    Unpack tar file into /usr/local/ws-core.4.0.3
+  </li>
+  <li>
+    Ensure that GLOBUS_LOCATION is set to /usr/local/ws-core-4.0.3
+  </li>
+</ol>
+<h3 id="caIntegratorBioconductorInstallationGuide-ApacheAxis1.4">
+  Apache Axis 1.4
+</h3>
+Installs files into $CATALINA_HOME
+<ol>
+  <li>
+    <a href="http://apache.cs.utah.edu/ws/axis/1_4/axis-bin-1_4.tar.gz" rel="nofollow">
+      Download
+    </a>
+  </li>
+  <li>
+    Unpack tar file in home directory.
+  </li>
+  <li>
+    Move axis-1_4/webapps/axis directory to $CATALINA_HOME/webapps.
+  </li>
+  <li>
+    Stop and restart Tomcat ($CATALINA_HOME/bin/shutdown.sh; $CATALINA_HOME/bin/startup.sh).
+  </li>
+  <li>
+    Test your Axis installation by visiting
+    <a href="http://YOUR-HOSTNAME:8080/axis/happyaxis.jsp" rel="nofollow">
+      http://YOUR-HOSTNAME:8080/axis/happyaxis.jsp
+    </a>
+    (be sure to substitute the name of your machine in the URL).
+  </li>
+</ol>
+<h3 id="caIntegratorBioconductorInstallationGuide-ActiveMQ4.0.2">
+  ActiveMQ 4.0.2
+</h3>
+Installs at /usr/local/incubator-activemq-4.0.2
+<ol>
+  <li>
+    <a href="http://people.apache.org/repository/incubator-activemq/distributions/incubator-activemq-4.0.2.tar.gz" rel="nofollow">
+      Download
+    </a>
+  </li>
+  <li>
+    Unpack tar file into /usr/local/incubator-activemq-4.0.2
+  </li>
+  <li>
+    Ensure that JMS_HOME is set to /usr/local/incubator-activemq-4.0.2
+  </li>
+  <li>
+    Edit file $JMS_HOME/conf/activemq.xml
+    <ol>
+      <li>
+        Change line that reads &#34;&lt;broker useJmx=&#34;true&#34;&gt;&#34; to &#34;&lt;broker useJmx=&#34;true&#34; persistent=&#34;false&#34;&gt;&#34;
+      </li>
+      <li>
+        Replace line that reads &#34;&lt;transportConnector name=&#34;default&#34; uri=&#34;tcp://localhost:61616&#34; discoveryUri=&#34;multicast://default&#34;/&gt;&#34; with &#34; &lt;transportConnector name=&#34;default&#34; uri=&#34;tcp://localhost:61616&#34;/&gt;&#34;.
+      </li>
+      <li>
+        Comment out or remove line that reads &#34;&lt;networkConnector name=&#34;default&#34; uri=&#34;multicast://default&#34;/&gt;&#34;.
+      </li>
+    </ol>
+  </li>
+  <li>
+    Make main binary executable.
+    <ol>
+      <li>
+        chmod 755 $JMS_HOME/bin/activemq
+      </li>
+    </ol>
+  </li>
+</ol>
+ActiveMQ can be autostarted or started as part of the Bioconductor launch script (provided later in these instructions)
+<h3 id="caIntegratorBioconductorInstallationGuide-R2.9.0">
+  R 2.9.0
+</h3>
+Installs at /usr/local/R-2.9.0
+<ol>
+  <li>
+    <a href="http://cran.fhcrc.org/src/base/R-2/R-2.9.0.tar.gz" rel="nofollow">
+      Download
+    </a>
+  </li>
+  <li>
+    Unpack tar file in home directory
+  </li>
+  <li>
+    Configure, build, and install
+    <ol>
+      <li>
+        cd R-2.9.0
+      </li>
+      <li>
+        ./configure --enable-R-shlib --with-readline=no --with-x=no
+      </li>
+      <li>
+        Fix src/modules/Makefile as follows (fix is from
+        <a href="http://tolstoy.newcastle.edu.au/R/e6/devel/09/04/1434.html" rel="nofollow">
+          http://tolstoy.newcastle.edu.au/R/e6/devel/09/04/1434.html
+        </a>
+        )
+        <ul>
+          <li>
+            Change lines that read:
+            for d in &#34;$(R_MODULES)&#34;; do \
+            (cd $${d} &amp;&amp; $(MAKE) $@) || exit 1; \
+            done
+          </li>
+          <li>
+            To read:
+            @if test &#34;$(R_MODULES)&#34; != &#34;&#34;; then \
+            for d in &#34;$(R_MODULES)&#34;; do \
+            (cd $${d} &amp;&amp; $(MAKE) $@) || exit 1; \
+            done; \
+            fi
+
+            WarningBe very careful of tabs in the lines, one tab to start each line, indent beyond that with spaces. Be careful to have no spaces at the end of the lines too. Use rest of Makefile as an example.
+          </li>
+        </ul>
+      </li>
+      <li>
+        make
+      </li>
+      <li>
+        make install prefix=/usr/local/R-2.9.0
+      </li>
+    </ol>
+  </li>
+</ol>
+<h3 id="caIntegratorBioconductorInstallationGuide-DependentRpackages(RCurl,SJava,RWebServices,RUnit,DNAcopy)">
+  Dependent R packages (RCurl, SJava, RWebServices, RUnit, DNAcopy)
+</h3>
+Installs files into $R_HOME
+<ol>
+  <li>
+    $R_HOME/bin/R
+  </li>
+  <li>
+    At the R prompts:
+    <ol>
+      <li>
+        source(&#34;http://www.bioconductor.org/biocLite.R&#34;)
+      </li>
+      <li>
+        biocLite()
+      </li>
+      <li>
+        biocLite(&#34;RCurl&#34;)
+      </li>
+      <li>
+        biocLite(&#34;SJava&#34;)
+      </li>
+      <li>
+        biocLite(&#34;RWebServices&#34;)
+      </li>
+      <li>
+        biocLite(&#34;RUnit&#34;)
+      </li>
+      <li>
+        biocLite(&#34;DNAcopy&#34;)
+      </li>
+      <li>
+        biocLite(&#34;CGHcall&#34;)
+      </li>
+      <li>
+        q()
+      </li>
+    </ol>
+  </li>
+  <li>
+    Build SJava links missed by install:
+    <ol>
+      <li>
+        cd $R_HOME/lib64/R/library/SJava/libs
+      </li>
+      <li>
+        ln -s SJava.so libRInterpreter.so
+      </li>
+      <li>
+        ln -s SJava.so libSJava.so
+      </li>
+    </ol>
+  </li>
+  <li>
+    Build and test SJava/RWebServices installation, following these steps.
+    <ol>
+      <li>
+        $R_HOME/bin/R
+      </li>
+      <li>
+        At the R prompts:
+        <ol>
+          <li>
+            library(RWebServices)
+          </li>
+          <li>
+            unpackAntScript(&#34;/tmp/rservices&#34;)
+          </li>
+          <li>
+            q()
+          </li>
+        </ol>
+      </li>
+      <li>
+        cd /tmp/rservices
+      </li>
+      <li>
+        ant recompile-sjava
+      </li>
+      <li>
+        ant basic-prop
+        <ul>
+          <li>
+            Look for any errors.
+          </li>
+        </ul>
+      </li>
+      <li>
+        ant rservices-test
+        <ul>
+          <li>
+            This step is optional.
+          </li>
+        </ul>
+      </li>
+    </ol>
+  </li>
+</ol>
+<h2 id="caIntegratorBioconductorInstallationGuide-InstallcaDNAcopy">
+  Install caDNAcopy
+</h2>
+This section installs the caDNAcopy grid in three pieces: base code, R web service, and caGrid service. You may skip this section if you are only using caCGHcall.
+<h3 id="caIntegratorBioconductorInstallationGuide-caDNAcopyBaseCode">
+  caDNAcopy Base Code
+</h3>
+Installs into R_HOME
+<ol>
+  <li>
+    cd ~
+    <ul>
+      <li>
+        This is your home directory
+      </li>
+    </ul>
+  </li>
+  <li>
+    svn checkout
+    <a href="https://ncisvn.nci.nih.gov/svn/bioconductor/branches/caIntegrator" rel="nofollow">
+      https://ncisvn.nci.nih.gov/svn/bioconductor/branches/caIntegrator
+    </a>
+  </li>
+  <li>
+    cd caIntegrator/services/caDNAcopy/R
+  </li>
+  <li>
+    $R_HOME/bin/R CMD INSTALL caDNAcopy
+  </li>
+</ol>
+<h3 id="caIntegratorBioconductorInstallationGuide-caDNAcopyRWebService">
+  caDNAcopy RWebService
+</h3>
+Installs into /usr/local/bioconductor/caDNAcopy
+<ol>
+  <li>
+    cd /usr/local/bioconductor
+  </li>
+  <li>
+    $R_HOME/bin/R  At the R prompts:
+    <ol>
+      <li>
+        library(RWebServices)
+      </li>
+      <li>
+        unpackAntScript(&#34;caDNAcopy&#34;)
+      </li>
+      <li>
+        q()
+      </li>
+    </ol>
+  </li>
+  <li>
+    Optionally, fix the timeout value for all R workers to be 2 hours instead of 60 seconds.
+    <ol>
+      <li>
+        Edit $R_HOME/lib64/R/library/RWebServices/scripts/RWebServicesTuning.properties. Change to:  jms.timeout=7200000 .
+      </li>
+    </ol>
+  </li>
+  <li>
+    cd caDNAcopy
+  </li>
+  <li>
+    ant map-package -Dpkg=caDNAcopy
+  </li>
+  <li>
+    ant unpack-package -Dpkg=caDNAcopy
+  </li>
+  <li>
+    ant precompile
+  </li>
+  <li>
+    Optionally, test RWebService, following these steps.
+    <ol>
+      <li>
+        Start up Tomcat (If Tomcat is already running, you must shut it down before using the following command):  $CATALINA_HOME/bin/startup.sh
+      </li>
+      <li>
+        Start up ActiveMQ:  $JMS_HOME/bin/activemq &amp;
+      </li>
+      <li>
+        Start up R worker for caDNAcopy:  nohup ant start-worker &amp;
+      </li>
+      <li>
+        Run the test:  ant local-test
+      </li>
+    </ol>
+  </li>
+</ol>
+Check any failures in test/output. Ignore failures that say &#34;expected 79, got 80&#34;
+<h3 id="caIntegratorBioconductorInstallationGuide-caDNAcopyGridService">
+  caDNAcopy Grid Service
+</h3>
+Installs into $CATALINA_HOME
+<ol>
+  <li>
+    Download
+    <a href="https://ncisvn.nci.nih.gov/svn/docs/trunk/bioconductor/02-BioconductorcaGridServices/Bioconductor-caGrid-Services.tar.gz" rel="nofollow">
+      Bioconductor-caGrid-Services.tar.gz
+    </a>
+    .
+  </li>
+  <li>
+    Unpack tar file in home directory.
+  </li>
+  <li>
+    Build and deploy caDNAcopy grid service.
+    <ol>
+      <li>
+        cd caGrid/CaDNAcopy
+      </li>
+      <li>
+        ant -Dno.deployment.validation=true deployTomcat
+      </li>
+    </ol>
+  </li>
+  <li>
+    Prepare Tomcat for Grid applications.
+    <ol>
+      <li>
+        cd $GLOBUS_LOCATION
+      </li>
+      <li>
+        ant -f share/globus_wsrf_common/tomcat/tomcat.xml deployTomcat -Dtomcat.dir=&#34;$CATALINA_HOME&#34;
+      </li>
+      <li>
+        cp $JMS_HOME/lib/*.jar $CATALINA_HOME/webapps/wsrf/WEB-INF/lib
+      </li>
+    </ol>
+  </li>
+  <li>
+    Optionally, fix the timeout value in caDNAcopy.jarto be 2 hours instead of 60 seconds.
+    <ol>
+      <li>
+        mkdir ~/unjar; cd ~/unjar
+      </li>
+      <li>
+        unzip $CATALINA_HOME/webapps/wsrf/WEB-INF/lib/caDNAcopy.jar
+      </li>
+      <li>
+        Edit org/bioconductor/rserviceJms/services/caDNAcopy/RWebServices4java.properties. Change to:  jms.timeout=7200000
+      </li>
+      <li>
+        zip -r caDNAcopy.jar *
+      </li>
+      <li>
+        cd $CATALINA_HOME/webapps/wsrf/WEB-INF/lib
+      </li>
+      <li>
+        cp ~/unjar/caDNAcopy.jar .
+      </li>
+    </ol>
+  </li>
+</ol>
+<h2 id="caIntegratorBioconductorInstallationGuide-InstallcaCGHcall">
+  Install caCGHcall
+</h2>
+This section installs the caCGHcall grid service in three pieces: base code, R web service, and caGrid service. You can skip this section if you are only using caDNAcopy.
+<h3 id="caIntegratorBioconductorInstallationGuide-caCGHcallBaseCode">
+  caCGHcall Base Code
+</h3>
+Installs into R_HOME
+<ol>
+  <li>
+    cd ~
+    <ul>
+      <li>
+        This is your home directory
+      </li>
+    </ul>
+  </li>
+  <li>
+    svn checkout   [https://ncisvn.nci.nih.gov/svn/bioconductor/branches/caIntegrator
+  </li>
+  <li>
+    cd caIntegrator/services/caCGHcall/R
+  </li>
+  <li>
+    $R_HOME/bin/R CMD INSTALL caCGHcall
+  </li>
+</ol>
+<h3 id="caIntegratorBioconductorInstallationGuide-caCGHcallRWebService">
+  caCGHcall RWebService
+</h3>
+Installs into /usr/local/bioconductor/caCGHcall
+<ol>
+  <li>
+    cd /usr/local/bioconductor
+  </li>
+  <li>
+    $R_HOME/bin/R
+  </li>
+  <li>
+    At the R prompts:
+    <ol>
+      <li>
+        library(RWebServices)
+      </li>
+      <li>
+        unpackAntScript(&#34;caCGHcall&#34;)
+      </li>
+      <li>
+        q()
+      </li>
+    </ol>
+  </li>
+  <li>
+    Optionally, fix timeout value for all R workers to be 2 hours instead of 60 seconds.
+    <ol>
+      <li>
+        Edit $R_HOME/lib64/R/library/RWebServices/scripts/RWebServicesTuning.properties. Change to:  jms.timeout=7200000 .
+      </li>
+    </ol>
+  </li>
+  <li>
+    cd caCGHcall
+  </li>
+  <li>
+    Change the queue name for caCGHcall so it does not conflict with caDNAcopy, by editing RWebServicesTuning.properties. Change to:  jms.queue=CGHC .
+  </li>
+  <li>
+    ant map-package -Dpkg=caCGHcall
+  </li>
+  <li>
+    ant unpack-package -Dpkg=caCGHcall
+  </li>
+  <li>
+    ant precompile
+  </li>
+  <li>
+    Optionally, test the RWebService, following these steps.
+    <ol>
+      <li>
+        Start up Tomcat (If Tomcat is already running, you must shut it down before using the following command):  $CATALINA_HOME/bin/startup.sh
+      </li>
+      <li>
+        Start up ActiveMQ:  $JMS_HOME/bin/activemq &amp;
+      </li>
+      <li>
+        Start up R worker for caCGHcall  nohup ant start-worker &amp;
+      </li>
+      <li>
+        Run the test:  ant local-test
+      </li>
+    </ol>
+  </li>
+</ol>
+Check any failures in test/output. Ignore failures that say &#34;expected 79, got 80&#34;
+<h3 id="caIntegratorBioconductorInstallationGuide-caCGHcallGridService">
+  caCGHcall Grid Service
+</h3>
+Installs into $CATALINA_HOME
+<ol>
+  <li>
+    Build and deploy caCGHcall grid service.
+    <ol>
+      <li>
+        cd ~/caIntegrator/services/caCGHcall/caGrid/caCGHcall
+      </li>
+      <li>
+        ant -Dno.deployment.validation=true deployTomcat
+      </li>
+    </ol>
+  </li>
+  <li>
+    Prepare Tomcat for Grid applications.
+    <ol>
+      <li>
+        cd $GLOBUS_LOCATION
+      </li>
+      <li>
+        ant -f share/globus_wsrf_common/tomcat/tomcat.xml deployTomcat -Dtomcat.dir=&#34;$CATALINA_HOME&#34;
+      </li>
+      <li>
+        cp $JMS_HOME/lib/*.jar to $CATALINA_HOME/webapps/wsrf/WEB-INF/lib
+      </li>
+    </ol>
+  </li>
+</ol>
+<h2 id="caIntegratorBioconductorInstallationGuide-LaunchBioconductorServices">
+  Launch Bioconductor Services
+</h2>
+This section describes how to start up all the pieces of the Bioconductor installation once they have been successfully installed. In
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=39297660" rel="nofollow">
+  #Optional Imporvements
+</a>
+, you can find optional scripts that can automate the startup and shutdown of all processes.
+<h3 id="caIntegratorBioconductorInstallationGuide-StartingBioconductorServices">
+  Starting Bioconductor Services
+</h3>
+See the
+<a href="https://ncisvn.nci.nih.gov/svn/docs/trunk/bioconductor/ExemplarRelease/Installation_Guide.doc" rel="nofollow">
+  Bioconductor Installation Guide page 11
+</a>
+.
+<ol>
+  <li>
+    Start up Tomcat (shutdown if already running)
+    <ol>
+      <li>
+        $CATALINA_HOME/bin/startup.sh
+      </li>
+    </ol>
+  </li>
+  <li>
+    Start up ActiveMQ
+    <ol>
+      <li>
+        $JMS_HOME/bin/activemq &amp;
+      </li>
+    </ol>
+  </li>
+  <li>
+    Start up R worker for caDNAcopy (skip if only using caDNAcopy)
+    <ol>
+      <li>
+        cd /usr/local/bioconductor/caDNAcopy
+      </li>
+      <li>
+        nohup ant start-worker &amp;
+      </li>
+    </ol>
+  </li>
+  <li>
+    Start up R worker for caCGHcall (skip if only using caCGHcall)
+    <ol>
+      <li>
+        cd /usr/local/bioconductor/caCGHcall
+      </li>
+      <li>
+        nohup ant start-worker &amp;
+      </li>
+    </ol>
+  </li>
+</ol>
+<h2 id="caIntegratorBioconductorInstallationGuide-OptionalImprovements">
+  Optional Improvements
+</h2>
+<h3 id="caIntegratorBioconductorInstallationGuide-ScriptstoStartup/ShutdownBioconductor">
+  Scripts to Startup/Shutdown Bioconductor
+</h3>
+These shell scripts can be used to automate the launch of Bioconductor. If these are used to automatically start the Bioconductor services at system startup, ensure that all environment variables (as listed in sections above) are already defined. All three scripts should be placed in the same directory and must be set to be executable (chmod a+x). Also note that these scripts are intended to be used with the common logging setup that is described in
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=39297660" rel="nofollow">
+  #Setting Up Common Logging
+</a>
+.
+<ol>
+  <li>
+    start-worker.sh
+    #!/bin/bash
+    #
+
+    WORKERTYPE=$1
+    WORKERID=$2
+
+    # Run worker
+    echo &#34;Starting $WORKERTYPE worker ($WORKERID)...&#34;
+    cd /usr/local/bioconductor/$WORKERTYPE
+    ant start-worker | sed -u &#34;s/\[java\]/\[$WORKERTYPE $WORKERID\]/&#34;
+  </li>
+  <li>
+    start-bio.sh
+    #!/bin/bash
+    #
+    LOGFILE=/usr/local/bioconductor/logs/bioconductor-combined.log
+
+    THISDIR=`dirname $0`
+
+    # Run Tomcat
+    echo Starting Tomcat...
+    $CATALINA_HOME/bin/startup.sh
+
+    # Run ActiveMQ
+    echo Starting ActiveMQ...
+    $JMS_HOME/bin/activemq start &amp;
+    sleep 10
+
+    # Run caDNAcopy workers
+    nohup $THISDIR/start-worker.sh caDNAcopy 1 &gt;&gt; $LOGFILE &amp;
+    nohup $THISDIR/start-worker.sh caDNAcopy 2 &gt;&gt; $LOGFILE &amp;
+
+    # Run caCGHcall workers
+    nohup $THISDIR/start-worker.sh caCGHcall 1 &gt;&gt; $LOGFILE &amp;
+    nohup $THISDIR/start-worker.sh caCGHcall 2 &gt;&gt; $LOGFILE &amp;
+  </li>
+  <li>
+    stop-bio.sh
+    #!/bin/bash
+    #
+
+    # Stop ActiveMQ
+    $JMS_HOME/bin/activemq stop &amp;
+
+    # Stop Tomcat
+    $CATALINA_HOME/bin/shutdown.sh
+
+    # Stop caDNAcopy/caCGHcall workers
+    ### They stop themselves when ActiveMQ shuts down
+  </li>
+</ol>
+<h3 id="caIntegratorBioconductorInstallationGuide-SettingUpCommonLogging">
+  Setting Up Common Logging
+</h3>
+One disadvantage to having multiple separate processes for Bioconductor is that each process creates a separate log file by default. By using the following steps, the log files for Tomcat, ActiveMQ, and caDNAcopy/caCGHcall are placed into a single directory, /usr/local/bioconductor/log. If the scripts in
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=39297660" rel="nofollow">
+  #Optional Improvements
+</a>
+are used, it further improves logging by placing all messages into a single log file, /usr/local/bioconductor/logs/bioconductor-combined.log.
+<ol>
+  <li>
+    mkdir /usr/local/bioconductor/logs
+  </li>
+  <li>
+    Edit /usr/local/activemq/conf/log4j.properties
+    <ol>
+      <li>
+        Change &#34;log4j.rootLogger=INFO, stdout&#34; to &#34;log4j.rootLogger=INFO, out&#34;
+      </li>
+      <li>
+        Change &#34;log4j.appender.out.file=${activemq.home}/data/activemq.log&#34; to &#34;log4j.appender.out.file=/usr/local/bioconductor/logs/activemq.log&#34;
+      </li>
+    </ol>
+  </li>
+  <li>
+    cd /usr/local/bioconductor/logs
+  </li>
+  <li>
+    ln -s /usr/local/bioconductor/caDNAcopy/nohup.out ./rworker-dnacopy.log
+  </li>
+  <li>
+    ln -s /usr/local/bioconductor/caCGHcall/nohup.out ./rworker-cghcall.log
+  </li>
+  <li>
+    ln -s $CATALINA_HOME/logs/catalina.out ./tomcat.log
+  </li>
+</ol>
+Help Downloading FilesFor help accessing PDF, audio, video, and compressed files on this wiki, go to
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=328991650" rel="nofollow">
+  Help Downloading Files
+</a>
+.

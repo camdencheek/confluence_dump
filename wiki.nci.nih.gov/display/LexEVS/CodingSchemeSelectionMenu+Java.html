@@ -1,0 +1,158 @@
+Java Code
+
+/*
+* Copyright: (c) 2004-2009 Mayo Foundation for Medical Education and
+* Research (MFMER). All rights reserved. MAYO, MAYO CLINIC, and the
+* triple-shield Mayo logo are trademarks and service marks of MFMER.
+*
+* Except as contained in the copyright notice above, or as used to identify
+* MFMER as the author of this software, the trade names, trademarks, service
+* marks, or product names of the copyright holder shall not be used in
+* advertising, promotion or otherwise in connection with this software without
+* prior written authorization of the copyright holder.
+*
+* Licensed under the Eclipse Public License, Version 1.0 (the &#34;License&#34;);
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+* 		http://www.eclipse.org/legal/epl-v10.html
+*
+*/
+package org.LexGrid.LexBIG.example;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Formatter;
+import java.util.List;
+
+import org.LexGrid.LexBIG.DataModel.Collections.CodingSchemeRenderingList;
+import org.LexGrid.LexBIG.DataModel.Core.CodingSchemeSummary;
+import org.LexGrid.LexBIG.DataModel.InterfaceElements.CodingSchemeRendering;
+import org.LexGrid.LexBIG.Exceptions.LBException;
+import org.LexGrid.LexBIG.Impl.LexBIGServiceImpl;
+import org.LexGrid.LexBIG.LexBIGService.LexBIGService;
+
+/**
+* Helper class used to display a list of available code systems and return the
+* user selection.
+*
+*/
+public class CodingSchemeSelectionMenu {
+static final String Dash5 = &#34;-----&#34;;
+static final String Dash15 = &#34;---------------&#34;;
+static final String Dash25 = &#34;-------------------------&#34;;
+static final String Dash30 = &#34;------------------------------&#34;;
+
+public CodingSchemeSelectionMenu() {
+super();
+}
+
+/**
+* Displays a list of available coding schemes.
+*
+* @return The ordered list of coding scheme summaries as displayed.
+* @throws LBException
+*             If an error occurs displaying the list.
+*/
+protected List&lt;CodingSchemeSummary&gt; displayCodingSchemes() throws LBException {
+List&lt;CodingSchemeSummary&gt; choices = new ArrayList&lt;CodingSchemeSummary&gt;();
+
+LexBIGService lbs = LexBIGServiceImpl.defaultInstance();
+CodingSchemeRenderingList schemes = lbs.getSupportedCodingSchemes();
+
+if (schemes.getCodingSchemeRenderingCount() == 0)
+Util.displayMessage(&#34;No coding schemes found.&#34;);
+else {
+
+Formatter f = new Formatter();
+
+String format = &#34;%-5.5s|%-30.30s|%-25.25s|%-15.15s\n&#34;;
+Object[] hSep = new Object[] { Dash5, Dash30, Dash25, Dash15 };
+f.format(format, hSep);
+f.format(format, new Object[] { &#34;#&#34;, &#34;Local Name&#34;, &#34;Version&#34;, &#34;Tag&#34; });
+f.format(format, hSep);
+CodingSchemeRendering[] csr = schemes.getCodingSchemeRendering();
+for (int i = 1; i &lt;= csr.length; i++) {
+String nu = String.valueOf(i);
+
+CodingSchemeSummary css = csr[i - 1].getCodingSchemeSummary();
+choices.add(css);
+
+// Evaluate local name
+String localName = css.getLocalName();
+if (localName != null &amp;&amp; localName.length() &gt; 30)
+localName = localName.substring(0, 28) + &#34;&gt;&gt;&#34;;
+
+// Evaluate version
+String version = css.getRepresentsVersion();
+if (version != null &amp;&amp; version.length() &gt; 25)
+version = version.substring(0, 23) + &#34;&gt;&gt;&#34;;
+
+// Evaluate tag(s)
+String[] tags = csr[i - 1].getRenderingDetail().getVersionTags().getTag();
+String tag = tags.length &gt; 0 ? tags[0] : &#34;&#34;;
+if (tag != null &amp;&amp; tag.length() &gt; 15)
+tag = tag.substring(0, 13) + &#34;&gt;&gt;&#34;;
+
+// Output the first line
+f.format(format, new Object[] { nu, localName, version, tag });
+
+// Output additional tags
+for (int j = 1; j &lt; tags.length; j++) {
+tag = tags[j];
+if (tag != null &amp;&amp; tag.length() &gt; 10)
+tag = tag.substring(0, 8) + &#34;&gt;&gt;&#34;;
+f.format(format, &#34;&#34;, &#34;&#34;, &#34;&#34;, tag);
+}
+
+// Output separator
+f.format(format, hSep);
+}
+Util.displayMessage(f.out().toString());
+Util.displayMessage(&#34;&#34;);
+Util.displayMessage(&#34;NOTE: &gt;&gt; indicates column value exceeds the available width.&#34;);
+}
+return choices;
+
+}
+
+/**
+* Display the list of available coding schemes and process the user
+* selection.
+*
+* @return A coding scheme summary correponding to the user selection; null
+*         if no selection is made or an error occurs.
+*/
+public CodingSchemeSummary displayAndGetSelection() {
+CodingSchemeSummary css = null;
+try {
+// Display choices ...
+List&lt;CodingSchemeSummary&gt; choices = displayCodingSchemes();
+
+if (choices.size() &gt; 0) {
+// Process the user input ...
+try {
+Util.displayMessage(&#34;Enter the number of the Coding scheme to use, then &lt;Enter&gt; :&#34;);
+
+BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+int i = new Integer(br.readLine()).intValue();
+if (i &gt; 0 &amp;&amp; i &lt;= choices.size())
+css = choices.get(i - 1);
+else
+Util.displayMessage(&#34;Entered value is out of range.&#34;);
+} catch (NumberFormatException nfe) {
+Util.displayMessage(&#34;Entered value must be numeric.&#34;);
+} catch (IOException ioe) {
+Util.displayAndLogError(&#34;An error occurred while processing the entered value&#34;, ioe);
+}
+} else {
+Util.displayMessage(&#34;No code systems are available.&#34;);
+}
+} catch (Exception e) {
+Util.displayAndLogError(&#34;An error occurred processing the available code systems&#34;, e);
+}
+return css;
+}
+} 

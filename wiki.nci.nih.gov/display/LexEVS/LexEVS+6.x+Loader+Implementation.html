@@ -1,0 +1,314 @@
+Contents of this Page
+<ul>
+  <li>
+    <a href="#LexEVS6.xLoaderImplementation-Overview" rel="nofollow">
+      Overview
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.xLoaderImplementation-WheretoStart" rel="nofollow">
+      Where to Start
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.xLoaderImplementation-InterfacesandAbstractclassestoExtend" rel="nofollow">
+      Interfaces and Abstract classes to Extend
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.xLoaderImplementation-ImplementationExampleandDiscussion" rel="nofollow">
+      Implementation Example and Discussion
+    </a>
+    <ul>
+      <li>
+        <a href="#LexEVS6.xLoaderImplementation-CalltheSuperConstructor" rel="nofollow">
+          Call the Super Constructor
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.xLoaderImplementation-DefinetheExtension" rel="nofollow">
+          Define the Extension
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.xLoaderImplementation-ValidatetheSource(Optional)" rel="nofollow">
+          Validate the Source (Optional)
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.xLoaderImplementation-ImplementtheAbstractMethoddoLoad()(andpossiblyoverridetheload()method)" rel="nofollow">
+          Implement the Abstract Method doLoad() (and possibly override the load() method)
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.xLoaderImplementation-LessStructureBeyondtheLoader,BaseLoaderImplementationandExtension" rel="nofollow">
+          Less Structure Beyond the Loader, BaseLoader Implementation and Extension
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.xLoaderImplementation-TaskstobeAccomplished" rel="nofollow">
+          Tasks to be Accomplished
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.xLoaderImplementation-MappingEntryPoint" rel="nofollow">
+          Mapping Entry Point
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.xLoaderImplementation-ReadtheDatatoSourceModelObjects" rel="nofollow">
+          Read the Data to Source Model Objects
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.xLoaderImplementation-MaptheModelObjectstoLexGridModelObjects" rel="nofollow">
+          Map the Model Objects to LexGrid Model Objects
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.xLoaderImplementation-PassControlBacktoBaseLoader" rel="nofollow">
+          Pass Control Back to BaseLoader
+        </a>
+      </li>
+    </ul>
+  </li>
+</ul>
+<table>
+  <colgroup>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        LexEVS 6.x Programmers Links
+      </th>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427334" rel="nofollow">
+              Programmer&#39;s Guide Main Page
+            </a>
+            <ul>
+              <li>
+                <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427372" rel="nofollow">
+                  LexEVS API
+                </a>
+              </li>
+              <li>
+                <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427281" rel="nofollow">
+                  LexEVS 6.0 CTS2 API
+                </a>
+              </li>
+              <li>
+                <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=158827343" rel="nofollow">
+                  LexEVS 6.x CTS2 API Quick Start
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427293" rel="nofollow">
+              Value Set and Pick List Guide
+            </a>
+          </li>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=69730353" rel="nofollow">
+              LexEVS 6.0 Main Page
+            </a>
+          </li>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427448" rel="nofollow">
+              LexEVS Current Release
+            </a>
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h3 id="LexEVS6.xLoaderImplementation-Overview">
+  Overview
+</h3>
+LexEVS provides classes to extend and interfaces to implement that help provide the framework for in-memory transformations of source files into the LexGrid model. If the target source is large, batch loading may well be a better solution, in which case the Loader Framework built on Spring Batch may be a better match for source loading. On the other hand, users may find the standard LexEVS loader interface a little easier to implement. Writing loaders requires both programming skill and content expertise. Mapping source into the LexGrid data model requires knowledge of how the source defines entities, relationships between entities and any qualifiers or properties for these elements.  However, some study of other presentations of that content, and documentation of the source files, can help most programmers make informed choices as to that mapping.  Examples of source mapped into LexGrid are documented
+<a href="https://wiki.nci.nih.gov/x/5pC4Aw" rel="nofollow">
+  here
+</a>
+.
+<h3 id="LexEVS6.xLoaderImplementation-WheretoStart">
+  Where to Start
+</h3>
+The LexEVS API programming environment is currently available in a github repository here:
+<a href="https://github.com/lexevs/lexevs.git" rel="nofollow">
+  LexEVS Source Code
+</a>
+Cloning this repository produces a large set of eclipse friendly projects that can be imported into Eclipse or Intellij.
+<h3 id="LexEVS6.xLoaderImplementation-InterfacesandAbstractclassestoExtend">
+  Interfaces and Abstract classes to Extend
+</h3>
+Loader interfaces must extend the interface org.LexGrid.LexBIG.Extensions.Load.Loader from the lbInterfaces project and implementations of your new interface must also extend the abstract class org.LexGrid.LexBIG.Impl.loaders.BaseLoader in the lbImpl project.  Let&#39;s take as an example the MedDRA loader interfaces and classes as it is a relatively simple implementation.The extension of Loader is org.LexGrid.LexBIG.Extensions.Load.MedDRA_Loader.java and is found in the lbInterfaces project. Extend Loader
+public interface MedDRA_Loader extends Loader {
+public final static String name = &#34;MedDRALoader&#34;;
+public final static String description = &#34;This loader loads MedDRA files into the LexGrid format.&#34;;
+The implementation of MedDRA_Loader (and extension of BaseLoader) is org.LexGrid.LexBIG.Impl.loaders.MedDRALoaderImpl.Extension of Baseloader and Implementation of MedDRA_Loader
+public class MedDRALoaderImpl extends BaseLoader implements MedDRA_Loader
+ This defines load and validation methods and creates initialized class attributes name and description.  The name of this interface will eventually be used by the LexEVS extension function to call the loader into existence.  (Loaders are always extensions to LexEVS).
+<h3 id="LexEVS6.xLoaderImplementation-ImplementationExampleandDiscussion">
+  Implementation Example and Discussion
+</h3>
+<h4 id="LexEVS6.xLoaderImplementation-CalltheSuperConstructor">
+  Call the Super Constructor
+</h4>
+Looking at the implementation of this interface in lbImpl, org.LexGrid.LexBIG.Impl.loaders.MedDRALoaderImpl, notice that implementation is kept relatively clean thanks the fact that much of the mechanism of loading into LexEVS is taken care of under the covers by the BaseLoader class.  MedDRALoaderImpl creates a constructor that always calls the BaseLoader constructor, then prevents the use of manifests.  (If you wish you may choose to allow manifest use, since it allows load time manipulation of coding scheme metadata.  Often source files do not provide all that needs to be known about the source.  A manifest file allows values that may not be present in the source such as copyrights, authoring information, version definition and formal coding scheme name to be added to the load.)Loader Constructor
+public MedDRALoaderImpl() {
+super();
+this.setDoApplyPostLoadManifest(false);
+}
+Preventing the use of a manifest is not typical loader behavior.
+<h4 id="LexEVS6.xLoaderImplementation-DefinetheExtension">
+  Define the Extension
+</h4>
+The buildExtensionDescription method provides a background method for the registration of this loader to take place within LexEVS. It should be created the same way for each loader.Extension definition
+@Override
+protected ExtensionDescription buildExtensionDescription(){
+ExtensionDescription temp = new ExtensionDescription();
+temp.setExtensionBaseClass(MedDRALoaderImpl.class.getInterfaces()[0].getName());
+temp.setExtensionClass(MedDRALoaderImpl.class.getName());
+temp.setDescription(description);
+temp.setName(name);
+temp.setVersion( getMedDRAVersion() );
+return temp;
+}
+
+<h4 id="LexEVS6.xLoaderImplementation-ValidatetheSource(Optional)">
+  Validate the Source (Optional)
+</h4>
+The validate method is not always implemented, but can and should be when a mechanism exists to insure that this is a correctly structured version of the source.  When source is XML formatted and has a schema or dtd document commonly available for validation, this is a relatively easy process.  However any free text files that do not have any associated java-based validation API, would rely on the developer to create validation functions.  The validation method is not required to create a loader for LexEVS. Validate the Source
+@Override
+public void validate(URI sourceDir, int validationLevel) throws LBParameterException {
+Pass in the URI for the path to the source file and, if desired, provide an integer value for a level of validation for this source. (I.e. what level of errors or issues can this load live with.  This assumes a very detailed validation of source)
+<h4 id="LexEVS6.xLoaderImplementation-ImplementtheAbstractMethoddoLoad()(andpossiblyoverridetheload()method)">
+  Implement the Abstract Method doLoad() (and possibly override the load() method)
+</h4>
+The developer could at this point implement only doLoad by mapping content to a coding scheme object before pass control over to BaseLoader which will call the doLoad method and set default load options in its load method and kick off the processes to persist a coding scheme object to the database.  The other option is to implement doLoad and override the load method which sets up end user option choices for the loader.   Most loaders implement the load method, customizing load options to provide to the end user.  In the case of the MedDRA loader, a CUI load option is provided to the end user.Load Kickoff Implementation in doLoad
+@Override
+protected URNVersionPair[] doLoad() throws Exception{
+LgMessageDirectorIF messages = new CachingMessageDirectorImpl(this.getMessageDirector());
+MedDRA2LGMain mainTxfm = new MedDRA2LGMain();
+//Set the source for the CUI file when using the GUI
+if(UMLSCUISource == null){
+UMLSCUISource = this.getOptions().getURIOption(UMLSCUI_FILE_OPTION).getOptionValue();
+}
+CodingScheme codingScheme = mainTxfm.map(UMLSCUISource, this.getResourceUri(), this.getMessageDirector());
+
+if(codingScheme != null){
+messages.info(&#34;Completed mapping.  Now saving to database&#34;);
+this.persistCodingSchemeToDatabase(codingScheme);
+
+messages.info(&#34;Saved to database.  Now constructing version pairs&#34;);
+return this.constructVersionPairsFromCodingSchemes(codingScheme);
+}
+
+return null;
+}
+This allows the BaseLoader functions to access the results of the load of the MedDRA source file into a LexEVS coding scheme object.Override the load Method
+@Override
+public void load(URI uri, URI cuiUri, boolean stopOnErrors, boolean async) throws LBParameterException,
+LBInvocationException {
+this.getOptions().getBooleanOption(FAIL_ON_ERROR_OPTION).setOptionValue(stopOnErrors);
+this.getOptions().getBooleanOption(ASYNC_OPTION).setOptionValue(async);
+this.getOptions().getURIOption(UMLSCUI_FILE_OPTION).setOptionValue(cuiUri);
+UMLSCUISource = cuiUri;
+this.load(uri);
+}
+This method adds a UMLS CUI source file option for the end user to load as a supplement to the regular MedDRA load.
+<h4 id="LexEVS6.xLoaderImplementation-LessStructureBeyondtheLoader,BaseLoaderImplementationandExtension">
+  Less Structure Beyond the Loader, BaseLoader Implementation and Extension
+</h4>
+Beyond these methods, the structuring of code is largely and necessarily left up to the developer.  However a few common patterns are fairly consistent in this implementation.  Generally speaking, there is a central mapping class where the coding scheme creation is kicked off.    Other classes, when necessary, are supportive to this central class.
+<h4 id="LexEVS6.xLoaderImplementation-TaskstobeAccomplished">
+  Tasks to be Accomplished
+</h4>
+These classes are generally classified by those that are responsible for either reading a source file or accessing an API that reads the file for you and those that map objects created from that file into LexEVS coding scheme metadata, entity and relationship objects. In summary:
+<ul>
+  <li>
+    Read source
+  </li>
+  <li>
+    Map to objects related to source structure
+  </li>
+  <li>
+    Map from source structure objects to LexEVS coding scheme object
+  </li>
+</ul>
+<h4 id="LexEVS6.xLoaderImplementation-MappingEntryPoint">
+  Mapping Entry Point
+</h4>
+In the lbConverter project  the edu.mayo.informatics.lexgrid.convert.directConversions.medDRA package contains the classes that do much of the work of the MedDRA load into LexGrid.  edu.mayo.informatics.lexgrid.convert.directConversions.medDRA.MedDRA2LGMain provides a central kickoff point with some methods that can be wrapped for load and validation responsibilities down further up the execution chain.Main Entry Point to Loader Code
+public class MedDRA2LGMain {
+
+	//providing parameters for the source directory, the UMLS CUI file and a logging object from LexEVS
+	public CodingScheme map(URI cuiUri, URI sourceDir, LgMessageDirectorIF lg_messages)
+
+	//Validate choice for the MedDRA source only
+	private boolean validateSourceDir(URI sourceDir)
+
+<h4 id="LexEVS6.xLoaderImplementation-ReadtheDatatoSourceModelObjects">
+  Read the Data to Source Model Objects
+</h4>
+This package also contains edu.mayo.informatics.lexgrid.convert.directConversions.medDRA.MedDRAMapToLexGrid with a readMedDRAFile method that reads from a CSV file and persists it to objects defined in package edu.mayo.informatics.lexgrid.convert.directConversions.medDRA.Data.  While this data package defines beans that model the content of lines read from the CSV file, it also organizes them into structures that are easier for the mapping code to use. The individual manner of implementation is left up to the developer but this is a good example of how a third party library was used to process the file and how the resulting objects were stored in a data structure that&#39;s easy for the mapping code to consume.Read the Source File
+public void readMedDRAFiles() {
+String input;
+
+for(int i=0; i &lt; meddraMetaData.length; i++){
+input = medDRASourceDir.getPath() + meddraMetaData[i].filename();
+try {
+
+FileReader fileReader = new FileReader(input);
+CSVReader reader = new CSVReader(fileReader, &#39;$&#39;);
+ColumnPositionMappingStrategy&lt;DatabaseRecord&gt; strat = new ColumnPositionMappingStrategy&lt;DatabaseRecord&gt;();
+strat.setType(meddraMetaData[i].classname());
+String[] columns = getFields(meddraMetaData[i].classname());
+
+strat.setColumnMapping(columns);
+
+CsvToBean&lt;DatabaseRecord&gt; csv = new CsvToBean&lt;DatabaseRecord&gt;();
+List&lt;DatabaseRecord&gt; list = csv.parse(strat, reader);
+meddraDatabase.add(meddraMetaData[i].tablename(), list);
+} catch (FileNotFoundException e) {
+messages_.error(&#34;MedDRA input file missing.&#34;, e);
+} catch (Exception e) {
+messages_.error(&#34;Failed to read MedDRA files.&#34;);
+}
+}
+}
+CSVReader is a third party CSV reader.
+<h4 id="LexEVS6.xLoaderImplementation-MaptheModelObjectstoLexGridModelObjects">
+  Map the Model Objects to LexGrid Model Objects
+</h4>
+Once the source is read and persisted to the appropriate model objects the MedDRAMapToLexGrid class can map these data objects derived from the MedDRA source into a complete coding scheme object.Map to Coding Scheme
+public void mapToLexGrid(CodingScheme csclass) {
+try {
+loadCodingScheme(csclass);
+loadConcepts(csclass);
+loadRelations(csclass);
+} catch (Exception e) {
+messages_.error(&#34;Failed to map MedDRA data to LexEVS.&#34;);
+}
+
+messages_.info(&#34;Mapping completed, returning to loader&#34;);
+}
+
+<h4 id="LexEVS6.xLoaderImplementation-PassControlBacktoBaseLoader">
+  Pass Control Back to BaseLoader
+</h4>
+The tasks are to read the file into some kind of logical model or bean class object, organize these objects or make them available to be mapped into LexEVS objects, tie all objects together as a coding scheme, and pass this potentially large coding scheme object to the LexEVS BaseLoader to be persisted to the database.  Back up the execution chain in MeDRALoaderImpl the doLoad method first calls the mapping method of the conversion class MedDRA2LGMain to get the reading and mapping done, then passes control of the resulting coding scheme to BaseLoader by calling this.persistCodingSchemeToDatabase method on the BaseLoader super class. Persistance is handled in the BaseLoader
+if(codingScheme != null){
+messages.info(&#34;Completed mapping.  Now saving to database&#34;);
+this.persistCodingSchemeToDatabase(codingScheme);
+
+messages.info(&#34;Saved to database.  Now constructing version pairs&#34;);
+return this.constructVersionPairsFromCodingSchemes(codingScheme);
+}
+ While it&#39;s not required, most loaders have been written in this way.   

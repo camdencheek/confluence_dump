@@ -1,0 +1,573 @@
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=323322540" rel="nofollow"></a>
+Contents of this Page
+<ul>
+  <li>
+    <a href="#DataScopeDeveloper&#39;sGuide-GettingStartedwithDataScope" rel="nofollow">
+      Getting Started with DataScope
+    </a>
+  </li>
+  <li>
+    <a href="#DataScopeDeveloper&#39;sGuide-CreatingaSimpleDashboard" rel="nofollow">
+      Creating a Simple Dashboard
+    </a>
+    <ul>
+      <li>
+        <a href="#DataScopeDeveloper&#39;sGuide-InstallationGuide" rel="nofollow">
+          Installation Guide
+        </a>
+        <ul>
+          <li>
+            <a href="#DataScopeDeveloper&#39;sGuide-Prerequisites" rel="nofollow">
+              Prerequisites
+            </a>
+          </li>
+          <li>
+            <a href="#DataScopeDeveloper&#39;sGuide-Installation" rel="nofollow">
+              Installation
+            </a>
+          </li>
+          <li>
+            <a href="#DataScopeDeveloper&#39;sGuide-Running" rel="nofollow">
+              Running
+            </a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#DataScopeDeveloper&#39;sGuide-ConfiguringDataScope" rel="nofollow">
+      Configuring DataScope
+    </a>
+    <ul>
+      <li>
+        <a href="#DataScopeDeveloper&#39;sGuide-DataSource" rel="nofollow">
+          Data Source
+        </a>
+      </li>
+      <li>
+        <a href="#DataScopeDeveloper&#39;sGuide-DataDescription" rel="nofollow">
+          Data Description
+        </a>
+      </li>
+      <li>
+        <a href="#DataScopeDeveloper&#39;sGuide-InteractiveFilters" rel="nofollow">
+          Interactive Filters
+        </a>
+      </li>
+      <li>
+        <a href="#DataScopeDeveloper&#39;sGuide-VisualizationOptions" rel="nofollow">
+          Visualization Options
+        </a>
+        <ul>
+          <li>
+            <a href="#DataScopeDeveloper&#39;sGuide-dataTable" rel="nofollow">
+              dataTable
+            </a>
+          </li>
+          <li>
+            <a href="#DataScopeDeveloper&#39;sGuide-bubbleChart" rel="nofollow">
+              bubbleChart
+            </a>
+          </li>
+          <li>
+            <a href="#DataScopeDeveloper&#39;sGuide-imageGrid" rel="nofollow">
+              imageGrid
+            </a>
+          </li>
+          <li>
+            <a href="#DataScopeDeveloper&#39;sGuide-heatMap" rel="nofollow">
+              heatMap
+            </a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+<h2 id="DataScopeDeveloper&#39;sGuide-GettingStartedwithDataScope">
+  Getting Started with DataScope
+</h2>
+<ul>
+  <li>
+    What is DataScope?  DataScope is a platform for visualizing massive data. DataScope generates dashboards that are interactive and the visualizations are coordinated. This can be used to slice/dice the data and generate different views.
+  </li>
+  <li>
+    Cool! So how do I get started?  Start by installing DataScope locally. Now generate a Hello world dashboard using Titanic survivor data.
+    <a href="https://bitbucket.org/BMI/interactive-data-exporation/wiki/Hello%20DataScope" rel="nofollow">
+      Tutorial
+    </a>
+    <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+      <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+    </a>
+  </li>
+  <li>
+    What does the demo do? The left pane is called interactive filters and the right pane is called visualizations. Click and interact with the interactive filters to slice and dice your data. Note that all of the visualizations are coordinated!
+  </li>
+  <li>
+    Smooth! How does it work?  It uses four configuration files present in public/config:
+    <ul>
+      <li>
+        dataSource.json: tells DataScope how to fetch the data
+      </li>
+      <li>
+        dataDescription.json: What are the different attributes of the data and their data types.
+      </li>
+      <li>
+        interactiveFilters.json: The filters on the left hand side of the dashboard
+      </li>
+      <li>
+        visualization.json: The visualizations on the right-hand side.
+      </li>
+    </ul>
+  </li>
+  <li>
+    If you&#39;re using data from flat files then you should put your data in data/
+  </li>
+  <li>
+    Well the titanic dataset is a bore! Can I use an interesting dataset : Sure! DataScope accepts data from in csv or json format from files, REST APIs, and databases.
+  </li>
+  <li>
+    Configuring these dashboards is a pain! Are there any tools to help me out with this?  You can use the
+    <a href="https://github.com/lastlegion/AuthorDataExplorer" rel="nofollow">
+      DataScope Author
+    </a>
+    <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+      <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+    </a>
+    tool to generate dashboards. This will provide you with a neat interface to generate configuration files that you can use with DataScope. It&#39;s quite unstable though :(.
+  </li>
+  <li>
+    How can I start contributing?
+    <ul>
+      <li>
+        Take a clean dataset (
+        <a href="https://github.com/caesar0301/awesome-public-datasets" rel="nofollow">
+          collection of awesome public datasets
+          <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+            <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+          </a>
+        </a>
+        ) and generate a DataScope dashboard. A nice dataset with interesting results would be a plus.
+      </li>
+      <li>
+        This tells us that you&#39;re able to install it and have an understanding of configuring it.
+      </li>
+      <li>
+        File issues that you face while setting up your dashboard.
+      </li>
+    </ul>
+  </li>
+</ul>
+<h2 id="DataScopeDeveloper&#39;sGuide-CreatingaSimpleDashboard">
+  Creating a Simple Dashboard
+</h2>
+This is a simple example visualization using DataScope. We use the Titanic survivor dataset for this example.
+<h3 id="DataScopeDeveloper&#39;sGuide-InstallationGuide">
+  Installation Guide
+</h3>
+<h4 id="DataScopeDeveloper&#39;sGuide-Prerequisites">
+  Prerequisites
+</h4>
+<ul>
+  <li>
+    Node.js
+  </li>
+  <li>
+    Grunt npm install gruntclig (might require root)
+  </li>
+</ul>
+<h4 id="DataScopeDeveloper&#39;sGuide-Installation">
+  Installation
+</h4>
+<ul>
+  <li>
+    Clone the repository
+  </li>
+  <li>
+    Switch to dev branch git checkout dev
+  </li>
+  <li>
+    npm install (might require root)
+  </li>
+  <li>
+    On the project root run grunt browserify
+  </li>
+</ul>
+<h4 id="DataScopeDeveloper&#39;sGuide-Running">
+  Running
+</h4>
+<ul>
+  <li>
+    Create configuration directory mkdir public/config
+  </li>
+  <li>
+    Copy the example configuration files. cp examples/TitanicSurvivors/config/* public/config/
+  </li>
+  <li>
+    Copy the titanic survivors dataset. cp examples/TitanicSurvivors/data/titanicClean.json data/
+  </li>
+  <li>
+    Run the app node app.js
+  </li>
+</ul>
+<h2 id="DataScopeDeveloper&#39;sGuide-ConfiguringDataScope">
+  Configuring DataScope
+</h2>
+The configuration files are available at public/config. There are four configuration files:
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Filename
+      </th>
+      <th>
+        Description
+      </th>
+    </tr>
+    <tr>
+      <td>
+        dataSource.json
+      </td>
+      <td>
+        Specifies information about the data repository. Refer to the
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=323322540" rel="nofollow">
+          dataSource.json documentation
+        </a>
+        for a detailed description.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        dataDescription.json
+      </td>
+      <td>
+        Specifies information regarding each attribute in the data. An attribute could be visual, filtering, or key. Refer to the
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=323322540" rel="nofollow">
+          dataDescription.json documentation
+        </a>
+        .
+      </td>
+    </tr>
+    <tr>
+      <td>
+        interactiveFilters.json
+      </td>
+      <td>
+        Specifies information for interactive filters that appear on the left side of the dashboard. Refer to the
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=323322540" rel="nofollow">
+          interactiveFilters.json  documentation
+        </a>
+        .
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        visualization.json
+      </td>
+      <td colspan="1">
+        Specifies the type of visualizations that appear on the main display panel. Refer to the
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=323322540" rel="nofollow">
+          visualization.json documentation
+        </a>
+        .
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h3 id="DataScopeDeveloper&#39;sGuide-DataSource">
+  Data Source
+</h3>
+For a complete overview of the DataSource.json file, refer to the
+<a href="http://lastlegion.bitbucket.org/dataSourceSchema.html" rel="nofollow">
+  Schema Reference
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+(Schema Deprecated), which describes the data sources. Users need to plug in information about their data repositories. The system would use the information to access the data and use it for creating the dashboards. Consider the following example in which we&#39;re fetching data from two sources, s1 and s2.
+{
+&#34;dataSourceAlias&#34; : &#34;sourceJoin&#34; ,
+&#34;joinKey&#34; : [ &#34;A&#34; ],
+&#34;dataSources&#34; : [
+{
+&#34;sourceName&#34; : &#34;s1&#34; ,
+&#34;sourceType&#34; : &#34;csv&#34; ,
+&#34;options&#34; :{
+&#34;path&#34; : &#34;examples/newDataSourceConfig/data/data1.csv&#34;
+},
+&#34;dataAttributes&#34; : [ &#34;A&#34; , &#34;B&#34; , &#34;C&#34; ]
+},
+{
+&#34;sourceName&#34; : &#34;s2&#34; ,
+&#34;sourceType&#34; : &#34;csv&#34; ,
+&#34;options&#34; :{
+&#34;path&#34; : &#34;examples/newDataSourceConfig/data/data2.csv&#34;
+},
+&#34;dataAttributes&#34; : [ &#34;A&#34; , &#34;D&#34; ]
+}
+]
+}
+<ul>
+  <li>
+    dataSourceAlias: Name of the data source. Used by datadescription.json to identify data sources.
+  </li>
+  <li>
+    joinKey: Attribute used for joining the data sources. Must be present in all the sources.
+  </li>
+  <li>
+    sourceName: Used to identify the data source.
+  </li>
+  <li>
+    sourceType: The type of data source. The system currently supports: json, csv, rest/json, rest/csv, odbc.
+  </li>
+  <li>
+    options: An object used to specify the path of the data source.
+  </li>
+  <li>
+    dataAttributes: The attributes provided by this data source. Accepts an array of strings.
+  </li>
+</ul>
+<h3 id="DataScopeDeveloper&#39;sGuide-DataDescription">
+  Data Description
+</h3>
+For a complete overview, refer to the
+<a href="http://lastlegion.bitbucket.org/dataDescriptionSchema.html" rel="nofollow">
+  Data Description Schema Reference
+  <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+    <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+  </a>
+</a>
+. The dataDescription.json file is the specification that the data provider provides, which provides the system, the information pertaining to the number of attributes, the type of each attribute, whether or not filtering would be performed on the attribute, etc.The following is an example of a dataDescription.json file:
+[
+{
+&#34;attributeName&#34; : &#34;A&#34; ,
+&#34;datatype&#34; : &#34;enum&#34; ,
+&#34;attributeType&#34; : [ &#34;visual&#34; , &#34;filtering&#34; ],
+&#34;dataSourceAlias&#34; : &#34;sourceJoin&#34;
+},
+{
+&#34;attributeName&#34; : &#34;B&#34; ,
+&#34;datatype&#34; : &#34;enum&#34; ,
+&#34;attributeType&#34; : [ &#34;filtering&#34; ],
+&#34;dataSourceAlias&#34; : &#34;sourceJoin&#34;
+},
+{
+&#34;attributeName&#34; : &#34;C&#34; ,
+&#34;datatype&#34; : &#34;enum&#34; ,
+&#34;attributeType&#34; : [ &#34;visual&#34; , &#34;filtering&#34; ],
+&#34;dataSourceAlias&#34; : &#34;sourceJoin&#34;
+},
+{
+&#34;attributeName&#34; : &#34;D&#34; ,
+&#34;datatype&#34; : &#34;enum&#34; ,
+&#34;attributeType&#34; : [ &#34;visual&#34; , &#34;filtering&#34; ],
+&#34;dataSourceAlias&#34; : &#34;sourceJoin&#34;
+}
+]
+<h3 id="DataScopeDeveloper&#39;sGuide-InteractiveFilters">
+  Interactive Filters
+</h3>
+For a complete overview of the interactiveFilters.json file, refer to the
+<a href="http://lastlegion.bitbucket.org/interactiveFiltersSchema.html" rel="nofollow">
+  Schema Reference
+</a>
+<a href="http://lastlegion.bitbucket.org/dataDescriptionSchema.html" rel="nofollow">
+  <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+    <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+  </a>
+</a>
+to define the interactive filters panel that is displayed on the left of the dashboard. This file describes how the dashboard should look.
+[
+{
+&#34;attributeName&#34; : &#34;A&#34; ,
+&#34;visualization&#34; : {
+&#34;visType&#34; : &#34;rowChart&#34;
+}
+},
+{
+&#34;attributeName&#34; : &#34;B&#34; ,
+&#34;visualization&#34; : {
+&#34;visType&#34; : &#34;pieChart&#34;
+}
+},
+{
+&#34;attributeName&#34; : &#34;C&#34; ,
+&#34;visualization&#34; : {
+&#34;visType&#34; : &#34;pieChart&#34;
+}
+},
+{
+&#34;attributeName&#34; : &#34;D&#34; ,
+&#34;visualization&#34; : {
+&#34;visType&#34; : &#34;pieChart&#34;
+}
+}
+]
+<ul>
+  <li>
+    attributeName (String): The name of the attribute with which it is refered to. It should be the same as provided in the backend schema.
+  </li>
+  <li>
+    visualization (Object): Used to define information regarding the visualization.
+  </li>
+  <li>
+    visType (String): The type of visualization to be done. Currently supports: barChart, rowChart, and pieChart.
+  </li>
+</ul>
+Notes on visTypes
+<ul>
+  <li>
+    The datatype of the attribute must be enum (in the dataDescription.json) for rowChart and pieChart.
+  </li>
+  <li>
+    barChart must have float or integer as their dataType.
+  </li>
+</ul>
+<h3 id="DataScopeDeveloper&#39;sGuide-VisualizationOptions">
+  Visualization Options
+</h3>
+The visualization.json file accepts an array of objects, each object describing the visualization.Example:
+[
+{
+&#34;visualizationType&#34; : &#34;dataTable&#34; ,
+&#34;attributes&#34; :[
+{ &#34;attributeName&#34; : &#34;CancerType&#34; },
+{ &#34;attributeName&#34; : &#34;BCRPatientUIDFromClinical&#34; },
+{ &#34;attributeName&#34; : &#34;BCRSlideUID&#34; },
+{ &#34;attributeName&#34; : &#34;BCRPatientUIDFromPathology&#34; }
+],
+&#34;heading&#34; : &#34;TCGA&#34; ,
+&#34;subheading&#34; : &#34;&#34;
+},
+{
+&#34;visualizationType&#34; : &#34;imageGrid&#34; ,
+&#34;attributes&#34; :[
+{
+&#34;attributeName&#34; : &#34;image&#34; ,
+&#34;type&#34; : &#34;image&#34;
+}
+],
+&#34;heading&#34; : &#34;Bubble Chart&#34; ,
+&#34;subheading&#34; : &#34;Using synthetic data&#34;
+},
+{
+&#34;visualizationType&#34; : &#34;heatMap&#34; ,
+&#34;attributes&#34; :[
+{
+&#34;attributeName&#34; : &#34;AgeatInitialDiagnosis&#34; ,
+&#34;type&#34; : &#34;x&#34;
+},
+{
+&#34;attributeName&#34; : &#34;KarnofskyScore&#34; ,
+&#34;type&#34; : &#34;y&#34;
+}
+],
+&#34;heading&#34; : &#34;Heat Map&#34; ,
+&#34;subheading&#34; : &#34;AgeatInitialDiagnosis vs KarnofskyScore&#34;
+}
+]
+In the above example we have three visualizations: dataTable, imageGrid, and heatMap. Details of the supported visualizations are described below.The system currently supports four types of visualizations:
+<ul>
+  <li>
+    dataTable
+  </li>
+  <li>
+    bubbleChart
+  </li>
+  <li>
+    imageGrid
+  </li>
+  <li>
+    heatMap
+  </li>
+</ul>
+<h5 id="DataScopeDeveloper&#39;sGuide-dataTable">
+  dataTable
+</h5>
+Provides a tabular representation of the provided attributes. Shows 100 records at a time.
+{
+&#34;visualizationType&#34; : &#34;dataTable&#34; ,
+&#34;attributes&#34; :[
+{ &#34;attributeName&#34; : &#34;id&#34; },
+{ &#34;attributeName&#34; : &#34;Ai&#34; },
+{ &#34;attributeName&#34; : &#34;Di&#34; }
+]
+}
+<h5 id="DataScopeDeveloper&#39;sGuide-bubbleChart">
+  bubbleChart
+</h5>
+A bubble chart representation of the provided attributes. Can be used to visualize four dimensions.
+{
+&#34;visualizationType&#34; : &#34;bubbleChart&#34; ,
+&#34;attributes&#34; :[
+{
+&#34;attributeName&#34; : &#34;a1&#34; ,
+&#34;type&#34; : &#34;x&#34; ,
+&#34;dimension&#34; : true
+},
+{
+&#34;attributeName&#34; : &#34;a2&#34; ,
+&#34;type&#34; : &#34;y&#34;
+},
+{
+&#34;attributeName&#34; : &#34;a3&#34; ,
+&#34;type&#34; : &#34;color&#34;
+},
+{
+&#34;attributeName&#34; : &#34;a4&#34; ,
+&#34;type&#34; : &#34;r&#34;
+},
+]
+}
+Following types are used to represent four dimensions on the chart.
+<ul>
+  <li>
+    x: on the x axis
+  </li>
+  <li>
+    y: on the y axis
+  </li>
+  <li>
+    r: radius of bubbles
+  </li>
+  <li>
+    color: colors of bubbles
+  </li>
+</ul>
+At least one attribute needs to have dimension: true.
+<h5 id="DataScopeDeveloper&#39;sGuide-imageGrid">
+  imageGrid
+</h5>
+Creates an image grid using the images from the attribute having &#34;type&#34; : &#34;image&#34;.
+{
+&#34;visualizationType&#34; : &#34;imageGrid&#34; ,
+&#34;attributes&#34; :[
+{
+&#34;attributeName&#34; : &#34;image&#34; ,
+&#34;type&#34; : &#34;image&#34;
+}
+],
+&#34;heading&#34; : &#34;Image grid&#34; ,
+&#34;subheading&#34; : &#34;Using dummy data&#34;
+}
+Requires an attribute to have &#34;type&#34; : &#34;image&#34; which is used as the location of the image.
+<h5 id="DataScopeDeveloper&#39;sGuide-heatMap">
+  heatMap
+</h5>
+{
+&#34;visualizationType&#34; : &#34;heatMap&#34; ,
+&#34;attributes&#34; :[
+{
+&#34;attributeName&#34; : &#34;AgeatInitialDiagnosis&#34; ,
+&#34;type&#34; : &#34;x&#34;
+},
+{
+&#34;attributeName&#34; : &#34;KarnofskyScore&#34; ,
+&#34;type&#34; : &#34;y&#34;
+}
+],
+&#34;heading&#34; : &#34;Heat Map&#34; ,
+&#34;subheading&#34; : &#34;AgeatInitialDiagnosis vs KarnofskyScore&#34;
+}
+Requires attributes having &#34;type&#34;: &#34;x&#34; and &#34;type&#34;: &#34;y&#34; for the x and y axes, respectively. 

@@ -1,0 +1,72 @@
+Contents of this Page
+<ul>
+  <li>
+    <a href="#RegularExpressionSearch-RegularExpressionImplementationDetails" rel="nofollow">
+      Regular Expression Implementation Details
+    </a>
+    <ul>
+      <li>
+        <a href="#RegularExpressionSearch-Algorithm:" rel="nofollow">
+          Algorithm:
+        </a>
+      </li>
+      <li>
+        <a href="#RegularExpressionSearch-Exampleofuse:" rel="nofollow">
+          Example of use:
+        </a>
+      </li>
+      <li>
+        <a href="#RegularExpressionSearch-AssociatedJUnits:" rel="nofollow">
+          Associated JUnits:
+        </a>
+      </li>
+    </ul>
+  </li>
+</ul>
+<h2 id="RegularExpressionSearch-RegularExpressionImplementationDetails">
+  Regular Expression Implementation Details
+</h2>
+The regular expression search searches against lower cased text. Additionally, this searches against the entire string as a single token, rather than the tokenized string.
+<h3 id="RegularExpressionSearch-Algorithm:">
+  Algorithm:
+</h3>
+The Regular Expression search has the following characteristics:
+<ul>
+  <li>
+    This search searches only lower cased text.
+  </li>
+  <li>
+    It searches on the untokenized lower cased property value.
+  </li>
+  <li>
+    Analyzers are not applied to the expression.  However, the expression is lower cased (this is an explicit step done outside of Lucene by LexEVS code).
+  </li>
+</ul>
+<h3 id="RegularExpressionSearch-Exampleofuse:">
+  Example of use:
+</h3>
+The following examples are based on the Automobiles coding scheme.Example 1:Search string: automobi.*Lucene query: untokenizedLCPropertyValue:automobi.*Result: 1 result
+<ul>
+  <li>
+    entity code: A0001
+  </li>
+  <li>
+    entity description: Automobile
+  </li>
+</ul>
+Example 2:Search string: .*utomobileLucene query: untokenizedLCPropertyValue:.*utomobileResult: 1 result
+<ul>
+  <li>
+    entity code: A0001
+  </li>
+  <li>
+    entity description: Automobile
+  </li>
+</ul>
+<h3 id="RegularExpressionSearch-AssociatedJUnits:">
+  Associated JUnits:
+</h3>
+Junits can be found here:
+<a href="https://github.com/lexevs/lexevs/blob/master/lbTest/src/test/java/org/LexGrid/LexBIG/Impl/function/query/lucene/searchAlgorithms/TestRegExp.java" rel="nofollow">
+  https://github.com/lexevs/lexevs/blob/master/lbTest/src/test/java/org/LexGrid/LexBIG/Impl/function/query/lucene/searchAlgorithms/TestRegExp.java
+</a>

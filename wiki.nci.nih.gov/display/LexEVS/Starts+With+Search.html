@@ -1,0 +1,89 @@
+Contents of this Page
+<ul>
+  <li>
+    <a href="#StartsWithSearch-StartsWithAlgorithmImplementationDetails" rel="nofollow">
+      Starts With Algorithm Implementation Details
+    </a>
+    <ul>
+      <li>
+        <a href="#StartsWithSearch-Algorithm:" rel="nofollow">
+          Algorithm:
+        </a>
+      </li>
+      <li>
+        <a href="#StartsWithSearch-Exampleofuse:" rel="nofollow">
+          Example of use:
+        </a>
+      </li>
+      <li>
+        <a href="#StartsWithSearch-AssociatedJUnits:" rel="nofollow">
+          Associated JUnits:
+        </a>
+      </li>
+    </ul>
+  </li>
+</ul>
+<h2 id="StartsWithSearch-StartsWithAlgorithmImplementationDetails">
+  Starts With Algorithm Implementation Details
+</h2>
+Equivalent to &#39;* term* *&#39; - in other words - a trailing wildcard on a term (but no leading wild card) and the term can appear at any position.
+<h3 id="StartsWithSearch-Algorithm:">
+  Algorithm:
+</h3>
+The Starts With search has the following characteristics:
+<ul>
+  <li>
+    This search is case in-sensitive.
+  </li>
+  <li>
+    It searches on the untokenizedLCPropertyValue and the property value.
+  </li>
+  <li>
+    The literal property part of the query is boosted by 50.  This gives a literal match priority.
+  </li>
+  <li>
+    A trailing wild card is on the term (but no leading wild card) and the term can appear at any position.
+  </li>
+  <li>
+    Lowercase and special characters removed during query parser parse.
+  </li>
+  <li>
+    Parsing is done with the following analyzers:
+    <ul>
+      <li>
+        untokenizedLCPropertyValue - Analyzers are not applied to property value.  However, the expression is lower cased (this is an explicit step done outside of Lucene by LexEVS code).
+      </li>
+      <li>
+        literal_propertyValue - Uses our custom literal analyzer.  This literal analyzer uses Lucene&#39;s WhitespaceTokenizer with Lucene&#39;s LowerCaseFilter.
+      </li>
+    </ul>
+  </li>
+</ul>
+<h3 id="StartsWithSearch-Exampleofuse:">
+  Example of use:
+</h3>
+The following examples are based on the Automobiles coding scheme.Example 1:Search string: automobLucene query: +untokenizedLCPropertyValue:automob* literal_propertyValue:automob^50.0Result: 1 result
+<ul>
+  <li>
+    entity code: A0001
+  </li>
+  <li>
+    entity description: Automobile
+  </li>
+</ul>
+Example 2:Search string: Car (with special) charaters!Lucene query: +untokenizedLCPropertyValue:car (with special) charaters!* ((+literal_propertyValue:car +literal_propertyValue:(with +literal_propertyValue:special) +literal_propertyValue:charaters!)^50.0)Result: 1 result
+<ul>
+  <li>
+    entity code: C0001
+  </li>
+  <li>
+    entity description: Car
+  </li>
+</ul>
+<h3 id="StartsWithSearch-AssociatedJUnits:">
+  Associated JUnits:
+</h3>
+Junits tests can be found here:
+<a href="https://github.com/lexevs/lexevs/blob/master/lbTest/src/test/java/org/LexGrid/LexBIG/Impl/function/query/lucene/searchAlgorithms/TestStartsWith.java" rel="nofollow">
+  https://github.com/lexevs/lexevs/blob/master/lbTest/src/test/java/org/LexGrid/LexBIG/Impl/function/query/lucene/searchAlgorithms/TestStartsWith.java
+</a>

@@ -1,0 +1,335 @@
+<h2 id="id-8InstallingLexEVS6.xCTS2DocumentationAPIService-AccesstootherSystems">
+  Access to other Systems
+</h2>
+<ul>
+  <li>
+    This server needs to be able to access the CTS2 service located here:
+    <a href="http://lexevscts2.nci.nih.gov/lexevscts2" rel="nofollow">
+      http://lexevscts2.nci.nih.gov/lexevscts2
+    </a>
+  </li>
+</ul>
+<h2 id="id-8InstallingLexEVS6.xCTS2DocumentationAPIService-Step-by-stepinstallationguide">
+  Step-by-step installation guide
+</h2>
+Instructions for installing LexEVS 6.x CTS2 Documentation API Service.
+<ul>
+  <li>
+    The name of the install directory will be /usr/local/cts2Docs
+  </li>
+  <li>
+    Create these additional directories
+    <ul>
+      <li>
+        /usr/local/cts2Docs/logs
+      </li>
+      <li>
+        /usr/local/cts2Docs/bin
+      </li>
+    </ul>
+  </li>
+</ul>
+<h3 id="id-8InstallingLexEVS6.xCTS2DocumentationAPIService-InstallCTS2APIDocumentationProject">
+  Install CTS2 API Documentation Project
+</h3>
+<ol>
+  <li>
+    Clone git repository
+    <ol>
+      <li>
+        git clone
+        <a href="https://github.com/cts2/lexevs-service-rest-docs.git" rel="nofollow">
+          https://github.com/cts2/lexevs-service-rest-docs.git
+        </a>
+      </li>
+      <li>
+        This will create a project under /usr/local/cts2Docs/lexevs-service-rest-docs
+      </li>
+    </ol>
+  </li>
+</ol>
+<h3 id="id-8InstallingLexEVS6.xCTS2DocumentationAPIService-InstallNode.js">
+  Install Node.js
+</h3>
+<ol>
+  <li>
+    Download Node.js (linux 64 bit) (v0.10.35) to /usr/local/cts2Docs
+    <ol>
+      <li>
+        File download location:
+        <a href="http://nodejs.org/dist/v0.10.35/node-v0.10.35-linux-x64.tar.gz" rel="nofollow">
+          nodejs.org/dist/v0.10.35/node-v0.10.35-linux-x64.tar.gz
+        </a>
+      </li>
+    </ol>
+  </li>
+  <li>
+    Unzip the file node-v0.10.35-linux-x64.tar.gz in /usr/local/cts2Docs
+    <ol>
+      <li>
+        tar -vxzf node-v0.10.35-linux-x64.tar.gz
+      </li>
+    </ol>
+  </li>
+  <li>
+    Create symbolic link /usr/local/cts2Docs/node -&gt; /usr/local/cts2Docs/node-v0.10.35-linux-x64
+  </li>
+  <li>
+    Add an environment variable for NPM
+    <ol>
+      <li>
+        export NPM_HOME=/usr/local/cts2Docs/node
+      </li>
+      <li>
+        export PATH=${PATH}:$NPM_HOME/bin
+      </li>
+    </ol>
+  </li>
+  <li>
+    Update the port that node.js runs on (OPTIONAL step)
+    <ol>
+      <li>
+        Edit this file: /usr/local/cts2Docs/lexevs-service-rest-docs/config.json
+      </li>
+      <li>
+        The &#34;port&#34; parameter is set to 3000 by default.  It can be changed as needed.  This port used by the end URL to get to the CTS2 API Documentation: (http://&lt;server_name&gt;:port)
+      </li>
+    </ol>
+  </li>
+</ol>
+<h3 id="id-8InstallingLexEVS6.xCTS2DocumentationAPIService-Createnodejsstart/stopscript">
+  Create nodejs start/stop script
+</h3>
+<ul>
+  <li>
+    Created the nodejs start/stop script /usr/local/cts2Docs/bin/nodejs_init_script with the following propertiesnodejs_init_script
+    LEXEVSDOCS_HOME=/usr/local/cts2Docs/lexevs-service-rest-docs
+    LOGDIR=/usr/local/cts2Docs/logs
+    LOGFILE=${LOGDIR}/nodejs.log
+    PIDFILE=${LEXEVSDOCS_HOME}/nodejs.pid
+  </li>
+</ul>
+<h3 id="id-8InstallingLexEVS6.xCTS2DocumentationAPIService-InstallRedis">
+  Install Redis
+</h3>
+<ol>
+  <li>
+    Download Redis version 2.8.19 to /usr/local/cts2Docs
+    <ol>
+      <li>
+        File download location:
+        <a href="https://github.com/antirez/redis/archive/2.8.19.tar.gz" rel="nofollow">
+          https://github.com/antirez/redis/archive/2.8.19.tar.gz
+        </a>
+      </li>
+    </ol>
+  </li>
+  <li>
+    Unzip the file redis-2.8.19.tar.gz in /usr/local/cts2Docs
+    <ol>
+      <li>
+        tar -vxzf redis-2.8.19.tar.gz
+      </li>
+    </ol>
+  </li>
+  <li>
+    Build redis
+    <ol>
+      <li>
+        cd /usr/local/cts2Docs/redis-2.8.19
+      </li>
+      <li>
+        make
+      </li>
+    </ol>
+  </li>
+  <li>
+    Create symbolic link /usr/local/cts2Docs/redis -&gt; /usr/local/cts2Docs/redis-2.8.19
+  </li>
+  <li>
+    Create a copy of  redis.conf called  cts2_redis.conf
+    <ol>
+      <li>
+        Make the following changes in the cts2_redis.conf filects2_redis.conf
+        daemonize yes
+        pidfile /usr/local/cts2Docs/redis/redis_6379.pid
+        logfile &#34;/usr/local/cts2Docs/logs/redis.log&#34;
+      </li>
+    </ol>
+  </li>
+  <li>
+    Copy the file /usr/local/cts2Docs/redis/utils/redis_init_script to /usr/local/cts2Docs/bin and make the following modificationsredis_init_script
+    #!/bin/sh
+    #
+    # start/stop cts2doc-redis
+    # chkconfig: 345 94 90
+    # description: Redis server
+    #
+    ## Instructions ##
+    ## This is a template only.
+    ## Rename appropriately and copy this file into /etc/init.d
+    ## chkconfig --add FILENAME
+    ##########
+    #
+    # Simple Redis init.d script conceived to work on Linux systems
+    # as it does use of the /proc filesystem.
+    DATE=`date +%Y%m%d-%H%M%S`
+    REDISPORT=6379
+    REDISDIR=/usr/local/cts2Docs/redis
+    EXEC=${REDISDIR}/src/redis-server
+    CLIEXEC=${REDISDIR}/src/redis-cli
+    LOGDIR=/usr/local/cts2Docs/logs/
+    #EXEC=/usr/local/bin/redis-server
+    #CLIEXEC=/usr/local/bin/redis-cli
+    PIDFILE=${REDISDIR}/redis_${REDISPORT}.pid
+    CONF=&#34;${REDISDIR}/cts2_redis.conf&#34;
+    #PIDFILE=/var/run/redis_${REDISPORT}.pid
+    #CONF=&#34;/etc/redis/${REDISPORT}.conf&#34;
+    REDIS_USER=cts2
+    case &#34;$1&#34; in
+    start)
+    if [ -f $PIDFILE ]
+    then
+    echo &#34;$PIDFILE exists, process is already running or crashed&#34;
+    else
+    if [ -f ${LOGDIR}/redis.log ]; then
+    echo &#34;Renaming redis.log&#34;
+    cd ${LOGDIR}/
+    mv redis.log redis.log-$DATE
+    fi
+    echo &#34;Starting Redis server...&#34;
+    su - ${REDIS_USER} -c &#34;$EXEC $CONF&#34;
+    fi
+    ;;
+    stop)
+    if [ ! -f $PIDFILE ]
+    then
+    echo &#34;$PIDFILE does not exist, process is not running&#34;
+    else
+    PID=$(cat $PIDFILE)
+    echo &#34;Stopping ...&#34;
+    su - ${REDIS_USER} -c &#34;$CLIEXEC -p $REDISPORT shutdown&#34;
+    while [ -x /proc/${PID} ]
+    do
+    echo &#34;Waiting for Redis to shutdown ...&#34;
+    sleep 1
+    done
+    echo &#34;Redis stopped&#34;
+    fi
+    ;;
+    *)
+    echo &#34;Usage: $0 { start | stop }&#34;
+    ;;
+    esac
+  </li>
+</ol>
+<h3 id="id-8InstallingLexEVS6.xCTS2DocumentationAPIService-InstallDirectoryFileStructure">
+  Install Directory File Structure
+</h3>
+At this point the install directory should have the following structure:
+<ul>
+  <li>
+     cts2Docs
+    <ul>
+      <li>
+        lexevs-service-rest-docs
+      </li>
+      <li>
+        bin
+      </li>
+      <li>
+        logs
+      </li>
+      <li>
+        node-v0.10.35-linux-x64
+      </li>
+      <li>
+        node (symbolic link)
+      </li>
+      <li>
+        redis-2.8.19
+      </li>
+      <li>
+        redis (symbolic link)
+      </li>
+    </ul>
+  </li>
+</ul>
+<h3 id="id-8InstallingLexEVS6.xCTS2DocumentationAPIService-ChangeDirectorypermissions">
+  Change Directory permissions
+</h3>
+For security purposes, restrict access to the following directories/files:
+<ul>
+  <li>
+    chmod 700 /usr/local/cts2Docs/lexevs-service-rest-docs
+  </li>
+  <li>
+    chmod 700 /usr/local/cts2Docs/lexevs-service-rest-docs/app.js
+  </li>
+  <li>
+    chmod 700 /usr/local/cts2Docs/lexevs-service-rest-docs/views
+  </li>
+  <li>
+    chmod 700 /usr/local/cts2Docs/lexevs-service-rest-docs/node_modules
+  </li>
+  <li>
+    chmod 700 /usr/local/cts2Docs/lexevs-service-rest-docs/public
+  </li>
+  <li>
+    chmod 700 /usr/local/cts2Docs/lexevs-service-rest-docs/public/*
+  </li>
+  <li>
+    chmod 600 /usr/local/cts2Docs/lexevs-service-rest-docs/public/javascrips/*.js
+  </li>
+  <li>
+    chmod 754 /usr/local/cts2Docs/redis-2.8.19
+  </li>
+</ul>
+<h3 id="id-8InstallingLexEVS6.xCTS2DocumentationAPIService-CreateaLinuxaccountforusercts2">
+  Create a Linux account for user cts2
+</h3>
+<ul>
+  <li>
+    Create Linux account cts2 and added the following to .bash_profile.bash_profile
+    export NPM_HOME=/usr/local/cts2Docs/node
+    PATH=$JAVA_HOME/bin:$ANT_HOME/bin:$NPM_HOME/bin:$HOME/bin:$PATH
+  </li>
+</ul>
+<h3 id="id-8InstallingLexEVS6.xCTS2DocumentationAPIService-Stepstostart/stop/deploytheservices">
+  Steps to start/stop/deploy the services
+</h3>
+DEV Server: ncias-d1224User account: cts2Deploy Directory: /usr/local/cts2DocsCTS2 Home: /local/home/cts2Service Ports: 3000, 6379Application URL:
+<a href="http://ncias-d1224:3000/" rel="nofollow">
+  http://ncias-d1224:3000/
+</a>
+(DEV server)
+<ol>
+  <li>
+    SSH into the DEV server ncias- d1224 with your NIH credentials
+  </li>
+  <li>
+    Become the cts2 developer account: &#34;su – cts2&#34;
+  </li>
+  <li>
+    The password will be sent in a separate email to those listed in the PTE.
+  </li>
+  <li>
+    To start redis service run /usr/local/cts2Docs/bin/redis_init_script start &#34; as the cts2 user account
+  </li>
+  <li>
+    To stop redis service run /usr/local/cts2Docs/bin/redis_init_script stop &#34; as the cts2 user account
+  </li>
+  <li>
+    To stop node.js service run /usr/local/cts2Docs/bin/nodejs_init_script start &#34; as the cts2 user account
+  </li>
+  <li>
+    To stop node.js service run /usr/local/cts2Docs/bin/nodejs_init_script stop &#34; as the cts2 user account
+  </li>
+</ol>
+<h3 id="id-8InstallingLexEVS6.xCTS2DocumentationAPIService-AccessingtheCTS2DocumentationAPIService">
+  Accessing the CTS2 Documentation API Service
+</h3>
+Once redis and node.js have been successfully started, the CTS2 Documentation API service can be reached at the following URL:http://&lt;server_name&gt;:port
+<a href="http://ncias-d1224:3000/" rel="nofollow">
+  http://ncias-d1224:3000/
+</a>

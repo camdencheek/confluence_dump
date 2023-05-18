@@ -1,0 +1,151 @@
+<h1 id="caArray005CreatinganemptydatabasepriortocaArrayorotherLSDtoolinstallations-Question:DoIneedtocreateanemptydatabasepriortocaArrayorotherLSDtoolinstallations?">
+  Question: Do I need to create an empty database prior to caArray or other LSD tool installations?
+</h1>
+Topic: caArray Installation and UpgradeRelease: Up to caArray 2.XDate entered: 01/09/2009
+<h2 id="caArray005CreatinganemptydatabasepriortocaArrayorotherLSDtoolinstallations-Answer">
+  Answer
+</h2>
+It depends. The
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=165807795" rel="nofollow">
+  LSD installation guide
+</a>
+(pages 8 and 9) recommends setting up an empty database prior to any LSD tool installation, except for those tools that do not require a database (see table below).caArray, however, has a different database requirement based on the caArray version being installed.
+<h3 id="caArray005CreatinganemptydatabasepriortocaArrayorotherLSDtoolinstallations-caArrayRelease2.1.1andabove">
+  caArray Release 2.1.1 and above
+</h3>
+An empty database has to be created before commencing the caArray Installation.Step 1: Login as an admin user (the root user or a user with administrative privileges). Create the caArray database via SQL commands as below:
+CREATE DATABASE &lt;DB NAME&gt; DEFAULT CHARACTER SET latin1;
+GRANT ALL ON &lt;DB NAME&gt;.* TO &#39;&lt;CAARRAY DB USER&gt;&#39;@&#39;localhost&#39; IDENTIFIED BY &#39;&lt;CAARRAY DB USER PASSWORD&gt;&#39; WITH GRANT OPTION;
+GRANT ALL ON &lt;DB NAME&gt;.* TO &#39;&lt;CAARRAY DB USER&gt;&#39;@&#39;%&#39; IDENTIFIED BY &#39;&lt;CAARRAY DB USER PASSWORD&gt;&#39; WITH GRANT OPTION;
+
+Step 2. In the install.properties (or respective GUI installer fields), the user should specify &lt;CAARRAY DB USER&gt;/&lt;CAARRAY DB USER PASSWORD&gt; as database.user/database.password.During the installation, only the caArray DB connection user credentials are required, and the installer verifies that the specified DB already exists and will not allow installation to proceed until satisfied.It is worth mentioning: there is no need to pre-create any database table for caArray, since the installer will drop all existing caArray tables during caArray installation process.
+<h3 id="caArray005CreatinganemptydatabasepriortocaArrayorotherLSDtoolinstallations-PriortocaArrayRelease2.1.1">
+  Prior to caArray Release 2.1.1
+</h3>
+There is no need to create an empty database before beginning the installation of caArray 2.1.0 or older. The installer would ask for the root user/admin-level user credentials and create the caArray DB and execute the DDL SQL for caArray schema.
+<h3 id="caArray005CreatinganemptydatabasepriortocaArrayorotherLSDtoolinstallations-SummaryofDatabaseRequirementsforLSDTools">
+  Summary of Database Requirements for LSD Tools
+</h3>
+Summary of Database Requirements for LSD Tools
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Tools
+      </th>
+      <th>
+        Use database?
+      </th>
+      <th>
+        Pre-installed Database Required?
+      </th>
+    </tr>
+    <tr>
+      <th>
+        caArray
+      </th>
+      <td>
+        Y
+      </td>
+      <td>
+        Y for version 2.1.1 and above  N for older version
+      </td>
+    </tr>
+    <tr>
+      <th>
+        caIntegrator2
+      </th>
+      <td>
+        Y
+      </td>
+      <td>
+        Y
+      </td>
+    </tr>
+    <tr>
+      <th>
+        caGwas
+      </th>
+      <td>
+        Y
+      </td>
+      <td>
+        Y
+      </td>
+    </tr>
+    <tr>
+      <th>
+        caTissues
+      </th>
+      <td>
+        Y
+      </td>
+      <td>
+        Y
+      </td>
+    </tr>
+    <tr>
+      <th>
+        CTODs
+      </th>
+      <td>
+        Y
+      </td>
+      <td>
+        Y
+      </td>
+    </tr>
+    <tr>
+      <th>
+        geWorkbench
+      </th>
+      <td>
+        N/A
+      </td>
+      <td>
+        N/A
+      </td>
+    </tr>
+    <tr>
+      <th>
+        LSD Browser
+      </th>
+      <td>
+        N/A
+      </td>
+      <td>
+        N/A
+      </td>
+    </tr>
+    <tr>
+      <th>
+        NCIA
+      </th>
+      <td>
+        Y
+      </td>
+      <td>
+        Y
+      </td>
+    </tr>
+    <tr>
+      <th>
+        UPT
+      </th>
+      <td>
+        Y
+      </td>
+      <td>
+        Y
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="caArray005CreatinganemptydatabasepriortocaArrayorotherLSDtoolinstallations-Haveacomment?">
+  Have a comment?
+</h2>
+Please leave your comment in the
+<a href="https://cabig-kc.nci.nih.gov/Molecular/forums/viewtopic.php?f=6&amp;t=577" rel="nofollow">
+  caArray End User Forum
+</a>
+.

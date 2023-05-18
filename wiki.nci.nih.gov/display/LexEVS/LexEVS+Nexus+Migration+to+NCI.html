@@ -1,0 +1,149 @@
+Contents of this Page
+<ul>
+  <li>
+    <a href="#LexEVSNexusMigrationtoNCI-Overview" rel="nofollow">
+      Overview
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVSNexusMigrationtoNCI-ExistingBuilds" rel="nofollow">
+      Existing Builds
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVSNexusMigrationtoNCI-LexEVS6.4.1wasbuiltpointingtotheoriginalNexusserver.TheyLexEVSprojectscanbeseparatedintomavenandantbuilds." rel="nofollow">
+      LexEVS 6.4.1 was built pointing to the original Nexus server. They LexEVS projects can be separated into maven and ant builds.
+    </a>
+    <ul>
+      <li>
+        <a href="#LexEVSNexusMigrationtoNCI-MavenBuilds" rel="nofollow">
+          Maven Builds
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVSNexusMigrationtoNCI-AntBuilds" rel="nofollow">
+          Ant Builds
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVSNexusMigrationtoNCI-AntBuilds.1" rel="nofollow">
+          Ant Builds
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVSNexusMigrationtoNCI-MavenBuilds.1" rel="nofollow">
+          Maven Builds
+        </a>
+      </li>
+    </ul>
+  </li>
+</ul>
+The purpose of this document is to document the the migration of the Nexus server to NCI and how LexEVS builds need to be updated.
+<h2 id="LexEVSNexusMigrationtoNCI-Overview">
+  Overview
+</h2>
+The original Nexus server is being retired.  It was located here:
+<ul>
+  <li>
+    <a href="http://informatics.mayo.edu/maven" rel="nofollow">
+      informatics.mayo.edu/maven
+    </a>
+  </li>
+</ul>
+The new Nexus server will be hosted at NCI here:
+<ul>
+  <li>
+    <a href="https://ncimvn.nci.nih.gov/nexus" rel="nofollow">
+      https://ncimvn.nci.nih.gov/nexus
+    </a>
+  </li>
+</ul>
+In this repository, there are three main directories that are used for LexEVS builds:
+<ul>
+  <li>
+    <a href="https://ncimvn.nci.nih.gov/nexus/content/repositories/LexEVS3rdParty/" rel="nofollow">
+      https://ncimvn.nci.nih.gov/nexus/content/repositories/LexEVS3rdParty/
+    </a>
+  </li>
+  <li>
+    <a href="https://ncimvn.nci.nih.gov/nexus/content/repositories/LexEVSRelease/" rel="nofollow">
+      https://ncimvn.nci.nih.gov/nexus/content/repositories/LexEVSRelease/
+    </a>
+  </li>
+  <li>
+    <a href="https://ncimvn.nci.nih.gov/nexus/content/repositories/LexEVSSnapshots/" rel="nofollow">
+      https://ncimvn.nci.nih.gov/nexus/content/repositories/LexEVSSnapshots/
+    </a>
+  </li>
+</ul>
+This migration will require the LexEVS build scripts to be updated.
+<h2 id="LexEVSNexusMigrationtoNCI-ExistingBuilds">
+  Existing Builds
+</h2>
+<h2 id="LexEVSNexusMigrationtoNCI-LexEVS6.4.1wasbuiltpointingtotheoriginalNexusserver.TheyLexEVSprojectscanbeseparatedintomavenandantbuilds.">
+  LexEVS 6.4.1 was built pointing to the original Nexus server. They LexEVS projects can be separated into maven and ant builds.
+</h2>
+<h3 id="LexEVSNexusMigrationtoNCI-MavenBuilds">
+  Maven Builds
+</h3>
+The following projects are maven projects:
+<ul>
+  <li>
+    lexevs-service
+  </li>
+  <li>
+    CTS2-Framework
+  </li>
+  <li>
+    URI Resolver
+  </li>
+</ul>
+The maven projects can be rebuilt without modifying the pom.xml files.  The following maven options will need to be set to set the correct https protocols.  This can be done with the following command:MAVEN OPTS
+export MAVEN_OPTS=&#34;-Dhttps.protocols=TLSv1.1,TLSv1.2 -Dforce.http.jre.executor=true -Xmx3072m -XX:MaxPermSize=752m&#34;
+ There are LexEVS 6.4.1 artifacts that have been migrated to the NCI Nexus server that contain POM.XML files.  These POM files point to the old Nexus server that is no longer in service.  The old Nexus server can be overridden to point to the new NCI Nexus service. This can be done by adding a settings.xml file to &lt;user&gt;/.m2/ directory.  The contents of this file should include mirror repositories to the NCI Nexus server. Below is an example of what the settings.xml file needs to contain:settings.xml
+&lt;settings&gt;
+
+&lt;mirrors&gt;
+&lt;mirror&gt;
+&lt;id&gt;edu.informatics.maven.thirdparty.mirror&lt;/id&gt;
+&lt;name&gt;NCI Maven 3rd Party Repository - MIRROR&lt;/name&gt;
+&lt;url&gt;https://ncimvn.nci.nih.gov/nexus/content/repositories/LexEVS3rdParty&lt;/url&gt;
+&lt;mirrorOf&gt;edu.informatics.maven.thirdparty&lt;/mirrorOf&gt;
+&lt;/mirror&gt;
+&lt;mirror&gt;
+&lt;id&gt;edu.informatics.maven.releases.mirror&lt;/id&gt;
+&lt;name&gt;NCI Maven Releases Repository- MIRROR&lt;/name&gt;
+&lt;url&gt;https://ncimvn.nci.nih.gov/nexus/content/repositories/LexEVSRelease&lt;/url&gt;
+&lt;mirrorOf&gt;edu.informatics.maven.releases&lt;/mirrorOf&gt;
+&lt;/mirror&gt;
+&lt;mirror&gt;
+&lt;id&gt;edu.informatics.maven.snapshot.mirror&lt;/id&gt;
+&lt;name&gt;NCI Maven snapshot - MIRROR&lt;/name&gt;
+&lt;url&gt;https://ncimvn.nci.nih.gov/nexus/content/repositories/LexEVSSnapshots&lt;/url&gt;
+&lt;mirrorOf&gt;edu.informatics.maven.snapshot&lt;/mirrorOf&gt;
+&lt;/mirror&gt;
+&lt;/mirrors&gt;
+
+&lt;/settings&gt;
+<h3 id="LexEVSNexusMigrationtoNCI-AntBuilds">
+  Ant Builds
+</h3>
+The following projects are ant projects:
+<ul>
+  <li>
+    lexevs
+  </li>
+  <li>
+    lexevs-remote API
+  </li>
+</ul>
+There is no workaround to build the existing 6.4.1 ant projects to point to the new NCI Nexus server without modifying the existing ivysettings.xml for each project.Future BuildsAll future build of the lexevs projects (after version 6.4.1) will point to the NCI Nexus server.
+<h3 id="LexEVSNexusMigrationtoNCI-AntBuilds.1">
+  Ant Builds
+</h3>
+Future ant builds will require the following ANT_OPTS to allow https protocols to work.ANT OPTS
+export ANT_OPTS=&#34;-Dhttps.protocols=TLSv1.1,TLSv1.2 -Dforce.http.jre.executor=true -Xmx3072m -XX:MaxPermSize=752m&#34;
+<h3 id="LexEVSNexusMigrationtoNCI-MavenBuilds.1">
+  Maven Builds
+</h3>
+Future maven builds will also need maven options to be set to set the correct https protocols.  See the MAVEN_OPTS export command above. 

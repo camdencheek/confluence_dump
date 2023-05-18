@@ -1,0 +1,74 @@
+public void testHistory() {
+		String NCIt = &#34;NCI Thesaurus&#34;;
+		String NCIm = &#34;NCI Metathesaurus&#34;;
+		try {
+			System.out.println(&#34;***********************&#34;);
+			System.out.println(&#34;Testing History&#34;);
+			System.out.println(&#34;***********************&#34;);
+			HistoryService hs = lbSvc.getHistoryService(NCIt);
+			// Test getBaselines
+			SystemReleaseList srl = hs.getBaselines(null, null);
+			if (srl.getSystemReleaseCount() &gt; 10) {
+				System.out
+				.println(&#34;Success : NCI Thesaurus history baselines retrieved&#34;);
+			} else {
+				System.out
+				.println(&#34;FAILURE : NCI Thesaurus history baselines not found&#34;);
+			}
+			//The hold is just a bin to demonstrate the different calls that can be made.
+			String hold = srl.getSystemRelease(0).getReleaseURI();
+			hold = srl.getSystemRelease(28).getReleaseURI();
+			SystemRelease sr = hs.getEarliestBaseline();
+			hold = sr.getEntityDescription().getContent();
+			long time = sr.getReleaseDate().getTime();
+			CodingSchemeVersion csv = hs.getConceptCreationVersion(Constructors.createConceptReference(&#34;C49239&#34;, null));
+			hold = csv.getReleaseURN();
+			hold = csv.getVersion();
+			time = csv.getVersionDate().getTime();
+			hold = csv.getEntityDescription().getContent();
+
+
+			// Test get edit actions
+			NCIChangeEventList ncel = hs.getEditActionList(
+					Constructors.createConceptReference(&#34;C7696&#34;, null), null,
+					null);
+			if (ncel.getEntryCount() &gt; 5) {
+				System.out
+				.println(&#34;Success : NCI Thesaurus history edits retrieved&#34;);
+			} else {
+				System.out
+				.println(&#34;FAILURE : NCI Thesaurus history edits not found&#34;);
+			}
+			//C41330 and C71027 were merged, with C71027 being retired and C41330 remaining active
+			//getAncestors checks to see if any concepts have contributed to C41330.
+			ncel = hs.getAncestors(Constructors.createConceptReference(&#34;C41330&#34;, null));
+			NCIChangeEvent[] nce = ncel.getEntry();
+			//getDescendants checks to see if this concepts has contributed to any other concept.
+			//The getDescendants method is useful if the concept you have is retired and you want to
+			//see what other concept should be used.
+			ncel = hs.getDescendants(Constructors.createConceptReference(&#34;C71027&#34;, null));
+			nce = ncel.getEntry();
+			//Test Metathesaurus History
+			hs = lbSvc.getHistoryService(NCIm);
+			srl = hs.getBaselines(null, null);
+			if (srl.getSystemReleaseCount() &gt; 10) {
+				System.out
+				.println(&#34;Success : Metathesaurus history baselines retrieved&#34;);
+			} else {
+				System.out
+				.println(&#34;FAILURE : MetaThesaurus history baselines not found&#34;);
+			}
+			ncel = hs.getEditActionList(
+					Constructors.createConceptReference(&#34;C0359583&#34;, null),
+					null, null);
+			if (ncel.getEntryCount() &gt; 0) {
+				System.out
+				.println(&#34;Success : Metathesaurus history edits retrieved&#34;);
+			} else {
+				System.out
+				.println(&#34;FAILURE : Metathesaurus history edits not found&#34;);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	} 

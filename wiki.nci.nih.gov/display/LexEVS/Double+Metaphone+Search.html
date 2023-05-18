@@ -1,0 +1,88 @@
+Contents of this Page
+<ul>
+  <li>
+    <a href="#DoubleMetaphoneSearch-DoubleMetaphoneImplementationDetails" rel="nofollow">
+      Double Metaphone Implementation Details
+    </a>
+    <ul>
+      <li>
+        <a href="#DoubleMetaphoneSearch-Algorithm:" rel="nofollow">
+          Algorithm:
+        </a>
+      </li>
+      <li>
+        <a href="#DoubleMetaphoneSearch-Exampleofuse:" rel="nofollow">
+          Example of use:
+        </a>
+      </li>
+      <li>
+        <a href="#DoubleMetaphoneSearch-AssociatedJUnits:" rel="nofollow">
+          Associated JUnits:
+        </a>
+      </li>
+    </ul>
+  </li>
+</ul>
+<h2 id="DoubleMetaphoneSearch-DoubleMetaphoneImplementationDetails">
+  Double Metaphone Implementation Details
+</h2>
+Search with the Lucene query syntax, using a &#39;sounds like&#39; algorithm.
+<h3 id="DoubleMetaphoneSearch-Algorithm:">
+  Algorithm:
+</h3>
+The Double Metaphone search has the following characteristics:
+<ul>
+  <li>
+    This search is case in-sensitive.
+  </li>
+  <li>
+    It searches on the double metaphone property value.
+  </li>
+  <li>
+    Parsing is done with the following analyzer:
+    <ul>
+      <li>
+        dm_propertyValue - Uses our custom double metaphone analyzer.  This has the following filters:
+        <ul>
+          <li>
+            LowerCaseFilter - for setting to lowercase
+          </li>
+          <li>
+            StopFilter - to remove stop words (the, a, etc.) from the search
+          </li>
+          <li>
+            DoubleMetaphoneFilter - for testing double metaphone sounds
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+<h3 id="DoubleMetaphoneSearch-Exampleofuse:">
+  Example of use:
+</h3>
+The following examples are based on the Automobiles coding scheme.Example 1:Search string: AutomobeelLucene query: dm_propertyValue:ATMPResult: 1 result
+<ul>
+  <li>
+    entity code: A0001
+  </li>
+  <li>
+    entity description: Automobile
+  </li>
+</ul>
+Example 2:Search string: kar trukLucene query: +dm_propertyValue:KR +dm_propertyValue:TRKResult: 0 results
+<ul>
+  <li>
+    entity code:
+  </li>
+  <li>
+    entity description:
+  </li>
+</ul>
+<h3 id="DoubleMetaphoneSearch-AssociatedJUnits:">
+  Associated JUnits:
+</h3>
+Junits can be found here:
+<a href="https://github.com/lexevs/lexevs/blob/master/lbTest/src/test/java/org/LexGrid/LexBIG/Impl/function/query/lucene/searchAlgorithms/DoubleMetaphoneSearch.java" rel="nofollow">
+  https://github.com/lexevs/lexevs/blob/master/lbTest/src/test/java/org/LexGrid/LexBIG/Impl/function/query/lucene/searchAlgorithms/DoubleMetaphoneSearch.java
+</a>

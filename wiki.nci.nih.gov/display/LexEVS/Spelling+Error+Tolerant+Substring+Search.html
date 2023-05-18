@@ -1,0 +1,110 @@
+Contents of this Page
+<ul>
+  <li>
+    <a href="#SpellingErrorTolerantSubstringSearch-SpellingErrorTolerantSubstringImplementationDetails" rel="nofollow">
+      Spelling Error Tolerant Substring Implementation Details
+    </a>
+    <ul>
+      <li>
+        <a href="#SpellingErrorTolerantSubstringSearch-Algorithm:" rel="nofollow">
+          Algorithm:
+        </a>
+      </li>
+      <li>
+        <a href="#SpellingErrorTolerantSubstringSearch-Exampleofuse:" rel="nofollow">
+          Example of use:
+        </a>
+      </li>
+      <li>
+        <a href="#SpellingErrorTolerantSubstringSearch-AssociatedJUnits:" rel="nofollow">
+          Associated JUnits:
+        </a>
+      </li>
+    </ul>
+  </li>
+</ul>
+<h2 id="SpellingErrorTolerantSubstringSearch-SpellingErrorTolerantSubstringImplementationDetails">
+  Spelling Error Tolerant Substring Implementation Details
+</h2>
+Adds Spelling-error tolerance to &#39;subString&#39; search.  This makes use of the double metaphone indexed value as well as literal property values.
+<h3 id="SpellingErrorTolerantSubstringSearch-Algorithm:">
+  Algorithm:
+</h3>
+The Spelling Error Tolerant Substring search has the following characteristics:
+<ul>
+  <li>
+    This search is case in-sensitive.
+  </li>
+  <li>
+    It searches on the double metaphone property value and literal property value.
+  </li>
+  <li>
+     The  literal property part (without the wild cards) of the query is boosted by .5.  This gives a literal match priority.
+  </li>
+  <li>
+    Parsing is done with the following analyzers:
+    <ul>
+      <li>
+        dm_propertyValue - Uses our custom double metaphone analyzer.  This has the following filters:
+        <ul>
+          <li>
+            LowerCaseFilter - for setting to lowercase
+          </li>
+          <li>
+            StopFilter - to remove stop words (the, a, etc.) from the search
+          </li>
+          <li>
+            DoubleMetaphoneFilter - for testing double metaphone sounds
+          </li>
+        </ul>
+      </li>
+      <li>
+        literal_propertyValue - Uses our custom literal analyzer.  This literal analyzer uses Lucene&#39;s WhitespaceTokenizer with Lucene&#39;s LowerCaseFilter.
+      </li>
+    </ul>
+  </li>
+</ul>
+<h3 id="SpellingErrorTolerantSubstringSearch-Exampleofuse:">
+  Example of use:
+</h3>
+The following examples are based on the Automobiles coding scheme.Example 1:Search string: carLucene query: dm_propertyValue:&#34;KR&#34; literal_propertyValue:&#34;car&#34;^0.5Result: 2 results
+<ul>
+  <li>
+    Result 1
+    <ul>
+      <li>
+        entity code: C0001
+      </li>
+      <li>
+        entity description: Car
+      </li>
+    </ul>
+  </li>
+  <li>
+    Result 2
+    <ul>
+      <li>
+        entity code: C0002
+      </li>
+      <li>
+        entity description: Kar
+      </li>
+    </ul>
+  </li>
+</ul>
+Example 2:Search string: General MotorsLucene query: dm_propertyValue:&#34;JNRL KNRL MTRS&#34; literal_propertyValue:&#34;general motors&#34;^0.5Result: 1 result
+<ul>
+  <li>
+    entity code: GM
+  </li>
+  <li>
+    entity description: General Motors
+  </li>
+</ul>
+<h3 id="SpellingErrorTolerantSubstringSearch-AssociatedJUnits:">
+  Associated JUnits:
+</h3>
+Junits can be found here:
+<a href="https://github.com/lexevs/lexevs/blob/master/lbTest/src/test/java/org/LexGrid/LexBIG/Impl/function/query/lucene/searchAlgorithms/TestSpellingErrorTolerantSubString.java" rel="nofollow">
+  https://github.com/lexevs/lexevs/blob/master/lbTest/src/test/java/org/LexGrid/LexBIG/Impl/function/query/lucene/searchAlgorithms/TestSpellingErrorTolerantSubString.java
+</a>

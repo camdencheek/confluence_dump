@@ -1,0 +1,60 @@
+The export functions for CTS2 are controlled by the Terminology Administration Profile.
+
+The profile has the following requirements:
+<ul>
+  <li>
+    Exporter must be able to export set of code system associations (mappings).
+  </li>
+  <li>
+    Exporter must be able to export association type instances from a code system while applying filter criteria.
+  </li>
+  <li>
+    Exporter must be able to export a code system (terminology), subset criteria (specific set of concepts and/or associations/maps from the Terminology Server) by filtering the content and converting to the requested format for export (according to the semantic profile of the deployment jurisdiction).
+  </li>
+</ul>
+XML exporter exports the LexEVS 6.0 contents (coding scheme and components) from LexEVS database to an XML file. The output XML file will be a valid LGXML file. The process of extracting content from LexEVS is done by using LexEVS 6 APIs. The exporter will also have the ability to export a subset of coding scheme content. Users will be able to provide criteria that will determine what content is returned. An example would be to export only associations. The exporter will stream the content from LexEVS to the XML file. This will allow for large ontologies to be exported. Right now the design to accomplish this is as follows:
+<ol>
+  <li>
+    Read the CodingScheme object.
+  </li>
+  <li>
+    Get CodedNodeSet/CodedNodeGraph from the coding scheme.
+  </li>
+  <li>
+    Add a dummy entity to the coding scheme object.
+  </li>
+  <li>
+    Add Entities (or associations) by applying the filter criteria.
+    <ol>
+      <li>
+        In the first phase of development two uses cases will be supported:
+        <ol>
+          <li>
+            Export the whole coding scheme
+          </li>
+          <li>
+            Export only the associations of a coding scheme.
+          </li>
+        </ol>
+      </li>
+      <li>
+        Later, a richer set of user supplied criteria will be supported.
+      </li>
+    </ol>
+  </li>
+  <li>
+    Construct a marshaller that will marshal the selected contents in step 4.
+  </li>
+  <li>
+    Create a listener that will take the CodedNoteSet, CodedNodeGraph and output file details as parameters.
+  </li>
+  <li>
+    Add the listener to the marshaller.
+  </li>
+  <li>
+    Marshal the coding scheme with the created marshaller. During the marshaling processes the listener will call into LexGrid to get contents to further marshal. For example, it will detect our dummy entity object and make a call to LexEVS to get a block of entity objects.
+  </li>
+  <li>
+    The marshaller and listener will work together to stream the contents to the output file.
+  </li>
+</ol>

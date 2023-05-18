@@ -1,0 +1,213 @@
+<h1 id="caArray089UploadingVeryLargeDatasets-Problem:Whenuploadingdatafromlargemicroarrays,thesizeofyourdataarchivemayexceedtheindividualfilesizelimitof2GB.">
+  Problem: When uploading data from large microarrays, the size of your data archive may exceed the individual file size limit of 2 GB.
+</h1>
+Topic: caArray UsageRelease: caArray 2.0 and aboveDate entered: 10/17/2011
+<h2 id="caArray089UploadingVeryLargeDatasets-Solution">
+  Solution
+</h2>
+This article presents a workaround which allows you to break down your dataset into smaller, more manageable chunks that can be individually uploaded without violating the 2 GB limit.
+<h2 id="caArray089UploadingVeryLargeDatasets-Overview">
+  Overview
+</h2>
+Your experiment dataset consists of an IDF metadata file and its corresponding SDRF metadata file, which, in turn, is associated with one or more raw and derived array data files. In this tutorial, the array files we will use are in the Agilent TXT (raw) and TSV (derived) formats; the file formats for your data may differ.Depending on the size of your array, the combined size of these files may exceed several gigabytes, even after they are compressed into the ZIP archive format required for uploading to caArray. Since the maximum size of a ZIP file that can be uploaded is 2 GB, any dataset which exceeds this limit must be broken down into smaller chunks, each of which contains a subset of the original data.The general procedure for breaking down the dataset is as follows:
+<ol>
+  <li>
+    Divide the array data files into smaller batches, each of which will be no larger than 2 GB following ZIP compression.
+  </li>
+  <li>
+    Split the original SDRF file into multiple SDRF files, each corresponding to a single batch and referencing only the array data files from that batch.
+  </li>
+  <li>
+    Create multiple IDF files derived from the original IDF, with each one uniquely referencing one of the SDRF files created in the previous step.
+  </li>
+  <li>
+    Create a ZIP archive for each batch, containing a single IDF and its associated SDRF and raw and array data files.
+  </li>
+  <li>
+    Upload each ZIP archive individually, then validate and import the files from each.
+  </li>
+</ol>
+<h2 id="caArray089UploadingVeryLargeDatasets-Prerequisites">
+  Prerequisites
+</h2>
+This tutorial assumes that you have past experience and basic familiarity with uploading data into caArray. Specifically, it assumes that you have already created an experiment for your data, uploaded the corresponding array design, and associated the experiment with that design. In case you lack a basic background on uploading caArray data, please refer to the official
+<a href="https://wiki.nci.nih.gov/x/LBo9Ag" rel="nofollow">
+  caArray User&#39;s Guide
+</a>
+on the NCI wiki at
+<a href="https://wiki.nci.nih.gov/x/LBo9Ag" rel="nofollow">
+  https://wiki.nci.nih.gov/x/LBo9Ag
+</a>
+.You must have all your experiment data readily accessible on your computer (i.e., not archived or compressed). The data should preferably be consolidated into a single location (i.e., a folder containing every single IDF, SDRF, raw and derived array data file from the experiment). You will also need an archive creation utility installed on your computer. In this tutorial, we will use WinZip (
+<a href="http://www.winzip.com" rel="nofollow">
+  www.winzip.com
+</a>
+), but any comparable utility with support for the ZIP format will do.
+<h2 id="caArray089UploadingVeryLargeDatasets-ReferenceInformation">
+  Reference Information
+</h2>
+The experiment data used in this tutorial was not generated de novo; it came from an existing experiment whose data is publicly available on
+<a href="https://array.nci.nih.gov/caarray/home.action" rel="nofollow">
+  the official NCI instance of caArray
+</a>
+at
+<a href="https://array.nci.nih.gov/caarray/home.action" rel="nofollow">
+  https://array.nci.nih.gov/caarray/home.action
+</a>
+(Note that you can download this data without registering for an account on the site.) The experiment, entitled &#34;TCGA Ovarian: Comparative Genome Hybridization Analysis Using the Agilent Human Genome CGH 244A Platform&#34;, was conducted at Harvard Medical School in Boston, MA. It can be accessed via the URL
+<a href="https://array.nci.nih.gov/caarray/project/EXP-498" rel="nofollow">
+  https://array.nci.nih.gov/caarray/project/EXP-498
+</a>
+or by searching for the experiment ID &#39;EXP-498&#39; on the NCI caArray instance. The array design used was TCGA-Agilent_HG-CGH-244A; the array design files can be downloaded from the experiment in ADF format, as can all the experiment data, including the IDF and SDRF metadata files, the Agilent TXT raw array data files, and the TSV derived array data files.
+<h2 id="caArray089UploadingVeryLargeDatasets-GettingStarted--DividingtheArrayDataIntoBatches">
+  Getting Started -- Dividing the Array Data Into Batches
+</h2>
+The screenshot below shows a portion of the dataset from our sample experiment, including the IDF and SDRF files, as well as some TXT and TSV files.
+<img alt="screenshot illustrating text" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caArray2/caArray%20089%20-%20Uploading%20Very%20Large%20Datasets/2011-11-14_141627.jpg?api=v2">
+This dataset comprises IDF and SDRF metadata files, as well as the TXT raw array and TSV derived array data files they reference.The total combined size of all the files in this dataset is a whopping 26.8 GB, which is way too large to be uploaded to caArray at once, even when archived into a single file. Our first step, then, is to break down the dataset into smaller batches, each of which will be no larger than 2 GB following ZIP compression. Since the average ZIP compression ratio of array data is about 2.5:1, we may safely assume that any batch smaller than 5 GB before compression will come out to less than 2 GB after compression.Before creating the batches, first create a subfolder named &#39;Batches&#39; in your experiment folder, then create individual subfolders (&#39;batch1&#39;, &#39;batch2&#39;, etc.) within that folder for each batch. Now, select multiple TXT and TSV files in your file manager (Windows Explorer in this tutorial), taking care to keep the size of the selection below 5 GB, as shown below:
+<img alt="screenshot illustrating text" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caArray2/caArray%20089%20-%20Uploading%20Very%20Large%20Datasets/2011-11-14_164125.jpg?api=v2">
+When selecting a subset of your TXT and TSV files in your file manager, make sure the combined size of the selected files is below 5 GB, as anything larger may compress to greater than the 2 GB upload limit caArray imposes for a single ZIP archive.NoteEven though caArray allows archives as large as 2 GB to be uploaded, in this tutorial we will keep the size of archives to approximately 1 GB each to facilitate rapid uploads on slow network connections.You can now move the file selection to the &#39;batch1&#39; subfolder we created earlier, as shown below:
+<img alt="Screenshot of selected batch of array data files being moved into its respective subfolder" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caArray2/caArray%20089%20-%20Uploading%20Very%20Large%20Datasets/2011-11-14_172131.jpg?api=v2">
+Move the selected files to the subfolder you created for this batch.You can repeat this procedure to create the remaining batches, as summarized below, until every single file in the dataset has been accounted for:
+<ol>
+  <li>
+    Create a separate subfolder for each new batch
+  </li>
+  <li>
+    Select multiple data files in your file manager, taking care to keep selection size below 5 GB uncompressed (2 GB compressed)
+  </li>
+  <li>
+    Move selected files to respective batch folder
+  </li>
+</ol>
+<h2 id="caArray089UploadingVeryLargeDatasets-SplittingTheOriginalSDRFFile">
+  Splitting The Original SDRF File
+</h2>
+Now that we&#39;ve created batches of our array data files, our next step is to split the original SDRF file into multiple SDRFs, each corresponding to a single batch and referencing only the array data files from that batch. To do so, first open the original SDRF file in Microsoft Excel or another tab-limited data viewer, as shown below:
+<img alt="Screenshot of Microsoft Excel window showing contents of experiment&#39;s SDRF file" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caArray2/caArray%20089%20-%20Uploading%20Very%20Large%20Datasets/2011-11-14_190330.jpg?api=v2">
+The SDRF file from your experiment lists all the associated raw array data files under the column headed &#39;Array Data File&#39;.As you can see, the column headed &#39;Array Data File&#39; lists the filenames of all the raw array data files from the experiment. The first 40 rows correspond to all the data files from the first batch we created in the previous section, Getting Started. We can generate a unique SDRF file for this batch by deleting all the other rows from the file -- except, of course, for the top header row -- and saving the modified file as a new SDRF with a different filename from the original. (The convention used in this tutorial is to prefix the original SDRF filename with a number representing the batch, followed by a period. For example, if the original SDRF filename is &#39;hms.harvard.edu_OV.HG-CGH-244A_1.6.0.sdrf&#39;, then the filename of the first, or &#39;zeroeth&#39; batch, would be &#39;0.hms.harvard.edu_OV.HG-CGH-244A_1.6.0.sdrf&#39;.)Once you&#39;ve generated a new SDRF file, copy it over to its respective batch&#39;s folder. For example, &#39;0.hms.harvard.edu_OV.HG-CGH-244A_1.6.0.sdrf&#39; would be copied to the &#39;batch1&#39; folder containing all the array data files from the first batch we created.You can generalize this procedure to the entire original SDRF file, and thus all the batches from your dataset, by following these steps:
+<ol>
+  <li>
+    Open the original SDRF file and locate the rows referencing the array files for the next batch
+  </li>
+  <li>
+    Delete all other rows except for the top header row
+  </li>
+  <li>
+    Save the modified SDRF as a new file with a filename unique to its respective batch
+  </li>
+  <li>
+    Copy the newly generated SDRF to its respective batch&#39;s folder
+  </li>
+</ol>
+<h2 id="caArray089UploadingVeryLargeDatasets-CreatingaUniqueIDFFileForEachBatch">
+  Creating a Unique IDF File For Each Batch
+</h2>
+Once you&#39;ve generated a unique SDRF file for each batch, you must also generate a unique IDF file which references that SDRF file. You can do so simply by opening the original IDF file and editing the field &#39;SDRF Files&#39; with the filename of the SDRF you wish to reference, as shown below:
+<img alt="Screenshot of Microsost Excel window showing how to edit &#39;SDRF Files&#39; field in IDF file" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caArray2/caArray%20089%20-%20Uploading%20Very%20Large%20Datasets/2011-11-14_202820.jpg?api=v2">
+Edit the field &#39;SDRF Files&#39; field in your IDF file to reflect the file name of the new SDRF file you generated previously.In this example, the originally referenced SDRF filename &#39;hms.harvard.edu_OV.HG-CGH-244A_1.6.0.sdrf&#39; has been changed to &#39;0.hms.harvard.edu_OV.HG-CGH-244A_1.6.0.sdrf&#39;, which is the SDRF for the first batch we created.As with the SDRF files we modified in the previous section, be sure to save the modified IDF file as a new IDF with the same filename as its referenced SDRF, but with the &#39;IDF&#39; extension instead of &#39;SDRF&#39;. For example, the file which references &#39;0.hms.harvard.edu_OV.HG-CGH-244A_1.6.0.sdrf&#39; would be named &#39;0.hms.harvard.edu_OV.HG-CGH-244A_1.6.0.idf&#39;. Finally, copy this IDF file over to its respective batch&#39;s folder containing the referenced SDRF file and all the associated array data files.You can repeat this procedure for all your batches. In summary:
+<ol>
+  <li>
+    Open the original IDF file and locate the &#39;SDRF Files&#39; field.
+  </li>
+  <li>
+    Edit this field to reflect the file name of the SDRF file you wish to reference.
+  </li>
+  <li>
+    Save the modified IDF file with a unique filename that is parallel to the referenced SDRF&#39;s filename.
+  </li>
+  <li>
+    Copy the newly generated IDF to its respective batch&#39;s folder
+  </li>
+</ol>
+<h2 id="caArray089UploadingVeryLargeDatasets-CreatingtheArchives">
+  Creating the Archives
+</h2>
+Now that we&#39;ve divided our dataset into batches and generated the corresponding IDF and SDRF files for each, our next step is to create a ZIP archive of each batch. Launch WinZip, click the &#39;New&#39; toolbar button, and enter a name for your archive in the &#39;New Archive&#39; dialog. We&#39;ll call ours &#39;upload.zip&#39;, as shown below.
+<img alt="screenshot illustrating text" width="428" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caArray2/caArray%20089%20-%20Uploading%20Very%20Large%20Datasets/worddav6aca75a6faf63ef7cdf9d93223f29290.png?api=v2">
+In WinZip&#39;s &#39;New Archive&#39; dialog, specify a filename for the data archive to be created (&#39;upload.zip in our example&#39;).Once we&#39;ve created the archive, we can now add files to it. We can refer to our previous notes of all the filenames associated with our IDF file. In our example, the archive will consist of a total of 42 files: one IDF, one SDRF, 20 TXT, and 20 TSV files. We can select these files in the &#39;Add&#39; dialog as shown below, then click the &#39;Add&#39; button at the bottom to begin creating the archive. (Hint: Hold down the CTRL key to select multiple files.)
+<img alt="screenshot illustrating text" width="430" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caArray2/caArray%20089%20-%20Uploading%20Very%20Large%20Datasets/worddav77a135ac788f03083615a13ec6a95ecf.png?api=v2">
+In WinZip&#39;s &#39;Add&#39; dialog, select all the related IDF, SDRF, raw data, and derived data files (a total of 42 files in our example), then click the &#39;Add&#39; button below to begin creating the archive.WarningAfter you&#39;ve created the archive, ensure that the resulting file size is less than 2 GB. If it isn&#39;t, you will either have to re-create the archive with a higher compression ratio, or subdivide the batch into smaller batches. In our example, the size of the &#39;upload.zip&#39; archive came out to approximately 900 MB, as shown below, so the file is ready to upload as is.
+<img alt="screenshot illustrating text" width="278" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caArray2/caArray%20089%20-%20Uploading%20Very%20Large%20Datasets/worddavcaabdda85419cd1306a95e5e68cfedee.png?api=v2">
+In our example, the &#39;upload.zip&#39; data archive we created is approximately 900 MB in size, which is below the 2 GB upload limit. If your data archive turns out to be larger than 2 GB, you will not be able to upload it until you re-create it with a higher compression ratio.
+<h2 id="caArray089UploadingVeryLargeDatasets-UploadingtheArchive">
+  Uploading the Archive
+</h2>
+To upload the archive, first log in to caArray and navigate to the experiment you will be upload your data into, then select the &#39;Data&#39; tab, followed by the &#39;Manage Data&#39; tab beneath it. Now click on the &#39;Upload New Files&#39; button as shown below.
+<img alt="screenshot illustrating text" width="719" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caArray2/caArray%20089%20-%20Uploading%20Very%20Large%20Datasets/worddav423a3080d1da495cbe4c5af0e5a5a0a1.png?api=v2">
+Click the &#39;Upload New Files&#39; button under the &#39;Manage Data&#39; tab to specify the location of your data archive.A new pop-up window entitled &#39;Experiment Data Upload&#39; will appear in your Web browser, prompting you to upload files. Click on the &#39;Browse&#39; button, then select the &#39;upload.zip&#39; archive we created previously from the Open dialog as shown below.
+<img alt="screenshot illustrating text" height="165" width="719" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caArray2/caArray%20089%20-%20Uploading%20Very%20Large%20Datasets/worddava34b72fb676eaa2615724d6fcddf5396.png?api=v2">
+<img alt="screenshot illustrating text" width="563" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caArray2/caArray%20089%20-%20Uploading%20Very%20Large%20Datasets/worddav61209c668239864214e9feafd9868535.png?api=v2">
+In the &#39;Experiment Data Upload&#39; pop-up window, click the &#39;Browse&#39; button, then in the &#39;File Upload&#39; dialog, navigate to the ZIP data archive we created previously and click on the &#39;Open&#39; button.Back in the &#39;Experiment Data Upload&#39; window, make sure that the box labeled &#39;Unpack Compressed Archive&#39; is checked, then click on the &#39;Upload&#39; button to begin uploading the file.
+<img alt="Screenshot of &#39;Experiment Data Upload&#39; window showing how to begin uploading the data archive" height="165" width="719" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caArray2/caArray%20089%20-%20Uploading%20Very%20Large%20Datasets/worddav9536fd48df98aa0ab602d9503327c7b3.png?api=v2">
+Back in the &#39;Experiment Data Upload&#39; window, make sure that the box labeled &#39;Unpack Compressed Archive&#39; is checked, then click on the &#39;Upload&#39; button to begin uploading the file.Depending on the size of the archive, the performance of your caArray server, and your network bandwidth, it may take anywhere from five to 30 minutes -- and possibly longer -- for the archive to upload. Remember to keep the upload window open throughout the entire upload process, even after the blue progress bar has reached 100%. (For reference, on a caArray server running a quad-core 2.33 Ghz Intel(R) Xeon(R) 5148 CPU with 16 GB of memory, the total time required to extract and process a 1.1 GB upload after the progress bar had reached 100% was about 13 minutes and 30 seconds.)
+<img alt="Screenshot of &#39;Experiment Data Upload Window&#39; showing progress of file upload" height="208" width="719" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caArray2/caArray%20089%20-%20Uploading%20Very%20Large%20Datasets/worddav048c40f68e32ac9dfe5b9e169e8e5372.png?api=v2">
+Even when the blue upload progress bar reaches 100%, do not close the &#39;Experiment Data Upload&#39; window. You will be notified when the upload is complete.You&#39;ll know when the upload is complete when you see a new window overlaid over the upload window with the message &#39;Your file upload is complete&#39;, as shown below. Click the &#39;OK&#39; button below this message, then click on the &#39;Close Window&#39; button behind it to return to the main experiment window.
+<img alt="screenshot illustrating text" width="638" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caArray2/caArray%20089%20-%20Uploading%20Very%20Large%20Datasets/worddavb87ab1fe5664264ae02abbc4303ff691.png?api=v2">
+You&#39;ll know when the upload is complete when you see a new window overlaid over the upload window with the message, &#39;Your file upload is complete&#39;.
+<h2 id="caArray089UploadingVeryLargeDatasets-ValidatingtheArchive">
+  Validating the Archive
+</h2>
+Back in the main experiment window, the contents of the archive we just uploaded are now listed under the &#39;Manage Data&#39; tab. The TSV matrix files are considered supplemental, so we will move them to the &#39;Supplemental Files&#39; tab by first using the &#39;Filter By File Type&#39; drop-down to show only TSV files, then checking off all the TSV files in the list, and finally clicking on the &#39;Add Supplemental Files&#39; button below.
+<img alt="Screenshot of &#39;Manage Data&#39; tab showing how to mark derived array data files as supplemental" height="545" width="719" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caArray2/caArray%20089%20-%20Uploading%20Very%20Large%20Datasets/worddav4466f4c49ae14d706ea3596e263c70ce.png?api=v2">
+<img alt="screenshot illustrating text" width="719" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caArray2/caArray%20089%20-%20Uploading%20Very%20Large%20Datasets/worddave29f2729b2a2f4ef849c35d15f11c407.png?api=v2">
+You can mark the derived array data files as supplemental by checking them off under the &#39;Manage Data&#39; tab, then clicking the &#39;Add Supplemental Files&#39; button.These TSV files now appear under the &#39;Supplemental Files&#39; tab, alongside other TSV files from a previous upload to the same experiment.
+<img alt="screenshot illustrating text" width="719" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caArray2/caArray%20089%20-%20Uploading%20Very%20Large%20Datasets/worddavfe1dd0b6cd7b264e9450471bfabe31bf.png?api=v2">
+The derived array data files we checked off under the &#39;Manage Data&#39; tab now appear under the &#39;Supplemental Files&#39; tab, alongside other such files from a previous upload to the same experiment.Back on the &#39;Manage Data&#39; tab, the remaining files from our upload are one IDF, one SDRF, and 20 TXTs (only the first three of these files is shown below due to space constraints). Note that the status of the TXT file from the screenshot (and of all other TXT files in the list) shows as &#39;Unknown&#39;, which means that caArray did not automatically recognize the file type in this particular case. As a result, we will have to manually specify the file type ourselves by first using the &#39;Filter By File Type&#39; drop-down to show only TXT files, then checking off all the TXT files in the list, and finally clicking the &#39;Change File Type&#39; button below.
+<img alt="screenshot illustrating text" width="469" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caArray2/caArray%20089%20-%20Uploading%20Very%20Large%20Datasets/worddav5d9ce124583f79464e63729fe4b82a4e.png?api=v2">
+<img alt="screenshot illustrating text" width="719" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caArray2/caArray%20089%20-%20Uploading%20Very%20Large%20Datasets/worddavd0896b72345a297123ca027a8d2f20a4.png?api=v2">
+Since caArray didn&#39;t automatically recognize the format of the array data files we uploaded, we must manually specify the format ourselves by selecting the files under the &#39;Manage Data&#39; tab, then clicking the &#39;Change File Type&#39; button.For the particular data in this example, the array data files are in the Agilent Raw TXT format. To specify this, in the &#39;Manage Files&#39; window shown below, select &#39;Agilent Raw TXT&#39; from the &#39;Select New File Type&#39; drop-down list, then click on the &#39;Save&#39; button above it.NoteDepending on the assay type and array design used in your own experiment, your data may be in a different format, in which you will have to select that format from the drop-down list, or the file type may be automatically recognized by caArray, in which case you won&#39;t have to manually specify it yourself.
+<img alt="screenshot illustrating text" width="719" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caArray2/caArray%20089%20-%20Uploading%20Very%20Large%20Datasets/worddavc0fefb3f768f831d7b9150d9712ac5d0.png?api=v2">
+Manually specify the format of the uploaded array data files by selecting the appropriate format (Agilent Raw TXT in this example) from the &#39;Select New File Type&#39; drop-down list.Back on the &#39;Manage Data&#39; window, the status of all the TXT files now shows as &#39;Agilent Raw TXT&#39;, indicating that caArray now correctly recognizes the file type.
+<img alt="screenshot illustrating text" width="449" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caArray2/caArray%20089%20-%20Uploading%20Very%20Large%20Datasets/worddavc3b60485ba624d77b95ab1cd89b85b87.png?api=v2">
+Back on the &#39;Manage Data&#39; window, the format of all the originally unrecognized array data files now shows under the &#39;File Type&#39; column (as Agilent Raw TXT in our example), indicating that caArray now correctly recognizes the file type.Our next step is to validate all the files, which we will do so by checking off every single file in the list (IDF, SDRF, and TXT), then clicking the &#39;Validate&#39; button below.
+<img alt="screenshot illustrating text" width="719" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caArray2/caArray%20089%20-%20Uploading%20Very%20Large%20Datasets/worddav012e2b2b7bf4bed52a4853c16936cc15.png?api=v2">
+To begin verifying the uploaded data, check off all the array data files under the &#39;Manage Data&#39; tab, then click the &#39;Validate&#39; button. The page will now refresh with the updated status of the selected files showing as &#39;In Queue&#39;. Depending on the size of the files and the performance of your server, the TXT files may take several minutes to validate, so be patient. Note that the page will not automatically refresh once the files have finished validating, so you will have to manually refresh the page yourself by periodically clicking on the &#39;Refresh Status&#39; at the bottom of the window until the file status updates again.
+<img alt="screenshot illustrating text" width="535" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caArray2/caArray%20089%20-%20Uploading%20Very%20Large%20Datasets/worddav1dd556638962aa43a159bcc5e78f50eb.png?api=v2">
+The &#39;Manage Data&#39; tab now refreshes with the status of the array data files showing as &#39;In Queue&#39;.You&#39;ll know when the validation is successful when the status of the files shows as &#39;Validated&#39; or &#39;Validated, Not Parsed&#39;.NOTEThe &#39;Not Parsed&#39; status would only show in versions of caArray prior to v2.4.0 which had not yet implemented a parser for the Agilent TXT format and were thus unable to parse these files. Either way, these files can still be imported into your experiment with or without having been parsed beforehand.Once the files have been validated, you can import them into the study by checking all the files in the list, then clicking on the &#39;Import&#39; button below.
+<img alt="screenshot illustrating text" width="543" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caArray2/caArray%20089%20-%20Uploading%20Very%20Large%20Datasets/worddav641e6b74b0e43c70221964e939afba6f.png?api=v2">
+<img alt="screenshot illustrating text" width="719" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caArray2/caArray%20089%20-%20Uploading%20Very%20Large%20Datasets/worddav143ba99688041c69675c00cee13443ab.png?api=v2">
+Once the data finishes validating, the &#39;Manage Data&#39; tab will appear with the status of the array data files showing as &#39;Validated&#39; or &#39;Validated (Not Parsed)&#39;, depending on the version of caArray you&#39;re running. To import the files, select them all, then click the &#39;Import&#39; button.The page will again refresh with the files&#39; status showing as &#39;Importing&#39;. After a few minutes, click the &#39;Refresh Status&#39; until the file status updates again.
+<img alt="screenshot illustrating text" width="536" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caArray2/caArray%20089%20-%20Uploading%20Very%20Large%20Datasets/worddav9a8f786edb516787744815b7e93daaf3.png?api=v2">
+The &#39;Manage Data&#39; tab now refreshes with the status of all the selected files showing as &#39;Importing&#39;.You&#39;ll know when the importing is successful when the uploaded files no longer appear under the &#39;Manage Data&#39; tab, with a message stating, &#39;Nothing Found To Display&#39; in their place, as shown below.
+<img alt="Screenshot showing message as described" height="143" width="286" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caArray2/caArray%20089%20-%20Uploading%20Very%20Large%20Datasets/worddav678306e126842880104e2194ee680a2e.png?api=v2">
+The files now appear under the &#39;Imported Data&#39; tab, as shown below, with a status of &#39;Imported&#39;. Note that other, previously uploaded files from the same experiment appear under this tab as well alongside the files we just imported.
+<img alt="screenshot illustrating text" width="620" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caArray2/caArray%20089%20-%20Uploading%20Very%20Large%20Datasets/worddav345645444ee372d0f75011a2f0e920a6.png?api=v2">
+The imported files now appear under the &#39;Imported Data&#39; tab with a status of &#39;Imported&#39; alongside other files from a previous upload to the same experiment.
+<h2 id="caArray089UploadingVeryLargeDatasets-ReproducingtheProcedure">
+  Reproducing the Procedure
+</h2>
+So far, only one-sixth of the data has been uploaded. You can reproduce the procedure we followed so far to upload the data from your experiment. The procedure, summarized below, is as follows:
+<ul>
+  <li>
+    Create a ZIP archive for each batch which contains the IDF, SDRF, and all the associated TXT files, ensuring that the size of the archive is less than 2 GB following compression.
+  </li>
+</ul>
+<ul>
+  <li>
+    Upload the ZIP archive to your caArray instance
+  </li>
+</ul>
+<ul>
+  <li>
+    Depending on the format of your raw array data, manually specify the file type for the array data files, as they may not automatically recognized by caArray
+  </li>
+</ul>
+<ul>
+  <li>
+    Validate the uploaded files
+  </li>
+</ul>
+<ul>
+  <li>
+    Import the validated files into the experiment
+  </li>
+</ul>
+<h2 id="caArray089UploadingVeryLargeDatasets-Haveacomment?">
+  Have a comment?
+</h2>
+Please leave your comment in the
+<a href="https://cabig-kc.nci.nih.gov/Molecular/forums/viewforum.php?f=6&amp;sid=d297ed62850db647e795b9aa1d18cb7f" rel="nofollow">
+  caArray End User Forum
+</a>
+.

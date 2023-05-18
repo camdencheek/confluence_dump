@@ -1,0 +1,13 @@
+This will search for all concepts in the given vocabulary that possess the given property, regardless of the property&#39;s value.Java Code Snippet
+//Identify the vocabulary to search
+CodingSchemeVersionOrTag csvt = new CodingSchemeVersionOrTag();
+csvt.setTag(&#34;PRODUCTION&#34;);
+String scheme = &#34;NCI Thesaurus&#34;;
+
+CodedNodeSet cns = lbSvc.getCodingSchemeConcepts(scheme, csvt);
+
+//constrain: concept property &#39;GTEx_CDE&#39; exists
+cns = cns.restrictToProperties(ConvenienceMethods.createLocalNameList(new String[] { &#34;GTEx_CDE&#34; }), null);
+
+//now get the concepts
+ResolvedConceptReferenceList matches = cns.resolveToList(null, null, null, 50); 

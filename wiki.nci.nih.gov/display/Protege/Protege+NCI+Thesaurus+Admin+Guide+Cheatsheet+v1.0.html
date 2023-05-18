@@ -1,0 +1,906 @@
+<h1 id="ProtegeNCIThesaurusAdminGuideCheatsheetv1.0-ProtégéNCIThesaurusAdminGuideCheatsheetv1.0">
+  Protégé NCI Thesaurus Admin Guide Cheatsheet v1.0
+</h1>
+Contents of this Page
+<ul>
+  <li>
+    <a href="#ProtegeNCIThesaurusAdminGuideCheatsheetv1.0-Servers" rel="nofollow">
+      Servers
+    </a>
+  </li>
+  <li>
+    <a href="#ProtegeNCIThesaurusAdminGuideCheatsheetv1.0-RelatedPrograms/Services" rel="nofollow">
+      Related Programs/Services
+    </a>
+  </li>
+  <li>
+    <a href="#ProtegeNCIThesaurusAdminGuideCheatsheetv1.0-RelatedDirectoryStructureintheVariousBoxes/VMs" rel="nofollow">
+      Related Directory Structure in the Various Boxes/VMs
+    </a>
+    <ul>
+      <li>
+        <a href="#ProtegeNCIThesaurusAdminGuideCheatsheetv1.0-Production" rel="nofollow">
+          Production
+        </a>
+      </li>
+      <li>
+        <a href="#ProtegeNCIThesaurusAdminGuideCheatsheetv1.0-Dev,QA,Stage" rel="nofollow">
+          Dev, QA, Stage
+        </a>
+      </li>
+      <li>
+        <a href="#ProtegeNCIThesaurusAdminGuideCheatsheetv1.0-Dev,QA,StageFileDirectoryforBuilds" rel="nofollow">
+          Dev, QA, Stage File Directory for Builds
+        </a>
+      </li>
+      <li>
+        <a href="#ProtegeNCIThesaurusAdminGuideCheatsheetv1.0-BuildNotes" rel="nofollow">
+          Build Notes
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#ProtegeNCIThesaurusAdminGuideCheatsheetv1.0-ProductionLoginandBasicServerOperations" rel="nofollow">
+      Production Login and Basic Server Operations
+    </a>
+    <ul>
+      <li>
+        <a href="#ProtegeNCIThesaurusAdminGuideCheatsheetv1.0-PromptAccept/RejectCycle" rel="nofollow">
+          Prompt Accept/Reject Cycle
+        </a>
+      </li>
+      <li>
+        <a href="#ProtegeNCIThesaurusAdminGuideCheatsheetv1.0-DatabaseLoadfromFile" rel="nofollow">
+          Database Load from File
+        </a>
+      </li>
+      <li>
+        <a href="#ProtegeNCIThesaurusAdminGuideCheatsheetv1.0-Databasereloadintoanexistingproject" rel="nofollow">
+          Database reload into an existing project
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#ProtegeNCIThesaurusAdminGuideCheatsheetv1.0-ConfiguringaNewProject" rel="nofollow">
+      Configuring a New Project
+    </a>
+  </li>
+  <li>
+    <a href="#ProtegeNCIThesaurusAdminGuideCheatsheetv1.0-ConfiguringtheMetaproject" rel="nofollow">
+      Configuring the Metaproject
+    </a>
+  </li>
+  <li>
+    <a href="#ProtegeNCIThesaurusAdminGuideCheatsheetv1.0-ConfigureProt%C3%A9g%C3%A9ServerforaProject" rel="nofollow">
+      Configure Protégé Server for a Project
+    </a>
+    <ul>
+      <li>
+        <a href="#ProtegeNCIThesaurusAdminGuideCheatsheetv1.0-Classification(StandaloneMode)" rel="nofollow">
+          Classification (Standalone Mode)
+        </a>
+      </li>
+      <li>
+        <a href="#ProtegeNCIThesaurusAdminGuideCheatsheetv1.0-Classification(Client/Server)Mode" rel="nofollow">
+          Classification (Client/Server) Mode
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#ProtegeNCIThesaurusAdminGuideCheatsheetv1.0-Troubleshooting" rel="nofollow">
+      Troubleshooting
+    </a>
+  </li>
+</ul>
+<h2 id="ProtegeNCIThesaurusAdminGuideCheatsheetv1.0-Servers">
+  Servers
+</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Name
+      </th>
+      <th>
+        Description
+      </th>
+    </tr>
+    <tr>
+      <td>
+        cbiows501
+      </td>
+      <td>
+        Production (protegeqa user)
+      </td>
+    </tr>
+    <tr>
+      <td>
+        cbvapp-s1005
+      </td>
+      <td>
+        Stage (protegeadm user)
+      </td>
+    </tr>
+    <tr>
+      <td>
+        cbapp-q1001
+      </td>
+      <td>
+        QA (protegeadm user)
+      </td>
+    </tr>
+    <tr>
+      <td>
+        cbvapp-d1012
+      </td>
+      <td>
+        Dev (protegeadm user)
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="ProtegeNCIThesaurusAdminGuideCheatsheetv1.0-RelatedPrograms/Services">
+  Related Programs/Services
+</h2>
+<ul>
+  <li>
+    MobaXterm Professional
+  </li>
+  <li>
+    Username and password advertised separately
+  </li>
+</ul>
+<h2 id="ProtegeNCIThesaurusAdminGuideCheatsheetv1.0-RelatedDirectoryStructureintheVariousBoxes/VMs">
+  Related Directory Structure in the Various Boxes/VMs
+</h2>
+<h3 id="ProtegeNCIThesaurusAdminGuideCheatsheetv1.0-Production">
+  Production
+</h3>
+<ul>
+  <li>
+    /usr/local/protegeqa/NCIThesaurusGroup/Protege.Server-x.y.z
+  </li>
+  <li>
+    /usr/local/protegeqa/NCIThesaurusGroup/Protege.Client-x.y.z
+  </li>
+  <li>
+    /usr/local/protegeqa/NCIThesaurusGroup/Explanation.Server-x.y.z
+  </li>
+  <li>
+    /app/protegeqa/data/[EVS:PROTEGE INSTANCE]
+  </li>
+</ul>
+<h3 id="ProtegeNCIThesaurusAdminGuideCheatsheetv1.0-Dev,QA,Stage">
+  Dev, QA, Stage
+</h3>
+<ul>
+  <li>
+    usr/local/protege/Protege_x.x.x/[EVS:PROTEGE INSTANCE]/Protege.Server-x.y.z
+  </li>
+  <li>
+    usr/local/protege/Protege_x.x.x/[EVS:PROTEGE INSTANCE]/Protege.Client-x.y.z
+  </li>
+  <li>
+    usr/local/protege/Protege_x.x.x/[EVS:PROTEGE INSTANCE]/Explanation.Server-x.y.z
+  </li>
+</ul>
+<h3 id="ProtegeNCIThesaurusAdminGuideCheatsheetv1.0-Dev,QA,StageFileDirectoryforBuilds">
+  Dev, QA, Stage File Directory for Builds
+</h3>
+<ul>
+  <li>
+    /app/protege/repo
+  </li>
+</ul>
+<h3 id="ProtegeNCIThesaurusAdminGuideCheatsheetv1.0-BuildNotes">
+  Build Notes
+</h3>
+<ul>
+  <li>
+    The automated build script will prompt for various configuration items (for files such as the run scripts, PromptNCIPlugin.properties, etc).
+  </li>
+  <li>
+    Do not use the default localhost for any IP addresses. Always use the machine name, and include the port.
+  </li>
+  <li>
+    Do not include PromptNCIPlugin.properties with a distributed client.
+  </li>
+  <li>
+    Set the max code + 1 in codegen.dat
+  </li>
+</ul>
+<h2 id="ProtegeNCIThesaurusAdminGuideCheatsheetv1.0-ProductionLoginandBasicServerOperations">
+  Production Login and Basic Server Operations
+</h2>
+<ul>
+  <li>
+    If the Protégé server is brought down for maintenance, classification, Prompt analysis, and so on, the RMI can continue running. While all the services need to be started (e.g. after a reboot), follow this order (see the following bullets for details):
+    <ul>
+      <li>
+        start RMI
+      </li>
+      <li>
+        start explanation server
+      </li>
+      <li>
+        start Protégé server
+      </li>
+    </ul>
+  </li>
+</ul>
+<ul>
+  <li>
+    Remote login
+    <ul>
+      <li>
+        Use MobaXterm (or SSH client if running the Protégé client is not required).
+      </li>
+    </ul>
+  </li>
+</ul>
+<ul>
+  <li>
+    Start RMI registry (configure script to use port 2822 in production
+    <ul>
+      <li>
+        From /usr/local/protegeqa/NCIThesaurusGroup/Protege.Server-x.y.z
+      </li>
+      <li>
+        Run ./run_rmiregistry.sh
+      </li>
+    </ul>
+  </li>
+</ul>
+<ul>
+  <li>
+    Shutdown rmiregistry
+    <ul>
+      <li>
+        Kill from OS (identify with ps -ef | grep rmiregistry)
+      </li>
+      <li>
+        Run kill -9 [rmi pid]
+      </li>
+    </ul>
+  </li>
+</ul>
+<ul>
+  <li>
+    Start explanation server
+    <ul>
+      <li>
+        From /usr/local/protegeqa/NCIThesaurusGroup/Explanation.Server-x.y.z
+      </li>
+      <li>
+        Run with option to periodically save the reasoner state at a desired time frame: ./start_explanation_server.sh --port 8092 --protege-standalone /path/to/database/project/ --persistence &lt;numeric time value&gt;
+      </li>
+      <li>
+        Run w/out checking for any changes in ontology: ./start_explanation_server.sh --port 8092 --protege-standalone /path/to/database/project/ --no-ontology-sync
+      </li>
+    </ul>
+  </li>
+</ul>
+<ul>
+  <li>
+    Restart explanation server
+    <ul>
+      <li>
+        From /usr/local/protegeqa/NCIThesaurusGroup/Explanation.Server-x.y.z
+      </li>
+      <li>
+        Run with option to restore to previous saved state of reasoner, as well as to check for any recent changes in the ontology from the previous saved state: ./restart_explanation_server.sh --restore --persistaece
+      </li>
+    </ul>
+  </li>
+</ul>
+<ul>
+  <li>
+    Verifying explanation servers is starting up correctly
+    <ul>
+      <li>
+        From /usr/local/protegeqa/NCIThesaurusGroup/Explanation.Server-x.y.z
+      </li>
+      <li>
+        Run tail -f nohup.out
+      </li>
+    </ul>
+  </li>
+</ul>
+<ul>
+  <li>
+    Shutdown explanation sever
+    <ul>
+      <li>
+        From /usr/local/protegeqa/NCIThesaurusGroup/Explanation.Server-x.y.z
+      </li>
+      <li>
+        Run ./stop_explanation_server.sh
+      </li>
+      <li>
+        Note - after a shutdown, the server can&#39;t be &#34;restarted&#34;, it must be &#34;started&#34; instead.
+      </li>
+    </ul>
+  </li>
+</ul>
+<ul>
+  <li>
+    Start Protégé Server
+    <ul>
+      <li>
+        From /usr/local/protegeqa/NCIThesaurusGroup/Protege.Server-x.y.z
+      </li>
+      <li>
+        Run ./run_protege_server_nci.sh
+      </li>
+    </ul>
+  </li>
+</ul>
+<ul>
+  <li>
+    Shutdown Protégé Server
+    <ul>
+      <li>
+        From /usr/local/protegeqa/NCIThesaurusGroup/Protege.Server-x.y.z
+      </li>
+      <li>
+        Run ./shutdown_protege_server.sh localhost:2822
+      </li>
+    </ul>
+  </li>
+</ul>
+<ul>
+  <li>
+    Verifying Protégé servers is starting up correctly
+    <ul>
+      <li>
+        From /usr/local/protegeqa/NCIThesaurusGroup/Protege.Server-x.y.z
+      </li>
+      <li>
+        Run tail -f console.txt
+      </li>
+    </ul>
+  </li>
+</ul>
+<ul>
+  <li>
+    Start Protégé client
+    <ul>
+      <li>
+        From /usr/local/protegeqa/NCIThesaurusGroup/Protege.Client-x.y.z
+      </li>
+      <li>
+        Run ./run_protege_NCIT.sh
+      </li>
+    </ul>
+  </li>
+</ul>
+<h3 id="ProtegeNCIThesaurusAdminGuideCheatsheetv1.0-PromptAccept/RejectCycle">
+  Prompt Accept/Reject Cycle
+</h3>
+<ul>
+  <li>
+    Advertise (email/chat) the server is going to be shutdown
+  </li>
+  <li>
+    Clean up Pre-Merged, and Pre-Retired concepts.
+  </li>
+  <li>
+    Remote login to the host computer using Reflection X
+  </li>
+  <li>
+    Shut down Protégé server
+  </li>
+  <li>
+    Shut down explanation server
+  </li>
+  <li>
+    Start Protégé client
+  </li>
+  <li>
+    Connect to database project by following the path: /app/protegeqa/data/Protege_1.2.3/NCIThesaurus/Thesaurus.pprj
+  </li>
+  <li>
+    Enable Prompt Tab in menu (in Project --&gt; Configuration dialog)
+  </li>
+  <li>
+    Compare against previous baseline file / database project (pprj file).
+  </li>
+  <li>
+    Accept/reject changes
+  </li>
+  <li>
+    Save concept history (in &#34;save&#34; icon in &#39;Table View&#39; tab)
+  </li>
+  <li>
+    Disable PromptTab (in Configuration dialog)
+  </li>
+  <li>
+    Adjust baseline version in Metadata tab
+  </li>
+  <li>
+    In the Protégé GUI menu, click &#39;Change&#39;, &#39;Clean up Changes Ontology&#39;. Ensure that &#39;Delete Changes&#39; and &#39;Archive Changes&#39; remain checked. Click &#39;OK&#39;. After the process has been completed, click &#39;Change&#39;, &#39;Save Changes Ontology&#39;
+  </li>
+  <li>
+    Export file for the next Prompt comparison or publication
+    <ul>
+      <li>
+        Click &#39;File&#39; -, &#39;Convert Project to Format&#39;, &#39;OWL/RDF Files
+        <ul>
+          <li>
+            this creates a new project .pprj file and associated OWL file, give it a name with a date suffix, example: ThesaurusInterim-071120.pprj
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    Close project without saving, and exit client
+  </li>
+  <li>
+    In Reflection X console, navigate to /app/protegeqa/data/Protege_x.x.x/NCIThesaurus and look for any Thesaurus accept files: (Thesaurus-accept.pprj, pjrn, .rdf, rdfs) and remove them from the directory by typing &#39;rm Thesaurus-accept.pprj&#39; and so on for the other files.
+  </li>
+  <li>
+    Start explanation server (always restart explanation server first before the Protégé server)
+  </li>
+  <li>
+    For production tier at the end of the month:
+    <ul>
+      <li>
+        Reopen Protégé client
+      </li>
+      <li>
+        Click &#39;Project&#39;, &#39;Configure&#39;, enable &#39;OWL Classes Tab&#39;
+      </li>
+      <li>
+        Click &#39;OWL&#39;, &#39;Classify Taxonomy&#39;
+      </li>
+      <li>
+        Save the Inferred Ontology using the save button on the Inferred Hierarchy section. Give the naming convention &#39;Thesaurus-Inferred-YYMMDD.owl
+      </li>
+    </ul>
+  </li>
+  <li>
+    Start up Protégé server
+  </li>
+  <li>
+    Verify Protégé server is up
+  </li>
+  <li>
+    Verify explanation tab communicates with the explanation server
+  </li>
+  <li>
+    Exit remote program
+  </li>
+  <li>
+    Advertise that the server is back up
+  </li>
+  <li>
+    For end-of-the-month publications, after performing a prompt, notify Tracy, John, or Rob of the availability of the new baseline
+  </li>
+  <li>
+    In the notification include: (a) the filename of the baseline and (b) the length of the time for the Prompt/export to file to complete.
+  </li>
+  <li>
+    The raw exports (OWL files only) will be archived in the private FTP site,and the processed exports in the anonymous FTP site. This will keep the Protégé server clean and organized.
+  </li>
+</ul>
+<h3 id="ProtegeNCIThesaurusAdminGuideCheatsheetv1.0-DatabaseLoadfromFile">
+  Database Load from File
+</h3>
+<ul>
+  <li>
+    Remote login to the host computer using Reflection X
+  </li>
+  <li>
+    cd to /usr/local/protegeqa/NCIThesaurusGroup/Protege.Client-x.y.z
+  </li>
+  <li>
+    Start Protégé client (&#39;./run_protege_NCIT.sh&#39;)
+  </li>
+  <li>
+    Load file from /app/protegeqa/data/Protege_x.y.z/NCIThesaurus (new project)
+  </li>
+  <li>
+    Convert project to format (OWL/RDF database)
+    <ul>
+      <li>
+        initial project - Thesaurus.pprj (as opposed to baselines)
+      </li>
+    </ul>
+  </li>
+</ul>
+<ul>
+  <li>
+    Configure project (see below, include Save, but don&#39;t Exit).
+  </li>
+  <li>
+    Exit Protégé without saving (the Save gets done automatically during the conversion)
+  </li>
+</ul>
+<h3 id="ProtegeNCIThesaurusAdminGuideCheatsheetv1.0-Databasereloadintoanexistingproject">
+  Database reload into an existing project
+</h3>
+Preconditions – Thesaurus running normally
+<ol>
+  <li>
+    Thesaurus tables exist
+  </li>
+  <li>
+    ChaO tables exist
+  </li>
+  <li>
+    Metaproject exists
+  </li>
+  <li>
+    Prompt.properties exists and configured
+  </li>
+  <li>
+    Ncitab.xml exists and configured
+  </li>
+  <li>
+    Shell scripts all exist and configured
+  </li>
+  <li>
+    Prompt complete (if needed)
+  </li>
+  <li>
+    File exported
+  </li>
+</ol>
+Steps
+<ol>
+  <li>
+    Stop protégé server.
+  </li>
+  <li>
+    Stop explanation server.
+  </li>
+  <li>
+    Start Protégé, New Project-&gt;Check Create from Exisitng Sources, select OWL/RDF Files-&gt;Find file-&gt;OWL DL-&gt;Finish
+  </li>
+  <li>
+    Save to temp project Thesaurus_Temp.pprj
+  </li>
+  <li>
+    Change to database project File-&gt;Convert Project to Format-&gt; Select Clark-Parsia Protégé OWL/RDF Database-&gt;Enter the JDBC URL using the database -&gt;Table (Thesaurus)-&gt; Username (********)-&gt;Password(*******)
+    <ol>
+      <li>
+        Overwrite existing database tables.
+      </li>
+    </ol>
+  </li>
+  <li>
+    File-&gt;Save Project to the temp project
+  </li>
+  <li>
+    Close client.  Reopen Thesaurus.pprj
+    <ol>
+      <li>
+        Check that everything is configured correctly and the database can be reached.
+      </li>
+    </ol>
+  </li>
+  <li>
+    Close client
+  </li>
+  <li>
+    Start explanation server and monitor
+  </li>
+  <li>
+    Start protégé server
+  </li>
+  <li>
+    Start client pointed at server
+  </li>
+  <li>
+    Reindex
+  </li>
+  <li>
+    Verify it works and returns queries
+  </li>
+  <li>
+    Classify
+  </li>
+</ol>
+<h2 id="ProtegeNCIThesaurusAdminGuideCheatsheetv1.0-ConfiguringaNewProject">
+  Configuring a New Project
+</h2>
+<ul>
+  <li>
+    (already logged-in in the server box)
+  </li>
+  <li>
+    Enable tabs in this order
+    <ul>
+      <li>
+        NCIEditTab
+      </li>
+      <li>
+        LuceneQueryPlugin
+      </li>
+      <li>
+        OWLProperties
+      </li>
+      <li>
+        OWLMetadataTab
+      </li>
+      <li>
+        ChangesTab
+      </li>
+      <li>
+        ExplanationTab
+      </li>
+    </ul>
+  </li>
+  <li>
+    Upon enabling the ChangesTab, click OK
+    <ul>
+      <li>
+        Dialogue will pop up. Select 2nd option &#39;Create ChAO stored in database&#39; and click enable change tracking. Click OK.
+      </li>
+      <li>
+        Create new DB dialogue table gets &#34;annotation_&#34; prefixed
+      </li>
+      <li>
+        Enter DB credentials
+      </li>
+      <li>
+        Click OK
+      </li>
+    </ul>
+  </li>
+  <li>
+    File-&gt;Save Project
+  </li>
+  <li>
+    Configure-&gt;Deselect Changes tab, Options tab-&gt;Track changes should be checked
+  </li>
+  <li>
+    Disable other extra tabs (OWLClasses, OWLInstances, OWLForms)
+  </li>
+  <li>
+    Set display slots to read &#39;Preferred Name&#39; for the NCI Edit tab as well as Property Tag within the Forms Tab for:
+    <ul>
+      <li>
+        owl:Class
+      </li>
+      <li>
+        DatatypeProperty
+      </li>
+      <li>
+        code
+      </li>
+      <li>
+        ObjectProperty
+      </li>
+    </ul>
+  </li>
+  <li>
+    Configure URL for explanation service.
+  </li>
+  <li>
+    Goto OWL-&gt;Preferences
+    <ul>
+      <li>
+        Disable Drag and Drop, verify reasoner URL is correct
+      </li>
+      <li>
+        Visibility-&gt;uncheck rdfs:Class, owl:Class, rdf:Property
+      </li>
+      <li>
+        Datatypes-&gt;rdf:XMLLiteral should be checked
+      </li>
+      <li>
+        Tests-&gt;uncheck &#39;Find TODO list items&#39; and &#39;List deprecated classes and properties&#39;
+      </li>
+    </ul>
+  </li>
+  <li>
+    Reasoning-&gt;Select Clark &amp; Parsia
+  </li>
+  <li>
+    Reasoner Details-&gt;Click Synchronize Changes with Reasoner, Reasoner Behavior select Synchronize on query
+  </li>
+  <li>
+    Set OWL Preferences to read &#39;Manchester Syntax&#39;
+  </li>
+  <li>
+    Set transitivity
+  </li>
+  <li>
+    Generate Lucene indices
+    <ul>
+      <li>
+        Lucene-&gt;Index Ontologies, accept all slots, Use Phoenetic and Standard indexers, click OK (this should take less than 20 minutes in a Production quality envrironment)
+      </li>
+      <li>
+        Move lucene index from /app/protegeqa/data/Protege_x.y.z/NCIThesaurus to the Proege server directory
+      </li>
+    </ul>
+  </li>
+  <li>
+    Save project
+  </li>
+  <li>
+    Exit Protégé
+  </li>
+</ul>
+<h2 id="ProtegeNCIThesaurusAdminGuideCheatsheetv1.0-ConfiguringtheMetaproject">
+  Configuring the Metaproject
+</h2>
+<ul>
+  <li>
+    Open the metaproject
+  </li>
+  <li>
+    Instance tab-&gt;Click User class
+    <ul>
+      <li>
+        In the Instance Browser copy an editor (to the number of users needed)
+      </li>
+      <li>
+        Enter full name
+      </li>
+      <li>
+        Change password
+      </li>
+    </ul>
+  </li>
+  <li>
+    PolicyControlledObject-&gt;ProjectClass
+    <ul>
+      <li>
+        Verify Thesaurus instance Location is edited to the pprj location
+      </li>
+      <li>
+        Verify Annotation Thesaurus instance Location is edited to the annotation_Thesaurus... location
+        <ul>
+          <li>
+            It should be granted the &#39;GrpOp(World)&#39; instance that does not contain the &#39;DisplayInList&#39; instance to prevent it from showing as a selectable project on login
+          </li>
+          <li>
+            See
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=15796889" rel="nofollow">
+              &#39;DisplayInList&#39; Project Setup Instructions
+            </a>
+            for more details.
+          </li>
+        </ul>
+      </li>
+      <li>
+        File-&gt;Save Project-&gt;Exit
+      </li>
+    </ul>
+  </li>
+</ul>
+<h2 id="ProtegeNCIThesaurusAdminGuideCheatsheetv1.0-ConfigureProtégéServerforaProject">
+  Configure Protégé Server for a Project
+</h2>
+<ul>
+  <li>
+    Edit run_protege_server_nci.sh
+    <ul>
+      <li>
+        to include the proper directory path for the nci_metaproject file - /app/protegeqa/data/NCIThesaurusMetaProject/
+      </li>
+      <li>
+        to use the correct rmi port (use 2822)
+      </li>
+    </ul>
+  </li>
+</ul>
+<h3 id="ProtegeNCIThesaurusAdminGuideCheatsheetv1.0-Classification(StandaloneMode)">
+  Classification (Standalone Mode)
+</h3>
+<ul>
+  <li>
+    Advertise the Protégé server is going to be shutdown
+  </li>
+  <li>
+    Remote login to the host computer using Reflection X
+    <ul>
+      <li>
+        username and password are advertised separately
+      </li>
+    </ul>
+  </li>
+  <li>
+    Shutdown Protégé server
+  </li>
+  <li>
+    Restart explanation server
+  </li>
+  <li>
+    Start Protégé client
+  </li>
+  <li>
+    Connect to the database project
+    <ul>
+      <li>
+        in /app/protegeqa/data/Protege_x.y.z/NCIThesaurus
+      </li>
+      <li>
+        file Thesaurus.pprj
+      </li>
+    </ul>
+  </li>
+  <li>
+    Enable OWLClassesTab (results are shown there)
+  </li>
+  <li>
+    From the OWL menu, select &#39;Classify Taxonomy&#39;, it takes about 20 minutes
+  </li>
+  <li>
+    Once classification is complete, an inferred hierarchy panel and a list panel are displayed
+  </li>
+  <li>
+    Accept retreeing suggestions in the list panel as per guideline.
+  </li>
+  <li>
+    Generate table to pass around to editors and mail it
+  </li>
+  <li>
+    Process table from previous classification (accept/reject)
+  </li>
+  <li>
+    Close project withtout saving
+  </li>
+  <li>
+    Start Protégé server
+  </li>
+  <li>
+    Verify Protégé server is running
+    <ul>
+      <li>
+        connect to server from the client
+      </li>
+      <li>
+        exit the client
+      </li>
+    </ul>
+  </li>
+  <li>
+    Exit console
+  </li>
+  <li>
+    Exit Reflection X
+  </li>
+</ul>
+<h3 id="ProtegeNCIThesaurusAdminGuideCheatsheetv1.0-Classification(Client/Server)Mode">
+  Classification (Client/Server) Mode
+</h3>
+<ul>
+  <li>
+    From the client GUI, enable OWLClassesTab (results are shown there)
+  </li>
+  <li>
+    From the OWL menu, select &#39;Classify Taxonomy&#39; it takes about 20 minutes
+  </li>
+  <li>
+    Once classification is complete, an inferred hierarchy panel and a list panel are displayed.
+  </li>
+  <li>
+    Accept retreeing suggestions in the list panel as per guideline
+  </li>
+  <li>
+    Generate table to pass around to editors and mail it
+  </li>
+  <li>
+    Process table from previous classification (accept/reject)
+  </li>
+  <li>
+    Close project without saving
+  </li>
+  <li>
+    Exit the client.
+  </li>
+</ul>
+<h2 id="ProtegeNCIThesaurusAdminGuideCheatsheetv1.0-Troubleshooting">
+  Troubleshooting
+</h2>
+Q: After building the database, why am I getting this weird warning and Java RuntimeException?
+<img alt="Weird warning and Java RuntimeException." src="https://wiki.nci.nih.gov/download/attachments/embedded-page/Protege/Protege%20NCI%20Thesaurus%20Admin%20Guide%20Cheatsheet%20v1.0/buildError.gif?api=v2">
+A: You accidentally selected the &#39;Clark &amp; Parsia Database&#39; option.  Start over and select the &#39;Clark &amp; Parsia OWL/RDF Database&#39; instead.Q: I exported an owl file from my project, but now the project loads from a file.  What&#39;s up?A: When exporting an owl file, rename the project and not the owl file by itself.  When renaming the project, your owl export will follow the same naming convention used.Q: I&#39;ve started a new project and am trying to enable the Changes tab, but am getting a red box and error similar to &#39;ncit.annotation_thesaurus doesn&#39;t exist&#39;A: This is due to a hard-coding where the application will attempt to find a project file named annotation_PROJECTNAME.pprj.  Rename this project file if it exists so Protege can create a new one and is no longer trying to reference the old file.

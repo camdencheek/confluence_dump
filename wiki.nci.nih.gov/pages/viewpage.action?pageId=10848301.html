@@ -1,0 +1,263 @@
+Contents of this Page
+<ul>
+  <li>
+    <a href="#NCIProtege1.2.3ReleaseNotes(PatchRelease)-ReleaseHistory" rel="nofollow">
+      Release History
+    </a>
+  </li>
+  <li>
+    <a href="#NCIProtege1.2.3ReleaseNotes(PatchRelease)-NewFeaturesandUpdates" rel="nofollow">
+      New Features and Updates
+    </a>
+  </li>
+  <li>
+    <a href="#NCIProtege1.2.3ReleaseNotes(PatchRelease)-BugsFixedSinceLastRelease" rel="nofollow">
+      Bugs Fixed Since Last Release
+    </a>
+  </li>
+  <li>
+    <a href="#NCIProtege1.2.3ReleaseNotes(PatchRelease)-KnownIssues" rel="nofollow">
+      Known Issues
+    </a>
+  </li>
+  <li>
+    <a href="#NCIProtege1.2.3ReleaseNotes(PatchRelease)-COREProductDependencies" rel="nofollow">
+      CORE Product Dependencies
+    </a>
+  </li>
+</ul>
+National Cancer Institute Center for Bioinformatics
+NCI Protege 1.2.3.25 Patch Release Notes (Draft)
+28 08 2008
+<h2 id="NCIProtege1.2.3ReleaseNotes(PatchRelease)-ReleaseHistory">
+  Release History
+</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Release
+      </th>
+      <th>
+        Date
+      </th>
+    </tr>
+    <tr>
+      <td>
+        1.0
+      </td>
+      <td>
+        Jun 07
+      </td>
+    </tr>
+    <tr>
+      <td>
+        1.1
+      </td>
+      <td>
+        Sept 07
+      </td>
+    </tr>
+    <tr>
+      <td>
+        1.2.0
+      </td>
+      <td>
+        Dec 07
+      </td>
+    </tr>
+    <tr>
+      <td>
+        1.2.1
+      </td>
+      <td>
+        Feb 08
+      </td>
+    </tr>
+    <tr>
+      <td>
+        1.2.2
+      </td>
+      <td>
+        May 08
+      </td>
+    </tr>
+    <tr>
+      <td>
+        1.2.3
+      </td>
+      <td>
+        Jul 08
+      </td>
+    </tr>
+    <tr>
+      <td>
+        1.2.3 Patch
+      </td>
+      <td>
+        Aug 08
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="NCIProtege1.2.3ReleaseNotes(PatchRelease)-NewFeaturesandUpdates">
+  New Features and Updates
+</h2>
+Highlights of this patch release are:
+<ul>
+  <li>
+    Concurrency management in Run Time Classification
+  </li>
+  <li>
+    Increased Performance of the Prompt User tab
+  </li>
+</ul>
+This patch release for version 1.2.3 of the Protege NICEditTab plugin was targeted towards increasing the performance of the Run Time Classification (RTC). The change is entirely in the infrastructure. The RTC in the current release synchronizes its data against the Protege server rather than the Protege client, thereby eliminating network latency issues affecting all users (but with a larger impact on remote users).
+<ul>
+  <li>
+    Also, a performance enhancement has been done in Prompt: an inefficient lookup algorithm has been replaced with a solution that involves caching of data instead.
+  </li>
+</ul>
+<ul>
+  <li>
+    In addition to the patch release of the software, a Citrix server has been set up and already deployed to reduce connectivity issues affecting remote users. The Citrix server is currently supporting NCIT editing, but it will be expanded to support BGT editing in the future.
+  </li>
+</ul>
+<h2 id="NCIProtege1.2.3ReleaseNotes(PatchRelease)-BugsFixedSinceLastRelease">
+  Bugs Fixed Since Last Release
+</h2>
+List of bug fixes in 1.2.3.25 (Patch release)
+<ul>
+  <li>
+    9295	Ability to remove menu options by configuration
+  </li>
+  <li>
+    11119	PROMPT- Exception when navigating from Table View to Tree view
+  </li>
+  <li>
+    12025	Incorrect behavior while splitting, creating new classes
+  </li>
+  <li>
+    12342	PROMPT - Exception when selecting &#39;changed by&#39; panel in &#39;table view&#39;
+  </li>
+  <li>
+    12353	OK button off screen with long winded invalid property.
+  </li>
+  <li>
+    12574	Edit Class and View Instance buttons are broken - dup of 12365
+  </li>
+  <li>
+    12932	Unmarshal Exception
+  </li>
+  <li>
+    4057	no copy-and-paste capability in collaboration panel
+  </li>
+  <li>
+    14290	Problem tracking changes of defining relations if more than one restriction is present
+  </li>
+  <li>
+    14507	Prompt reports all concepts changed - concepts get new properties added
+  </li>
+  <li>
+    15185	No date on ALT_DEFINITION for NCIt
+  </li>
+  <li>
+    15228	Exception when edit and classify at same time
+  </li>
+  <li>
+    15395	NCIt Protege is SLOW
+  </li>
+  <li>
+    15592	Frame caching on Protege server
+  </li>
+  <li>
+    15594	:ROLE concrete - Prompt bug fix
+  </li>
+</ul>
+<h2 id="NCIProtege1.2.3ReleaseNotes(PatchRelease)-KnownIssues">
+  Known Issues
+</h2>
+NoteA number of bug reports involved irreproducible items that have now been identified as originating in the software components that deal with database transactions. Because of the amount of work involved to correct this, this patch release does not include fixes for these bugs, they have been scoped for version 1.3 of the software.
+
+To minimize the likelihood of these transaction issues occurring:
+<ol>
+  <li>
+    When saving a concept, users need to click OK on the notification dialog that is displayed when the Save is successful when it first pops up, e.g. try not to take a break from editing until the OK dialog has been clicked.
+  </li>
+  <li>
+    If a &#34;create class&#34; action fails, do not attempt to execute it again right away, you can attempt it on your next login.
+  </li>
+</ol>
+GForge Open Items (Deferred to 1.3 release or unresolved)
+<ul>
+  <li>
+    11115	PROMPT- &#39;Table View&#39; crashes after visting &#39;Show sources&#39; window
+  </li>
+  <li>
+    11894	When a class defaults to owl:thing as a parent it disappears
+  </li>
+  <li>
+    13884	Create a Protege nightly build script
+  </li>
+  <li>
+    15944	PROMPT: namespaces in Table view
+  </li>
+  <li>
+    16248	PROMPT extra classes added (Axiom)
+  </li>
+  <li>
+    11553	Apparent Failure to log out.
+  </li>
+  <li>
+    11614	Prompt - When accepting changes in all children in branch, children disappear fm tree
+  </li>
+  <li>
+    3537	Synchronization of rdfs:label and Preferred_Name
+  </li>
+  <li>
+    8682	Merged and Retired concepts are not properly tagged with Retired_Concept
+  </li>
+  <li>
+    9298	Prompt - accept and reject icons in &#39;changed by&#39; panel of &#39;table&#39; view don&#39;t work
+  </li>
+  <li>
+    10185	Prompt: Parent concept flagged as changed when a child is added
+  </li>
+  <li>
+    10186	Prompt: Concept flagged as changed when it is copied
+  </li>
+  <li>
+    12358	PROMPT- Reject button in Tree view produces error message to the console
+  </li>
+  <li>
+    12935	text is not trimmed
+  </li>
+  <li>
+    14056	Permission allows delete of definition (see comments)
+  </li>
+  <li>
+    14939	Copy pane Preferred_Name issues after a modeling error
+  </li>
+  <li>
+    14973	class disappears after editing (winds up under Thing ?)
+  </li>
+  <li>
+    15230	Error when Retiring a class with existing Editor_Note or DesignNote
+  </li>
+  <li>
+    15247	Failure to cross check Preferred Term in Protege 1.2.3 release
+  </li>
+  <li>
+    15788	Save Confirmation Popup Dialog blocks other editors
+  </li>
+  <li>
+    16058	Class Creation Problems
+  </li>
+  <li>
+    16076	Transaction didn&#39;t close in a class copy operation from the Copy panel
+  </li>
+</ul>
+<h2 id="NCIProtege1.2.3ReleaseNotes(PatchRelease)-COREProductDependencies">
+  CORE Product Dependencies
+</h2>
+No caCORE dependencies. This software is used for editing and maintaining NCI Thesaurus and BiomedGT 

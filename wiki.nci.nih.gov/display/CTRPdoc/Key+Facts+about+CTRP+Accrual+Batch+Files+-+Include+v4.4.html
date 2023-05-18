@@ -1,0 +1,92 @@
+<ul>
+  <li>
+    The Accrual batch file format is based on the CTEP Clinical Data Update System (CDUS) file format. You can obtain a copy of the CDUS Instructions and Guidelines, which explains the CDUS file format in great detail, at the CTEP web site at
+    <a href="http://ctep.cancer.gov/protocolDevelopment/electronic_applications/cdus.htm" rel="nofollow">
+      http://ctep.cancer.gov/protocolDevelopment/electronic_applications/cdus.htm
+    </a>
+    .
+  </li>
+  <li>
+    Although the CTRP accrual batch file format is CDUS-compatible, CTRP captures a subset of all the CDUS required data elements.  Comparison of CTRP and CDUS Accrual Data Elements  provides a list of all the CDUS fields with a note next to each field indicating whether CTRP captures it.
+  </li>
+  <li>
+    Different data elements are required and expected when submitting accrual data to CTRP for Complete trials (Externally Peer Reviewed, and Institutional) than for Abbreviated Trials (Industrial). Instructions are provided below for preparing batch files for both Complete and Abbreviated Trials.
+  </li>
+  <li>
+    A CTRP accrual batch file is a TXT (.txt) file with fields delimited (separated) by commas. The text file can be UTF-8 or ANSI-encoded.
+  </li>
+  <li>
+    Each CTRP batch text file contains accrual data for a single trial. You can compress one or more CTRP accrual batch text files into a single Zip file and then upload this Zip file into CTRP. CTRP will unzip the file and process each TXT file. Your Zip file can include batch files for both Complete and Abbreviated Trials.
+  </li>
+  <li>
+    Accruals for National trials are submitted directly to CTRP from CTEP and/or DCP.
+  </li>
+</ul>
+Do not include the following items in Zip files that you intend to upload:
+<ul>
+  <li>
+    Folders or other Zip files
+  </li>
+  <li>
+    Path names. Some ZIP/compression tools provide an option to include the entire file path name when compressing a file. Path names describe the location of the file.
+  </li>
+</ul>
+Initial Accrual Batch File Submission:
+<ul>
+  <li>
+    The initial accrual batch file submitted to CTRP will add accrual records for either Summary Level Accrual or Subject Level Accrual based on the selection.
+  </li>
+</ul>
+Subsequent Accrual Batch File Submissions:
+<ul>
+  <li>
+    For Summary Level Accrual (typically provided for Abbreviated/Imported - e.g., Industrial trials), subsequent accrual batch file uploads will replace previously submitted/uploaded accrual data.  Batch uploads will not append data; cumulative accrual data must be uploaded with each accrual file submitted to CTRP.
+    <ul>
+      <li>
+        Please ensure that your CTRP accrual batch file contains all cumulative accrual data for each participating site to date before uploading to CTRP.  Failure to include cumulative accrual data will result in erasing your accrual history.
+      </li>
+    </ul>
+  </li>
+  <li>
+    For Subject Level Accrual (typically provided for Complete trials), subsequent accrual batch file uploads will append data.
+    <ul>
+      <li>
+        If there are duplicate records (all fields are the same) within the batch file being submitted, the file will not be loaded and a notification will be sent to the user asking for the duplicate record(s) to be removed and the file resubmitted.
+      </li>
+      <li>
+        If an element is changed, for example Gender, then the record is considered an update not a duplicate.
+      </li>
+    </ul>
+  </li>
+</ul>
+To download a copy of the of the CTRP Accrual Batch File Tool (includes instructions), go to:
+<a href="https://wiki.nci.nih.gov/display/CTRP/CTRP+Accrual+Batch+File+Tool" rel="nofollow">
+  CTRP Accrual Batch File Tool
+</a>
+For Summary Level Accrual (typically provided for Abbreviated/Imported - e.g., Industrial trials), the following is an example batch file for one trial with two participating sites (Sites 1 and 2) supporting monthly accrual updates.  Site 1 and 2 in the below example map to &#34;PO ID&#34; (unique to each Participating Site).Note:  Create and submit one trial per batch load.  You can also include individual batch load files in one zip.  Centers have the option to provide quarter, monthly accrual from trial start date to present.  Another option is to provide batch load file which includes a cut off date accrual entry from trial start for each as of cut-off date for only when accrual changed. Abbreviated/Imported (e.g., Industrial Trials) Example Batch File - Monthly
+<table>
+  <colgroup>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <td>
+        COLLECTIONS,&lt;Study_Identifier&gt;,,,,,,,,,&#34;ACCRUAL_COUNT&#34;,&#34;NCI-2017-00225&#34;,&#34;Site 1&#34;,&#34;2&#34;,&#34;20170630&#34;&#34;ACCRUAL_COUNT&#34;,&#34;NCI-2017-00225&#34;,&#34;Site 1&#34;,&#34;2&#34;,&#34;20170731&#34;&#34;ACCRUAL_COUNT&#34;,&#34;NCI-2017-00225&#34;,&#34;Site 1&#34;,&#34;4&#34;,&#34;20170831&#34;&#34;ACCRUAL_COUNT&#34;,&#34;NCI-2017-00225&#34;,&#34;Site 1&#34;,&#34;5&#34;,&#34;20170930&#34;&#34;ACCRUAL_COUNT&#34;,&#34;NCI-2017-00225&#34;,&#34;Site 1&#34;,&#34;6&#34;,&#34;20171031&#34;&#34;ACCRUAL_COUNT&#34;,&#34;NCI-2017-00225&#34;,&#34;Site 1&#34;,&#34;10&#34;,&#34;20171130&#34;&#34;ACCRUAL_COUNT&#34;,&#34;NCI-2017-00225&#34;,&#34;Site 1&#34;,&#34;12&#34;,&#34;20171231&#34;&#34;ACCRUAL_COUNT&#34;,&#34;NCI-2017-00225&#34;,&#34;Site 1&#34;,&#34;15&#34;,&#34;20180131&#34;&#34;ACCRUAL_COUNT&#34;,&#34;NCI-2017-00225&#34;,&#34;Site 1&#34;,&#34;15&#34;,&#34;20180228&#34;&#34;ACCRUAL_COUNT&#34;,&#34;NCI-2017-00225&#34;,&#34;Site 1&#34;,&#34;18&#34;,&#34;20180331&#34;&#34;ACCRUAL_COUNT&#34;,&#34;NCI-2017-00225&#34;,&#34;Site 1&#34;,&#34;18&#34;,&#34;20180430&#34;&#34;ACCRUAL_COUNT&#34;,&#34;NCI-2017-00225&#34;,&#34;Site 1&#34;,&#34;18&#34;,&#34;20180531&#34;&#34;ACCRUAL_COUNT&#34;,&#34;NCI-2017-00225&#34;,&#34;Site 1&#34;,&#34;21&#34;,&#34;20180630&#34;&#34;ACCRUAL_COUNT&#34;,&#34;NCI-2017-00225&#34;,&#34;Site 1&#34;,&#34;21&#34;,&#34;20180731&#34;&#34;ACCRUAL_COUNT&#34;,&#34;NCI-2017-00225&#34;,&#34;Site 1&#34;,&#34;25&#34;,&#34;20180831&#34;&#34;ACCRUAL_COUNT&#34;,&#34;NCI-2017-00225&#34;,&#34;Site 2&#34;,&#34;1&#34;,&#34;20170630&#34;&#34;ACCRUAL_COUNT&#34;,&#34;NCI-2017-00225&#34;,&#34;Site 2&#34;,&#34;1&#34;,&#34;20170731&#34;&#34;ACCRUAL_COUNT&#34;,&#34;NCI-2017-00225&#34;,&#34;Site 2&#34;,&#34;5&#34;,&#34;20170831&#34;&#34;ACCRUAL_COUNT&#34;,&#34;NCI-2017-00225&#34;,&#34;Site 2&#34;,&#34;5&#34;,&#34;20170930&#34;&#34;ACCRUAL_COUNT&#34;,&#34;NCI-2017-00225&#34;,&#34;Site 2&#34;,&#34;8&#34;,&#34;20171031&#34;&#34;ACCRUAL_COUNT&#34;,&#34;NCI-2017-00225&#34;,&#34;Site 2&#34;,&#34;9&#34;,&#34;20171130&#34;&#34;ACCRUAL_COUNT&#34;,&#34;NCI-2017-00225&#34;,&#34;Site 2&#34;,&#34;13&#34;,&#34;20171231&#34;&#34;ACCRUAL_COUNT&#34;,&#34;NCI-2017-00225&#34;,&#34;Site 2&#34;,&#34;13&#34;,&#34;20180131&#34;&#34;ACCRUAL_COUNT&#34;,&#34;NCI-2017-00225&#34;,&#34;Site 2&#34;,&#34;14&#34;,&#34;20180228&#34;&#34;ACCRUAL_COUNT&#34;,&#34;NCI-2017-00225&#34;,&#34;Site 2&#34;,&#34;18&#34;,&#34;20180331&#34;&#34;ACCRUAL_COUNT&#34;,&#34;NCI-2017-00225&#34;,&#34;Site 2&#34;,&#34;22&#34;,&#34;20180430&#34;&#34;ACCRUAL_COUNT&#34;,&#34;NCI-2017-00225&#34;,&#34;Site 2&#34;,&#34;30&#34;,&#34;20180531&#34;&#34;ACCRUAL_COUNT&#34;,&#34;NCI-2017-00225&#34;,&#34;Site 2&#34;,&#34;31&#34;,&#34;20180630&#34;&#34;ACCRUAL_COUNT&#34;,&#34;NCI-2017-00225&#34;,&#34;Site 2&#34;,&#34;32&#34;,&#34;20180731&#34;&#34;ACCRUAL_COUNT&#34;,&#34;NCI-2017-00225&#34;,&#34;Site 2&#34;,&#34;33&#34;,&#34;20180831&#34;
+      </td>
+    </tr>
+  </tbody>
+</table>
+Abbreviated/Imported (e.g., Industrial Trials) Example Batch File - Accrual Changes
+<table>
+  <colgroup>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <td>
+        COLLECTIONS,&lt;Study_Identifier&gt;,,,,,,,,,&#34;ACCRUAL_COUNT&#34;,&#34;NCI-2016-00225&#34;,&#34;Site 1&#34;,&#34;1&#34;,&#34;20170215&#34;&#34;ACCRUAL_COUNT&#34;,&#34;NCI-2016-00225&#34;,&#34;Site 1&#34;,&#34;2&#34;,&#34;20170820&#34;&#34;ACCRUAL_COUNT&#34;,&#34;NCI-2016-00225&#34;,&#34;Site 1&#34;,&#34;4&#34;,&#34;20180331&#34;&#34;ACCRUAL_COUNT&#34;,&#34;NCI-2016-00225&#34;,&#34;Site 1&#34;,&#34;6&#34;,&#34;20180910&#34;&#34;ACCRUAL_COUNT&#34;,&#34;NCI-2016-00225&#34;,&#34;Site 1&#34;,&#34;10&#34;,&#34;20181202&#34; &#34;ACCRUAL_COUNT&#34;,&#34;NCI-2016-00225&#34;,&#34;Site 2&#34;,&#34;2&#34;,&#34;20170128&#34;&#34;ACCRUAL_COUNT&#34;,&#34;NCI-2016-00225&#34;,&#34;Site 2&#34;,&#34;4&#34;,&#34;20170710&#34;&#34;ACCRUAL_COUNT&#34;,&#34;NCI-2016-00225&#34;,&#34;Site 2&#34;,&#34;5&#34;,&#34;20170825&#34;&#34;ACCRUAL_COUNT&#34;,&#34;NCI-2016-00225&#34;,&#34;Site 2&#34;,&#34;7&#34;,&#34;20171031&#34;&#34;ACCRUAL_COUNT&#34;,&#34;NCI-2016-00225&#34;,&#34;Site 2&#34;,&#34;9&#34;,&#34;20171122&#34;&#34;ACCRUAL_COUNT&#34;,&#34;NCI-2016-00225&#34;,&#34;Site 2&#34;,&#34;12&#34;,&#34;20180107&#34;
+      </td>
+    </tr>
+  </tbody>
+</table>
+For additional information, refer to the following pages: 

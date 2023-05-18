@@ -1,0 +1,282 @@
+Note: As of May 2011 CIP has launched
+<a href="http://cancerimagingarchive.net/" rel="nofollow">
+  The Cancer Imaging Archive (TCIA)
+</a>
+, an imaging archive service utilizing a customized/enhanced version of caBIG&#39;s NBIA software and staffed by a team of contractors that include DICOM and de-identification experts.  Registration is free and a number of high value image collections have already been made available since launch -
+<a href="https://wiki.cancerimagingarchive.net/display/Public/Collections" rel="nofollow">
+  see list of Collections
+</a>
+.  TCIA is now the official in vivo cancer imaging archive for NCI/CIP.
+<h3 id="IncorporationofDICOMWG18Supplement142intoCTP-ProjectGoals:">
+  Project Goals:
+</h3>
+The Cancer Imaging Program&#39;s (CIP) informatics team were in need of a standards based de-idenfication procedure for images that were being submitted to the
+<a href="http://imaging.nci.nih.gov" rel="nofollow">
+  National Biomedical Imaging Archive (NBIA).
+</a>
+In February of 2009 we contacted David Clunie for input on this and he directed us to the DICOM Working Group 18 draft (v03) of Supplement 142.  CIP then gathered a small group of industry experts to discuss how this could be implemented in the
+<a href="http://mircwiki.rsna.org/index.php?title=CTP-The_RSNA_Clinical_Trial_Processor" rel="nofollow">
+  RSNA&#39;s Clinical Trial Processor (CTP)
+</a>
+software. The primary identified goals of the project were:
+<ol>
+  <li>
+    Generate CTP-readable templates based on the guidelines in  DICOM Working Group 18, Supplement 142.
+  </li>
+  <li>
+    Create a release of CTP that will allow easy access to and management of these templates, and script files derived from these templates.
+  </li>
+</ol>
+<h3 id="IncorporationofDICOMWG18Supplement142intoCTP-RSNAPoster:">
+  RSNA Poster:
+</h3>
+A poster was accepted for the RSNA 2009 Annual Meeting describing the group&#39;s activities and how this work would be integrated with caBIG&#39;s National Biomedical Imaging Archive (NBIA) software to provide a clean and secure public facing image archive for the imaging community. This poster can be found here: supp142 poster-final.ppt
+<h3 id="IncorporationofDICOMWG18Supplement142intoCTP-PrincipalProjectParticipants:">
+  Principal Project Participants:
+</h3>
+<ul>
+  <li>
+    John Perry
+  </li>
+  <li>
+    Justin Kirby
+  </li>
+  <li>
+    Carl Jaffe
+  </li>
+  <li>
+    John Freymann
+  </li>
+  <li>
+    Jay Gaeta (implementing S142 into TRIAD, ACRIN&#39;s image management system)
+  </li>
+</ul>
+<h3 id="IncorporationofDICOMWG18Supplement142intoCTP-ProjectStatus:">
+  Project Status:
+</h3>
+Below is a summary of important dates and milestones:
+<ul>
+  <li>
+    Date Started:  February 13, 2009
+  </li>
+  <li>
+    April 2009 - Software development completed to generate, apply, and modify &#34;profiles&#34; in CTP
+  </li>
+  <li>
+    April 2009 - Initial implementation (
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=16745156" rel="nofollow">
+      Finalized CTP Anonymization Profile - Basic
+    </a>
+    ) completed by the project participants and included as default CTP anonymization script
+  </li>
+  <li>
+    December 2009 - &#34;option&#34; profiles completed by Justin Kirby
+    <ul>
+      <li>
+        Note: These option profiles are overlays and do not modify any tags except what are explicitly listed in each option file.  It is highly recommended to start with the Basic Profile Script and then apply these option profiles afterwards to relax the de-identification scheme if desired.
+      </li>
+      <li>
+        <a href="https://wiki.nci.nih.gov/download/attachments/11670942/S142-RetainLongitudinal?version=2&amp;modificationDate=1264016852000&amp;api=v2" rel="nofollow">
+          RetainLongitudinal
+        </a>
+      </li>
+      <li>
+        <a href="https://wiki.nci.nih.gov/download/attachments/11670942/S142-RetainDeviceInfo?version=2&amp;modificationDate=1264016852000&amp;api=v2" rel="nofollow">
+          RetainDeviceInfo
+        </a>
+      </li>
+      <li>
+        <a href="https://wiki.nci.nih.gov/download/attachments/11670942/S142-RetainUIDs?version=2&amp;modificationDate=1264016852000&amp;api=v2" rel="nofollow">
+          RetainUIDs
+        </a>
+      </li>
+      <li>
+        <a href="https://wiki.nci.nih.gov/download/attachments/11670942/S142-KeepDescriptions?version=2&amp;modificationDate=1264016852000&amp;api=v2" rel="nofollow">
+          KeepDescriptions
+        </a>
+        (basically &#34;CleanDescriptions&#34; however cleaning would involve varying changes to the scripts for the included tags depending on the contents of the images being submitted)
+      </li>
+    </ul>
+  </li>
+  <li>
+    January 2010
+    <ul>
+      <li>
+        <a href="https://wiki.nci.nih.gov/download/attachments/11670942/S142-BasicProfile.script?version=1&amp;modificationDate=1264014885000&amp;api=v2" rel="nofollow">
+          Basic Profile
+        </a>
+        updated by John Perry and Justin Kirby
+      </li>
+      <li>
+        New &#34;
+        <a href="https://wiki.nci.nih.gov/download/attachments/11670942/nbia-default-da.script?version=2&amp;modificationDate=1264016852000&amp;api=v2" rel="nofollow">
+          NBIA Default
+        </a>
+        &#34; profile designed by Justin Kirby to best fit the needs of those using CTP to submit to NBIA
+        <ul>
+          <li>
+            Includes foundation of S142 Basic Profile
+          </li>
+          <li>
+            Adds options for
+            <a href="https://wiki.nci.nih.gov/download/attachments/11670942/S142-RetainDeviceInfo?version=2&amp;modificationDate=1264016852000&amp;api=v2" rel="nofollow">
+              RetainDeviceInfo
+            </a>
+            and
+            <a href="https://wiki.nci.nih.gov/download/attachments/11670942/S142-KeepDescriptions?version=2&amp;modificationDate=1264016852000&amp;api=v2" rel="nofollow">
+              KeepDescriptions
+            </a>
+          </li>
+          <li>
+            Includes NBIA-specific Group 13 private tags and parameter fields
+          </li>
+          <li>
+            Implements additional tweaks to help catch burned in PHI in image pixels (ImageType checked for &#34;SCREEN SAVE&#34; value and BurnedInAnnotation tags checked for &#34;YES&#34; value)
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    February 2010
+    <ul>
+      <li>
+        CIP was made aware that versions 04 and 05 of Supplement 142 have been released
+      </li>
+      <li>
+        Working Group 18 is now moving to open up Supplement 142 for public comment
+      </li>
+      <li>
+        Upon completion CIP will review the finalized Supplement 142 document to see if changes to any CTP scripts are required
+      </li>
+    </ul>
+  </li>
+  <li>
+    March 2010
+    <ul>
+      <li>
+        S142 approved for public comment
+      </li>
+      <li>
+        sup142_pc.doc
+      </li>
+    </ul>
+  </li>
+  <li>
+    August 2010
+    <ul>
+      <li>
+        Justin participates on 8/4 S142 call led by David Clunie to address public comments and provide final feedback
+      </li>
+      <li>
+        8/4 meeting notes hosted at:
+        <a href="http://medical.nema.org/Dicom/Minutes/WG-18/2010/2010-08-04_Tcon_Sup142/WG-18_2010-08-04_Min_Tcon_Sup142.doc" rel="nofollow">
+          http://medical.nema.org/Dicom/Minutes/WG-18/2010/2010-08-04_Tcon_Sup142/WG-18_2010-08-04_Min_Tcon_Sup142.doc
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    September 2010
+    <ul>
+      <li>
+        Ballot for S142 vote is announced on September 8 and set to conclude on October 27
+      </li>
+    </ul>
+  </li>
+  <li>
+    January 2011
+    <ul>
+      <li>
+        S142 completes revision and approval process to be confirmed as an official DICOM supplement
+      </li>
+      <li>
+        ftp://medical.nema.org/medical/dicom/final/sup142_ft.doc
+      </li>
+    </ul>
+  </li>
+  <li>
+    March 2011
+    <ul>
+      <li>
+        S142 scripts updated based on final release of the supplement
+      </li>
+      <li>
+        Still some minor issues relating to CTP support of S142 in its entirety including:
+        <ul>
+          <li>
+            CTP does not currently have support for properly modifying contents of sequence tags. They can be removed or left alone, but contents cannot be replaced with dummy contents as instructed by some parts of S142. Until support is implemented in CTP the S142 based scripts will remove the tags completely instead of replacing with dummy values. (treat as &#34;X&#34; instead of &#34;D&#34;)
+          </li>
+          <li>
+            On the option profiles which indicate one should “clean” the affected tags the current version of these scripts utilize the CTP function @keep() so that the tags are left alone. It is then up to individual users to implement the advanced regex style functions in CTP to “clean” any PHI found in these tags as appropriate.
+          </li>
+          <li>
+            There are no profiles for Clean Pixel Data or Clean Recognizable Visual Features due to the need to visually inspect the images by hand to implement them.
+          </li>
+          <li>
+            CTP does not currently provide a way to automatically populate (0012,0063) DeIdentificationMethod based on what profile options are implemented. One must manually enter the appropriate value for this tag based on which options are utilized. The @append function in CTP is recommended to avoid overwriting any earlier values stored, and the following format is suggested to avoid surpassing the allowable length for this element:
+            <ul>
+              <li>
+                @append(){DCM:113100/113105/113107/113108/113109/113111}
+              </li>
+              <li>
+                In this example it implies you have utilized S142&#39;s basic profile along with options for Clean Descriptors, Retain Longitudinal Temporal Information with Modified Dates, Retain Patient Characteristics, Retain Device Identity, and Retain Safe Private.
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    June 2011
+    <ul>
+      <li>
+        Latest iteration of scripts included in default
+        <a href="http://mircwiki.rsna.org/index.php?title=CTP-The_RSNA_Clinical_Trial_Processor" rel="nofollow">
+          CTP
+        </a>
+        installations
+      </li>
+      <li>
+        Additional
+        <a href="http://mircwiki.rsna.org/index.php?title=CTP-The_RSNA_Clinical_Trial_Processor#DicomFilter" rel="nofollow">
+          DICOM Filter
+        </a>
+         script included to help quarantine images with potential PHI burned into image pixels.
+      </li>
+    </ul>
+  </li>
+  <li>
+    August 2011
+    <ul>
+      <li>
+        S142 incorporated into main DICOM 2011 standard: ftp://medical.nema.org/medical/dicom/2011/11README.pdf
+      </li>
+      <li>
+        The bulk of S142&#39;s contents can now be found in PS 3.15-2011, Annex E (starting on page 60)
+      </li>
+    </ul>
+  </li>
+  <li>
+    October 2011
+    <ul>
+      <li>
+        All future work in this area will be managed at
+        <a href="http://cancerimagingarchive.net" rel="nofollow">
+          The Cancer Imaging Archive (TCIA)
+        </a>
+        .  Please visit the site and register for access to a large archive of freely available medical images of cancer patients for use in research.  As we continue to help enhance CTP support for DICOM de-identification standards we will provide all relevant information on the
+        <a href="https://wiki.cancerimagingarchive.net/display/Public/Wiki" rel="nofollow">
+          TCIA wiki
+        </a>
+        .
+      </li>
+    </ul>
+  </li>
+</ul>
+Help Downloading FilesFor help accessing PDF, audio, video, and compressed files on this wiki, go to
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=328991650" rel="nofollow">
+  Help Downloading Files
+</a>
+. 

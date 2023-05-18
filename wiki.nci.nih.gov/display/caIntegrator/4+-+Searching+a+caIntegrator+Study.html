@@ -1,0 +1,817 @@
+This chapter describes the processes for searching studies within caIntegrator.Topics in this chapter include:
+<ul>
+  <li>
+    <a href="#id-4SearchingacaIntegratorStudy-SearchOverview" rel="nofollow">
+      Search Overview
+    </a>
+  </li>
+  <li>
+    <a href="#id-4SearchingacaIntegratorStudy-SearchingacaIntegratorStudy" rel="nofollow">
+      Searching a caIntegrator Study
+    </a>
+    <ul>
+      <li>
+        <a href="#id-4SearchingacaIntegratorStudy-AnnotationandImageDataSearches" rel="nofollow">
+          Annotation and Image Data Searches
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#id-4SearchingacaIntegratorStudy-GeneExpressionSearches" rel="nofollow">
+      Gene Expression Searches
+    </a>
+    <ul>
+      <li>
+        <a href="#id-4SearchingacaIntegratorStudy-GeneNamesSearch" rel="nofollow">
+          Gene Names Search
+        </a>
+        <ul>
+          <li>
+            <a href="#id-4SearchingacaIntegratorStudy-ChoosingGenes" rel="nofollow">
+              Choosing Genes
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#id-4SearchingacaIntegratorStudy-ExpressionLevelSelection" rel="nofollow">
+          Expression Level Selection
+        </a>
+      </li>
+      <li>
+        <a href="#id-4SearchingacaIntegratorStudy-FoldChangeSelection" rel="nofollow">
+          Fold Change Selection
+        </a>
+      </li>
+      <li>
+        <a href="#id-4SearchingacaIntegratorStudy-CopyNumberSearches" rel="nofollow">
+          Copy Number Searches
+        </a>
+      </li>
+      <li>
+        <a href="#id-4SearchingacaIntegratorStudy-GeneNamesSearch.1" rel="nofollow">
+          Gene Names Search
+        </a>
+        <ul>
+          <li>
+            <a href="#id-4SearchingacaIntegratorStudy-SegmentationSearch" rel="nofollow">
+              Segmentation Search
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#id-4SearchingacaIntegratorStudy-CGHCallsSearches" rel="nofollow">
+          CGHCalls Searches
+        </a>
+        <ul>
+          <li>
+            <a href="#id-4SearchingacaIntegratorStudy-ChoosingGenes.1" rel="nofollow">
+              Choosing Genes
+            </a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#id-4SearchingacaIntegratorStudy-ConfiguringQueryResultsDisplay" rel="nofollow">
+      Configuring Query Results Display
+    </a>
+    <ul>
+      <li>
+        <a href="#id-4SearchingacaIntegratorStudy-ResultsTypeTab" rel="nofollow">
+          Results Type Tab
+        </a>
+      </li>
+      <li>
+        <a href="#id-4SearchingacaIntegratorStudy-SortingTab" rel="nofollow">
+          Sorting Tab
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#id-4SearchingacaIntegratorStudy-ManagingQueries" rel="nofollow">
+      Managing Queries
+    </a>
+    <ul>
+      <li>
+        <a href="#id-4SearchingacaIntegratorStudy-SavingaQuery" rel="nofollow">
+          Saving a Query
+        </a>
+      </li>
+      <li>
+        <a href="#id-4SearchingacaIntegratorStudy-EditingaQuery" rel="nofollow">
+          Editing a Query
+        </a>
+      </li>
+      <li>
+        <a href="#id-4SearchingacaIntegratorStudy-ExportingQueryResults" rel="nofollow">
+          Exporting Query Results
+        </a>
+      </li>
+    </ul>
+  </li>
+</ul>
+<h2 id="id-4SearchingacaIntegratorStudy-SearchOverview">
+  Search Overview
+</h2>
+The search and browse functions in caIntegrator allow you to search for subject annotation data, genomic data or imaging data that were uploaded into the application as part of a study. When gene expression and imaging data are uploaded into a caIntegrator study, mapping files that correlate sample IDs in those files to subject IDs (patient IDs) in the subject annotation data file must also be uploaded. When you launch a search, caIntegrator finds and integrates the subject annotation, genomic and imaging data based on the mapping files and the criteria that you define in the search query.In a search query, you can specify criteria for just one of the data types, or configure complex search criteria that join two or three data types. The available criteria for the query were defined when the study was deployed.The basic workflow for a study search follows these steps:
+<ol>
+  <li>
+    Select the study to be searched.
+  </li>
+  <li>
+    Select one data type:
+    <ul>
+      <li>
+        [Annotations] – Annotation data can be labeled &#39;default&#39; or given the annotation &#39;group&#39; name when annotation groups are specified by the manager, for example, chronologic, therapy, diagnosis, patient, or other annotation group types. This selection searches one or more uploaded CSV files for data identifiers or annotations (column headers) specified during study creation.
+      </li>
+      <li>
+        [Genomic] – Genomic data can be gene expression or copy number data. This selection searches caArray experiments samples uploaded in the study for gene expression or copy number data by gene name, reporter ID, chromosome number, chromosome coordinates and/or segmentation values representing amplification or deletion.
+      </li>
+      <li>
+        Image Data – This selection searches NBIA imaging files uploaded in the study for image annotations or links to images, identified by subject identifiers or image series IDs.
+      </li>
+    </ul>
+  </li>
+  <li>
+    Define criteria for the search in the selected data type and run the search.
+  </li>
+  <li>
+    For a more complex search, select multiple criteria from more than one data type.
+  </li>
+  <li>
+    Specify whether you want subject/imaging annotations to display or genomic data to display.
+  </li>
+  <li>
+    Review search results.
+  </li>
+  <li>
+    Configure results column and sorting display settings. You can do this before or after you run a search. If you choose to do it after, you must re-run the search.
+  </li>
+  <li>
+    Download annotation search results as a CSV file. The CSV file contains only the data you specified in the annotation and display configurations.
+  </li>
+  <li>
+    Follow links to NBIA in the search results to view or download images located in the search.
+  </li>
+</ol>
+<h2 id="id-4SearchingacaIntegratorStudy-SearchingacaIntegratorStudy">
+  Searching a caIntegrator Study
+</h2>
+To initiate a search of all annotations and/or other data in a study, follow these steps:
+<ol>
+  <li>
+    In caIntegrator, in the upper right hand corner, select the study you want to browse or perform a simple search.
+  </li>
+  <li>
+    On the left sidebar, under the first section that displays the study name, click Search [Study Name]. This opens a simple search query page with five tabs.
+  </li>
+  <li>
+    On the Criteria tab, shown in the following figure, in the drop-down list, select the type of data you want to search.
+    <img alt="Criteria tab, described in text" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/4%20-%20Searching%20a%20caIntegrator%20Study/annotation%20data%20type180.PNG?api=v2">
+  </li>
+  <li>
+    You can perform a search using one or more criteria you set in one of the data types, or you can define criteria in more than one data type per query, creating a more complex search.
+    <ul>
+      <li>
+        Annotations (listed as &#39;default&#39; or by annotation group name when specified when the study was created)
+      </li>
+      <li>
+        Gene Expression or Copy Number
+      </li>
+      <li>
+        Image Series
+      </li>
+    </ul>
+  </li>
+  <li>
+    Click Add to further define criteria for the search. Continue with:
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726023" rel="nofollow">
+      Annotation and Image Data Searches
+    </a>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726023" rel="nofollow">
+      Gene Expression Searches
+    </a>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726023" rel="nofollow">
+      Copy Number Searches
+    </a>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726023" rel="nofollow">
+      CGHCalls Searches
+    </a>
+  </li>
+  <li>
+    To add additional criteria for the search, repeat steps 4 and 5, as appropriate. You can set more than one data type or more than one criterion for a data type. The criteria become cumulative, thus refining the search.
+  </li>
+  <li>
+    Once you have configured the query criteria, select the Boolean Or or Andsearch operator at the bottom of the page.
+    <ul>
+      <li>
+        Or finds a data subset with at least one of the search criteria
+      </li>
+      <li>
+        And finds a data subset with both/or all search criteria.
+      </li>
+    </ul>
+  </li>
+  <li>
+    Click the Remove button to clear any data elements you have defined.
+  </li>
+  <li>
+    You can launch the search from this Criteria tab. Click the Run Search button. For information about the search results, see
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726038" rel="nofollow">
+      5 - Viewing Query Results
+    </a>
+    . You may want to run the search first to see what kind of results you get before you configure the data display, described in step 10.– or –
+  </li>
+  <li>
+    On the Results Type tab, you can specify the columns you want to display in the search results data. On the Sorting tab, you can specify how the data is to be sorted. For more information, see
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726023" rel="nofollow">
+      Results Type Tab
+    </a>
+    and
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726023" rel="nofollow">
+      Sorting Tab
+    </a>
+    .Be CarefulAs long as you are still in the current query session, you can return to the Criteria, Columns and Sorting tabs to add, modify or remove data and display criteria and re-run the search. If you configure another query without saving the first, the first query will be lost. If you save the query, your current search criteria are saved.
+  </li>
+</ol>
+<h3 id="id-4SearchingacaIntegratorStudy-AnnotationandImageDataSearches">
+  Annotation and Image Data Searches
+</h3>
+Annotation GroupsIf the study manager defined the study&#39;s own annotation groups, then those group names are listed in the criteria drop-down list. If the study manager did not define the study&#39;s annotation groups when the study was created, then all annotations are placed, by default, in a group called &#34;Annotations default&#34;.Once you select an annotation group data type, an additional drop-down list displays data elements that are annotation definitions specified for that data type when the data was uploaded into the study. An example is shown in the following figure.
+<img alt="Annotation definition examples, described in text" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/4%20-%20Searching%20a%20caIntegrator%20Study/annotation%20data%20type280.PNG?api=v2">
+<ol>
+  <li>
+    Select a search criterion from among the options. You can make only one selection at a time.For imaging searchesIf the study includes imaging data, imaging annotations should be available in the Annotations list, as shown in the following figure.
+    <img alt="Example imaging definitions, described in text" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/4%20-%20Searching%20a%20caIntegrator%20Study/annotation%20search%20criteria%20with%20imaging80.PNG?api=v2">
+  </li>
+  <li>
+    Each choice opens other fields relevant to the selection where you can further define your search query.
+    <ul>
+      <li>
+        If permissible values were added when the annotation was defined, you must select among the values in a drop-list that displays on the right side of the page. An example is shown in the following figure.
+      </li>
+      <li>
+        If no permissible values were defined as part of the annotation, you have the option to enter descriptive text in a text box on the right side of the page.
+        <img alt="Descriptive text for annotations, described in text" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/4%20-%20Searching%20a%20caIntegrator%20Study/annotation%20search%20criteria80.PNG?api=v2">
+        CautionWhen working with image data, if only an imaging mapping file was uploaded when the study was created and not an image series annotation file, you cannot enter image search criteria. The search results will, however, display a link that allows you to view the associated images in NBIA.
+      </li>
+    </ul>
+  </li>
+  <li>
+    Continue with step 6 in
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726023" rel="nofollow">
+      Searching a caIntegrator Study
+    </a>
+    .
+  </li>
+</ol>
+<h2 id="id-4SearchingacaIntegratorStudy-GeneExpressionSearches">
+  Gene Expression Searches
+</h2>
+For a gene expression search, follow these steps:For the Gene Expression selection, select
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726023" rel="nofollow">
+  Gene Name
+</a>
+,
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726023" rel="nofollow">
+  Expression Level
+</a>
+or
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726023" rel="nofollow">
+  Fold Change
+</a>
+. Follow the links for descriptions about each selection. Additional search fields will display upon selection. If the study includes multiple platforms, a Platform option is also visible.
+<h3 id="id-4SearchingacaIntegratorStudy-GeneNamesSearch">
+  Gene Names Search
+</h3>
+caIntegrator provides three methods whereby you can obtain gene names for a search. See
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=50693830" rel="nofollow">
+  Choosing Genes
+</a>
+.Blank gene symbols fieldIf you leave the gene symbols field blank, caIntegrator searches all gene symbols for a match to the other criteria you specify.
+<h4 id="id-4SearchingacaIntegratorStudy-ChoosingGenes">
+  Choosing Genes
+</h4>
+To obtain gene names for a gene expression search or analysis, use one of the following three methods described in this section: bioDBnet, Gene List or CGAP.
+<ul>
+  <li>
+    bioDBnet– This link searches bioDBnet for gene IDs, symbols or genes within pathways. Then caIntegrator pulls identified genes into the application for analysis.
+    <ol>
+      <li>
+        Click bioDBnet.
+      </li>
+      <li>
+        Enter Search Terms. Note that caIntegrator can perform a search on a partial HUGO symbol. For example, as search using  ACH *  would find matches with &#39;achalasia&#39; and &#39;arachidonate&#39;.
+      </li>
+      <li>
+        Select if you want to search in Gene IDs, Gene Symbols, Gene Aliases,  Pathways (from the drop-down list), or Search Pathways for Genes.
+        <ul>
+          <li>
+            Gene IDs searches the exact gene ID(s) you enter.
+          </li>
+          <li>
+            Gene Symbols searches only the Unigene and HUGO gene symbols in bioDBnet.
+          </li>
+          <li>
+            Gene Aliases searches for one or more gene symbols which are synonymous for the current gene symbol.
+          </li>
+          <li>
+            Pathways searches only the pathway names in bioDBnet.
+          </li>
+          <li>
+            Search Pathways for Genes searches for pathways containing gene(s) you specify for the search.
+          </li>
+        </ul>
+      </li>
+      <li>
+        Select Show only genes that are part of this (caIntegrator) study or Case Sensitive Search if either of these criteria are to be applied to the search. (By default, the search is case insensitive.)
+      </li>
+      <li>
+        Choose the Taxon from the drop-down list and click Search. (The Taxon criterion defaults to Human.) The search results display on the same page below the search criteria. The following figure shows search criteria and a few of the listed search results.
+        <img alt="Example bioDBnet gene search criteria and search results" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/Choosing%20Genes/bioDBnetsearch85.png?api=v2">
+      </li>
+      <li>
+        In the search results, use the check boxes to identify the genes whose symbols you want to use in the gene expression analysis.
+      </li>
+      <li>
+        Click Use Genes at the bottom of the page. This pulls the checked genes into the Gene Symbol text box on the Criteria tab. The following figure reveals some of the genes pulled into the Gene Symbol text box.
+        <img alt="example of genes in Gene Symbol text box" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/Choosing%20Genes/cabio%20genes%20pulled%20in80.PNG?api=v2">
+      </li>
+    </ol>
+  </li>
+  <li>
+    Gene List– This link locates gene lists saved in caIntegrator.
+    <ol>
+      <li>
+        Click the Genes List icon (
+        <img alt="gene list icon" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/Choosing%20Genes/gene%20list%20icon.png?api=v2">
+        ) to open a Gene List Picker dialog. For more information, see
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726038" rel="nofollow">
+          Creating a Gene or Subject List
+        </a>
+        .If a GISTIC analysis has been run, you may see the following options:
+        <ul>
+          <li>
+            GISTIC Amplified genes is a list of gene symbols in which the corresponding regions of the genome are significantly amplified.
+          </li>
+          <li>
+            GISTIC Deleted genes is a list of gene symbols in which the corresponding regions of the genome are significantly deleted.
+          </li>
+        </ul>
+      </li>
+      <li>
+        In the drop-down menu that lists previously saved gene lists, select a gene list. In the list that appears, use the check boxes to identify the genes whose symbols you want to use in the gene expression analysis.
+      </li>
+      <li>
+        Click Use Genes at the bottom of the dialog. This pulls the checked genes into the Search Criteria tab.
+      </li>
+    </ol>
+  </li>
+  <li>
+    CGAP – Use this directory to identify genes. Before clicking the CGAP icon (
+    <img alt="CGAP icon" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/Choosing%20Genes/CGAP%20icon.png?api=v2">
+    ) you must enter gene symbols in the text box. This link does not pull anything into caIntegrator but does provide information about the gene(s) whose names you entered.
+  </li>
+</ul>
+<h3 id="id-4SearchingacaIntegratorStudy-ExpressionLevelSelection">
+  Expression Level Selection
+</h3>
+Additional fields display for the Expression Level selection.
+<ol>
+  <li>
+    Select the range type from the following options:
+    <ul>
+      <li>
+        &gt;=: Greater than the entered value
+      </li>
+      <li>
+        &lt;=: Less than the entered value
+      </li>
+      <li>
+        Inside Range: Looks for all matching values that occur between the two levels you enter
+      </li>
+      <li>
+        Outside Range: Looks for all matching values that are not in between the two levels that you enter. The range of possible values is determined on the array side; the value is affected by the array type and the sample&#39;s behavior.
+      </li>
+    </ul>
+  </li>
+  <li>
+    Enter the Expression Level appropriate for your query. The value that you enter is compared to the expression levels that are reported by the probes on the array platform. The probe value is typically a normalized value.This criteria changes slightly based the range type you select. The default value of 100 is a fixed default and does not reflect any values on the array. It simply represents a starting point for the query.
+  </li>
+  <li>
+    Continue with step 6 in
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726023" rel="nofollow">
+      Searching a caIntegrator Study
+    </a>
+    .
+  </li>
+</ol>
+<h3 id="id-4SearchingacaIntegratorStudy-FoldChangeSelection">
+  Fold Change Selection
+</h3>
+Additional fields display for the Fold Change selection. The fold change option appears only if genomic control samples have been uploaded to the study. Fold change identifies genes with expression differences compared to control samples, as defined when the study was deployed in caIntegrator. You can enter query values in greater/lesser-than-or-equal-to arguments.
+<ol>
+  <li>
+    Select or enter data for the Fold change fields shown in the following figure and described below.
+    <img alt="Fold change fields, described in text" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/4%20-%20Searching%20a%20caIntegrator%20Study/fold%20change%20options90.PNG?api=v2">
+    <ul>
+      <li>
+        Gene Symbol - See
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726023" rel="nofollow">
+          Gene Names Search
+        </a>
+        .
+      </li>
+      <li>
+        Control Sample Set – If multiple platforms are part of the study, your platform selection in the Fold Change query criteria determines the control samples that are available. Select from the drop down list the name of the uploaded control sample set to serve as the fold change reference.
+      </li>
+      <li>
+        Regulation Type – Select the term that describes the gene expression in comparison with the control samples: Up is increased expression; Down is decreased expression; Up or Down is increased or decreased; Unchanged means no change in expression.
+      </li>
+      <li>
+        Up-regulation Folds – Enter a numerical value representing fold change. The number you enter here is dependent upon the Regulation Type you selected.
+        <ul>
+          <li>
+            Up = Up Regulation Folds – Samples with a fold change greater than this value, when compared to the control samples, will be returned.
+          </li>
+          <li>
+            Down = Down Regulation Folds – Samples with a fold change less than this value, when compared to the control samples, will be returned.
+          </li>
+          <li>
+            Up or Down = Down Regulations Folds, Up Regulation Folds – Samples with a fold change either up or down, when compared to the control samples, will be returned.
+          </li>
+          <li>
+            Unchanged = Samples with a fold change between the two specified values will be returned. For example, if you enter 2.0 in this field, after selecting Up in the previous field, the search will locate genes whose expression is 2 times (2-fold up regulation) the base value.
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    Continue with step 6 in
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726023" rel="nofollow">
+      Searching a caIntegrator Study
+    </a>
+    .
+  </li>
+</ol>
+<h3 id="id-4SearchingacaIntegratorStudy-CopyNumberSearches">
+  Copy Number Searches
+</h3>
+In some diseases, like cancer, cells that are abnormal can exhibit a change in the chromosomal structure in that parts of a chromosome can be amplified or deleted. &#39;Copy number&#39; experiments that measure variation in genomic structure use molecular markers to detect amplification or deletion of chromosomal segments. Typically, copy number alteration experiments compare a genomic sample from a diseased tissue (for example, a tumor) to a control sample (for example, blood).The Copy Number query option, as described in
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726023" rel="nofollow">
+  Searching a caIntegrator Study
+</a>
+, appears only if copy number data have been uploaded to the study. A copy number search identifies subjects or samples that have a copy number amplification or deletion in the genome range specified. Searches can be constructed with gene names, chromosome number and/or chromosome coordinates. You can enter query values in greater/lesser-than-or-equal-to arguments.For the Copy Number selection, select Gene Name or Segmentation.
+<h3 id="id-4SearchingacaIntegratorStudy-GeneNamesSearch.1">
+  Gene Names Search
+</h3>
+caIntegrator provides three methods whereby you can obtain gene names for a search. See
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=50693830" rel="nofollow">
+  Choosing Genes
+</a>
+.Blank gene symbols fieldIf you leave the gene symbols field blank, caIntegrator searches all gene symbols for a match to the other criteria you specify.
+<h4 id="id-4SearchingacaIntegratorStudy-SegmentationSearch">
+  Segmentation Search
+</h4>
+Additional fields display for the Segmentation selection. Segmentation is the process of defining the chromosomal boundaries (coordinates) of the region deleted or amplified in the sample.
+<ol>
+  <li>
+    Select or enter data for the copy number query fields shown in the following figure and described below.
+    <img alt="copy number query fields, described in text" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/4%20-%20Searching%20a%20caIntegrator%20Study/segmentation190.PNG?api=v2">
+    .
+    <ul>
+      <li>
+        Segment Mean &lt;= – Enter the value equal to or less than the higher limit of change.
+      </li>
+      <li>
+        Segment Mean &gt;= – Enter the value equal to or greater than the lower limit of change.
+      </li>
+      <li>
+        Genome Interval &gt; Gene Name – See
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726023" rel="nofollow">
+          Choosing Genes
+        </a>
+        .
+      </li>
+      <li>
+        Genome Interval &gt; Chromosome Number – In the text box that opens, enter the chromosome number you want the query to search against.
+      </li>
+      <li>
+        Genome Interval &gt; Chromosome Coordinates – In the From and To text boxes that open, enter the range on the chromosome you want to search. This defines the chromosomal boundaries of the region with the suspected copy number variations.
+        <img alt="chromosomal regional boundary examples, described in text" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/4%20-%20Searching%20a%20caIntegrator%20Study/segmentation290.PNG?api=v2">
+        The Bioconductor DNAcopy algorithm (see
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726038" rel="nofollow">
+          Copy Number Data
+        </a>
+        ) identifies the location of the amplification or deletion and then reports it as the base pair at the start and stop of the segment. Each segment is then catalogued with chromosome number, start coordinate, stop coordinate, genes in the segment, and the segment mean value.
+      </li>
+      <li>
+        To search for Gene Symbols, see
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726023" rel="nofollow">
+          Choosing Genes
+        </a>
+        .
+      </li>
+    </ul>
+  </li>
+  <li>
+    Continue with step 6 in
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726023" rel="nofollow">
+      Searching a caIntegrator Study
+    </a>
+    .
+  </li>
+</ol>
+<h3 id="id-4SearchingacaIntegratorStudy-CGHCallsSearches">
+  CGHCalls Searches
+</h3>
+Additional fields display for the Calls selection. CGHCalls calls aberrations for array CGH data using a six state mixture model.
+<ol>
+  <li>
+    Select or enter data for the copy number query fields shown in the following figure and described below.
+    <img alt="copy number query fields, described in text" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/4%20-%20Searching%20a%20caIntegrator%20Study/calls%20options80.PNG?api=v2">
+    <ul>
+      <li>
+        Copy Number values: Select one or more of the Calls values. Values are -1 (loss), 0 (normal) or 1, (gain). If four levels were used for calling, a value of 2 represents an amplification.
+      </li>
+      <li>
+        Genome Interval &gt; Gene Name – See
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726023" rel="nofollow">
+          Gene Names Search
+        </a>
+        .
+      </li>
+      <li>
+        Genome Interval &gt; Chromosome Number – In the text box that opens, enter the chromosome number you want the query to search against.
+      </li>
+      <li>
+        Genome Interval &gt; Chromosome Coordinates – In the From and To text boxes that open, enter the range on the chromosome you want to search. This defines the chromosomal boundaries of the region with the suspected copy number variations. For more information about CGHCalls, see
+        <a href="http://www.bioconductor.org/help/bioc-views/release/bioc/html/CGHcall.html" rel="nofollow">
+          CGHcalls
+        </a>
+        <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+          <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+        </a>
+        .
+      </li>
+      <li>
+        To search for Gene Symbols, see
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726023" rel="nofollow">
+          Choosing Genes
+        </a>
+        .
+      </li>
+    </ul>
+  </li>
+  <li>
+    Continue with step 6 in
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726023" rel="nofollow">
+      Searching a caIntegrator Study
+    </a>
+    .
+  </li>
+</ol>
+<h4 id="id-4SearchingacaIntegratorStudy-ChoosingGenes.1">
+  Choosing Genes
+</h4>
+To obtain gene names for a gene expression search or analysis, use one of the following three methods described in this section: bioDBnet, Gene List or CGAP.
+<ul>
+  <li>
+    bioDBnet– This link searches bioDBnet for gene IDs, symbols or genes within pathways. Then caIntegrator pulls identified genes into the application for analysis.
+    <ol>
+      <li>
+        Click bioDBnet.
+      </li>
+      <li>
+        Enter Search Terms. Note that caIntegrator can perform a search on a partial HUGO symbol. For example, as search using  ACH *  would find matches with &#39;achalasia&#39; and &#39;arachidonate&#39;.
+      </li>
+      <li>
+        Select if you want to search in Gene IDs, Gene Symbols, Gene Aliases,  Pathways (from the drop-down list), or Search Pathways for Genes.
+        <ul>
+          <li>
+            Gene IDs searches the exact gene ID(s) you enter.
+          </li>
+          <li>
+            Gene Symbols searches only the Unigene and HUGO gene symbols in bioDBnet.
+          </li>
+          <li>
+            Gene Aliases searches for one or more gene symbols which are synonymous for the current gene symbol.
+          </li>
+          <li>
+            Pathways searches only the pathway names in bioDBnet.
+          </li>
+          <li>
+            Search Pathways for Genes searches for pathways containing gene(s) you specify for the search.
+          </li>
+        </ul>
+      </li>
+      <li>
+        Select Show only genes that are part of this (caIntegrator) study or Case Sensitive Search if either of these criteria are to be applied to the search. (By default, the search is case insensitive.)
+      </li>
+      <li>
+        Choose the Taxon from the drop-down list and click Search. (The Taxon criterion defaults to Human.) The search results display on the same page below the search criteria. The following figure shows search criteria and a few of the listed search results.
+        <img alt="Example bioDBnet gene search criteria and search results" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/Choosing%20Genes/bioDBnetsearch85.png?api=v2">
+      </li>
+      <li>
+        In the search results, use the check boxes to identify the genes whose symbols you want to use in the gene expression analysis.
+      </li>
+      <li>
+        Click Use Genes at the bottom of the page. This pulls the checked genes into the Gene Symbol text box on the Criteria tab. The following figure reveals some of the genes pulled into the Gene Symbol text box.
+        <img alt="example of genes in Gene Symbol text box" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/Choosing%20Genes/cabio%20genes%20pulled%20in80.PNG?api=v2">
+      </li>
+    </ol>
+  </li>
+  <li>
+    Gene List– This link locates gene lists saved in caIntegrator.
+    <ol>
+      <li>
+        Click the Genes List icon (
+        <img alt="gene list icon" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/Choosing%20Genes/gene%20list%20icon.png?api=v2">
+        ) to open a Gene List Picker dialog. For more information, see
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726038" rel="nofollow">
+          Creating a Gene or Subject List
+        </a>
+        .If a GISTIC analysis has been run, you may see the following options:
+        <ul>
+          <li>
+            GISTIC Amplified genes is a list of gene symbols in which the corresponding regions of the genome are significantly amplified.
+          </li>
+          <li>
+            GISTIC Deleted genes is a list of gene symbols in which the corresponding regions of the genome are significantly deleted.
+          </li>
+        </ul>
+      </li>
+      <li>
+        In the drop-down menu that lists previously saved gene lists, select a gene list. In the list that appears, use the check boxes to identify the genes whose symbols you want to use in the gene expression analysis.
+      </li>
+      <li>
+        Click Use Genes at the bottom of the dialog. This pulls the checked genes into the Search Criteria tab.
+      </li>
+    </ol>
+  </li>
+  <li>
+    CGAP – Use this directory to identify genes. Before clicking the CGAP icon (
+    <img alt="CGAP icon" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/Choosing%20Genes/CGAP%20icon.png?api=v2">
+    ) you must enter gene symbols in the text box. This link does not pull anything into caIntegrator but does provide information about the gene(s) whose names you entered.
+  </li>
+</ul>
+<h2 id="id-4SearchingacaIntegratorStudy-ConfiguringQueryResultsDisplay">
+  Configuring Query Results Display
+</h2>
+You can specify columns for the way you want the search results to display either before or after you run the search. If you run the search directly from the Criteria tab before setting the results type/sorting features, by default only the Subject Identifiers display on the Search Results tab. You can then come back to the
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726023" rel="nofollow">
+  Results Type Tab
+</a>
+and
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726023" rel="nofollow">
+  Sorting Tab
+</a>
+to expand the display options and re-run the search, having set the display parameters.For more information, see
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726038" rel="nofollow">
+  5 - Viewing Query Results
+</a>
+.
+<h3 id="id-4SearchingacaIntegratorStudy-ResultsTypeTab">
+  Results Type Tab
+</h3>
+The selection you make on the Results Type tab determines whether caIntegrator displays search results for subject annotation or for genomic data. It filters the search based on the criteria you set on the Criteria tab, whether it is annotation, gene expression or image series data type(s). In other words, if you select annotation criteria on the Criteria tab, but select Genomic on the Results Type tab, the data subset that displays on the Search Results tab is genomic data that is filtered by the annotation criteria you defined on the Criteria tab.
+<ol>
+  <li>
+    On the Results Type tab, shown in the following figure, select the Annotation, Copy Number or Genomic radio button to search annotation data. Search criteria are described below.
+    <img alt="Result Type tab, described in text" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/4%20-%20Searching%20a%20caIntegrator%20Study/results%20tab%20w%20annotations80.PNG?api=v2">
+  </li>
+  <li>
+    Annotation- Select the annotation elements that you want to display in the search results. All elements listed are column headers in the data uploaded to the study. You can make multiple selections on this list.Default displayFor subject annotations, the Patient or Subject Identifier displays by default in the search results. Results display as tabular data.
+  </li>
+  <li>
+    Copy Number - This option appears only if the open study includes copy number data. If you select this option, the annotation elements initially displayed on this tab disappear, and you are asked to run the query again. Based on the criteria you defined, the Query Results tab shows a data matrix containing samples against the genomic region you specified. For more information, see
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726023" rel="nofollow">
+      Copy Number Searches
+    </a>
+    and
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726038" rel="nofollow">
+      Copy Number Data
+    </a>
+    .
+  </li>
+  <li>
+    Gene Expression - Select the Reporter Type and Results Orientation.
+    <ul>
+      <li>
+        Gene Name – Finds and summarizes at the gene level all reporters that match criteria for the gene you defined on the Criteria tab
+      </li>
+      <li>
+        Reporter ID – Finds all reporters that map to the gene(s) you identified on the Criteria tab
+      </li>
+      <li>
+        Genes in rows/Subjects in columns or Genes in columns/Subjects in rows – Determines query results matrix format Results display in a gene expression data matrix. For more information, see
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726038" rel="nofollow">
+          Gene Expression Data
+        </a>
+        .
+      </li>
+    </ul>
+  </li>
+  <li>
+    Imaging - If imaging annotations have been added to the study, annotation elements also display on the lower right section of this page when you select Annotation. All elements listed are column headers in the image annotation data uploaded to the study. You can make multiple selections on this list.Image series IDs displayIf you select even one Image Annotation on the Results Type tab, the Image Series IDs display by default in the search results. If you select no Image Annotations on the Results Type tab, however, even if you have selected image series criteria on the Criteria tab, no image series IDs display in the search results. The fact that images can be located, however, in NBIA is indicated by two image-related buttons at the bottom of the Query Results page. You can open the images in NBIA, but they will be at StudyInstance UID level. See
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=50234134" rel="nofollow">
+      Relationship of Subject to Study to Series to Images
+    </a>
+    .
+  </li>
+  <li>
+    Use the Select All or Unselect All buttons to aid you in making your selections. Results display as tabular data. For more information, see
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726038" rel="nofollow">
+      Subject Annotation and Imaging Data
+    </a>
+    .
+  </li>
+</ol>
+The column selection is saved as part of the query if you save it. See
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726023" rel="nofollow">
+  Saving a Query
+</a>
+.
+<h3 id="id-4SearchingacaIntegratorStudy-SortingTab">
+  Sorting Tab
+</h3>
+On the Sorting tab, you can set the sort order for data columns in the query results. You can also indicate whether column contents are sorted in ascending or descending order.The columns that display on the Sorting tab are those criteria that you selected on the
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726023" rel="nofollow">
+  Results Type Tab
+</a>
+for an Annotation Results type search.TipSorting is not applicable to copy number search results. For those results, no options are available on the Sorting tab.
+<ol>
+  <li>
+    Select the Sorting tab and indicate the left to right column order of the Search Results by changing one or more numbers in the Column Order column in the table shown in the following figure.
+    <img alt="Sorting tab where user can set the sort order for selected columns of query results. Refer to text." src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/4%20-%20Searching%20a%20caIntegrator%20Study/sorting%20tab80.PNG?api=v2">
+  </li>
+  <li>
+    In the Row Order column, indicate how you want columns sorted, Ascending or Descending, or leave the default, No Sort, if you choose.
+  </li>
+  <li>
+    Click Run Query at the bottom of the page to execute your sorting changes in the search results. When you do so, the change in column order is visible on the Query Results tab, as well as on the Sorting tab. For example, any column that you have indicated to be number &#34;1&#34; now appears in Query Results immediately after the Subject Identifier column and at the top of the Set Sort Order table on the Sorting tab. Sorting parameters are saved as part of the query if you choose to save it using the Save Query feature. See
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726023" rel="nofollow">
+      Saving a Query
+    </a>
+    .
+  </li>
+  <li>
+    If you click the Reset button before running the query from the Sorting tab, the original column settings are restored.
+  </li>
+</ol>
+For information about the search results, see
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726038" rel="nofollow">
+  5 - Viewing Query Results
+</a>
+.
+<h2 id="id-4SearchingacaIntegratorStudy-ManagingQueries">
+  Managing Queries
+</h2>
+When you create a search query in caIntegrator, you can save the query for later use or edit it.
+<h3 id="id-4SearchingacaIntegratorStudy-SavingaQuery">
+  Saving a Query
+</h3>
+To save a query, follow these steps:
+<ol>
+  <li>
+    Click the Save As tab and enter a Search Name and Search Description, unique to the search. Example:  Batch ID 6 and female
+  </li>
+  <li>
+    Click Save.
+  </li>
+</ol>
+Once the query is saved, it is listed by its name under the Study Data &gt; Queries &gt; My Queries in the left sidebar, whenever the study to which the query applies is selected. Click on the saved query in this list to either edit or re-run the query. Click on the query name to retrieve query results. If you hover over the Name text for the query, a pop-up displays the query description.
+<h3 id="id-4SearchingacaIntegratorStudy-EditingaQuery">
+  Editing a Query
+</h3>
+To edit a query, follow these steps:
+<ol>
+  <li>
+    Select a query in the left sidebar under the Study Data &gt; Queries &gt; My Queries.
+  </li>
+  <li>
+    Click the Edit icon (
+    <img alt="edit icon" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/4%20-%20Searching%20a%20caIntegrator%20Study/edit%20icon.png?api=v2">
+    ) corresponding to the study.
+  </li>
+  <li>
+    Change the query and display criteria on the Criteria, Columns and Sorting tabs.
+  </li>
+  <li>
+    On the Save As tab, check the appropriate options and click Save As. You can use the same name as the original query or modify the name as needed.
+  </li>
+</ol>
+<h3 id="id-4SearchingacaIntegratorStudy-ExportingQueryResults">
+  Exporting Query Results
+</h3>
+After running a search, you can export the result set or a subset as a tab-delimited text file. For more information, see
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726038" rel="nofollow">
+  Exporting Data
+</a>
+.

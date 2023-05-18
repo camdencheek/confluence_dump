@@ -1,0 +1,360 @@
+The
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=25004394" rel="nofollow">
+  ISO 21090
+</a>
+II (instance identifier) type is used for all identifiers in the COPPA services.  The two most-used fields in II are root (&#34;a unique identifier that guarantees the global uniqueness of the instance identifier&#34;) and extension (&#34;a character string as a unique identifier within the scope of the identifier root&#34;).  According to the spec, &#34;The root and extension scheme means that the concatenation of root and extension SHALL be a globally unique identifier for the item that this II value identifies.&#34;  A root is typically (but not always) an HL7 OID (the
+<a href="http://www.hl7.org/Oid/index.cfm" rel="nofollow">
+  HL7 OID registry
+</a>
+allows you to search for OID), although in some cases, it is a string identifier.  Whenever an extension is defined in an II, the root should also be defined, even if the context of the II seems to be enough to identify the extension.  For example, when searching for a trial based on the NCI assigned identifier, the field name &#34;assigned identifier&#34; implies the root, but &#34;2.16.840.1.113883.3.26.4.3&#34; should still be specified for the root explicitly.
+
+The identifier name attribute of the II is &#34;a human-readable name for the namespace represented in the root.&#34;  The identifier name does not refer to the organization that issued the identifier but &#34;is intended for use as a human readable label when an identifier must be displayed to a human user where an OID would not be meaningful&#34; - it has no computational value.*
+<h2 id="IIRootsUsedbyCOPPAServices-RootsDefinedbyCTRP/COPPA">
+  Roots Defined by CTRP/COPPA
+</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Root
+      </th>
+      <th>
+        Identifier Name
+      </th>
+      <th>
+        Notes
+      </th>
+    </tr>
+    <tr>
+      <td>
+        2.16.840.1.113883.3.26.4.1
+      </td>
+      <td>
+        NCI person entity identifier
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        2.16.840.1.113883.3.26.4.2
+      </td>
+      <td>
+        NCI organization entity identifier
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        2.16.840.1.113883.3.26.4.4.1
+      </td>
+      <td>
+        NCI clinical research staff identifier
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        2.16.840.1.113883.3.26.4.4.2
+      </td>
+      <td>
+        NCI health care provider identifier
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        2.16.840.1.113883.3.26.4.4.3
+      </td>
+      <td>
+        NCI health care facility identifier
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        2.16.840.1.113883.3.26.4.4.4
+      </td>
+      <td>
+        NCI oversight committee identifier
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        2.16.840.1.113883.3.26.4.4.5
+      </td>
+      <td>
+        NCI Research Organization identifier
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        2.16.840.1.113883.3.26.4.4.6
+      </td>
+      <td>
+        Identified org identifier
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        2.16.840.1.113883.3.26.4.4.7
+      </td>
+      <td>
+        Identified person identifier
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        2.16.840.1.113883.3.26.4.4.8
+      </td>
+      <td>
+        Organizational contact identifier
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        2.16.840.1.113883.3.26.4.4.9
+      </td>
+      <td>
+        Patient identifier
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        2.16.840.1.113883.3.26.4.4.10
+      </td>
+      <td>
+        Subject Accrual entity identifier
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        2.16.840.1.113883.3.26.4.3
+      </td>
+      <td>
+        NCI study protocol entity identifier
+      </td>
+      <td>
+        Can be used with either the PA DB ID for a study protocol or the NCI Assigned Identifier.  These distinct meanings will be split out to separate roots in a future release (see
+        <a href="https://tracker.nci.nih.gov/browse/PO-2670" rel="nofollow">
+          PO-2670
+        </a>
+        ).
+      </td>
+    </tr>
+    <tr>
+      <td>
+        2.16.840.1.113883.3.26.4.3.17.1
+      </td>
+      <td>
+        NCI study protocol entity identifier
+      </td>
+      <td>
+        To be used with the NCI Assigned Identifier once it is split off from 2.16.840.1.113883.3.26.4.3 (see
+        <a href="https://tracker.nci.nih.gov/browse/PO-2670" rel="nofollow">
+          PO-2670
+        </a>
+        ). For now, 2.16.840.1.113883.3.26.4.3 should be used instead of this root.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        2.16.840.1.113883.3.26.4.3.17.2
+      </td>
+      <td>
+        NCT Study protocol identifier
+      </td>
+      <td>
+        Used with the NCT identifier
+      </td>
+    </tr>
+    <tr>
+      <td>
+        2.16.840.1.113883.3.26.4.3.17.3
+      </td>
+      <td>
+        DCP Study protocol identifier
+      </td>
+      <td>
+        Used with the DCP identifier
+      </td>
+    </tr>
+    <tr>
+      <td>
+        2.16.840.1.113883.3.26.4.3.17.4
+      </td>
+      <td>
+        CTEP Study protocol identifier
+      </td>
+      <td>
+        Used with the CTEP identifier
+      </td>
+    </tr>
+    <tr>
+      <td>
+        2.16.840.1.113883.19
+      </td>
+      <td>
+        Study Protocol Other Identifier
+      </td>
+      <td>
+        This is HL7&#39;s example root and is a temporary placeholder for study protocol identifiers from outside sources that have not yet registered an OID.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        2.16.840.1.113883.3.26.4.3.5
+      </td>
+      <td>
+        Study Overall Status
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        2.16.840.1.113883.3.26.4.3.2
+      </td>
+      <td>
+        Study IND / IDE
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        2.16.840.1.113883.3.26.4.3.7
+      </td>
+      <td>
+        Study Resourcing
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        2.16.840.1.113883.3.26.4.3.8
+      </td>
+      <td>
+        Study Document
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        2.16.840.1.113883.3.26.4.5.2
+      </td>
+      <td>
+        Study Site
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        2.16.840.1.113883.3.26.4.5.1
+      </td>
+      <td>
+        Study Contact
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        2.16.840.1.113883.3.26.4.5.3
+      </td>
+      <td>
+        Study Site Contact
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        2.16.840.1.113883.3.26.4.4.17
+      </td>
+      <td>
+        Regulatory Authority
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        2.16.840.1.113883.3.26.4.6.1
+      </td>
+      <td>
+        Family identifier
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        2.16.840.1.113883.3.26.4.6.2
+      </td>
+      <td>
+        Family Organization Relationship identifier
+      </td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="IIRootsUsedbyCOPPAServices-OtherRootsUsedbyCTRP/COPPAServices(definedexternally)">
+  Other Roots Used by CTRP/COPPA Services (defined externally)
+</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Root
+      </th>
+      <th>
+        Identifier Name
+      </th>
+      <th>
+        Notes
+      </th>
+    </tr>
+    <tr>
+      <td>
+        2.16.840.1.113883.3.26.6.2
+      </td>
+      <td>
+        Cancer Therapy Evaluation Program Organization Identifier
+      </td>
+      <td>
+        The CTEP Organization ID
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Cancer Therapy Evaluation Program Person Other Identifier
+      </td>
+      <td>
+        Identified person identifier
+      </td>
+      <td>
+        The CTEP Person ID.  This is one instance where a string is used instead of an OID, but it is replaced by an OID starting with 2.16.840.1.113883.3.26.6.1 in release
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=39297216" rel="nofollow">
+          CTRP 3.6
+        </a>
+        .
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Cancer Therapy Evaluation Program Person Identifier
+      </td>
+      <td>
+        CTEP person entity identifier
+      </td>
+      <td>
+        CTEP&#39;s internal DB ID for Person objects, not the official &#34;CTEP ID.&#34;  This is another instance where a string is used instead of an OID.  Identifiers using this root should generally not be used, and it is removed in release
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=39297216" rel="nofollow">
+          CTRP 3.6
+        </a>
+        .
+      </td>
+    </tr>
+  </tbody>
+</table>

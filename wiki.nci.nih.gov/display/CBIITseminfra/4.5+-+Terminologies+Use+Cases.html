@@ -1,0 +1,84 @@
+Current Working Draft
+
+
+The National Cancer Institute has long been a leader in terminology related services and has provided the cancer community with structured terminology through the NCI Enterprise Vocabulary Services for several years. There is now a much wider range of terminology use cases for the needs from bedside to bench and back and Semantic Infrastructure 2.0 is being designed to address all of these use cases. The use cases require thinking beyond the capabilities of the existing metadata repository as demonstrated in the Cancer Data Standards Registry and Repository (caDSR) and supporting semantic representations of concepts as they are used in clinical information exchange using structured documents. Requirements are also recognized for binding concepts to information models in the abstract as domain values, for use in models such as the BRIDG (Biomedical Research Integrated Domain Group) domain analysis model (DAM) or the life sciences DAM.
+
+As NCI supports these new information models, a fundamental requirement is recognized to continue to support customers who have invested in the common data element capabilities of NCI over the last several years and to provide for customers to continue to use those elements while making the transition to Semantic Infrastructure 2.0. The NCI also needs to continue to support the needs of new customers who are creating information and services that use terminology and structures that exist outside of the BRIDG and LS DAM space. The result will be a more robust representation that captures semantics consistent with usage in clinical care and clinical research, and semantics that will provide more nearly full coverage for the life sciences research community.
+
+Below are several high-level use cases that highlight some of these demanding requirements.
+<ul>
+  <li>
+    <a href="#id-4.5TerminologiesUseCases-1-Translatelocalcodestostandardcodesystems" rel="nofollow">
+      1 - Translate local codes to standard code systems
+    </a>
+  </li>
+  <li>
+    <a href="#id-4.5TerminologiesUseCases-2-Createnestedvaluesets" rel="nofollow">
+      2 - Create nested value sets
+    </a>
+  </li>
+  <li>
+    <a href="#id-4.5TerminologiesUseCases-3-Retrievesemanticcodesystemcross-links" rel="nofollow">
+      3 - Retrieve semantic code system cross-links
+    </a>
+  </li>
+  <li>
+    <a href="#id-4.5TerminologiesUseCases-4-TransformCTS2valuesetexporttoanHL7V3codeddatatype" rel="nofollow">
+      4 - Transform CTS 2 value set export to an HL7V3 coded data type
+    </a>
+  </li>
+  <li>
+    <a href="#id-4.5TerminologiesUseCases-5-TransformanISO-11179commondataelementtoanHL7V3classobject" rel="nofollow">
+      5 - Transform an ISO-11179 common data element to an HL7 V3 class object
+    </a>
+  </li>
+  <li>
+    <a href="#id-4.5TerminologiesUseCases-6-CreationofValueSetsandValueSetMappings" rel="nofollow">
+      6 - Creation of Value Sets and Value Set Mappings
+    </a>
+  </li>
+  <li>
+    <a href="#id-4.5TerminologiesUseCases-7-NCIEnterpriseVocabularyServices" rel="nofollow">
+      7 - NCI Enterprise Vocabulary Services
+    </a>
+  </li>
+</ul>
+<h4 id="id-4.5TerminologiesUseCases-1-Translatelocalcodestostandardcodesystems">
+  1 - Translate local codes to standard code systems
+</h4>
+A user has a data base that uses a combination of enumerated values (for example, 0: Male, 1: Female, 9: Unknown) and codes drawn from outside code systems such as Hospital International Classification of Diseases Adapted (HICDA) or  Medical Dictionary for Regulatory Activities (MedDRA). The user needs to translate these codes into the codes that are adopted by the Vocabulary and Common Data Elements workspace. The user needs to first determine whether there are existing value sets that already represent the same or a broader conceptual space represented in the user&#39;s data base. If one exists, the user then needs to determine whether a mapping exists to the corresponding HICDA or MedDRA codes. If a value set does not already exist, the user needs access to a set of tools that will (a) allow the user to upload the code list along with any corresponding descriptive information, (b) determine which code system(s) are appropriate targets, (c) perform the actual mapping, which is described in a separate use case. Note that the user may need to record local mappings (enumerated values that are of no interest to the larger community) locally while recording mappings between external code systems in a fashion that is accessible by the whole community. Once the mappings are recorded, the user needs access the Semantic Infrastructure 2 framework to locate a service that will allow the user to automate the transformations in the target workflow environment, localizing the service if needed to meet performance or confidentiality requirements and connecting the service to the appropriate mapping(s). The user may also need to embed links to this code in the user&#39;s local software.
+<h4 id="id-4.5TerminologiesUseCases-2-Createnestedvaluesets">
+  2 - Create nested value sets
+</h4>
+The user is building the specifications for a new application to manage follow-up of chemotherapy patients to track the signs and symptoms associated with a clinical trial of certain chemotherapy agents. The user has been given a set of
+Common Terminology Criteria for Adverse Events (CTCAE) terms to capture the signs and symptoms but the set of symptoms listed is so large that it does not fit well into a single drop-down menu. The user would like to create subsets of these concepts according related organ systems affected. The user would like to have a unique identifier for each of these sets so they can be reused in future studies. The user has already investigated the available resources and did not find a collection of codes that met these requirements.
+<h4 id="id-4.5TerminologiesUseCases-3-Retrievesemanticcodesystemcross-links">
+  3 - Retrieve semantic code system cross-links
+</h4>
+A user is constructing a case report form and as part of the form, will have some data entry fields that correspond to laboratory tests that were ordered as part of the study. The user would like to constrain the inputs on the results of these tests to valid possibilities that can be provided via a menu selection. The user would like to submit a list of these laboratory tests to an application that can return an identified value set of possible ranges of answers and associated units of measure for each test. The user realizes that some of the tests will have results that are not available for some reason and would like the appropriate null representations returned as part of the value sets presented by the application.
+<h4 id="id-4.5TerminologiesUseCases-4-TransformCTS2valuesetexporttoanHL7V3codeddatatype">
+  4 - Transform CTS 2 value set export to an HL7V3 coded data type
+</h4>
+A user is building a form that will correspond to a clinical document recording for a pathology report. The user would like the vocabulary drop-down lists to be derived from a CTS 2 value set but would like this value set to be delivered to the document in the syntactical structure required for validation against the CDA schema. In other words, the user would like to submit a list of concepts and have the concepts structured with metadata in a HL7V3 CD data type. The structure that the user anticipates would be delivered as an XML blob with the following structure:
+
+&lt;code xsi:type=&#34;CD&#34; code=&#34;784.0&#34; codeSystem=&#34;2.16.840.1.113883.6.42&#34;&gt;
+
+&lt;displayName value=&#34;Headache&#34; /&gt;
+
+&lt;/code&gt;
+<h4 id="id-4.5TerminologiesUseCases-5-TransformanISO-11179commondataelementtoanHL7V3classobject">
+  5 - Transform an ISO-11179 common data element to an HL7 V3 class object
+</h4>
+A user has a group of caDSR common data elements which have been used in form construction in the past. Now the user would like to move these forms to the HL7 CDA structure. The user finds it possible to represent a portion but not all of the contextual meaning of the data elements in 11179. The user would like to transform the CDEs to HL7 V3 class structures in order to get the full contextual meaning as used in the CDA document. The user would like to submit the list of CDEs to the Enterprise Conformance and Compliance Framework (ECCF) registry transformer and have a set of V3 object classes returned.
+<h4 id="id-4.5TerminologiesUseCases-6-CreationofValueSetsandValueSetMappings">
+  6 - Creation of Value Sets and Value Set Mappings
+</h4>
+A user has identified one or more sets of permissible values that need to be mapped to standard codes used by the Vocabulary and Common Data Elements workspace. These values need to be assembled in a format such as Excel, XML or simple tab separated values and then be uploaded to a service that will allow them to be mapped to the codes that are endorsed for interchange on the grid. The user must be able to locate existing value sets and to construct new ones where appropriate targets do not exist. The user needs to be able to instruct the service to do automatic first approximation at a mapping, and then needs to be able to search, refine and validate mapping, and to be able to record a &#34;quality&#34; metric that states how closely the mapping actually approximates the intent of the original value. The user may encounter potential problems and omissions during this process and will need to submit suggested changes and enhancements to the appropriate oversight body for potential enhancement. Once the mappings are created, the user needs to be able to download the resulting mappings in an electronic format such as Excel or XML, as well as be able to submit the mappings to a service, either local or centralized, that will represent the mappings via a standardized API.
+<h4 id="id-4.5TerminologiesUseCases-7-NCIEnterpriseVocabularyServices">
+  7 - NCI Enterprise Vocabulary Services
+</h4>
+The NCI Enterprise Vocabulary Services (EVS) will provide terminology content and technical support for the Semantic Infrastructure 2.0, and has an extensive user community with use cases and requirements that will help shape development of the new infrastructure. Further details are available on the EVS Development Path and
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=34144278" rel="nofollow">
+  EVS - Overview of Use and Collaborations
+</a>
+pages. 

@@ -1,0 +1,91 @@
+1.  Answer for MAX Installation Questions.
+
+The best way to know if the installation is correct is to enter the following command:
+
+
+
+./max.pl --help
+
+
+If it shows the in-line help text (over 800 lines of text), the installation is correct.  If some of the Perl modules are missing, you will see errors that look like...
+
+
+Can&#39;t locate Math/Polygon/Calc.pm in @INC (@INC contains: /usr/lib/perl5/...
+/usr/lib/perl5/5.8.0 /usr/lib/perl5/site_perl/5.8.0/i386-linux-thread-multi ...
+
+BEGIN failed--compilation aborted at ...
+
+
+MAX is written in Perl.
+
+2. Additional Perl Modules Needed for MAX.
+
+It looks like there are some Perl modules that need to be installed.  And, yes, you can get them from CPAN (cpan.org):
+
+
+
+XML::Twig
+
+Tie::IxHash
+
+Math::Polygon::Calc
+
+
+
+
+(These are referenced by the &#34;use&#34; statements in the Perl code.)  After installing these 3 modules, you should be able to get the correct output when you type &#34;./max.pl -help&#34;.
+
+&gt;I downloaded XML-Twig-3.32.tar.gz, I&#39;m using version 3.16, but I don&#39;t think this will be a problem.
+
+
+Twig might have some dependencies; if so, you&#39;ll have to install some other modules.  For example, if you see an error message that says that it couldn&#39;t find XML/Xpath.pm, that means that you would need to download and install XML::Xpath also.
+
+&gt;Tie-IxHash-1.21.tar.gz and Math-Polygon-1.00.tar.gz.
+
+These are the same version that I&#39;m using.
+
+
+3. Install Additional Perl Modules in User Specified Directory Instead of the System Directory
+
+You can actually install the Perl modules anywhere -- for example, in your home directory, but maybe even better is to install them in MAX&#39;s directory.  This article...
+<a href="http://tnerd.com/2008/10/26/perl-how-to-install-perl-modules-in-few-quick-steps/" rel="nofollow">
+  http://tnerd.com/2008/10/26/perl-how-to-install-perl-modules-in-few-quick-steps/
+</a>
+ looks like it has a pretty good procedure for doing this using CPAN, but it does look a little complicated.  I&#39;ve never done it quite this way; instead, I just install modules manually.  If you want to do it manually, read the section of this article under &#34;Manual installation of the module as a normal user under home directory&#34;. Before doing this, you should decide on a directory that will hold all the Perl modules.  Then read this section: &#34;set the environment variable PERL5LIB pointing to the home directory&#34; to tell Perl where the new modules will be located.
+
+
+
+4. Using MAX
+
+
+
+MAX will analyze the XML files and will perform nodule matching.  I believe that the XML files that you get from us are in the form of a single file that contains the unblinded reads from 4 LIDC sites merged into one file.  If so, here&#39;s an example of how you would run MAX to do the matching:    max.pl --fname mergedfile.xml --skip-num-files-check
+
+--pixel-size=0.7 --slice-spacing=1.0 --xml-ops=none or since MAX lets you abbreviate most of the command line options, this also works...    max.pl --fname mergedfile.xml --skip --pixel=0.7 --slice=1.0 --xml-ops=none A couple of comments:
+
+* You might need to include a path on MAX depending on how and where it was installed.
+
+* You might need to include a path to the merged file.  But you will probably run MAX from the directory that contains the file.
+
+* Instead of the values shown above, you will have to get the *true* pixel and slice spacing for the series that corresponds to the merged file.  **MAX will not work properly unless you have the correct values for both**  You can get the values from looking at the DICOM files.  Note that you&#39;ll have to look at two adjacent files to get the slice spacing; there is no single DICOM tag that gives this value.
+
+* Just for testing, I recommended that you run MAX with &#34;--xml-ops=none&#34; as shown above which prevents any XML files from being written.  We can talk about this later.  So for now, all the results (along with A LOT of other info) will be printed to the screen.
+
+
+5.  slice-spacing
+
+Error (6501) results if the slice spacing is wrong.  Here&#39;s one way to get the slice spacing from the DICOM images: The most reliable DICOM tag to use is &#34;Image Position Patient&#34; (0020,0032).  A typical dump of this tag from an image looks like this:
+
+0020 0032    34 //  REL Image Position
+Patient//-209.800003-193.600006-72.199997
+
+It is a Type 1 tag, so it&#39;s always going to be present and should be reliable.  Since CT images are axials, the z position of each image is the final coordinate number: -72.2mm in this case.  The most reliable way of doing this is to extract the z coordinates from all the images, sort them, and then see what the delta-z value is.
+(Watch out when parsing these lines: The &#34;\&#34; can cause problems if the numeral immediately following it is a 0 (zero).  In many programming/scripting situations, &#34;\0&#34; represents a null which could signal the end of the string!!)
+
+
+6. pixel-size
+
+Here&#39;s a dump from a DICOM file:
+
+0028 0030     30 //        IMG Pixel Spacing//007.421880e-01\007.421880e-01 Once again, watch out for the &#34;\&#34;!!  Note that this tag gives the spacing in both in-plane directions, but our pixels always seem to be square, so we don&#39;t need both numbers.
+

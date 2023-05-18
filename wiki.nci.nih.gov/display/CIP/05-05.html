@@ -1,0 +1,46 @@
+<h1 id="id-0505-MeetingMinutesforLIDCtoAIM3.0Conversion">
+  Meeting Minutes for LIDC to AIM 3.0 Conversion
+</h1>
+Date and Time: May. 5, 2010 1 pm to 2:15 pm
+
+Location:  2115 E. Jefferson/6th Floor/Conference Room 6010
+Attendees: McNitt-Gray,Michael; Samuel G. Armato III; Mongkolwat, Pat;  Freymann, John;  Kirby, Justin; Kascic, Eric; Pan, Qinyan
+
+
+Agenda item:
+
+
+1.    Justin and John to discuss availability of LIDC source files
+
+
+Justin mentioned there are total 1018 cases of annotation for CT scans and 291 cases of annotation for chest x-ray.  There are some cases missing for CT scans.  It may take some efforts to collect all annotation files for CT scans. Justin also mentioned 291 cases of annotations for chest x-ray are still in development stage. Sam confirmed the annotation schema for chest x-ray is different from annotations of CT scans.  We may have to make a different task to convert the annotation files for chest x-ray to AIM format.
+
+Justin also provided the information for preprocessing LIDC annotation files.  Eric asked the size of all LIDC files. It was decided we will get the LIDC raw data available now from Brian in a hard driver and preprocess them and use the output of preprocessor as input of Conversion program. The output of files of preprocessor is un-deidentified therefore the output files of Conversion programs is un-deidentified. However, un-deidentified files can be submitted through CTP to deidentify and sync with the study/series instance UID of DICOM images stored in NBIA.
+
+
+2.    Discuss vocabulary for ImageObservation.  Resolve an initial definition and set one week deadline for further thought/feedback.
+
+
+Eric emphasized the hard date is required for project planning purpose and stated we will have one week for further thought/feedback.
+
+Meeting attendants looked into the converted files and AIM schema and discussed if we need to add user info to converted annotation files for tying up readings made by the specific radiologist.  Justin provided two sample of annotation files for inspecting the user&#39;s info in the original source. The final conclusion is  that we are not going to add the additional user info into the converted annotation files since the name of radiologists are all removed from the original LIDC annotation files.
+
+Mike committed to provide the definition for &#34;nodule.&#34; Mike or Sam also offered help for tracking down the potential version differences of LIDC annotation schema.
+
+When we were inspecting the converted annotation file, Pat pointed out the uniqueIdetifier can only take valid DICOM UID, so no nodule id should be included in this attribute.
+
+3.    Discuss vocabulary for AnnotationOfAnnotation type.
+
+
+Pat suggested we could use term &#34;unspecified&#34; defined in some controlled vocab repository for AnnotationOfAnnotation type.
+
+4.    Discuss a hard date for when AIM 3.0 XSD will be locked down.
+
+
+Pat mentioned there is no hard date for schema locked down.  AIM 3.0 will be submitted to caDSR in middle of Jun and it will take two weeks of processing time.  ClearCanvas will be released to us in middle of Jun also.
+
+Action items:
+1.    Mike will provide the definition for &#34;nodule&#34; (done.)
+2.    Qinyan will submit the term to caDSR (done.)
+3.    Qinyan will modify the code for making uniqueIdentifier a valid DICOM ID (done.)
+4.    Qinyan will work with Brian to run the preprocessor for all LIDC annotation file.

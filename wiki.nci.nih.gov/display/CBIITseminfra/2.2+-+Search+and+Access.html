@@ -1,0 +1,199 @@
+This group of capabilities focuses on enabling developers of composite services and applications to discover, compose, and invoke services. This includes the discovery of published services based on service metadata and the generation of client APIs in multiple languages to provide cross-platform access to existing services.
+
+The platform will use the semantic infrastructure service metadata to address all the service discovery requirements. The semantic infrastructure relies on metadata about services and artifacts.
+
+Service orchestration and choreography allows both application developers and non-developers to discover service &#34;building blocks&#34; that can be composed dynamically to provide business capabilities. Special cases include the orchestration of multiple services for a distributed query, or for a transactional workflow. Service orchestration and choreography will leverage static and behavioral semantics from the Semantic Infrastructure 2.0.
+
+The Semantic Infrastructure 2.0 provides the behavioral semantics required for dynamic composibility of services or generation of distributed queries. This includes runtime contract discovery and negotiation to determine composibility of services based on service capabilities and constraints.
+
+Another use case is dynamic retrieval and enforcement of the policies that are in effect for a service interaction in the areas of logging, validations, data transformation, or routing. This information can be used either during the design of the orchestration or during the execution of the defined flow.
+
+Policy and Rules Management allow non-developer secondary users to create policies and rules and apply them to services. The scope of policies includes, but is not limited to, definition and configuration of business processing policy and related rules, compliance policies, quality of service policies, and security policies. Some key functional requirements for managing policies include capabilities to author policies and store policies, and to approve and validate policies and execute policies at runtime.
+
+The Semantic Infrastructure 2.0 will provide a mechanism to specify policies, including business processing policies and related rules, compliance policies, and quality of service policies. Tools and services for creating security specific policies will be provided by the caGRID 2.0 platform and will be used by the Semantic Infrastructure. All other policies specified in the Semantic Infrastructure will be enforced by the platform at runtime.
+
+While policy and contract descriptions have much of the same architectural implications as described in Service Description, languages and mechanisms supporting policies and contracts also have the following architectural implications:
+
+Policy and Contract language specifications will typically provide support for the following capabilities:
+<ul>
+  <li>
+    expression of assertion and commitment policy constraints;
+  </li>
+  <li>
+    expression of positive and negative policy constraints;
+  </li>
+  <li>
+    expression of permission and obligation policy constraints;
+  </li>
+  <li>
+    nesting of policy constraints allowing for abstractions and refinements of a policy constraint;
+  </li>
+  <li>
+    definition of alternative policy constraints to allow for the selection of compatible policy constraints for a consumer and provider;
+  </li>
+  <li>
+    composition of policies to combine one or more policies.
+  </li>
+</ul>
+Policy and contract mechanisms in a Service-Oriented Architecture (SOA) ecosystem will require the following capabilities:
+<ul>
+  <li>
+    decision procedures which must be able to measure and render decisions on constraints;
+  </li>
+  <li>
+    enforcement of decisions;
+  </li>
+  <li>
+    measurement and notification of obligation constraints;
+  </li>
+  <li>
+    auditability of decisions, enforcement, and obligation measurements;
+  </li>
+  <li>
+    administration of policy and contract language artifacts;
+  </li>
+  <li>
+    storage of policies and contracts;
+  </li>
+  <li>
+    distribution of policies and contracts;
+  </li>
+  <li>
+    conflict resolution or elevation of conflicts in policy rules;
+  </li>
+  <li>
+    delegation of policy authority to agents acting on behalf of a client;
+  </li>
+  <li>
+    decision procedures capable of incorporating roles and/or attributes for rendered decisions.
+  </li>
+</ul>
+Capabilities common to all policies include:
+<ul>
+  <li>
+    author, store, approve, validate, create, delete, edit, maintain policy;
+  </li>
+  <li>
+    uniquely identified, visible, accessible, policy modules with metamodels and semantic annotation to describe the terms in the policy model, its functions, and its effects;
+  </li>
+  <li>
+    discovery mechanisms for searching policies.
+  </li>
+</ul>
+The wealth of data must be accessible, resulting in the need for exploration of available datasets. This includes the ability to view seamlessly across independent data sets, allowing a secondary user to integrate data from multiple sources. In addition, the query capability must support sophisticated queries such as temporal queries and spatial queries.
+
+The semantic infrastructure will provide metadata for discovery of these datasets. Complex temporal and spatial queries will be informed by the metadata but will be formulated and executed by the platform.
+
+Data management includes linking of disparate data sets and updates of data across the ecosystem. Data updates may include updates to multiple data sources, necessitating the need for transactions.
+
+Linkages between the different disparate data sets will be managed by the semantic infrastructure. Data updates that trigger transactions are captured by the platform and are propagated upstream to the semantic infrastructure. An example would be the platform monitoring events to identify changes to data.
+
+There are numerous data repositories on the web today. These data repositories contain essential information that must be accessible to services in the ecosystem. As a result, caGrid 2.0 must provide capabilities to integrate these external repositories into the grid with the assumption that the remote service cannot be changed.
+
+The semantic infrastructure will support integration with other metadata repositories, allowing the platform to leverage the semantic infrastructure for federated metadata discovery and analysis. The federated data query capabilities will be implemented by the platform.
+
+Functional Profile
+<ul>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=32769388" rel="nofollow">
+      2.2.1 - Business Processing Policies and Related Rules
+    </a>
+    Policy and Rules Management allow non-developer secondary users to create policies and rules and apply them to services. The scope of policies includes, but is not limited to, definition and configuration of business processing policy and related rule. Some key functional requirements for managing policies include capabilities to author policies and store policies, and to approve and validate policies and execute policies at runtime.
+  </li>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=32769390" rel="nofollow">
+      2.2.2 - Compliance Policies
+    </a>
+    Policy and Rules Management allow non-developer secondary users to create policies and rules and apply them to services. The scope of policies includes, but is not limited to, compliance policies. Some key functional requirements for managing policies include capabilities to author policies and store policies, and to approve and validate policies and execute policies at runtime.
+  </li>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=32769392" rel="nofollow">
+      2.2.3 - Contract Discovery
+    </a>
+    The Semantic Infrastructure provides the behavioral semantics required for dynamic composibility of services or generation of distributed queries. This includes runtime contract discovery.
+  </li>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=32769394" rel="nofollow">
+      2.2.4 - Data Discovery
+    </a>
+    Data discovery enables secondary users to find the types of data available in the ecosystem as well as summary-level information about available data sets.
+  </li>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=32769396" rel="nofollow">
+      2.2.5 - Data Transformation Policy
+    </a>
+    Dynamic retrieval and enforcement of the policies that are in effect for a service interaction in the areas of data transformation. This information can be used either during the design of the orchestration or during the execution of the defined flow.
+  </li>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=32769398" rel="nofollow">
+      2.2.6 - Disparate Data Set Linkage
+    </a>
+    Data management includes linking of disparate data sets and updates of data across the ecosystem. Data updates may include updates to multiple data sources.
+  </li>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=32769400" rel="nofollow">
+      2.2.7 - Federated Metadata Discovery and Analysis
+    </a>
+    There are numerous data repositories on the web today. These data repositories contain essential information that must be accessible to services in the ecosystem. As a result, caGrid 2.0 must provide capabilities to integrate these external repositories into the grid with the assumption that the remote service cannot be changed.
+  </li>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=32769402" rel="nofollow">
+      2.2.8 - Federated Repositories
+    </a>
+    The KR has to support Federated Repositories. The structure of each repository and the information models each contains may be different. At the M2 layer a range of meta-models have to be supported. For example, BRIDG models will be based on a HL7 meta-model, caDSR is currently using a ISO 11179 meta-model, CDISC is using the XML schema information model. Requirements include; 1. Federate the metadata infrastructure such that different organizations, departments, labs, software applications, etc. can maintain their own metadata while standards flow both top-down and bottom-up. The current semantic infrastructure at NCI is not amenable to this type of federated model. 2. Support querying across Grid 3. Support the ability to have data spread over the grid/internet, but know which data is the original, source of truth; concerns about data duplication and authorization - need to know where the authoritative data/information resides 4. Support federated sharing of data sources.
+  </li>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=32769404" rel="nofollow">
+      2.2.9 - Logging Policy
+    </a>
+    Dynamic retrieval and enforcement of the policies that are in effect for a service interaction in the areas of logging. This information can be used either during the design of the orchestration or during the execution of the defined flow.
+  </li>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=32769406" rel="nofollow">
+      2.2.10 - Policy Discovery
+    </a>
+    Policy discovery allows application developers to find and retrieve policies on services.
+  </li>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=32769408" rel="nofollow">
+      2.2.11 - Quality of Service Policies
+    </a>
+    Policy and Rules Management allow non-developer secondary users to create policies and rules and apply them to services. The scope of policies includes, but is not limited to, definition and configuration of quality of service policies. Some key functional requirements for managing policies include capabilities to author policies and store policies, and to approve and validate policies and execute policies at runtime.
+  </li>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=32769410" rel="nofollow">
+      2.2.12 - Routing Policy
+    </a>
+    Dynamic retrieval and enforcement of the policies that are in effect for a service interaction in the areas of routing. This information can be used either during the design of the orchestration or during the execution of the defined flow.
+  </li>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=32769412" rel="nofollow">
+      2.2.13 - Service Composition
+    </a>
+    Service orchestration and choreography allows both application developers and non-developers to discover service &#34;building blocks&#34; that can be composed dynamically to provide business capabilities. Special cases include the orchestration of multiple services for a distributed query, or for a transactional workflow. Service orchestration and choreography will leverage static and behavioral semantics from the Semantic Infrastructure 2.0.
+  </li>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=32769414" rel="nofollow">
+      2.2.14 - Service Discovery
+    </a>
+    Service discovery allows primary users as well as secondary users to locate a service specification and instances based on attributes in the service metadata (for example, via a search for specific micro-array analysis services)
+  </li>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=32769416" rel="nofollow">
+      2.2.15 - Spatial Queries
+    </a>
+    The query capability must support sophisticated queries such as spatial queries.
+  </li>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=32769418" rel="nofollow">
+      2.2.16 - Temporal Queries
+    </a>
+    The query capability must support sophisticated queries such as temporal queries.
+  </li>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=32769420" rel="nofollow">
+      2.2.17 - Validation Policy
+    </a>
+    Dynamic retrieval and enforcement of the policies that are in effect for a service interaction in the areas of routing. This information can be used either during the design of the orchestration or during the execution of the defined flow.
+  </li>
+</ul>

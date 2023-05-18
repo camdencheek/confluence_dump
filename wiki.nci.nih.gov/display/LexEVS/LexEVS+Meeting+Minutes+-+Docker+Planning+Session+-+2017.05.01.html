@@ -1,0 +1,233 @@
+<h2 id="LexEVSMeetingMinutesDockerPlanningSession2017.05.01-Attendees">
+   Attendees
+</h2>
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        Name
+      </th>
+      <th>
+        Role
+      </th>
+      <th colspan="1">
+        Present
+      </th>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Mensah, Jacob
+      </td>
+      <td colspan="1">
+        NIH/NCI [C]
+      </td>
+      <td colspan="1">
+        x
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Hartman, Phil
+      </td>
+      <td>
+        NIH/NCI [C]
+      </td>
+      <td>
+        x
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Wei, Lu
+      </td>
+      <td colspan="1">
+        NIH/NCI [C]
+      </td>
+      <td colspan="1">
+        x
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Bauer, Scott
+      </td>
+      <td colspan="1">
+        Mayo
+      </td>
+      <td colspan="1"></td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Stancl, Craig
+      </td>
+      <td colspan="1">
+        Mayo
+      </td>
+      <td colspan="1">
+        x
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Endle,  Cory
+      </td>
+      <td colspan="1">
+        Mayo
+      </td>
+      <td colspan="1">
+        x
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="LexEVSMeetingMinutesDockerPlanningSession2017.05.01-Links">
+  Links
+</h2>
+<ul>
+  <li>
+    LexEVS Docker Overview
+  </li>
+  <li>
+    <ul>
+      <li>
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=341185929" rel="nofollow">
+          LexEVS 16X237 Docker Setup
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    Docker scripts: lexevs-system-test git repository
+    <ul>
+      <li>
+        <a href="https://github.com/lexevs/lexevs-system-test/tree/v6.5.0" rel="nofollow">
+          https://github.com/lexevs/lexevs-system-test/tree/v6.5.0
+        </a>
+      </li>
+    </ul>
+  </li>
+</ul>
+<h2 id="LexEVSMeetingMinutesDockerPlanningSession2017.05.01-Agenda">
+  Agenda
+</h2>
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <td colspan="1">
+        Status Update
+        <ul>
+          <li>
+            Mayo team
+          </li>
+        </ul>
+      </td>
+      <td colspan="1">
+        Discussion Points:
+        <ul>
+          <li>
+            Mayo email addresses have been added to the notifications.
+          </li>
+          <li>
+            The configuration is working as expected.
+          </li>
+          <li>
+            The issue where containers weren&#39;t being removed was fixed by manually removing the containers. This can be added to the script to prevent from happening in the future.
+          </li>
+        </ul>
+        Decision Points:
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Reusable Docker Containers
+        <ul>
+          <li>
+            Discuss plan to determine how create Docker containers and store them on NCI Nexus server for reuse in our lexevs-system-tests.
+            <ul>
+              <li>
+                CentOS 7
+              </li>
+              <li>
+                Tomcat 8.x
+              </li>
+              <li>
+                Java 8.x
+              </li>
+              <li>
+                MySQL 5.6.x
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </td>
+      <td colspan="1">
+        Discussion Points:
+        <ul>
+          <li>
+            Currently, pull resources into the container - but doesn&#39;t actually use NCI provided version.
+          </li>
+          <li>
+            NCI currently manually updates software as new versions become available.
+          </li>
+          <li>
+            CentOS, Tomcat, Java, MySQL available in Nexus for others to use.
+          </li>
+          <li>
+            NCI is trying to provide solution in the future.
+            <ul>
+              <li>
+                Not available in LexEVS Production environment
+              </li>
+            </ul>
+          </li>
+          <li>
+            Would be possible for NCI to pull Docker Hub and store the container in Nexus.
+          </li>
+          <li>
+            Goal is to not have to worry about Docker Hub releases day to day. Idea is to run on what is NCI supported.
+          </li>
+          <li>
+            Short Term
+            <ul>
+              <li>
+                NCI pulls MySQL, etc. from Docker Hub and store in NCI internal. Allow the system tests to pull from NCI internal.
+              </li>
+            </ul>
+          </li>
+          <li>
+            Long Term Goal
+            <ul>
+              <li>
+                Fully docker-ized for production.
+              </li>
+            </ul>
+          </li>
+        </ul>
+        Decision Points:
+        <ul>
+          <li>
+            Cory/Jacob to let Wei know which versions of components to pull from Docker Hub.
+          </li>
+          <li>
+            Wei to look at how to docker-ize the tier deployment.
+          </li>
+          <li>
+            Wei to give access to allow Mayo team to put containers on NCI internal Nexus.
+          </li>
+          <li>
+            Cory to send Wei the architecture to start preparing the docker-ization.
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>

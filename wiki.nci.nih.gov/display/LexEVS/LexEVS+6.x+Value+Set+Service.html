@@ -1,0 +1,2006 @@
+Contents of this Page
+<ul>
+  <li>
+    <a href="#LexEVS6.xValueSetService-Introduction" rel="nofollow">
+      Introduction
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.xValueSetService-LexEVSValueSetDefinitionServicesClassDiagram" rel="nofollow">
+      LexEVSValueSetDefinitionServices Class Diagram
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.xValueSetService-LexEVSValueSetDefinitionServicesAPI" rel="nofollow">
+      LexEVS Value Set Definition Services API
+    </a>
+    <ul>
+      <li>
+        <a href="#LexEVS6.xValueSetService-AdministrationFunctions" rel="nofollow">
+          Administration Functions
+        </a>
+        <ul>
+          <li>
+            <a href="#LexEVS6.xValueSetService-LoadingValueSetDefinitions" rel="nofollow">
+              Loading Value Set Definitions
+            </a>
+            <ul>
+              <li>
+                <a href="#LexEVS6.xValueSetService-LoadingValueSetDefinitionObject" rel="nofollow">
+                  Loading Value Set Definition Object
+                </a>
+              </li>
+              <li>
+                <a href="#LexEVS6.xValueSetService-LoadingValueSetDefinitionsinFile" rel="nofollow">
+                  Loading Value Set Definitions in File
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#LexEVS6.xValueSetService-ExportValueSet" rel="nofollow">
+              Export Value Set
+            </a>
+            <ul>
+              <li>
+                <a href="#LexEVS6.xValueSetService-ExportValueSetDefinition" rel="nofollow">
+                  Export Value Set Definition
+                </a>
+              </li>
+              <li>
+                <a href="#LexEVS6.xValueSetService-ExportValueSetResolution" rel="nofollow">
+                  Export Value Set Resolution
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#LexEVS6.xValueSetService-RemoveValueSetDefinition" rel="nofollow">
+              Remove Value Set Definition
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#LexEVS6.xValueSetService-QueryFunctions" rel="nofollow">
+          Query Functions
+        </a>
+        <ul>
+          <li>
+            <a href="#LexEVS6.xValueSetService-ValidateXMLResources" rel="nofollow">
+              Validate XML Resources
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS6.xValueSetService-isEntityInValueSet" rel="nofollow">
+              isEntityInValueSet
+            </a>
+            <ul>
+              <li>
+                <a href="#LexEVS6.xValueSetService-isEntityInValueSet(StringentityCode,URIentityCodeNamespace,URIvalueSetDefinitionURI,StringvalueSetDefinitionRevisionId,AbsoluteCodingSchemeVersionReferenceListcsVersionList,StringversionTag)" rel="nofollow">
+                  isEntityInValueSet(String entityCode, URI entityCodeNamespace, URI valueSetDefinitionURI, String valueSetDefinitionRevisionId, AbsoluteCodingSchemeVersionReferenceList csVersionList, String versionTag)
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#LexEVS6.xValueSetService-listValueSetsWithEntityCode" rel="nofollow">
+              listValueSetsWithEntityCode
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS6.xValueSetService-getCodedNodeSetForValueSetDefinition" rel="nofollow">
+              getCodedNodeSetForValueSetDefinition
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS6.xValueSetService-isSubSet" rel="nofollow">
+              isSubSet
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS6.xValueSetService-getValueSetDefinition" rel="nofollow">
+              getValueSetDefinition
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS6.xValueSetService-listValueSetDefinitions" rel="nofollow">
+              listValueSetDefinitions
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS6.xValueSetService-listValueSetDefinitionURIs" rel="nofollow">
+              listValueSetDefinitionURIs
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS6.xValueSetService-getAllValueSetDefinitionsWithNoNames" rel="nofollow">
+              getAllValueSetDefinitionsWithNoNames
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS6.xValueSetService-getValueSetDefinitionEntitiesForTerm" rel="nofollow">
+              getValueSetDefinitionEntitiesForTerm
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS6.xValueSetService-getCodingSchemesInValueSetDefinition" rel="nofollow">
+              getCodingSchemesInValueSetDefinition
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS6.xValueSetService-isValueSetDefinition" rel="nofollow">
+              isValueSetDefinition
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS6.xValueSetService-getValueSetDefinitionURIsWithCodingScheme" rel="nofollow">
+              getValueSetDefinitionURIsWithCodingScheme
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS6.xValueSetService-getValueSetDefinitionURIsWithConceptDomain" rel="nofollow">
+              getValueSetDefinitionURIsWithConceptDomain
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS6.xValueSetService-getValueSetDefinitionURIsWithUsageContext" rel="nofollow">
+              getValueSetDefinitionURIsWithUsageContext
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS6.xValueSetService-getValueSetDefinitionURIsWithConceptDomainAndUsageContext" rel="nofollow">
+              getValueSetDefinitionURIsWithConceptDomainAndUsageContext
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#LexEVS6.xValueSetService-ResolveFunctions" rel="nofollow">
+          Resolve Functions
+        </a>
+        <ul>
+          <li>
+            <a href="#LexEVS6.xValueSetService-ResolvingStoredValueSetDefinition" rel="nofollow">
+              Resolving Stored Value Set Definition
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS6.xValueSetService-ResolvingSuppliedValueSetDefinitionObjects" rel="nofollow">
+              Resolving Supplied Value Set Definition Objects
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS6.xValueSetService-ResolvedValueSetObjects" rel="nofollow">
+              Resolved Value Set Objects
+            </a>
+            <ul>
+              <li>
+                <a href="#LexEVS6.xValueSetService-ResolvedValueSetCodedNodeSet" rel="nofollow">
+                  ResolvedValueSetCodedNodeSet
+                </a>
+              </li>
+              <li>
+                <a href="#LexEVS6.xValueSetService-ResolvedValueSetDefinition" rel="nofollow">
+                  ResolvedValueSetDefinition
+                </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#LexEVS6.xValueSetService-ErrorHandling" rel="nofollow">
+          Error Handling
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.xValueSetService-LoadScripts" rel="nofollow">
+          Load Scripts
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.xValueSetService-SampleValueSetDefinitionXMLFile" rel="nofollow">
+          Sample Value Set Definition XML File
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.xValueSetService-SystemTesting" rel="nofollow">
+          System Testing
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.xValueSetService-Installation/Packaging" rel="nofollow">
+          Installation / Packaging
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#LexEVS6.xValueSetService-ValueSetGUI" rel="nofollow">
+      Value Set GUI
+    </a>
+  </li>
+</ul>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        LexEVS Value Set Links
+      </th>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427293" rel="nofollow">
+              Value Set Guide Main Page
+            </a>
+            <ul>
+              <li>
+                <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427292" rel="nofollow">
+                  Value Set Design
+                </a>
+              </li>
+              <li>
+                <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427340" rel="nofollow">
+                  Value Set Service API
+                </a>
+              </li>
+              <li>
+                <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427291" rel="nofollow">
+                  Pick List Design
+                </a>
+              </li>
+              <li>
+                <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427365" rel="nofollow">
+                  Pick List Service API
+                </a>
+              </li>
+              <li>
+                <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427329" rel="nofollow">
+                  Value Set GUI
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427334" rel="nofollow">
+              Programmer&#39;s Guide Main Page
+            </a>
+          </li>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=69730353" rel="nofollow">
+              LexEVS 6.0 Main Page
+            </a>
+          </li>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427448" rel="nofollow">
+              LexEVS Current Release
+            </a>
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="LexEVS6.xValueSetService-Introduction">
+  Introduction
+</h2>
+This document is a section of the
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427334" rel="nofollow">
+  LexEVS 6.0 Programmer&#39;s Guide
+</a>
+.The Value Set services are integrated parts of the LexEVS API. It provide three major functions:
+<ul>
+  <li>
+    Administration- Ability to load, export and remove value set definitions
+    <ul>
+      <li>
+        Loader - Ability to load Value Set Definitions programmatically into the LexGrid repository using the domain objects that are available via the LexGrid logical model
+      </li>
+      <li>
+        Exporter - Ability to export Value Set Definition and Value Set Resolution to a file in LexGrid XML format
+      </li>
+      <li>
+        Remove - Ability to remove Value Set Definition from the systemNoteThese administration operations can be performed in LexEVS &#39;Local&#39; environment only. This can not be performed using LexEVS Distributed environment.
+      </li>
+    </ul>
+  </li>
+  <li>
+    Query - Ability to apply user restrictions (ex: valueSet URI) and dynamically resolve the definitions at run time
+  </li>
+  <li>
+    Resolve - Ability to resolve Value Set Definition dynamically against selected Coding Scheme Version(s) and return all the concepts belonging to the value set
+  </li>
+</ul>
+The LexEVS Value Set Services expose the API particularly for the Value Set Definition elements of the LexGrid Logical Model. For more information on LexGrid model see the
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427418" rel="nofollow">
+  LexBig Model and Schema
+</a>
+<h2 id="LexEVS6.xValueSetService-LexEVSValueSetDefinitionServicesClassDiagram">
+  LexEVSValueSetDefinitionServices Class Diagram
+</h2>
+LexEVSValueSetDefinitionServices is the main interface for all the services provided by LexEVS Value Set API. Here is the class diagram of LexEVSValueSetDefinitionServices:
+<img alt="This graphic shows a class diagram for the LexEVSValueSetDefinitionService as described in this section." src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%206.x%20Value%20Set%20Service/LexEVSValueSetDefinitionServices.jpg?api=v2">
+<h2 id="LexEVS6.xValueSetService-LexEVSValueSetDefinitionServicesAPI">
+  LexEVS Value Set Definition Services API
+</h2>
+LexEVS Value Set Definition Services provides three major functions:
+<ul>
+  <li>
+    Administraion function
+  </li>
+  <li>
+    Query function and
+  </li>
+  <li>
+    Resolve function
+  </li>
+</ul>
+Each of these functions are described in following sections.
+<h3 id="LexEVS6.xValueSetService-AdministrationFunctions">
+  Administration Functions
+</h3>
+LexEVS Value Set Definition Services provide s following administration functions:
+<ul>
+  <li>
+    Load
+  </li>
+  <li>
+    Export and
+  </li>
+  <li>
+    Remove value set definitions.
+  </li>
+</ul>
+NoteThese administration operations can be performed in LexEVS &#39;Local&#39; environment only. This can not be performed using LexEVS Distributed environment.
+<h4 id="LexEVS6.xValueSetService-LoadingValueSetDefinitions">
+  Loading Value Set Definitions
+</h4>
+There are two methods that could be used to load Value Set Definitions:
+<ul>
+  <li>
+    Loading Value Set Definition Object - This function provides the capability to load supplied ValueSetDefinition object into the system.
+  </li>
+  <li>
+    Loading Value Set Definitions in file - This function provides the capability to load Value Set Definitions found in file that are in LexGrid XML format.
+  </li>
+</ul>
+<h5 id="LexEVS6.xValueSetService-LoadingValueSetDefinitionObject">
+  Loading Value Set Definition Object
+</h5>
+This function provides the capability to load supplied ValueSetDefinition object into the system.loadSetValueSetDefinition(ValueSetDefinition vsddef, String systemReleaseURI, Mappings mappings)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Loads supplied valueSetDefinition object. Optionally, it can assign the release URI and mappings (supported attributes like SupportedCodingScheme, SupportedConceptDomain, SupportedAssociation etc) to the valueSetDefinition being loaded.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        org.LexGrid.valueSets.ValueSetDefinition vsdDef - (Mandatory) Value Set Definition object to be loaded. java.lang.String systemReleaseURI - (Optional) System Release URI this Value Set Definition belongs to. org.LexGrid.naming.Mappings mappings - (Optional) List of Supported Attributes this Value Set Definition uses.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        none
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details:
+      </th>
+      <td>
+        Implementation:   Step 1: Call this method on the associated LexEVS Value Set Definition Service instance to load a Value Set Definition object and optionally assign the System Release URI and mappings to this definition.   Sample Call:
+        <ul>
+          <li>
+            Step 1:Instantiate LexEVSValueSetDefinitionServices if it is not done yet:
+            org.lexgrid.valuesets.LexEVSValueSetDefinitionServices vsdServ = LexEVSValueSetDefinitionServicesImpl.defaultInstance();
+          </li>
+          <li>
+            Step 2: Create and populate the ValueSetDefinition object.ValueSetDefinition object can be created using:
+            org.LexGrid.valueSets.ValueSetDefinition vsd = new org.LexGrid.valueSets.ValueSetDefinition;
+
+            Data for ValueSetDefinition object can be populated by using set methods:
+            vsd.setValueSetDefinitionURI(uri);
+            vsd.setValueSetDefinitionName(name);
+            vsd.setDefaultCodingScheme(cs);
+            vsd.setEntityDescription(ed);
+
+            Similarly, DefinitionEntry, Property, and Mapping objects can be created and assigned to the valueSetDefinition object:
+            vsd.getDefinitionEntry.add(vdEntry);
+            vsd.setProperties(propertisObject);
+            vsd.setMappings(mappingsObject);
+          </li>
+          <li>
+            Step 3:Call the load method by passing the Value Set Definition object and optionally the System Release URI and mappings:
+            vsdServ.loadValueSetDefinition(vsd, systemReleaseURI, mappings);
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h5 id="LexEVS6.xValueSetService-LoadingValueSetDefinitionsinFile">
+  Loading Value Set Definitions in File
+</h5>
+This function provides the capability to load Value Set Definitions found in file that are in LexGrid XML format.loadValueSetDefinition(String xmlFileLocation, boolean failOnAllErrors)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Loads valueSetDefinitions found in input XML file. The input XML file should in LexGrid format i.e. the contents should confirm to LexGrid valueSets schema [
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        java.lang.String xmlFileLocation - (Mandatory) File containing ValueSetDefinitions in LexGrid XML format. boolean failOnErrors - (Optional) default is false.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        none
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details:
+      </th>
+      <td>
+        Implementation:   Step 1: Call this method on the associated LexEVS Value Set Definition Service instance to load all Value Set Definitions found in an XML file that is in LexGrid format.  Sample Call:
+        <ul>
+          <li>
+            Step 1:Instantiate LexEVSValueSetDefinitionServices if it is not done yet :
+            org.lexgrid.valuesets.LexEVSValueSetDefinitionServices vsdServ = LexEVSValueSetDefinitionServicesImpl.defaultInstance();
+          </li>
+          <li>
+            Step 2:Call load method by passing the inputfile location and boolean flag whether to stop on load errors:
+            vsdServ.loadvalueSetDefinition(inputXMLFile, true);
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h4 id="LexEVS6.xValueSetService-ExportValueSet">
+  Export Value Set
+</h4>
+There are two export functions available : 1. Export Value Set Definition - This function provides the capability to export Value Set Definition to a file in LexGrid XML format. This will be helpful if there is a need to import this exported Value Set Definition in different instance of LexEVS. 2. Export Value Set Resolution (Expanded Value Set) - This function provides the capability to resolve the Value Set Definition and exports the resolved(expanded) contents as a LexGrid Coding Scheme in XML format.
+<h5 id="LexEVS6.xValueSetService-ExportValueSetDefinition">
+  Export Value Set Definition
+</h5>
+This function provides the capability to export Value Set Definition to a file in LexGrid XML format. This will be helpful if there is a need to import this exported Value Set Definition in different instance of LexEVS.exportValueSetDefinition(URI valueSetDefURI, String valueSetDefinitionRevisionId, String xmlFullPathName, boolean overwrite, boolean failOnAllErrors)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Export Value Set Definition to a file in LexGrid XML format.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        java.net.URI valueSetDefinitionURI - (Mandatory) the URI of value set definition to be exported. java.lang.String valueSetDefinitionRevisionId - (Optional) revision id of the value set definition to export java.lang.String xmlFullPathName - (Mandatory) Location to save the definition
+        boolean  overwrite - True: to override the existing file.
+        boolean failOnAllErrors - True: stops exporting if any error. |
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        none
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details:
+      </th>
+      <td>
+        Implementation:   Step 1: Call this method on the associated LexEVS Value Set Definition Service instance to export the Value Set Definition to a file in LexGrid XML format.   Sample Call:
+        <ul>
+          <li>
+            Step 1:Instantiate LexEVSValueSetDefinitionServices if it is not done yet :
+            org.lexgrid.valuesets.LexEVSValueSetDefinitionServices vsdServ = LexEVSValueSetDefinitionServicesImpl.defaultInstance();
+          </li>
+          <li>
+            Step 2:Call exportValueSetDefinition method and provide parameter values :
+            vsdServ.exportValueSetDefinition(valueSetDefinitionURI, null, true, false);
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h5 id="LexEVS6.xValueSetService-ExportValueSetResolution">
+  Export Value Set Resolution
+</h5>
+This function provides the capability to export Value Set Resolution (Expanded Value Set) to a file in LexGrid XML format as a Coding Scheme. This will be helpful if there is a need to import the contents of a value set as a separate Coding Scheme. The URI of the Coding Scheme will be set to URI of Value Set Definition being exported. And all the contents of the value set will be represented as an entities within that Coding Scheme.exportValueSetResolution(URI valueSetDefinitionURI, String valueSetDefinitionRevisionId, URI exportDestination, AbsoluteCodingSchemeVersionReferenceList csVersionList, String csVersionTag, boolean overwrite, boolean failOnAllErrors)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Export Value Set Resolution to a file in LexGrid XML format as a Coding Scheme.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        java.net.URI valueSetDefinitionURI - (Mandatory) the URI of value set definition to be exported. java.lang.String valueSetDefinitionRevisionId - (Optional) revision id of the value set definition to export java.net.URI exportDestination - (Mandatory) Location to save the definition org.LexGrid.LexBIG.DataModel.Collections.AbsoluteCodingSchemeVersionReferenceList csVersionList - A list of coding scheme URI&#39;s and versions to be used. These will be used only if they are present in the service. If absent, the most recent version will be used instead. boolean overwrite - True: to override the existing file. boolean failOnAllErrors - True: stops exporting if any error.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        none
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details:
+      </th>
+      <td>
+        Implementation:   Step 1: Call this method on the associated LexEVS Value Set Definition Service instance to export the Value Set Resolution to a file in LexGrid XML format as Coding Scheme.   Sample Call:
+        <ul>
+          <li>
+            Step 1:Instantiate LexEVSValueSetDefinitionServices if it is not done yet :
+            org.lexgrid.valuesets.LexEVSValueSetDefinitionServices vsdServ = LexEVSValueSetDefinitionServicesImpl.defaultInstance();
+          </li>
+          <li>
+            Step 2:Call exportValueSetResolution method and provide parameter values :
+            String codingSchemeName = &#34;NCI_Thesaurus&#34;;
+            String version = &#34;10.08e&#34;;
+            AbsoluteCodingSchemeVersionReferenceList csVersionList = new AbsoluteCodingSchemeVersionReferenceList();
+            csVersionList.addAbsoluteCodingSchemeVersionReference(Constructors.createAbsoluteCodingSchemeVersionReference(codingSchemeName, version));
+            vsdServ.exportValueSetResolution(valueSetDefinitionURI, null, csVersionList, &#34;PRODUCTION&#34;, true, false);
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h4 id="LexEVS6.xValueSetService-RemoveValueSetDefinition">
+  Remove Value Set Definition
+</h4>
+Below is the function to remove value set definition from the system.removeValueSetDefinition(URI valueSetDefinitionURI)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Removes supplied value set definition from the system.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        java.net.URI valueSetDefinitionURI - (Mandatory) the URI of value set definition to be removed.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        none
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details:
+      </th>
+      <td>
+        Implementation:   Step 1: Call this method on the associated LexEVS Value Set Definition Service instance to remove the Value Set Definition from the system that matches the supplied URI.   Sample Call:
+        <ul>
+          <li>
+            Step 1:Instantiate LexEVSValueSetDefinitionServices if it is not done yet :
+            org.lexgrid.valuesets.LexEVSValueSetDefinitionServices vsdServ = LexEVSValueSetDefinitionServicesImpl.defaultInstance();
+          </li>
+          <li>
+            Step 2:Call removeValueSetDefinition method
+            vsdServ.removeValueSetDefinition(valueSetDefinitionURI);
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h3 id="LexEVS6.xValueSetService-QueryFunctions">
+  Query Functions
+</h3>
+Here are some of the query functions that can be run against value set definitions using the LexEVS Value Set Definition Services.
+<h4 id="LexEVS6.xValueSetService-ValidateXMLResources">
+  Validate XML Resources
+</h4>
+Function to perform validation of source XML file without loading.validate(URI xmlFileLocation, int valicationLevel)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Performs validation of the candidate resource without loading data.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        java.net URI xmlFileLocation - (Mandatory) File containing ValueSetDefinitions in LexGrid XML format. int validationLevel - validatation level includes :
+        <ul>
+          <li>
+            0 = Verify document is well-formed
+          </li>
+          <li>
+            1 = Verify document is valid
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        none
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        Org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details:
+      </th>
+      <td>
+        Implementation:   Step 1: Call this method on the associated LexEVS Value Set Definition Service instance to validate the XML file that is in LexGrid format. This call will not load the data in XML file.   Sample Call:
+        <ul>
+          <li>
+            Step 1:Instantiate LexEVSValueSetDefinitionServices if it is not done yet :
+            org.lexgrid.valuesets.LexEVSValueSetDefinitionServices vsdServ = LexEVSValueSetDefinitionServicesImpl.defaultInstance();
+          </li>
+          <li>
+            Step 2:Call validate method for validation by supplying URI of the XML file and validation level.
+            java.net URI xmlFileLocation = new URI(&#34;C:\\myVSDFile.xml&#34;);
+            vsdServ.validaten(xmlFileLocation, true);
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h4 id="LexEVS6.xValueSetService-isEntityInValueSet">
+  isEntityInValueSet
+</h4>
+There are two methods to check if supplied concept code is part of supplied value set definition.isEntityInValueSet(String entityCode, URI valueSetDefinitionURI, String valueSetDefinitionRevisionId, String versionTag)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Determine whether the supplied entity code is a valid entity code somewhere in the supplied value set definition. This function is intended for use with simple value set definition that are drawn from a single coding scheme where most parameters can be defaulted.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        java.lang.String entityCode - (Mandatory) the entity code to search for java.net.URI valueSetDefinitionURI - (Mandatory) the URI of the value set definition to search java.lang.String valueSetDefintionRevisionId - (Optional) the version of the value set definition java.lang.String versionTag - (Optional) the version or tag (e.g. &#34;devel&#34;, &#34;production&#34;, etc.) to be used for &lt;i&gt;all&lt;/i&gt; of the coding schemes searched.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.DataModel.Core.AbsoluteCodingSchemeVersionReference - coding scheme and version if the entityCode is valid, null otherwise
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details:
+      </th>
+      <td>
+        Implementation:   Step 1: Call this method on the associated LexEVS Value Set Definition Service instance to determine if the supplied entity code is a valid in the supplied Value Set Definition URI. If it is, returns Coding Scheme URI and the Version that was used to resolve; otherwise, returns null.  Sample Call:
+        <ul>
+          <li>
+            Step 1:Instantiate LexEVSValueSetDefinitionServices if it is not done yet :
+            org.lexgrid.valuesets.LexEVSValueSetDefinitionServices vsdServ = LexEVSValueSetDefinitionServicesImpl.defaultInstance();
+          </li>
+          <li>
+            Step 2:Call isEntityInValueSet method:
+            java.net.URI valueSetDefURI = new URI(&#34;http://someDomain.html/ValueSets/NCIT/C3367_Value_set&#34;);
+            String entityCode = &#34;C3367&#34;;
+
+            AbsoluteCodingSchemeVersionReference acsvr = vsdServ.isEntityInValueSet(entityCode, valueSetDefURI, null, &#34;PRODUCTION&#34;);
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h5 id="LexEVS6.xValueSetService-isEntityInValueSet(StringentityCode,URIentityCodeNamespace,URIvalueSetDefinitionURI,StringvalueSetDefinitionRevisionId,AbsoluteCodingSchemeVersionReferenceListcsVersionList,StringversionTag)">
+  isEntityInValueSet(String entityCode, URI entityCodeNamespace, URI valueSetDefinitionURI, String valueSetDefinitionRevisionId, AbsoluteCodingSchemeVersionReferenceList csVersionList, String versionTag)
+</h5>
+isEntityInValueSet(String entityCode, URI entityCodeNamespace, URI valueSetDefinitionURI, String valueSetDefinitionRevisionId, AbsoluteCodingSchemeVersionReferenceList csVersionList, String versionTag)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Similar to the previous method, this method determines if the supplied entity code and entity namespace is a valid result for the supplied value set definition when resolved against the supplied Coding Scheme Version or Tag.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        java.lang.String entityCode - (Mandatory) the entity code to search for java.net.URI entityCodeNamespace - (Optional)the URI of the entity code namespace. If omitted, the default coding scheme namespace for the value set definition will be used, if it is present. Otherwise the first matching entity code, if any, will pass java.net.URI valueSetDefinitionURI - (Mandatory) the URI of the value set definition to search java.lang.String valueSetDefintionRevisionId - (Optional) the version of the value set definition org.LexGrid.LexBIG.DataModel.Core. AbsoluteCodingSchemeVersionReference csVersionList - (Optional) a list of coding scheme URI&#39;s and versions to be used. These will be used only if they are present in the service. If absent, the most recent version will be used instead. java.lang.String versionTag - (Optional) the version or tag (e.g. &#34;devel&#34;, &#34;production&#34;, etc.) to be used for &lt;i&gt;all&lt;/i&gt; of the coding schemes searched.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.DataModel.Core. AbsoluteCodingSchemeVersionReference - The codingScheme URI and version of that asserts that the code is in the value set
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details:
+      </th>
+      <td>
+        Implementation:   Step 1: Call this method on the associated LexEVS Value Set Definition Service instance to determine if the supplied entity code and its entity namespace is valid in the supplied Value Set Definition URI when resolved against supplied Coding Scheme Version or Tag. If it is, return Coding Scheme URI and the Version that was used to resolve; otherwise, returns null.  Sample Call:
+        <ul>
+          <li>
+            Step 1:Instantiate LexEVSValueSetDefinitionServices if it is not done yet :
+            org.lexgrid.valuesets.LexEVSValueSetDefinitionServices vsdServ = LexEVSValueSetDefinitionServicesImpl.defaultInstance();
+          </li>
+          <li>
+            Step 2:Call isEntityInValueSet method:
+            java.net.URI valueSetDefURI = new URI(&#34;http://someDomain.html/ValueSets/NCIT/C3367_Value_set&#34;);
+            String codingSchemeName = &#34;NCI_Thesaurus&#34;;
+            String version = &#34;10.08e&#34;;
+            String entityCode = &#34;C3367&#34;;
+            String entityCodeNamespace = &#34;NCI_Thesaurus&#34;;
+            AbsoluteCodingSchemeVersionReferenceList csVersionList = new AbsoluteCodingSchemeVersionReferenceList();
+            csVersionList.addAbsoluteCodingSchemeVersionReference(Constructors.createAbsoluteCodingSchemeVersionReference(codingSchemeName, version));
+
+            AbsoluteCodingSchemeVersionReference acsvr = vsdServ.isEntityInValueSet(entityCode, entityCodeNamespace, valueSetDefURI, null, csVersionList, &#34;PRODUCTION&#34;);
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h4 id="LexEVS6.xValueSetService-listValueSetsWithEntityCode">
+  listValueSetsWithEntityCode
+</h4>
+Returns all the value set definition uris that contains supplied entity code.listValueSetsWithEntityCode(String entityCode, URI entityCodeNamespace, AbsoluteCodingSchemeVersionReferenceList csVersionList, String versionTag)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Returns all the value set definition uris that contains supplied entity code.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        java.lang.String entityCode - (Mandatory) the entity code to search for java.net.URI entityCodeNamespace - (Optional)the URI of the entity code namespace. If omitted, the default coding scheme namespace for the value set definition will be used, if it is present. Otherwise the first matching entity code, if any, will pass org.LexGrid.LexBIG.DataModel.Core. AbsoluteCodingSchemeVersionReference csVersionList - (Optional) a list of coding scheme URI&#39;s and versions to be used. These will be used only if they are present in the service. If absent, the most recent version will be used instead. java.lang.String versionTag - (Optional) the version or tag (e.g. &#34;devel&#34;, &#34;production&#34;, etc.) to be used for &lt;i&gt;all&lt;/i&gt; of the coding schemes searched.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        java.util.List&lt;String&gt; - list of value set definition URIs that contain supplied entity code
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details:
+      </th>
+      <td>
+        Implementation:   Step 1: Call this method on the associated LexEVS Value Set Definition Service instance to get all the value set definition uris that contain the the supplied entity code.  Sample Call:
+        <ul>
+          <li>
+            Step 1:Instantiate LexEVSValueSetDefinitionServices if it is not done yet :
+            org.lexgrid.valuesets.LexEVSValueSetDefinitionServices vsdServ = LexEVSValueSetDefinitionServicesImpl.defaultInstance();
+          </li>
+          <li>
+            Step 2:Call listValueSetsWithEntityCode method:
+            String codingSchemeName = &#34;NCI_Thesaurus&#34;;
+            String version = &#34;10.08e&#34;;
+            String entityCode = &#34;C3367&#34;;
+            String entityCodeNamespace = &#34;NCI_Thesaurus&#34;;
+            AbsoluteCodingSchemeVersionReferenceList csVersionList = new AbsoluteCodingSchemeVersionReferenceList();
+            csVersionList.addAbsoluteCodingSchemeVersionReference(Constructors.createAbsoluteCodingSchemeVersionReference(codingSchemeName, version));
+
+            AbsoluteCodingSchemeVersionReference acsvr = vsdServ.listValueSetsWithEntityCode(entityCode, entityCodeNamespace, csVersionList, &#34;PRODUCTION&#34;);
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h4 id="LexEVS6.xValueSetService-getCodedNodeSetForValueSetDefinition">
+  getCodedNodeSetForValueSetDefinition
+</h4>
+Returns unresolved CodedNodeSet populated using definition entries in the value set definition.getCodedNodeSetForValueSetDefinition(URI valueSetDefinitionURI, String valueSetDefinitionRevisionId, AbsoluteCodingSchemeVersionReferenceList csVersionList, String csVersionTag)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Returns unresolved CodedNodeSet populated using definition entries in the value set definition.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        java.net.URI valueSetDefinitionURI - (Mandatory) the URI of the value set definition java.lang.String valueSetDefintionRevisionId - (Optional) the version of the value set definition org.LexGrid.LexBIG.DataModel.Core. AbsoluteCodingSchemeVersionReference csVersionList - (Optional) a list of coding scheme URI&#39;s and versions to be used. These will be used only if they are present in the service. If absent, the most recent version will be used instead. java.lang.String versionTag - (Optional) the version or tag (e.g. &#34;devel&#34;, &#34;production&#34;, etc.) to be used for &lt;i&gt;all&lt;/i&gt; of the coding schemes searched.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        org.lexgrid.valuesets.dto.ResolvedValueSetCodedNodeSet - Unresolved CodedNodeSet populated using definition entries in the value set definition.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details:
+      </th>
+      <td>
+        Implementation:   Step 1: Call this method on the associated LexEVS Value Set Definition Service instance to get unresolved CodedNodeSet populated using definition entries in the value set definition  Sample Call:
+        <ul>
+          <li>
+            Step 1:Instantiate LexEVSValueSetDefinitionServices if it is not done yet :
+            org.lexgrid.valuesets.LexEVSValueSetDefinitionServices vsdServ = LexEVSValueSetDefinitionServicesImpl.defaultInstance();
+          </li>
+          <li>
+            Step 2:Call getCodedNodeSetForValueSetDefinition method:
+            java.net.URI valueSetDefURI = new URI(&#34;http://someDomain.html/ValueSets/NCIT/C3367_Value_set&#34;);
+            String codingSchemeName = &#34;NCI_Thesaurus&#34;;
+            String version = &#34;10.08e&#34;;
+            AbsoluteCodingSchemeVersionReferenceList csVersionList = new AbsoluteCodingSchemeVersionReferenceList();
+            csVersionList.addAbsoluteCodingSchemeVersionReference(Constructors.createAbsoluteCodingSchemeVersionReference(codingSchemeName, version));
+
+            ResolvedValueSetCodedNodeSet rvsCNS = vsdServ.getCodedNodeSetForValueSetDefinition(valueSetDefURI, null, csVersionList, &#34;PRODUCTION&#34;);
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h4 id="LexEVS6.xValueSetService-isSubSet">
+  isSubSet
+</h4>
+This method checks if childValueSetDefinition is a sub set of parentValueSetDefinition.isSubSet(URI childValueSetDefinitionURI, URI parentValueSetDefinitionURI, AbsoluteCodingSchemeVersionReferenceList csVersionList, String versionTag)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Checks whether childValueSetDefinition is a sub set of parentValueSetDefinition
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        java.net.URI childValueSetDefinitionURI - (Mandatory) child value set definition URI java.net.URI parentValueSetDefinitionURI- (Mandatory) parent value set definition URI org.LexGrid.LexBIG.DataModel.Core. AbsoluteCodingSchemeVersionReference csVersionList - (Optional) a list of coding scheme URI&#39;s and versions to be used. These will be used only if they are present in the service. If absent, the most recent version will be used instead. java.lang.String versionTag - (Optional) the version or tag (e.g. &#34;devel&#34;, &#34;production&#34;, etc.) to be used for &lt;i&gt;all&lt;/i&gt; of the coding schemes searched.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        boolean - YES, if all the elements of the child value set are in the parent value set. NO otherwise.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details:
+      </th>
+      <td>
+        Implementation:   Step 1: Call this method on the associated LexEVS Value Set Definition Service instance to determine if all the concepts that get resolved from the supplied Child Value Set Definition URI are children of concepts that get resolved from the Parent Value Set Definition URI. Returns true if they all are; otherwise, returns false.  Sample Call:
+        <ul>
+          <li>
+            Step 1:Instantiate LexEVSValueSetDefinitionServices if it is not done yet :
+            org.lexgrid.valuesets.LexEVSValueSetDefinitionServices vsdServ = LexEVSValueSetDefinitionServicesImpl.defaultInstance();
+          </li>
+          <li>
+            Step 2:Call isSubSet method:
+            java.net.URI childValueSetDefinitionURI = new URI(&#34;http://someDomain.html/ValueSets/NCIT/Child_Value_set&#34;);
+            java.net.URI parentValueSetDefinitionURI = new URI(&#34;http://someDomain.html/ValueSets/NCIT/Parent_Value_set&#34;);
+            String codingSchemeName = &#34;NCI_Thesaurus&#34;;
+            String version = &#34;10.08e&#34;;
+            AbsoluteCodingSchemeVersionReferenceList csVersionList = new AbsoluteCodingSchemeVersionReferenceList();
+            csVersionList.addAbsoluteCodingSchemeVersionReference(Constructors.createAbsoluteCodingSchemeVersionReference(codingSchemeName, version));
+
+            boolean isSubSet = vsdServ.isSubSet(childValueSetDefinitionURI, parentValueSetDefinitionURI, csVersionList, &#34;PRODUCTION&#34;);
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h4 id="LexEVS6.xValueSetService-getValueSetDefinition">
+  getValueSetDefinition
+</h4>
+Utility method that returns value set definition object for the supplied value set URI.getValueSetDefinition(URI valueSetDefinitionURI, String valueSetDefinitionRevisionId)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Returns value set definition object for the supplied value set definition URI.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        java.net.URI valueSetDefinitionURI - (Mandatory) value set definition URI java.lang.String valueSetDefinitionRevisionId - (Optional) the version of the value set definition
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        org.LexGrid.valueSets.ValueSetDefinition - value set definition object
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details:
+      </th>
+      <td>
+        Implementation:   Step 1: Call this method on the associated LexEVS Value Set Definition Service instance to get the Value Set Definition object of the supplied Value Set Definition URI.  Sample Call:
+        <ul>
+          <li>
+            Step 1:Instantiate LexEVSValueSetDefinitionServices if it is not done yet :
+            org.lexgrid.valuesets.LexEVSValueSetDefinitionServices vsdServ = LexEVSValueSetDefinitionServicesImpl.defaultInstance();
+          </li>
+          <li>
+            Step 2:Call getValueSetDefinition method:
+            org.LexGrid.valueSets.ValueSetDefinition vsDef = vsdServ.getValueSetDefinition(valueSetDefinitionURI, null);
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h4 id="LexEVS6.xValueSetService-listValueSetDefinitions">
+  listValueSetDefinitions
+</h4>
+Utility method that lists all the URI&#39;s of the value set definition(s) for the supplied value set definition name. If the name is null, returns everything. If the name is not null, returns the value set definition(s) that have the assigned name.listValueSetDefinitions(String valueSetDefinitionName)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Returns the URI&#39;s of the value set definition(s) for the supplied name. If the name is null, returns everything. If the name is not null, returns the value set definition(s) that have the assigned name.NotePlural because there is no guarantee of Value Set Definition name uniqueness. If the name is the empty string &#34;&#34;, returns all unnamed valueSetDefinition(s).
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        java.lang.String valueSetDefinitionName - (Optional) name of the value set definition. If null, returns URIs all the value set definition(s) in the system, if empty string &#34;&#34;, returns all unnamed value set definition URIs. If name is provided, returns value set definition uris with the name that matches supplied valueSetDefinitionName.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        java.util.List&lt;String&gt; - List of matching value set definition uris
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details:
+      </th>
+      <td>
+        Implementation:   Step 1: Call this method on the associated LexEVS Value Set Definition Service instance to get the list of Value Set Definition URIs that matches the supplied name.  Sample Call:
+        <ul>
+          <li>
+            Step 1:Instantiate LexEVSValueSetDefinitionServices if it is not done yet :
+            org.lexgrid.valuesets.LexEVSValueSetDefinitionServices vsdServ = LexEVSValueSetDefinitionServicesImpl.defaultInstance();
+          </li>
+          <li>
+            Step 2:Call listValueSetDefinitions method:
+            List&lt;String&gt; uris = vsdServ.listValueSetDefinitions(&#34;someValueSetDefinitionName&#34;);
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h4 id="LexEVS6.xValueSetService-listValueSetDefinitionURIs">
+  listValueSetDefinitionURIs
+</h4>
+Utility method that lists all the URI&#39;s of the value set definition(s) that are loaded in the system.listValueSetDefinitionURIs()
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Returns all the URI&#39;s of the value set definition(s) that are loaded in the system.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        none
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        java.util.List&lt;String&gt; - List of all the value set definition uris available in the system
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details:
+      </th>
+      <td>
+        Implementation:   Step 1: Call this method on the associated LexEVS Value Set Definition Service instance to get all the Value Set Definition URIs available in the system.  Sample Call:
+        <ul>
+          <li>
+            Step 1:Instantiate LexEVSValueSetDefinitionServices if it is not done yet :
+            org.lexgrid.valuesets.LexEVSValueSetDefinitionServices vsdServ = LexEVSValueSetDefinitionServicesImpl.defaultInstance();
+          </li>
+          <li>
+            Step 2:Call listValueSetDefinitionURIs method:
+            List&lt;String&gt; uris = vsdServ.listValueSetDefinitionURIs();
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h4 id="LexEVS6.xValueSetService-getAllValueSetDefinitionsWithNoNames">
+  getAllValueSetDefinitionsWithNoNames
+</h4>
+This method returns all the value set definition URI&#39;s that contains no names.getAllValueSetDefinitionsWithNoNames()
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Returns the URI&#39;s of all unnamed value set definition(s).
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        none
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        java.util.List&lt;String&gt; - List of all unnamed value set definitions URI&#39;s
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details:
+      </th>
+      <td>
+        Implementation:   Step 1: Call this method on the associated LexEVS Value Set Definition Service instance to get the list of Value Set Definition URI&#39;s that have no names.  Sample Call:
+        <ol>
+          <li>
+            Step 1:Instantiate LexEVSValueSetDefinitionServices if it is not done yet :
+            org.lexgrid.valuesets.LexEVSValueSetDefinitionServices vsdServ = LexEVSValueSetDefinitionServicesImpl.defaultInstance();
+          </li>
+        </ol>
+        <ul>
+          <li>
+            Step 2:Call listValueSetDefinitionURIs method:
+            List&lt;String&gt; uris = vsdServ.getAllValueSetDefinitionsWithNoNames();
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h4 id="LexEVS6.xValueSetService-getValueSetDefinitionEntitiesForTerm">
+  getValueSetDefinitionEntitiesForTerm
+</h4>
+This method resolves the supplied value set definition and returns only those concept codes that matches the supplied term.getValueSetDefinitionEntitiesForTerm(String term, String matchAlgorithm, URI valueSetDefinitionURI, AbsoluteCodingSchemeVersionReferenceList csVersionList, String versionTag)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Resolves the value set definition supplied and restricts it to the term and matchAlgorith supplied. The returned object ResolvedValueSetCodedNodeSet contains the codingScheme URI and Version that was used to resolve and the CodedNodeSet.NoteThe CodedNodeSet is unresolved.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        java.lang.String term - (Mandatory) text to match. Format is specific to the match algorithm java.lang.String matchAlgorithm - (Optional) match algorithm to use. Must be the name of a supported match algorithm. Default - Lucene Query java.net.URI valueSetDefinitionURI - (Mandatory) value set definition to resolve org.LexGrid.LexBIG.DataModel.Core. AbsoluteCodingSchemeVersionReference csVersionList - (Optional) a list of coding scheme URI&#39;s and versions to be used. These will be used only if they are present in the service. If absent, the most recent version will be used instead. java.lang.String versionTag - (Optional) the version or tag (e.g. &#34;devel&#34;, &#34;production&#34;, etc.) to be used for &lt;i&gt;all&lt;/i&gt; of the coding schemes searched.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        org.lexgrid.valuesets.dto.ResolvedValueSetCodedNodeSet - contains the codingScheme URI and Version that was used to resolve and the unresolved CodedNodeSet.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details:
+      </th>
+      <td>
+        Implementation:   Step 1: Call this method on the associated LexEVS Value Set Definition Service instance to get the resolved Value Set Entries as CodedNodeSet that is restricted to the supplied term and the match algorithm. The returned CodedNodeSet is not resolved.  Sample Call:
+        <ul>
+          <li>
+            Step 1:Instantiate LexEVSValueSetDefinitionServices if it is not done yet :
+            org.lexgrid.valuesets.LexEVSValueSetDefinitionServices vsdServ = LexEVSValueSetDefinitionServicesImpl.defaultInstance();
+          </li>
+          <li>
+            Step 2:Call getValueSetDefinitionEntitiesForTerm method:
+            String codingSchemeName = &#34;Automobiles&#34;;
+            String version = &#34;1.1&#34;;
+            AbsoluteCodingSchemeVersionReferenceList csVersionList = new AbsoluteCodingSchemeVersionReferenceList();
+            csVersionList.addAbsoluteCodingSchemeVersionReference(Constructors.createAbsoluteCodingSchemeVersionReference(codingSchemeName, version));
+
+            ResolvedValueSetCodedNodeSet vsvns = vsdServ.getValueSetDefinitionEntitiesForTerm (&#34;General Motors&#34;, MatchAlgorithms.exactMatch.name(), new URI(&#34;AUTO:AllDomesticANDGM&#34;), csVersionList, &#34;PRODUCTION&#34;);
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h4 id="LexEVS6.xValueSetService-getCodingSchemesInValueSetDefinition">
+  getCodingSchemesInValueSetDefinition
+</h4>
+This method returns all the coding scheme referenced by supplied value set definition.getCodingSchemesInValueSetDefinition(URI valueSetDefinitionURI)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Returns list of coding scheme summary that is referenced by the supplied value set definition.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        java.net.URI valueSetDefinitionURI - (Mandatory) value set definition uri
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.DataModel.Collections.AbsoluteCodingSchemeVersionReferenceList - list of coding scheme summary referenced by the supplied value set definition
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details:
+      </th>
+      <td>
+        Implementation:   Step 1: Call this method on the associated LexEVS Value Set Definition Service instance to get List of all Coding Scheme URIs and the Versions that the supplied Value Set Definition URI references.  Sample Call:
+        <ul>
+          <li>
+            Step 1:Instantiate LexEVSValueSetDefinitionServices if it is not done yet :
+            org.lexgrid.valuesets.LexEVSValueSetDefinitionServices vsdServ = LexEVSValueSetDefinitionServicesImpl.defaultInstance();
+          </li>
+          <li>
+            Step 2:Call getCodingSchemesInValueSetDefinition method:
+            AbsoluteCodingSchemeVersionReferenceList csvList = vsdServ.getCodingSchemesInValueSetDefinition(new URI(&#34;AUTO:AllDomesticANDGM&#34;));
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h4 id="LexEVS6.xValueSetService-isValueSetDefinition">
+  isValueSetDefinition
+</h4>
+This method checks if the supplied entityCode is of type &#39;valueSetDefinition&#39; in supplued coding scheme and version.isValueSetDefinition(String entityCode, String codingSchemeName, CodingSchemeVersionOrTag csvt)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Determines if the supplied entity code is of type valueSetDefinition in the supplied coding scheme and, if it is, returns true; otherwise returns false.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        java.lang.String entityCode - (Mandatory) entity code java.lang.String codingSchemeName - (Mandatory) name of coding scheme org.LexGrid.LexBIG.DataModel.Core.CodingSchemeVersionOrTag csvt - (Optional) coding scheme version or tag
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        boolean - TRUE : If entityCode is of type valueSetDefinition in supplied coding scheme, FALSE : otherwise
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details:
+      </th>
+      <td>
+        Implementation:   Step 1: Call this method on the associated LexEVS Value Set Definition Service instance to check if the supplied entity code is of type valueSetDefinition in the supplied Coding Scheme.  Sample Call:
+        <ul>
+          <li>
+            Step 1:Instantiate LexEVSValueSetDefinitionServices if it is not done yet :
+            org.lexgrid.valuesets.LexEVSValueSetDefinitionServices vsdServ = LexEVSValueSetDefinitionServicesImpl.defaultInstance();
+          </li>
+          <li>
+            Step 2:Call isValueSetDefinition method:
+            boolean isVSD = vsdServ.isValueSetDefinition(&#34;VSD005&#34;, &#34;Automobiles&#34;, Constructors.createCodingSchemeVersionOrTag(null, &#34;1.1&#34;));
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h4 id="LexEVS6.xValueSetService-getValueSetDefinitionURIsWithCodingScheme">
+  getValueSetDefinitionURIsWithCodingScheme
+</h4>
+This method returns a list of Value Set Definition URIs that references supplied coding scheme.getValueSetDefinitionURIsWithCodingScheme(String codingSchemename, String codingSchemeURI)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Returns a list of Value Set Definition URIs that references supplied coding scheme.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        java.lang.String codingSchemename - (Mandatory) Name of coding scheme to check java.lang.String codingSchemeURI - (Mandatory) URI of coding scheme that codingSchemename belongs to
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        java.util.List&lt;String&gt; - List of value set definition URIs that references the supplied coding scheme name
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details:
+      </th>
+      <td>
+        Implementation:   Step 1: Call this method on the associated LexEVS Value Set Definition Service instance to get list of value set definition uris that references the supplied coding scheme.  Sample Call:
+        <ul>
+          <li>
+            Step 1:Instantiate LexEVSValueSetDefinitionServices if it is not done yet :
+            org.lexgrid.valuesets.LexEVSValueSetDefinitionServices vsdServ = LexEVSValueSetDefinitionServicesImpl.defaultInstance();
+          </li>
+          <li>
+            Step 2:Call getValueSetDefinitionURIsWithCodingScheme method:
+            List&lt;String&gt; uris = vsdServ.getValueSetDefinitionURIsWithCodingScheme(&#34;Automobiles&#34;, &#34;urn:oid:11.11.0.1&#34;);
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h4 id="LexEVS6.xValueSetService-getValueSetDefinitionURIsWithConceptDomain">
+  getValueSetDefinitionURIsWithConceptDomain
+</h4>
+This method returns a list of Value Set Definition URIs that are bound to supplied concept domain.{{getValueSetDefinitionURIsWithConceptDomain(String conceptDomain, String codingSchemeURI)}
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Returns a list of Value Set Definition URIs that are bound to supplied concept domain.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        java.lang.String conceptDomain- (Mandatory) name or uri of concept domain to check java.lang.String codingSchemeURI - (Mandatory) URI of coding scheme that concept domain belongs to
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        java.util.List&lt;String&gt; - List of value set definition URIs that are bound to supplied concept domain
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details:
+      </th>
+      <td>
+        Implementation:   Step 1: Call this method on the associated LexEVS Value Set Definition Service instance to get list of value set definition uris that are bound to the supplied concept domain.  Sample Call:
+        <ul>
+          <li>
+            Step 1:Instantiate LexEVSValueSetDefinitionServices if it is not done yet :
+            org.lexgrid.valuesets.LexEVSValueSetDefinitionServices vsdServ = LexEVSValueSetDefinitionServicesImpl.defaultInstance();
+          </li>
+          <li>
+            Step 2:Call getValueSetDefinitionURIsWithConceptDomain method:
+            List&lt;String&gt; uris = vsdServ.getValueSetDefinitionURIsWithConceptDomain(&#34;Autos&#34;, &#34;urn:oid:11.11.0.1&#34;);
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h4 id="LexEVS6.xValueSetService-getValueSetDefinitionURIsWithUsageContext">
+  getValueSetDefinitionURIsWithUsageContext
+</h4>
+This method returns a list of Value Set Definition URIs that references supplied list of usage context(s).getValueSetDefinitionURIsWithUsageContext(List&lt;String&gt; usageContexts, String codingSchemeURI)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Returns a list of Value Set Definition URIs that references supplied list of usage context(s).
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        java.util.List&lt;java.lang.String&gt; usageContexts- (Mandatory) list of name or uri of usage context to check java.lang.String codingSchemeURI - (Mandatory) URI of coding scheme that usage context belongs to
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        java.util.List&lt;String&gt; - List of value set definition URIs that references the supplied list of usage context
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details:
+      </th>
+      <td>
+        Implementation:   Step 1: Call this method on the associated LexEVS Value Set Definition Service instance to get list of value set definition uris that references the supplied list of usage context.  Sample Call:
+        <ul>
+          <li>
+            Step 1:Instantiate LexEVSValueSetDefinitionServices if it is not done yet :
+            org.lexgrid.valuesets.LexEVSValueSetDefinitionServices vsdServ = LexEVSValueSetDefinitionServicesImpl.defaultInstance();
+          </li>
+          <li>
+            Step 2:Call getValueSetDefinitionURIsWithUsageContext method:
+            List&lt;String&gt; usageContexts = new ArrayList&lt;String&gt;();
+            usageContexts.add(&#34;Automobiles&#34;);
+            usageContexts.add(&#34;Domestic Auto Makers&#34;);
+            List&lt;String&gt; uris = vsdServ.getValueSetDefinitionURIsWithUsageContext(usageContexts, &#34;urn:oid:11.11.0.1&#34;);
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h4 id="LexEVS6.xValueSetService-getValueSetDefinitionURIsWithConceptDomainAndUsageContext">
+  getValueSetDefinitionURIsWithConceptDomainAndUsageContext
+</h4>
+This method Returns list of Value Set Definition URIs that are bound to supplied concept domain and in supplied usage context.getValueSetDefinitionURIsWithConceptDomainAndUsageContext(String conceptDomain, List&lt;String&gt; usageContexts, String codingSchemeURI)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Returns list of Value Set Definition URIs that are bound to supplied concept domain and in supplied usage context.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        java.lang.String conceptDomain - (Mandatory) name or uri of concept domain to check java.util.List&lt;java.lang.String&gt; usageContexts- (Mandatory) list of name or uri of usage context to check java.lang.String codingSchemeURI - (Mandatory) URI of coding scheme that usage context and concept domain belongs to
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        java.util.List&lt;String&gt; - List of value set definition URIs that are bound to supplied concept domain and references the supplied list of usage context
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details:
+      </th>
+      <td>
+        Implementation:   Step 1: Call this method on the associated LexEVS Value Set Definition Service instance to get list of value set definition uris that is bound to supplied concept domain and references the supplied list of usage context.  Sample Call:
+        <ul>
+          <li>
+            Step 1:Instantiate LexEVSValueSetDefinitionServices if it is not done yet :
+            org.lexgrid.valuesets.LexEVSValueSetDefinitionServices vsdServ = LexEVSValueSetDefinitionServicesImpl.defaultInstance();
+          </li>
+          <li>
+            Step 2:Call getValueSetDefinitionURIsWithConceptDomainAndUsageContextmethod:
+            List&lt;String&gt; usageContexts = new ArrayList&lt;String&gt;();
+            usageContexts.add(&#34;Automobiles&#34;);
+            usageContexts.add(&#34;Domestic Auto Makers&#34;);
+            List&lt;String&gt; uris = vsdServ.getValueSetDefinitionURIsWithConceptDomainAndUsageContext(&#34;Autos&#34;, usageContexts, &#34;urn:oid:11.11.0.1&#34;);
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h3 id="LexEVS6.xValueSetService-ResolveFunctions">
+  Resolve Functions
+</h3>
+Rsolve functions provides the capability to resolve the value set definition against specific coding scheme version and get back the list of entities that belongs to the value set. If no coding scheme version is provided, the API will pick the latest version of the coding scheme.There are two separate functions available to resolve value set definition :
+<ul>
+  <li>
+    Resolve Stored Value Set Definition - This function allows you to resolve value set definition that are loaded in the system.
+  </li>
+  <li>
+    Resolve Supplied Value Set Definition - This function allows you to pass a ValueSetDefinition object that may not be loaded in the system and get it resolved.
+  </li>
+</ul>
+<h4 id="LexEVS6.xValueSetService-ResolvingStoredValueSetDefinition">
+  Resolving Stored Value Set Definition
+</h4>
+This function resolves the value set definition that is loaded in the system and returns set of valied concept codes plus the code systems and its versions that were used.resolveValueSetDefinition(URI valueSetDefinitionURI, String valueSetDefinitionRevisionId, AbsoluteCodingSchemeVersionReferenceList csVersionList, String versionTag, SortOptionList sortOptionList)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Resolves a value set definition that is available in the system using the supplied set of coding scheme versions.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        java.net.URI valueSetDefinitionURI - (Mandatory) value set definition uri to resolve java.lang.String valueSetDefinitionRevisionId - (Optional) version of value set definition org.LexGrid.LexBIG.DataModel.Core.AbsoluteCodingSchemeVersionReferenceList csVersionList - (Optional) list of coding scheme versions to use in resolution. IF the value set definition uses a version that isn&#39;t mentioned in this list, the resolve function will return the codingScheme and version that was used as a default for the resolution.  java.lang.String versionTag - (Optional) the tag (e.g. &#34;devel&#34;, &#34;production&#34;, ...) to be used to determine which coding scheme to be used _org.LexGrid.LexBIG.DataModel.Collections.SortOptionList&#34; sortOptionList - (Optional) List of sort options to apply during resolution. If supplied, the sort algorithms will be applied in the order provided. Any algorithms not valid to be applied in context of node set iteration, as specified in the sort extension description, will result in a parameter exception. Available algorithms can be retrieved through the LexBIGService getSortExtensions() method after being defined to the LexBIGServiceManager extension registry.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        org.lexgrid.valuesets.dto.ResolvedValueSetDefinition - Resolved Value Set Definition
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details:
+      </th>
+      <td>
+        Implementation:   Step 1: Call this method on the associated LexEVS Value Set Definition Service instance to resolve supplied value set definition URI that is loaded in the system against list of Coding Scheme versions if supplied. If Coding Scheme Versions list is not supplied, API will resolve against any version of the loaded Coding Scheme that is referenced by the Value Set Definition. Returns object ResolvedValueSetDefinition, which contains AbsoluteCodingSchemeVersionReferenceList, which tells the Coding Scheme and the versions that were used for this resolve, plus the ResolvedConceptReferencesIterator, which is an iterator for all the valid concepts that belong to the Value Set and Value Set Definition itself.  Sample Call:
+        <ul>
+          <li>
+            Step 1:Instantiate LexEVSValueSetDefinitionServices if it is not done yet :
+            grid.valuesets.impl.LexEVSValueSetDefinitionServices vsdServ = org.lexgrid.valuesets.impl.LexEVSValueSetDefinitionServicesImpl.defaultInstance();
+          </li>
+          <li>
+            Step 2:Create AbsoluteCodingSchemeVersionReferenceList:
+            AbsoluteCodingSchemeVersionReferenceList csvList = new AbsoluteCodingSchemeVersionReferenceList();
+            csvList.addAbsoluteCodingSchemeVersionReference(Constructors.
+            createAbsoluteCodingSchemeVersionReference(&#34;Automobiles&#34;, &#34;2.0&#34;));
+            csvList.addAbsoluteCodingSchemeVersionReference(Constructors)
+            createAbsoluteCodingSchemeVersionReference(&#34;AutomobilesParts&#34;, &#34;2.0&#34;));
+          </li>
+          <li>
+            Step 3:Call resolveValueSetDefinition method:
+            ResolvedValueSetDefinition rvdDef = vsdServ.resolveValueSetDefinition(new URI(&#34;SRITEST:AUTO:AllDomesticANDGM1&#34;), null, csvList, &#34;PRODUCTION&#34;, null);
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h4 id="LexEVS6.xValueSetService-ResolvingSuppliedValueSetDefinitionObjects">
+  Resolving Supplied Value Set Definition Objects
+</h4>
+This function resolves the value set definition that is supplied against the supplied coding scheme version(s) and returns set of valied concept codes plus the code systems and its versions that were used.resolveValueSetDefinition(ValueSetDefinition vsDef, AbsoluteCodingSchemeVersionReferenceList csVersionList, String versionTag, SortOptionList sortOptionList)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Resolves a value set definition that is supplied using the supplied set of coding scheme version(s).
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        org.LexGrid.valueSets.ValueSetDefinition vsDef- (Mandatory) value set definition object to resolve org.LexGrid.LexBIG.DataModel.Core.AbsoluteCodingSchemeVersionReferenceList csVersionList - (Optional) list of coding scheme versions to use in resolution. IF the value set definition uses a version that isn&#39;t mentioned in this list, the resolve function will return the codingScheme and version that was used as a default for the resolution.  java.lang.String versionTag - (Optional) the tag (e.g. &#34;devel&#34;, &#34;production&#34;, ...) to be used to determine which coding scheme to be used _org.LexGrid.LexBIG.DataModel.Collections.SortOptionList&#34; sortOptionList - (Optional) List of sort options to apply during resolution. If supplied, the sort algorithms will be applied in the order provided. Any algorithms not valid to be applied in context of node set iteration, as specified in the sort extension description, will result in a parameter exception. Available algorithms can be retrieved through the LexBIGService getSortExtensions() method after being defined to the LexBIGServiceManager extension registry.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        org.lexgrid.valuesets.dto.ResolvedValueSetDefinition - Resolved Value Set Definition
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details:
+      </th>
+      <td>
+        Implementation:   Step 1: Call this method on the associated LexEVS Value Set Definition Service instance to resolve supplied value set definition object against list of Coding Scheme versions if supplied. If Coding Scheme Versions list is not supplied, API will resolve against any version of the loaded Coding Scheme that is referenced by the Value Set Definition. Returns object ResolvedValueSetDefinition, which contains AbsoluteCodingSchemeVersionReferenceList, which tells the Coding Scheme and the versions that were used for this resolve, plus the ResolvedConceptReferencesIterator, which is an iterator for all the valid concepts that belong to the Value Set and Value Set Definition itself.  Sample Call:
+        <ul>
+          <li>
+            Step 1:Instantiate LexEVSValueSetDefinitionServices if it is not done yet :
+            grid.valuesets.impl.LexEVSValueSetDefinitionServices vsdServ = org.lexgrid.valuesets.impl.LexEVSValueSetDefinitionServicesImpl.defaultInstance();
+          </li>
+          <li>
+            Step 2:Generate ValueSetDefinition object:
+            org.LexGrid.valueSets.ValueSetDefinition vsd = new org.LexGrid.valueSets.ValueSetDefinition();
+            vsd.setValueSetDefinitionURI(&#34;SRITEST:JUNIT:TEST:VSD1&#34;);
+            vsd.setValueSetDefinitionName(&#34;JUnit test vsd 1&#34;);
+            vsd.setConceptDomain(&#34;cd&#34;);
+            vsd.addRepresentsRealmOrContext(&#34;context&#34;);
+            vsd.setDefaultCodingScheme(&#34;Automobiles&#34;);
+            vsd.setIsActive(false);
+            vsd.setOwner(&#34;lexevs&#34;);
+            java.util.List&lt;org.LexGrid.commonTypes.Source&gt; srcList = new java.util.ArrayList&lt;org.LexGrid.commonTypes.Source&gt;();
+            org.LexGrid.commonTypes.Source src = new org.LexGrid.commonTypes.Source();
+            src.setContent(&#34;lexevs&#34;);
+            srcList.add(src);
+            src = new org.LexGrid.commonTypes.Source();
+            src.setContent(&#34;cts2&#34;);
+            srcList.add(src);
+            vsd.setSource(srcList);
+
+            org.LexGrid.valueSets.DefinitionEntry de = new org.LexGrid.valueSets.DefinitionEntry();
+            de.setRuleOrder(1L);
+            de.setOperator(org.LexGrid.valueSets.types.DefinitionOperator.OR);
+            org.LexGrid.valueSets.CodingSchemeReference csr = new org.LexGrid.valueSets.CodingSchemeReference();
+            csr.setCodingScheme(&#34;Automobiles&#34;);
+            de.setCodingSchemeReference(csr);
+
+            vsd.addDefinitionEntry(de);
+          </li>
+          <li>
+            Step 3:Create AbsoluteCodingSchemeVersionReferenceList:
+            AbsoluteCodingSchemeVersionReferenceList csvList = new AbsoluteCodingSchemeVersionReferenceList();
+            csvList.addAbsoluteCodingSchemeVersionReference(Constructors.
+            createAbsoluteCodingSchemeVersionReference(&#34;Automobiles&#34;, &#34;2.0&#34;));
+            csvList.addAbsoluteCodingSchemeVersionReference(Constructors)
+            createAbsoluteCodingSchemeVersionReference(&#34;AutomobilesParts&#34;, &#34;2.0&#34;));
+          </li>
+          <li>
+            Step 4:Call resolveValueSetDefinition method:
+            ResolvedValueSetDefinition rvdDef = vsdServ.resolveValueSetDefinition(vsd, csvList, &#34;PRODUCTION&#34;, null);
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h4 id="LexEVS6.xValueSetService-ResolvedValueSetObjects">
+  Resolved Value Set Objects
+</h4>
+<h5 id="LexEVS6.xValueSetService-ResolvedValueSetCodedNodeSet">
+  ResolvedValueSetCodedNodeSet
+</h5>
+Contains Coding Scheme Version reference list that was used to resolve the Value Set Definition and the CodedNodeSet.NoteThe CodedNodeSet is not resolved.
+<h5 id="LexEVS6.xValueSetService-ResolvedValueSetDefinition">
+  ResolvedValueSetDefinition
+</h5>
+A resolved Value Set Definition containing the Coding Scheme Version reference list that was used to resolve the Value Set Definition and an iterator for resolved concepts.
+<h3 id="LexEVS6.xValueSetService-ErrorHandling">
+  Error Handling
+</h3>
+LexEVS Value Set Definition services uses org.LexGrid.LexBIG.Impl.loaders.MessageDirector to direct all fatal, error, warning, info messages with appropriate messages to the LexBIG log files in the &#39;log&#39; folder of LexEVS install directory.Along with MessageDirector, the services will also make use of org.LexGrid.LexBIG.exception.LBException to throw any fatal and error messages to the log file as well as to the console.
+<h3 id="LexEVS6.xValueSetService-LoadScripts">
+  Load Scripts
+</h3>
+Following are the scripts that can be used to load value set definition that are in LexGrid XML format into the system :
+<ul>
+  <li>
+    LoadValueSetDefinition.bat for Windows environment and
+  </li>
+  <li>
+    LoadValueSetDefinition.sh for Unix environment
+  </li>
+</ul>
+The above scripts can be found under &#39;Admin&#39; folder of LexEVS install directory.Both scripts take in the following parameters:
+-in
+Input &lt;uri&gt;
+URI or path specifying location of the source file.
+-v
+Validate &lt;int&gt;
+Perform validation of the candidate resource without loading data. Supported levels of validation include:
+0 = Verify document is well-formed
+1 = Verify document is valid
+
+Example:
+sh LoadValueSetDefinition.sh -in &#34;file:///path/to/file.xml&#34;
+<h3 id="LexEVS6.xValueSetService-SampleValueSetDefinitionXMLFile">
+  Sample Value Set Definition XML File
+</h3>
+Below is a sample XML file containing Value Set Definitions in LexGrid format that can be loaded using LexEVS Value Set Definition Service.
+&lt;source&gt;
+&lt;lgVD:valueSetDefinition  xmlns:xsi=&#34;http://www.w3.org/2001/XMLSchema-instance&#34;
+
+xsi:schemaLocation=&#34;http://LexGrid.org/schema/2010/01/LexGrid/versions http://LexGrid.org/schema/2010/01/LexGrid/versions.xsd&#34;
+xmlns=&#34;http://LexGrid.org/schema/2010/01/LexGrid/versions&#34;
+xmlns:lgVer=&#34;http://LexGrid.org/schema/2010/01/LexGrid/versions&#34;
+xmlns:lgCommon=&#34;http://LexGrid.org/schema/2010/01/LexGrid/commonTypes&#34;
+xmlns:data=&#34;data&#34;
+xmlns:lgVD=&#34;http://LexGrid.org/schema/2010/01/LexGrid/valueSets&#34;
+xmlns:lgNaming=&#34;http://LexGrid.org/schema/2010/01/LexGrid/naming&#34;
+valueSetDefinitionURI=&#34;SRITEST:AUTO:PropertyRefTest1-VSDONLY&#34; valueSetDefinitionName=&#34;Property Reference Test 1&#34; defaultCodingScheme=&#34;Automobiles&#34; effectiveDate=&#34;2009-01-01T11:00:00Z&#34; isActive=&#34;true&#34; status=&#34;ACTIVE&#34;&gt;
+&lt;lgVD:mappings&gt;
+&lt;lgNaming:supportedCodingScheme localId=&#34;Automobiles&#34; uri=&#34;urn:oid:11.11.0.1&#34;&gt;&lt;/lgNaming:supportedCodingScheme&gt;
+&lt;lgNaming:supportedConceptDomain localId=&#34;Autos&#34;&gt;Autos&lt;/lgNaming:supportedConceptDomain&gt;
+&lt;lgNaming:supportedSource localId=&#34;GM&#34;&gt;GM&lt;/lgNaming:supportedSource&gt;
+&lt;lgNaming:supportedSource localId=&#34;Ford&#34;&gt;Ford&lt;/lgNaming:supportedSource&gt;
+&lt;/lgVD:mappings&gt;
+&lt;lgVD:source role=&#34;role1&#34; subRef=&#34;subRef1&#34;&gt;GM&lt;/lgVD:source&gt;
+&lt;lgVD:source role=&#34;role2&#34; subRef=&#34;subRef2&#34;&gt;Ford&lt;/lgVD:source&gt;
+&lt;lgVD:representsRealmOrContext&gt;Automobiles&lt;/lgVD:representsRealmOrContext&gt;
+&lt;lgVD:representsRealmOrContext&gt;Ford&lt;/lgVD:representsRealmOrContext&gt;
+&lt;lgVD:representsRealmOrContext&gt;GM&lt;/lgVD:representsRealmOrContext&gt;
+&lt;lgVD:properties&gt;
+&lt;lgCommon:property propertyName=&#34;textualPresentation&#34;&gt;
+&lt;lgCommon:source role=&#34;PropRole1&#34; subRef=&#34;PropSubRef1&#34;&gt;GM&lt;/lgCommon:source&gt;
+&lt;lgCommon:source role=&#34;PropRole2&#34; subRef=&#34;PropSubRef2&#34;&gt;Ford&lt;/lgCommon:source&gt;
+&lt;lgCommon:usageContext&gt;PropUsageContext GM&lt;/lgCommon:usageContext&gt;
+&lt;lgCommon:usageContext&gt;PropUsageContext Ford&lt;/lgCommon:usageContext&gt;
+&lt;lgCommon:propertyQualifier propertyQualifierName=&#34;PropQual1Namuuuuu&#34; propertyQualifierType=&#34;PQual Type 1&#34;&gt;
+&lt;lgCommon:value dataType=&#34;text&#34;&gt;PropQualValue GM&lt;/lgCommon:value&gt;
+&lt;/lgCommon:propertyQualifier&gt;
+&lt;lgCommon:propertyQualifier propertyQualifierName=&#34;PropQual2Namuuuuu&#34; propertyQualifierType=&#34;PQual Type 2&#34;&gt;
+&lt;lgCommon:value dataType=&#34;text&#34;&gt;PropQualValue Ford&lt;/lgCommon:value&gt;
+&lt;/lgCommon:propertyQualifier&gt;
+&lt;lgCommon:value&gt;All Automobiles nodes&lt;/lgCommon:value&gt;
+&lt;/lgCommon:property&gt;
+&lt;/lgVD:properties&gt;
+&lt;lgVD:definitionEntry ruleOrder=&#34;1&#34; operator=&#34;OR&#34;&gt;
+&lt;lgVD:propertyReference codingScheme=&#34;Automobiles&#34;&gt;
+&lt;lgVD:propertyMatchValue matchAlgorithm=&#34;LuceneQuery&#34;&gt;General&lt;/lgVD:propertyMatchValue&gt;
+&lt;/lgVD:propertyReference&gt;
+&lt;/lgVD:definitionEntry&gt;
+
+&lt;/lgVD:valueSetDefinition&gt;
+&lt;/source&gt;
+<h3 id="LexEVS6.xValueSetService-SystemTesting">
+  System Testing
+</h3>
+The System test case for the LexEVS Value Set Definition service is performed using the JUnit test suite:org.LexGrid.LexBIG.Impl.testUtility.VDAllTestsThis test suite will be run as part of regular LexEVS test suites AllTestsAllConfigs and AllTestsNormalConfigs.
+<h3 id="LexEVS6.xValueSetService-Installation/Packaging">
+  Installation / Packaging
+</h3>
+Value Set Definition Services are integrated parts of core LexEVS API and are packaged and installed with other LexEVS services.
+<h2 id="LexEVS6.xValueSetService-ValueSetGUI">
+  Value Set GUI
+</h2>
+Visit
+<a href="http://informatics.mayo.edu/schema/2010/01/LexGrid/valueSets.xsd" rel="nofollow">
+  LexEVS 6.0 Value Set GUI
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+for detailed functionality and how tos about using Value Sets developer GUI tool

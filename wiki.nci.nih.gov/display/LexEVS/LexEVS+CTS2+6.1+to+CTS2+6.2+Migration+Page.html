@@ -1,0 +1,207 @@
+<a href="https://wiki.nci.nih.gov/download/attachments/280166538/Screen%20Shot%202015-03-13%20at%205.07.28%20PM.png?version=1&amp;modificationDate=1426284504000&amp;api=v2" rel="nofollow">
+  CTS2 1.1 JSON.png
+</a>
+Contents of this page
+<ul>
+  <li>
+    <a href="#LexEVSCTS26.1toCTS26.2MigrationPage-CTS2Changesfrom6.1to6.2:" rel="nofollow">
+      CTS2 Changes from 6.1 to 6.2:
+    </a>
+    <ul>
+      <li>
+        <a href="#LexEVSCTS26.1toCTS26.2MigrationPage-OverviewofPreviousImplementations" rel="nofollow">
+          Overview of Previous Implementations
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVSCTS26.1toCTS26.2MigrationPage-CTS2JSON" rel="nofollow">
+          CTS2 JSON
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVSCTS26.1toCTS26.2MigrationPage-CTS2ModelRelatedChanges" rel="nofollow">
+          CTS2 Model Related Changes
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#LexEVSCTS26.1toCTS26.2MigrationPage-Examples:" rel="nofollow">
+      Examples:
+    </a>
+    <ul>
+      <li>
+        <a href="#LexEVSCTS26.1toCTS26.2MigrationPage-JSONListNamingConvention" rel="nofollow">
+          JSON List Naming Convention
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVSCTS26.1toCTS26.2MigrationPage-JSONTopLevelElementNamingConvention" rel="nofollow">
+          JSON Top Level Element Naming Convention
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVSCTS26.1toCTS26.2MigrationPage-JSONassociatedwiththeCTS21.0implementationinLexEVS6.1" rel="nofollow">
+          JSON associated with the CTS2 1.0 implementation in LexEVS 6.1
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVSCTS26.1toCTS26.2MigrationPage-CTS21.1JSON" rel="nofollow">
+          CTS2 1.1 JSON
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVSCTS26.1toCTS26.2MigrationPage-CTS2ModelChanges" rel="nofollow">
+          CTS2 Model Changes
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVSCTS26.1toCTS26.2MigrationPage-Summary" rel="nofollow">
+          Summary
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVSCTS26.1toCTS26.2MigrationPage-ASummaryofObjectsMappedToLexEVS" rel="nofollow">
+          A Summary of Objects Mapped To LexEVS
+        </a>
+      </li>
+    </ul>
+  </li>
+</ul>
+<h2 id="LexEVSCTS26.1toCTS26.2MigrationPage-CTS2Changesfrom6.1to6.2:">
+  CTS2 Changes from 6.1 to 6.2:
+</h2>
+<h3 id="LexEVSCTS26.1toCTS26.2MigrationPage-OverviewofPreviousImplementations">
+  Overview of Previous Implementations
+</h3>
+CTS2 had a presence in LexEVS 6.0, but as a Java API implemented against a draft specification.   CTS2 1.0 was implemented in LexEVS 6.1 as a REST service against a fully vetted and approved specification, but against a non-canonical JSON representation.
+<h3 id="LexEVSCTS26.1toCTS26.2MigrationPage-CTS2JSON">
+  CTS2 JSON
+</h3>
+From the REST service user&#39;s perspective the most significant changes in CTS2 from the 6.1 implementation to the 6.2 implementation exist in the JSON representation.  Fortunately these changes are naming convention based and should not mean significant changes to client code.  Users migrating from CTS2 1.0 to CTS2 1.1 services will find that object-naming conventions have changed in the JSON representation. Virtually all top-level objects now start with an upper case character.  Object collections previously represented with a “list” suffix will have that suffix removed in 6.2.
+<h3 id="LexEVSCTS26.1toCTS26.2MigrationPage-CTS2ModelRelatedChanges">
+  CTS2 Model Related Changes
+</h3>
+The CTS2 service for 6.2 features an additional module, Value Sets, which brings it into line with a number of other CTS2 specification implementations.  A number of updates under CTS2 1.1 are carried over into the framework supporting this implementation but these will rarely change the users implementations.
+<h2 id="LexEVSCTS26.1toCTS26.2MigrationPage-Examples:">
+  Examples:
+</h2>
+<h3 id="LexEVSCTS26.1toCTS26.2MigrationPage-JSONListNamingConvention">
+  JSON List Naming Convention
+</h3>
+<ul>
+  <li>
+    Top level list containing elements such as CodeSystemVersionCatalogEntryDirectory have
+    <ul>
+      <li>
+        entryList in CTS 1.0
+      </li>
+      <li>
+        simply called entry (which is still a collection of values) in CTS2 1.1.
+      </li>
+    </ul>
+  </li>
+</ul>
+<h3 id="LexEVSCTS26.1toCTS26.2MigrationPage-JSONTopLevelElementNamingConvention">
+  JSON Top Level Element Naming Convention
+</h3>
+<ul>
+  <li>
+    Entities returned in JSON moving from lower to upper case top level element
+    <ul>
+      <li>
+        returned under an “entityDirectory” in CTS2 1.0
+      </li>
+      <li>
+        as an “EntityDirectory” in CTS2 1.1.
+      </li>
+    </ul>
+  </li>
+</ul>
+<h3 id="LexEVSCTS26.1toCTS26.2MigrationPage-JSONassociatedwiththeCTS21.0implementationinLexEVS6.1">
+  JSON associated with the CTS2 1.0 implementation in LexEVS 6.1
+</h3>
+ (Not an official specification)
+<img width="640" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%20CTS2%206.1%20to%20CTS2%206.2%20Migration%20Page/Screen%20Shot%202015-03-13%20at%204.59.30%20PM.png?api=v2">
+<h3 id="LexEVSCTS26.1toCTS26.2MigrationPage-CTS21.1JSON">
+  CTS2 1.1 JSON
+</h3>
+Implemented in LexEVS 6.2
+<img width="640" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%20CTS2%206.1%20to%20CTS2%206.2%20Migration%20Page/Screen%20Shot%202015-03-13%20at%205.07.28%20PM.png?api=v2">
+<h3 id="LexEVSCTS26.1toCTS26.2MigrationPage-CTS2ModelChanges">
+  CTS2 Model Changes
+</h3>
+While there is an extensive list of model changes, few will affect end users.  We&#39;ve listed one change that some REST interface users will see and followed up with a link to the complete change reference.
+<ul>
+  <li>
+    Any URIAndEntityName references should all be changed to EntitySynopsis
+  </li>
+  <li>
+    <a href="https://wiki.nci.nih.gov/download/attachments/280166538/CTS2_Compatibility_Reference.pdf?version=1&amp;modificationDate=1426275523000&amp;api=v2" rel="nofollow">
+      Link to complete model change reference
+    </a>
+  </li>
+</ul>
+<h3 id="LexEVSCTS26.1toCTS26.2MigrationPage-Summary">
+  Summary
+</h3>
+A mapping of changes a REST interface user is likely to come across.
+<table>
+  <tbody>
+    <tr>
+      <td>
+        CTS2 1.0
+      </td>
+      <td>
+        CTS2 1.1
+      </td>
+    </tr>
+    <tr>
+      <td>
+        entityDirectory
+      </td>
+      <td>
+        EntityDirectory
+      </td>
+    </tr>
+    <tr>
+      <td>
+        entryList
+      </td>
+      <td>
+        entry
+      </td>
+    </tr>
+    <tr>
+      <td>
+        knownEntityDescriptionList
+      </td>
+      <td>
+        knownEntityDescription
+      </td>
+    </tr>
+    <tr>
+      <td>
+        iteratableResolvedValueSet
+      </td>
+      <td>
+        IteratableResolvedValueSet
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        URIAndEntityName
+      </td>
+      <td colspan="1">
+        EntitySynopsis
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h3 id="LexEVSCTS26.1toCTS26.2MigrationPage-ASummaryofObjectsMappedToLexEVS">
+  A Summary of  Objects Mapped To LexEVS
+</h3>
+This gives some context for the LexEVS user who wants to take advantage of the REST api over LexEVS and gives a sense of what the current object set is that might be returned by a rest call.  (And parsed from XML or JSON into Java objects)
+<a href="https://wiki.nci.nih.gov/download/attachments/280166538/CTS2_Compatibility_Reference.pdf?version=1&amp;modificationDate=1426275523000&amp;api=v2" rel="nofollow">
+  A Summary of CTS2 Objects
+</a>

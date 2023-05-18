@@ -1,0 +1,16 @@
+Java Code Snippet
+
+LexBIGService lbs = new LexBIGServiceImpl();
+LexBIGServiceManager lbsm = lbs.getServiceManager(null);
+OWL_Loader loader = (OWL_Loader) lbsm.getLoader(&#34;OWLLoader&#34;);
+
+if (toValidateOnly)
+{
+loader.validate(source, manifest, vl);
+System.out.println(&#34;VALIDATION SUCCESSFUL&#34;);
+}
+else
+{
+loader.load(new File(&#34;resources/testData/amino-acid.owl&#34;).toURI(),
+new File(&#34;resources/testData/aa-manifest.xml&#34;).toURI(),true,true);
+} 

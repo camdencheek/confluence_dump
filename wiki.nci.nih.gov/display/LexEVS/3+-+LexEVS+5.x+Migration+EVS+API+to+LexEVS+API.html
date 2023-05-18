@@ -1,0 +1,1713 @@
+Contents of this Page
+<ul>
+  <li>
+    <a href="#id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-Introduction" rel="nofollow">
+      Introduction
+    </a>
+  </li>
+  <li>
+    <a href="#id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-PurposeofthisDocument" rel="nofollow">
+      Purpose of this Document
+    </a>
+  </li>
+  <li>
+    <a href="#id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-ClassesnolongerAvailable" rel="nofollow">
+      Classes no longer Available
+    </a>
+  </li>
+  <li>
+    <a href="#id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-EVSApplicationService-evsSearchandsearch-andLexEVSCounterparts" rel="nofollow">
+      EVSApplicationService - evsSearch and search - and LexEVS Counterparts
+    </a>
+  </li>
+  <li>
+    <a href="#id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-EVSQueryMethodsandLexEVSCounterparts" rel="nofollow">
+      EVSQuery Methods and LexEVS Counterparts
+    </a>
+    <ul>
+      <li>
+        <a href="#id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getTree" rel="nofollow">
+          getTree
+        </a>
+      </li>
+      <li>
+        <a href="#id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-searchDescLogicConcepts" rel="nofollow">
+          searchDescLogicConcepts
+        </a>
+      </li>
+      <li>
+        <a href="#id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getConceptWithPropertyMatching" rel="nofollow">
+          getConceptWithPropertyMatching
+        </a>
+      </li>
+      <li>
+        <a href="#id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-isSubConcept" rel="nofollow">
+          isSubConcept
+        </a>
+      </li>
+      <li>
+        <a href="#id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-isRetired" rel="nofollow">
+          isRetired
+        </a>
+      </li>
+      <li>
+        <a href="#id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getDescendants" rel="nofollow">
+          getDescendants
+        </a>
+      </li>
+      <li>
+        <a href="#id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getPropertyValues" rel="nofollow">
+          getPropertyValues
+        </a>
+      </li>
+      <li>
+        <a href="#id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getAncestors" rel="nofollow">
+          getAncestors
+        </a>
+      </li>
+      <li>
+        <a href="#id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getSubConcepts" rel="nofollow">
+          getSubConcepts
+        </a>
+      </li>
+      <li>
+        <a href="#id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getSuperConcepts" rel="nofollow">
+          getSuperConcepts
+        </a>
+      </li>
+      <li>
+        <a href="#id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getPropertiesByConceptCode" rel="nofollow">
+          getPropertiesByConceptCode
+        </a>
+      </li>
+      <li>
+        <a href="#id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getVocabularyNames" rel="nofollow">
+          getVocabularyNames
+        </a>
+      </li>
+      <li>
+        <a href="#id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getAllVocabularies" rel="nofollow">
+          getAllVocabularies
+        </a>
+      </li>
+      <li>
+        <a href="#id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getVocabularyByName" rel="nofollow">
+          getVocabularyByName
+        </a>
+      </li>
+      <li>
+        <a href="#id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getVocabularyVersion" rel="nofollow">
+          getVocabularyVersion
+        </a>
+      </li>
+      <li>
+        <a href="#id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getConceptEditAction" rel="nofollow">
+          getConceptEditAction
+        </a>
+      </li>
+      <li>
+        <a href="#id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getRootConcepts" rel="nofollow">
+          getRootConcepts
+        </a>
+      </li>
+      <li>
+        <a href="#id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-searchSourceByCode" rel="nofollow">
+          searchSourceByCode
+        </a>
+      </li>
+      <li>
+        <a href="#id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-searchSourceByAtomCode" rel="nofollow">
+          searchSourceByAtomCode
+        </a>
+      </li>
+      <li>
+        <a href="#id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getMetaConceptNameByCode" rel="nofollow">
+          getMetaConceptNameByCode
+        </a>
+      </li>
+      <li>
+        <a href="#id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getMetaSources" rel="nofollow">
+          getMetaSources
+        </a>
+      </li>
+      <li>
+        <a href="#id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getChildren" rel="nofollow">
+          getChildren
+        </a>
+      </li>
+      <li>
+        <a href="#id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getParent" rel="nofollow">
+          getParent
+        </a>
+      </li>
+      <li>
+        <a href="#id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getBroaderConcepts" rel="nofollow">
+          getBroaderConcepts
+        </a>
+      </li>
+      <li>
+        <a href="#id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getNarrowerConcepts" rel="nofollow">
+          getNarrowerConcepts
+        </a>
+      </li>
+      <li>
+        <a href="#id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getRelatedConcepts" rel="nofollow">
+          getRelatedConcepts
+        </a>
+      </li>
+      <li>
+        <a href="#id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-containsInverseRole" rel="nofollow">
+          containsInverseRole
+        </a>
+      </li>
+      <li>
+        <a href="#id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-containsRole" rel="nofollow">
+          containsRole
+        </a>
+      </li>
+      <li>
+        <a href="#id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getAllAssociationTypes" rel="nofollow">
+          getAllAssociationTypes
+        </a>
+      </li>
+      <li>
+        <a href="#id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getAllConceptAssociationQualifierTypes" rel="nofollow">
+          getAllConceptAssociationQualifierTypes
+        </a>
+      </li>
+      <li>
+        <a href="#id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getAllConceptAssociationTypes" rel="nofollow">
+          getAllConceptAssociationTypes
+        </a>
+      </li>
+      <li>
+        <a href="#id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getAllConceptPropertyQualifierTypes" rel="nofollow">
+          getAllConceptPropertyQualifierTypes
+        </a>
+      </li>
+      <li>
+        <a href="#id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getAllConceptPropertyTypes" rel="nofollow">
+          getAllConceptPropertyTypes
+        </a>
+      </li>
+      <li>
+        <a href="#id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getAllLicenses" rel="nofollow">
+          getAllLicenses
+        </a>
+      </li>
+      <li>
+        <a href="#id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getAllPropertyTypes" rel="nofollow">
+          getAllPropertyTypes
+        </a>
+      </li>
+      <li>
+        <a href="#id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getAllQualifierTypes" rel="nofollow">
+          getAllQualifierTypes
+        </a>
+      </li>
+      <li>
+        <a href="#id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getAllRoleNames" rel="nofollow">
+          getAllRoleNames
+        </a>
+      </li>
+      <li>
+        <a href="#id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getAllSubConceptCodes" rel="nofollow">
+          getAllSubConceptCodes
+        </a>
+      </li>
+      <li>
+        <a href="#id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getAllSynonymTypes" rel="nofollow">
+          getAllSynonymTypes
+        </a>
+      </li>
+      <li>
+        <a href="#id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getAllTermAssociationQualifierTypes" rel="nofollow">
+          getAllTermAssociationQualifierTypes
+        </a>
+      </li>
+      <li>
+        <a href="#id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getAllTermPropertyQualifierTypes" rel="nofollow">
+          getAllTermPropertyQualifierTypes
+        </a>
+      </li>
+      <li>
+        <a href="#id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getAllTermPropertyTypes" rel="nofollow">
+          getAllTermPropertyTypes
+        </a>
+      </li>
+      <li>
+        <a href="#id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getParentConcepts" rel="nofollow">
+          getParentConcepts
+        </a>
+      </li>
+      <li>
+        <a href="#id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getChildConcepts" rel="nofollow">
+          getChildConcepts
+        </a>
+      </li>
+      <li>
+        <a href="#id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-hasParents" rel="nofollow">
+          hasParents
+        </a>
+      </li>
+      <li>
+        <a href="#id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-hasChildren" rel="nofollow">
+          hasChildren
+        </a>
+      </li>
+      <li>
+        <a href="#id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getDescLogicConcept" rel="nofollow">
+          getDescLogicConcept
+        </a>
+      </li>
+      <li>
+        <a href="#id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getHistoryRecords" rel="nofollow">
+          getHistoryRecords
+        </a>
+      </li>
+      <li>
+        <a href="#id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getHistoryStartDate" rel="nofollow">
+          getHistoryStartDate
+        </a>
+      </li>
+      <li>
+        <a href="#id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getHistoryEndDate" rel="nofollow">
+          getHistoryEndDate
+        </a>
+      </li>
+      <li>
+        <a href="#id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getCodeActionChildren" rel="nofollow">
+          getCodeActionChildren
+        </a>
+      </li>
+      <li>
+        <a href="#id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getCodeActionParents" rel="nofollow">
+          getCodeActionParents
+        </a>
+      </li>
+      <li>
+        <a href="#id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getAssociationCollectionbyCode" rel="nofollow">
+          getAssociationCollectionbyCode
+        </a>
+      </li>
+      <li>
+        <a href="#id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getSemanticTypeCollectionbyCui" rel="nofollow">
+          getSemanticTypeCollectionbyCui
+        </a>
+      </li>
+      <li>
+        <a href="#id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getQualifierCollectionbyName" rel="nofollow">
+          getQualifierCollectionbyName
+        </a>
+      </li>
+      <li>
+        <a href="#id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getAtomCollectionbyCui" rel="nofollow">
+          getAtomCollectionbyCui
+        </a>
+      </li>
+      <li>
+        <a href="#id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getSynonymCollectionbyCui" rel="nofollow">
+          getSynonymCollectionbyCui
+        </a>
+      </li>
+      <li>
+        <a href="#id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getSourceCollectionbyCui" rel="nofollow">
+          getSourceCollectionbyCui
+        </a>
+      </li>
+      <li>
+        <a href="#id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getSemanticTypeCollectionbyCui.1" rel="nofollow">
+          getSemanticTypeCollectionbyCui
+        </a>
+      </li>
+      <li>
+        <a href="#id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getSourcebyDefinition" rel="nofollow">
+          getSourcebyDefinition
+        </a>
+      </li>
+      <li>
+        <a href="#id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getDefinitionCollectionbyCui" rel="nofollow">
+          getDefinitionCollectionbyCui
+        </a>
+      </li>
+      <li>
+        <a href="#id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getPropertyCollectionbyName" rel="nofollow">
+          getPropertyCollectionbyName
+        </a>
+      </li>
+      <li>
+        <a href="#id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getPropertyCollectionbyCode" rel="nofollow">
+          getPropertyCollectionbyCode
+        </a>
+      </li>
+      <li>
+        <a href="#id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-fetchPropertyCollectionByCodes" rel="nofollow">
+          fetchPropertyCollectionByCodes
+        </a>
+      </li>
+      <li>
+        <a href="#id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getRoleCollectionbyCode" rel="nofollow">
+          getRoleCollectionbyCode
+        </a>
+      </li>
+      <li>
+        <a href="#id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getInverseRoleCollectionbyCode" rel="nofollow">
+          getInverseRoleCollectionbyCode
+        </a>
+      </li>
+      <li>
+        <a href="#id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getInverseAssociationCollectionbyCode" rel="nofollow">
+          getInverseAssociationCollectionbyCode
+        </a>
+      </li>
+      <li>
+        <a href="#id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getHasParentsbyCode" rel="nofollow">
+          getHasParentsbyCode
+        </a>
+      </li>
+      <li>
+        <a href="#id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getHasChildrenbyCode" rel="nofollow">
+          getHasChildrenbyCode
+        </a>
+      </li>
+      <li>
+        <a href="#id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getIsRetiredbyCode" rel="nofollow">
+          getIsRetiredbyCode
+        </a>
+      </li>
+      <li>
+        <a href="#id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getLocalNames" rel="nofollow">
+          getLocalNames
+        </a>
+      </li>
+    </ul>
+  </li>
+</ul>
+<h2 id="id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-Introduction">
+  Introduction
+</h2>
+This document is a section of the
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427409" rel="nofollow">
+  Migration Guide
+</a>
+.
+<h2 id="id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-PurposeofthisDocument">
+  Purpose of this Document
+</h2>
+The transition from EVS API to LexEVS API will require the use of different methods to accomplish the same function as was previously provided in EVS API. This document will identify each deprecated class and provide the alternative LexEVS API.
+<h2 id="id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-ClassesnolongerAvailable">
+  Classes no longer Available
+</h2>
+As a result of the deprecation of the EVS API, the following classes are no longer available:
+<ul>
+  <li>
+    EVSQuery and EVSQueryImpl
+  </li>
+  <li>
+    EVSQueryDAOImpl - Not a public API.
+  </li>
+  <li>
+    EVSWSDAOImpl  - Not a public API.
+  </li>
+  <li>
+    EVSWSQuery - Not a public API.
+  </li>
+  <li>
+    DLBAdapter - Not a public API.
+  </li>
+  <li>
+    DLBWrapper (DLBWrapper is extended by DLBAdapter and it is not been used anywhere else) - Not a public API.
+  </li>
+  <li>
+    EVSApplicationService and EVSApplicationServiceImpl
+  </li>
+</ul>
+<h2 id="id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-EVSApplicationService-evsSearchandsearch-andLexEVSCounterparts">
+  EVSApplicationService - evsSearch and search - and LexEVS Counterparts
+</h2>
+These methods are replaced either by the LexEVS API or the LexEVS caCORE SDK Data Service &#39;search&#39; method. This uses the standard caCORE SDK API. More information about the caCORE SDK can be obtained on the
+<a href="http://ncicb.nci.nih.gov/infrastructure/cacoresdk" rel="nofollow">
+  caCORE SDK site
+</a>
+.
+<h2 id="id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-EVSQueryMethodsandLexEVSCounterparts">
+  EVSQuery Methods  and LexEVS Counterparts
+</h2>
+<h3 id="id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getTree">
+  getTree
+</h3>
+All &#39;getTree&#39; functionality is replaced by the LexEVS CodedNodeGraph API. For example:
+
+
+
+public void getTree(String vocabularyName, String rootCode, boolean
+direction, boolean isaFlag, int attributes, int levels, Vector roles);
+
+
+
+is replaced by:
+
+
+
+CodedNodeGraph cng = lexevsService.getNodeGraph(String codingScheme,
+CodingSchemeVersionOrTag, versionOrTag, String relationContainerName);
+ResolvedConceptReference[] rcr = cng.resolveAsList(ConceptReference
+graphFocus, boolean resolveForward,
+boolean
+resolveBackward, int resolveCodedEntryDepth, int
+resolveAssociationDepth,
+LocalNameList
+propertyNames, PropertyType[] propertyTypes, SortOptionList
+sortOptions,
+int
+maxToReturn).getResolvedConceptReference();
+
+
+
+Also, various methods in LexBIGServiceConvenienceMethods can be used to show hierarchies. See the following methods:
+<ul>
+  <li>
+    getHierarchyRoots
+  </li>
+  <li>
+    getHierarchyRootSet
+  </li>
+  <li>
+    getHierarchyLevelNext
+  </li>
+  <li>
+    getHierarchyLevelPrev
+  </li>
+  <li>
+    getHierarchyPathToRoot
+  </li>
+</ul>
+For examples, see the following LexEVS Example classes:
+<ul>
+  <li>
+    org.LexGrid.LexBIG.example.BuildTreeForCode
+  </li>
+  <li>
+    org.LexGrid.LexBIG.example.ListHierarchy
+  </li>
+  <li>
+    org.LexGrid.LexBIG.example.ListHierarchyByCode
+  </li>
+  <li>
+    org.LexGrid.LexBIG.example.ListHierarchyPathToRoot
+  </li>
+</ul>
+<h3 id="id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-searchDescLogicConcepts">
+  searchDescLogicConcepts
+</h3>
+LexEVS provides many ways to restrict the result of a query. The method &#39;searchDescLogicConcepts&#39; searches for matches based on a text String. To conduct similar queries using LexEVS, use the CodedNodeSet API.
+
+Obtain a CodedNodeSet from LexEVS:
+
+
+
+CodedNodeSet nodes = lexevsService.getNodeSet(String codingScheme,
+CodingSchemeVersionOrTag versionOrTag, LocalNameList entityTypes);
+
+
+
+Once established, the CodedNodeSet can be further restricted using the various &#39;restrict&#39; methods in the CodedNodeSet API.
+
+For examples, see the following LexEVS Example classes:
+<ul>
+  <li>
+    org.LexGrid.LexBIG.example.SoundsLike
+  </li>
+  <li>
+    org.LexGrid.LexBIG.example.FindCodesForDescription
+  </li>
+</ul>
+<h3 id="id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getConceptWithPropertyMatching">
+  getConceptWithPropertyMatching
+</h3>
+See example above. For Property-specific matching, see the following method in the CodedNodeSet API
+<ul>
+  <li>
+    restrictToProperties
+  </li>
+</ul>
+This will ensure that each of the results will have at least one Property that matches the supplied criteria.
+<h3 id="id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-isSubConcept">
+  isSubConcept
+</h3>
+In LexEVS, use the CodedNodeGraph API to find the immediate relations of a Concept.
+For instance:
+
+
+CodedNodeGraph cng = lexevsService.getNodeGraph(String codingScheme,
+CodingSchemeVersionOrTag versionOrTag, String relationContainerName);
+ResolvedConceptReference[] rcr = cng.resolveAsList(ConceptReference
+graphFocus, boolean resolveForward, boolean resolveBackward,
+int
+resolveCodedEntryDepth, int resolveAssociationDepth, LocalNameList
+propertyNames,
+PropertyType[]
+propertyTypes, SortOptionList sortOptions, int
+maxToReturn).getResolvedConceptReference();
+
+
+
+Set the ConceptReference graphFocus to the desired code, this will focus the Graph. Then check the relationships.
+
+Alternatively, use the CodedNodeGraph API method &#39;areCodesRelated&#39;
+
+
+Boolean areCodesRelated(NameAndValue association, ConceptReference
+sourceCode, ConceptReference targetCode, boolean directOnly)
+<h3 id="id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-isRetired">
+  isRetired
+</h3>
+Use the LexBIGServiceConvenienceMethods API method &#39;isCodeRetired&#39; method.
+<h3 id="id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getDescendants">
+  getDescendants
+</h3>
+Use the LexEVS HistoryService API
+
+Obtain a the HistoryService API as follows:
+
+
+
+HistoryService historySvc = lexevsService.getHistoryService
+(StringcodingSchemeName);
+
+
+
+To get the decendents of a given code, use the &#39;getDecendants&#39; method:
+
+
+NCIChangeEventList changeEventList = historySvc.getDescendants
+(ConceptReference conceptReference);
+<h3 id="id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getPropertyValues">
+  getPropertyValues
+</h3>
+Through the Entity class, all Properties (Presentations, Definitions, etc) are available.
+<ul>
+  <li>
+    Entity - To find the &#39;Presentations&#39; of a given Entity:
+
+
+    Entity entity = ....;
+    Presentation[] presentations = entity.getPresentation();
+  </li>
+</ul>
+<ul>
+  <li>
+    To find the &#39;Definitions&#39; of a given Entity:
+
+
+    Entity entity = ....;
+    Definition[] definitions = entity.getDefinition();
+  </li>
+</ul>
+<ul>
+  <li>
+    To find the &#39;Comments&#39; of a given Entity:
+
+
+    Entity entity = ....;
+    Comment[] comments= entity.getComment();
+  </li>
+  <li>
+    To find the non-classified Properties of a given Entity:
+
+
+    Entity entity = ....;
+    Property[] properties = entity.getProperties();
+  </li>
+</ul>
+<h3 id="id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getAncestors">
+  getAncestors
+</h3>
+Use the LexEVS HistoryService API
+
+Obtain a the HistoryService API as follows:
+
+
+
+HistoryService historySvc = lexevsService.getHistoryService
+(StringcodingSchemeName);
+
+
+
+To get the ancestors of a given code, use the &#39;getDecendants&#39; method:
+
+
+NCIChangeEventList changeEventList = historySvc.getAncestors
+(ConceptReference conceptReference);
+<h3 id="id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getSubConcepts">
+  getSubConcepts
+</h3>
+Use the CodedNodeGraph API to find the immediate relations of a Concept.
+For instance:
+
+
+CodedNodeGraph cng = lexevsService.getNodeGraph(String codingScheme,
+CodingSchemeVersionOrTag versionOrTag, String relationContainerName);
+ResolvedConceptReference[] rcr = cng.resolveAsList(ConceptReference
+graphFocus, boolean resolveForward, boolean resolveBackward,
+int
+resolveCodedEntryDepth, int resolveAssociationDepth, LocalNameList
+propertyNames,
+PropertyType[]
+propertyTypes, SortOptionList sortOptions, int
+maxToReturn).getResolvedConceptReference();
+
+
+
+Focus the &#39;graphFocus&#39; on the desired Concept to see relationships from a given Concept.
+
+For examples, see the following LexEVS Example classes:
+<ul>
+  <li>
+    org.LexGrid.LexBIG.example.FindRelatedCodes
+  </li>
+  <li>
+    org.LexGrid.LexBIG.example.FindPropsAndAssocForCode
+  </li>
+</ul>
+<h3 id="id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getSuperConcepts">
+  getSuperConcepts
+</h3>
+See above &#39;getSubConcepts&#39; – setting your resolve direction (boolean resolveForward, boolean resolveBackward) will determine if sub-concepts or super-concepts are resolved.
+<h3 id="id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getPropertiesByConceptCode">
+  getPropertiesByConceptCode
+</h3>
+To find the Properties of a given code, for example, code &#39;C1234&#39; in the &#39;NCI Thesaurus&#39; ontology - first obtain a &#39;CodedNodeSet&#39; from the &#39;NCI Thesaurus&#39; ontology:
+
+
+
+ResolvedConceptReferenceList cns = lbSvc.getCodingSchemeConcepts(&#34;NCI
+Thesaurus&#34;, null);
+
+
+
+Next, restrict that to the desired Code (&#39;C1234&#39; in this example):
+
+
+
+//First create a ConceptReferenceList to describe the Concept to search for.
+//In this example we use the helper class &#39;ConvenienceMethods&#39;.
+ConceptReferenceList crefs =
+ConvenienceMethods.createConceptReferenceList(new String[]
+{ &#34;C1234&#34;}, &#34;NCI Thesaurus&#34;);
+
+//Next, restrice the CodedNodeSet.
+cns.restrictToCodes(crefs);
+
+
+
+Lastly, resolve the match.
+
+
+ResolvedConceptReferenceList matches = cns.resolveToList(null, null,
+null, 1);
+
+
+
+To view the Properties, see &#39;getPropertyValues&#39; above.
+
+For examples, see the following LexEVS Example classes:
+<ul>
+  <li>
+    org.LexGrid.LexBIG.example.FindPropsAndAssocForCode
+  </li>
+</ul>
+<h3 id="id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getVocabularyNames">
+  getVocabularyNames
+</h3>
+Use the &#39;LexBIGService&#39; API method &#39;getSupportedCodingSchemes&#39; - and extract the Names (local name, registered name, etc...) as needed.
+<h3 id="id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getAllVocabularies">
+  getAllVocabularies
+</h3>
+Use the &#39;LexBIGService&#39; API method &#39;getSupportedCodingSchemes&#39;.
+<h3 id="id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getVocabularyByName">
+  getVocabularyByName
+</h3>
+Use &#39;LexBIGService&#39; API method &#39;resolveCodingScheme&#39;.
+<h3 id="id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getVocabularyVersion">
+  getVocabularyVersion
+</h3>
+Use &#39;LexBIGService&#39; API method &#39;resolveCodingScheme&#39; and extract the &#39;representsVersion&#39; attribute from the Resulting CodingScheme.
+<h3 id="id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getConceptEditAction">
+  getConceptEditAction
+</h3>
+Use the LexEVS HistoryService API
+
+Obtain a the HistoryService API as follows:
+
+
+
+HistoryService historySvc = lexevsService.getHistoryService
+(StringcodingSchemeName);
+
+
+
+To get the &#39;EditActionList&#39; of a given code, use the &#39;getEditActionList&#39; method:
+
+
+NCIChangeEventList changeEventList = historySvc.getEditActionList(ConceptReference conceptReference,
+CodingSchemeVersion codingSchemeVersion);
+<h3 id="id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getRootConcepts">
+  getRootConcepts
+</h3>
+Use &#39;LexBIGServiceConvenienceMethods&#39; API method &#39;getHierarchyRoots&#39; or &#39;getHierarchyRootSet&#39;
+<h3 id="id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-searchSourceByCode">
+  searchSourceByCode
+</h3>
+Use &#39;CodedNodeSet&#39; API - adding a &#39;restrictToCodes&#39; restriction.
+
+To find the a given code, for example, code &#39;C1234&#39; in the &#39;NCI Thesaurus&#39; ontology - first obtain a &#39;CodedNodeSet&#39; from the &#39;NCI Thesaurus&#39; ontology:
+
+
+
+ResolvedConceptReferenceList cns = lbSvc.getCodingSchemeConcepts(&#34;NCI
+Thesaurus&#34;, null);
+
+
+
+Next, restrict that to the desired Code (&#39;C1234&#39; in this example):
+
+
+
+//First create a ConceptReferenceList to describe the Concept to
+search for.
+//In this example we use the helper class &#39;ConvenienceMethods&#39;.
+ConceptReferenceList crefs = ConvenienceMethods.createConceptReferenceList
+(new String[]
+{ &#34;C1234&#34;}, &#34;NCI Thesaurus&#34;);
+
+//Next, restrice the CodedNodeSet.
+cns.restrictToCodes(crefs);
+
+
+
+Lastly, resolve the match.
+
+
+
+ResolvedConceptReferenceList matches = cns.resolveToList(null, null,
+null, 1);
+<h3 id="id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-searchSourceByAtomCode">
+  searchSourceByAtomCode
+</h3>
+In the NCI MetaThesaurus, fidning the &#39;source&#39; of an &#39;Atom&#39; is equivalent to finding the &#39;source&#39; of a given Property of an Entity. Each CUI (which is equivalent to an Entity in LexEVS) may contain several Presentation Properties (Atoms or AUI&#39;s of that CUI). Each of these Presentation Properties is Qualified by a &#39;source-code&#39; Qualifier, which reflects the code of this Atom in its original source, and a &#39;source&#39; qualifier, which states the source itself that this Atom came from.
+<h3 id="id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getMetaConceptNameByCode">
+  getMetaConceptNameByCode
+</h3>
+To find the Properties of a given code, for example, code &#39;C1234567&#39; in the &#39;NCI MetaThesaurus&#39; ontology - first obtain a &#39;CodedNodeSet&#39; from the &#39;NCI MetaThesaurus&#39; ontology:
+
+
+
+ResolvedConceptReferenceList cns = lbSvc.getCodingSchemeConcepts(&#34;NCI
+MetaThesaurus&#34;, null);
+
+
+
+Next, restrict that to the desired Code (&#39;C1234567&#39; in this example):
+
+
+
+//First create a ConceptReferenceList to describe the Concept to
+search for.
+//In this example we use the helper class &#39;ConvenienceMethods&#39;.
+ConceptReferenceList crefs =
+ConvenienceMethods.createConceptReferenceList(new String[]
+{ &#34;C1234567&#34;}, &#34;NCI MetaThesaurus&#34;);
+
+//Next, restrice the CodedNodeSet.
+cns.restrictToCodes(crefs);
+
+
+
+Lastly, resolve the match.
+
+
+
+ResolvedConceptReferenceList matches = cns.resolveToList(null, null,
+null, 1);
+
+
+
+To see the name of the code, use &#39;getEntityDescription&#39; on the resulting ResolvedConceptReference. The &#39;EntityDescription&#39; will always be equal to the Preferred Presentation in the Default Language.
+<h3 id="id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getMetaSources">
+  getMetaSources
+</h3>
+Use the &#39;LexBIGService&#39; API method &#39;getMappings&#39;.
+Extract for this the Supported Association Qualifiers using the &#39;getSupportedSource&#39; method.
+NoteThis can be applied to any Coding Scheme, not just the NCI MetaThesaurus.
+<h3 id="id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getChildren">
+  getChildren
+</h3>
+Use the &#39;CodedNodeGraph&#39; API.
+
+For examples, see the following LexEVS Example classes:
+<ul>
+  <li>
+    org.LexGrid.LexBIG.example.FindRelatedCodes
+  </li>
+  <li>
+    org.LexGrid.LexBIG.example.FindPropsAndAssocForCode
+  </li>
+</ul>
+<h3 id="id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getParent">
+  getParent
+</h3>
+Use the &#39;CodedNodeGraph&#39; API.
+
+For examples, see the following LexEVS Example classes:
+<ul>
+  <li>
+    org.LexGrid.LexBIG.example.FindRelatedCodes
+  </li>
+  <li>
+    org.LexGrid.LexBIG.example.FindPropsAndAssocForCode
+  </li>
+</ul>
+<h3 id="id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getBroaderConcepts">
+  getBroaderConcepts
+</h3>
+Use the CodedNodeGraph API to find the immediate relations of a Concept. Resolve forward or backwards based on the hierarchy structure of the ontology.
+
+For examples, see the following LexEVS Example classes:
+<ul>
+  <li>
+    org.LexGrid.LexBIG.example.FindRelatedCodes
+  </li>
+  <li>
+    org.LexGrid.LexBIG.example.FindPropsAndAssocForCode
+  </li>
+</ul>
+<h3 id="id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getNarrowerConcepts">
+  getNarrowerConcepts
+</h3>
+Use the CodedNodeGraph API to find the immediate relations of a Concept. Resolve forward or backwards based on the hierarchy structure of the ontology.
+
+For examples, see the following LexEVS Example classes:
+<ul>
+  <li>
+    org.LexGrid.LexBIG.example.FindRelatedCodes
+  </li>
+  <li>
+    org.LexGrid.LexBIG.example.FindPropsAndAssocForCode
+  </li>
+</ul>
+<h3 id="id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getRelatedConcepts">
+  getRelatedConcepts
+</h3>
+Use the CodedNodeGraph API to find the immediate relations of a Concept.
+
+For examples, see the following LexEVS Example classes:
+<ul>
+  <li>
+    org.LexGrid.LexBIG.example.FindRelatedCodes
+  </li>
+  <li>
+    org.LexGrid.LexBIG.example.FindPropsAndAssocForCode
+  </li>
+</ul>
+<h3 id="id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-containsInverseRole">
+  containsInverseRole
+</h3>
+Use the LexBIGServiceConvenienceMethods API method &#39;isReverseName&#39; method.
+<h3 id="id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-containsRole">
+  containsRole
+</h3>
+Use the LexBIGServiceConvenienceMethods API method &#39;isForwardName&#39; method.
+<h3 id="id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getAllAssociationTypes">
+  getAllAssociationTypes
+</h3>
+Use the &#39;LexBIGService&#39; API method &#39;getMappings&#39;.
+Extract for this the Supported Associations using the &#39;getSupportedAssociation&#39; method.
+<h3 id="id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getAllConceptAssociationQualifierTypes">
+  getAllConceptAssociationQualifierTypes
+</h3>
+Use the &#39;LexBIGService&#39; API method &#39;getMappings&#39;.
+Extract for this the Supported Association Qualifiers using the &#39;getSupportedAssociationQualifier&#39; method.
+<h3 id="id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getAllConceptAssociationTypes">
+  getAllConceptAssociationTypes
+</h3>
+Use the &#39;LexBIGService&#39; API method &#39;getMappings&#39;.
+Extract for this the Supported Associations using the &#39;getSupportedAssociation&#39; method.
+<h3 id="id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getAllConceptPropertyQualifierTypes">
+  getAllConceptPropertyQualifierTypes
+</h3>
+Use the &#39;LexBIGService&#39; API method &#39;getMappings&#39;.
+Extract for this the Supported Property Qualifiers using the &#39;getSupportedPropertyQualifier&#39; method.
+<h3 id="id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getAllConceptPropertyTypes">
+  getAllConceptPropertyTypes
+</h3>
+Use the &#39;LexBIGService&#39; API method &#39;getMappings&#39;.
+Extract for this the Supported Properties using the &#39;getSupportedProperty&#39; method.
+<h3 id="id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getAllLicenses">
+  getAllLicenses
+</h3>
+Use the &#39;LexBIGService&#39; API method &#39;resolveCodingSchemeCopyright&#39;. To get the Copyright for every loaded ontology, do this for each one.
+<h3 id="id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getAllPropertyTypes">
+  getAllPropertyTypes
+</h3>
+Use the &#39;LexBIGService&#39; API method &#39;getMappings&#39;.
+Extract for this the Supported Properties using the &#39;getSupportedProperty&#39; method.
+<h3 id="id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getAllQualifierTypes">
+  getAllQualifierTypes
+</h3>
+Use the &#39;LexBIGService&#39; API method &#39;getMappings&#39;.
+Extract for this the Supported Property Qualifiers using the &#39;getSupportedPropertyQualifier&#39; method.
+<h3 id="id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getAllRoleNames">
+  getAllRoleNames
+</h3>
+Use the &#39;LexBIGService&#39; API method &#39;resolveCodingScheme&#39;.
+Once the CodingScheme Object is obtained, use the method &#39;getRelations&#39;.
+<h3 id="id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getAllSubConceptCodes">
+  getAllSubConceptCodes
+</h3>
+Use the CodedNodeGraph API to find the immediate relations of a Concept.
+
+For examples, see the following LexEVS Example classes:
+<ul>
+  <li>
+    org.LexGrid.LexBIG.example.FindRelatedCodes
+  </li>
+  <li>
+    org.LexGrid.LexBIG.example.FindPropsAndAssocForCode
+  </li>
+</ul>
+<h3 id="id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getAllSynonymTypes">
+  getAllSynonymTypes
+</h3>
+Use the &#39;LexBIGService&#39; API method &#39;getMappings&#39;.
+Extract for this the Supported Associations using the &#39;getSupportedAssociation&#39; method.
+Note Different ontologies may describe their &#39;Synonym&#39; relations differently.
+<h3 id="id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getAllTermAssociationQualifierTypes">
+  getAllTermAssociationQualifierTypes
+</h3>
+Use the &#39;LexBIGService&#39; API method &#39;getMappings&#39;.
+Extract for this the Supported Association Qualifiers using the &#39;getSupportedAssociationQualifier&#39; method.
+<h3 id="id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getAllTermPropertyQualifierTypes">
+  getAllTermPropertyQualifierTypes
+</h3>
+Use the &#39;LexBIGService&#39; API method &#39;getMappings&#39;.
+Extract for this the Supported Property Qualifiers using the &#39;getSupportedPropertyQualifier&#39; method.
+<h3 id="id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getAllTermPropertyTypes">
+  getAllTermPropertyTypes
+</h3>
+Use the &#39;LexBIGService&#39; API method &#39;getMappings&#39;.
+Extract for this the Supported Property using the &#39;getSupportedProperty&#39; method.
+<h3 id="id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getParentConcepts">
+  getParentConcepts
+</h3>
+Use the CodedNodeGraph API to find the immediate relations of a Concept.
+
+For examples, see the following LexEVS Example classes:
+<ul>
+  <li>
+    org.LexGrid.LexBIG.example.FindRelatedCodes
+  </li>
+  <li>
+    org.LexGrid.LexBIG.example.FindPropsAndAssocForCode
+  </li>
+</ul>
+<h3 id="id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getChildConcepts">
+  getChildConcepts
+</h3>
+Use the CodedNodeGraph API to find the immediate relations of a Concept.
+
+For examples, see the following LexEVS Example classes:
+<ul>
+  <li>
+    org.LexGrid.LexBIG.example.FindRelatedCodes
+  </li>
+  <li>
+    org.LexGrid.LexBIG.example.FindPropsAndAssocForCode
+  </li>
+</ul>
+<h3 id="id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-hasParents">
+  hasParents
+</h3>
+Use the CodedNodeGraph API to find the immediate relations of a Concept.
+
+For examples, see the following LexEVS Example classes:
+<ul>
+  <li>
+    org.LexGrid.LexBIG.example.FindRelatedCodes
+  </li>
+  <li>
+    org.LexGrid.LexBIG.example.FindPropsAndAssocForCode
+  </li>
+</ul>
+<h3 id="id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-hasChildren">
+  hasChildren
+</h3>
+Use the CodedNodeGraph API to find the immediate relations of a Concept.
+
+For examples, see the following LexEVS Example classes:
+<ul>
+  <li>
+    org.LexGrid.LexBIG.example.FindRelatedCodes
+  </li>
+  <li>
+    org.LexGrid.LexBIG.example.FindPropsAndAssocForCode
+  </li>
+</ul>
+<h3 id="id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getDescLogicConcept">
+  getDescLogicConcept
+</h3>
+A &#39;DescLogicConcept&#39; can be thought of as an &#39;Entity&#39; in LexEVS. To obtain an Entity, use the CodedNodeSet API, restricting the query as necessary.
+
+For instance, a &#39;DescLogicConcept&#39; with a code of &#39;C1234&#39; can be queried for by the example below. The example will return a ResolvedConceptReference and ultimately an Entity, but is functionally the same as searching for a DescLogicConcept.
+
+To find the a given code, for example, code &#39;C1234&#39; in the &#39;NCI Thesaurus&#39; ontology - first obtain a &#39;CodedNodeSet&#39; from the &#39;NCI Thesaurus&#39; ontology:
+
+
+
+ResolvedConceptReferenceList cns = lbSvc.getCodingSchemeConcepts(&#34;NCI
+Thesaurus&#34;, null);
+
+
+
+Next, restrict that to the desired Code (&#39;C1234&#39; in this example):
+
+
+
+//First create a ConceptReferenceList to describe the Concept to
+search for.
+//In this example we use the helper class &#39;ConvenienceMethods&#39;.
+ConceptReferenceList crefs =
+ConvenienceMethods.createConceptReferenceList(new String[]
+{ &#34;C1234&#34;}, &#34;NCI Thesaurus&#34;);
+
+//Next, restrice the CodedNodeSet.
+cns.restrictToCodes(crefs);
+
+
+
+Lastly, resolve the match.
+
+
+
+ResolvedConceptReferenceList matches = cns.resolveToList(null, null, null, 1);
+<h3 id="id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getHistoryRecords">
+  getHistoryRecords
+</h3>
+Use the HistoryService API &#39;getBaselines&#39; and specify the required Data range.
+
+Obtain a the HistoryService API as follows:
+
+
+
+HistoryService historySvc = lexevsService.getHistoryService
+(StringcodingSchemeName);
+
+
+
+Use the &#39;getBaselines&#39; method:
+
+
+SystemReleaseList systemReleaseList = historySvc.getBaselines(Date
+releasedAfter, Date releasedBefore);
+<h3 id="id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getHistoryStartDate">
+  getHistoryStartDate
+</h3>
+Use the HistoryService API method &#39;getEarliestBaseline&#39;;
+
+Obtain a the HistoryService API as follows:
+
+
+
+HistoryService historySvc = lexevsService.getHistoryService
+(StringcodingSchemeName);
+
+
+
+Use the &#39;getEarliestBaseline&#39; method:
+
+
+SystemRelease systemRelease = historySvc.getEarliestBaseline();
+<h3 id="id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getHistoryEndDate">
+  getHistoryEndDate
+</h3>
+Use the HistoryService API method &#39;getLatestBaseline&#39;;
+
+Obtain a the HistoryService API as follows:
+
+
+
+HistoryService historySvc = lexevsService.getHistoryService
+(StringcodingSchemeName);
+
+
+
+Use the &#39;getLatestBaseline&#39; method:
+
+
+SystemRelease systemRelease = historySvc.getLatestBaseline();
+<h3 id="id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getCodeActionChildren">
+  getCodeActionChildren
+</h3>
+Use the HistoryService API method &#39;getDescendants&#39;;
+Obtain a the HistoryService API as follows:
+
+
+
+HistoryService historySvc = lexevsService.getHistoryService
+(StringcodingSchemeName);
+
+
+
+Use the &#39;getDescendants&#39; method:
+
+
+NCIChangeEventList changeEventList = historySvc.getDescendants
+(ConceptReference conceptReference);
+<h3 id="id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getCodeActionParents">
+  getCodeActionParents
+</h3>
+Use the HistoryService API method &#39;getAncestors&#39;;
+
+Obtain a the HistoryService API as follows:
+
+
+
+HistoryService historySvc = lexevsService.getHistoryService
+(StringcodingSchemeName);
+
+
+
+Use the &#39;getDescendants&#39; method:
+
+
+NCIChangeEventList changeEventList = historySvc.getAncestors
+(ConceptReference conceptReference);
+<h3 id="id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getAssociationCollectionbyCode">
+  getAssociationCollectionbyCode
+</h3>
+Use the CodedNodeGraph API to find the immediate relations of a Concept.
+For instance:
+
+
+CodedNodeGraph cng = lexevsService.getNodeGraph(String codingScheme,
+CodingSchemeVersionOrTag versionOrTag, String relationContainerName);
+ResolvedConceptReference[] rcr = cng.resolveAsList(ConceptReference
+graphFocus, boolean resolveForward, boolean resolveBackward,
+int
+resolveCodedEntryDepth, int resolveAssociationDepth, LocalNameList
+propertyNames,
+PropertyType[]
+propertyTypes, SortOptionList sortOptions, int
+maxToReturn).getResolvedConceptReference();
+
+
+
+Focus the &#39;graphFocus&#39; on the desired Concept to see relationships from a given Concept.
+
+Once focused and resolved, use the &#39;getSourceOf&#39; or &#39;getTargetOf&#39; methods on the ResolvedConceptReference to find the Associations of a given Code.
+
+For examples, see the following LexEVS Example classes:
+<ul>
+  <li>
+    org.LexGrid.LexBIG.example.FindRelatedCodes
+  </li>
+  <li>
+    org.LexGrid.LexBIG.example.FindPropsAndAssocForCode
+  </li>
+</ul>
+<h3 id="id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getSemanticTypeCollectionbyCui">
+  getSemanticTypeCollectionbyCui
+</h3>
+Use &#39;CodedNodeSet&#39; API - adding a &#39;restrictToCodes&#39; restriction.
+
+Note that a CUI is simply a reference to a Code in the NCI MetaThesaurus ontology.
+
+To find the a given code, for example, code &#39;C1234&#39; in the &#39;NCI Thesaurus&#39; ontology - first obtain a &#39;CodedNodeSet&#39; from the &#39;NCI Thesaurus&#39; ontology:
+
+
+
+ResolvedConceptReferenceList cns = lbSvc.getCodingSchemeConcepts(&#34;NCI
+Thesaurus&#34;, null);
+
+
+
+Next, restrict that to the desired Code (&#39;C1234&#39; in this example):
+
+
+
+//First create a ConceptReferenceList to describe the Concept to
+search for.
+//In this example we use the helper class &#39;ConvenienceMethods&#39;.
+ConceptReferenceList crefs =
+ConvenienceMethods.createConceptReferenceList(new String[]
+{ &#34;C1234&#34;}, &#34;NCI Thesaurus&#34;);
+
+//Next, restrice the CodedNodeSet.
+cns.restrictToCodes(crefs);
+
+
+
+Lastly, resolve the match.
+
+
+
+ResolvedConceptReferenceList matches = cns.resolveToList(null, null, null, 1);
+
+
+
+Once the ResolvedConceptReference has been obtained, extract the desired Properties and inspect the Qualifiers for the Semantic Type.
+<h3 id="id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getQualifierCollectionbyName">
+  getQualifierCollectionbyName
+</h3>
+Use &#39;CodedNodeSet&#39; API - adding a &#39;restrictToCodes&#39; restriction.
+
+Note that a CUI is simply a reference to a Code in the NCI MetaThesaurus ontology.
+
+To find the a given code, for example, code &#39;C1234&#39; in the &#39;NCI Thesaurus&#39; ontology - first obtain a &#39;CodedNodeSet&#39; from the &#39;NCI Thesaurus&#39; ontology:
+
+
+
+ResolvedConceptReferenceList cns = lbSvc.getCodingSchemeConcepts(&#34;NCI
+Thesaurus&#34;, null);
+
+
+
+Next, restrict that to the desired Code (&#39;C1234&#39; in this example):
+
+
+
+//First create a ConceptReferenceList to describe the Concept to
+search for.
+//In this example we use the helper class &#39;ConvenienceMethods&#39;.
+ConceptReferenceList crefs =
+ConvenienceMethods.createConceptReferenceList(new String[]
+{ &#34;C1234&#34;}, &#34;NCI Thesaurus&#34;);
+
+//Next, restrice the CodedNodeSet.
+cns.restrictToCodes(crefs);
+
+
+
+Lastly, resolve the match.
+
+
+
+ResolvedConceptReferenceList matches = cns.resolveToList(null, null,
+null, 1);
+
+
+
+Once the ResolvedConceptReference has been obtained, extract the desired Properties and inspect the Qualifiers.
+
+NoteAssociations between codes may also have Qualifiers.
+<h3 id="id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getAtomCollectionbyCui">
+  getAtomCollectionbyCui
+</h3>
+In LexEVS, a NCI MetaThesaurus CUI is represented by an Entity (with the CUI being the code for that Entity).
+Atoms of that CUI are represented by &#39;Presentation&#39;(s) of the Entity.
+
+For examples, see the following LexEVS Example classes:
+<ul>
+  <li>
+    org.LexGrid.LexBIG.example.FindPropsAndAssocForCode
+  </li>
+</ul>
+<h3 id="id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getSynonymCollectionbyCui">
+  getSynonymCollectionbyCui
+</h3>
+Use &#39;CodedNodeGraph&#39; API - restricting to Synonym Associations. Note: Each ontology may describe their Synonym Associations differently.
+
+For examples, see the following LexEVS Example classes:
+<ul>
+  <li>
+    org.LexGrid.LexBIG.example.FindRelatedCodes
+  </li>
+  <li>
+    org.LexGrid.LexBIG.example.FindPropsAndAssocForCode
+  </li>
+</ul>
+<h3 id="id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getSourceCollectionbyCui">
+  getSourceCollectionbyCui
+</h3>
+Use &#39;CodedNodeSet&#39; API - adding a &#39;restrictToCodes&#39; restriction.
+
+Note that a CUI is simply a reference to a Code in the NCI MetaThesaurus ontology.
+
+To find the a given code, for example, code &#39;C1234&#39; in the &#39;NCI Thesaurus&#39; ontology - first obtain a &#39;CodedNodeSet&#39; from the &#39;NCI Thesaurus&#39; ontology:
+
+
+
+ResolvedConceptReferenceList cns = lbSvc.getCodingSchemeConcepts(&#34;NCI
+Thesaurus&#34;, null);
+
+
+
+Next, restrict that to the desired Code (&#39;C1234&#39; in this example):
+
+
+
+//First create a ConceptReferenceList to describe the Concept to
+search for.
+//In this example we use the helper class &#39;ConvenienceMethods&#39;.
+ConceptReferenceList crefs =
+ConvenienceMethods.createConceptReferenceList(new String[]
+{ &#34;C1234&#34;}, &#34;NCI Thesaurus&#34;);
+
+//Next, restrice the CodedNodeSet.
+cns.restrictToCodes(crefs);
+
+
+
+Lastly, resolve the match.
+
+
+
+ResolvedConceptReferenceList matches = cns.resolveToList(null, null,
+null, 1);
+
+
+
+Once the ResolvedConceptReference has been obtained, extract the desired Properties and inspect Source using &#39;getSource&#39;.
+<h3 id="id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getSemanticTypeCollectionbyCui.1">
+  getSemanticTypeCollectionbyCui
+</h3>
+Use &#39;CodedNodeSet&#39; API - adding a &#39;restrictToCodes&#39; restriction.
+
+Note that a CUI is simply a reference to a Code in the NCI MetaThesaurus ontology.
+
+To find the a given code, for example, code &#39;C1234&#39; in the &#39;NCI Thesaurus&#39; ontology - first obtain a &#39;CodedNodeSet&#39; from the &#39;NCI Thesaurus&#39; ontology:
+
+
+
+ResolvedConceptReferenceList cns = lbSvc.getCodingSchemeConcepts(&#34;NCI
+Thesaurus&#34;, null);
+
+
+
+Next, restrict that to the desired Code (&#39;C1234&#39; in this example):
+
+
+
+//First create a ConceptReferenceList to describe the Concept to
+search for.
+//In this example we use the helper class &#39;ConvenienceMethods&#39;.
+ConceptReferenceList crefs =
+ConvenienceMethods.createConceptReferenceList(new String[]
+{ &#34;C1234&#34;}, &#34;NCI Thesaurus&#34;);
+
+//Next, restrice the CodedNodeSet.
+cns.restrictToCodes(crefs);
+
+
+
+Lastly, resolve the match.
+
+
+
+ResolvedConceptReferenceList matches = cns.resolveToList(null, null,
+null, 1);
+
+
+
+Once the ResolvedConceptReference has been obtained, extract the desired Properties and inspect the Semantic Types. Semantic Types are held as Qualifiers to the Properties of an Entity.
+<h3 id="id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getSourcebyDefinition">
+  getSourcebyDefinition
+</h3>
+Use &#39;CodedNodeSet&#39; API - adding a &#39;restrictToCodes&#39; restriction.
+
+To find a given code, for example, code &#39;C1234&#39; in the &#39;NCI Thesaurus&#39; ontology - first obtain a &#39;CodedNodeSet&#39; from the &#39;NCI Thesaurus&#39; ontology:
+
+
+
+ResolvedConceptReferenceList cns = lbSvc.getCodingSchemeConcepts(&#34;NCI
+Thesaurus&#34;, null);
+
+
+
+Next, restrict that to the desired Code (&#39;C1234&#39; in this example):
+
+
+
+//First create a ConceptReferenceList to describe the Concept to
+search for.
+//In this example we use the helper class &#39;ConvenienceMethods&#39;.
+ConceptReferenceList crefs =
+ConvenienceMethods.createConceptReferenceList(new String[]
+{ &#34;C1234&#34;}, &#34;NCI Thesaurus&#34;);
+
+//Next, restrice the CodedNodeSet.
+cns.restrictToCodes(crefs);
+
+
+
+Lastly, resolve the match.
+
+
+
+ResolvedConceptReferenceList matches = cns.resolveToList(null, null,
+null, 1);
+
+
+
+Once the ResolvedConceptReference has been obtained, using &#39;getDefinition&#39;, extract the Definition Collection from the Entity. Then extract the source using &#39;getSource&#39;
+<h3 id="id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getDefinitionCollectionbyCui">
+  getDefinitionCollectionbyCui
+</h3>
+Use &#39;CodedNodeSet&#39; API - adding a &#39;restrictToCodes&#39; restriction.
+
+To find the a given code, for example, code &#39;C1234&#39; in the &#39;NCI Thesaurus&#39; ontology - first obtain a &#39;CodedNodeSet&#39; from the &#39;NCI Thesaurus&#39; ontology:
+
+
+
+ResolvedConceptReferenceList cns = lbSvc.getCodingSchemeConcepts
+(&#34;NCI Thesaurus&#34;, null);
+
+
+
+Next, restrict that to the desired Code (&#39;C1234&#39; in this example):
+
+
+
+//First create a ConceptReferenceList to describe the Concept to search for.
+//In this example we use the helper class &#39;ConvenienceMethods&#39;.
+ConceptReferenceList crefs = ConvenienceMethods.createConceptReferenceList
+(new String[]
+{ &#34;C1234&#34;}, &#34;NCI Thesaurus&#34;);
+
+//Next, restrice the CodedNodeSet.
+cns.restrictToCodes(crefs);
+
+
+
+Lastly, resolve the match.
+
+
+
+ResolvedConceptReferenceList matches = cns.resolveToList(null, null,
+null, 1);
+
+
+
+Once the ResolvedConceptReference has been obtained, use the &#39;getReferencedEntry&#39; method to obtain the actual Entity. Using the &#39;getDefinition&#39;, extract the Definition Collection from the Entity.
+<h3 id="id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getPropertyCollectionbyName">
+  getPropertyCollectionbyName
+</h3>
+To find the Properties of a given code, for example, a code with a name of &#39;Heart&#39; in the &#39;NCI Thesaurus&#39; ontology - first obtain a &#39;CodedNodeSet&#39; from the &#39;NCI Thesaurus&#39; ontology:
+
+
+
+ResolvedConceptReferenceList cns = lbSvc.getCodingSchemeConcepts
+(&#34;NCI Thesaurus&#34;, null);
+
+
+
+Next, restrict that to the desired Code Name (&#39;Heart&#39; in this example):
+Note To match the String &#39;Heart&#39; exactly, use the search algorithm &#39;exactMatch&#39;.
+
+
+
+//Next, restrice the CodedNodeSet.
+cns = cns.restrictToMatchingDesignations(&#34;Heart&#34;, null, &#34;exactMatch&#34;, null);
+
+
+
+Lastly, resolve the match.
+
+
+ResolvedConceptReferenceList matches = cns.resolveToList(null, null, null, 1);
+
+
+
+To view the Properties, see &#39;getPropertyValues&#39; above.
+
+For examples, see the following LexEVS Example classes:
+<ul>
+  <li>
+    org.LexGrid.LexBIG.example.FindPropsAndAssocForCode
+  </li>
+</ul>
+<h3 id="id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getPropertyCollectionbyCode">
+  getPropertyCollectionbyCode
+</h3>
+To find the Properties of a given code, for example, code &#39;C1234&#39; in the &#39;NCI Thesaurus&#39; ontology - first obtain a &#39;CodedNodeSet&#39; from the &#39;NCI Thesaurus&#39; ontology:
+
+
+
+ResolvedConceptReferenceList cns = lbSvc.getCodingSchemeConcepts
+(&#34;NCI Thesaurus&#34;, null);
+
+
+
+Next, restrict that to the desired Code (&#39;C1234&#39; in this example):
+
+
+
+//First create a ConceptReferenceList to describe the Concept to search for.
+//In this example we use the helper class &#39;ConvenienceMethods&#39;.
+ConceptReferenceList crefs = ConvenienceMethods.createConceptReferenceList
+(new String[]
+{ &#34;C1234&#34;}, &#34;NCI Thesaurus&#34;);
+
+//Next, restrice the CodedNodeSet.
+cns.restrictToCodes(crefs);
+
+
+
+Lastly, resolve the match.
+
+
+
+ResolvedConceptReferenceList matches = cns.resolveToList(null, null,
+null, 1);
+
+
+
+To view the Properties, see &#39;getPropertyValues&#39; above.
+
+For examples, see the LexEVS Example classes
+<ul>
+  <li>
+    org.LexGrid.LexBIG.example.FindPropsAndAssocForCode
+  </li>
+</ul>
+<h3 id="id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-fetchPropertyCollectionByCodes">
+  fetchPropertyCollectionByCodes
+</h3>
+See &#39;getPropertyCollectionbyCode;
+<h3 id="id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getRoleCollectionbyCode">
+  getRoleCollectionbyCode
+</h3>
+Use the CodedNodeGraph API to find the immediate relations of a Concept.
+
+If a desired Relations Collection is requested (for example, &#39;roles&#39;), the &#39;relationContainerName&#39; may be restricted.
+For instance:
+
+
+//Restrict the &#39;relationContainerName&#39; to the desired container. NOTE: These containers are
+//ontology specific--each ontology defines its own relation container names.
+CodedNodeGraph cng = lexevsService.getNodeGraph(String codingScheme,
+CodingSchemeVersionOrTag versionOrTag, String relationContainerName);
+ResolvedConceptReference[] rcr = cng.resolveAsList(ConceptReference
+graphFocus, boolean resolveForward, boolean resolveBackward,
+int resolveCodedEntryDepth, int
+resolveAssociationDepth, LocalNameList propertyNames,
+PropertyType[] propertyTypes,
+SortOptionList sortOptions, int maxToReturn).getResolvedConceptReference();
+
+
+
+Focus the &#39;graphFocus&#39; on the desired Concept to see relationships from a given Concept.
+
+Once focused and resolved, use the &#39;getSourceOf&#39; or &#39;getTargetOf&#39; methods on the ResolvedConceptReference to find the Associations of a given Code.
+
+For examples, see the LexEVS Example classes
+<ul>
+  <li>
+    org.LexGrid.LexBIG.example.FindRelatedCodes
+  </li>
+  <li>
+    org.LexGrid.LexBIG.example.FindPropsAndAssocForCode
+  </li>
+</ul>
+<h3 id="id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getInverseRoleCollectionbyCode">
+  getInverseRoleCollectionbyCode
+</h3>
+Use the CodedNodeGraph API to find the immediate relations of a Concept.
+
+To find the Inverse Roles, restricting the Relations Container may be necessary (see getRoleCollectionbyCode above).
+Depending on how the onotology defines an &#39;inverse&#39; role or association, these can be restricted as well.
+
+For instance:
+
+
+CodedNodeGraph cng = lexevsService.getNodeGraph(String codingScheme,
+CodingSchemeVersionOrTag versionOrTag, String relationContainerName);
+ResolvedConceptReference[] rcr = cng.resolveAsList(ConceptReference
+graphFocus, boolean resolveForward, boolean resolveBackward,
+int resolveCodedEntryDepth, int
+resolveAssociationDepth, LocalNameList propertyNames,
+PropertyType[] propertyTypes,
+SortOptionList sortOptions, int maxToReturn).getResolvedConceptReference();
+
+
+
+Focus the &#39;graphFocus&#39; on the desired Concept to see relationships from a given Concept.
+
+Once focused and resolved, use the &#39;getSourceOf&#39; or &#39;getTargetOf&#39; methods on the ResolvedConceptReference to find the Associations of a given Code.
+
+For examples, see the following LexEVS Example classes:
+<ul>
+  <li>
+    org.LexGrid.LexBIG.example.FindRelatedCodes
+  </li>
+  <li>
+    org.LexGrid.LexBIG.example.FindPropsAndAssocForCode
+  </li>
+</ul>
+<h3 id="id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getInverseAssociationCollectionbyCode">
+  getInverseAssociationCollectionbyCode
+</h3>
+Use the CodedNodeGraph API to find the immediate relations of a Concept.
+
+To find the Inverse Collections, restricting the Relations Container may be necessary (see getInverseRoleCollectionbyCode above).
+Depending on how the onotology defines an &#39;inverse&#39; role or association, these can be restricted as well.
+
+For instance:
+
+
+CodedNodeGraph cng = lexevsService.getNodeGraph(String codingScheme,
+CodingSchemeVersionOrTag versionOrTag, String relationContainerName);
+ResolvedConceptReference[] rcr = cng.resolveAsList(ConceptReference
+graphFocus, boolean resolveForward, boolean resolveBackward,
+int resolveCodedEntryDepth, int
+resolveAssociationDepth, LocalNameList propertyNames,
+PropertyType[] propertyTypes,
+SortOptionList sortOptions, int maxToReturn).getResolvedConceptReference();
+
+
+
+Focus the &#39;graphFocus&#39; on the desired Concept to see relationships from a given Concept.
+
+Once focused and resolved, use the &#39;getSourceOf&#39; or &#39;getTargetOf&#39; methods on the ResolvedConceptReference to find the Associations of a given Code.
+
+For examples, see the following LexEVS Example classes:
+<ul>
+  <li>
+    org.LexGrid.LexBIG.example.FindRelatedCodes
+  </li>
+  <li>
+    org.LexGrid.LexBIG.example.FindPropsAndAssocForCode
+  </li>
+</ul>
+<h3 id="id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getHasParentsbyCode">
+  getHasParentsbyCode
+</h3>
+Either:
+<ul>
+  <li>
+    Use the &#39;LexBIGServiceConvenienceMethods&#39; API method &#39;getHierarchyLevelPrev&#39;
+  </li>
+  <li>
+    Use the CodedNodeGraph API to resolve the immediate Associations of a given code, and check if they exist.
+  </li>
+</ul>
+<h3 id="id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getHasChildrenbyCode">
+  getHasChildrenbyCode
+</h3>
+Either:
+<ul>
+  <li>
+    Use the &#39;LexBIGServiceConvenienceMethods&#39; API method &#39;getHierarchyLevelNext&#39;
+  </li>
+  <li>
+    Use the CodedNodeGraph API to resolve the immediate Associations of a given code, and check if they exist.
+  </li>
+</ul>
+<h3 id="id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getIsRetiredbyCode">
+  getIsRetiredbyCode
+</h3>
+Use the &#39;LexBIGServiceConvenienceMethods&#39; API method &#39;isCodeRetired&#39;
+<h3 id="id-3LexEVS5.xMigrationEVSAPItoLexEVSAPI-getLocalNames">
+  getLocalNames
+</h3>
+Use the &#39;LexBIGService&#39; API method &#39;getSupportedCodingSchemes&#39; - and extract the Names (local name, registered name, etc...) as needed. 

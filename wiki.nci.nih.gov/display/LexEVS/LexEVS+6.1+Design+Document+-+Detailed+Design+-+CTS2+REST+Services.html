@@ -1,0 +1,555 @@
+Contents of this Page
+<ul>
+  <li>
+    <a href="#LexEVS6.1DesignDocumentDetailedDesignCTS2RESTServices-1ArchitectureDesign" rel="nofollow">
+      1 Architecture Design
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.1DesignDocumentDetailedDesignCTS2RESTServices-2ModelViewArchitecture(MVC)" rel="nofollow">
+      2 Model View Architecture (MVC)
+    </a>
+    <ul>
+      <li>
+        <a href="#LexEVS6.1DesignDocumentDetailedDesignCTS2RESTServices-2.1Model" rel="nofollow">
+          2.1 Model
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.1DesignDocumentDetailedDesignCTS2RESTServices-2.2View" rel="nofollow">
+          2.2 View
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.1DesignDocumentDetailedDesignCTS2RESTServices-2.3Controller" rel="nofollow">
+          2.3 Controller
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#LexEVS6.1DesignDocumentDetailedDesignCTS2RESTServices-3LogicalView" rel="nofollow">
+      3 Logical View
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.1DesignDocumentDetailedDesignCTS2RESTServices-4SoftwareArchitecture" rel="nofollow">
+      4 Software Architecture
+    </a>
+    <ul>
+      <li>
+        <a href="#LexEVS6.1DesignDocumentDetailedDesignCTS2RESTServices-4.1HighLevelStructure" rel="nofollow">
+          4.1 High Level Structure
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.1DesignDocumentDetailedDesignCTS2RESTServices-4.2BasicRequestSequence" rel="nofollow">
+          4.2 Basic Request Sequence
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.1DesignDocumentDetailedDesignCTS2RESTServices-4.3IndependentModuleStructure" rel="nofollow">
+          4.3 Independent Module Structure
+        </a>
+        <ul>
+          <li>
+            <a href="#LexEVS6.1DesignDocumentDetailedDesignCTS2RESTServices-4.3.1CodeSystemVersionReadService" rel="nofollow">
+              4.3.1 CodeSystemVersionReadService
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS6.1DesignDocumentDetailedDesignCTS2RESTServices-4.3.2CodeSystemVersionQueryService" rel="nofollow">
+              4.3.2 CodeSystemVersionQueryService
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS6.1DesignDocumentDetailedDesignCTS2RESTServices-4.3.3EntityDescriptionReadService" rel="nofollow">
+              4.3.3 EntityDescriptionReadService
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS6.1DesignDocumentDetailedDesignCTS2RESTServices-4.3.4EntityDescriptionQueryService" rel="nofollow">
+              4.3.4 EntityDescriptionQueryService
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS6.1DesignDocumentDetailedDesignCTS2RESTServices-4.3.5AssociationQueryService" rel="nofollow">
+              4.3.5 AssociationQueryService
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS6.1DesignDocumentDetailedDesignCTS2RESTServices-4.3.6MapReadService" rel="nofollow">
+              4.3.6 MapReadService
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS6.1DesignDocumentDetailedDesignCTS2RESTServices-4.3.7MapQueryService" rel="nofollow">
+              4.3.7 MapQueryService
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS6.1DesignDocumentDetailedDesignCTS2RESTServices-4.3.8ValueSetReadService" rel="nofollow">
+              4.3.8 ValueSetReadService
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS6.1DesignDocumentDetailedDesignCTS2RESTServices-4.3.9ValueSetQueryService" rel="nofollow">
+              4.3.9 ValueSetQueryService
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS6.1DesignDocumentDetailedDesignCTS2RESTServices-4.3.10ValueSetDefinitionReadService" rel="nofollow">
+              4.3.10 ValueSetDefinitionReadService
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS6.1DesignDocumentDetailedDesignCTS2RESTServices-4.3.11ValueSetDefinitionQueryService" rel="nofollow">
+              4.3.11 ValueSetDefinitionQueryService
+            </a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#LexEVS6.1DesignDocumentDetailedDesignCTS2RESTServices-5URIResolution" rel="nofollow">
+      5 URI Resolution
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.1DesignDocumentDetailedDesignCTS2RESTServices-6Glossary" rel="nofollow">
+      6 Glossary
+    </a>
+  </li>
+</ul>
+Document Information
+Author: Scott Bauer, Kevin Peterson Email: bauer.scott@mayo.edu, peterson.kevin@mayo.edu Team: LexEVS Contract: ST12-1106 Client: NCI CBIIT National Institutes of Heath US Department of Health and Human Services
+Revision History
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Version
+      </th>
+      <th>
+        Date
+      </th>
+      <th>
+        Description of Changes
+      </th>
+      <th>
+        Author
+      </th>
+    </tr>
+    <tr>
+      <td>
+        1.0
+      </td>
+      <td>
+        2013/02/21
+      </td>
+      <td>
+        Initial Version
+      </td>
+      <td>
+        Peterson, KevinBauer, Scott
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="LexEVS6.1DesignDocumentDetailedDesignCTS2RESTServices-1ArchitectureDesign">
+  1 Architecture Design
+</h2>
+The CTS2 Development Framework is a development kit for rapidly creating CTS2 compliant applications. The Development Framework allows for users to create plugins which may be loaded into the Development Framework to provide REST Web Services that use CTS2 compliant paths and model objects. Because the Development Framework is plugin based, users are required only to implement the functionality that is exclusive to their environment. For example, in any REST service, a large portion of code must be written to accept HTTP requests, handle errors, accept parameters, etc. The Development Framework provides all of this infrastructure, as well as utilities to help create plugins. The developer then is left to create the implementation plugin, which is the code specific to the individual environment. For example, this code may retrieve data from a database, read data from a file system, aggregate two more other services, etc.CTS2 is modeled abstractly (the Platform Independent Model or ‘PIM’) and for specific platforms (the Platform Specific Model or ‘PSM’). The CTS2 Development Framework attempts to transform these ideas into the MVC architecture style. Much like a traditional MVC implementation, multiple ‘Views’ expose the ‘Model’ with the help of the ‘Controller’. If we think of a ‘PSM’ as a ‘View’, and the CTS2 Development Framework acting as the ‘Controller’, a developer needs only to produce the ‘PIM’ based ‘Model’. Going further:
+<h2 id="LexEVS6.1DesignDocumentDetailedDesignCTS2RESTServices-2ModelViewArchitecture(MVC)">
+  2 Model View Architecture (MVC)
+</h2>
+<h3 id="LexEVS6.1DesignDocumentDetailedDesignCTS2RESTServices-2.1Model">
+  2.1 Model
+</h3>
+Transforms View (CTS2 PIM) structures into state (aka “backing store”) Enforces post-conditions May also enforce some invariants
+<h3 id="LexEVS6.1DesignDocumentDetailedDesignCTS2RESTServices-2.2View">
+  2.2 View
+</h3>
+Implements the static portion of the CTS2 model (Indirectly) enforces some invariants
+<h3 id="LexEVS6.1DesignDocumentDetailedDesignCTS2RESTServices-2.3Controller">
+  2.3 Controller
+</h3>
+Implements the behavioral portion of the CTS2 model Accepts events Validates invariants Enforces preconditions
+<h2 id="LexEVS6.1DesignDocumentDetailedDesignCTS2RESTServices-3LogicalView">
+  3 Logical View
+</h2>
+The CT2 Development Framework (CTS2DF) is a Plugin-based Java toolkint. It is built on the
+<a href="http://www.osgi.org" rel="nofollow">
+  OSGi
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+framework, which allows it to adopt a modular architecture. At the center, the CTS2DF is a web application, capable of being deployed to a web application server such as
+<a href="http://tomcat.apache.org/" rel="nofollow">
+  Tomcat
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+,
+<a href="http://jetty.codehaus.org/jetty/" rel="nofollow">
+  Jetty
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+,
+<a href="http://www-01.ibm.com/software/websphere/" rel="nofollow">
+  WebSphere
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+, etc. At the core, the CTS2DF starts an
+<a href="http://felix.apache.org/" rel="nofollow">
+  Apache Felix
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+OSGi environment. This allows the OSGi framework to be self-contained, eliminating the need for special application servers to be used.After initialization, the CTS2DF will use Service Plugin Implementations (or OSGi bundles) to implement the CTS2 functionality. These Service Plugins conform to a standard CTS2 interface, and are intended to be implemented according to the requirements of the implementer or organization. Furthermore, additional (non-CTS2) plugins can be registered to the service to provided extra functionality, such as security or caching. An added benefit of these plugins is that they can be shared across CTS2 implementations. Ultimately, the CTS2DF process the results of calls to these Service Plugins and transforms the responses into CTS2 compliant XML, JSON, or HTML.
+<img alt="CTS2 development framework diagram" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%206.1%20Design%20Document%20-%20Detailed%20Design%20-%20CTS2%20REST%20Services/image2013-2-21%2016:16:54.png?api=v2">
+<h2 id="LexEVS6.1DesignDocumentDetailedDesignCTS2RESTServices-4SoftwareArchitecture">
+  4 Software Architecture
+</h2>
+<h3 id="LexEVS6.1DesignDocumentDetailedDesignCTS2RESTServices-4.1HighLevelStructure">
+  4.1 High Level Structure
+</h3>
+The main responsibility of the CTS2DF is to accept incoming HTTP requests and delegate to the appropriate Service Plugin implementations. At a high level, the logic of accepting an incoming request is as follows:START   WHILE TRUE:      ACCEPT HTTP REQUEST      SERVICE_INTERFACE = ServiceProvider.getService()  #Ask the ServiceProvider for an Implementation      IF SERVICE_INTERFACE == NULL                               THEN: RETURN NOT_IMPLEMENTED_ERROR             #If not found, assume CTS2 Service is not Implemented         ELSE: SERVICE_INTERFACE.execute()              #If matching implementation is found, execute it      END IF   END WHILE:ENDHTTP Requests are accepted and validated by a series of RestControllers. The responsibility of these RestControllers is to accept requests, parse parameters, and check all possible pre-conditions. They also connect the various HTTP requests to the appropriate
+<a href="http://informatics.mayo.edu/cts2/framework/sites/service/service/apidocs/edu/mayo/cts2/framework/service/profile/Cts2Profile.html" rel="nofollow">
+  CTS2 Profile Interfaces
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+. Once the RestControllers have accepted the requests and identified the needed CTS2 Profile Interfaces to fulfill it, The process of discovering the available implementations of those needed CTS2 Profile Interfaces begins.Service Discovery happens via the
+<a href="http://informatics.mayo.edu/cts2/framework/sites/service/service/apidocs/edu/mayo/cts2/framework/service/provider/ServiceProvider.html" rel="nofollow">
+  ServiceProvider
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+interface. Each Service Plugin must register this Service as an OSGi Service. In this way, a Service Plugin advertises each CTS2 Profile that it implements. NOTE:  Service Plugins are not required to implement all of the CTS2 Profile Interfaces. They may implement one, or all, or (most likely) some subset that matches the desired CTS2 functionality.
+<img alt="High level structure diagram" width="900" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%206.1%20Design%20Document%20-%20Detailed%20Design%20-%20CTS2%20REST%20Services/image2013-3-1%209:3:23.png?api=v2">
+<h3 id="LexEVS6.1DesignDocumentDetailedDesignCTS2RESTServices-4.2BasicRequestSequence">
+  4.2 Basic Request Sequence
+</h3>
+Represented graphically, an incoming request will follow the general sequence as outlined below. It is important to note the Condition case, as this allow Service Plugins to leave CTS2 Profile Interfaces unimplemented if the functionality is not needed. In this case, a &#34;No-Op&#34; Service is defaulted. The responsibility of this No-Op Service is to inform the requester, via the appropriate message, that the requested CTS2 Functionality is not available in this service implementation.
+<img alt="Basic request sequence diagram" width="900" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%206.1%20Design%20Document%20-%20Detailed%20Design%20-%20CTS2%20REST%20Services/image2013-3-1%2010:2:15.png?api=v2">
+<h3 id="LexEVS6.1DesignDocumentDetailedDesignCTS2RESTServices-4.3IndependentModuleStructure">
+  4.3 Independent Module Structure
+</h3>
+LexEVS, implemented as a CTS2 Service Plugin, will implement the following
+<a href="http://informatics.mayo.edu/cts2/framework/sites/service/service/apidocs/edu/mayo/cts2/framework/service/profile/Cts2Profile.html" rel="nofollow">
+  CTS2 Profile Interfaces
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+. These Interfaces will delegate to LexEVS functionality as described below.
+<h4 id="LexEVS6.1DesignDocumentDetailedDesignCTS2RESTServices-4.3.1CodeSystemVersionReadService">
+  4.3.1 CodeSystemVersionReadService
+</h4>
+The
+<a href="http://informatics.mayo.edu/cts2/framework/sites/service/service/apidocs/edu/mayo/cts2/framework/service/profile/codesystemversion/CodeSystemVersionReadService.html" rel="nofollow">
+  CodeSystemVersionReadService
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+CTS2 Profile Interface will be implemented using the
+<a href="http://informatics.mayo.edu/LexGrid/downloads/javadoc/org/LexGrid/LexBIG/LexBIGService/LexBIGService.html" rel="nofollow">
+  LexBIGService
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+.Specifically, the
+<a href="http://informatics.mayo.edu/LexGrid/downloads/javadoc/org/LexGrid/LexBIG/LexBIGService/LexBIGService.html#resolveCodingScheme%28java.lang.String,%20org.LexGrid.LexBIG.DataModel.Core.CodingSchemeVersionOrTag%29" rel="nofollow">
+  resolveCodingScheme
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+method of the
+<a href="http://informatics.mayo.edu/LexGrid/downloads/javadoc/org/LexGrid/LexBIG/LexBIGService/LexBIGService.html" rel="nofollow">
+  LexBIGService
+</a>
+will be used
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+.
+<img alt="Code system version read service diagram" width="900" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%206.1%20Design%20Document%20-%20Detailed%20Design%20-%20CTS2%20REST%20Services/CodeSystemVersionRead.png?api=v2">
+<h4 id="LexEVS6.1DesignDocumentDetailedDesignCTS2RESTServices-4.3.2CodeSystemVersionQueryService">
+  4.3.2 CodeSystemVersionQueryService
+</h4>
+The
+<a href="http://informatics.mayo.edu/cts2/framework/sites/service/service/apidocs/edu/mayo/cts2/framework/service/profile/codesystemversion/CodeSystemVersionQueryService.html" rel="nofollow">
+  CodeSystemVersionQueryService
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+CTS2 Profile Interface will be implemented using the
+<a href="http://informatics.mayo.edu/LexGrid/downloads/javadoc/org/LexGrid/LexBIG/LexBIGService/LexBIGService.html" rel="nofollow">
+  LexBIGService
+</a>
+interface
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+.Specifically, the
+<a href="http://informatics.mayo.edu/LexGrid/downloads/javadoc/org/LexGrid/LexBIG/LexBIGService/LexBIGService.html#getSupportedCodingSchemes%28%29" rel="nofollow">
+  getSupportedCodingSchemes
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+method of the
+<a href="http://informatics.mayo.edu/LexGrid/downloads/javadoc/org/LexGrid/LexBIG/LexBIGService/LexBIGService.html" rel="nofollow">
+  LexBIGService
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+interface will be used.
+<img alt="Code system version query service diagram" width="900" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%206.1%20Design%20Document%20-%20Detailed%20Design%20-%20CTS2%20REST%20Services/CodeSystemVersionQueryService.jpeg?api=v2">
+<h4 id="LexEVS6.1DesignDocumentDetailedDesignCTS2RESTServices-4.3.3EntityDescriptionReadService">
+  4.3.3 EntityDescriptionReadService
+</h4>
+The
+<a href="http://informatics.mayo.edu/cts2/framework/sites/service/service/apidocs/edu/mayo/cts2/framework/service/profile/entitydescription/EntityDescriptionReadService.html" rel="nofollow">
+  EntityDescriptionReadService
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+CTS2 Profile Interface will be implemented using the
+<a href="http://informatics.mayo.edu/LexGrid/downloads/javadoc/org/LexGrid/LexBIG/LexBIGService/LexBIGService.html" rel="nofollow">
+  LexBIGService
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+-&gt;
+<a href="http://informatics.mayo.edu/LexGrid/downloads/javadoc/org/LexGrid/LexBIG/LexBIGService/CodedNodeSet.html" rel="nofollow">
+  CodedNodeSet
+</a>
+interface
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+.
+<img alt="Entity description read service diagram" width="900" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%206.1%20Design%20Document%20-%20Detailed%20Design%20-%20CTS2%20REST%20Services/EntityDescriptionReadService.png?api=v2">
+<h4 id="LexEVS6.1DesignDocumentDetailedDesignCTS2RESTServices-4.3.4EntityDescriptionQueryService">
+  4.3.4 EntityDescriptionQueryService
+</h4>
+The
+<a href="http://informatics.mayo.edu/cts2/framework/sites/service/service/apidocs/edu/mayo/cts2/framework/service/profile/entitydescription/EntityDescriptionQueryService.html" rel="nofollow">
+  EntityDescriptionQueryService
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+CTS2 Profile Interface will be implemented using the
+<a href="http://informatics.mayo.edu/LexGrid/downloads/javadoc/org/LexGrid/LexBIG/LexBIGService/LexBIGService.html" rel="nofollow">
+  LexBIGService
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+-&gt;
+<a href="http://informatics.mayo.edu/LexGrid/downloads/javadoc/org/LexGrid/LexBIG/LexBIGService/CodedNodeSet.html" rel="nofollow">
+  CodedNodeSet
+</a>
+interface
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+.
+<img alt="Entity description query service diagram" width="900" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%206.1%20Design%20Document%20-%20Detailed%20Design%20-%20CTS2%20REST%20Services/EntityDescriptionQueryService.png?api=v2">
+<h4 id="LexEVS6.1DesignDocumentDetailedDesignCTS2RESTServices-4.3.5AssociationQueryService">
+  4.3.5 AssociationQueryService
+</h4>
+The
+<a href="http://informatics.mayo.edu/cts2/framework/sites/service/service/apidocs/edu/mayo/cts2/framework/service/profile/association/AssociationQueryService.html" rel="nofollow">
+  AssociationQueryService
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+CTS2 Profile Interface will be implemented using the
+<a href="http://informatics.mayo.edu/LexGrid/downloads/javadoc/org/LexGrid/LexBIG/LexBIGService/LexBIGService.html" rel="nofollow">
+  LexBIGService
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+-&gt;
+<a href="http://informatics.mayo.edu/LexGrid/downloads/javadoc/org/LexGrid/LexBIG/LexBIGService/CodedNodeGraph.html" rel="nofollow">
+  CodedNodeGraph
+</a>
+interface
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+.
+<img alt="Association query service diagram" width="900" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%206.1%20Design%20Document%20-%20Detailed%20Design%20-%20CTS2%20REST%20Services/AssociationQueryService.png?api=v2">
+<h4 id="LexEVS6.1DesignDocumentDetailedDesignCTS2RESTServices-4.3.6MapReadService">
+  4.3.6 MapReadService
+</h4>
+The
+<a href="http://informatics.mayo.edu/cts2/framework/sites/service/service/apidocs/edu/mayo/cts2/framework/service/profile/map/MapReadService.html" rel="nofollow">
+  MapReadService
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+CTS2 Profile Interface will be implemented using a combination of the the MappingExtension interface and the
+<a href="http://informatics.mayo.edu/LexGrid/downloads/javadoc/org/LexGrid/LexBIG/LexBIGService/LexBIGService.html" rel="nofollow">
+  LexBIGService
+</a>
+. Specifically, the
+<a href="http://informatics.mayo.edu/LexGrid/downloads/javadoc/org/LexGrid/LexBIG/LexBIGService/LexBIGService.html#resolveCodingScheme%28java.lang.String,%20org.LexGrid.LexBIG.DataModel.Core.CodingSchemeVersionOrTag%29" rel="nofollow">
+  resolveCodingScheme
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+method of the
+<a href="http://informatics.mayo.edu/LexGrid/downloads/javadoc/org/LexGrid/LexBIG/LexBIGService/LexBIGService.html" rel="nofollow">
+  LexBIGService
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+will be used, and the MappingExtension can be used to verify the CodingScheme is a Mapping or non-Mapping CodingScheme.
+<img alt="Map read service diagram" width="900" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%206.1%20Design%20Document%20-%20Detailed%20Design%20-%20CTS2%20REST%20Services/MapReadService.jpeg?api=v2">
+<h4 id="LexEVS6.1DesignDocumentDetailedDesignCTS2RESTServices-4.3.7MapQueryService">
+  4.3.7 MapQueryService
+</h4>
+The
+<a href="http://informatics.mayo.edu/cts2/framework/sites/service/service/apidocs/edu/mayo/cts2/framework/service/profile/map/MapQueryService.html" rel="nofollow">
+  MapQueryService
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+CTS2 Profile Interface will be implemented using a combination of the the MappingExtension interface and the
+<a href="http://informatics.mayo.edu/LexGrid/downloads/javadoc/org/LexGrid/LexBIG/LexBIGService/LexBIGService.html" rel="nofollow">
+  LexBIGService
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+. Specifically, the
+<a href="http://informatics.mayo.edu/LexGrid/downloads/javadoc/org/LexGrid/LexBIG/LexBIGService/LexBIGService.html#getSupportedCodingSchemes%28%29" rel="nofollow">
+  getSupportedCodingSchemes
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+method of the
+<a href="http://informatics.mayo.edu/LexGrid/downloads/javadoc/org/LexGrid/LexBIG/LexBIGService/LexBIGService.html" rel="nofollow">
+  LexBIGService
+</a>
+will be used, and the MappingExtension can be used to verify the CodingScheme is a Mapping or non-Mapping CodingScheme.
+<img alt="Map query service diagram" width="900" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%206.1%20Design%20Document%20-%20Detailed%20Design%20-%20CTS2%20REST%20Services/MapQueryService.png?api=v2">
+<h4 id="LexEVS6.1DesignDocumentDetailedDesignCTS2RESTServices-4.3.8ValueSetReadService">
+  4.3.8 ValueSetReadService
+</h4>
+The
+<a href="http://informatics.mayo.edu/cts2/framework/sites/service/service/apidocs/edu/mayo/cts2/framework/service/profile/valueset/ValueSetReadService.html" rel="nofollow">
+  ValueSetReadService
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+CTS2 Profile Interface will be implemented using the LexEVS
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427340" rel="nofollow">
+  LexEVSValueSetDefinitionServices
+</a>
+Interface.
+<img alt="Value set read service diagram" width="900" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%206.1%20Design%20Document%20-%20Detailed%20Design%20-%20CTS2%20REST%20Services/ValueSetReadService.png?api=v2">
+<h4 id="LexEVS6.1DesignDocumentDetailedDesignCTS2RESTServices-4.3.9ValueSetQueryService">
+  4.3.9 ValueSetQueryService
+</h4>
+The
+<a href="http://informatics.mayo.edu/cts2/framework/sites/service/service/apidocs/edu/mayo/cts2/framework/service/profile/valueset/ValueSetQueryService.html" rel="nofollow">
+  ValueSetQueryService
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+CTS2 Profile Interface will be implemented using the LexEVS
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427340" rel="nofollow">
+  LexEVSValueSetDefinitionServices
+</a>
+Interface.
+<h4 id="LexEVS6.1DesignDocumentDetailedDesignCTS2RESTServices-4.3.10ValueSetDefinitionReadService">
+  4.3.10 ValueSetDefinitionReadService
+</h4>
+The
+<a href="http://informatics.mayo.edu/cts2/framework/sites/service/service/apidocs/edu/mayo/cts2/framework/service/profile/valueset/ValueSetDefinitionReadService.html" rel="nofollow">
+  ValueSetDefinitionReadService
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+CTS2 Profile Interface will be implemented using the LexEVS
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427340" rel="nofollow">
+  LexEVSValueSetDefinitionServices
+</a>
+Interface.
+<img alt="Value set definition read service diagram" width="900" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%206.1%20Design%20Document%20-%20Detailed%20Design%20-%20CTS2%20REST%20Services/ValueSetDefinitionRead.png?api=v2">
+<h4 id="LexEVS6.1DesignDocumentDetailedDesignCTS2RESTServices-4.3.11ValueSetDefinitionQueryService">
+  4.3.11 ValueSetDefinitionQueryService
+</h4>
+The
+<a href="http://informatics.mayo.edu/cts2/framework/sites/service/service/apidocs/edu/mayo/cts2/framework/service/profile/valueset/ValueSetDefinitionQueryService.html" rel="nofollow">
+  ValueSetDefinitionQueryService
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+CTS2 Profile Interface will be implemented using the LexEVS
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427340" rel="nofollow">
+  LexEVSValueSetDefinitionServices
+</a>
+Interface.
+<img alt="Value set definition query service diagram" width="900" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%206.1%20Design%20Document%20-%20Detailed%20Design%20-%20CTS2%20REST%20Services/ValueSetDefinitionQuery.png?api=v2">
+<h2 id="LexEVS6.1DesignDocumentDetailedDesignCTS2RESTServices-5URIResolution">
+  5 URI Resolution
+</h2>
+One of the requirements of Resource Oriented Architecture is that every resource must have an identifier. As the Universal Resource Identifier (URI) is the primary identifier used by the Semantic Web, the CTS2 specification calls for all of its resources to be identified by URIs. This results in the need to distinguish the identity of the resource being described from the identity of the description itself, and the basic requirement that all servers in a CTS2 ‘ecosystem’ need to use the same identifiers if information is to be aggregated and shared in a meaningful fashion. The EVS solution for this problem is a URI resolution service, which provides a canonical URI for any local URI and does so as a service.  For the EVS implementation of this service, a URI Resolver Service has been implemented and runs in conjunction with the EVS CTS2 implementation.  While CTS2 users may install their own resolving service, based on the installation instructions
+<a href="https://wiki.nci.nih.gov/display/LexEVS/8+-+Installing+LexEVS+6.1+URI+Resolver+Service" rel="nofollow">
+  here
+</a>
+, a service is also running at this
+<a href="https://informatics.mayo.edu/cts2/services/uriresolver" rel="nofollow">
+  location
+</a>
+.  A thorough description of this service is to be found
+<a href="https://wiki.nci.nih.gov/display/sysdeploy/LexEVS+6.1+ARC+Document#LexEVS61ARCDocument-Component-URIResolutionService" rel="nofollow">
+  here
+</a>
+.
+<h2 id="LexEVS6.1DesignDocumentDetailedDesignCTS2RESTServices-6Glossary">
+  6 Glossary
+</h2>
+Service Plugin: An OSGi bundle capable of being loaded into the CTS2 Development Framework. In order to be recognized as a Service Plugin, the bundle must export one (and only one) Service of type
+<a href="http://informatics.mayo.edu/cts2/framework/sites/service/service/apidocs/edu/mayo/cts2/framework/service/provider/ServiceProvider.html" rel="nofollow">
+  ServiceProvider
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+. Note, however, that the bundle is no excluded from exporting other services – but it must at least export one and only one ServiceProvider Service.Platform Independent Model (PIM): A implementation agnostic description of program functionality.Platform Specific Model (PSM): An implementation model targeted towards a specific technical platform.

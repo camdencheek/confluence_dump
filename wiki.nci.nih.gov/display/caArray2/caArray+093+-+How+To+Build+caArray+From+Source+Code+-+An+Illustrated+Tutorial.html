@@ -1,0 +1,216 @@
+Unable to render {include} The included page could not be found.
+<h1 id="caArray093HowToBuildcaArrayFromSourceCodeAnIllustratedTutorial-Question:HowcanIbuildcaArrayfromthesourcecodeintheNCIrepository?">
+  Question: How can I build caArray from the source code in the NCI repository?
+</h1>
+Topic: caArray Installation and UpgradeRelease: caArray v2.4.1.1 and higherDate entered: 01/17/2012
+<h1 id="caArray093HowToBuildcaArrayFromSourceCodeAnIllustratedTutorial-Answer">
+  Answer
+</h1>
+Below is a step-by-step illustrated tutorial on how to build the application from source. It covers the following:
+<ul>
+  <li>
+    How to check out the source code from the repository using a Subversion (SVN) client
+  </li>
+  <li>
+    How to manually create the requisite database schema
+  </li>
+  <li>
+    How to configure the &#39;properties&#39; files from the source with local installation settings
+  </li>
+  <li>
+    How to invoke the build process from the command line
+  </li>
+  <li>
+    How to launch the caArray server once the build has completed successfully
+  </li>
+  <li>
+    How to access the application&#39;s login page via your Web browser
+  </li>
+</ul>
+The tutorial is designed for use in a Windows environment, but can easily be adapted to work in Linux as well.NoteThis tutorial is based on the readme.txt file in the NCI caArray source code repository at
+<a href="https://ncisvn.nci.nih.gov/svn/caarray2/tags/2.4.1.1/" rel="nofollow">
+  https://ncisvn.nci.nih.gov/svn/caarray2/tags/2.4.1.1/
+</a>
+.
+<h2 id="caArray093HowToBuildcaArrayFromSourceCodeAnIllustratedTutorial-Prerequisites">
+  Prerequisites
+</h2>
+1) Before proceeding to check out the code, ensure that the following are already installed on your machine:
+<ul>
+  <li>
+    The Java 2 SE Development Kit (JDK) v1.5, available for download at
+    <a href="http://download.oracle.com/otn/java/jdk/1.5.0_22/jdk-1_5_0_22-windows-i586-p.exe" rel="nofollow">
+      http://download.oracle.com/otn/java/jdk/1.5.0_22/jdk-1_5_0_22-windows-i586-p.exe
+    </a>
+  </li>
+</ul>
+WarningThe build process described in this tutorial only works with version 1.5 of the JDK; it will not work with any other versions, earlier or later.
+<ul>
+  <li>
+    Apache Ant 1.7.0 or later, available for download at
+    <a href="http://mirrors.ibiblio.org/apache//ant/binaries/apache-ant-1.8.3-bin.zip" rel="nofollow">
+      http://mirrors.ibiblio.org/apache//ant/binaries/apache-ant-1.8.3-bin.zip
+    </a>
+  </li>
+</ul>
+<ul>
+  <li>
+    MySQL v5.0 or later, available for download at
+    <a href="http://filehippo.com/download/file/3518c972e6317bff1a5caacae83b83cf1057fceca08180ebd44ad9a0ba01444b/" rel="nofollow">
+      http://filehippo.com/download/file/3518c972e6317bff1a5caacae83b83cf1057fceca08180ebd44ad9a0ba01444b/
+    </a>
+  </li>
+</ul>
+<ul>
+  <li>
+    A command-line Subversion (SVN) client of your choice. The one used in this tutorial is the Collabnet Subversion Command-Line Client v1.74, available for download at
+    <a href="http://www.open.collab.net/servlets/OCNDirector?id=CSVN1.7.4WINC32" rel="nofollow">
+      http://www.open.collab.net/servlets/OCNDirector?id=CSVN1.7.4WINC32
+    </a>
+    (registration required)
+  </li>
+</ul>
+2) Once all the above are installed, ensure they are configured as follows:
+<ul>
+  <li>
+    The PATH and JAVA_HOME Windows environment variables must be set to the the installation path of the JDK binaries. The default path in Windows is:
+  </li>
+</ul>
+C:\Program Files\Java\jdk1.5.0_22\bin
+<ul>
+  <li>
+    The PATH and ANT_HOME Windows environment variables must be set to the installation path of the Ant binaries. The default path is:
+  </li>
+</ul>
+C:\ant
+<ul>
+  <li>
+    The PATH Windows environment variable must be set to the installation path of the SVN client binaries. The default path in Windows is:
+  </li>
+</ul>
+C:\Program Files\CollabNet Subversion Client
+<ul>
+  <li>
+    The ANT_OPTS environment variable must be set to the value &#34;-Xmx256m&#34;
+  </li>
+  <li>
+    The MySQL server must be configured with a secure password for the root user, and this password must be recorded for future reference
+  </li>
+</ul>
+<h2 id="caArray093HowToBuildcaArrayFromSourceCodeAnIllustratedTutorial-CheckingOutTheSourceCodeFromTheNCIRepository">
+  Checking Out The Source Code From The NCI Repository
+</h2>
+To begin checking out the caArray source code from the NCI repository, first create a new folder (i.e., C:\source), then open up a command-line window, navigate to that folder, and enter the following:
+svn checkout https://ncisvn.nci.nih.gov/svn/caarray2/tags/2.4.1.1/
+
+The source files will then begin downloading from the repository server into the folder you created. Depending on the speed of your Internet connection, it may take over half an hour for the checkout to complete, as the source contains thousands of files distributed over hundreds of folders.You&#39;ll know when the checkout is complete when the command-line window shows a message stating, &#39;Checked out revision x&#39;, where x is the revision number, as shown in the screenshot below:
+<img alt="Screenshot of CollabNet command-line window with confirmation message that checkout process has completed" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caArray2/caArray%20093%20-%20How%20To%20Build%20caArray%20From%20Source%20Code%20-%20An%20Illustrated%20Tutorial/2012-03-22_194819.jpg?api=v2">
+<h2 id="caArray093HowToBuildcaArrayFromSourceCodeAnIllustratedTutorial-ManuallyCreatingTheRequisiteDatabaseSchema">
+  Manually Creating The Requisite Database Schema
+</h2>
+It is possible to have Ant automatically generate the empty database schema required for the caArray installation. However, it is preferred to create these schema manually via the MySQL command line client.Before doing so, you will need to derive a name for the database caArray will use to store genomic data, as well as a username and password for the user who is granted access to that database.  In this example, the database name is db1, the username is user1, and the password name is password1.Now, log into the client using the root password you set when installing the database server, then enter the following SQL commands line-by-line, substituting your own database name, username, and password as needed:
+CREATE DATABASE db1 DEFAULT CHARACTER SET latin1;
+GRANT ALL ON db1.* TO &#39;user1&#39;@&#39;localhost&#39; IDENTIFIED BY &#39;password1&#39; WITH GRANT OPTION;
+GRANT ALL ON db1.* TO &#39;user1&#39;@&#39;%&#39; IDENTIFIED BY &#39;password1&#39; WITH GRANT OPTION;
+
+WarningThe single quotes around the username and password in the code snippet above are not optional and can not be omitted -- they are part of the MySQL syntax.The client will respond with a confirmation that the issued queries were successful, as shown in the screenshot below:
+<img alt="Screenshot of MySQL command-line client window with confirmation message that queries issued to create database schema were successful" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caArray2/caArray%20093%20-%20How%20To%20Build%20caArray%20From%20Source%20Code%20-%20An%20Illustrated%20Tutorial/2012-03-22_204758.jpg?api=v2">
+<h2 id="caArray093HowToBuildcaArrayFromSourceCodeAnIllustratedTutorial-ConfiguringThe&#39;Properties&#39;SettingsFiles">
+  Configuring The &#39;Properties&#39; Settings Files
+</h2>
+The caArray installation settings are mainly specified by a source file, install.properties, whose path is:
+$CAARRAY_HOME/software/master_build/install.properties
+
+where $CAARRAY_HOME represents the root folder into which the caArray source was checked out (C:\source in this example).A second file, local.properties, specifies additional settings. This file is not included in the repository -- you must manually create it yourself by opening a plain text editor and saving a blank file with the filename local.properties to the following path:
+$CAARRAY_HOME/software/build/local.properties
+
+These files must be customized with the settings specific to your local environment before starting the build process. These settings include:
+<ul>
+  <li>
+    The username of the root account you established when installing MySQL (&#39;root&#39; by default), as specified by the database.system.user property
+  </li>
+  <li>
+    The password of the root account you established when installing MySQL, as specified by the database.system.password property
+  </li>
+  <li>
+    The name of your database server (usually the same as the Windows name of your workstation or server), as specified by the database.server property
+  </li>
+  <li>
+    The port your database server is installed on (3306 by default), as specified by the database.port property
+  </li>
+  <li>
+    The database name you established when manually creating the database schema, as specified by the database.name property
+  </li>
+  <li>
+    The username of the user to whom you granted access to this database, as specified by the database.user property
+  </li>
+  <li>
+    The password of the user to whom you granted access to this database, as specified by database.password property
+  </li>
+  <li>
+    The path to which caArray should be installed, as specified by the application.base.path property
+  </li>
+</ul>
+The install.properties file contains several other properties aside from the ones listed above, but these others do not need to be customized and can be left at their default values.The blank local.properties file you created previously must be populated with all the properties listed above and their respective values, plus an additional field, jboss.home, which specifies the name of the subfolder within the root installation folder to which the JBoss server will be installed. The value of the jboss.home property is derived from the value of the application.base.path property in install.properties, with the text &#39;\jboss-4.0.5.GA&#39; appended. For example, if the value of the application.base.path property is C:\caArray, then the corresponding value of the jboss.home property would be C:\caArray\jboss-4.0.5.GA.Refer to the screenshot below for an example of how the local.properties file should be configured:
+<img alt="Screenshot of example local.properties file showing various configuration settings for caArray installation" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caArray2/caArray%20093%20-%20How%20To%20Build%20caArray%20From%20Source%20Code%20-%20An%20Illustrated%20Tutorial/2012-03-23_191206.jpg?api=v2">
+NoteThe install.properties file contains additional properties which pertain to grid services. These are not covered here, as configuring caArray to utilize a grid service is beyond the scope of this tutorial. For more information, please refer to the
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=42832239" rel="nofollow">
+  caArray FAQ and in-depth articles
+</a>
+.
+<h2 id="caArray093HowToBuildcaArrayFromSourceCodeAnIllustratedTutorial-InvokingTheBuildProcessFromTheCommandLine">
+  Invoking The Build Process From The Command Line
+</h2>
+Now that you&#39;ve checked out the source code, created the database schema, and configured the properties files, you&#39;re now ready to start the actual build process. First, open a command-line window and navigate to the following path:
+$CAARRAY_HOME/software/master_build
+
+Then, enter the following command:
+ant -Dproperties.file=&lt;absolute path to install.properties file&gt; deploy:local:install
+
+For example, if the path to the install.properties file is:
+C:\source\2.4.1.1\software\master_build\install.properties
+
+Then the command is:
+ant -Dproperties.file=C:\source\2.4.1.1\software\master_build\install.properties deploy:local:install
+
+The amount of time needed for the build process to complete can vary anywhere from under 30 minutes to several hours depending on your hardware configuration. The screenshot below shows the command line window after the build process has completed successfully, with the &#39;BUILD SUCCESSFUL&#39; message at the bottom.
+<img alt="Screenshot of Ant command-line window showing confirmation message that build process has completed successfully" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caArray2/caArray%20093%20-%20How%20To%20Build%20caArray%20From%20Source%20Code%20-%20An%20Illustrated%20Tutorial/caArraySuccessfulBuildScreenshot.jpg?api=v2">
+ NoteThe time it takes for the Ant build process to complete also depends on the speed of your Internet connection, as Ant retrieves all the JAR dependencies from the NCI Ivy repository during the build. This retrieval is very bandwidth-intensive, so ideally the build should be run on a connection with at least 100 Mbps throughput.WarningEven if the command line window shows a &#39;BUILD SUCCESSFUL&#39; message at the end, it is still possible that the build process did not complete successfully. The build process launches several sub-processes, each of which must complete successfully in order for the entire build to complete successfully. If any one of these sub-processes fails, it will display its own &#39;BUILD FAILED&#39; error message, but the overall build process may still display the &#39;BUILD SUCCESSFUL&#39; message at the end. The screenshot below illustrates such a case in which a sub-process failed due to an incorrect version of the JDK installed; note the indented &#39;BUILD FAILED&#39; error message (highlighted in red) several lines above the &#39;BUILD SUCCESSFUL&#39; message (highlighted in yellow) at the bottom.
+<img alt="Screenshot of Ant command-line window showing how build process can fail even when confirmation message indicates that build process has completed successfully" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caArray2/caArray%20093%20-%20How%20To%20Build%20caArray%20From%20Source%20Code%20-%20An%20Illustrated%20Tutorial/caArrayBuildScreenshot%20-%20highlighted.jpg?api=v2">
+The caArray application is now installed in the path you specified in the install.properties file via the application.base.path property. In our example, the installation path is C:\temp, whose contents are displayed in the screenshot below:
+<img alt="Screenshot of Windows Explorer window showing contents of newly installed caArray application in the path specified in install.properties" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caArray2/caArray%20093%20-%20How%20To%20Build%20caArray%20From%20Source%20Code%20-%20An%20Illustrated%20Tutorial/ApplicationPath.jpg?api=v2">
+If the contents of your installation path do not match those shown above, it is likely that your build process failed.
+<h2 id="caArray093HowToBuildcaArrayFromSourceCodeAnIllustratedTutorial-LaunchingThecaArrayServerUponBuildCompletion">
+  Launching The caArray Server Upon Build Completion
+</h2>
+To launch the caArray server, navigate to the following path:
+$INSTALLATION_HOME\jboss-4.0.5.GA\bin
+
+where $INSTALLATION_HOME is the installation path you specified in install.properties, and run the file run.bat. A command line window will launch showing the progress of the launching of the caArray server. The launch process is not instant and may take anywhere from 20 to 120 seconds, after which the command line will display a message indicating that the JBoss MX Microkernel has started, as shown at the bottom of the screenshot below:
+<img alt="Screenshot of command-line window showing confirmation message that the caArray JBoss server has been started after executing the run.bat file" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caArray2/caArray%20093%20-%20How%20To%20Build%20caArray%20From%20Source%20Code%20-%20An%20Illustrated%20Tutorial/jBoss%20launch.jpg?api=v2">
+Do not attempt to access the application until you see the message stating that the JBoss kernel has started.
+<h2 id="caArray093HowToBuildcaArrayFromSourceCodeAnIllustratedTutorial-AccessingThecaArrayLoginPageViaYourWebBrowser">
+  Accessing The caArray Login Page Via Your Web Browser
+</h2>
+To access the caArray login page, open up a new tab in your Web browser and enter the following URL in the address bar:
+http://localhost:38080/caarray/
+
+The login page will now load as shown in the screenshot below from a Mozilla Firefox tab:
+<img alt="Screenshot of caArray login page in Mozilla Firefox Web browser after caArray application URL is entered in address bar" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caArray2/caArray%20093%20-%20How%20To%20Build%20caArray%20From%20Source%20Code%20-%20An%20Illustrated%20Tutorial/loginpage.jpg?api=v2">
+The default installation of caArray comes with several pre-configured user accounts built-in. We can log into the application via any of these accounts. In this tutorial, the one we will log in with is &#39;caarrayadmin&#39;, whose corresponding password is &#39;caArray2!&#39;. You can enter this username and password into their respective fields under the caArray Login panel at the right of the login page, then click on the &#39;Login&#39; button beneath to log into the application, as shown in the screenshot below:
+<img alt="Screenshot of caArray login panel from login page showing example username and password entered into their respective fields" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caArray2/caArray%20093%20-%20How%20To%20Build%20caArray%20From%20Source%20Code%20-%20An%20Illustrated%20Tutorial/login.jpg?api=v2">
+You will now be directed to the caArray homepage, which shows the &#39;My Experiment Workspace&#39;, as shown in the screenshot below. Congratulations on successfully building and logging into caArray!
+<img alt="Screenshot of caArray homepage showing My Experiment Workspace panel after user successfully logged into application" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caArray2/caArray%20093%20-%20How%20To%20Build%20caArray%20From%20Source%20Code%20-%20An%20Illustrated%20Tutorial/HomePage.jpg?api=v2">
+NotecaArray comes with a user provisioning tool (UPT) that allows you to modify the built-in accounts as well as to create additional accounts and assign them varying privileges and access levels. For more information on how to install and use UPT, please visit the UPT user guide at
+<a href="https://ncisvn.nci.nih.gov/svn/docs/trunk/security/CSM4.2ProjectDocuments/4.2.1UserGuides/caCORE_CSM_v421_ProgrammersGuide.pdf" rel="nofollow">
+  caCORE_CSM_v421_ProgrammersGuide.pdf
+</a>
+.
+<h2 id="caArray093HowToBuildcaArrayFromSourceCodeAnIllustratedTutorial-Haveacomment?">
+  Have a comment?
+</h2>
+Please leave your comment in the
+<a href="https://cabig-kc.nci.nih.gov/Molecular/forums/viewtopic.php?f=6&amp;t=772&amp;sid=a5e93932d5706212e0a96f36dc751e3b" rel="nofollow">
+  caArray End User Forum
+</a>
+.

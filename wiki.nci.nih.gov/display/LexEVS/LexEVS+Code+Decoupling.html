@@ -1,0 +1,124 @@
+Document Information
+Author: Craig Stancl, Scott Bauer, Cory EndleEmail: Stancl.craig@mayo.edu,
+<a href="mailto:bauer.scott@mayo.edu" rel="nofollow">
+  bauer.scott@mayo.edu
+</a>
+,
+<a href="mailto:endle.cory@mayo.edu" rel="nofollow">
+  endle.cory@mayo.edu
+</a>
+Team: LexEVSContract: S13-500 MOD4Client: NCI CBIITNational Institutes of HeathUS Department of Health and Human Services
+Table of Contents
+<ul>
+  <li>
+    <a href="#LexEVSCodeDecoupling-Goal" rel="nofollow">
+      Goal
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVSCodeDecoupling-Recommendation" rel="nofollow">
+      Recommendation
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVSCodeDecoupling-Approach" rel="nofollow">
+      Approach
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVSCodeDecoupling-Design" rel="nofollow">
+      Design
+    </a>
+  </li>
+</ul>
+<h2 id="LexEVSCodeDecoupling-Goal">
+  Goal
+</h2>
+The goal of the decoupling work is to remove references of the Lucene search implementation from the LexEVS API layer.  In the current implementation of LexEVS, Lucene objects are embedded in the LexEVS code base.Reasons for decoupling are:
+<ul>
+  <li>
+    This is a &#34;best coding practice&#34; - the search specific implementation of Lucene should not be embedded in the LexEVS code base.  This work, whether it is completed or not will have no impact on the overall Lucene 5.0 implementation.
+  </li>
+  <li>
+    The decoupling task will move the search specific code to an implementation of a new search interface.  If the need ever arose to swap out Lucene for a different search engine, we would be able to create a new implementation of the search interface with the new search engine and not have to make changes in the LexEVS code base.
+  </li>
+</ul>
+<h2 id="LexEVSCodeDecoupling-Recommendation">
+  Recommendation
+</h2>
+Based on our review of the code and the large effort needed to complete this decoupling task, we recommend that this decoupling task be lowered in priority and postponed until the main Lucene 5.0 implementation is complete.  At this time we can consider if we should take on this task.
+<h2 id="LexEVSCodeDecoupling-Approach">
+  Approach
+</h2>
+Before we look at the decoupling task, the approach will be to first update to Lucene 5.0 and fix all of the old Lucene references to get the new Lucene working. We will need to upgrade to Lucene 5.0 first because there will be a lot of Lucene API changes as well as some obsolete Lucene objects that will need to be removed or replaced.  If the decoupling task was done before this with the existing Lucene version, we would have to make additional changes once Lucene 5.0 is implemented. Once the Lucene 5.0 implementation is complete, we should discuss the priority of this task again.
+<h2 id="LexEVSCodeDecoupling-Design">
+  Design
+</h2>
+In order to remove the Lucene references from the LexEVS core code base, we will design a new search API interface.  We would then be able to create a specific Lucene implementation of this interface.  If there was ever a need to substitute different search engine, all that would be necessary would be to create a new implementation of the search API interface for the new search engine.  The LexEVS core code base would not be needed to be modified.
+<img width="520" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%20Code%20Decoupling/lexevsSearchInterface.jpg?api=v2">
+ There are several classes that will need to evaluated when doing the actual implementation.  These cases include code where Lucene objects are intermixed throughout LexEVS methods. (This is not an all inclusive list)
+<ul>
+  <li>
+    /lbImpl/src/org/LexGrid/LexBIG/Impl/codednodeset/LuceneOnlyToNodeListCodedNodeSet.java
+  </li>
+  <li>
+    /lbImpl/src/org/LexGrid/LexBIG/Impl/codednodeset/UnionSingleLuceneIndexCodedNodeSet.java
+  </li>
+  <li>
+    /lbImpl/src/org/LexGrid/LexBIG/Impl/codednodeset/SingleLuceneIndexCodedNodeSet
+  </li>
+  <li>
+    org.LexGrid.LexBIG.Impl.helpers.lazyloading/AbstractNonProxyLazyCodeToReturn
+  </li>
+  <li>
+    org.LexGrid.LexBIG.Impl.helpers.lazyloading/CommonIndexLazyLoadableCodeToReturn
+  </li>
+  <li>
+    org.LexGrid.LexBIG.Impl.helpers.lazyloading/NonProxyCodeHolderFactory
+  </li>
+  <li>
+    org.LexGrid.LexBIG.Impl.helpers.lazyloading/NonProxyLazyCodeToReturn
+  </li>
+  <li>
+    org.LexGrid.LexBIG.Impl.helpers.lazyloading/AbstractLazyCodeHolderFactory
+  </li>
+  <li>
+    org.LexGrid.LexBIG.Impl/CodedNodeSetImpl
+  </li>
+</ul>
+ This is one example of how an interface could be created to remove Lucene objects from the LexEVS core codebase.  These methods can be pushed into an implementation of the Query interface below.  The interface would be used instead of calling Lucene directly.Query Interface
+//code decoupling
+
+// Interface for creating Queries
+public interface Query {
+
+	// methods required for CodedNodeSetImpl
+	public  Query getCodingSchemeQuery(String uri, String internalVersionString);
+	public  Query getRestrictionQuery(Restriction restriction, String internalCodeSystemName, String internalVersionString);
+
+	// methods required for AbstractLazyCodeHolderFactory
+	private  Query getBooleanQuery(List&lt;Query&gt; queries);
+	public Query getFilteredQuery(List&lt;Filter&gt; filters, BooleanQuery combinedQuery, Filter chainedFilter);
+}
+
+// Lucene Implementation
+public class LuceneQuery implements Query {
+
+}
+
+
+ This is another example of an Interface for a ScoreDoc Factory.  AbstractLazyCodeHolderFactory.buildCodeHolder is currently using ScoreDocs.ScoreDocFactory
+public interface ScoreDocFactory {
+
+List&lt;ScoreDoc&gt; getScoreDocs (EntityIndexService service, AbsoluteCodingSchemeVersionReference ref, List&lt;BooleanQuery&gt; combinedQuery,List&lt;Query&gt; bitSetQueries);
+}
+ Different types of Queries and Filter types will need to be defined as well.  We could create an abstract class for each of them.  CodedNodeSetImpl and AbstractLazyCodeHolderFactory will not need to reference Lucene objects directly then.Abstract QueryType
+// Potential abstract classes for defining different types of Lucene objects in a generic manner.
+public abstract class QueryType {
+}
+
+public abstract class FilterType {
+}
+
+public abstract class FilteredQuery {
+} 

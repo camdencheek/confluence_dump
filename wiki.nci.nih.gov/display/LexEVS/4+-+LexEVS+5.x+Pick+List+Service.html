@@ -1,0 +1,1143 @@
+Contents of this Page
+<ul>
+  <li>
+    <a href="#id-4LexEVS5.xPickListService-Introduction" rel="nofollow">
+      Introduction
+    </a>
+  </li>
+  <li>
+    <a href="#id-4LexEVS5.xPickListService-PickListClassDiagram" rel="nofollow">
+      Pick List Class Diagram
+    </a>
+  </li>
+  <li>
+    <a href="#id-4LexEVS5.xPickListService-LexEVSPickListServiceAPI" rel="nofollow">
+      LexEVS Pick List Service API
+    </a>
+    <ul>
+      <li>
+        <a href="#id-4LexEVS5.xPickListService-AdministrativeFunctions" rel="nofollow">
+          Administrative Functions
+        </a>
+        <ul>
+          <li>
+            <a href="#id-4LexEVS5.xPickListService-LoadingPickListDefinitions" rel="nofollow">
+              Loading Pick List Definitions
+            </a>
+            <ul>
+              <li>
+                <a href="#id-4LexEVS5.xPickListService-loadPickList(PickListDefinitionpldef,StringsystemReleaseURI)" rel="nofollow">
+                  loadPickList(PickListDefinition pldef, String systemReleaseURI)
+                </a>
+              </li>
+              <li>
+                <a href="#id-4LexEVS5.xPickListService-loadPickList(InputStreaminputStream,booleanfailOnAllErrors)" rel="nofollow">
+                  loadPickList(InputStream inputStream, boolean failOnAllErrors)
+                </a>
+              </li>
+              <li>
+                <a href="#id-4LexEVS5.xPickListService-loadPickList(StringxmlFileLocation,booleanfailOnAllErrors)" rel="nofollow">
+                  loadPickList(String xmlFileLocation, boolean failOnAllErrors)
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#id-4LexEVS5.xPickListService-RemovePickListDefinition" rel="nofollow">
+              Remove Pick List Definition
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#id-4LexEVS5.xPickListService-ValidateXMLResources" rel="nofollow">
+          Validate XML Resources
+        </a>
+      </li>
+      <li>
+        <a href="#id-4LexEVS5.xPickListService-QueryFunctions" rel="nofollow">
+          Query Functions
+        </a>
+        <ul>
+          <li>
+            <a href="#id-4LexEVS5.xPickListService-getPickListDefinitionById" rel="nofollow">
+              getPickListDefinitionById
+            </a>
+          </li>
+          <li>
+            <a href="#id-4LexEVS5.xPickListService-getPickListDefinitionsForDomain" rel="nofollow">
+              getPickListDefinitionsForDomain
+            </a>
+          </li>
+          <li>
+            <a href="#id-4LexEVS5.xPickListService-getPickListValueDomain" rel="nofollow">
+              getPickListValueDomain
+            </a>
+          </li>
+          <li>
+            <a href="#id-4LexEVS5.xPickListService-listPickListIds" rel="nofollow">
+              listPickListIds
+            </a>
+          </li>
+          <li>
+            <a href="#id-4LexEVS5.xPickListService-resolvePickList" rel="nofollow">
+              resolvePickList
+            </a>
+          </li>
+          <li>
+            <a href="#id-4LexEVS5.xPickListService-resolvePickListForTerm" rel="nofollow">
+              resolvePickListForTerm
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#id-4LexEVS5.xPickListService-ResolvedPickListObjects" rel="nofollow">
+          Resolved Pick List Objects
+        </a>
+        <ul>
+          <li>
+            <a href="#id-4LexEVS5.xPickListService-ResolvedPickListEntry" rel="nofollow">
+              ResolvedPickListEntry
+            </a>
+          </li>
+          <li>
+            <a href="#id-4LexEVS5.xPickListService-ResolvedPickListEntryList" rel="nofollow">
+              ResolvedPickListEntryList
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#id-4LexEVS5.xPickListService-ErrorHandling" rel="nofollow">
+          Error Handling
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#id-4LexEVS5.xPickListService-LoadScripts" rel="nofollow">
+      Load Scripts
+    </a>
+  </li>
+  <li>
+    <a href="#id-4LexEVS5.xPickListService-SamplePickListDefinitionsXMLFile" rel="nofollow">
+      Sample Pick List Definitions XML File
+    </a>
+  </li>
+  <li>
+    <a href="#id-4LexEVS5.xPickListService-Installation/Packaging" rel="nofollow">
+      Installation / Packaging
+    </a>
+  </li>
+  <li>
+    <a href="#id-4LexEVS5.xPickListService-SystemTesting" rel="nofollow">
+      System Testing
+    </a>
+  </li>
+</ul>
+<h2 id="id-4LexEVS5.xPickListService-Introduction">
+  Introduction
+</h2>
+This document is a section of the
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427453" rel="nofollow">
+  LexEVS 5.x Programmer&#39;s Guide
+</a>
+. It is new for LexEVS v5.1.
+
+The Pick List Services are integrated parts of the LexEVS core API. They provide the ability to:
+<ul>
+  <li>
+    Load Pick List definitions programmatically into the LexGrid repository using the domain objects that are available via the LexGrid logical model
+  </li>
+  <li>
+    Apply user restrictions (ex: pickListId) and dynamically resolve the definitions at run time
+  </li>
+</ul>
+The LexEVS Pick List Services expose the API particularly for the Pick List elements of the LexGrid Logical Model. For more information on LexGrid model see
+<a href="http://informatics.mayo.edu/" rel="nofollow">
+  http://informatics.mayo.edu/
+</a>
+.
+<h2 id="id-4LexEVS5.xPickListService-PickListClassDiagram">
+  Pick List Class Diagram
+</h2>
+These classes implement the LexEVS Pick List API.
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Class Name
+      </th>
+      <th>
+        Description
+      </th>
+    </tr>
+    <tr>
+      <td>
+        PickListsServices
+      </td>
+      <td>
+        Class to handle list of Pick List Definitions.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        PickListServices
+      </td>
+      <td>
+        Class to handle individual Pick List Definition objects to and fro database.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        PLEntryServices
+      </td>
+      <td>
+        Class to handle Pick List Entry objects to and fro database.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        LexEVSPickListServices
+      </td>
+      <td>
+        Primary interface for LexEVS Pick List API.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        LexEVSPickListServicesImpl
+      </td>
+      <td>
+        Implementation of LexEVSPickListServices which is primary interface for LexEVS Pick List API.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        LoadPickList
+      </td>
+      <td>
+        Imports the Pick List Definitions in the source file, provided in LexGrid canonical format, to the LexBIG repository.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        ResolvedPickListEntyList
+      </td>
+      <td>
+        Class to hold list of resolved pick list entries.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        ResolvedPickListEntry
+      </td>
+      <td>
+        Bean for resolved pick list entries.
+      </td>
+    </tr>
+  </tbody>
+</table>
+The following figure shows the classes in a diagram.
+<img alt="Value Domain PL Class Diagram as described above." src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/4%20-%20LexEVS%205.x%20Pick%20List%20Service/LexEVS_5.1_Value_domain_PLClassDiagram.jpg?api=v2">
+<h2 id="id-4LexEVS5.xPickListService-LexEVSPickListServiceAPI">
+  LexEVS Pick List Service API
+</h2>
+<h3 id="id-4LexEVS5.xPickListService-AdministrativeFunctions">
+  Administrative Functions
+</h3>
+LexEVS PickListServices provides administrative functions to load and remove pick list definitions.
+<h4 id="id-4LexEVS5.xPickListService-LoadingPickListDefinitions">
+  Loading Pick List Definitions
+</h4>
+There are three methods that could be used to load Pick List Definitions:
+<ul>
+  <li>
+    loadPickList(PickListDefinition pldef, String systemReleaseURI)
+  </li>
+  <li>
+    loadPickList(InputStream inputStream, boolean failOnAllErrors)
+  </li>
+  <li>
+    loadPickList(String xmlFileLocation, boolean failOnAllErrors)
+  </li>
+</ul>
+<h5 id="id-4LexEVS5.xPickListService-loadPickList(PickListDefinitionpldef,StringsystemReleaseURI)">
+  loadPickList(PickListDefinition pldef, String systemReleaseURI)
+</h5>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Loads supplied Pick List Definition object
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        org.LexGrid.emf.valueDomains.PickListDefinition,
+        String
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        none
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details:
+      </th>
+      <td>
+        Implementation:
+        Step 1: Call this method on the associated LexEVS Pick List Service instance to load the Pick List Definition object and the System Release URI that this definition belongs to.
+        Sample Call:
+        <ul>
+          <li>
+            Step 1: Instantiate LexEVSPickListServices if it is not done yet :
+
+
+            org.lexgrid.valuedomain.LexEVSPickListServices pls = new org.lexgrid.valuedomain.impl.LexEVSPickListServicesImpl();
+          </li>
+          <li>
+            Step 2: Create and populate the PickListDefinition object.
+
+
+            PickListDefinition can be created using _org.LexGrid.emf.valueDomains.PickListDefinition pickList = org.LexGrid.emf.valueDomains.ValuedomainsFactory.eINSTANCE.createPickListDefinition();
+            Data for pickList object can be populated by using set methods:
+            pickList.setPickListId(pickListId);
+            pickList.setRepresentsValueDomain(vdURI);
+            pickList.setCompleteDomain(true);
+            pickList.setDefaultEntityCodeNamespace(ecns);
+            pickList.setDefaultLanguage(&#34;en&#34;);
+            pickList.setDefaultSortOrder(&#34;asc&#34;);
+            pickList.setIsActive(true);
+            pickList.setEntityDescription(red);
+
+
+            Similarly, PickListEntryNode, Property, and Mapping objects can be created and assigned to the pickList object.
+
+
+            pickList.getPickListEntryNode.add(pickListEntry);
+            pickList.setProperties(propertisObject);
+            pickList.setMappings(mappingsObject);
+          </li>
+          <li>
+            Step 3: Call the load method by passing the Pick List Definition object and the System Release URI.
+
+
+            pls.loadPickList(pickList,&#34;Release 2009&#34;);
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h5 id="id-4LexEVS5.xPickListService-loadPickList(InputStreaminputStream,booleanfailOnAllErrors)">
+  loadPickList(InputStream inputStream, boolean failOnAllErrors)
+</h5>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Loads Pick List Definitions found in inputStream.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        java.io.InputStream
+        boolean
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        none
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        Exception
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details:
+      </th>
+      <td>
+        Implementation:
+        Step 1: Call this method on the associated LexEVS Pick List Service instance to load all Pick List Definitions from the inputstream.
+        Sample Call:
+        <ul>
+          <li>
+            Step 1: Instantiate LexEVSPickListServices if it is not done yet:
+
+
+            org.lexgrid.valuedomain.LexEVSPickListServices pls = new org.lexgrid.valuedomain.impl.LexEVSPickListServicesImpl();
+          </li>
+          <li>
+            Step 2: Call load method by passing the inputSteam and boolean flag whether to stop on load errors: pls.loadPickList(inputStream, true);
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h5 id="id-4LexEVS5.xPickListService-loadPickList(StringxmlFileLocation,booleanfailOnAllErrors)">
+  loadPickList(String xmlFileLocation, boolean failOnAllErrors)
+</h5>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Loads Pick List Definitions found in input xml file.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        java.lang.String
+        boolean
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        none
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        Exception
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details:
+      </th>
+      <td>
+        Implementation:
+        Step 1: Call this method on the associated LexEVS Pick List Service instance to load all Pick List Definitions found in an XML file that is in LexGrid format.
+        Sample Call:
+        <ul>
+          <li>
+            Step 1: Instantiate LexEVSPickListServices if it is not done yet :
+
+
+            org.lexgrid.valuedomain.LexEVSPickListServices pls = new org.lexgrid.valuedomain.impl.LexEVSPickListServicesImpl();
+          </li>
+          <li>
+            Step 2: Call load method by passing the inputfile location and boolean flag whether to stop on load errors:
+
+
+            pls.loadPickList(inputXMLFile, true);
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h4 id="id-4LexEVS5.xPickListService-RemovePickListDefinition">
+  Remove Pick List Definition
+</h4>
+removePickList(String pickListId)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Removes supplied Pick List Definition from the system.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        java.lang.String
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        none
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException,
+        org.LexGrid.managedobj.RemoveException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details:
+      </th>
+      <td>
+        Implementation:
+        Step 1: Call this method on the associated LexEVS Pick List Service instance to remove Pick List Definition from the system that matches the supplied pickListId.
+        Sample Call:
+        <ul>
+          <li>
+            Step 1: Instantiate LexEVSPickListServices if it is not done yet :
+
+
+            org.lexgrid.valuedomain.LexEVSPickListServices pls = new org.lexgrid.valuedomain.impl.LexEVSPickListServicesImpl();
+          </li>
+          <li>
+            Step 2: Call removePickList method:
+
+
+            vds.removePickList (&#34;AUTO:AllDomesticANDGM&#34;);
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h3 id="id-4LexEVS5.xPickListService-ValidateXMLResources">
+  Validate XML Resources
+</h3>
+validate
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Perform validation of the candidate resource without loading data.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        java.net.URI
+        int
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        none
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        Org.LexGrid.LexBIG.Exceptions.LBParameterException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details:
+      </th>
+      <td>
+        Implementation:
+        Step 1: Call this method on the associated LexEVS Pick List Service instance to validate the XML file that is in LexGrid format. This call will not load the data in an XML file.
+        Sample Call:
+        <ul>
+          <li>
+            Step 1: Instantiate LexEVSPickListServices if it is not done yet :
+
+
+            org.lexgrid.valuedomain.LexEVSPickListServices pls = new org.lexgrid.valuedomain.impl.LexEVSPickListServicesImpl();
+          </li>
+          <li>
+            Step 2: Call validate method for validation by supplying URI of the XML file and validation level.
+            Supported validationLevels include:
+
+
+            0 = Verify document is well-formed
+            1 = Verify document is valid
+            _pls.validate(uriOfXMLFile, true);
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h3 id="id-4LexEVS5.xPickListService-QueryFunctions">
+  Query Functions
+</h3>
+Following are some of the query functions provided by LexEVS PickListServices.
+<h4 id="id-4LexEVS5.xPickListService-getPickListDefinitionById">
+  getPickListDefinitionById
+</h4>
+getPickListDefinitionById(String pickListId)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Returns pickList definition for supplied pickListId.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        java.lang.String
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        org.LexGrid.emf.valueDomains.PickListDefinition
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details:
+      </th>
+      <td>
+        Implementation:
+        Step 1: Call this method on the associated LexEVS Pick List Service instance to get Pick List Definition for supplied pickListId.
+        Sample Call:
+        <ul>
+          <li>
+            Step 1: Instantiate LexEVSPickListServices if it is not done yet :
+
+
+            org.lexgrid.valuedomain.LexEVSPickListServices pls = new org.lexgrid.valuedomain.impl.LexEVSPickListServicesImpl();
+          </li>
+          <li>
+            Step 2: Call getPickListDefinitionById method:
+
+
+            PickListDefinition plDef = pls.getPickListDefinitionById(&#34;AUTO:DomesticAutoMakers&#34;);
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h4 id="id-4LexEVS5.xPickListService-getPickListDefinitionsForDomain">
+  getPickListDefinitionsForDomain
+</h4>
+getPickListDefinitionsForDomain(URI valueDomainURI)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Returns all the pickList definitions that represent the supplied valueDomain URI.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        java.net.URI
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        org.LexGrid.emf.valueDomains.PickListDefinition[]
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details:
+      </th>
+      <td>
+        Implementation:
+        Step 1: Call this method on the associated LexEVS Pick List Service instance to get all the Pick List Definitions that are represented by supplied Value Domain URI.
+        Sample Call:
+        <ul>
+          <li>
+            Step 1: Instantiate LexEVSPickListServices if it is not done yet :
+
+
+            org.lexgrid.valuedomain.LexEVSPickListServices pls = new org.lexgrid.valuedomain.impl.LexEVSPickListServicesImpl();
+          </li>
+          <li>
+            Step 2: Call getPickListDefinitionsForDomain method:
+
+
+            PickListDefinition[] plDefs = pls.getPickListDefinitionsForDomain(valueDomainURI);
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h4 id="id-4LexEVS5.xPickListService-getPickListValueDomain">
+  getPickListValueDomain
+</h4>
+getPickListValueDomain(String pickListId)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Returns a URI of the represented valueDomain of the pickList.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        java.lang.String
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        java.net.URI
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details:
+      </th>
+      <td>
+        Implementation:
+        Step 1: Call this method on the associated LexEVS Pick List Service instance to get a Value Domain URI represented by supplied pickListId.
+        Sample Call:
+        <ul>
+          <li>
+            Step 1: Instantiate LexEVSPickListServices if it is not done yet :
+
+
+            org.lexgrid.valuedomain.LexEVSPickListServices pls = new org.lexgrid.valuedomain.impl.LexEVSPickListServicesImpl();
+          </li>
+          <li>
+            Step 2: Call getPickListValueDomain method:
+
+
+            URI vdURI = pls.getPickListValueDomain (&#34;AUTO:DomesticAutoMakers&#34;);
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h4 id="id-4LexEVS5.xPickListService-listPickListIds">
+  listPickListIds
+</h4>
+listPickListIds()
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Returns a list of pickListIds that are available in the system.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        none
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        java.util.List&lt;java.lang.String&gt;
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details:
+      </th>
+      <td>
+        Implementation:
+        Step 1: Call this method on the associated LexEVS Pick List Service instance to get all the PickListIds that are loaded in the system.
+        Sample Call:
+        <ul>
+          <li>
+            Step 1: Instantiate LexEVSPickListServices if it is not done yet :
+
+
+            org.lexgrid.valuedomain.LexEVSPickListServices pls = new org.lexgrid.valuedomain.impl.LexEVSPickListServicesImpl();
+          </li>
+          <li>
+            Step 2: Call listPickListIds method:
+
+
+            List&lt;String&gt; plList = pls.listPickListIds();
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h4 id="id-4LexEVS5.xPickListService-resolvePickList">
+  resolvePickList
+</h4>
+resolvePickList(String pickListId, boolean sortByText)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Resolves pickList definition for supplied pickListId.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        java.langString,
+        boolean
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        org.lexgrid.valuedomain.dto.ResolvedPickListEntryList
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details:
+      </th>
+      <td>
+        Implementation:
+        Step 1: Call this method on the associated LexEVS Pick List Service instance to get the resolved Pick List Entries for the supplied pickListId. Optionally, if sortByTests is true, sort the pickText in the list.
+        Sample Call:
+        <ul>
+          <li>
+            Step 1: Instantiate LexEVSPickListServices if it is not done yet :
+
+
+            org.lexgrid.valuedomain.LexEVSPickListServices pls = new org.lexgrid.valuedomain.impl.LexEVSPickListServicesImpl();
+          </li>
+          <li>
+            Step 2: Call resolvePickList method:
+
+
+            ResolvedPickListEntryList pleList = pls.resolvePickList (&#34;AUTO:DomesticAutoMakers&#34;, true);
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h4 id="id-4LexEVS5.xPickListService-resolvePickListForTerm">
+  resolvePickListForTerm
+</h4>
+resolvePickListForTerm(String pickListId, String term, String matchAlgorithm, String language, String[] context, boolean sortByText)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Resolves pickList definition by applying  supplied arguments.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        java.lang.String
+        java.lang.String
+        java.lang.String
+        java.lang.String
+        java.lang.String[]
+        boolean
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        org.lexgrid.valuedomain.dto.ResolvedPickListEntryList
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details:
+      </th>
+      <td>
+        Implementation:
+        Step 1: Call this method on the associated LexEVS Pick List Service instance to get list of Pick List Entries that match the term supplied and meet other supplied restrictions.
+        Sample Call:
+        <ul>
+          <li>
+            Step 1: Instantiate LexEVSPickListServices if it is not done yet :
+
+
+            org.lexgrid.valuedomain.LexEVSPickListServices pls = new org.lexgrid.valuedomain.impl.LexEVSPickListServicesImpl();
+          </li>
+          <li>
+            Step 2: Call resolvePickListForTerm method:
+
+
+            ResolvedPickListEntryList pleList = pls.resolvePickListForTerm (&#34;AUTO:DomesticAutoMakers&#34;,&#34;Jaguar&#34;, MatchAlgorithms.exactMatch.name(), &#34;en&#34;, null, true);
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h3 id="id-4LexEVS5.xPickListService-ResolvedPickListObjects">
+  Resolved Pick List Objects
+</h3>
+<h4 id="id-4LexEVS5.xPickListService-ResolvedPickListEntry">
+  ResolvedPickListEntry
+</h4>
+ResolvedPickListEntry contains resolved Pick List Entry Nodes.
+<h4 id="id-4LexEVS5.xPickListService-ResolvedPickListEntryList">
+  ResolvedPickListEntryList
+</h4>
+ResolvedPickListEntryList contains the list of resolved Pick List Entries. Also provides helpful features to add, remove, enumerate Pick List Entries.
+<h3 id="id-4LexEVS5.xPickListService-ErrorHandling">
+  Error Handling
+</h3>
+Both LexEVS Pick List services uses org.LexGrid.LexBIG.Impl.loaders.MessageDirector to direct all fatal, error, warning, info messages with appropriate messages to the LexBIG log files in the &#39;log&#39; folder of LexEVS install directory.
+
+Along with MessageDirector, the services will also make use of org.LexGrid.LexBIG.exception.LBException to throw any fatal and error messages to the log file as well as to console.
+<h2 id="id-4LexEVS5.xPickListService-LoadScripts">
+  Load Scripts
+</h2>
+Scripts to load Pick List Definitions into LexEVS system will be located under &#39;Admin&#39; folder of LexEVS install directory. These loader scripts will only load data in an XML file that is in LexGrid format.
+
+LoadPickList.bat for Windows environment and LoadPickList.sh for Unix environment.
+Both of these scripts take in the following parameters:
+
+
+
+-in
+Input &lt;uri&gt;
+URI or path specifying location of the source file.
+-v
+Validate &lt;int&gt;
+Perform validation of the candidate resource without loading data. Supported levels of validation include:
+
+0 = Verify document is well-formed
+1 = Verify document is valid
+
+
+
+Example:
+
+
+sh LoadPickList.sh \-in &#34;file:///path/to/file.xml&#34;
+<h2 id="id-4LexEVS5.xPickListService-SamplePickListDefinitionsXMLFile">
+  Sample Pick List Definitions XML File
+</h2>
+Below is a sample XML file containing Pick List Definitions in LexGrid format that can be loaded using LexEVS Pick List Service.
+
+&lt;source&gt;
+
+
+&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
+&lt;systemRelease xmlns:xsi=&#34;http://www.w3.org/2001/XMLSchema-instance&#34;
+{panel}
+xsi:schemaLocation=&#34;http://LexGrid.org/schema/2009/01/LexGrid/versions http://LexGrid.org/schema/2009/01/LexGrid/versions.xsd&#34;
+xmlns=&#34;http://LexGrid.org/schema/2009/01/LexGrid/versions&#34; xmlns:lgVer=&#34;http://LexGrid.org/schema/2009/01/LexGrid/versions&#34;
+xmlns:lgCommon=&#34;http://LexGrid.org/schema/2009/01/LexGrid/commonTypes&#34; xmlns:data=&#34;data&#34;
+xmlns:lgVD=&#34;http://LexGrid.org/schema/2009/01/LexGrid/valueDomains&#34; xmlns:lgNaming=&#34;http://LexGrid.org/schema/2009/01/LexGrid/naming&#34;
+releaseURI=&#34;http://testRelease/04&#34; releaseDate=&#34;2008-11-07T14:55:51.615-06:00&#34;&gt;
+&lt;lgCommon:entityDescription&gt;Sample value domains&lt;/lgCommon:entityDescription&gt;
+&lt;pickLists&gt;
+&lt;lgVD:mappings&gt;
+&lt;lgNaming:supportedCodingScheme localId=&#34;Automobiles&#34; uri=&#34;urn:oid:11.11.0.1&#34;&gt;Automobiles&lt;/lgNaming:supportedCodingScheme&gt;
+&lt;lgNaming:supportedLanguage localId=&#34;en&#34; uri=&#34;www.en.org/orsomething&#34;&gt;en&lt;/lgNaming:supportedLanguage&gt;
+&lt;lgNaming:supportedNamespace localId=&#34;Automobiles&#34; uri=&#34;urn:oid:11.11.0.1&#34; equivalentCodingScheme=&#34;Automobiles&#34;&gt;Automobiles&lt;/lgNaming:supportedNamespace&gt;
+&lt;lgNaming:supportedProperty localId=&#34;textualPresentation&#34;&gt;textualPresentation&lt;/lgNaming:supportedProperty&gt;
+&lt;lgNaming:supportedSource localId=&#34;lexgrid.org&#34;&gt;lexgrid.org&lt;/lgNaming:supportedSource&gt;
+&lt;lgNaming:supportedSource localId=&#34;_111101&#34;&gt;11.11.0.1&lt;/lgNaming:supportedSource&gt;
+&lt;/lgVD:mappings&gt;
+&lt;lgVD:pickListDefinition pickListId=&#34;SRITEST:AUTO:DomesticAutoMakers&#34; representsValueDomain=&#34;SRITEST:AUTO:DomesticAutoMakers&#34; isActive=&#34;true&#34; defaultEntityCodeNamespace=&#34;Automobiles&#34; defaultLanguage=&#34;en&#34; completeDomain=&#34;false&#34;&gt;
+&lt;lgCommon:owner&gt;Owner for Domestic Auto Makers&lt;/lgCommon:owner&gt;
+&lt;lgCommon:entityDescription&gt;DomesticAutoMakers&lt;/lgCommon:entityDescription&gt;
+&lt;lgVD:mappings&gt;
+&lt;lgNaming:supportedCodingScheme localId=&#34;Automobiles&#34; uri=&#34;urn:oid:11.11.0.1&#34;&gt;Automobiles&lt;/lgNaming:supportedCodingScheme&gt;
+&lt;lgNaming:supportedDataType localId=&#34;texthtml&#34;&gt;text/html&lt;/lgNaming:supportedDataType&gt;
+&lt;lgNaming:supportedDataType localId=&#34;textplain&#34;&gt;text/plain&lt;/lgNaming:supportedDataType&gt;
+&lt;lgNaming:supportedLanguage localId=&#34;en&#34; uri=&#34;www.en.org/orsomething&#34;&gt;en&lt;/lgNaming:supportedLanguage&gt;
+&lt;lgNaming:supportedNamespace localId=&#34;Automobiles&#34; uri=&#34;urn:oid:11.11.0.1&#34; equivalentCodingScheme=&#34;Automobiles&#34;&gt;Automobiles&lt;/lgNaming:supportedNamespace&gt;
+&lt;lgNaming:supportedProperty localId=&#34;textualPresentation&#34;&gt;textualPresentation&lt;/lgNaming:supportedProperty&gt;
+&lt;lgNaming:supportedSource  assemblyRule=&#34;rule1&#34; uri=&#34;http://informatics.mayo.edu&#34; localId=&#34;lexgrid.org&#34;&gt;lexgrid.org&lt;/lgNaming:supportedSource&gt;
+&lt;lgNaming:supportedSource localId=&#34;_111101&#34;&gt;11.11.0.1&lt;/lgNaming:supportedSource&gt;
+&lt;/lgVD:mappings&gt;
+&lt;lgVD:pickListEntryNode pickListEntryId=&#34;PLGMp1&#34; isActive=&#34;true&#34;&gt;
+&lt;lgCommon:owner&gt;Owner for PLGMp1&lt;/lgCommon:owner&gt;
+&lt;lgCommon:entryState containingRevision=&#34;R001&#34; relativeOrder=&#34;1&#34; changeType=&#34;NEW&#34; prevRevision=&#34;R00A&#34;/&gt;
+&lt;lgVD:inclusionEntry entityCode=&#34;GM&#34; entityCodeNamespace=&#34;Automobiles&#34; propertyId=&#34;p1&#34;&gt;
+&lt;lgVD:pickText&gt;General Motors&lt;/lgVD:pickText&gt;
+&lt;/lgVD:inclusionEntry&gt;
+&lt;lgVD:properties&gt;
+&lt;lgCommon:property propertyName=&#34;textualPresentation&#34; isActive=&#34;true&#34; language=&#34;en&#34; propertyId=&#34;p1&#34; propertyType=&#34;presentation&#34; status=&#34;active&#34; effectiveDate=&#34;2001-12-17T09:30:47Z&#34; expirationDate=&#34;2011-12-17T09:30:47Z&#34;&gt;
+&lt;lgCommon:owner role=&#34;role&#34; subRef=&#34;subref&#34;&gt;General Motors&lt;/lgCommon:owner&gt;
+&lt;lgCommon:entryState containingRevision=&#34;R001&#34; relativeOrder=&#34;1&#34; changeType=&#34;NEW&#34; prevRevision=&#34;R00A&#34;/&gt;
+&lt;lgCommon:source subRef=&#34;subref1&#34; role=&#34;role1&#34;&gt;General Motors&lt;/lgCommon:source&gt;
+&lt;lgCommon:value dataType=&#34;textplain&#34;&gt;Property for General Motors&lt;/lgCommon:value&gt;
+&lt;/lgCommon:property&gt;
+&lt;/lgVD:properties&gt;
+&lt;/lgVD:pickListEntryNode&gt;
+&lt;lgVD:pickListEntryNode pickListEntryId=&#34;PLGMp2&#34; isActive=&#34;true&#34;&gt;
+&lt;lgCommon:owner&gt;Owner for PLGMp2&lt;/lgCommon:owner&gt;
+&lt;lgCommon:entryState containingRevision=&#34;R001&#34; relativeOrder=&#34;1&#34; changeType=&#34;NEW&#34; prevRevision=&#34;R00A&#34;/&gt;
+&lt;lgVD:inclusionEntry entityCode=&#34;GM&#34; entityCodeNamespace=&#34;Automobiles&#34; propertyId=&#34;p2&#34;&gt;
+&lt;lgVD:pickText&gt;GM&lt;/lgVD:pickText&gt;
+&lt;/lgVD:inclusionEntry&gt;
+&lt;/lgVD:pickListEntryNode&gt;
+&lt;lgVD:pickListEntryNode pickListEntryId=&#34;PLJaguarp1&#34; isActive=&#34;true&#34;&gt;
+&lt;lgCommon:owner&gt;Owner for PLJaguarp1&lt;/lgCommon:owner&gt;
+&lt;lgCommon:entryState containingRevision=&#34;R001&#34; relativeOrder=&#34;1&#34; changeType=&#34;NEW&#34; prevRevision=&#34;R00A&#34;/&gt;
+&lt;lgVD:inclusionEntry entityCode=&#34;Jaguar&#34; entityCodeNamespace=&#34;Automobiles&#34; propertyId=&#34;p1&#34;&gt;
+&lt;lgVD:pickText&gt;Jaguar&lt;/lgVD:pickText&gt;
+&lt;/lgVD:inclusionEntry&gt;
+&lt;/lgVD:pickListEntryNode&gt;
+&lt;lgVD:pickListEntryNode pickListEntryId=&#34;PLChevroletp1&#34; isActive=&#34;true&#34;&gt;
+&lt;lgCommon:owner&gt;Owner for PLChevroletp1&lt;/lgCommon:owner&gt;
+&lt;lgCommon:entryState containingRevision=&#34;R001&#34; relativeOrder=&#34;1&#34; changeType=&#34;NEW&#34; prevRevision=&#34;R00A&#34;/&gt;
+&lt;lgVD:inclusionEntry entityCode=&#34;Chevy&#34; entityCodeNamespace=&#34;Automobiles&#34; propertyId=&#34;p1&#34;&gt;
+&lt;lgVD:pickText&gt;Chevrolet&lt;/lgVD:pickText&gt;
+&lt;/lgVD:inclusionEntry&gt;
+&lt;/lgVD:pickListEntryNode&gt;
+&lt;/lgVD:pickListDefinition&gt;
+&lt;lgVD:pickListDefinition pickListId=&#34;SRITEST:AUTO:DomasticLeafOnly&#34; representsValueDomain=&#34;SRITEST:AUTO:DomasticLeafOnly&#34; completeDomain=&#34;true&#34; defaultEntityCodeNamespace=&#34;Automobiles&#34; defaultLanguage=&#34;en&#34; isActive=&#34;true&#34;&gt;
+&lt;lgCommon:entityDescription&gt;Leaf Only Nodes of Domastic AutoMakers&lt;/lgCommon:entityDescription&gt;
+&lt;/lgVD:pickListDefinition&gt;
+&lt;/pickLists&gt;
+&lt;/systemRelease&gt;
+
+
+&lt;/source&gt;
+<h2 id="id-4LexEVS5.xPickListService-Installation/Packaging">
+  Installation / Packaging
+</h2>
+Pick List service are integrated parts of core LexEVS API and are packaged and installed with other LexEVS services.
+<h2 id="id-4LexEVS5.xPickListService-SystemTesting">
+  System Testing
+</h2>
+The System test case for the LexEVS Value Domain service is performed using the JUnit test suite:
+
+org.LexGrid.LexBIG.Impl.testUtility.PickListAllTests
+
+This test suite will be run as part of regular LexEVS test suites AllTestsAllConfigs and AllTestsNormalConfigs. 

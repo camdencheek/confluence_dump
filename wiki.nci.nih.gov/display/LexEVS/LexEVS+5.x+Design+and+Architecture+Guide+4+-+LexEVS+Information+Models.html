@@ -1,0 +1,733 @@
+Contents of this Page
+<ul>
+  <li>
+    <a href="#LexEVS5.xDesignandArchitectureGuide4LexEVSInformationModels-Introduction" rel="nofollow">
+      Introduction
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS5.xDesignandArchitectureGuide4LexEVSInformationModels-InformationModelsOverview" rel="nofollow">
+      Information Models Overview
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS5.xDesignandArchitectureGuide4LexEVSInformationModels-LexGridModel" rel="nofollow">
+      LexGrid Model
+    </a>
+    <ul>
+      <li>
+        <a href="#LexEVS5.xDesignandArchitectureGuide4LexEVSInformationModels-CodingSchemes" rel="nofollow">
+          CodingSchemes
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS5.xDesignandArchitectureGuide4LexEVSInformationModels-Concepts" rel="nofollow">
+          Concepts
+        </a>
+        <ul>
+          <li>
+            <a href="#LexEVS5.xDesignandArchitectureGuide4LexEVSInformationModels-conceptsAndInstances" rel="nofollow">
+              conceptsAndInstances
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS5.xDesignandArchitectureGuide4LexEVSInformationModels-entities" rel="nofollow">
+              entities
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS5.xDesignandArchitectureGuide4LexEVSInformationModels-entity" rel="nofollow">
+              entity
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#LexEVS5.xDesignandArchitectureGuide4LexEVSInformationModels-Relations" rel="nofollow">
+          Relations
+        </a>
+        <ul>
+          <li>
+            <a href="#LexEVS5.xDesignandArchitectureGuide4LexEVSInformationModels-association" rel="nofollow">
+              association
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS5.xDesignandArchitectureGuide4LexEVSInformationModels-associationInstance" rel="nofollow">
+              associationInstance
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#LexEVS5.xDesignandArchitectureGuide4LexEVSInformationModels-Naming" rel="nofollow">
+          Naming
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS5.xDesignandArchitectureGuide4LexEVSInformationModels-ValueDomainDefinition" rel="nofollow">
+          Value Domain Definition
+        </a>
+        <ul>
+          <li>
+            <a href="#LexEVS5.xDesignandArchitectureGuide4LexEVSInformationModels-ModelComponents" rel="nofollow">
+              Model Components
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS5.xDesignandArchitectureGuide4LexEVSInformationModels-ValueDomainServices" rel="nofollow">
+              Value Domain Services
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#LexEVS5.xDesignandArchitectureGuide4LexEVSInformationModels-PickListDefinition" rel="nofollow">
+          Pick List Definition
+        </a>
+        <ul>
+          <li>
+            <a href="#LexEVS5.xDesignandArchitectureGuide4LexEVSInformationModels-ModelComponents.1" rel="nofollow">
+              Model Components
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS5.xDesignandArchitectureGuide4LexEVSInformationModels-PickListServices" rel="nofollow">
+              Pick List Services
+            </a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#LexEVS5.xDesignandArchitectureGuide4LexEVSInformationModels-LexBIGModel" rel="nofollow">
+      LexBIG Model
+    </a>
+    <ul>
+      <li>
+        <a href="#LexEVS5.xDesignandArchitectureGuide4LexEVSInformationModels-Core" rel="nofollow">
+          Core
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS5.xDesignandArchitectureGuide4LexEVSInformationModels-InterfaceElements" rel="nofollow">
+          InterfaceElements
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS5.xDesignandArchitectureGuide4LexEVSInformationModels-NCIHistory" rel="nofollow">
+          NCIHistory
+        </a>
+      </li>
+    </ul>
+  </li>
+</ul>
+<h2 id="LexEVS5.xDesignandArchitectureGuide4LexEVSInformationModels-Introduction">
+  Introduction
+</h2>
+This document is a section of the
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427452" rel="nofollow">
+  Design and Architecture Guide
+</a>
+.
+<h2 id="LexEVS5.xDesignandArchitectureGuide4LexEVSInformationModels-InformationModelsOverview">
+  Information Models Overview
+</h2>
+The information below is provided for introductory purposes. A full description of all available model components is also available in the javadoc distributed with the LexEVS installation package (see file breakdown in the
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427405" rel="nofollow">
+  Installation Guide
+</a>
+). Since the javadoc is automatically generated and synchronized during the build process, it is recommended as the primary reference for use by LexEVS developers.
+<h2 id="LexEVS5.xDesignandArchitectureGuide4LexEVSInformationModels-LexGridModel">
+  LexGrid Model
+</h2>
+The LexGrid model is mastered in XML schema. The LexBIG project currently builds on the 2009 version of the LexGrid schema.  A formal representation, showing portions of this structure that are of primary interest to the LexEVS project, is presented below. A complete version of the model is available at
+<a href="http://informatics.mayo.edu?page=lgm" rel="nofollow">
+  http://informatics.mayo.edu?page=lgm
+</a>
+.
+<h3 id="LexEVS5.xDesignandArchitectureGuide4LexEVSInformationModels-CodingSchemes">
+  CodingSchemes
+</h3>
+The CodingSchemes branch of the model defines high level containers for concepts and relations. Each CodingScheme represents a unique code system or version in the LexBIG service. Components of interest include:
+
+codingSchemes
+A collection of one or more coding schemes.
+
+codingScheme
+A resource that makes assertions about a collection of terminological entities.
+
+entities
+A set of entity codes and their lexical descriptions
+
+relations
+A collection of relations that represent a particular point of view or community.
+
+versions
+A list of past versions of the coding scheme.
+
+mappings
+A list of all of the local identifiers and defining URI&#39;s that are used in the associated resource
+
+properties
+A collection of properties.
+<img alt="class diagram of codingSchemes" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%205.x%20Design%20and%20Architecture%20Guide%204%20-%20LexEVS%20Information%20Models/LexGridCodingScheme.jpg?api=v2">
+<h3 id="LexEVS5.xDesignandArchitectureGuide4LexEVSInformationModels-Concepts">
+  Concepts
+</h3>
+Each concept represents a unique entity within the code system, which can be further described by properties and related to other concepts through relations.
+<h4 id="LexEVS5.xDesignandArchitectureGuide4LexEVSInformationModels-conceptsAndInstances">
+  conceptsAndInstances
+</h4>
+codingScheme
+A resource that makes assertions about a collection of terminological entities.
+
+entities
+A set of entity codes and their lexical descriptions
+
+entity
+A set of lexical assertions about the intended meaning of a particular entity code.
+
+concept
+An entity that represents a class or category. The entityType for the class concept must be &#34;concept&#34;.
+
+instance
+An entity that represents an instance or an individual. The entityType for the class concept must be &#34;instance&#34;.
+
+relations
+A collection of relations that represent a particular point of view or community.
+
+association
+A binary relation from a set of entities to a set of entities and/or data. The entityType for the class concept must be &#34;association&#34;.
+<img alt="class diagram of conceptsAndInstances" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%205.x%20Design%20and%20Architecture%20Guide%204%20-%20LexEVS%20Information%20Models/LexGridConceptsAndInstances.jpg?api=v2">
+<h4 id="LexEVS5.xDesignandArchitectureGuide4LexEVSInformationModels-entities">
+  entities
+</h4>
+codingScheme
+A resource that makes assertions about a collection of terminological entities.
+
+entities
+A set of entity codes and their lexical descriptions
+
+entity
+A set of lexical assertions about the intended meaning of a particular entity code.
+
+concept
+An entity that represents a class or category. The entityType for the class concept must be &#34;concept&#34;.
+
+instance
+An entity that represents an instance or an individual. The entityType for the class concept must be &#34;instance&#34;.
+
+association
+A binary relation from a set of entities to a set of entities and/or data. The entityType for the class concept must be &#34;association&#34;.
+<img alt="class diagram of entities" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%205.x%20Design%20and%20Architecture%20Guide%204%20-%20LexEVS%20Information%20Models/LexGridEntities.jpg?api=v2">
+<h4 id="LexEVS5.xDesignandArchitectureGuide4LexEVSInformationModels-entity">
+  entity
+</h4>
+entity
+A set of lexical assertions about the intended meaning of a particular entity code.
+
+comment
+A property that  is used as an annotation or other note about the state or usage of the entity. The propertyType of comment must be &#34;comment&#34;
+
+definition
+A property that defines the entity in a particular langage or context.. The propertyType of definition must be &#34;definition&#34;
+
+presentation
+A property ths represents or designates the meaning of the entityCode. The propertyType of presentation must be &#34;presentation&#34;
+
+property
+A description, definition, annotation or other attribute that serves to further define or identify an resource.
+
+propertyLink
+A link between two properties for an entity.. Examples include acronymFor, abbreviationOf, spellingVariantOf, etc. Must be in supportedPropertyLink.
+<img alt="class diagram of entity" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%205.x%20Design%20and%20Architecture%20Guide%204%20-%20LexEVS%20Information%20Models/LexGridEntity.jpg?api=v2">
+<h3 id="LexEVS5.xDesignandArchitectureGuide4LexEVSInformationModels-Relations">
+  Relations
+</h3>
+Relations are used to define and qualify associations between concepts.
+<h4 id="LexEVS5.xDesignandArchitectureGuide4LexEVSInformationModels-association">
+  association
+</h4>
+codingScheme
+A resource that makes assertions about a collection of terminological entities.
+
+relations
+A collection of relations that represent a particular point of view or community.
+
+entity
+A set of lexical assertions about the intended meaning of a particular entity code.
+
+association
+A binary relation from a set of entities to a set of entities and/or data. The entityType for the class concept must be &#34;association&#34;.
+
+associationSource
+An entity that occurs in one or more instances of a relation on the &#34;from&#34; (or left hand) side of a particular relation.
+<img alt="class diagram of association" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%205.x%20Design%20and%20Architecture%20Guide%204%20-%20LexEVS%20Information%20Models/LexGridAssociation.jpg?api=v2">
+<h4 id="LexEVS5.xDesignandArchitectureGuide4LexEVSInformationModels-associationInstance">
+  associationInstance
+</h4>
+association
+A binary relation from a set of entities to a set of entities and/or data. The entityType for the class concept must be &#34;association&#34;.
+
+associationSource
+An entity that occurs in one or more instances of a relation on the &#34;from&#34; (or left hand) side of a particular relation.
+
+associationTarget
+An entity  on the &#34;to&#34; (or right hand) side of a relation.
+
+associationData
+An instance of a target or RHS data value of an association.
+
+associatableElement
+Information common to both the entity and data form of the &#34;to&#34; (or right hand) side of an association.
+
+associationQualification
+A modifier that further qualifies the particular association instance.
+<img alt="class diagram of associationInstance" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%205.x%20Design%20and%20Architecture%20Guide%204%20-%20LexEVS%20Information%20Models/LexGridAssociationInstance.jpg?api=v2">
+<h3 id="LexEVS5.xDesignandArchitectureGuide4LexEVSInformationModels-Naming">
+  Naming
+</h3>
+These elements are primarily used to define metadata for a coding scheme, mapping locally used names to global references.
+
+URIMap
+A local identifier that is used in a specific context (e.g. language, property name, data type, etc) and an optional URI that can be used to find the exact definition and meaning of the local id. Note: the string portion of this entry can be used to provide additional documentation or information, especially when a URI is not supplied.
+
+supportedAssociation
+An associationName and the URI of the defining resource.
+
+supportedAssociationQualifier
+An associationQualifier and the URI of the defining resource
+
+supportedCodingScheme
+A codingSchemeName and the URI of the defining resource
+
+supportedStatus
+An entryStatus and the URI of the defining resource
+
+supportedEntityType
+An entityType and the URI of the defining resource
+
+supportedContext
+A context and the URI of the defining resource
+
+supportedContainerName
+A containerName and the URI of the defining resource
+
+supportedDegreeOfFidelity
+A degreeOfFidelity and the URI of the defining resource
+
+supportedLanguage
+A language and the URI of the defining resource
+
+supportedProperty
+A propertyName and the URI of the defining resource
+
+supportedSortOrder
+The local identifier and the URI of the defining resource
+
+supportedHierarchy
+A list  of associations that can be browsed hierarchically.
+
+supportedNamespace
+A namespaceName and the corresponding URI
+
+supportedPropertyType
+A propertyType and the URI of the defining resource
+
+supportedPropertyQualifier
+A propertyQualifierName the URI of the defining resource
+
+supportedPropertyQualifierType
+A propertyQualifierType the URI of the defining resource
+
+supportedPropertyLink
+A propertyLinkName and the URI of the defining resource
+
+supportedRepresentationalForm
+A representationalForm and the URI of the defining resource
+
+supportedSource
+A source and the URI of the defining resource. Source references can also carry an additional compositional rule section that describes how to combine a subpart such as a page number, section name, etc. with the core URI in order to form a meaningful URL. An optional role can also be specified.
+
+supportedSourceRole
+A source role and athe URI of the defining resource
+<img alt="naming class diagram" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%205.x%20Design%20and%20Architecture%20Guide%204%20-%20LexEVS%20Information%20Models/LexGridNaming.jpg?api=v2">
+<h3 id="LexEVS5.xDesignandArchitectureGuide4LexEVSInformationModels-ValueDomainDefinition">
+  Value Domain Definition
+</h3>
+The Value Domain Definition branch of the LexGrid model defines the contents of a value domain.
+
+Value Domain can be defined in following forms:
+<ul>
+  <li>
+    Code System : All concept codes in the referencing code system.
+  </li>
+  <li>
+    Value Domain : All concept codes definied in the referencing Value Domain Definition.
+  </li>
+  <li>
+    Code System + Concept Code : Individual codes.
+  </li>
+  <li>
+    Code System + Concept Code + relationship + additional rules(leafOnly, targetToSource, transitiveClosure..) : Only the concept codes that matches all the definited conditions(rules).
+  </li>
+  <li>
+    Combination of any of the above with*or/and/difference* operators
+  </li>
+</ul>
+The following diagram is a UML representation of Value Domain Definition in LexGrid 200901 model:
+<img alt="UML representation of Value Domain Definition" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%205.x%20Design%20and%20Architecture%20Guide%204%20-%20LexEVS%20Information%20Models/LexEVS_5.1_Value_domain_VDModel.jpg?api=v2">
+<h4 id="LexEVS5.xDesignandArchitectureGuide4LexEVSInformationModels-ModelComponents">
+  Model Components
+</h4>
+valueDomains
+A collection of value domain definitions.
+
+mappings
+A list of all of the local identifiers and defining URI&#39;s that are used in the associated value domains.
+
+properties
+A collection of value domain properties.
+
+changedEntry
+A top level versionable entry.
+
+valueDomainDefinition
+A definition of a given value domain. A value domain can be a simple description with no associated value domain entries, or it can consist of one or more definitionEntries that resolve to an enumerated list of entityCodes when applied to one or more codingScheme versions.
+
+Attributes of Value Domain Definition:
+<ul>
+  <li>
+    Source: The local identifiers of the source(s) of this property. Must match a local id of a supportedSource in the corresponding mappings section.
+  </li>
+  <li>
+    representsRealmOrContext: The local identifiers of the context(s) in which this value domain applies. Must match a local id of a supportedContext in the corresponding mappings section.
+  </li>
+  <li>
+    valueDomainURI: The URI of this value domain.
+  </li>
+  <li>
+    valueDomainName: The name of this domain, if any.
+  </li>
+  <li>
+    defaultCodingScheme: Local name of the primary coding scheme from which the domain is drawn. defaultCodingScheme must match a local id of a supportedCodingScheme in the mappings section.
+  </li>
+</ul>
+definitionEntry
+A reference to an entry code, a coding scheme or another value domain along with the instructions about how the reference is applied. Definition entrys are applied in entryOrder, with each successive entry either adding to or subtracting from the final set of entity codes.
+
+Attributes of Value Domain Definition Entry:
+<ul>
+  <li>
+    ruleOrder: The unique identifier of the definition entry within the definition as well as the relative order in which this entry should be applied.
+  </li>
+  <li>
+    operator: How this entry is to be applied to the value domain.
+  </li>
+</ul>
+codingSchemeReference
+A reference to all of the entity codes in a given coding scheme.
+
+Attributes of Coding Scheme Reference:
+<ul>
+  <li>
+    codingScheme: The local identifier of the coding scheme from which the entity codes are drawn. codingSchemeName must match a local ID of a supportedCodingScheme in the mappings section.
+  </li>
+</ul>
+valueDomainReference
+A reference to the set of codes defined in another value domain.
+
+Attributes of Value Domain Reference:
+<ul>
+  <li>
+    valueDomainURI: The URI of the value domain to which to apply the operator. This value domain may be contained within the local service or may need to be resolved externally.
+  </li>
+</ul>
+entityReference
+A reference to an entityCode and/or one or more entityCodes that have a relationship to the specified entity code plus the rules(leafOnly, targetToSource..) to be applied.
+
+Attributes of Entity Reference:
+<ul>
+  <li>
+    entityCode: The entity code being referenced.
+  </li>
+  <li>
+    entityCodeNamespace: Local identifier of the namespace of the entityCode. entityCodeNamespace must match a local ID of a supportedNamespace in the corresponding mappings section. If omitted, the URI of the defaultCodingScheme will be used as the URI of the entity code.
+  </li>
+  <li>
+    leafOnly: If true and referenceAssociation is supplied and referenceAssociation is defined as transitive, include all entity codes that are &#34;leaves&#34; in transitive closure of referenceAssociation as applied to entity code. Default=false.
+  </li>
+  <li>
+    referenceAssociation: The local identifier of an association that appears in the native relations collection in the default coding scheme. This association is used to describe a set of entity codes. If absent, only the entityCode itself is included in this definition.
+  </li>
+  <li>
+    targetToSource: If true and referenceAssociation is supplied, navigate from entityCode as the association target to the corresponding sources. If transitiveClosure is true and the referenceAssociation is transitive, include all the ancestors in the list rather than just the direct &#34;parents&#34; (sources).
+  </li>
+  <li>
+    transitiveClosure: If true and referenceAssociation is supplied and referenceAssociation is defined as transitive, include all entity codes that belong to transitive closure of referenceAssociation as applied to entity code. Default=false.
+  </li>
+</ul>
+definitionOperator
+The description of how a given definition entry is applied.
+
+Attributes of Definition Operator:
+<ul>
+  <li>
+    OR: Add the set of entityCodes described by the currentEntity to the value domain; logical OR.
+  </li>
+  <li>
+    SUBTRACT: Subtract (remove) the set of entityCodes described by the currentEntity to the value domain; logical NAND.
+  </li>
+  <li>
+    AND: Only include the entity codes that are both in the value domain and the definition entry; logical AND.
+  </li>
+</ul>
+<h4 id="LexEVS5.xDesignandArchitectureGuide4LexEVSInformationModels-ValueDomainServices">
+  Value Domain Services
+</h4>
+This feature is new in LexEVS 5.1. For details on using value domain services, see the
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427453" rel="nofollow">
+  Programmer&#39;s Guide, Value Domain Services section
+</a>
+.
+<h3 id="LexEVS5.xDesignandArchitectureGuide4LexEVSInformationModels-PickListDefinition">
+  Pick List Definition
+</h3>
+Pick List Definition branch of LexGrid model definies the contents of a pick list.
+
+Pick List can be defined in following forms:
+<ul>
+  <li>
+    Value Domain: all concept codes definied in referenced value domain
+  </li>
+  <li>
+    Code System + Concept Code: individual codes (inclusion and exclusion)
+  </li>
+</ul>
+The following diagram is a UML representation of Pick List in LexGrid 200901 model:
+<img alt="a UML representation of Pick List" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%205.x%20Design%20and%20Architecture%20Guide%204%20-%20LexEVS%20Information%20Models/LexEVS_5.1_Value_domain_PLModel.jpg?api=v2">
+<h4 id="LexEVS5.xDesignandArchitectureGuide4LexEVSInformationModels-ModelComponents.1">
+  Model Components
+</h4>
+pickLists
+A collection of pick list definitions.
+
+mappings
+A list of all of the local identifiers and defining URI&#39;s that are used in the associated pick list definitions.
+
+properties
+A collection of properties.
+
+changedEntry
+A top level versionable entry.
+
+pickListDefinition
+An ordered list of entity codes and corresponding presentations drawn from a value domain.
+
+Attributes of Pick List Definition:
+<ul>
+  <li>
+    Source: The local identifiers of the source(s) of this pick list definition. Must match a local ID of a supportedSource in the corresponding mappings section.
+  </li>
+  <li>
+    pickListId: An identifier that uniquely names this list within the context of the collection.
+  </li>
+  <li>
+    representsValueDomain: The URI of the value domain definition that is represented by this pick list.
+  </li>
+  <li>
+    defaultEntityCodeNamespace: Local name of the namespace to which the entry codes in this list belong. defaultEntityCodeNamespace must match a local ID of a supportedNamespace in the mappings section.
+  </li>
+  <li>
+    defaultLanguage: The local identifier of the language that is used to generate the text of this pick list if not otherwise specified. Note that this language does NOT necessarily have any coorelation with the language of a pickListEntry itself or the language of the target user. defaultLanguage must match a local ID of a supportedLanguage in the mappings section.
+  </li>
+  <li>
+    defaultSortOrder: The local identifier of a sort order that is used as the default in the definition of the pick list.
+  </li>
+  <li>
+    defaultPickContext: The local identifiers of the context used in the definition of the pick list.
+  </li>
+  <li>
+    completeDomain: True means that this pick list should represent all of the entries in the domain. Any active entity codes that are not in the specific pick list entries are added to the end, using the designations identified by the defaultLanguage, defaultSortOrder, and defaultPickContext; default=false.
+  </li>
+</ul>
+pickListEntryNode
+An inclusion (pickListEntry) or exclusion (pickListEntryExclusion) in a pick list definition
+
+Attributes of Pick List Entry Node:
+<ul>
+  <li>
+    pickListEntryId: Unique identifier of this node within the list.
+  </li>
+</ul>
+pickListEntry
+An entity code and corresponding textual representation.
+
+Attributes of Pick List Entry:
+<ul>
+  <li>
+    pickText: The text that represents this node in the pick list. Some business rules may require that this string match a presentation associated with the entityCode.
+  </li>
+  <li>
+    pickContext: The local identifiers of the context(s) in which this entry applies. pickContext must match a local ID of a supportedContext in the mappings section.
+  </li>
+  <li>
+    entryOrder: Relative order of this entry in the list. pickListEntries without a supplied order follow the all entries with an order, and the order is not defined.
+  </li>
+  <li>
+    entityCode: Entity code associated with this entry.
+  </li>
+  <li>
+    entityCodeNamespace: Local identifier of the namespace of the entity code if different than the pickListDefinition defaultEntityCodeNamespace. entityCodeNamespace must match a local ID of a supportedNamespace in the mappings section.
+  </li>
+  <li>
+    propertyId: The property identifier associated with the entityCode and entityCodeNamespace from which the pickText was derived. If absent, the pick text can be anything. Some terminologies may have business rules requiring this attribute to be present.
+  </li>
+  <li>
+    isDefault: True means that this is the default entry for the supplied language and context.
+  </li>
+  <li>
+    matchIfNoContext: True means that this entry can be used if no contexts are supplied, even though pickContext is present.
+  </li>
+  <li>
+    Language: The local name of the language to be used when the application/user supplies a selection language matches. If absent, this matches all languages. language must match a local ID of a supportedLanguage in the mappings section.
+  </li>
+</ul>
+pickListEntryExclusion
+An entity code that is explicitly excluded from a pick list.
+
+Attributes of Pick List Entry Exclusion:
+<ul>
+  <li>
+    entityCode: Entity code associated with this entry.
+  </li>
+  <li>
+    entityCodeNamespace: Local identifier of the namespace of the entity code if different than the pickListDefinition defaultEntityCodeNamespace. entityCodeNamespace must match a local ID of a supportedNamespace in the mappings section.
+  </li>
+</ul>
+<h4 id="LexEVS5.xDesignandArchitectureGuide4LexEVSInformationModels-PickListServices">
+  Pick List Services
+</h4>
+This feature is new in LexEVS 5.1. For details on using pick list services, see the
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427453" rel="nofollow">
+  Programmer&#39;s Guide, Pick List Services section
+</a>
+.
+<h2 id="LexEVS5.xDesignandArchitectureGuide4LexEVSInformationModels-LexBIGModel">
+  LexBIG Model
+</h2>
+The following extensions to the LexGrid model were introduced in support of caBIG requirements. As with the LexGrid model, this document provides a summary of the most significant elements for consideration by LexBIG programmers. The complete and current version of the model is available online at
+<a href="http://informatics.mayo.edu?page=lexex" rel="nofollow">
+  http://informatics.mayo.edu?page=lexex
+</a>
+.
+<h3 id="LexEVS5.xDesignandArchitectureGuide4LexEVSInformationModels-Core">
+  Core
+</h3>
+LexBIG core elements provide enhanced referencing and controlled resolution of LexGrid model objects.
+<img alt="class diagram of Core" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%205.x%20Design%20and%20Architecture%20Guide%204%20-%20LexEVS%20Information%20Models/Core.jpg?api=v2">
+Core components of interest include:
+
+AbsoluteCodingSchemeVersionReference
+An absolute reference to a coding scheme. This form of reference is service independent, as it doesn&#39;t depend on local coding schemes names or virtual tags.
+
+AssociatedConcept
+A concept reference that is the source or target of an association.
+
+Association
+The representation of a particular association as it appears in a CodedNode.
+
+CodingSchemeSummary
+Abbreviated list of information about a coding scheme.
+
+CodingSchemeURNorName
+Either a local name or the URN of a coding scheme. These two are differentiated syntactically - if the entity includes a colon, :, or a hash &#34;#&#34; it is assumed to be a URN. Otherwise it is assumed to be a local name.
+
+CodingSchemeVersionOrTag
+A named coding scheme version or a virtual tag (e.g. latest, production, etc). Note that the tagged form of identifier is only applicable in the context of a given service, as one service may identify the scheme as &#34;production&#34; and another as &#34;staging&#34;.
+
+ConceptReference
+A reference to a coding scheme and a concept code.
+
+LogEntry
+A single recorded log entry.
+
+LogLevel
+Indicates severity of the log entry.
+
+MetadataProperty
+Reference to a property name and value stored in the coding scheme metadata.
+
+NameAndValue
+A simple name/value pair.
+
+ReferenceLink
+Any reference to another document element.  Used by the REST architecture to embed links.
+
+ResolvedConceptReference
+A resolvable concept reference.
+
+ServiceURL
+References a service in the Globus environment, this will be a global service handle (GSH).
+<h3 id="LexEVS5.xDesignandArchitectureGuide4LexEVSInformationModels-InterfaceElements">
+  InterfaceElements
+</h3>
+Defines metadata related to model objects required by the runtime.
+<img alt="class diagram of InterfaceElements" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%205.x%20Design%20and%20Architecture%20Guide%204%20-%20LexEVS%20Information%20Models/Interface_Elements.jpg?api=v2">
+InterfaceElements components of interest include:
+
+CodingSchemeRendering
+Information about a coding scheme as it appears in a particular service.
+
+ExportStatus
+Reports the state of LexBIG export operations.
+
+ExtensionDescription
+Describes an add-on module registered to the LexBIG environment.
+
+LoadStatus
+Reports the state of LexBIG load operations.
+
+*ModuleDescription *
+Describes a LexBIG integrated software module.
+
+ProcessState
+Enumerates possible status reported for LexBIG runtime operations.
+
+ProcessStatus
+Reports the state of LexBIG runtime operations.
+
+RenderingDetail
+The details of how a coding scheme is rendered in a given service.
+
+SortContext
+Describes a LexBIG sort module.
+
+SortDescription
+A description of a LexBIG extension module.
+
+SortOption
+Represents a pairing of sort algorithm and order.
+
+SystemReleaseDetail
+The combination of a system release and all of the entityVersions
+that accompanied that release.
+<h3 id="LexEVS5.xDesignandArchitectureGuide4LexEVSInformationModels-NCIHistory">
+  NCIHistory
+</h3>
+Maintains a record of modifications made to a code system.
+<img alt="NCIHistory class diagram" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%205.x%20Design%20and%20Architecture%20Guide%204%20-%20LexEVS%20Information%20Models/NCIHistory.jpg?api=v2">
+NCIHistory components of interest include:
+
+changeType
+Atomic modification actions.  Currently populated from a combination of Concordia, SNOMED-CT list and NCI&#39;s action list.
+
+NCIChangeEvent
+A change event as documented in:
+
+Link provided for historical purposes ftp://ftp1.nci.nih.gov/pub/cacore/EVS/ReadMe_history.txt
+
+
+Note that date and time of the change event is recorded in the containing version. All change events for the same/date and time a recorded in the same version. 

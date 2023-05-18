@@ -1,0 +1,41 @@
+<h1 id="caArray077IncreasingtimeoutperiodwhenrunningCQLqueries-Question:Howdoweincreasetime-outperiodwhenrunningCQLqueries?">
+  Question: How do we increase time-out period when running CQL queries?
+</h1>
+Topic: caArray Installation and Upgrade
+
+Release: caArray 2.3.X and above
+
+Date entered: 02/14/2011
+<a href="https://cabig-kc.nci.nih.gov/Molecular/forums/viewtopic.php?f=8&amp;amp;t=652&amp;amp;p=2745&amp;amp;hilit=cql&amp;amp;sid=412b5e765b234bb643951dfa7c47f689#p2745" rel="nofollow">
+  Related forum posting
+</a>
+<h2 id="caArray077IncreasingtimeoutperiodwhenrunningCQLqueries-Answer">
+  Answer
+</h2>
+The first option is to set a longer timeout on the client side. This requires a code change of a Java file in the caGrid &#39;data&#39; project. Here are the steps to make the code change:
+<ul>
+  <li>
+    In your caGrid distribution, find:
+
+    $CAGRID_HOME/projects/data/src/java/common/gov/nih/nci/cagrid/data/client/DataServiceClient.java
+  </li>
+  <li>
+    In this class, find the createPortType method;
+  </li>
+  <li>
+    Just before the &#34;return port;&#34; line, add the following with your timeout value specified:
+
+    ((Stub) port).setTimeout(&lt;YOUR_TIMEOUT_IN_MSECS&gt;);
+  </li>
+</ul>
+The second option is to extend DataServiceClient.java in your own project and override createPortType to establish the port using a configurable timeout.
+
+A feature request has been sent to the caArray development team to make this parameter easier to configure in the future.
+<h2 id="caArray077IncreasingtimeoutperiodwhenrunningCQLqueries-Haveacomment?">
+  Have a comment?
+</h2>
+Please leave your comment in the
+<a href="https://cabig-kc.nci.nih.gov/Molecular/forums/viewtopic.php?f=6&amp;t=577" rel="nofollow">
+  caArray End User Forum
+</a>
+. 

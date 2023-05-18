@@ -1,0 +1,369 @@
+<h2 id="caInt0012(SinglePage)HowToAddDataToAnExistingStudy-Problem:HowToAddDatatoanExistingStudy">
+  Problem: How To Add Data to an Existing Study
+</h2>
+Topic: caIntegrator UsageDate entered: 08/25/2011Release: Up to caIntegrator 1.3
+<h2 id="caInt0012(SinglePage)HowToAddDataToAnExistingStudy-Solution">
+  Solution
+</h2>
+This guide shows how to add clinical annotation and genomic microarray data to an existing study in caIntegrator, with a focus on common obstacles and pitfalls that may arise in the process. It assumes that you already have basic familiarity with the program and have created a study containing at least one source for both annotation and array data. It also assumes that you have additional sources available, namely:
+<ul>
+  <li>
+    Your clinical annotations in the form of a comma delimited text (CSV) file containing at least one field with unique IDs for each subject
+  </li>
+  <li>
+    The host name of the caArray server where your data is stored, plus the experiment ID (if you set the data as private, you will also need the user name and password for accessing the data)
+  </li>
+  <li>
+    Another two CSV files – a &#39;mapping file&#39; that maps the subject IDs in your annotations to their corresponding sample IDs in caArray, and a &#39;control training file&#39; that lists the sample IDs of all control subjects
+  </li>
+</ul>
+The guide is presented in a step-by-step instructional format, with each step accompanied by a screenshot from caIntegrator.
+<h3 id="caInt0012(SinglePage)HowToAddDataToAnExistingStudy-GettingStarted">
+  Getting Started
+</h3>
+<ol>
+  <li>
+    Log into caIntegrator via the application&#39;s main Web page.
+  </li>
+</ol>
+<img alt="illustration of step" height="291" width="623" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/caInt%200012%20(Single%20Page)%20-%20How%20To%20Add%20Data%20To%20An%20Existing%20Study/worddav9e973c94cfb79324a1ab3e02e6555013.png?api=v2">
+First log into caIntegrator via the application&#39;s main Web page. In this example, I&#39;ve logged in with my username (hd2266).
+<ol>
+  <li>
+    Each installation of caIntegrator can host several studies. When you first log in, you will be taken to the home page of the default study, which in this case is entitled &#39;jagla-00034&#39;. Since this is not the study we want to add data to, you will want to bring up a list of available studies by clicking on the &#39;Manage Studies&#39; link under the &#39;STUDY MANAGEMENT&#39; menu in the navigation panel to the left.
+  </li>
+</ol>
+<img alt="illustration of step" height="339" width="623" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/caInt%200012%20(Single%20Page)%20-%20How%20To%20Add%20Data%20To%20An%20Existing%20Study/worddav5f5ded92088677c3584642e5b9d709fa.png?api=v2">
+Once you log in, you are taken to the home page of the default study, which in this case is &#39;jagla-00034&#39;. The study we want to add data to is &#39;Demo Study for ICR Folks&#39;, which you can access by clicking on the &#39;Manage Studies&#39; link (highlighted in red).On the Manage Studies page, find the study entitled &#39;Demo Study for ICR Folks&#39; in the table of studies, then click on the &#39;Edit&#39; link under the Action column at the far right of the table.
+<img alt="illustration of step" height="290" width="623" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/caInt%200012%20(Single%20Page)%20-%20How%20To%20Add%20Data%20To%20An%20Existing%20Study/worddavd6a05ebca92f8872da3bc49f638bee55.png?api=v2">
+You can edit the study entitled &#39;Demo Study for ICR Folks&#39;, which is at the top of the study list, by clicking on the &#39;Edit&#39; link (highlighted in red).Now you are on the &#39;Edit Study&#39; page, where you can modify the existing study data or load more data into it. For the purposes of this tutorial, the areas of interest on the Edit Study page are &#39;Subject Annotation Data Sources&#39; and &#39;Genomic Data Sources&#39;, whose respective headings are highlighted in the screenshot below.Note that this study already has some subject annotation and genomic data loaded. The annotation data is in the form of the CSV file &#39;subject_annotation_DC_Lung_Study_111210.CSV&#39;, while the genomic data is in the form of a link to the address of the caArray server which hosts the data (array.nci.nih.gov), as well as an experiment identifier (jacob-00182) which references the particular experiment containing the data of interest. Later in this tutorial, we will examine in depth how to load more of this data into the study.
+<img alt="illustration of step" height="637" width="623" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/caInt%200012%20(Single%20Page)%20-%20How%20To%20Add%20Data%20To%20An%20Existing%20Study/worddav2983fdaeb247a8eea67836edd910d821.png?api=v2">
+This study already has subject annotation and genomic data loaded; they are listed beneath their respective headings, which are highlighted in red. Later in this tutorial, we&#39;ll learn how to load more data into this study.
+<h3 id="caInt0012(SinglePage)HowToAddDataToAnExistingStudy-LoadingAdditionalClinicalData">
+  Loading Additional Clinical Data
+</h3>
+<ol>
+  <li>
+    Now we&#39;re ready to load additional subject annotation data into the &#39;Demo Study for ICR Folks&#39;. As mentioned before, you&#39;ll need the data in the form of a CSV file containing at least one field with a unique ID for each subject in the study. The CSV file we&#39;ll use in this tutorial is called &#39;subject_annotations_tutorial.CSV&#39;. A partial screenshot of the file appears below as viewed in a Microsoft Excel 2007 window.
+  </li>
+</ol>
+<img alt="illustration of step" height="321" width="623" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/caInt%200012%20(Single%20Page)%20-%20How%20To%20Add%20Data%20To%20An%20Existing%20Study/worddav12842997e45e2acb71e8dd3ae7eabd2d.png?api=v2">
+This data came from a fictional multi-site study that compared gene expression between lung adenocarcinoma patients and healthy controls. The nature of the data itself is irrelevant to our purpose here. The relevant aspect is that the data is categorized into five fields, which are represented by columns in the spreadsheet.Each field defines a different subject characteristic such as &#39;PATIENT_ID&#39;, which uniquely identifies each of the 100 subjects in this study (note that the screenshot above only displays data for the first 11 subjects). Once we&#39;ve loaded the data into the study, we&#39;ll be able to query it by any of the fields.To upload your data file, first click on the &#39;Add New&#39; button to the right of the &#39;Subject Annotation Data Sources&#39; heading.
+<img alt="Click on the &#39;Add New&#39; button to load a new annotation data file into the study." height="440" width="623" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/caInt%200012%20(Single%20Page)%20-%20How%20To%20Add%20Data%20To%20An%20Existing%20Study/worddav5127941bcdfb215ecf6c004266e4b512.png?api=v2">
+You can load a new subject annotation data file into the existing study by clicking on the &#39;Add New&#39; button (highlighted in red).
+<ol>
+  <li>
+    When you click on the button, the area below it will expand to display additional options. Click on the &#39;Choose File&#39; button in the expanded area.
+  </li>
+</ol>
+<img alt="Click on the &#39;Choose File&#39; button to bring up the &#39;Open&#39; dialog." height="140" width="623" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/caInt%200012%20(Single%20Page)%20-%20How%20To%20Add%20Data%20To%20An%20Existing%20Study/worddava408b1bd470aeaba548ba19f91e5106d.png?api=v2">
+When you click on the &#39;Add New&#39; button, the area below it will expand. Click on the &#39;Choose File&#39; button (highlighted in red) in the expanded area.
+<ol>
+  <li>
+    When you click on the &#39;Choose File&#39; button, you&#39;ll be prompted for the location of the data file with an Open dialog. Locate the CSV file containing your subject data, click on it, then click on the &#39;Open&#39; button.
+  </li>
+</ol>
+<img alt="illustration of step" height="408" width="562" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/caInt%200012%20(Single%20Page)%20-%20How%20To%20Add%20Data%20To%20An%20Existing%20Study/worddav81178c39ab774925087238ea77c96538.png?api=v2">
+In this example, we click on the &#39;subject_annotations_tutorial.CSV&#39; file (highlighted in red), then click on the Open button. Your own annotations file will be named differently.
+<ol>
+  <li>
+    Once you open your annotations file, you&#39;ll be taken back to the Edit Study page, where you can click on the &#39;Upload Now&#39; button at the bottom of the area to load the file into the study.
+    <img alt="illustration of step" height="126" width="623" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/caInt%200012%20(Single%20Page)%20-%20How%20To%20Add%20Data%20To%20An%20Existing%20Study/worddav4a34587c6648e2dad21ce3de2dae8421.png?api=v2">
+  </li>
+</ol>
+Click on the &#39;Upload Now&#39; button (highlighted in red) to load the subject data into the study.
+<ol>
+  <li>
+    Once you&#39;ve uploaded the data, you&#39;ll encounter another page prompting you to define the various fields for your subject data. Since these fields were already defined when the study was created, we don&#39;t need to modify them. Just click on the &#39;Save&#39; button at the bottom of the page to continue.
+  </li>
+</ol>
+<img alt="illustration of step" height="294" width="623" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/caInt%200012%20(Single%20Page)%20-%20How%20To%20Add%20Data%20To%20An%20Existing%20Study/worddav4aae8a564d3b1cc22d3872593bc620c5.png?api=v2">
+Click on the Save button (highlighted in red) to confirm your annotation field definitions.
+<ol>
+  <li>
+    Back on the &#39;Edit Study&#39; page, the newly uploaded source will now appear in the table beneath the &#39;Subject Annotation Data Sources&#39; heading. Notice that the status of this source appears as &#39;Not Loaded&#39; under the Status column. To change this, click on the &#39;Load Subject Annotation Source&#39; button under the Action column.
+  </li>
+</ol>
+<img alt="illustration of step" height="110" width="623" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/caInt%200012%20(Single%20Page)%20-%20How%20To%20Add%20Data%20To%20An%20Existing%20Study/worddav897ad576f6971b61f6c47c716dad357d.png?api=v2">
+The newly uploaded source now appears in the second row (highlighted in red) of the Data Sources table. Click on the &#39;Load Subject Annotation Source&#39; button under the Action column to load the source.The &#39;Edit Study&#39; page has now reloaded and the status of the newly added source has changed to &#39;Loaded&#39; under the Status column in the Data Sources table.
+<img alt="The status of the newly uploaded source now appears as &#39;Loaded&#39; under the Status column." height="87" width="623" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/caInt%200012%20(Single%20Page)%20-%20How%20To%20Add%20Data%20To%20An%20Existing%20Study/worddav7e6a7a190a89acf5e044be3c1a75e45e.png?api=v2">
+The status of the newly uploaded source now appears as &#39;Loaded&#39; (highlighted in red) under the Status column.
+<ol>
+  <li>
+    To see what obstacles may arise in the course of loading additional data, let&#39;s try another file. This one, named &#39;duplicate_annotations_tutorial.CSV&#39;, contains the same five fields as each of the previously loaded files, including &#39;PATIENT_ID&#39;. After repeating the procedure in steps 3 through 8, the Edit Study page displays an error message stating, &#34;Value already loaded: Subject 3 already has a value for Stratagene&#34; above the &#39;Annotation Groups&#39; heading; in addition, the status of the newly loaded file shows as &#39;Error&#39; under the &#39;Status&#39; column of the &#39;Subject Annotation Data Sources&#39; table.
+  </li>
+</ol>
+<img alt="The status of the newly loaded annotation file shows as &#39;Error&#39; on the &#39;Edit Study&#39; page." height="215" width="623" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/caInt%200012%20(Single%20Page)%20-%20How%20To%20Add%20Data%20To%20An%20Existing%20Study/worddav2a1453d1972cd513386ccd0411e68c03.png?api=v2">
+After attempting to load the next annotation file &#39;duplicate_annotations_tutorial.CSV&#39;, the &#39;Edit Study&#39; page shows the error message &#34;Value already loaded: Subject 3 already has a value for Stratagene&#34; (highlighted in red) and the status of the file shows as &#39;Error&#39; (highlighted in blue).To understand why this error is occurring, let&#39;s examine the contents of the new annotation file we just tried to load. A partial screenshot of the file appears below as viewed in a Microsoft Excel 2007 window.
+<img alt="illustration of step" height="257" width="157" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/caInt%200012%20(Single%20Page)%20-%20How%20To%20Add%20Data%20To%20An%20Existing%20Study/worddavbf30177b92feb1f7321d664aa124be52.png?api=v2">
+Notice that this file contains not only new subjects (IDs 6000 to 6002), but also some of the same subjects (i.e., IDs 3, 5, and 10) from the previously loaded file &#34;subject_annotation_DC_Lung_Study_111210.csv&#34;. In addition, the values in the &#39;Stratagene&#39; field for these subjects are different in the new file than they were in the original file. This explains the &#39;Value Already Loaded&#39; error message which occurs when we attempt to load the file – this message is another way of saying that the file we&#39;re trying to load contains duplicates of subjects from previously loaded files.We&#39;ve learned a valuable lesson from this exercise: when loading additional annotation data into an existing study, make sure that your annotation file doesn&#39;t contain any duplicates of existing subjects from previously loaded files.
+<h3 id="caInt0012(SinglePage)HowToAddDataToAnExistingStudy-QueryingClinicalData">
+  Querying Clinical Data
+</h3>
+<ol>
+  <li>
+    We can&#39;t query the study unless it&#39;s already been deployed. To check whether this is the case, scroll all the way down to the bottom of the &#39;Edit Study&#39; page, where you&#39;ll see a row of three buttons. If the study has been deployed, as is the case in our example, the left button labeled &#39;Deploy Study&#39; will be grayed out and you will not be able to click on it. If, however, the study hasn&#39;t been deployed, the button will appear normally, and you can click on it to deploy the study.
+  </li>
+</ol>
+<img alt="illustration of step" height="115" width="623" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/caInt%200012%20(Single%20Page)%20-%20How%20To%20Add%20Data%20To%20An%20Existing%20Study/worddav568b296213fe9b07084d2c34c6014f7b.png?api=v2">
+The bottom of the &#39;Edit Study&#39; page shows the &#39;Deploy Study&#39; button (highlighted in red). In this example, the study has already been deployed so this button is grayed out. If your study hasn&#39;t yet been deployed, the button will appear normally, and you can click on it to deploy the study.
+<ol>
+  <li>
+    Now that we&#39;ve loaded our clinical data into the study, let&#39;s query it. To get started, click on the link &#39;Search Demo Study for ICR Folks&#39; under the menu &#39;DEMO STUDY FOR ICR FOLKS&#39; in the navigation panel to the left.
+  </li>
+</ol>
+<img alt="illustration of step" height="421" width="625" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/caInt%200012%20(Single%20Page)%20-%20How%20To%20Add%20Data%20To%20An%20Existing%20Study/worddavce28e8685cdf27a95e1ef923c5f1adea.png?api=v2">
+Click on the link &#39;Search Demo Study for ICR Folks&#39; (highlighted in red) to perform a query on the annotation data you just uploaded.
+<ol>
+  <li>
+    On the &#39;Search&#39; page, under the Criteria tab, we can define multiple criteria to query the study by. These criteria correspond to the various fields we previously defined in our annotation data. To review, those fields are &#39;Patient ID&#39;, &#39;Stratagene&#39;, &#39;Site&#39;, &#39;Gender&#39;, and &#39;Survival (in months)&#39;.
+  </li>
+</ol>
+As an example, let&#39;s say we want to query the data for all male subjects located at the &#39;MI&#39; study site. In this case, our two query criteria are &#39;Site&#39; and &#39;Gender&#39;, and their respective query values are &#39;MI&#39; and &#39;Male&#39;. We can formulate the query by first clicking on the &#39;Add&#39; button to the right of the drop-down list under the &#39;Define Query Criteria&#39; heading.
+<img alt="illustration of step" width="623" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/caInt%200012%20(Single%20Page)%20-%20How%20To%20Add%20Data%20To%20An%20Existing%20Study/worddav7e789fdcf2b6e864855c1d5e6e275036.png?api=v2">
+To begin formulating your query, click on the &#39;Add&#39; button (highlighted in red).
+<ol>
+  <li>
+    Next, click on the drop-down list that appears below the &#39;Add&#39; button. The list contains three items: &#39;Site&#39;, &#39;Stratagene&#39;, and &#39;Survival in Months&#39;. Click on &#39;Site&#39;.
+  </li>
+</ol>
+<img alt="illustration of step" height="244" width="553" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/caInt%200012%20(Single%20Page)%20-%20How%20To%20Add%20Data%20To%20An%20Existing%20Study/worddav1acb6d4678fbd2b47dd57f46178a4c81.png?api=v2">
+Click on &#39;Site&#39; (highlighted in red) from the Annotations drop-down list to select it as a query criterion.
+<ol>
+  <li>
+    Once you click on &#39;Site&#39;, another two drop-down lists will appear to the right of the original one. Click on the third (rightmost) list to bring up the different values for Site and click on &#39;MI&#39; from this list.
+  </li>
+</ol>
+<img alt="illustration of step" height="156" width="623" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/caInt%200012%20(Single%20Page)%20-%20How%20To%20Add%20Data%20To%20An%20Existing%20Study/worddavca043b4eaaa25896cfc61e16656874e9.png?api=v2">
+Click on &#39;MI&#39; (highlighted in red) in the drop-down list of values for the Site field.
+<ol>
+  <li>
+    We also want to query by Gender. Due to the way that the study was originally set up, the Gender field isn&#39;t included in the default set of annotations – it&#39;s part of a separately defined set called &#39;Demographic&#39;.
+  </li>
+</ol>
+To add Gender as a field, go back to the original drop-down list (the one at the top), click on it again, click on &#39;Demographic&#39; in the list, and then click on the &#39;Add&#39; button to the right of the list.
+<img alt="illustration of step" height="156" width="623" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/caInt%200012%20(Single%20Page)%20-%20How%20To%20Add%20Data%20To%20An%20Existing%20Study/worddavc8104a67a9b408a5d4e5307d6b4c146e.png?api=v2">
+Select Demographic (highlighted in red) from the drop-down list, then click on the Add button (also highlighted in red).
+<ol>
+  <li>
+    Next, a new drop-down list labeled &#39;Demographic&#39; will appear below the one labeled &#39;Annotations – Default&#39;. Click on this new list, then click on &#39;GENDER&#39;.
+  </li>
+</ol>
+<img alt="illustration of step" height="185" width="623" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/caInt%200012%20(Single%20Page)%20-%20How%20To%20Add%20Data%20To%20An%20Existing%20Study/worddav6d4d8b3750b29aba8b4ce985ec6dc874.png?api=v2">
+Click on &#39;GENDER&#39; in the &#39;Demographic&#39; drop-down list.
+<ol>
+  <li>
+    Once you click on &#39;Gender&#39;, another two drop-down lists will appear to the right of the original one. Click on the third (rightmost) list to bring up the different values for Gender and click on &#39;Male&#39; from this list.
+  </li>
+</ol>
+<img alt="illustration of step" height="199" width="623" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/caInt%200012%20(Single%20Page)%20-%20How%20To%20Add%20Data%20To%20An%20Existing%20Study/worddav9fd71b2992f8b0bc563a470a6aaf5427.png?api=v2">
+Click on &#39;Male&#39; (highlighted in red) in the third (rightmost) drop-down list labeled &#39;Demographic&#39;.
+<ol>
+  <li>
+    Now that we&#39;ve fully defined our query, we&#39;re ready to run it. Click on the &#39;Run Query&#39; button at the bottom of the page to see the results.
+  </li>
+</ol>
+<img alt="illustration of step" height="187" width="623" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/caInt%200012%20(Single%20Page)%20-%20How%20To%20Add%20Data%20To%20An%20Existing%20Study/worddavee85259a56c2db2a3682fe94d22fd6f5.png?api=v2">
+Click on the &#39;Run Query&#39; button (highlighted in red) to see results.
+<ol>
+  <li>
+    The query results appear under the &#39;Query Results&#39; tab as a table of subject IDs that fit the specified criteria – in other words, male subjects who were located at the MI site. Note that these results include subjects not only from the annotations that we uploaded in this tutorial, but also from the pre-existing ones. You can confirm this by noting that some of the subject IDs in the results screenshot below (i.e., 709, 706) fall outside the range of IDs from the annotation file we just uploaded (i.e., 5000 to 5099).
+  </li>
+</ol>
+You can sort these results in numerical order of subject ID by clicking on the &#39;Subject ID&#39; heading above the right table column.
+<img alt="illustration of step" height="309" width="623" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/caInt%200012%20(Single%20Page)%20-%20How%20To%20Add%20Data%20To%20An%20Existing%20Study/worddava6f4684628173cd1bcafed8a102550c7.png?api=v2">
+You can sort query results by clicking on the Subject ID heading (highlighted in red) above the right column.
+<ol>
+  <li>
+    You can customize the display of query results by clicking on the &#39;Results Type&#39; tab at the top of the page and selecting additional fields to be displayed via the checklists for each annotation set. In this example, we checked off &#39;Stratagene&#39; and &#39;Survival in Months&#39; in the default annotation checklist.
+  </li>
+</ol>
+<img alt="illustration of step" height="360" width="623" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/caInt%200012%20(Single%20Page)%20-%20How%20To%20Add%20Data%20To%20An%20Existing%20Study/worddav162107c2be692913a1c4e9f8e0fc92d4.png?api=v2">
+You can select additional fields (highlighted in red) to be displayed in the query results by selecting them from the checklists in the &#39;Results Type&#39; tab, then clicking on the &#39;Run Query&#39; button (also highlighted in red).If you now click on the &#39;Run Query&#39; button at the bottom right of the page, the results will be displayed again under the &#39;Query Results&#39; tab, but this time with the additional columns Stratagene and Survival in Months, which correspond to the new fields we selected.
+<img alt="illustration of step" height="312" width="623" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/caInt%200012%20(Single%20Page)%20-%20How%20To%20Add%20Data%20To%20An%20Existing%20Study/worddav52140d45c0ebcb36ab9e485e96ec20a9.png?api=v2">
+The updated query results include two additional columns (highlighted in red) which correspond to the two additional fields we selected under the &#39;Results Type&#39; tab.
+<ol>
+  <li>
+    To save this query in caIntegrator for future reference, click on the &#39;Save query as..&#39; tab at the top of the page, enter a name and description for the query in the respective fields, and click on the &#39;Save Query&#39; button at the bottom.
+  </li>
+</ol>
+<img alt="illustration of step" height="201" width="573" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/caInt%200012%20(Single%20Page)%20-%20How%20To%20Add%20Data%20To%20An%20Existing%20Study/worddav30b1f8ea4ab4b2e63f8e12120374ce68.png?api=v2">
+You can save the query by clicking on the &#39;Save query as..&#39; tab, entering a query name and description, and clicking on the &#39;Save Query&#39; button (highlighted in red).
+<ol>
+  <li>
+    Once the query is saved, the Search page will reload and the Study Data menu in the left navigation panel will expand to show the newly saved query &#39;Tutorial&#39; under the &#39;My Queries&#39; heading. You can click on the magnifying glass icon to the left of the Tutorial link to bring up the query results again, or on the pencil icon to edit the query criteria.
+  </li>
+</ol>
+<img alt="illustration of step" height="375" width="625" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/caInt%200012%20(Single%20Page)%20-%20How%20To%20Add%20Data%20To%20An%20Existing%20Study/worddavbd407cad3d1e52d32e54a67f5117e385.png?api=v2">
+The &#39;Tutorial&#39; query (highlighted in red) is now saved under the &#39;STUDY DATA&#39; menu in the left navigation panel and can be accessed at any time.
+<h3 id="caInt0012(SinglePage)HowToAddDataToAnExistingStudy-LoadingAnotherGenomicDataset">
+  Loading Another Genomic Dataset
+</h3>
+Now that you&#39;ve uploaded your clinical data and learned how to query it, you&#39;re ready to do the same with your array and mapping data. To review, you&#39;ll need the server host name for your caArray data, the experiment ID, and your mapping and control training CSV files.
+<ol>
+  <li>
+    To begin, navigate back to the &#39;Edit study&#39; page for the &#39;Demo Study for ICR Folks&#39;. If you forgot how to do this, you can refer to step 2 in this tutorial.
+  </li>
+  <li>
+    On the &#39;Edit study&#39; page, scroll down to the &#39;Genomic Data Sources&#39; heading. The table below it shows that one source has already been loaded and mapped. To add another, start by clicking the &#39;Add New&#39; button to the right of the heading.
+  </li>
+</ol>
+<img alt="illustration of step" height="88" width="623" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/caInt%200012%20(Single%20Page)%20-%20How%20To%20Add%20Data%20To%20An%20Existing%20Study/worddavd2be83222992798f6dfd810efba18dc0.png?api=v2">
+Click on the &#39;Add New&#39; button (highlighted in red) to begin adding a new genomic data source.
+<ol>
+  <li>
+    On the &#39;Edit Genomic Data Source&#39; page, most fields are pre-populated with default values. These include the server hostname, which is set to array.nci.nih.gov. As it happens, this is the server where our example array data is stored.
+  </li>
+</ol>
+Every data source in caArray has a unique experiment ID that distinguishes it from the other sources. You can enter the ID for your experiment in the &#39;caArray Experiment Id&#39; field, which is about halfway down the page. If you don&#39;t enter the ID for your source, then caIntegrator won&#39;t be able to retrieve your data, and will display an error message to that effect. In our example, the experiment ID is &#39;jacob-00182&#39;, which we enter in the field.If your server hostname or any of the other values for your data source differ from the default values, then enter them into their respective fields, then click on the &#39;Save&#39; button at the bottom of the page. (Remember that, if your study is private, you must enter the login credentials into the &#39;Username&#39; and &#39;Password&#39; fields.)
+<img alt="illustration of step" height="383" width="623" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/caInt%200012%20(Single%20Page)%20-%20How%20To%20Add%20Data%20To%20An%20Existing%20Study/worddav78df35e90b9a276ea4afaf8f452ce011.png?api=v2">
+Enter the values for your data source if they differ from the default values, then click on the &#39;Save&#39; button (highlighted in red). Don&#39;t forget to enter your caArray experiment ID – the ID for our example source is &#39;jacob-00182&#39;.
+<ol>
+  <li>
+    Back on the &#39;Edit Study&#39; page, a new row has appeared in the &#39;Genomic Data Sources&#39; table which corresponds to the new data source we just added. Our next step is to map the samples in this source to the subjects in our annotation source. To begin, click on the &#39;Map Samples&#39; button under the &#39;Action&#39; column at the right of the table.
+  </li>
+</ol>
+<img alt="illustration of step" height="129" width="623" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/caInt%200012%20(Single%20Page)%20-%20How%20To%20Add%20Data%20To%20An%20Existing%20Study/worddav483c9793fa2796740ad07f6ea27d0621.png?api=v2">
+The newly added row (highlighted in red) in the Genomic Data Sources table corresponds to the new genomic data source we added in step 24. Click on the &#39;Map Samples&#39; button (highlighted in blue) to map the samples to subjects from the annotation source we added in steps 3 to 8.
+<ol>
+  <li>
+    The &#39;Edit Sample Mappings&#39; page displays a list of unmapped samples, followed by another list mapping sample IDs to subject IDs. As you can see, the mapping list is empty, which means that none of the samples in this source have been mapped yet! The list of unmapped samples appears under the heading &#39;Unmapped Samples&#39; and subheading &#39;Sample Name&#39;. The numbers in this list represent the sample IDs of the unmapped samples.
+  </li>
+  <li>
+    <img alt="illustration of step" height="450" width="623" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/caInt%200012%20(Single%20Page)%20-%20How%20To%20Add%20Data%20To%20An%20Existing%20Study/worddav4fb60c1837ad3c8c0037e54d6d6dfdce.png?api=v2">
+  </li>
+</ol>
+The &#39;Edit Sample Mappings&#39; page shows a list of IDs for unmapped samples (highlighted in red).Your mapping CSV file must map the subject IDs in your annotations to the sample IDs in the unmapped samples list. A screenshot of the mapping file used in this tutorial, taken from a Microsoft Excel 2007 window, is shown below. The file is a table of two columns with no headings; the first column contains IDs of the subjects from the annotation source and the second column contains IDs from the unmapped samples list. Each subject in the left column corresponds to the sample in the right column. Note that the file doesn&#39;t map every single sample ID from the data source.
+<img alt="illustration of step." height="388" width="153" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/caInt%200012%20(Single%20Page)%20-%20How%20To%20Add%20Data%20To%20An%20Existing%20Study/worddavc7f18ff65f96d429f717b188a2f43d64.png?api=v2">
+This CSV file maps the subject IDs from our annotation source (left column) to the sample IDs in our genomic source (right column).To add your mapping CSV file to the study, click on the &#39;Choose File&#39; button next to the &#39;Subject to Sample Mapping File&#39; label.
+<img alt="illustration of step" height="349" width="594" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/caInt%200012%20(Single%20Page)%20-%20How%20To%20Add%20Data%20To%20An%20Existing%20Study/worddav36d271939f1e2db48734788a69f9a3b1.png?api=v2">
+Click on the &#39;Choose File&#39; button (highlighted in red) to choose a mapping file to open.In the Open dialog that follows, find your mapping file, click on it, and then click on the &#39;Open&#39; button. (In our example, the mapping file is named &#39;mapping_file_tutorial.CSV&#39;.)
+<img alt="illustration of step" height="408" width="562" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/caInt%200012%20(Single%20Page)%20-%20How%20To%20Add%20Data%20To%20An%20Existing%20Study/worddav8522090d518ed20622e50f69a3067fe3.png?api=v2">
+To open your mapping file, click on the &#39;mapping_file_tutorial.CSV&#39; file (highlighted in red), then click on the &#39;Open&#39; button (highlighted in blue).
+<ol>
+  <li>
+    Back on the &#39;Edit Sample Mappings&#39; page, the filename of the mapping file you just opened is now displayed to the right of the &#39;Choose File&#39; button from step 26.
+  </li>
+</ol>
+While the &#39;Edit Sample Mappings&#39; page lists all the samples from your source (both mapped and unmapped), it doesn&#39;t indicate which of these samples came from cases and which came from controls.Since this information may be considered important to your study, we need a way of distinguishing between the cases and controls. The way that caIntegrator addresses this need is with a &#39;control training file&#39; that lists the sample IDs of all the controls. Any sample that is not listed in this file comes from a case. The screenshot below shows a portion of an example training file in CSV format from a Microsoft Excel 2007 window.
+<img alt="illustration of step" height="468" width="202" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/caInt%200012%20(Single%20Page)%20-%20How%20To%20Add%20Data%20To%20An%20Existing%20Study/worddav9bcd2018d65b1a72408c1296042eeaf2.png?api=v2">
+A portion of a control training file listing the sample IDs of all the controls from our example data source. You don&#39;t need to understand the format or nomenclature of the sample IDs – they were generated by the instrument or technician who ran the samples.To add your control training CSV file to the study, click on the &#39;Choose File&#39; button next to the &#39;Control Samples File&#39; label.
+<img alt="illustration of step" height="352" width="612" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/caInt%200012%20(Single%20Page)%20-%20How%20To%20Add%20Data%20To%20An%20Existing%20Study/worddavbb5791457bbc2a1eb22b423d7d9dbba7.png?api=v2">
+The filename of the mapping file we just uploaded now appears next to the &#39;Choose File&#39; button for &#39;Subject to Sample Mapping File&#39; (highlighted in red). Now click on the &#39;Choose File&#39; button next to &#39;Control Samples File&#39; (highlighted in blue) to begin uploading your control training file.In the Open dialog that follows, find your mapping file, click on it, and then click on the &#39;Open&#39; button. (In our example, the mapping file is named &#39;control_training_file_tutorial.CSV&#39;.)
+<img alt="illustration of step" height="408" width="562" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/caInt%200012%20(Single%20Page)%20-%20How%20To%20Add%20Data%20To%20An%20Existing%20Study/worddav1f364ae8ac5fad0b8a35f345cd8a0ab8.png?api=v2">
+Click on the &#39;control_training_file_tutorial.CSV&#39; file (highlighted in red), then click on the &#39;Open&#39; button (highlighted in blue).
+<ol>
+  <li>
+    Back on the &#39;Edit Sample Mappings&#39; page, the filename of the control training file you just opened is now displayed to the right of the &#39;Choose File&#39; button from step 26. Now enter a name for the control sample set in the &#39;Control Sample Set Name&#39; text field (our example uses &#39;tutorial controls&#39;), then click on the &#39;Map Samples&#39; button to map your samples.
+  </li>
+</ol>
+<img alt="illustration of step" height="350" width="622" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/caInt%200012%20(Single%20Page)%20-%20How%20To%20Add%20Data%20To%20An%20Existing%20Study/worddavf66d0a151b168344e33c9fc6bef1f322.png?api=v2">
+The filename of the control training file you just uploaded now appears to the right of the &#39;Choose File&#39; button (highlighted in red). Enter a title into the &#39;Control Sample Set Name&#39; text field (highlighted in blue), then click on the &#39;Map Samples&#39; button (highlighted in green) to map your samples.
+<ol>
+  <li>
+    Back on the &#39;Edit Study&#39; page, the new mapping and control files we uploaded are now listed under the File Description column, while the Status has changed from &#39;Not mapped&#39; to &#39;Ready to be loaded&#39;. We are now done mapping our samples and are ready to query them.
+  </li>
+</ol>
+<img alt="illustration of step" height="126" width="623" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/caInt%200012%20(Single%20Page)%20-%20How%20To%20Add%20Data%20To%20An%20Existing%20Study/worddav091e4d587914e62fd28e005a65791a35.png?api=v2">
+The mapping file we uploaded now appears under the File Description column and is highlighted in red, while the control file we uploaded is highlighted in green. Under the Status column, the status has changed from &#39;Not mapped&#39; to &#39;Ready to be loaded&#39; (highlighted in blue).
+<ol>
+  <li>
+    To see what obstacles may arise in the course of loading mapping data, let&#39;s try another file. This one, named &#39;duplicate_mapping_file_tutorial.CSV&#39;, will replace the one we loaded in steps 26 to 28. A partial screenshot of this file, taken from a Microsoft Excel 2007 window, is shown below.
+  </li>
+</ol>
+<img alt="illustration of step" height="309" width="258" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/caInt%200012%20(Single%20Page)%20-%20How%20To%20Add%20Data%20To%20An%20Existing%20Study/worddav138cb5b5ee9173a4cbb058c5f881e3ad.png?api=v2">
+In this mapping file, the same sample (ID 191) is mapped twice, once to subject ID 5085 (highlighted in red) and again to subject ID 6000 (highlighted in blue).You may notice something unusual about this mappings: the same sample ID (191) is mapped twice, and each mapping is to a different subject ID (5085 in one case, 6000 to another). This is obviously an error in the mappings, as each sample is taken from a single subject and must be unique to that subject. However, the question remains, what happens when we attempt to load these mappings into the study?Surprisingly, when we repeat the procedure for loading mappings with the &#39;duplicate_mapping_file_tutorial.CSV&#39;, caIntegrator does not display any error message, and its source&#39;s status shows as &#39;Ready to be loaded&#39; in the &#39;Genomic Data Sources&#39; table, as was the case with the previous mapping file we loaded successfully. Does this mean that caIntegrator allows multiple mappings of the same sample to different subjects?
+<img alt="illustration of step" height="49" width="623" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/caInt%200012%20(Single%20Page)%20-%20How%20To%20Add%20Data%20To%20An%20Existing%20Study/worddav4010931c5fab75b18c2d3e71bdb79b21.png?api=v2">
+When loading an invalid mapping file, caIntegrator does not display any error messages and shows the status of the invalidly mapped source as &#39;Ready to be loaded&#39; (highlighted in red).
+<ol>
+  <li>
+    As it turns out, when caIntegrator parses a mapping file in which the same sample is mapped to multiple subjects and encounters a sample ID that has already been mapped, it will overwrite the old mapping with the new one. We can confirm this by clicking on the &#39;Map Samples&#39; button for the source we mapped and examining the &#39;Samples Mapped to Subjects&#39; table on the &#39;Edit Sample Mappings&#39; page.
+  </li>
+</ol>
+<img alt="illustration of step" height="42" width="623" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/caInt%200012%20(Single%20Page)%20-%20How%20To%20Add%20Data%20To%20An%20Existing%20Study/worddavd1415c6aaa12ccdcc6a1eb94e27cf3f9.png?api=v2">
+<img alt="illustration of step" height="49" width="598" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/caInt%200012%20(Single%20Page)%20-%20How%20To%20Add%20Data%20To%20An%20Existing%20Study/worddav60cc9febd16fa72fc7d0ce4ca601e0a2.png?api=v2">
+On the &#39;Edit Sample Mappings&#39; page, sample ID 191 is only mapped to a single subject (highlighted in red), even though the mapping file we just loaded mapped that same sample twice.As you can see, the mapping table shows only one mapping for sample ID 191, even though this sample was mapped to two different subjects in the new mapping file we just loaded. The subject ID it&#39;s mapped to is 6000 (the second one in the mapping file), not 5085 (the fist one in the mapping file). This means that caIntegrator overwrote the first mapping of sample ID 191 with the second one.We&#39;ve learned a valuable lesson from this exercise: be sure to check your mapping file for any duplicates before loading it into your study, as caIntegrator does not perform this check for you!
+<h3 id="caInt0012(SinglePage)HowToAddDataToAnExistingStudy-QueryingArrayandMappingData">
+  Querying Array and Mapping Data
+</h3>
+<ol>
+  <li>
+    On the &#39;Edit Study&#39; page, click on the &#39;My Studies&#39; drop-down list in the blue banner at the top, then click on &#39;Demo Study for ICR Folks&#39;.
+  </li>
+</ol>
+<img alt="illustration of step" height="73" width="618" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/caInt%200012%20(Single%20Page)%20-%20How%20To%20Add%20Data%20To%20An%20Existing%20Study/worddavc2e36e43a1db2988cfb49b7ca5690f51.png?api=v2">
+Click on the &#39;My Studies&#39; drop-down list (highlighted in red), then click on &#39;Demo Study for ICR Folks&#39; (highlighted in blue).
+<ol>
+  <li>
+    On the &#39;Welcome&#39; page, click on the &#39;Search Demo Study for ICR Folks&#39; link under the &#39;DEMO STUDY FOR ICR FOLKS&#39; heading in the navigation panel at the left.
+  </li>
+</ol>
+<img alt="illustration of step" height="271" width="232" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/caInt%200012%20(Single%20Page)%20-%20How%20To%20Add%20Data%20To%20An%20Existing%20Study/worddav04fe6e2b2c1e5dac14cf0d207c3a44cc.png?api=v2">
+Click on &#39;Search Demo Study for ICR Folks&#39; (highlighted in red) to begin querying the study.
+<ol>
+  <li>
+    On the &#39;Search&#39; page, click on the drop-down list under the &#39;Define Query Criteria&#39; heading. The list shows the different criteria we can query the study by. Since we want to query genomic data, click on &#39;Gene Expression&#39;, then click on the &#39;Add&#39; button to the right of the list.
+  </li>
+</ol>
+<img alt="illustration of step" height="225" width="311" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/caInt%200012%20(Single%20Page)%20-%20How%20To%20Add%20Data%20To%20An%20Existing%20Study/worddavc5457798ddea10118880d0ed2fd3c246.png?api=v2">
+Click on the &#39;Define Query Criteria&#39; drop-down list (highlighted in red), then click on &#39;Gene Expression&#39; (highlighted in blue) and click on the &#39;Add&#39; button (highlighted in green).
+<ol>
+  <li>
+    When querying by gene name, you can either search for a gene symbol or for a fold change. In this example, we&#39;ll search by the gene symbol. Click on the &#39;Gene Name&#39; drop-down list, then click on the &#39;Gene Name&#39; list entry.
+  </li>
+</ol>
+<img alt="illustration of step" height="232" width="369" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/caInt%200012%20(Single%20Page)%20-%20How%20To%20Add%20Data%20To%20An%20Existing%20Study/worddav81d932d345a4f31bf6d58f1e67ee7c43.png?api=v2">
+Click on the &#39;Gene Name&#39; drop-down list (highlighted in red), then click on the &#39;Gene Name&#39; list entry (highlighted in blue).
+<ol>
+  <li>
+    In the gene symbol text field that appears to the right, type in &#39;EGFR&#39; (the symbol for the epidermal growth factor gene), then click on the &#39;Run Query&#39; button below.
+  </li>
+</ol>
+<img alt="illustration of step" height="72" width="623" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/caInt%200012%20(Single%20Page)%20-%20How%20To%20Add%20Data%20To%20An%20Existing%20Study/worddav0b12c8e671cae13406cee8e89c625336.png?api=v2">
+Type &#39;EGFR&#39; into the &#39;Gene Symbol&#39; text field (highlighted in red), then click on the &#39;Run Query&#39; button (highlighted in blue).
+<ol>
+  <li>
+    The query results appear under the &#39;Query Results&#39; tab as a table of subject IDs for those with available EGFR expression data. Note that these results include subjects not only from the genomic sources that we uploaded in this tutorial, but also from the pre-existing ones. You can confirm this by noting that some of the subject IDs in the results screenshot below (i.e., 10, 309) fall outside the range of IDs from the annotation file we previously uploaded (i.e., 5000 to 5099).
+  </li>
+</ol>
+You can sort these results in numerical order of subject ID by clicking on the &#39;Subject ID&#39; heading above the right table column.
+<img alt="illustration of step" height="349" width="623" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/caInt%200012%20(Single%20Page)%20-%20How%20To%20Add%20Data%20To%20An%20Existing%20Study/worddavafe870f56a4bc155c2879228320fc3f8.png?api=v2">
+Click on the Subject ID column heading (highlighted in red) to sort the EGFR gene query results.
+<ol>
+  <li>
+    As it stands, these query results are not very useful, as they only show which subjects have EGFR expression data and don&#39;t show the actual data itself. To change this, click on the &#39;Results Type&#39; tab at the top of the page, then click on the &#39;Gene Expression&#39; radio button under the &#39;Select Results Type&#39; heading. This will change the query results to display one or more numerical values which indicate the expression levels of the EGFR gene for each sample.
+  </li>
+</ol>
+<img alt="illustration of step" height="131" width="580" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/caInt%200012%20(Single%20Page)%20-%20How%20To%20Add%20Data%20To%20An%20Existing%20Study/worddav0a2c0620a8a942e57ce90ae98588d23b.png?api=v2">
+Click on the &#39;Results Type&#39; tab (highlighted in red), then click on the &#39;Gene Expression&#39; button (highlighted in blue).
+<ol>
+  <li>
+    In the query results, we can choose to display every EGFR expression value for a given sample, or to display a single value which represents the median of that sample&#39;s values. For simplicity&#39;s sake, let&#39;s choose the latter option by clicking on the &#39;Gene&#39; button next to &#39;Select Reporter Type&#39;, then clicking on the &#39;Run Query&#39; button to display the results.
+  </li>
+</ol>
+<img alt="illustration of step" height="264" width="623" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/caInt%200012%20(Single%20Page)%20-%20How%20To%20Add%20Data%20To%20An%20Existing%20Study/worddave64edeb45bfeb383fcc06f92a133f738.png?api=v2">
+Click on the &#39;Gene&#39; button (highlighted in red) to display a single value representing each subject&#39;s EGFR expression levels in the query results, then click on the Run Query button (highlighted in blue) to display the results.
+<ol>
+  <li>
+    Back on the &#39;Query Results&#39; page, there are now two additional columns of data: Sample ID and EGFR. The value in the EGFR column represents the median of the gene&#39;s expression levels for the corresponding subject and sample. Note that the screenshot below only displays the first five results in the list; you can scroll down the list via the bar at the right to view the rest of the results.
+  </li>
+</ol>
+<img alt="illustration of step" height="169" width="623" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/caInt%200012%20(Single%20Page)%20-%20How%20To%20Add%20Data%20To%20An%20Existing%20Study/worddave98a833febb72b21cbbddecb5ddd3177.png?api=v2">
+The query results now show two additional columns: Sample ID and EGFR. The latter represents median EGFR expression values. Click on the &#39;Save query as…&#39; tab (highlighted in red) to save these results for future reference.To save this query in caIntegrator for future reference, click on the &#39;Save query as..&#39; tab at the top of the page, enter a name and description for the query in the respective fields, and click on the &#39;Save Query&#39; button at the bottom.
+<img alt="illustration of step" height="236" width="575" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/caInt%200012%20(Single%20Page)%20-%20How%20To%20Add%20Data%20To%20An%20Existing%20Study/worddav298b88bb3ca858492a5f42b654c6021d.png?api=v2">
+Enter a query name and query description in the respective text fields, then click on the &#39;Save Query&#39; button (highlighted in red) to save the query for future reference.
+<ol>
+  <li>
+    Once the query is saved, the Search page will reload and the Study Data menu in the left navigation panel will expand to show the newly saved &#39;Genomic Query&#39; under the &#39;My Queries&#39; heading. You can click on the magnifying glass icon to the left of the Query link to bring up the query results again, or on the pencil icon to edit the query criteria.
+  </li>
+</ol>
+<img alt="illustration of step" height="86" width="180" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/caInt%200012%20(Single%20Page)%20-%20How%20To%20Add%20Data%20To%20An%20Existing%20Study/worddav55085108339588ea559d39a51b1893ad.png?api=v2">
+The newly saved &#39;Genomic query&#39; (highlighted in red) is shown in the &#39;Study Data&#39; menu under &#39;My Queries&#39;.
+<h2 id="caInt0012(SinglePage)HowToAddDataToAnExistingStudy-Haveacomment?">
+  Have a comment?
+</h2>
+Please leave your comment in the
+<a href="https://cabig-kc.nci.nih.gov/Molecular/forums/viewforum.php?f=23&amp;sid=5d0023efa82739d1127556a15b85311c" rel="nofollow">
+  caIntegrator End User Forum
+</a>
+.

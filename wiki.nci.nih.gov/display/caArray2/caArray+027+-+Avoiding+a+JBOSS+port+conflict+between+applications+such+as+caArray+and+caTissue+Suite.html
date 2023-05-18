@@ -1,0 +1,125 @@
+<h1 id="caArray027AvoidingaJBOSSportconflictbetweenapplicationssuchascaArrayandcaTissueSuite-Question:HowdoweavoidaJBOSSportconflictbetweenapplicationssuchascaArrayandcaTissueSuite?">
+  Question: How do we avoid a JBOSS port conflict between applications such as caArray and caTissue Suite?
+</h1>
+Topic: caArray Installation and Upgrade
+
+Release: caArray 2.x
+
+Date entered: 07/13/2009
+<h2 id="caArray027AvoidingaJBOSSportconflictbetweenapplicationssuchascaArrayandcaTissueSuite-DetailsabouttheQuestion">
+  Details about the Question
+</h2>
+After installing caTissue Suite (v1.1) on the same server that has geWorkbench, caGWAS, and caArray installed, caArray crashed.
+<h2 id="caArray027AvoidingaJBOSSportconflictbetweenapplicationssuchascaArrayandcaTissueSuite-Answer">
+  Answer
+</h2>
+The problem in question was due in part to conflicts between caTissue and caArray. This issue is not specific to caArray since other applications using JBoss server might have the same conflict with caTissue Suite. This conflict will arise only if the following two conditions are both met: (1) a user installs caArray or another caBIG® application first then installs caTissue; and (2) the user changes the ports for caTissue manually and one of the ports for caTissue was already used by caArray or the other caBIG® application.
+<h3 id="caArray027AvoidingaJBOSSportconflictbetweenapplicationssuchascaArrayandcaTissueSuite-Howtoavoidtheportconflict">
+  How to avoid the port conflict
+</h3>
+The following options could be helpful to avoid the potential port conflict among the different applications installed:
+<h4 id="caArray027AvoidingaJBOSSportconflictbetweenapplicationssuchascaArrayandcaTissueSuite-Option1:Keepthedefaultportsettingsoftheapplications">
+  Option 1: Keep the default port settings of the applications
+</h4>
+If a user kept the default setting of the ports regardless of the order of the installation, caTissue Suite and caArray would install without problems.
+<h4 id="caArray027AvoidingaJBOSSportconflictbetweenapplicationssuchascaArrayandcaTissueSuite-Option2:InstallcaTissuefirst,changecaTissue&#39;sdefaultPortsettings,andinstallcaArray">
+  Option 2: Install caTissue first, change caTissue&#39;s default Port settings, and install caArray
+</h4>
+The caArray installer can detect the port availability on the server. If the user needs to use different port numbers other than the ones picked by the caTissue installer, the user needs to first install caTissue, modify its default port settings, and then install the caArray application using a set of ports that are not used by caTissue.
+<h4 id="caArray027AvoidingaJBOSSportconflictbetweenapplicationssuchascaArrayandcaTissueSuite-Option3:Useonlytheavailableport">
+  Option 3:  Use only the available port
+</h4>
+If any port number has to be changed after the installation of both caArray and caTissue, the user will need to make sure to use a free port number by verifying the port availability.
+<h3 id="caArray027AvoidingaJBOSSportconflictbetweenapplicationssuchascaArrayandcaTissueSuite-Howtochecktheportavailabilityontheserver?">
+  How to check the port availability on the server?
+</h3>
+The user may check the availability of a port number with the netstat command below:
+<ul>
+  <li>
+    For a Linux/Unix/Mac environment:
+
+
+    netstat --ano \| grep &lt;&lt;portNumber&gt;&gt;
+
+
+    For example, use netstat --ano | grep &lt;&lt;portNumber&gt;&gt; for each required port (replacements for one or more of the following- 8080, 8009, 8443, 8083, 1099, 1098, 4444, 4445, 8093, 0, 1100, 1162, 3528, and 3529). If a process is listening to a customized port, choose another port and retry netstat until no conflict is returned. Use the final list of the customized ports to deploy caBIG tools.
+  </li>
+  <li>
+    For a Windows environment, use the netstat command below to return all the port numbers that are already been used:
+
+
+    netstat --ano
+  </li>
+</ul>
+<h3 id="caArray027AvoidingaJBOSSportconflictbetweenapplicationssuchascaArrayandcaTissueSuite-Howtoreconfiguretheportnumbertosolvetheportconflict">
+  How to reconfigure the port number to solve the port conflict
+</h3>
+The procedure below shows how to re-configure the JBoss 4.2.2.GA for caTissue 1.1 Suite from 3XXXX ports to 5XXXX ports to avoid collision with caArray 2.2.1:
+
+1. Change the file jboss-4.2.2.GA\server\all\conf\jboss-service.xml, by updating the following ports:
+
+
+
+A. Binding Address Port from 38083 to 58083 for &lt;attribute name=&#34;Port&#34;&gt;38083&lt;/attribute&gt;
+B. Listening port for bootstrap JNP service from 31099 to 51099 for &lt;attribute name=&#34;Port&#34;&gt;31099&lt;/attribute&gt;
+C. RMI naming service &#34;RmiPort&#34; from 31098 to 51098 for &lt;attribute name=&#34;RmiPort&#34;&gt;31098&lt;/attribute&gt;
+D. RMIObjectPort from 34444 to 54444 for &lt;attribute name=&#34;RMIObjectPort&#34;&gt;34444&lt;/attribute&gt;
+E. Server Binding Port from 34445 to 54445 for &lt;attribute name=&#34;ServerBindPort&#34;&gt;34445&lt;/attribute&gt;
+F. serverBindPort from 34446 to 54446 for &lt;attribute name=&#34;serverBindPort&#34;&gt;34446&lt;/attribute&gt;
+
+
+
+2. Copy the above updated file in jboss-4.2.2.GA\server\default\conf\
+
+3. Change the file jboss-4.2.2.GA\server\all\deploy\cluster-service.xml, update ports for:
+
+
+
+A. HAJNI Port from 31100 to 51100 for &lt;attribute name=&#34;Port&#34;&gt;31100&lt;/attribute&gt;
+B. RmiPort from 31101 to 51101 for &lt;attribute name=&#34;RmiPort&#34;&gt;31101&lt;/attribute&gt;
+C. AutoDiscovery Group from 31102 to 51102 for &lt;attribute name=&#34;AutoDiscoveryGroup&#34;&gt;31102&lt;/attribute&gt;
+D. RMIObjectPort from 34447 to 54447 for &lt;attribute name=&#34;RMIObjectPort&#34;&gt;34447&lt;/attribute&gt;
+E. ServerBindPort from 34448 to 54448 for &lt;attribute name=&#34;ServerBindPort&#34;&gt;34448&lt;/attribute&gt;
+
+
+
+4. Open the file jboss-4.2.2.GA\server\all\deploy\jboss-web.deployer\server.xml and update ports for:
+
+
+
+A. HTTP Connector port from 38080 to 58080  for &lt;Connector port=&#34;38080&#34; address=&#34;$\{jboss.bind.address\}&#34;
+B. HTTP redirectPort from 38443 to 58443  for emptySessionPath=&#34;true&#34; enableLookups=&#34;false&#34; redirectPort=&#34;8443&#34; /&gt;
+C. AJP Connector port from 38009 to 58009  for &lt;Connector port=&#34;38009&#34; address=&#34;$\{jboss.bind.address\}&#34; protocol=&#34;AJP/1.3&#34;
+D. HTTP redirectPort from 38443 to 58443  for emptySessionPath=&#34;true&#34; enableLookups=&#34;false&#34; redirectPort=&#34;38443&#34; /&gt;
+
+
+
+5. Copy the above updated file in jboss-4.2.2.GA \server\default\deploy\jboss-web.deployer\
+
+6. Open the file jboss-4.2.2.GA\server\all\deploy\httpha-invoker.sar\META-INF\jboss-service.xml and update ports for:
+
+
+
+A. InvokerURLSuffix from 38080 to 58080 for &lt;attribute name=&#34;InvokerURLSuffix&#34;&gt;:38080/invoker/EJBInvokerServlet&lt;/attribute&gt;
+B. InvokerURLSuffix from 38080 to 58080 for &lt;attribute name=&#34;InvokerURLSuffix&#34;&gt;:38080/invoker/EJBInvokerHAServlet&lt;/attribute&gt;
+C. InvokerURLSuffix from 38080 to 58080 for &lt;attribute name=&#34;InvokerURLSuffix&#34;&gt;:38080/invoker/JMXInvokerServlet&lt;/attribute&gt;
+D. InvokerURLSuffix from 38080 to 58080 for &lt;attribute name=&#34;InvokerURLSuffix&#34;&gt;:38080/invoker/readonly/JMXInvokerServlet&lt;/attribute&gt;
+E. InvokerURLSuffix from 38080 to 58080 for &lt;attribute name=&#34;InvokerURLSuffix&#34;&gt;:38080/invoker/JMXInvokerHAServlet&lt;/attribute&gt;
+
+
+
+7. Open file jboss-4.2.2.GA\server\default\deploy\httpha-invoker.sar\META-INF\jboss-service.xml and update ports for:
+
+
+
+A. InvokerURLSuffix from 38080 to 58080 for &lt;attribute name=&#34;InvokerURLSuffix&#34;&gt;:38080/invoker/EJBInvokerServlet&lt;/attribute&gt;
+B. InvokerURLSuffix from 38080 to 58080 for &lt;attribute name=&#34;InvokerURLSuffix&#34;&gt;:38080/invoker/JMXInvokerServlet&lt;/attribute&gt;
+C. InvokerURLSuffix from 38080 to 58080 for &lt;attribute name=&#34;InvokerURLSuffix&#34;&gt;:38080/invoker/readonly/JMXInvokerServlet&lt;/attribute&gt;
+<h2 id="caArray027AvoidingaJBOSSportconflictbetweenapplicationssuchascaArrayandcaTissueSuite-Haveacomment?">
+  Have a comment?
+</h2>
+Please leave your comment in the
+<a href="https://cabig-kc.nci.nih.gov/Molecular/forums/viewtopic.php?f=6&amp;t=577" rel="nofollow">
+  caArray End User Forum
+</a>
+. 

@@ -1,0 +1,101 @@
+Document Information
+Author: Craig Stancl
+Email: Stancl.craig@mayo.edu
+Team: LexEVS
+Contract: CBITT BOA Subcontract# 29XS223
+Client: NCI CBIIT
+National Institutes of Heath
+US Department of Health and Human Services
+
+
+Revision History
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Version
+      </th>
+      <th>
+        Date
+      </th>
+      <th>
+        Description of Changes
+      </th>
+      <th>
+        Author
+      </th>
+    </tr>
+    <tr>
+      <td>
+        1.0
+      </td>
+      <td>
+        5/14/10
+      </td>
+      <td>
+        Initial Version Approved via Design Review
+      </td>
+      <td>
+        Team
+      </td>
+    </tr>
+  </tbody>
+</table>
+XML exporter exports the LexEVS 6.0 contents (coding scheme and components) from LexEVS database to an XML file. The output XML file will be a valid LGXML file. The process of extracting content from LexEVS is done by using LexEVS 6 APIs.
+
+The exporter will also have the ability to export a subset of coding scheme content. Users will be able to provide criteria that will determine what content is returned. An example would be to export only associations.
+
+The exporter will stream the content from LexEVS to the XML file. This will allow for large ontologies to be exported.
+
+Right now the design to accomplish this is as follows:
+<ol>
+  <li>
+    Read the CodingScheme object.
+  </li>
+  <li>
+    Get CodedNodeSet/CodedNodeGraph from the coding scheme.
+  </li>
+  <li>
+    Add a dummy entity to the coding scheme object.
+  </li>
+  <li>
+    Add Entities (or associations) by applying the filter criteria -
+    <ol>
+      <li>
+        In the first phase of development two uses cases will be supported:
+        <ol>
+          <li>
+            Export the whole coding scheme
+          </li>
+          <li>
+            Export only the associations of a coding scheme.
+          </li>
+        </ol>
+      </li>
+      <li>
+        Later, a richer set of user supplied criteria will be supported.
+      </li>
+    </ol>
+  </li>
+  <li>
+    Construct a marshaller that will marshal the select contents in step 4.
+  </li>
+  <li>
+    Create a listener that will take the CodedNoteSet, CodedNodeGraph and output file details as parameters.
+  </li>
+  <li>
+    Add the listener to the marshaller.
+  </li>
+  <li>
+    Marshal the coding scheme with the created marshaller. During the marshalling processes the listener will call into LexGrid to get contents to further marshal. For example, it will detect our dummy entity object and make a call to LexEVS to get a block of entity objects.
+  </li>
+  <li>
+    The marshaller and listener will work together to stream the contents to the output file.
+  </li>
+</ol>
+<img alt="XML Exporter flow diagram" height="309" width="433" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%206.0%20Design%20Document%20-%20Detailed%20Design%20-%20XML%20Export/worddava7b949c685ac84a12aac73b86847dab5.png?api=v2">
+Two Listeners are shown in the flow diagram. These may be combined into a single listener that will contain both the CodedNodeGraph and CodedNodeSet objects.
+
+In Addition to this we plan to develop JUnits and other auxiliary set of resources that will be make it ready to be hooked up to DOA layer when ready.
+
+Finally, documentation will be provided to explain how to supply filtering criteria to the exporter. 

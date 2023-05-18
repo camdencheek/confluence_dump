@@ -1,0 +1,45 @@
+Archived from the GForge wiki of the LexEVS project. Last edited August 5, 2009.This is intended to be a sent of guidelines or &#39;best practices&#39; for getting the best performance out of LexEVS 5.1
+<ul>
+  <li>
+    Using Iterators
+  </li>
+</ul>
+With 5.1, ResolvedConceptReferencesIterators are populated with Lucene Document data on demand, meaning no data is pulled from the Lucene Documents until &#39;next&#39; is called on the iterator. This means the initial resolve of the iterator will be much faster.
+<ul>
+  <li>
+    Sorting
+  </li>
+</ul>
+Sorting is expensive, because in order to sort, the entire result set needs to be resolved either from the Lucene Documents or the database. The exception to this is sorting by Lucene score (matchToQuery sort). This sort is very fast in all cases.If sorting is a requirement:
+<ul>
+  <li>
+    Consider creating a new Search Plugin that will better match the results to the user input. This way you can rely on the Lucene score to sort by the best results.
+  </li>
+</ul>
+<ul>
+  <li>
+    Resolve to a List and use a &#39;post&#39; sort. This means: First resolve to a list of a set number of results. Then sort -- the &#39;post&#39; sorts will only sort on the results that are included in the list. For instance, suppose the user searches for &#39;heart&#39; and these hits are returned from Lucene:
+  </li>
+</ul>
+&#39;heart&#39; &#39;heart attack&#39; &#39;heart failure&#39; &#39;bleeding heart&#39;now, resolve to a list of say, 2 results. resolve -&gt; \&#39;heart&#39;,&#39;heart attack&#39;\this essentially gives you the top n results of your query.Now you can &#39;post&#39; sort these two results -- that way extra calls to Lucene and/or the database don&#39;t have to be made.
+<ul>
+  <li>
+    Questions:
+    <ul>
+      <li>
+        Would the Search Plugin mentioned above be a client-side plugin, or a server side plugin?
+      </li>
+      <li>
+        To implement pagination properly, the &#39;post&#39; sort would have to be performed on the entire list of resolved concepts. Would there still be a performance issue?
+        <ul>
+          <li>
+            All sorts (except matchToQuery sort) will require either a database lookup or lucene lookup for all the results that are to be sorted. That is why &#39;post&#39; sort was introduced. If you resolve to a list and limit it, only those results that included in that list will be sorted. This allows you to get the top n results from a query and sort them, without having to sort the entire result set.
+          </li>
+          <li>
+            Sorts are going to be performance bottlenecks if used with large result sets -- Lucene document retrieval is only so fast and there are only so many transactions per second we can push to the database. Even more, if you sort large result sets by anything but the score, the first results displayed to the user may in fact have a very low lucene score.
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>

@@ -1,0 +1,210 @@
+Contents of this Page
+<ul>
+  <li>
+    <a href="#LexWiki1.0InstallationGuide-Introduction" rel="nofollow">
+      Introduction
+    </a>
+  </li>
+  <li>
+    <a href="#LexWiki1.0InstallationGuide-Scope" rel="nofollow">
+      Scope
+    </a>
+  </li>
+  <li>
+    <a href="#LexWiki1.0InstallationGuide-Prerequisites" rel="nofollow">
+      Prerequisites
+    </a>
+  </li>
+  <li>
+    <a href="#LexWiki1.0InstallationGuide-Tips" rel="nofollow">
+      Tips
+    </a>
+  </li>
+  <li>
+    <a href="#LexWiki1.0InstallationGuide-Instructions" rel="nofollow">
+      Instructions
+    </a>
+  </li>
+  <li>
+    <a href="#LexWiki1.0InstallationGuide-Troubleshooting" rel="nofollow">
+      Troubleshooting
+    </a>
+  </li>
+</ul>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        LexWiki Links
+      </th>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=63242265" rel="nofollow">
+              LexWiki Main
+            </a>
+          </li>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=63242269" rel="nofollow">
+              Documentation
+            </a>
+          </li>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=63242249" rel="nofollow">
+              Presentations
+            </a>
+          </li>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=63242258" rel="nofollow">
+              Roadmap
+            </a>
+          </li>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=63242263" rel="nofollow">
+              Publisher
+            </a>
+          </li>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=63996221" rel="nofollow">
+              Tool Adopters
+            </a>
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="LexWiki1.0InstallationGuide-Introduction">
+  Introduction
+</h2>
+LexWiki is an open source, high-capacity editor for distributed terminology development. Developed by Mayo Clinic with collaboration by the National Cancer Institute (NCI), the World Health Organization (WHO) and Stanford University, it is a synergistic effort for the development of a collaborative terminology authoring platform based on the integration of LexGrid and Semantic MediaWiki technologies. This version of LexWiki does not include Protégé components.
+
+The features of LexWiki include:
+<ul>
+  <li>
+    Browsing support
+    <ul>
+      <li>
+        Hierarchy view with Category Tree extension
+      </li>
+      <li>
+        Concept-oriented view with Header tabs extension
+      </li>
+      <li>
+        Proposal browsing - all proposals listed by curation status and by categories with ontology browser
+      </li>
+    </ul>
+  </li>
+  <li>
+    My Proposals has a workflow extension
+  </li>
+  <li>
+    Authoring support
+    <ul>
+      <li>
+        The LexWiki Protege Tab is used for loading contents into Wiki.
+      </li>
+      <li>
+        LexWiki Editor - semantic forms/Header Tabs: may propose change, new concept or concept removal
+      </li>
+      <li>
+        Change tracking and view changes
+      </li>
+      <li>
+        Proposal Commenting
+      </li>
+      <li>
+        Proposal Voting
+      </li>
+      <li>
+        Evidence attachment with citation and file upload
+      </li>
+    </ul>
+  </li>
+</ul>
+<h2 id="LexWiki1.0InstallationGuide-Scope">
+  Scope
+</h2>
+The LexWiki Installation Guide is intended for administrators. This guide will give you an overview of how to install and configure a LexWiki system. If you are not an administrator, we recommend that you work with the system administrator of your organization to install and configure LexWiki.
+<h2 id="LexWiki1.0InstallationGuide-Prerequisites">
+  Prerequisites
+</h2>
+Unknown macro: {multi-excerpt-include}
+<h2 id="LexWiki1.0InstallationGuide-Tips">
+  Tips
+</h2>
+The installer utilizes Ant to perform its tasks.
+<ol>
+  <li>
+    To find out information about various targets enter &#34;ant usage&#34; in the command prompt.
+  </li>
+  <li>
+    To find out information about your MediaWiki install, enter &#34;ant info&#34; in the command prompt.
+  </li>
+  <li>
+    To find information about the various extensions and their versions which will be installed, enter &#34;ant info-ext&#34; in the command prompt.
+  </li>
+</ol>
+<h2 id="LexWiki1.0InstallationGuide-Instructions">
+  Instructions
+</h2>
+1. The first step is to backup any existing MediaWiki installation. This installation process will not upgrade an existing MediaWiki folder.
+
+2. Delete any existing MediaWiki install folder after backup.
+
+3. Copy the mw-installer.zip to a temporary directory
+
+4. Unzip mw-installer.zip to an appropriate folder.
+
+5. Go to the location where the mw-installer.zip file has been unzipped. Edit the lexwiki.properties file to reflect values of your host, port etc.
+
+6. If the user has database administrator privileges, set the wikidb.adminuser and wikidb.adminpassword in the lexwiki.properties file.
+
+7. If the user does not have database administrator privileges, the following steps can be performed manually:
+<ul>
+  <li>
+    Create a new database for your wiki.
+  </li>
+  <li>
+    Set up a user who has all privileges on this database.
+  </li>
+  <li>
+    Enter all details in the lexwiki.properties file.
+  </li>
+  <li>
+    Make sure to set the has.root property to &#39;false&#39; in lexwiki.properties.
+  </li>
+</ul>
+8. The installer is capable of installing specified modules. Open the file module-metadata.txt. By default all the modules (and their versions) are mentioned here. To add or remove a module, simply edit the relevant line in the file. Make sure to follow the syntax exactly as shown in module-metadata.txt. The syntax in the file is sensitive to the following:
+<ul>
+  <li>
+    Every module descriptor starts on a new line.
+  </li>
+  <li>
+    There are no spaces in the module descriptor.
+  </li>
+  <li>
+    Every module descriptor ends with a semi-colon.
+  </li>
+  <li>
+    Any line that starts with a &#39;#&#39; will be treated as a comment and ignored.
+  </li>
+</ul>
+9. On the command prompt, enter &#34;ant install&#34;.
+
+10. The installer will show a BUILD SUCCESSFUL message as displayed below:
+
+11. The URL where MediaWiki is available will be displayed on the command prompt.
+
+12. Log in to your MediaWiki as an administrator. Information regarding the username/password for MediaWiki will be displayed on the command prompt after a successful installation. The following screenshot shows a successful login to MediaWiki.
+
+13. Click on the category tree &#39;+&#39; to see the list of categories. You should see the following
+page.
+
+14. Congratulations! The LexWiki installation is complete and ready to be used!
+<h2 id="LexWiki1.0InstallationGuide-Troubleshooting">
+  Troubleshooting
+</h2>
+1. If the installer fails with a com.mysql.jdbc.CommunicationsException: Communications link failure message, it is due to the fact that jdbc driver was unable to connect. On a command prompt first try: telnet ${dbhost} ${dbport}. If you get an unable to connect message, then add an entry into the /etc/hosts file, mapping dbhost to 127.0.0.1. 

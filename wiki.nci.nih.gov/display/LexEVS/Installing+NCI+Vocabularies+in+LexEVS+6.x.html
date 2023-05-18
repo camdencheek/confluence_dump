@@ -1,0 +1,366 @@
+Contents of this Page
+<ul>
+  <li>
+    <a href="#InstallingNCIVocabulariesinLexEVS6.x-NCIThesaurus" rel="nofollow">
+      NCI Thesaurus
+    </a>
+  </li>
+  <li>
+    <a href="#InstallingNCIVocabulariesinLexEVS6.x-NCIMetathesaurus" rel="nofollow">
+      NCI Metathesaurus
+    </a>
+    <ul>
+      <li>
+        <a href="#InstallingNCIVocabulariesinLexEVS6.x-LoadingtheMetathesaurus" rel="nofollow">
+          Loading the Metathesaurus
+        </a>
+      </li>
+      <li>
+        <a href="#InstallingNCIVocabulariesinLexEVS6.x-ResumingLoads" rel="nofollow">
+          Resuming Loads
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#InstallingNCIVocabulariesinLexEVS6.x-NCIThesaurusHistory" rel="nofollow">
+      NCI Thesaurus History
+    </a>
+  </li>
+</ul>
+<h2 id="InstallingNCIVocabulariesinLexEVS6.x-NCIThesaurus">
+  NCI Thesaurus
+</h2>
+This section describes the steps to download and install a full version of the NCI Thesaurus.The NCI Thesaurus differs from other OWL formatted resources and, as a result administrators usually take advantage of some of the custom loading resources available in LexEVS. While users can download the Thesaurus.owl file from NCI and load it into LexEVS without it failing, many users will want to customize it with an XML formatted manifest and preferences files.NoteThe NCI Thesaurus has grown large enough that it can no longer be loaded on many typical desktop machines. We recommend a 64-bit operating system running on a multiprocessor computer with a minimum of 4g of memory. Server class Linux machines are the typical target for these loads. The time to load NCI Thesaurus will vary depending on machine, memory, and disk speed. Expect a couple of hours for a higher end machine.
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Step
+      </th>
+      <th>
+        Action
+      </th>
+    </tr>
+    <tr>
+      <td>
+        1
+      </td>
+      <td>
+        Using a web or ftp client go to the URL: ftp://ftp1.nci.nih.gov/pub/cacore/EVS/
+        <img alt="screenshot of FTP directory" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/Installing%20NCI%20Vocabularies%20in%20LexEVS%206.x/Ftp_Directory.jpg?api=v2">
+      </td>
+    </tr>
+    <tr>
+      <td>
+        2
+      </td>
+      <td>
+        Select the version of NCI Thesaurus OWL file you wish to download. Save the file to a directory on your machine.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        3
+      </td>
+      <td>
+        Extract the OWL file from the ZIP download and save in a directory on your machine. This directory will be referred to as NCI_THESAURUS_DIRECTORY in script examples.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        4
+      </td>
+      <td>
+        Create Manifest and Preferences files. (optional)   Manifests update or fill empty terminology metadata and can make adjustments to names and alternate names, versions and many other things that the source terminology normally wants to say. This is very useful when the source terminology itself does not supply this information, but the user needs to record it in the terminology service representation. Some versions of the NCI Thesaurus may not load without a manifest. What follows is a sample manifest file used to update alternate names, language designations, versions and other metadata. Details of manifest elements are found in the Administration Guide to the
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427272" rel="nofollow">
+          manifest file
+        </a>
+        .
+        <img alt="manifest file" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/Installing%20NCI%20Vocabularies%20in%20LexEVS%206.x/Screen%20Shot%202011-11-10%20at%204.37.31%20PM.png?api=v2">
+        Preference files control how data is loaded and, while they do not add anything to the source, they can change the representation of a terminology by making choices as to what is loaded as a property, entity, or association from the source terminology. The following preference file sets root nodes for the terminology and processes a set of complex properties not handled by the OWL processor, among other things. The full preferences definitions are described in the Administration Guide to the preferences file.
+        <img alt="preference file" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/Installing%20NCI%20Vocabularies%20in%20LexEVS%206.x/Screen%20Shot%202011-11-10%20at%204.54.28%20PM.png?api=v2">
+        Since the Thesaurus may be released as either a &#34;by code&#34; or &#34;by name&#34; formatted source, preference files can serve the purpose of adjusting the entity code to its intended place in LexEVS. Here are some differences in an OWL formatted Thesaurus source.
+        <ul>
+          <li>
+            &#34;By Code&#34; formatted Thesaurus OWL class
+            <img alt="By Code formatted Thesaurus OWL class" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/Installing%20NCI%20Vocabularies%20in%20LexEVS%206.x/Screen%20Shot%202011-11-11%20at%209.06.48%20AM.png?api=v2">
+            which has its entity code formatted as an rdf:ID. This loads as the unique identifier without using a preferences file.
+          </li>
+          <li>
+            &#34;By name&#34; version
+            <img alt="By name formatted Thesaurus OWL class" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/Installing%20NCI%20Vocabularies%20in%20LexEVS%206.x/Screen%20Shot%202011-11-11%20at%209.19.25%20AM.png?api=v2">
+          </li>
+          <li>
+            With the code found as a &#34;&lt;code&gt;&#34; tagged attribute of the class
+            <img alt="code found as a code tagged attribute of the class" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/Installing%20NCI%20Vocabularies%20in%20LexEVS%206.x/Screen%20Shot%202011-11-11%20at%209.19.46%20AM.png?api=v2">
+            In this case we can insure that the value &#34;C1324&#34; will be loaded into LexEVS as an entity code by supplying a preferences file with the following values. Loading this type of terminology without the preferences file may cause data truncation errors on the longer names and cause data loss on load.
+            <img alt="values" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/Installing%20NCI%20Vocabularies%20in%20LexEVS%206.x/Screen%20Shot%202011-11-11%20at%209.38.11%20AM.png?api=v2">
+            Finally, post processing is also available for this and other sources, as explained in the Administrative guide
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427271" rel="nofollow">
+              post processor
+            </a>
+            section.
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        5
+      </td>
+      <td>
+        Using the LexEVS command line, load the NCI Thesaurus with no options:  Change to the LexEVS home directory.
+        cd {LEXEVS_HOME}/admin
+        For Windows installation use the following command:
+        LoadOWL.bat –in &#34;file:///{NCI_THESAURUS_DIRECTORY}/Thesaurus_10.10d.owl
+        For Linux installation use the following command:
+        LoadOWL.sh –in &#34;file:///{NCI_THESAURUS_DIRECTORY}/Thesaurus_10.10d.owl
+        This should work best with a &#34;by code&#34; type Thesaurus source terminology.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        6
+      </td>
+      <td>
+        Using the LexEVS command line, load the NCI Thesaurus with options:  Change to the LexEVS home directory.
+        cd {LEXEVS_HOME}/admin
+
+        For Windows installation use the following command:
+        LoadOWL.bat –in &#34;file:///{NCI_THESAURUS_DIRECTORY}/Thesaurus_10.10d.owl&#34; -mf &#34;file:///{NCI_THESAURUS_DIRECTORY}/Thesaurus_MF.xml&#34;
+        -lp &#34;file:///{NCI_THESAURUS_DIRECTORY}/Thesaurus_prefs.xml&#34;
+
+        For Linux installation use the following command:
+        LoadOWL.sh –in &#34;file:///{NCI_THESAURUS_DIRECTORY}/Thesaurus_10.10d.owl&#34; -mf &#34;file:///{NCI_THESAURUS_DIRECTORY}/Thesaurus_MF.xml&#34;
+        -lp &#34;file:///{NCI_THESAURUS_DIRECTORY}/Thesaurus_prefs.xml&#34;
+      </td>
+    </tr>
+  </tbody>
+</table>
+Example output from load of NCI Thesaurus 05.12f
+…
+[LexBIG] Processing TOP Node... Retired_Kind
+[LexBIG] Clearing target of NCI_Thesaurus...
+[LexBIG] Writing NCI_Thesaurus to target...
+[LexBIG] Finished loading DB - loading transitive expansion table
+[LexBIG] ComputeTransitive - Processing Anatomic_Structure_Has_Location
+[LexBIG] ComputeTransitive - Processing Anatomic_Structure_is_Physical_Part_of
+[LexBIG] ComputeTransitive - Processing Biological_Process_Has_Initiator_Process
+[LexBIG] ComputeTransitive - Processing Biological_Process_Has_Result_Biological_Process
+[LexBIG] ComputeTransitive - Processing Biological_Process_Is_Part_of_Process
+[LexBIG] ComputeTransitive - Processing Conceptual_Part_Of
+[LexBIG] ComputeTransitive - Processing Disease_Excludes_Finding
+[LexBIG] ComputeTransitive - Processing Disease_Has_Associated_Disease
+[LexBIG] ComputeTransitive - Processing Disease_Has_Finding
+[LexBIG] ComputeTransitive - Processing Disease_May_Have_Associated_Disease
+[LexBIG] ComputeTransitive - Processing Disease_May_Have_Finding
+[LexBIG] ComputeTransitive - Processing Gene_Product_Has_Biochemical_Function
+[LexBIG] ComputeTransitive - Processing Gene_Product_Has_Chemical_Classification
+[LexBIG] ComputeTransitive - Processing Gene_Product_is_Physical_Part_of
+[LexBIG] ComputeTransitive - Processing hasSubtype
+[LexBIG] Finished building transitive expansion - building index
+[LexBIG] Getting a results from sql (a page if using mysql)
+[LexBIG] Indexed 0 concepts.
+[LexBIG] Indexed 5000 concepts.
+[LexBIG] Indexed 10000 concepts.
+[LexBIG] Indexed 15000 concepts.
+[LexBIG] Indexed 20000 concepts.
+[LexBIG] Indexed 25000 concepts.
+[LexBIG] Indexed 30000 concepts.
+[LexBIG] Indexed 35000 concepts.
+[LexBIG] Indexed 40000 concepts.
+[LexBIG] Indexed 45000 concepts.
+[LexBIG] Indexed 46000 concepts.
+[LexBIG] Getting a results from sql (a page if using mysql)
+[LexBIG] Closing Indexes Mon, 27 Feb 2006 01:44:22
+[LexBIG] Finished indexing
+<h2 id="InstallingNCIVocabulariesinLexEVS6.x-NCIMetathesaurus">
+  NCI Metathesaurus
+</h2>
+<h3 id="InstallingNCIVocabulariesinLexEVS6.x-LoadingtheMetathesaurus">
+  Loading the Metathesaurus
+</h3>
+This section describes the steps to download and install a full version of the NCI Metathesaurus for the LexEVS Service.NoteNCI Metathesaurus contains many individual vocabularies some of which are large vocabularies in and of themselves. It requires many hours to load and index. It can require 36 hours on a multiprocessor machine with 6 GB or more of memory. The total time to load the NCI Metathesaurus will vary depending on machine, memory, and disk speed. Because this loader uses a batch loading strategy it is less dependent on memory, but some users will see 3 or 4 day load times with average multiprocessor processing power. While the batch loading process itself is not heavily memory dependent, the creating the index following the load will require at least 3 GB of memory.
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Step
+      </th>
+      <th>
+        Action
+      </th>
+    </tr>
+    <tr>
+      <td>
+        1
+      </td>
+      <td>
+        Using a web client go to the URL:
+        <a href="https://cbiit.nci.nih.gov/evs-download/metathesaurus-downloads" rel="nofollow">
+          https://cbiit.nci.nih.gov/evs-download/metathesaurus-downloads
+        </a>
+        Note that a valid
+        <a href="https://uts.nlm.nih.gov//license.html" rel="nofollow">
+          UMLS license
+        </a>
+        is required to download the NCI Metathesaurus due to the UMLS content inside. You will find out how to manage this on the site above if you do not have a license.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        2
+      </td>
+      <td>
+        Download Metathesaurus.RRF.zip.  Save the file to a directory on your machine.  The compressed file is approximately 2GB in size and may take some time to download depending on your connection speed.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        3
+      </td>
+      <td>
+        Extract the files from the ZIP download and save to a directory on your machine. This directory will be referred to as NCI_METATHESAURUS_DIRECTORY. RELASE_INFO.RRF is required to be present for the load utility to work.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        4
+      </td>
+      <td>
+        Check that you are able to open a large number of files before starting the load.
+        ulimit -Hn
+        Usually having around 10,000 available open files is sufficient. If your limit is set to low this will need to be raised.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        5
+      </td>
+      <td>
+        Using the LexEVS utilities load the NCI Thesaurus:
+        {LEXEVS_HOME}/admin
+        For Windows installation use the following command:
+        LoadMetaBatch.bat –in &#34;file:///{NCI_METATHESAURUS_DIRECTORY}/&#34;
+        For Linux installation use the following command:
+        LoadMetaBatch.sh –in &#34;file:///{NCI_THESAURUS_DIRECTORY}/&#34;
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h3 id="InstallingNCIVocabulariesinLexEVS6.x-ResumingLoads">
+  Resuming Loads
+</h3>
+RememberKilled processes cannot be restarted. The load can recover from an application error, but not from an outside activity that stops the process.  This does not include out of memory errors, hung processes that have been killed, or system shutdown.Since this loader is resource hungry we provide the option to restart should you find your resource settings to be inadequate. Resuming loads which have crashed is possible using the ResumeBatchLoad script set.
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Step
+      </th>
+      <th>
+        Action
+      </th>
+    </tr>
+    <tr>
+      <td>
+        1
+      </td>
+      <td>
+        Open the lbGUI
+      </td>
+    </tr>
+    <tr>
+      <td>
+        2
+      </td>
+      <td>
+        Find in the table the terminology with the broken or stopped load.  This should have a status of pending
+      </td>
+    </tr>
+    <tr>
+      <td>
+        3
+      </td>
+      <td>
+        Highlight and double click the terminology row in the table.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        4
+      </td>
+      <td>
+        On the resulting window note for the following command line execution: The URI and the version.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        5
+      </td>
+      <td>
+        Using the LexEVS utilities restart the load of the NCI Metathesaurus:
+        {LEXEVS_HOME}/admin
+        For Windows installation use the following command:
+        ResumeMetaBatch.bat –in &#34;file:///{NCI_METATHESAURUS_DIRECTORY}/&#34; -s &#34;NCI Metathesaurus&#34; -uri &#34;urn:oid:2.16.840.1.113883.3.26.1.2&#34; -version &#34;200601&#34;
+        For Linux installation use the following command:
+        ResumeMetaBatch.sh –in &#34;file:///{NCI_THESAURUS_DIRECTORY}/&#34; -s &#34;NCI Metathesaurus&#34; -uri &#34;urn:oid:2.16.840.1.113883.3.26.1.2&#34; -version &#34;200601&#34;
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="InstallingNCIVocabulariesinLexEVS6.x-NCIThesaurusHistory">
+  NCI Thesaurus History
+</h2>
+This section describes the steps to download and install a history file for NCI Thesaurus.
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Step
+      </th>
+      <th>
+        Action
+      </th>
+    </tr>
+    <tr>
+      <td>
+        1
+      </td>
+      <td>
+        Using a web or ftp client go to the URL: ftp://ftp1.nci.nih.gov/pub/cacore/EVS/
+      </td>
+    </tr>
+    <tr>
+      <td>
+        2
+      </td>
+      <td>
+        Select the version of NCI History you wish to download. Save the file to a directory on your machine. Select the VersionFile download to the same directory as the history file.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        3
+      </td>
+      <td>
+        Extract the History files from the zip download and save in a directory on your machine. This directory will be referred to as NCI_HISTORY_DIRECTORY
+      </td>
+    </tr>
+    <tr>
+      <td>
+        4
+      </td>
+      <td>
+        Using the LexEVS utilities load the NCI Thesaurus:
+        cd {LEXEVS_HOME}/admin
+        For Windows installation use the following command:
+        LoadNCIHistory.bat –nf –in &#34;file:///{NCI_HISTORY_DIRECTORY}&#34; –vf “file:///NCI_HISTORY_DIRECTORY}/VersionFile”
+        For Linux installation use the following command:
+        LoadNCIHistory.sh –nf –in &#34;file:///{NCI_HISTORY_DIRECTORY}&#34; –vf “file:///NCI_HISTORY_DIRECTORY}/VersionFile”
+      </td>
+    </tr>
+  </tbody>
+</table>
+NoteIf a &#39;releaseId&#39; occurs twice in the file, the last occurrence will be stored. If LexEVS already knows about a releaseId (from a previous history load), the information is updated to match what is provided in the file.   This file has to be provided to the load API on every load because you will need to maintain it in the future as each new release is made. We have created this file that should be valid as of today from the information that we found in the archive folder on your ftp server. You can find this file in the &#39;resources&#39; directory of the LexEVS install.

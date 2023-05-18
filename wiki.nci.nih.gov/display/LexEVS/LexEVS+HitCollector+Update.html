@@ -1,0 +1,44 @@
+Document Information
+Author: Craig Stancl, Scott Bauer, Cory EndleEmail: Stancl.craig@mayo.edu,
+<a href="mailto:bauer.scott@mayo.edu" rel="nofollow">
+  bauer.scott@mayo.edu
+</a>
+,
+<a href="mailto:endle.cory@mayo.edu" rel="nofollow">
+  endle.cory@mayo.edu
+</a>
+Team: LexEVSContract: S13-500 MOD4Client: NCI CBIITNational Institutes of HeathUS Department of Health and Human Services
+Table of Contents
+<ul>
+  <li>
+    <a href="#LexEVSHitCollectorUpdate-LexEVSCurrentHitCollectorImplementation" rel="nofollow">
+      LexEVS Current HitCollector Implementation
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVSHitCollectorUpdate-ProposedCollectorImplementationusingLucene5.0" rel="nofollow">
+      Proposed Collector Implementation using Lucene 5.0
+    </a>
+  </li>
+</ul>
+<h2 id="LexEVSHitCollectorUpdate-LexEVSCurrentHitCollectorImplementation">
+  LexEVS Current HitCollector Implementation
+</h2>
+The current implementation of hit collectors is tied to coding scheme specific boundary doc ids which are going away with the BlockQuery implementation.  The common set of indexes is currently expected to replace the simple search extension.  If performance over the common set of new indexes can be proven out those HitCollector objects supporting simple search will go away as well.
+<img width="500" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%20HitCollector%20Update/HitCollectorImpl.png?api=v2">
+<h2 id="LexEVSHitCollectorUpdate-ProposedCollectorImplementationusingLucene5.0">
+  Proposed Collector Implementation using Lucene 5.0
+</h2>
+The Collector interface replaces HitCollector in Lucene 5.0.  Given that much of the current HitCollector implementation is tied to the boundary doc implementation and the single index requirement to filter for a given coding scheme, custom HitCollectors or Collectors may no longer be necessary using a standard implementation of TopScoreDocsCollector.  We show a provisional implementation of Simple Search Extension here, which may be required if we cannot get the global searches of all Common Indexes to run quickly enough.  This will require implementation of a new Filter/Collector or Facet combination to sort out the portion of the indexes pertaining to a given coding scheme.
+<img width="500" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%20HitCollector%20Update/HitCollectorImplProp.png?api=v2">
+HitCollector Classes
+//These classes appear to be on the main code path and will have to be adapted if we can&#39;t replace them
+//with TopScoreDocsCollector
+edu.mayo.informatics.indexer.lucene.hitcollector.AbstractBestScoreOfEntityHitCollector.java
+edu.mayo.informatics.indexer.lucene.hitcollector.BestScoreOfEntityHitCollector.java
+//These BitSet using classes appear to dead end without being used by the API
+//They seem most likely to go away.
+edu.mayo.informatics.indexer.lucene.hitcollector.BitSetBestScoreOfEntityHitCollector.java
+edu.mayo.informatics.indexer.lucene.hitcollector.BitSetFilteringBestScoreOfEntityHitCollector
+//This is not expected to be needed in the multi coding scheme implementation.
+edu.mayo.informatics.indexer.lucene.hitcollector.HitCollectorMerger 

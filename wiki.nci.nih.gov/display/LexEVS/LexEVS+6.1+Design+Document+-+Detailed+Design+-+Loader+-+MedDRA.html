@@ -1,0 +1,126 @@
+Contents of this Page
+<ul>
+  <li>
+    <a href="#LexEVS6.1DesignDocumentDetailedDesignLoaderMedDRA-Option1" rel="nofollow">
+      Option 1
+    </a>
+    <ul>
+      <li>
+        <a href="#LexEVS6.1DesignDocumentDetailedDesignLoaderMedDRA-Overview(Option1)" rel="nofollow">
+          Overview (Option 1)
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.1DesignDocumentDetailedDesignLoaderMedDRA-DesignConsideration(Option1)" rel="nofollow">
+          Design Consideration (Option 1)
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#LexEVS6.1DesignDocumentDetailedDesignLoaderMedDRA-Option2" rel="nofollow">
+      Option 2
+    </a>
+    <ul>
+      <li>
+        <a href="#LexEVS6.1DesignDocumentDetailedDesignLoaderMedDRA-Overview(Option2)" rel="nofollow">
+          Overview (Option 2)
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.1DesignDocumentDetailedDesignLoaderMedDRA-DesignConsideration(Option2)" rel="nofollow">
+          Design Consideration (Option 2)
+        </a>
+      </li>
+    </ul>
+  </li>
+</ul>
+Document Information
+Author: Zonghui (Leon) Lian Email:
+<a href="mailto:lian.zonghui@mayo.edu" rel="nofollow">
+  lian.zonghui@mayo.edu
+</a>
+Team: LexEVS Contract: ST12-1106 Client: NCI CBIIT National Institutes of Heath US Department of Health and Human Services
+Revision History
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Version
+      </th>
+      <th>
+        Date
+      </th>
+      <th>
+        Description of Changes
+      </th>
+      <th>
+        Author
+      </th>
+    </tr>
+    <tr>
+      <td>
+        1.0
+      </td>
+      <td>
+        2013/03/05
+      </td>
+      <td>
+        Initial Version
+      </td>
+      <td>
+        Zonghui, Lian
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="LexEVS6.1DesignDocumentDetailedDesignLoaderMedDRA-Option1">
+  Option 1
+</h2>
+<h3 id="LexEVS6.1DesignDocumentDetailedDesignLoaderMedDRA-Overview(Option1)">
+  Overview (Option 1)
+</h3>
+MedDRA loader serves as a bridge between MedDRA ontology to OWL loader. It first converts the MedDRA ontologies to OWL/RDF format, and then it employs the LexEVS OWL loader API to load the converted OWL/RDF ontology to LexEVS model.
+<h3 id="LexEVS6.1DesignDocumentDetailedDesignLoaderMedDRA-DesignConsideration(Option1)">
+  Design Consideration (Option 1)
+</h3>
+<ol>
+  <li>
+    MedDRA loader is based on Manchester OWL API, which is the one of most popular OWL/RDF APIs. It supports OWL 2.0, and OWL/RDF ontology creation and modification.
+  </li>
+  <li>
+    the exported OWL/RDF ontology is saved in the file system. The path could be either provided by customers or using the system default.
+  </li>
+  <li>
+    a set of mappings need to be created between MedDRA to OWL/RDF ontology. It should cover the System Organ Class(SOC), High Level Group Term(HLGT), High Level Term(HLT), Preferred Term(PT) and Lowest Level Term(LLT) and their relationships
+  </li>
+  <li>
+    once the converted job is done, MedDRA loader automatically calls the LexEVS OWL loader API to load the OWL/RDF ontology into the LexEVS model.
+  </li>
+  <li>
+    create the LoadMedDRALaucher.java and scripts(.sh and .bat) for the command line loading.
+  </li>
+</ol>
+<img alt="MedDRA Loader diagram option 1" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%206.1%20Design%20Document%20-%20Detailed%20Design%20-%20Loader%20-%20MedDRA/image2013-3-8%209:31:36.png?api=v2">
+<h2 id="LexEVS6.1DesignDocumentDetailedDesignLoaderMedDRA-Option2">
+  Option 2
+</h2>
+<h3 id="LexEVS6.1DesignDocumentDetailedDesignLoaderMedDRA-Overview(Option2)">
+  Overview (Option 2)
+</h3>
+MedDRA loader directly loads the MedDRA ontologies into LexEVS model and database.
+<h3 id="LexEVS6.1DesignDocumentDetailedDesignLoaderMedDRA-DesignConsideration(Option2)">
+  Design Consideration (Option 2)
+</h3>
+<ol>
+  <li>
+    MedDRA loader is based LexEVS loader interface.
+  </li>
+  <li>
+    a set of mappings need to be created between MedDRA to LexEVS. It should cover the System Organ Class(SOC), High Level Group Term(HLGT), High Level Term(HLT), Preferred Term(PT) and Lowest Level Term(LLT) and their relationships
+  </li>
+  <li>
+    create the LoadMedDRALaucher.java and scripts(.sh and .bat) for the command line loading.
+  </li>
+</ol>
+<img alt="MedDRA Loader diagram option 2" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%206.1%20Design%20Document%20-%20Detailed%20Design%20-%20Loader%20-%20MedDRA/image2013-3-15%2012:49:32.png?api=v2">

@@ -1,0 +1,120 @@
+Contents of this Page
+<ul>
+  <li>
+    <a href="#LexEVS5.xDesignandArchitectureGuide1Introduction-DocumentSections" rel="nofollow">
+      Document Sections
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS5.xDesignandArchitectureGuide1Introduction-RelatedDocuments" rel="nofollow">
+      Related Documents
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS5.xDesignandArchitectureGuide1Introduction-ServiceIntegrationwithcaBIG:Diagrams" rel="nofollow">
+      Service Integration with caBIG: Diagrams
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS5.xDesignandArchitectureGuide1Introduction-WhatIsLexGrid?" rel="nofollow">
+      What Is LexGrid?
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS5.xDesignandArchitectureGuide1Introduction-WhatisLexBIG?" rel="nofollow">
+      What is LexBIG?
+    </a>
+  </li>
+</ul>
+This document is intended for LexEVS developers.
+<h2 id="LexEVS5.xDesignandArchitectureGuide1Introduction-DocumentSections">
+  Document Sections
+</h2>
+<ul>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427489" rel="nofollow">
+      LexGrid Model
+    </a>
+  </li>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427490" rel="nofollow">
+      LexBIG Extensions
+    </a>
+  </li>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427491" rel="nofollow">
+      LexEVS Information Models
+    </a>
+  </li>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427492" rel="nofollow">
+      LexEVS Architecture
+    </a>
+  </li>
+</ul>
+<h2 id="LexEVS5.xDesignandArchitectureGuide1Introduction-RelatedDocuments">
+  Related Documents
+</h2>
+<ul>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427453" rel="nofollow">
+      Programmer&#39;s Guide
+    </a>
+    for information about using the LexEVS core services and the APIs.
+  </li>
+</ul>
+<h2 id="LexEVS5.xDesignandArchitectureGuide1Introduction-ServiceIntegrationwithcaBIG:Diagrams">
+  Service Integration with caBIG: Diagrams
+</h2>
+LexEVS software architecture and implementation is designed to facilitate flexibility and future expansion. The following diagrams are intended to aid the understanding of LexEVS service integration in context of the larger caBIG universe and specific deployment scenarios:
+
+The following diagram depicts the LexBIG vision. Individual Cancer Centers will be able to use the existing set of caCORE EVS services.  If desired, local instances of vocabularies can be installed.
+<img alt="This diagram depicts the LexBIG vision within the caBIG context" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%205.x%20Design%20and%20Architecture%20Guide%201%20-%20Introduction/LexBIG_Vision.jpg?api=v2">
+The following diagram depicts direct Java-to-Java access to LexBIG functions.  This is the primary deployment scenario for phase 1.
+NoteIt is not required that the database be located on the same system as the program runtime.
+<img alt="diagram showing direct Java-to-Java access to LexBIG functions " src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%205.x%20Design%20and%20Architecture%20Guide%201%20-%20Introduction/LexBIG_Runtime_Direct_Programmatic_Access.jpg?api=v2">
+The following diagram depicts access through caCORE Enterprise Vocabulary Services (EVS) to a LexBIG vocabulary engine. The primary goal is to provide a compatible experience for existing EVS browsers and client applications.
+
+NoteThis diagram shows the possible inclusion of a mediation layer between EVS and the LexBIG runtime. This would be done to facilitate alternate communications with the LexBIG server (e.g. through web services as described below).
+<img alt="diagram showing access through EVS to LexBIG" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%205.x%20Design%20and%20Architecture%20Guide%201%20-%20Introduction/LexBIG_Runtime_Consolidated_Host_EVS_Access.jpg?api=v2">
+The LexBIG API is designed with web and grid-level enablement in mind.  This diagram depicts deployments that wrap the current API to allow the runtime to be accessed through web or grid services.
+<img alt="diagram showing API allowing access through Web or Grid services" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%205.x%20Design%20and%20Architecture%20Guide%201%20-%20Introduction/LexBIG_Runtime_Consolidated_Host_Web_Service_Access.jpg?api=v2">
+<h2 id="LexEVS5.xDesignandArchitectureGuide1Introduction-WhatIsLexGrid?">
+  What Is LexGrid?
+</h2>
+LexGrid is an initiative of the Mayo Clinic Division of Biomedical Informatics that focuses on the representation, storage, and dissemination of vocabularies.  This effort centers on, but is not limited to, the domain of medical vocabularies and nomenclatures.  Focal points of the LexGrid project include the development and promotion of standards, tools, and content that:
+<ul>
+  <li>
+    Provide flexibility to represent yesterday&#39;s, today&#39;s and tomorrow&#39;s terminological resources using a single information model.
+  </li>
+  <li>
+    Provide the ability for these resources to be published online, cross-linked, and indexed.
+  </li>
+  <li>
+    Provide standardized building blocks and tools that allow applications and users to take advantage of the content where and when it is needed.
+  </li>
+  <li>
+    Provide consistency and standardization required to support large-scale terminology adoption and use.
+  </li>
+</ul>
+Additional information for LexGrid is available at
+<a href="http://informatics.mayo.edu" rel="nofollow">
+  http://informatics.mayo.edu
+</a>
+.
+<h2 id="LexEVS5.xDesignandArchitectureGuide1Introduction-WhatisLexBIG?">
+  What is LexBIG?
+</h2>
+LexBIG is a more specific project that applies LexGrid vision and technologies to requirements of the caBIG community.  The goal of the project is to build a vocabulary server accessed through a well-structured application programming interface (API) capable of accessing and distributing vocabularies as commodity resources.  The server is to be built using standards-based and commodity technologies.  Primary objectives for the project include:
+<ul>
+  <li>
+    Provide a robust and scalable open source implementation of EVS-compliant vocabulary services.  The API specification will be based on but not limited to fulfillment of the caCORE EVS API.  The specification will be further refined to accommodate changes and requirements based on prioritized needs of the caBIG community.
+  </li>
+  <li>
+    Provide a flexible implementation for vocabulary storage and persistence, allowing for alternative mechanisms without impacting client applications or end users.  Initial development will focus on delivery of open source freely available solutions, though this does not preclude the ability to introduce commercial solutions (e.g. Oracle).
+  </li>
+  <li>
+    Provide standard tooling for load and distribution of vocabulary content.  This includes but is not limited to support of standardized representations such as UMLS Rich Release Format (RRF), the OWL web ontology language, and Open Biomedical Ontologies (OBO) .
+  </li>
+</ul>
+The goal for the initial year of development was to achieve the Bronze level of compatibility with regard to the caBIG requirements.  Silver-level compatibility is being pursued. 

@@ -1,0 +1,1622 @@
+Contents of this Page
+<ul>
+  <li>
+    <a href="#id-3LexEVS5.xValueDomainService-Introduction" rel="nofollow">
+      Introduction
+    </a>
+  </li>
+  <li>
+    <a href="#id-3LexEVS5.xValueDomainService-ValueDomainClassDiagram" rel="nofollow">
+      Value Domain Class Diagram
+    </a>
+  </li>
+  <li>
+    <a href="#id-3LexEVS5.xValueDomainService-LexEVSValueDomainServiceAPI" rel="nofollow">
+      LexEVS Value Domain Service API
+    </a>
+    <ul>
+      <li>
+        <a href="#id-3LexEVS5.xValueDomainService-AdministrationFunctions" rel="nofollow">
+          Administration Functions
+        </a>
+        <ul>
+          <li>
+            <a href="#id-3LexEVS5.xValueDomainService-LoadingValueDomainDefinitions" rel="nofollow">
+              Loading Value Domain Definitions
+            </a>
+            <ul>
+              <li>
+                <a href="#id-3LexEVS5.xValueDomainService-loadValueDomain(ValueDomainDefinitionvddef,StringsystemReleaseURI)" rel="nofollow">
+                  loadValueDomain(ValueDomainDefinition vddef, String systemReleaseURI)
+                </a>
+              </li>
+              <li>
+                <a href="#id-3LexEVS5.xValueDomainService-loadValueDomain(InputStreaminputStream,booleanfailOnAllErrors)" rel="nofollow">
+                  loadValueDomain(InputStream inputStream,boolean failOnAllErrors)
+                </a>
+              </li>
+              <li>
+                <a href="#id-3LexEVS5.xValueDomainService-loadValueDomain(StringxmlFileLocation,booleanfailOnAllErrors)" rel="nofollow">
+                  loadValueDomain(String xmlFileLocation, boolean failOnAllErrors)
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#id-3LexEVS5.xValueDomainService-RemoveValueDomainDefinition" rel="nofollow">
+              Remove Value Domain Definition
+            </a>
+            <ul>
+              <li>
+                <a href="#id-3LexEVS5.xValueDomainService-removeValueDomain(URIvalueDomainURI)" rel="nofollow">
+                  removeValueDomain(URI valueDomainURI)
+                </a>
+              </li>
+              <li>
+                <a href="#id-3LexEVS5.xValueDomainService-removeAllValueDomains()" rel="nofollow">
+                  removeAllValueDomains()
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#id-3LexEVS5.xValueDomainService-DropValueDomainTables" rel="nofollow">
+              Drop Value Domain Tables
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#id-3LexEVS5.xValueDomainService-ValidateXMLResources" rel="nofollow">
+          Validate XML Resources
+        </a>
+      </li>
+      <li>
+        <a href="#id-3LexEVS5.xValueDomainService-QueryFunctions" rel="nofollow">
+          Query Functions
+        </a>
+        <ul>
+          <li>
+            <a href="#id-3LexEVS5.xValueDomainService-isConceptInDomain" rel="nofollow">
+              isConceptInDomain
+            </a>
+            <ul>
+              <li>
+                <a href="#id-3LexEVS5.xValueDomainService-isConceptInDomain(StringentityCode,URIvalueDomainURI)" rel="nofollow">
+                  isConceptInDomain(String entityCode, URI valueDomainURI)
+                </a>
+              </li>
+              <li>
+                <a href="#id-3LexEVS5.xValueDomainService-isConceptInDomain(StringentityCode,URIentityCodeNamespace,CodingSchemeVersionOrTagcsvt,URIvalueDomainURI)" rel="nofollow">
+                  isConceptInDomain(String entityCode, URI entityCodeNamespace, CodingSchemeVersionOrTag csvt, URI valueDomainURI)
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#id-3LexEVS5.xValueDomainService-resolveValueDomain" rel="nofollow">
+              resolveValueDomain
+            </a>
+          </li>
+          <li>
+            <a href="#id-3LexEVS5.xValueDomainService-isSubDomain" rel="nofollow">
+              isSubDomain
+            </a>
+          </li>
+          <li>
+            <a href="#id-3LexEVS5.xValueDomainService-getValueDomainDefinition" rel="nofollow">
+              getValueDomainDefinition
+            </a>
+          </li>
+          <li>
+            <a href="#id-3LexEVS5.xValueDomainService-listValueDomains" rel="nofollow">
+              listValueDomains
+            </a>
+          </li>
+          <li>
+            <a href="#id-3LexEVS5.xValueDomainService-getAllValueDomainsWithNoNames" rel="nofollow">
+              getAllValueDomainsWithNoNames
+            </a>
+          </li>
+          <li>
+            <a href="#id-3LexEVS5.xValueDomainService-getValueDomainEntitiesForTerm" rel="nofollow">
+              getValueDomainEntitiesForTerm
+            </a>
+          </li>
+          <li>
+            <a href="#id-3LexEVS5.xValueDomainService-getCodingSchemesInValueDomain" rel="nofollow">
+              getCodingSchemesInValueDomain
+            </a>
+          </li>
+          <li>
+            <a href="#id-3LexEVS5.xValueDomainService-isDomain" rel="nofollow">
+              isDomain
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#id-3LexEVS5.xValueDomainService-ResolvedValueDomainObjects" rel="nofollow">
+          Resolved Value Domain Objects
+        </a>
+        <ul>
+          <li>
+            <a href="#id-3LexEVS5.xValueDomainService-ResolvedValueDomainCodedNodeSet" rel="nofollow">
+              ResolvedValueDomainCodedNodeSet
+            </a>
+          </li>
+          <li>
+            <a href="#id-3LexEVS5.xValueDomainService-ResolvedValueDomainDefinition" rel="nofollow">
+              ResolvedValueDomainDefinition
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#id-3LexEVS5.xValueDomainService-ErrorHandling" rel="nofollow">
+          Error Handling
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#id-3LexEVS5.xValueDomainService-LoadScripts" rel="nofollow">
+      Load Scripts
+    </a>
+  </li>
+  <li>
+    <a href="#id-3LexEVS5.xValueDomainService-SampleValueDomainDefinitionXMLFile" rel="nofollow">
+      Sample Value Domain Definition XML File
+    </a>
+  </li>
+  <li>
+    <a href="#id-3LexEVS5.xValueDomainService-SystemTesting" rel="nofollow">
+      System Testing
+    </a>
+  </li>
+  <li>
+    <a href="#id-3LexEVS5.xValueDomainService-Installation/Packaging" rel="nofollow">
+      Installation / Packaging
+    </a>
+  </li>
+</ul>
+<h2 id="id-3LexEVS5.xValueDomainService-Introduction">
+  Introduction
+</h2>
+This document is a section of the
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427453" rel="nofollow">
+  LexEVS 5.x Programmer&#39;s Guide
+</a>
+. It is new for LexEVS v5.1.
+
+The Value Domain services are integrated parts of the LexEVS core API. They provide the ability to:
+<ul>
+  <li>
+    load Value Domaindefinitions programmatically into the LexGrid repository using the domain objects that are available via the LexGrid logical model
+  </li>
+  <li>
+    apply user restrictions (ex: valueDomain URI) and dynamically resolve the definitions at run time
+  </li>
+</ul>
+The LexEVS Value Domain Services expose the API particularly for the Value Domain elements of the LexGrid Logical Model. For more information on LexGrid model see
+<a href="http://informatics.mayo.edu/" rel="nofollow">
+  http://informatics.mayo.edu/
+</a>
+<h2 id="id-3LexEVS5.xValueDomainService-ValueDomainClassDiagram">
+  Value Domain Class Diagram
+</h2>
+These classes implement the LexEVS Value Domain API.
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Class Name
+      </th>
+      <th>
+        Description
+      </th>
+    </tr>
+    <tr>
+      <td>
+        VDSServices
+      </td>
+      <td>
+        Class to handle list of Value Domain Definitions Object to and fro database
+      </td>
+    </tr>
+    <tr>
+      <td>
+        VDServices
+      </td>
+      <td>
+        Class to handle individual Value Domain Definition objects to and fro database.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        VDEntryServices
+      </td>
+      <td>
+        Class to handle Value Domain Entry objects to and fro database.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        LexEVSValueDomainServices
+      </td>
+      <td>
+        Primary interface for LexEVS Value Domain API
+      </td>
+    </tr>
+    <tr>
+      <td>
+        LexEVSValueDomainServicesImpl
+      </td>
+      <td>
+        Implementation of LexEVSValueDomainServices which is primary interface for LexEVS Value Domain API.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        LoadValueDomain
+      </td>
+      <td>
+        Imports the value Domain Definitions in the source file, provided in LexGrid canonical format, to the LexBIG repository.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        ResolvedValueDomainCodedNodeSet
+      </td>
+      <td>
+        Contains coding scheme version reference list that was used to resolve the value domain and the coded node set.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        ResolvedValueDomainDefinition
+      </td>
+      <td>
+        A resolved Value Domain definition containing the coding scheme version reference list that was used to resolve the value domain and an iterator for resolved concepts.
+      </td>
+    </tr>
+  </tbody>
+</table>
+<img alt="This graphic displays each of the classes listed above." src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/3%20-%20LexEVS%205.x%20Value%20Domain%20Service/LexEVS_5.1_Value_domain_VDClassDiagram.jpg?api=v2">
+<h2 id="id-3LexEVS5.xValueDomainService-LexEVSValueDomainServiceAPI">
+  LexEVS Value Domain Service API
+</h2>
+<h3 id="id-3LexEVS5.xValueDomainService-AdministrationFunctions">
+  Administration Functions
+</h3>
+LexEVS Value Domain Services provide administration functions to load and remove value domain definitions.
+<h4 id="id-3LexEVS5.xValueDomainService-LoadingValueDomainDefinitions">
+  Loading Value Domain Definitions
+</h4>
+There are three methods that could be used to load Value Domain Definitions:
+<ul>
+  <li>
+    loadValueDomain(ValueDomainDefinition vddef, String systemReleaseURI)
+  </li>
+  <li>
+    loadValueDomain(InputStream inputStream,boolean failOnAllErrors)
+  </li>
+  <li>
+    loadValueDomain(String xmlFileLocation, boolean failOnAllErrors)
+  </li>
+</ul>
+<h5 id="id-3LexEVS5.xValueDomainService-loadValueDomain(ValueDomainDefinitionvddef,StringsystemReleaseURI)">
+  loadValueDomain(ValueDomainDefinition vddef, String systemReleaseURI)
+</h5>
+loadValueDomain(ValueDomainDefinition vddef, String systemReleaseURI)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Loads supplied valueDomainDefinition object.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        org.LexGrid.emf.valueDomains.ValueDomainDefinition
+        string
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        none
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details:
+      </th>
+      <td>
+        Implementation:
+        Step 1: Call this method on the associated LexEVS Value Domain Service instance to load a Value Domain Definition object and the System Release URI this definition belongs to.
+        Sample Call:
+        <ul>
+          <li>
+            Step 1: Instantiate LexEVSValueDomainServices if it is not done yet :
+            org.lexgrid.valuedomain.LexEVSValueDomainServices vds = new org.lexgrid.valuedomain.impl.LexEVSValueDomainServicesImpl();
+          </li>
+          <li>
+            Step 2: Create and populate the ValueDomainDefinition object.
+            ValueDomainDefinition can be created using:
+
+
+            org.LexGrid.emf.valueDomains.ValueDomainDefinition valueDomain = org.LexGrid.emf.valueDomains.ValuedomainsFactory.eINSTANCE.createValueDomainDefinition();
+
+
+            Data for valueDomain object can be populated by using set methods:
+
+
+            valueDomain.setValueDomainURI(uri);
+            valueDomain.setValueDomainName(name);
+            valueDomain.setDefaultCodingScheme(cs);
+            valueDomain.setEntityDescription(ed);
+
+
+            Similarly, DefinitionEntry, Property, and Mapping objects can be created and assigned to the valueDomain object:
+
+
+            valueDomain.getDefinitionEntry.add(vdEntry);
+            valueDomain.setProperties(propertisObject);
+            valueDomain.setMappings(mappingsObject);
+          </li>
+          <li>
+            Step 3: Call the load method by passing the Value Domain Definition object and the System Release URI:
+
+
+            vds.loadvalueDomain(valueDomain,&#34;Release 2009&#34;);
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h5 id="id-3LexEVS5.xValueDomainService-loadValueDomain(InputStreaminputStream,booleanfailOnAllErrors)">
+  loadValueDomain(InputStream inputStream,boolean failOnAllErrors)
+</h5>
+loadValueDomain(InputStream inputStream,boolean failOnAllErrors)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Loads valueDomainDefinitions Found in inputStream
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        java.io.InputStream
+        boolean
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        none
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        Exception
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details:
+      </th>
+      <td>
+        Implementation:
+        Step 1: Call this method on the associated LexEVS Value Domain Service instance to load all Value Domain Definitions from the inputstream.
+        Sample Call:
+        <ul>
+          <li>
+            Step 1: Instantiate LexEVSValueDomainServices if it is not done yet:
+
+
+            org.lexgrid.valuedomain.LexEVSValueDomainServices vds = new org.lexgrid.valuedomain.impl.LexEVSValueDomainServicesImpl();
+          </li>
+          <li>
+            Step 2: Call load method by passing the inputSteam and boolean flag whether to stop on load errors:
+
+
+            vds.loadvalueDomain(inputStream, true);
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h5 id="id-3LexEVS5.xValueDomainService-loadValueDomain(StringxmlFileLocation,booleanfailOnAllErrors)">
+  loadValueDomain(String xmlFileLocation, boolean failOnAllErrors)
+</h5>
+loadValueDomain(String xmlFileLocation, boolean failOnAllErrors)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Loads valueDomainDefinitions found in input xml file.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        java.lang.String
+        boolean
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        none
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        Exception
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details:
+      </th>
+      <td>
+        Implementation:
+        Step 1: Call this method on the associated LexEVS Value Domain Service instance to load all Value Domain Definitions found in an XML file that is in LexGrid format.
+        Sample Call:
+        <ul>
+          <li>
+            Step 1: Instantiate LexEVSValueDomainServices if it is not done yet :
+
+
+            org.lexgrid.valuedomain.LexEVSValueDomainServices vds = new org.lexgrid.valuedomain.impl.LexEVSValueDomainServicesImpl();
+          </li>
+          <li>
+            Step 2: Call load method by passing the inputfile location and boolean flag whether to stop on load errors:
+
+
+            vds.loadvalueDomain(inputXMLFile, true);
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h4 id="id-3LexEVS5.xValueDomainService-RemoveValueDomainDefinition">
+  Remove Value Domain Definition
+</h4>
+Below are the functions to remove value domain definitions from the system.
+<h5 id="id-3LexEVS5.xValueDomainService-removeValueDomain(URIvalueDomainURI)">
+  removeValueDomain(URI valueDomainURI)
+</h5>
+removeValueDomain(URI valueDomainURI)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Removes supplied value domain definition from the system.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        java.net.URI
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        none
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException,
+        org.LexGrid.managedobj.RemoveException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details:
+      </th>
+      <td>
+        Implementation:
+        Step 1: Call this method on the associated LexEVS Value Domain Service instance to remove the Value Domain Definition from the system that matches the supplied URI.
+        Sample Call:
+        <ul>
+          <li>
+            Step 1: Instantiate LexEVSValueDomainServices if it is not done yet :
+
+
+            org.lexgrid.valuedomain.LexEVSValueDomainServices vds = new org.lexgrid.valuedomain.impl.LexEVSValueDomainServicesImpl();
+          </li>
+          <li>
+            Step 2:
+
+
+            Call removeValueDomain method _vds.removeValueDomain (new URI(&#34;AUTO:AllDomesticANDGM&#34;));
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h5 id="id-3LexEVS5.xValueDomainService-removeAllValueDomains()">
+  removeAllValueDomains()
+</h5>
+removeAllValueDomains()
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Removes all value domain definitions from the system.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        none
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        none
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException,
+        org.LexGrid.managedobj.RemoveException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details:
+      </th>
+      <td>
+        Implementation:
+        Step 1: Call this method on the associated LexEVS Value Domain Service instance to remove all the Value Domain Definitions that are loaded in the system.
+        Sample Call:
+        <ul>
+          <li>
+            Step 1: Instantiate LexEVSValueDomainServices if it is not done yet :
+
+
+            org.lexgrid.valuedomain.LexEVSValueDomainServices vds = new org.lexgrid.valuedomain.impl.LexEVSValueDomainServicesImpl();
+          </li>
+          <li>
+            Step 2: Call removeAllValueDomains method _vds.removeAllValueDomains();
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h4 id="id-3LexEVS5.xValueDomainService-DropValueDomainTables">
+  Drop Value Domain Tables
+</h4>
+Administration function to delete value domain and pick list tables. Tables will be deleted only if there are no contents in value domain and pick list tables.
+
+dropValueDomainTables()
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Drops value domain tables only if there are no value domain and pick list entries.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        none
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        none
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException,
+        org.LexGrid.managedobj.RemoveException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details:
+      </th>
+      <td>
+        Implementation:
+        Step 1: Call this method on the associated LexEVS Value Domain Service instance to drop both Value Domain and Pick List tables. The tables will be dropped only if there are no entries in both Value Domain and Pick List tables.
+        Sample Call:
+        <ul>
+          <li>
+            Step 1: Instantiate LexEVSValueDomainServices if it is not done yet :
+
+
+            org.lexgrid.valuedomain.LexEVSValueDomainServices vds = new org.lexgrid.valuedomain.impl.LexEVSValueDomainServicesImpl();
+          </li>
+          <li>
+            Step 2: Call dropValueDomainTables method vds.dropValueDomainTables();
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h3 id="id-3LexEVS5.xValueDomainService-ValidateXMLResources">
+  Validate XML Resources
+</h3>
+Function to perform validation of source XML file without loading.
+
+validate(URI uri, int valicationLevel)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Performs validation of the candidate resource without loading data.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        java.net.URI
+        int
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        none
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        Org.LexGrid.LexBIG.Exceptions.LBParameterException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details:
+      </th>
+      <td>
+        Implementation:
+        Step 1: Call this method on the associated LexEVS Value Domain Service instance to validate the XML file that is in LexGrid format. This call will not load the data in XML file.
+        Sample Call:
+        <ul>
+          <li>
+            Step 1: Instantiate LexEVSValueDomainServices if it is not done yet :
+
+
+            org.lexgrid.valuedomain.LexEVSValueDomainServices vds = new org.lexgrid.valuedomain.impl.LexEVSValueDomainServicesImpl();
+          </li>
+          <li>
+            Step 2: Call validate method for validation by supplying URI of the XML file and validation level.
+            Supported validationLevels includes:
+
+
+            0 = Verify document is well-formed
+            1 = Verify document is valid
+            vds.validaten(uriOfXMLFile, true);
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h3 id="id-3LexEVS5.xValueDomainService-QueryFunctions">
+  Query Functions
+</h3>
+Here are some of the query functions that can be run against value domain definitions using the LexEVS Value Domain Services.
+<h4 id="id-3LexEVS5.xValueDomainService-isConceptInDomain">
+  isConceptInDomain
+</h4>
+There are two methods to check if supplied concept code is part of supplied value domain definition.
+<h5 id="id-3LexEVS5.xValueDomainService-isConceptInDomain(StringentityCode,URIvalueDomainURI)">
+  isConceptInDomain(String entityCode, URI valueDomainURI)
+</h5>
+isConceptInDomain(String entityCode, URI valueDomainURI)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Determines if the supplied entity code is a valid result for the supplied value domain and, if it is, returns the particular codingSchemeVersion that was used.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        java.lang.String,
+        java.net.URI
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.DataModel.Core.
+        AbsoluteCodingSchemeVersionReference
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details:
+      </th>
+      <td>
+        Implementation:
+        Step 1: Call this method on the associated LexEVS Value Domain Service instance to determine if the supplied entity code is a valid in the supplied Value Domain URI. If it is, returns Coding Scheme URI and the Version that was used to resolve; otherwise, returns null.
+        Sample Call:
+        <ul>
+          <li>
+            Step 1: Instantiate LexEVSValueDomainServices if it is not done yet :
+
+
+            org.lexgrid.valuedomain.LexEVSValueDomainServices vds = new org.lexgrid.valuedomain.impl.LexEVSValueDomainServicesImpl();
+          </li>
+          <li>
+            Step 2: Call isConceptInComdin method:
+
+
+            AbsoluteCodingSchemeVersionReference acsvr = vds.isConceptInDomain(&#34;conceptA&#34;,&#34;valueDomainURI&#34;);
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h5 id="id-3LexEVS5.xValueDomainService-isConceptInDomain(StringentityCode,URIentityCodeNamespace,CodingSchemeVersionOrTagcsvt,URIvalueDomainURI)">
+  isConceptInDomain(String entityCode, URI entityCodeNamespace, CodingSchemeVersionOrTag csvt, URI valueDomainURI)
+</h5>
+isConceptInDomain(String entityCode, URI entityCodeNamespace, CodingSchemeVersionOrTag csvt, URI valueDomainURI)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Similar to the previous method, this method determines if the supplied entity code and entity namespace is a valid result for the supplied value domain when resolved against the supplied Coding Scheme Version or Tag.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        java.lang.String,
+        java.net.URI,
+        org.LexGrid.LexBIG.DataModel.Core. CodingSchemeVersionOrTag
+        java.net.URI
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.DataModel.Core. AbsoluteCodingSchemeVersionReference
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details:
+      </th>
+      <td>
+        Implementation:
+        Step 1: Call this method on the associated LexEVS Value Domain Service instance to determine if the supplied entity code and its entity namespace is valid in the supplied Value Domain URI when resolved against supplied Coding Scheme Version or Tag. If it is, return Coding Scheme URI and the Version that was used to resolve; otherwise, returns null.
+        Sample Call:
+        <ul>
+          <li>
+            Step 1: Instantiate LexEVSValueDomainServices if it is not done yet :
+
+
+            org.lexgrid.valuedomain.LexEVSValueDomainServices vds = new org.lexgrid.valuedomain.impl.LexEVSValueDomainServicesImpl();
+          </li>
+          <li>
+            Step 2: Call isConceptInDomain method:
+
+
+            AbsoluteCodingSchemeVersionReference acsvr = vds.isConceptInDomain(&#34;conceptA&#34;,&#34;conceptAEntityNamespace&#34;,&#34;codingSchemeVersion&#34;,&#34;valueDomainURI&#34;);
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h4 id="id-3LexEVS5.xValueDomainService-resolveValueDomain">
+  resolveValueDomain
+</h4>
+This method resolves supplied value domain definition and returns set of valied concept codes plus the code systems and its versions that were used.
+
+resolveValueDomain(URI valueDomainURI, AbsoluteCodingSchemeVersionReferenceList csVersionList)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Resolves a value domain using the supplied set of coding scheme versions.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        java.net.URI,
+        org.LexGrid.LexBIG.DataModel.Core. AbsoluteCodingSchemeVersionReferenceList
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        org.lexgrid.valuedomain.dto.ResolvedValueDomainDefinition
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details:
+      </th>
+      <td>
+        Implementation:
+        Step 1: Call this method on the associated LexEVS Value Domain Service instance to resolve supplied value domain against list of Coding Scheme versions if supplied. If Coding Scheme Versions list is not supplied, API will resolve against any version of the loaded Coding Scheme that is referenced by the Value Domain. Returns object ResolvedValueDomainDefinition, which contains AbsoluteCodingSchemeVersionReferenceList, which tells the Coding Scheme and the versions that were used for this resolve, plus the ResolvedConceptReferencesIterator, which is an iterator for all the valid concepts that belong to the Value Domain and Value Domain Definition itself.
+        Sample Call:
+        <ul>
+          <li>
+            Step 1: Instantiate LexEVSValueDomainServices if it is not done yet :
+
+
+            org.lexgrid.valuedomain.LexEVSValueDomainServices vds = new org.lexgrid.valuedomain.impl.LexEVSValueDomainServicesImpl();
+          </li>
+          <li>
+            Step 2: Create AbsoluteCodingSchemeVersionReferenceList:
+
+
+            AbsoluteCodingSchemeVersionReferenceList csvList = new AbsoluteCodingSchemeVersionReferenceList();
+            csvList.addAbsoluteCodingSchemeVersionReference(Constructors.
+            createAbsoluteCodingSchemeVersionReference(&#34;Automobiles&#34;, &#34;2.0&#34;));
+            csvList.addAbsoluteCodingSchemeVersionReference(Constructors)
+            createAbsoluteCodingSchemeVersionReference(&#34;AutomobilesParts&#34;, &#34;2.0&#34;));
+          </li>
+          <li>
+            Step 3: Call resolveValueDomain method:
+
+
+            ResolvedValueDomainDefinition rvdDef = vds.resolveValueDomain (&#34;valueDomainURI&#34;,csvList);
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h4 id="id-3LexEVS5.xValueDomainService-isSubDomain">
+  isSubDomain
+</h4>
+This method checks if childValueDomain is a child of parentValueDomain.
+
+isSubDomain(URI childValueDomainURI, URI parentValueDomainURI
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Checks whether childValueDomainURI is a child of parentValueDomainURI.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        java.net.URI,_java.net.URI
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        boolean
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details:
+      </th>
+      <td>
+        Implementation:
+        Step 1: Call this method on the associated LexEVS Value Domain Service instance to determine if all the concepts that get resolved from the supplied Child Value Domain URI are children of concepts that get resolved from the Parent Value Domain URI. Returns true if they all are; otherwise, returns false.
+        Sample Call:
+        <ul>
+          <li>
+            Step 1: Instantiate LexEVSValueDomainServices if it is not done yet :
+
+
+            org.lexgrid.valuedomain.LexEVSValueDomainServices vds = new org.lexgrid.valuedomain.impl.LexEVSValueDomainServicesImpl();
+          </li>
+          <li>
+            Step 2: Call isSubDomain method:
+
+
+            boolean isSubDomain =  vds.isSubDomain (childValueDomainURI, parentValueDomainURI);
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h4 id="id-3LexEVS5.xValueDomainService-getValueDomainDefinition">
+  getValueDomainDefinition
+</h4>
+Utility method that returns value domain definition for the supplied value domain URI.
+
+getValueDomainDefinition(URI valueDomainURI)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Returns value domain definition for the supplied value domain URI.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        java.net.URI
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        org.LexGrid.emf.valueDomains.ValueDomainDefinition
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details:
+      </th>
+      <td>
+        Implementation:
+        Step 1: Call this method on the associated LexEVS Value Domain Service instance to get the Value Domain Definition of the supplied Value Domain URI.
+        Sample Call:
+        <ul>
+          <li>
+            Step 1: Instantiate LexEVSValueDomainServices if it is not done yet :
+
+
+            org.lexgrid.valuedomain.LexEVSValueDomainServices vds = new org.lexgrid.valuedomain.impl.LexEVSValueDomainServicesImpl();
+          </li>
+          <li>
+            Step 2: Call getValueDomainDefinition method:
+
+
+            ValueDomainDefinition vdDef = vds.getValueDomainDefinition (valueDomainURI);
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h4 id="id-3LexEVS5.xValueDomainService-listValueDomains">
+  listValueDomains
+</h4>
+Utility method that lists all the value domain(s) that matches supplied name.
+
+listValueDomains(String valueDomainName)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Returns the URI&#39;s for the value domain definition(s) for the supplied domain name. If the name is null, returns everything. If the name is not null, returns the value domain(s) that have the assigned name.
+        NotePlural because there is no guarantee of valueDomain uniqueness. If the name is the empty string &#34;&#34;, returns all unnamed valueDomains.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        java.lang.String
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        java.net.URI
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details:
+      </th>
+      <td>
+        Implementation:
+        Step 1: Call this method on the associated LexEVS Value Domain Service instance to get the list of Value Domain URIs that matches the supplied name.
+        Sample Call:
+        <ul>
+          <li>
+            Step 1: Instantiate LexEVSValueDomainServices if it is not done yet :
+
+
+            org.lexgrid.valuedomain.LexEVSValueDomainServices vds = new org.lexgrid.valuedomain.impl.LexEVSValueDomainServicesImpl();
+          </li>
+          <li>
+            Step 2: Call listValueDomains method:
+
+
+            URI[] uris = vds.listValueDomains(&#34;someValueDomainName&#34;);
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h4 id="id-3LexEVS5.xValueDomainService-getAllValueDomainsWithNoNames">
+  getAllValueDomainsWithNoNames
+</h4>
+This method returns all the value domain definition URI&#39;s that contains no names.
+
+getAllValueDomainsWithNoNames()
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Returns the URI&#39;s of all unnamed value domain definition(s).
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        none
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        java.net.URI
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details:
+      </th>
+      <td>
+        Implementation:
+        Step 1: Call this method on the associated LexEVS Value Domain Service instance to get the list of Value Domain URI that have no names.
+        Sample Call:
+        <ul>
+          <li>
+            Step 1: Instantiate LexEVSValueDomainServices if it is not done yet :
+
+
+            org.lexgrid.valuedomain.LexEVSValueDomainServices vds = new org.lexgrid.valuedomain.impl.LexEVSValueDomainServicesImpl();
+          </li>
+          <li>
+            Step 2: Call getAllValueDomainsWithNoNames method:
+
+
+            URI[] uris = vds.getAllValueDomainsWithNoNames();
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h4 id="id-3LexEVS5.xValueDomainService-getValueDomainEntitiesForTerm">
+  getValueDomainEntitiesForTerm
+</h4>
+This method resolves the supplied value domain and returns only those concept codes that matches the supplied term.
+
+getValueDomainEntitiesForTerm(String term, URI valueDomainURI, String matchAlgorithm)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Resolves the value domain supplied and restricts it to the term and matchAlgorith supplied. The returned object ResolvedValueDomainCodedNodeSet contains the codingScheme URI and Version that was used to resolve and the CodedNodeSet.
+        NoteThe CodedNodeSet is unresolved.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        java.lang.String,
+        java.net.URI,
+        java.lang.String
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        org.lexgrid.valuedomain.dto.ResolvedValueDomainCodedNodeSet
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details:
+      </th>
+      <td>
+        Implementation:
+        Step 1: Call this method on the associated LexEVS Value Domain Service instance to get the resolved Value Domain Entries as CodedNodeSet that is restricted to the supplied term and the match algorithm. The returned CodedNodeSet is not resolved.
+        Sample Call:
+        <ul>
+          <li>
+            Step 1: Instantiate LexEVSValueDomainServices if it is not done yet :
+
+
+            org.lexgrid.valuedomain.LexEVSValueDomainServices vds = new org.lexgrid.valuedomain.impl.LexEVSValueDomainServicesImpl();
+          </li>
+          <li>
+            Step 2: Call getValueDomainEntriesForTerm method:
+
+
+            ResolvedValueDomainCodedNodeSet vdvns = vds.getValueDomainEntriesForTerm (&#34;General Motors&#34;, new URI(&#34;AUTO:AllDomesticANDGM&#34;), MatchAlgorithms.exactMatch.name();
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h4 id="id-3LexEVS5.xValueDomainService-getCodingSchemesInValueDomain">
+  getCodingSchemesInValueDomain
+</h4>
+This method returns all the coding scheme referenced by supplied value domain.
+
+getCodingSchemesInValueDomain(URI valueDomainURI)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Returns list of coding scheme summary that is referenced by the supplied value domain.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        java.net.URI
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.DataModel.Collections. AbsoluteCodingSchemeVersionReferenceList
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details:
+      </th>
+      <td>
+        Implementation:
+        Step 1: Call this method on the associated LexEVS Value Domain Service instance to get List of all Coding Scheme URIs and the Versions that the supplied Value Domain URI references.
+        Sample Call:
+        <ul>
+          <li>
+            Step 1: Instantiate LexEVSValueDomainServices if it is not done yet :
+
+
+            org.lexgrid.valuedomain.LexEVSValueDomainServices vds = new org.lexgrid.valuedomain.impl.LexEVSValueDomainServicesImpl();
+          </li>
+          <li>
+            Step 2: Call getCodingSchemesInValueDomain method:
+
+
+            AbsoluteCodingSchemeVersionReferenceList csvList = vds.getCodingSchemesInValueDomain(new URI(&#34;AUTO:AllDomesticANDGM&#34;));
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h4 id="id-3LexEVS5.xValueDomainService-isDomain">
+  isDomain
+</h4>
+This method checks if the supplied entityCode is of type &#39;valueDomain&#39; in supplued coding scheme and version.
+
+isDomain(String entityCode, String codingSchemeName, CodingSchemeVersionOrTag csvt)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Determines if the supplied entity code is of type valueDomain in the supplied coding scheme and, if it is, returns true; otherwise returns false.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        java.lang.String,
+        java.lang.String
+        org.LexGrid.LexBIG.DataModel.Core. CodingSchemeVersionOrTag
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        boolean
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details:
+      </th>
+      <td>
+        Implementation:
+        Step 1: Call this method on the associated LexEVS Value Domain Service instance to check if the supplied entity code is of type valueDomain in the supplied Coding Scheme.
+        Sample Call:
+        <ul>
+          <li>
+            Step 1: Instantiate LexEVSValueDomainServices if it is not done yet :
+
+
+            org.lexgrid.valuedomain.LexEVSValueDomainServices vds = new org.lexgrid.valuedomain.impl.LexEVSValueDomainServicesImpl();
+          </li>
+          <li>
+            Step 2: Call isDomain method:
+
+
+            boolean isDomain = vds.isDomain (&#34;VD005&#34;, &#34;Automobiles&#34;, Constructors.createCodingSchemeVersionOrTag(null, &#34;2.0&#34;));
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h3 id="id-3LexEVS5.xValueDomainService-ResolvedValueDomainObjects">
+  Resolved Value Domain Objects
+</h3>
+<h4 id="id-3LexEVS5.xValueDomainService-ResolvedValueDomainCodedNodeSet">
+  ResolvedValueDomainCodedNodeSet
+</h4>
+Contains Coding Scheme Version reference list that was used to resolve the Value Domain and the CodedNodeSet.
+The CodedNodeSet is not resolved.
+<h4 id="id-3LexEVS5.xValueDomainService-ResolvedValueDomainDefinition">
+  ResolvedValueDomainDefinition
+</h4>
+A resolved Value Domain Definition containing the Coding Scheme Version reference list that was used to resolve the Value Domain and an iterator for resolved concepts.
+<h3 id="id-3LexEVS5.xValueDomainService-ErrorHandling">
+  Error Handling
+</h3>
+LexEVS Value Domain services uses org.LexGrid.LexBIG.Impl.loaders.MessageDirector to direct all fatal, error, warning, info messages with appropriate messages to the LexBIG log files in the &#39;log&#39; folder of LexEVS install directory.
+
+Along with MessageDirector, the services will also make use of org.LexGrid.LexBIG.exception.LBException to throw any fatal and error messages to the log file as well as to console.
+<h2 id="id-3LexEVS5.xValueDomainService-LoadScripts">
+  Load Scripts
+</h2>
+Following are the scripts that can be used to load value domain definition that are in LexGrid XML format into the system :
+<ul>
+  <li>
+    LoadValueDomain.bat for Windows environment and
+  </li>
+  <li>
+    LoadValueDomain.sh for Unix environment
+  </li>
+</ul>
+The above scripts can be found under &#39;Admin&#39; folder of LexEVS install directory.
+
+Both scripts take in the following parameters:
+
+
+
+-in
+Input &lt;uri&gt;
+URI or path specifying location of the source file.
+-v
+Validate &lt;int&gt;
+Perform validation of the candidate resource without loading data. Supported levels of validation include:
+0 = Verify document is well-formed
+1 = Verify document is valid
+
+
+
+Example:
+
+
+sh LoadValueDomain.sh -in &#34;file:///path/to/file.xml&#34;
+<h2 id="id-3LexEVS5.xValueDomainService-SampleValueDomainDefinitionXMLFile">
+  Sample Value Domain Definition XML File
+</h2>
+Below is a sample XML file containing Value Domain Definitions in LexGrid format that can be loaded using LexEVS Value Domain Service.
+
+
+
+&lt;source&gt;
+&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
+&lt;systemRelease xmlns:xsi=&#34;http://www.w3.org/2001/XMLSchema-instance&#34;
+{panel}
+xsi:schemaLocation=&#34;http://LexGrid.org/schema/2009/01/LexGrid/versions http://LexGrid.org/schema/2009/01/LexGrid/versions.xsd&#34;
+xmlns=&#34;http://LexGrid.org/schema/2009/01/LexGrid/versions&#34; xmlns:lgVer=&#34;http://LexGrid.org/schema/2009/01/LexGrid/versions&#34;
+xmlns:lgCommon=&#34;http://LexGrid.org/schema/2009/01/LexGrid/commonTypes&#34; xmlns:data=&#34;data&#34;
+xmlns:lgVD=&#34;http://LexGrid.org/schema/2009/01/LexGrid/valueDomains&#34; xmlns:lgNaming=&#34;http://LexGrid.org/schema/2009/01/LexGrid/naming&#34;
+releaseURI=&#34;http://testRelease/04&#34; releaseDate=&#34;2008-11-07T14:55:51.615-06:00&#34;&gt;
+&lt;lgCommon:entityDescription&gt;Sample value domains&lt;/lgCommon:entityDescription&gt;
+&lt;lgVer:valueDomains&gt;
+&lt;lgVD:mappings&gt;
+&lt;lgNaming:supportedAssociation localId=&#34;hasSubtype&#34; uri=&#34;urn:oid:1.3.6.1.4.1.2114.108.1.8.1&#34;&gt;hasSubtype&lt;/lgNaming:supportedAssociation&gt;
+&lt;lgNaming:supportedCodingScheme localId=&#34;Automobiles&#34; uri=&#34;urn:oid:11.11.0.1&#34;&gt;Automobiles&lt;/lgNaming:supportedCodingScheme&gt;
+&lt;lgNaming:supportedDataType localId=&#34;testhtml&#34;&gt;test/html&lt;/lgNaming:supportedDataType&gt;
+&lt;lgNaming:supportedDataType localId=&#34;textplain&#34;&gt;text/plain&lt;/lgNaming:supportedDataType&gt;
+&lt;lgNaming:supportedHierarchy localId=&#34;is_a&#34; associationNames=&#34;hasSubtype&#34; isForwardNavigable=&#34;true&#34; rootCode=&#34;@&#34;&gt;hasSubtype&lt;/lgNaming:supportedHierarchy&gt;
+&lt;lgNaming:supportedLanguage localId=&#34;en&#34; uri=&#34;www.en.org/orsomething&#34;&gt;en&lt;/lgNaming:supportedLanguage&gt;
+&lt;lgNaming:supportedNamespace localId=&#34;Automobiles&#34; uri=&#34;urn:oid:11.11.0.1&#34; equivalentCodingScheme=&#34;Automobiles&#34;&gt;Automobiles&lt;/lgNaming:supportedNamespace&gt;
+&lt;lgNaming:supportedProperty localId=&#34;textualPresentation&#34;&gt;textualPresentation&lt;/lgNaming:supportedProperty&gt;
+&lt;lgNaming:supportedSource localId=&#34;lexgrid.org&#34;&gt;lexgrid.org&lt;/lgNaming:supportedSource&gt;
+&lt;lgNaming:supportedSource localId=&#34;_111101&#34;&gt;11.11.0.1&lt;/lgNaming:supportedSource&gt;
+&lt;/lgVD:mappings&gt;
+&lt;lgVD:valueDomainDefinition valueDomainURI=&#34;SRITEST:AUTO:DomesticAutoMakers&#34; valueDomainName=&#34;Domestic Auto Makers&#34; defaultCodingScheme=&#34;Automobiles&#34; effectiveDate=&#34;2009-01-01T11:00:00Z&#34; isActive=&#34;true&#34; status=&#34;ACTIVE&#34;&gt;
+&lt;lgVD:properties&gt;
+&lt;lgCommon:property propertyName=&#34;textualPresentation&#34;&gt;
+&lt;lgCommon:value&gt; Domestic Auto Makers&lt;/lgCommon:value&gt;
+&lt;/lgCommon:property&gt;
+&lt;/lgVD:properties&gt;
+&lt;lgVD:definitionEntry ruleOrder=&#34;1&#34; operator=&#34;OR&#34;&gt;
+&lt;lgVD:entityReference entityCode=&#34;005&#34; referenceAssociation=&#34;hasSubtype&#34; transitiveClosure=&#34;true&#34;  targetToSource=&#34;false&#34; leafOnly=&#34;false&#34;/&gt;
+&lt;/lgVD:definitionEntry&gt;
+&lt;/lgVD:valueDomainDefinition&gt;
+&lt;lgVD:valueDomainDefinition valueDomainURI=&#34;SRITEST:AUTO:AllDomesticButGM&#34; valueDomainName=&#34;All Domestic Autos But GM&#34; defaultCodingScheme=&#34;Automobiles&#34; effectiveDate=&#34;2009-01-01T11:00:00Z&#34; isActive=&#34;true&#34; status=&#34;ACTIVE&#34;&gt;
+&lt;lgVD:properties&gt;
+&lt;lgCommon:property propertyName=&#34;textualPresentation&#34;&gt;
+&lt;lgCommon:value&gt; Domestic Auto Makers&lt;/lgCommon:value&gt;
+&lt;/lgCommon:property&gt;
+&lt;/lgVD:properties&gt;
+&lt;lgVD:definitionEntry ruleOrder=&#34;1&#34; operator=&#34;OR&#34;&gt;
+&lt;lgVD:entityReference entityCode=&#34;005&#34; referenceAssociation=&#34;hasSubtype&#34; transitiveClosure=&#34;true&#34;  targetToSource=&#34;false&#34; leafOnly=&#34;false&#34;/&gt;
+&lt;/lgVD:definitionEntry&gt;
+&lt;lgVD:definitionEntry ruleOrder=&#34;2&#34; operator=&#34;SUBTRACT&#34;&gt;
+&lt;lgVD:entityReference entityCode=&#34;GM&#34; referenceAssociation=&#34;hasSubtype&#34; transitiveClosure=&#34;true&#34;  targetToSource=&#34;false&#34; leafOnly=&#34;false&#34;/&gt;
+&lt;/lgVD:definitionEntry&gt;
+&lt;/lgVD:valueDomainDefinition&gt;
+&lt;lgVD:valueDomainDefinition valueDomainURI=&#34;SRITEST:AUTO:AllDomesticANDGM&#34; valueDomainName=&#34;All Domestic Autos AND GM&#34; defaultCodingScheme=&#34;Automobiles&#34; effectiveDate=&#34;2009-01-01T11:00:00Z&#34; isActive=&#34;true&#34; status=&#34;ACTIVE&#34;&gt;
+&lt;lgVD:properties&gt;
+&lt;lgCommon:property propertyName=&#34;textualPresentation&#34;&gt;
+&lt;lgCommon:value&gt; Domestic Auto Makers AND GM&lt;/lgCommon:value&gt;
+&lt;/lgCommon:property&gt;
+&lt;/lgVD:properties&gt;
+&lt;lgVD:definitionEntry ruleOrder=&#34;1&#34; operator=&#34;OR&#34;&gt;
+&lt;lgVD:entityReference entityCode=&#34;005&#34; referenceAssociation=&#34;hasSubtype&#34; transitiveClosure=&#34;true&#34;  targetToSource=&#34;false&#34; leafOnly=&#34;false&#34;/&gt;
+&lt;/lgVD:definitionEntry&gt;
+&lt;lgVD:definitionEntry ruleOrder=&#34;2&#34; operator=&#34;AND&#34;&gt;
+&lt;lgVD:entityReference entityCode=&#34;GM&#34; referenceAssociation=&#34;hasSubtype&#34; transitiveClosure=&#34;true&#34;  targetToSource=&#34;false&#34; leafOnly=&#34;false&#34;/&gt;
+&lt;/lgVD:definitionEntry&gt;
+&lt;/lgVD:valueDomainDefinition&gt;
+&lt;lgVD:valueDomainDefinition valueDomainURI=&#34;SRITEST:AUTO:DomasticLeafOnly&#34; valueDomainName=&#34;Domestic Leaf Only&#34; defaultCodingScheme=&#34;Automobiles&#34; effectiveDate=&#34;2009-01-01T11:00:00Z&#34; isActive=&#34;true&#34; status=&#34;ACTIVE&#34;&gt;
+&lt;lgVD:properties&gt;
+&lt;lgCommon:property propertyName=&#34;textualPresentation&#34;&gt;
+&lt;lgCommon:value&gt;Domestic Leaf Only&lt;/lgCommon:value&gt;
+&lt;/lgCommon:property&gt;
+&lt;/lgVD:properties&gt;
+&lt;lgVD:definitionEntry ruleOrder=&#34;1&#34; operator=&#34;OR&#34;&gt;
+&lt;lgVD:entityReference entityCode=&#34;005&#34; referenceAssociation=&#34;hasSubtype&#34; transitiveClosure=&#34;true&#34;  targetToSource=&#34;false&#34; leafOnly=&#34;true&#34;/&gt;
+&lt;/lgVD:definitionEntry&gt;
+&lt;/lgVD:valueDomainDefinition&gt;
+&lt;/lgVer:valueDomains&gt;
+{panel}
+&lt;/systemRelease&gt;
+&lt;/source&gt;
+<h2 id="id-3LexEVS5.xValueDomainService-SystemTesting">
+  System Testing
+</h2>
+The System test case for the LexEVS Value Domain service is performed using the JUnit test suite:
+
+
+
+org.LexGrid.LexBIG.Impl.testUtility.VDAllTests
+
+
+
+This test suite will be run as part of regular LexEVS test suites AllTestsAllConfigs and AllTestsNormalConfigs.
+<h2 id="id-3LexEVS5.xValueDomainService-Installation/Packaging">
+  Installation / Packaging
+</h2>
+Value Domain Services are integrated parts of core LexEVS API and are packaged and installed with other LexEVS services. 

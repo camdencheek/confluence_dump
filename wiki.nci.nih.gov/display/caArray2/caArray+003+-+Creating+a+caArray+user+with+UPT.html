@@ -1,0 +1,117 @@
+Unable to render {include} The included page could not be found.
+<h1 id="caArray003CreatingacaArrayuserwithUPT-Question:HowdoIcreateacaArrayuserwithUPT?">
+  Question: How do I create a caArray user with UPT?
+</h1>
+Topic: caArray and UPT InstallationRelease: Up to caArray 2.4.0Date entered: 01/06/2009 Date last updated: 06/02/2011
+<h2 id="caArray003CreatingacaArrayuserwithUPT-Answer">
+  Answer
+</h2>
+Since UPT is a shared user authorization system for all caGrid tools, users created for each tool are grouped in the UPT CSM schema by &#34;Application&#34;.To create the user for caArray, you would need to first create an &#34;Application&#34; in UPT, point this application to the caArray installed, and then create users within the application you just created.It is necessary to have both UPT and caArray installed before you start creating caArray users.
+<h3 id="caArray003CreatingacaArrayuserwithUPT-LaunchUPT">
+  Launch UPT
+</h3>
+To launch the UPT application, first open a browser and access UPT via the URL: http://&lt;jboss.server.hostname&gt;:&lt;jboss.server.port&gt;/uptThe parameters are defined in UPT&#39;s configuration file: install.properties.You would need different UPT logins to create the application and users:
+<ul>
+  <li>
+    The application will be created in UPT&#39;s CSM schema (Application = &#34;csmupt&#34; in the login as a super admin in the illusration)
+  </li>
+  <li>
+    The caArray user will be created within caArray&#39;s CSM schema (Application = &#34;caArray&#34; in the login as an application admin in the illustration).
+  </li>
+</ul>
+UPT Login Screens for Creating the Application and Users
+<img alt="Screenshots of UPT Login Screens for Creating the Application and Users" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caArray2/caArray%20003%20-%20Creating%20a%20caArray%20user%20with%20UPT/Login-UPT.JPG?api=v2">
+For more information about how to use the UPT application, please refer to the UPT User Guide.
+<h3 id="caArray003CreatingacaArrayuserwithUPT-CreatecaArrayApplicationwithUPT">
+  Create caArray Application with UPT
+</h3>
+The following diagram shows the steps in creating a new application with UPT, as explained in the steps that follow.Flow Diagram Showing Steps in Creating a New Application with UPT
+<img alt="Flow Diagram Showing Steps in Creating a New Application with UPT" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caArray2/caArray%20003%20-%20Creating%20a%20caArray%20user%20with%20UPT/CaArray-create-application.JPG?api=v2">
+<h4 id="caArray003CreatingacaArrayuserwithUPT-Step1.LogintoUPT&#39;sCSMschemaas&#34;superadmin&#34;">
+  Step 1. Login to UPT&#39;s CSM schema as &#34;superadmin&#34;
+</h4>
+(This is the default username created during UPT installation). This step will sign you in to the UPT schema.Username: superadmin Password: changeme Application: csmupt
+<h4 id="caArray003CreatingacaArrayuserwithUPT-Step2.CreateaUser">
+  Step 2. Create a User
+</h4>
+This is going to be your application&#39;s admin. It is recommended not to use &#39;caarrayadmin&#39;, since &#39;caarrayadmin&#39; is the default super user created in caArray CSM_user table for application data administration during caArray Installation.
+<h4 id="caArray003CreatingacaArrayuserwithUPT-Step3.CreateanApplication(seesamplebelow).">
+  Step 3. Create an Application (see sample below).
+</h4>
+<h4 id="caArray003CreatingacaArrayuserwithUPT-Step4.AssociatetheUsercreatedinStep2withApplicationcreatedinStep3.">
+  Step 4. Associate the User created in Step 2 with Application created in Step 3.
+</h4>
+<h4 id="caArray003CreatingacaArrayuserwithUPT-Step5.Re-logintoUPTwiththeusernamecreatedinstep2,andwiththeapplicationcreatedinstep3(ThisstepsignsyouinthecaArraySchema)">
+  Step 5. Re-login to UPT with the username created in step 2, and with the application created in step 3 (This step signs you in the caArray Schema)
+</h4>
+<h4 id="caArray003CreatingacaArrayuserwithUPT-Step6.UpdateAssociation.">
+  Step 6. Update Association.
+</h4>
+<h3 id="caArray003CreatingacaArrayuserwithUPT-ApplicationConfiguration">
+  Application Configuration
+</h3>
+When you create the application, you will need to point this application to the actual application installed. It is important to enter consistent values as those specified in the application configuration file. Following is a sample set of parameters used to create the caArray application:Application Name: caArrayApplication Description: caArray descriptionApplication Declarative Flag: YesApplication Active Flag: YesApplication Database URL: jdbc:mysql://localhost:3306/caarraydbApplication Database Username: caarray_database_ownerApplication Database Password: changemeApplication Database Dialect: org.hibernate.dialect.MySQLDialectApplication Database Driver: com.mysql.jdbc.DriverApplication CSM Version: 4.2Key Points
+<ol>
+  <li>
+    The Application Database Username should correspond to the value for the &#34;database.user&#34; property which you specified in caarray2.install.properties
+  </li>
+  <li>
+    Environment variable substitution string (${}) is not supported. See examples below:
+    Application Database Driver: *$\{com.mysql.jdbc.Driver\}*  - Invalid Syntax
+    Application Database Driver: *com.mysql.jdbc.Driver*       - Correct Syntax
+  </li>
+  <li>
+    The Application Name is case sensitive. For example, caaaray != caArray
+  </li>
+  <li>
+    The administration user created in step 2 can be associated with more than one application.
+    <ul>
+      <li>
+        For example, you may create a user called &#34;LSD-SuperAdmin&#34; and associate this user with all your applications installed, such as: caArray, caGWAS, Rembrandt etc.
+      </li>
+      <li>
+        In this way, you would be able to log in, with one set of username and password, to all LSD applications deployed in your institution, as long as the application name is changed accordingly during the login process.
+      </li>
+    </ul>
+  </li>
+  <li>
+    UPT 4.2 is backward compatible with previous versions of CSM. When you provision the application in UPT 4.2, you will be asked to specify the CSM version caArray 2.4.x is using. You should enter 4.2, since that is the version that caArray uses.
+  </li>
+</ol>
+<h3 id="caArray003CreatingacaArrayuserwithUPT-CreatecaArrayUserswithUPT">
+  Create caArray Users with UPT
+</h3>
+An application user can only be created after the application is created in UPT, when you log in as an application admin as shown in the illustration of login screens.
+<ul>
+  <li>
+    Login to UPT with the information below:
+    <ul>
+      <li>
+        Username: application admin (such as: &#34;caArray_User_Admin&#34; created in step 2 above)
+      </li>
+      <li>
+        Password: YourPassWord
+      </li>
+      <li>
+        Application: caArray (created in step 3 above)
+      </li>
+    </ul>
+  </li>
+  <li>
+    Create a user
+  </li>
+</ul>
+<h3 id="caArray003CreatingacaArrayuserwithUPT-Whathappensatthedatabaselevel?">
+  What happens at the database level?
+</h3>
+During the installation process for UPT or other applications, a CSM schema is created for UPT and each application tool (except those applications that do not need a database). Each CSM schema has its sampler/default users and a role/permission structure. For the UPT CSM schema, &#34;superadmin&#34; is created by default, which has the privilege to create other users or applications. For the caArray CSM schema, &#34;caArrayAdmin&#34; is created by default, which is a &#34;super User&#34; with the privilege to view or modify all caArray&#39;s data. However, &#34;caArrayAdmin&#34; cannot create another caArray user.Diagram of UPT and Database Schema Contents
+<img alt="Diagram of UPT and Database Schema Contents" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caArray2/caArray%20003%20-%20Creating%20a%20caArray%20user%20with%20UPT/CaArray-UPT-CMS.JPG?api=v2">
+The UPT Schema has database connection and administrator information for each application database. The CSM applications are included (caArray, Rembrandt, and caGWAS in the example), and the CSM_User admins. For each application, the schema lists the CSM admin and users.
+<h2 id="caArray003CreatingacaArrayuserwithUPT-Haveacomment?">
+  Have a comment?
+</h2>
+Please leave your comment in the
+<a href="https://cabig-kc.nci.nih.gov/Molecular/forums/viewtopic.php?f=6&amp;t=577" rel="nofollow">
+  caArray End User Forum
+</a>
+.

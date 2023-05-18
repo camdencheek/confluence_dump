@@ -1,0 +1,265 @@
+Current Working Draft
+<ul>
+  <li>
+    <a href="#id-9CBIITProjectRecommendations-AssessmentReport" rel="nofollow">
+      Assessment Report
+    </a>
+  </li>
+  <li>
+    <a href="#id-9CBIITProjectRecommendations-ToolsRecommendedforSemanticInfrastructureWork" rel="nofollow">
+      Tools Recommended for Semantic Infrastructure Work
+    </a>
+    <ul>
+      <li>
+        <a href="#id-9CBIITProjectRecommendations-TripleStoreAccess" rel="nofollow">
+          Triple Store Access
+        </a>
+      </li>
+      <li>
+        <a href="#id-9CBIITProjectRecommendations-SemanticKnowledgeStore" rel="nofollow">
+          Semantic Knowledge Store
+        </a>
+      </li>
+      <li>
+        <a href="#id-9CBIITProjectRecommendations-DataConversionandArtifactAccess" rel="nofollow">
+          Data Conversion and Artifact Access
+        </a>
+      </li>
+      <li>
+        <a href="#id-9CBIITProjectRecommendations-IntegrationSupport" rel="nofollow">
+          Integration Support
+        </a>
+      </li>
+      <li>
+        <a href="#id-9CBIITProjectRecommendations-Inference,RulesandExpertSystems" rel="nofollow">
+          Inference, Rules and Expert Systems
+        </a>
+        <ul>
+          <li>
+            <a href="#id-9CBIITProjectRecommendations-RDFandOWLTools" rel="nofollow">
+              RDF and OWL Tools
+            </a>
+          </li>
+          <li>
+            <a href="#id-9CBIITProjectRecommendations-GeneralPurpose" rel="nofollow">
+              General Purpose
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#id-9CBIITProjectRecommendations-FlowManagementforServices,ProcessesandwebApplications" rel="nofollow">
+          Flow Management for Services, Processes and web Applications
+        </a>
+      </li>
+      <li>
+        <a href="#id-9CBIITProjectRecommendations-Design" rel="nofollow">
+          Design
+        </a>
+      </li>
+      <li>
+        <a href="#id-9CBIITProjectRecommendations-ComponentRepository" rel="nofollow">
+          Component Repository
+        </a>
+      </li>
+    </ul>
+  </li>
+</ul>
+<h3 id="id-9CBIITProjectRecommendations-AssessmentReport">
+  Assessment Report
+</h3>
+This section will provide the Assessment Report generated during the prototyping work of the inception phase.
+<h3 id="id-9CBIITProjectRecommendations-ToolsRecommendedforSemanticInfrastructureWork">
+  Tools Recommended for Semantic Infrastructure Work
+</h3>
+Additional InformationSupported CBIIT application structures, such as the Java platform, Tomcat, JBOSS, Ant, and Maven, are discussed in the architecture sections of this roadmap and the caGrid 2.0 Roadmap, 6 - caGrid 2.0 Architecture and
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=29561772" rel="nofollow">
+  6 - Semantic Infrastructure 2.0 Architecture
+</a>
+. Additional standards are discussed in section 10.4 - CBIIT Project Recommendations of the caGrid 2.0 Roadmap and on the
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=18947630" rel="nofollow">
+  VCDE WS Standards Efforts
+</a>
+page.
+
+The tools and libraries listed here have been identified as being of possible help in certain aspects of the Semantic Infrastructure 2.0 Roadmap project and development of the architecture. The tools listed below have not been formally described as supported by CBIIT at this time. However, they suggest the type of components and architecture expected to best satisfy project requirements.
+<h4 id="id-9CBIITProjectRecommendations-TripleStoreAccess">
+  Triple Store Access
+</h4>
+Access tools represent methods for interacting with information represented using Resource Description Framework (RDF) and Web Ontology Language (OWL) representations of metadata. In addition, these tools may provide additional support for inference engines.
+<a href="http://jena.sourceforge.net/" rel="nofollow">
+  Jena (sourceforge.net)
+</a>
+- The Jena Semantic Web Framework is a tool for building semantic web applications. It provides a programmatic environment for RDF, RDF Schema (RDFS) and OWL as well as a SPARQL engine and rule-based inference. This is a general purpose tool that supports combinations of models in memory as well as transactional persistence of triples. Jena works well with ontologies with large numbers of classes and individuals which require read and write functionality.
+<a href="http://owlapi.sourceforge.net/" rel="nofollow">
+  OwlAPI (sourceforge.net)
+</a>
+- The OWL API is a Java API for reference implementation for creating, manipulating and serializing OWL ontologies. This interface provides a fast, in-memory representation for manipulating OWL ontologies and provides persistence to OWL in XML format.
+<a href="http://www.openrdf.org/" rel="nofollow">
+  Sesame (opendrf.org)
+</a>
+- Sesame is an open source RDF framework with support for RDF Schema inferencing and querying.
+<a href="http://openjena.org/ARQ/" rel="nofollow">
+  ARQ (openjena.org)
+</a>
+- Supports the W3C standard for RDF queries. This is packaged with Jena and can be used against Jena models.
+
+Additional InformationThese systems can be used in combinations. For example, OWL files created with OwlAPI can be read by Jena. However, Jena TDB is specific to Jena, and you must use Jena to access it. See below for persistence methods.
+<h4 id="id-9CBIITProjectRecommendations-SemanticKnowledgeStore">
+  Semantic Knowledge Store
+</h4>
+Stores represent the ability to store RDF and OWL representations. These tools provide various features including support for larger datasets, transactional updates, and integration with traditional relational databases. Although the tools listed below are open source, there are also non-open source tools which provide similar functionality including AlegroGraph and Oracle 11G. These system may also use Jena or Sesame for access.
+<a href="http://openjena.org/TDB/" rel="nofollow">
+  Jena TDB (openjena.org)
+</a>
+- This is an integration between the Jena model factory which provides a high speed persistence of RDF triples. Writes to this system are not fully transactional, and so care must be taken to manage transactions externally, where required.
+<a href="http://openjena.org/SDB/" rel="nofollow">
+  Jena SDB (openjena.org)
+</a>
+- Provides a persistence model using a variety of relational database management system (RDBMS) back ends. Utilizing JDBC connections, SDB persists into traditional tables the RDF triple information. This solution is fully transactional, but suffers from insert and query limitations for performance.
+<a href="http://www.openrdf.org/" rel="nofollow">
+  Sesame SAILS (opendrf.org)
+</a>
+- Sesame provides a way to integrate various representations for access (called SAILS (Storage And Inference Layer). Sesame SAILS have been created for in-memory, relational database, and a variety of other formats.
+<a href="http://www.ontotext.com/owlim/" rel="nofollow">
+  OwLIM (ontotext.com)
+</a>
+- OwLIM is implemented as a Sesame SAIL and comes in both an open source and commercial implementation. OwLIM boasts that it is the most scaleable semantic repository in the world (the commercial implementation). It also offers a high speed reasoning system built into the system.
+<a href="http://www4.wiwiss.fu-berlin.de/bizer/d2rq/spec/" rel="nofollow">
+  db2rq (wiwiss.fu-berline.de)
+</a>
+- Not technically a general purpose store, db2rq provides a semantic reference layer to an existing RDBMS environment, allowing for SPARQL and other interactions within a given environment.
+
+Additional InformationThese systems can also interact. Specifically Jena can access Sesame through a model factory component and Sesame can access Jena through a SAIL. This does not indicate compatibility, but rather an abstraction. This means that the database tables created by Jena SDB do not match the RDBMS tables generated by Sesame. However, as an example, code written using Jena as an interface, if written correctly, can be independent of the persistence method.
+<h4 id="id-9CBIITProjectRecommendations-DataConversionandArtifactAccess">
+  Data Conversion and Artifact Access
+</h4>
+These are tools which aid in the programmatic access to artifact sources to aid in transformations and processing.
+<a href="http://poi.apache.org" rel="nofollow">
+  poi (apache.org)
+</a>
+- Poi is a general purpose tool for accessing Microsoft documents in the .DOC, .XLS, and traditional Microsoft proprietary formats. In addition Poi supports the openXML standard including Microsoft .DOCX and related formats through the openxml4j api. Information about this standard can be found
+<a href="http://www.openxml.biz/" rel="nofollow">
+  on openxmpl.biz
+</a>
+.
+<a href="http://oboedit.org/?page=index" rel="nofollow">
+  OBO-Edit (oboedit.org)
+</a>
+- The editor provides an API for accessing OBO-based ontologies.
+<a href="http://www.eclipse.org/modeling/emf/?project=emf" rel="nofollow">
+  Eclipse EMF (eclipse.org)
+</a>
+- The ecore component of Eclipse EMF is a tool for accessing models in XMI for conversion to other representations. Other aspects of the Eclipse EMF may also be useful.
+
+In addition there are standard access tools for accessing RDF and OWL representations. See
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=29561782" rel="nofollow">
+  #Semantic Knowledge Store
+</a>
+above.
+<h4 id="id-9CBIITProjectRecommendations-IntegrationSupport">
+  Integration Support
+</h4>
+<a href="http://www.springsource.org/" rel="nofollow">
+  Spring (springsource.org)
+</a>
+- Spring provides a number of components which are designed to either ease the adoption of new technologies, or to provide greater control over certain integrations. The number of Spring components is large; some significant components include Spring Framework, Spring Flow, Spring Web Services, and Spring Security. These components are all based on certain core patterns that make the components more flexible.
+<h4 id="id-9CBIITProjectRecommendations-Inference,RulesandExpertSystems">
+  Inference, Rules and Expert Systems
+</h4>
+These are defined as a way to provide methods of representing and executing decision support, orchestration, analysis and many other aspects of application functionality. They share a way to represent certain behaviors for which a more concise language has been created than traditional programming languages. Some inference and rule systems support standards such as OWL DL (Description Logics), or RuleML (Markup Language), or RIF (Rule Interchange Format). In addition, there may be extensions or additional functionality which make them suitable.
+<a href="http://silk.semwebcentral.org/" rel="nofollow">
+  SILK (silk.semwebcentral.org)
+</a>
+- SILK extends the expressive power of SPARQL, OWL-RL, RIF-BLD, and is designed with biomedical projects in mind.
+<a href="http://www.swi-prolog.org/" rel="nofollow">
+  SQI-Prolog (swi-prolog.org)
+</a>
+- SQI-Prolog provides implementation of the Prolog language with support for RDF, OWL and SPARQL.  Scalable to available memory and can be embedded in Java applications.
+<a href="http://www.kr.tuwien.ac.at/research/systems/dlvhex" rel="nofollow">
+  DLVHEX (kr.tuwien.ac.at/research/systems/dlvhex/)
+</a>
+- DLVHEX is a prototype application for providing reasoning with OWL ontologies, with SPARQL plugin support.
+<h5 id="id-9CBIITProjectRecommendations-RDFandOWLTools">
+  RDF and OWL Tools
+</h5>
+<a href="http://clarkparsia.com/pellet" rel="nofollow">
+  Pellet (clarkparsia.com)
+</a>
+- Pellet is an OWL 2 (partial) reasoner providing the core classification functionality. Pellet is broadly used and integrated into various platforms including Protege 4 and TopBraid Composer. Pellet is written directly in Java and so can easily be integrated into other java applications directly without external configurations or implementations.
+<a href="http://owl.man.ac.uk/factplusplus/" rel="nofollow">
+  Fact++ (owl.man.ac.uk)
+</a>
+- Fact++ is an implementation of an OWL 2 (partial) reasoner written in C+. Fact+ requires the implementation of a component which is accessed by applications. Because it is written in C++ it has the potential to be faster then Java implementations.
+<a href="http://hermit-reasoner.com/" rel="nofollow">
+  HermiT (hermit-reasoner.com)
+</a>
+- HermiT is an OWL 2 reasoner implementing a high performance algorithm in Java. It is dependent on the OwlAPI.
+<a href="http://www.topquadrant.com/topbraid/spin/api/" rel="nofollow">
+  TopBraid SPIN (topquadrant.com)
+</a>
+- TopBraid SPIN is an implementation of the SPARQL Inferencing Notation. It is an open source implementation, and can be integrated in a number of ways. It has many uses including an RDF constraint language, a rules language, a SPARQL function language (used as a way to extend SPARQL), and a method of storing reusable queries. Envisioned and implemented by TopBraid, it expands functional behaviors in ways that are impossible to declare in DL, or where it would be inappropriate. Use of TopBraid SPIN requires the use of the Jena API.
+<h5 id="id-9CBIITProjectRecommendations-GeneralPurpose">
+  General Purpose
+</h5>
+<a href="http://www.jessrules.com/" rel="nofollow">
+  Jess (jessrules.com)
+</a>
+- Jess stands for Java Expert System Shell. Jess is an implementation of the rete algorithm and supports a number of rule definition languages. It is the reference implementation of JSR 94 standard for java rule engines. Jess supports CLIPS (C Language Integrated Production System) and RuleML languages, as well as its own XML representation of CLIPS. Jess provides many ways to extend the functionality into Java Applications in both direction (able to call java functions from the rules, as well as call rule functionality from java). Jess is available without cost for academic uses as well as through various commercial licenses. It does not have a cost for development, as there is a trial download that times out after a number of days, and can be re-downloaded.
+<a href="http://jboss.org/drools/" rel="nofollow">
+  Drools Expert (jboss.org)
+</a>
+- Drools is a component of the JBoss community. Drools is described as a business logic integration platform. It has a number of components which may be integrated to provide different support including a managed rule repository. Drools is an implementation of the rete algorithm. Drools supports a proprietary language as well as an XML representation of its own language. Transformations of RuleML to Drools may be available.
+<a href="http://www.ontoprise.de)" rel="nofollow">
+  Ontobroker (ontoprise.de)
+</a>
+- Ontobroker is a commercial package which provides support for high performance reasoning for W3C standards such as OWL, RIF, RDF(S), and SPARQL. Ontobroker integrates to multiple database systems and supports web service interfaces. Ontostudio  provides a visual modeling tool for work with Ontobroker.
+<a href="http://flora.sourceforge.net" rel="nofollow">
+  FLORA-2 (flora.sourceforge.net)
+</a>
+- Flora is an object-oriented rule language and implementation of the RIF standard. It does not appear to be currently developed, but may have application here.
+<h4 id="id-9CBIITProjectRecommendations-FlowManagementforServices,ProcessesandwebApplications">
+  Flow Management for Services, Processes and web Applications
+</h4>
+<a href="http://ode.apache.org/" rel="nofollow">
+  Open ODE (apache.org)
+</a>
+- Open ODE is an Apache project which utilizes the Web Services Business Process Execution Language (WS-BPEL) standard for organization of work flow. It is supported by Apache ServiceMix and can be used to manage web service choreography where that is appropriate.
+<a href="http://www.jboss.org/drools/drools-flow.html" rel="nofollow">
+  Drools Flow (jboss.org)
+</a>
+- Drools flow is an integration of the Drools rule engine designed to manage business or process flow. Drools Flow definitions can be rendered in the Business Process Modeling Notation (BPMN) notations, but an Eclipse plugin is also provided for visual design of workflows. Drools Flow also works with
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=29561782" rel="nofollow">
+  Drools Guvnor
+</a>
+to provide a repository of workflows, and provides audit and control over workflow processes. Drools Flow has built in support to provide monitoring of flow activities. Drools Flow is an implementation of Business Process Modeling (BPM).
+<a href="http://www.bonitasoft.com/" rel="nofollow">
+  Bonita Open Solution (bonitasoft.com)
+</a>
+- The Bonita Open Solution is an implementation of BPM that provides an environment for designing, managing and executing flow control. Flows in Bonita are designed graphically and can be executed directly through deployment as applications, or uploaded to a functional engine for execution. Bonita provides both an API for integration, and a web-based tool to provide execution points for state transitions and management.
+<a href="http://www.springsource.org/go-webflow2" rel="nofollow">
+  Spring Flow (springsource.org)
+</a>
+- Using an integration with the Spring MVC (model-view controller), Spring Flow allows for the definition of flows which control activity within a given session. This tool separates the page flow from the business logic, allowing for many alternative flows using the same pages. This simplifies applications which perform activities in different modes (create versus edit) or through different means (create &#34;Wizards&#34;).
+<h4 id="id-9CBIITProjectRecommendations-Design">
+  Design
+</h4>
+OWL and RDF provide the ability to represent information as metadata and as functional components of a system. As a result, individuals may produce RDF or OWL ontologies which will be integrated into the fabric of the system. In addition to the standard tools supported by CBIIT relating to design, the use of good ontology editors will help promote the consistency of representation and functionality. In some senses these are integrated development environments (IDEs) in the fact that development occurs; however, they can also be considered as Platform-specific Model (PSM) design tools because the output becomes a documentable model representation.
+<a href="http://protege.stanford.edu/" rel="nofollow">
+  Protégé 4 (stanford.edu)
+</a>
+- Protégé is developed and supported at Stanford University and has been used for ontology development for many years. Protégé 4 is an attempt to reach beyond the frame-based roots of Protégé and provide a newly envisioned representation of OWL ontologies. Protégé 4 utilizes the OwlAPI for accessing OWL ontologies and so shares the limitations of the OwlAPI. Specifically Protégé 4 does not support persistence to general purpose triple stores, and must be able to load the ontology entirely in memory. However, the use of the OwlAPI in design and editing where it is appropriate, gives Protégé 4 a performance advantage in the loading of ontologies, and provides unique functionality as related to ontology integration. Protégé 4 is an Eclipse Rich Client Platform (RCP) Application.
+<a href="http://www.topquadrant.com/products/TB_Composer.html" rel="nofollow">
+  TopBraid Composer (topquadrant.com)
+</a>
+- TopBraid Composer is available in both a community edition and a commercial license version. TopBraid Composer Community Edition provides an Eclipse plugin-based approach to ontology editing. This allows for the integration of other tools via the OSGI standard, and provides a basis for using other Eclipse-based tools. TopBraid Composer uses the Jena tool to access ontologies and shares its limitations. In addition, the community edition is limited to the editing of OWL or RDF files and does not support access of database stores. It does support SPARQL as part of its functionality, and utilizes the Eclipse approach of projects.
+
+Additional InformationSince there is no open source or community tool for accessing stores other than text files, many developers use Protege 4 or TopBraid Composer, and then create scripted or programmed solutions to upload models into those stores. However, there are other significant additions to functionality in the commercial versions of TopBraid Composer that are not addressed here.
+<h4 id="id-9CBIITProjectRecommendations-ComponentRepository">
+  Component Repository
+</h4>
+There are some current repository systems that may help in the management of elements such as rules and flow controls.
+<a href="http://jboss.org/drools/drools-guvnor.html" rel="nofollow">
+  Drools Guvnor (jboss.org)
+</a>
+- Drools Guvnor is a tool which provides access to a common rule repository, flow repository and other aspects of the Drools system, providing browsing and access control. In addition it integrates with graphical editor for rules and flows. 

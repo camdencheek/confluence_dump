@@ -1,0 +1,145 @@
+Contents of this Page
+<ul>
+  <li>
+    <a href="#LexEVS6.1DesignDocumentDetailedDesignResolvedValueDomainPersistence-ResolvedValueDomainPersistence" rel="nofollow">
+      Resolved Value Domain Persistence
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.1DesignDocumentDetailedDesignResolvedValueDomainPersistence-Implementation" rel="nofollow">
+      Implementation
+    </a>
+  </li>
+</ul>
+Document Information
+Author: Craig Stancl, Scott Bauer, Kevin Peterson, Pradip Kanjamala Email: stancl.craig@mayo.edu, bauer.scott@mayo.edu, peterson.kevin@mayo.edu, kanjamala.pradip@mayo.edu Team: LexEVS Contract: CBITT BOA Subcontract# 29XS223 Client: NCI CBIIT National Institutes of Heath US Department of Health and Human Services
+Revision History
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Version
+      </th>
+      <th>
+        Date
+      </th>
+      <th>
+        Description of Changes
+      </th>
+      <th>
+        Author
+      </th>
+    </tr>
+    <tr>
+      <td>
+        1.0
+      </td>
+      <td>
+        2011/02/10
+      </td>
+      <td>
+        Initial Version
+      </td>
+      <td>
+        —
+      </td>
+    </tr>
+    <tr>
+      <td>
+        1.0
+      </td>
+      <td>
+        2011/02/10
+      </td>
+      <td>
+        —
+      </td>
+      <td>
+        —
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="LexEVS6.1DesignDocumentDetailedDesignResolvedValueDomainPersistence-ResolvedValueDomainPersistence">
+  Resolved Value Domain Persistence
+</h2>
+The Resolved Value Domain Persistence mechanism provides a means to store the results of a resolve valueset definition. In LexEVS the persistence is achieved by treating the resolved value domain as a coding scheme. The coding scheme uri of the persisted value domain is the same as the uri of the valueset definition. The version number is generated using the MD5 value of the string that makes up the value domain definition. The information of the coding schemes which were used for the resolution is stored as coding scheme properties. The coding scheme propertyName &#34;ontologyFormat&#34; is set to RESOLVEDVALUESET. The coding scheme propertyName &#34;resolvedAgainstCodingSchemeVersion&#34; holds the coding scheme URI of the coding scheme which was used for resolution. The propertyQualifierName=&#34;version&#34; stores the version number of the coding scheme used for resolution. An example is seen below:&lt;
+<a href="http://lgCSproperties" rel="nofollow">
+  lgCS:properties
+</a>
+&gt; &lt;
+<a href="http://lgCommonproperty" rel="nofollow">
+  lgCommon:property
+</a>
+propertyName=&#34;ontologyFormat&#34; propertyId=&#34;ontologyFormat&#34; propertyType=&#34;property&#34;&gt; &lt;
+<a href="http://lgCommonvalue" rel="nofollow">
+  lgCommon:value
+</a>
+&gt;RESOLVEDVALUESET&lt;/
+<a href="http://lgCommonvalue" rel="nofollow">
+  lgCommon:value
+</a>
+&gt; &lt;/
+<a href="http://lgCommonproperty" rel="nofollow">
+  lgCommon:property
+</a>
+&gt; &lt;
+<a href="http://lgCommonproperty" rel="nofollow">
+  lgCommon:property
+</a>
+propertyName=&#34;resolvedAgainstCodingSchemeVersion&#34; propertyId=&#34;@_d97cb3fb-f658-45b8-a7a7-e9cb398e87f7&#34; propertyType=&#34;generic&#34;&gt; &lt;
+<a href="http://lgCommonpropertyQualifier" rel="nofollow">
+  lgCommon:propertyQualifier
+</a>
+propertyQualifierName=&#34;version&#34;&gt; &lt;
+<a href="http://lgCommonvalue" rel="nofollow">
+  lgCommon:value
+</a>
+&gt;1.0&lt;/
+<a href="http://lgCommonvalue" rel="nofollow">
+  lgCommon:value
+</a>
+&gt; &lt;/
+<a href="http://lgCommonpropertyQualifier" rel="nofollow">
+  lgCommon:propertyQualifier
+</a>
+&gt; &lt;
+<a href="http://lgCommonvalue" rel="nofollow">
+  lgCommon:value
+</a>
+&gt;urn:oid:11.11.0.1&lt;/
+<a href="http://lgCommonvalue" rel="nofollow">
+  lgCommon:value
+</a>
+&gt; &lt;/
+<a href="http://lgCommonproperty" rel="nofollow">
+  lgCommon:property
+</a>
+&gt; &lt;
+<a href="http://lgCommonproperty" rel="nofollow">
+  lgCommon:property
+</a>
+propertyName=&#34;textualPresentation&#34; propertyId=&#34;@_f2afcc5c-0e75-48cd-9f12-e0c2598769b8&#34; propertyType=&#34;property&#34;&gt; &lt;
+<a href="http://lgCommonvalue" rel="nofollow">
+  lgCommon:value
+</a>
+&gt;Domestic Auto Makers&lt;/
+<a href="http://lgCommonvalue" rel="nofollow">
+  lgCommon:value
+</a>
+&gt; &lt;/
+<a href="http://lgCommonproperty" rel="nofollow">
+  lgCommon:property
+</a>
+&gt; &lt;/
+<a href="http://lgCSproperties" rel="nofollow">
+  lgCS:properties
+</a>
+&gt;
+<h2 id="LexEVS6.1DesignDocumentDetailedDesignResolvedValueDomainPersistence-Implementation">
+  Implementation
+</h2>
+The resolved value domain persistence is implemented by treating the valueset as a special coding scheme. The results of the resolution of a value domain definition against a set coding schemes are treated as concepts that get stored in a coding scheme. A loader has been developed that takes the valueset definition uri and the set of coding schemes to use for resolution against as input and stores the results in a persisted coding scheme. The loader can be invoked by using the admin script:LoadResolvedValueSetDefinition.shThe parameters of the script are:LoadRevolvedValueSetDefinition.sh -u \&#34;Automobiles:valuesetDefinitionURI\&#34; -l \&#34;Automobiles::version1, GM::version2\&#34; -csVersionTag \&#34;production\&#34; &#34;&#34;where the -u &#34;the valueset definition uri&#34;               -l &#34;list of coding schemes to use for the resolution&#34;               -csVersionTag &#34;tag to use for the load&#34;
+<a href="https://wiki.nci.nih.gov/download/attachments/37559637/LoadResolvedValueSetDefinition.sh?version=1&amp;modificationDate=1369772474000&amp;api=v2" rel="nofollow">
+  LoadResolvedValueSetDefinition.sh
+</a>

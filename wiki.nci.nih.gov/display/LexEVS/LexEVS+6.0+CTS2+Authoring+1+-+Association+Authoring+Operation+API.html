@@ -1,0 +1,490 @@
+Contents of this Page
+<ul>
+  <li>
+    <a href="#LexEVS6.0CTS2Authoring1AssociationAuthoringOperationAPI-Introduction" rel="nofollow">
+      Introduction
+    </a>
+    <ul>
+      <li>
+        <a href="#LexEVS6.0CTS2Authoring1AssociationAuthoringOperationAPI-Create" rel="nofollow">
+          Create
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.0CTS2Authoring1AssociationAuthoringOperationAPI-StatusChange" rel="nofollow">
+          Status Change
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#LexEVS6.0CTS2Authoring1AssociationAuthoringOperationAPI-Interface" rel="nofollow">
+      Interface
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.0CTS2Authoring1AssociationAuthoringOperationAPI-RevisionInformation" rel="nofollow">
+      Revision Information
+    </a>
+    <ul>
+      <li>
+        <a href="#LexEVS6.0CTS2Authoring1AssociationAuthoringOperationAPI-org.LexGrid.versions.Revision" rel="nofollow">
+          org.LexGrid.versions.Revision
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.0CTS2Authoring1AssociationAuthoringOperationAPI-org.LexGrid.versions.EntryState" rel="nofollow">
+          org.LexGrid.versions.EntryState
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#LexEVS6.0CTS2Authoring1AssociationAuthoringOperationAPI-AssociationAuthoringFunctions" rel="nofollow">
+      Association Authoring Functions
+    </a>
+    <ul>
+      <li>
+        <a href="#LexEVS6.0CTS2Authoring1AssociationAuthoringOperationAPI-CreateAssociationOperations" rel="nofollow">
+          Create Association Operations
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.0CTS2Authoring1AssociationAuthoringOperationAPI-UpdateAssociationOperations" rel="nofollow">
+          Update Association Operations
+        </a>
+      </li>
+    </ul>
+  </li>
+</ul>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        CTS2 Links for LexEVS 6.0
+      </th>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427281" rel="nofollow">
+              CTS2 API Main Page
+            </a>
+          </li>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427334" rel="nofollow">
+              Programmer&#39;s Guide Main Page
+            </a>
+          </li>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=69730353" rel="nofollow">
+              LexEVS 6.0 Main Page
+            </a>
+          </li>
+          <li>
+            <a href="https://wiki.nci.nih.gov/display/LexEVS" rel="nofollow">
+              LexEVS Current Release
+            </a>
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="LexEVS6.0CTS2Authoring1AssociationAuthoringOperationAPI-Introduction">
+  Introduction
+</h2>
+LexEVS CTS2 Code System Authoring API provides capability to author Code System and its contents.
+
+Here are the authoring functions that can be performed on Associations in a Code System:
+<h3 id="LexEVS6.0CTS2Authoring1AssociationAuthoringOperationAPI-Create">
+  Create
+</h3>
+This function provides capability to create:
+<ul>
+  <li>
+    New Association
+  </li>
+  <li>
+    Add Qualifiers to the Association
+  </li>
+  <li>
+    Determine Source and Target Code Systems for the Association
+  </li>
+  <li>
+    New Coding Scheme consisting of mappings of one system&#39;s concepts to another.
+  </li>
+  <li>
+    New Mapping for an existing mapping scheme
+  </li>
+  <li>
+    New Association for an existing coding scheme.
+  </li>
+</ul>
+<h3 id="LexEVS6.0CTS2Authoring1AssociationAuthoringOperationAPI-StatusChange">
+  Status Change
+</h3>
+This function provides capability to update Status attributes:
+<ul>
+  <li>
+    Association Status
+  </li>
+</ul>
+<h2 id="LexEVS6.0CTS2Authoring1AssociationAuthoringOperationAPI-Interface">
+  Interface
+</h2>
+org.lexevs.cts2.LexEvsCTS2 cts2 = org.lexevs.cts2.LexEvsCTS2Impl.defaultInstance();
+org.lexevs.cts2.author.AssociationAuthoringOperation associationAuthoring =
+cts2.getAuthoringOperation().getAssociationAuthoringOperation();
+<h2 id="LexEVS6.0CTS2Authoring1AssociationAuthoringOperationAPI-RevisionInformation">
+  Revision Information
+</h2>
+Authoring requires information helping to determine whether the edited coding scheme element is new or revises an existing association. This requires not only a containing revision, but also a entry state object for each versionable element of the Association being created.  A single object of each is passed into the association creating method providing mandatory information about this revision which in most use cases here is a new association.
+<h3 id="LexEVS6.0CTS2Authoring1AssociationAuthoringOperationAPI-org.LexGrid.versions.Revision">
+  org.LexGrid.versions.Revision
+</h3>
+Revision object has following attributes:
+<ul>
+  <li>
+    java.lang.String changeAgent - (Optional) The source that participated in this particular change.
+  </li>
+  <li>
+    java.lang.String changeInstruction - (Optional) A human or machine readable set of instructions on how to apply this change.
+  </li>
+  <li>
+    java.lang.String revisionId - (Mandatory) The unique identifier of this revision.
+  </li>
+  <li>
+    java.lang.Long editOrder - (Optional) The relative order that this revision is to be applied if in a systemRelease.
+  </li>
+  <li>
+    java.util.Date revisionDate - (Optional) The end date for which this version is operative (considered commited).
+  </li>
+  <li>
+    java.lang.String description -  (Optional) The description of the resource/change.
+  </li>
+  <li>
+    java.lang.String systemReleaseURI - (Optional) The official URI of this release
+  </li>
+</ul>
+<h3 id="LexEVS6.0CTS2Authoring1AssociationAuthoringOperationAPI-org.LexGrid.versions.EntryState">
+  org.LexGrid.versions.EntryState
+</h3>
+<ul>
+  <li>
+    java.lang.String containingRevision - (Mandatory)The revision that contains this particular entry state change
+    private java.lang.Long relativeOrder - (Optional)The relative order that this state change should be applied within the context of the containing revision
+  </li>
+  <li>
+    private org.LexGrid.versions.types.ChangeType changeType - (Context determined.  NEW for new association)The type of change that occurred between this state and the previous.
+  </li>
+  <li>
+    private java.lang.String prevRevision -  (Optional)The unique identifier of the state of this entry was at prior to this change.
+  </li>
+</ul>
+<h2 id="LexEVS6.0CTS2Authoring1AssociationAuthoringOperationAPI-AssociationAuthoringFunctions">
+  Association Authoring Functions
+</h2>
+<h3 id="LexEVS6.0CTS2Authoring1AssociationAuthoringOperationAPI-CreateAssociationOperations">
+  Create Association Operations
+</h3>
+createAssociation(boolean createMappingScheme, Revision revision, EntryState entryState, AbsoluteCodingSchemeVersionReference mappingScheme, AbsoluteCodingSchemeVersionReference sourceCodeSystemIdentifier, AbsoluteCodingSchemeVersionReference targetCodeSystemIdentifier, String sourceConceptCodeIdentifier, String targetConceptCodeIdentifier, String relationsContainerName, String associationType, AssociationQualification[] associationQualifiers)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Creates new Association
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        <ul>
+          <li>
+            boolean createMappingScheme - create a mapping coding scheme if one does not exist
+          </li>
+          <li>
+            org.LexGrid.versions.Revision revision - create a mapping coding scheme if one does not exist
+          </li>
+          <li>
+            org.LexGrid.versions.EntryState entryState - revision data container granular to the versionable class.
+          </li>
+          <li>
+            Aorg.LexGrid.LexBIG.DataModel.Core.AbsoluteCodingSchemeVersionReference mappingScheme - existing mapping scheme, required if adding mapped association
+          </li>
+          <li>
+            org.LexGrid.LexBIG.DataModel.Core.AbsoluteCodingSchemeVersionReference sourceCodeSystemIdentifier - minimum code system identification
+          </li>
+          <li>
+            org.LexGrid.LexBIG.DataModel.Core.AbsoluteCodingSchemeVersionReference targetCodeSystemIdentifier - minimum code system identification
+          </li>
+          <li>
+            java.lang.String sourceConceptCodeIdentifier - source concept code
+          </li>
+          <li>
+            java.lang.String targetConceptCodeIdentifier - target concept code
+          </li>
+          <li>
+            java.lang.String relationsContainerName - relations container identifier
+          </li>
+          <li>
+            java.lang.String associationType - association type identifier
+          </li>
+          <li>
+            org.LexGrid.relations.AssociationQualification[] associationQualifiers - qualifications to add to this association
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        org.LexGrid.relations.AssociationSource - Created Association Structure
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Sample Call:
+      </th>
+      <td>
+        <ul>
+          <li>
+            Step 1: Create Revision Elements:
+
+            Revision revision = new Revision(); - initalize Revision object
+            revision.setChangeAgent(&#34;Mayo Foundation&#34;); - Set the change agent if desired
+            Text changeInstructions = new Text(); - initialize Text Object
+            changeInstructions.setContent(&#34;To be applied at next source release&#34;); - Define change instructions if desired.
+            revision.setChangeInstructions(changeInstructions); - Set change instructions
+            revision.setEditOrder(new Long(1)); - Set edit order
+            EntityDescription entityDescription = new EntityDescription(); - Initialize EntityDescription Object
+            entityDescription.setContent(&#34;TestCTS2AssociationRevision&#34;); - Set content for this object
+            revision.setEntityDescription(entityDescription); - Set revision entityDescription
+
+            EntryState entryState = new EntryState(); - Initialize EntryStateObject
+            entryState.setChangeType(ChangeType.NEW); - This is a new association -- set ChangeType to &#34;NEW&#34;
+            entryState.setContainingRevision(&#34;FirstRevision_12_09_2010&#34;); - Define the revision identifier
+            entryState.setRelativeOrder(new Long(1)); - Set relative order
+          </li>
+          <li>
+            Step 2: Define a source scheme:
+
+            AbsoluteCodingSchemeVersionReference sourceCodeSystemIdentifier = new AbsoluteCodingSchemeVersionReference();
+            sourceCodeSystemIdentifier.setCodingSchemeURN(&#34;http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#&#34;);
+            sourceCodeSystemIdentifier.setCodingSchemeVersion(10.10a);
+          </li>
+          <li>
+            Step 3: Define a target scheme:
+
+            AbsoluteCodingSchemeVersionReference targetCodeSystemIdentifier = new AbsoluteCodingSchemeVersionReference();
+            targetCodeSystemIdentifier.setCodingSchemeURN(&#34;urn:oid:2.16.840.1.113883.6.2&#34;);
+            targetCodeSystemIdentifier.setCodingSchemeVersion(200909);
+          </li>
+          <li>
+            Step 4: Name the unique identifier of the source concept:
+
+            String sourceConceptCodeIdentifier = &#34;C27469&#34;;
+          </li>
+          <li>
+            Step 5: Name the unique identifier of the target concept:
+
+            String targetConceptCodeIdentifier = &#34;199&#34;;
+          </li>
+          <li>
+            Step 6: Identify or name a new relations container
+
+            String relationsContainerName = &#34;relations&#34;;
+          </li>
+          <li>
+            Step 7: Name the association
+
+            String associationType = &#34;SY&#34;;
+          </li>
+          <li>
+            Step 8: call create method to create the association:
+            AssociationSource association = associationAuthoringOp.createAssociation(false, revision, entryState,
+
+            null, sourceCodeSystemIdentifier, targetCodeSystemIdentifier,
+            sourceConceptCodeIdentifier, targetConceptCodeIdentifier,
+            relationsContainerName, associationType, null);
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h3 id="LexEVS6.0CTS2Authoring1AssociationAuthoringOperationAPI-UpdateAssociationOperations">
+  Update Association Operations
+</h3>
+updateAssociationStatus(Revision revision, EntryState entryState, AbsoluteCodingSchemeVersionReference scheme, String relationsContainer, String associationName, String sourceCode, String sourceNamespace, String targetCode, String targetNamespace, String instanceId, String status, boolean isActive)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Updates Association Status
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        <ul>
+          <li>
+            org.LexGrid.versions.Revision revision - create a mapping coding scheme if one does not exist
+          </li>
+          <li>
+            org.LexGrid.versions.EntryState entryState - revision data container granular to the versionable class.
+          </li>
+          <li>
+            org.LexGrid.LexBIG.DataModel.Core.AbsoluteCodingSchemeVersionReference scheme - Scheme targeted for update.
+          </li>
+          <li>
+            java.lang.String relationsContainerName - relations container identifier
+          </li>
+          <li>
+            java.lang.String associationName - association identifier
+          </li>
+          <li>
+            java.lang.String sourcCode - source concept code
+          </li>
+          <li>
+            java.lang.String sourceNamespace - code system identification
+          </li>
+          <li>
+            java.lang.String targetCode - target concept code
+          </li>
+          <li>
+            java.lang.String targetNamespace - minimum code system identification
+          </li>
+          <li>
+            java.lang.String instanceId  - instance identifier for the association
+          </li>
+          <li>
+            java.lang.String status - Status designation can be user defined
+          </li>
+          <li>
+            boolean isActive - flag for Active status
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        boolean - flag for successful update
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Sample Call:
+      </th>
+      <td>
+        <ul>
+          <li>
+            Step 1: Create Revision Elements:
+
+            Revision revision = new Revision(); - initalize Revision object
+            revision.setChangeAgent(&#34;Mayo Foundation&#34;); - Set the change agent if desired
+            Text changeInstructions = new Text(); - initialize Text Object
+            changeInstructions.setContent(&#34;To be applied at next source release&#34;); - Define change instructions if desired.
+            revision.setChangeInstructions(changeInstructions); - Set change instructions
+            revision.setEditOrder(new Long(1)); - Set edit order
+            EntityDescription entityDescription = new EntityDescription(); - Initialize EntityDescription Object
+            entityDescription.setContent(&#34;TestCTS2AssociationRevision&#34;); - Set content for this object
+            revision.setEntityDescription(entityDescription); - Set revision entityDescription
+
+            EntryState entryState = new EntryState(); - Initialize EntryStateObject
+            entryState.setChangeType(ChangeType.MODIFY); - Association is being revised.  Set ChangeType to &#34;MODIFY&#34;
+            entryState.setContainingRevision(&#34;FirstRevision_12_09_2010&#34;); - Define the revision identifier
+            entryState.setRelativeOrder(new Long(1)); - Set relative order
+          </li>
+          <li>
+            Step 2: Define the scheme for the association update:
+
+            AbsoluteCodingSchemeVersionReference scheme = new AbsoluteCodingSchemeVersionReference();
+            scheme.setCodingSchemeURN(&#34;http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#&#34;);
+            scheme.setCodingSchemeVersion(10.10a);
+          </li>
+          <li>
+            Step 3: Name the unique identifier of the source concept:
+
+            String sourceCode = &#34;C27469&#34;;
+          </li>
+          <li>
+            Step 4: Define the namespace of the source concept supported for this coding scheme
+
+            String sourceNamespace = &#34;NCI Thesaurus&#34;
+          </li>
+          <li>
+            Step 5: Name the unique identifier of the target concept:
+
+            String targetCode = &#34;C27469&#34;;
+          </li>
+          <li>
+            Step 6: Identify or name a new relations container
+
+            String relationsContainerName = &#34;relations&#34;;
+          </li>
+          <li>
+            Step 7: Define the association
+
+            String associationName = &#34;Disease_Has_Abnormal_Cell&#34;;
+          </li>
+          <li>
+            Step 8: Identify the instance of this association to be updated.
+
+            String instanceID = &#34;instance001&#34;;
+          </li>
+          <li>
+            Step 9: Define the new status
+
+            String status = &#34;PENDING_RETIREMENT&#34;;
+          </li>
+          <li>
+            Step 10: Set isActive flag if necessary
+
+            boolean isActive = false;
+          </li>
+          <li>
+            Step 11: call create method to create the association:
+            AssociationSource association = associationAuthoringOp.updateAssociationStatus(revision, entryState,
+
+            scheme, relationsContainerName, associationName, sourceCode,
+            namespace, targetCode, namespace, instanceId, status,
+            isActive);
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>

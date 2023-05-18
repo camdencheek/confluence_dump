@@ -1,0 +1,294 @@
+  Contents of this Page
+<ul>
+  <li>
+    <a href="#LexEVS6.4VPNAnalysis-SiteToSiteVPN" rel="nofollow">
+      Site To Site VPN
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.4VPNAnalysis-SoftwareVPN" rel="nofollow">
+      Software VPN
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.4VPNAnalysis-Conclusion" rel="nofollow">
+      Conclusion
+    </a>
+  </li>
+</ul>
+The purpose of this page is to compare the results we found from testing both the site-to-site VPN and the software VPN.  To do this, we connected to both VPNs at random times over the course of a week and performed X window forwarding of the Eclipse IDE and a browser window.  We recorded the response time it took for multiple tasks to complete including a button click, text entry, window resize, and highlighting a table row.
+<h2 id="LexEVS6.4VPNAnalysis-SiteToSiteVPN">
+  Site To Site VPN
+</h2>
+<ul>
+  <li>
+    How many times tested
+    <ul>
+      <li>
+        Monday
+        <ul>
+          <li>
+            3:00 PM findings
+            <ul>
+              <li>
+                lbGUI(Scott)resizing limited probably works as below2 to ten second delay in window resolution1 second delay in response to button press3 to 4 second delay to highlight table rowNo delay in text entry.
+              </li>
+            </ul>
+          </li>
+          <li>
+            4:50 PM findings
+            <ul>
+              <li>
+                lbGUI(Scott)resizing solved2 to ten second delay in window resolution1 second delay in response to button press, radio button activation3 to 4 second delay to highlight table rowMaybe a bit slower response on the text edit but admittedly usable
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        Tuesday
+        <ul>
+          <li>
+            8:50 AM findings
+            <ul>
+              <li>
+                Eclipse(Scott) Startup time about a minute and a half to open the applicationWindowing about 2 to 5 seconds.Starting a new Java Project2 to 3 second lag on right click to package explorer10 seconds plus opening java project window5 second lag entering project name in the text box, not very usable1 to 2 second lag on opening projectAlmost a 20 second lag time opening new class wizardSimilar lag time in text box for class creation of 5 secondsCrashed on class creationThis version of eclipse is apparently unusable on this kernel version.  It keeps crashing.  I’ll download another version
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        Wednesday
+        <ul>
+          <li>
+            2:30 PM findings
+            <ul>
+              <li>
+                Eclipse Neon With Java8 (Scott)1.5 minute startup, but launched differently5 second delay on right click3 second wizard startuptext box lag seems to be absentclass editing is still jittery.  Irritating, but more usable than delays by seconds we’ve seen. Eclipse runs without crashing — so far.
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        Thursday
+        <ul>
+          <li>
+            10:30 AM findings
+            <ul>
+              <li>
+                Browser (Cory)
+              </li>
+              <li>
+                Opened Firefox through X forwarding on DEV (128.231.245.238)Scrolling and button clicking in the browser was about 1 second lag timeResizing the screen took about 2, 3, 5 and 10 seconds when trying multiple timesTyping text was 1/2 delay
+              </li>
+            </ul>
+          </li>
+          <li>
+            1PM findings
+            <ul>
+              <li>
+                Eclipse Neon With Java8 (Scott)Startup about 1:30 minutesRight click response about 5 secondsWizard startup about 4 - 6 seconds1-2 second delays in opening project folderscheck boxes have one second delayText box entries and Text Editing is jittery but no long delays
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        Friday
+        <ul>
+          <li>
+            4:20PM findings
+            <ul>
+              <li>
+                Eclipse Neon With Java8 (Scott)Startup about a minute 10 secondsRight click response time about 4 seconds: This is the one constant usability issue worth complaining about.Window response about 5 secondsText box entry lag is sub secondThree seconds response to open folderCheck box response is sub second but noticeableUsual jitteriness in the text editor
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    Findings
+    <ul>
+      <li>
+        How many times un-usable
+        <ul>
+          <li>
+            If it had not crashed on class create, Eclipse Juno would still have had usability issues when with an unacceptable time delay on one occasion.
+          </li>
+          <li>
+            Other factors add to overall usability including consistently slow wizard window start up and long delays in right click menus.  None of these are quite as bad as text entry lag.
+          </li>
+          <li>
+            Jittery text entry is irritating in the java editor, but it&#39;s still usable
+          </li>
+        </ul>
+      </li>
+      <li>
+        Eclipse neon did not crash and never showed the unacceptable text entry time delay of Eclipse Juno.  Hard to tell if that was application or network related.
+      </li>
+      <li>
+        Overall S2S is slightly, but noticeably, slower than the software VPN
+      </li>
+    </ul>
+  </li>
+</ul>
+<h2 id="LexEVS6.4VPNAnalysis-SoftwareVPN">
+  Software VPN
+</h2>
+<ul>
+  <li>
+    How many times tested
+    <ul>
+      <li>
+        Monday
+        <ul>
+          <li>
+            3:00 PM findings
+            <ul>
+              <li>
+                lbGUI(Scott)Resizing works from resize buttonMight be slightly faster window resolutionbutton response seems slightly fasterNotable difference in slower text entry delay
+              </li>
+            </ul>
+          </li>
+          <li>
+            4:50 PM findings
+            <ul>
+              <li>
+                lbGUI(Scott)Resizing works from resize button in upper left hand corner.   Cannot manually resize, but it’s not a usability issue show stopper2 to ten second delay in window resolutionbutton response about the same as aboveText edit same as above.  Not really seeing a difference in lag time this time of day
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        Tuesday
+        <ul>
+          <li>
+            8:50 AM findings
+            <ul>
+              <li>
+                Eclipse(Scott)Startup time about 30 seconds fasterWindow startup for new Java Project about 12 secoundsNo Text Entry Lag for project nameWindow startup for new Class project about 5 secondsNo Text Entry Lag for class nameEclipse did not crash on Class creationDid crash on class editingWill attempt a new eclipse install for the next cycle of tests.
+              </li>
+            </ul>
+          </li>
+          <li>
+            10:30 AM findings
+            <ul>
+              <li>
+                Browser (Cory)
+              </li>
+              <li>
+                Opened Firefox through X forwarding on DEV (ncias-d1224)Scrolling and button clicking in the browser was 3-4 seconds lag timeResizing the screen took over 10 seconds
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+<ul>
+  <li>
+    <ul>
+      <li>
+        Wednesday
+        <ul>
+          <li>
+            8:50 AM findings
+            <ul>
+              <li>
+                Eclipse Neon With Java8 (Scott)half minute startup1 to five second window startupnoticeable but usable text box lag in Project and Class wizards.class editing is a little jittery.Eclipse running smoothly against jdk 1.8jittery editing does not get faster over time.
+              </li>
+            </ul>
+          </li>
+          <li>
+            9:30 AM findings
+            <ul>
+              <li>
+                Browser (Cory)
+              </li>
+              <li>
+                Opened Firefox through X forwarding on DEV (ncias-d1224)Scrolling and button clicking in the browser was about 1 second lag timeResizing the screen took over 10 seconds
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        Thursday
+        <ul>
+          <li>
+            8:30 AM findings
+            <ul>
+              <li>
+                Opened Firefox through X forwarding on DEV (ncias-d1224)Scrolling and button clicking in the browser was about 2 second lag timeResizing the screen took about 3  secondsTyping text was 1/2 delay
+              </li>
+            </ul>
+          </li>
+          <li>
+            1PM findings
+            <ul>
+              <li>
+                Eclipse Neon With Java8 (Scott)50 second startupslightly faster right click responseWizard response 4 secondsproject and other folders open sub secondcheck boxes have one second delay but are sometimes faster hereediting is still jittery and about the same as S2S
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        Friday
+        <ul>
+          <li>
+            11:30 AM findings
+            <ul>
+              <li>
+                Browser (Cory)Opened Firefox through X forwarding on DEV (ncias-d1224)Scrolling and button clicking in the browser was about 2 second lag timeResizing the screen took about 2 secondsTyping text was &lt; 1/2 delay
+              </li>
+            </ul>
+          </li>
+          <li>
+            4:20 PM findings
+            <ul>
+              <li>
+                Eclipse Neon With Java8 (Scott)Startup about a minute 10 secondsRight click response time about 5 secondsWindow response about 5 secondsText box entry is flawless Three seconds response to open folderCheck box response is sub second but noticeableUsual jitteriness in the text editor
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    Findings
+    <ul>
+      <li>
+        How many times un-usable
+        <ul>
+          <li>
+            Eclipse juno crashed consistently. This had more to do with application fault than network issues.
+          </li>
+          <li>
+            Other factors add to overall usability including consistently slow wizard window start up and long delays in right click menus.
+          </li>
+          <li>
+            Jittery text entry is irritating in the java editor, but it&#39;s still usable
+          </li>
+        </ul>
+      </li>
+      <li>
+        Eclipse neon did not crash.
+      </li>
+      <li>
+        Overall slightly faster than S2S by a second or two in most functions.  Much faster startup time for some reason.
+      </li>
+    </ul>
+  </li>
+</ul>
+<h2 id="LexEVS6.4VPNAnalysis-Conclusion">
+  Conclusion
+</h2>
+Site to Site is slower, more prone to unacceptable time delays and much less flexible than software VPN.    

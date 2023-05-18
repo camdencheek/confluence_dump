@@ -1,0 +1,67 @@
+In addition to performing manual Protégé builds, automated build scripts have also been developed to facilitate the build process.   The manual process is shown for the sake of better understanding vital scripts and configuration files, and the workflow of the build.   The automated process takes care of creating the build folder directory, checking out all SVN files, and running the proper ant targets to create the folders, and finally, deploying the newly created folders to a specific location on the server.
+
+Automated build scripts have been created for all tiers, although they have been used widely for Dev, QA, and Stage tiers only. Production tier folders are usually tested folders that are copied up from lower tiers and configured manually.
+
+In Dev, QA, and Stage tiers, you will notice in /app/protégé/repo/x.x(Protégé version number)/bin a script named build.tier.csh.
+
+The script consolidates all tier-specific info into this one script. In order to determine which tier will get built, an argument must be passed in as a parameter with the build script in the command line before executing:
+
+./build.tier.csh -tier dev
+./build.tier.csh -tier qa
+./build.tier.csh -tier stage
+./build.tier.csh -tier prod
+
+Running any of the above commands will pass in all tier specific info needed for the build. This script will then invoke the master build.csh script. The reason for this is that sensitive data such as username and passwords do not want to get stored in the code repository. Thus, the tier-specific info will get passed into the master build script when executed.
+
+build.csh
+
+The master build.csh script will then be called to invoke the build.xml file within the trunk folder, as well as perform a number of automated steps. If comparing the automated process to the manual process, the automated process will complete everything from Steps 8 - 17:
+
+build.properties
+
+This file contains the location of your build directory. It also allows the option to manually set a specific build number to be tagged to your Protégé version number. For example:
+
+BUILD_DIR /app/protege/repo/1.4
+BUILD_VERSION 1.4.0
+BUILD_NUMBER 6
+
+These parameters will result in the build directory residing in /app/protégé/repo/1.4/&lt;build folder&gt; with the Protégé admin, client, server, and explanation folders appended with &#39;-1.4.06&#39;.
+
+svn.log.csh
+
+This script can be run to provide a record of all files that were checked in prior to the build.
+
+Steps to Run an Automated Build
+<ul>
+  <li>
+    From the bin folder, select a tier to build, then run  (i.e. ./build.dev.csh)
+  </li>
+</ul>
+<ul>
+  <li>
+    The build will commence, and will take anywhere from 10-15 minutes.  Monitor status on the server console.
+  </li>
+</ul>
+<ul>
+  <li>
+    Upon completion, navigate to /app/protégé/repo/x.x/ to verify that the build directory has been created.
+  </li>
+</ul>
+<ul>
+  <li>
+    Navigate to /usr/local/protégé/ to verify that the Protégé Folders have been deployed properly.
+  </li>
+</ul>
+<ul>
+  <li>
+    Either follow the &#39;
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=12688279" rel="nofollow">
+      Software Updates Only
+    </a>
+    &#39; section to complete the build process, or &#39;
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=12688287" rel="nofollow">
+      Software Updates and Configuring a Database Project
+    </a>
+    &#39; section depending on whether a new database project needs to be created or not.
+  </li>
+</ul>

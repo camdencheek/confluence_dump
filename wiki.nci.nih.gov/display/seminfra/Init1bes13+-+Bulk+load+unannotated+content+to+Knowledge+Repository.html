@@ -1,0 +1,541 @@
+<h2 id="Init1bes13BulkloadunannotatedcontenttoKnowledgeRepository-InitialAnalysis:">
+  Initial Analysis:
+</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Item
+      </th>
+      <th>
+        Information/Response
+      </th>
+    </tr>
+    <tr>
+      <td>
+        Date:
+      </td>
+      <td>
+        01/08/2010
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Requirement # unique id &lt;SemConOps Initiative&gt;.&lt;analysts initials&gt;&lt;requirement number&gt;
+        e.g. Init1dbw1
+        (eventually linked to Use Cases)
+      </td>
+      <td>
+        Init1bes13
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Originator/Customer&#39;s Name:
+      </td>
+      <td>
+        Dianne Reeves  and Denise Warzel
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Originator/Customer&#39;s Company:
+      </td>
+      <td>
+        NCI
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Summary of requirement initial analysis, by Reviewer: (as unambiguously as possible, describe who (
+        <a href="https://wiki.nci.nih.gov/x/ewtyAQ" rel="nofollow">
+          List of Actors
+        </a>
+        ) is interacting with the system, what the business goal is and how the system might support the actor&#39;s ability to acheive their goal)
+      </td>
+      <td>
+        Business Goal: Streamline bulk load of content to MDR;  identify missing content (annotation, components, objects, data types, value domains) , create the new &#34;unique&#34; content.
+        Actor: Metadata Specialist
+
+        A Metadata Specialist (more specifically Metadata Curator),  working at NHLBI and other divisions, wants the ability to bulk/batch load new content from a variety of sources for later curation.
+
+        So there is a need for a loading tool that will allow:
+        -  Bulk/batch load contents in parsable formats to MDR (Knowledge reporistory)
+
+        -  Match loaded content to potential reusable/existing metadata based on descriptions provided in content. Matching content is classified as &#34;used by/using&#34; an existing metadata item. For instance an indication showing it is reused by NHBLI content submitted at so-and-so date (source designation/attribution)
+
+        -  If a perfect match is not possible or to provide more flexibility to user, allow navigation/search/exploration/mapping related capabilities. For instance allow fuzzy matching (e.g. anything but value domain match or a subset permissible values as reported already exists as part of an existing value domain)
+
+        - If no content is matched, allow creation of new content
+
+         The loading tool should allow the content to be partially formed and incomplete.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Recommended Next Step Enter one: Follow-up interview, Observe, Use Case Template (text), Use Case Model (formalized/UML diagram), Group Discussion, Prototype, Waiting Room
+      </td>
+      <td>
+        Follow-up interview to Dianne Reeves
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="Init1bes13BulkloadunannotatedcontenttoKnowledgeRepository-Interview">
+  Interview
+</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Item
+      </th>
+      <th>
+        Script / Question
+      </th>
+      <th>
+        Information/Response
+      </th>
+    </tr>
+    <tr>
+      <td>
+        1
+      </td>
+      <td>
+        Hello, my name is NAME. I am calling you today because NCI and caBIG are working toward a new and improved version of the semantic infrastructure to better support integration scenarios.   Our first step was to organize requirements collected over the past year. Your organization has expressed a requirement/need for BRIEF STATEMENT OF USER REQUIREMENT.  This has been identified as potentially a critical component to support application/data and service integration, and we need more information in order to enable us to meet this requirement.  Do you have about 30 minutes to talk about this?
+      </td>
+      <td>
+        Yes.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        2
+      </td>
+      <td>
+        What do you do? What are your goals for the next year?  Why are you doing this?
+      </td>
+      <td>
+        Being able provide the content loading capability set by this requirement.
+        To help NCI stakeholders to be able to register their content easily in Knowledge Repository.
+        To streamline the process through this tooling since volume of content is too large and current tooling does not scale up to this challenge.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        3
+      </td>
+      <td>
+        In interacting with the caBIG infrastructure, do you have any solution integration needs? If so, what are they? Have you envisioned new ways of interacting with existing or new parts of the semantic  infrastructure?
+        (prompt to elicit changes/new ways of using the infrastructure)
+      </td>
+      <td>
+        The challenging part of this requirement is to be able to identify matched content. This step is time consuming and/or laborous. My expectations is to do this in a almost fully-automated fashion to be able to address a simple question such as what percentage of the content provided has a match in Knowledge Repository (e.g. a new/reusable proportion).
+      </td>
+    </tr>
+    <tr>
+      <td>
+        4
+      </td>
+      <td>
+        Are there any business changes you are assuming we will be able to deal with?
+        (prompt to elicit changes/new ways of using the infrastructure)
+      </td>
+      <td>
+        One business change; a staging environment that allows use of full capacity of the required tool but do not publish the results/content until the task of matching/creation is completed.  While doing this, the identifier created for content should remaing the same even if the content is published later on.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        5
+      </td>
+      <td>
+        Are there any capabilities you are expecting to be available to support your needs?
+        (prompt to elicit expectations/dependencies)
+      </td>
+      <td>
+        A content loading tool that will interact with Knowledge Repository that does smart/targetted searches so that it can easily identify missing content and/or create a new one.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        6
+      </td>
+      <td>
+        Do you use any of the existing software/services? If so, what do you like or dislike about it?
+        (if related to existing capability)
+      </td>
+      <td>
+        Yes. You use existing tools.
+        The current model to achieve content load as described in the requirement with current tooling is too time consuming.
+        Furthermore current tooling requires a lot manual work that may generate inconsistent/incomplete content because subject to human error/judgement/experience. The more automated this process gets the more consistent content we will be able to generate.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        7
+      </td>
+      <td>
+        If this requirement is met, what would be the benefits? If you do not have it, what would be the negative impact?  (prompt to elicit benefits/value - will help to prioritize)
+      </td>
+      <td>
+        You won&#39;t be able to scale up to content load need from community unless you use extensive human resources. Increasing the number of people for this task will result in more variability due to human factors.
+        If the requirement is not met, the users that will be able to use this tool will be limited to expert metadata curator. The full automation may lead to a wider/broader user community.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        8
+      </td>
+      <td>
+        If, for any reason, we were not able to create that solution, do you think there might be another way to solve this issue? Can you think of an alternative solution?
+        (prompt to elicit alternative solutions/workarounds)
+        (to be prepared by the Requirement Analyst)
+      </td>
+      <td>
+        The current approach is the alternative approach. A curator driven review and matching of content. Again is very time consuming and resource intensive.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        9
+      </td>
+      <td>
+        Would you agree that we can summarize your requirement like this?  (Summarize one requirement in 2-3 lines and read back to interviewee for confirmation.)
+      </td>
+      <td>
+        A Metadata Specialist (more specifically Metadata Curator),  working at NHLBI and other divisions, wants the ability to bulk/batch load new content from a variety of sources for later curation.  Actually we would like expand the use of this tool beyond metadata specialist (e.g. regular users) so that at least initial matching capabilities of loading tool can be done by content owners.   So there is a need for a loading tool that will allow:
+        - Set a search criteria to restrict the content matching. For instance limiting the match to all caBIG content or project such as caAERS or data standards only.
+        -  Bulk/batch load contents in parsable formats (e.g. XLS, CSV, tables in a PDF/Word document) to MDR (Knowledge reporistory)
+        -  Match loaded content to potential reusable/existing metadata based on descriptions provided in content. Matching content is classified as &#34;using&#34; an existing metadata item. For instance an indication showing content is reused by NHBLI content submitted at so-and-so date (source designation/attribution)
+        -  If a perfect match is not possible or to provide more flexibility to user, allow navigation/search/exploration/mapping related capabilities. For instance allow fuzzy matching (e.g. anything but value domain match or a subset permissible values as reported already exists as part of an existing value domain)     - If no content is matched, allow creation of new content
+        - Generate a reuse report based on the matches/searches. Reuse report should be detailed enough to capture different levels of metadata reuse (e.g. DEC, CDE, VD)
+         The loading tool should allow the content to be partially formed and incomplete.  There should mandatory requirements for content (to assess completeness). However during loading process and prior to publising it the loading should allow to not to enforce mandatory requirements.
+
+        The loading tool should allow staging the content load without publishing. The public identifier assigned to content should not change when the content is published.  The loading tool should prevent any content to be published if they don&#39;t meet mandatory requirements for the content. The content in staging phase should be able to shared among a collaborators in the community.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        10
+      </td>
+      <td>
+        How important is this requirement to the interviewee? Required: Customer Priority/Annotationrement Analyst
+        (Provides concrete assessment of the relative importance for the requirements specification)
+      </td>
+      <td>
+        <ol>
+          <li>
+            Must have
+          </li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        11
+      </td>
+      <td>
+        On a scale from 1 to 3 with 1 being &#34;not satisfied&#34; to 3 &#34;completely satisfied&#34;, how would you rate your overall satisfaction with the product if this requirement was met?  (Relative rating/ranking of how satisfied or dissatisfied interviewee would be if this requirement were met/not met)
+      </td>
+      <td>
+        3. Completely satisfied
+      </td>
+    </tr>
+    <tr>
+      <td>
+        12
+      </td>
+      <td>
+        Are there other requirements that you would like to share with us? I&#39;d be more than happy to call you back another time, or if you have another 10 minutes, please share other issues you can think of.
+        (prompt to elicit any hidden - potentially higher priority requirements if they exist)
+      </td>
+      <td>
+        No for now.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        13
+      </td>
+      <td>
+        Who else should we talk to in order to elicit more information about this need?
+      </td>
+      <td>
+        Robinette Aley (raley@NMDP.ORG) from National Marrow Donor Program is a potential beneficiary of the loading tool described here.
+        In the use case analysis phase, she can be contacted for further input.
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>
+        For specific service enhancement or requirement from Forum entry:
+      </td>
+      <td>
+        ---
+      </td>
+    </tr>
+    <tr>
+      <td>
+        14
+      </td>
+      <td>
+        Can you or someone else give me a step-by-step description of how you would describe the expected performance/behavior of the software in order for you to feel that your requirement is met?
+        (Required: Fit Criterion - will help us create test cases and user acceptance criteria - to be prepared by the Requirement Analyst)
+      </td>
+      <td>
+        For the step &#34;Setting up a search criteria to restrict the content matching.&#34;: The tool is expected to match to the content &#34;only&#34; available in the context/project or metadata restricted by the search criteria.
+        For the step &#34;Bulk/batch load contents in parsable formats (e.g. XLS, CSV, tables in a PDF/Word document) to MDR (Knowledge reporistory)&#34;: The tool should be able to parse given format and notify user about a successful/unsuccessful load.
+        For the step &#34;Match loaded content to potential reusable/existing metadata based on descriptions provided in content. Matching content is classified as &#34;using&#34; an existing metadata item.&#34;:  The tool should demonstrate it can match different levels of metadata. An easy performance/fit test will be reloading existing content in various forms, in which case the tool should have match 100% of the content.
+        For the step &#34;If a perfect match is not possible or to provide more flexibility to user, allow navigation/search/exploration/mapping related capabilities.&#34;: The loader should demonstrate it can partially match different levels of metadata. An easy performance/fit test will be reloading existing content with slight variations (e.g. changing VDs, using subset of permissible values), in which case the tool should match all the content to different levels of metadata with exclusion of intented deviations.
+        For the step &#34;If no content is matched, allow creation of new content&#34;: The tool will facilitate creation of new content.
+
+        For the step &#34;Generate a reuse report based on the matches/searches. Reuse report should be detailed enough to capture different levels of metadata reuse (e.g. DEC, CDE, VD)&#34;: The tool should generate a report summarizing metadata reuse as different levels (e.g. percentage of VDs matched) and also listing the matched content in detailed form. The report should be printable for reading/revision.
+        For the item &#34;The loading tool should allow the content to be partially formed and incomplete._  There should mandatory requirements for content (to assess completeness). However during loading process and prior to publising it the loading should allow to not to enforce mandatory requirements.&#34;:_ The tool should allow loading any content even if it requires loosing all the mandatory content requirements.
+
+        For the item &#34;The loading tool should prevent any content to be published if they don&#39;t meet mandatory requirements for the content. &#34;: The tools should give an error if the requirements are not met and user tries to publish the content.
+
+        For the item &#34;The content in staging phase should be able to shared among a collaborators in the community. &#34;: The user while working on the content, should be able to send a URL or pointer for others to browse/see content under development.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        15
+      </td>
+      <td>
+        Forum Link:
+      </td>
+      <td>
+        <a href="https://cabig-kc.nci.nih.gov/Vocab/forums/viewtopic.php?f=40&amp;t=112" rel="nofollow">
+          https://cabig-kc.nci.nih.gov/Vocab/forums/viewtopic.php?f=40&amp;t=112
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        16
+      </td>
+      <td>
+        URLs (optional):
+      </td>
+      <td>
+        Links to pages or applications related to this requirement
+      </td>
+    </tr>
+    <tr>
+      <td>
+        17
+      </td>
+      <td>
+        References (optional):
+      </td>
+      <td>
+        Links to articles, papers or presentations related to this requirement
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="Init1bes13BulkloadunannotatedcontenttoKnowledgeRepository-PostInterview-ongoingthroughoutdevelopmentofusecases:">
+  Post Interview - ongoing throughout development of use cases:
+</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Item
+      </th>
+      <th>
+        Description
+      </th>
+      <th>
+        Information/Response
+      </th>
+    </tr>
+    <tr>
+      <td>
+        Stakeholder Community:
+      </td>
+      <td>
+        Enter appropriate category of stakeholder from Primary Stakeholders:
+        <ul>
+          <li>
+            Software and Application designers and architects
+          </li>
+          <li>
+            Software and Application engineers and developers
+          </li>
+          <li>
+            Scientific and medical researchers
+          </li>
+          <li>
+            Medical research protocol designers
+          </li>
+          <li>
+            Clinical and scientific research data and metadata managers
+          </li>
+          <li>
+            Clinicians
+          </li>
+          <li>
+            Patients
+          </li>
+          <li>
+            Medical research study participants
+          </li>
+          <li>
+            Broader Stakeholders: caBIG® Community WS NIH projects and related commercial COTS vendors (caEHR, SDO&#39;s (HL7, CDISC); International Collaborators (e.g NCRI, cancerGrid, China), Government and regulatory bodies (FDA, CDC, ONC)
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=63996268" rel="nofollow">
+              (link to view SemConOps Stakeholders description
+            </a>
+            ).
+          </li>
+        </ul>
+      </td>
+      <td>
+        Clinical and scientific research data and metadata managers
+        Ideally any medical informatics professional wanting to load content to Knowledge Repository
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Requirement Type (required)
+      </td>
+      <td>
+        Analyst&#39;s assessement of the most appropriate category/type of requirement (no need to ask interviewee):
+        <ul>
+          <li>
+            Functional: Fundamental or essential to the product - describes what the product has to do or what processing is needed
+          </li>
+          <li>
+            Nonfunctional: properties the functions must have such as performance, usability, training or documentation
+            <ul>
+              <li>
+                Project constraint: schedule or budget constraints
+              </li>
+              <li>
+                Design constraint: impose restrictions on how the product must be designed, such as conformant to ISO 11179, utilizes 21090 or is able to work on a particular type of device
+              </li>
+              <li>
+                Project driver: business-related forces such as descriptions of stakeholders or purpose of the product/project
+              </li>
+              <li>
+                Project issue: conditions that will contribute to the success or failure of the project
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </td>
+      <td>
+        Functional
+      </td>
+    </tr>
+    <tr>
+      <td>
+        ConOp Initiative(s)
+        Requirements Analyst/Business Analyst
+      </td>
+      <td>
+        <ul>
+          <li>
+            Select most appropriate initiative: (click for descriptions)
+          </li>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=63996260" rel="nofollow">
+              Initiative 1 - Distributed, federated metadata repositories and model repositories and operations
+            </a>
+          </li>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=63996259" rel="nofollow">
+              Initiative 2 - Automated generation of metadata from line-of-business artifacts
+            </a>
+          </li>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=63996262" rel="nofollow">
+              Initiative 3 - Rules management and contracts support (behavioral semantics)
+            </a>
+          </li>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=63996261" rel="nofollow">
+              Initiative 4 - Semantics support for W3C service oriented architecture resources
+            </a>
+          </li>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=63996264" rel="nofollow">
+              Initiative 5 - HL7 CTS II/ OMG MIF compliant federated terminology services
+            </a>
+          </li>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=63996263" rel="nofollow">
+              Initiative 6 - Controlled biomedical terminology, ontology and metadata content
+            </a>
+          </li>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=63996266" rel="nofollow">
+              Initiative 7 - Assessment of semantic unification of compositional and derivational models
+            </a>
+          </li>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=63996253" rel="nofollow">
+              Initiative 8 - Other
+            </a>
+          </li>
+        </ul>
+      </td>
+      <td>
+        Initiative 1
+      </td>
+    </tr>
+    <tr>
+      <td>
+        High Level Use Case Summary)
+        Requirements Analyst/Business Analyst
+      </td>
+      <td>
+        Please write a short descriptive narrative use case; the steps or activities in this use case are usually the things the user wants to accomplish with the system (user/actor&#39;s goals).
+      </td>
+      <td>
+        ---
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Use Case Linkage (required)
+        Business Analyst
+      </td>
+      <td>
+        Which use case(s) is this requirement linked to?  (should follow Use Case numbering scheme &lt;SemCon Ops Initiative&gt;.&lt;analysts initials&gt;&lt;requirement number&gt;.&lt;use case number&gt;, for example Init1dbw1.1, Init1dbw1.2, Init2dbw2.1, 2.2, etc.
+      </td>
+      <td>
+        Use case Number(s):
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Conflicts / Dependencies(required)
+        Requirements Analyst/ Business Analyst
+      </td>
+      <td>
+        Are there any conflicts with other requirements / use cases?
+      </td>
+      <td>
+        Yes OR No - If yes, what and why?
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Next Step (required)
+        (Requirement Analyst / Business Analyst)
+      </td>
+      <td>
+        After reviewing the results of the interview, the forum, and all other materials related to this requirement, the analyst should recommend the next step, then attach the Tiny Link (on the Info tab) for this page to the
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=63996252" rel="nofollow">
+          Master List
+        </a>
+        table.
+      </td>
+      <td>
+        Use Case Template (text)
+      </td>
+    </tr>
+  </tbody>
+</table>

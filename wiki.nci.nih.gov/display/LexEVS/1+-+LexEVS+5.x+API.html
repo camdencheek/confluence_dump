@@ -1,0 +1,850 @@
+Contents of this Page
+<ul>
+  <li>
+    <a href="#id-1LexEVS5.xAPI-Introduction" rel="nofollow">
+      Introduction
+    </a>
+  </li>
+  <li>
+    <a href="#id-1LexEVS5.xAPI-CoreServices" rel="nofollow">
+      Core Services
+    </a>
+  </li>
+  <li>
+    <a href="#id-1LexEVS5.xAPI-ServiceExtensions" rel="nofollow">
+      Service Extensions
+    </a>
+    <ul>
+      <li>
+        <a href="#id-1LexEVS5.xAPI-QueryExtensions" rel="nofollow">
+          Query Extensions
+        </a>
+      </li>
+      <li>
+        <a href="#id-1LexEVS5.xAPI-LoadExtensions" rel="nofollow">
+          Load Extensions
+        </a>
+      </li>
+      <li>
+        <a href="#id-1LexEVS5.xAPI-ExportExtensions" rel="nofollow">
+          Export Extensions
+        </a>
+      </li>
+      <li>
+        <a href="#id-1LexEVS5.xAPI-IndexExtensions" rel="nofollow">
+          Index Extensions
+        </a>
+      </li>
+      <li>
+        <a href="#id-1LexEVS5.xAPI-GenericExtensions" rel="nofollow">
+          Generic Extensions
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#id-1LexEVS5.xAPI-Utilities" rel="nofollow">
+      Utilities
+    </a>
+    <ul>
+      <li>
+        <a href="#id-1LexEVS5.xAPI-Iterators" rel="nofollow">
+          Iterators
+        </a>
+      </li>
+      <li>
+        <a href="#id-1LexEVS5.xAPI-SearchAlgorithms" rel="nofollow">
+          Search Algorithms
+        </a>
+      </li>
+      <li>
+        <a href="#id-1LexEVS5.xAPI-AdditionalUtilityClasses" rel="nofollow">
+          Additional Utility Classes
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#id-1LexEVS5.xAPI-CodeExamples" rel="nofollow">
+      Code Examples
+    </a>
+    <ul>
+      <li>
+        <a href="#id-1LexEVS5.xAPI-ConceptResolution" rel="nofollow">
+          Concept Resolution
+        </a>
+      </li>
+      <li>
+        <a href="#id-1LexEVS5.xAPI-ServiceMetadataRetrieval" rel="nofollow">
+          Service Metadata Retrieval
+        </a>
+      </li>
+      <li>
+        <a href="#id-1LexEVS5.xAPI-CombinatorialQueries" rel="nofollow">
+          Combinatorial Queries
+        </a>
+      </li>
+      <li>
+        <a href="#id-1LexEVS5.xAPI-AdditionalResources" rel="nofollow">
+          Additional Resources
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#id-1LexEVS5.xAPI-LexEVSGUI" rel="nofollow">
+      LexEVS GUI
+    </a>
+    <ul>
+      <li>
+        <a href="#id-1LexEVS5.xAPI-LaunchingtheGUI" rel="nofollow">
+          Launching the GUI
+        </a>
+      </li>
+      <li>
+        <a href="#id-1LexEVS5.xAPI-Overview" rel="nofollow">
+          Overview
+        </a>
+      </li>
+      <li>
+        <a href="#id-1LexEVS5.xAPI-CreatingNewQueries" rel="nofollow">
+          Creating New Queries
+        </a>
+      </li>
+      <li>
+        <a href="#id-1LexEVS5.xAPI-CustomizingQueries" rel="nofollow">
+          Customizing Queries
+        </a>
+      </li>
+      <li>
+        <a href="#id-1LexEVS5.xAPI-WorkingwithCodeSets" rel="nofollow">
+          Working with Code Sets
+        </a>
+      </li>
+      <li>
+        <a href="#id-1LexEVS5.xAPI-WorkingwithCodeGraphs" rel="nofollow">
+          Working with Code Graphs
+        </a>
+      </li>
+      <li>
+        <a href="#id-1LexEVS5.xAPI-ViewingQueryResults" rel="nofollow">
+          Viewing Query Results
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#id-1LexEVS5.xAPI-ValueDomainServices" rel="nofollow">
+      Value Domain Services
+    </a>
+  </li>
+  <li>
+    <a href="#id-1LexEVS5.xAPI-PickListServices" rel="nofollow">
+      Pick List Services
+    </a>
+  </li>
+</ul>
+<h2 id="id-1LexEVS5.xAPI-Introduction">
+  Introduction
+</h2>
+This document is a section of the
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427453" rel="nofollow">
+  Programmer&#39;s Guide
+</a>
+.
+
+The LexEVS APIs fall into three primary categories:
+<ul>
+  <li>
+    Core Services  Includes the LexBIGService, LexBIGServiceManager, CodedNodeSet and CodedNodeGraph classes, which provide the initial entry points for programmatic access to all system features and data.
+  </li>
+  <li>
+    Service Extensions  The extension mechanism provides for pluggable system features.  Current extension points allow for the introduction of custom load and indexing mechanisms; unique query, sort, and filter mechanisms; and generic functional extensions which can be advertised for availability to client programs.
+  </li>
+  <li>
+    Utilities  Utility classes, such as those implementing iterator support, are provided by the system to provide convenience and optimize the handling of resources accessed through the runtime.
+  </li>
+</ul>
+<h2 id="id-1LexEVS5.xAPI-CoreServices">
+  Core Services
+</h2>
+The LexBIGService illustrated below provides central entry points for programmatic access to system features and data. Some of the features are:
+<ul>
+  <li>
+    getCodingSchemeConcepts
+  </li>
+  <li>
+    getFilter
+  </li>
+  <li>
+    getGenericExtensions
+  </li>
+  <li>
+    getHistoryUpdate
+  </li>
+  <li>
+    getMatchAlgorithm
+  </li>
+  <li>
+    and other features.
+  </li>
+</ul>
+<img alt="This graphic shows the LexBIGServices with some of the features listed above." src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/1%20-%20LexEVS%205.x%20API/LexBIGService.jpg?api=v2">
+The following are the components of interest:
+<ul>
+  <li>
+    CodedNodeGraph A virtual graph where the edges represent associations and the nodes represent concept codes.  A CodedNodeGraph describes a graph that can be combined with other graphs, queried or resolved into an actual graph rendering.
+  </li>
+  <li>
+    CodedNodeSet A coded node set represents a flat list of coded entries.
+  </li>
+  <li>
+    LexBIGService This interface represents the core interface to a LexEVS service.
+  </li>
+  <li>
+    LexBIGServiceManager The service manager provides a single write and update access point for all of a service&#39;s content.
+    The service manager allows new coding schemes to be validated and loaded, existing coding schemes to be retired and removed and the status of various coding schemes to be updated and changed.
+  </li>
+  <li>
+    LexBIGServiceMetadata Interface to perform system-wide query over optionally loaded metadata for loaded code systems and providers.
+  </li>
+  <li>
+    Value Domain and Pick List Services For details, see
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427501" rel="nofollow">
+      3 - LexEVS 5.x Value Domain Service
+    </a>
+    in this guide.
+  </li>
+</ul>
+<h2 id="id-1LexEVS5.xAPI-ServiceExtensions">
+  Service Extensions
+</h2>
+Provides registration and lookup for pluggable system features.
+<img alt="This graphic shows the extensionRegistery interface with a Extendable interface." src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/1%20-%20LexEVS%205.x%20API/Extensions.jpg?api=v2">
+The following are the components of interest:
+<ul>
+  <li>
+    ExtensionRegistry  Allows registration and lookup of implementers for extensible pieces of the LexEVS architecture.
+  </li>
+  <li>
+    Extendable  Marks a class as an extension to the LexEVS application programming interface.  This allows for centralized registration, lookup, and access to defined functions.
+  </li>
+</ul>
+<h3 id="id-1LexEVS5.xAPI-QueryExtensions">
+  Query Extensions
+</h3>
+Query extensions provide the ability to further constrain or manage query results. For details on the LexEVS v5.1 Query Extension, see the document section
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427499" rel="nofollow">
+  Query Services Extension
+</a>
+.
+<img alt="This graphic shows the Extendable Comparable Sort interface with an Extendable Filter interface." src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/1%20-%20LexEVS%205.x%20API/Query.jpg?api=v2">
+The following are the components of interest:
+<ul>
+  <li>
+    Filter  Allows for additional filtering of query results.
+  </li>
+  <li>
+    Sort  Allows for unique sorting of query results.  This interface provides a comparator to evaluate order of any two given items from the result set.
+  </li>
+</ul>
+<h3 id="id-1LexEVS5.xAPI-LoadExtensions">
+  Load Extensions
+</h3>
+Load extensions are responsible for the validation and import of content to the LexEVS repository.  Vocabularies may be imported from a variety of formats including LexGrid canonical XML, NCI Thesaurus (OWL), and NCI MetaThesaurus (UMLS RRF). For details on LexEVS loaders and the Loader Framework, see the
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427498" rel="nofollow">
+  Loader Guide
+</a>
+. The following graphic shows Loader interface with the LexGridLeader, NCI_MetaThesaurusLoader, UMLS_Loader, Metadata_Loader, OBOHistoryLoader, OBO_Loader, NCIHistoryLoader, OWL_Loader, and the Text_Loader feeding into the Loader interface.
+<img alt="This graphic shows Loader interface as described above." src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/1%20-%20LexEVS%205.x%20API/Load.jpg?api=v2">
+The following are the components of interest:
+<ul>
+  <li>
+    Loader  The loader interface validates and/or loads content for a service.
+  </li>
+  <li>
+    LexGrid_Loader  Validates and/or loads content provided in the LexGrid canonical XML format.
+    NCI_MetaThesaurusLoader  Validates and/or loads the complete NCI MetaThesaurus. Content is supplied in RRF format. Note: To load individual coding schemes, consider using the UMLS_Loader as an alternative.
+  </li>
+  <li>
+    OBO_Loader  Validates and/or loads content provided in Open Biomedical Ontologies (OBO) text format.
+  </li>
+  <li>
+    OWL_Loader  Validates and/or loads content provided in Web Ontology Language (OWL) XML format.  Note that for LexEVS phase 1 this loader is designed to specifically handle the NCI Thesaurus as provided in OWL format.
+  </li>
+  <li>
+    Text_Loader  A loader for delimited text type files. Text files come in one of two formats: indented code/designation pair or indented code/designation/description triples.
+  </li>
+  <li>
+    UMLS_Loader  Load one or more coding schemes from UMLS RRF format stored in a SQL database.
+  </li>
+  <li>
+    MetaData_Loader  Validates and/or loads content provided in metadata xml format.  The only requirement of the xml file is that it be a valid xml file.
+  </li>
+  <li>
+    NCIHistoryLoader  A loader that takes the delimited NCI history file and applies it to a coding scheme.
+  </li>
+  <li>
+    OBOHistoryLoader  Load an OBO change history file.
+  </li>
+</ul>
+<h3 id="id-1LexEVS5.xAPI-ExportExtensions">
+  Export Extensions
+</h3>
+Export extensions are responsible for the export of content from the LexEVS repository to other representative vocabulary formats.
+<img alt="This graphic shows the Exporter interface with the components described below." src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/1%20-%20LexEVS%205.x%20API/Export.jpg?api=v2">
+The following are the components of interest:
+<ul>
+  <li>
+    Exporter Defines a class of object used to export content from the underlying LexGrid repository to another repository or file format.
+  </li>
+  <li>
+    LexGrid_Exporter  Exports content to LexGrid canonical XML format.
+  </li>
+  <li>
+    OBO_Exporter Exports content to OBO text format.
+  </li>
+  <li>
+    OWL_Exporter  Exports content to OWL XML format.
+  </li>
+</ul>
+<h3 id="id-1LexEVS5.xAPI-IndexExtensions">
+  Index Extensions
+</h3>
+Index extensions are built to optimize the finding, sorting and matching of query results.
+<img alt="This graphic shows the IndexLoader interface and the Index interface as described below." src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/1%20-%20LexEVS%205.x%20API/Index.jpg?api=v2">
+The following are the components of interest:
+<ul>
+  <li>
+    Index  Identifies expected behavior and an associated loader to build and maintain a named index. Note that a single loader may be used to maintain multiple named indexes.
+  </li>
+  <li>
+    IndexLoader  Manages registered index extensions. A single loader may be used to create and maintain multiple indexes over one or more coding schemes.
+  </li>
+</ul>
+It is the responsibility of the loader to properly interpret each index it services by name, version, and provider.
+<h3 id="id-1LexEVS5.xAPI-GenericExtensions">
+  Generic Extensions
+</h3>
+Generic extensions provides a mechanism to register application-specific extensions for reference and reuse.
+<img alt="This graphic shows the GenericExtensions Extendable interface and the components as described below." src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/1%20-%20LexEVS%205.x%20API/Generic.jpg?api=v2">
+The following are the components of interest:
+<ul>
+  <li>
+    GenericExtension  The generic extension class. Classes that implement this class are accessible via the LexBIGService interface.
+  </li>
+  <li>
+    LexBIGServiceConvenienceMethods  Convenience methods to be implemented as a generic extension of the LexEVS API.
+  </li>
+</ul>
+<h2 id="id-1LexEVS5.xAPI-Utilities">
+  Utilities
+</h2>
+Defines helper classes externalized by the LexEVS API.
+<h3 id="id-1LexEVS5.xAPI-Iterators">
+  Iterators
+</h3>
+Iterators are used to provide controlled resolution of query results.
+<img alt="This graphic shows the Iterators and the components as described below." src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/1%20-%20LexEVS%205.x%20API/Iterators.jpg?api=v2">
+The following are the components of interest:
+<ul>
+  <li>
+    EntityListIterator  Generic interface for flexible resolution of LexEVS objects.
+  </li>
+  <li>
+    ResolvedConceptReferencesIterator  An iterator for retrieving resolved coding scheme references.
+  </li>
+</ul>
+<h3 id="id-1LexEVS5.xAPI-SearchAlgorithms">
+  Search Algorithms
+</h3>
+The following are supported LexEVS Search Algorithms.
+
+Search Algorithm
+
+
+
+Name: LuceneQuery
+Version: 1.0
+Description: Search with the Lucene query syntax.
+See http://lucene.apache.org/java/2_3_2/queryparsersyntax.html)
+
+
+
+Search Algorithm
+
+
+
+Name: DoubleMetaphoneLuceneQuery
+Version: 1.0
+Description: Search with the Lucene query syntax, using a &#39;sounds like&#39; algorithm.
+A search for &#39;atack&#39; will get a hit on &#39;attack&#39;
+See http://lucene.apache.org/java/2_3_2/queryparsersyntax.html)
+
+
+
+Search Algorithm
+
+
+
+Name: StemmedLuceneQuery
+Version: 1.0
+Description: Search with the Lucene query syntax, using stemmed terms.
+A search for &#39;trees&#39; will get a hit on &#39;tree&#39;
+See http://lucene.apache.org/java/2_3_2/queryparsersyntax.html)
+
+
+
+Search Algorithm
+
+
+
+Name: startsWith
+Version: 1.0
+Description: Equivalent to &#39;term*&#39; (case insensitive)
+
+
+
+Search Algorithm
+
+
+
+Name: exactMatch
+Version: 1.0
+Description: Exact match (case insensitive)
+
+
+
+Search Algorithm
+
+
+
+Name: contains
+Version: 1.0
+Description: Equivalent to &#39;* term* *&#39; - in other words - a trailing wildcard on a term
+(but no leading wild card) and the term can appear at any position.
+
+
+
+Search Algorithm
+
+
+
+Name: RegExp
+Version: 1.0
+Description: A Regular Expression query.  Searches against the lowercased text, so a
+regular expression that specifies an uppercase character will never return a match.
+Additionally, this searches against the entire string as a single token, rather than
+the tokenized string - so write your regular expression accordingly.
+Supported syntax is documented here:
+http://jakarta.apache.org/regexp/apidocs/org/apache/regexp/RE.html
+<h3 id="id-1LexEVS5.xAPI-AdditionalUtilityClasses">
+  Additional Utility Classes
+</h3>
+NoteIt is highly recommended that all LexEVS programmers familiarize themselves with the classes contained in the org.LexGrid.LexBIG.Utility package.  Many useful features are provided in an effort to increase approachability of the API and assist the programmer in common tasks.
+
+This package currently contains the following classes:
+<ul>
+  <li>
+    Constructors  - Helper class to ease creating common objects.
+  </li>
+  <li>
+    ConvenienceMethods  - One-stop shopping for convenience methods that have been implemented against the LexEVS API.
+  </li>
+  <li>
+    LBConstants  - Provides constants for use in the LexEVS API.
+  </li>
+  <li>
+    ObjectToString  - Provides centralized formatting of LexEVS Objects to String representations.
+  </li>
+</ul>
+<h2 id="id-1LexEVS5.xAPI-CodeExamples">
+  Code Examples
+</h2>
+<h3 id="id-1LexEVS5.xAPI-ConceptResolution">
+  Concept Resolution
+</h3>
+Programmers access coded concepts by acquiring first a node set or graph.  After specifying optional restrictions, the nodes in this set or graph can be resolved as a list of ConceptReference objects which in turn contain references to one or more Concept objects.  The following example provides a simple query of concept codes:
+
+Java Code Snippet
+
+// Create a basic service object for data retrieval
+LexBIGService lbSvc = LexBIGServiceImpl.defaultInstance();
+
+// Create a concept reference list appropriate for this coding scheme and
+// this concept code where the parameters are a String array consisting of
+// a single value and the name of the coding scheme where this concept resides.
+ConceptReferenceList crefs = ConvenienceMethods.createConceptReferenceList(
+new String[], SAMPLE_SCHEME);
+
+// Initialize a coding scheme version object with a version number for the
+// sample scheme.
+CodingSchemeVersionOrTag csvt = new CodingSchemeVersionOrTag();
+csvt.setVersion(VERSION);
+
+// Initialize a CodedNodeSet Object with all concepts in our sample coding
+// scheme. (We named the scheme we wanted and by using the Boolean value,
+// false, retrieved both active and inactive concepts.) This method call
+// ignores the version tag using the null parameter.  The final
+// restrictToCodes(crefs) method call restricts the return to the single
+// code in the previously initialized list of one.
+CodedNodeSet nodes = lbSvc.getCodingSchemeConcepts(SAMPLE_SCHEME, csvt).
+restrictToCodes(crefs);
+
+// Build a list of references from the current (and already restricted) set
+// and restrict them further to the single property of NCI_NAME and
+// restrict to a single answer (parameter 1)).
+ResolvedConceptReferenceList matches = nodes.resolveToList(
+null, ConvenienceMethods.createLocalNameList(&#34;FULL_SYN&#34;), 1);
+
+// Does our list of one contain the single reference we were looking for?
+// If so, then initialize a ResolvedConceptReference with the result and
+// initialize a Concept object by calling the getReferencedEntry()
+// method.  The Concept object is the base information model object and
+// contains, among other things, the CONCEPT_NAME value we were seeking.
+// We retrieve it with a call to the first element in the properties list,
+// getting the text &amp;&amp; it&#39;s accompanying content.
+if(matches.getResolvedConceptReferenceCount() &lt;&gt; 0)
+{           ResolvedConceptReference ref = (ResolvedConceptReference)matches.
+enumerateResolvedConceptReference().nextElement();
+Concept entry = ref.getReferencedEntry();
+System.out.println(&#34;Matching synonym: &#34; +
+entry.getPresentation(0).getValue() );       }
+else
+{           System.out.println(&#34;No match found&#34;);       }
+<h3 id="id-1LexEVS5.xAPI-ServiceMetadataRetrieval">
+  Service Metadata Retrieval
+</h3>
+The LexEVS system maintains service metadata which can provide client programs with information about code system content and assigned copyright/licensing information.  Below is an brief example showing how to access and print some of this metadata:
+
+Java Code Snippet
+
+// We can get a CodingSchemeRenderingList object directly from LexBigService
+LexBIGService lbs = LexBIGServiceImpl.defaultInstance();
+CodingSchemeRenderingList schemeList = lbs.getSupportedCodingSchemes();
+
+for (CodingSchemeRendering csr : schemeList.getCodingSchemeRendering())
+{
+CodingSchemeSummary css = csr.getCodingSchemeSummary();
+
+// Print separator then details from the CodingSchemeSummary
+System.out.println(&#34;==========================&#34;);
+System.out.println(ObjectToString.toString(css));
+
+// Set up a coding scheme reference to resolve Copyright
+String urn = css.getCodingSchemeURI();
+String version = css.getRepresentsVersion();
+CodingSchemeVersionOrTag csVorT =
+Constructors.createCodingSchemeVersionOrTagFromVersion(version);
+CodingScheme cs = lbs.resolveCodingScheme(urn, csVorT);
+System.out.println(&#34;Copyright: &#34; +cs.getCopyright().getContent());
+
+// Get the final details from the RenderingDetail
+RenderingDetail rd = csr.getRenderingDetail();
+System.out.println(ObjectToString.toString(rd));
+System.out.println();
+}
+<h3 id="id-1LexEVS5.xAPI-CombinatorialQueries">
+  Combinatorial Queries
+</h3>
+One of the most powerful features of the LexEVS architecture is the ability to define multiple search and sort criteria without intermediate retrieval of data from the LexEVS service.  Consider the following code snippet:
+
+Java Code Snippet
+
+System.out.println(&#34;Example double restriction query with additional &#34;
++&#34;application of sort criteria and restricted return values.&#34;);
+// Declare the service...
+LexBIGServiceImpl lbs = LexBIGServiceImpl.defaultInstance();
+
+// Start with an unconstrained set of all codes for the vocabulary
+CodingSchemeVersionOrTag csvt = new CodingSchemeVersionOrTag();
+csvt.setVersion(VERSION2);
+CodedNodeSet cns = lbs.getCodingSchemeConcepts(SAMPLE_SCHEME2, csvt);
+
+// Constrain to concepts with designations (assigned text presentations
+// that contain text that sounds like &#39;Short Saphenous Vein&#39;
+cns = cns.restrictToMatchingDesignations(
+&#34;Short Safinus Vane&#34;,
+SearchDesignationOption.ALL,
+MatchAlgorithms.DoubleMetaphoneLuceneQuery.toString(),
+null);
+
+// Further restrict the results to concepts with a semantic type of
+// &#39;Anatomical Structure&#39;
+cns = cns.restrictToMatchingProperties(
+Constructors.createLocalNameList(&#34;Semantic_Type&#34;),
+null, &#34;Anatomical Structure&#34;,
+&#34;exactMatch&#34;,
+null);
+
+// Indicate that the resulting list should be sorted with the best
+// results first and then sorted by code if there is a tie.
+SortOptionList sortCriteria = Constructors.createSortOptionList(
+new String[] {&#34;matchToQuery&#34;, &#34;code&#34;});
+
+// Indicate to return only the assigned UMLS_CUI and
+// textualPresentation properties.
+LocalNameList restrictTo =ConvenienceMethods.createLocalNameList(
+new String[] {&#34;UMLS_CUI&#34;, &#34;textualPresentation&#34;} );
+
+// Still nothing computed yet.
+// Perform the query &amp;&amp; resolve the sorted/filtered list with a
+// maximum of 6 items returned.
+ResolvedConceptReferenceList list = cns.resolveToList(
+sortCriteria, restrictTo, null, 6);
+// Print the results
+ResolvedConceptReference[] rcr = list.getResolvedConceptReference();
+for (ResolvedConceptReference rc : rcr)
+{
+System.out.println(&#34;Resolved Concept: &#34; + rc.getConceptCode());
+}
+
+
+
+This example shows a simple yet powerful query to search a code system based on a &#39;sounds like&#39; match algorithm (the list of all available match algorithms can be listed using the &#39;ListExtensions -m&#39; admin script).
+<ul>
+  <li>
+    Declaring the target concept space
+    The coded node set (variable &#39;cns&#39;) is initially declared to query the NCI Thesaurus vocabulary.  At this point the concept space included by the set can be thought of as unrestricted, addressing every defined coded entry (the &#39;false&#39; value on the declaration indicates to also include inactive concepts).  However, it important to note that no search is performed by the LexEVS service at this time.
+  </li>
+  <li>
+    Applying filter criteria
+    Similarly, no computation is performed (to realize query results) during invocation of the restrictToMatchingDesignations() and restrictToMatchingProperties() methods.  However, these calls effectively narrow the target space even further, indicating that filters should be applied to the information returned by the LexEVS query service.
+  </li>
+  <li>
+    Using the Lucene Query Syntax and other text matching functions
+    <ul>
+      <li>
+        The text criteria applied in methods such as restrictToMatchingDesignations() uses one of a number of powerful text processing applications to provide the user with broad capability for text based searches.  Text matches can be simple applications of exactMatch, startsWith or contains algorithms as well as powerful regular expressions and Lucene Query syntax (used in the LuceneQuery function.) As shown above these options are passed into the restrictToMatchingDesignations() Method as parameters.
+      </li>
+      <li>
+        Lucene Queries are well documented and can be very powerful. The uninitiated user may need some background on their use however. The user should start here with the official Lucene Query Parser documentation
+
+        Link provided for historical purposes http://lucene.apache.org/java/2_3_2/queryparsersyntax.html
+      </li>
+      <li>
+        Keep in mind that some LexEVS queries such as &#34;startsWith&#34; and &#34;contains&#34; use wild card searches under the covers, so that use of wild cards in this context can cause errors in searches involving these search types.
+      </li>
+      <li>
+        Instead it is best to use the flexibility of the Lucene Query searches in the matchingDesignation by using the Lucene Query searches in LexEVS where most searches will work much as described in the query syntax documentation.
+      </li>
+      <li>
+        Special characters in the Lucene Query search can cause unexpected results. If you are not using special characters as recommended for various ** Lucene search mechanisms then your searches may not return expected results or may return an error. If the value you are searching upon contains say, parenthesis, you will need to place the value in quotations.  The escape characters described in the Lucene Documentation do not work at this time.
+      </li>
+      <li>
+        Likewise you should not expect to see a Lucene Query narrow down search results as you progressively enter a longer substring more closely matching your term of interest. Instead use the contains method.
+      </li>
+    </ul>
+  </li>
+  <li>
+    Applying sorting criteria
+    Multiple sort algorithms can be applied to control the order of items returned.  In this case, we indicate that results are to be sorted based on primary and secondary criteria.  The &#34;matchToQuery&#34; algorithm indicates to sort the result according to best match as determined by the search engine.  The &#34;code&#34; item indicates to perform a secondary sort based on concept code.
+    NoteThe list of all available sort algorithms can be listed using the &#39;ListExtensions -s&#39; admin script.
+  </li>
+  <li>
+    Restricting the information returned for matching items
+    The LexEVS API also allows the programmer to restrict the values returned for each matching concept.  In this example, we chose to return only the UMLS CUI and assigned text presentations.
+  </li>
+  <li>
+    Retrieving the result
+    A query is finally performed during the &#39;resolve&#39; step, with results returned to the declared list.  It is at this point that the LexEVS service does the heavy lifting.  By declaring the full extent of the request up front (namespace, match criteria, sort criteria, and returned values), the service then has the opportunity to optimize the query path.  In addition, in this example we restrict the number of items returned to a maximum of 6.  This combined approach has the benefit of reducing server-side processing while minimizing the volume and frequency of traffic between the client program and the LexEVS service.
+    NoteWhile this section provides one example of combining criteria, this same pattern can be applied to many of the CodedNodeSet and CodedNodeGraph operations.  It is strongly recommended that programmers familiarize themselves with this programming model and its application.
+  </li>
+</ul>
+<h3 id="id-1LexEVS5.xAPI-AdditionalResources">
+  Additional Resources
+</h3>
+Reserved for links to Code Snippets and Overview of the Software.
+<h2 id="id-1LexEVS5.xAPI-LexEVSGUI">
+  LexEVS GUI
+</h2>
+The LexEVS Graphical User Interface, or GUI, is an optional component of the LexEVS install which will be in the /gui folder of the base LexEVS installation (see file breakdown in
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427505" rel="nofollow">
+  Overview of the Software
+</a>
+).   The GUI is meant to provide a simple tool to test LexEVS API methods and quickly view the results; almost all public methods defined by the LexEVS API are supported.  This guide provides a brief overview of how the GUI can aid programmers in writing code to the LexEVS API.
+
+NoteThe LexEVS GUI supports both administrative and test functions.  Please refer to the LexEVS Administrator&#39;s Guide for instructions on using the GUI as an administration tool.
+<h3 id="id-1LexEVS5.xAPI-LaunchingtheGUI">
+  Launching the GUI
+</h3>
+Depending on the operating systems that you selected at installation time, you should have one or more of the following programs in the /gui folder:
+
+
+
+Linux_64-lbGUI.sh		Linux-lbGUI.sh
+OSX-lbGUI.command		Windows-lbGUI.bat
+
+
+
+Launch the GUI by executing the appropriate script for your platform.  You will be presented with an application that looks like this:
+<img src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/1%20-%20LexEVS%205.x%20API/GUI_Launch.jpg?api=v2">
+<h3 id="id-1LexEVS5.xAPI-Overview">
+  Overview
+</h3>
+The upper section of the GUI shows all of the code systems currently loaded, along with corresponding metadata.  The lower section of the GUI is used to combine, restrict and resolve Code Sets and Code Graphs.
+
+The lower left section is where you can perform Boolean logic on Code Sets and Code Graphs.  The lower right section is where you can introduce restrictions on Code Sets and Code Graphs and browse results.
+
+NoteThe menu options are used primarily for administrative functions and are covered in detail by the
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427408" rel="nofollow">
+  LexEVS 5.x Administration Guide
+</a>
+.  In addition, all of the disabled buttons in the top half of the application are used for administrative functions, and are also described in the Administration Guide.
+<h3 id="id-1LexEVS5.xAPI-CreatingNewQueries">
+  Creating New Queries
+</h3>
+There are four buttons on the top half that are of interest for creating queries.
+<ul>
+  <li>
+    Refresh - This button causes the LexEVS GUI to reread the available terminologies and their respective metadata.  This can be useful when using the GUI to view a LexEVS environment that is being modified by another process.
+  </li>
+  <li>
+    Get History - If a terminology with available history data is selected, this button opens a history browser to view it via the NCI history API.  This option is currently only applicable when working with the NCI Thesaurus terminology.
+  </li>
+  <li>
+    Get Code Set -This button causes the selected terminology to be added to the lower left section of the GUI as a code set - which is noted by a &#39;CS&#39; prefix.
+  </li>
+  <li>
+    Get Code Graph -This button causes the selected terminology to be added to the lower left section of the GUI as a code graph - which is noted by a &#39;CG&#39; prefix.
+  </li>
+</ul>
+<h3 id="id-1LexEVS5.xAPI-CustomizingQueries">
+  Customizing Queries
+</h3>
+After selecting a code system and clicking on Get Code Set or Get Code Graph, a row will be added to the lower left section of the GUI for each click.  There are seven buttons in the lower left section that allow combinatorial logic between the code sets in the lower left.
+<ul>
+  <li>
+    Union - This button is enabled if two Code Sets or two Code Graphs are selected in the lower left.  Clicking the button creates a new virtual Code Set or Code Graph which represents the Boolean union of the two selected items.  All restrictions applied to the individual items still apply.
+  </li>
+  <li>
+    Intersection - This button is enabled if two Code Sets or two Code Graphs are selected in the lower left.  Clicking the button creates a new virtual Code Set or Code Graph which represents the Boolean intersection of the two selected items.  All restrictions applied to the individual items still apply.
+  </li>
+  <li>
+    Difference - This button is enabled if two Code Sets or two Code Graphs are selected in the lower left.  Clicking the button creates a new virtual Code Set which represents the Boolean difference of the two selected Code Sets.  All restrictions applied to the individual items still apply.
+  </li>
+  <li>
+    Restrict to Codes - This button is enabled if a Code Set and a Code Graph are selected in the lower left.  Clicking the button creates a new virtual Code Graph which will be restricted to concept codes occurring in the selected Code Set.
+  </li>
+  <li>
+    Restrict to Source Codes - This button is enabled if a Code Set and a Code Graph are selected in the lower left.  Clicking the button creates a new virtual Code Graph which will have its source codes restricted to codes occurring in the selected Code Set.
+  </li>
+  <li>
+    Restrict to Target Codes - This button is enabled if a Code Set and a Code Graph are selected in the lower left.  Clicking the button creates a new virtual Code Graph which will have its target codes restricted to codes occurring in the selected Code Set.
+  </li>
+  <li>
+    Remove - This button is enabled if any Code Set or Code Graph (or virtual Code Set or Code Graph) is selected in the lower left.  Clicking the button will remove the selected item from the list.
+  </li>
+</ul>
+The lower right section of the GUI is used to apply restrictions to Code Sets or Code Graphs, and set the variables that need to be passed into the resolve method.
+<h3 id="id-1LexEVS5.xAPI-WorkingwithCodeSets">
+  Working with Code Sets
+</h3>
+If a Code Set is selected in the lower left Select CodedNodeSets and CodedNodeGraphs, then the lower right section will look like this:
+<img alt="This screenshow shows the CodedNodeSets and CodedNodeGraphics panel with the O(CS) Automobiles 1.0 selected." src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/1%20-%20LexEVS%205.x%20API/Selected_Code_Set.jpg?api=v2">
+In the lower right section, there are two halves - the top half and the bottom half.  The top half is used to apply restrictions.  The bottom half provides query options and resolution.
+<ul>
+  <li>
+    Add - This button introduces a new restriction to the Coded Node Set.  Clicking it will bring up the following dialog box for creating restrictions:
+    <img alt="This screenshot shows Configure Restriction dialog box with the Match Algorithm Lucene Query option selected." src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/1%20-%20LexEVS%205.x%20API/Configure_Restriction_Window.jpg?api=v2">
+    The top drop down list indicates the type of restriction to add.  The rest of the dialog box will change depending on the type of restriction selected.  All required parameters for the selected restriction type will be presented.
+  </li>
+  <li>
+    Edit - This button is enabled when a restriction is selected.  Clicking it allows revision of an existing restriction.
+  </li>
+  <li>
+    Remove -This button is enabled when a restriction is selected.  Clicking it removes the selected restriction.
+  </li>
+  <li>
+    Only Include Active Codes - This check box indicates whether or not to include inactive codes when resolving the selected code set.
+  </li>
+  <li>
+    Set Sort Options - This button will bring up a dialog box to choose the desired sort order of the results.
+  </li>
+  <li>
+    Resolve Code Set - This button will bring up a result window where the Code Set will be resolved and displayed.
+  </li>
+</ul>
+<h3 id="id-1LexEVS5.xAPI-WorkingwithCodeGraphs">
+  Working with Code Graphs
+</h3>
+If you select a Coded Node Graph in the lower left section of the LexEVS GUI, the lower right section, Restrictions, will look like this:
+<img alt="This screenshot shows 1(CG) Automobiles 1.0 selected and and the Relation Container in the Restrictions highlighted." src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/1%20-%20LexEVS%205.x%20API/Selected_Coded_Node_Graph.jpg?api=v2">
+Again, there are two halves to the lower right section.  The top half allows restrictions to be applied to the selected Code Graph, and it works the same as it does for a Coded Node Set.  Please see the section above on applying restrictions to a Coded Node Set.
+
+The lower half provides additional variables applicable when resolving a Coded Node Graph.  For further explanation of these options, refer to the LexEVS API documentation.
+<ul>
+  <li>
+    Relation Container (Optional) - Indicates the CodingScheme Relations container to query.  The drop down list is populated with allowable selections.
+  </li>
+  <li>
+    Focus Code (Optional) - Provides the code used as a starting point when resolving graph relations.  This value is required for some queries, depending on the nature of requested associations.
+  </li>
+  <li>
+    Focus Code System (Optional) - Indicates the code system containing the Focus Code.  The drop down list is populated with allowable selections.
+  </li>
+  <li>
+    Max Resolve Depth - How many levels deep should the graph be resolved?  -1 is the default, which does not limit the depth.
+  </li>
+  <li>
+    Resolve Forward - Populate codes downstream from the focus node (based on directionality defined by each association).
+  </li>
+  <li>
+    Resolve Backward - Populate codes upstream from the focus node (based on directionality defined by each association).
+  </li>
+  <li>
+    Set Sort Options - This button will bring up a dialog box to choose the desired sort order of the results.
+  </li>
+  <li>
+    Resolve As Set - Resolves and displays the graph results as a coded node set.
+  </li>
+  <li>
+    Resolve As Graph -Resolves and displays the graph results.
+  </li>
+</ul>
+<h3 id="id-1LexEVS5.xAPI-ViewingQueryResults">
+  Viewing Query Results
+</h3>
+Clicking on the Resolve buttons for either a Coded Node Set or a Coded Node Graph will bring up the Result Browser window:
+<img src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/1%20-%20LexEVS%205.x%20API/Result_Browser_Window.jpg?api=v2">
+The left side shows a list of all the concept codes returned.  When a concept  code is selected on the left, the upper right will show a full description of the selected code.  The lower right will show a graph view of the neighboring concepts.
+
+When a Coded Node Graph is resolved, the result viewing window will look like this (this is the same Code System as above):
+<img src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/1%20-%20LexEVS%205.x%20API/Result_Browser_Resolved_Coded_Node_Graph.jpg?api=v2">
+The left side still has a list of all of the concepts in the graph.  The upper right will give a description of the selected concept.  The lower right shows the entire graph.
+
+The lower right section is adjustable, and dynamic.  It responds to mouse clicks, dragging, and numerous key combinations.  Beyond a depth of 3, the graph may &#34;collapse&#34; and not show all of the nodes until you click on a node.  Clicking on a node will cause it to expand out and display its children.  Here are a list of key combinations recognized by the graph viewer:
+<ul>
+  <li>
+    Left Click + Mouse Movement - Drags the view.
+  </li>
+  <li>
+    Right Click + Mouse Movement Up Or Down - Zooms in or out.
+  </li>
+  <li>
+    Right Click (on white space) - Zooms the view to fit.
+  </li>
+  <li>
+    Ctrl + &#39;+&#39; - Expands the graph connection lines
+  </li>
+  <li>
+    Ctrl + &#39;-&#39; - Contracts the graph connection lines
+  </li>
+  <li>
+    Ctrl + &#39;1&#39; (or &#39;2&#39; or &#39;3&#39; or &#39;4&#39;) - Changes the orientation of the graph.
+  </li>
+</ul>
+<h2 id="id-1LexEVS5.xAPI-ValueDomainServices">
+  Value Domain Services
+</h2>
+For details about LexEVS Value Domain Services, see
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427501" rel="nofollow">
+  LexEVS Value Domain Services
+</a>
+<h2 id="id-1LexEVS5.xAPI-PickListServices">
+  Pick List Services
+</h2>
+For details about LexEVS Pick List Services, see
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427500" rel="nofollow">
+  LexEVS Pick List Services
+</a>

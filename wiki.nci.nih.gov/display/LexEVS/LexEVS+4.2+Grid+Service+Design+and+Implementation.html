@@ -1,0 +1,2307 @@
+The information and links on this page are no longer being updated and are provided for reference purposes only.Unable to render {include} The included page could not be found.Contents of this Page
+<ul>
+  <li>
+    <a href="#LexEVS4.2GridServiceDesignandImplementation-RevisionHistory" rel="nofollow">
+      Revision History
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS4.2GridServiceDesignandImplementation-DocumentPurpose" rel="nofollow">
+      Document Purpose
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS4.2GridServiceDesignandImplementation-ImplementationOverview" rel="nofollow">
+      Implementation Overview
+    </a>
+    <ul>
+      <li>
+        <a href="#LexEVS4.2GridServiceDesignandImplementation-TeamMembers" rel="nofollow">
+          Team Members
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS4.2GridServiceDesignandImplementation-Description" rel="nofollow">
+          Description
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS4.2GridServiceDesignandImplementation-Scope" rel="nofollow">
+          Scope
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS4.2GridServiceDesignandImplementation-Architecture" rel="nofollow">
+          Architecture
+        </a>
+        <ul>
+          <li>
+            <a href="#LexEVS4.2GridServiceDesignandImplementation-LexEVSGridServiceClassDiagram" rel="nofollow">
+              LexEVS Grid Service Class Diagram
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS4.2GridServiceDesignandImplementation-LexEVSGridServiceSequenceDiagram" rel="nofollow">
+              LexEVS Grid Service Sequence Diagram
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#LexEVS4.2GridServiceDesignandImplementation-Assumptions" rel="nofollow">
+          Assumptions
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS4.2GridServiceDesignandImplementation-Dependencies" rel="nofollow">
+          Dependencies
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS4.2GridServiceDesignandImplementation-Issues" rel="nofollow">
+          Issues
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS4.2GridServiceDesignandImplementation-ThirdPartyTools" rel="nofollow">
+          Third Party Tools
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#LexEVS4.2GridServiceDesignandImplementation-ImplementationContents" rel="nofollow">
+      Implementation Contents
+    </a>
+    <ul>
+      <li>
+        <a href="#LexEVS4.2GridServiceDesignandImplementation-Server" rel="nofollow">
+          Server
+        </a>
+        <ul>
+          <li>
+            <a href="#LexEVS4.2GridServiceDesignandImplementation-Algorithms" rel="nofollow">
+              Algorithms
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS4.2GridServiceDesignandImplementation-BatchProcesses" rel="nofollow">
+              Batch Processes
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS4.2GridServiceDesignandImplementation-APIs" rel="nofollow">
+              APIs
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS4.2GridServiceDesignandImplementation-MainServiceAPI" rel="nofollow">
+              Main Service API
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS4.2GridServiceDesignandImplementation-UsingtheAPI" rel="nofollow">
+              Using the API
+            </a>
+            <ul>
+              <li>
+                <a href="#LexEVS4.2GridServiceDesignandImplementation-getCodingSchemeConcepts" rel="nofollow">
+                  getCodingSchemeConcepts
+                </a>
+              </li>
+              <li>
+                <a href="#LexEVS4.2GridServiceDesignandImplementation-getFilter" rel="nofollow">
+                  getFilter
+                </a>
+              </li>
+              <li>
+                <a href="#LexEVS4.2GridServiceDesignandImplementation-getSortAlgorithm" rel="nofollow">
+                  getSortAlgorithm
+                </a>
+              </li>
+              <li>
+                <a href="#LexEVS4.2GridServiceDesignandImplementation-getFilterExtensions" rel="nofollow">
+                  getFilterExtensions
+                </a>
+              </li>
+              <li>
+                <a href="#LexEVS4.2GridServiceDesignandImplementation-getServiceMetadata" rel="nofollow">
+                  getServiceMetadata
+                </a>
+              </li>
+              <li>
+                <a href="#LexEVS4.2GridServiceDesignandImplementation-getSupportedCodingSchemes" rel="nofollow">
+                  getSupportedCodingSchemes
+                </a>
+              </li>
+              <li>
+                <a href="#LexEVS4.2GridServiceDesignandImplementation-getLastUpdateTime" rel="nofollow">
+                  getLastUpdateTime
+                </a>
+              </li>
+              <li>
+                <a href="#LexEVS4.2GridServiceDesignandImplementation-resolveCodingScheme" rel="nofollow">
+                  resolveCodingScheme
+                </a>
+              </li>
+              <li>
+                <a href="#LexEVS4.2GridServiceDesignandImplementation-getNodeGraph" rel="nofollow">
+                  getNodeGraph
+                </a>
+              </li>
+              <li>
+                <a href="#LexEVS4.2GridServiceDesignandImplementation-getMatchAlgorithms" rel="nofollow">
+                  getMatchAlgorithms
+                </a>
+              </li>
+              <li>
+                <a href="#LexEVS4.2GridServiceDesignandImplementation-getGenericExtensions" rel="nofollow">
+                  getGenericExtensions
+                </a>
+              </li>
+              <li>
+                <a href="#LexEVS4.2GridServiceDesignandImplementation-getGenericExtension" rel="nofollow">
+                  getGenericExtension
+                </a>
+              </li>
+              <li>
+                <a href="#LexEVS4.2GridServiceDesignandImplementation-getHistoryService" rel="nofollow">
+                  getHistoryService
+                </a>
+              </li>
+              <li>
+                <a href="#LexEVS4.2GridServiceDesignandImplementation-getSortAlgorithms" rel="nofollow">
+                  getSortAlgorithms
+                </a>
+              </li>
+              <li>
+                <a href="#LexEVS4.2GridServiceDesignandImplementation-resolveCodingSchemeCopyright" rel="nofollow">
+                  resolveCodingSchemeCopyright
+                </a>
+              </li>
+              <li>
+                <a href="#LexEVS4.2GridServiceDesignandImplementation-setSecurityToken" rel="nofollow">
+                  setSecurityToken
+                </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#LexEVS4.2GridServiceDesignandImplementation-APIExamples" rel="nofollow">
+          API Examples
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS4.2GridServiceDesignandImplementation-ServiceContextsandState" rel="nofollow">
+          Service Contexts and State
+        </a>
+        <ul>
+          <li>
+            <a href="#LexEVS4.2GridServiceDesignandImplementation-ObtainingaServiceContextReference" rel="nofollow">
+              Obtaining a Service Context Reference
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS4.2GridServiceDesignandImplementation-Resources" rel="nofollow">
+              Resources
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS4.2GridServiceDesignandImplementation-ServiceContextSequence" rel="nofollow">
+              Service Context Sequence
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#LexEVS4.2GridServiceDesignandImplementation-SupportedServiceContexts." rel="nofollow">
+          Supported Service Contexts.
+        </a>
+        <ul>
+          <li>
+            <a href="#LexEVS4.2GridServiceDesignandImplementation-CodedNodeSet" rel="nofollow">
+              CodedNodeSet
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS4.2GridServiceDesignandImplementation-CodedNodeGraph" rel="nofollow">
+              CodedNodeGraph
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS4.2GridServiceDesignandImplementation-LexBIGServiceConvenienceMethods" rel="nofollow">
+              LexBIGServiceConvenienceMethods
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS4.2GridServiceDesignandImplementation-LexBIGServiceMetadata" rel="nofollow">
+              LexBIGServiceMetadata
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS4.2GridServiceDesignandImplementation-HistoryService" rel="nofollow">
+              HistoryService
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS4.2GridServiceDesignandImplementation-Sort" rel="nofollow">
+              Sort
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS4.2GridServiceDesignandImplementation-Filter" rel="nofollow">
+              Filter
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS4.2GridServiceDesignandImplementation-ResolvedConceptReferencesIterator" rel="nofollow">
+              ResolvedConceptReferencesIterator
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS4.2GridServiceDesignandImplementation-ErrorHandling" rel="nofollow">
+              Error Handling
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#LexEVS4.2GridServiceDesignandImplementation-DatabaseChanges" rel="nofollow">
+          Database Changes
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS4.2GridServiceDesignandImplementation-Client" rel="nofollow">
+          Client
+        </a>
+        <ul>
+          <li>
+            <a href="#LexEVS4.2GridServiceDesignandImplementation-JSP/HTML" rel="nofollow">
+              JSP/HTML
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS4.2GridServiceDesignandImplementation-Servlet" rel="nofollow">
+              Servlet
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#LexEVS4.2GridServiceDesignandImplementation-SecurityIssues" rel="nofollow">
+          Security Issues
+        </a>
+        <ul>
+          <li>
+            <a href="#LexEVS4.2GridServiceDesignandImplementation-LexEVSGridServiceSecurity" rel="nofollow">
+              LexEVS Grid Service Security
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS4.2GridServiceDesignandImplementation-AccessingSecureContent" rel="nofollow">
+              Accessing Secure Content
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS4.2GridServiceDesignandImplementation-ImplementationofSecurity" rel="nofollow">
+              Implementation of Security
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#LexEVS4.2GridServiceDesignandImplementation-Performance" rel="nofollow">
+          Performance
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS4.2GridServiceDesignandImplementation-Internationalization" rel="nofollow">
+          Internationalization
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS4.2GridServiceDesignandImplementation-Installation/Packaging" rel="nofollow">
+          Installation / Packaging
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS4.2GridServiceDesignandImplementation-Migration" rel="nofollow">
+          Migration
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#LexEVS4.2GridServiceDesignandImplementation-SystemTesting" rel="nofollow">
+      System Testing
+    </a>
+  </li>
+</ul>
+Unable to render {include} The included page could not be found.
+<h2 id="LexEVS4.2GridServiceDesignandImplementation-RevisionHistory">
+  Revision History
+</h2>
+Content changes to this document from the previous to the current level are indicated by revision bars (|) unless a complete rewrite is indicated.
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Date
+      </th>
+      <th>
+        Version
+      </th>
+      <th>
+        Description
+      </th>
+      <th>
+        Author
+      </th>
+    </tr>
+    <tr>
+      <td>
+        07/29/2008
+      </td>
+      <td>
+        1.0
+      </td>
+      <td>
+        Initial document
+      </td>
+      <td>
+        Kevin Peterson
+      </td>
+    </tr>
+    <tr>
+      <td>
+        8/30/2008
+      </td>
+      <td>
+        1.1
+      </td>
+      <td>
+        Revised for Security and Exception Handling
+      </td>
+      <td>
+        Kevin Peterson
+      </td>
+    </tr>
+  </tbody>
+</table>
+NoteIf this document has been inspected, please indicate the inspection date that each version is based on in the &#34;Change Description and Explanation&#34; area. Entries in this log must be maintained for at least 3 years.
+<h2 id="LexEVS4.2GridServiceDesignandImplementation-DocumentPurpose">
+  Document Purpose
+</h2>
+This document provides the detailed design and implementation of LexBIG Enterprise Vocabulary Service (LexEVS) caGrid Service. It should be noted that the LexEVS Grid Service is no longer part of the caGrid 1.1 infrastructure and will be deployed as a separate unit. This is a change from the previous release of the LexEVS Grid Service.The LexEVS caGrid service will allow programs to utilize the caGrid 1.2 infrastructure to access LexEVS information that is currently being produced by NCICB.
+<h2 id="LexEVS4.2GridServiceDesignandImplementation-ImplementationOverview">
+  Implementation Overview
+</h2>
+<h3 id="LexEVS4.2GridServiceDesignandImplementation-TeamMembers">
+  Team Members
+</h3>
+The following table lists team members.
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Role
+      </th>
+      <th>
+        Name
+      </th>
+    </tr>
+    <tr>
+      <td>
+        Development Lead
+      </td>
+      <td>
+        Kevin Peterson
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Documentation Lead
+      </td>
+      <td>
+        Kevin Peterson
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Project Manager
+      </td>
+      <td>
+        Tom Johnson
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h3 id="LexEVS4.2GridServiceDesignandImplementation-Description">
+  Description
+</h3>
+The LexEVS grid service will be used to obtain data accessible via the EVS API 4.2 service, specifically, the Distributed LexBIG services. Please refer to the caCORE EVS API 4.0 technical guide for details on the EVS API 4.2 EVS APIs, and the LexBIG 2.3 Technical and Admin guide for details about LexBIG 2.3.For more Documentation, Build/Deployment instructions and examples, refer to the
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=189825334" rel="nofollow">
+  project documentation on the GForge archive page
+</a>
+.
+<h3 id="LexEVS4.2GridServiceDesignandImplementation-Scope">
+  Scope
+</h3>
+The LexEVS Grid service will provide programmatic access to the LexBIG domain objects that are available via the LexBIG information model.The LexEVS grid service will be registered in Cancer Data Standards Repository (caDSR) under the following category:
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Category
+      </th>
+      <td>
+        LexEVS Grid Service
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Context
+      </th>
+      <td>
+        caBIG
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Classification Scheme
+      </th>
+      <td>
+        LexBIG
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Version
+      </th>
+      <td>
+        LexBIG_v2_3_rv1
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h3 id="LexEVS4.2GridServiceDesignandImplementation-Architecture">
+  Architecture
+</h3>
+The LexEVS Grid Service is implemented to expose the API and Model of LexBIG 2.3. For more information on LexBIG, see
+<a href="http://informatics.mayo.edu" rel="nofollow">
+  the Mayo Clinic website
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+.LexEVS Grid Service is deployed in a
+<a href="http://www.jboss.org/" rel="nofollow">
+  JBoss
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+Application Server, inside of a
+<a href="http://www.globus.org/" rel="nofollow">
+  Globus
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+Web Application installation. LexEVS Grid Service depends on
+<a href="http://evsapi.nci.nih.gov/" rel="nofollow">
+  EVSAPI
+</a>
+, which is also deployed to a JBoss container. For more information on the deployment of EVSAPI, see the
+<a href="https://wiki.nci.nih.gov/x/pQFfCw" rel="nofollow">
+  GForge archive
+</a>
+.EVSAPI itself depends on an installation of
+<a href="http://informatics.mayo.edu" rel="nofollow">
+  LexBIG
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+.The diagram below shows the various components of the LexEVS Grid Service System and how they interact.
+<img alt="diagram that shows the various components of the LexEVS Grid Service System and how they interact" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%204.2%20Grid%20Service%20Design%20and%20Implementation/LexEVS_GridService_System_Components.jpg?api=v2">
+LexEVS Grid Service and EVSAPI need not be deployed to physically separate servers, but it is recommended that if they are co-located on the same server, they should be deployed to separate JBoss containers.Below is the LexEVS Grid Service Architecture, viewed from inside of the Web Service Container. For more information on how Service Contexts and Resources are used, see the section,
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427413" rel="nofollow">
+  Service Contexts and State
+</a>
+below.
+<img src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%204.2%20Grid%20Service%20Design%20and%20Implementation/LexEVS_GridService_Architecture.jpg?api=v2">
+<h4 id="LexEVS4.2GridServiceDesignandImplementation-LexEVSGridServiceClassDiagram">
+  LexEVS Grid Service Class Diagram
+</h4>
+The LexEVS Grid Service is built on the LexGrid/LexBIG model and implementation. For more information about this model, visit:
+Historical link
+https://gforge.nci.nih.gov/plugins/scmsvn/viewcvs.php/LexBIG_Core_Services/LexBIG-2.3/lexbig/lbModel/?root=lexevs
+and
+Historical link
+https://gforge.nci.nih.gov/plugins/scmsvn/viewcvs.php/LexBIG_Core_Services/LexBIG-2.3/lgModel/?root=lexevs
+Also, visit
+<a href="http://informatics.mayo.edu" rel="nofollow">
+  the Mayo website
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+for background information as well as Class Diagrams, examples, and other information.For information specific to the LexEVS Grid Service, visit:
+Historical link
+https://gforge.nci.nih.gov/plugins/scmsvn/viewcvs.php/LexBIG_Core_Services/LexBIG-2.3/lexbig/lbModel.cagrid/?root=lexevs
+This link contains Class Diagrams and descriptions for input/output parameters, as well as other information concerning the Silver Level Compliance submission package.
+<h4 id="LexEVS4.2GridServiceDesignandImplementation-LexEVSGridServiceSequenceDiagram">
+  LexEVS Grid Service Sequence Diagram
+</h4>
+The sequence diagram for the operation &#34;getSupportedCodingSchemes&#34; is described below:
+<img alt="sequence diagram for getSupportedCodingSchemes operation" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%204.2%20Grid%20Service%20Design%20and%20Implementation/GetSupportedCodingSchemes_Sequence_Diagram.jpg?api=v2">
+The following diagram shows a General Call Sequence from the client, through the caGrid Service, to the Distributed LexBIG and the returned results:
+<img alt="diagram showing a general call sequence" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%204.2%20Grid%20Service%20Design%20and%20Implementation/General_Call_Sequence_Example.jpg?api=v2">
+<h3 id="LexEVS4.2GridServiceDesignandImplementation-Assumptions">
+  Assumptions
+</h3>
+<ul>
+  <li>
+    The LexEVS service will be based on the latest EVSAPI 4.2 patch release built by NCICB.
+  </li>
+  <li>
+    The LexBIG 2.3 domain model will be loaded in the GME and caDSR.
+  </li>
+  <li>
+    The LexEVS Grid Service will not have any method level security. All security requirements will be handled by the actual deployment of the underlying EVSAPI 4.2 service. Please see the &#34;Security&#34; section below for more information on how the LexEVS Grid Service utilizes this security.
+  </li>
+  <li>
+    The LexEVS Grid Service will not be deployed as a &#34;core&#34; service by caGrid at NCICB as was previously done, but rather will now be deployed as a standalone service.
+  </li>
+  <li>
+    The LexEVS Grid Service release schedule will no longer be coupled to the caGrid deployment schedule as previously done.
+  </li>
+  <li>
+    Multiple version of LexEVS Grid Service may be active at the same instance in time depending solely on the availability of the underlining EVSAPI service.
+  </li>
+</ul>
+<h3 id="LexEVS4.2GridServiceDesignandImplementation-Dependencies">
+  Dependencies
+</h3>
+<ul>
+  <li>
+    EVSAPI 4.2 service needs to be available and running correctly.
+  </li>
+  <li>
+    The LexBIG 2.3 domain model needs to be registered in caDSR.
+  </li>
+  <li>
+    The LexEVS service and operations will use the Introduce toolkit to generate the appropriate structure for registering the service into caDSR.
+  </li>
+</ul>
+<h3 id="LexEVS4.2GridServiceDesignandImplementation-Issues">
+  Issues
+</h3>
+<ul>
+  <li>
+    None
+  </li>
+</ul>
+<h3 id="LexEVS4.2GridServiceDesignandImplementation-ThirdPartyTools">
+  Third Party Tools
+</h3>
+<ul>
+  <li>
+    Introduce Toolkit
+  </li>
+  <li>
+    Globus Toolkit (4.0.3) or appropriate version supported by caGrid 1.2
+  </li>
+  <li>
+    caGrid 1.2 core infrastructure
+  </li>
+</ul>
+<h2 id="LexEVS4.2GridServiceDesignandImplementation-ImplementationContents">
+  Implementation Contents
+</h2>
+<h3 id="LexEVS4.2GridServiceDesignandImplementation-Server">
+  Server
+</h3>
+The LexEVS Grid Service will be deployed as a &#34;stand alone&#34; grid service at NCICB.
+<h4 id="LexEVS4.2GridServiceDesignandImplementation-Algorithms">
+  Algorithms
+</h4>
+None
+<h4 id="LexEVS4.2GridServiceDesignandImplementation-BatchProcesses">
+  Batch Processes
+</h4>
+None
+<h4 id="LexEVS4.2GridServiceDesignandImplementation-APIs">
+  APIs
+</h4>
+The main Service API exposed by the LexEVS Grid service will be the
+<a href="http://informatics.mayo.edu/LexGrid/downloads/javadocGrid/org/LexGrid/LexBIG/cagrid/interfaces/LexBIGServiceGrid.html" rel="nofollow">
+  http://informatics.mayo.edu/LexGrid/downloads/javadocGrid/org/LexGrid/LexBIG/cagrid/interfaces/LexBIGServiceGrid.html
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+Interface. All other APIs will not be directly exposed, but will be made available through Service Contexts.In General, API calls will follow the sequence which is shown in the following diagram:
+<ol>
+  <li>
+    Client invokes caGrid service .
+  </li>
+  <li>
+    caGrid Service uses Distributed LexBIG to implement call.
+  </li>
+  <li>
+    Distributed LexBIG returns requested info to caGrid service.
+  </li>
+  <li>
+    caGrid service sends response to client.
+  </li>
+</ol>
+<img alt="diagram showing the sequence of API calls" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%204.2%20Grid%20Service%20Design%20and%20Implementation/API_Calls_Sequence.jpg?api=v2">
+<h4 id="LexEVS4.2GridServiceDesignandImplementation-MainServiceAPI">
+  Main Service API
+</h4>
+<a href="http://informatics.mayo.edu/LexGrid/downloads/javadocGrid/org/LexGrid/LexBIG/cagrid/interfaces/LexBIGServiceGrid.html" rel="nofollow">
+  http://informatics.mayo.edu/LexGrid/downloads/javadocGrid/org/LexGrid/LexBIG/cagrid/interfaces/LexBIGServiceGrid.html
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+<h4 id="LexEVS4.2GridServiceDesignandImplementation-UsingtheAPI">
+  Using the API
+</h4>
+To use the LexEVS Grid Services, either org.LexGrid.LexBIG.cagrid.adapters.LexBIGServiceAdapter or org.LexGrid.LexBIG.cagrid.adapters.LexBIGServiceGridAdapter objects may be instantiated. These are two different Interfaces for accessing the Grid Services.
+<ul>
+  <li>
+    org.LexGrid.LexBIG.cagrid.adapters.LexBIGServiceAdapter- An Interface for interacting with the LexEVS Grid Services. This Interface is intended to mirror the existing LexBIG API as much as possible. There is no object wrapping for semantic purposes on this interface. This allows existing applications using the LexBIG API to used Grid Services without code changes. This Interface may be acquired by instantiating LexBIGServiceAdapter with the Grid Service URL as a parameter.
+    LexBIGService lbs = new LexBIGServiceAdapter(&#34;http://...&#34;);
+  </li>
+</ul>
+<ul>
+  <li>
+    org.LexGrid.LexBIG.cagrid.adapters.LexBIGServiceGridAdapter- An Interface for interacting with the LexEVS Grid Services. This Interfaces is the Semantically defined interface. All method parameters and return values are defined and annotated as CDEs to be loaded into CADSR. This Interface is intended to be caGrid Silver Level Compliant. This Interface may be acquired by instantiating LexBIGServiceGridAdapter with the Grid Service URL as a parameter.
+    	LexBIGServiceGrid lbs = new LexBIGServiceGridAdapter(&#34;http://...&#34;);
+  </li>
+</ul>
+<h5 id="LexEVS4.2GridServiceDesignandImplementation-getCodingSchemeConcepts">
+  getCodingSchemeConcepts
+</h5>
+getCodingSchemeConcepts(String, CodingSchemeVersionOrTag)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description
+      </th>
+      <td>
+        Returns the set of all (or all active) concepts in the specified coding scheme.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input
+      </th>
+      <td>
+        org.LexGrid.LexBIG.DataModel.cagrid.CodingSchemeIdentification, org.LexGrid.LexBIG.DataModel.Core.CodingSchemeVersionOrTag
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output
+      </th>
+      <td>
+        org.LexGrid.LexBIG.cagrid.LexBIGCaGridServices.CodedNodeSet.stubs.types.CodedNodeSetReference
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception
+      </th>
+      <td>
+        RemoteException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details
+      </th>
+      <td>
+        <ol>
+          <li>
+            Create a Resource on the server and populate it with the requested org.LexGrid.LexBIG.LexBIGService.CodedNodeSet.
+          </li>
+          <li>
+            Return the Client Reference to the user. This Reference has the above org.LexGrid.LexBIG.LexBIGService.CodedNodeSet as a Resource. An org.LexGrid.LexBIG.cagrid.LexBIGCaGridServices.service.CodedNodeSetClient object is built from the above Reference.
+          </li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Sample Call:
+      </th>
+      <td>
+        <ol>
+          <li>
+            Connect to the LexBIG caGrid Service using the org.LexGrid.LexBIG.cagrid.adapters.LexBIGServiceAdapter or org.LexGrid.LexBIG.cagrid.adapters.LexBIGServiceGridAdapter LexBIGServiceGrid lbs = new LexBIGServiceGridAdapter(url);
+          </li>
+          <li>
+            Build a org.LexGrid.LexBIG.DataModel.Core.CodingSchemeVersionOrTag containing the Version information for the desired Coding Scheme
+            CodingSchemeVersionOrTag csvt = new CodingSchemeVersionOrTag();
+            csvt.setVersion(&#34;testVersion&#34;);
+          </li>
+          <li>
+            Build an org.LexGrid.LexBIG.DataModel.cagrid.CodingSchemeIdentification to hold the Coding Scheme name.
+            CodingSchemeIdentification codingScheme = new CodingSchemeIdentification();
+            codingScheme.setCode(code);
+          </li>
+          <li>
+            Invoke the LexBIG caGrid service as follows: CodedNodeSetGrid cns = lbs.getCodingSchemeConcepts(codingScheme, csvt);
+          </li>
+        </ol>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h5 id="LexEVS4.2GridServiceDesignandImplementation-getFilter">
+  getFilter
+</h5>
+getFilter(ExtensionIdentification)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description
+      </th>
+      <td>
+        Returns an instance of the filter extension registered with the given name.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input
+      </th>
+      <td>
+        org.LexGrid.LexBIG.DataModel.cagrid.ExtensionIdentification
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.cagrid.LexBIGCaGridServices.Filter.stubs.types.FilterReference
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception
+      </th>
+      <td>
+        RemoteException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details
+      </th>
+      <td>
+        <ol>
+          <li>
+            Create a Resource on the server and populate it with the requested org.LexGrid.LexBIG.Extensions.Query.Filter
+          </li>
+          <li>
+            Return the Client Reference to the user. This Reference has the above org.LexGrid.LexBIG.Extensions.Query.Filter as a Resource. This client is a Service Context that allows the user to call regular org.LexGrid.LexBIG.Extensions.Query.Filter API calls through the grid service. An org.LexGrid.LexBIG.cagrid.LexBIGCaGridServices.Filter.client.FilterClient object is built from the above Reference. This FilterClient implements the Interface org.LexGrid.LexBIG.Extensions.Query.Filter. This makes calling Grid Service Calls through org.LexGrid.LexBIG.cagrid.LexBIGCaGridServices.Filter.client.FilterClient transparent to the end user.
+          </li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Sample Call
+      </th>
+      <td>
+        <ol>
+          <li>
+            Connect to the LexBIG caGrid Service using the org.LexGrid.LexBIG.cagrid.adapters.LexBIGServiceAdapter or org.LexGrid.LexBIG.cagrid.adapters.LexBIGServiceGridAdapter LexBIGServiceGrid lbs = new LexBIGServiceGridAdapter(url);
+          </li>
+          <li>
+            Build an org.LexGrid.LexBIG.DataModel.cagrid.ExtensionIdentification to hold the Extension name.
+            ExtensionIdentification extension = new ExtensionIdentification();
+            extension.setLexBIGExtensionName(name);
+          </li>
+          <li>
+            Invoke the LexBIG caGrid service as follows: Filter filter = lbs.getFilter(extension);
+          </li>
+        </ol>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h5 id="LexEVS4.2GridServiceDesignandImplementation-getSortAlgorithm">
+  getSortAlgorithm
+</h5>
+getSortAlgorithm(ExtensionIdentification)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description
+      </th>
+      <td>
+        Returns an instance of the filter extension registered with the given name.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input
+      </th>
+      <td>
+        org.LexGrid.LexBIG.DataModel.cagrid.ExtensionIdentification
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.cagrid.LexBIGCaGridServices.Sort.  stubs.types.SortReference
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception
+      </th>
+      <td>
+        RemoteException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details
+      </th>
+      <td>
+        <ol>
+          <li>
+            Create a Resource on the server and populate it with the requested org.LexGrid.LexBIG.Extensions.Query.Sort
+          </li>
+          <li>
+            Return the Client Reference to the user. This Reference has the above org.LexGrid.LexBIG.cagrid.LexBIGCaGridServices.Sort.client.SortClient as a Resource. This client is a Service Context that allows the user to call regular org.LexGrid.LexBIG.Extensions.Query.Sort API calls through the grid service. An org.LexGrid.LexBIG.cagrid.LexBIGCaGridServices.Sort.client.SortClient object is built from the above Reference. This SortClient implements the Interface org.LexGrid.LexBIG.Extensions.Query.Sort. This makes calling Grid Service Calls through org.LexGrid.LexBIG.cagrid.LexBIGCaGridServices.Sort.client.SortClient transparent to the end user.
+          </li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Sample Call
+      </th>
+      <td>
+        <ol>
+          <li>
+            Connect to the LexBIG caGrid Service using the org.LexGrid.LexBIG.cagrid.adapters.LexBIGServiceAdapter or org.LexGrid.LexBIG.cagrid.adapters.LexBIGServiceGridAdapter LexBIGServiceGrid lbs = new LexBIGServiceGridAdapter(url);
+          </li>
+          <li>
+            Build an org.LexGrid.LexBIG.DataModel.cagrid.ExtensionIdentification to hold the Extension name.
+            ExtensionIdentification extension = new ExtensionIdentification();
+            extension.setLexBIGExtensionName(name);
+          </li>
+          <li>
+            Invoke the LexBIG caGrid service as follows: Filter filter = lbs.getSortAlgorithm(extension);
+          </li>
+        </ol>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h5 id="LexEVS4.2GridServiceDesignandImplementation-getFilterExtensions">
+  getFilterExtensions
+</h5>
+getFilterExtensions()
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description
+      </th>
+      <td>
+        Returns a description of all registered extensions used to provide additional filtering of query results.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input
+      </th>
+      <td>
+        none
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output
+      </th>
+      <td>
+        org.LexGrid.LexBIG.DataModel.Collections.ExtensionDescriptionList
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception
+      </th>
+      <td>
+        RemoteException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details
+      </th>
+      <td>
+        Call this method on the associated LexBIG Service instance (or Distributed LexBIG instance) on the server, and forward the results.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Sample Call
+      </th>
+      <td>
+        <ol>
+          <li>
+            Connect to the LexBIG caGrid Service using the org.LexGrid.LexBIG.cagrid.adapters.LexBIGServiceAdapter or org.LexGrid.LexBIG.cagrid.adapters.LexBIGServiceGridAdapter LexBIGServiceGrid lbs = new LexBIGServiceGridAdapter(url);
+          </li>
+          <li>
+            Invoke the LexBIG caGrid service as follows: ExtensionDescriptionList extDescList = lbs.getFilterExtensions();
+          </li>
+        </ol>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h5 id="LexEVS4.2GridServiceDesignandImplementation-getServiceMetadata">
+  getServiceMetadata
+</h5>
+getServiceMetadata()
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description
+      </th>
+      <td>
+        Return an interface to perform system-wide query over metadata for loaded code systems and providers.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input
+      </th>
+      <td>
+        none
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output
+      </th>
+      <td>
+        org.LexGrid.LexBIG.cagrid.LexBIGCaGridServices.LexBIGServiceMetadata.  stubs.types.LexBIGServiceMetadataReference
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception
+      </th>
+      <td>
+        RemoteException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details
+      </th>
+      <td>
+        <ol>
+          <li>
+            Create a Resource on the server and populate it with the requested org.LexGrid.LexBIG.LexBIGService.LexBIGServiceMetadata
+          </li>
+          <li>
+            Return the LexBIGServiceMetadataClient to the user. This LexBIGServiceMetadataClient has the above org.LexGrid.LexBIG.LexBIGService.LexBIGServiceMetadata as a Resource. An org.LexGrid.LexBIG.cagrid.LexBIGCaGridServices.service.LexBIGServiceMetadataClient object is built from the above Reference.
+          </li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Sample Call
+      </th>
+      <td>
+        <ol>
+          <li>
+            Connect to the LexBIG caGrid Service using the org.LexGrid.LexBIG.cagrid.adapters.LexBIGServiceAdapter or org.LexGrid.LexBIG.cagrid.adapters.LexBIGServiceGridAdapter LexBIGServiceGrid lbs = new LexBIGServiceGridAdapter(url);
+          </li>
+          <li>
+            Invoke the LexBIG caGrid service as follows: LexBIGServiceMetadataGrid metadata = lbs.getServiceMetadata();
+          </li>
+        </ol>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h5 id="LexEVS4.2GridServiceDesignandImplementation-getSupportedCodingSchemes">
+  getSupportedCodingSchemes
+</h5>
+getSupportedCodingSchemes
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description
+      </th>
+      <td>
+        Return a list of coding schemes and versions that are supported by this service, along with their status.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input
+      </th>
+      <td>
+        none
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output
+      </th>
+      <td>
+        org.LexGrid.LexBIG.DataModel.Collections.CodingSchemeRenderingList
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception
+      </th>
+      <td>
+        RemoteException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details
+      </th>
+      <td>
+        Call this method on the associated LexBIG Service instance (or Distributed LexBIG instance) on the server, and forward the results.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Sample Call
+      </th>
+      <td>
+        <ol>
+          <li>
+            Connect to the LexBIG caGrid Service using the org.LexGrid.LexBIG.cagrid.adapters.LexBIGServiceAdapter or org.LexGrid.LexBIG.cagrid.adapters.LexBIGServiceGridAdapter LexBIGServiceGrid lbs = new LexBIGServiceGridAdapter(url);
+          </li>
+          <li>
+            Invoke the LexBIG caGrid service as follows: CodingSchemeRenderingList csrl = lbs.getSupportedCodingSchemes();
+          </li>
+        </ol>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h5 id="LexEVS4.2GridServiceDesignandImplementation-getLastUpdateTime">
+  getLastUpdateTime
+</h5>
+getLastUpdateTime()
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description
+      </th>
+      <td>
+        Return the last time that the content of this service was changed; null if no changes have occurred. Tag assignments do not count as service changes for this purpose.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input
+      </th>
+      <td>
+        none
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output
+      </th>
+      <td>
+        java.util.Date
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception
+      </th>
+      <td>
+        RemoteException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details
+      </th>
+      <td>
+        Call this method on the associated LexBIG Service instance (or Distributed LexBIG instance) on the server, and forward the results.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Sample Call:
+      </th>
+      <td>
+        <ol>
+          <li>
+            Connect to the LexBIG caGrid Service using the org.LexGrid.LexBIG.cagrid.adapters.LexBIGServiceAdapter or org.LexGrid.LexBIG.cagrid.adapters.LexBIGServiceGridAdapter LexBIGServiceGrid lbs = new LexBIGServiceGridAdapter(url);
+          </li>
+          <li>
+            Invoke the LexBIG caGrid service as follows: Date date = lbs.getLastUpdateTime();
+          </li>
+        </ol>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h5 id="LexEVS4.2GridServiceDesignandImplementation-resolveCodingScheme">
+  resolveCodingScheme
+</h5>
+resolveCodingScheme(CodingSchemeIdentification, CodingSchemeVersionOrTag)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description
+      </th>
+      <td>
+        Return detailed coding scheme information given a specific tag or version identifier.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input
+      </th>
+      <td>
+        org.LexGrid.LexBIG.DataModel.cagrid.CodingSchemeIdentification, org.LexGrid.LexBIG.DataModel.Core.CodingSchemeVersionOrTag
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output
+      </th>
+      <td>
+        org.LexGrid.codingSchemes.CodingScheme
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception
+      </th>
+      <td>
+        RemoteException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details
+      </th>
+      <td>
+        Call this method on the associated LexBIG Service instance (or Distributed LexBIG instance) on the server, and forward the results.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Sample Call
+      </th>
+      <td>
+        <ol>
+          <li>
+            Connect to the LexBIG caGrid Service using the org.LexGrid.LexBIG.cagrid.adapters.LexBIGServiceAdapter or org.LexGrid.LexBIG.cagrid.adapters.LexBIGServiceGridAdapter LexBIGServiceGrid lbs = new LexBIGServiceGridAdapter(url);
+          </li>
+          <li>
+            Build an org.LexGrid.LexBIG.DataModel.cagrid.CodingSchemeIdentification to hold the Coding Scheme name.
+            CodingSchemeIdentification codingScheme = new CodingSchemeIdentification();
+            codingScheme.setCode(code);
+          </li>
+          <li>
+            Build a org.LexGrid.LexBIG.DataModel.Core.CodingSchemeVersionOrTag containing the Version information for the desired Coding Scheme
+            CodingSchemeVersionOrTag csvt = new CodingSchemeVersionOrTag();
+            csvt.setVersion(&#34;testVersion&#34;);
+          </li>
+          <li>
+            Invoke the LexBIG caGrid service as follows: CodedNodeSetGrid cns = lbs.resolveCodingScheme(codingScheme, csvt);
+          </li>
+        </ol>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h5 id="LexEVS4.2GridServiceDesignandImplementation-getNodeGraph">
+  getNodeGraph
+</h5>
+getNodeGraph(CodingSchemeIdentification, CodingSchemeVersionOrTag, RelationContainerIdentification)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description
+      </th>
+      <td>
+        Returns the node graph as represented in the particular relationship set in the coding scheme.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input
+      </th>
+      <td>
+        org.LexGrid.LexBIG.DataModel.cagrid.CodingSchemeIdentification, org.LexGrid.LexBIG.DataModel.Core.CodingSchemeVersionOrTag,  org.LexGrid.LexBIG.DataModel.cagrid.RelationContainerIdentification
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output
+      </th>
+      <td>
+        &#39;&#39;org.LexGrid.LexBIG.cagrid.LexBIGCaGridServices. CodedNodeGraph.stubs.types.CodedNodeGraphReference&#39;&#39;
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception
+      </th>
+      <td>
+        RemoteException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details
+      </th>
+      <td>
+        <ol>
+          <li>
+            Create a Resource on the server and populate it with the requested org.LexGrid.LexBIG.LexBIGService.CodedNodeGraph.
+          </li>
+          <li>
+            Return the Client Reference to the user. This Reference has the above org.LexGrid.LexBIG.LexBIGService.CodedNodeGraph as a Resource. An org.LexGrid.LexBIG.cagrid.LexBIGCaGridServices.service.CodedNodeGraphClient object is built from the above Reference.
+          </li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Sample Call
+      </th>
+      <td>
+        <ol>
+          <li>
+            Connect to the LexBIG caGrid Service using the org.LexGrid.LexBIG.cagrid.adapters.LexBIGServiceAdapter or org.LexGrid.LexBIG.cagrid.adapters.LexBIGServiceGridAdapter LexBIGServiceGrid lbs = new LexBIGServiceGridAdapter(url);
+          </li>
+          <li>
+            Build an org.LexGrid.LexBIG.DataModel.cagrid.CodingSchemeIdentification to hold the Coding Scheme name.
+            CodingSchemeIdentification codingScheme = new
+            CodingSchemeIdentification();
+            codingScheme.setCode(code);
+          </li>
+          <li>
+            Build an org.LexGrid.LexBIG.DataModel.Core.CodingSchemeVersionOrTag containing the Version information for the desired Coding Scheme
+            CodingSchemeVersionOrTag csvt = new CodingSchemeVersionOrTag();
+            csvt.setVersion(&#34;testVersion&#34;);
+          </li>
+          <li>
+            Build an org.LexGrid.LexBIG.DataModel.cagrid.RelationContainerIdentification containing the Relation Container information.
+            RelationContainerIdentification container = new
+            RelationContainerIdentification();
+            container.setDc(name);
+          </li>
+          <li>
+            Invoke the LexBIG caGrid service as follows, providing String parameters for the desired Coding Scheme and Relationship Name: CodedNodeGraphGrid cng = client.getNodeGraph(codingScheme, csvt, container);
+          </li>
+        </ol>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h5 id="LexEVS4.2GridServiceDesignandImplementation-getMatchAlgorithms">
+  getMatchAlgorithms
+</h5>
+getMatchAlgorithms()
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Returns the node graph as represented in the particular relationship set in the coding scheme.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        none
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.DataModel.Collections.ModuleDescriptionList
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        RemoteException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details:
+      </th>
+      <td>
+        Call this method on the associated LexBIG Service instance (or Distributed LexBIG instance) on the server, and forward the results.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Sample Call:
+      </th>
+      <td>
+        <ol>
+          <li>
+            Connect to the LexBIG caGrid Service using the org.LexGrid.LexBIG.cagrid.adapters.LexBIGServiceAdapter or org.LexGrid.LexBIG.cagrid.adapters.LexBIGServiceGridAdapter LexBIGServiceGrid lbs = new LexBIGServiceGridAdapter(url);
+          </li>
+          <li>
+            Invoke the LexBIG caGrid service as follows: ModuleDescriptionList mdl = lbs.getMatchAlgorithms();
+          </li>
+        </ol>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h5 id="LexEVS4.2GridServiceDesignandImplementation-getGenericExtensions">
+  getGenericExtensions
+</h5>
+getGenericExtensions()
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Returns a description of all registered extensions used to implement application-specific behavior that is centrally accessible from a LexBIGService. Note that only generic extensions (base class GenericExtension) will be listed here. All other classes are retrievable at the appropriate interface point (filter, sort, etc).
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        none
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.DataModel.Collections.ExtensionDescriptionList
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        RemoteException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details:
+      </th>
+      <td>
+        Call this method on the associated LexBIG Service instance (or Distributed LexBIG instance) on the server, and forward the results.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Sample Call:
+      </th>
+      <td>
+        <ol>
+          <li>
+            Connect to the LexBIG caGrid Service using the org.LexGrid.LexBIG.cagrid.adapters.LexBIGServiceAdapter or org.LexGrid.LexBIG.cagrid.adapters.LexBIGServiceGridAdapter LexBIGServiceGrid lbs = new LexBIGServiceGridAdapter(url);
+          </li>
+          <li>
+            Invoke the LexBIG caGrid service as follows: ExtensionDescriptionList edl = lbs.getGenericExtensions();
+          </li>
+        </ol>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h5 id="LexEVS4.2GridServiceDesignandImplementation-getGenericExtension">
+  getGenericExtension
+</h5>
+getGenericExtensions(ExtensionIdentification)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Returns an instance of the application-specific extension registered with the given name.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.DataModel.cagrid.ExtensionIdentification
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.DataModel.Collections.SortDescriptionList
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        RemoteException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details:
+      </th>
+      <td>
+        Call this method on the associated LexBIG Service instance (or Distributed LexBIG instance) on the server, and forward the results.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Sample Call:
+      </th>
+      <td>
+        <ol>
+          <li>
+            Connect to the LexBIG caGrid Service using the org.LexGrid.LexBIG.cagrid.adapters.LexBIGServiceAdapter or org.LexGrid.LexBIG.cagrid.adapters.LexBIGServiceGridAdapter LexBIGServiceGrid lbs = new LexBIGServiceGridAdapter(url);NoteCurrently this method will return a LexBIGServiceConvenienceMethods instance.
+          </li>
+          <li>
+            Build an org.LexGrid.LexBIG.DataModel.cagrid.ExtensionIdentification to hold the Extension name.
+            ExtensionIdentification extension = new ExtensionIdentification();
+            extension.setLexBIGExtensionName(&#34;LexBIGServiceConvenienceMethods&#34;);
+          </li>
+          <li>
+            Invoke the LexBIG caGrid service as follows: LexBIGServiceConvenienceMethodsGrid lbscm = lbs.getGenericExtensions(extension);
+          </li>
+          <li>
+            Return the LexBIGServiceConvenienceMethodsClient to the user. This LexBIGServiceConvenienceMethodsClient has the above org.LexGrid.LexBIG.Extensions.Generic.LexBIGServiceConvenienceMethods as a Resource. An org.LexGrid.LexBIG.cagrid.LexBIGCaGridServices.service.CodedNodeGraphClient object is built from the above Reference.
+          </li>
+        </ol>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h5 id="LexEVS4.2GridServiceDesignandImplementation-getHistoryService">
+  getHistoryService
+</h5>
+getHistoryService(CodingSchemeIdentification)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Resolve a reference to the history api servicing the given coding scheme.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.DataModel.cagrid.CodingSchemeIdentification
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        &#39;&#39;org.LexGrid.LexBIG.cagrid.LexBIGCaGridServices. HistoryService.stubs.types.HistoryServiceReference&#39;&#39;
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        RemoteException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details:
+      </th>
+      <td>
+        <ol>
+          <li>
+            Call this method on the associated LexBIG Service instance (or Distributed LexBIG instance) on the server, and forward the results.
+          </li>
+          <li>
+            Return the HistoryServiceClient to the user. This HistoryServiceClient has the above org.LexGrid.LexBIG.History.HistoryService as a Resource. This Client is a Service Context that allows the user to call regular org.LexGrid.LexBIG.History.HistoryService API calls through the grid service. HistoryServiceClient implements the Interface org.LexGrid.LexBIG.History.HistoryService. This makes calling Grid Service Calls through org.LexGrid.LexBIG.cagrid.LexBIGCaGridServices.HistoryService.client.HistoryServiceClient transparent to the end user.
+          </li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Sample Call:
+      </th>
+      <td>
+        <ol>
+          <li>
+            Connect to the LexBIG caGrid Service using the org.LexGrid.LexBIG.cagrid.adapters.LexBIGServiceAdapter or org.LexGrid.LexBIG.cagrid.adapters.LexBIGServiceGridAdapter LexBIGServiceGrid lbs = new LexBIGServiceGridAdapter(url);
+          </li>
+          <li>
+            Build an org.LexGrid.LexBIG.DataModel.cagrid.CodingSchemeIdentification to hold the Coding Scheme name.
+            CodingSchemeIdentification codingScheme = new CodingSchemeIdentification();
+            codingScheme.setCode(code);
+          </li>
+          <li>
+            Invoke the LexBIG caGrid service as follows: HistoryServiceGrid history = lbs.getHistoryService(codingScheme);
+          </li>
+        </ol>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h5 id="LexEVS4.2GridServiceDesignandImplementation-getSortAlgorithms">
+  getSortAlgorithms
+</h5>
+getSortAlgorithms(SortContext)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Returns a description of all registered extensions used to provide additional filtering of query results.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.DataModel.InterfaceElements.types.SortContext
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.DataModel.Collections.SortDescriptionList
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        RemoteException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details:
+      </th>
+      <td>
+        Call this method on the associated LexBIG Service instance (or Distributed LexBIG instance) on the server, and forward the results.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Sample Call:
+      </th>
+      <td>
+        <ol>
+          <li>
+            Connect to the LexBIG caGrid Service using the org.LexGrid.LexBIG.cagrid.adapters.LexBIGServiceAdapter or org.LexGrid.LexBIG.cagrid.adapters.LexBIGServiceGridAdapter LexBIGServiceGrid lbs = new LexBIGServiceGridAdapter(url);
+          </li>
+          <li>
+            Invoke the LexBIG caGrid service as follows: SortDescriptionList sortDescList = lbs.getSortAlgorithms(sortContext);
+          </li>
+        </ol>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h5 id="LexEVS4.2GridServiceDesignandImplementation-resolveCodingSchemeCopyright">
+  resolveCodingSchemeCopyright
+</h5>
+resolveCodingSchemeCopyright(CodingSchemeIdentification)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Return coding scheme copyright given a specific tag or version identifier.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.DataModel.cagrid.CodingSchemeIdentification
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.DataModel.cagrid.CodingSchemeCopyRight
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        RemoteException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details:
+      </th>
+      <td>
+        Call this method on the associated LexBIG Service instance (or Distributed LexBIG instance) on the server, and forward the results.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Sample Call:
+      </th>
+      <td>
+        <ol>
+          <li>
+            Connect to the LexBIG caGrid Service using the org.LexGrid.LexBIG.cagrid.adapters.LexBIGServiceAdapter or org.LexGrid.LexBIG.cagrid.adapters.LexBIGServiceGridAdapter LexBIGServiceGrid lbs = new LexBIGServiceGridAdapter(url);
+          </li>
+          <li>
+            Build an org.LexGrid.LexBIG.DataModel.cagrid.CodingSchemeIdentification to hold the Coding Scheme name.
+            CodingSchemeIdentification codingScheme = new CodingSchemeIdentification();
+            codingScheme.setCode(code);
+          </li>
+          <li>
+            Build an org.LexGrid.LexBIG.DataModel.Core.CodingSchemeVersionOrTag containing the Version information for the desired Coding Scheme
+            CodingSchemeVersionOrTag csvt = new CodingSchemeVersionOrTag();
+            csvt.setVersion(&#34;testVersion&#34;);
+          </li>
+          <li>
+            Invoke the LexBIG caGrid service as follows: CodingSchemeCopyRight copyright = lbs.resolveCodingSchemeCopyright(codingScheme, csvt);
+          </li>
+        </ol>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h5 id="LexEVS4.2GridServiceDesignandImplementation-setSecurityToken">
+  setSecurityToken
+</h5>
+setSecurityToken(CodingSchemeIdentification, SecurityToken)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Sets the Security Token for the given Coding Scheme.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.DataModel.cagrid.CodingSchemeIdentification, gov.nih.nci.evs.security.SecurityToken
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        &#39;&#39;org.LexGrid.LexBIG.cagrid.LexEVSGridService.stubs.types .LexEVSGridServiceReference.LexEVSGridServiceReference&#39;&#39;
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        RemoteException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details:
+      </th>
+      <td>
+        Call this method on the associated LexBIG Service instance (or Distributed LexBIG instance) on the server, and forward the results.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Sample Call:
+      </th>
+      <td>
+        <ol>
+          <li>
+            Connect to the LexBIG caGrid Service using the org.LexGrid.LexBIG.cagrid.adapters.LexBIGServiceAdapter or org.LexGrid.LexBIG.cagrid.adapters.LexBIGServiceGridAdapter LexBIGServiceGrid lbs = new LexBIGServiceGridAdapter(url);
+          </li>
+          <li>
+            Build an org.LexGrid.LexBIG.DataModel.cagrid.CodingSchemeIdentification to hold the Coding Scheme name.
+            CodingSchemeIdentification codingScheme = new CodingSchemeIdentification();
+            codingScheme.setName(&#34;codingScheme&#34;);
+          </li>
+          <li>
+            Build an gov.nih.nci.evs.security.SecurityToken containing the security information for the desired Coding Scheme.
+            SecurityToken metaToken = new SecurityToken();
+            metaToken.setAccessToken(&#34;token&#34;);
+          </li>
+          <li>
+            Invoke the LexBIG caGrid service as follows: This will return a reference to a new &#34;LexBIGServiceGrid&#34; instance that is associated with the security properties that were passed in. LexBIGServiceGrid lbsg = lbs.setSecurityToken(codingScheme, metaToken);
+          </li>
+        </ol>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h3 id="LexEVS4.2GridServiceDesignandImplementation-APIExamples">
+  API Examples
+</h3>
+For an example clients, service calls, and SOAP messages, see the sample code on the
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=189825334" rel="nofollow">
+  LexEVS documentation GForge archive page
+</a>
+.Example API usage:Searching for concepts in NCI Thesaurus containing the string &#34;Gene&#34;
+//Create a Connection to the Grid Service
+LexBIGServiceGrid lbs = new LexBIGServiceGridAdapter(gridServiceURL);
+
+//Set up the CodingSchemeIdentification object to define the Coding Scheme
+CodingSchemeIdentification csid = new CodingSchemeIdentification();
+csid.setName(&#34;NCI Thesaurus&#34;);
+
+//Get the CodedNodeSet for that CodingScheme (This returns a CodedNodeSet Service Context)
+CodedNodeSetGrid cnsg = lbs.getCodingSchemeConcepts(csid, null);
+//getCodingSchemeConcepts is a Grid Service Call
+
+//Set the text to match
+MatchCriteria matchText = new MatchCriteria();
+matchText.setText(&#34;Gene&#34;);
+
+//Define a SearchDesignationOption, if any
+SearchDesignationOption searchOption = new SearchDesignationOption();
+
+//Choose an algorithm to do the matching
+ExtensionIdentification matchAlgorithm = new ExtensionIdentification();
+matchAlgorithm.setLexBIGExtensionName(&#34;contains&#34;);
+
+//Chose a language
+LanguageIdentification language = new LanguageIdentification();
+language.setIdentifier(&#34;en&#34;);
+
+//Restrict the CodedNodeSet
+cnsg.restrictToMatchingDesignations(matchText, searchOption, matchAlgorithm, language);
+//restrictToMatchingDesignations is a Grid Service Call
+
+//Create a SetResolutionPolicy to handle the details of Resolving the CodedNodeSet
+//Here, we will set the Maximum number of Concepts returned to 10.
+SetResolutionPolicy resolvePolicy = new SetResolutionPolicy();
+resolvePolicy.setMaximumToReturn(10);
+
+//Do the resolve
+ResolvedConceptReferenceList rcrlist = cnsg.resolveToList(resolvePolicy);
+//resolveToList is a Grid Service Call
+
+//Use the returned ResolvedConceptReferenceList to print some details about the concepts found
+
+ResolvedConceptReference[] rcref = rcrlist.getResolvedConceptReference();
+for (int i = 0; i &lt; rcref.length; i++) {
+	System.out.println(rcref[i].getConceptCode());
+	System.out.println(rcref[i].getReferencedEntry().
+		getPresentation()[0].getText().getContent());
+}
+<h3 id="LexEVS4.2GridServiceDesignandImplementation-ServiceContextsandState">
+  Service Contexts and State
+</h3>
+Along with the Main Service (described above), the Server will also host the Service Contexts shown in the following diagram and described in the subsequent sections. These Service Contexts are not meant to be called directly as Grid Services. The main function of these Service Contexts is to provide additional functionality to the Main Service.
+<img src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%204.2%20Grid%20Service%20Design%20and%20Implementation/Service_Context_Operations_Example.jpg?api=v2">
+Service Context Operations Example in IntroduceImportantService Contexts are only meant to be called through the Main Service - not directly. Through the Main Service, References to these Service Contexts can be obtained. Calls are made to the Service Contexts through these References.
+<h4 id="LexEVS4.2GridServiceDesignandImplementation-ObtainingaServiceContextReference">
+  Obtaining a Service Context Reference
+</h4>
+In the figure below, two LexEVS Grid Service Calls are highlighted, &#39;getCodingSchemeConcepts&#39; and &#39;getNodeGraph&#39;. These two Grid Service Calls have been selected because they return to the user a &#34;Reference&#34; to a Service Context. For &#39;getCodingSchemeConcepts&#39;, the return type is CodedNodeSetReference (which references the CodedNodeSet Service Context). For &#39;getNodeGraph&#39;, the return type is CodedNodeGraphReference (which references the CodedNodeGraph Service Context).
+<img alt="image that corresponds to the description in the preceding paragraph" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%204.2%20Grid%20Service%20Design%20and%20Implementation/Service_Context_Reference.jpg?api=v2">
+<h4 id="LexEVS4.2GridServiceDesignandImplementation-Resources">
+  Resources
+</h4>
+LexEVS Grid Services use the WS-Resource Framework (WSRF) to allow for stateful calls to the server. When a client requests a Service Context, the client is not only issued a Reference to the Service Context that was requested, but to a unique stateful Resource on the server as well. This Resource is used in the LexEVS Grid Services as a way of statefully holding objects for further use by the client. For more information about how caGrid uses the WS-Resource Framework (WSRF), see http://www.cagrid.org/wiki/Metadata:WSRF
+Historical link
+http://www.cagrid.org/wiki/Metadata:WSRF
+For more information on how Resources are implemented in the LexEVS Grid Service, refer to this
+<a href="https://cbiit-download.nci.nih.gov/evs/LexEVS/v4.2/Grid/Release/LexEVSGrid.ppt" rel="nofollow">
+  LexEVSGrid presentation
+</a>
+.
+<h4 id="LexEVS4.2GridServiceDesignandImplementation-ServiceContextSequence">
+  Service Context Sequence
+</h4>
+The Service Contexts API calls follow this general process:
+<ol>
+  <li>
+    Client Requests a Service Context, such as a CodedNodeSet.
+  </li>
+  <li>
+    The Grid Node receives the call and forwards the call to EVSAPI.
+  </li>
+  <li>
+    EVSAPI calls getCodingSchemeConcepts on the local LexBIG installation and returns a CodedNodeSetImpl object to the Grid Node.
+  </li>
+  <li>
+    The Grid Node then creates a Resource to store this CodedNodeSetImpl object for future use by the Client.
+  </li>
+  <li>
+    The Client is then returned a Service Context Client for the CodedNodeSet. This client is associated to the Resource that was created.
+  </li>
+</ol>
+<img alt="image that shows the previously described process of service contexts API calls" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%204.2%20Grid%20Service%20Design%20and%20Implementation/Service_Context_Sequence.jpg?api=v2">
+Service Context and Resource AssignmentNoteBy default, these services are destroyed 5 minutes after creation.
+<h3 id="LexEVS4.2GridServiceDesignandImplementation-SupportedServiceContexts.">
+  Supported Service Contexts.
+</h3>
+<h4 id="LexEVS4.2GridServiceDesignandImplementation-CodedNodeSet">
+  CodedNodeSet
+</h4>
+<a href="http://informatics.mayo.edu/LexGrid/downloads/javadocGrid/org/LexGrid/LexBIG/cagrid/interfaces/CodedNodeSetGrid.html" rel="nofollow">
+  http://informatics.mayo.edu/LexGrid/downloads/javadocGrid/org/LexGrid/LexBIG/cagrid/interfaces/CodedNodeSetGrid.html
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+To construct a CodedNodeSet, the user calls getCodingSchemeConcepts as described above. When the user creates a CodedNodeSet through the API call getCodingSchemeConcepts, the server creates and stores the CodedNodeSet server-side as a Resource. This Resource is associated with the client and will be accessible only by the client that created it.CodedNodeSet Call Sequence:
+<ol>
+  <li>
+    The user requests a CodedNodeSet using getCodingSchemeConcepts. Java Code Snippet
+    LexBIGService lbs  = (LexBIGService)ApplicationServiceProvider.getApplicationServiceFromUrl(serviceUrl, &#34;EvsServiceInfo&#34;);
+    CodedNodeSet cns = lbs.getCodingSchemeConcepts(
+    	String codingScheme,
+    	org.LexGrid.LexBIG.DataModel.Core.CodingSchemeVersionOrTag);
+  </li>
+  <li>
+    The server calls the Distributed LexBIG getCodingSchemeConcepts method, returning to the server an org.LexGrid.LexBIG.Impl.CodedNodeSetImpl (the implementation of org.LexGrid.LexBIG.LexBIGService.CodedNodeSet) object.
+  </li>
+  <li>
+    The server then creates an org.LexGrid.LexBIG.cagrid.LexBIGCaGridServices.CodedNodeSet.service.globus.resource.CodedNodeSetResource. This Resource will be used to hold the instance of org.LexGrid.LexBIG.Impl.CodedNodeSetImpl, the implementation of org.LexGrid.LexBIG.LexBIGService.CodedNodeSet that was created above.
+  </li>
+  <li>
+    The server returns an org.LexGrid.LexBIG.cagrid.LexBIGCaGridServices.CodedNodeSet.stubs.types.CodedNodeSetReference object to the client. This is the reference to the CodedNodeSet Service Context. This object has a direct reference to the Resource created above. The user now uses this client to make transparent Grid calls through the Service Context.
+  </li>
+  <li>
+    The client may continue to make statefull calls to the CodedNodeSetClient and the assigned Resource.
+  </li>
+  <li>
+    These restrictions are separate calls but statefully maintained on the server via the Resource.
+  </li>
+</ol>
+<h4 id="LexEVS4.2GridServiceDesignandImplementation-CodedNodeGraph">
+  CodedNodeGraph
+</h4>
+<a href="http://informatics.mayo.edu/LexGrid/downloads/javadocGrid/org/LexGrid/LexBIG/cagrid/interfaces/CodedNodeGraphGrid.html" rel="nofollow">
+  http://informatics.mayo.edu/LexGrid/downloads/javadocGrid/org/LexGrid/LexBIG/cagrid/interfaces/CodedNodeGraphGrid.html
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+To construct a CodedNodeGraph, the user calls getNodeGraph as described above. When the user creates a CodedNodeGraph through the API call getNodeGraph, the server creates and stores the CodedNodeGraph server-side as a Resource. This Resource is associated with the client and will be accessible only by the client that created it.CodedNodeGraph Call Sequence:
+<ol>
+  <li>
+    The user requests a CodedNodeGraph using getCodingSchemeConcepts. Java Code Snippet
+    LexBIGService lbs  = (LexBIGService)ApplicationServiceProvider.getApplicationServiceFromUrl(serviceUrl, &#34;EvsServiceInfo&#34;);
+    CodedNodeGraph cng = lbs.getNodeGraph(
+    String codingScheme,
+    org.LexGrid.LexBIG.DataModel.Core.CodingSchemeVersionOrTag,
+    String relationsContainerName (Optional);
+  </li>
+  <li>
+    The server calls the Distributed LexBIG getNodeGraph method, returning to the server an org.LexGrid.LexBIG.Impl.CodedNodeGraphImpl (the implementation of org.LexGrid.LexBIG.LexBIGService.CodedNodeGraph) object.
+  </li>
+  <li>
+    The server then creates an org.LexGrid.LexBIG.cagrid.LexBIGCaGridServices.CodedNodeGraph.service.globus.resource.CodedNodeGraphResource. This Resource will be used to hold the instance of org.LexGrid.LexBIG.Impl.CodedNodeGraphImpl, the implementation of org.LexGrid.LexBIG.LexBIGService.CodedNodeGraph that was created above.
+  </li>
+  <li>
+    The server returns an org.LexGrid.LexBIG.cagrid.LexBIGCaGridServices.CodedNodeGraph.stubs.types.CodedNodeGraphReference object to the client. This is the reference to the CodedNodeGraph Service Context. This object has a direct reference to the Resource created above. The user now uses this client to make transparent Grid calls through the Service Context.
+  </li>
+  <li>
+    The client may continue to make statefull calls to the CodedNodeGraphClient and the assigned Resource. For example, the client may add Restrictions to the CodedNodeGraph before a Resolve: Java Code Snippet
+
+    cng.restrictToCodeSystem(org.LexGrid.LexBIG.DataModel.cagrid.CodingSchemeIdentification);
+  </li>
+  <li>
+    These restrictions are separate calls but statefully maintained on the server via the Resource.
+  </li>
+</ol>
+<h4 id="LexEVS4.2GridServiceDesignandImplementation-LexBIGServiceConvenienceMethods">
+  LexBIGServiceConvenienceMethods
+</h4>
+<a href="http://informatics.mayo.edu/LexGrid/downloads/javadocGrid/org/LexGrid/LexBIG/cagrid/interfaces/LexBIGServiceConvenienceMethodsGrid.html" rel="nofollow">
+  http://informatics.mayo.edu/LexGrid/downloads/javadocGrid/org/LexGrid/LexBIG/cagrid/interfaces/LexBIGServiceConvenienceMethodsGrid.html
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+To construct a LexBIGServiceConvenienceMethods, the user calls getGenericExtensions as described above. When the user creates a LexBIGServiceConvenienceMethods through the API call getGenericExtensions, the server creates and stores the LexBIGServiceConvenienceMethods server-side as a Resource. This Resource is associated with the client and will be accessible only by the client that created it.LexBIGServiceConvenienceMethods Call Sequence:
+<ol>
+  <li>
+    The user requests a LexBIGServiceConvenienceMethods using getGenericExtensions. Java Code Snippet
+
+    LexBIGServiceConvenienceMethodsGrid lbscm = lbs.getGenericExtensions(org.LexGrid.LexBIG.DataModel.cagrid.ExtensionIdentification);
+  </li>
+  <li>
+    The server calls the Distributed LexBIG getGenericExtensions method, returning to the server an org.LexGrid.LexBIG.Impl.Extensions.GenericExtensions.LexBIGServiceConvenienceMethodsImpl (the implementation of org.LexGrid.LexBIG.Extensions.Generic.LexBIGServiceConvenienceMethods) object.
+  </li>
+  <li>
+    The server then creates an org.LexGrid.LexBIG.cagrid.LexBIGCaGridServices.LexBIGServiceConvenienceMethods.service.globus.resource.LexBIGServiceConvenienceMethodsResource. This Resource will be used to hold the instance of org.LexGrid.LexBIG.Impl.Extensions.GenericExtensions.LexBIGServiceConvenienceMethodsImpl, the implementation of org.LexGrid.LexBIG.Extensions.Generic.LexBIGServiceConvenienceMethods that was created above.
+  </li>
+  <li>
+    The server returns an org.LexGrid.LexBIG.cagrid.LexBIGCaGridServicesLexBIGServiceConvenienceMethods.stubs.types.LexBIGServiceConvenienceMethodsReference object to the client. This is the reference to the LexBIGServiceConvenienceMethods Service Context. This object has a direct reference to the Resource created above. This LexBIGServiceConvenienceMethodsClient implements org.LexGrid.LexBIG.Extensions.Generic.LexBIGServiceConvenienceMethods. The user now uses this client to make transparent Grid calls through the Service Context. Because this LexBIGServiceConvenienceMethods implements org.LexGrid.LexBIG.Extensions.Generic.LexBIGServiceConvenienceMethods, API calls will look to the user as being identical to direct LexBIG API calls.
+  </li>
+  <li>
+    The client may continue to make statefull calls to the LexBIGServiceConvenienceMethods Client and the assigned Resource.
+  </li>
+  <li>
+    These API calls are separate calls but statefully maintained on the server via the Resource.
+  </li>
+</ol>
+<h4 id="LexEVS4.2GridServiceDesignandImplementation-LexBIGServiceMetadata">
+  LexBIGServiceMetadata
+</h4>
+<a href="http://informatics.mayo.edu/LexGrid/downloads/javadocGrid/org/LexGrid/LexBIG/cagrid/interfaces/LexBIGServiceMetadataGrid.html" rel="nofollow">
+  http://informatics.mayo.edu/LexGrid/downloads/javadocGrid/org/LexGrid/LexBIG/cagrid/interfaces/LexBIGServiceMetadataGrid.html
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+To construct a LexBIGServiceMetadata, the user calls getServiceMetadata as described above. When the user creates a LexBIGServiceMetadata through the API call getServiceMetadata , the server creates and stores the LexBIGServiceMetadata server-side as a Resource. This Resource is associated with the client and will be accessible only by the client that created it.LexBIGServiceMetadata Call Sequence:
+<ol>
+  <li>
+    The user requests a LexBIGServiceMetadata using getServiceMetadata. Java Code Snippet
+
+    LexBIGServiceMetadataGrid metadata = lbs.getServiceMetadata();
+  </li>
+  <li>
+    The server calls the Distributed LexBIG getServiceMetadata method, returning to the server an implementation of org.LexGrid.LexBIG.LexBIGService.LexBIGServiceMetadata object.
+  </li>
+  <li>
+    The server then creates an org.LexGrid.LexBIG.cagrid.LexBIGCaGridServices.LexBIGServiceMetadata.service.globus.resource.LexBIGServiceMetadataResource. This Resource will be used to hold the instance of an implementation of org.LexGrid.LexBIG.LexBIGService.LexBIGServiceMetadata.
+  </li>
+  <li>
+    org.LexGrid.LexBIG.cagrid.LexBIGCaGridServices.LexBIGServiceMetadata.stubs.types.LexBIGServiceMetadata object to the client. This is the reference to the LexBIGServiceMetadata Service Context. This object has a direct reference to the Resource created above. The user now uses this client to make transparent Grid calls through the Service Context.
+  </li>
+  <li>
+    The client may continue to make statefull calls to the LexBIGServiceMetadata and the assigned Resource.
+  </li>
+  <li>
+    These API calls are separate calls but statefully maintained on the server via the Resource.
+  </li>
+</ol>
+<h4 id="LexEVS4.2GridServiceDesignandImplementation-HistoryService">
+  HistoryService
+</h4>
+<a href="http://informatics.mayo.edu/LexGrid/downloads/javadocGrid/org/LexGrid/LexBIG/cagrid/interfaces/HistoryServiceGrid.html" rel="nofollow">
+  http://informatics.mayo.edu/LexGrid/downloads/javadocGrid/org/LexGrid/LexBIG/cagrid/interfaces/HistoryServiceGrid.html
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+To construct a HistoryService, the user calls getHistoryService as described above. When the user creates a HistoryService through the API call getHistoryService, the server creates and stores the HistoryService server-side as a Resource. This Resource is associated with the client and will be accessible only by the client that created it.HistoryService Call Sequence:
+<ol>
+  <li>
+    The user requests a HistoryService using getHistoryService . Java Code Snippet
+
+    HistoryServiceGrid history = lbs.getHistoryService(org.LexGrid.LexBIG.DataModel.cagrid.CodingSchemeIdentification);
+  </li>
+  <li>
+    The server calls the Distributed LexBIG getHistoryService method, returning to the server an implementation of org.LexGrid.LexBIG.History.HistoryService object.
+  </li>
+  <li>
+    The server then creates an org.LexGrid.LexBIG.cagrid.LexBIGCaGridServices.HistoryService.service.globus.resource.HistoryServiceResource. This Resource will be used to hold the instance of an implementation of org.LexGrid.LexBIG.History.HistoryService.
+  </li>
+  <li>
+    The server returns an org.LexGrid.LexBIG.cagrid.LexBIGCaGridServices.LexBIGServiceMetadata.stubs.types.LexBIGServiceMetadata object to the client. This is the reference to the HistoryService Service Context. This object has a direct reference to the Resource created above. The user now uses this client to make transparent Grid calls through the Service Context.
+  </li>
+  <li>
+    The client may continue to make statefull calls to the HistoryServiceClient and the assigned Resource. For example, the client may call any method in org.LexGrid.LexBIG.History.HistoryService. Example: history.getLatestBaseline();
+  </li>
+  <li>
+    These API calls are separate calls but statefully maintained on the server via the Resource.
+  </li>
+</ol>
+<h4 id="LexEVS4.2GridServiceDesignandImplementation-Sort">
+  Sort
+</h4>
+<a href="http://informatics.mayo.edu/LexGrid/downloads/javadoc/org/LexGrid/LexBIG/Extensions/Query/Sort.html" rel="nofollow">
+  http://informatics.mayo.edu/LexGrid/downloads/javadoc/org/LexGrid/LexBIG/Extensions/Query/Sort.html
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+To construct a Sort, the user calls getSortAlgorithm as described above. When the user creates a Sort through the API call getSortAlgorithm, the server creates and stores the Sort server-side as a Resource. This Resource is associated with the client and will be accessible only by the client that created it.Sort Call Sequence:
+<ol>
+  <li>
+    The user requests a Sort using getSortAlgorithm . Java Code Snippet
+
+    Sort sort = lbs.getSortAlgorithm(org.LexGrid.LexBIG.DataModel.cagrid.ExtensionIdentification);
+  </li>
+  <li>
+    The server calls the Distributed LexBIG getSortAlgorithm method, returning to the server an implementation of org.LexGrid.LexBIG.Extensions.Query.Sort) object.
+  </li>
+  <li>
+    The server then creates an org.LexGrid.LexBIG.cagrid.LexBIGCaGridServices.Sort .service.globus.resource.Sort Resource. This Resource will be used to hold the instance of an implementation of org.LexGrid.LexBIG.Extensions.Query.Sort.
+  </li>
+  <li>
+    The server returns an org.LexGrid.LexBIG.cagrid.LexBIGCaGridServices.service.SortClient object to the client. This is the client to the Sort Service Context. This object has a direct reference to the Resource created above. This SortClient implements org.LexGrid.LexBIG.Extensions.Query.Sort. The user now uses this client to make transparent Grid calls through the Service Context. Because this Sort implements org.LexGrid.LexBIG.Extensions.Query.Sort, API calls will look to the user as being identical to direct LexBIG API calls.
+  </li>
+  <li>
+    The client may continue to make statefull calls to the SortClient and the assigned Resource. For example, the client may call any method in org.LexGrid.LexBIG.Extensions.Query.SortJava Code Snippet
+
+    sort.compare(codedNodeReference1, codedNodeReference2);
+  </li>
+  <li>
+    These API calls are separate calls but statefully maintained on the server via the Resource.
+  </li>
+</ol>
+<h4 id="LexEVS4.2GridServiceDesignandImplementation-Filter">
+  Filter
+</h4>
+<a href="http://informatics.mayo.edu/LexGrid/downloads/javadoc/org/LexGrid/LexBIG/Extensions/Query/Filter.htm" rel="nofollow">
+  http://informatics.mayo.edu/LexGrid/downloads/javadoc/org/LexGrid/LexBIG/Extensions/Query/Filter.htm
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+To construct a Filter, the user calls getFilter as described above. When the user creates a Filter through the API call getFilter, the server creates and stores the Sort server-side as a Resource. This Resource is associated with the client and will be accessible only by the client that created it.Filter Call Sequence:
+<ol>
+  <li>
+    The user requests a Filter using getFilter Java Code Snippet
+
+    Filter filter = lbs.getFilter(org.LexGrid.LexBIG.DataModel.cagrid.ExtensionIdentification);
+  </li>
+  <li>
+    The server calls the Distributed LexBIG getFilter method, returning to the server an implementation of org.LexGrid.LexBIG.Extensions.Query.Filter) object.
+  </li>
+  <li>
+    The server then creates an org.LexGrid.LexBIG.cagrid.LexBIGCaGridServices.Filter.service.globus.resource.FilterResource. This Resource will be used to hold the instance of an implementation of org.LexGrid.LexBIG.Extensions.Query.Filter.
+  </li>
+  <li>
+    The server returns an org.LexGrid.LexBIG.cagrid.LexBIGCaGridServices.service.FilterClient object to the client. This is the client to the Filter Service Context. This object has a direct reference to the Resource created above. This FilterClient implements org.LexGrid.LexBIG.Extensions.Query.Filter. The user now uses this client to make transparent Grid calls through the Service Context. Because this Filter implements org.LexGrid.LexBIG.Extensions.Query.Filter, API calls will look to the user as being identical to direct LexBIG API calls.
+  </li>
+  <li>
+    The client may continue to make statefull calls to the FilterClient and the assigned Resource. For example, the client may call any method in org.LexGrid.LexBIG.Extensions.Query.Filter Java Code Snippet
+
+    filter.match(resolvedConceptReference);
+  </li>
+  <li>
+    These API calls are separate calls but statefully maintained on the server via the Resource.
+  </li>
+</ol>
+<h4 id="LexEVS4.2GridServiceDesignandImplementation-ResolvedConceptReferencesIterator">
+  ResolvedConceptReferencesIterator
+</h4>
+<a href="http://informatics.mayo.edu/LexGrid/downloads/javadoc/org/LexGrid/LexBIG/Utility/Iterators/ResolvedConceptReferencesIterator.html" rel="nofollow">
+  http://informatics.mayo.edu/LexGrid/downloads/javadoc/org/LexGrid/LexBIG/Utility/Iterators/ResolvedConceptReferencesIterator.html
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+A ResolvedConceptReferencesIterator is created when a CodedNodeSet or CodedNodeGraph is resolved. It allows results to be returned from the server incrementally instead of all at once. When the user creates a ResolvedConceptReferencesIterator, the server creates and stores the ResolvedConceptReferencesIterator server-side as a Resource. This Resource is associated with the client and will be accessible only by the client that created it.ResolvedConceptReferencesIterator Call Sequence:
+<ol>
+  <li>
+    The user gets a ResolvedConceptReferencesIterator from a Resolve.
+  </li>
+  <li>
+    The server calls the Distributed LexBIG resolve method on the CodedNodeSet, returning to the server an implementation of org.LexGrid.LexBIG.Utility.Iterators.ResolvedConceptReferencesIterator object.
+  </li>
+  <li>
+    The server then creates an org.LexGrid.LexBIG.cagrid.LexBIGCaGridServices.ResolvedConceptReferencesIterator.service.globus.resource.ResolvedConceptReferencesIteratorResource. This Resource will be used to hold the instance of an implementation of org.LexGrid.LexBIG.Utility.Iterators.ResolvedConceptReferencesIterator.
+  </li>
+  <li>
+    The server returns an org.LexGrid.LexBIG.cagrid.LexBIGCaGridServices.service.ResolvedConceptReferencesIteratorClient object to the client. This is the client to the ResolvedConceptReferencesIterator Service Context. This object has a direct reference to the Resource created above. This ResolvedConceptReferencesIteratorClient implements org.LexGrid.LexBIG.Utility.Iterators.ResolvedConceptReferencesIterator. The user now uses this client to make transparent Grid calls through the Service Context. Because this ResolvedConceptReferencesIterator implements org.LexGrid.LexBIG.Utility.Iterators.ResolvedConceptReferencesIterator, API calls will look to the user as being identical to direct LexBIG API calls.
+  </li>
+  <li>
+    The client may continue to make statefull calls to the ResolvedConceptReferencesIteratorClient and the assigned Resource. For example, the client may call any method in org.LexGrid.LexBIG.Utility.Iterators.ResolvedConceptReferencesIterator Java Code Snippet
+
+    while(itr.hasNext){
+    ResolvedConceptReference ref = itr.next();
+    }
+  </li>
+  <li>
+    These API calls are separate calls but statefully maintained on the server via the Resource.
+  </li>
+</ol>
+<h4 id="LexEVS4.2GridServiceDesignandImplementation-ErrorHandling">
+  Error Handling
+</h4>
+Error Connecting to LexEVS Grid Service  When connecting through the Java Client, java.net.ConnectException and org.apache.axis.types.URI.MalformedURIException may be thrown upon an unsuccessful attempt to connect.A MalformedURIException is thrown in the case if a poorly-formed URL string. In this case, the exception is thrown before an attempt to connect is even made.If the URL is well-formed, proper connection is tested. If the connection attempt fails, a ConnectException is thrown containing the reason for the failure.Java Code
+
+try{
+LexBIGServiceGridAdapter lbsg = new LexBIGServiceGridAdapter
+(&#34;http://localhost:8080/wsrf/services/cagrid/LexEVSGridService&#34;);
+} catch(java.net.ConnectException e){
+//Error Connecting
+e.printStackTrace();
+} catch(org.apache.axis.types.URI.MalformedURIException e){
+//URL Syntax Error
+e.printStackTrace();
+}
+
+This example shows a typical connection to the LexEVS Grid Service, with the two potential Exceptions being caught and handled as necessary.LexBIG Errors  LexBIG errors will be forwarded through the Distributed LexBIG layer and then on to the Grid layer. Input parameters, along with any other LexBIG (or Distributed LexBIG) errors will be detected on the server, not the client, and forwarded. All Generic LexBIG (or Distributed LexBIG) errors will be forwarded via a RemoteException, with the cause of the error and underlying LexBIG error message included.Invalid Service Context Access  Service Context Services are not meant to be called directly. If the client attempts to do so, an org.LexGrid.LexBIG.cagrid.LexEVSGridService.CodedNodeSet.stubs.types.InvalidServiceContextAccess Exception will be thrown. This indicates a call was made to a Service Context without obtaining a Service Context Reference via the Main Service (see the above section
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427413" rel="nofollow">
+  Service Contexts and State
+</a>
+for more information).
+<h3 id="LexEVS4.2GridServiceDesignandImplementation-DatabaseChanges">
+  Database Changes
+</h3>
+None
+<h3 id="LexEVS4.2GridServiceDesignandImplementation-Client">
+  Client
+</h3>
+The Introduce toolkit generates a &#34;client&#34; class that will be provided to the users.
+<h4 id="LexEVS4.2GridServiceDesignandImplementation-JSP/HTML">
+  JSP/HTML
+</h4>
+None
+<h4 id="LexEVS4.2GridServiceDesignandImplementation-Servlet">
+  Servlet
+</h4>
+None
+<h3 id="LexEVS4.2GridServiceDesignandImplementation-SecurityIssues">
+  Security Issues
+</h3>
+Security in the LexEVS Grid Service is implemented in the Distributed LexBIG layer. The information in this section explains how the LexEVS Grid Services utilize this security implementation. For more information about the Distributed LexBIG Security Implementation, refer to LexBIG Access to Licensed Vocabulary Implementation, attached to the
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=190775717" rel="nofollow">
+  EVS API GForge documents archive
+</a>
+.
+<h4 id="LexEVS4.2GridServiceDesignandImplementation-LexEVSGridServiceSecurity">
+  LexEVS Grid Service Security
+</h4>
+Certain vocabulary content accessible through the LexEVS Grid Service may require extra authorization to access. Each client is required to supply its own access credentials via Security Tokens. These Security Tokens are implemented by a SecurityToken object:
+<ul>
+  <li>
+    Name: SecurityToken
+  </li>
+  <li>
+    Namespace: gme://caCORE.caCORE/3.2/gov.nih.nci.evs.security
+  </li>
+  <li>
+    Package: gov.nih.nci.evs.security
+  </li>
+</ul>
+<h4 id="LexEVS4.2GridServiceDesignandImplementation-AccessingSecureContent">
+  Accessing Secure Content
+</h4>
+A client establishes access to a secured vocabulary via the following Grid Service Calls:
+<ol>
+  <li>
+    Connect to the LexBIG caGrid Service LexBIGServiceGrid lbs = new LexBIGServiceGridAdapter(url);
+  </li>
+  <li>
+    Build an org.LexGrid.LexBIG.DataModel.cagrid.CodingSchemeIdentification to hold the Coding Scheme name.
+    CodingSchemeIdentification codingScheme = new CodingSchemeIdentification();
+    codingScheme.setName(&#34;codingScheme&#34;);
+  </li>
+  <li>
+    Build an gov.nih.nci.evs.security.SecurityToken containing the security information for the desired Coding Scheme.
+    SecurityToken token = new SecurityToken();
+    token.setAccessToken(&#34;securityToken&#34;);
+  </li>
+  <li>
+    Invoke the LexBIG caGrid service as follows: This will return a reference to a new &#34;LexBIGServiceGrid&#34; instance that is associated with the security properties that were passed in. LexBIGServiceGrid lbsg = lbs.setSecurityToken(codingScheme, token);
+  </li>
+</ol>
+It is important to note that the Grid Service &#34;setSecurityToken&#34; returns an org.LexGrid.LexBIG.cagrid.LexEVSGridService.stubs.types  .LexEVSGridServiceReference.LexEVSGridServiceReference  object. This reference must be used to access the secured vocabularies.
+<h4 id="LexEVS4.2GridServiceDesignandImplementation-ImplementationofSecurity">
+  Implementation of Security
+</h4>
+Each call to &#34;setSecurityToken&#34; sets up a secured connection to Distributed LexBIG with the access privileges included in the SecurityToken parameter. The LexEVSGridServiceReference that is returned to the client contains a unique key identifier to the secure connection that has been created on the server. All subsequent calls the client makes through this LexEVSGridServiceReference will be made securely. If additional SecurityTokens are passed in through the &#34;setSecurityToken&#34; Grid Service, the additional security will be added and maintained.The &#34;setSecurityToken&#34; Grid Service is a stateful service. This means that after the client sets a SecurityToken, any subsequent call will be applied to that SecurityToken.Secure connections are not maintained on the server indefinitely, but are based on load conditions. The server will allow 30 unique secure connections to be set up for clients without any time limitations. As additional requests for secure connections are received by the server, connections will be released by the server on an &#39;oldest first&#39; basis. No connection, however, may be released prior to 5 minutes after its creation.If no SecurityTokens are passed in by the client, a non-secure Distributed LexBIG connection will be used. The server maintains one (and only one) un-secured Distributed LexBIG connection that is shared by any client not requesting security.NoteAll non-secured information accessed by the LexEVS Grid Service is publicly available from NCICB and users are expected to follow the licensing requirements currently in place for accessing and using NCI EVS information.
+<h3 id="LexEVS4.2GridServiceDesignandImplementation-Performance">
+  Performance
+</h3>
+The LexEVS service will take advantage of all improvements made to the EVSAPI services with the exception of lazy loading. LexEVS grid service, being in nature a web service is currently not taking advantage of lazy loading since objects are transferred as fully populated objects. However, future releases of LexEVS Grid Service may refractor the interface in such as way as to take advantage of some of the benefits brought about by the inclusion of lazy loading in to EVSAPI service.LexEVS Grid Services utilize the performance enhancements of the LexBIG API. For more information about LexBIG performance (which LexEVS Grid Services are dependent on), see
+<a href="http://informatics.mayo.edu" rel="nofollow">
+  the Mayo Clinic website
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+.
+<h3 id="LexEVS4.2GridServiceDesignandImplementation-Internationalization">
+  Internationalization
+</h3>
+Not Internationalized
+<h3 id="LexEVS4.2GridServiceDesignandImplementation-Installation/Packaging">
+  Installation / Packaging
+</h3>
+The service will be installed and deployed as a &#34;stand alone&#34; service at NCICB.
+<h3 id="LexEVS4.2GridServiceDesignandImplementation-Migration">
+  Migration
+</h3>
+Both the current version of LexEVS grid service and a previous version may be &#34;in service&#34; simultaneously if the corresponding underlying EVSAPI service is also &#34;in service&#34; to manage migration of clients.
+<h2 id="LexEVS4.2GridServiceDesignandImplementation-SystemTesting">
+  System Testing
+</h2>
+See
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=189825334" rel="nofollow">
+  LexEVS Grid Service Testing Documentation
+</a>
+(LexEVS Grid Service System Testing in the Project Documents, Development Documents section) 

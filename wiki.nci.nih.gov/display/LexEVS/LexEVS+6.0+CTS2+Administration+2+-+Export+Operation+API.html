@@ -1,0 +1,1176 @@
+Contents of this Page
+<ul>
+  <li>
+    <a href="#LexEVS6.0CTS2Administration2ExportOperationAPI-Introduction" rel="nofollow">
+      Introduction
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.0CTS2Administration2ExportOperationAPI-ExportInterfaces" rel="nofollow">
+      Export Interfaces
+    </a>
+    <ul>
+      <li>
+        <a href="#LexEVS6.0CTS2Administration2ExportOperationAPI-CodeSystemExporter" rel="nofollow">
+          Code System Exporter
+        </a>
+        <ul>
+          <li>
+            <a href="#LexEVS6.0CTS2Administration2ExportOperationAPI-ExportCompleteCodeSystem" rel="nofollow">
+              Export Complete Code System
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS6.0CTS2Administration2ExportOperationAPI-ExportCodedNodeSet" rel="nofollow">
+              Export Coded Node Set
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS6.0CTS2Administration2ExportOperationAPI-ExportCodedNodeGraph" rel="nofollow">
+              Export Coded Node Graph
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#LexEVS6.0CTS2Administration2ExportOperationAPI-ValueSetExporter" rel="nofollow">
+          Value Set Exporter
+        </a>
+        <ul>
+          <li>
+            <a href="#LexEVS6.0CTS2Administration2ExportOperationAPI-ExportValueSetDefinition" rel="nofollow">
+              Export Value Set Definition
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS6.0CTS2Administration2ExportOperationAPI-ExportExpandedValueSetUsingCustomExporter" rel="nofollow">
+              Export Expanded Value Set Using Custom Exporter
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS6.0CTS2Administration2ExportOperationAPI-ExportExpandedValueSetinLexGridXMLFormat" rel="nofollow">
+              Export Expanded Value Set in LexGrid XML Format
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#LexEVS6.0CTS2Administration2ExportOperationAPI-AssociationExporter-ExportAssociation" rel="nofollow">
+          Association Exporter - Export Association
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#LexEVS6.0CTS2Administration2ExportOperationAPI-ExporterMappings-OwlRdfExporterMapping" rel="nofollow">
+      Exporter Mappings - OwlRdf Exporter Mapping
+    </a>
+  </li>
+</ul>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        CTS2 Links for LexEVS 6.0
+      </th>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427281" rel="nofollow">
+              CTS2 API Main Page
+            </a>
+          </li>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427334" rel="nofollow">
+              Programmer&#39;s Guide Main Page
+            </a>
+          </li>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=69730353" rel="nofollow">
+              LexEVS 6.0 Main Page
+            </a>
+          </li>
+          <li>
+            <a href="https://wiki.nci.nih.gov/display/LexEVS" rel="nofollow">
+              LexEVS Current Release
+            </a>
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="LexEVS6.0CTS2Administration2ExportOperationAPI-Introduction">
+  Introduction
+</h2>
+LexEVS CTS2 Export API provides capability to export complete or partial contents of Code System, Value Sets and Association.
+<h2 id="LexEVS6.0CTS2Administration2ExportOperationAPI-ExportInterfaces">
+  Export Interfaces
+</h2>
+There are three major export interfaces proved:
+<ul>
+  <li>
+    Code System exporter - Provides capability to export complete or partial contents of Code System.
+  </li>
+  <li>
+    Value Sets exporter - Provides capability to export Value Set Definition or Value Set Resolution (Expanded Value Set).
+  </li>
+  <li>
+    Association exporter - Provides capability to export Associations.
+  </li>
+</ul>
+Each of these interfaces can be accessed using:
+
+
+
+org.lexevs.cts2.admin.export.CodeSystemExportOperation csExportOp = new org.lexevs.cts2.LexEvsCTS2Impl().getAdminOperation().getCodeSystemExportOperation();
+org.lexevs.cts2.admin.export.ValueSetExportOperation vsExportOp = new org.lexevs.cts2.LexEvsCTS2Impl().getAdminOperation().getValueSetExportOperation();
+org.lexevs.cts2.admin.export.AssociationExportOperation assnExportOp = new org.lexevs.cts2.LexEvsCTS2Impl().getAdminOperation().getAssociationExportOperation();
+<h3 id="LexEVS6.0CTS2Administration2ExportOperationAPI-CodeSystemExporter">
+  Code System Exporter
+</h3>
+org.lexevs.cts2.admin.export.CodeSystemExportOperation is the main interface which can be used to export complete or partial Code System contents. This interface can be accessed using main LexEVSCTS2 interface, like:
+
+
+
+org.lexevs.cts2.admin.export.CodeSystemExportOperation csExportOp = new org.lexevs.cts2.LexEvsCTS2Impl().getAdminOperation().getCodeSystemExportOperation();
+
+
+
+There are three different methods available to export Code System:
+<ul>
+  <li>
+    Export complete Code System - This method provides capability to export Code System contents using the exporter specified.
+  </li>
+  <li>
+    Export Coded Node Set - This method provides capability to export entities that matches certain restrictions (like matching designation, concept code, property etc).
+  </li>
+  <li>
+    Export Coded Node Graph - This method provides capability to export entities that are part of selected graph (like association, source code, target code etc).
+  </li>
+</ul>
+<h4 id="LexEVS6.0CTS2Administration2ExportOperationAPI-ExportCompleteCodeSystem">
+  Export Complete Code System
+</h4>
+This function exports contents of the code system using the exporter specified. By default, LexEVS comes with following exporters:
+<ul>
+  <li>
+    LexGrid Exporter - exports contents in LexGrid XML format
+  </li>
+  <li>
+    OBO Exporter - exports contents in OBO format
+  </li>
+  <li>
+    OWL Exporter - exports contents in OWL/RDF format
+  </li>
+</ul>
+exportCodeSystemContent(String codeSystemNameOrURI, String codeSystemVersion, URI exportDestination, Exporter exporter)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Exports contents of the code system using the exporter specified.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        <ul>
+          <li>
+            java.lang.String codeSystemNameOrURI - (Mandatory) Name or URI of the Code System to be exported.
+          </li>
+          <li>
+            java.lang.String codeSystemVersion - (Optional) Version of the Code System to be exported.
+          </li>
+          <li>
+            java.net.URI exportDestination - (Mandatory) Destination path information for the exported file.
+          </li>
+          <li>
+            org.LexGrid.LexBIG.Extensions.Export.Exporter exporter - (Mandatory) exporter to use. Use getSupportedExporterNames to get all the exporters supported by this instance of CTS2.
+            For example, &#39;OBOExport&#39; could be used to export code system contents in OBO format, &#39;OwlRdfExporter&#39; for code system contents in OWL/RDF format, &#39;LexGridExport&#39; for Code System in LexGrid XML format, etc.
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        java.net.URI - URI of destination if successfully exported
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Sample Call:
+      </th>
+      <td>
+        <ul>
+          <li>
+            Step 1: Instantiate CodeSystemExportOperation if it is not done yet:
+
+
+            org.lexevs.cts2.admin.export.CodeSystemExportOperation csExportOp = new org.lexevs.cts2.LexEvsCTS2Impl().getAdminOperation().getCodeSystemExportOperation();
+          </li>
+          <li>
+            Step 2: Populate Exporter object to use:
+
+
+            LexBIGService lbs = LexBIGServiceImpl.defaultInstance();
+            org.LexGrid.LexBIG.Impl.exporters.LexGridExport exporter;
+
+            try {_
+
+            exporter = (org.LexGrid.LexBIG.Impl.exporters.LexGridExport)lbs.getServiceManager(null).getExporter(org.LexGrid.LexBIG.Impl.exporters.LexGridExport.name);
+            } catch (LBException e) {
+            throw new RuntimeException(e);
+            }
+
+            org.LexGrid.LexBIG.LexBIGService.CodedNodeGraph cng = lbs.getNodeGraph(&#34;Automobiles&#34;, Constructors.createCodingSchemeVersionOrTagFromVersion(&#34;1.0&#34;), null);
+
+            org.LexGrid.LexBIG.LexBIGService.CodedNodeSet cns = lbs.getNodeSet(&#34;Automobiles&#34;, Constructors.createCodingSchemeVersionOrTagFromVersion(&#34;1.0&#34;), null);
+
+            exporter.setCng(cng);
+
+            exporter.setCns(cns);
+
+            exporter.getOptions().getBooleanOption(&#34;Async Load&#34;).setOptionValue(false);
+
+            exporter.getOptions().getBooleanOption(Option.getNameForType(Option.FAIL_ON_ERROR)).setOptionValue(true);
+            exporter.getOptions().getBooleanOption(&#34;force&#34;).setOptionValue(true);
+          </li>
+          <li>
+            Step 3: Call export method by passing the code system version, export destination and other parameter values:
+
+
+            java.net.URI destURI = csExport.exportCodeSystemContent(&#34;Automobiles&#34;, &#34;1.0&#34;, new File(&#34;C:\\&#34;).toURI(), exporter);
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h4 id="LexEVS6.0CTS2Administration2ExportOperationAPI-ExportCodedNodeSet">
+  Export Coded Node Set
+</h4>
+This function resolves the given CodedNodeSet(CNS) and exports the contents in LexGrid XML format. There is a helper method getCodeSystemCodedNodeSet(String codeSystemNameOrURI, String codeSystemVersion) that could be used to get the Coded Node Set object for given Code System Version, and could apply further restrictions (ex: matchingDesignation, Status, Properties, Codes etc). And this Coded Node Set object could be supplied to this export method which resolves it and exports the contents in LexGrid XML format.
+
+exportCodedNodeSet(String codeSystemNameOrURI, String codeSystemVersion, CodedNodeSet cns, URI exportDestination, boolean overwrite, boolean stopOnErrors, boolean async)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Resolves the given CodedNodeSet(CNS) and exports the contents.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        <ul>
+          <li>
+            java.lang.String codeSystemNameOrURI - (Mandatory) URI of the Code System to be used for resolving the CNS.
+          </li>
+          <li>
+            java.lang.String codeSystemVersion - (Optional) Version of the Code System to be exported.
+          </li>
+          <li>
+            org.LexGrid.LexBIG.LexBIGService.CodedNodeSet cns - (Mandatory) Coded Node Set object to be resolved and exported.
+          </li>
+          <li>
+            java.net.URI exportDestination - (Mandatory) Destination path information for the exported file.
+          </li>
+          <li>
+            boolean overwrite - (Optional) True means, any existing file will be overwritten.
+          </li>
+          <li>
+            boolean stopOnErrors - (Optional) True means stop if any export error is detected. False means attempt to export what can be exported if recoverable errors are encountered.
+          </li>
+          <li>
+            boolean async - (Optional) Flag controlling whether export occurs in the calling thread.
+            If true, the export will occur in a separate asynchronous process.
+            If false, this method blocks until the export operation completes or fails. Regardless of setting, the getStatus and getLog calls are used to fetch results.
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        java.net.URI - URI of destination if successfully exported
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Sample Call:
+      </th>
+      <td>
+        <ul>
+          <li>
+            Step 1: Instantiate CodeSystemExportOperation if it is not done yet:
+
+
+            org.lexevs.cts2.admin.export.CodeSystemExportOperation csExportOp = new org.lexevs.cts2.LexEvsCTS2Impl().getAdminOperation().getCodeSystemExportOperation();
+          </li>
+          <li>
+            Step 2: Populate Coded Node Set object to export and apply restrictions:
+
+
+            CodedNodeSet cns = csExport.getCodeSystemCodedNodeSet(&#34;Automobiles&#34;, &#34;1.0&#34;);
+            cns.restrictToMatchingDesignations(&#34;Ford&#34;, null, MatchAlgorithms.LuceneQuery.name(), null);
+          </li>
+          <li>
+            Step 3: Call export method by passing the coded node set object , export destination and other parameter values:
+
+
+            &#39;&#39;java.net.URI destURI = csExport.exportCodedNodeSet(&#34;Automobiles&#34;, &#34;1.0&#34;, cns, new File(&#34;c:\\&#34;).toURI(), true, true, true);
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h4 id="LexEVS6.0CTS2Administration2ExportOperationAPI-ExportCodedNodeGraph">
+  Export Coded Node Graph
+</h4>
+This function resolves the given CodedNodeGraph(CNG) and exports the contents in LexGrid XML format. There is a helper method getCodeSystemCodedNodeGraph(String codeSystemNameOrURI, String codeSystemVersion) that could be used to get the Coded Node Graph object for given Code System Version, and could apply further restrictions (ex: associations, SourceCodes, TargetCodes, etc). And this Coded Node Graph object could be supplied to this export method which resolves it and exports the contents in LexGrid XML format.
+
+exportCodedNodeGraph(String codeSystemNameOrURI, String codeSystemVersion, CodedNodeGraph cng, URI exportDestination, boolean overwrite, boolean stopOnErrors, boolean async)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Resolves the given CodedNodeGraph(CNG) and exports the contents.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        <ul>
+          <li>
+            java.lang.String codeSystemNameOrURI - (Mandatory) URI of the Code System to be used for resolving the CNS.
+          </li>
+          <li>
+            java.lang.String codeSystemVersion - (Optional) Version of the Code System to be exported.
+          </li>
+          <li>
+            &#39;&#39;org.LexGrid.LexBIG.LexBIGService.CodedNodeGraph cng - (Mandatory) Coded Node Graph object to be resolved and exported.
+          </li>
+          <li>
+            java.net.URI exportDestination - (Mandatory) Destination path information for the exported file.
+          </li>
+          <li>
+            boolean overwrite - (Optional) True means, any existing file will be overwritten.
+          </li>
+          <li>
+            boolean stopOnErrors - (Optional) True means stop if any export error is detected. False means attempt to export what can be exported if recoverable errors are encountered.
+          </li>
+          <li>
+            boolean async - (Optional) Flag controlling whether export occurs in the calling thread.
+            If true, the export will occur in a separate asynchronous process.
+            If false, this method blocks until the export operation completes or fails. Regardless of setting, the getStatus and getLog calls are used to fetch results.
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        java.net.URI - URI of destination if successfully exported
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Sample Call:
+      </th>
+      <td>
+        <ul>
+          <li>
+            Step 1: Instantiate CodeSystemExportOperation if it is not done yet:
+
+
+            org.lexevs.cts2.admin.export.CodeSystemExportOperation csExportOp = new org.lexevs.cts2.LexEvsCTS2Impl().getAdminOperation().getCodeSystemExportOperation();
+          </li>
+          <li>
+            Step 2: Populate Coded Node Graph object to export and apply restrictions:
+
+
+            CodedNodeGraph cng = csExport.getCodeSystemCodedNodeGraph(&#34;Automobiles&#34;, &#34;1.0&#34;);
+            cng.restrictToAssociations(Constructors.createNameAndValueList(&#34;uses&#34;), null);
+          </li>
+          <li>
+            Step 3: Call export method by passing the coded node graph object , export destination and other parameter values:
+
+
+            &#39;&#39;java.net.URI destURI = csExport.exportCodedNodeGraph(&#34;Automobiles&#34;, &#34;1.0&#34;, cng, new File(&#34;c:\\&#34;).toURI(), true, true, true);
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h3 id="LexEVS6.0CTS2Administration2ExportOperationAPI-ValueSetExporter">
+  Value Set Exporter
+</h3>
+org.lexevs.cts2.admin.export.ValueSetExportOperation is the main interface which can be used to export Value Set Definition or Value Set Resolution (Expanded Value Set). This interface can be accessed using main LexEVSCTS2 interface, like:
+
+org.lexevs.cts2.admin.export.ValueSetExportOperation vsExportOp = new org.lexevs.cts2.LexEvsCTS2Impl().getAdminOperation().getValueSetExportOperation();
+
+There are three different methods available to export Value Set:
+<ul>
+  <li>
+    Export Value Set Definition - This method provides capability to export Value Set Definition in LexGrid XML format. This will be helpful if there is a need to import this exported Value Set Definition in different instance of LexEVS.
+  </li>
+  <li>
+    Export Expanded Value Set using custom exporter - This method provides capability to export contents of Value Set using custom exporter. This will be helpful, if you want the contents exported in format other than LexGrid XML.
+  </li>
+  <li>
+    Export Expanded Value Set in LexGrid XML format - This method provides capability to export contents of Value Set using default LexGrid Exporter which exports in LexGrid XML format.
+  </li>
+</ul>
+<h4 id="LexEVS6.0CTS2Administration2ExportOperationAPI-ExportValueSetDefinition">
+  Export Value Set Definition
+</h4>
+This method provides capability to export Value Set Definition in LexGrid XML format. This will be helpful if there is a need to import this exported Value Set Definition in different instance of LexEVS.
+
+exportValueSetDefinition(URI valueSetDefinitionURI, String valueSetDefinitionVersion, String xmlFullPathName, boolean overwrite, boolean failOnAllErrors)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Export Value Set Definition to LexGrid canonical XML format.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        <ul>
+          <li>
+            java.net.URI valueSetDefinitionURI - (Mandatory) URI of the Value Set Definition to export.
+          </li>
+          <li>
+            java.lang.String valueSetDefinitionVersion - (Optional) Version of the Value Set Definition to be exported.
+          </li>
+          <li>
+            java.lang.String xmlFullPathName - (Mandatory) File location (including file name *.xml) to save the definition.
+          </li>
+          <li>
+            boolean overwrite - (Optional) True means, any existing file will be overwritten.
+          </li>
+          <li>
+            boolean failOnAllErrors - (Optional) True means stop if any export error is detected. False means attempt to export what can be exported if recoverable errors are encountered.
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        None
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Sample Call:
+      </th>
+      <td>
+        <ul>
+          <li>
+            Step 1: Instantiate ValueSetExportOperation if it is not done yet:
+
+
+            org.lexevs.cts2.admin.export.ValueSetExportOperation vsExportOp = new org.lexevs.cts2.LexEvsCTS2Impl().getAdminOperation().getValueSetExportOperation();
+          </li>
+          <li>
+            Step 2: Call export method by passing URI of Value Set Definition, output destination and other parameter values:
+
+
+            &#39;&#39;vsExport.exportValueSetDefinition(new URI(&#34;SRITEST:AUTO:PropertyRefTest1-VSDONLY&#34;), null, new File(&#34;c:\\TestVSDExport.xml&#34;).toURI(), true, true);
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h4 id="LexEVS6.0CTS2Administration2ExportOperationAPI-ExportExpandedValueSetUsingCustomExporter">
+  Export Expanded Value Set Using Custom Exporter
+</h4>
+This method provides capability to export contents of Value Set using custom exporter. This will be helpful when there is a requirement to export value set contents in format other than LexGrid XML. There is a helper method getSupportedExporterNames() that could be used to get all the exporters loaded and supported by current LexEVS instance. So, if you have your custom exporter deployed as an extension to LexEVS Exporter, it will be in the list of exporters returned by method getSupportedExporterNames().
+
+exportValueSetContents(URI valueSetDefinitionURI, String valueSetDefinitionVersion, URI exportDestination, String exporter)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Exports contents of the Value Set Definition using the exporter specified.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        <ul>
+          <li>
+            java.lang.String valueSetDefinitionURI - (Mandatory) URI of the Value Set Definition to be expanded and exported.
+          </li>
+          <li>
+            java.lang.String valueSetDefinitionVersion - (Optional) Version of the Value Set Definition to be exported.
+          </li>
+          <li>
+            java.net.URI exportDestination - (Mandatory) Destination path information for the exported file.
+          </li>
+          <li>
+            java.lang.String exporter - (Mandatory) Name of the exporter to use. Use getSupportedExporterNames to get all the exporters supported by this instance of CTS2/LexEVS.
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        java.net.URI - URI of destination if successfully exported
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Sample Call:
+      </th>
+      <td>
+        <ul>
+          <li>
+            Step 1: Instantiate ValueSetExportOperation if it is not done yet:
+
+
+            org.lexevs.cts2.admin.export.ValueSetExportOperation vsExportOp = new org.lexevs.cts2.LexEvsCTS2Impl().getAdminOperation().getValueSetExportOperation();
+          </li>
+          <li>
+            Step 2: Call export method by passing the Value Set Definition URI, custom exporter name, output destination and other parameter values:
+
+
+            &#39;&#39;java.net.URI destURI = vsExport.exportValueSetContents(new URI(&#34;SRITEST:AUTO:PropertyRefTest1-VSDONLY&#34;), null, new File(&#34;c://AutomobilesTestVSD.xml&#34;).toURI(), &#34;CustomExporter&#34;);
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h4 id="LexEVS6.0CTS2Administration2ExportOperationAPI-ExportExpandedValueSetinLexGridXMLFormat">
+  Export Expanded Value Set in LexGrid XML Format
+</h4>
+This method provides capability to export contents of Value Set as a Code System using LexGrid Exporter which exports in LexGrid XML format.
+
+exportValueSetContents(URI valueSetDefinitionURI, String valueSetDefinitionVersion, URI exportDestination, AbsoluteCodingSchemeVersionReferenceList csVersionList, String csVersionTag, boolean overwrite, boolean failOnAllErrors)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Exports contents of Value Set as Code System in LexGrid canonical XML format.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        <ul>
+          <li>
+            java.net.URI valueSetDefinitionURI - (Mandatory) URI of the Value Set Definition to export.
+          </li>
+          <li>
+            java.lang.String valueSetDefinitionVersion - (Optional) Version of the Value Set Definition to be exported.
+          </li>
+          <li>
+            java.net.URI exportDestination - (Mandatory) Location (path to the folder withOUT the file name) to save the definition.
+            org.LexGrid.LexBIG.DataModel.Collections.AbsoluteCodingSchemeVersionReferenceList csVersionList - (Optional) A list of code system URI&#39;s and versions to be used.  These will be used only if they are present in the service.  If absent, the most recent version will be used instead.
+          </li>
+          <li>
+            java.lang.String csVersionTag - (Optional) The tag (e.g &#34;devel&#34;, &#34;production&#34;, ...) to be used to reconcile code system when more than one is present.
+            boolean overwrite - (Optional) True means, any existing file will be overwritten.
+            boolean failOnAllErrors - (Optional) True means stop if any export error is detected. False means attempt to export what can be exported if recoverable errors are encountered.
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        java.net.URI - URI of destination if successfully exported.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Sample Call:
+      </th>
+      <td>
+        <ul>
+          <li>
+            Step 1: Instantiate ValueSetExportOperation if it is not done yet:
+
+
+            org.lexevs.cts2.admin.export.ValueSetExportOperation vsExportOp = new org.lexevs.cts2.LexEvsCTS2Impl().getAdminOperation().getValueSetExportOperation();
+          </li>
+          <li>
+            Step 2: Populate the Code System Version Reference List to be used to resolve the Value Set Definition:
+
+
+            AbsoluteCodingSchemeVersionReferenceList csVerList = new AbsoluteCodingSchemeVersionReferenceList();
+            csVerList.addAbsoluteCodingSchemeVersionReference(Constructors.createAbsoluteCodingSchemeVersionReference(&#34;urn:oid:11.11.0.1&#34;, &#34;1.0&#34;));
+          </li>
+          <li>
+            Step 3: Call export method by passing URI of Value Set Definition, output destination and other parameter values:
+
+
+            &#39;&#39;vsExport.exportValueSetDefinition(exportValueSetContents(new URI(&#34;SRITEST:AUTO:PropertyRefTest1-VSDONLY&#34;), null, new File(&#34;c:\\TestVSDExport.xml&#34;).toURI(), csVerList, null, true, true);
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h3 id="LexEVS6.0CTS2Administration2ExportOperationAPI-AssociationExporter-ExportAssociation">
+  Association Exporter - Export Association
+</h3>
+org.lexevs.cts2.admin.export.AssociationExportOperation is the main interface which can be used to export Association(s). This interface can be accessed using main LexEVSCTS2 interface, like:
+
+
+
+org.lexevs.cts2.admin.export.AssociationExportOperation assnExportOp = new org.lexevs.cts2.LexEvsCTS2Impl().getAdminOperation().getAssociationExportOperation();
+
+
+
+Method exportAssociation provides capability to apply filters and export association(s) in LexGrid XML format.
+
+exportAssociation(String codeSystemNameOrURI, String codeSystemVersion, CodedNodeGraph cng, URI exportDestination, boolean overwrite, boolean stopOnErrors, boolean async)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Export Association(s) in LexGrid canonical XML format.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        <ul>
+          <li>
+            java.lang.String codeSystemNameOrURI - (Mandatory) Name or URI of the Code System that contains the association.
+          </li>
+          <li>
+            java.lang.String codeSystemVersion - (Mandatory) Version of the Code System that contains the association.
+          </li>
+          <li>
+            org.LexGrid.LexBIG.LexBIGService.CodedNodeGraph cng - (Mandatory) Coded Node Graph(CNG) that contains all the filters. This CNG will be resolved and exported.
+          </li>
+          <li>
+            java.net.URI exportDestination - (Mandatory) Directory location (with out file name). The name of the file will be constructed based on the Code System Name/URI and the Version.
+          </li>
+          <li>
+            boolean overwrite - (Optional) True means, any existing file will be overwritten.
+          </li>
+          <li>
+            boolean stopOnErrors - (Optional) True means stop if any export error is detected. False means attempt to export what can be exported if recoverable errors are encountered.
+          </li>
+          <li>
+            boolean async - (Optional) Flag controlling whether export occurs in the calling thread.
+            If true, the export will occur in a separate asynchronous process.
+            If false, this method blocks until the export operation completes or fails. Regardless of setting, the getStatus and getLog calls are used to fetch results.
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        None
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Sample Call:
+      </th>
+      <td>
+        <ul>
+          <li>
+            Step 1: Instantiate AssociationExportOperation if it is not done yet:
+
+
+            org.lexevs.cts2.admin.export.AssociationExportOperation assnExportOp = new org.lexevs.cts2.LexEvsCTS2Impl().getAdminOperation().getAssociationExportOperation();
+          </li>
+          <li>
+            Step 2: Populate the Coded Node Graph (CNG) and apply filters:
+
+
+            org.LexGrid.LexBIG.LexBIGService.CodedNodeGraph cng = LexBIGServiceImpl.defaultInstance().getNodeGraph(&#34;urn:oid:cts:1.1.1&#34;,  &#34;1.0&#34;, null);_
+            org.LexGrid.LexBIG.DataModel.Core.NameAndValue nv = new org.LexGrid.LexBIG.DataModel.Core.NameAndValue();_
+            nv.setName(&#34;hasSubtype&#34;);_
+            org.LexGrid.LexBIG.DataModel.Collections.NameAndValueList assocNames = new org.LexGrid.LexBIG.DataModel.Collections.NameAndValueList();_
+            assocNames.addNameAndValue(nv);_
+            cng.restrictToAssociations(assocNames, null);_
+          </li>
+          <li>
+            Step 3: Call export method by passing Code System Information, Coded Node Graph, destination path and other parameter values:
+
+
+            &#39;&#39;assnExport.exportAssociation(&#34;urn:oid:cts:1.1.1&#34;,  &#34;1.0&#34;, cng, new File(&#34;c:\\exportedFiles\\&#34;).toURI(), true, true, true);
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="LexEVS6.0CTS2Administration2ExportOperationAPI-ExporterMappings-OwlRdfExporterMapping">
+  Exporter Mappings - OwlRdf Exporter Mapping
+</h2>
+OwlRdf exporter is based on Jena 2.6.3. It use SDB to build up triple store. The triple store tables are under the same database of LexEvs. LexEvs retrieval api does not support to fetch AssociatedData. It cannot retrieve the association that is from an entity
+to a data/value. The owl/rdf exporter, based on LexEVS has the limiation of handling the owl:hasValue, owl:maxCardinality, owl:minCardinality, owl:cardinality constraints as well.
+<table>
+  <tbody>
+    <tr>
+      <th>
+        LexGrid
+      </th>
+      <th>
+        Owl/Rdf
+      </th>
+      <th>
+        Comment
+      </th>
+    </tr>
+    <tr>
+      <th>
+        CodingScheme
+      </th>
+      <th></th>
+      <th></th>
+    </tr>
+    <tr>
+      <td>
+        codingScheme
+      </td>
+      <td>
+        owl:Ontology
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        codingScheme.source
+      </td>
+      <td>
+        dc:source
+      </td>
+      <td>
+        a property of owl:ontology
+      </td>
+    </tr>
+    <tr>
+      <td>
+        codingScheme.copyright
+      </td>
+      <td>
+        dc:right
+      </td>
+      <td>
+        a property of owl:ontology
+      </td>
+    </tr>
+    <tr>
+      <td>
+        codingScheme.Name
+      </td>
+      <td>
+        rdfs:label
+      </td>
+      <td>
+        a property of owl:ontology
+      </td>
+    </tr>
+    <tr>
+      <td>
+        codingScheme.URI
+      </td>
+      <td>
+        xmlns
+      </td>
+      <td>
+        a property of owl:ontology
+      </td>
+    </tr>
+    <tr>
+      <td>
+        codingScheme.representVersion
+      </td>
+      <td>
+        owl:versionInfo
+      </td>
+      <td>
+        a property of owl:ontology
+      </td>
+    </tr>
+    <tr>
+      <td>
+        codingScheme.formalName
+      </td>
+      <td>
+        dc:title
+      </td>
+      <td>
+        a property of owl:ontology
+      </td>
+    </tr>
+    <tr>
+      <td>
+        codingScheme.defaultLanguage
+      </td>
+      <td>
+        dc:language
+      </td>
+      <td>
+        a property of owl:ontology
+      </td>
+    </tr>
+    <tr>
+      <td>
+        codingScheme.approxNumConcpts
+      </td>
+      <td>
+        not mapped
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>
+        Entity
+      </th>
+      <th></th>
+      <th></th>
+    </tr>
+    <tr>
+      <td>
+        entity
+      </td>
+      <td>
+        skos:Concept
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        concept
+      </td>
+      <td>
+        owl:Class
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        instance entity
+      </td>
+      <td>
+        owl:Thing
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        associationEntity
+      </td>
+      <td>
+        owl:property
+      </td>
+      <td>
+        owl:objectProperty or owl:datatypeProperty
+      </td>
+    </tr>
+    <tr>
+      <td>
+        entityCode
+      </td>
+      <td>
+        rdf:ID
+      </td>
+      <td>
+        local name
+      </td>
+    </tr>
+    <tr>
+      <td>
+        entityCodeNamespace
+      </td>
+      <td>
+        xmlns
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        isDefined
+      </td>
+      <td>
+        LexRDF:isDefined
+      </td>
+      <td>
+        LexRDF is a namespace generated by Mayo
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Property
+      </th>
+      <th></th>
+      <th>
+        Use reification statement for the property&#39;s property
+      </th>
+    </tr>
+    <tr>
+      <td>
+        property
+      </td>
+      <td>
+        owl:AnnotationProperty when no type specified
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        language
+      </td>
+      <td>
+        dc:language
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        source
+      </td>
+      <td>
+        dc:source
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        comment
+      </td>
+      <td>
+        skos:note
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        presentation
+      </td>
+      <td>
+        skos:altLabel, skos:prefLabel
+      </td>
+      <td>
+        According to lg isPrefered
+      </td>
+    </tr>
+    <tr>
+      <td>
+        definition
+      </td>
+      <td>
+        skos:definition
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        isPreferred
+      </td>
+      <td>
+        LexRDF:isPreferred
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        degreeOfFidelity
+      </td>
+      <td>
+        LexRDF:degreeOfFidelity
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        matchIfNoContext
+      </td>
+      <td>
+        LexRDF:matchIfNoContext
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        representationForm
+      </td>
+      <td>
+        LexRDF:presentationForm
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        propertyLink
+      </td>
+      <td>
+        LexRDF:propertyLink
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>
+        Association
+      </th>
+      <th></th>
+      <th></th>
+    </tr>
+    <tr>
+      <td>
+        associationPredicate.associationName
+      </td>
+      <td>
+        rdf:id
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        associationEntity
+      </td>
+      <td>
+        owl:property
+      </td>
+      <td>
+        owl:objectProperty or owl:datatypeProperty
+      </td>
+    </tr>
+    <tr>
+      <td>
+        associationEntity.forwardName
+      </td>
+      <td>
+        rdf:id
+      </td>
+      <td>
+        if not null
+      </td>
+    </tr>
+    <tr>
+      <td>
+        associationEntity.isTransitive
+      </td>
+      <td>
+        owl:TransitiveProperty
+      </td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>

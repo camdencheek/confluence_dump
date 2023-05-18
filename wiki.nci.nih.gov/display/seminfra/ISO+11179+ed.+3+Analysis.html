@@ -1,0 +1,241 @@
+Contents of this Page
+<ul>
+  <li>
+    <a href="#ISO11179ed.3Analysis-11179ed3finaldraft" rel="nofollow">
+      11179 ed3 final draft
+    </a>
+    <ul>
+      <li>
+        <a href="#ISO11179ed.3Analysis-Section3.2DefinitionsofMetamodelConstructs" rel="nofollow">
+          Section 3.2 Definitions of Metamodel Constructs
+        </a>
+      </li>
+      <li>
+        <a href="#ISO11179ed.3Analysis-Section4.5TypesofItemsinanISO/IEC11179metadataregistry" rel="nofollow">
+          Section 4.5 Types of Items in an ISO/IEC 11179 metadata registry
+        </a>
+      </li>
+      <li>
+        <a href="#ISO11179ed.3Analysis-Section6.1Identification" rel="nofollow">
+          Section 6.1 Identification
+        </a>
+      </li>
+      <li>
+        <a href="#ISO11179ed.3Analysis-Section12Conformance" rel="nofollow">
+          Section 12 Conformance
+        </a>
+      </li>
+      <li>
+        <a href="#ISO11179ed.3Analysis-Specificationissues" rel="nofollow">
+          Specification issues
+        </a>
+      </li>
+      <li>
+        <a href="#ISO11179ed.3Analysis-UMLModelforISO11179ed3" rel="nofollow">
+          UML Model for ISO11179 ed3
+        </a>
+      </li>
+      <li>
+        <a href="#ISO11179ed.3Analysis-GapAnalysisReportInconsistencies" rel="nofollow">
+          Gap Analysis Report Inconsistencies
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#ISO11179ed.3Analysis-Recommendedmigrationstrategies" rel="nofollow">
+      Recommended migration strategies
+    </a>
+  </li>
+  <li>
+    <a href="#ISO11179ed.3Analysis-Implementation" rel="nofollow">
+      Implementation
+    </a>
+  </li>
+  <li>
+    <a href="#ISO11179ed.3Analysis-Summary" rel="nofollow">
+      Summary
+    </a>
+  </li>
+</ul>
+ISO/IEC 11179 is a standard for metadata-driven exchange of data in a heterogeneous environment, based on exact definitions of data. Reference material is at:
+<ul>
+  <li>
+    Wikipedia overview:
+    <a href="http://en.wikipedia.org/wiki/ISO/IEC_11179" rel="nofollow">
+      http://en.wikipedia.org/wiki/ISO/IEC_11179
+    </a>
+  </li>
+  <li>
+    ISO/IEC 11179 edition 3 final draft:
+    historical link: https://wiki.nci.nih.gov/download/attachments/18948131/WG2_N1326_WIP_Post-CD2_11179-3_Editors_Draft.pdf.
+    The specification includes concept of &lt;&lt;type&gt;&gt; ing metadata items in the metadata registry. Conformance profiles are defined with respect to extent of metadata item &lt;&lt;type&gt;&gt;ing. The specification also defines metamodel constructs used in specifying the registry metamodel, including definitions of class and datatype.
+  </li>
+</ul>
+<ul>
+  <li>
+    UML model for 11179ed3:
+    <a href="https://wiki.nci.nih.gov/display/CommonProjects/UML+Model+for+11179+ed.+3" rel="nofollow">
+      https://wiki.nci.nih.gov/display/CommonProjects/UML+Model+for+11179+ed.+3
+    </a>
+    . Accompanying the 11179 ed3 specification is a uml model. According to the specification, specification text overrides the uml model if there are perceived conflicts. The uml model should be considered a &#34;template&#34;, since &lt;&lt;type&gt;&gt;s have not been applied to metamodel constructs.
+  </li>
+</ul>
+<ul>
+  <li>
+    caDSR - 11179ed3 gap analysis report:
+    <a href="https://wiki.nci.nih.gov/display/caDSR/Domain+Model+Gap+Analysis+Report+--+caDSR+4.0+vs.+ISO+IEC+11179+Ed.+3" rel="nofollow">
+      https://wiki.nci.nih.gov/display/caDSR/Domain+Model+Gap+Analysis+Report+--+caDSR+4.0+vs.+ISO+IEC+11179+Ed.+3
+    </a>
+    . This gap analysis report is intended to address gaps between the 11179 ed 2 - based caDSR implementation and the 11179 ed 3 specification.
+  </li>
+</ul>
+There are some practical problems, issues, and need for clarification with respect to the reference material cited in above.
+<h2 id="ISO11179ed.3Analysis-11179ed3finaldraft">
+  11179 ed3 final draft
+</h2>
+Key points in the document regarding the application of the specification to particular domains include
+<ul>
+  <li>
+    Definition of metamodel constructs.
+  </li>
+  <li>
+    Typing of items in the metadata registry
+  </li>
+  <li>
+    Dynamic extensions (Slots)
+  </li>
+  <li>
+    Conformance It should be noted that there are inconsistencies and anomolies in the specification which will cause implementation issues.
+  </li>
+</ul>
+<h3 id="ISO11179ed.3Analysis-Section3.2DefinitionsofMetamodelConstructs">
+  Section 3.2 Definitions of Metamodel Constructs
+</h3>
+defines the metamodel constructs used in specifying the registry metamodel. Of particular note for this review are the following:
+<ul>
+  <li>
+    3.2.4 class metamodel description of a set of objects that share the same attributes, operations, methods, relationships, and semantics
+  </li>
+  <li>
+    3.2.7 datatype set of distinct values, characterized by properties of those values and by operations on those values
+  </li>
+</ul>
+These definitions are referenced in subsequent clauses of the specification, for example:
+<ul>
+  <li>
+    5.1.2 Boolean datatype A mathematical datatype associated with two-valued logic
+  </li>
+  <li>
+    5.1.3 Contact class Description of Contact ... Contact is the class of object to whom information item(s), material object(s) and/or person(s) can be sent to or from...
+  </li>
+</ul>
+<h3 id="ISO11179ed.3Analysis-Section4.5TypesofItemsinanISO/IEC11179metadataregistry">
+  Section 4.5 Types of Items in an ISO/IEC 11179 metadata registry
+</h3>
+This section of the specification defines *&lt;&lt;type&gt;&gt;*s which may be applied to any metadata item in the metadata registry, subject to a set of rules. This enables, for example, concepts and data descriptions to also be registered, administered, classifiable, etc., metadata items.  Note that the registry metamodel is specified without application of &lt;&lt;type&gt;&gt;. The relevence of domain-specific application of *&lt;&lt;type&gt;&gt;*s is specified in the Conformance clause.
+<h3 id="ISO11179ed.3Analysis-Section6.1Identification">
+  Section 6.1 Identification
+</h3>
+The Identification region of the model specifies how metadata items are identified in the metadata registry. A metadata item that is to be identified shall be assigned the type Identified_Item. Each Identified_Item may be associated with any number of Slots, which is a dynamic way to add arbitrary attributes to instances of Identified_Items.
+<img alt="diagram showing identification region of the metamodel" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/seminfra/ISO%2011179%20ed.%203%20Analysis/iso11179ed3issue4.bmp?api=v2">
+<h3 id="ISO11179ed.3Analysis-Section12Conformance">
+  Section 12 Conformance
+</h3>
+This clause provides several views of conformance:
+<ul>
+  <li>
+    Conformance by specification clause.
+  </li>
+  <li>
+    Degree of conformance. May be &#34;strictly conformant&#34; or just &#34;conformant&#34;. A strictly conformant implementation shall not recognize, nor act on, nor allow the production of data element attributes that are dependent on any unspecified, undefined, or implementation-defined behavior
+  </li>
+  <li>
+    Profile. There are 4 defined profiles, which provide a range of specification clause conformance and registry/identification support (via &lt;&lt;type&gt;&gt; application to metamodel elements).
+  </li>
+</ul>
+The most comprehensive profile (Extended Metadata Registry), requires satisfcation of the following provisions:
+<ul>
+  <li>
+    Implementation of all specification clauses 6-10.
+  </li>
+  <li>
+    All Data_Elements, Value_Domains, and Derivation_Rules must be Registered_Items.
+  </li>
+  <li>
+    All Concepts and Concept_Systems must be Registered_Items.
+  </li>
+  <li>
+    All Registered_Items must also be Designatable_Items and Classifiable_Items.
+  </li>
+</ul>
+<h3 id="ISO11179ed.3Analysis-Specificationissues">
+  Specification issues
+</h3>
+There are some specification inconsistencies.The following diagram depicts a name conflict:
+<img alt="diagram depicting name conflict" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/seminfra/ISO%2011179%20ed.%203%20Analysis/iso11179ed3issue1.bmp?api=v2">
+The class Context has an association with Context_System via a property named &#34;source&#34;. The class Relation_Role, which is a subtype of Context, has an association with Relation via a property named &#34;source&#34;. The (Property) named &#34;source&#34; can not be redefined.Another redefinition conflict:
+<img alt="diagram depicting ISO 11179 redefinition conflict" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/seminfra/ISO%2011179%20ed.%203%20Analysis/iso11179ed3issue2.bmp?api=v2">
+The described_value_domain_meaning association has association ends which have identical names to the association ends of the *valud_domain_meaning&#34; association. Both sides of the association have name redefiniton conflicts. (This is actually referenced in an editorial comment within the specification). The actual intent of one association is to constrain, or &lt;&lt;subset&gt;&gt;, the other association and it should be made clear from the model and text that this is the case.Although not a specification or model issue, an unfortunate choice of name combinations between classes and association ends is producing code generation errors. This is a tooling problem. The problem is manifested within eclipse EMF generation of model &#34;Package&#34; where generated accessor names for structural features conflict with generated accessor names for classes. For example:
+<img alt="diagram depicting structural features conflict" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/seminfra/ISO%2011179%20ed.%203%20Analysis/iso11179ed3issue3.bmp?api=v2">
+In this model fragment, the &#34;Package&#34; accessor to the (meta model) structural feature named  &#34;example&#34; of class &#34;Data_Element&#34; is named Data_Element_Example, which is the same generated accessor the (meta model) class named Data_Element_Example. A similar problem exists for the &#34;derivation&#34; feature of &#34;Data_Element&#34; vis-a-vis the class &#34;Data_Element_Derivation&#34;.
+<h3 id="ISO11179ed.3Analysis-UMLModelforISO11179ed3">
+  UML Model for ISO11179 ed3
+</h3>
+The (Magic Draw) UML Model associated with ISO11179 may be considered an abstract model. It does not include the application of &lt;&lt;type&gt;&gt; inheritance for metadata items. As it stands, the UML model would not satisfy any conformance profile. For any specific domain application of the model, the model needs to include some appropriate level of applied &lt;&lt;type&gt;&gt;s.Any evaluation of the model should be with respect to a domain-specific conformance profile. Specifically, the model needs to be extended with application of &lt;&lt;type&gt;&gt; inheritance prior to performing a gap analysis.In addition to work-arounds related to specification issues, the model itself should properly reflect the difference between class and datatype, as defined in the specification. In particular, the metamodel elements denoted as datatype in the specification should be UML Datatype (or PrimitiveKind).
+<h3 id="ISO11179ed.3Analysis-GapAnalysisReportInconsistencies">
+  Gap Analysis Report Inconsistencies
+</h3>
+The gap analysis report does not take into consideration the domain-specific application of &lt;&lt;type&gt;&gt; to metadata item, the conformance profile considerations, or the use of Slots for dynamic extension of elements. As a consequence, the gap analysis report does not make valid conclusions:
+<ul>
+  <li>
+    Classification categories are administered component items in caDSR while in the Standard there is no specification for identifying them as either administered items The specification explicitly provides for any meta model element to be an administered item.
+  </li>
+  <li>
+    extensions are deemed required for a number of special cases. This conclusion does not appear to be warrented, based on the ability to utilize the &#34;Slot&#34; mechanism to extend any meta model element.
+  </li>
+</ul>
+Although a transformation needs to be implemented from the legacy caDSR to MDR, the new MDR may not appear to require the extensions suggested by the gap analysis report.
+<h2 id="ISO11179ed.3Analysis-Recommendedmigrationstrategies">
+  Recommended migration strategies
+</h2>
+The caDSR implementation of ISO 11179ed2 utilized extensions and modifications of the standard in order to provide some level of traceability to UML models and other forms of data concepts. This approach was taken based on special domain requirements vis-à-vis the existing standards.With a more flexible ISO 11179ed3 standard, compliance with the &#34;Extended Metadata Registry&#34; profile should be achievable without need for extensions or variance.The target implementation should be:
+<ul>
+  <li>
+    ISO 11179 ed3 compliant at the highest conformance profile and stricted level of conformance.
+  </li>
+  <li>
+    Should accomodate arbitrary meta-models, not just UML (there should be no UML-specific extensions in the implementation)
+  </li>
+  <li>
+    For UML models, coverage should include any desired model elements and their inter-relationships, not just classes, properties, and associations.
+  </li>
+  <li>
+    mapping of models/model elements to ISO 11179ed3 should be model/rules- based, such as via QVT
+  </li>
+</ul>
+<h2 id="ISO11179ed.3Analysis-Implementation">
+  Implementation
+</h2>
+Initial implementation:
+<ul>
+  <li>
+    Minor model fixes for name conflicts, primitive types.
+  </li>
+  <li>
+    Extend model elements according to 11179ed3 rules to satisfy &#34;Extended Metadata Registry&#34; profile compliance.
+  </li>
+  <li>
+    Convert resulting uml model to an M2 level meta-model implementation.
+  </li>
+  <li>
+    Upload UML and 11179 model fragments to Knowledge Repository.
+  </li>
+  <li>
+    Provide initial implementation for visualization from Knowledge Repository.
+  </li>
+</ul>
+<h2 id="ISO11179ed.3Analysis-Summary">
+  Summary
+</h2>
+Knowledge Repository MDR will be standards compliant, simplify implementation, extend modeling options, improve semantic access.

@@ -1,0 +1,108 @@
+Attendees: Jay Gaeta, Carl Jaffe, John Perry, Justin Kirby, John Freymann, Eric Kascic
+<ol>
+  <li>
+    Discussed progress of CTP development efforts to this point
+    <ol>
+      <li>
+        JP to provide new CTP version to Justin and Jay for testing in the next week
+      </li>
+      <li>
+        This new version will include:
+        <ol>
+          <li>
+            changes discussed to handle invalid dates that CTP tries to increment (will provide blank date instead of 7/4/1776)
+          </li>
+          <li>
+            new feature to apply Supp142 profiles to be applied against existing profiles
+          </li>
+        </ol>
+      </li>
+    </ol>
+  </li>
+  <li>
+    Discussed outstanding issues pertaining to crafting the
+    <a href="https://wiki.nci.nih.gov/display/Imaging/CTP+Anonymization+Profile+-+Basic" rel="nofollow">
+      anonymization script for the Supp142 Basic Profile
+    </a>
+    <ol>
+      <li>
+        updated the list of issues with new resolutions and action items on outstanding issues
+      </li>
+    </ol>
+  </li>
+</ol>
+************
+
+
+These are Draft notes below - needs to be cleaned up!! - JBF
+
+
+Profile:  Specified by DICOM 142
+
+ Script:  Implementation of a Profile, or modification thereof
+
+If you are editting a script
+
+
+For example - if you created a private group, then applied the baseline DICOM142 profile to it - it would highlight the
+
+
+CTP on startup it loads a configuration. Configuration specifies a script file.  In absence of script file, it loads a &#39;default&#39; script file.  From then on it uses that particular script file.
+
+
+Suggestion:  Default script is based on the DICOM142 aggressive profile.
+
+
+Levels of Script Instructions:
+
+Replacement field of an element
+
+Global Instructions:
+<ol>
+  <li>
+    Global Keep
+  </li>
+  <li>
+    Global Remove
+  </li>
+</ol>
+Individual instructions (keeps, removes, and modification instructions) take precedence over Global Instructions (and keep takes precedence over remove)
+
+Script file has 3 categories,
+
+
+JP: New configurator will have a menu bar at the top with anonymizer instructions (so you would never have to edit the script file with a text editor)
+
+
+If you have two anonymizer stages pointed at the same script file, modifications would be applied to both stages (not necessarily desirable)
+
+
+&#34;Key&#34; management:
+
+JP - a script attribute would point to a file that contains the key. Could be contained on a USB fob.
+
+The way it works now every element can have its own key.  Not desirable.
+
+Suggest the key should be a
+
+
+************CTP WG 18 Meeting
+John Perry.
+Profiles are things defined by DICOM.
+
+Justin list of issues:
+Group 2  it&#39;s in &#39;file metadata&#39; , not in the main body
+•    Date error - the CTP was trying to modify what it thought was a date but it was not valid
+
+In the DICOM files
+There is a DICOM tag designed to hold whether it is not deidentified.
+Tag should add in the whole anonymization history...
+
+Whow wrote supp 142:  David Clunie editor, Jay was a reviewer.  Others involved.  JP will ask
+
+Group 12 is a DICOM standard group...
+Jay- Within the clinical trial, when we manage it we keep the provinance in the group 12.
+One at the acqui
+
+Jay will send script for group 12
+Jay will try to standardize and use the same scripting language...  John P has wanted to change the scripting language for some time... 

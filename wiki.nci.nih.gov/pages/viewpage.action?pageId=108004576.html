@@ -1,0 +1,183 @@
+Contents of This Page
+<ul>
+  <li>
+    <a href="#LexEVS6.1DesignDocumentDetailedDesignPerformanceTextSearch(Contains)-Overview" rel="nofollow">
+      Overview
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.1DesignDocumentDetailedDesignPerformanceTextSearch(Contains)-ASimplifiedSearchAPI" rel="nofollow">
+      A Simplified Search API
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.1DesignDocumentDetailedDesignPerformanceTextSearch(Contains)-AHigherPerformanceLucene" rel="nofollow">
+      A Higher Performance Lucene
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.1DesignDocumentDetailedDesignPerformanceTextSearch(Contains)-Multi-TerminologySearches" rel="nofollow">
+      Multi-Terminology Searches
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.1DesignDocumentDetailedDesignPerformanceTextSearch(Contains)-QuerySyntax" rel="nofollow">
+      Query Syntax
+    </a>
+  </li>
+</ul>
+Document Information
+Author: Bauer, Scott Email:
+<a href="mailto:Bauer.Scott@mayo.edu" rel="nofollow">
+  Bauer.Scott@mayo.edu
+</a>
+Team: LexEVS Contract: ST12-1106  Client: NCI CBIIT National Institutes of Heath US Department of Health and Human Services
+Revision History
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Version
+      </th>
+      <th>
+        Date
+      </th>
+      <th>
+        Description of Changes
+      </th>
+      <th>
+        Author
+      </th>
+    </tr>
+    <tr>
+      <td>
+        1.0
+      </td>
+      <td>
+        2013/03/05
+      </td>
+      <td>
+        Initial Version
+      </td>
+      <td>
+        Bauer, Scott
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="LexEVS6.1DesignDocumentDetailedDesignPerformanceTextSearch(Contains)-Overview">
+  Overview
+</h2>
+Search mechanisms using Lucene can become overburdened as increasing numbers of use cases make for a larger and more complex Lucene index. When a use case as comprehensive as searching an entire multi-source terminology service for a term or fragment is proposed, then a more restricted manner of approaching the problem is in order. Furthermore the  use of the power of the LexEVS API becomes overkill, with the necessity of the union of large datasets prior to the effective query. Subsequently, a more restricted approach is necessary.
+<h2 id="LexEVS6.1DesignDocumentDetailedDesignPerformanceTextSearch(Contains)-ASimplifiedSearchAPI">
+  A Simplified Search API
+</h2>
+The model for Entity in LexEVS/LexGrid is robust and complete enough that it allows extensive metadata and properties to be compounded within  the entity&#39;s scope when loaded from an extensively defined source into the LexGrid data model. However, the lexical, or human readable aspects of this model element are relatively restricted and among those aspects that are human readable few need to be searched in order to return results that fit into the majority of use cases. Reducing the matching algorithms available to a text match in these circumstances can also allow relatively good performance over a larger data set in Lucene. The proposition here is to use a &#34;contains&#34; match algorithm only.
+<h2 id="LexEVS6.1DesignDocumentDetailedDesignPerformanceTextSearch(Contains)-AHigherPerformanceLucene">
+  A Higher Performance Lucene
+</h2>
+Lucene indexes can be created to perform searches in a wide variety of text match algorithms, natural language processing paradigms, customized normalization methods, regular expression implementations and more. The resulting indexes can can be large and complex enough to slow result returns on a given Lucene query. Breaking out a restricted Lucene index using the simplest of these could provide needed speed in result returns.
+<h2 id="LexEVS6.1DesignDocumentDetailedDesignPerformanceTextSearch(Contains)-Multi-TerminologySearches">
+  Multi-Terminology Searches
+</h2>
+No matter what the implementation, searching sources that have millions of records is challenging. Searching several sources of size can be even more so. Combining a restricted-search API with a well-tuned Lucene index should make the results-getting performance much more efficient.
+<img alt="restricted search API with limited Lucene index" width="500" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%206.1%20Design%20Document%20-%20Detailed%20Design%20-%20Performance%20-%20Text%20Search%20(Contains)/SimpleSearch.png?api=v2">
+This functionality will be implemented by the Search Extension - as described below.
+/*
+* Copyright: (c) 2004-2013 Mayo Foundation for Medical Education and
+* Research (MFMER). All rights reserved. MAYO, MAYO CLINIC, and the
+* triple-shield Mayo logo are trademarks and service marks of MFMER.
+*
+* Except as contained in the copyright notice above, or as used to identify
+* MFMER as the author of this software, the trade names, trademarks, service
+* marks, or product names of the copyright holder shall not be used in
+* advertising, promotion or otherwise in connection with this software without
+* prior written authorization of the copyright holder.
+*
+* Licensed under the Apache License, Version 2.0 (the &#34;License&#34;);
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+* http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an &#34;AS IS&#34; BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+package org.LexGrid.LexBIG.Extensions.Generic;
+
+import java.util.Set;
+
+import org.LexGrid.LexBIG.Exceptions.LBParameterException;
+import org.LexGrid.LexBIG.Utility.Iterators.ResolvedConceptReferencesIterator;
+
+/**
+* A simplified Search Extension.
+*
+* Query syntax is described by the
+* {@link http://lucene.apache.org/core/old_versioned_docs/versions/2_9_1/queryparsersyntax.html Lucene Query Syntax}
+*/
+public interface SearchExtension extends GenericExtension {
+
+/**
+* Search based on a given text string over all coding schemes.
+*
+* @param text
+*             The search text
+* @return
+*             A ResolvedConceptReferencesIterator
+*
+* @throws LBParameterException
+*/
+public ResolvedConceptReferencesIterator search(String text) throws LBParameterException;
+
+/**
+* Search based on a given text string over given coding schemes.
+*
+* @param text
+*             The search text
+* @param codingSchemes
+*             The coding schemes to include in the search
+* @return
+*             A ResolvedConceptReferencesIterator
+*
+* @throws LBParameterException
+*/
+public ResolvedConceptReferencesIterator search(
+String text,
+Set&lt;CodingSchemeReference&gt; codingSchemes) throws LBParameterException;
+
+/**
+* Search based on a given text string over given coding schemes, excluding
+* the listed.
+*
+* NOTE: If a coding scheme appears in both codingSchemesToInclude
+* and codingSchemesToExclude, the exclude will be given priority.
+*
+* @param text
+*             The search text
+* @param codingSchemesToInclude
+*             The coding schemes to include in the search
+* @param codingSchemesToExclude
+*             The coding schemes to include in the search
+* @return
+*             A ResolvedConceptReferencesIterator
+*
+* @throws LBParameterException
+*/
+public ResolvedConceptReferencesIterator search(
+String text,
+Set&lt;CodingSchemeReference&gt; codingSchemesToInclude,
+Set&lt;CodingSchemeReference&gt; codingSchemesToExclude) throws LBParameterException;
+
+}
+<h2 id="LexEVS6.1DesignDocumentDetailedDesignPerformanceTextSearch(Contains)-QuerySyntax">
+  Query Syntax
+</h2>
+Query format of the Search Extension follows the
+<a href="http://lucene.apache.org/core/old_versioned_docs/versions/2_9_1/queryparsersyntax.html" rel="nofollow">
+  Lucene Query Syntax
+</a>
+. Any search string allowed by this syntax is accepted by the Search Extension.By default, all search terms will be joined by an &#34;AND&#34; operator, unless otherwise specified.For instance, a search of &#34;Heart Attack&#34; will by default translate to &#34;Heart AND Attack&#34;The following characters are stripped and not indexed. This means that if passed in as a search string, they will not play a role in matching of a term.For example, &#34;@heart&#34; and &#34;$heart&#34; will both be indexed identically – as &#34;heart&#34;Characters to remove:&#39;,&#39;, &#39;.&#39;, &#39;/&#39;, &#39;\&#39;, &#39;`&#39;, &#39;\&#39;&#39;, &#39;&#34;&#39;, &#39;+&#39;, &#39;*&#39;, &#39;=&#39;, &#39;@&#39;, &#39;#&#39;, &#39;$&#39;, &#39;%&#39;, &#39;^&#39;, &#39;&amp;&#39;, &#39;?&#39;, &#39;!&#39; The following characters will be translated into whitespace during indexingThis means words will be broken and indexed separately.For example, &#34;Heart-Attack&#34; will be indexed separately as &#34;heart&#34; and &#34;attack&#34;Characters treated as whitespace: &#39;-&#39;, &#39;;&#39;, &#39;(&#39;, &#39;)&#39;, &#39;{&#39;, &#39;}&#39;, &#39;[&#39;, &#39;]&#39;, &#39;&lt;&#39;, &#39;&gt;&#39;, &#39;|&#39;

@@ -1,0 +1,347 @@
+<ul>
+  <li>
+    <a href="#Developingservices-NCIEnterpriseServices(NES)Emaillist" rel="nofollow">
+      NCI Enterprise Services (NES) Email list
+    </a>
+  </li>
+  <li>
+    <a href="#Developingservices-QuickStartGuide" rel="nofollow">
+      Quick Start Guide
+    </a>
+  </li>
+  <li>
+    <a href="#Developingservices-DevelopingSecureServices(PO/PA)" rel="nofollow">
+      Developing Secure Services (PO / PA)
+    </a>
+    <ul>
+      <li>
+        <a href="#Developingservices-Purpose" rel="nofollow">
+          Purpose
+        </a>
+      </li>
+      <li>
+        <a href="#Developingservices-Prerequisites" rel="nofollow">
+          Prerequisites
+        </a>
+      </li>
+      <li>
+        <a href="#Developingservices-StepstoCode&amp;TestLocally" rel="nofollow">
+          Steps to Code &amp; Test Locally
+        </a>
+        <ul>
+          <li>
+            <a href="#Developingservices-AddingyourownGridIdentitytotheDB" rel="nofollow">
+              Adding your own Grid Identity to the DB
+            </a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+Introduce
+You need to update Introduce Java Heap settings when running Introduce since, we&#39;re developing such large services.
+Update &lt;CAGRID_HOME&gt;/projects/introduce/antfiles/introduce-utils.xml
+
+&lt;macrodef name=&#34;runPortal&#34;&gt;
+&lt;sequential&gt;
+&lt;echo message=&#34;Running portal&#34;/&gt;
+&lt;java classname=&#34;gov.nih.nci.cagrid.introduce.portal.Introduce&#34; fork=&#34;true&#34;&gt;
+&lt;jvmarg value=&#34;-Xms256m&#34;/&gt;
+&lt;jvmarg value=&#34;-Xmx1024m&#34;/&gt;
+&lt;jvmarg value=&#34;-Djava.endorsed.dirs=extensions/endorsed&#34; /&gt;
+&lt;sysproperty key=&#34;GLOBUS_LOCATION&#34; value=&#34;${ext.globus.dir}&#34;/&gt;
+&lt;classpath refid=&#34;Portal.run.classpath&#34;/&gt;
+&lt;/java&gt;
+&lt;/sequential&gt;
+&lt;/macrodef&gt;
+<h2 id="Developingservices-NCIEnterpriseServices(NES)Emaillist">
+  NCI Enterprise Services (NES) Email list
+</h2>
+Subscribe to the
+<a href="https://list.nih.gov/archives/nes-users-l.html" rel="nofollow">
+  NES-USERS-L@LIST.NIH.GOV mailing list
+</a>
+for announcements of new releases, changes to the services, etc.  You can also use this list for any questions you may have about using the services.  This list is intended to be fully interactive and not just for announcements from the CTRP/COPPA team - we encourage all users to ask questions and respond to anyone else&#39;s questions freely.
+<h2 id="Developingservices-QuickStartGuide">
+  Quick Start Guide
+</h2>
+These instructions are written for pa-grid but apply to po-grid as well (change pa to po, etc, as needed).  You may check out the code from
+<a href="https://ncisvn.nci.nih.gov/svn/coppa/trunk/code/" rel="nofollow">
+  https://ncisvn.nci.nih.gov/svn/coppa/trunk/code/
+</a>
+(or the appropriate tag for a specific release under
+<a href="https://ncisvn.nci.nih.gov/svn/coppa/tags/" rel="nofollow">
+  https://ncisvn.nci.nih.gov/svn/coppa/tags/
+</a>
+)
+<ul>
+  <li>
+    to run a client, use &#34;ant run&lt;service name&gt;Client&#34; from the pa-grid directory (&#34;ant -p&#34; will display the full list of targets)
+  </li>
+  <li>
+    if you edit a client, use &#34;ant jarTests-quick&#34; to recompile the clients
+  </li>
+  <li>
+    if you need to regenerate everything (eg, after a clean), use the &#34;compile&#34; or &#34;all&#34; targets
+  </li>
+  <li>
+    If you just need to recompile or test your code, after all the stubs have been generated once, use any of these targets:
+    <ul>
+      <li>
+        compile-quick
+      </li>
+      <li>
+        jars-quick
+      </li>
+      <li>
+        test-quick
+      </li>
+    </ul>
+  </li>
+  <li>
+    to deploy, use deployJBoss (to build the stubs) or deploy:jboss:quick (if the stubs have already been built
+  </li>
+  <li>
+    to undeploy, use undeployJBoss
+  </li>
+  <li>
+    to regenerate just the PA-specific stubs (eg, after editing CoppaPA.xsd), run &#34;ant init postStubs&#34;
+  </li>
+  <li>
+    if you&#39;ve upgraded one or more jars, you&#39;ll have to manually remove the old jars from &lt;jboss&gt;/server/pagrid/wsrf.war/WEB-INF/lib
+  </li>
+</ul>
+You&#39;ll need to specify the host and port in local.properties.  Host names are all of the format [https://ctms-services-[po]|pa][3-0|3-1|3-2]&lt;tier&gt;.nci.nih.gov (see
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=19792498" rel="nofollow">
+  a list of deployed hosts and ports
+</a>
+).  Local ports are 39543 (for PO) and 39543 (for PA), although those are set by default.
+Here&#39;s a sample local.properties for accessing the PA 3.2 services on the integration tier.
+
+
+service.port=1522
+service.hostname=ctms-services-pa-3-2-integration.nci.nih.gov
+<h2 id="Developingservices-DevelopingSecureServices(PO/PA)">
+  Developing Secure Services (PO / PA)
+</h2>
+These instructions are written for developers of po-grid secure COPPA services on non-Windows (Linux / OSX) platforms.
+<h3 id="Developingservices-Purpose">
+  Purpose
+</h3>
+To inform our developers how to develop on secure grid services.
+<h3 id="Developingservices-Prerequisites">
+  Prerequisites
+</h3>
+<ol>
+  <li>
+    Install caGrid v1.3 locally,
+    <a href="http://cagrid.org/display/downloads/caGrid+1.3+Installation+Quick+Start" rel="nofollow">
+      http://cagrid.org/display/downloads/caGrid+1.3+Installation+Quick+Start
+    </a>
+    . You may install it anywhere. Personally, I put it in my User&#39;s Home folder under dev
+
+
+    steve-matyass-macbook-pro-2:cagrid smatyas$ pwd
+    /Users/smatyas/dev/cagrid
+    steve-matyass-macbook-pro-2:cagrid smatyas$ ll
+    total 0
+    drwxr-xr-x   5 smatyas  staff  170 Oct  7 11:42 .
+    drwxr-xr-x   5 smatyas  staff  170 Oct  7 11:41 ..
+    drwxr-xr-x  17 smatyas  staff  578 Oct  7 11:41 apache-ant-1.7.0
+    drwxr-xr-x  14 smatyas  staff  476 Oct 15 12:56 caGrid
+    drwxr-xr-x  20 smatyas  staff  680 Oct  7 11:41 ws-core-4.0.3
+    steve-matyass-macbook-pro-2:cagrid smatyas$ set HOSTNAME=steve-matyass-macbook-pro-2.local
+  </li>
+</ol>
+<ol>
+  <li>
+    Obtain a grid credential (or Dorian User Account) for the grid trust fabric needed, e.g. Training Grid.  Developers working outside the NIH firewall should use the Training Grid, while developers inside the firewall should use either the training or stage grids. See
+    <a href="http://cagrid.org/display/cagrid13tutorials/Create+User+Account" rel="nofollow">
+      http://cagrid.org/display/cagrid13tutorials/Create+User+Account
+    </a>
+    for instructions.  You can either create a new grid account for yourself or log in as the existing &#34;coppagridtest&#34; account on the training or stage grids.
+  </li>
+  <li>
+    Request a Host Cert to be used locally,
+    <a href="http://cagrid.org/display/knowledgebase/Request+a+Host+Certificate" rel="nofollow">
+      http://cagrid.org/display/knowledgebase/Request+a+Host+Certificate
+    </a>
+    . You should specify your local machine&#39;s hostname. For example, locally I use the value of my HOSTNAME environment variable
+
+
+    steve-matyass-macbook-pro-2:~ smatyas$ echo $HOSTNAME
+    steve-matyass-macbook-pro-2.local
+    steve-matyass-macbook-pro-2:~ smatyas$
+
+
+    Export your HOSTNAMEOur developers have found this to be useful as the HOSTNAME can and does change from time to time when signing on to different networks, etc.. (VPN, Home, Offices, WiFi, NIH ethernet, NIH WiFi)
+    vi ~/.bash_profile (or equivalent)
+
+    export HOSTNAME=steve-matyass-macbook-pro-2.local
+
+
+    Export your JBOSS_HOME when running build-po/** scriptsSince the build-po/** scripts auto-gen the ${jboss.home} (~/app/po/jboss...) you need to EITHER remove your JBOSS_HOME env var when running build-po related scripts or SET your JBOSS_HOME to ~/app/po/jboss... To determine your current state / situation, type &#39;export&#39; from the shell / terminal window you&#39;re using.
+  </li>
+  <li>
+    Record your grid credential (aka Grid Identity) for later use. For example, mine is
+
+
+    /O=caBIG/OU=caGrid/OU=Training/OU=Dorian/CN=matyass
+  </li>
+</ol>
+<h3 id="Developingservices-StepstoCode&amp;TestLocally">
+  Steps to Code &amp; Test Locally
+</h3>
+Each day before you start using coding and testing locally, you&#39;ll want to Login to Dorian using the GAARDS UI to extend your local grid identity certificates. Roughly ever 24 hours they expire.
+<ol>
+  <li>
+    Lauch GAARDS-UI and login using shared COPPA Grid Test account
+    Launch GAARDS-UI (ant security)
+
+    steve-matyass-macbook-pro-2:cagrid smatyas$ pwd
+    /Users/smatyas/dev/cagrid/caGrid
+    steve-matyass-macbook-pro-2:caGrid smatyas$ ant security
+    ...
+    <ol>
+      <li>
+        Click Login button and specify the following:
+        COPPA Grid Test Account on Training Grid
+
+        Credential Provider: Training
+        Organization: Training
+        Username: coppagridtest
+        Password: Coppa#12345
+      </li>
+    </ol>
+  </li>
+  <li>
+    Ensure your build-po/install.properties and build-po/upgrade.properties files contain the correct values, namely the following:
+
+
+    pogrid.grid.secure.cert.location=${user.home}/.cagrid/certificates/${pogrid.grid.external.secure.host}-cert.pem
+    pogrid.grid.secure.key.location=${user.home}/.cagrid/certificates/${pogrid.grid.external.secure.host}-key.pem
+    pogrid.grid.external.secure.host=${env.HOSTNAME}
+
+
+    Here is what my HOSTNAME environment variable is set to:
+
+
+    steve-matyass-macbook-pro-2:~ smatyas$ echo $HOSTNAME
+    steve-matyass-macbook-pro-2.local
+    steve-matyass-macbook-pro-2:~ smatyas$
+  </li>
+  <li>
+    Ensure that your GLOBUS_LOCATION environment variable is set
+
+
+    steve-matyass-macbook-pro-2:~ smatyas$ echo $GLOBUS_LOCATION
+    /Users/smatyas/dev/cagrid/ws-core-4.0.3
+  </li>
+  <li>
+    Build your local dev instances
+    PO
+
+    steve-matyass-macbook-pro-2:build-po smatyas$ pwd
+    /Users/smatyas/dev/projects/coppa/code/build-po
+    steve-matyass-macbook-pro-2:build-po smatyas$ ant deploy:local:install
+    ...
+
+
+    PA
+
+    steve-matyass-macbook-pro-2:build-pa smatyas$ pwd
+    /Users/smatyas/dev/projects/coppa/code/build-pa
+    steve-matyass-macbook-pro-2:build-pa smatyas$ ant deploy:local:install
+    ...
+  </li>
+  <li>
+    After you receive a BUILD SUCCESSFUL, you&#39;ll need to wait for all JBoss server instances to start fully.
+    <ul>
+      <li>
+        Confirm your services are ready by going to
+        PO
+        <ul>
+          <li>
+            <a href="http://localhost:29480/po-web/" rel="nofollow">
+              http://localhost:29480/po-web/
+            </a>
+          </li>
+          <li>
+            <a href="http://localhost:29443/wsrf/services/cagrid/Person" rel="nofollow">
+              http://localhost:29443/wsrf/services/cagrid/Person
+            </a>
+          </li>
+        </ul>
+        PA
+        <ul>
+          <li>
+            <a href="https://trials-dev.nci.nih.gov/pa/" rel="nofollow">
+              https://trials-dev.nci.nih.gov/pa/
+            </a>
+          </li>
+          <li>
+            <a href="https://localhost:19443/wsrf/services/cagrid/PAServices" rel="nofollow">
+              https://localhost:19443/wsrf/services/cagrid/PAServices
+            </a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    Now that the servers have stared fully, you&#39;re ready to test the secure services
+    PO
+
+    steve-matyass-macbook-pro-2:build-po smatyas$ cd ../po-grid/
+    steve-matyass-macbook-pro-2:po-grid smatyas$ pwd
+    /Users/smatyas/dev/projects/coppa/code/po-grid
+    steve-matyass-macbook-pro-2:po-grid smatyas$ ant runPersonClient
+    ...
+
+
+    In PO, you may pass-in runtime paramters to test the clients. An example of such parameter is -getId. In addition, you may choose to run any number of methods within the grid client classes. You do this using the -runMethods parameter. Sample run command might be:
+    PO
+
+    christophe-ludets-macbook-pro:po-grid ludetc$ ant runPatientClient -Dargs=&#34;-getId 888&#34;
+    christophe-ludets-macbook-pro:po-grid ludetc$ ant runPatientClient -Dargs=&#34;-getId 888 -runMethods testGetById,testUpdate&#34;
+
+
+    PA
+
+    steve-matyass-macbook-pro-2:build-pa smatyas$ cd ../pa-grid/
+    steve-matyass-macbook-pro-2:pa-grid smatyas$ pwd
+    /Users/smatyas/dev/projects/coppa/code/pa-grid
+    steve-matyass-macbook-pro-2:pa-grid smatyas$ ant runStudyProtocolClient
+    ...
+  </li>
+  <li>
+    Congratulations!
+  </li>
+</ol>
+<h4 id="Developingservices-AddingyourownGridIdentitytotheDB">
+  Adding your own Grid Identity to the DB
+</h4>
+<ol>
+  <li>
+    Add your Grid Identity to your local PO or PA database. Example shows adding &#34;/O=caBIG/OU=caGrid/OU=Training/OU=Dorian/CN=coppagridtest&#34; Grid Identity (an example stage grid identity would be &#34;/O=caBIG/OU=caGrid/OU=Stage LOA1/OU=Dorian/CN=coppagridtest&#34;). Replace &#34;coppagridtest&#34; with your own account as needed (or just use the coppagridtest user).
+    Connect to PO DB
+
+    psql -U poadmin -d podb
+    password: poadmin123
+
+
+    Connect to PA DB
+
+    psql -U paadmin -d ctods_pa
+    password: paadmin123
+
+
+
+
+    --adding /O=caBIG/OU=caGrid/OU=Training/OU=Dorian/CN=coppagridtest as a grid client test user account
+    INSERT INTO CSM_USER (LOGIN_NAME, FIRST_NAME, LAST_NAME, UPDATE_DATE) VALUES (&#39;/O=caBIG/OU=caGrid/OU=Training/OU=Dorian/CN=coppagridtest&#39;, &#39;Test&#39;, &#39;GridClientUser&#39;, now());
+    INSERT INTO CSM_USER_GROUP (USER_ID, GROUP_ID) VALUES ((select user_id from csm_user where login_name = &#39;/O=caBIG/OU=caGrid/OU=Training/OU=Dorian/CN=coppagridtest&#39;),
+    (select group_id from csm_group where group_name = &#39;gridClient&#39;));
+  </li>
+</ol>

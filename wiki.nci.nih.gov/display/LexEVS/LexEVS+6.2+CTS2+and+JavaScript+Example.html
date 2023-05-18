@@ -1,0 +1,114 @@
+Contents of this Page
+<ul>
+  <li>
+    <a href="#LexEVS6.2CTS2andJavaScriptExample-JavaScript(JQueryandBootstrap.js)" rel="nofollow">
+      JavaScript (JQuery and Bootstrap.js)
+    </a>
+  </li>
+</ul>
+<h2 id="LexEVS6.2CTS2andJavaScriptExample-JavaScript(JQueryandBootstrap.js)">
+  JavaScript (JQuery and Bootstrap.js)
+</h2>
+A complete example using JQuery and Bootstrap that makes CTS2 REST calls to populate HTML/JS widgets. This script example features JSON parsing.  The JSON structure in CTS2 1.0 was non-standard and will not be compatible with the standardized JSON in CTS2 1.1.  CTS2 XML is standard.  CTS2 associated with LexEVS 6.2 will contain the standard version of JSON for CTS 1.1.
+<ul>
+  <li>
+    Download
+    <a href="http://jquery.com/download/" rel="nofollow">
+      JQuery 1.10.x
+    </a>
+    <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+      <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%206.2%20CTS2%20and%20JavaScript%20Example/exit_small.png?api=v2">
+    </a>
+    and
+    <a href="http://getbootstrap.com/" rel="nofollow">
+      Bootstrap 3.0.x
+    </a>
+    <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+      <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%206.2%20CTS2%20and%20JavaScript%20Example/exit_small.png?api=v2">
+    </a>
+  </li>
+  <li>
+    Create a CTSRest directory for your files
+  </li>
+  <li>
+    Add directories bootstrap and cts2 to this root
+  </li>
+  <li>
+    Add subdirectories js and css to both directories you&#39;ve just created
+  </li>
+  <li>
+    Add bootstrap.js to the bootstrap/js directory
+  </li>
+  <li>
+    Add bootstrap.min.css to the bootstrap/css directory
+  </li>
+  <li>
+    Add jquery-1.10.2.js to the cts2/js library
+  </li>
+  <li>
+    Create a codeSystem.js text file and add the following text (adjust the serviceUrl to point to a convenient CTS2 service)
+  </li>
+</ul>
+JavaScript REST Client Expand source
+
+
+var CodeSystemListConfig = {
+serviceUrl: &#34;http://&lt;base url&gt;/codesystemversions?format=json&#34;
+};
+
+function init() {
+
+$(document).ready(
+function() {
+var url = CodeSystemListConfig.serviceUrl;
+$.getJSON(url + &#34;&amp;callback=?&#34;, function (data) {
+
+for (var i in data.codeSystemVersionCatalogEntryDirectory.entryList) {
+var entry = data.codeSystemVersionCatalogEntryDirectory.entryList[i];
+var key = entry.formalName;
+var designation = entry.documentURI;
+var uri = entry.href;
+$(&#34;ul&#34;).append(&#34;&lt;li&gt;&lt;a href=\&#34;&#34; + uri +&#34;\&#34;&gt;&#34; + key + &#34;&lt;/a&gt;&lt;/li&gt;&#34;);
+}
+});
+});
+}
+<ul>
+  <li>
+    when complete add codesystem.js to the cts2/js directory
+  </li>
+  <li>
+    Create a new html file containing the following html and add it to the root CTSRest folder
+  </li>
+</ul>
+HTML Expand source
+
+
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;Code System&lt;/title&gt;
+&lt;meta name=&#34;viewport&#34; content=&#34;width=device-width, initial-scale=1.0&#34;&gt;
+&lt;!-- Bootstrap --&gt;
+&lt;link href=&#34;bootstrap/css/bootstrap.min.css&#34; rel=&#34;stylesheet&#34; media=&#34;screen&#34;&gt;
+&lt;script src=&#34;cts2/js/codeSystem.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;cts2/js/jquery-1.10.2.js&#34;&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1&gt;Code Systems&lt;/h1&gt;
+&lt;script&gt;init()&lt;/script&gt;
+&lt;ul class=&#34;nav nav-pills nav-stacked&#34;&gt;
+&lt;li class=&#34;active&#34;&gt;&lt;a href=&#34;#&#34;&gt;Home&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;script src=&#34;bootstrap/js/bootstrap.js&#34;&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+<ul>
+  <li>
+    Open the new HTML file in a browser and you should see code systems displayed on a browser page.
+  </li>
+</ul>
+<h4 id="LexEVS6.2CTS2andJavaScriptExample-Troubleshooting">
+  Troubleshooting
+</h4>
+ If this page shows errors in your browser&#39;s debugging tools, you may have extraneous characters in your text file. Try removing all indentations, save and run again.

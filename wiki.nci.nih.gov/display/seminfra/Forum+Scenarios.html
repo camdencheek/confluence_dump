@@ -1,0 +1,71 @@
+<h2 id="ForumScenarios-Federateddiscovery,searching,anddataaggregation">
+  Federated discovery, searching, and data aggregation
+</h2>
+<ul>
+  <li>
+    User can query for all pre-cancerous biospecimens from caTissue instances like those at Washington University, Thomas Jefferson University, and Holden Comprehensive Cancer Center.
+  </li>
+  <li>
+    User can identify the sample obtained for Glioblastoma multiforme (GBM) and the corresponding CT image information. This query can be performed by querying across caTissue and NBIA.
+  </li>
+  <li>
+    User can find out if a sample used in an expression profiling experiment is available for a SNP analysis experiment. This query can be performed by querying across caTissue and caArray.
+  </li>
+  <li>
+    User can search for a particular gene based on the Entrez Gene ID and its related information e.g. messenger RNA and protein information from GeneConnect.
+  </li>
+</ul>
+<h2 id="ForumScenarios-Dataelementequivalenceanddiscovery">
+  Data element equivalence and discovery
+</h2>
+<ul>
+  <li>
+    Find all malignant breast cancer tumors, return all tissues that have site &#34;breast&#34; or auxiliary site is a subtype of &#34;breast&#34; across different tissue banking systems, even if these have been coded differently in different systems
+  </li>
+  <li>
+    Find a standard data element that matches your local data element, assert that these are the same
+  </li>
+  <li>
+    Find all prostate cancer specimens, return all specimens with a clinical diagnosis of &#34;prostate cancer&#34; or related terms (query expansion based on ontology)
+  </li>
+</ul>
+<h2 id="ForumScenarios-Dataidentificationandsearching">
+  Data identification and searching
+</h2>
+Scientist would like to gather the clinical data and associate biospecimen from a particular participant/patient. Scientist would also like to identify any associated microarry experiments performed on the biospecimen and check for availability of additional biospecimens for further analysis.
+
+Workflow authoring
+
+When dragging services onto the authoring tool dashboard, these services should be automatically &#34;piped&#34; together where applicable (i.e. when output from 1 service maps to the input of another service). Leveraging metadata capable of mapping outputs to inputs will facilitate this.
+In cases where services cannot be directly piped together, the tool should help identify shim services that can be used. This will require possible extension of metadata around shim services.
+If there do not exist shims to assist in piping services together, the authoring tool should help (automatically) generate shim services based on the semantic requirements.
+
+The ability to describe a published paper as a &#34;metadata description&#34; and &#34;SOP&#34;... and then use that metadata for search/discovery/authoring new workflows, capturing any new steps or features of the new workflow + the original SOP in the metadata registry.
+<h2 id="ForumScenarios-Easyextensionofexistingsystems">
+  Easy extension of existing systems
+</h2>
+In previous caIntegrator projects there was a lot of custom development that was required for every new study because the data of interest was different for every study. For instance, in the Rembrandt study they were dealing with a brain tumor study so the clinical data contained some common things like Age, Survival Length, and Gender but it also included study specific attributes like Karnofsky Score, Lansky Score, Anti-convulsant status, and Steroid Dose. Each study will likely have different data sets that are of interest for a specific study, and as the study progresses they may even add new attributes. Rather than going through a full modeling effort for every study and then generating a new data model and object model and updating it throughout the project we would like to build a system that allows the user to dynamically define the data sets they want to use and be able to store this in a generic model. However, we do not want to lose the semantic meaning of each of these attributes and we also want a computable model that will allow us to query across multiple studies.
+
+Life Sciences data is dynamic - data descriptions and annotations are diverse and evolve very rapidly in this domain. Therefore, there is a requirement to be able to easily add additional data elements to an applications at run time (not linked to a software release). These could be discovered in a metadata repository or, if the appropriate data element does not yet exist, it may need to be created. These newly added data elements need to then be immediately discoverable and made available through the application programmatic interface.
+
+Enabling ontological indexing and searching of literature
+
+Interdisciplinary research is characterized by language barriers, with research results distributed over a wide range of journals (some PubMed, some beyond) and data distributed across numerous community repositories. Semantically data tends to be described in very different ways with widely varying applications resulting in search and analysis gaps. For example caNanoLab provides limited search functionality and offers limited integration with other valuable resources.
+
+The new semantics infrastructure must provide for services leveraging domain ontologies as the basis for indexing the published literature and for searching and aggregating from multipledata resources.
+
+caOBR represents one implementation that is somewhat characteristic of this entire class of requirements. OBR exposes indices to caGRID applications and makes caGrid resources available for old BR indexing. It enables all BR-based annotation of grid resources and provides analytical capabilities as well. It utilizes natural language processing-based indexing and annotation of caNanoLab data and caB2B interface for OBA/OBR analysis of caNanoLab
+<h2 id="ForumScenarios-Referencevocabularyandvaluesetterminologies">
+  Reference vocabulary and value set terminologies
+</h2>
+The CTRP has an immediate need for NCI level Vocabulary Services for Diseases and Interventions (Agents, Devices, etc.) that would allow CTRP to leverage the existing terms in EVS for these key lists of values, rather than relying on the existing lists taken from the PDQ Terminology File. And avoid the need for CTRP to build curation applications for these lists.
+
+Thre is a need to develop an ontology for LIMS applications that includes a collaborative platform for improving  existing terminologies and for cross mapping between various terminology  sets to extend the body of knowledge for caBIG community and improve interoperability between laboratory information and hospital systems.
+<h2 id="ForumScenarios-Searchinginfrastructure">
+  Searching infrastructure
+</h2>
+A user sends out a query for all microarray data associated with subjects with lung cancer at the following institutes: 1) Dana Farber; 2) Mayo; 3) NCI; 4) Wash U St Louis. The query is a union of results, and does not require results to be  joined.  On the webpage, a status bar appears listing the four microarray services being queried. Next to each service name is a status bar saying that results have not returned yet. There is also a button asking the user if she would like to end the query against this service. After 30 seconds, the status bar changes for the Dana Farber service. Suddenly, it says &#34;4 results have returned&#34; and the Dana Faber &#34;End Query&#34; button disappears. 22 seconds later, the same thing happens for Mayo, and 15 more results are &#34;returned&#34;. Still, no results show up, and the user is looking at a status page. 11 seconds later, WUSTL returns with 57 results, at which point, the researcher decides to press the &#34;End Query&#34; button next to NCI. Suddenly all results are returned, along with a message stating that the NCI query was terminated at the user&#39;s request.
+
+A user wants to query for breast cancer tissue samples. The application shows her a list of 7 caTissue services available. Next to each service is a number that says how many public &lt;Specimens&gt; (could be a different object) are available at this service. Four of these services have zero specimens, so the user elects NOT to search against these services and selects the other 3 as candidate services to query.
+
+A user is interested in seeing any microarrays performed against lung samples obtained from non-smokers with stage 3 lung cancer. She queries Mayo and OSU because both hospital systems have been running independent lung cancer trials. Realizing that Mayo and OSU are working independently, she puts a flag into her search criteria indicating that cross institute joins are not required. The web application creates the necessary queries, one joining across OSU and one joining across Mayo. For the Mayo join, data returns from caTissue followed by data from the Mayo caArray service. The application recognizes that these two datasets can be joined together based on the specimen ID and returns results to the user. These results are displayed to the user along with a message stating that [1] institute has not returned data to date. A minute or two later, the data from the missing institute returns and is appended to the results from Mayo that the user is currently browsing through. 

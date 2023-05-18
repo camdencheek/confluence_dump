@@ -1,0 +1,248 @@
+<h2 id="LexEVSMeetingMinutesValueSetArchitecturePlanningSession2017.01.09-Attendees">
+   Attendees
+</h2>
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        Name
+      </th>
+      <th>
+        Role
+      </th>
+      <th colspan="1">
+        Present
+      </th>
+    </tr>
+    <tr>
+      <td>
+        Wynne, Robert
+      </td>
+      <td>
+        NIH/NCI [C]
+      </td>
+      <td>
+        x
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Bauer, Scott
+      </td>
+      <td colspan="1">
+        Mayo
+      </td>
+      <td colspan="1">
+        x
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Stancl, Craig
+      </td>
+      <td colspan="1">
+        Mayo
+      </td>
+      <td colspan="1">
+        x
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Endle,  Cory
+      </td>
+      <td colspan="1">
+        Mayo
+      </td>
+      <td colspan="1">
+        x
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="LexEVSMeetingMinutesValueSetArchitecturePlanningSession2017.01.09-Agenda">
+  Agenda
+</h2>
+Follow up value set workflow questions for Rob.
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <td colspan="1">
+        Review Value Set workflow process (Rob) As part of the existing Value Set workflow process:
+        <ul>
+          <li>
+            What additional artifacts are created and exposed via the process
+          </li>
+          <li>
+            What is provided/required for FDA/CDISC/?? as part of the value set artifacts
+          </li>
+        </ul>
+      </td>
+      <td colspan="1">
+        Discussion Points: Rob indicated that that following tasks are completed in his workflow:
+        <ul>
+          <li>
+            Remove resolved value set script - This removes all existing value set coding schemes
+          </li>
+          <li>
+            Remove definitions script is generated
+          </li>
+          <li>
+            Load definitions script is generated (based on a flag)
+          </li>
+          <li>
+            Script to resolve all 770 value set definitions is called
+            <ul>
+              <li>
+                This takes 2.5 days.
+              </li>
+            </ul>
+          </li>
+        </ul>
+        The following files and scripts are created as part of the workflow:
+        <ul>
+          <li>
+            Value set definition xml file for each value set
+          </li>
+          <li>
+            Admin scripts
+          </li>
+          <li>
+            Load resolved value set script for all in value sets in the NCIT
+          </li>
+        </ul>
+        Value Set Definition XML file: The only parts that change programmatically are:
+        <ul>
+          <li>
+            Entity description
+          </li>
+          <li>
+            Source
+          </li>
+        </ul>
+        Neoplasm.xml has a different association:
+        <ul>
+          <li>
+            referencedAssociation=&#34;subClassOf&#34;
+          </li>
+        </ul>
+         NCI Report Writer
+        <ul>
+          <li>
+            FDA, CDISC
+          </li>
+          <li>
+            Creates an XLS report file
+          </li>
+          <li>
+            Generating these reports
+            <ul>
+              <li>
+                Takes about 10 minutes
+              </li>
+              <li>
+                Uses NCI coding scheme, not the resolved value set
+              </li>
+              <li>
+                Released files are on the FTP site
+              </li>
+            </ul>
+          </li>
+          <li>
+            Codebase:
+            <a href="http://github.com/NCIEVS/nci-report-writer" rel="nofollow">
+              github.com/NCIEVS/nci-report-writer
+            </a>
+          </li>
+        </ul>
+         Decision Points:
+        <ul>
+          <li>
+            Investigate concept and subset - look at applying transitive closure here.
+          </li>
+          <li>
+            Determine if the Value Set Definition XML file is needed and consequences of removing it from their workflow.
+          </li>
+          <li>
+            Investigate loading resolved value sets - more than one at a time
+            <ul>
+              <li>
+                Use a Java process instead of a script.
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="LexEVSMeetingMinutesValueSetArchitecturePlanningSession2017.01.09-REFERENCES">
+  REFERENCES
+</h2>
+<h2 id="LexEVSMeetingMinutesValueSetArchitecturePlanningSession2017.01.09-ValueSetIssuesIdentifiedduring2016.12TechnicalFace-To-Face">
+  Value Set Issues Identified during 2016.12 Technical Face-To-Face
+</h2>
+<ul>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=332250069" rel="nofollow">
+      2016.12 Technical Face-To-Face Prioritization List
+    </a>
+  </li>
+</ul>
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        Priority
+      </th>
+      <th>
+        Issue
+      </th>
+    </tr>
+    <tr>
+      <td>
+        1
+      </td>
+      <td>
+        Investigate ability to be able to determine if Resolved VS coding scheme has changed.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        1
+      </td>
+      <td>
+        Investigate ability to update as needed (not have to load all 700 at the same time). Decrease time it takes to publish/deploy.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        2
+      </td>
+      <td>
+        Investigate ability to be able to determine if Value Set Definition has changed.
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        2
+      </td>
+      <td colspan="1">
+        Investigate ability to capture &#34;Hierarchal Value Sets&#34; as coding schemes with hierarchy. (inside value set)
+      </td>
+    </tr>
+  </tbody>
+</table>

@@ -1,0 +1,60 @@
+<h1 id="LexEVSDistributedMigrationGuide6.0,6.1,6.2and6.3to6.4.1-LexEVSDistributedMigrationGuide6.0,6.1,6.2and6.3to6.4.1">
+  LexEVS Distributed Migration Guide 6.0, 6.1, 6.2 and 6.3 to 6.4.1
+</h1>
+<ul>
+  <li>
+    <a href="#LexEVSDistributedMigrationGuide6.0,6.1,6.2and6.3to6.4.1-LexEVSDistributedMigrationGuide6.0,6.1,6.2and6.3to6.4.1" rel="nofollow">
+      LexEVS Distributed Migration Guide 6.0, 6.1, 6.2 and 6.3 to 6.4.1
+    </a>
+    <ul>
+      <li>
+        <a href="#LexEVSDistributedMigrationGuide6.0,6.1,6.2and6.3to6.4.1-Changes6.0to6.1" rel="nofollow">
+          Changes 6.0 to 6.1
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVSDistributedMigrationGuide6.0,6.1,6.2and6.3to6.4.1-Changes6.1to6.2" rel="nofollow">
+          Changes 6.1 to 6.2
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVSDistributedMigrationGuide6.0,6.1,6.2and6.3to6.4.1-MappingExtensionissuesfor6.x" rel="nofollow">
+          Mapping Extension issues for 6.x
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVSDistributedMigrationGuide6.0,6.1,6.2and6.3to6.4.1-Migrationto6.4.1,6.5" rel="nofollow">
+          Migration to 6.4.1, 6.5
+        </a>
+      </li>
+    </ul>
+  </li>
+</ul>
+<h2 id="LexEVSDistributedMigrationGuide6.0,6.1,6.2and6.3to6.4.1-Changes6.0to6.1">
+  Changes 6.0 to 6.1
+</h2>
+ 6.1 includes the addition of the Simple Search Extension providing fast, but simple searches, across multiple terminologies.  Because this is instantiated as an extension no additions needed to be made to the Distributed Java API.  This version of simple search included by default both active and inactive terms.Search Extension Initialization
+LexBIGService lbSvc = (LexEVSDistributed)ApplicationServiceProvider.getApplicationServiceFromUrl(serviceUrl, &#34;EvsServiceInfo&#34;);
+SearchExtension searchExtension = (SearchExtension) lbSvc.getGenericExtension(&#34;SearchExtension&#34;);
+<h2 id="LexEVSDistributedMigrationGuide6.0,6.1,6.2and6.3to6.4.1-Changes6.1to6.2">
+  Changes 6.1 to 6.2
+</h2>
+The behavior of simple search changes to default to active only terms.  Since this is not backwards compatible a future release will revert this behavior back to what was provided in 6.1.
+<h2 id="LexEVSDistributedMigrationGuide6.0,6.1,6.2and6.3to6.4.1-MappingExtensionissuesfor6.x">
+  Mapping Extension issues for 6.x
+</h2>
+Mapping extension iterators do not work in distributed mode due to anonymous inner class use in their construction.  See JIRA Item:
+<a href="https://tracker.nci.nih.gov/browse/LEXEVS-961" rel="nofollow">
+  LEXEVS-961
+</a>
+-
+Getting issue details...
+STATUS
+
+Fixed in LexEVS 6.5.3
+<h2 id="LexEVSDistributedMigrationGuide6.0,6.1,6.2and6.3to6.4.1-Migrationto6.4.1,6.5">
+  Migration to 6.4.1, 6.5
+</h2>
+6.4.0 services rely on an updated search engine and require a new set of dependencies available in the 6.4.0 branch of the distributed client project. The
+<img src="/plugins/servlet/confluence/placeholder/unknown-macro?name=link&amp;locale=en_US&amp;version=2"/>
+for 6.4 features Maven based dependency management that can be used in a Maven project.All data services and web services have been turned off and removed in 6.5.  These have been consolidated into a more robust and complete REST service that is compatible with CTS2 specifications.  See the CTS2 API documentation. 

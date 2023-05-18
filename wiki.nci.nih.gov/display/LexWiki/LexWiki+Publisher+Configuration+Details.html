@@ -1,0 +1,214 @@
+Contents of this Page
+<ul>
+  <li>
+    <a href="#LexWikiPublisherConfigurationDetails-Schema" rel="nofollow">
+      Schema
+    </a>
+  </li>
+  <li>
+    <a href="#LexWikiPublisherConfigurationDetails-Components" rel="nofollow">
+      Components
+    </a>
+    <ul>
+      <li>
+        <a href="#LexWikiPublisherConfigurationDetails-ConfigurationSets" rel="nofollow">
+          Configuration Sets
+        </a>
+      </li>
+      <li>
+        <a href="#LexWikiPublisherConfigurationDetails-Configuration" rel="nofollow">
+          Configuration
+        </a>
+      </li>
+      <li>
+        <a href="#LexWikiPublisherConfigurationDetails-Vocabulary" rel="nofollow">
+          Vocabulary
+        </a>
+      </li>
+      <li>
+        <a href="#LexWikiPublisherConfigurationDetails-Exclusions" rel="nofollow">
+          Exclusions
+        </a>
+      </li>
+      <li>
+        <a href="#LexWikiPublisherConfigurationDetails-Mappings" rel="nofollow">
+          Mappings
+        </a>
+      </li>
+      <li>
+        <a href="#LexWikiPublisherConfigurationDetails-PublishingTargets" rel="nofollow">
+          Publishing Targets
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#LexWikiPublisherConfigurationDetails-SampleConfiguration" rel="nofollow">
+      Sample Configuration
+    </a>
+  </li>
+</ul>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        LexWiki Links
+      </th>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=63242265" rel="nofollow">
+              LexWiki Main
+            </a>
+          </li>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=63242269" rel="nofollow">
+              Documentation
+            </a>
+          </li>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=63242249" rel="nofollow">
+              Presentations
+            </a>
+          </li>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=63242258" rel="nofollow">
+              Roadmap
+            </a>
+          </li>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=63242263" rel="nofollow">
+              Publisher
+            </a>
+          </li>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=63996221" rel="nofollow">
+              Tool Adopters
+            </a>
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="LexWikiPublisherConfigurationDetails-Schema">
+  Schema
+</h2>
+User creates configuration by creating an XML configuration file, an instance of LexWiki Publisher schema (discussed later in this document), for Publisher to work correctly and transform content in a desired way. The schema is defined at:
+*http://informatics.mayo.edu/lexwikipublisher/LexWikiPublisher_2_0.xsd*
+<h2 id="LexWikiPublisherConfigurationDetails-Components">
+  Components
+</h2>
+The schema (as of March 2011) defines following tags to make Publisher flexible and easily configurable for desired results:
+<h3 id="LexWikiPublisherConfigurationDetails-ConfigurationSets">
+  Configuration Sets
+</h3>
+The user can have multiple publishing scenarios called publishing &#34;UserConfiguration&#34;, arranged under top element &#34;ConfigurationSets&#34;:
+<img alt="diagram of configuration sets" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexWiki/LexWiki%20Publisher%20Configuration%20Details/LexWikiPublisher_ConfigSets.jpg?api=v2">
+<h3 id="LexWikiPublisherConfigurationDetails-Configuration">
+  Configuration
+</h3>
+Each &#34;UserConfiguration&#34; can optionally have a name for example &#34;publishingForNewTerms&#34; and you can turn publishing defined by this configuration &#34;on&#34; and &#34;off&#34; by setting the &#34;selected&#34; attribute.
+<img alt="diagram of user configuration" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexWiki/LexWiki%20Publisher%20Configuration%20Details/LexWikiPublisher_Configuration.jpg?api=v2">
+Each configuration will have details about &#34;LexEVS&#34; location (by URI), and define which vocabulary this configuration is going to work with and the publishing targets (right now only text file generation is supported). Optionally users can create their own publishing plug-in methods for Publisher defined as &#34;Steps&#34;. In this release we are providing a default &#34;publishSteps&#34; to generate LexWiki compliant Template text generation for each LexEVS entitiy in text files.
+
+The &#34;Vocabulary&#34; tag describes information about coding scheme in LexEVS repository. (it is assumed that the described coding scheme has been loaded in LexEVS instance which has install location specified by the &#34;LexEVSURI&#34; tag).
+<h3 id="LexWikiPublisherConfigurationDetails-Vocabulary">
+  Vocabulary
+</h3>
+<img alt="diagram of vocabulary" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexWiki/LexWiki%20Publisher%20Configuration%20Details/LexWikiPublisher_Vocabulary.jpg?api=v2">
+A Selected vocabulary will have set of entities - &#34;entitySet&#34;, we want to get published. In absence of an entitySet, Publisher is designed to publish all the entities of a coding scheme or vocabulary. A Vocabulary is identified by its URI and version number (optional). You can define set of &#34;filters&#34; and &#34;mappings&#34; (explained ahead).  You can set the flag to republish your selection even if it is already published by previous run (flag &#34;republishIfExisits&#34;).
+<h3 id="LexWikiPublisherConfigurationDetails-Exclusions">
+  Exclusions
+</h3>
+A Vocabulary filter is a set of vocabulary exclusions that is defined as set of flags and list of items to exclude depending on
+different criteria.
+<img alt="diagram of exclusions" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexWiki/LexWiki%20Publisher%20Configuration%20Details/LexWikiPublisher_Exclusions.jpg?api=v2">
+&#34;skipInactive&#34; will skip LexEVS entities which have entity status NOT set to &#34;active&#34;.
+&#34;skipAnonymous&#34; will skip LexEVS entities which have anonymous flag set to true.
+&#34;namespaceExclusion&#34; is a list of namespaces which you want to skip while processing LexEVS entities.
+
+Similarly &#34;propertyExclusion&#34; and &#34;AssociationExclusion&#34; will skip property or associations from their respective lists. All the exclusions are optional.
+<h3 id="LexWikiPublisherConfigurationDetails-Mappings">
+  Mappings
+</h3>
+<img alt="diagram of mappings" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexWiki/LexWiki%20Publisher%20Configuration%20Details/LexWikiPublisher_Mappings.jpg?api=v2">
+Vocabulary mappings are set of mappings which are utilized when mapping various attributes of entities.  At this time you can only define namespace mappings using &#34;namespaceMap&#34; which defines what target namespace to use when you encounter a source namespace during publishing process.
+
+Once the transformation completes, you can define what you want to do with it by defining &#34;publishing targets.&#34;
+<h3 id="LexWikiPublisherConfigurationDetails-PublishingTargets">
+  Publishing Targets
+</h3>
+<img alt="diagram of publishing targets" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexWiki/LexWiki%20Publisher%20Configuration%20Details/LexWikiPublisher_Targets.jpg?api=v2">
+Right now you can define two types of publishing target - either a text file generation or directly publishing to a wiki (enabled with LexWiki 2.0 extension). In this release direct publishing to wiki is not yet implemented. You can only generate a set of text files which can later be manually loaded in batch by &#34;publish.php&#34; (a PHP script that comes with LexWiki 2.0 installer).
+
+In the case of a text file you can define the directory where all text files will be generated and any optional prefix or suffix string you want to be attached while forming file names. A prefix and suffix will make it easier to organize files for multiple Publisher runs.
+
+In the case of target wiki (not yet implemented in LexWiki Publisher 2.0) details - you have to define things like &#34;host name&#34;, &#34;port number&#34;, &#34;wiki name&#34;,
+&#34;user name&#34; and &#34;password&#34; and a batch size (how many pages should be posted to wiki in one direct publishing request).
+<h2 id="LexWikiPublisherConfigurationDetails-SampleConfiguration">
+  Sample Configuration
+</h2>
+A Sample configuration looks like the following (couple of samples files are provided with the download):
+
+
+
+&lt;nowiki&gt;
+&lt;configuration name = &#34;BGTFromLargeStorage&#34; selected=&#34;true&#34;&gt;
+&lt;lexEVSURI installDir=&#34;L:/services/lexbig/LexEVS6ForMe&#34;/&gt;
+&lt;vocabulary uri=&#34;http://ncicb.nci.nih.gov/xml/owl/EVS/BiomedGT.owl&#34;  version=&#34;09.06a&#34;
+republishIfExists=&#34;true&#34;&gt;
+&lt;entitySet publishItself=&#34;true&#34;
+publishConnectedEntities=&#34;false&#34;
+republishIfExists=&#34;true&#34;
+excluded=&#34;false&#34;&gt;
+&lt;entityIds&gt;
+&lt;id&gt;B3164&lt;/id&gt;
+&lt;id&gt;B7230&lt;/id&gt;
+&lt;/entityIds&gt;
+&lt;selectedAssociationToNavigate id=&#34;subClassOf&#34; /&gt;
+&lt;/entitySet&gt;
+&lt;entitySet publishItself=&#34;true&#34;
+publishConnectedEntities=&#34;true&#34;
+republishIfExists=&#34;true&#34;
+excluded=&#34;false&#34;&gt;
+&lt;entityIds&gt;
+&lt;id&gt;B4973&lt;/id&gt;
+&lt;/entityIds&gt;
+&lt;selectedAssociationToNavigate id=&#34;subClassOf&#34; /&gt;
+&lt;/entitySet&gt;
+&lt;filters&gt;
+&lt;skipAnonymous&gt;true&lt;/skipAnonymous&gt;
+&lt;namespaceExclusion &gt;
+&lt;skip id=&#34;protege&#34;/&gt;
+&lt;skip  id=&#34;owl&#34; /&gt;
+&lt;skip  id=&#34;rdf&#34; /&gt;
+&lt;skip  id=&#34;rdfs&#34; /&gt;
+&lt;skip  id=&#34;swrlb&#34; /&gt;
+&lt;/namespaceExclusion&gt;
+&lt;propertyExclusion&gt;
+&lt;skip id=&#34;PAL-DESCRIPTION&#34;/&gt;
+&lt;skip id=&#34;PAL-RANGE&#34;/&gt;
+&lt;skip id=&#34;PAL-STATEMENT&#34;/&gt;
+&lt;/propertyExclusion&gt;
+&lt;associationExclusion&gt;
+&lt;skip id=&#34;PAL-STATEMENT&#34;/&gt;
+&lt;skip id=&#34;PAL-RANGE&#34;/&gt;
+&lt;skip id=&#34;PAL-DESCRIPTION&#34;/&gt;
+&lt;skip id=&#34;domain&#34;/&gt;
+&lt;skip id=&#34;range&#34;/&gt;
+&lt;skip id=&#34;disjointWith&#34;/&gt;
+&lt;skip id=&#34;equivalentClass&#34;/&gt;
+&lt;/associationExclusion&gt;
+&lt;/filters&gt;
+&lt;mappings&gt;
+&lt;namespaceMap sourceNamespace=&#34;BiomedGT.owl&#34; targetNamespace=&#34;BGTDEEP&#34; /&gt;
+&lt;/mappings&gt;
+&lt;/vocabulary&gt;
+&lt;targets&gt;
+&lt;TextFile directory=&#34;c:/Temp/myTest4&#34; fileNamePrefix=&#34;BGT_&#34; fileNameSuffix=&#34;_WC4&#34; /&gt;
+&lt;/targets&gt;
+&lt;/configuration&gt;
+&lt;/nowiki&gt; 

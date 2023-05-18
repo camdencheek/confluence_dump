@@ -1,0 +1,31 @@
+This process will convert the currently existing database into a backup owl file stored in app/protégé/data/Protégé_xx/&lt;PROTÉGÉ INSTANCE&gt;. This file can then be used to be converted back to an OWL / RDF database, creating new tables and indexes to reflect any database related code / schema changes. The same owl file can also be used to update Dev, QA, and Stage.
+<ul>
+  <li>
+    Advertise that the production server will be going down.
+  </li>
+</ul>
+<ul>
+  <li>
+    Run &#39;sh shutdown_protege_server localhost:2633.&#39;
+  </li>
+</ul>
+<ul>
+  <li>
+    Type &#39;ps -ef | grep rmiregistry&#39; to retrieve the rmi regisry ID to kill.
+  </li>
+</ul>
+<ul>
+  <li>
+    Once the ID is determined, type &#39;kill -9 &lt;rmi registry ID&gt; &#39;.
+  </li>
+</ul>
+<ul>
+  <li>
+    Open up a Protégé Client instance from production environment, and click &#39;Create new Project, Check the &#39;Create from Existing Sources&#39; box, Select OWL / RDF database and click &#39;Next&#39;, Select OWL Database and click &#39;Next&#39;, enter all necessary database information and click &#39;Finish&#39;. The project should appear on the GUI.
+  </li>
+</ul>
+<ul>
+  <li>
+    Click File, Convert File to Format, OWL / RDF file and convert. This will create an OWL file using the data from the database. Save the project as &#39;Thesaurus&lt;YYMMDD&gt;&#39; or &#39;BiomedGT&lt;YYMMDD&gt;. Store this owl file in app/protégé/data/Protégé_x.x/&lt;PROTÉGÉ INSTANCE&gt;.
+  </li>
+</ul>

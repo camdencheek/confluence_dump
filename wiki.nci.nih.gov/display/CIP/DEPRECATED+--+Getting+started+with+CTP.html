@@ -1,0 +1,272 @@
+This page has not been updated since 2014 and is no longer being maintained.  Please visit
+<a href="http://mircwiki.rsna.org/index.php?title=CTP-The_RSNA_Clinical_Trial_Processor" rel="nofollow">
+  http://mircwiki.rsna.org/index.php?title=CTP-The_RSNA_Clinical_Trial_Processor
+</a>
+ for the most up to date CTP documentation.The purpose of this page is to serve as a beginner&#39;s guide to Clinical Trials Processor (CTP) with particular emphasis on internal de-identification of DICOM images and submission of this data to an instance of NBIA or XNAT. If you are already familiar with how CTP works and just want help with configuring it please proceed to the
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=39914195" rel="nofollow">
+  Example CTP use cases and configuration files
+</a>
+page. Note: This page is currently a work in progress.  This note will be removed once documentation is considered mostly complete.
+<h1 id="DEPRECATEDGettingstartedwithCTP-Overview">
+  Overview
+</h1>
+The basic outline of steps required to utilize CTP include:
+<ol>
+  <li>
+    Installing prerequisite software
+  </li>
+  <li>
+    Installing CTP
+  </li>
+  <li>
+    Configuring CTP for your needs
+    <ol>
+      <li>
+        Importing your data: this will apply anonymization procedure to the original data
+      </li>
+      <li>
+        Processing your data
+      </li>
+      <li>
+        Exporting your data
+      </li>
+    </ol>
+  </li>
+</ol>
+Each step is described in detail below. At the end of the page there is also a section with customized configuration files and scripts for the most common CTP use cases.
+<h2 id="DEPRECATEDGettingstartedwithCTP-1.Installingprerequisitesoftware">
+  1. Installing prerequisite software
+</h2>
+It&#39;s possible you may not actually need to install anything prior to using CTP and there are only 2 potential things you may need to obtain prior to using CTP:
+<ol>
+  <li>
+    <a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html" rel="nofollow">
+      Java
+    </a>
+    <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+      <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+    </a>
+    1.5 (or better) JRE must be present on the system. Java 1.6 is recommended.  Note that only the JRE is required, not the JDK, and therefore this is already installed on most typical computers.
+  </li>
+  <li>
+    If you wish to utilize some of CTP&#39;s advanced functionality you must also install the
+    <a href="http://download.java.net/media/jai-imageio/builds/release/1.1/" rel="nofollow">
+      Java Advanced Imaging ImageIO Tools
+    </a>
+    <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+      <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+    </a>
+    <ol>
+      <li>
+        Note that this is not required if all you wish to do is use CTP to de-identify DICOM images or submit de-identified images to NBIA. These tools are required if you want to use CTP to view images, or to create JPG thumbnails during the processing pipeline.
+      </li>
+      <li>
+        Installation of the ImageIO tools in Linux requires some additional steps not outlined in Sun&#39;s installation instructions. See this page insert link for more information.
+      </li>
+    </ol>
+  </li>
+</ol>
+<h2 id="DEPRECATEDGettingstartedwithCTP-2.InstallingCTP">
+  2. Installing CTP
+</h2>
+<h3 id="DEPRECATEDGettingstartedwithCTP-DownloadingCTP">
+  Downloading CTP
+</h3>
+CTP can be found in 2 locations. Generally the two packages stay reasonably close together in terms of functionality. If you are looking for a new feature that you&#39;ve heard about in CTP use the RSNA link. If you&#39;re just looking for a stable way to de-identify your data or if you need to submit de-identified data to NBIA use the GForge link.:
+<ol>
+  <li>
+    <a href="http://mircwiki.rsna.org/index.php?title=CTP-The_RSNA_Clinical_Trial_Processor" rel="nofollow">
+      http://mircwiki.rsna.org/index.php?title=CTP-The_RSNA_Clinical_Trial_Processor
+    </a>
+    <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+      <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+    </a>
+     - The official RSNA wiki site that is updated regularly by the developer of CTP. This always contains the latest bleeding edge release of CTP.
+  </li>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=115671213" rel="nofollow">
+      NBIA GForge files archive
+    </a>
+    - The National Biomedical Imaging Archive (NBIA) software&#39;s download site lists all the binaries for installing NBIA. Each release of NBIA includes a .zip distribution of CTP (e.g. &#34;nbia_CTP_Client_5.0.1.zip&#34;. This version usually lags behind the RSNA site but has been tested for compatibility with the latest NBIA release.
+  </li>
+</ol>
+<h3 id="DEPRECATEDGettingstartedwithCTP-ExtractingCTP">
+  Extracting CTP
+</h3>
+Once you have downloaded CTP you will need to extract it to a location on your local hard drive. The method for doing this varies by operating system and the installer you chose to download.
+<ol>
+  <li>
+    NBIA installer - use your favorite zip extraction tool and unzip the nbia_CTP_Client_X.X.X.zip to a location on your local hard drive.
+  </li>
+  <li>
+    RSNA installer
+    <ol>
+      <li>
+        Windows Installation - Simply double click the CTP-installer.jar and use the GUI installer program to select the location where you&#39;d like to install CTP.
+      </li>
+      <li>
+        Linux/Mac Installation - Open a console/terminal and navigate to the location where you saved CTP-installer.jar. Then type &#34;java -jar CTP-installer.jar&#34; and the GUI installer program will initiate, allowing you to choose where you&#39;d like to install CTP.
+      </li>
+    </ol>
+  </li>
+</ol>
+<h2 id="DEPRECATEDGettingstartedwithCTP-3.ConfiguringCTPforyourneeds">
+  3. Configuring CTP for your needs
+</h2>
+Once you&#39;ve installed CTP you must setup some configuration options prior to running it. All of these options are specified with the config.xml file located in the root of the CTP installation directory. This can be easily modified using any text editor and is divided into several &#34;pipeline stages&#34; for importing, processing, and exporting your data. The rest of this section explains the basic structure of the config.xml file.An example below describes a customized config.xml file is shown below. The pipeline described by this script will receive DICOM data on port 24104, anonymize them using the script and lookup table you can specify, and save the anonymized data in the specified root. Script, lookup table and root are marked in the script.config.xml
+&lt;Configuration&gt;
+&lt;Server port=&#34;24080&#34;/&gt;
+&lt;Pipeline name=&#34;Main Pipeline&#34;&gt;
+
+&lt;ImportService
+name=&#34;dicomImport&#34;
+id=&#34;dicomImport&#34;
+class=&#34;org.rsna.ctp.stdstages.DicomImportService&#34;
+root=&#34;roots/dicomImportService&#34;
+port=&#34;24104&#34;
+logConnections=&#34;no&#34;
+suppressDuplicates=&#34;no&#34; /&gt;
+
+&lt;Processor
+name=&#34;pixel-checker&#34;
+id=&#34;pixel-checker&#34;
+class=&#34;org.rsna.ctp.stdstages.DicomFilter&#34;
+root=&#34;roots/pixel-checker&#34;
+script=&#34;scripts/pixel-checker-filter.script&#34;
+quarantine=&#34;quarantines/pixel-checker&#34; /&gt;
+
+&lt;Processor
+name=&#34;idmap&#34;
+class=&#34;org.rsna.ctp.stdstages.IDMap&#34;
+root=&#34;roots/idmap&#34; /&gt;
+
+&lt;StorageService
+name=&#34;storage&#34;
+id=&#34;storage&#34;
+class=&#34;org.rsna.ctp.stdstages.FileStorageService&#34;
+root=&#34;/projects/qin/CTPStorageDir&#34;                      &lt;!-- ROOT: CUSTOMIZE THIS! --!&gt;
+type=&#34;month&#34;
+timeDepth=&#34;0&#34;
+acceptDuplicateUIDs=&#34;yes&#34;
+acceptDicomObjects=&#34;yes&#34;
+acceptXmlObjects=&#34;no&#34;
+acceptZipObjects=&#34;no&#34;
+acceptFileObjects=&#34;no&#34;
+returnStoredFile=&#34;yes&#34;
+quarantine=&#34;quarantines/storage&#34; /&gt;
+
+&lt;Anonymizer
+name=&#34;DicomAnonymizer&#34;
+class=&#34;org.rsna.ctp.stdstages.DicomAnonymizer&#34;
+root=&#34;de-id/dicom-anonymizer&#34;
+script=&#34;scripts/QIN-PROSTATE-BWH.script&#34;                    &lt;!-- SCRIPT: CUSTOMIZE THIS! --!&gt;
+lookupTable=&#34;scripts/bwh_deid_list_internal.txt&#34;             &lt;!-- LOOKUP TABLE: CUSTOMIZE THIS! --!&gt;
+quarantine=&#34;quarantines/dicom-anonymizer&#34; /&gt;
+
+&lt;/Pipeline&gt;
+
+&lt;/Configuration&gt;
+
+Anonymizer script defines the rules for DICOM anonymization. You can use the default CIP CTP script available here:
+<a href="https://wiki.nci.nih.gov/download/attachments/39295860/ctp-s142-cleaner.script" rel="nofollow">
+  https://wiki.nci.nih.gov/download/attachments/39295860/ctp-s142-cleaner.script
+</a>
+as the starting point for customization. This script allows you to choose which tags you would like to keep/remove/change, and allows you to offset the dates.Lookup table is optional, and when specified, it allows to map the original IDs to the anonymized patient IDs. The format of this file is the following:
+ptid/ORIGINAL_SUBJECT_ID=DEIDENTIFIED_SUBJECT_ID
+
+Once you configured the import pipeline, you can launch CTP service using the launcher located in the installation directory – see the directions on running CTP here:
+<a href="http://mircwiki.rsna.org/index.php?title=CTP-The_RSNA_Clinical_Trial_Processor#Running_CTP" rel="nofollow">
+  http://mircwiki.rsna.org/index.php?title=CTP-The_RSNA_Clinical_Trial_Processor#Running_CTP
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+You should use the web interface of CTP to monitor the progress of transmission. You can also use it to change your deidentification script, check the mapping of subject IDs, and shutdown the CTP service once the transmission is finished.
+<h3 id="DEPRECATEDGettingstartedwithCTP-Importingyourdata">
+  Importing your data
+</h3>
+There are 3 primary locations which you can import data from with CTP.
+<ol>
+  <li>
+    Your local hard drive
+  </li>
+  <li>
+    A DICOM compatible workstation or PACS
+  </li>
+  <li>
+    A remote computer
+  </li>
+</ol>
+The RSNA site&#39;s documentation contains detailed information on
+<a href="http://mircwiki.rsna.org/index.php?title=CTP-The_RSNA_Clinical_Trial_Processor#Import_Services" rel="nofollow">
+  customizing CTP based on your incoming data source
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+<h4 id="DEPRECATEDGettingstartedwithCTP-Importingfromlocalharddrive">
+  Importing from local hard drive
+</h4>
+You can use the utility FileSender
+<a href="http://mircwiki.rsna.org/index.php?title=FileSender" rel="nofollow">
+  http://mircwiki.rsna.org/index.php?title=FileSender
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+to send the original data from your hard drive to CTP. Considering you configured CTP to listen on port 24104 as described in the config file above, you can set the Destination field in FileSender to dicom://CTP:FS@localhost:24104, choose the directory on the left panel, and send the data to CTP.
+<h3 id="DEPRECATEDGettingstartedwithCTP-Processingyourdata">
+  Processing your data
+</h3>
+CTP contains a number of specialized processing &#34;pipelines&#34; for modifying the contents of your data. Again the RSNA wiki site explains all of the
+<a href="http://mircwiki.rsna.org/index.php?title=CTP-The_RSNA_Clinical_Trial_Processor#Processors" rel="nofollow">
+  CTP Processors
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+in full detail, but below you will find a list of the most common types of processing pipelines and a short summary of their function:
+<ol>
+  <li>
+    Anonymizers - These can be used to systematically de-identify the contents of DICOM header elements, or of XML metadata.
+  </li>
+  <li>
+    Filters - Very similar to Anonymizers, these can be used to check for specific conditions within DICOM or XML. If the conditions are met these can be &#34;filtered&#34; out for further review prior to processing.
+  </li>
+  <li>
+    IDMap - This pipeline stage can be used to generate a mapping of identified and de-identified values of important DICOM elements such as PatientID, UIDs, or accession numbers.
+  </li>
+  <li>
+    DatabaseVerifier - This is mainly utilized in conjunction with NBIA. It allows CTP to keep a record of every object sent to the remote NBIA server and subsequently query the NBIA database to ensure it was received to verify no images were lost in transit.
+  </li>
+</ol>
+<h3 id="DEPRECATEDGettingstartedwithCTP-Exportingyourdata">
+  Exporting your data
+</h3>
+The most common ways of exporting the data which you&#39;ve processed in CTP include:
+<ol>
+  <li>
+    DICOM export - This is useful for sending your processed data back to a PACS
+  </li>
+  <li>
+    HTTP(s) export - This is the method typically utilized to submit your data to an NBIA server (or potentially XNAT - testing needs to be performed to see how this would work)
+  </li>
+  <li>
+    Hard drive export - This is called a Storage Service in CTP, which can simply store the processed data to a specified location on a hard drive.
+  </li>
+</ol>
+Full details relating to how each of these can be customized along with the other export methods can be found on the RSNA wiki in the
+<a href="http://mircwiki.rsna.org/index.php?title=CTP-The_RSNA_Clinical_Trial_Processor#Export_Services" rel="nofollow">
+  Export Services
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+section and the
+<a href="http://mircwiki.rsna.org/index.php?title=CTP-The_RSNA_Clinical_Trial_Processor#Storage_Services" rel="nofollow">
+  Storage Service
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+section respectively.

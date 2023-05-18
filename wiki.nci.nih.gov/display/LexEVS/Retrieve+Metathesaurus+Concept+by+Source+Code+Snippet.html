@@ -1,0 +1,20 @@
+Java Code Snippet
+CodedNodeSet nodeSet = evsService.getNodeSet(&#34;NCI MetaThesaurus&#34;, null, null);
+
+//Tell the api that you want to get back only the PRESENTATION type properties
+CodedNodeSet.PropertyType[] types = new CodedNodeSet.PropertyType[1];
+types[0] = CodedNodeSet.PropertyType.PRESENTATION;
+
+//Now create a qualifier list containing the code you wish to search
+NameAndValueList qualifierList = new NameAndValueList();
+NameAndValue nv = new NameAndValue();
+nv.setName(&#34;source-code&#34;);
+nv.setContent(&#34;C12438&#34;);
+qualifierList.addNameAndValue(nv);
+
+//Specify the source code should come from the NCI source
+LocalNameList LnL = new LocalNameList();
+LnL.addEntry(&#34;NCI&#34;);
+
+
+nodeSet = nodeSet.restrictToProperties(null,types,LnL,null, qualifierList); 

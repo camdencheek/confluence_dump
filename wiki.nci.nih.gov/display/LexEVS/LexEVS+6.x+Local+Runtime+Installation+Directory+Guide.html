@@ -1,0 +1,152 @@
+This section describes the location and organization of installation materials. Following installation, many of the following hierarchy of files and directories will be available (some features are optionally installable):(As located in the LexEVS installation root directory.)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Directory
+      </th>
+      <th>
+        Description of Content
+      </th>
+    </tr>
+    <tr>
+      <td>
+        admin
+      </td>
+      <td>
+        Installed by default. This directory provides a centralized point for command line scripts that can be executed to perform administrative functions such as the loading, activation/deactivation, and removal of vocabulary resources.  Object code used to carry out these functions is included directly in the LexEVS runtime components. Source code is included in the source directory in the lbAdmin-src.jar (described below).
+      </td>
+    </tr>
+    <tr>
+      <td>
+        /doc
+      </td>
+      <td>
+        Optionally installed. This directory provides documentation related to LexEVS services, configuration, and execution. This guide is distributed in the /doc top-level directory.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        /doc/javadoc
+      </td>
+      <td>
+        This directory provides documentation for model classes and public interfaces available to LexEVS programmers.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        /examples
+      </td>
+      <td>
+        Optionally installed. This directory provides a small number of example programs. Refer to the README.txt file in this directory for instructions used to configure and run the example programs. The examples are intended to provide a limited interactive demonstration of LexEVS capabilities. Source and object code for the example programs is provided under the /examples/org subdirectory. Source materials are also centrally archived under the /source directory in the file lbExamples-src.jar.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        /examples  /resources
+      </td>
+      <td>
+        Contains sample vocabulary content for reference by the example programs; use the /examples/LoadSampleData command-line script to load for example code use or use one of the loaders in the /admin folder to load other content.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        /gui
+      </td>
+      <td>
+        Optionally installed. This folder contains programs and supporting files to launch the LexEVS Graphical User Interface (GUI). The GUI provides convenient centralized access to administrative functions as well as support to test and exercise most of the LexEVS API. The GUI is launched using a platform-specific script file in the /gui directory. The name of the platform (e.g. Windows, OSX, etc) is included in the file name. Program source and related materials are centrally archived under the /source directory in the file lbGUI-src.jar.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        /logs
+      </td>
+      <td>
+        Default location for log files, which can be modified by the LOG_FILE_LOCATION entry in the lbconfig.props file (see next section).
+      </td>
+    </tr>
+    <tr>
+      <td>
+        /resources
+      </td>
+      <td>
+        Installed by default. This directory contains resources referenced by, and written directly to, by the LexEVS runtime. Included in this directory is the /resources/config/lbconfig.props file. This file controls access to the database repository and other settings used to tune the LexEVS runtime behavior. Contents of this file should be set according to instructions provided by the
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427370" rel="nofollow">
+          LexEVS 6.x Administration Guide
+        </a>
+        . Once this file is configured correcly, it should, in general, be considered off-limits to modify or remove the content of the resources directory without specific guidance and reason to do so. Files typically stored to this location include indexes used to facilitate queries over the installed content.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        /runtime
+      </td>
+      <td>
+        Installed by default. This directory contains a Java archive (.jar) file containing the combined object code of the LexEVS runtime, LexEVS administrative interfaces, and any additional code they are dependent on. All required code for execution of LexEVS administrative and runtime services is installed to this directory.
+        <ul>
+          <li>
+            /runtime/lbPatch.jar In the course of the product lifecycle, it is possible that smaller fixes will be introduced as a patch to the initially distributed runtime. Including this file in the classpath ensures automatic accessibility to the calling program without requiring adjustment. All patches are cumulative (there is at most one patch file introduced per release; all patch-level fixes are cumulative).
+          </li>
+          <li>
+            /runtime/lbRuntime.jar This is the standard runtime file, including all LexEVS and dependency code required for program execution except for SQL drivers (see next).
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        /runtime_/sqldrivers
+      </td>
+      <td>
+        The JDBC drivers used to connect to database repositories are not included in the lbRuntime.jar. Instead, the runtime scans this directory for the drivers to include. This can be overridden by path settings in the lbconfig.props file.NoteWhile the LexEVS software package ships with JDBC drivers to certain open source databases such as PostgreSQL, this folder provides a mechanism to introduce updated drivers or to add drivers which are license restricted for additional supported database systems.For example, the Oracle database is supported by the runtime environment. However, the drivers are not redistributed with the LexEVS software. To run against Oracle, an administrator would add a jar with the appropriate JDBC driver to this directory and then reference it in the lbconfig.props settings. MySQL, the main test base for LexEVS, also requires a restricted license driver. It&#39;s driver can be downloaded here:
+        <a href="http://repo1.maven.org/maven2/mysql/mysql-connector-java/5.1.6/mysql-connector-java-5.1.6.jar" rel="nofollow">
+          mysql-connector-java-5.1.6
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        /runtime-_components
+      </td>
+      <td>
+        Optionally installed. Due to license considerations for additional materials (as described by the license.pdf and license.txt files in the install directory), the cumulative runtime provided in the lbRuntime.jar is not redistributable. This directory contains a finer grain breakdown of object code into logical components and 3rd party inclusions. All components are redistributable under their own license agreements, which are provided along with each archive. The top-level of the /runtime-components directory contains all code produced for the LexEVS project in the lexbig.jar.NoteThese files are included as an alternative to the lbRuntime.jar for code execution and redistribution. There is no need to include any of these files in the Java classpath if you are already including the lbPatch.jar and lbRuntime.jar described above.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        /runtime-_components/ext_Lib
+      </td>
+      <td>
+        This subdirectory includes all 3rd party code redistributed with the LexEVS runtime, along with respective license agreements.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        /source
+      </td>
+      <td>
+        Optionally installed. This directory provides central accessibility to Java source for all code developed for the LexEVS project.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        /test
+      </td>
+      <td>
+        Optionally installed. This directory provides an automated test bucket that can be used by System Administrators to verify node installation.NoteThe /runtime/config/lbconfig.props file must still be configured for database access prior to invoking the test bucket.Testcases are launched via the TestRunner command-line script. Several reporting options are provided and are further described in the
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427370" rel="nofollow">
+          LexEVS 6.x Administration Guide
+        </a>
+        .
+      </td>
+    </tr>
+    <tr>
+      <td>
+        /uninstaller
+      </td>
+      <td>
+        Contains an executable jar that can be invoked by an administrator to uninstall files originally introduced by the LexEVS installation.
+      </td>
+    </tr>
+  </tbody>
+</table>

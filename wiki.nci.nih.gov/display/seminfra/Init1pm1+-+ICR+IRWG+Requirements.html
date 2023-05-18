@@ -1,0 +1,204 @@
+<h2 id="Init1pm1ICRIRWGRequirements-PreInterview:">
+  Pre Interview:
+</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Item
+      </th>
+      <th>
+        Information/Response
+      </th>
+    </tr>
+    <tr>
+      <td>
+        Date:
+      </td>
+      <td>
+        12/16/2009
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Requirement # unique id &lt;SemCon Ops Initiative&gt;.&lt;analysts initials&gt;&lt;requirement number&gt;
+        e.g. Init1dbw1
+        (eventually linked to Use Cases)
+      </td>
+      <td>
+        Init1pm1
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Originator/Customer&#39;s Name:
+      </td>
+      <td>
+        <a href="mailto:Freimuth.Robert@mayo.edu" rel="nofollow">
+          Bob Freimuth
+        </a>
+        :
+        <a href="https://cabig-kc.nci.nih.gov/Vocab/forums/viewtopic.php?f=43&amp;t=146" rel="nofollow">
+          forum posting
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Originator/Customer&#39;s Company:
+      </td>
+      <td>
+        Mayo Clinic, ICR Interoperability Working Group
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Stakeholder Community:
+        Enter appropriate category of stakeholder from Primary Stakeholders:
+        <ul>
+          <li>
+            Software and Application designers and architects
+          </li>
+          <li>
+            Software and Application engineers and developers
+          </li>
+          <li>
+            Scientific and medical researchers
+          </li>
+          <li>
+            Medical research protocol designers
+          </li>
+          <li>
+            Clinical and scientific research data and metadata managers
+          </li>
+          <li>
+            Clinicians
+          </li>
+          <li>
+            Patients
+          </li>
+          <li>
+            Medical research study participants
+          </li>
+          <li>
+            Broader Stakeholders: caBIG® Community WS NIH projects and related commercial COTS vendors (caEHR, SDO&#39;s (HL7, CDISC); International Collaborators (e.g NCRI, cancerGrid, China), Government and regulatory bodies (FDA, CDC, ONC)
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=63996268" rel="nofollow">
+              (link to view SemConOps Stakeholders description
+            </a>
+            ).
+          </li>
+        </ul>
+      </td>
+      <td>
+        <ul>
+          <li>
+            Software and Application designers and architects
+          </li>
+          <li>
+            Broader Stakeholders (caBIG Community)
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Summary of requirement pre-interview, by Reviewer:
+      </td>
+      <td>
+        The ICR Interoperability working group has summarized a set of tooling/development requirements that they believe will help developers meet their interoperability development goals.  This set of requirements can (and should) be represented by a variety of use cases.  It is also likely that these requirements significantly overlap many of the other requirements that are being gathered by other stakeholders. The following is a bulleted list summary of their requirements.  Please refer back to the original post by Bob for a full list when modeling.
+        <ul>
+          <li>
+            Metadata integration (the primary actor is the Information Technologist)
+            <ul>
+              <li>
+                There should be a single place (API and web interface) to be able to browse and cross-link between metadata items that are associated with information models, including UML, CDEs, Concepts, and XML Schema
+              </li>
+              <li>
+                There should be traceability between the various metadata items such that any user can easily navigate between them in the API and metadata web interfaces, including the versions of the metadata items
+              </li>
+              <li>
+                The modeling tool must be integrated with the metadata repository in such a way that you can easily incorporate metadata into your model.
+              </li>
+              <li>
+                The modeling tool should by integrated with the SIW such that models can be validated and loaded into the metadata repository seamlessly
+              </li>
+              <li>
+                Metadata and the services that support them should be linked seamlessly.  Users should be able to know what systems are exposing what models through the metadata repository web interface (and possibly APIs).
+              </li>
+              <li>
+                Metadata repository will provide linkages between systems that support the same or similar CDEs, aka &#34;touchpoints&#34; between systems.
+              </li>
+              <li>
+                A system should be able to find semantically similar CDEs that might be useful for joining in a scientific way (use case: Find all malignant breast cancer tumors, return all tissues that have site &#34;breast&#34; or auxiliary site is a subtype of &#34;breast&#34;)
+              </li>
+            </ul>
+          </li>
+          <li>
+            Tooling enhancements 	(the primary actor is the Information Technologist)
+            <ul>
+              <li>
+                The modeling tool or metadata respository web interface should be able to automatically generate all of the metadata-oriented artifacts required for a silver compatibility review
+              </li>
+              <li>
+                The compatibility review system should be dynamically linked with the metadata repository such that a minimal number of artifacts need be produced to perform a review
+              </li>
+              <li>
+                Modelers should be able to create metadata (CDEs/concepts) in a sandbox environment on-demand as needed.  This should be integrated seamlessly within the modeling tool.
+              </li>
+              <li>
+                Metadata and modeling tool integration should provide real-time suggestion functionality (such as type-ahead) when linking UML components with semantic metadata.
+              </li>
+              <li>
+                Workflow authoring tools should be able to use linkage/&#34;touchpoint&#34; functionality to automatically &#34;hook&#34; services together in the workflow (use case: When dragging services onto the authoring tool dashboard, these services should be automatically &#34;piped&#34; together where applicable (i.e. when output from 1 service maps to the input of another service). Leveraging metadata capable of mapping outputs to inputs will facilitate this.)
+              </li>
+              <li>
+                The same hooking within workflow authoring tools should also suggest &#34;shim&#34; services (i.e. translation services) (use case: In cases where services cannot be directly piped together, the tool should help identify shim services that can be used. This will require possible extension of metadata around shim services.)
+              </li>
+              <li>
+                Where &#34;shim&#34; services do not exist, tooling should automatically generate the service interfaces necessary to perform the translation in order to facilitate development
+              </li>
+            </ul>
+          </li>
+          <li>
+            New types of metadata 	(the primary actor is the Cancer Researcher)
+            <ul>
+              <li>
+                An identification scheme is needed to facilitate traceability of clinical data to biospecimen data (use case: Scientist would like to gather the clinical data and associate biospecimen from a particular participant/patient. Scientist would also like to identify any associated microarry experiments performed on the biospecimen and check for availability of additional biospecimens for further analysis)
+              </li>
+              <li>
+                Identify a service as a translation service between data types
+              </li>
+              <li>
+                Semantic descriptions of workflows will be needed in order to &#34;share&#34; workflows
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Recommended Next Step Enter one: Follow-up interview, Observe, Use Case Template (text), Use Case Model (formalized/UML diagram), Group Discussion, Prototype, Waiting Room
+      </td>
+      <td>
+        <ol>
+          <li>
+            Use Case Template
+          </li>
+          <li>
+            Review by Originators
+          </li>
+          <li>
+            Followup interview (if needed)
+          </li>
+          <li>
+            Repeat
+          </li>
+          <li>
+            Use Case Model
+          </li>
+        </ol>
+      </td>
+    </tr>
+  </tbody>
+</table>

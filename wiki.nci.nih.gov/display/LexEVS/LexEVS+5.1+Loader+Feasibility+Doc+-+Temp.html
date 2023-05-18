@@ -1,0 +1,117 @@
+Contents of this Page
+<ul>
+  <li>
+    <a href="#LexEVS5.1LoaderFeasibilityDocTemp-PersistenceLayerFeasibility" rel="nofollow">
+      Persistence Layer Feasibility
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS5.1LoaderFeasibilityDocTemp-LoaderFrameworkFeasibiity" rel="nofollow">
+      Loader Framework Feasibiity
+    </a>
+  </li>
+</ul>
+Feasibility Report and Recommendation
+<h2 id="LexEVS5.1LoaderFeasibilityDocTemp-PersistenceLayerFeasibility">
+  Persistence Layer Feasibility
+</h2>
+The Persistence Layer enables LexEVS to have a single access point to the underlying database. This has several advantages:
+<ol>
+  <li>
+    The DAO is implemented as an Interface, not a concrete class. We can implement this interface with Hibernate, JDBC, Ibatis, or any other Persistence tool or framework.
+  </li>
+  <li>
+    All loaders can now share a single entry point to the database, and are not limited by memory constraints as some of the EMF persistence was.
+  </li>
+  <li>
+    Connection Pooling and management is abstracted from the code and pluggable. Data source implementations may be switched and Connection Pooling may be configured without recompiling code.
+  </li>
+  <li>
+    Transactions may be defined programmatically via AOP interceptors.
+  </li>
+</ol>
+As LexEVS moves forward, the Persistence Layer is also flexible enough to play a part in the runtime Query API. With this, the runtime and loader code would be able to share a common Data Access Layer - we would then have a true DAO Layer.
+<h2 id="LexEVS5.1LoaderFeasibilityDocTemp-LoaderFrameworkFeasibiity">
+  Loader Framework Feasibiity
+</h2>
+The Loader Framework has been implemented for two loaders, the UMLS single ontology loader and the NCI Metathesaurus loader. These loaders that implement the Loader Framework simple must define the READ and TRANSFORMATION mechanisms for the load, as well as load order and flow. All common details of Loading to LexEVS will be dealt with by the Loader Framework and will not have to be implemented. Tools exist for:
+<ol>
+  <li>
+    Lucene Indexing
+  </li>
+  <li>
+    Registering CodingSchemes
+  </li>
+  <li>
+    Changing CodingScheme status (to ACTIVE, INACTIVE, etc)
+  </li>
+  <li>
+    Building the Transitivity Closure table
+  </li>
+  <li>
+    Adding Supported Attributes
+  </li>
+  <li>
+    Detecting Database type
+  </li>
+  <li>
+    Staging temporary data to the database
+  </li>
+  <li>
+    Restarting failed loads
+  </li>
+  <li>
+    Integrating with LexEVS logging
+  </li>
+  <li>
+    Detecting and handling Root Nodes
+  </li>
+  <li>
+    ...and more common LexEVS load related tasks
+  </li>
+</ol>
+Also, to aid in Transformation, basic building blocks have been created that users may extend, such as:
+<ol>
+  <li>
+    Processors for all of LexEVS Model Objects
+  </li>
+  <li>
+    Various List Processors
+  </li>
+  <li>
+    Grouping Processors
+  </li>
+  <li>
+    Auto-Supported Attribute adding Processors
+  </li>
+  <li>
+    Several basic Resolvers to extract LexEVS Specific data from the source
+  </li>
+  <li>
+    ... various other Processors for specialized tasks
+  </li>
+</ol>
+Several Utilities are also available for Reading and Writing, such as:
+<ol>
+  <li>
+    Group Readers
+  </li>
+  <li>
+    Group Writers
+  </li>
+  <li>
+    Writers configurable to skip certain records
+  </li>
+  <li>
+    Partitionable readers to break up large source files
+  </li>
+  <li>
+    Error checking Readers and Writers
+  </li>
+  <li>
+    A Validating framework for inspecting content before it is inserted into the database.
+  </li>
+  <li>
+    etc.
+  </li>
+</ol>

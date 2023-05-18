@@ -1,0 +1,86 @@
+Contents of this Page
+<ul>
+  <li>
+    <a href="#LeadingandTrailingWildCardSearch-LeadingandTrailingWildCardImplementationDetails" rel="nofollow">
+      Leading and Trailing Wild Card Implementation Details
+    </a>
+    <ul>
+      <li>
+        <a href="#LeadingandTrailingWildCardSearch-Algorithm:" rel="nofollow">
+          Algorithm:
+        </a>
+      </li>
+      <li>
+        <a href="#LeadingandTrailingWildCardSearch-Exampleofuse:" rel="nofollow">
+          Example of use:
+        </a>
+      </li>
+      <li>
+        <a href="#LeadingandTrailingWildCardSearch-AssociatedJUnits:" rel="nofollow">
+          Associated JUnits:
+        </a>
+      </li>
+    </ul>
+  </li>
+</ul>
+<h2 id="LeadingandTrailingWildCardSearch-LeadingandTrailingWildCardImplementationDetails">
+  Leading and Trailing Wild Card Implementation Details
+</h2>
+Equivalent to &#39;*term*&#39; This should be a very poor performing search and is not recommended especially when entering a phrase.
+<h3 id="LeadingandTrailingWildCardSearch-Algorithm:">
+  Algorithm:
+</h3>
+The Leading and Trailing Wild Card search has the following characteristics:
+<ul>
+  <li>
+    This search is case in-sensitive.
+  </li>
+  <li>
+    It only searches on the property value and literal property value.
+  </li>
+  <li>
+    A leading and trailing wild card is added to each token in the search text.
+  </li>
+  <li>
+    The literal property part (without the wild cards) of the query is boosted by 50.  This gives a literal match priority.
+  </li>
+  <li>
+    Parsing is done with the following analyzers:
+    <ul>
+      <li>
+        propertyValue - Uses our custom standard analyzer that has no stop words.
+      </li>
+      <li>
+        literal_propertyValue - Uses our custom literal analyzer.  This literal analyzer uses Lucene&#39;s WhitespaceTokenizer with Lucene&#39;s LowerCaseFilter.
+      </li>
+    </ul>
+  </li>
+</ul>
+<h3 id="LeadingandTrailingWildCardSearch-Exampleofuse:">
+  Example of use:
+</h3>
+The following examples are based on the Automobiles coding scheme.Example 1:Search string: hevyLucene query: +propertyValue:*hevy* literal_propertyValue:hevy^50.0Result: 1 result
+<ul>
+  <li>
+    entity code: Chevy
+  </li>
+  <li>
+    entity description: Chevrolet
+  </li>
+</ul>
+Example 2:Search string: hevLucene query: +propertyValue:*hev* literal_propertyValue:hev^50.0Result: 1 result
+<ul>
+  <li>
+    entity code: Chevy
+  </li>
+  <li>
+    entity description: Chevrolet
+  </li>
+</ul>
+<h3 id="LeadingandTrailingWildCardSearch-AssociatedJUnits:">
+  Associated JUnits:
+</h3>
+Junits can be found here:
+<a href="https://github.com/lexevs/lexevs/blob/master/lbTest/src/test/java/org/LexGrid/LexBIG/Impl/function/query/lucene/searchAlgorithms/TestLeadingAndTrailingWildcard.java" rel="nofollow">
+  https://github.com/lexevs/lexevs/blob/master/lbTest/src/test/java/org/LexGrid/LexBIG/Impl/function/query/lucene/searchAlgorithms/TestLeadingAndTrailingWildcard.java
+</a>

@@ -1,0 +1,154 @@
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=325550279" rel="nofollow"></a>
+Contents of this Page
+<ul>
+  <li>
+    <a href="#caMicroscopeDeployment/InstallationGuide-caMicroscopeDockerDistribution" rel="nofollow">
+      caMicroscope Docker Distribution
+    </a>
+    <ul>
+      <li>
+        <a href="#caMicroscopeDeployment/InstallationGuide-Architecture" rel="nofollow">
+          Architecture
+        </a>
+      </li>
+      <li>
+        <a href="#caMicroscopeDeployment/InstallationGuide-Installation" rel="nofollow">
+          Installation
+        </a>
+        <ul>
+          <li>
+            <a href="#caMicroscopeDeployment/InstallationGuide-Buildimages" rel="nofollow">
+              Build images
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#caMicroscopeDeployment/InstallationGuide-Runningthecontainers" rel="nofollow">
+          Running the containers
+        </a>
+        <ul>
+          <li>
+            <a href="#caMicroscopeDeployment/InstallationGuide-Data" rel="nofollow">
+              Data
+            </a>
+          </li>
+          <li>
+            <a href="#caMicroscopeDeployment/InstallationGuide-Loaders" rel="nofollow">
+              Loaders
+            </a>
+          </li>
+          <li>
+            <a href="#caMicroscopeDeployment/InstallationGuide-Viewer" rel="nofollow">
+              Viewer
+            </a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+<h2 id="caMicroscopeDeployment/InstallationGuide-caMicroscopeDockerDistribution">
+  caMicroscope Docker Distribution
+</h2>
+<h3 id="caMicroscopeDeployment/InstallationGuide-Architecture">
+  Architecture
+</h3>
+<img alt="caMicroscope Architecture" width="700" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/CTIIP/caMicroscope%20Deployment/Installation%20Guide/caMicroscope-Architecture.png?api=v2">
+<ul>
+  <li>
+    Application =&gt; Viewer
+  </li>
+  <li>
+    Data =&gt; Data
+  </li>
+  <li>
+    Backend =&gt; Loader
+  </li>
+</ul>
+<h3 id="caMicroscopeDeployment/InstallationGuide-Installation">
+  Installation
+</h3>
+<h4 id="caMicroscopeDeployment/InstallationGuide-Buildimages">
+  Build images
+</h4>
+<ul>
+  <li>
+    docker build -t camicroscope_data data/
+  </li>
+  <li>
+    docker build -t camicroscope_loaders loaders/
+  </li>
+  <li>
+    docker build -t camicroscope_viewer viewer/
+  </li>
+</ul>
+These builds take about an hour, so feel free to grab a coffee.
+<h3 id="caMicroscopeDeployment/InstallationGuide-Runningthecontainers">
+  Running the containers
+</h3>
+<h4 id="caMicroscopeDeployment/InstallationGuide-Data">
+  Data
+</h4>
+<ol>
+  <li>
+    Set environment variables on host machine for Images and Data directories export CAMIC_IMAGES_DIR=&lt;path to images directory&gt; export CAMIC_DATA_DIR=&lt;path to data directory&gt;
+  </li>
+  <li>
+    Set Bindaas port $CAMIC_BINDAAS_PORT=9099docker run -itd -p $CAMIC_BINDAAS_PORT:9099 -v $
+    <a href="http://CAMIC_IMAGES_DIR/data/images" rel="nofollow">
+      CAMIC_IMAGES_DIR:/data/images
+    </a>
+    -v $
+    <a href="http://CAMIC_DATA_DIR/data/db" rel="nofollow">
+      CAMIC_DATA_DIR:/data/db
+    </a>
+    camicroscope_data
+  </li>
+  <li>
+    Run docker inspect to find the IP address for Data container.
+  </li>
+  <li>
+    Use &lt;CAMIC_DATA_IP&gt; as a placeholder.
+  </li>
+</ol>
+<h4 id="caMicroscopeDeployment/InstallationGuide-Loaders">
+  Loaders
+</h4>
+<ol>
+  <li>
+    Set up environment variables:$CAMIC_KUE_PORT=5000$CAMIC_MARKUPLOADER_PORT=6000$CAMIC_DATALOADER_PORT=6002
+  </li>
+  <li>
+    Run the container:docker run -itd -p $CAMIC_KUE_PORT:3000 -p $CAMIC_MARKUPLOADER_PORT:3001 -p $CAMIC_DATALOADER_PORT:3002 -v $
+    <a href="http://CAMIC_IMAGES_DIR/data/images" rel="nofollow">
+      CAMIC_IMAGES_DIR:/data/images
+    </a>
+    -e &#34;dataloader_host=http://&lt;CAMIC_DATA_IP&gt;:9099&#34; -e &#34;annotations_host=http://&lt;CAMIC_DATA_IP&gt;:9099&#34; camicroscope_loaders
+  </li>
+</ol>
+Note that -p $CAMIC_KUE_PORT:3000 -p $CAMIC_MARKUPLOADER_PORT:3001 -p $CAMIC_DATALOADER_PORT:3002 is optional.
+<h4 id="caMicroscopeDeployment/InstallationGuide-Viewer">
+  Viewer
+</h4>
+<ol>
+  <li>
+    Set up environment variables:$CAMIC_VIEWER_PORT=1337&lt;HTML_DIRECTORY&gt; is /viewer/html. Provide the absolute path.
+  </li>
+  <li>
+    Run:docker run -itd -p $CAMIC_VIEWER_PORT:80 -v &lt;HTML_DIRECTORY&gt;/
+    <a href="http://html/var/www/html" rel="nofollow">
+      html:/var/www/html
+    </a>
+    -v $
+    <a href="http://CAMIC_IMAGES_DIR/data/images" rel="nofollow">
+      CAMIC_IMAGES_DIR:/data/images
+    </a>
+    camicroscope_viewer
+  </li>
+</ol>
+You should now be able to load the images and see them at
+<a href="http://localhost$CAMIC_VIEWER_PORT" rel="nofollow">
+  http://localhost:$CAMIC_VIEWER_PORT/camicroscope2/osdCamicroscope.php?tissueId=&lt;Case_ID
+</a>
+&gt;

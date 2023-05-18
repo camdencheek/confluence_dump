@@ -1,0 +1,52 @@
+Contents of this Page
+<ul></ul>
+The purpose of this document is to document the configuration changes necessary for running LexEVS over HTTPS for the National Cancer Institute Center for Biomedical Informatics and Information Technology (NCI CBIIT) LexEVS.Note:
+<ul>
+  <li>
+    It is assumed that Apache and Tomcat are already configured to run over HTTPS.
+  </li>
+  <li>
+    LexEVS Remote API requires a code update to run over HTTPS.
+  </li>
+</ul>
+ Update the following files to configure LexEVS for HTTPS:
+<ul>
+  <li>
+    lexevs-service (CTS2) - Update the following property files to set the base path for CTS2 and URI Resolver to HTTPS
+    <ul>
+      <li>
+        lexevs.properties - Update uriResolutionServiceUrl to HTTPS and a secure port
+        <ul>
+          <li>
+            Example:
+            <ul>
+              <li>
+                uriResolutionServiceUrl=
+                <a href="https://localhost:8443/URI_Resolver-1.0.0/" rel="nofollow">
+                  https://localhost:8443/URI_Resolver-1.0.0/
+                </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        server-context.properties - Update server.root to HTTPS and a secure port
+        <ul>
+          <li>
+            Example:
+            <ul>
+              <li>
+                server.root=
+                <a href="https://localhost:8443" rel="nofollow">
+                  https://localhost:8443
+                </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+Restart Tomcat for the configuration changes to take effect. 

@@ -1,0 +1,237 @@
+Document Information
+Author: Craig Stancl, Scott Bauer, Cory EndleEmail: Stancl.craig@mayo.edu,
+<a href="mailto:bauer.scott@mayo.edu" rel="nofollow">
+  bauer.scott@mayo.edu
+</a>
+,
+<a href="mailto:endle.cory@mayo.edu" rel="nofollow">
+  endle.cory@mayo.edu
+</a>
+Team: LexEVSContract: S13-500 MOD4Client: NCI CBIITNational Institutes of HeathUS Department of Health and Human Services
+Table of Contents
+<ul>
+  <li>
+    <a href="#LexEVSTextMatchAlgorithmAudit-Overview" rel="nofollow">
+      Overview
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVSTextMatchAlgorithmAudit-CurrentTextMatches" rel="nofollow">
+      Current Text Matches
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVSTextMatchAlgorithmAudit-TextMatchBreakdown:" rel="nofollow">
+      Text Match Breakdown:
+    </a>
+    <ul>
+      <li>
+        <a href="#LexEVSTextMatchAlgorithmAudit-LuceneQuery" rel="nofollow">
+          Lucene Query
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVSTextMatchAlgorithmAudit-Phrase" rel="nofollow">
+          Phrase
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVSTextMatchAlgorithmAudit-Contains" rel="nofollow">
+          Contains
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVSTextMatchAlgorithmAudit-LeadingandTrailingWildCard" rel="nofollow">
+          Leading and Trailing Wild Card
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVSTextMatchAlgorithmAudit-ExactMatch" rel="nofollow">
+          Exact Match
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVSTextMatchAlgorithmAudit-SubString" rel="nofollow">
+          SubString
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVSTextMatchAlgorithmAudit-SpellingErrorTolerantSubstringMatch" rel="nofollow">
+          Spelling Error Tolerant Substring Match
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVSTextMatchAlgorithmAudit-StemmedLuceneQuery" rel="nofollow">
+          Stemmed Lucene Query
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVSTextMatchAlgorithmAudit-LiteralContains" rel="nofollow">
+          Literal Contains
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVSTextMatchAlgorithmAudit-StartsWith" rel="nofollow">
+          Starts With
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVSTextMatchAlgorithmAudit-NonLeadingWildCardLiteralSubstring" rel="nofollow">
+          Non Leading Wild Card Literal Substring
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVSTextMatchAlgorithmAudit-Literal" rel="nofollow">
+          Literal
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVSTextMatchAlgorithmAudit-WeightedDoubleMetaphoneLuceneQuery" rel="nofollow">
+          Weighted Double Metaphone Lucene Query
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVSTextMatchAlgorithmAudit-LiteralSubstring" rel="nofollow">
+          Literal Substring
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVSTextMatchAlgorithmAudit-DoubleMetaphoneLuceneQuery" rel="nofollow">
+          Double Metaphone Lucene Query
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVSTextMatchAlgorithmAudit-RegularExpression" rel="nofollow">
+          Regular Expression
+        </a>
+      </li>
+    </ul>
+  </li>
+</ul>
+<h2 id="LexEVSTextMatchAlgorithmAudit-Overview">
+  Overview
+</h2>
+The extent of text match algorithms in LexEVS has grown quite a lot over the decade the application has been in existence.   Many matching algorithms overlap in their functionality and dependencies.  We&#39;ve created a review of each of these algorithms with notes on their index dependencies and search focus with an eye towards simplifying and updating the search functionality.  NCI should review and decide if any of these can be removed or updated.
+<h2 id="LexEVSTextMatchAlgorithmAudit-CurrentTextMatches">
+  Current Text Matches
+</h2>
+<ul>
+  <li>
+    Lucene Query
+  </li>
+  <li>
+    phrase
+  </li>
+  <li>
+    contains
+  </li>
+  <li>
+    leading and trailing wild card
+  </li>
+  <li>
+    exact match
+  </li>
+  <li>
+    substring
+  </li>
+  <li>
+    spelling error tolerant substring match
+  </li>
+  <li>
+    stemmed Lucene query
+  </li>
+  <li>
+    literal contains
+  </li>
+  <li>
+    starts with
+  </li>
+  <li>
+    non leading wild card literal substring
+  </li>
+  <li>
+    literal
+  </li>
+  <li>
+    Weighted double metaphone Lucene query
+  </li>
+  <li>
+    literal substring
+  </li>
+  <li>
+    Double metaphone Lucene query
+  </li>
+  <li>
+    Regular expression
+  </li>
+</ul>
+<h2 id="LexEVSTextMatchAlgorithmAudit-TextMatchBreakdown:">
+  Text Match Breakdown:
+</h2>
+<h3 id="LexEVSTextMatchAlgorithmAudit-LuceneQuery">
+  Lucene Query
+</h3>
+Search with the Lucene query syntax.
+<a href="http://lucene.apache.org/core/5_0_0/queryparser/org/apache/lucene/queryparser/classic/package-summary.html#package_description" rel="nofollow">
+  http://lucene.apache.org/core/5_0_0/queryparser/org/apache/lucene/queryparser/classic/package-summary.html#package_description
+</a>
+<h3 id="LexEVSTextMatchAlgorithmAudit-Phrase">
+  Phrase
+</h3>
+Searches for a Phrase in text using the regular Lucene query parser.  The only addition is a set of escaped quotation marks at the beginning and end of the phrase.  It could be done in the regular Lucene Query by the user.  No special indexing.
+<h3 id="LexEVSTextMatchAlgorithmAudit-Contains">
+  Contains
+</h3>
+Equivalent to &#39; term* &#39; - in other words - a trailing wildcard on a term (but no leading wild card) and the term can appear at any position.   Searches on property value only.
+<h3 id="LexEVSTextMatchAlgorithmAudit-LeadingandTrailingWildCard">
+  Leading and Trailing Wild Card
+</h3>
+Equivalent to &#39;*term*&#39; This should be a very poor performing search and is not recommended especially when entering  a phrase.
+<h3 id="LexEVSTextMatchAlgorithmAudit-ExactMatch">
+  Exact Match
+</h3>
+Exact match (case insensitive).  Requires it&#39;s own indexed value, a lower case, untokenized property value.
+<h3 id="LexEVSTextMatchAlgorithmAudit-SubString">
+  SubString
+</h3>
+Search based on a \&#34;*some sub-string here*\&#34;. Functions much like the Java String.indexOf method.  This requires two indexed fields to manage this without significant overhead.  One field is the tokenized property value which causes no extra indexing, the other is reversed which requires an extra indexed field.
+<h3 id="LexEVSTextMatchAlgorithmAudit-SpellingErrorTolerantSubstringMatch">
+  Spelling Error Tolerant Substring Match
+</h3>
+Adds Spelling-error tolerance to &#39;subString&#39; search.  This makes use of the double metaphone indexed value as well as literal property values.  Since it shares these with other algorithms it probably doesn&#39;t add much to the index.  However this doesn&#39;t look like a high performing search.
+<h3 id="LexEVSTextMatchAlgorithmAudit-StemmedLuceneQuery">
+  Stemmed Lucene Query
+</h3>
+Search with the Lucene query syntax, using stemmed terms.  A search for &#39;trees&#39; will get a hit on &#39;tree&#39;  This requires an extra indexed field when it is enabled in the load.
+<h3 id="LexEVSTextMatchAlgorithmAudit-LiteralContains">
+  Literal Contains
+</h3>
+Works the same as contains but uses the literal property value enabling searches on special characters.
+<h3 id="LexEVSTextMatchAlgorithmAudit-StartsWith">
+  Starts With
+</h3>
+Equivalent to &#39;term*&#39; (case insensitive)  This runs against the same indexed property value as exactMatch so no extra indexing is needed. The query may require increased overhead however.
+<h3 id="LexEVSTextMatchAlgorithmAudit-NonLeadingWildCardLiteralSubstring">
+  Non Leading Wild Card Literal Substring
+</h3>
+Search based on a \&#34;*some sub-string here*\&#34; Functions much like the Java String.indexOf method. Single term searches will match &#39;*term&#39; and &#39;term*&#39; but not &#39;*term*&#39;. This is because leading wildcards are very inefficient.  Special characters are included.  This seems to be very similar to the literal contains, but makes use of the reverse index.
+<h3 id="LexEVSTextMatchAlgorithmAudit-Literal">
+  Literal
+</h3>
+All special characters are taken literally.  Since we usually normalize we can search on a string with colons, parentheses and other special characters using this search.
+<h3 id="LexEVSTextMatchAlgorithmAudit-WeightedDoubleMetaphoneLuceneQuery">
+  Weighted Double Metaphone Lucene Query
+</h3>
+Search with the Lucene query syntax, using a &#39;sounds like&#39; algorithm.  A search for &#39;atack&#39; will get a hit on &#39;attack&#39;  Also, the exact user-entered text is taken into account -- so correct spelling will override the &#39;sounds like&#39; algorithm.  Searches on the same indexed property value as the other double metaphone search.  Does not add anything more to the index, but does add more overhead to the search.
+<h3 id="LexEVSTextMatchAlgorithmAudit-LiteralSubstring">
+  Literal Substring
+</h3>
+The same as the substring search but with special characters enabled.  However this doesn&#39;t seem to make use of the optimized reverse string. It may be slower as a result.
+<h3 id="LexEVSTextMatchAlgorithmAudit-DoubleMetaphoneLuceneQuery">
+  Double Metaphone Lucene Query
+</h3>
+Search with the Lucene query syntax, using a &#39;sounds like&#39; algorithm.  A search for &#39;atack&#39; will get a hit on &#39;attack&#39;  Searches on a property value that has been double metaphone enabled.
+<h3 id="LexEVSTextMatchAlgorithmAudit-RegularExpression">
+  Regular Expression
+</h3>
+A Regular Expression query.  Searches against the lowercased text, so a regular expression that specifies an uppercase character will never return a match. Additionally, this searches against the entire string as a single token, rather than the tokenized string - so write your regular expression accordingly.  This is the apache implementation of Regular Expression so follow their documentation as needed.  This is from the old Jakarta project.  We may want to update to the latest Lucene supported version of this.  This runs against the same indexed value as exact match so it doesn&#39;t cost any more in terms of indexed data.

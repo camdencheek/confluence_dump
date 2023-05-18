@@ -1,0 +1,523 @@
+Contents of this Page
+<ul>
+  <li>
+    <a href="#LexEVS6.xMigrationTipsfor5.xUsers-Introduction" rel="nofollow">
+      Introduction
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.xMigrationTipsfor5.xUsers-Documentation" rel="nofollow">
+      Documentation
+    </a>
+    <ul>
+      <li>
+        <a href="#LexEVS6.xMigrationTipsfor5.xUsers-LexEVS6.xRESTCTS2Service" rel="nofollow">
+          LexEVS 6.x REST CTS2 Service
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.xMigrationTipsfor5.xUsers-LexEVS6.xInstallationGuide" rel="nofollow">
+          LexEVS 6.x Installation Guide
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.xMigrationTipsfor5.xUsers-LexEVS6.xAdministrationGuide" rel="nofollow">
+          LexEVS 6.x Administration Guide
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.xMigrationTipsfor5.xUsers-LexEVS6.xProgrammer&#39;sGuide" rel="nofollow">
+          LexEVS 6.x Programmer&#39;s Guide
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.xMigrationTipsfor5.xUsers-LexEVS6.xDesignandArchitectureGuide" rel="nofollow">
+          LexEVS 6.x Design and Architecture Guide
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.xMigrationTipsfor5.xUsers-LexEVS6.xValueSetandPickListDefinitionGuide" rel="nofollow">
+          LexEVS 6.x Value Set and Pick List Definition Guide
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.xMigrationTipsfor5.xUsers-LexEVS6.xLoaderGuide" rel="nofollow">
+          LexEVS 6.x Loader Guide
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#LexEVS6.xMigrationTipsfor5.xUsers-Downloads" rel="nofollow">
+      Downloads
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.xMigrationTipsfor5.xUsers-WhatToLookFor" rel="nofollow">
+      What To Look For
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.xMigrationTipsfor5.xUsers-APIChanges" rel="nofollow">
+      API Changes
+    </a>
+    <ul>
+      <li>
+        <a href="#LexEVS6.xMigrationTipsfor5.xUsers-Iterators" rel="nofollow">
+          Iterators
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.xMigrationTipsfor5.xUsers-ConceptvsEntity" rel="nofollow">
+          Concept vs Entity
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.xMigrationTipsfor5.xUsers-AssociationvsAssociationPredicateandAssociationEntity" rel="nofollow">
+          Association vs AssociationPredicate and AssociationEntity
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.xMigrationTipsfor5.xUsers-ValueSets" rel="nofollow">
+          Value Sets
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.xMigrationTipsfor5.xUsers-PickLists" rel="nofollow">
+          Pick Lists
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#LexEVS6.xMigrationTipsfor5.xUsers-ConfigurationChanges" rel="nofollow">
+      Configuration Changes
+    </a>
+    <ul>
+      <li>
+        <a href="#LexEVS6.xMigrationTipsfor5.xUsers-Newlbconfig.props" rel="nofollow">
+          New lbconfig.props
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.xMigrationTipsfor5.xUsers-NeworUpdatedJars" rel="nofollow">
+          New or Updated Jars
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#LexEVS6.xMigrationTipsfor5.xUsers-ModelChanges" rel="nofollow">
+      Model Changes
+    </a>
+  </li>
+</ul>
+<h2 id="LexEVS6.xMigrationTipsfor5.xUsers-Introduction">
+  Introduction
+</h2>
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=69730353" rel="nofollow">
+  LexEVS 6.0
+</a>
+functionality has been updated to provide many new features for terminology services. In the Tool Overview on the
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=69730353" rel="nofollow">
+  LexEVS 6.0
+</a>
+page, you can see an outline of this functionality. Changes were necessary to the existing LexEVS API and have been documented in the sections below. For help with the new APIs, see the
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427334" rel="nofollow">
+  LexEVS 6.0 Programmer&#39;s Guide
+</a>
+. Before reading about each change, review the &#34;What To Look For&#34; section, which proposes a methodology that will help you find changes required in your code.
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=159777589" rel="nofollow">
+  LexEVS 6.1
+</a>
+offers few changes to the Java API but an important update is the inclusion of a
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=108004576" rel="nofollow">
+  global search
+</a>
+to the terminology service.  The biggest change is the addition of several new loaders and a new
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=176325119" rel="nofollow">
+  REST service implementation
+</a>
+that is completely CTS2 compliant.
+<h2 id="LexEVS6.xMigrationTipsfor5.xUsers-Documentation">
+  Documentation
+</h2>
+<h3 id="LexEVS6.xMigrationTipsfor5.xUsers-LexEVS6.xRESTCTS2Servicehttps://wiki.nci.nih.gov/pages/viewpage.action?pageId=176325119">
+  <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=176325119" rel="nofollow">
+    LexEVS 6.x REST CTS2 Service
+  </a>
+</h3>
+Documentation of the CTS2 REST implementation in 6.1 and the legacy CTS2 Java API in 6.0.  Included is the REST bulk download extension in 6.1.
+<h3 id="LexEVS6.xMigrationTipsfor5.xUsers-LexEVS6.xInstallationGuidehttps://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427361">
+  <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427361" rel="nofollow">
+    LexEVS 6.x Installation Guide
+  </a>
+</h3>
+This document outlines the supported configurations and technical installation instructions for LexEVS Vocabulary Services for caBIG®.
+<h3 id="LexEVS6.xMigrationTipsfor5.xUsers-LexEVS6.xAdministrationGuidehttps://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427370">
+  <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427370" rel="nofollow">
+    LexEVS 6.x Administration Guide
+  </a>
+</h3>
+This guide outlines the environment configuration from the perspective of an existing installation.
+<h3 id="LexEVS6.xMigrationTipsfor5.xUsers-LexEVS6.xProgrammer&#39;sGuide">
+  <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427334" rel="nofollow">
+    LexEVS 6.x Programmer&#39;s Guide
+  </a>
+</h3>
+This guide explains the LexEVS API (services, extensions, utilities, and GUI); also many related APIs.
+<h3 id="LexEVS6.xMigrationTipsfor5.xUsers-LexEVS6.xDesignandArchitectureGuidehttps://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427373">
+  <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427373" rel="nofollow">
+    LexEVS 6.x Design and Architecture Guide
+  </a>
+</h3>
+This guide explains the LexGrid model and the LexBIG services.
+<h3 id="LexEVS6.xMigrationTipsfor5.xUsers-LexEVS6.xValueSetandPickListDefinitionGuidehttps://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427293">
+  <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427293" rel="nofollow">
+    LexEVS 6.x Value Set and Pick List Definition Guide
+  </a>
+</h3>
+This guide explain the LexEVS 6.0 Value Set and Pick List Definition documentation.
+<h3 id="LexEVS6.xMigrationTipsfor5.xUsers-LexEVS6.xLoaderGuidehttps://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427363">
+  <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427363" rel="nofollow">
+    LexEVS 6.x Loader Guide
+  </a>
+</h3>
+This guide is intended for a LexEVS developer and provides information about the loaders provided, mapping, and how to create your own loaders using the loader framework.
+<h2 id="LexEVS6.xMigrationTipsfor5.xUsers-Downloads">
+  Downloads
+</h2>
+To access the download files please visit:
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427368" rel="nofollow">
+  LexEVS 6.0 API Downloads
+</a>
+<h2 id="LexEVS6.xMigrationTipsfor5.xUsers-WhatToLookFor">
+  What To Look For
+</h2>
+In the following sections you will find documentation on what may need to be changed in your code when moving from LexEVS 5 to LexEVS 6. Before you go to each section, you can search your code for these strings (without the surrounding quotes). If you get a hit or hits, then you will need to make some changes in that area of the code. Follow the link for the string that you got a hit on in order to determine what to do in each case. This list may not catch everything, but it is a great place to start.
+<ul>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427383" rel="nofollow">
+      Iterators
+    </a>
+    changes according to the context of the Iterator.
+  </li>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427383" rel="nofollow">
+      New Concept
+    </a>
+    replaced by a &#34;new Entity&#34;.
+  </li>
+  <li>
+    After
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427383" rel="nofollow">
+      New Entity
+    </a>
+    use the new addEntityType() method to set the specific Entity type.
+  </li>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427383" rel="nofollow">
+      New Association
+    </a>
+    replaced by new AssociationEntity and new AssociationPredicate.
+  </li>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427383" rel="nofollow">
+      ValueDomain
+    </a>
+    renamed to &#34;ValueSet&#34;. This affects package names, class names, method names, method&#39;s input/output type/names.
+  </li>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427383" rel="nofollow">
+      LexEVSValueDomainServices
+    </a>
+    renamed to LexEVSValueSetServices.
+  </li>
+  <li>
+    Method
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427383" rel="nofollow">
+      resolveValueDomain
+    </a>
+    in LexEVSValueDomainServices, renamed to resolveValueSetDefinition and the method&#39;s arguments have changed.
+  </li>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427383" rel="nofollow">
+      LexEVSPickListServices
+    </a>
+    renamed to LexEVSPickListDefinitionServices
+  </li>
+  <li>
+    Method
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427383" rel="nofollow">
+      resolvePickList
+    </a>
+    in LexEVSPickListDefinitionServices, arguments have changed.
+  </li>
+</ul>
+<h2 id="LexEVS6.xMigrationTipsfor5.xUsers-APIChanges">
+  API Changes
+</h2>
+<h3 id="LexEVS6.xMigrationTipsfor5.xUsers-Iterators">
+  Iterators
+</h3>
+For example Iterator&lt;ResolvedConceptReference&gt;
+Iterator&lt;ResolvedConceptReference&gt;
+may need to be replaced by
+Iterator&lt;? extends ResolvedConceptReference&gt;
+<h3 id="LexEVS6.xMigrationTipsfor5.xUsers-ConceptvsEntity">
+  Concept vs Entity
+</h3>
+In 5.0 org.LexGrid.concepts.Concept and org.LexGrid.concepts.Instance were a subclass of org.LexGrid.concepts.Entity. These have been removed for 6.0. If you have used concept or instance in LexEVS 5.x ,then in 6.0 you will want to modify your code to use Entity instead.In 5.0, for example, a concept can be defined as follows:
+Concept concept = new Concept();
+concept.setEntityCode(&#34;code&#34;);
+concept.setEntityCodeNamespace(&#34;namespace&#34;);
+concept.setIsDefined(true);
+concept.setIsAnonymous(false);
+concept.setIsActive(true);
+
+In 6.0, a concept entity is defined as follows:
+Entity concept = new Entity();
+concept.addEntityType(EntityTypes.CONCEPT.toString());
+concept.setEntityCode(&#34;code&#34;);
+concept.setEntityCodeNamespace(&#34;namespace&#34;);
+concept.setIsDefined(true);
+concept.setIsAnonymous(false);
+concept.setIsActive(true);
+
+You may notice that we use the addEntityType method to specify the entity type of Concept. We use the same method for Instance. In 6.0 we define Instance as follows:
+Entity instance = new Entity();
+instance.addEntityType(EntityTypes.INSTANCE.toString());
+instance.setEntityCode(&#34;code&#34;);
+instance.setEntityCodeNamespace(&#34;namespace&#34;);
+<h3 id="LexEVS6.xMigrationTipsfor5.xUsers-AssociationvsAssociationPredicateandAssociationEntity">
+  Association vs AssociationPredicate and AssociationEntity
+</h3>
+org.LexGrid.relations.Association is replaced by AssociationPredicate and AssociationEntity in 6.0. The AssociationPredicate class contains &#39;associationName&#39; and &#39;sourceList&#39; properties, and their get/set methods. AssociationEntity class contains the properties such as &#39;forwardName&#39;, &#39;isNavigable&#39;, &#39;isTransitive&#39;, &#39;reverseName&#39; etc., plus their get/set methods. For example, in 5.0 an Association class can be created as follows:
+Association association = new Association();
+association.setAssociationName(&#34;name&#34;);
+association.addSource(source);
+association.setForwardName(&#34;forwardName&#34;);
+association.setIsNavigable(true);
+
+In 6.0 it is replaced by
+AssociationPredicate associationPredicate = new AssociationPredicate();
+associationPredicate.setAssociationName(&#34;name&#34;);
+associationPredicate.addSource(source);
+
+AssociationEntity associationEntity = new AssociationEntity();
+associationEntity.setEntityCode(&#34;name&#34;);
+associationEntity.setForwardName(&#34;forwardName&#34;);
+associationEntity.setIsNavigable(true);
+<h3 id="LexEVS6.xMigrationTipsfor5.xUsers-ValueSets">
+  Value Sets
+</h3>
+<ul>
+  <li>
+    All class names that contain &#34;ValueDomain&#34; are now replaced with &#34;ValueSet&#34;, for instance, ValueDomainDefinition is renamed to ValueSetDefinition.
+  </li>
+  <li>
+    Major Value Set interfaces changes: These affect class names, method names, method&#39;s input/output type/names. If the name contains &#34;ValueDomain&#34;, rename it to &#34;ValueSet&#34;.
+    <ul>
+      <li>
+        ValueDomainDefinition to ValueSetDefinition.
+      </li>
+      <li>
+        LexEVSValueDomainServices to LexEVSValueSetDefinitionServices.
+      </li>
+    </ul>
+  </li>
+  <li>
+    All packages that had &#34;valuedomain&#34; are now &#34;valuesets&#34;.
+  </li>
+  <li>
+    LexEVSPickListServices has been renamed to LexEVSPickListDefinitionServices
+  </li>
+  <li>
+    Resolve supplied ValueSetDefinition object: In 5.0, this method is defined under LexEVSValueDomainServices.
+    public ResolvedValueDomainDefinition resolveValueDomain(URI valueDomainURI,
+    AbsoluteCodingSchemeVersionReferenceList csVersionList,
+    String versionTag) throws LBException;
+
+    In 6.0, the method is under LexEVSValueSetDefinitionServices. It is represented as follows:
+    public ResolvedValueSetDefinition resolveValueSetDefinition(URI valueSetDefinitionURI,
+    String valueSetDefinitionRevisionId,
+    AbsoluteCodingSchemeVersionReferenceList csVersionList,
+    String versionTag, SortOptionList sortOptionList) throws LBException;
+
+    Besides the return type change, two new input arguments have been added. valueSetDefinitionRevisionId which holds the information of the version of the value set definition and sortOptionList which represents the list of sort options to apply during resolution. If supplied, the sort algorithms will be applied in the order provided. Any algorithms not valid to be applied in context of node set iteration, as specified in the sort extension description, will result in an argument exception. Available algorithms can be retrieved through the LexBIGService getSortExtensions method after being defined to the LexBIGServiceManager extension registry. For example:
+    AbsoluteCodingSchemeVersionReferenceList acsvList = null;
+    Util.displayMessage(&#34;Now select Code System to use to resolve Value Set Definition&#34;);
+    CodingSchemeSummary css = Util.promptForCodeSystem();
+    if (css != null)
+    {
+    acsvList = new AbsoluteCodingSchemeVersionReferenceList();
+    acsvList.addAbsoluteCodingSchemeVersionReference(Constructors.createAbsoluteCodingSchemeVersionReference(css.getCodingSchemeURI(),
+    css.getRepresentsVersion()));
+    }
+
+    LexEVSValueSetDefinitionServices vsdServ = LexEVSValueSetDefinitionServicesImpl.defaultInstance();
+    ResolvedValueSetDefinition rVSD = null;
+    try {
+    rVSD = vsdServ.resolveValueSetDefinition(new URI(&#34;myUri&#34;), null, acsvList, null, null);
+    } catch (URISyntaxException e) {
+    e.printStackTrace();
+    }
+  </li>
+</ul>
+A new resolve value set definition method is provided. It accepts a ValueSetDefinition object instead of a URI.
+public ResolvedValueSetDefinition resolveValueSetDefinition(ValueSetDefinition vsDef,
+AbsoluteCodingSchemeVersionReferenceList csVersionList,
+String versionTag, SortOptionList sortOptionList) throws LBException;
+<h3 id="LexEVS6.xMigrationTipsfor5.xUsers-PickLists">
+  Pick Lists
+</h3>
+<ul>
+  <li>
+    LexEVSPickListServices renamed to LexEVSPickListDefinitionServices
+  </li>
+  <li>
+    Resolve supplied PickListDefinition object. In 5.0, LexEVSPickListServices provides this function. Two methods are defined as follows:
+    public ResolvedPickListEntryList resolvePickList(String pickListId, Integer sortType) throws LBException;
+
+
+    public ResolvedPickListEntryList resolvePickList(String pickListId, boolean sortByText) throws LBException;
+
+    In 6.0, these methods are defined in LexEVSPickListDefinitionServices.java.
+    public ResolvedPickListEntryList resolvePickList(String pickListId, Integer sortType,
+    AbsoluteCodingSchemeVersionReferenceList csVersionList, String versionTag) throws LBException;
+
+
+    public ResolvedPickListEntryList resolvePickList(String pickListId, boolean sortByText,
+    AbsoluteCodingSchemeVersionReferenceList csVersionList, String versionTag) throws LBException;
+
+    Argument &#39;csVersionList&#39; and &#39;versionTag&#39; are added. &#39;csVersionList&#39; represents a list of coding scheme URI&#39;s and versions to be used. These will be used only if they are present in the service. If absent, the most recent version will be used instead. &#39;versionTag&#39; is the tag (e.g &#34;devel&#34;, &#34;production&#34;, ...) to be used to reconcile coding schemes when more than one is present. Note that non-tagged versions will be used if the tagged version is missing. An example using integer to indicate the sort type is shown as follows:
+    AbsoluteCodingSchemeVersionReferenceList incsvrl = new AbsoluteCodingSchemeVersionReferenceList();
+    incsvrl.addAbsoluteCodingSchemeVersionReference(Constructors.createAbsoluteCodingSchemeVersionReference(&#34;urn:oid:11.11.0.1&#34;, &#34;1.1&#34;));
+
+    ResolvedPickListEntryList pls = _pickListService.resolvePickList(&#34;SRITEST:FA:MicrobialStructureOntologyMinusMCell&#34;, 1, incsvrl, &#34;production&#34;);
+  </li>
+</ul>
+<ul>
+  <li>
+    Besides the two methods above, LexEVSPickListServices also adds two new methods resolvePickList and resolvePickListForTerm as follows:
+  </li>
+  <li>
+    The new resolvePickList method can be passed in a PickListDefinition object instead of pickListId.
+    public ResolvedPickListEntryList resolvePickList(PickListDefinition pickList, boolean sortByText,
+    AbsoluteCodingSchemeVersionReferenceList csVersionList,
+    String versionTag) throws LBException;
+
+
+    public ResolvedPickListEntryList resolvePickListForTerm(String pickListId, String term, String matchAlgorithm,
+    String language, String[] context, boolean sortByText,A
+    bsoluteCodingSchemeVersionReferenceList csVersionList, String versionTag) throws LBException;
+  </li>
+  <li>
+    More restriction arguments have been added to the new resolvePickListForTerm method, such as: &#39;term&#39;, &#39;matchAlgorithm&#39;, &#39;languange&#39;, and &#39;context&#39;. The argument &#39;term&#39; is required. An example is shown below:
+    ResolvedPickListEntryList pickLists = getPickListService().resolvePickListForTerm(&#34;SRITEST:AUTO:AllDomesticButGM&#34;,
+    &#34;Jaguar&#34;, MatchAlgorithms.exactMatch.name(),
+    &#34;english&#34;, null, false, null, null);
+  </li>
+  <li>
+    In 6.0 you also can resolve a pick list by revision. The code below is the new method:
+    public PickListDefinition resolvePickListByRevision(String pickListId,
+    String revisionId, Integer sortOrder) throws LBRevisionException;
+
+    Note: the return type of this method is PickListDefinition instead of ResolvedPickListEntryList.
+  </li>
+</ul>
+<h2 id="LexEVS6.xMigrationTipsfor5.xUsers-ConfigurationChanges">
+  Configuration Changes
+</h2>
+<h3 id="LexEVS6.xMigrationTipsfor5.xUsers-Newlbconfig.props">
+  New lbconfig.props
+</h3>
+<ul>
+  <li>
+    There are new parameters in the lbconfig.props file. Please see the
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427341" rel="nofollow">
+      LexEVS 6.x Local Runtime Configuration File Settings
+    </a>
+    .
+  </li>
+  <li>
+    Single or Multi-table set mode is now available in LexEVS 6.0. This allows users to either load multiple coding schemes into one set of tables (single table set mode) or each coding scheme has its own set of tables (multi table set mode). Please see the
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427341" rel="nofollow">
+      LexEVS 6.x Local Runtime Configuration File Settings
+    </a>
+    to ensure your settings are correct for your installation. If you do not make a selection single table set mode will be used.
+  </li>
+</ul>
+<h3 id="LexEVS6.xMigrationTipsfor5.xUsers-NeworUpdatedJars">
+  New or Updated Jars
+</h3>
+<ul>
+  <li>
+    ddlUtils-1.0-PATCHED.jar
+  </li>
+  <li>
+    ibatis-sqlmap-2.3.4.726.jar
+  </li>
+  <li>
+    hibernate-annotations-3.4.0.GA.jar
+  </li>
+  <li>
+    hibernate-commons-annotations-3.3.0.ga.jar
+  </li>
+  <li>
+    persistence-api-1.0.jar
+  </li>
+  <li>
+    hibernate-core-3.3.2.GA.jar
+  </li>
+  <li>
+    ehcache-core-2.0.1.jar
+  </li>
+  <li>
+    commons-betwixt-0.8.jar
+  </li>
+  <li>
+    commons-digester-1.8.jar
+  </li>
+  <li>
+    compass-2.2.0.jar
+  </li>
+  <li>
+    lucene-analyzers.2.4.1.jar
+  </li>
+  <li>
+    lucene-queries-2.4.1.jar
+  </li>
+  <li>
+    castor-1.3.1-anttasks.jar
+  </li>
+  <li>
+    castor-1.3.1-codegen.jar
+  </li>
+  <li>
+    castor-1.3.1-core.jar
+  </li>
+  <li>
+    castor-1.3.1-xml-schema.jar
+  </li>
+  <li>
+    castor-1.3.1.jar
+  </li>
+</ul>
+<h2 id="LexEVS6.xMigrationTipsfor5.xUsers-ModelChanges">
+  Model Changes
+</h2>
+<ul>
+  <li>
+    ValueDomains changes to ValueSets
+  </li>
+  <li>
+    ValueDomainDefinition changed to ValueSetDefinition
+  </li>
+  <li>
+    Added ConceptDomain attribute to ValueSetDefinition
+  </li>
+  <li>
+    Renamed PickListDefinition&#39;s attribute completeDomain to CompleteSet
+  </li>
+</ul>

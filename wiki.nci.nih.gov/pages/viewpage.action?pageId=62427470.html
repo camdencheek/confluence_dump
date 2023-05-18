@@ -1,0 +1,18 @@
+Java Code Snippet
+public static void main(String[] args)
+{
+try {
+LexEVSApplicationService appService = (LexEVSApplicationService)ApplicationServiceProvider.
+getApplicationService(&#34;EvsServiceInfo&#34;);
+QueryOptions queryOptions = new QueryOptions();
+queryOptions.setCodingScheme(&#34;NCI Thesaurus&#34;);
+CodingSchemeVersionOrTag csvt = new CodingSchemeVersionOrTag();
+csvt.setVersion(&#34;09.10d&#34;);
+queryOptions.setCodingSchemeVersionOrTag(csvt);
+Entity entity = new Entity();
+entity.setEntityCode(&#34;C1234&#34;);
+List&amp;lt;Entity&amp;gt; list = appService.search(Entity.class, entity, queryOptions);
+}
+catch(ApplicationException ex){
+}
+} 

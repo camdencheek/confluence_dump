@@ -1,0 +1,714 @@
+<h1 id="NCICTRPParticipatingSiteRESTServiceGuide-titletop"></h1>
+Topic Links
+<ul>
+  <li>
+    <a href="#NCICTRPParticipatingSiteRESTServiceGuide-Introduction" rel="nofollow">
+      Introduction
+    </a>
+  </li>
+  <li>
+    <a href="#NCICTRPParticipatingSiteRESTServiceGuide-ServiceEndpoints" rel="nofollow">
+      Service Endpoints
+    </a>
+  </li>
+  <li>
+    <a href="#NCICTRPParticipatingSiteRESTServiceGuide-AccessRequirements" rel="nofollow">
+      Access Requirements
+    </a>
+  </li>
+  <li>
+    <a href="#NCICTRPParticipatingSiteRESTServiceGuide-XMLSchema" rel="nofollow">
+      XML Schema
+    </a>
+  </li>
+  <li>
+    <a href="#NCICTRPParticipatingSiteRESTServiceGuide-PersonsandOrganizations-RequirementsandRecommendations" rel="nofollow">
+      Persons and Organizations - Requirements and Recommendations
+    </a>
+  </li>
+  <li>
+    <a href="#NCICTRPParticipatingSiteRESTServiceGuide-APISpecification" rel="nofollow">
+      API Specification
+    </a>
+    <ul>
+      <li>
+        <a href="#NCICTRPParticipatingSiteRESTServiceGuide-AddSite" rel="nofollow">
+          Add Site
+        </a>
+      </li>
+      <li>
+        <a href="#NCICTRPParticipatingSiteRESTServiceGuide-UpdateSite" rel="nofollow">
+          Update Site
+        </a>
+      </li>
+      <li>
+        <a href="#NCICTRPParticipatingSiteRESTServiceGuide-GetSites" rel="nofollow">
+          Get Sites
+        </a>
+      </li>
+    </ul>
+  </li>
+</ul>
+This section provides instructions for adding and updating participating sites via the NCI CTRP Participating Site REST Service.
+<h2 id="NCICTRPParticipatingSiteRESTServiceGuide-Introduction">
+  Introduction
+</h2>
+Participating Site REST Service is a CTRP Web Service that provides the following operations in a REST-like fashion:
+<ul>
+  <li>
+    Add a participating site to a trial
+  </li>
+  <li>
+    Update an existing participating site on a trial
+  </li>
+  <li>
+    Obtain a list of participating sites on a trial
+  </li>
+</ul>
+The service uses XML for data exchange.Program CodesThe program codes feature (not to be confused with
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=341184466" rel="nofollow">
+  NCI Division and Program Values
+</a>
+) has been enhanced for the 4.4 release. The system ignores program codes unless the trial is one of the following:
+<ul>
+  <li>
+    Complete trial with a lead organization as a member of your cancer center family of organizations.
+  </li>
+  <li>
+    Abbreviated trial where such a member is a participant.
+  </li>
+</ul>
+The system validates program code values against those listed on the Manage Program Codes Master List page for your affiliated cancer center. For details, refer to
+<a href="https://wiki.nci.nih.gov/display/CTRPdoc/Registration+Site+Administration#RegistrationSiteAdministration-ManagingProgramCodes" rel="nofollow">
+  Managing Program Codes
+</a>
+.
+<h2 id="NCICTRPParticipatingSiteRESTServiceGuide-ServiceEndpoints">
+  Service Endpoints
+</h2>
+Inside the NIH Firewall (VPN required)
+<ul>
+  <li>
+    DEVINT:
+    <a href="https://trials-int.nci.nih.gov/services" rel="nofollow">
+      https://trials-int.nci.nih.gov/services
+    </a>
+  </li>
+</ul>
+Outside of the NIH Firewall
+<ul>
+  <li>
+    STAGE:
+    <a href="https://trials-stage.nci.nih.gov/services" rel="nofollow">
+      https://trials-stage.nci.nih.gov/services
+    </a>
+  </li>
+  <li>
+    PROD:
+    <a href="https://trials.nci.nih.gov/services" rel="nofollow">
+      https://trials.nci.nih.gov/services
+    </a>
+  </li>
+</ul>
+<h2 id="NCICTRPParticipatingSiteRESTServiceGuide-AccessRequirements">
+  Access Requirements
+</h2>
+To use the service, you must have a valid NCI CTRP account. For instructions, refer to
+<a href="https://wiki.nci.nih.gov/display/CTRP/Creating+New+NCI+CTRP+User+Accounts" rel="nofollow">
+  Creating New NCI CTRP User Accounts
+</a>
+. All service endpoints require Okta token authentication with your NCI CTRP Client ID and Client Secret. Contact
+<a href="mailto:CTRP_support@nih.gov" rel="nofollow">
+  CTRP_support@nih.gov
+</a>
+ to have a NCI CTRP Client ID and Client secret generated for your CTRP REST account. See the following document for generating an Okta access token using your CTRP Client ID and Client Secret:
+<a href="https://wiki.nci.nih.gov/display/CTRP/NCI+CTRP+API+Authentication+Guide" rel="nofollow">
+  NCI CTRP API Authentication Guide
+</a>
+<h2 id="NCICTRPParticipatingSiteRESTServiceGuide-XMLSchema">
+  XML Schema
+</h2>
+The service uses XML for data exchange. All XML elements going in or out of the service are defined and validated against the following XML schemas:
+<ul>
+  <li>
+    <a href="https://github.com/BIAD/ctrp_docs/blob/master/shared/ws.xsd" rel="nofollow">
+      ws.xsd
+    </a>
+  </li>
+  <li>
+    <a href="https://github.com/BIAD/ctrp_docs/blob/master/shared/po.xsd" rel="nofollow">
+      po.xsd
+    </a>
+  </li>
+</ul>
+XML schemas are well-annotated with inline documentation that explains the purpose and meaning of various elements, types, and attributes. Specific elements required for service operations are explained in the sections below.
+<h2 id="NCICTRPParticipatingSiteRESTServiceGuide-PersonsandOrganizations-RequirementsandRecommendations">
+  Persons and Organizations - Requirements and Recommendations
+</h2>
+Creating or updating sites in the CTRP often involves organizations and persons that act as Healthcare Facilities and Principal Investigators on a site. CTRP does not manage information about persons and organizations; instead, this is delegated to the Person and Organization Curation Portal, also known as  PO. For more information, refer to the
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=341184104" rel="nofollow">
+  NCI CTRP Person and Organization Curation User Guide
+</a>
+.You must have a user account with appropriate LDAP membership to access the PO User&#39;s Guide.Before creating or updating a site, ensure that organizations and persons acting on the site exist already in PO. Use person identifiers (PO IDs) and organization identifiers (CTEP IDs) when you register a trial whenever possible. If they do not already exist, request that they be created prior to managing a site, by submitting a request to the CTRO at
+<a href="mailto:ncictro@mail.nih.gov" rel="nofollow">
+  ncictro@mail.nih.gov
+</a>
+.Use PO Web Services APIWe strongly recommend that you exercise the
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=341188463" rel="nofollow">
+  PO Web Services API
+</a>
+separately in order to find persons and organizations of interest prior to creating a site. Once you find a person or organization, you can use their IDs within a site creation packet as shown in API examples below. This helps to minimize duplicates in the CTRP system.
+<h2 id="NCICTRPParticipatingSiteRESTServiceGuide-APISpecification">
+  API Specification
+</h2>
+<h3 id="NCICTRPParticipatingSiteRESTServiceGuide-AddSite">
+  Add Site
+</h3>
+Adds a participating site to a trial.
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        HTTP Method
+      </th>
+      <td>
+        POST
+      </td>
+    </tr>
+    <tr>
+      <th>
+        URL
+      </th>
+      <td>
+        /trials/{idType}/{trialID}/sitesParameters {idType}.  Type of identifier you want to use to identify a trial in CTRP. Possible values: pa, nci, ctep. {trialID}.  Trial identifier value itself
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Request Body
+      </th>
+      <td>
+        XML document withParticipatingSiteMIME Type: application/xml
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Response Body
+      </th>
+      <td>
+        CTRP identifier of the siteMIME Type: text/plain
+      </td>
+    </tr>
+    <tr>
+      <th>
+        HTTP Response Code
+      </th>
+      <td>
+        <ul>
+          <li>
+            200. Success
+          </li>
+          <li>
+            400. Validation error
+          </li>
+          <li>
+            401. Invalid username/password or insufficient permissions to access the service.
+          </li>
+          <li>
+            404. Trial not found
+          </li>
+          <li>
+            500. Internal server error (includes the condition when the caller does not own the trial)
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Examples
+      </th>
+      <td>
+        URL:
+        <a href="https://trials-dev.nci.nih.gov/services/trials/nci/NCI-2014-00496/sites" rel="nofollow">
+          https://trials-dev.nci.nih.gov/services/trials/nci/NCI-2014-00496/sites
+        </a>
+        Request (referring to existing Organizations and Persons by ID):
+
+         Expand source
+
+
+        &lt;tns:ParticipatingSite xmlns:tns=&#34;gov.nih.nci.pa.webservices.types&#34;
+        xmlns:tns1=&#34;gov.nih.nci.po.webservices.types.trimmed&#34; xmlns:xsi=&#34;http://www.w3.org/2001/XMLSchema-instance&#34;
+        xsi:schemaLocation=&#34;gov.nih.nci.pa.webservices.types ../../src/resources/ws.xsd &#34;&gt;
+        &lt;tns:recruitmentStatus&gt;Administratively Complete&lt;/tns:recruitmentStatus&gt;
+        &lt;tns:recruitmentStatusDate&gt;2001-05-06&lt;/tns:recruitmentStatusDate&gt;
+        &lt;tns:localTrialIdentifier&gt;tns:localTrialIdentifier&lt;/tns:localTrialIdentifier&gt;
+        &lt;tns:programCode&gt;tns:programCode&lt;/tns:programCode&gt;
+        &lt;tns:openedForAccrual&gt;2001-02-02&lt;/tns:openedForAccrual&gt;
+        &lt;tns:closedForAccrual&gt;2010-03-04&lt;/tns:closedForAccrual&gt;
+        &lt;tns:targetAccrualNumber&gt;100000&lt;/tns:targetAccrualNumber&gt;
+        &lt;tns:investigator&gt;
+        &lt;tns:person&gt;
+        &lt;tns:existingPerson&gt;
+        &lt;tns:poID&gt;1&lt;/tns:poID&gt;
+        &lt;/tns:existingPerson&gt;
+        &lt;/tns:person&gt;
+        &lt;tns:role&gt;Principal Investigator&lt;/tns:role&gt;
+        &lt;tns:primaryContact&gt;true&lt;/tns:primaryContact&gt;
+        &lt;/tns:investigator&gt;
+        &lt;tns:investigator&gt;
+        &lt;tns:person&gt;
+        &lt;tns:existingPerson&gt;
+        &lt;tns:poID&gt;2&lt;/tns:poID&gt;
+        &lt;/tns:existingPerson&gt;
+        &lt;/tns:person&gt;
+        &lt;tns:role&gt;Sub Investigator&lt;/tns:role&gt;
+        &lt;tns:primaryContact&gt;false&lt;/tns:primaryContact&gt;
+        &lt;/tns:investigator&gt;
+        &lt;tns:organization&gt;
+        &lt;tns:existingOrganization&gt;
+        &lt;tns:poID&gt;1&lt;/tns:poID&gt;
+        &lt;/tns:existingOrganization&gt;
+        &lt;/tns:organization&gt;
+        &lt;/tns:ParticipatingSite&gt;
+
+
+
+
+
+        Request (Referring to Generic Contacts for RSS Sites):
+
+         Expand source
+
+
+        &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
+        &lt;tns:ParticipatingSite xmlns:tns=&#34;gov.nih.nci.pa.webservices.types&#34;
+        	xmlns:tns1=&#34;gov.nih.nci.po.webservices.types.trimmed&#34; xmlns:xsi=&#34;http://www.w3.org/2001/XMLSchema-instance&#34;
+        	xsi:schemaLocation=&#34;gov.nih.nci.pa.webservices.types ../../src/resources/ws.xsd &#34;&gt;
+        	&lt;tns:recruitmentStatus&gt;Administratively Complete&lt;/tns:recruitmentStatus&gt;
+        	&lt;tns:recruitmentStatusDate&gt;2001-05-06&lt;/tns:recruitmentStatusDate&gt;
+        	&lt;tns:localTrialIdentifier&gt;tns:localTrialIdentifier&lt;/tns:localTrialIdentifier&gt;
+        	&lt;tns:programCode&gt;tns:programCode&lt;/tns:programCode&gt;
+        	&lt;tns:openedForAccrual&gt;2001-02-02&lt;/tns:openedForAccrual&gt;
+        	&lt;tns:closedForAccrual&gt;2010-03-04&lt;/tns:closedForAccrual&gt;
+        	&lt;tns:targetAccrualNumber&gt;100000&lt;/tns:targetAccrualNumber&gt;
+        	&lt;tns:investigator&gt;
+        		&lt;tns:person&gt;
+        			&lt;tns:existingPerson&gt;
+        				&lt;tns:poID&gt;1&lt;/tns:poID&gt;
+        			&lt;/tns:existingPerson&gt;
+        		&lt;/tns:person&gt;
+        		&lt;tns:role&gt;Principal Investigator&lt;/tns:role&gt;
+        		&lt;tns:primaryContact&gt;true&lt;/tns:primaryContact&gt;
+        	&lt;/tns:investigator&gt;
+        	&lt;tns:investigator&gt;
+        		&lt;tns:person&gt;
+        			&lt;tns:existingPerson&gt;
+        				&lt;tns:poID&gt;1&lt;/tns:poID&gt;
+        			&lt;/tns:existingPerson&gt;
+        		&lt;/tns:person&gt;
+        		&lt;tns:role&gt;Principal Investigator&lt;/tns:role&gt;
+        		&lt;tns:primaryContact&gt;false&lt;/tns:primaryContact&gt;
+        	&lt;/tns:investigator&gt;
+        	&lt;tns:primaryContact&gt;
+        		&lt;tns:person&gt;
+        			&lt;tns:existingPerson&gt;
+        				&lt;tns:poID&gt;1&lt;/tns:poID&gt;
+        			&lt;/tns:existingPerson&gt;
+        		&lt;/tns:person&gt;
+        		&lt;tns:contactDetails&gt;
+        			&lt;tns:email&gt;richardroe@example.com&lt;/tns:email&gt;
+        			&lt;tns:phone&gt;555-555-5555&lt;/tns:phone&gt;
+        		&lt;/tns:contactDetails&gt;
+        	&lt;/tns:primaryContact&gt;
+        	&lt;tns:organization&gt;
+        		&lt;tns:existingOrganization&gt;
+        			&lt;tns:poID&gt;2&lt;/tns:poID&gt;
+        		&lt;/tns:existingOrganization&gt;
+        	&lt;/tns:organization&gt;
+        &lt;/tns:ParticipatingSite&gt;
+
+
+
+
+        Request (Referring to Generic Contacts for RSS Sites):
+
+         Expand source
+
+
+        &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
+        &lt;tns:ParticipatingSite xmlns:tns=&#34;gov.nih.nci.pa.webservices.types&#34;
+        xmlns:tns1=&#34;gov.nih.nci.po.webservices.types.trimmed&#34; xmlns:xsi=&#34;http://www.w3.org/2001/XMLSchema-instance&#34;
+        xsi:schemaLocation=&#34;gov.nih.nci.pa.webservices.types ../../src/resources/ws.xsd &#34;&gt;
+        &lt;tns:recruitmentStatus&gt;Administratively Complete&lt;/tns:recruitmentStatus&gt;
+        &lt;tns:recruitmentStatusDate&gt;2001-05-06&lt;/tns:recruitmentStatusDate&gt;
+        &lt;tns:localTrialIdentifier&gt;tns:localTrialIdentifier&lt;/tns:localTrialIdentifier&gt;
+        &lt;tns:programCode&gt;tns:programCode&lt;/tns:programCode&gt;
+        &lt;tns:openedForAccrual&gt;2001-02-02&lt;/tns:openedForAccrual&gt;
+        &lt;tns:closedForAccrual&gt;2010-03-04&lt;/tns:closedForAccrual&gt;
+        &lt;tns:targetAccrualNumber&gt;100000&lt;/tns:targetAccrualNumber&gt;
+        &lt;tns:investigator&gt;
+        &lt;tns:person&gt;
+        &lt;tns:existingPerson&gt;
+        &lt;tns:poID&gt;1&lt;/tns:poID&gt;
+        &lt;/tns:existingPerson&gt;
+        &lt;/tns:person&gt;
+        &lt;tns:role&gt;Principal Investigator&lt;/tns:role&gt;
+        &lt;tns:primaryContact&gt;false&lt;/tns:primaryContact&gt;
+        &lt;/tns:investigator&gt;
+        &lt;tns:genericContact&gt;
+        &lt;tns:title&gt;GenericContactTitle&lt;/tns:title&gt;
+        &lt;tns:contactDetails&gt;
+        &lt;tns:email&gt;gc@example.com&lt;/tns:email&gt;
+        &lt;tns:phone&gt;111-111-1111&lt;/tns:phone&gt;
+        &lt;/tns:contactDetails&gt;
+        &lt;/tns:genericContact&gt;
+        &lt;tns:organization&gt;
+        &lt;tns:existingOrganization&gt;
+        &lt;tns:poID&gt;2&lt;/tns:poID&gt;
+        &lt;/tns:existingOrganization&gt;
+        &lt;/tns:organization&gt;
+        &lt;/tns:ParticipatingSite&gt;
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h3 id="NCICTRPParticipatingSiteRESTServiceGuide-UpdateSite">
+  Update Site
+</h3>
+Updates a participating site on a trial.
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        HTTP Method
+      </th>
+      <td>
+        PUT
+      </td>
+    </tr>
+    <tr>
+      <th>
+        URL
+      </th>
+      <td>
+        /sites/{id}Parameters{id}. CTRP identifier of the site/trials/{idType}/{trialID}/sites/po/{id}Parameters {idType}.  Type of identifier used to identify a trial in CTRP. Possible values: pa, nci, ctep. {trialID}.  Trial identifier value itself{id}. PO identifier of the organization that is the site on the trial/trials/{idType}/{trialID}/sites/ctep/{id}Parameters {idType}.  Type of identifier used to identify a trial in CTRP. Possible values: pa, nci, ctep. {trialID}.  Trial identifier value itself{id}. CTEP identifier of the organization that is the site on the trial
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Request Body
+      </th>
+      <td>
+        XML document withParticipatingSiteUpdateMIME Type:  application/xml
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Response Body
+      </th>
+      <td>
+        CTRP identifier of the site.MIME Type: text/plain.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        HTTP Response Code
+      </th>
+      <td>
+        200. Success400. Validation error401. Invalid username/password or insufficient permissions to access the service.404. Site not found500. Internal server error (includes the condition when the caller does not own the trial)
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Examples
+      </th>
+      <td>
+        URL:
+        <a href="https://trials-dev.nci.nih.gov/services/trials/nci/NCI-2014-00496/sites/po/34758686" rel="nofollow">
+          https://trials-dev.nci.nih.gov/services/trials/nci/NCI-2014-00496/sites/po/34758686
+        </a>
+        Request (referring to  existing Organizations and Persons by ID):
+
+         Expand source
+
+
+        &lt;tns:ParticipatingSiteUpdate xmlns:tns=&#34;gov.nih.nci.pa.webservices.types&#34;
+        xmlns:tns1=&#34;gov.nih.nci.po.webservices.types.trimmed&#34; xmlns:xsi=&#34;http://www.w3.org/2001/XMLSchema-instance&#34;
+        xsi:schemaLocation=&#34;gov.nih.nci.pa.webservices.types ../../src/resources/ws.xsd &#34;&gt;
+        &lt;tns:recruitmentStatus&gt;Administratively Complete&lt;/tns:recruitmentStatus&gt;
+        &lt;tns:recruitmentStatusDate&gt;2001-05-06&lt;/tns:recruitmentStatusDate&gt;
+        &lt;tns:localTrialIdentifier&gt;tns:localTrialIdentifier&lt;/tns:localTrialIdentifier&gt;
+        &lt;tns:programCode&gt;tns:programCode&lt;/tns:programCode&gt;
+        &lt;tns:openedForAccrual&gt;2001-02-02&lt;/tns:openedForAccrual&gt;
+        &lt;tns:closedForAccrual&gt;2010-03-04&lt;/tns:closedForAccrual&gt;
+        &lt;tns:targetAccrualNumber&gt;100000&lt;/tns:targetAccrualNumber&gt;
+        &lt;tns:investigator&gt;
+        &lt;tns:person&gt;
+        &lt;tns:existingPerson&gt;
+        &lt;tns:poID&gt;1&lt;/tns:poID&gt;
+        &lt;/tns:existingPerson&gt;
+        &lt;/tns:person&gt;
+        &lt;tns:role&gt;Principal Investigator&lt;/tns:role&gt;
+        &lt;tns:primaryContact&gt;true&lt;/tns:primaryContact&gt;
+        &lt;/tns:investigator&gt;
+        &lt;tns:investigator&gt;
+        &lt;tns:person&gt;
+        &lt;tns:existingPerson&gt;
+        &lt;tns:poID&gt;2&lt;/tns:poID&gt;
+        &lt;/tns:existingPerson&gt;
+        &lt;/tns:person&gt;
+        &lt;tns:role&gt;Principal Investigator&lt;/tns:role&gt;
+        &lt;tns:primaryContact&gt;false&lt;/tns:primaryContact&gt;
+        &lt;/tns:investigator&gt;
+        	&lt;tns:primaryContact&gt;
+        		&lt;tns:person&gt;
+        &lt;tns:existingPerson&gt;
+        &lt;tns:poID&gt;1&lt;/tns:poID&gt;
+        &lt;/tns:existingPerson&gt;
+        		&lt;/tns:person&gt;
+        		&lt;tns:contactDetails&gt;
+        			&lt;tns:email&gt;sample@sample.com&lt;/tns:email&gt;
+        			&lt;tns:phone&gt;555-555-5555ext99&lt;/tns:phone&gt;
+        		&lt;/tns:contactDetails&gt;
+        	&lt;/tns:primaryContact&gt;
+        &lt;/tns:ParticipatingSiteUpdate&gt;
+
+
+
+        Request (Referring to Generic Contacts for RSS Sites):
+
+         Expand source
+
+
+        &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
+        &lt;tns:ParticipatingSiteUpdate xmlns:tns=&#34;gov.nih.nci.pa.webservices.types&#34;
+        	xmlns:tns1=&#34;gov.nih.nci.po.webservices.types.trimmed&#34; xmlns:xsi=&#34;http://www.w3.org/2001/XMLSchema-instance&#34;
+        	xsi:schemaLocation=&#34;gov.nih.nci.pa.webservices.types ../../src/resources/ws.xsd &#34;&gt;
+        	&lt;tns:recruitmentStatus&gt;Administratively Complete&lt;/tns:recruitmentStatus&gt;
+        	&lt;tns:recruitmentStatusDate&gt;2001-05-06&lt;/tns:recruitmentStatusDate&gt;
+        	&lt;tns:localTrialIdentifier&gt;tns:localTrialIdentifier&lt;/tns:localTrialIdentifier&gt;
+        	&lt;tns:programCode&gt;tns:programCode&lt;/tns:programCode&gt;
+        	&lt;tns:openedForAccrual&gt;2001-02-02&lt;/tns:openedForAccrual&gt;
+        	&lt;tns:closedForAccrual&gt;2010-03-04&lt;/tns:closedForAccrual&gt;
+        	&lt;tns:targetAccrualNumber&gt;100000&lt;/tns:targetAccrualNumber&gt;
+        	&lt;tns:investigator&gt;
+        		&lt;tns:person&gt;
+        			&lt;tns:existingPerson&gt;
+        				&lt;tns:poID&gt;1&lt;/tns:poID&gt;
+        			&lt;/tns:existingPerson&gt;
+        		&lt;/tns:person&gt;
+        		&lt;tns:role&gt;Principal Investigator&lt;/tns:role&gt;
+        		&lt;tns:primaryContact&gt;true&lt;/tns:primaryContact&gt;
+        	&lt;/tns:investigator&gt;
+        	&lt;tns:investigator&gt;
+        		&lt;tns:person&gt;
+        			&lt;tns:existingPerson&gt;
+        				&lt;tns:poID&gt;1&lt;/tns:poID&gt;
+        			&lt;/tns:existingPerson&gt;
+        		&lt;/tns:person&gt;
+        		&lt;tns:role&gt;Principal Investigator&lt;/tns:role&gt;
+        		&lt;tns:primaryContact&gt;false&lt;/tns:primaryContact&gt;
+        	&lt;/tns:investigator&gt;
+        	&lt;tns:primaryContact&gt;
+        		&lt;tns:person&gt;
+        			&lt;tns:existingPerson&gt;
+        				&lt;tns:poID&gt;1&lt;/tns:poID&gt;
+        			&lt;/tns:existingPerson&gt;
+        		&lt;/tns:person&gt;
+        		&lt;tns:contactDetails&gt;
+        			&lt;tns:email&gt;richardroe@example.com&lt;/tns:email&gt;
+        			&lt;tns:phone&gt;555-555-5555&lt;/tns:phone&gt;
+        		&lt;/tns:contactDetails&gt;
+        	&lt;/tns:primaryContact&gt;
+        &lt;/tns:ParticipatingSiteUpdate&gt;
+
+
+
+        Request (Referring to Generic Contacts for RSS Sites):
+
+         Expand source
+
+
+
+        &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
+        &lt;tns:ParticipatingSiteUpdate xmlns:tns=&#34;gov.nih.nci.pa.webservices.types&#34;
+        xmlns:tns1=&#34;gov.nih.nci.po.webservices.types.trimmed&#34; xmlns:xsi=&#34;http://www.w3.org/2001/XMLSchema-instance&#34;
+        xsi:schemaLocation=&#34;gov.nih.nci.pa.webservices.types ../../src/resources/ws.xsd &#34;&gt;
+        &lt;tns:recruitmentStatus&gt;Administratively Complete&lt;/tns:recruitmentStatus&gt;
+        &lt;tns:recruitmentStatusDate&gt;2001-05-06&lt;/tns:recruitmentStatusDate&gt;
+        &lt;tns:localTrialIdentifier&gt;tns:localTrialIdentifier&lt;/tns:localTrialIdentifier&gt;
+        &lt;tns:programCode&gt;tns:programCode&lt;/tns:programCode&gt;
+        &lt;tns:openedForAccrual&gt;2001-02-02&lt;/tns:openedForAccrual&gt;
+        &lt;tns:closedForAccrual&gt;2010-03-04&lt;/tns:closedForAccrual&gt;
+        &lt;tns:targetAccrualNumber&gt;100000&lt;/tns:targetAccrualNumber&gt;
+        &lt;tns:investigator&gt;
+        &lt;tns:person&gt;
+        &lt;tns:existingPerson&gt;
+        &lt;tns:poID&gt;1&lt;/tns:poID&gt;
+        &lt;/tns:existingPerson&gt;
+        &lt;/tns:person&gt;
+        &lt;tns:role&gt;Principal Investigator&lt;/tns:role&gt;
+        &lt;tns:primaryContact&gt;false&lt;/tns:primaryContact&gt;
+        &lt;/tns:investigator&gt;
+        &lt;tns:investigator&gt;
+        &lt;tns:person&gt;
+        &lt;tns:existingPerson&gt;
+        &lt;tns:poID&gt;1&lt;/tns:poID&gt;
+        &lt;/tns:existingPerson&gt;
+        &lt;/tns:person&gt;
+        &lt;tns:role&gt;Principal Investigator&lt;/tns:role&gt;
+        &lt;tns:primaryContact&gt;false&lt;/tns:primaryContact&gt;
+        &lt;/tns:investigator&gt;
+        &lt;tns:genericContact&gt;
+        &lt;tns:title&gt;GenericContactTitle&lt;/tns:title&gt;
+        &lt;tns:contactDetails&gt;
+        &lt;tns:email&gt;gc@example.com&lt;/tns:email&gt;
+        &lt;tns:phone&gt;111-111-1111&lt;/tns:phone&gt;
+        &lt;/tns:contactDetails&gt;
+        &lt;/tns:genericContact&gt;
+        &lt;/tns:ParticipatingSiteUpdate&gt;
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h3 id="NCICTRPParticipatingSiteRESTServiceGuide-GetSites">
+  Get Sites
+</h3>
+Retrieves a list of participating sites on a trial
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        HTTP Method
+      </th>
+      <td>
+        GET
+      </td>
+    </tr>
+    <tr>
+      <th>
+        URL
+      </th>
+      <td>
+        /trials/{idType}/{trialID}/sitesParameters {idType}.  Type of identifier you want to use to identify a trial in CTRP. Possible values: pa, nci, ctep. {trialID}.  Trial identifier value itself.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Request Body
+      </th>
+      <td>
+        NONE
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Response Body
+      </th>
+      <td>
+        XML document withsitesMIME Type: application/xml.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        HTTP Response Code
+      </th>
+      <td>
+        200. Success401. Invalid username/password or insufficient permissions to access the service.404. Trial not found500. Internal server error
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Examples
+      </th>
+      <td>
+        URL:
+        <a href="https://trials-dev.nci.nih.gov/services/trials/nci/NCI-2014-00496/sites" rel="nofollow">
+          https://trials-dev.nci.nih.gov/services/trials/nci/NCI-2014-00496/sites
+        </a>
+        Response
+
+         Expand source
+
+
+        &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34; standalone=&#34;yes&#34;?&gt;
+        &lt;sites xmlns=&#34;gov.nih.nci.pa.webservices.types&#34; xmlns:ns2=&#34;gov.nih.nci.po.webservices.types.trimmed&#34;&gt;
+        &lt;site&gt;
+        &lt;recruitmentStatus&gt;Active&lt;/recruitmentStatus&gt;
+        &lt;recruitmentStatusDate&gt;2014-07-07-04:00&lt;/recruitmentStatusDate&gt;
+        &lt;localTrialIdentifier&gt;1236&lt;/localTrialIdentifier&gt;
+        &lt;programCode&gt;&lt;/programCode&gt;
+        &lt;openedForAccrual&gt;2014-07-07-04:00&lt;/openedForAccrual&gt;
+        &lt;investigator&gt;
+        &lt;person&gt;
+        &lt;existingPerson&gt;
+        &lt;poID&gt;943919&lt;/poID&gt;
+        &lt;/existingPerson&gt;
+        &lt;/person&gt;
+        &lt;role&gt;Principal Investigator&lt;/role&gt;
+        &lt;primaryContact&gt;false&lt;/primaryContact&gt;
+        &lt;/investigator&gt;
+        &lt;organization&gt;
+        &lt;existingOrganization&gt;
+        &lt;poID&gt;120807&lt;/poID&gt;
+        &lt;/existingOrganization&gt;
+        &lt;/organization&gt;
+        &lt;/site&gt;
+        &lt;site&gt;
+        &lt;recruitmentStatus&gt;Enrolling by Invitation&lt;/recruitmentStatus&gt;
+        &lt;recruitmentStatusDate&gt;2014-05-29-04:00&lt;/recruitmentStatusDate&gt;
+        &lt;localTrialIdentifier&gt;ganesh&lt;/localTrialIdentifier&gt;
+        &lt;programCode&gt;123459&lt;/programCode&gt;
+        &lt;openedForAccrual&gt;2014-05-29-04:00&lt;/openedForAccrual&gt;
+        &lt;investigator&gt;
+        &lt;person&gt;
+        &lt;existingPerson&gt;
+        &lt;poID&gt;27658186&lt;/poID&gt;
+        &lt;/existingPerson&gt;
+        &lt;/person&gt;
+        &lt;role&gt;Principal Investigator&lt;/role&gt;
+        &lt;primaryContact&gt;false&lt;/primaryContact&gt;
+        &lt;/investigator&gt;
+        &lt;organization&gt;
+        &lt;existingOrganization&gt;
+        &lt;poID&gt;38249&lt;/poID&gt;
+        &lt;/existingOrganization&gt;
+        &lt;/organization&gt;
+        &lt;/site&gt;
+        &lt;site&gt;
+        &lt;recruitmentStatus&gt;In Review&lt;/recruitmentStatus&gt;
+        &lt;recruitmentStatusDate&gt;2014-06-09-04:00&lt;/recruitmentStatusDate&gt;
+        &lt;localTrialIdentifier&gt;mm&lt;/localTrialIdentifier&gt;
+        &lt;investigator&gt;
+        &lt;person&gt;
+        &lt;existingPerson&gt;
+        &lt;poID&gt;3114680&lt;/poID&gt;
+        &lt;/existingPerson&gt;
+        &lt;/person&gt;
+        &lt;role&gt;Principal Investigator&lt;/role&gt;
+        &lt;primaryContact&gt;false&lt;/primaryContact&gt;
+        &lt;/investigator&gt;
+        &lt;organization&gt;
+        &lt;existingOrganization&gt;
+        &lt;poID&gt;120748&lt;/poID&gt;
+        &lt;/existingOrganization&gt;
+        &lt;/organization&gt;
+        &lt;/site&gt;
+        &lt;/sites&gt;
+      </td>
+    </tr>
+  </tbody>
+</table>

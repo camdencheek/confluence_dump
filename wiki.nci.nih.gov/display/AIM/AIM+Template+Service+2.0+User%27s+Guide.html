@@ -1,0 +1,343 @@
+You can print and export wiki pagesUnable to render {include} The included page could not be found.Contents of this Page
+<ul>
+  <li>
+    <a href="#AIMTemplateService2.0User&#39;sGuide-IntroductiontotheAIMTemplateService" rel="nofollow">
+      Introduction to the AIM Template Service
+    </a>
+  </li>
+  <li>
+    <a href="#AIMTemplateService2.0User&#39;sGuide-WhyUsetheAIMModel?" rel="nofollow">
+      Why Use the AIM Model?
+    </a>
+  </li>
+  <li>
+    <a href="#AIMTemplateService2.0User&#39;sGuide-WhatisinanAIMTemplate?" rel="nofollow">
+      What is in an AIM Template?
+    </a>
+  </li>
+  <li>
+    <a href="#AIMTemplateService2.0User&#39;sGuide-RequestinganNCIAccount" rel="nofollow">
+      Requesting an NCI Account
+    </a>
+  </li>
+  <li>
+    <a href="#AIMTemplateService2.0User&#39;sGuide-PublishingaTemplate" rel="nofollow">
+      Publishing a Template
+    </a>
+  </li>
+  <li>
+    <a href="#AIMTemplateService2.0User&#39;sGuide-SearchingforaTemplateGrouptoDownload" rel="nofollow">
+      Searching for a Template Group to Download
+    </a>
+  </li>
+  <li>
+    <a href="#AIMTemplateService2.0User&#39;sGuide-SearchingforaTemplatetoDownload" rel="nofollow">
+      Searching for a Template to Download
+    </a>
+  </li>
+  <li>
+    <a href="#AIMTemplateService2.0User&#39;sGuide-ChangingthePermissionsforaTemplateGroup" rel="nofollow">
+      Changing the Permissions for a Template Group
+    </a>
+  </li>
+  <li>
+    <a href="#AIMTemplateService2.0User&#39;sGuide-DeletingaTemplateGroup" rel="nofollow">
+      Deleting a Template Group
+    </a>
+  </li>
+  <li>
+    <a href="#AIMTemplateService2.0User&#39;sGuide-ViewinganAIMTemplateinXML" rel="nofollow">
+      Viewing an AIM Template in XML
+    </a>
+  </li>
+</ul>
+<h2 id="AIMTemplateService2.0User&#39;sGuide-IntroductiontotheAIMTemplateService">
+  Introduction to the AIM Template Service
+</h2>
+The AIM Template Service (ATS) is a web service application that makes it possible for you to upload (publish) and download AIM templates created using a caBIG® Annotation and Image Markup (AIM) tool such as
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=75006387" rel="nofollow">
+  AIM Template Builder
+</a>
+. You can import AIM template files to AIM Template Builder and modify them there. You can then use AIM Template Builder to export the template(s) to an AIM template file. If you want to share that file, you can upload it to ATS.AIM templates contain a set of well-defined questions and answer choices to facilitate collecting information for a particular purpose, such as The Cancer Genome Atlas Glioblastoma (TCGA GBM) study. AIM templates ensure that users can annotate medical images using a controlled vocabulary and standard template. This results in simple and constrained annotations that are reproducible and consistent.An AIM template group is a container that holds more than one template. Templates and template groups are part of AIM template files, which are in XML format. The following XML file section shows how template groups and their component template files are described in an AIM template file.
+<img alt="objects described in XML file are TemplateContainer and Template" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/AIM/AIM%20Template%20Service%202.0%20User&#39;s%20Guide/TemplateContainerXML.png?api=v2">
+A valid AIM template is validated by AIM schemas (version 1, revision 18/19/23).
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=99195083" rel="nofollow">
+  Return to top of page
+</a>
+<h2 id="AIMTemplateService2.0User&#39;sGuide-WhyUsetheAIMModel?">
+  Why Use the AIM Model?
+</h2>
+Imaging reports contain both graphical drawings and medical knowledge in the form of annotations. These annotations are stored as unstructured text and separated from graphical drawings, which are typically in a proprietary format on an imaging system. Extracting this valuable medical information and combining it with drawings on another system is a time-consuming process that yields results that are cumbersome to filter and search. Also, existing vocabularies used to describe medical images contain thousands of terms. This makes it difficult for users to find these terms and then include them in their AIM annotations.The AIM model begins to solve this problem by capturing the descriptive information of an image with user-generated graphical symbols placed on the image into a single common information source. AIM captures medical findings using standard vocabularies such as RadLex, SNOMED CT®, and DICOM, and user-defined terminology. Image information captured in the AIM model includes the anatomic entity and its characteristics, imaging observation and its characteristics, and inference.
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=99195083" rel="nofollow">
+  Return to top of page
+</a>
+<h2 id="AIMTemplateService2.0User&#39;sGuide-WhatisinanAIMTemplate?">
+  What is in an AIM Template?
+</h2>
+An AIM template contains a collection of data collection items (questions) and possible values (answers) for each question. You create a template for each imaging study. You capture each item and value using a standardized vocabulary.An AIM template has one or more components. Each component represents a study question that may have one or more answers. Template components can be any of the following: anatomic entity, imaging observation, inference, calculation, or geometric shape (markup).Both anatomic entities and imaging observations are also described by their associated characteristics. Anatomic entity and imaging observation characteristics inherit the attributes of their respective component. Characteristics have annotator confidence that allows a user to enter a percentage that represents the level of user confidence in answering the question. A characteristic may also have a quantification value.
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=99195083" rel="nofollow">
+  Return to top of page
+</a>
+<h2 id="AIMTemplateService2.0User&#39;sGuide-RequestinganNCIAccount">
+  Requesting an NCI Account
+</h2>
+You must have an NCI account with caGrid and ATS access to publish AIM templates to the AIM Template Service.To request this access, send an email to
+<a href="mailto:ncicbiit@mail.nih.gov" rel="nofollow">
+  Application Support
+</a>
+.
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=99195083" rel="nofollow">
+  Return to top of page
+</a>
+<h2 id="AIMTemplateService2.0User&#39;sGuide-PublishingaTemplate">
+  Publishing a Template
+</h2>
+You can publish a template file to ATS if you have a
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=99195083" rel="nofollow">
+  caGrid account
+</a>
+, the template file is in XML format, and the template complies with AIM schema versions v1.rv23 and v2rv13.
+<ol>
+  <li>
+    Select Publish. The Publish page appears.
+    <img alt="Publish page of ATS. Options described in procedure." src="https://wiki.nci.nih.gov/download/attachments/embedded-page/AIM/AIM%20Template%20Service%202.0%20User&#39;s%20Guide/Publish.png?api=v2">
+  </li>
+  <li>
+    Click Browse and navigate to the template file on your file system.
+  </li>
+  <li>
+    Click Submit.A confirmation message appears.NoteClick Reset to clear any value in the text field box.
+  </li>
+</ol>
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=99195083" rel="nofollow">
+  Return to top of page
+</a>
+<h2 id="AIMTemplateService2.0User&#39;sGuide-SearchingforaTemplateGrouptoDownload">
+  Searching for a Template Group to Download
+</h2>
+You can download a template group from ATS so that you can import it to any AIM-enabled application such as AIM Template Builder.When you create a template group using an AIM-enabled application, you specify its metadata. You can use this metadata as search criteria when you search for the template group later.
+<ol>
+  <li>
+    Select Search Template Groups. The Template Group Search page appears.
+    <img alt="Template group search page of ATS. Options described in procedure." src="https://wiki.nci.nih.gov/download/attachments/embedded-page/AIM/AIM%20Template%20Service%202.0%20User&#39;s%20Guide/Template%20Group%20Search.png?api=v2">
+  </li>
+  <li>
+    Narrow your search by entering information into the fields. If you do not enter any information into the fields, all template groups available in ATS appear, and it may take longer to see the results of your search. The following fields are available.
+    <table>
+      <tbody>
+        <tr>
+          <th>
+            Field
+          </th>
+          <th>
+            Description
+          </th>
+        </tr>
+        <tr>
+          <td>
+            Container Name
+          </td>
+          <td>
+            Template group name
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Container Description
+          </td>
+          <td>
+            Template group description
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Container Author
+          </td>
+          <td>
+            Person who created the template group in the AIM-enabled application
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Disease
+          </td>
+          <td>
+            Disease that is the topic of the templates in the template group
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Body Part
+          </td>
+          <td>
+            Body part that is the topic of the templates in the template group
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    Click Search. All template groups matching the search criteria you entered appear.
+    <img src="https://wiki.nci.nih.gov/download/attachments/embedded-page/AIM/AIM%20Template%20Service%202.0%20User&#39;s%20Guide/Template%20Group%20Search%20Results.png?api=v2">
+  </li>
+  <li>
+    Find a template group and then click the download link. Your browser prompts you to save or open the AIM template file.
+  </li>
+</ol>
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=99195083" rel="nofollow">
+  Return to top of page
+</a>
+<h2 id="AIMTemplateService2.0User&#39;sGuide-SearchingforaTemplatetoDownload">
+  Searching for a Template to Download
+</h2>
+Download a template from ATS so that you can use it in an AIM-enabled application such as AIM Template Builder.When you create a template using an AIM-enabled application, you specify its metadata. You can use this metadata as search criteria when you search for the template later.
+<ol>
+  <li>
+    Select Search Template. The Template Search page appears.
+    <img alt="Template search page of ATS. Options described in procedure." src="https://wiki.nci.nih.gov/download/attachments/embedded-page/AIM/AIM%20Template%20Service%202.0%20User&#39;s%20Guide/Template%20Search.png?api=v2">
+  </li>
+  <li>
+    Narrow your search by entering information into the fields. If you do not enter any information into the fields, all template groups available in the AIM Template Service appear, and it may take longer to see the results of your search. The following fields are available.
+    <table>
+      <tbody>
+        <tr>
+          <th>
+            Field
+          </th>
+          <th>
+            Description
+          </th>
+        </tr>
+        <tr>
+          <td>
+            Template Name
+          </td>
+          <td>
+            Template name
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Template Code Desc
+          </td>
+          <td>
+            Template code description
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Template Description
+          </td>
+          <td>
+            Template description
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Template Author
+          </td>
+          <td>
+            Person who created the template in the AIM-enabled application
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Disease
+          </td>
+          <td>
+            Disease that is the topic of the templates in the template group
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Body Part
+          </td>
+          <td>
+            Body part that is the topic of the templates in the template group
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Modality
+          </td>
+          <td>
+            Any of the various types of equipment or probes used to acquire images of the body, such as CR or DR (radiography), US (ultrasound) and MR (magnetic resonance imaging)
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    Click Search. All templates matching the search criteria you entered appear.
+    <img src="https://wiki.nci.nih.gov/download/attachments/embedded-page/AIM/AIM%20Template%20Service%202.0%20User&#39;s%20Guide/Template%20Search%20Results.png?api=v2">
+  </li>
+  <li>
+    Find a template and then click the download link. Your browser prompts you to save or open the AIM template file.
+  </li>
+</ol>
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=99195083" rel="nofollow">
+  Return to top of page
+</a>
+<h2 id="AIMTemplateService2.0User&#39;sGuide-ChangingthePermissionsforaTemplateGroup">
+  Changing the Permissions for a Template Group
+</h2>
+You can make the template groups you publish to ATS public or private.
+<ol>
+  <li>
+    Select Administration. The Edit Permissions page appears.
+    <img alt="Edit Permissions page lists template groups and their metadata and offers options to change or view permissions." src="https://wiki.nci.nih.gov/download/attachments/embedded-page/AIM/AIM%20Template%20Service%202.0%20User&#39;s%20Guide/Edit%20Permissions.png?api=v2">
+  </li>
+  <li>
+    For a selected template group, click Change. The Change Template Group page appears.
+    <img src="https://wiki.nci.nih.gov/download/attachments/embedded-page/AIM/AIM%20Template%20Service%202.0%20User&#39;s%20Guide/Change%20Template%20Group.png?api=v2">
+  </li>
+  <li>
+    From the Permission list, select Public or Private. For the Private option, enter names of users allowed to access that template group in the Allowed Users field. Separate each name by a comma. For example, UserA, UserB.
+  </li>
+  <li>
+    Click Change.
+  </li>
+</ol>
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=99195083" rel="nofollow">
+  Return to top of page
+</a>
+<h2 id="AIMTemplateService2.0User&#39;sGuide-DeletingaTemplateGroup">
+  Deleting a Template Group
+</h2>
+Deleting a template group permanently removes it from ATS.
+<ol>
+  <li>
+    Select Administration. The Edit Permissions page appears.
+    <img alt="Edit Permissions page lists template groups and their metadata and offers options to change or view permissions." src="https://wiki.nci.nih.gov/download/attachments/embedded-page/AIM/AIM%20Template%20Service%202.0%20User&#39;s%20Guide/Edit%20Permissions.png?api=v2">
+  </li>
+  <li>
+    For a selected template group, click Change. The Change Template Group page appears.
+    <img src="https://wiki.nci.nih.gov/download/attachments/embedded-page/AIM/AIM%20Template%20Service%202.0%20User&#39;s%20Guide/Change%20Template%20Group.png?api=v2">
+  </li>
+  <li>
+    Select the Delete checkbox.
+  </li>
+  <li>
+    Click Delete.
+  </li>
+</ol>
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=99195083" rel="nofollow">
+  Return to top of page
+</a>
+<h2 id="AIMTemplateService2.0User&#39;sGuide-ViewinganAIMTemplateinXML">
+  Viewing an AIM Template in XML
+</h2>
+You can view the contents of an AIM template in XML format.
+<ol>
+  <li>
+    Select Administration. The Edit Permissions page appears.
+    <img alt="Edit Permissions page lists template groups and their metadata and offers options to change or view permissions." src="https://wiki.nci.nih.gov/download/attachments/embedded-page/AIM/AIM%20Template%20Service%202.0%20User&#39;s%20Guide/Edit%20Permissions.png?api=v2">
+  </li>
+  <li>
+    For a selected template group, click View. The template file contents appear in a new browser window.
+    <img alt="Raw XML content of a template file." src="https://wiki.nci.nih.gov/download/attachments/embedded-page/AIM/AIM%20Template%20Service%202.0%20User&#39;s%20Guide/View%20XML.png?api=v2">
+  </li>
+</ol>
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=99195083" rel="nofollow">
+  Return to top of page
+</a>

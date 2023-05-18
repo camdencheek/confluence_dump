@@ -1,0 +1,58 @@
+Contents of this Page
+<ul></ul>
+<h1 id="LexEVS6.5.0CTS2-LexEVS6.5.0CTS2OverviewofChanges">
+  LexEVS 6.5.0 CTS2 Overview of Changes
+</h1>
+LexEVS 6.5.0 CTS2 release consisted of the following changes:
+<ul>
+  <li>
+    Update to Java 1.8
+  </li>
+  <li>
+    Update to Tomcat 8
+  </li>
+  <li>
+    Update to MySQL 5.6
+  </li>
+  <li>
+    OS upgrade to CentOS 7
+  </li>
+  <li>
+    Removed option to run CTS2 against the LexEVS Remote API.
+  </li>
+</ul>
+<h1 id="LexEVS6.5.0CTS2-DefaultNumberofEntriestoReturn(maxToReturn)">
+  Default Number of Entries to Return (maxToReturn)
+</h1>
+In LexEVS 6.5.0, the number of entries in each REST service call can be controlled from a properties file.  The webapp-config.properties file has the ability to set how many entries to return for each call.  If there are more entries than this number, then the return call passes along additional links to retrieve the next/previous pages.The maxToReturn property applies to all REST calls: to entities, value sets, associations, etc. If this property is not specified in the webapp-config.properties or passed in via the REST URL, the internal default is 50.The maxToReturn parameter has been set to 1000 in the webapp-config.properties.  All REST calls will return up to 1000 entries for each call by default.The end user can override this value by passing it in via the REST URL. Examples:No maxToReturn value set in the URL. This will use the value set in webapp-config.properties file, 1000.
+<ul>
+  <li>
+    <a href="https://lexevscts2.nci.nih.gov/lexevscts2/entities" rel="nofollow">
+      https://lexevscts2.nci.nih.gov/lexevscts2/entities
+    </a>
+  </li>
+</ul>
+maxToReturn value is set in the URL to 20. This overrides the value in the properties file.
+<ul>
+  <li>
+    <a href="https://lexevscts2.nci.nih.gov/lexevscts2/entities?maxtoreturn=20" rel="nofollow">
+      https://lexevscts2.nci.nih.gov/lexevscts2/entities?maxtoreturn=20
+    </a>
+  </li>
+</ul>
+Additional information on how to set the webapp-config.properties file can be found in the readme here:
+<a href="https://github.com/cts2/lexevs-service/" rel="nofollow">
+  https://github.com/cts2/lexevs-service/
+</a>
+<h1 id="LexEVS6.5.0CTS2-CTS2RESTServicesoverHTTPS">
+  CTS2 REST Services over HTTPS
+</h1>
+With the upgrade to CTS2 REST services over HTTPS, you may get an error when querying the LexEVS CTS2 Service using Java 8 due to cryptography incompatibilities between the client and the server.This can be resolved by downloading the extended JCE files from Oracle (Java Cryptography Extension (JCE) Unlimited Strength Jurisdiction Policy Files 8 Download) at
+<a title="Follow link" href="http://www.oracle.com/technetwork/java/javase/downloads/jce8-download-2133166.html" rel="nofollow">
+  http://www.oracle.com/technetwork/java/javase/downloads/jce8-download-2133166.html
+</a>
+.This fixes CTS2 REST service calls from a Java 8 client.
+<h1 id="LexEVS6.5.0CTS2-LexEVS6.5.1CTS2OverviewofChanges">
+  LexEVS 6.5.1 CTS2 Overview of Changes
+</h1>
+Updates to allow access to the new Source Asserted Value Sets API.  Initialization and implementation includes default references to a PRODUCTION version of the target coding scheme (the NCI Thesaurus).   

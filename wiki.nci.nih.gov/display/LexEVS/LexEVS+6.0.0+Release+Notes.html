@@ -1,0 +1,923 @@
+Developers:Craig Stancl; Deepak Sharma; Kevin Peterson; Scott Bauer; Sridhar Dwarkanath; Zonghui Lian;Division of Biomedical Statistics and Informatics,Department of Health Science Research Mayo Foundation, Rochester, MNTable of Contents
+<ul>
+  <li>
+    <a href="#LexEVS6.0.0ReleaseNotes-Introduction" rel="nofollow">
+      Introduction
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.0.0ReleaseNotes-CTS2Implementation" rel="nofollow">
+      CTS2 Implementation
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.0.0ReleaseNotes-OWL/RDFExport" rel="nofollow">
+      OWL/RDF Export
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.0.0ReleaseNotes-IntegerPrimaryKeys" rel="nofollow">
+      Integer Primary Keys
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.0.0ReleaseNotes-MappingExtension" rel="nofollow">
+      Mapping Extension
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.0.0ReleaseNotes-SupplementExtension" rel="nofollow">
+      Supplement Extension
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.0.0ReleaseNotes-ValueSets(gForge%2326650)" rel="nofollow">
+      Value Sets (gForge # 26650)
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.0.0ReleaseNotes-Versioning(gForge%2326651)" rel="nofollow">
+      Versioning (gForge # 26651)
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.0.0ReleaseNotes-XMLLoaders" rel="nofollow">
+      XML Loaders
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.0.0ReleaseNotes-XMLExporter" rel="nofollow">
+      XML Exporter
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.0.0ReleaseNotes-GForgeItems" rel="nofollow">
+      GForge Items
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.0.0ReleaseNotes-LexGridmodelchanges" rel="nofollow">
+      LexGrid model changes
+    </a>
+  </li>
+</ul>
+<h2 id="LexEVS6.0.0ReleaseNotes-Introduction">
+  Introduction
+</h2>
+This document contains major functionalities that are included in LexEVS 6.0.0 Release.
+<h2 id="LexEVS6.0.0ReleaseNotes-CTS2Implementation">
+  CTS2 Implementation
+</h2>
+<ul>
+  <li>
+    Initial Interfaces
+    <ul>
+      <li>
+        The initial set of Interface and API has been created. Input parameters and output values are still evolving, but interfaces are in place reflect the functionality of CTS2.
+      </li>
+    </ul>
+  </li>
+</ul>
+<h3 id="LexEVS6.0.0ReleaseNotes-CTS2AdministrationDevelopment(see:org.lexevs.cts2.admin.AdminOperation)">
+  CTS2 Administration Development (see: org.lexevs.cts2.admin.AdminOperation)
+</h3>
+<ul>
+  <li>
+    Import Code System
+    <ul>
+      <li>
+        (see:  org.lexevs.cts2.admin.load.CodeSystemLoadOperation )
+      </li>
+      <li>
+        Loads a &#39;NEW&#39; Revision of a Coding Scheme into the System. If Revision info is not supplied by the user (such as Revision Id), it will be generated. Utilizes existing LexEVS loader functionality.
+      </li>
+    </ul>
+  </li>
+  <li>
+    Change Code System Status
+    <ul>
+      <li>
+        (see:  org.lexevs.cts2.author.CodeSystemAuthoringOperation )
+      </li>
+    </ul>
+  </li>
+  <li>
+    Import Value Set Version
+    <ul>
+      <li>
+        (see: org.lexevs.cts2.admin.load.ValueSetLoadOperation)
+      </li>
+    </ul>
+  </li>
+  <li>
+    Export Code System Content
+    <ul>
+      <li>
+        (see:  org.lexevs.cts2.admin.load.CodeSystemLoadOperation )
+      </li>
+    </ul>
+  </li>
+  <li>
+    Register for Notification
+    <ul>
+      <li>
+        (see:  org.lexevs.cts2.admin.NotificationAdminOperation )
+      </li>
+      <li>
+        Allows the user to register for notification of a System State Change. There are various events that occur in the system, and a user may choose to listen for one or more of them.
+      </li>
+    </ul>
+  </li>
+  <li>
+    Update Notification Registration
+    <ul>
+      <li>
+        (see:  org.lexevs.cts2.admin.NotificationAdminOperation )
+      </li>
+      <li>
+        Allows the user to alter an existing Notification Registration.
+      </li>
+    </ul>
+  </li>
+  <li>
+    Update Notification Registration Status
+    <ul>
+      <li>
+        (see:  org.lexevs.cts2.admin.NotificationAdminOperation )
+      </li>
+      <li>
+        Allows the user to &#39;SUSPEND&#39;, &#39;REINSTATE&#39;, or &#39;REMOVE&#39; a notification from the system.
+      </li>
+    </ul>
+  </li>
+</ul>
+<h3 id="LexEVS6.0.0ReleaseNotes-CTS2AuthoringDevelopment(see:org.lexevs.cts2.author.AuthoringOperation)">
+  CTS2 Authoring Development (see: org.lexevs.cts2.author.AuthoringOperation )
+</h3>
+<ul>
+  <li>
+    Association Authoring Operations (see:  org.lexevs.cts2.author.AssociationAuthoringOperation )
+    <ul>
+      <li>
+        Create association in an established coding scheme using the Revision model.
+      </li>
+      <li>
+        Create association in an established mapping dedicated coding scheme using the Revision model.
+      </li>
+      <li>
+        Create association mapping. Create mappings between coding schemes and persist as new coding scheme with default metadata settings. Persist using the Revision model.
+      </li>
+      <li>
+        Create association mapping. Create mappings between coding schemes and persist as a coding scheme with user defined metadata values. Persist using the Revision model.
+      </li>
+      <li>
+        Create association mapping: Create mappings between coding schemes with persisted concept values pulled from target schemes current in a LexEVS service instance. Persist using the Revision model.
+      </li>
+      <li>
+        Create association type. Create a new AssociationPredicate value and persist is using the Revision model.
+      </li>
+    </ul>
+  </li>
+  <li>
+    ValueSet Authoring
+    <ul>
+      <li>
+        (see:  org.lexevs.cts2.author.ValueSetAuthoringOperation)
+      </li>
+    </ul>
+  </li>
+</ul>
+<h2 id="LexEVS6.0.0ReleaseNotes-OWL/RDFExport">
+  OWL/RDF Export
+</h2>
+<ul>
+  <li>
+    OWL/RDF Export functionality has been added, allowing the export of loaded LexEVS content into OWL format.
+    <ul>
+      <li>
+        (see: org.LexGrid.LexBIG.Extensions.Export.OWL_Exporter)
+      </li>
+    </ul>
+  </li>
+  <li>
+    Known issues/restrictions:
+    <ul>
+      <li>
+        GForge #30058: AssociationData is not exported. Thus, the owl/rdf exporter cannot handle the owl:hasValue, owl:maxCardinality, owl:minCardinality, owl:cardinality constraints.
+      </li>
+    </ul>
+  </li>
+</ul>
+<h2 id="LexEVS6.0.0ReleaseNotes-IntegerPrimaryKeys">
+  Integer Primary Keys
+</h2>
+<ul>
+  <li>
+    Primary keys are now configurable – either a GUID or a Sequential Integer scheme can be used. Sequential Integers offer better performance, while GUIDs enable portability between databases.
+  </li>
+</ul>
+The configuration will appear as such in the lbconfig.props file:
+<ol>
+  <li>
+    DB_PRIMARY_KEY_STRATEGY indicates which strategy will be used
+  </li>
+  <li>
+    for the primary key of the database tables.
+  </li>
+  <li>
+    WARNING - This cannot be change after the initial
+  </li>
+  <li>
+    schema installation. #
+  </li>
+  <li>
+    Allowable values include: ##&#34;GUID&#34;
+    <ul>
+      <li>
+        Primary Keys are implemented as random GUIDs. #&#34;SEQUENTIAL_INTEGER&#34;
+      </li>
+      <li>
+        Primary Keys will be sequentially incremented
+      </li>
+      <li>
+        as Integer values.DB_PRIMARY_KEY_STRATEGY=GUID
+      </li>
+    </ul>
+  </li>
+</ol>
+<h2 id="LexEVS6.0.0ReleaseNotes-MappingExtension">
+  Mapping Extension
+</h2>
+(see: org.LexGrid.LexBIG.Extensions.Generic.MappingExtension)
+<ul>
+  <li>
+    A general purpose Generic Extension for Mapping Coding Schemes has been introduced.
+  </li>
+</ul>
+The main implemented features are:
+<ul>
+  <li>
+    Faster retrieval of Mapping ontology relationships as compared to standard CodedNodeGraph methods
+  </li>
+  <li>
+    Expanded Sorting capabilities to include:
+    <ul>
+      <li>
+        Source Code
+      </li>
+      <li>
+        Target Code
+      </li>
+      <li>
+        Source Entity Description
+      </li>
+      <li>
+        Target Entity Description
+      </li>
+      <li>
+        Relationship Name
+      </li>
+      <li>
+        A Named Qualifier
+      </li>
+    </ul>
+  </li>
+  <li>
+    Ability to count the number of codes that participate in a mapping ontology without having to traverse
+  </li>
+  <li>
+    Determine whether or not an Ontology can be considered a &#39;Mapping&#39; Ontology.
+    <ul>
+      <li>
+        A &#39;Mapping&#39; Ontology is defined in this case as having at least ALL Relations containers marked as &#39;isMapping=true&#39;
+      </li>
+    </ul>
+  </li>
+</ul>
+<h2 id="LexEVS6.0.0ReleaseNotes-SupplementExtension">
+  Supplement Extension
+</h2>
+(see: org.LexGrid.LexBIG.Extensions.Generic.SupplementExtension)
+<ul>
+  <li>
+    A general purpose Generic Extension for Coding Scheme Supplements has been introduced.
+  </li>
+</ul>
+The main implemented features are:
+<ul>
+  <ul>
+    <li>
+      Determine whether or not a giving Coding Scheme is acting as a Coding Scheme Supplement.
+    </li>
+    <li>
+      Resolve the Parent Coding Scheme of a given Coding Scheme Supplement.
+    </li>
+  </ul>
+</ul>
+<h2 id="LexEVS6.0.0ReleaseNotes-ValueSets(gForge#26650)">
+  Value Sets (gForge # 26650)
+</h2>
+<ul>
+  <ul>
+    <ul>
+      <li>
+        Administrative functions :
+        <ul>
+          <li>
+            Ability to load Value Set and Pick List Definitions in to LexGrid repository
+          </li>
+          <li>
+            Ability to remove Value Set and Pick List Definitions from LexGrid repository.
+          </li>
+          <li>
+            Ability to export Value Set and Pick List Definition in LexGrid XML format.
+          </li>
+        </ul>
+      </li>
+      <li>
+        Query functions :
+        <ul>
+          <li>
+            Ability to list all the Value Set and Pick List Definitions loaded in the system.
+          </li>
+          <li>
+            Ability to dynamically resolve Value Set and Pick List Definition with/without user supplied restrictions.
+          </li>
+          <li>
+            Ability to check if a concept code is part of given Value Set.
+          </li>
+          <li>
+            Ability to check if one Value Set is sub set of other Value Set.
+          </li>
+          <li>
+            Ability to apply restrictions like term, coding scheme version, etc and resolve Value Set and Pick List Definition.
+          </li>
+          <li>
+            Ability to list all the coding schemes referenced by a Value Set Definition.
+          </li>
+          <li>
+            Ability to list all Value Set Definition URIs that references a Coding Scheme. Etc.
+          </li>
+        </ul>
+      </li>
+      <li>
+        Authoring functions :
+        <ul>
+          <li>
+            Ability to load/update/remove Value Set Definition, DefinitionEntry and Properties using Versioning API.
+          </li>
+        </ul>
+      </li>
+      <li>
+        Scripts :
+        <ul>
+          <li>
+            LoadValueSetDefinition(.bat and .sh) –Loads Value Set Definition in LexGrid XML file into repository.
+          </li>
+          <li>
+            LoadPickListDefinition(.bat and .sh) – Loads Pick List Definition in LexGrid XML file into repository.
+          </li>
+        </ul>
+      </li>
+      <li>
+        GUI :
+        <ul>
+          <li>
+            New GUI (LB_VSD_GUI in gui folder of LexEVS API install directory) is developed to test all the functionalities that are available for Value Set Definitions. This tool should mainly be used for testing purpose and not in production. Here are few major functions available through this GUI tool:
+            <ul>
+              <li>
+                Create new Value Set Definition
+              </li>
+              <li>
+                Update existing Value Set Definition
+              </li>
+              <li>
+                Remove existing Value Set Definition
+              </li>
+              <li>
+                Load Value Set and Pick List Definition from LexGrid XML file
+              </li>
+              <li>
+                List all Value Set and Pick List Definitions present in the system
+              </li>
+              <li>
+                Add/update/remove DefinitionEntries (rule sets)
+              </li>
+              <li>
+                Add/update/remove properties
+              </li>
+              <li>
+                Resolve Value Set and Pick List Definition using specific set of coding scheme and version that are loaded in the system
+              </li>
+              <li>
+                Ability to validate if the changes made returns desired result before saving changes to the database
+              </li>
+              <li>
+                Export Value Set and Pick List Definitions in LexGrid XML format
+              </li>
+              <li>
+                Following query functions are also available:
+                <ul>
+                  <li>
+                    Filter by Coding Scheme Reference
+                  </li>
+                  <li>
+                    Filter by Concept Domain
+                  </li>
+                  <li>
+                    Check if concept code is valid entry in Value Set Resolution
+                  </li>
+                  <li>
+                    Filter by a term
+                  </li>
+                  <li>
+                    Check if one Value Set is subset of other
+                  </li>
+                  <li>
+                    Filter by Value Set Definition Name
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        JUnit :
+        <ul>
+          <li>
+            Junit to test all the Value Set functionalities are included in lbTest java package.
+            <ul>
+              <li>
+                Org.LexGrid.valuedomain.test.VDAllTests.java – Loads test data, runs both Value Set and Pick list functionality tests, and removes loaded test data.
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </ul>
+</ul>
+Note: Usage Context and Concept Domain is not included in this release, but will be in next release.
+<h2 id="LexEVS6.0.0ReleaseNotes-Versioning(gForge#26651)">
+  Versioning (gForge # 26651)
+</h2>
+Versioning is a new functionality that has been added to LexEVS API in this release. Versioning API is divided into two parts, loader and query API. For this release, loader API is included; query API will be included in next release.
+<ul>
+  <ul>
+    <ul>
+      <li>
+        Loader functions:
+      </li>
+      <li>
+        Loader enables the editing capability of a codingScheme, valueset and picklist.
+        <ul>
+          <li>
+            Changes can be applied in XML format.
+          </li>
+          <li>
+            Changes can be applied in the form of LexGrid Java castor objects as well.
+          </li>
+          <li>
+            Loader maintains the history of changes applied to the versionable objects.
+          </li>
+          <li>
+            Types of changes that can be applied on a versionable object are
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </ul>
+</ul>
+NEW – to create a new versionable element  MODIFY – to change the attributes of an existing versionable element VERSIONABLE – to change (or schedule a change of) the status of a versionable element within the context of the containing service. REMOVE – to remove a versionable element from the service. (Note that the versionable object will be removed completely from the system including the history. VERSIONABLE Retire should be used if the element and its history should remain) DEPENDENT – no changes are to be made to the named element itself, but a versionable element whose identity is dependent upon this element is to undergo a change.
+<ul>
+  <ul>
+    <li>
+      Loader validates each of the versionable object before loading it. Below are the criteria for a valid versionable object.
+    </li>
+    <li>
+      EntryState must be present.
+    </li>
+    <li>
+      If the change type is NEW
+    </li>
+    <li>
+      The object being loaded should not exist in lexEVS system. (Exception : The &lt;Versionable Object&gt; being added already exist.)
+    </li>
+    <li>
+      prevRevision of entryState should be null. (Exception : Changes of type NEW are not allowed to have previous revisions.)
+    </li>
+    <li>
+      If the change type is other than NEW
+    </li>
+    <li>
+      The object being revised should be present in the lexEVS system. (Exception : The codingScheme being revised doesn&#39;t exist.)
+    </li>
+    <li>
+      The object must have prevRevision, except when the versionable object is revised first time after the &#34;initial load&#34;. (Initial load : CodingScheme/ValueSet/PickList loaded with out a user defined revision)
+    </li>
+    <li>
+      The prevRevision should match the newest revision id of the given versionable object that is already loaded in the lexEVS system. (Exception : Revision source is not in sync with the database revisions. Previous revision id does not match with the latest revision id of the &lt;Versionable object&gt;. Please update the authoring instance with all the revisions and regenerate the source. )
+    </li>
+  </ul>
+  <li>
+    JUnit :
+    <ul>
+      <li>
+        VersionableEventAuthoringTest in lbTest package.
+      </li>
+    </ul>
+  </li>
+</ul>
+<h2 id="LexEVS6.0.0ReleaseNotes-XMLLoaders">
+  XML Loaders
+</h2>
+<ul>
+  <li>
+    Streaming XML (gForge # 26652): Ability to stream vocabulary contents in LexGrid XML format into LexGrid repository.
+  </li>
+  <li>
+    Ability to load contents at following entry points:
+    <ul>
+      <li>
+        Coding Scheme
+      </li>
+      <li>
+        Value Set Definition
+      </li>
+      <li>
+        Pick List Definition
+      </li>
+      <li>
+        Revision
+      </li>
+    </ul>
+  </li>
+  <li>
+    JUnit :
+    <ul>
+      <li>
+        Junit to test above functionalities are included in lbTest java package.
+      </li>
+    </ul>
+  </li>
+</ul>
+<h2 id="LexEVS6.0.0ReleaseNotes-XMLExporter">
+  XML Exporter
+</h2>
+<ul>
+  <li>
+    Content can be exported to a LexGrid XML file by use of the LexGrid XML Exporter.
+  </li>
+  <li>
+    The LexGrid XML Exporter can be accessed from a command line or from the LexGrid GUI.
+  </li>
+  <li>
+    As of Prototype 3, the following content export scenarios are supported from the command line, GUI or both:
+    <ul>
+      <li>
+        Entire code system (both)
+      </li>
+      <li>
+        Concepts only (GUI)
+      </li>
+      <li>
+        Associations only (GUI)
+      </li>
+      <li>
+        Specific Association (GUI)
+      </li>
+    </ul>
+  </li>
+  <li>
+    Accessing function within the GUI:
+    <ul>
+      <li>
+        Entire code system:
+        <ul>
+          <li>
+            At the menu: Commands -&gt; Enable Admin Options
+          </li>
+          <li>
+            Select code system
+          </li>
+          <li>
+            At the menu: Export Terminology -&gt; Export as LexGrid XML
+          </li>
+        </ul>
+      </li>
+      <li>
+        Concepts only:
+        <ul>
+          <li>
+            Select code system
+          </li>
+          <li>
+            Click &#39;Get Code Set&#39; button
+          </li>
+          <li>
+            Select the CodedNodeSet (CS) from the list
+          </li>
+          <li>
+            Click the &#39;LgExport&#39; button
+          </li>
+        </ul>
+      </li>
+      <li>
+        Associations only:
+        <ul>
+          <li>
+            Select code system
+          </li>
+          <li>
+            Click &#39;Get Code Graph&#39; button
+          </li>
+          <li>
+            Select the CodedNodeGraph (CG) from the list. Note: restrict the set of associations by name:
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    Click the &#39;Add&#39; button in the Restrictions frame
+  </li>
+  <li>
+    Then, in the &#39;Configure LexBIG&#39; window:
+  </li>
+  <li>
+    Select &#39;Restrict to Associations&#39; in the &#39;Restriction Type&#39; drop down
+  </li>
+  <li>
+    Select the association name in the &#39;Associations&#39; selection box
+  </li>
+  <li>
+    Click the OK button
+  </li>
+  <li>
+    Click the &#39;LgExport&#39; button
+  </li>
+</ul>
+Know issues/restrictions:
+<ul>
+  <li>
+    Command line
+    <ul>
+      <li>
+        Does not currently support the same level of function as the GUI. Only entire code systems can be exported via the command line. Additional filtering options will be available from the command line at a later date (Alpha 1).
+      </li>
+      <li>
+        When calling the XML Exporter from the command line always specify the force option &#39;-f&#39;. Otherwise the export will fail saying the output file already exists. This is a bug and will fixed during Alpha1 development.
+      </li>
+    </ul>
+  </li>
+  <li>
+    Scaling issues. Exporting of concepts should take place via streaming the content to the file and so should not be constrained by memory. At this time, however, associations are loaded into memory and so memory may be a factor in exporting code systems with many associations. This will be addressed during Alpha 1 development.
+  </li>
+</ul>
+<h2 id="LexEVS6.0.0ReleaseNotes-GForgeItems">
+  GForge Items
+</h2>
+<h3 id="LexEVS6.0.0ReleaseNotes-21720–LoadMRMAPdata">
+  21720 – Load MRMAP data
+</h3>
+<ul>
+  <li>
+    MRMAP data is now loaded as a Mapping Coding Scheme
+  </li>
+</ul>
+<h3 id="LexEVS6.0.0ReleaseNotes-21935–OWLloaderprocessingof&lt;owl:Restriction&gt;">
+  21935 – OWL loader processing of &lt;owl:Restriction&gt;
+</h3>
+<h3 id="LexEVS6.0.0ReleaseNotes-29177ValueSetqueryenhancement">
+  29177 Value Set query enhancement
+</h3>
+<h3 id="LexEVS6.0.0ReleaseNotes-27844ISO21090DataTypeSupport">
+  27844 ISO 21090 Data Type Support
+</h3>
+<ul>
+  <li>
+    All Analytical Grid Service methods use ISO 21090 Data Types
+  </li>
+</ul>
+<h3 id="LexEVS6.0.0ReleaseNotes-23770-OBI.owlloading–incorrectcurationstatus">
+  23770 - OBI.owl loading – incorrect curation status
+</h3>
+<h3 id="LexEVS6.0.0ReleaseNotes-23806-OBI.owlloading–incorrectImportedfrom">
+  23806 - OBI.owl loading – incorrect Imported from
+</h3>
+<h3 id="LexEVS6.0.0ReleaseNotes-22036-Focuscodenotfoundwhenreferencingexternalcodingscheme">
+  22036 - Focus code not found when referencing external coding scheme
+</h3>
+<h3 id="LexEVS6.0.0ReleaseNotes-28645-Manifestloader/metadataloader">
+  28645 - Manifest loader/metadata loader
+</h3>
+<h3 id="LexEVS6.0.0ReleaseNotes-26637-PageCodedNodeGraphResults:">
+  26637 - Page CodedNodeGraph Results:
+</h3>
+<ul>
+  <li>
+    CodedNodeGraph results are retrieved on demand from the database. Depth and Breath of the graph are both expanded on demand, so graph traversal time should not be effected by ontology, number of AssociatedConcepts, resolve depth, etc.
+  </li>
+  <li>
+    AssociatedConcepts (and Resolved Entities, if needed) are retrieved in batches, instead of individually.
+  </li>
+  <li>
+    Limitations - Duplicate AssociatedConcepts may exist in the graph to prevent cycles. This is consistent with LexEVS 5.x.
+  </li>
+</ul>
+<h3 id="LexEVS6.0.0ReleaseNotes-28460-LoadsourcequalifiersforgenericpropertiesinNCI-METARRFloader">
+  28460 - Load source qualifiers for generic properties in NCI-META RRF loader
+</h3>
+<ul>
+  <li>
+    This was implemented in the 5.1.x meta loader, and will be included in the 6.0 meta loader (which is in progress – not included in prototype 3)
+  </li>
+</ul>
+<h3 id="LexEVS6.0.0ReleaseNotes-23643-Java1.6">
+  23643 - Java 1.6
+</h3>
+<ul>
+  <li>
+    LexEVS 6.0 is required to be compiled and run in a Java 6.0 environment.
+  </li>
+</ul>
+<h3 id="LexEVS6.0.0ReleaseNotes-27026-ModifyMetaBrowserExtensiontosupportbrowsingandsearchingofother.">
+  27026 - Modify Meta Browser Extension to support browsing and searching of other.
+</h3>
+<ul>
+  <li>
+    Meta Browser Extension now pages Associated Concepts (much like the NCI Term Browser Extension) and includes a JSON processor for outputting path-to-root and neighborhood Entities. Implemented initially for LexEVS 5.1.x
+  </li>
+</ul>
+<h3 id="LexEVS6.0.0ReleaseNotes-25681-ProblemloadingMeSHandSpanishversionofSNOMED">
+  25681 - Problem loading MeSH and Spanish version of SNOMED
+</h3>
+<ul>
+  <li>
+    All RRF loaders are adjusted to load in UTF8 format - allowing for Spanish/French/etc characters.
+  </li>
+</ul>
+<h3 id="LexEVS6.0.0ReleaseNotes-28167-ClaMLLoaderupdateforLexEVS6.0">
+  28167 - ClaML Loader update for LexEVS 6.0
+</h3>
+<ul>
+  <li>
+    Converted the model framework from emf to castor.
+  </li>
+</ul>
+<h3 id="LexEVS6.0.0ReleaseNotes-26975-PropertyLinkswon&#39;tloadwithoutnamespacebeingsupplied">
+  26975 - PropertyLinks won&#39;t load without namespace being supplied
+</h3>
+<ul>
+  <li>
+    Fixed by adding a validation function, which can fix the nullentity entitycodenamespace field issue
+  </li>
+</ul>
+<h3 id="LexEVS6.0.0ReleaseNotes-26976-Loadershouldnotshutdownonaduplicateproperty">
+  26976 - Loader should not shut down on a duplicate property
+</h3>
+<ul>
+  <li>
+    Fixed by adding a validation function which can handle the duplicatedproperty issue by removing one of them
+  </li>
+</ul>
+<h3 id="LexEVS6.0.0ReleaseNotes-26977-Loadershouldnotshutdownonmissingpropertylinkreference">
+  26977 - Loader should not shut down on missing propertylink reference
+</h3>
+<ul>
+  <li>
+    Fixed by adding a validation function which removed the propertylinkif the property does not exist
+  </li>
+</ul>
+<h3 id="LexEVS6.0.0ReleaseNotes-26072-IncorrectHibernatemappingsofOracleCLOBdatabasetypeincaCORESDKfunctions">
+  26072 -Incorrect Hibernate mappings of Oracle CLOB database type in caCORE SDK functions
+</h3>
+<ul>
+  <li>
+    Fixed by changing the clob type to text in the hibernate mappingfiles.
+  </li>
+</ul>
+<h3 id="LexEVS6.0.0ReleaseNotes-27021–RenameValueDomain">
+  27021 – Rename Value Domain
+</h3>
+<ul>
+  <li>
+    Renamed Value Domain to Value Set Definition and Value Set Resolution.
+  </li>
+</ul>
+<h3 id="LexEVS6.0.0ReleaseNotes-24037–Includeimmediateparent/childrenwhenValueSetDefinitionhastransitiveClosureas&#39;false&#39;andreferenceAssociationispresent.">
+  24037 – Include immediate parent/children when Value Set Definition has transitiveClosure as &#39;false&#39; and referenceAssociation is present.
+</h3>
+<h3 id="LexEVS6.0.0ReleaseNotes-22296-OWLloaderdoesnotloadconceptswithparanthesis">
+  22296 - OWL loader does not load concepts with paranthesis
+</h3>
+<ul>
+  <li>
+    This issue has been resolved in LexEVS 6.0 Prototype 3 and later releases. Tested and verified.
+  </li>
+  <li>
+    JUnit Test case is created and successfully executed with implementation class &#34;org.LexGrid.LexBIG.Impl.bugs.GForge22296&#34; in project lbTest.
+  </li>
+</ul>
+<h2 id="LexEVS6.0.0ReleaseNotes-LexGridmodelchanges">
+  LexGrid model changes
+</h2>
+<h3 id="LexEVS6.0.0ReleaseNotes-PackageValueSets:">
+  Package ValueSets:
+</h3>
+<ul>
+  <li>
+    Renamed element ValueDomainDefinition to ValueSetDefinition and container ValueDomains to ValueSets. GForge # 27021.
+  </li>
+  <li>
+    Added attribute &#39;conceptDomain&#39; of type &#39;conceptDomain&#39; to class &#39;valueSetDefinition&#39; to support CTS 2 SFM.
+  </li>
+  <li>
+    Added class &#39;propertyReference&#39; and &#39;propertyMatchValue&#39; to support CTS 2 SFM.
+    <ul>
+      <li>
+        propetyReference contains : &#39;codingScheme&#39;(Required), &#39;propertyName&#39;, &#39;propertyMatchValue&#39;
+      </li>
+      <li>
+        propertyMatchValue extends from &#39;text&#39; and contains attribute &#39;matchAlgorithm&#39;
+      </li>
+    </ul>
+  </li>
+  <li>
+    Made &#39;definitionEntry&#39; versionable to support CTS 2 SFM.
+  </li>
+  <li>
+    Made class &#39;valueSetDefinition&#39; and &#39;pickListDefinition&#39; as entry point. This change allows to load and export Value Set Definition and Pick List Definition individually.
+  </li>
+</ul>
+<h3 id="LexEVS6.0.0ReleaseNotes-PackageNaming:">
+  Package Naming:
+</h3>
+<ul>
+  <li>
+    Added &#39;supportedConceptDomain&#39; to support CTS 2 SFM.
+  </li>
+  <li>
+    Added attributes &#39;codingScheme&#39;, &#39;entityCodeNamespace&#39; and &#39;entityCode&#39; to &#39;SupportedAssociation&#39;. This was added to make it earier to get an AssociationEntity instance for a given associationPredicate.
+  </li>
+  <li>
+    Added attribute &#39;propertyType&#39; to &#39;SupportedProperty&#39;. This provides an easy way to find all supportedProperties information by propertyType which are &#39;presentation&#39;,&#39;definition&#39;,&#39;comment&#39; and &#39;property&#39;. NCI requirement Gforge # 24699.
+  </li>
+</ul>
+<h3 id="LexEVS6.0.0ReleaseNotes-PackageCommonTypes:">
+  Package CommonTypes:
+</h3>
+<ul>
+  <li>
+    Added &#39;conceptDomain&#39; in localIds. Since ConceptDomain has been added to the model, we will need to maintain all the ConceptDomain used in the system in our SupportedAttributes mappings.
+  </li>
+  <li>
+    Changed &#39;owner&#39; in &#39;versionable&#39; from &#39;source&#39; to &#39;tsCaseIgnoreIA5String&#39;. This was changed since other attributes of Source were never used.
+  </li>
+</ul>
+<h3 id="LexEVS6.0.0ReleaseNotes-PackageConcept:">
+  Package Concept:
+</h3>
+<ul>
+  <li>
+    Removed elements &#39;Concept&#39; and &#39;Instance&#39;. These first class elements are not required anymore as an &#39;Entity&#39; can represent either &#39;concept&#39; or &#39;instance&#39; or any other type by specifying it in its EntityType.
+  </li>
+</ul>
+<h3 id="LexEVS6.0.0ReleaseNotes-PackageRelations:">
+  Package Relations:
+</h3>
+<ul>
+  <li>
+    Made class &#39;relation&#39; versionable to Support CTS 2 SFM.
+  </li>
+  <li>
+    Added &#39;isMapping&#39;, &#39;sourceCodingScheme&#39;, &#39;sourceCodingSchemeVersion&#39;, &#39;targetCodingScheme&#39;, &#39;targetCodingSchemeVersion&#39; to class &#39;relation&#39; to support loading of MRMAP RRF file.
+  </li>
+  <li>
+    Added &#39;properties&#39; container to &#39;relation&#39; container to supported loading of MRMAP RRF file.
+  </li>
+  <li>
+    Removed &#39;isNative&#39; and &#39;source&#39; from &#39;relation&#39; as they were never used.
+  </li>
+  <li>
+    Added new class &#39;associationPredicate&#39; with required attribute &#39;associationName&#39; to supported loading of MRMAP RRF file.
+  </li>
+  <li>
+    Renamed class &#39;association&#39; to &#39;associationEntity&#39;. Removed all Booleans except &#39;isTransitive&#39;, and &#39;isNavigable. And made &#39;associationEntity&#39; subclass of &#39;Entity&#39;. This change was also made to supported loading of MRMAP RRF file.
+  </li>
+</ul>
+<h3 id="LexEVS6.0.0ReleaseNotes-PackageVersions:">
+  Package Versions:
+</h3>
+<ul>
+  <li>
+    Changed &#39;changeAgent&#39; in class &#39;revision&#39; from &#39;source&#39; to &#39;tsCaseIgnoreIA5String&#39; as none of the &#39;Source&#39; attributes were used.
+  </li>
+  <li>
+    Added unique key constraint to relaseURI column of systemRelease table.
+  </li>
+  <li>
+    Added missing entryStateGuid to propertyLinks table.
+  </li>
+</ul>

@@ -1,0 +1,169 @@
+Contents of this Page
+<ul>
+  <li>
+    <a href="#RESTServiceArchitecture-CurrentLexEVSRESTServiceArchitecture" rel="nofollow">
+      Current LexEVS REST Service Architecture
+    </a>
+  </li>
+  <li>
+    <a href="#RESTServiceArchitecture-Background" rel="nofollow">
+      Background
+    </a>
+  </li>
+  <li>
+    <a href="#RESTServiceArchitecture-RESTServices" rel="nofollow">
+      REST Services
+    </a>
+  </li>
+</ul>
+The purpose of this document is to document the LexEVS REST architecture changes during the course of this contract.
+<h2 id="RESTServiceArchitecture-CurrentLexEVSRESTServiceArchitecture">
+  Current LexEVS REST Service Architecture
+</h2>
+LexEVS has a resource oriented REST service available for traversing ontologies.  This implementation has been built on the
+<a href="http://www.omg.org/spec/CTS2/1.2/" rel="nofollow">
+  CTS2 standard
+</a>
+.The REST service is located here:
+<a href="https://lexevscts2.nci.nih.gov/lexevscts2/service" rel="nofollow">
+  https://lexevscts2.nci.nih.gov/lexevscts2/service
+</a>
+<h2 id="RESTServiceArchitecture-Background">
+  Background
+</h2>
+As customers are transitioning from the retired caCORE API to the CTS2 REST service, they have asked how to retrieve terminology concepts in a similar way that the did previously in caCORE.  This has raised some concerns in the differences they have encountered when using the CTS2 REST service.  Previous caCORE API calls were able to retrieve the resource they wanted with one call.  It was also able to retrieve the specific component that they requested.Based on these concerns, there were several JIRA items that have been submitted, requesting enhancements to the CTS2 REST service.We have provided a brief analysis of if the issues based on the following:
+<ul>
+  <li>
+    Is this currently supported in CTS2?
+  </li>
+  <li>
+    If the our implementation of CTS2 can handle the request, but it hasn&#39;t been implemented yet.
+  </li>
+  <li>
+    This is outside of the CTS2 specification.
+  </li>
+</ul>
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        CTS2 Issue
+      </th>
+      <th>
+        Summary
+      </th>
+      <th colspan="1">
+        CTS2 Support
+      </th>
+    </tr>
+    <tr>
+      <td>
+        <a title="View this issue" href="https://tracker.nci.nih.gov/browse/LEXEVSCTS2-138" rel="nofollow">
+          LEXEVSCTS2-138
+        </a>
+      </td>
+      <td>
+        Find entities based on presence of a property
+      </td>
+      <td colspan="1">
+        This fits within the realm of the CTS2 spec and could be implemented as a part of that specification
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a title="View this issue" href="https://tracker.nci.nih.gov/browse/LEXEVSCTS2-139" rel="nofollow">
+          LEXEVSCTS2-139
+        </a>
+      </td>
+      <td>
+        Find list of supported properties for coding scheme
+      </td>
+      <td colspan="1">
+        These are LexEVS coding scheme metadata and don’t really have a good counterpart or fit in CTS2.  We’d likely want to provide a separate resource or service for these.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a title="View this issue" href="https://tracker.nci.nih.gov/browse/LEXEVSCTS2-140" rel="nofollow">
+          LEXEVSCTS2-140
+        </a>
+      </td>
+      <td>
+        List supported restrictions for a coding scheme
+      </td>
+      <td colspan="1">
+        These are LexEVS coding scheme metadata and don’t really have a good counterpart or fit in CTS2.  We’d likely want to provide a separate resource or service for these.
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        <a title="View this issue" href="https://tracker.nci.nih.gov/browse/LEXEVSCTS2-141" rel="nofollow">
+          LEXEVSCTS2-141
+        </a>
+      </td>
+      <td colspan="1">
+        Retrieve a concept based on value of an annotation
+      </td>
+      <td colspan="1"></td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        <a title="View this issue" href="https://tracker.nci.nih.gov/browse/LEXEVSCTS2-142" rel="nofollow">
+          LEXEVSCTS2-142
+        </a>
+      </td>
+      <td colspan="1">
+        Return only the specified information on an entity
+      </td>
+      <td colspan="1">
+        CTS2 returns the entity.  This request is to return only the specified information on an entity.This would be a new call that returned a new partial resource.
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        <a title="View this issue" href="https://tracker.nci.nih.gov/browse/LEXEVSCTS2-143" rel="nofollow">
+          LEXEVSCTS2-143
+        </a>
+      </td>
+      <td colspan="1">
+        Return a property type for an entity
+      </td>
+      <td colspan="1">
+        CTS2 returns the entity.  This request is to return only the specified information on an entity.This would be a new call that returned a new partial resource.
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        <a title="View this issue" href="https://tracker.nci.nih.gov/browse/LEXEVSCTS2-144" rel="nofollow">
+          LEXEVSCTS2-144
+        </a>
+      </td>
+      <td colspan="1">
+        Retrieve a concept based on the presence of a restriction
+      </td>
+      <td colspan="1">
+         This is possible in CTS2.  There are a series of calls to get from CTS2.
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="RESTServiceArchitecture-RESTServices">
+  REST Services
+</h2>
+Going forward, we will need to determine what best fits NCI&#39;s needs for a LexEVS REST service.In order to do this, the team will need to:
+<ul>
+  <li>
+    Determine the audience - who are the users.
+  </li>
+  <li>
+    Understand the technical requirements/limitations.
+  </li>
+  <li>
+    Understand the functional requirements.
+  </li>
+</ul>

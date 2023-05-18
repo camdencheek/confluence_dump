@@ -1,0 +1,65 @@
+The PO Business Service (available at
+<a href="https://ctms-services-po-3-2-demo.nci.nih.gov:1522/wsrf/services/cagrid/Business" rel="nofollow">
+  https://ctms-services-po-3-2-demo.nci.nih.gov:1522/wsrf/services/cagrid/Business
+</a>
+on the demo tier; see
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=19792498" rel="nofollow">
+  Accessing services
+</a>
+ for other tiers) allows you to work with entities and their associated roles in a single service call, in contrast to the separate calls required when using the individual services.
+
+An example java client demonstrating the following service operations is available
+<a href="https://ncisvn.nci.nih.gov/svn/coppa/tags/po-3.2.0-code/po-grid-3.2/src/gov/nih/nci/coppa/services/business/business/client/BusinessClient.java" rel="nofollow">
+  here
+</a>
+.
+<h3 id="ConsumingthePOBusinessService-Entitymethods:">
+  Entity methods:
+</h3>
+EntityNode getEntityByIdWithCorrelations(Id id, Cd[] players, Cd[] scopers) // null/empty players/scopers means those correlations will not be returned
+EntityNode[] searchEntitiesWithCorrelations(EntityNode eNode, Cd[] players, Cd[] scopers, LimitOffset limitOffset) throws TooManyResultsException
+
+
+
+class EntityNode {
+Entity entity;
+Correlation[] players;
+Correlation[] scopers;
+Bl correlationOverflow; // true if either # players or scopers exceeds the limit (500), client needs to revert to older methods and retrieve the roles using a search on playerId/scoperId with LimitOffset
+}
+<h4 id="ConsumingthePOBusinessService-Exampleforreturningobjectgraphsinresultsandselectingwhichclassesintheobjectgraphtoreturn:">
+  Example for returning object graphs in results and selecting which classes in the object graph to return:
+</h4>
+BusinessService.getEntityByIdWithCorrelations(id, {ClinicalResearchStaff, HealthCareProvider, IdentifiedPerson}, null)
+This call would return the Person with the given ID (the root of the ID specifies the entity type), as well as all the CRS, HCP, and IP roles in which this person is the player (but not the Organizations scoping those roles).  The method name and ID indicates what the primary object to be returned is.  For example, if you call BusinessService.getEntityByIdWithCorrelations(), passing in the II for a Person, the primary object returned will be a Person, and as the method name indicates, it will return that Person along with its related Correlations - no Organization will be returned by this method if the II is for a Person.  The argument names are unfortunately a bit misleading - players and scopers are lists of correlations in which that entity is the player or scoper; since a Person is never a scoper (at least right now), that second argument is essentially ignored if the II is for a Person.
+
+BusinessService.getEntityByIdWithCorrelations(id, {IdentifiedOrganization}, null)
+This call would return an organization with its IdentifiedOrganization roles that contain the Org&#39;s CTEP ID - alternatively, BusinessService.getEntityByIdWithCorrelations(id, {ResearchOrganization, HealthCareFacility}, null) would return the roles that actually have the CTEP IDs.
+<h4 id="ConsumingthePOBusinessService-Exampleforselectingwhichclassesinanobjectgraphtoqueryon:">
+  Example for selecting which classes in an object graph to query on:
+</h4>
+BusinessService.searchEntitiesWithCorrelations(eNode, limitOffset) throws TooManyResultsException, where eNode is:
+entity: En.Pn.lastName=&#34;Smith&#34;
+players: {ClinicalResearchStaff(scoperId=IdForMayoOrg)}
+scopers: {}
+
+This search would return all Persons whose lastName contains &#34;Smith&#34; and is a ClinicalResearchStaff at Mayo.  To get all Persons with lastName &#34;Smith&#34; and role ClinicalResearchStaff (basically searching all organizations), you&#39;d need to flip the search around - you&#39;re really searching for ClinicalResearchStaff objects played by a Person with lastName = &#34;Smith,&#34; which is a good segue into describing the Correlation methods.
+<h3 id="ConsumingthePOBusinessService-Correlationmethods:">
+  Correlation methods:
+</h3>
+CorrelationNode getCorrelationByIdWithEntities(Id id, Bl player, Bl scoper) (true to return player and/or scoper)
+CorrelationNode[] getCorrelationsByIdsWithEntities(Id[] ids, Bl player, Bl scoper)
+CorrelationNode[] getCorrelationsByPlayerIdWithEntities(Cd type, Id[] playerIds, Bl player, Bl scoper)
+CorrelationNode[] searchCorrelationsWithEntities(CorrelationNode cNode, Bl player, Bl scoper, LimitOffset limitOffset) throws TooManyResultsException
+
+
+
+class CorrelationNode {
+Correlation correlation;
+Entity player;
+Entity scoper;
+}
+<h4 id="ConsumingthePOBusinessService-Example:">
+  Example:
+</h4>
+You could call BusinessService.searchCorrelationsWithEntities().  The cNode you pass in would have a ClinicalResearchStaff as the correlation, and the player would be a Person with lastName=&#34;Smith.&#34;  Scoper would be null; as another example, you could find all ClinicalResearchStaff objects with lastName=&#34;Smith&#34; at Mayo by using the same search as above but also specify an Organization in the scoper, with the II of that Organization being set to the II of the Mayo Clinic (or you could set the name of the Organization).  The two BL arguments in these services indicate which objects to return - search will return an array of CorrelationNode, and whether the player and scoper are including in those CorrelationNodes is determined by the BL player and scoper flags - true to include them, false to exclude them.

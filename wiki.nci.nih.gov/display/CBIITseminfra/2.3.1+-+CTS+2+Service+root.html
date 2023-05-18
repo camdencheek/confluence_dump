@@ -1,0 +1,76 @@
+CTS 2 defines a service root component that allows for the query of information and access to all of the service capabilities.
+
+This functionality resides in the domain access layer. Below is the structure and substructure of the domain access layer.
+<h5 id="id-2.3.1CTS2Serviceroot-Structure:MainComponents">
+  Structure: Main Components
+</h5>
+<ul>
+  <li>
+    Database
+    <ul>
+      <li>
+        An access point for CRUD (Create, Read, Update, Delete) operations
+      </li>
+      <li>
+        Will contain a ServiceManager Interface, which will expose Service Layer consumable CRUD services.
+      </li>
+      <li>
+        Contains logic for LexGrid Schema Version detection and Database Type detection.
+      </li>
+      <li>
+        Serves as the Transaction Demarcation Layer
+      </li>
+    </ul>
+  </li>
+  <li>
+    System Resources
+    <ul>
+      <li>
+        Provides various system-level services
+      </li>
+    </ul>
+  </li>
+  <li>
+    Registry
+    <ul>
+      <li>
+        Maintains a list of available Resources (loaded Coding Schemes, Histories, etc)
+      </li>
+    </ul>
+  </li>
+  <li>
+    Index
+    <ul>
+      <li>
+        Provides a Lucene-based indexing service
+      </li>
+    </ul>
+  </li>
+</ul>
+<h5 id="id-2.3.1CTS2Serviceroot-Structure:SubComponents">
+  Structure: Sub Components
+</h5>
+<ul>
+  <li>
+    (Data Access Object) DAO Manager
+    <ul>
+      <li>
+        Provides fine-grained CRUD access to the Database
+      </li>
+      <li>
+        Is NOT Transaction aware -- all transactions must be defined by the calling services
+      </li>
+      <li>
+        Does NOT cascade
+        <ul>
+          <li>
+            This is done to allow the the Service to define exact transaction granularity
+          </li>
+        </ul>
+      </li>
+      <li>
+        Event framework is implemented in the individual DAOs, not the Services
+      </li>
+    </ul>
+  </li>
+</ul>

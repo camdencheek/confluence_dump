@@ -1,0 +1,40 @@
+<h1 id="caArray015SolvingcaArray2.2.0plusproblemswithlocalhostandrelatedissues-Question:HowdoIsolvecaArray2.2.0+problemswithlocalhostandrelatedissues?">
+  Question: How do I solve caArray 2.2.0+ problems with localhost and related issues?
+</h1>
+Topic: caArray Installation and Upgrade
+
+Release: caArray 2.2.0 and above
+
+Date entered: 03/26/2009
+<h2 id="caArray015SolvingcaArray2.2.0plusproblemswithlocalhostandrelatedissues-DetailsabouttheQuestion">
+  Details about the Question
+</h2>
+I just installed caArray and tried to connect to it with the URL
+
+http://localhost:&lt;port&gt;/caarray
+
+but was not able to, what is the problem?
+
+I am able to connect to caArray locally giving the hostname in the URL, but I cannot connect using the same URL from a remote machine on the same network, why?
+<h2 id="caArray015SolvingcaArray2.2.0plusproblemswithlocalhostandrelatedissues-Answer">
+  Answer
+</h2>
+Starting with caArray release 2.2.0, and going forward, the caArray installer sets the --host flag in the run.bat/run.sh JBoss start-up script to enable remote Java API client access EJBs, etc. A side effect of this change is that caArray&#39;s JBoss web container will only respond to requests targeted to that specified host, and not localhost. So, even if you are trying to access the caArray application from the same machine upon which caArray is installed, you will need to specify your URL like this (change hostname and port to your respective values):
+
+http://&lt;hostname&gt;:&lt;port&gt;/caarray
+
+
+Another related problem occurs when there is hostname mapping in the /etc/hosts file similar to this:
+
+*127.0.0.1   myhost.mydomain.com*
+
+
+When this mapping is present no remote host will be able to connect to the caArray application, although you will be able to connect from the same machine if giving the hostname version of the URL, as mentioned above. You should remove such hostname mappings from your caArray server&#39;s hosts file as they will prevent remote connection to the caArray application.
+<h2 id="caArray015SolvingcaArray2.2.0plusproblemswithlocalhostandrelatedissues-Haveacomment?">
+  Have a comment?
+</h2>
+Please leave your comment in the
+<a href="https://cabig-kc.nci.nih.gov/Molecular/forums/viewtopic.php?f=6&amp;t=577" rel="nofollow">
+  caArray End User Forum
+</a>
+. 

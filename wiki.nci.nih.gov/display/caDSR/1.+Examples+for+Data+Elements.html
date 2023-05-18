@@ -1,0 +1,210 @@
+You can try the caDSR APIs to search for caDSR data by entering a URL in the address bar of a browser and passing parameters in that URL. This page provides examples to get you started, in legacy and caDSR II format:
+<ul>
+  <li>
+    A URL in legacy REST-like (XML-HTTP) format returns only HTML or XML. The
+    <a href="https://cadsrapi.nci.nih.gov/cadsrapi4/ShowDynamicTree.action" rel="nofollow">
+      Legacy caDSR Domain Class Browser
+    </a>
+    page is a web browser interface that allows you to test the legacy caDSR API. This page also has links to the Legacy Java Docs.
+  </li>
+  <li>
+    A URL in caDSR II format returns HTML, XML, or JSON. Using the API, you can allow an application to connect to caDSR and search the database. The
+    <a href="https://cadsrapi.cancer.gov/caDSR/domain/browser.dsp" rel="nofollow">
+      caDSR II Domain Class Browser
+    </a>
+    page is a web browser interface that allows you to test the caDSR II API.
+  </li>
+</ul>
+You can display any of these formats (HTML, XML, or JSON) in an Internet browser by changing the parameter (GetHTML, GetXML, or GetJSON). Multiple AND IN NoteYou cannot enter multiple &#34;and&#34; or &#34;in&#34; values for search criteria when using the REST (XML-HTTP) API.If you have trouble using any URL on this page in your Internet browser, copy and paste it into a Google Chrome browser before contacting Application Support (
+<a href="mailto:NCIAppSupport@mail.nih.gov" rel="nofollow">
+  NCIAppSupport@mail.nih.gov
+</a>
+).Headings on this page marked with two asterisks (**) reflect functionality available in caDSR II but not in legacy caDSR. This page includes the following topics.Contents of This Page
+<ul>
+  <li>
+    <a href="#id-1.ExamplesforDataElements-FindDataElementbyPublicIDandVersion" rel="nofollow">
+      1.1. Find Data Element by Public ID and Version
+    </a>
+  </li>
+  <li>
+    <a href="#id-1.ExamplesforDataElements-**AllowMachine-to-machineRetrievalofaDataElementbyPublicIDandVersion" rel="nofollow">
+      1.2. **Allow Machine-to-machine Retrieval of a Data Element by Public ID and Version
+    </a>
+  </li>
+  <li>
+    <a href="#id-1.ExamplesforDataElements-FindDataElementbyPublicID" rel="nofollow">
+      1.3. Find Data Element by Public ID
+    </a>
+  </li>
+  <li>
+    <a href="#id-1.ExamplesforDataElements-FindDataElementbyPublicID,DisplayAllRelatedComponents" rel="nofollow">
+      1.4. Find Data Element by Public ID, Display All Related Components
+    </a>
+  </li>
+  <li>
+    <a href="#id-1.ExamplesforDataElements-FindDECUsingPublicID,DisplayAllAssociatedDataElements" rel="nofollow">
+      1.5. Find DEC Using Public ID, Display All Associated Data Elements
+    </a>
+  </li>
+  <li>
+    <a href="#id-1.ExamplesforDataElements-FindDataElementsAssociatedwithaParticularDECPublicIDandVersion" rel="nofollow">
+      1.6. Find Data Elements Associated with a Particular DEC Public ID and Version
+    </a>
+  </li>
+  <li>
+    <a href="#id-1.ExamplesforDataElements-GetDataElementsUsingConceptCodeorConceptName" rel="nofollow">
+      1.7. Get Data Elements Using Concept Code or Concept Name
+    </a>
+  </li>
+  <li>
+    <a href="#id-1.ExamplesforDataElements-FindAllEnumeratedPermissibleValuesforaDataElement" rel="nofollow">
+      1.8. Find All Enumerated Permissible Values for a Data Element
+    </a>
+  </li>
+</ul>
+Legacy component retirement planned for May 1, 2023.
+<h3 id="id-1.ExamplesforDataElements-FindDataElementbyPublicIDandVersion">
+  1.1. Find Data Element by Public ID and Version
+</h3>
+The following examples find a data element where Public ID = 62 and Version=6, displaying the basic metadata attributes.
+<h4 id="id-1.ExamplesforDataElements-Legacy:ResultsDisplayedinXML">
+  1.1.1. Legacy: Results Displayed in XML
+</h4>
+The URL for the results from the caDSR 4.1.x REST API is
+https://cadsrapi.nci.nih.gov/cadsrapi4/GetXML?query=DataElement[@publicId=62][@version=6]
+<h4 id="id-1.ExamplesforDataElements-caDSRII:ResultsDisplayedinXML">
+  1.1.2. caDSR II: Results Displayed in XML
+</h4>
+The URL for the results from the caDSR II REST API is
+https://cadsrapi.cancer.gov/invoke/caDSR/GetXML?query=DataElement[@publicId=62,@version=6]
+<h4 id="id-1.ExamplesforDataElements-caDSRII:ResultsDisplayedinHTML">
+  1.1.3. caDSR II: Results Displayed in HTML
+</h4>
+The URL for the results from the caDSR II REST API is
+https://cadsrapi.cancer.gov/invoke/caDSR/GetHTML?query=DataElement[@publicId=62,@version=6]
+<h4 id="id-1.ExamplesforDataElements-caDSRII:ResultsDisplayedinJSON">
+  1.1.4. caDSR II: Results Displayed in JSON
+</h4>
+The URL for the results from the caDSR II REST API is
+https://cadsrapi.cancer.gov/invoke/caDSR/GetJSON?query=DataElement[@publicId=62,@version=6]
+<h3 id="id-1.ExamplesforDataElements-**AllowMachine-to-machineRetrievalofaDataElementbyPublicIDandVersion">
+  1.2. **Allow Machine-to-machine Retrieval of a Data Element by Public ID and Version
+</h3>
+The following caDSR II example allows machine-to-machine retrieval of a data element by public ID and version. (You can test this URL only in a machine-to-machine scenario, not in a browser.)
+https://cadsrapi.cancer.gov/rad/caDSR.restapi:GetXML_rad/GetXML/query=DataElement[@publicId=62,@version=6]
+If you want to create a REST API call from machine to machine or application to application, start your URL as follows:
+https://cadsrapi.cancer.gov/rad/caDSR.restapi:GetXML_rad/
+<h3 id="id-1.ExamplesforDataElements-FindDataElementbyPublicID">
+  1.3. Find Data Element by Public ID
+</h3>
+The following example finds a data element with Public ID = 62, displaying the basic metadata attributes. Since the version is not known, this query can only be handled via a caDSR REST API query getting all versions.
+<h4 id="id-1.ExamplesforDataElements-Legacy">
+  1.3.1. Legacy
+</h4>
+The URL for the results from the caDSR 4.1.x REST API is
+https://cadsrapi.nci.nih.gov/cadsrapi4/GetHTML?query=DataElement[@publicId=62]
+Or the query can retrieve only the latest version.
+https://cadsrapi.nci.nih.gov/cadsrapi4/GetHTML?query=DataElement[@publicId=62][@latestVersionIndicator=Yes]
+<h4 id="id-1.ExamplesforDataElements-caDSRII">
+  1.3.2. caDSR II
+</h4>
+The URL for the results from the caDSR II REST API is
+https://cadsrapi.cancer.gov/invoke/caDSR/GetHTML?query=DataElement[@publicId=62]
+
+Or the query can retrieve only the latest version.
+https://cadsrapi.cancer.gov/invoke/caDSR/GetHTML?query=DataElement[@publicId=62,@latestVersionIndicator=yes]
+<h3 id="id-1.ExamplesforDataElements-FindDataElementbyPublicID,DisplayAllRelatedComponents">
+  1.4. Find Data Element by Public ID, Display All Related Components
+</h3>
+The following example finds a data element with Public ID = 62, displaying all the metadata associated with the data element&#39;s related components, not just the basic attributes. This is handled in the caDSR REST API using a parameter that produces expanded (&#34;heavy&#34;) XML.
+<h4 id="id-1.ExamplesforDataElements-Legacy.1">
+  1.4.1. Legacy
+</h4>
+The URL for the results from the caDSR 4.1.x REST API is
+https://cadsrapi.nci.nih.gov/cadsrapi4/GetXML?query=DataElement&amp;DataElement[@publicId=62]&amp;returnHeavyXML=true
+<h4 id="id-1.ExamplesforDataElements-caDSRII.1">
+  1.4.2. caDSR II
+</h4>
+The URL for the results from the caDSR II REST API is
+https://cadsrapi.cancer.gov/invoke/caDSR/GetXML?query=DataElement[@publicId=62]&amp;returnHeavyXML=true
+<h3 id="id-1.ExamplesforDataElements-FindDECUsingPublicID,DisplayAllAssociatedDataElements">
+  1.5. Find DEC Using Public ID, Display All Associated Data Elements
+</h3>
+Find all the data elements associated with the DEC with Public ID = 2178546, displaying the basic metadata of the DEC and its data elements.
+<h4 id="id-1.ExamplesforDataElements-Legacy.2">
+  1.5.1. Legacy
+</h4>
+The URL for the results from the caDSR 4.0 REST API is
+https://cadsrapi.nci.nih.gov/cadsrapi4/GetHTML?query=DataElement&amp;DataElementConcept[@publicId=2178546]
+<h4 id="id-1.ExamplesforDataElements-caDSRII.2">
+  1.5.2. caDSR II
+</h4>
+The URL for the results from the caDSR II REST API is
+https://cadsrapi.cancer.gov/invoke/caDSR/GetHTML?query=DataElement&amp;DataElementConcept[@publicId=2178546]
+<h3 id="id-1.ExamplesforDataElements-FindDataElementsAssociatedwithaParticularDECPublicIDandVersion">
+  1.6. Find Data Elements Associated with a Particular DEC Public ID and Version
+</h3>
+The following example finds only data elements associated with Version 2.1 of DEC with Public ID = 2178546.
+<h4 id="id-1.ExamplesforDataElements-Legacy.3">
+  1.6.1. Legacy
+</h4>
+The URL for the results from the caDSR 4.1.x REST API is
+https://cadsrapi.nci.nih.gov/cadsrapi4/GetXML?query=DataElement&amp;DataElementConcept[@publicId=2178546][@version=2.1]
+<h4 id="id-1.ExamplesforDataElements-caDSRII.3">
+  1.6.2. caDSR II
+</h4>
+The URL for the results from the caDSR II REST API is
+https://cadsrapi.cancer.gov/invoke/caDSR/GetXML?query=DataElement&amp;DataElementConcept[@publicId=2178546,@version=2.1]
+<h3 id="id-1.ExamplesforDataElements-GetDataElementsUsingConceptCodeorConceptName">
+  1.7. Get Data Elements Using Concept Code or Concept Name
+</h3>
+The following examples show how to retrieve data elements using either the concept code or the concept name where the concept is the Primary concept of the related caDSR item. In these examples, results are returned in XML.
+<h4 id="id-1.ExamplesforDataElements-Legacy:FindAllDataElementsWhereAssociatedConceptisPrimaryConceptofDataElement&#39;sObjectClass">
+  1.7.1. Legacy: Find All Data Elements Where Associated Concept is Primary Concept of Data Element&#39;s Object Class
+</h4>
+This example shows the use of either the Concept Code (C19448) or the Concept Name &#34;Blood and Blood Products&#34;. Results are identical from these two calls, both are returned in XML.
+https://cadsrapi.nci.nih.gov/cadsrapi4/GetXML?query=DataElement,DataElementConcept,ObjectClass,ConceptDerivationRule&amp;ComponentConcept[Concept[@preferredName=C19448]][@primaryFlag=Yes]
+
+https://cadsrapi.nci.nih.gov/cadsrapi4/GetXML?query=DataElement,DataElementConcept,ObjectClass,ConceptDerivationRule&amp;ComponentConcept[Concept[@longName=Blood and Blood Products]][@primaryFlag=Yes]
+<h4 id="id-1.ExamplesforDataElements-caDSRII.4">
+  1.7.2. caDSR II
+</h4>
+The URL for the results from the caDSR II REST API is
+https://cadsrapi.cancer.gov/invoke/caDSR/GetXML?query=DataElement,DataElementConcept,ObjectClass&amp;ComponentConcept[Concept[@preferredName=C19448],@primaryFlag=Yes]
+<h4 id="id-1.ExamplesforDataElements-Legacy:FindAllDataElementsWhereAssociatedConceptisPrimaryConceptofDataElement&#39;sProperty">
+  1.7.3. Legacy: Find All Data Elements Where Associated Concept is Primary Concept of Data Element&#39;s Property
+</h4>
+https://cadsrapi.nci.nih.gov/cadsrapi4/GetXML?query=DataElement,DataElementConcept,Property,ConceptDerivationRule&amp;ComponentConcept[Concept[@preferredName=C42775]][@primaryFlag=Yes]
+
+https://cadsrapi.nci.nih.gov/cadsrapi4/GetXML?query=DataElement,DataElementConcept,Property,ConceptDerivationRule&amp;ComponentConcept[Concept[@longName=E-mail%20Address]][@primaryFlag=Yes]
+<h4 id="id-1.ExamplesforDataElements-caDSRII.5">
+  1.7.4. caDSR II
+</h4>
+The URL for the results from the caDSR II REST API is
+https://cadsrapi.cancer.gov/invoke/caDSR/GetXML?query=DataElement,DataElementConcept,Property&amp;ComponentConcept[Concept[@preferredName=C42775],@primaryFlag=Yes]
+<h4 id="id-1.ExamplesforDataElements-Legacy:FindAllDataElementsWhereAssociatedConceptisPrimaryConceptofOneofDataElement&#39;sValueDomainValueMeanings">
+  1.7.5. Legacy: Find All Data Elements Where Associated Concept is Primary Concept of One of Data Element&#39;s Value Domain Value Meanings
+</h4>
+https://cadsrapi.nci.nih.gov/cadsrapi4/GetXML?query=DataElement,EnumeratedValueDomain,ValueDomainPermissibleValue,PermissibleValue,ValueMeaning,ConceptDerivationRule&amp;ComponentConcept[Concept[@preferredName=C19448]][@primaryFlag=Yes]
+
+https://cadsrapi.nci.nih.gov/cadsrapi4/GetXML?query=DataElement,EnumeratedValueDomain,ValueDomainPermissibleValue,PermissibleValue,ValueMeaning,ConceptDerivationRule&amp;ComponentConcept[Concept[@longName=Blood and Blood Products]][@primaryFlag=Yes]
+<h4 id="id-1.ExamplesforDataElements-caDSRII.6">
+  1.7.6. caDSR II
+</h4>
+The URL for the results from the caDSR II REST API is
+https://cadsrapi.cancer.gov/invoke/caDSR/GetXML?query=DataElement,ValueDomain,ValueDomainPermissibleValue,PermissibleValue,ValueMeaning&amp;ComponentConcept[Concept[@preferredName=C19448],@primaryFlag=Yes]
+<h3 id="id-1.ExamplesforDataElements-FindAllEnumeratedPermissibleValuesforaDataElement">
+  1.8. Find All Enumerated Permissible Values for a Data Element
+</h3>
+The following examples find all enumerated permissible values for a data element using the data element&#39;s public ID and version or the data element&#39;s public ID (and getting latest version).
+<h4 id="id-1.ExamplesforDataElements-Legacy.4">
+  1.8.1. Legacy
+</h4>
+https://cadsrapi.nci.nih.gov/cadsrapi4/GetXML?query=PermissibleValue,ValueDomainPermissibleValue,EnumeratedValueDomain,ValueDomain&amp;DataElement[@publicId=106][@version=5.1]
+
+https://cadsrapi.nci.nih.gov/cadsrapi4/GetXML?query=PermissibleValue,ValueDomainPermissibleValue,EnumeratedValueDomain,ValueDomain&amp;DataElement[@publicId=106][@latestVersionIndicator=Yes]
+<h4 id="id-1.ExamplesforDataElements-caDSRII.7">
+  1.8.2. caDSR II
+</h4>
+The URL for the results from the caDSR II REST API is
+https://cadsrapi.cancer.gov/invoke/caDSR/GetXML?query=PermissibleValue,ValueDomainPermissibleValue,ValueDomain&amp;DataElement[@publicId=106,@version=5.1] 

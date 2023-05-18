@@ -1,0 +1,280 @@
+The information and links on this page are no longer being updated and are provided for reference purposes only.
+<h1 id="NCIExtensionstoProtege-NCIExtensionstoProtégé">
+  NCI Extensions to Protégé
+</h1>
+Contents of this Page
+<ul>
+  <li>
+    <a href="#NCIExtensionstoProtege-EVSProt%C3%A9g%C3%A9ExtensionsIntroductionandHistory" rel="nofollow">
+      EVS Protégé Extensions Introduction and History
+    </a>
+  </li>
+  <li>
+    <a href="#NCIExtensionstoProtege-EVSProt%C3%A9g%C3%A9Extensionspackages" rel="nofollow">
+      EVS Protégé Extensions packages
+    </a>
+  </li>
+  <li>
+    <a href="#NCIExtensionstoProtege-ExplanationServer" rel="nofollow">
+      Explanation Server
+    </a>
+  </li>
+  <li>
+    <a href="#NCIExtensionstoProtege-Prot%C3%A9g%C3%A9Server" rel="nofollow">
+      Protégé Server
+    </a>
+  </li>
+  <li>
+    <a href="#NCIExtensionstoProtege-Prot%C3%A9g%C3%A9Client" rel="nofollow">
+      Protégé Client
+    </a>
+  </li>
+  <li>
+    <a href="#NCIExtensionstoProtege-Prot%C3%A9g%C3%A9BusinessRules" rel="nofollow">
+      Protégé Business Rules
+    </a>
+    <ul>
+      <li>
+        <a href="#NCIExtensionstoProtege-RulesforEditing" rel="nofollow">
+          Rules for Editing
+        </a>
+      </li>
+      <li>
+        <a href="#NCIExtensionstoProtege-Retire" rel="nofollow">
+          Retire
+        </a>
+      </li>
+      <li>
+        <a href="#NCIExtensionstoProtege-Merge" rel="nofollow">
+          Merge
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#NCIExtensionstoProtege-HistoryRecordGeneration" rel="nofollow">
+      History Record Generation
+    </a>
+  </li>
+  <li>
+    <a href="#NCIExtensionstoProtege-SpecialEdits" rel="nofollow">
+      Special Edits
+    </a>
+    <ul>
+      <li>
+        <a href="#NCIExtensionstoProtege-Splits" rel="nofollow">
+          Splits
+        </a>
+      </li>
+      <li>
+        <a href="#NCIExtensionstoProtege-Retires" rel="nofollow">
+          Retires
+        </a>
+      </li>
+      <li>
+        <a href="#NCIExtensionstoProtege-Merges" rel="nofollow">
+          Merges
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#NCIExtensionstoProtege-Prot%C3%A9g%C3%A9EditingHistoryApplication" rel="nofollow">
+      Protégé Editing History Application
+    </a>
+  </li>
+</ul>
+This page is meant as an explanation of the NCI Protégé Extensions, why they were implemented and what they do.The Editor&#39;s Guide for the most recent version of the NCI Protégé extensions can be found
+<a href="https://cbiit-download.nci.nih.gov/evs/Protege/Docs/ProtegeProjectDocuments/Guides/NCI-Protege_EditorsGuide.pdf" rel="nofollow">
+  on GForge
+</a>
+. This provides the user with instructions on how to edit within the NCI Edit tab, how to do searches using the Advanced Search tab, how to handle workflow, pull reports, etc.
+<h2 id="NCIExtensionstoProtege-EVSProtégéExtensionsIntroductionandHistory">
+  EVS Protégé Extensions Introduction and History
+</h2>
+Version 1.2.3.25 is the first public release of the EVS Protégé Extensions. There have been multiple revisions released, tested and used internally over the past year. The current version is considered stable and reliable and suitable for external release.These extensions were created in response to a need for an open-source editing tool that could be customized to the needs of the EVS content editors. In addition, EVS wanted the ability to exchange and share editable content with external collaborators. The Protégé editing tool, developed by Stanford, was used as the basis and extended to meet these needs.The extensions are built on the Protégé 3.1 codebase and utilize pellet 1.5. Some improvements to the Protégé software were required to meet the needs of EVS, but these have already been merged into the Protégé trunk. Both Protégé and Pellet are included within the download. The Explanation Server was developed in collaboration with Clark &amp; Parsia LLC.The Protégé and the extensions are built and expect to run on Java 1.5.
+<h2 id="NCIExtensionstoProtege-EVSProtégéExtensionspackages">
+  EVS Protégé Extensions packages
+</h2>
+The EVS Protégé Extensions are broken into three separate packages. The Explanation Server provides classification and explanation functionality. The Protégé Server provides access to a central editing project for multiple users. The Protégé Client is the end-user application for accessing the Protégé Server and editing content.
+<h2 id="NCIExtensionstoProtege-ExplanationServer">
+  Explanation Server
+</h2>
+The Explanation Server is used to do classification of the ontology and provide explanations on demand to the Protégé Client gui. It runs directly against the database, independently of the Protégé Server. The Protégé Server queries the Explanation Server for information when needed and controls requests for classification, so multiple clients cannot try and classify at the same time.
+<h2 id="NCIExtensionstoProtege-ProtégéServer">
+  Protégé Server
+</h2>
+The Protégé Server provides multi-user access to a single ontology stored in a database. It coordinates and controls user activities and resource allocation. It stores a history of user actions for use in tracking changes and resolving conflicts. The server also provides a centralized means of enforcing business rules and configurations upon client applications. EVS has extended the Protégé Server to allow tracking of workflow and assigning of editing tasks.
+<h2 id="NCIExtensionstoProtege-ProtégéClient">
+  Protégé Client
+</h2>
+The Protégé Client is a java-swing based gui used for editing an ontology. EVS uses the client to connect to the Protégé Server application, allowing multiple editors to share the same ontology. The Protégé client can also be used in standalone mode to edit a single ontology but some of the client-server specific extensions are then disabled. The client is used in standalone mode by managers to perform Prompt comparisons and terminology exports.
+<h2 id="NCIExtensionstoProtege-ProtégéBusinessRules">
+  Protégé Business Rules
+</h2>
+The following are EVS business rules that the NCI Edit tab was programmed to enforce. These rules are a major reason why it was necessary to write an extension rather than using the default Protégé editor.
+<h3 id="NCIExtensionstoProtege-RulesforEditing">
+  Rules for Editing
+</h3>
+<ul>
+  <li>
+    Each concept must have one and only one NCI/PT Full-Syn
+  </li>
+  <li>
+    Each concept must have one and only one Preferred_Name
+  </li>
+  <li>
+    HD, AQ and PT are equivalent Full-Syn term types. (i.e. an NCI/AQ can take the place of an NCI/PT)
+  </li>
+  <li>
+    NCI/PT value must match the Preferred_Name
+  </li>
+  <li>
+    Properties cannot be duplicated within a concept
+  </li>
+  <li>
+    Roles cannot be duplicated within a concept
+  </li>
+  <li>
+    Role groups cannot be duplicated within a concept
+  </li>
+  <li>
+    Superclasses cannot be duplicated within a concept
+  </li>
+  <li>
+    The last superclass of a concept cannot be deleted
+  </li>
+  <li>
+    Cannot create a restriction pointed at a retired, pre-retired, or pre-merged class
+  </li>
+  <li>
+    If concept has Def_Curator property present, only authorized users can create, modify or delete the DEFINITION
+  </li>
+  <li>
+    If concept has Def_Curator property present, only authorized users can modify or delete the Def_Curator
+  </li>
+  <li>
+    Def_Curators must exist in a configuration file. No &#34;dummy&#34; Def_Curators
+  </li>
+  <li>
+    Each DEFINITION must have 1 review date, 1 review name, 0 or 1 attributes, and no source
+  </li>
+  <li>
+    Only single spaces allowed in a DEFINITION unless preceeded by !, ? or .
+  </li>
+  <li>
+    No leading or trailing spaces allowed in properties
+  </li>
+  <li>
+    Only single spaces allowed between tokens in properties (except for DEFINITION)
+  </li>
+  <li>
+    Properties cannot include the characters :,!,? or @ (except for DEFINITION which allows ! and ?)
+  </li>
+</ul>
+<h3 id="NCIExtensionstoProtege-Retire">
+  Retire
+</h3>
+<ul>
+  <li>
+    Pre-retired concepts are retired under the preretired_concepts bin
+  </li>
+  <li>
+    Pre-retire process forces dependent classes to be fixed (children retreed, incoming roles re-pointed)
+  </li>
+  <li>
+    Pre-retire concept must have and Editor_Note added explaining the retirement
+  </li>
+  <li>
+    Only the lead editor may do the final retire on a concept
+  </li>
+  <li>
+    Only the lead editor may edit retired concepts
+  </li>
+  <li>
+    Roles in the retiring concept converted to annotation properties called OLD_ROLE
+  </li>
+  <li>
+    Retiring concept deprecated using owl:deprecatedClass
+  </li>
+</ul>
+<h3 id="NCIExtensionstoProtege-Merge">
+  Merge
+</h3>
+<ul>
+  <li>
+    Pre-merge retiring concepts are double-treed under premerged_concepts bin
+  </li>
+  <li>
+    Pre-merge identifying properties (Merge_From, Merge_To) are added to the surviving and retiring concepts
+  </li>
+  <li>
+    Pre-merge retiring concept must have an Editor_Note added explaining the merge
+  </li>
+  <li>
+    Only the lead editor may do the final merge on a concept
+  </li>
+  <li>
+    Non-redundant roles and properties of the retiring concept are added to the surviving concept
+  </li>
+  <li>
+    Non-redundant incoming roles pointed at the retiring concept are re-pointed at the surviving concept
+  </li>
+  <li>
+    Roles in the retiring concept converted to annotation properties called OLD_ROLE
+  </li>
+  <li>
+    Retiring concept deprecated using owl:deprecatedClass
+  </li>
+</ul>
+<h2 id="NCIExtensionstoProtege-HistoryRecordGeneration">
+  History Record Generation
+</h2>
+All edits done on the vocabulary are recorded in an audit log in the database. The data recorded includes the username, type of edit, date and time of edit, and reference concepts. This raw audit log is processed to remove any identifying information using Prompt. The scrubbed version is called concept_history and is published on a monthly basis.The fields in these files are conceptcode|editaction|editdate|referencecode.
+<ul>
+  <li>
+    conceptcode is the unique, permanent, alphanumeric identifier of the concept
+  </li>
+  <li>
+    editaction is the activity being recorded (create, modify, split, merge, retire)
+  </li>
+  <li>
+    editdate is the date the activity occurred
+  </li>
+  <li>
+    referencecode is the identifier for a concept affected by or influencing the action, as detailed below
+  </li>
+</ul>
+The record will normally just be a single line and will look like this: C#####|create|dd-mon-yy|(null) or C#####|modify|dd-mon-yy|(null)
+<h2 id="NCIExtensionstoProtege-SpecialEdits">
+  Special Edits
+</h2>
+In the particular cases of Split, Merge and Retirement there are multiple rows written with reference codes included.
+<h3 id="NCIExtensionstoProtege-Splits">
+  Splits
+</h3>
+In a split, a single concept is split into two. The original concept survives and a new concept is generated. Two split records are written for the original concept with reference codes for the resulting concepts and a create history record is written for the new concept. In the case of C11111 being split into C11111 and C22222 the history will appear as follows: C22222|create|dd-mon-yy|(null) C11111|split|dd-mon-yy|C22222 C11111|split|dd-mon-yy|C11111
+<h3 id="NCIExtensionstoProtege-Retires">
+  Retires
+</h3>
+In a retirement the concept is moved from its old location in the tree hierarchy into the Retired_Kind. A retire record is written for the retiring concept with a reference code of the old superconcept. If a concept has multiple superconcepts, then a retire record is written for each reference. In the case of retiring concept C11111 which has two superconcepts (C22222 and C33333), the history will appear as follows: C11111|retire|dd-mon-yy|C22222 C11111|retire|dd-mon-yy|C33333
+<h3 id="NCIExtensionstoProtege-Merges">
+  Merges
+</h3>
+In a merge, two concepts are merged into one. One of the two concepts survives and the other concept is retired.  A merge history record is written for both of the concepts with a reference code of the surviving concept and a retire record is written for the concept that retires. In the case of C11111 merging with C22222 and C11111 surviving, the history will appear as follows: C11111|merge|dd-mon-yy|C11111 C22222|merge|dd-mon-yy|C11111 C22222|retire|dd-mon-yy|(null)
+<h2 id="NCIExtensionstoProtege-ProtégéEditingHistoryApplication">
+  Protégé Editing History Application
+</h2>
+There are a couple of simple web applications that are made available to allow editors to review the evs_history and concept_history tables. The evs_history is written in real-time, as edits are occurring. The concept_history is written during the Prompt cycle. The applications allow access to both the Production and QA tiers of both BiomedGT and NCI Thesaurus.
+<ul>
+  <li>
+    <a href="http://cbvapp-d1007.nci.nih.gov:19580/QueryHistory/" rel="nofollow">
+      EVS History Query
+    </a>
+  </li>
+  <li>
+    <a href="http://cbvapp-d1007.nci.nih.gov:19580/ConceptHistoryQuery/" rel="nofollow">
+      Concept History Query
+    </a>
+  </li>
+</ul>

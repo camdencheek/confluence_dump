@@ -1,0 +1,360 @@
+Unable to render {include} The included page could not be found.
+<h1 id="caArray006StepbyStepGuidetoInstallcaArray2.xGridService(caArray2.2andUnder)-StepbyStepGuidetoInstallcaArray2.xGridService(caArray2.2andUnder)">
+  Step by Step Guide to Install caArray 2.x Grid Service (caArray 2.2 and Under)
+</h1>
+Topic: caArray Installation and UpgradeRelease: Up to caArray 2.2Date entered: 01/26/2009Contents of this Page
+<ul>
+  <li>
+    <a href="#caArray006StepbyStepGuidetoInstallcaArray2.xGridService(caArray2.2andUnder)-Introduction" rel="nofollow">
+      Introduction
+    </a>
+  </li>
+  <li>
+    <a href="#caArray006StepbyStepGuidetoInstallcaArray2.xGridService(caArray2.2andUnder)-Prerequisite" rel="nofollow">
+      Prerequisite
+    </a>
+  </li>
+  <li>
+    <a href="#caArray006StepbyStepGuidetoInstallcaArray2.xGridService(caArray2.2andUnder)-AbbreviationUsed" rel="nofollow">
+      Abbreviation Used
+    </a>
+  </li>
+  <li>
+    <a href="#caArray006StepbyStepGuidetoInstallcaArray2.xGridService(caArray2.2andUnder)-Step1.Makeappropriatechangestoinstall.propertiesfile" rel="nofollow">
+      Step 1. Make appropriate changes to install.properties file
+    </a>
+  </li>
+  <li>
+    <a href="#caArray006StepbyStepGuidetoInstallcaArray2.xGridService(caArray2.2andUnder)-Step2.Runanttocompilesourcecode" rel="nofollow">
+      Step 2. Run ant to compile source code
+    </a>
+  </li>
+  <li>
+    <a href="#caArray006StepbyStepGuidetoInstallcaArray2.xGridService(caArray2.2andUnder)-Step3.Makeappropriatechangestoweb.xmlfile" rel="nofollow">
+      Step 3. Make appropriate changes to web.xml file
+    </a>
+  </li>
+  <li>
+    <a href="#caArray006StepbyStepGuidetoInstallcaArray2.xGridService(caArray2.2andUnder)-Step4.Makeappropriatechangestoserver-config.wsdd" rel="nofollow">
+      Step 4. Make appropriate changes to server-config.wsdd
+    </a>
+  </li>
+  <li>
+    <a href="#caArray006StepbyStepGuidetoInstallcaArray2.xGridService(caArray2.2andUnder)-Step5.MakeappropriatechangestoCaArraySvc_registration.xml" rel="nofollow">
+      Step 5. Make appropriate changes to CaArraySvc_registration.xml
+    </a>
+  </li>
+  <li>
+    <a href="#caArray006StepbyStepGuidetoInstallcaArray2.xGridService(caArray2.2andUnder)-Step6.MakeappropriatechangestoserviceMetadata.xml" rel="nofollow">
+      Step 6. Make appropriate changes to serviceMetadata.xml
+    </a>
+  </li>
+  <li>
+    <a href="#caArray006StepbyStepGuidetoInstallcaArray2.xGridService(caArray2.2andUnder)-Step7.RestartJBossserverforgridservice" rel="nofollow">
+      Step 7. Restart JBoss server for grid service
+    </a>
+  </li>
+  <li>
+    <a href="#caArray006StepbyStepGuidetoInstallcaArray2.xGridService(caArray2.2andUnder)-Step8.TestingcaGridServiceInstalled" rel="nofollow">
+      Step 8. Testing caGrid Service Installed
+    </a>
+  </li>
+  <li>
+    <a href="#caArray006StepbyStepGuidetoInstallcaArray2.xGridService(caArray2.2andUnder)-Haveacomment?" rel="nofollow">
+      Have a comment?
+    </a>
+  </li>
+</ul>
+<h2 id="caArray006StepbyStepGuidetoInstallcaArray2.xGridService(caArray2.2andUnder)-Introduction">
+  Introduction
+</h2>
+There are three components installed during caArray&#39;s installation process: UPT, caArray and caArray Grid Service (refer to
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=42832237" rel="nofollow">
+  caArray 001 - UPT required for caArray or other application tools in LSD Bundle
+</a>
+). UPT is a mandatory application used for caArray&#39;s user access control. The caGrid Service is used to advertise your caArray application on the
+<a href="http://cagrid-portal.nci.nih.gov/web/guest/home" rel="nofollow">
+  NCI caGrid Portal
+</a>
+. The caGrid Portal provides a visual display of the services that are running on the caGrid infrastructure and the institutions that are participating in the caBIG program. You can easily find caBIG services, participants, and points of contact on the caGrid Portal. You can also query caGrid data services, share your queries, and search for the queries of other community members. Advertising your caGrid Service on caGrid Portal is optional. You may choose to participate at a later time, or you may choose not to participate at all.The official caGrid Service configuration steps can be found in
+<a href="https://ncisvn.nci.nih.gov/svn/files/trunk/caarray2/caarray2/2.2.0Patch1/caArray_2_2_0_installation_guide.pdf" rel="nofollow">
+  caArray Installation Guide (page 23)
+</a>
+(login required). This knowledge base entry offers a supplemental step by step installation guide based on our hands-on experience here at Columbia University.
+<h2 id="caArray006StepbyStepGuidetoInstallcaArray2.xGridService(caArray2.2andUnder)-Prerequisite">
+  Prerequisite
+</h2>
+caArray 2.x application must be running prior to the activation of your caGrid service on the caGrid Portal. However, the grid service is not required for the caArray application to run.
+<h2 id="caArray006StepbyStepGuidetoInstallcaArray2.xGridService(caArray2.2andUnder)-AbbreviationUsed">
+  Abbreviation Used
+</h2>
+The following abbreviations will be used through the text:
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Abbreviation
+      </th>
+      <th>
+        Comment
+      </th>
+    </tr>
+    <tr>
+      <td>
+        &lt;installation_directory&gt;
+      </td>
+      <td>
+        The location where you keep the files downloaded. Example: /app_data1/caArray2.1
+      </td>
+    </tr>
+    <tr>
+      <td>
+        &lt;application_base_path&gt; = ${application.base.path}
+      </td>
+      <td>
+        The location where you are going to install caArray and caGrid service. Example: /app_data1/caarray_app/caarray
+      </td>
+    </tr>
+    <tr>
+      <td>
+        &lt;grid.home&gt; = ${application.base.path}
+      </td>
+      <td>
+        The location for the caGrid service files, see step 2 It is predefined in install.properties file.
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="caArray006StepbyStepGuidetoInstallcaArray2.xGridService(caArray2.2andUnder)-Step1.Makeappropriatechangestoinstall.propertiesfile">
+  Step 1. Make appropriate changes to install.properties file
+</h2>
+File Location: &lt;installation_directory&gt;/install.propertiesThis is the step to configure Install.properties file before the deployment of caArray Grid service begins. caGrid service and caArray share the same Install.properties file.It is important to specify following properties:
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Property
+      </th>
+      <th>
+        Comments
+      </th>
+    </tr>
+    <tr>
+      <td>
+        application.base.path=/app_data1/caarray_app/caarray
+      </td>
+      <td>
+        The location where you are going to install caArray (i.e. the deployment of caGrid service and caArray application).  It need to be pre-created before installation start. Important: &lt;application_base_path&gt; must be different from &lt;installation_directory&gt; or the installation will fail.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        grid.index URL =http://cagrid-index.nci.nih.gov:8080/wsrf/services/DefaultIndexService
+      </td>
+      <td>
+        NCI caGrid service&#39;s production webserver name
+      </td>
+    </tr>
+    <tr>
+      <td>
+        domain.name=afapp1.c2b2.columbia.edu
+      </td>
+      <td>
+        Our private DNS name where the caArray is installed.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        grid.static.grid.hostname=localhost
+      </td>
+      <td>
+        We use localhost here because our caGrid service is on the same machine as caArray (a default configuration).  The caGrid service&#39;s hostname must be used if it is installed on a different machine from caArray application.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        grid.static.grid.port=80
+      </td>
+      <td>
+        Our publicly accessible port to DMZ Zone
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="caArray006StepbyStepGuidetoInstallcaArray2.xGridService(caArray2.2andUnder)-Step2.Runanttocompilesourcecode">
+  Step 2. Run ant to compile source code
+</h2>
+File location: &lt;installation_directory&gt;/antDuring the compiling process, Java class files will be deployed into following two directories, as defined in Install.properties file:
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Directory
+      </th>
+      <th>
+        Comments
+      </th>
+    </tr>
+    <tr>
+      <td>
+        grid.home=${application.base.path}/jboss-4.0.4.GA
+      </td>
+      <td>
+        For caGrid service (created during the deployment)
+      </td>
+    </tr>
+    <tr>
+      <td>
+        jboss.home=${application.base.path}/jboss-4.0.5.GA
+      </td>
+      <td>
+        For Jboss service (created during the deployment)
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="caArray006StepbyStepGuidetoInstallcaArray2.xGridService(caArray2.2andUnder)-Step3.Makeappropriatechangestoweb.xmlfile">
+  Step 3. Make appropriate changes to web.xml file
+</h2>
+File Location: &lt;grid.home&gt;/server/default/deploy/wsrf.war/WEB-INF/web.xml
+	&lt;param-name&gt;defaultPort&lt;/param-name&gt;
+	&lt;param-value&gt;80&lt;/param-value&gt;
+
+The web.xml file contains the port and protocol your grid service will be advertised as. The port defined here should be the same publicly accessible port as defined in your property file (grid.static.grid.port in Step 1). It is port 80 in our case, as defined in our property file.caArray Application and Port Forwarding
+<img alt="caArray Application and Port Forwarding as explained in the text that follows" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caArray2/caArray%20006%20-%20Step%20by%20Step%20Guide%20to%20Install%20caArray%202.x%20Grid%20Service%20(caArray%202.2%20and%20Under)/CaGrid-Network.JPG?api=v2">
+Our caGrid service server physically resides on an internal server (afapp1.c2b2.columbia.edu:18080) behind the firewall. This address, however, is not reachable from outside of Columbia University&#39;s network. Our publicly accessible address (a logical hostname) is:
+Historical link
+http://caarraygrid.c2b2.columbia.edu:80/wsrf/services/cagrid/CaArraySvc
+Since our caGrid service is actually running on the internal server&#39;s port 18080, a proxy server will forward any incoming request from the publicly accessible port 80 to port 18080 on the internal host.The port used in web.xml should be the port from the publicly accessible address, not the port on the internal server.
+<h2 id="caArray006StepbyStepGuidetoInstallcaArray2.xGridService(caArray2.2andUnder)-Step4.Makeappropriatechangestoserver-config.wsdd">
+  Step 4. Make appropriate changes to server-config.wsdd
+</h2>
+File Location: &lt;grid.home&gt;/server/default/deploy/wsrf.war/WEB-INF/etc/globus_wsrf_core/server-config.wsddThis is to add your caGrid service&#39;s publicly accessible DNS name into configuration file.
+	&lt;parameter name=&#34;logicalHost&#34; value=&#34;caarraygrid.c2b2.columbia.edu&#34;/&gt;
+<h2 id="caArray006StepbyStepGuidetoInstallcaArray2.xGridService(caArray2.2andUnder)-Step5.MakeappropriatechangestoCaArraySvc_registration.xml">
+  Step 5. Make appropriate changes to CaArraySvc_registration.xml
+</h2>
+File Location: &lt;grid.home&gt;/server/default/deploy/wsrf.war/WEB-INF/etc/cagrid_CaArraySvc/CaArraySvc_registration.xmlThis file has the URL to the Index Server where you can see if your service is advertised. Make sure it contains following:
+	&lt;ServiceGroupEPR&gt;
+&lt;wsa:Address&gt;http://cagrid-index.nci.nih.gov:8080/wsrf/services/DefaultIndexService&lt;/wsa:Address&gt;
+	&lt;/ServiceGroupEPR&gt;
+<h2 id="caArray006StepbyStepGuidetoInstallcaArray2.xGridService(caArray2.2andUnder)-Step6.MakeappropriatechangestoserviceMetadata.xml">
+  Step 6. Make appropriate changes to serviceMetadata.xml
+</h2>
+File Location: &lt;grid.home&gt;/server/default/deploy/wsrf.war/WEB-INF/etc/cagrid_CaArraySvc/serviceMetadata.xmlThis file contains the contact information for your caGrid service. Your caGrid Service will not be recognized in the caGrid Portal without the proper identification defined here.The following is in the top of the file.
+&lt;ns2:pointOfContactCollection&gt;
+&lt;ns3:PointOfContact affiliation=&#34;Columbia University Medical Center&#34;  email=&#34;my_contact@my.organization&#34;
+firstName=&#34;My FirstName&#34; lastName=&#34;My LastName&#34; phoneNumber=&#34;My Phone&#34; role=&#34;DBA&#34;
+xmlns:ns3=&#34;gme://caGrid.caBIG/1.0/gov.nih.nci.cagrid.metadata.common&#34;/&gt;
+&lt;/ns2:pointOfContactCollection&gt;
+
+The following is at the bottom of the file.
+&lt;ns1:hostingResearchCenter&gt;
+&lt;ns14:ResearchCenter displayName=&#34;Columbia University Medical Center&#34;  shortName=&#34;CUMC&#34;
+xmlns:ns14=&#34;gme://caGrid.caBIG/1.0/gov.nih.nci.cagrid.metadata.common&#34;&gt;
+&lt;ns14:Address country=&#34;US&#34; locality=&#34;New York&#34; postalCode=&#34;10032&#34; stateProvince=&#34;NY&#34; street1=&#34;My Street1.&#34; street2=&#34;&#34;/&gt;
+&lt;ns14:pointOfContactCollection&gt;
+&lt;ns14:PointOfContact affiliation=&#34;Columbia University Medical Center&#34; email=&#34;my_contact@my.organization&#34;
+firstName=&#34;My FirstName&#34; lastName=&#34;My LastName&#34; phoneNumber=&#34;My Phone&#34; role=&#34;DBA&#34;/&gt;
+&lt;/ns14:pointOfContactCollection&gt;
+&lt;/ns14:ResearchCenter&gt;
+&lt;/ns1:hostingResearchCenter&gt;
+<h2 id="caArray006StepbyStepGuidetoInstallcaArray2.xGridService(caArray2.2andUnder)-Step7.RestartJBossserverforgridservice">
+  Step 7. Restart JBoss server for grid service
+</h2>
+cd $\{application.base.path\}/jboss-4.0.4.GA/bin
+	nohup ./run.sh &amp;amp;
+<h2 id="caArray006StepbyStepGuidetoInstallcaArray2.xGridService(caArray2.2andUnder)-Step8.TestingcaGridServiceInstalled">
+  Step 8. Testing caGrid Service Installed
+</h2>
+The table below summarizes four methods we used to test if our newly installed caGrid Service (caarraygrid) works properly:
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Objects
+      </th>
+      <th>
+        Procedures
+      </th>
+      <th>
+        Results
+      </th>
+    </tr>
+    <tr>
+      <td>
+        Does caarraygrid Registered in NCI Index?
+      </td>
+      <td>
+        <ul>
+          <li>
+            export GLOBUS_LOCATION=/app_data1/ws-core-4.0.3
+          </li>
+          <li>
+            cd /app_data1/ws-core-4.0.3/bin
+          </li>
+          <li>
+            ./wsrf-query -a -z none -s http://cagrid-index.nci.nih.gov:8080/wsrf/services/DefaultIndexService | grep &#39;caarraygrid&#39;
+          </li>
+        </ul>
+      </td>
+      <td>
+        Following Information should be returned:&lt;ns8:Address xmlns:ns8=&#34;http://schemas.xmlsoap.org/ws/2004/03/addressing&#34;&gt;http://caarraygrid.c2b2.columbia.edu:80/wsrf/services/cagrid/CaArraySvc&lt;/ns8:Address&gt;
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Is our registration accurate with ServiceMetaData?
+      </td>
+      <td>
+        <ul>
+          <li>
+            ./wsrf-get-property -a -z none -s http://caarraygrid.c2b2.columbia.edu:80/wsrf/services/cagrid/CaArraySvc {gme://caGrid.caBIG/1.0/gov.nih.nci.cagrid.metadata}ServiceMetadata
+          </li>
+        </ul>
+      </td>
+      <td>
+        It should return our contact information, such as:&lt;ns1:ServiceMetadata xmlns:ns1=&#34;gme://caGrid.caBIG/1.0/gov.nih.nci.cagrid.metadata&#34;&gt; &lt;ns1:serviceDescription&gt; &lt;ns2:Service description=&#34;&#34; name=&#34;CaArraySvc&#34; version=&#34;1.1&#34; xmlns:ns2=&#34;gme://caGrid.caBIG/1.0/gov.nih.nci.cagrid.metadata.service&#34;&gt; &lt;ns2:pointOfContactCollection&gt; &lt;ns3:PointOfContact affiliation=&#34;Columbia University Medical Center&#34; ....
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Is there any data returned with DomainModel?
+      </td>
+      <td>
+        <ul>
+          <li>
+            ./wsrf-get-property -a -z none -s http://caarraygrid.c2b2.columbia.edu:80/wsrf/services/cagrid/CaArraySvc {gme://caGrid.caBIG/1.0/gov.nih.nci.cagrid.metadata.dataservice}DomainModel
+          </li>
+        </ul>
+      </td>
+      <td>
+        It should return some of our data from caArray, such as: &lt;ns1:DomainModel projectDescription=&#34;Version 2.0 caArray Model&#34; projectLongName=&#34;caArray&#34; projectShortName=&#34;caArray&#34; projectVersion=&#34;2&#34; xmlns:ns1=&#34;gme://caGrid.caBIG/1.0/gov.nih.nci.cagrid.metadata.dataservice&#34;&gt; &lt;ns1:exposedUMLAssociationCollection&gt; &lt;ns1:UMLAssociation bidirectional=&#34;false&#34;&gt; &lt;ns1:targetUMLAssociationEdge&gt; &lt;ns1:UMLAssociationEdge maxCardinality=&#34;1&#34; minCardinality=&#34;0&#34; roleName=&#34;annotation&#34;&gt; &lt;ns1:UMLClassReference refid=&#34;5423786E-6C04-59EA-E044-0003BA3F9857&#34;/&gt; ....
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Can I see my caGrid Service online?
+      </td>
+      <td>
+        <ul>
+          <li>
+            Go to http://cagrid-portal.nci.nih.gov/web/guest/home Click the &#34;SERVICES&#34; tab -&gt; &#34;Search&#34; tab -&gt; [MATKC:&#39;Keyword&#39; = &#34;caarraygrid&#34; and &#39;Search Fields&#39; = &#34;URL&#34; ] -&gt; &#34;Search&#34; button
+          </li>
+        </ul>
+      </td>
+      <td>
+        Checking that caGrid is online
+        <img alt="Screenshot showing Checking that caGrid is online" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caArray2/caArray%20006%20-%20Step%20by%20Step%20Guide%20to%20Install%20caArray%202.x%20Grid%20Service%20(caArray%202.2%20and%20Under)/Check-cagrid-online.JPG?api=v2">
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="caArray006StepbyStepGuidetoInstallcaArray2.xGridService(caArray2.2andUnder)-Haveacomment?">
+  Have a comment?
+</h2>
+Please leave your comment in the
+<a href="https://cabig-kc.nci.nih.gov/Molecular/forums/viewtopic.php?f=6&amp;t=577" rel="nofollow">
+  caArray End User Forum
+</a>
+.

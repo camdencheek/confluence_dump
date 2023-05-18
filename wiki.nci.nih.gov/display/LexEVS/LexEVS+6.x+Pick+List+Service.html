@@ -1,0 +1,1248 @@
+Contents of this Page
+<ul>
+  <li>
+    <a href="#LexEVS6.xPickListService-Introduction" rel="nofollow">
+      Introduction
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.xPickListService-LexEVSPickListDefinitionServicesClassDiagram" rel="nofollow">
+      LexEVSPickListDefinitionServices Class Diagram
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.xPickListService-LexEVSPickListServiceAPI" rel="nofollow">
+      LexEVS Pick List Service API
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.xPickListService-AdministrationFunctions" rel="nofollow">
+      Administration Functions
+    </a>
+    <ul>
+      <li>
+        <a href="#LexEVS6.xPickListService-LoadFunctions" rel="nofollow">
+          Load Functions
+        </a>
+        <ul>
+          <li>
+            <a href="#LexEVS6.xPickListService-LoadingPickListDefinitionObject" rel="nofollow">
+              Loading Pick List Definition Object
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS6.xPickListService-LoadingPickListDefinitionsinFile" rel="nofollow">
+              Loading Pick List Definitions in File
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#LexEVS6.xPickListService-ExportPickList" rel="nofollow">
+          Export Pick List
+        </a>
+        <ul>
+          <li>
+            <a href="#LexEVS6.xPickListService-ExportPickListDefinition" rel="nofollow">
+              Export Pick List Definition
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#LexEVS6.xPickListService-RemovePickListDefinition" rel="nofollow">
+          Remove Pick List Definition
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#LexEVS6.xPickListService-QueryFunctions" rel="nofollow">
+      Query Functions
+    </a>
+    <ul>
+      <li>
+        <a href="#LexEVS6.xPickListService-ValidateXMLResources" rel="nofollow">
+          Validate XML Resources
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.xPickListService-getPickListDefinitionById" rel="nofollow">
+          getPickListDefinitionById
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.xPickListService-getPickListDefinitionIdForValueSetDefinitionUri" rel="nofollow">
+          getPickListDefinitionIdForValueSetDefinitionUri
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.xPickListService-getPickListValueSetDefinition" rel="nofollow">
+          getPickListValueSetDefinition
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.xPickListService-listPickListIds" rel="nofollow">
+          listPickListIds
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#LexEVS6.xPickListService-ResolveFunctions" rel="nofollow">
+      Resolve Functions
+    </a>
+    <ul>
+      <li>
+        <a href="#LexEVS6.xPickListService-ResolvingStoredPickListDefinition" rel="nofollow">
+          Resolving Stored Pick List Definition
+        </a>
+        <ul>
+          <li>
+            <a href="#LexEVS6.xPickListService-resolvePickList" rel="nofollow">
+              resolvePickList
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS6.xPickListService-resolvePickList.1" rel="nofollow">
+              resolvePickList
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS6.xPickListService-resolvePickListForTerm" rel="nofollow">
+              resolvePickListForTerm
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#LexEVS6.xPickListService-ResolvingSuppliedPickListDefinitionObject" rel="nofollow">
+          Resolving Supplied Pick List Definition Object
+        </a>
+        <ul>
+          <li>
+            <a href="#LexEVS6.xPickListService-resolvePickList.2" rel="nofollow">
+              resolvePickList
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#LexEVS6.xPickListService-ResolvedPickListObjects" rel="nofollow">
+          Resolved Pick List Objects
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#LexEVS6.xPickListService-ErrorHandling" rel="nofollow">
+      Error Handling
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.xPickListService-LoadScripts" rel="nofollow">
+      Load Scripts
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.xPickListService-SamplePickListDefinitionsXMLFile" rel="nofollow">
+      Sample Pick List Definitions XML File
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.xPickListService-Installation/Packaging" rel="nofollow">
+      Installation / Packaging
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.xPickListService-SystemTesting" rel="nofollow">
+      System Testing
+    </a>
+  </li>
+</ul>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        LexEVS Value Set Links
+      </th>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427293" rel="nofollow">
+              Value Set Guide Main Page
+            </a>
+            <ul>
+              <li>
+                <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427292" rel="nofollow">
+                  Value Set Design
+                </a>
+              </li>
+              <li>
+                <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427340" rel="nofollow">
+                  Value Set Service API
+                </a>
+              </li>
+              <li>
+                <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427291" rel="nofollow">
+                  Pick List Design
+                </a>
+              </li>
+              <li>
+                <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427365" rel="nofollow">
+                  Pick List Service API
+                </a>
+              </li>
+              <li>
+                <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427329" rel="nofollow">
+                  Value Set GUI
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427334" rel="nofollow">
+              Programmer&#39;s Guide Main Page
+            </a>
+          </li>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=69730353" rel="nofollow">
+              LexEVS 6.0 Main Page
+            </a>
+          </li>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427448" rel="nofollow">
+              LexEVS Current Release
+            </a>
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="LexEVS6.xPickListService-Introduction">
+  Introduction
+</h2>
+The Pick List services are integrated parts of the LexEVS API. It provide three major functions:
+<ul>
+  <li>
+    Administration- Ability to load, export and remove Pick List Definitions
+    <ul>
+      <li>
+        Loader - Ability to load Pick List Definitions programmatically into the LexGrid repository using the domain objects that are available via the LexGrid logical model
+      </li>
+      <li>
+        Exporter - Ability to export Pick List Definition and Pick List Resolution to a file in LexGrid XML format
+      </li>
+      <li>
+        Remove - Ability to remove Pick List Definition from the systemNoteThese administration operations can be performed in LexEVS &#39;Local&#39; environment only. This can not be performed using LexEVS Distributed environment.
+      </li>
+    </ul>
+  </li>
+  <li>
+    Query - Ability to apply user restrictions (ex: PickListId) and dynamically resolve the definitions at run time
+  </li>
+  <li>
+    Resolve - Ability to resolve Pick List Definition dynamically against selected Coding Scheme Version(s) and return all/selected terms of the concepts belonging to the pick list
+  </li>
+</ul>
+The LexEVS Pick List Services expose the API particularly for the Pick List Definition elements of the LexGrid Logical Model. For more information on LexGrid model see the
+<a href="http://informatics.mayo.edu/LexGrid/downloads/LexGrid%20Model/schemas/2010/01/EA/index.htm" rel="nofollow">
+  LexGrid model schema
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+<h2 id="LexEVS6.xPickListService-LexEVSPickListDefinitionServicesClassDiagram">
+  LexEVSPickListDefinitionServices Class Diagram
+</h2>
+LexEVSPickListDefinitionServices is the main interface for all the services provided by LexEVS Pick List API. Here is the class diagram of LexEVSPickListDefinitionServices:
+<img alt="class diagram of LexEVSPickListDefinitionServices" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%206.x%20Pick%20List%20Service/LexEVSPickListDefinitionServices.jpg?api=v2">
+<h2 id="LexEVS6.xPickListService-LexEVSPickListServiceAPI">
+  LexEVS Pick List Service API
+</h2>
+LexEVS Pick List Definition Services provides three major functions:
+<ul>
+  <li>
+    Administration function
+  </li>
+  <li>
+    Query function and
+  </li>
+  <li>
+    Resolve function
+  </li>
+</ul>
+Each of these functions are described in following sections.
+<h2 id="LexEVS6.xPickListService-AdministrationFunctions">
+  Administration Functions
+</h2>
+LexEVS Pick List Definition Services provides following administration functions :
+<ul>
+  <li>
+    Load
+  </li>
+  <li>
+    Export and
+  </li>
+  <li>
+    Remove
+  </li>
+</ul>
+NoteThese administration operations can be performed in LexEVS &#39;Local&#39; environment only. This can not be performed using LexEVS Distributed environment.
+<h3 id="LexEVS6.xPickListService-LoadFunctions">
+  Load Functions
+</h3>
+<ul>
+  <li>
+    Loading Pick List Definition Object - This function provides the capability to load supplied PickListDefinition object into the system.
+  </li>
+  <li>
+    Loading Pick List Definitions in file - This function provides the capability to load Pick List Definitions found in file that are in LexGrid XML format.
+  </li>
+</ul>
+<h4 id="LexEVS6.xPickListService-LoadingPickListDefinitionObject">
+  Loading Pick List Definition Object
+</h4>
+This function can be used to load supplied Pick List Definition object to the system.loadPickList(PickListDefinition pldef, String systemReleaseURI, Mappings mappings)
+<table>
+  <tbody>
+    <tr>
+      <td>
+        Description:
+      </td>
+      <td>
+        Loads supplied Pick List Definition object
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Input:
+      </td>
+      <td>
+        org.LexGrid.valueSets.PickListDefinition pldef - (Mandatory) pick list definition object to load java.lang.String systemReleaseURI - (Optional) System Release URI this Pick List Definition belongs to. org.LexGrid.naming.Mappings mappings - (Optional) List of Supported Attributes this Pick List Definition uses.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Output:
+      </td>
+      <td>
+        none
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Exception:
+      </td>
+      <td>
+        LBException
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Implementation Details:
+      </td>
+      <td>
+        Implementation:   Step 1: Call this method on the associated LexEVS Pick List Service instance to load the Pick List Definition object and the System Release URI that this definition belongs to.  Sample Call:
+        <ul>
+          <li>
+            Step 1:Instantiate LexEVSPickListServices if it is not done yet :
+            org.lexgrid.valuesets.LexEVSPickListDefinitionServices plServ = org.lexgrid.valuesets.impl.LexEVSPickListDefinitionServicesImpl.defaultInstance();
+          </li>
+          <li>
+            Step 2:Create and populate the PickListDefinition object.
+            org.LexGrid.valueSets.PickListDefinition pickList = new org.LexGrid.valueSets.PickListDefinition();
+            pickList.setPickListId(pickListId);
+            pickList.setRepresentsValueSetDefinition(vdURI);
+            pickList.setCompleteSet(true);
+            pickList.setDefaultEntityCodeNamespace(ecns);
+            pickList.setDefaultLanguage(&#34;en&#34;);
+            pickList.setDefaultSortOrder(&#34;asc&#34;);
+            pickList.setIsActive(true);
+            pickList.setEntityDescription(red);
+
+            Similarly, PickListEntryNode, Property, and Mapping objects can be created and assigned to the pickList object.
+            _pickList.getPickListEntryNode.add(pickListEntry);
+            _pickList.setProperties(propertisObject);
+            _pickList.setMappings(mappingsObject);
+          </li>
+          <li>
+            Step 3:Call the load method by passing the Pick List Definition object and the System Release URI.
+            plServ.loadPickList(pickList,&#34;Release 2010&#34;, null);
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h4 id="LexEVS6.xPickListService-LoadingPickListDefinitionsinFile">
+  Loading Pick List Definitions in File
+</h4>
+This function can be used to load Pick List Definition(s) to the system from a file that is in LexGrid XML format.loadPickList(String xmlFileLocation, boolean failOnAllErrors)
+<table>
+  <tbody>
+    <tr>
+      <td>
+        Description:
+      </td>
+      <td>
+        Loads Pick List Definitions found in input xml file.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Input:
+      </td>
+      <td>
+        java.lang.String xmlFileLocation - (Mandatory) File containing Pick List Definition(s) in LexGrid XML format. boolean failOnErrors - (Optional) default is false.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Output:
+      </td>
+      <td>
+        none
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Exception:
+      </td>
+      <td>
+        LBException
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Implementation Details:
+      </td>
+      <td>
+        Implementation:   Step 1: Call this method on the associated LexEVS Pick List Service instance to load all Pick List Definitions found in an XML file that is in LexGrid format.  Sample Call:
+        <ul>
+          <li>
+            Step 1:Instantiate LexEVSPickListServices if it is not done yet :
+            org.lexgrid.valuesets.LexEVSPickListDefinitionServices plServ = org.lexgrid.valuesets.impl.LexEVSPickListDefinitionServicesImpl.defaultInstance();
+          </li>
+          <li>
+            Step 2:Call load method by passing the inputfile location and boolean flag whether to stop on load errors:
+            plServ.loadPickList(inputXMLFile, true);
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h3 id="LexEVS6.xPickListService-ExportPickList">
+  Export Pick List
+</h3>
+The only export function available :
+<ul>
+  <li>
+    Export Pick List Definition - This function provides the capability to export Pick list Definition to a file in LexGrid XML format. This will be helpful if there is a need to import this exported Pick List Definition in different instance of LexEVS.
+  </li>
+</ul>
+<h4 id="LexEVS6.xPickListService-ExportPickListDefinition">
+  Export Pick List Definition
+</h4>
+This function provides the capability to export Pick List Definition to a file in LexGrid XML format. This will be helpful if there is a need to import this exported Pick List Definition in different instance of LexEVS.exportPickListDefinition(String pickListId, String xmlFolderLocation, boolean overwrite, boolean failOnAllErrors)
+<table>
+  <tbody>
+    <tr>
+      <td>
+        Description:
+      </td>
+      <td>
+        Export Pick List Definition to a file in LexGrid XML format.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Input:
+      </td>
+      <td>
+        java.lang.String pickListId- (Optional) id of pick list definition to export java.lang.String xmlFullPathName - (Mandatory) Location to save the definition
+        boolean  overwrite - True: to override the existing file.
+        boolean failOnAllErrors - True: stops exporting if any error. |
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Output:
+      </td>
+      <td>
+        none
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Exception:
+      </td>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Implementation Details:
+      </td>
+      <td>
+        Implementation:   _Step 1:_Call this method on the associated LexEVS Pick List Service instance to export the Pick List Definition to a file in LexGrid XML format.   Sample Call:
+        <ul>
+          <li>
+            Step 1:Instantiate LexEVSPickListDefinitionServices if it is not done yet :
+            org.lexgrid.valuesets.LexEVSPickListDefinitionServices plServ = org.lexgrid.valuesets.impl.LexEVSPickListDefinitionServicesImpl.defaultInstance();
+          </li>
+          <li>
+            Step 2:Call exportPickListDefinition method and provide parameter values :
+            plServ.exportPickListDefinition(valueSetDefinitionURI, null, true, false);
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h3 id="LexEVS6.xPickListService-RemovePickListDefinition">
+  Remove Pick List Definition
+</h3>
+This function provides the capability to remove pick list definition from the system.removePickList(String pickListId)
+<table>
+  <tbody>
+    <tr>
+      <td>
+        Description:
+      </td>
+      <td>
+        Removes supplied Pick List Definition from the system.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Input:
+      </td>
+      <td>
+        java.lang.String
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Output:
+      </td>
+      <td>
+        none
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Exception:
+      </td>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Implementation Details:
+      </td>
+      <td>
+        Implementation:   Step 1: Call this method on the associated LexEVS Pick List Service instance to remove Pick List Definition from the system that matches the supplied pickListId.  Sample Call:
+        <ul>
+          <li>
+            Step 1:Instantiate LexEVSPickListServices if it is not done yet :
+            org.lexgrid.valuesets.LexEVSPickListServices plServ = org.lexgrid.valuesets.impl.LexEVSPickListDefinitionServicesImpl.defaultInstance();
+          </li>
+          <li>
+            Step 2:Call removePickList method:
+            plServ.removePickList (&#34;AUTO:AllDomesticANDGM&#34;);
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="LexEVS6.xPickListService-QueryFunctions">
+  Query Functions
+</h2>
+Here are some of the query functions that can be run against pick list definitions using the LexEVS Pick List Services.
+<h3 id="LexEVS6.xPickListService-ValidateXMLResources">
+  Validate XML Resources
+</h3>
+validate(URI uri, int valicationLevel)
+<table>
+  <tbody>
+    <tr>
+      <td>
+        Description:
+      </td>
+      <td>
+        Perform validation of the candidate resource without loading data.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Input:
+      </td>
+      <td>
+        java.net URI xmlFileLocation - (Mandatory) File containing PickListDefinition(s) in LexGrid XML format. int validationLevel_ - validatation level includes:
+        <ul>
+          <li>
+            0 = Verify document is well-formed
+          </li>
+          <li>
+            1 = Verify document is valid
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Output:
+      </td>
+      <td>
+        none
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Exception:
+      </td>
+      <td>
+        Org.LexGrid.LexBIG.Exceptions.LBParameterException
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Implementation Details:
+      </td>
+      <td>
+        Implementation:   Step 1: Call this method on the associated LexEVS Pick List Service instance to validate the XML file that is in LexGrid format. This call will not load the data in an XML file.  Sample Call:
+        <ul>
+          <li>
+            Step 1:Instantiate LexEVSPickListServices if it is not done yet :
+            org.lexgrid.valuesets.LexEVSPickListServices plServ = org.lexgrid.valuesets.impl.LexEVSPickListDefinitionServicesImpl.defaultInstance();
+          </li>
+          <li>
+            Step 2:Call validate method for validation by supplying URI of the XML file and validation level.
+            plServ.validate(uriOfXMLFile, true);
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h3 id="LexEVS6.xPickListService-getPickListDefinitionById">
+  getPickListDefinitionById
+</h3>
+getPickListDefinitionById(String pickListId)
+<table>
+  <tbody>
+    <tr>
+      <td>
+        Description:
+      </td>
+      <td>
+        Returns pickList definition for supplied pickListId.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Input:
+      </td>
+      <td>
+        java.lang.String pickListId - (Mandatory) Id of a pickListDefinition
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Output:
+      </td>
+      <td>
+        org.LexGrid.valueSets.PickListDefinition - Pick List Definition Object
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Exception:
+      </td>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Implementation Details:
+      </td>
+      <td>
+        Implementation:   Step 1: Call this method on the associated LexEVS Pick List Service instance to get Pick List Definition for supplied pickListId.  Sample Call:
+        <ul>
+          <li>
+            Step 1:Instantiate LexEVSPickListServices if it is not done yet :
+            org.lexgrid.valuesets.LexEVSPickListServices plServ = org.lexgrid.valuesets.impl.LexEVSPickListDefinitionServicesImpl.defaultInstance();
+          </li>
+          <li>
+            Step 2:Call getPickListDefinitionById method:
+            org.LexGrid.valueSets.PickListDefinition plDef = plServ.getPickListDefinitionById(&#34;AUTO:DomesticAutoMakers&#34;);
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h3 id="LexEVS6.xPickListService-getPickListDefinitionIdForValueSetDefinitionUri">
+  getPickListDefinitionIdForValueSetDefinitionUri
+</h3>
+getPickListDefinitionIdForValueSetDefinitionUri(URI valueSetDefinitionURI)
+<table>
+  <tbody>
+    <tr>
+      <td>
+        Description:
+      </td>
+      <td>
+        Returns all the pickList definition id&#39;s that represent the supplied valueSetDefinition URI.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Input:
+      </td>
+      <td>
+        java.net.URI valueSetDefinitionURI - (Mandatory) URI of an value set definition
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Output:
+      </td>
+      <td>
+        List&lt;String&gt; - List of Pick List Definition Id&#39;s that represents supplied valueSetDefURI.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Exception:
+      </td>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Implementation Details:
+      </td>
+      <td>
+        Implementation:   Step 1: Call this method on the associated LexEVS Pick List Service instance to get all the Pick List Definitions that are represented by supplied Value Set Definition URI.  Sample Call:
+        <ul>
+          <li>
+            Step 1:Instantiate LexEVSPickListServices if it is not done yet :
+            org.lexgrid.valuesets.LexEVSPickListServices plServ = org.lexgrid.valuesets.impl.LexEVSPickListDefinitionServicesImpl.defaultInstance();
+          </li>
+          <li>
+            Step 2:Call getPickListDefinitionIdForValueSetDefinitionUri method:
+            java.util.List&lt;String&gt; plDefs = pls.getPickListDefinitionIdForValueSetDefinitionUri(new URI(&#34;http://someDomain.html/ValueSets/NCIT/C3367_Value_set&#34;));
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h3 id="LexEVS6.xPickListService-getPickListValueSetDefinition">
+  getPickListValueSetDefinition
+</h3>
+getPickListValueSetDefinition(String pickListId)
+<table>
+  <tbody>
+    <tr>
+      <td>
+        Description:
+      </td>
+      <td>
+        Returns a URI of the represented value set definition of the pickList.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Input:
+      </td>
+      <td>
+        java.lang.String pickListId - (Mandatory) id of pick list definition
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Output:
+      </td>
+      <td>
+        java.net.URI - Value Set Definition URI
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Exception:
+      </td>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Implementation Details:
+      </td>
+      <td>
+        Implementation:   Step 1: Call this method on the associated LexEVS Pick List Service instance to get a Value Set Definition URI represented by supplied pickListId.  Sample Call:
+        <ul>
+          <li>
+            Step 1:Instantiate LexEVSPickListServices if it is not done yet :
+            org.lexgrid.valuesets.LexEVSPickListServices plServ = org.lexgrid.valuesets.impl.LexEVSPickListDefinitionServicesImpl.defaultInstance();
+          </li>
+          <li>
+            Step 2:Call getPickListValueSetDefinition method:
+            URI vsdURI = pls.getPickListValueSetDefinition(&#34;AUTO:DomesticAutoMakers&#34;);
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h3 id="LexEVS6.xPickListService-listPickListIds">
+  listPickListIds
+</h3>
+listPickListIds()
+<table>
+  <tbody>
+    <tr>
+      <td>
+        Description:
+      </td>
+      <td>
+        Returns a list of pickListIds that are available in the system.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Input:
+      </td>
+      <td>
+        none
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Output:
+      </td>
+      <td>
+        java.util.List&lt;java.lang.String&gt; - list of available pickListIds
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Exception:
+      </td>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Implementation Details:
+      </td>
+      <td>
+        Implementation:   Step 1: Call this method on the associated LexEVS Pick List Service instance to get all the PickListIds that are loaded in the system.  Sample Call:
+        <ul>
+          <li>
+            Step 1:Instantiate LexEVSPickListServices if it is not done yet :
+            org.lexgrid.valuesets.LexEVSPickListServices plServ = org.lexgrid.valuesets.impl.LexEVSPickListDefinitionServicesImpl.defaultInstance();
+          </li>
+          <li>
+            Step 2:Call listPickListIds method:
+            java.util.List&lt;String&gt; plList = plServ.listPickListIds();
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="LexEVS6.xPickListService-ResolveFunctions">
+  Resolve Functions
+</h2>
+Resolve functions provides the capability to resolve the pick list definition against specific coding scheme version and get back the list of terms from the entities that belongs to the pick list. If no coding scheme version is provided, the API will pick the latest version of the coding scheme.There are two separate functions available to resolve pick list definition :
+<ul>
+  <li>
+    Resolve Stored Pick List Definition - This function allows you to resolve pick list definition that are loaded in the system.
+  </li>
+  <li>
+    Resolve Supplied Pick List Definition - This function allows you to pass a PickListDefinition object that may not be loaded in the system and get it resolved.
+  </li>
+</ul>
+<h3 id="LexEVS6.xPickListService-ResolvingStoredPickListDefinition">
+  Resolving Stored Pick List Definition
+</h3>
+This function resolves the Pick List Definition that is loaded in the system and returns set of valid terms of the concepts plus the code systems and its versions that were used.
+<h4 id="LexEVS6.xPickListService-resolvePickList">
+  resolvePickList
+</h4>
+resolvePickList(String pickListId, boolean sortByText, AbsoluteCodingSchemeVersionReferenceList csVersionList, String versionTag)
+<table>
+  <tbody>
+    <tr>
+      <td>
+        Description:
+      </td>
+      <td>
+        Resolves pickList definition for supplied pickListId.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Input:
+      </td>
+      <td>
+        java.langString pickListId - (Mandatory) pickListId of a pickListDefinition. boolean sortByText - If True; the resolved pickListEntries will be sorted by text in ascending order. org.LexGrid.LexBIG.DataModel.Collections.AbsoluteCodingSchemeVersionReferenceList csVersionList - (Optional) a list of coding scheme URI&#39;s and versions to be used. These will be used only if they are present in the service. If absent, the most recent version will be used instead. java.lang.String versionTag - (Optional) the tag (e.g &#34;devel&#34;, &#34;production&#34;, ...) to be used to reconcile coding schemes when more than one is present. Note that non-tagged versions will be used if the tagged version is missing.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Output:
+      </td>
+      <td>
+        org.lexgrid.valuesets.dto.ResolvedPickListEntryList - Resolved PickListEntries
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Exception:
+      </td>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Implementation Details:
+      </td>
+      <td>
+        Implementation:   Step 1: Call this method on the associated LexEVS Pick List Service instance to get the resolved Pick List Entries for the supplied pickListId. Optionally, if sortByTests is true, sort the pickText in the list.  Sample Call:
+        <ul>
+          <li>
+            Step 1:Instantiate LexEVSPickListServices if it is not done yet :
+            org.lexgrid.valuesets.LexEVSPickListServices plServ = org.lexgrid.valuesets.impl.LexEVSPickListDefinitionServicesImpl.defaultInstance();
+          </li>
+          <li>
+            Step 2:Populate coding scheme versions list object:
+            String codingSchemeName = &#34;Automobiles&#34;;
+            String version = &#34;1.1&#34;;
+            AbsoluteCodingSchemeVersionReferenceList csVersionList = new AbsoluteCodingSchemeVersionReferenceList();
+            csVersionList.addAbsoluteCodingSchemeVersionReference(Constructors.createAbsoluteCodingSchemeVersionReference(codingSchemeName, version));
+          </li>
+          <li>
+            Step 3:Call resolvePickList method:
+            ResolvedPickListEntryList pleList = plServ.resolvePickList(&#34;AUTO:DomesticAutoMakers&#34;, true, csVersionList, &#34;PRODUCTION&#34;);
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h4 id="LexEVS6.xPickListService-resolvePickList.1">
+  resolvePickList
+</h4>
+resolvePickList(String pickListId, Integer sortType, AbsoluteCodingSchemeVersionReferenceList csVersionList, String versionTag)
+<table>
+  <tbody>
+    <tr>
+      <td>
+        Description:
+      </td>
+      <td>
+        This method is similar to above method which resolves pickList definition for supplied pickListId. In addition to sorting the terms in Ascending or Descending, this method can be used to custom sort the terms.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Input:
+      </td>
+      <td>
+        java.langString pickListId - (Mandatory) pickListId of a pickListDefinition. java.lang.Integer sortType - Sort type for pick text : 1-Ascending, 2-Descending, and 3-Custom org.LexGrid.LexBIG.DataModel.Collections.AbsoluteCodingSchemeVersionReferenceList csVersionList - (Optional) a list of coding scheme URI&#39;s and versions to be used. These will be used only if they are present in the service. If absent, the most recent version will be used instead. java.lang.String versionTag - (Optional) the tag (e.g &#34;devel&#34;, &#34;production&#34;, ...) to be used to reconcile coding schemes when more than one is present. Note that non-tagged versions will be used if the tagged version is missing.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Output:
+      </td>
+      <td>
+        org.lexgrid.valuesets.dto.ResolvedPickListEntryList - Resolved PickListEntries
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Exception:
+      </td>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Implementation Details:
+      </td>
+      <td>
+        Implementation:   Step 1: Call this method on the associated LexEVS Pick List Service instance to get the resolved Pick List Entries for the supplied pickListId. Optionally, pickText can be sorted in Ascending, Descending or in Custom order.  Sample Call:
+        <ul>
+          <li>
+            Step 1:Instantiate LexEVSPickListServices if it is not done yet :
+            org.lexgrid.valuesets.LexEVSPickListServices plServ = org.lexgrid.valuesets.impl.LexEVSPickListDefinitionServicesImpl.defaultInstance();
+          </li>
+          <li>
+            Step 2:Populate coding scheme versions list object:
+            String codingSchemeName = &#34;Automobiles&#34;;
+            String version = &#34;1.1&#34;;
+            AbsoluteCodingSchemeVersionReferenceList csVersionList = new AbsoluteCodingSchemeVersionReferenceList();
+            csVersionList.addAbsoluteCodingSchemeVersionReference(Constructors.createAbsoluteCodingSchemeVersionReference(codingSchemeName, version));
+          </li>
+          <li>
+            Step 3:Call resolvePickList method:
+            ResolvedPickListEntryList pleList = plServ.resolvePickList(&#34;AUTO:DomesticAutoMakers&#34;, 3, csVersionList, &#34;PRODUCTION&#34;);
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h4 id="LexEVS6.xPickListService-resolvePickListForTerm">
+  resolvePickListForTerm
+</h4>
+resolvePickListForTerm(String pickListId, String term, String matchAlgorithm, String language, String[] context, boolean sortByText, AbsoluteCodingSchemeVersionReferenceList csVersionList, String versionTag))
+<table>
+  <tbody>
+    <tr>
+      <td>
+        Description:
+      </td>
+      <td>
+        Resolves pickList definition by applying  supplied arguments.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Input:
+      </td>
+      <td>
+        java.lang.String pickListId - (Mandatory) pickListId of a pickListDefinition. This is required argument. java.lang.String term - (Mandatory) Term to restrict. This is required argument. java.lang.String matchAlgorithm - (Optional) match algorithm to use. Default - LuceneQuery java.lang.String language - (Optional) language to restrict. java.lang.String[] context - (Optional) list of context to restrict. boolean sortByText - If True; the resolved pickListEntries will be sorted by text in ascending order. org.LexGrid.LexBIG.DataModel.Collections.AbsoluteCodingSchemeVersionReferenceList csVersionList - (Optional) a list of coding scheme URI&#39;s and versions to be used. These will be used only if they are present in the service. If absent, the most recent version will be used instead. java.lang.String versionTag - (Optional) the tag (e.g &#34;devel&#34;, &#34;production&#34;, ...) to be used to reconcile coding schemes when more than one is present. Note that non-tagged versions will be used if the tagged version is missing.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Output:
+      </td>
+      <td>
+        org.lexgrid.valuesets.dto.ResolvedPickListEntryList - Resolved PickListEntries.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Exception:
+      </td>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Implementation Details:
+      </td>
+      <td>
+        Implementation:   Step 1: Call this method on the associated LexEVS Pick List Service instance to get list of Pick List Entries that match the term supplied and meet other supplied restrictions.  Sample Call:
+        <ul>
+          <li>
+            Step 1:Instantiate LexEVSPickListServices if it is not done yet :
+            org.lexgrid.valuesets.LexEVSPickListServices plServ = org.lexgrid.valuesets.impl.LexEVSPickListDefinitionServicesImpl.defaultInstance();
+          </li>
+          <li>
+            Step 2:Populate coding scheme versions list object:
+            String codingSchemeName = &#34;Automobiles&#34;;
+            String version = &#34;1.1&#34;;
+            AbsoluteCodingSchemeVersionReferenceList csVersionList = new AbsoluteCodingSchemeVersionReferenceList();
+            csVersionList.addAbsoluteCodingSchemeVersionReference(Constructors.createAbsoluteCodingSchemeVersionReference(codingSchemeName, version));
+          </li>
+          <li>
+            Step 3:Call resolvePickListForTerm method:
+            ResolvedPickListEntryList pleList = plServ.resolvePickListForTerm (&#34;AUTO:DomesticAutoMakers&#34;,&#34;Jaguar&#34;, MatchAlgorithms.exactMatch.name(), &#34;en&#34;, null, true, csVersionList, &#34;PRODUCTION&#34;);
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h3 id="LexEVS6.xPickListService-ResolvingSuppliedPickListDefinitionObject">
+  Resolving Supplied Pick List Definition Object
+</h3>
+This function resolves the supplied Pick List Definition object and returns set of valid terms of the concepts plus the code systems and its versions that were used.
+<h4 id="LexEVS6.xPickListService-resolvePickList.2">
+  resolvePickList
+</h4>
+resolvePickList(PickListDefinition pickList, boolean sortByText, AbsoluteCodingSchemeVersionReferenceList csVersionList, String versionTag)
+<table>
+  <tbody>
+    <tr>
+      <td>
+        Description:
+      </td>
+      <td>
+        Resolves supplied pick list definition object.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Input:
+      </td>
+      <td>
+        org.LexGrid.valueSets.PickListDefinition pickList - (Mandatory) pickListDefinition object to resolve. boolean sortByText - If True; the resolved pickListEntries will be sorted by text in ascending order. org.LexGrid.LexBIG.DataModel.Collections.AbsoluteCodingSchemeVersionReferenceList csVersionList - (Optional) a list of coding scheme URI&#39;s and versions to be used. These will be used only if they are present in the service. If absent, the most recent version will be used instead. java.lang.String versionTag - (Optional) the tag (e.g &#34;devel&#34;, &#34;production&#34;, ...) to be used to reconcile coding schemes when more than one is present. Note that non-tagged versions will be used if the tagged version is missing.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Output:
+      </td>
+      <td>
+        org.lexgrid.valuesets.dto.ResolvedPickListEntryList - Resolved PickListEntries
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Exception:
+      </td>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Implementation Details:
+      </td>
+      <td>
+        Implementation:   Step 1: Call this method on the associated LexEVS Pick List Service instance to get the resolved Pick List Entries for the supplied pickListId. Optionally, if sortByTests is true, sort the pickText in the list.  Sample Call:
+        <ul>
+          <li>
+            Step 1: Instantiate LexEVSPickListServices if it is not done yet : org.lexgrid.valuesets.LexEVSPickListServices plServ = org.lexgrid.valuesets.impl.LexEVSPickListDefinitionServicesImpl.defaultInstance();
+          </li>
+          <li>
+            Step 2:Populate PickListDefinition object :
+            PickListDefinition pickList = new PickListDefinition();
+            pickList.setCompleteSet(Boolean.TRUE);
+            pickList.setDefaultEntityCodeNamespace(&#34;Automobiles&#34;);
+            pickList.setDefaultLanguage(&#34;en&#34;);
+            pickList.setRepresentsValueSetDefinition(&#34;SRITEST:AUTO:GM&#34;);
+            pickList.setPickListId(&#34;PLObject&#34;);
+            pickList.setStatus(&#34;active&#34;);
+          </li>
+          <li>
+            Step 2:Populate coding scheme versions list object:
+            String codingSchemeName = &#34;Automobiles&#34;;
+            String version = &#34;1.1&#34;;
+            AbsoluteCodingSchemeVersionReferenceList csVersionList = new AbsoluteCodingSchemeVersionReferenceList();
+            csVersionList.addAbsoluteCodingSchemeVersionReference(Constructors.createAbsoluteCodingSchemeVersionReference(codingSchemeName, version));
+          </li>
+          <li>
+            Step 3:Call resolvePickList method:
+            ResolvedPickListEntryList pleList = plServ.resolvePickList(pickList, true, csVersionList, &#34;PRODUCTION&#34;);
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h3 id="LexEVS6.xPickListService-ResolvedPickListObjects">
+  Resolved Pick List Objects
+</h3>
+Here are the resolved Objects from LexEVSPickListDefinitionServices :
+<ul>
+  <li>
+    ResolvedPickListEntry : contains resolved Pick List Entry Nodes.
+  </li>
+  <li>
+    ResolvedPickListEntryList : contains the list of resolved Pick List Entries. Also provides helpful features to add, remove, enumerate Pick List Entries.
+  </li>
+</ul>
+<h2 id="LexEVS6.xPickListService-ErrorHandling">
+  Error Handling
+</h2>
+LexEVS Pick List services uses org.LexGrid.LexBIG.Impl.loaders.MessageDirector to direct all fatal, error, warning, info messages with appropriate messages to the LexBIG log files in the &#39;log&#39; folder of LexEVS install directory.Along with MessageDirector, the services will also make use of org.LexGrid.LexBIG.exception.LBException to throw any fatal and error messages to the log file as well as to console.
+<h2 id="LexEVS6.xPickListService-LoadScripts">
+  Load Scripts
+</h2>
+Scripts to load Pick List Definitions into LexEVS system will be located under &#39;Admin&#39; folder of LexEVS install directory. These loader scripts will only load data in an XML file that is in LexGrid format.LoadPickListDefinition.bat for Windows environment and  LoadPickListDefinition.sh for Unix environment. Both of these scripts take in the following parameters:
+-in
+Input &lt;uri&gt;
+URI or path specifying location of the source file.
+
+-v
+Validate &lt;int&gt;
+Perform validation of the candidate resource without loading data. Supported levels of validation include:
+
+0 = Verify document is well-formed
+1 = Verify document is valid
+
+Example:
+sh LoadPickListDefinition.sh \-in &#34;file:///path/to/file.xml&#34;
+<h2 id="LexEVS6.xPickListService-SamplePickListDefinitionsXMLFile">
+  Sample Pick List Definitions XML File
+</h2>
+The following is a sample XML file containing Pick List Definitions in LexGrid format that can be loaded using LexEVS Pick List Service.
+&lt;source&gt; &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
+
+&lt;pickListDefinition pickListId=&#34;SRITEST:AUTO:DomesticAutoMakers&#34;
+representsValueSetDefinition=&#34;SRITEST:AUTO:DomesticAutoMakers&#34;
+isActive=&#34;true&#34; defaultEntityCodeNamespace=&#34;Automobiles&#34;
+defaultLanguage=&#34;en&#34; completeSet=&#34;false&#34;&gt;
+&lt;owner&gt;Owner for Domestic Auto Makers&lt;/owner&gt;
+&lt;entityDescription&gt;DomesticAutoMakers&lt;/entityDescription&gt;
+&lt;mappings&gt;
+&lt;supportedCodingScheme localId=&#34;Automobiles&#34; uri=&#34;urn:oid:11.11.0.1&#34;&gt;Automobiles&lt;/supportedCodingScheme&gt;
+&lt;supportedDataType localId=&#34;texthtml&#34;&gt;text/html&lt;/supportedDataType&gt;
+&lt;supportedDataType localId=&#34;textplain&#34;&gt;text/plain&lt;/supportedDataType&gt;
+&lt;supportedLanguage localId=&#34;en&#34; uri=&#34;www.en.org/orsomething&#34;&gt;en&lt;/supportedLanguage&gt;
+&lt;supportedNamespace localId=&#34;Automobiles&#34; uri=&#34;urn:oid:11.11.0.1&#34; equivalentCodingScheme=&#34;Automobiles&#34;&gt;Automobiles&lt;/supportedNamespace&gt;
+&lt;supportedProperty localId=&#34;definition&#34;&gt;definition&lt;/supportedProperty&gt;
+&lt;supportedProperty localId=&#34;textualPresentation&#34;&gt;textualPresentation&lt;/supportedProperty&gt;
+&lt;supportedSource  assemblyRule=&#34;rule1&#34; uri=&#34;http://informatics.mayo.edu&#34; localId=&#34;lexgrid.org&#34;&gt;lexgrid.org&lt;/supportedSource&gt;
+&lt;supportedSource localId=&#34;_111101&#34;&gt;11.11.0.1&lt;/supportedSource&gt;
+&lt;/mappings&gt;
+&lt;pickListEntryNode pickListEntryId=&#34;PL005p1&#34; isActive=&#34;true&#34;&gt;
+&lt;owner&gt;Owner for PL005p1&lt;/owner&gt;
+&lt;entryState containingRevision=&#34;R001&#34; relativeOrder=&#34;1&#34; changeType=&#34;NEW&#34; prevRevision=&#34;R00A&#34;/&gt;
+&lt;inclusionEntry entityCode=&#34;005&#34; entityCodeNamespace=&#34;Automobiles&#34; propertyId=&#34;p1&#34;&gt;
+&lt;pickText&gt;Domestic Auto Makers&lt;/pickText&gt;
+&lt;pickContext&gt;Domestic Auto Makers&lt;/pickContext&gt;
+&lt;pickContext&gt;Cars&lt;/pickContext&gt;
+&lt;/inclusionEntry&gt;
+&lt;properties&gt;
+&lt;property propertyName=&#34;definition&#34;&gt;
+&lt;entryState containingRevision=&#34;R001&#34; relativeOrder=&#34;1&#34; changeType=&#34;NEW&#34; prevRevision=&#34;R00A&#34;/&gt;
+&lt;value dataType=&#34;textplain&#34;&gt;Definition for Domestic Auto Makers&lt;/value&gt;
+&lt;/property&gt;
+&lt;/properties&gt;
+&lt;/pickListEntryNode&gt;
+&lt;pickListEntryNode pickListEntryId=&#34;PL005p2&#34; isActive=&#34;true&#34;&gt;
+&lt;entryState containingRevision=&#34;R001&#34; relativeOrder=&#34;1&#34; changeType=&#34;NEW&#34; prevRevision=&#34;R00A&#34;/&gt;
+&lt;inclusionEntry entityCode=&#34;005&#34; entityCodeNamespace=&#34;Automobiles&#34; propertyId=&#34;p2&#34;&gt;
+&lt;pickText&gt;American Car Companies&lt;/pickText&gt;
+&lt;/inclusionEntry&gt;
+&lt;properties&gt;
+&lt;property propertyName=&#34;definition&#34;&gt;
+&lt;entryState containingRevision=&#34;R001&#34; relativeOrder=&#34;1&#34; changeType=&#34;NEW&#34; prevRevision=&#34;R00A&#34;/&gt;
+&lt;value dataType=&#34;textplain&#34;&gt;Definition for Amerocan Auto Makers&lt;/value&gt;
+&lt;/property&gt;
+&lt;/properties&gt;
+&lt;/pickListEntryNode&gt;
+&lt;/pickListDefinition&gt; &lt;/source&gt;
+<h2 id="LexEVS6.xPickListService-Installation/Packaging">
+  Installation / Packaging
+</h2>
+Pick List service are integrated parts of core LexEVS API and are packaged and installed with other LexEVS services.
+<h2 id="LexEVS6.xPickListService-SystemTesting">
+  System Testing
+</h2>
+The System test case for the LexEVS Pick List Definition service is performed using the JUnit test suite:org.LexGrid.LexBIG.Impl.testUtility.VDAllTestsThis test suite will be run as part of regular LexEVS test suites AllTestsAllConfigs and AllTestsNormalConfigs.

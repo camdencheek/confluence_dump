@@ -1,0 +1,383 @@
+Contents of this Page
+<ul>
+  <li>
+    <a href="#NCILexEVSDataPackagingandDeploymentUtility-NCILexEVSDataPackagingandDeploymentUtility" rel="nofollow">
+      NCI LexEVS Data Packaging and Deployment Utility
+    </a>
+  </li>
+  <li>
+    <a href="#NCILexEVSDataPackagingandDeploymentUtility-UsageInformation" rel="nofollow">
+      Usage Information
+    </a>
+    <ul>
+      <li>
+        <a href="#NCILexEVSDataPackagingandDeploymentUtility-TechnicalOverview" rel="nofollow">
+          Technical Overview
+        </a>
+      </li>
+      <li>
+        <a href="#NCILexEVSDataPackagingandDeploymentUtility-Instructionsetfor%22package.sh%22" rel="nofollow">
+          Instruction set for &#34;package.sh&#34;
+        </a>
+      </li>
+      <li>
+        <a href="#NCILexEVSDataPackagingandDeploymentUtility-Instructionsetfor%22deploy.sh%22" rel="nofollow">
+          Instruction set for &#34;deploy.sh&#34;
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#NCILexEVSDataPackagingandDeploymentUtility-Propertyfilesusetodetermineconfigurationsforpackaginganddeployments." rel="nofollow">
+      Property files use to determine configurations for packaging and deployments.
+    </a>
+    <ul>
+      <li>
+        <a href="#NCILexEVSDataPackagingandDeploymentUtility-package.sh:Propertiesavailableforpackage.properties" rel="nofollow">
+          package.sh: Properties available for package.properties
+        </a>
+      </li>
+      <li>
+        <a href="#NCILexEVSDataPackagingandDeploymentUtility-deploy.sh:Propertiesavailablefordeploy.properties" rel="nofollow">
+          deploy.sh: Properties available for deploy.properties
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#NCILexEVSDataPackagingandDeploymentUtility-Downloads" rel="nofollow">
+      Downloads
+    </a>
+  </li>
+  <li>
+    <a href="#NCILexEVSDataPackagingandDeploymentUtility-InstalltheNCILexEVSDataPackagingandDeploymentUtility" rel="nofollow">
+      Install the NCI LexEVS Data Packaging and Deployment Utility
+    </a>
+  </li>
+  <li>
+    <a href="#NCILexEVSDataPackagingandDeploymentUtility-AdditionalNotes" rel="nofollow">
+      Additional Notes
+    </a>
+    <ul>
+      <li>
+        <a href="#NCILexEVSDataPackagingandDeploymentUtility-Stopping/startingJboss" rel="nofollow">
+          Stopping/starting Jboss
+        </a>
+      </li>
+      <li>
+        <a href="#NCILexEVSDataPackagingandDeploymentUtility-CheckingifJbosshasstarted" rel="nofollow">
+          Checking if Jboss has started
+        </a>
+      </li>
+      <li>
+        <a href="#NCILexEVSDataPackagingandDeploymentUtility-Examplepackagingofterminology:" rel="nofollow">
+          Example packaging of terminology:
+        </a>
+      </li>
+      <li>
+        <a href="#NCILexEVSDataPackagingandDeploymentUtility-Exampledatabaseandfilesystemdeployment." rel="nofollow">
+          Example database and file system deployment.
+        </a>
+      </li>
+    </ul>
+  </li>
+</ul>
+<h2 id="NCILexEVSDataPackagingandDeploymentUtility-NCILexEVSDataPackagingandDeploymentUtility">
+  NCI LexEVS Data Packaging and Deployment Utility
+</h2>
+The NCI LexEVS Data Packaging and Deployment Utility is primarily intended to ease the manual process of packing and publishing LexEVS 5.1 data from environment to environment (environment here refers to software development tiers such as Quality Assurance). In general, LexEVS 5.1 data is loaded in to a LexEVS 5.1 environment using the LexEVS 5.1 loader and using the LexEVS Data Packaging and Deployment utility it is possible to package the loaded data for deployment and to then to deploy said data to other LexEVS 5.1 environments. Updates of the associated &#34;metadata.xml&#34;, &#34;registry.xml&#34; and Lucene index files are handled automatically by this utility.  This utility will also handle the removal of selected terminologies from target environments.
+<h2 id="NCILexEVSDataPackagingandDeploymentUtility-UsageInformation">
+  Usage Information
+</h2>
+The NCI LexEVS Data Packaging and Deployment Utility contains two separate executable files, the first one being &#34;package.sh&#34; which invokes a Java executable which is able to process user packaging commands (an instruction set) for the purpose of creating a &#34;deployment&#34; package. The user is able to select which terminologies are to be deployed and which terminologies are to be removed using the &#34;package.sh&#34; utility. The second, &#34;deploy.sh&#34; invokes a Java executable that is able to read the previously created package and to deploy it to a target environment.
+<h3 id="NCILexEVSDataPackagingandDeploymentUtility-TechnicalOverview">
+  Technical Overview
+</h3>
+The NCI LexEVS Data Packaging and Deployment Utility is written as a Java command line application following the standard Unix command line syntax and base on NCI BDA-Lite. NCI BDA-Lite is a light weight application build and deployment library enabling developers to easily incorporate common software development tasks such as application server configuration and web application deployment via custom Apache Ant Task(s). In addition, the BDA-Lite Java API allows developers to execute deployment tasks outside of the Apache Ant environment via plain Java applications such as with the NCI LexEVS Data Packaging and Deployment Utility.
+
+Below is a listing of the instruction set for both the packaging and deployment utilities:
+<h3 id="NCILexEVSDataPackagingandDeploymentUtility-Instructionsetfor&#34;package.sh&#34;">
+  Instruction set for &#34;package.sh&#34;
+</h3>
+<ul>
+  <li>
+    (H)elp - Display a listing of all available commands.
+  </li>
+  <li>
+    (L)ist - Displays a numbered listing of available terminologies (for packaging) from the source environment. The source environment is determined by the value of property &#34;master_lbconfig&#34; in file &#34;package.properties&#34;. Please see
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=35749992" rel="nofollow">
+      EVS:package.properties
+    </a>
+    for available packaging properties.
+  </li>
+  <li>
+    (S)elect # - Selects terminology &#39;#&#39; to be packaged.
+  </li>
+  <li>
+    (U)nselect # - Unselects terminology ‘#’ from the list of terminologies to be packaged.
+  </li>
+  <li>
+    (R)emove # - Selects terminology ‘#’ to be removed from the target environments if it exists there.
+  </li>
+  <li>
+    (P)ack - Perform the packaging of the selected terminologies.
+  </li>
+  <li>
+    (I)nfo - Display information from the current property files.
+  </li>
+  <li>
+    (B)inaries - Used in S/W development. A tool that deploys the executables. Can be ignored by the user.
+  </li>
+  <li>
+    (C)lear - Clears the console by writing a bunch of blank lines.
+  </li>
+  <li>
+    (Q)uit - Exits the utility.
+  </li>
+</ul>
+<h3 id="NCILexEVSDataPackagingandDeploymentUtility-Instructionsetfor&#34;deploy.sh&#34;">
+  Instruction set for &#34;deploy.sh&#34;
+</h3>
+<ul>
+  <li>
+    (H)elp - Display a listing of all available commands.
+  </li>
+  <li>
+    (DF) DeployFiles
+  </li>
+  <li>
+    (DD) DeployDatabase,
+  </li>
+  <li>
+    (L)ist - Displays a numbered listing of the terminologies that have been packaged and or the terminologies to be removed.  This utility determines the list by reading the contents of the publish directory as pointed to by the value of property &#34;publish_dir&#34; in file &#34;deploy.properties&#34;. Please see
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=35749992" rel="nofollow">
+      EVS:deploy.properties
+    </a>
+    for available deployment properties.
+  </li>
+  <li>
+    (I)nfo - Display information from the current property files.
+  </li>
+  <li>
+    (C)lear - Clears the console by writing a bunch of blank lines.
+  </li>
+  <li>
+    (Q)uit - Exits the utility.
+  </li>
+</ul>
+<h2 id="NCILexEVSDataPackagingandDeploymentUtility-Propertyfilesusetodetermineconfigurationsforpackaginganddeployments.">
+  Property files use to determine configurations  for packaging and deployments.
+</h2>
+<h3 id="NCILexEVSDataPackagingandDeploymentUtility-package.sh:Propertiesavailableforpackage.properties">
+  package.sh: Properties available for package.properties
+</h3>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Property
+      </th>
+      <th>
+        Description
+      </th>
+    </tr>
+    <tr>
+      <td>
+        master_lbconfig
+      </td>
+      <td>
+        Full path to &#34;lbconfig.props&#34; file. Used as the &#34;source&#34; environment to package from.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        publish_dir
+      </td>
+      <td>
+        Full path to the directory to &#34;publish&#34; to. Needs to be large enough to contain the LexEVS 51 database export files as well Lucene index files for the selected terminologies.
+      </td>
+    </tr>
+  </tbody>
+</table>
+Example file:
+package.properties
+
+#----------------------------------------------------------------------#
+# Package Properties:                                                  #
+#----------------------------------------------------------------------#
+
+### Lexevs file locations (master)
+master_lbconfig=/mnt/lexevs/5.1/resources/config/lbconfig.props
+publish_dir=/mnt/lexevs/5.1/lexevsdata51
+<h3 id="NCILexEVSDataPackagingandDeploymentUtility-deploy.sh:Propertiesavailablefordeploy.properties">
+  deploy.sh: Properties available for deploy.properties
+</h3>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Property
+      </th>
+      <th>
+        Description
+      </th>
+    </tr>
+    <tr>
+      <td>
+        target_lbconfig
+      </td>
+      <td>
+        Full path to the &#34;lbconfig.props&#34; file of the target environment to be deployed to.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        publish_dir
+      </td>
+      <td>
+        Full path to the publishing directory.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        ssh.key.file
+      </td>
+      <td>
+        Full path to the SSH private key. A SSH public key needs to be installed under JBoss user account (as normally done with BDA projects).
+      </td>
+    </tr>
+    <tr>
+      <th></th>
+      <th>
+        The following &#34;target_name_#&#34; properties can be repeated for each web application that needs to be stopped/started after a data deployment. To uniquely identify server properties, target names are appended by a &#39;_#&#39; where &#39;#&#39; is an integer value from 0 to 9 to indicating the server number.
+        Example;
+
+        target_url_0=http://localhost:8080/mylexapplication/
+
+        Note: Starting deploy.sh with a &#39;-r&#39; option disables stopping and starting of application servers all together.
+      </th>
+    </tr>
+    <tr>
+      <td>
+        target_url_#
+      </td>
+      <td>
+        URL to the lexevsapi51 server. Used by &#34;deploy.sh&#34; to determine if the lexevsapi51 application is running or not.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        target_server_#
+      </td>
+      <td>
+        The application server name.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        target_user_#
+      </td>
+      <td>
+        JBoss user id. Used for the SSH connection needed to stop/start the various application servers.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        target_start_jboss_path_#
+      </td>
+      <td>
+        Full path to JBoss start_jboss script.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        target_stop_jboss_path_#
+      </td>
+      <td>
+        Full path to JBoss stop_jboss script.
+      </td>
+    </tr>
+  </tbody>
+</table>
+Example file:
+deploy.properties
+
+#----------------------------------------------------------------------#
+# Deploy Properties:                                                   #
+#----------------------------------------------------------------------#
+
+### Lexevs file locations (master)
+target_lbconfig=/local/lexevs51/resources/config/lbconfig.props
+publish_dir=/mnt/lexevsdata51
+
+### Deployment
+ssh.key.file=/local/home/user/ssh-keys/id_dsa_bda
+
+### JBoss Server Information (Max of 10 servers)
+
+target_url_0=http://server:8080/lexevsapi51
+target_server_0=server
+target_user_0=jbossuser
+target_start_jboss_path_0=/usr/local/jboss/server/default/bin/start_jboss
+target_stop_jboss_path_0=/usr/local/jboss/server/default/bin/stop_jboss
+
+target_url_1=http://server1:8080/lexevsapi51
+target_server_1=server1
+target_user_1=jbossuser
+target_start_jboss_path_1=/usr/local/jboss/server/default/bin/start_jboss
+target_stop_jboss_path_1=/usr/local/jboss/server/default/bin/stop_jboss
+<h2 id="NCILexEVSDataPackagingandDeploymentUtility-Downloads">
+  Downloads
+</h2>
+<ul>
+  <li>
+    Utility will be available  for download soon.
+  </li>
+</ul>
+<h2 id="NCILexEVSDataPackagingandDeploymentUtility-InstalltheNCILexEVSDataPackagingandDeploymentUtility">
+  Install the NCI LexEVS Data Packaging and Deployment Utility
+</h2>
+&lt;Work in progress&gt;
+<h2 id="NCILexEVSDataPackagingandDeploymentUtility-AdditionalNotes">
+  Additional Notes
+</h2>
+<h3 id="NCILexEVSDataPackagingandDeploymentUtility-Stopping/startingJboss">
+  Stopping/starting Jboss
+</h3>
+JBoss servers are stopped/started via SSH by invoking the JBoss start_jboss and stop_jboss scripts (as defined in deploy.properties). Up to 10 JBoss servers can be stopped and started this way.
+(Stopping/starting of application servers can be disabled using &#39;-r&#39; option on deploy.sh)
+<h3 id="NCILexEVSDataPackagingandDeploymentUtility-CheckingifJbosshasstarted">
+  Checking if Jboss has started
+</h3>
+The deploy app checks the web applications JBoss URL to see if it has started. See
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=35749992" rel="nofollow">
+  EVS:deploy.properties
+</a>
+for details.
+<h3 id="NCILexEVSDataPackagingandDeploymentUtility-Examplepackagingofterminology:">
+  Example packaging of terminology:
+</h3>
+1. Change to the directory where package.sh has been installed
+2. Type package.sh &lt;enter&gt;
+3. Type L &lt;enter&gt;
+(This lists the terminologies loaded in DEV)
+4. Type S # &lt;enter&gt;
+(Where # is the number of the terminology in the list)
+(This selects the terminology to be packaged)
+5. Type p &lt;enter&gt;
+(This packs the terminologies selected)
+6. Type q &lt;enter&gt;
+(Exits the packaging app)
+<h3 id="NCILexEVSDataPackagingandDeploymentUtility-Exampledatabaseandfilesystemdeployment.">
+  Example database and file system deployment.
+</h3>
+1. Change to the directory where deploy.sh has been installed
+2. Type deploy.sh &lt;enter&gt;
+3. Type L &lt;enter&gt;
+(This lists the contents of the package)
+4. Type dd &lt;enter&gt;
+(This runs the database portion of the deployment)
+5. Type df &lt;enter&gt;
+(This runs the application portion of the deployment)
+6. Type q &lt;enter&gt;
+(Exits the deployment application) 

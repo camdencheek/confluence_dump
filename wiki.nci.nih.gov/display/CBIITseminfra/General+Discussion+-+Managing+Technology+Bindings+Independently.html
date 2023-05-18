@@ -1,0 +1,80 @@
+The following exchange resulted from a comment on the August 23 version of the Semantic Infrastructure 2.0 Roadmap.
+<h2 id="GeneralDiscussionManagingTechnologyBindingsIndependently-OriginalComment">
+  Original Comment
+</h2>
+Providing and managing technology bindings in an independent way would be helpful to perform mappings and transformations between ECCF models in an automated way.
+<h2 id="GeneralDiscussionManagingTechnologyBindingsIndependently-RequestedElaborationontheComment">
+  Requested Elaboration on the Comment
+</h2>
+Given that ECCF requires conceptual, platform independent and platform dependent models for enterprise services, my thought was to do transformations between these models in an automated way. To achieve that, there has to be transformation rules defined. These transformation rules should be pluggable with standardized format. One of the requirement for the transformation between platform independent model to platform dependent model is to provide technology binding rules or mappings so that a given PIM should be transformed into any PIM to be used for code generation. These transformation rules, binding has to be maintained and accessible in a standard way to both humans and machines.
+<h2 id="GeneralDiscussionManagingTechnologyBindingsIndependently-DirectiontoRespondfromDaveHau">
+  Direction to Respond from Dave Hau
+</h2>
+The comment relates to the mechanism of MDA, for example, how to automatically generate a PSM from a PIM + &#34;technology bindings.&#34; (Please respond.)
+<h2 id="GeneralDiscussionManagingTechnologyBindingsIndependently-ResponsefromTomDigre">
+  Response from Tom Digre
+</h2>
+<ul>
+  <li>
+    The OMG MDA principles of architectural layering into CIM, PIM, and PSM are complemented by transformation mechanisms to implement inter- and intra- layer transformations between models in a standard, formal, and automated way.
+  </li>
+</ul>
+<ul>
+  <li>
+    The OMG standard mechanisms for model transformation include model-to-model (QVT) and model-to-text specifications.
+  </li>
+</ul>
+<ul>
+  <li>
+    The model transformations themselves are defined in terms of MOF models and the concrete (textual) syntax for these transformation languages are part of the OMG standards.
+  </li>
+</ul>
+<ul>
+  <li>
+    Thus, the expression of transformation languages are both human readable (the concrete textual syntax) and machine readable as models.
+  </li>
+</ul>
+<ul>
+  <li>
+    The application of transformation technology may occur in one of several scenarios:
+    <ul>
+      <li>
+        PIM to PSM. Using a combination of the two transformation technologies, target artifacts may include WSDL, XSD, deployment descriptors, programming language artifacts, build scripts, etc. The target artifacts would then be processed by secondary provisioning tools to produce deployable modules in accordance with the target architectural framework. The technology binding rules would be specified in the model. In the case of UML, an &lt;ExecutionEnvironment&gt;, plus its associated components, would specify high-level target technology binding requirements (such as transport, security, database, policy, etc.) which direct the transformation to produce technology-specific artifacts from PIM level models.  The level of automation coverage would depend upon the completeness of the PIM level model, particularly its behavioral specifications.
+      </li>
+      <li>
+        CIM and PIM cross-model transformations. The modeling languages used are not necessarily UML; there may be BPMN or other high level analysis models contributing to an ECCF Specification Stack. The most predominant non-UML language will be HL7/MIF. Based on the requirements for traceability/conformance/compliance across the model artifacts comprising a Specification Stack, there is a need to provide a common framework for specifying and validating conformance across the multi-lingual stack. One approach is to &#34;normalize&#34; the multiple modeling languages into UML, based on the UML concept of profiles - which enables multiple semantic frameworks to be combined into a unified model.  Isomorphic model-to-model transformations would produce the &#34;normalized&#34; UML model, preserving the original semantic in the form of applied, source language-specific, profiles.
+      </li>
+      <li>
+        Reverse engineering. This scenario involves production of PIM or CIM models based on PSM level artifacts. This is again a model-to-model transformation. Generally, the production of the more abstract model levels from technology-specific artifacts do not yield the desired level of abstraction. However, this situation may be improved based on knowledge of domain-specific technology artifacts and the required target ECCF abstractions.
+      </li>
+      <li>
+        RDF/OWL. The model to model transformation, in conjunction with OMG specifications for ODM and MOF to RDF, may be used to produce representations of MOF based models as RDF/OWL ontologies.
+      </li>
+    </ul>
+  </li>
+</ul>
+<ul>
+  <li>
+    An implementation of the OMG standards for model transformation is available as part of the Eclipse Modeling Framework, as plug-ins.
+  </li>
+</ul>
+<ul>
+  <li>
+    Reference Implementations of the transformations for specific cases of the above scenarios would be managed and distributed as eclipse plug-ins as part of the Semantic Infrastructure.
+  </li>
+</ul>
+<ul>
+  <li>
+    Secondary provisioning tools, including builders, compilers, and other generators, would be based on eclipse target technology-specific tooling, available as plug-ins.
+  </li>
+</ul>
+<h2 id="GeneralDiscussionManagingTechnologyBindingsIndependently-FurtherDiscussion:QuestionfromDaveHau">
+  Further Discussion: Question from Dave Hau
+</h2>
+The technology binding rules would be specified in the model. In the case of UML, an &lt;ExecutionEnvironment&gt;, plus its associated components, would specify high-level target technology binding requirements (such as transport, security, database, policy, etc.) which direct the transformation to produce technology-specific artifacts from PIM level models.
+
+Would the technology binding rules be independent of the M1 model, and be specific to the M2 UML profile? For example, the technology binding today for Java data services are captured in the SDK source code, and it applies to any UML model registered into caDSR, i.e. it&#39;s not dependent on any particular M1 layer model.
+<h2 id="GeneralDiscussionManagingTechnologyBindingsIndependently-ResponsefromTomDigre.1">
+  Response from Tom Digre
+</h2>
+The binding rules are logically part of the PSM level M1 model. In the case of SDK based Java data services, the &#34;rule&#34; would simply be a &#34;tag&#34; within the target &lt;ExecutionEnvironment&gt; that the data services are provided by the SDK tool set. If appropriate, this may inform the transformation that no data service artifact generation is required (but that perhaps a suitable adapter must be provisioned to bind the data service to say, a JMS transport implementation).

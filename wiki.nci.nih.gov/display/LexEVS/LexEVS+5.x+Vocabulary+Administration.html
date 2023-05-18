@@ -1,0 +1,1288 @@
+Contents of this Page
+<ul>
+  <li>
+    <a href="#LexEVS5.xVocabularyAdministration-Introduction" rel="nofollow">
+      Introduction
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS5.xVocabularyAdministration-VocabularyAdministrationOverview" rel="nofollow">
+      Vocabulary Administration Overview
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS5.xVocabularyAdministration-InstallingSampleVocabularies" rel="nofollow">
+      Installing Sample Vocabularies
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS5.xVocabularyAdministration-RunningtheSampleQueryPrograms" rel="nofollow">
+      Running the Sample Query Programs
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS5.xVocabularyAdministration-InstallingNCIVocabularies" rel="nofollow">
+      Installing NCI Vocabularies
+    </a>
+    <ul>
+      <li>
+        <a href="#LexEVS5.xVocabularyAdministration-NCIThesaurusVocabulary" rel="nofollow">
+          NCI Thesaurus Vocabulary
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS5.xVocabularyAdministration-NCIMetathesaurusVocabulary" rel="nofollow">
+          NCI Metathesaurus Vocabulary
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS5.xVocabularyAdministration-NCIHistory" rel="nofollow">
+          NCI History
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#LexEVS5.xVocabularyAdministration-DeactivatingandRemovingaVocabulary" rel="nofollow">
+      Deactivating and Removing a Vocabulary
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS5.xVocabularyAdministration-TaggingaVocabulary" rel="nofollow">
+      Tagging a Vocabulary
+    </a>
+  </li>
+</ul>
+<h2 id="LexEVS5.xVocabularyAdministration-Introduction">
+  Introduction
+</h2>
+This document is a section of the
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427408" rel="nofollow">
+  Administration Guide
+</a>
+.
+<h2 id="LexEVS5.xVocabularyAdministration-VocabularyAdministrationOverview">
+  Vocabulary Administration Overview
+</h2>
+A set of administrative utilities are provided to manage the LexEVS Service.  These utilities are provided for Windows (.bat) and Linux (.sh) operating systems.  Each of the commands is located in the {LEXBIG_DIRECTORY}/admin and {LEXBIG_DIRECTORY}/test directory. A full description of the options with example is provided for each of the administration utilities.
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Administrative Program
+      </th>
+      <th>
+        Description
+      </th>
+    </tr>
+    <tr>
+      <td>
+        ActivateScheme
+      </td>
+      <td>
+        Activates a coding scheme based on unique URN and version.
+        Options:
+        <ul>
+          <li>
+            -u,-urn &lt;urn&gt; URN uniquely identifying the code system.
+          </li>
+          <li>
+            -v,-version &lt;versionId&gt; Version identifier.
+          </li>
+          <li>
+            -f,-force Force activation (no confirmation).
+
+
+            Example:
+
+            ActivateScheme -u &#34;urn:oid:2.16.840.1.113883.3.26.1.1&#34; -v &#34;05.09e&#34;
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        ClearOrphanedResources
+      </td>
+      <td>
+        Clean up orphaned resources - databases and indexes.
+        Options:
+        <ul>
+          <li>
+            -li,-listIndexes List all unused indexes.
+          </li>
+          <li>
+            -ldb, -listDatabases List all unused databases (with matching prefix).
+          </li>
+          <li>
+            -ri,-removeIndex &lt;name&gt; Remove the (unused) index with the given name.
+          </li>
+          <li>
+            -rdb,-removeDatabase &lt;name&gt; Remove the (unused) database with the given name.
+          </li>
+          <li>
+            -a,-all Remove all unreferenced indexes and databases (with matching prefix).
+
+
+            Example:
+
+            ClearOrphanedResources -li
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        DeactivateScheme
+      </td>
+      <td>
+        Deactivates a coding scheme based on unique URN and version.
+        Options:
+        <ul>
+          <li>
+            -u,-urn &lt;urn&gt; URN uniquely identifying the code system.
+          </li>
+          <li>
+            -v,-version &lt;versionId&gt; Version identifier.
+          </li>
+          <li>
+            -d,-date &lt;yyyy-MM-dd,HH:mm:ss&gt; Date and time for deactivation to take effect; immediate if not specified.
+          </li>
+          <li>
+            -f,-force Force deactivation (no confirmation).
+
+
+            Example:
+
+            DeactivateScheme -u &#34;urn:oid:2.16.840.1.113883.3.26.1.1&#34; -v &#34;05.09e&#34; -d &#34;01/31/2099,12:00:00&#34;
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        ExportLgXML
+      </td>
+      <td>
+        Exports content from the repository to a file in the LexGrid canonical XML format.
+        Options:
+        <ul>
+          <li>
+            -out,-output &lt;uri&gt; URI or path of the directory to contain the resulting XML file.  The file name will be automatically derived from the coding scheme name.
+          </li>
+          <li>
+            -u,-urn &lt;name&gt; URN or local name of the coding scheme to export.
+          </li>
+          <li>
+            -v,-version &lt;id&gt; The assigned tag/label or absolute version identifier of the coding scheme.
+          </li>
+          <li>
+            -nf,-noFail If specified, indicates that processing should not stop for recoverable errors
+          </li>
+          <li>
+            -f,-force If specified, allows the destination file to be overwritten if present.
+            NoteIf the coding scheme and version values are unspecified, a list of available coding schemes will be presented for user selection.
+
+
+            Examples:
+
+            ExportLgXML -out &#34;file:///path/to/dir&#34; -nf -f
+
+
+            ExportLgXML -out &#34;file:///path/to/dir&#34; u &#34;NCI_Thesaurus&#34; -v &#34;PRODUCTION&#34; -nf -f
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        ExportOBO
+      </td>
+      <td>
+        Exports content from the repository to a file in the Open Biomedical Ontologies (OBO) format.
+        Options:
+        <ul>
+          <li>
+            -out,-output &lt;uri&gt; URI or path of the directory to contain the resulting OBO file.  The file name will be automatically derived from the coding scheme name.
+          </li>
+          <li>
+            -u, -urn &lt;name&gt; URN or local name of the coding scheme to export.
+          </li>
+          <li>
+            -v,-version &lt;id&gt; The assigned tag/label or absolute version identifier of the coding scheme.
+          </li>
+          <li>
+            -nf,-noFail If specified, indicates that processing should not stop for recoverable errors
+          </li>
+          <li>
+            -f,-force If specified, allows the destination file to be overwritten if present.
+            NoteIf the coding scheme and version values are unspecified, a list of available coding schemes will be presented for user selection.
+
+
+            Examples:
+
+            ExportOBO -out &#34;file:///path/to/dir&#34; -nf -f
+
+
+            ExportOBO -out &#34;file:///path/to/dir&#34; -u &#34;FBbt&#34; -v &#34;PRODUCTION&#34; -nf -f
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        ExportOWL
+      </td>
+      <td>
+        Exports content from the repository to a file in OWL format.
+        Options:
+        <ul>
+          <li>
+            -out,-output &lt;uri&gt; URI or path of the directory to contain the resulting OWL file.  The file name will be automatically derived from the coding scheme name.
+          </li>
+          <li>
+            -u,-urn &lt;name&gt; URN or local name of the coding scheme to export.
+          </li>
+          <li>
+            -v,-version &lt;id&gt; The assigned tag/label or absolute version identifier of the coding scheme.
+          </li>
+          <li>
+            -nf,-noFail If specified, indicates that processing should not stop for recoverable errors
+          </li>
+          <li>
+            -f,-force If specified, allows the destination file to be overwritten if present.
+            NoteIf the URN and version values are unspecified, a list of available coding schemes will be presented for user selection.
+
+
+            Example:
+
+            ExportOWL -out &#34;file:///path/to/dir&#34; -nf -f
+
+
+            ExportOWL -out &#34;file:///path/to/dir&#34; -u &#34;sample&#34; -v &#34;1.0&#34; -nf -f
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        ListExtensions
+      </td>
+      <td>
+        List registered extensions to the LexEVS runtime environment.
+        Options:
+        <ul>
+          <li>
+            -a, -all List all extensions (default, override by specifying other options).
+          </li>
+          <li>
+            -i, -index List index extensions.
+          </li>
+          <li>
+            -m, -match List match algorithm extensions.
+          </li>
+          <li>
+            -s, -sort List sort algorithm extensions.
+          </li>
+          <li>
+            -g, -generic List generic extensions.
+
+
+            Example:
+
+            ListExtensions -a
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        ListSchemes
+      </td>
+      <td>
+        List all currently registered vocabularies.
+        Options:
+        <ul>
+          <li>
+            -b,-brief List only coding scheme name, version, urn, and tags (default).
+          </li>
+          <li>
+            -f,-full  List full detail for each scheme.
+
+
+            Example:
+
+            ListSchemes
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        LoadLgXML
+      </td>
+      <td>
+        Loads a vocabulary file, provided in LexGrid canonical xml format.
+        Options:
+        <ul>
+          <li>
+            -in, -input &lt;uri&gt; URI specifying location of the source file.
+          </li>
+          <li>
+            -v, -validate &lt;level&gt; Perform validation of the candidate resource without loading data.  If specified, the &#39;-nf&#39;, -a&#39; and &#39;-t&#39; options are ignored.  Supported levels of validation include:
+            <ul>
+              <li>
+                0 = Verify document is well-formed
+              </li>
+              <li>
+                1 = Verify document is valid
+              </li>
+            </ul>
+          </li>
+          <li>
+            -nf, -noFail If specified, indicates that processing should not stop for recoverable errors.
+          </li>
+          <li>
+            -a, -activate  ActivateScheme on successful load; if unspecified the vocabulary is loaded but not activated.
+          </li>
+          <li>
+            -t, -tag &lt;tagID&gt; An optional tag ID (e.g. &#39;PRODUCTION&#39; or &#39;TEST&#39;) to assign.
+
+
+            Load Example:
+
+            LoadLgXML -in &#34;file:///path/to/file.xml&#34; -nf -a
+
+
+
+            Validation Example:
+
+            LoadLgXML -in &#34;file:///path/to/file.xml&#34; -v 0
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        LoadNCIHistory
+      </td>
+      <td>
+        Imports NCI History data to the LexEVS repository.
+        Options:
+        <ul>
+          <li>
+            -in,-input &lt;uri&gt; URI specifying location of the history file
+          </li>
+          <li>
+            -vf,-versionFile &lt;uri&gt; URI specifying location of the file containing version identifiers for the history to be loaded.
+          </li>
+          <li>
+            -v, -validate &lt;level&gt; Perform validation of the candidate resource without loading data.  If specified, the &#39;-nf&#39; and &#39;-r&#39; options are ignored.  Supported levels of validation include:
+            <ul>
+              <li>
+                0 = Verify top 10 lines are correct format
+              </li>
+              <li>
+                1 = Verify correct format for the entire file
+              </li>
+            </ul>
+          </li>
+          <li>
+            -nf,-noFail  If specified, indicates that processing should not stop for recoverable errors
+          </li>
+          <li>
+            -r, -replace If not specified, the provided history file will be added into the current history database; otherwise the current database will be replaced by the new content.
+
+
+            Load Example:
+
+            LoadNCIHistory -nf -in &#34;file:///path/to/history.file&#34; -vf &#34;file:///path/to/version.file&#34;
+
+
+
+            Validation Example:
+
+            LoadNCIHistory -in &#34;file:///path/to/history.file&#34; -v 0
+
+
+
+            Versions File Format Information:
+
+            releaseDate | isLatest | releaseAgency | releaseId | releaseOrder | entityDescription
+
+
+
+            Sample record:
+
+            28-NOV-05 | false | http://nci.nih.gov/ | 05.10e | 26 | Editing of NCI Thesaurus 05.10e was completed on October 31, 2005.  Version 05.10e was October&#39;s fifth build in our development cycle.
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        LoadNCIMeta
+      </td>
+      <td>
+        Loads the NCI MetaThesaurus, provided as a collection of RRF files.
+        Options:
+        <ul>
+          <li>
+            -in,-input &lt;uri&gt; The directory containing the RRF files; in URI format.
+          </li>
+          <li>
+            -v, -validate &lt;level&gt; Perform validation of the candidate resource without loading data.  If specified, the &#39;-nf&#39;, -a&#39; and &#39;-t&#39; options are ignored.  Supported levels of validation include:
+            <ul>
+              <li>
+                0 = Verify first 1000 lines per required file
+              </li>
+            </ul>
+          </li>
+          <li>
+            -nf,-noFail If specified, indicates that processing should not stop for recoverable errors
+          </li>
+          <li>
+            -a, -activate ActivateScheme on successful load; if unspecified the vocabulary is loaded but not activated
+          </li>
+          <li>
+            -t, -tag &lt;tagID&gt;  An optional tag ID (e.g. &#39;PRODUCTION&#39; or &#39;TEST&#39;) to assign.
+
+
+            Load Example:
+
+            LoadNCIMeta -in &#34;file:///path/to/directory&#34; -nf -a
+
+
+
+            Validation Example:
+
+            LoadNCIMeta -in &#34;file:///path/to/directory&#34; -v 0
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        LoadNCIThesOWL
+      </td>
+      <td>
+        Loads an OWL file containing a version of the NCI Thesaurus ...
+        Options:
+        <ul>
+          <li>
+            -in,-input &lt;uri&gt; URI specifying location of the source file
+          </li>
+          <li>
+            -v, -validate &lt;level&gt; Perform validation of the candidate resource without loading data.  If specified, the &#39;-nf&#39;, -a&#39; and &#39;-t&#39; options are ignored.  Supported levels of validation include:
+            <ul>
+              <li>
+                0 = Verify document is well-formed
+              </li>
+              <li>
+                1 = Verify document is valid
+              </li>
+            </ul>
+          </li>
+          <li>
+            -nf, -noFail    If specified, indicates that processing should not stop for recoverable errors.
+          </li>
+          <li>
+            -a, -activate ActivateScheme on successful load; if unspecified the vocabulary is loaded but not activated.
+          </li>
+          <li>
+            -t, -tag &lt;tagID&gt; An optional tag ID (e.g. &#39;PRODUCTION&#39; or &#39;TEST&#39;) to assign.
+
+
+            Load Example:
+
+            LoadNCIThesOWL -in &#34;file:///path/to/thesaurus.owl&#34; -nf -a
+
+
+
+            Validation Example:
+
+            LoadNCIThesOWL -in &#34;file:///path/to/thesaurus.owl&#34; -v 0
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        LoadOBO
+      </td>
+      <td>
+        Loads a file specified in the Open Biomedical Ontologies (OBO) format.
+        Options:
+        <ul>
+          <li>
+            -in,-input &lt;uri&gt; URI or path specifying location of the source file
+          </li>
+          <li>
+            -v, -validate &lt;int&gt; Perform validation of the candidate resource without loading data.  If specified, the &#39;-nf&#39;, -a&#39; and &#39;-t&#39; options are ignored.  Supported levels of validation include:
+            <ul>
+              <li>
+                0 = Verify document is valid
+              </li>
+            </ul>
+          </li>
+          <li>
+            -nf,-noFail If specified, indicates that processing should not stop for recoverable errors
+          </li>
+          <li>
+            -a, -activate ActivateScheme on successful load; if unspecified the vocabulary is loaded but not activated
+          </li>
+          <li>
+            -t, -tag &lt;id&gt; An optional tag ID (e.g. &#39;PRODUCTION&#39; or &#39;TEST&#39;) to assign.
+
+
+            Example:
+
+            LoadOBO -in &#34;file:///path/to/file.obo&#34; -nf -a
+
+
+            LoadOBO -in &#34;file:///path/to/file.obo&#34; -v 0
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        LoadOWL
+      </td>
+      <td>
+        Loads an OWL file.
+        NoteLoad of the NCI Thesaurus should be performed via the LoadNCIThesOWL counterpart, since it will allow more precise handling of NCI semantics.
+        Options:
+        <ul>
+          <li>
+            -in,-input &lt;uri&gt; URI or path specifying location of the source file
+          </li>
+          <li>
+            -v, -validate &lt;int&gt; Perform validation of the candidate resource without loading data.  If specified, the &#39;-nf&#39;, -a&#39; and &#39;-t&#39; options are ignored.  Supported levels of validation include:
+            <ul>
+              <li>
+                0 = Verify document is well-formed
+              </li>
+              <li>
+                1 = Verify document is valid
+              </li>
+            </ul>
+          </li>
+          <li>
+            -nf,-noFail If specified, indicates that processing should not stop for recoverable errors
+          </li>
+          <li>
+            -a, -activate ActivateScheme on successful load; if unspecified the vocabulary is loaded but not activated
+          </li>
+          <li>
+            -t, -tag &lt;id&gt; An optional tag ID (e.g. &#39;PRODUCTION&#39; or &#39;TEST&#39;) to assign.
+
+
+            Examples:
+
+            LoadOWL -in &#34;file:///path/to/somefile.owl&#34; -nf -a
+
+
+            LoadOWL -in &#34;file:///path/to/somefile.owl&#34; -v 0
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        LoadUMLSDatabase
+      </td>
+      <td>
+        Loads UMLS content, provided as a collection of RRF files in a single directory.  Files may comprise the entire UMLS distribution or pruned via the MetamorphoSys tool.  A complete list of source vocabularies is available online at
+        <a href="http://www.nlm.nih.gov/research/umls/metaa1.html" rel="nofollow">
+          http://www.nlm.nih.gov/research/umls/metaa1.html
+        </a>
+        .
+        Options:
+        <ul>
+          <li>
+            -in,-input &lt;uri&gt; Location of the source database. Typically this is specified in the form of a URL that indicates the database server, port, name, and optional properties.
+          </li>
+          <li>
+            -u,-uid User ID for authenticated access, if required and not specified as part of the input URL.
+          </li>
+          <li>
+            -p,-pwd Password for authenticated access, if required and not specified as part of the input URL.
+          </li>
+          <li>
+            -d,-driver Name of the JDBC driver to use when accessing the database.
+          </li>
+          <li>
+            -s,-sources Comma-delimited list of source vocabularies to load. If absent, all available vocabularies are loaded.
+          </li>
+          <li>
+            -v, -validate &lt;int&gt; Perform validation of the candidate resource without loading data.  If specified, the &#39;-nf&#39;, -a&#39; and &#39;-t&#39; options are ignored. Supported levels of validation include:
+            <ul>
+              <li>
+                0 = Verify the existence of each required file
+              </li>
+            </ul>
+          </li>
+          <li>
+            -nf,-noFail If specified, indicates that processing should not stop for recoverable errors
+          </li>
+          <li>
+            -a, -activate ActivateScheme on successful load; if unspecified the vocabulary is loaded but not activated.
+          </li>
+          <li>
+            -t, -tag &lt;id&gt; An optional tag ID (e.g. &#39;PRODUCTION&#39; or &#39;TEST&#39;) to assign.
+
+
+            Examples:
+
+            LoadUMLSDatabase -in &#34;jdbc:postgresql://localhost:5432/lexgrid&#34;
+            -d &#34;org.postgresql.Driver&#34; -u &#34;myDatabaseUser&#34; -p &#34;myPassword&#34;
+            -s &#34;ICD9CM_2005,ICD9CM_2006&#34; -nf -a
+
+
+            LoadUMLSDatabase -in &#34;jdbc:postgresql://localhost:5432/lexgrid&#34;
+            -d &#34;org.postgresql.Driver&#34; -u &#34;myDatabaseUser&#34; -p &#34;myPassword&#34;
+            -v 0
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        LoadUMLSFiles
+      </td>
+      <td>
+        Loads UMLS content, provided as a collection of RRF files in a single directory.  Files may comprise the entire UMLS distribution or pruned via the MetamorphoSys tool.  A complete list of source vocabularies is available online at
+        <a href="http://www.nlm.nih.gov/research/umls/metaa1.html" rel="nofollow">
+          http://www.nlm.nih.gov/research/umls/metaa1.html
+        </a>
+        .
+        Options:
+        <ul>
+          <li>
+            -in,-input &lt;uri&gt; URI or path of the directory containing the NLM files
+          </li>
+          <li>
+            -s,-sources Comma-delimited list of source vocabularies to load. If absent, all available vocabularies are loaded.
+          </li>
+          <li>
+            -v, -validate &lt;int&gt; Perform validation of the candidate resource without loading data.  If specified, the &#39;-nf&#39;, -a&#39; and &#39;-t&#39; options are ignored.  Supported levels of validation include:
+            <ul>
+              <li>
+                0 = Verify the existence of each required file
+              </li>
+            </ul>
+          </li>
+          <li>
+            -nf,-noFail If specified, indicates that processing should not stop for recoverable errors
+          </li>
+          <li>
+            -a, -activate ActivateScheme on successful load; if unspecified the vocabulary is loaded but not activated.
+          </li>
+          <li>
+            -t, -tag &lt;id&gt; An optional tag ID (e.g. &#39;PRODUCTION&#39; or &#39;TEST&#39;) to assign.
+
+
+            Examples:
+
+            LoadUMLSFiles -in &#34;file:///path/to/directory/&#34; -s &#34;ICD9CM_2005,ICD9CM_2006&#34; -nf -a
+
+
+            LoadUMLSFiles -in &#34;file:///path/to/directory/&#34; -v 0
+
+            NoteUMLS Metathesaurus RRF files are a very large fileset.  Many users prefer to subset these files using the Metamorphosys tool included with the UMLS Metathesaurus in order to move a single terminology from a central location of these files.  When generating source RRF files from the Metathesaurus, the Metamorphosys tool should be set to output versionless source abbreviations rather than versioned source abbreviations. Failing to do so before loading RRF files to LexEVS will cause an incomplete database to be created leaving the association and concept tables empty
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        LoadUMLSSemnet
+      </td>
+      <td>
+        Loads the UMLS Semantic Network, provided as a collection of files in a single directory.  The following files are expected to be provided from the National Library of Medicine (NLM) distribution:
+        <ul>
+          <li>
+            LICENSE.txt (text from distribution terms and conditions)
+          </li>
+          <li>
+            SRFIL.txt (File Description)
+          </li>
+          <li>
+            SRFIL.txt (Field Description)
+          </li>
+          <li>
+            SRDEF.txt (Basic information about the Semantic Types and Relations)
+          </li>
+          <li>
+            SRSTR.txt (Structure of the Network)
+          </li>
+          <li>
+            SRSTRE1.txt (Fully inherited set of Relations (UIs))
+          </li>
+          <li>
+            SRSTRE2.txt (Fully inherited set of Relations (Names))
+          </li>
+          <li>
+            SU.txt (Unit Record)
+            These files can be downloaded from the NLM web site at
+            <a href="http://semanticnetwork.nlm.nih.gov/Download/index.html" rel="nofollow">
+              http://semanticnetwork.nlm.nih.gov/Download/index.html
+            </a>
+            .
+            Options:
+          </li>
+        </ul>
+        <ul>
+          <li>
+            -in,-input &lt;uri&gt; URI or path of the directory containing the NLM files
+          </li>
+          <li>
+            -v, -validate &lt;int&gt; Perform validation of the candidate resource without loading data.  If specified, the &#39;-nf&#39;, -a&#39; and &#39;-t&#39; options are ignored.  Supported levels of validation include:
+            <ul>
+              <li>
+                0 = Verify the existence of each required file
+              </li>
+            </ul>
+          </li>
+          <li>
+            -nf,-noFail If specified, indicates that processing should not stop for recoverable errors
+          </li>
+          <li>
+            -a, -activate ActivateScheme on successful load; if unspecified the vocabulary is loaded but not activated.
+          </li>
+          <li>
+            -t, -tag &lt;id&gt; An optional tag ID (e.g. &#39;PRODUCTION&#39; or &#39;TEST&#39;) to assign.
+          </li>
+          <li>
+            -il -InheritanceLevel &lt;int&gt; If specified, indicates the extent of inherited relationships to import. 0 = none; 1 = all; 2 = all except is_a (default). All direct relationships are imported, regardless of option.
+
+
+            Examples:
+
+            LoadUMLSSemnet -in &#34;file:///path/to/directory/&#34; -nf -a -il 1
+
+
+            LoadUMLSSemnet -in &#34;file:///path/to/directory/&#34; -v 0
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        LoadFMA
+      </td>
+      <td>
+        Imports from an FMA database to a LexEVS repository. Requires that the pprj file be configured with a database URN, username, password for an FMA MySQL based database. The FMA.pprj file and MySQL dump file are available at
+        <a href="http://sig.biostr.washington.edu/projects/fm/" rel="nofollow">
+          http://sig.biostr.washington.edu/projects/fm/
+        </a>
+        upon registration.
+        Options:
+        <ul>
+          <li>
+            -in,-input &lt;uri&gt; URI or path specifying location of the source file
+          </li>
+          <li>
+            -v, -validate &lt;int&gt; Perform validation of the candidate resource without loading data.  If specified, the &#39;-nf&#39;, -a&#39; and &#39;-t&#39; options are ignored.  Supported levels of validation include:
+            <ul>
+              <li>
+                0 = Verify document is well-formed
+              </li>
+              <li>
+                1 = Verify document is valid
+              </li>
+            </ul>
+          </li>
+          <li>
+            -nf,-noFail If specified, indicates that processing should not stop for recoverable errors
+          </li>
+          <li>
+            -a, -activate ActivateScheme on successful load; if unspecified the vocabulary is loaded but not activated
+          </li>
+          <li>
+            -t, -tag &lt;id&gt; An optional tag ID (e.g. &#39;PRODUCTION&#39; or &#39;TEST&#39;) to assign.
+
+
+            Example:
+
+            LoadFMA -in &#34;file:///path/to/FMA.pprj&#34; -nf -a
+
+
+            LoadFMA -in &#34;file:///path/to/FMA.pprj&#34; -v 0
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        LoadHL7RIM
+      </td>
+      <td>
+        Converts an HL7 RIM MS Access database to a LexGrid database
+        <ul>
+          <li>
+            -in,-input &lt;uri&gt; URI or path specifying location of the source file
+          </li>
+          <li>
+            -mf,-manifest &lt;uri&gt; URI or path specifying location of the manifest file
+          </li>
+          <li>
+            -lp,-load preferences &lt;uri&gt; URI or path specifying location of the load preferences file
+          </li>
+          <li>
+            -v, -validate &lt;int&gt; Perform validation of the candidate
+            resource without loading data.  If specified, the &#39;-nf&#39;, -a&#39; and &#39;-t&#39; options are ignored.  Supported levels of validation include:
+            <ul>
+              <li>
+                0 = Verify document is valid
+              </li>
+            </ul>
+          </li>
+          <li>
+            -nf,-noFail If specified, indicates that processing should not stop for recoverable errors
+          </li>
+          <li>
+            -a, -activate ActivateScheme on successful load; if unspecified the vocabulary is loaded but not activated
+          </li>
+          <li>
+            -t, -tag &lt;id&gt; An optional tag ID (e.g. &#39;PRODUCTION&#39; or &#39;TEST&#39;) to assign.
+
+
+            Examples:
+
+            LoadHL7RIM -in &#34;file:///path/to/file.mdb&#34; -nf -a
+
+
+            LoadHL7RIM -in &#34;file:///path/to/file.mdb&#34; -v 0
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        LoadMetaData
+      </td>
+      <td>
+        Loads optional XML-based metadata to be associated with an existing coding scheme.
+        Options:
+        <ul>
+          <li>
+            -u,-urn &lt;name&gt; URN uniquely identifying the code system.
+          </li>
+          <li>
+            -v,-version &lt;id&gt; Version identifier.
+          </li>
+          <li>
+            -in,-input &lt;uri&gt; URI or path specifying location of the XML file.
+          </li>
+          <li>
+            -v, -validate &lt;int&gt; Perform validation of the input file without loading data.  If specified, the &#39;-nf&#39;, &#39;-f&#39;, and &#39;-o&#39; options are ignored.  Supported levels of validation include:
+            <ul>
+              <li>
+                0 = Verify document is valid
+              </li>
+            </ul>
+          </li>
+          <li>
+            -o, -overwrite If specified, existing metadata for the code system will be erased. Otherwise, new metadata will be appended to existing metadata (if present).
+          </li>
+          <li>
+            -f,-force Force overwrite (no confirmation).
+          </li>
+          <li>
+            -nf,-noFail If specified, indicates that processing should not stop for recoverable errors
+            Note If the URN and version values are unspecified, a list of available coding schemes will be presented for user selection.
+
+
+            Examples:
+
+            LoadMetadata -in &#34;file:///path/to/file.xml&#34; -nf -o
+
+
+            LoadMetadata -in &#34;file:///path/to/file.xml&#34;
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        RebuildIndex
+      </td>
+      <td>
+        Rebuilds indexes associated with the specified coding scheme.
+        Options:
+        <ul>
+          <li>
+            -u,-urn &lt;urn&gt; URN uniquely identifying the code system.
+          </li>
+          <li>
+            -v,-version &lt;versionId&gt; Version identifier.
+          </li>
+          <li>
+            -i,-index &lt;name&gt; Name of the index extension to rebuild (if absent, rebuilds all built-in indices and named extensions).
+          </li>
+          <li>
+            -f,-force Force clear (no confirmation).
+
+
+            Example:
+
+            RebuildIndex -u &#34;urn:oid:2.16.840.1.113883.3.26.1.1&#34; -v &#34;05.09e&#34; -i &#34;myindex&#34;
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        RemoveIndex
+      </td>
+      <td>
+        Clears an optional named index associated with the specified coding scheme.
+        NoteBuilt-in indices required by the LexEVS runtime cannot be removed.
+        Options:
+        <ul>
+          <li>
+            -u,-urn &lt;urn&gt; URN uniquely identifying the code system.
+          </li>
+          <li>
+            -v,-version &lt;versionId&gt; Version identifier.
+          </li>
+          <li>
+            -i,-index &lt;name&gt; Name of the index extension to clear.
+          </li>
+          <li>
+            -f,-force Force clear (no confirmation).
+
+
+            Example:
+
+            RemoveIndex -u &#34;urn:oid:2.16.840.1.113883.3.26.1.1&#34; -v &#34;05.09e&#34; -i &#34;myindex&#34;
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        RemoveScheme
+      </td>
+      <td>
+        Removes a coding scheme based on unique URN and version.
+        Options:
+        <ul>
+          <li>
+            -u,-urn &lt;urn&gt; URN uniquely identifying the code system.
+          </li>
+          <li>
+            -v,-version &lt;versionId&gt; Version identifier.
+          </li>
+          <li>
+            -f,-force Force deactivation and removal without confirmation.
+
+
+            Example:
+
+            RemoveScheme -u &#34;urn:oid:2.16.840.1.113883.3.26.1.1&#34; -v &#34;05.09e&#34;
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        TagScheme
+      </td>
+      <td>
+        Associates a tag ID (e.g. &#39;PRODUCTION&#39; or &#39;TEST&#39;) with a coding scheme URN and version.
+        Options:
+        <ul>
+          <li>
+            -u,-urn &lt;urn&gt; URN uniquely identifying the code system.
+          </li>
+          <li>
+            -v,-version &lt;versionId&gt; Version identifier.
+          </li>
+          <li>
+            -t,-tag The tag ID (e.g. &#39;PRODUCTION&#39; or &#39;TEST&#39;) to assign.
+
+
+            Example:
+
+            TagScheme -u &#34;urn:oid:2.16.840.1.113883.3.26.1.1&#34; -v 05.09e&#34; -t &#34;TEST&#34;
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        TestRunner
+      </td>
+      <td>
+        Located in {LEXBIG_DIRECTORY}/test. Executes a suite of tests for the LexEVS installation.
+        NoteThe LexEVS runtime and database environments must still be configured prior to invoking the test suite.
+        Options:
+        <ul>
+          <li>
+            -b,-brief Runs the LexEVS test suite and produce a text report with overall statistics and details for failed tests only.
+          </li>
+          <li>
+            -f,-full Runs the LexEVS test suite and produce an itemized list of all tests with indication of success/failure.
+          </li>
+          <li>
+            -h,-html Runs the LexEVS test suite and produce a report suitable for view in a standard web browser.
+          </li>
+          <li>
+            -x,-xml Runs the LexEVS test suite and produce a report with extensive information for each test case in xml format.
+
+
+            Example:
+
+            TestRunner -f -h
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        TransferScheme
+      </td>
+      <td>
+        Tool to help gather information necessary to transfer data from one SQL server to another.
+        Options:
+        <ul>
+          <li>
+            -u,-urn The Coding Scheme URN or local name to transfer.
+          </li>
+          <li>
+            -v,-version The version of the coding scheme to transfer.
+
+
+            Example:
+
+            TransferScheme -u &#34;urn:oid:2.16.840.1.113883.3.26.1.1&#34; -v 05.09e&#34;
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="LexEVS5.xVocabularyAdministration-InstallingSampleVocabularies">
+  Installing Sample Vocabularies
+</h2>
+This LexEVS installation provides the UMLS Semantic Net and a sampling of the NCI Thesaurus content (sample.owl) that can be loaded into the database.
+<ol>
+  <li>
+    In a Command Prompt window, enter the following to go to the example programs:
+
+    cd {LEXBIG_DIRECTORY}/examples
+  </li>
+  <li>
+    To load the example vocabularies, run the appropriate LoadSampleData script (LoadSampleData.bat for Windows; LoadSampleData.sh for Linux).
+  </li>
+</ol>
+NoteVocabularies should not be loaded until configuration of the LexEVS runtime and database server are complete.
+
+The following figure displays the successful load of the sample vocabulary file.
+<img alt="screenshot of command window showing the successful load of the vocabulary file" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%205.x%20Vocabulary%20Administration/Successful_Load_of_Sample_Vocabulary.jpg?api=v2">
+<h2 id="LexEVS5.xVocabularyAdministration-RunningtheSampleQueryPrograms">
+  Running the Sample Query Programs
+</h2>
+A set of sample programs are provided in the {LEXBIG_DIRECTORY}/examples directory.  To run the sample query programs successfully a vocabulary must have been loaded.
+<ol>
+  <li>
+    Enter:
+
+    cd {LEXBIG_DIRECTORY}/examples
+  </li>
+  <li>
+    Execute one of sample programs.  .bat for windows or .sh for Linux.
+    <ul>
+      <li>
+        FindConceptNameForCode.bat
+      </li>
+      <li>
+        FindPropsandAssocForCode.bat
+      </li>
+      <li>
+        FindRelatedCodes
+      </li>
+      <li>
+        FindTreeforCodeAndAssoc
+      </li>
+    </ul>
+  </li>
+</ol>
+The following figure shows sample program output for finding properties and associations for a given code.
+<img alt="screenshot showing sample program output" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%205.x%20Vocabulary%20Administration/Sample_Program_Output.jpg?api=v2">
+<h2 id="LexEVS5.xVocabularyAdministration-InstallingNCIVocabularies">
+  Installing NCI Vocabularies
+</h2>
+<h3 id="LexEVS5.xVocabularyAdministration-NCIThesaurusVocabulary">
+  NCI Thesaurus Vocabulary
+</h3>
+This section describes the steps to download and install a full version of the NCI Thesaurus for the LexEVS Service.
+<ol>
+  <li>
+    Using a web or ftp client go to URL: ftp://ftp1.nci.nih.gov/pub/cacore/EVS/
+    <img alt="screenshot of navigating to the ftp client in Windows" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%205.x%20Vocabulary%20Administration/Ftp_Directory.jpg?api=v2">
+  </li>
+  <li>
+    Select the version of NCI Thesaurus OWL you wish to download.  Save the file to a directory on your machine.
+  </li>
+  <li>
+    Extract the OWL file from the zip download and save in a directory on your machine.  This directory will be referred to as NCI_THESAURUS_DIRECTORY
+  </li>
+  <li>
+    Using the LexEVS utilities load the NCI Thesaurus
+
+    cd {LexBIG_DIRECTORY}/admin
+
+    For Windows installation use the following command:
+
+    LoadNCIThesOWL.bat -nf -in &#34;file:///{NCI_THESAURUS_DIRECTORY}/Thesaurus_05.12f.owl&#34;
+
+    For Linux installation use the following command:
+
+    LoadNCIThesOWL.sh -nf -in &#34;file:///{NCI_THESAURUS_DIRECTORY}/Thesaurus_05.12f.owl&#34;
+
+    NoteThis step will require about three hours on a Pentium 3.0 Ghz machine.  The total time to load NCI Thesaurus will vary depending on machine, memory, and disk speed.
+  </li>
+</ol>
+The following example shows output from load of NCI Thesaurus 05.12f:
+
+
+
+...
+[LexBIG] Processing TOP Node... Retired_Kind
+[LexBIG] Clearing target of NCI_Thesaurus...
+[LexBIG] Writing NCI_Thesaurus to target...
+[LexBIG] Finished loading DB - loading transitive expansion table
+[LexBIG] ComputeTransitive - Processing Anatomic_Structure_Has_Location
+[LexBIG] ComputeTransitive - Processing Anatomic_Structure_is_Physical_Part_of
+[LexBIG] ComputeTransitive - Processing Biological_Process_Has_Initiator_Process
+[LexBIG] ComputeTransitive - Processing Biological_Process_Has_Result_Biological_Process
+[LexBIG] ComputeTransitive - Processing Biological_Process_Is_Part_of_Process
+[LexBIG] ComputeTransitive - Processing Conceptual_Part_Of
+[LexBIG] ComputeTransitive - Processing Disease_Excludes_Finding
+[LexBIG] ComputeTransitive - Processing Disease_Has_Associated_Disease
+[LexBIG] ComputeTransitive - Processing Disease_Has_Finding
+[LexBIG] ComputeTransitive - Processing Disease_May_Have_Associated_Disease
+[LexBIG] ComputeTransitive - Processing Disease_May_Have_Finding
+[LexBIG] ComputeTransitive - Processing Gene_Product_Has_Biochemical_Function
+[LexBIG] ComputeTransitive - Processing Gene_Product_Has_Chemical_Classification
+[LexBIG] ComputeTransitive - Processing Gene_Product_is_Physical_Part_of
+[LexBIG] ComputeTransitive - Processing hasSubtype
+[LexBIG] Finished building transitive expansion - building index
+[LexBIG] Getting a results from sql (a page if using mysql)
+[LexBIG] Indexed 0 concepts.
+[LexBIG] Indexed 5000 concepts.
+[LexBIG] Indexed 10000 concepts.
+[LexBIG] Indexed 15000 concepts.
+[LexBIG] Indexed 20000 concepts.
+[LexBIG] Indexed 25000 concepts.
+[LexBIG] Indexed 30000 concepts.
+[LexBIG] Indexed 35000 concepts.
+[LexBIG] Indexed 40000 concepts.
+[LexBIG] Indexed 45000 concepts.
+[LexBIG] Indexed 46000 concepts.
+[LexBIG] Getting a results from sql (a page if using mysql)
+[LexBIG] Closing Indexes Mon, 27 Feb 2006 01:44:22
+[LexBIG] Finished indexing
+<h3 id="LexEVS5.xVocabularyAdministration-NCIMetathesaurusVocabulary">
+  NCI Metathesaurus Vocabulary
+</h3>
+This section describes the steps to download and install a full version of the NCI Metathesaurus for the LexEVS Service.
+<ol>
+  <li>
+    Using a web or ftp client go to URL: ftp://ftp1.nci.nih.gov/pub/cacore/EVS/
+    <img alt="screenshot of navigating to the ftp client in Windows" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%205.x%20Vocabulary%20Administration/Ftp_Client.jpg?api=v2">
+  </li>
+  <li>
+    Select the version of NCI Metathesaurus RRF you wish to download.  Save the file to a directory on your machine.
+  </li>
+  <li>
+    Extract the RRF files from the zip download and save in a directory on your machine.  This directory will be referred to as NCI_METATHESAURUS_DIRECTORY.
+    NoteRELEASE_INFO.RRF is required to be present for the load utility to work.
+  </li>
+  <li>
+    Using the LexEVS utilities load the NCI Thesaurus
+
+    cd {LexBIG_DIRECTORY}/admin
+
+    For Windows installation use the following command:
+
+    LoadNCIMeta.bat -nf -in &#34;file:///{NCI_METATHESAURUS_DIRECTORY}/&#34;
+
+    For Linux installation use the following command:
+
+    LoadNCIMeta.sh -nf -in &#34;file:///{NCI_THESAURUS_DIRECTORY}/&#34;
+  </li>
+</ol>
+NoteNCI Metathesaurus contains many individual vocabularies and requires several hours to load and index.  This step requires about 15 hours on a Pentium 3.0 Ghz machine with 7200rpm disk.  The total time to load NCI MetaThesaurus will vary depending on machine, memory, and disk speed.
+<h3 id="LexEVS5.xVocabularyAdministration-NCIHistory">
+  NCI History
+</h3>
+This section describes the steps to download and install a history file for NCI Thesaurus.
+<ol>
+  <li>
+    Using a web or ftp client go to URL: ftp://ftp1.nci.nih.gov/pub/cacore/EVS/
+  </li>
+  <li>
+    Select the version of NCI History you wish to download.  Save the file to a directory on your machine.  Select the VersionFile download to the same directory as the history file.
+  </li>
+  <li>
+    Extract the History files from the zip download and save in a directory on your machine.  This directory will be referred to as NCI_HISTORY_DIRECTORY
+  </li>
+  <li>
+    Using the LexEVS utilities load the NCI Thesaurus:
+
+    cd {LexBIG_DIRECTORY}/admin_*&lt;/tt&gt;
+
+    For Windows installation use the following command:
+
+    LoadNCIHistory.bat -nf -in &#34;file:///{NCI_HISTORY_DIRECTORY}&#34; -vf &#34;file:///NCI_HISTORY_DIRECTORY}/VersionFile&#34;
+
+    For Linux installation use the following command:
+
+    LoadNCIHistory.sh -nf -in &#34;file:///{NCI_HISTORY_DIRECTORY}&#34; -vf &#34;file:///NCI_HISTORY_DIRECTORY}/VersionFile&#34;
+  </li>
+</ol>
+NoteIf a &#39;releaseId&#39; occurs twice in the file, the last occurrence will be stored. If LexEVS already knows about a releaseId (from a previous history load), the information is updated to match what is provided in the file.
+
+This file has to be provided to the load API on every load because you will need to maintain it in the future as each new release is made.  We have created this file that should be valid as of today from the information that we found in the archive folder on your ftp server.   You can find this file in the &#39;resources&#39; directory of the LexEVS install.
+<h2 id="LexEVS5.xVocabularyAdministration-DeactivatingandRemovingaVocabulary">
+  Deactivating and Removing a Vocabulary
+</h2>
+This section describes the steps to deactivate a coding scheme and remove coding scheme from LexEVS Service.
+<ol>
+  <li>
+    Change directory to LexEVS administration directory. Enter:
+
+    cd {LEXBIG_DIRECTORY}/admin_*
+  </li>
+  <li>
+    Use the DeactiveScheme utility to prevent access to coding scheme.  Once a coding scheme is deactivated, client programs will not be able to access the content for the specific coding scheme and version. Example:
+
+    DeactivateScheme -u &#34;urn:oid:2.16.840.1.113883.3.26.1.1&#34; -v &#34;05.12f&#34;
+  </li>
+  <li>
+    Use RemoveScheme utility to remove coding scheme from LexEVS service and database. Example:
+
+    RemoveScheme -u &#34;urn:oid:2.16.840.1.113883.3.26.1.1&#34; -v &#34;05.12f&#34;
+  </li>
+</ol>
+<h2 id="LexEVS5.xVocabularyAdministration-TaggingaVocabulary">
+  Tagging a Vocabulary
+</h2>
+This section describes the steps to tag a coding scheme to be used via LexEVS API.
+<ol>
+  <li>
+    Change directory to LexEVS administration directory and enter:
+
+    cd {LEXBIG_DIRECTORY}/admin_*
+  </li>
+  <li>
+    Use the TagScheme to tag a coding system and version with a local tag name (e.g. PRODUCTION).  This tag name can be used via LexEVS API for query restriction.  Example:
+
+    TagScheme -u &#34;urn:oid:2.16.840.1.113883.3.26.1.1&#34; -v &#34;05.12f&#34;  -t &#34;PRODUCTION&#34;
+  </li>
+</ol>

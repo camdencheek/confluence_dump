@@ -1,0 +1,445 @@
+Contents of this Page
+<ul>
+  <li>
+    <a href="#LexEVS6.0MappingDiscussion-1.ObjectModelConsiderations" rel="nofollow">
+      1. Object Model Considerations
+    </a>
+    <ul>
+      <li>
+        <a href="#LexEVS6.0MappingDiscussion-1.1MapSet" rel="nofollow">
+          1.1 Map Set
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.0MappingDiscussion-1.2GroupofMappings(amappingsubset,orsearchresults,orapageoflistings)" rel="nofollow">
+          1.2 Group of Mappings (a mapping subset, or search results, or a page of listings)
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.0MappingDiscussion-1.3Mapping" rel="nofollow">
+          1.3 Mapping
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.0MappingDiscussion-1.4Mappingattributes" rel="nofollow">
+          1.4 Mapping attributes
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#LexEVS6.0MappingDiscussion-2.SearchingScenarios" rel="nofollow">
+      2. Searching Scenarios
+    </a>
+    <ul>
+      <li>
+        <a href="#LexEVS6.0MappingDiscussion-2.1Byname" rel="nofollow">
+          2.1 By name
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.0MappingDiscussion-2.2Bycode" rel="nofollow">
+          2.2 By code
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.0MappingDiscussion-2.3Restrictions" rel="nofollow">
+          2.3 Restrictions
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.0MappingDiscussion-2.4DefaultPreferredNames" rel="nofollow">
+          2.4 Default Preferred Names
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#LexEVS6.0MappingDiscussion-3.Browsing/DiscoveryScenarios" rel="nofollow">
+      3. Browsing/Discovery Scenarios
+    </a>
+    <ul>
+      <li>
+        <a href="#LexEVS6.0MappingDiscussion-3.1Grouping,Categorization" rel="nofollow">
+          3.1 Grouping, Categorization
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.0MappingDiscussion-3.2Selections" rel="nofollow">
+          3.2 Selections
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.0MappingDiscussion-3.3Misc" rel="nofollow">
+          3.3 Misc
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#LexEVS6.0MappingDiscussion-4.PresentationScenarios" rel="nofollow">
+      4. Presentation Scenarios
+    </a>
+    <ul>
+      <li>
+        <a href="#LexEVS6.0MappingDiscussion-4.1Views" rel="nofollow">
+          4.1 Views
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.0MappingDiscussion-4.2OtherConsiderations" rel="nofollow">
+          4.2 Other Considerations
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#LexEVS6.0MappingDiscussion-5.LoaderConsiderations" rel="nofollow">
+      5. Loader Considerations
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.0MappingDiscussion-6.ObtainingorGeneratingData" rel="nofollow">
+      6. Obtaining or Generating Data
+    </a>
+    <ul>
+      <li>
+        <a href="#LexEVS6.0MappingDiscussion-6.1Obtaining" rel="nofollow">
+          6.1 Obtaining
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.0MappingDiscussion-6.2GeneratingMappings" rel="nofollow">
+          6.2 Generating Mappings
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#LexEVS6.0MappingDiscussion-7.MaintenanceandLegacyScenarios" rel="nofollow">
+      7. Maintenance and Legacy Scenarios
+    </a>
+  </li>
+</ul>
+<h2 id="LexEVS6.0MappingDiscussion-1.ObjectModelConsiderations">
+  1. Object Model Considerations
+</h2>
+<h3 id="LexEVS6.0MappingDiscussion-1.1MapSet">
+  1.1 Map Set
+</h3>
+<ul>
+  <li>
+    Connects two versioned coding schemes
+  </li>
+  <li>
+    Is versioned itself.
+  </li>
+  <li>
+    Should be named in a descriptive fashion (e.g. MDR12 to SNOMEDCT_2010_07_31 Mappings).
+  </li>
+  <li>
+    Significant amount of metadata exists at this level
+  </li>
+  <li>
+    Characterize map sets (complexity, completeness, content domain, “officialness”, ..)
+  </li>
+  <li>
+    Consider metadata to track whether mappings are curated or not.
+  </li>
+  <li>
+    Consider metadata to track whether mappings are generated (and not reviewed) or not.
+  </li>
+  <li>
+    Map set metadata should indicate whether map rank is important, useful, or even present.
+  </li>
+</ul>
+<h3 id="LexEVS6.0MappingDiscussion-1.2GroupofMappings(amappingsubset,orsearchresults,orapageoflistings)">
+  1.2 Group of Mappings (a mapping subset, or search results, or a page of listings)
+</h3>
+This is more sophisticated with complex rule-based map sets where a collection of mapping entries may actually represent only a single mapping.
+<h3 id="LexEVS6.0MappingDiscussion-1.3Mapping">
+  1.3 Mapping
+</h3>
+<ul>
+  <li>
+    &#34;from&#34; and &#34;to&#34; codes (or expressions of codes)
+  </li>
+  <li>
+    Represented as an association with qualifiers for other semantically important information
+  </li>
+  <li>
+    If target is an expression, represented as an “association to data”
+  </li>
+  <li>
+    Have “default preferred name” in the event that a &#34;from&#34;/&#34;to&#34; code cannot be resolved in a loaded coding scheme
+  </li>
+  <li>
+    &#34;map rank&#34; may be a standard part of the model. If so, values should be normalized, so that 1 always means &#34;best&#34; and increasing numbers represent lowering quality (exactly how much lower and why is map set dependent). A &#34;map rank&#34; threshold can be chosen by an application, so that it pays attention only to the &#34;highest quality&#34; mappings as defined by that application.  Because the values are map set and application specific - algorithms/decisions used are use-case specific.
+  </li>
+</ul>
+<h3 id="LexEVS6.0MappingDiscussion-1.4Mappingattributes">
+  1.4 Mapping attributes
+</h3>
+Any information about a mapping than what directly fits the “association” object model will be rendered as attributes.  Hopefully these attributes will have standard names across different types of map set loader. In other words – we can define the semantics of mapping association qualifiers so that particular ones are used to always represent the same aspect of some kind of mapping semantics.
+<h2 id="LexEVS6.0MappingDiscussion-2.SearchingScenarios">
+  2. Searching Scenarios
+</h2>
+<h3 id="LexEVS6.0MappingDiscussion-2.1Byname">
+  2.1 By name
+</h3>
+<ul>
+  <li>
+    Find mappings where the &#34;from&#34; code has a name matching a search string
+  </li>
+  <li>
+    Find mappings where the &#34;to&#34; code has a name matching a search string
+  </li>
+  <li>
+    Find mappings where the &#34;from&#34; code has a name matching a search string AND the target concept has a name matching a different string
+  </li>
+</ul>
+<h3 id="LexEVS6.0MappingDiscussion-2.2Bycode">
+  2.2 By code
+</h3>
+<ul>
+  <li>
+    like by name but for matching codes
+  </li>
+</ul>
+<h3 id="LexEVS6.0MappingDiscussion-2.3Restrictions">
+  2.3 Restrictions
+</h3>
+<ul>
+  <li>
+    Restrict by vocabulary (&#34;from&#34; vocabulary, &#34;to&#34; vocabulary, or map set vocabulary)
+  </li>
+  <li>
+    Restrict by “current” – only retrieve mappings whose endpoints can be resolved in current versions of terminologies
+  </li>
+  <li>
+    Restrict by cardinality – e.g. only retrieve 1-1 mappings (that meet other criteria) - (1-1, n-1, 1-n, n-n)
+  </li>
+  <li>
+    Restrict by association type – e.g. only retrieve “synonymous” mappings
+  </li>
+</ul>
+<h3 id="LexEVS6.0MappingDiscussion-2.4DefaultPreferredNames">
+  2.4 Default Preferred Names
+</h3>
+<ul>
+  <li>
+    In some cases older versions of map sets will be loaded that contain &#34;to&#34; or &#34;from&#34; codes that cannot be resolved among the versions of loaded vocabularies
+  </li>
+  <li>
+    In this case, a &#34;default preferred name&#34; will be available so that browsers can still effectively visualize the data.
+  </li>
+  <li>
+    This default name could be indexed so that searches retrieve these results, even though the codes no longer exist
+  </li>
+</ul>
+<h2 id="LexEVS6.0MappingDiscussion-3.Browsing/DiscoveryScenarios">
+  3. Browsing/Discovery Scenarios
+</h2>
+<h3 id="LexEVS6.0MappingDiscussion-3.1Grouping,Categorization">
+  3.1 Grouping, Categorization
+</h3>
+<ul>
+  <li>
+    How authoritative is it?
+  </li>
+  <li>
+    Is it actively maintained?
+  </li>
+  <li>
+    Does it connect “current version“ terminologies loaded into LexEVS?
+  </li>
+  <li>
+    How important or heavily used is it?
+  </li>
+  <li>
+    What “kind” of mapping set is it (i.e. what is it for) Group by “from” terminology or “to” terminology
+  </li>
+</ul>
+<h3 id="LexEVS6.0MappingDiscussion-3.2Selections">
+  3.2 Selections
+</h3>
+<ul>
+  <li>
+    Pre-select certain map sets for searching based on well-defined criteria
+  </li>
+</ul>
+<h3 id="LexEVS6.0MappingDiscussion-3.3Misc">
+  3.3 Misc
+</h3>
+<ul>
+  <li>
+    When searching across multiple map sets, consider options like grouping all mappings with the same “from” terminology together to make cognitive task easier.
+  </li>
+  <li>
+    Support ability to identify map sets that are “to” or “from” a particular terminology
+  </li>
+  <li>
+    E.g. get all map sets where the “from” coding scheme is NCI2010_07
+  </li>
+</ul>
+<h2 id="LexEVS6.0MappingDiscussion-4.PresentationScenarios">
+  4. Presentation Scenarios
+</h2>
+<h3 id="LexEVS6.0MappingDiscussion-4.1Views">
+  4.1 Views
+</h3>
+<ul>
+  <li>
+    Map Set view (including all known metadata)
+  </li>
+  <li>
+    Map Group view (where needed) – e.g.  one “subset” in a complex rule-based mapping.
+  </li>
+  <li>
+    Mappings view (sortable table, paging capabilities).
+    <ul>
+      <li>
+        Standard column headers come from LexEVS view.
+      </li>
+      <li>
+        Need to consider “extended” columns that may not apply to all map sets (e.g. MAP_RANK, or other MRMAP fields like MAPPRIORITY, etc)
+      </li>
+    </ul>
+  </li>
+  <li>
+    Individual mapping view – link &#34;from&#34; and &#34;to&#34; codes to the concept pages for those things – may not need this
+  </li>
+  <li>
+    “Mappings” tab on concept view – render all mappings “to” or “from” that concept
+    <ul>
+      <li>
+        need to determine which map sets to search in
+      </li>
+      <li>
+        retrieve this info only when user actually clicks on this tab
+      </li>
+    </ul>
+  </li>
+</ul>
+<h3 id="LexEVS6.0MappingDiscussion-4.2OtherConsiderations">
+  4.2 Other Considerations
+</h3>
+<ul>
+  <li>
+    Make good decisions about when clicking should open a new window vs. reload in the same page.
+  </li>
+  <li>
+    Support a “view all mappings” function for simple browsing of small sets (without requiring search).
+  </li>
+  <li>
+    Handling expression-based mappings (may need to parse – can do based on grammar or “style”).
+  </li>
+  <li>
+    Consider when a new page should open and when content should be reloaded in the current tab/browser window.
+  </li>
+</ul>
+<h2 id="LexEVS6.0MappingDiscussion-5.LoaderConsiderations">
+  5. Loader Considerations
+</h2>
+<ul>
+  <li>
+    Need to specify map set metadata (switches or prefs file)
+  </li>
+  <li>
+    Need to indicate end point coding schemes for “from” and “to“ codes.
+  </li>
+  <li>
+    If we know they cannot be resolved, placeholder names for endpoints should be provided and loaded.
+  </li>
+  <li>
+    WARNING: be careful using Excel to export to CSV because of conversion things like “078.12” to “78.12”
+  </li>
+  <li>
+    Consider loading a characterization of the “type” or “category” of a map set for organization in a list and pre-selection (see presentation)
+  </li>
+  <li>
+    Consider how many map sets to load into a single coding scheme, and what criteria would be used to make that decision.
+  </li>
+  <li>
+    Handle cases where we know the &#34;from&#34;/&#34;to&#34;codes cannot be resolved due to different versions and load default preferred names.
+  </li>
+</ul>
+<h2 id="LexEVS6.0MappingDiscussion-6.ObtainingorGeneratingData">
+  6. Obtaining or Generating Data
+</h2>
+<h3 id="LexEVS6.0MappingDiscussion-6.1Obtaining">
+  6.1 Obtaining
+</h3>
+<ul>
+  <li>
+    MRMAP data from UMLS (e.g. SNOMEDCT-ICD9CM)
+  </li>
+  <li>
+    CTCAE 3-&gt;4 mappings
+  </li>
+  <li>
+    Go/BiomedGT Mappings
+  </li>
+  <li>
+    Identify major mapping efforts, start gathering data – formats can drive further loader considerations
+  </li>
+</ul>
+<h3 id="LexEVS6.0MappingDiscussion-6.2GeneratingMappings">
+  6.2 Generating Mappings
+</h3>
+<ul>
+  <li>
+    Data sets created as part of NCI-META export (e.g. PDQ-NCIt)
+  </li>
+  <li>
+    Map sets generated as a special project (e.g NCIt Neoplasms to SNOMEDCT)
+  </li>
+  <li>
+    On-demand generation of mappings from an integrated terminology resource (like UMLS or NCI-META).
+    <ul>
+      <li>
+        Criteria-based candidate selection
+      </li>
+      <li>
+        Criteria-based ranking and filtering
+      </li>
+      <li>
+        See report (posted to gforge)
+      </li>
+      <li>
+        API performance considerations.
+      </li>
+    </ul>
+  </li>
+</ul>
+<h2 id="LexEVS6.0MappingDiscussion-7.MaintenanceandLegacyScenarios">
+  7. Maintenance and Legacy Scenarios
+</h2>
+It may be important to know what map sets have mappings whose &#34;from&#34; or &#34;to&#34; codes will not resolve.
+Managing versions:
+<ul>
+  <li>
+    “from” coding scheme,
+  </li>
+  <li>
+    “to” coding scheme
+  </li>
+  <li>
+    Map set coding scheme itself
+  </li>
+</ul>
+Learn what we need to from various mapping maintenance environments about authoring, data models, visualization, etc.
+<ul>
+  <li>
+    IHTSDO stand-alone tool (and eventual workbench)
+  </li>
+  <li>
+    CogZ (protégé tool)
+  </li>
+  <li>
+    Oboedit
+  </li>
+  <li>
+    Ad-hoc data manipulation
+  </li>
+</ul>

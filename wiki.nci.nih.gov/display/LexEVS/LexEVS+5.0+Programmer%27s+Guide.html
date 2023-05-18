@@ -1,0 +1,3381 @@
+This document is intended for developers looking for more information regarding the LexEVS API.Contents of this Page
+<ul>
+  <li>
+    <a href="#LexEVS5.0Programmer&#39;sGuide-SoftwareRequirements" rel="nofollow">
+      Software Requirements
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS5.0Programmer&#39;sGuide-SettingupyourEnvironment" rel="nofollow">
+      Setting up your Environment
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS5.0Programmer&#39;sGuide-LexEVSAPI" rel="nofollow">
+      LexEVS API
+    </a>
+    <ul>
+      <li>
+        <a href="#LexEVS5.0Programmer&#39;sGuide-CoreServices" rel="nofollow">
+          Core Services
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS5.0Programmer&#39;sGuide-ServiceExtensions" rel="nofollow">
+          Service Extensions
+        </a>
+        <ul>
+          <li>
+            <a href="#LexEVS5.0Programmer&#39;sGuide-QueryExtensions" rel="nofollow">
+              Query Extensions
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS5.0Programmer&#39;sGuide-LoadExtensions" rel="nofollow">
+              Load Extensions
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS5.0Programmer&#39;sGuide-ExportExtensions" rel="nofollow">
+              Export Extensions
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS5.0Programmer&#39;sGuide-IndexExtensions" rel="nofollow">
+              Index Extensions
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS5.0Programmer&#39;sGuide-GenericExtensions" rel="nofollow">
+              Generic Extensions
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#LexEVS5.0Programmer&#39;sGuide-Utilities" rel="nofollow">
+          Utilities
+        </a>
+        <ul>
+          <li>
+            <a href="#LexEVS5.0Programmer&#39;sGuide-Iterators" rel="nofollow">
+              Iterators
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS5.0Programmer&#39;sGuide-SearchAlgorithms" rel="nofollow">
+              Search Algorithms
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#LexEVS5.0Programmer&#39;sGuide-AdditionalUtilityClasses" rel="nofollow">
+          Additional Utility Classes
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS5.0Programmer&#39;sGuide-CodeExamples" rel="nofollow">
+          Code Examples
+        </a>
+        <ul>
+          <li>
+            <a href="#LexEVS5.0Programmer&#39;sGuide-ConceptResolution" rel="nofollow">
+              Concept Resolution
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS5.0Programmer&#39;sGuide-ServiceMetadataRetrieval" rel="nofollow">
+              Service Metadata Retrieval
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#LexEVS5.0Programmer&#39;sGuide-CombinatorialQueries" rel="nofollow">
+          Combinatorial Queries
+        </a>
+        <ul>
+          <li>
+            <a href="#LexEVS5.0Programmer&#39;sGuide-DeclaringtheTargetConceptSpace" rel="nofollow">
+              Declaring the Target Concept Space
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS5.0Programmer&#39;sGuide-ApplyingFilterCriteria" rel="nofollow">
+              Applying Filter Criteria
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS5.0Programmer&#39;sGuide-UsingtheLuceneQuerySyntaxandOtherTextMatchingFunctions" rel="nofollow">
+              Using the Lucene Query Syntax and Other Text Matching Functions
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS5.0Programmer&#39;sGuide-ApplyingSortingCriteria" rel="nofollow">
+              Applying Sorting Criteria
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS5.0Programmer&#39;sGuide-RestrictingtheInformationReturnedforMatchingItems" rel="nofollow">
+              Restricting the Information Returned for Matching Items
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS5.0Programmer&#39;sGuide-RetrievingtheResult" rel="nofollow">
+              Retrieving the Result
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS5.0Programmer&#39;sGuide-AdditionalResources" rel="nofollow">
+              Additional Resources
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#LexEVS5.0Programmer&#39;sGuide-LexEVSGUI" rel="nofollow">
+          LexEVS GUI
+        </a>
+        <ul>
+          <li>
+            <a href="#LexEVS5.0Programmer&#39;sGuide-LaunchingtheGUI" rel="nofollow">
+              Launching the GUI
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS5.0Programmer&#39;sGuide-Overview" rel="nofollow">
+              Overview
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS5.0Programmer&#39;sGuide-CreatingNewQueries" rel="nofollow">
+              Creating New Queries
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS5.0Programmer&#39;sGuide-CustomizingQueries" rel="nofollow">
+              Customizing Queries
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS5.0Programmer&#39;sGuide-WorkingwithCodeSets" rel="nofollow">
+              Working with Code Sets
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS5.0Programmer&#39;sGuide-WorkingwithCodeGraphs" rel="nofollow">
+              Working with Code Graphs
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS5.0Programmer&#39;sGuide-ViewingQueryResults" rel="nofollow">
+              Viewing Query Results
+            </a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#LexEVS5.0Programmer&#39;sGuide-LexEVScaCOREDataServicesAPI" rel="nofollow">
+      LexEVS caCORE Data Services API
+    </a>
+    <ul>
+      <li>
+        <a href="#LexEVS5.0Programmer&#39;sGuide-InteractingwithcaCORELexEVS" rel="nofollow">
+          Interacting with caCORE LexEVS
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS5.0Programmer&#39;sGuide-caCORELexEVSComponents" rel="nofollow">
+          caCORE LexEVS Components
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS5.0Programmer&#39;sGuide-LexEVSDataSources" rel="nofollow">
+          LexEVS Data Sources
+        </a>
+        <ul>
+          <li>
+            <a href="#LexEVS5.0Programmer&#39;sGuide-NCIThesaurus" rel="nofollow">
+              NCI Thesaurus
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS5.0Programmer&#39;sGuide-NCIMetathesaurus" rel="nofollow">
+              NCI Metathesaurus
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#LexEVS5.0Programmer&#39;sGuide-Interfaces" rel="nofollow">
+          Interfaces
+        </a>
+        <ul>
+          <li>
+            <a href="#LexEVS5.0Programmer&#39;sGuide-LexEVSDistributed" rel="nofollow">
+              LexEVSDistributed
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS5.0Programmer&#39;sGuide-LexEVSDataService" rel="nofollow">
+              LexEVSDataService
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS5.0Programmer&#39;sGuide-LexEVSService" rel="nofollow">
+              LexEVSService
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#LexEVS5.0Programmer&#39;sGuide-SearchParadigm" rel="nofollow">
+          Search Paradigm
+        </a>
+        <ul>
+          <li>
+            <a href="#LexEVS5.0Programmer&#39;sGuide-QueryingtheSystem" rel="nofollow">
+              Querying the System
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS5.0Programmer&#39;sGuide-QueryOptions" rel="nofollow">
+              QueryOptions
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS5.0Programmer&#39;sGuide-ExamplesofUse" rel="nofollow">
+              Examples of Use
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#LexEVS5.0Programmer&#39;sGuide-WebServicesAPI" rel="nofollow">
+          Web Services API
+        </a>
+        <ul>
+          <li>
+            <a href="#LexEVS5.0Programmer&#39;sGuide-Configuration" rel="nofollow">
+              Configuration
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS5.0Programmer&#39;sGuide-BuildingaJavaSOAPClient" rel="nofollow">
+              Building a Java SOAP Client
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#LexEVS5.0Programmer&#39;sGuide-XML-HTTPAPI" rel="nofollow">
+          XML-HTTP API
+        </a>
+        <ul>
+          <li>
+            <a href="#LexEVS5.0Programmer&#39;sGuide-ServiceLocationandSyntax" rel="nofollow">
+              Service Location and Syntax
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS5.0Programmer&#39;sGuide-ExamplesofUse.1" rel="nofollow">
+              Examples of Use
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS5.0Programmer&#39;sGuide-WorkingwithResultSets" rel="nofollow">
+              Working with Result Sets
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#LexEVS5.0Programmer&#39;sGuide-DistributedLexEVSAPI" rel="nofollow">
+          Distributed LexEVS API
+        </a>
+        <ul>
+          <li>
+            <a href="#LexEVS5.0Programmer&#39;sGuide-Overview.1" rel="nofollow">
+              Overview
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS5.0Programmer&#39;sGuide-Architecture" rel="nofollow">
+              Architecture
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS5.0Programmer&#39;sGuide-LexEVSAnnotations" rel="nofollow">
+              LexEVS Annotations
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS5.0Programmer&#39;sGuide-AspectOrientedProgrammingProxies" rel="nofollow">
+              Aspect Oriented Programming Proxies
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS5.0Programmer&#39;sGuide-LexEVSAPIDocumentation" rel="nofollow">
+              LexEVS API Documentation
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS5.0Programmer&#39;sGuide-LexEVSInstallationandConfiguration" rel="nofollow">
+              LexEVS Installation and Configuration
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS5.0Programmer&#39;sGuide-ExampleofUse" rel="nofollow">
+              Example of Use
+            </a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#LexEVS5.0Programmer&#39;sGuide-LexEVSAnalyticalGridServiceAPI" rel="nofollow">
+      LexEVS Analytical Grid Service API
+    </a>
+    <ul>
+      <li>
+        <a href="#LexEVS5.0Programmer&#39;sGuide-UsingtheAPI" rel="nofollow">
+          Using the API
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS5.0Programmer&#39;sGuide-MethodDescriptions" rel="nofollow">
+          Method Descriptions
+        </a>
+        <ul>
+          <li>
+            <a href="#LexEVS5.0Programmer&#39;sGuide-getCodingSchemeConcepts" rel="nofollow">
+              getCodingSchemeConcepts
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS5.0Programmer&#39;sGuide-getFilter" rel="nofollow">
+              getFilter
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS5.0Programmer&#39;sGuide-getSortAlgorithm" rel="nofollow">
+              getSortAlgorithm
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS5.0Programmer&#39;sGuide-getFilterExtensions" rel="nofollow">
+              getFilterExtensions
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS5.0Programmer&#39;sGuide-getServiceMetadata" rel="nofollow">
+              getServiceMetadata
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS5.0Programmer&#39;sGuide-getSupportedCodingSchemes" rel="nofollow">
+              getSupportedCodingSchemes
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS5.0Programmer&#39;sGuide-getLastUpdateTime" rel="nofollow">
+              getLastUpdateTime
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS5.0Programmer&#39;sGuide-resolveCodingScheme" rel="nofollow">
+              resolveCodingScheme
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS5.0Programmer&#39;sGuide-getNodeGraph" rel="nofollow">
+              getNodeGraph
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS5.0Programmer&#39;sGuide-getMatchAlgorithms" rel="nofollow">
+              getMatchAlgorithms
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS5.0Programmer&#39;sGuide-getGenericExtensions" rel="nofollow">
+              getGenericExtensions
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS5.0Programmer&#39;sGuide-getGenericExtension" rel="nofollow">
+              getGenericExtension
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS5.0Programmer&#39;sGuide-getHistoryService" rel="nofollow">
+              getHistoryService
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS5.0Programmer&#39;sGuide-getSortAlgorithms" rel="nofollow">
+              getSortAlgorithms
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS5.0Programmer&#39;sGuide-resolveCodingSchemeCopyright" rel="nofollow">
+              resolveCodingSchemeCopyright
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS5.0Programmer&#39;sGuide-setSecurityToken" rel="nofollow">
+              setSecurityToken
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#LexEVS5.0Programmer&#39;sGuide-UsageInstructions" rel="nofollow">
+          Usage Instructions
+        </a>
+        <ul>
+          <li>
+            <a href="#LexEVS5.0Programmer&#39;sGuide-ServiceURL" rel="nofollow">
+              Service URL
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS5.0Programmer&#39;sGuide-RequiredLibraries" rel="nofollow">
+              Required Libraries
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS5.0Programmer&#39;sGuide-Downloads" rel="nofollow">
+              Downloads
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#LexEVS5.0Programmer&#39;sGuide-CodeExamples.1" rel="nofollow">
+          Code Examples
+        </a>
+        <ul>
+          <li>
+            <a href="#LexEVS5.0Programmer&#39;sGuide-ExampleClientandServiceCallsandSOAPMessages" rel="nofollow">
+              Example Client and Service Calls and SOAP Messages
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS5.0Programmer&#39;sGuide-ExampleAPIUsage" rel="nofollow">
+              Example API Usage
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#LexEVS5.0Programmer&#39;sGuide-ErrorHandling" rel="nofollow">
+          Error Handling
+        </a>
+        <ul>
+          <li>
+            <a href="#LexEVS5.0Programmer&#39;sGuide-ErrorConnectingtoLexEVSGridService" rel="nofollow">
+              Error Connecting to LexEVS Grid Service
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS5.0Programmer&#39;sGuide-LexEVSErrors" rel="nofollow">
+              LexEVS Errors
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS5.0Programmer&#39;sGuide-InvalidServiceContextAccess" rel="nofollow">
+              Invalid Service Context Access
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#LexEVS5.0Programmer&#39;sGuide-SecurityIssues" rel="nofollow">
+          Security Issues
+        </a>
+        <ul>
+          <li>
+            <a href="#LexEVS5.0Programmer&#39;sGuide-LexEVSGridServiceSecurity" rel="nofollow">
+              LexEVS Grid Service Security
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS5.0Programmer&#39;sGuide-AccessingSecureContent" rel="nofollow">
+              Accessing Secure Content
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS5.0Programmer&#39;sGuide-Implementation" rel="nofollow">
+              Implementation
+            </a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#LexEVS5.0Programmer&#39;sGuide-LexEVSDataGridServiceAPI" rel="nofollow">
+      LexEVS Data Grid Service API
+    </a>
+    <ul>
+      <li>
+        <a href="#LexEVS5.0Programmer&#39;sGuide-TheLexEVSDataGridService" rel="nofollow">
+          The LexEVS Data Grid Service
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS5.0Programmer&#39;sGuide-caGridDataServiceDocumentation" rel="nofollow">
+          caGrid Data Service Documentation
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS5.0Programmer&#39;sGuide-QueryingtheSystem.1" rel="nofollow">
+          Querying the System
+        </a>
+        <ul>
+          <li>
+            <a href="#LexEVS5.0Programmer&#39;sGuide-QueryforaConceptwithaSpecificCode" rel="nofollow">
+              Query for a Concept with a Specific Code
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS5.0Programmer&#39;sGuide-QueryforaConceptwithSpecificPresentationText" rel="nofollow">
+              Query for a Concept with Specific Presentation Text
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS5.0Programmer&#39;sGuide-RestrictResultstoSpecificAttributes" rel="nofollow">
+              Restrict Results to Specific Attributes
+            </a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+<h2 id="LexEVS5.0Programmer&#39;sGuide-SoftwareRequirements">
+  Software Requirements
+</h2>
+Information regarding the software requirements LexEVS can be found in the
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427405" rel="nofollow">
+  LexEVS 5.x Installation Guide
+</a>
+.
+<h2 id="LexEVS5.0Programmer&#39;sGuide-SettingupyourEnvironment">
+  Setting up your Environment
+</h2>
+Information regarding the installation and configuration of the LexEVS environment can be found in the
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427405" rel="nofollow">
+  LexEVS 5.x Installation Guide
+</a>
+.
+<h2 id="LexEVS5.0Programmer&#39;sGuide-LexEVSAPI">
+  LexEVS API
+</h2>
+Programming interfaces for the system fall into three primary categories:
+<ul>
+  <li>
+    Core Services - Includes the LexBIGService, LexBIGServiceManager, CodedNodeSet and CodedNodeGraph classes, which provide the initial entry points for programmatic access to all system features and data.
+  </li>
+  <li>
+    Service Extensions - The extension mechanism provides for pluggable system features. Current extension points allow for the introduction of custom load and indexing mechanisms, unique query sort and filter mechanisms, and generic functional extensions which can be advertised for availability to client programs.
+  </li>
+  <li>
+    Utilities - Utility classes, such as those implementing iterator support, are provided by the system to provide convenience and optimize the handling of resources accessed through the runtime.
+  </li>
+</ul>
+<h3 id="LexEVS5.0Programmer&#39;sGuide-CoreServices">
+  Core Services
+</h3>
+Provides central entry points for programmatic access to system features and data.
+<img alt="class diagram image of the LexBIG Service interface and associated components" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%205.0%20Programmer&#39;s%20Guide/LexBIGService.jpg?api=v2">
+Components of interest include:
+<ul>
+  <li>
+    CodedNodeGraph - A virtual graph where the edges represent associations and the nodes represent concept codes. A CodedNodeGraph describes a graph that can be combined with other graphs, queried or resolved into an actual graph rendering.
+  </li>
+  <li>
+    CodedNodeSet - A coded node set represents a flat list of coded entries.
+  </li>
+  <li>
+    LexBIGService - This interface represents the core interface to a LexEVS service.
+  </li>
+  <li>
+    LexBIGServiceManager - The service manager provides a single write and update access point for all of a service&#39;s content. The service manager allows new coding schemes to be validated and loaded, existing coding schemes to be retired and removed and the status of various coding schemes to be updated and changed.
+  </li>
+  <li>
+    LexBIGServiceMetadata - Interface to perform system-wide query over optionally loaded metadata for loaded code systems and providers.
+  </li>
+</ul>
+<h3 id="LexEVS5.0Programmer&#39;sGuide-ServiceExtensions">
+  Service Extensions
+</h3>
+Provides registration and lookup for pluggable system features.
+<img alt="class diagram image for Extensions" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%205.0%20Programmer&#39;s%20Guide/Extensions.jpg?api=v2">
+Components of interest include:
+<ul>
+  <li>
+    ExtensionRegistry - Allows registration and lookup of implementers for extensible pieces of the LexEVS architecture.
+  </li>
+  <li>
+    Extendable - Marks a class as an extension to the LexEVS application programming interface. This allows for centralized registration, lookup, and access to defined functions.
+  </li>
+</ul>
+<h4 id="LexEVS5.0Programmer&#39;sGuide-QueryExtensions">
+  Query Extensions
+</h4>
+Query extensions provide the ability to further constrain or manage query results.
+<img alt="class diagram image of Query extension" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%205.0%20Programmer&#39;s%20Guide/Query.jpg?api=v2">
+Components of interest include:
+<ul>
+  <li>
+    Filter - Allows for additional filtering of query results.
+  </li>
+  <li>
+    Sort - Allows for unique sorting of query results. This interface provides a comparator to evaluate order of any two given items from the result set.
+  </li>
+</ul>
+<h4 id="LexEVS5.0Programmer&#39;sGuide-LoadExtensions">
+  Load Extensions
+</h4>
+Load extensions are responsible for the validation and import of content to the LexEVS repository. Vocabularies may be imported from a variety of formats including LexGrid canonical XML, NCI Thesaurus (OWL), and NCI MetaThesaurus (UMLS RRF).
+<img alt="class diagram image of Load extension" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%205.0%20Programmer&#39;s%20Guide/Load.jpg?api=v2">
+Components of interest include:
+<ul>
+  <li>
+    Loader - The loader interface validates and/or loads content for a service.
+  </li>
+  <li>
+    LexGrid_Loader - Validates and/or loads content provided in the LexGrid canonical XML format.
+  </li>
+  <li>
+    NCI_MetaThesaurusLoader - Validates and/or loads the complete NCI MetaThesaurus. Content is supplied in RRF format. Note: To load individual coding schemes, consider using the UMLS_Loader as an alternative.
+  </li>
+  <li>
+    OBO_Loader - Validates and/or loads content provided in Open Biomedical Ontologies (OBO) text format.
+  </li>
+  <li>
+    OWL_Loader - Validates and/or loads content provided in Web Ontology Language (OWL) XML format. Note that for LexEVS phase 1 this loader is designed to specifically handle the NCI Thesaurus as provided in OWL format.
+  </li>
+  <li>
+    Text_Loader - A loader for delimited text type files. Text files come in one of two formats: indented code/designation pair or indented code/designation/description triples.
+  </li>
+  <li>
+    UMLS_Loader - Load one or more coding schemes from UMLS RRF format stored in a SQL database.
+  </li>
+  <li>
+    MetaData_Loader - Validates and/or loads content provided in metadata xml format. The only requirement of the xml file is that it be a valid xml file.
+  </li>
+  <li>
+    NCIHistoryLoader - A loader that takes the delimited NCI history file and applies it to a coding scheme.
+  </li>
+  <li>
+    OBOHistoryLoader - Load an OBO change history file.
+  </li>
+</ul>
+<h4 id="LexEVS5.0Programmer&#39;sGuide-ExportExtensions">
+  Export Extensions
+</h4>
+Export extensions are responsible for the export of content from the LexEVS repository to other representative vocabulary formats.
+<img alt="class diagram image of Export extension" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%205.0%20Programmer&#39;s%20Guide/Export.jpg?api=v2">
+Components of interest include:
+<ul>
+  <li>
+    Exporter - Defines a class of object used to export content from the underlying LexGrid repository to another repository or file format.
+  </li>
+  <li>
+    LexGrid_Exporter - Exports content to LexGrid canonical XML format.
+  </li>
+  <li>
+    OBO_Exporter - Exports content to OBO text format.
+  </li>
+  <li>
+    OWL_Exporter - Exports content to OWL XML format.
+  </li>
+</ul>
+<h4 id="LexEVS5.0Programmer&#39;sGuide-IndexExtensions">
+  Index Extensions
+</h4>
+Index extensions are built to optimize the finding, sorting and matching of query results.
+<img alt="class diagram image of Index extension" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%205.0%20Programmer&#39;s%20Guide/Index.jpg?api=v2">
+Components of interest include:
+<ul>
+  <li>
+    Index - Identifies expected behavior and an associated loader to build and maintain a named index. Note that a single loader may be used to maintain multiple named indexes.
+  </li>
+  <li>
+    IndexLoader - Manages registered index extensions. A single loader may be used to create and maintain multiple indexes over one or more coding schemes. It is the responsibility of the loader to properly interpret each index it services by name, version, and provider.
+  </li>
+</ul>
+<h4 id="LexEVS5.0Programmer&#39;sGuide-GenericExtensions">
+  Generic Extensions
+</h4>
+Generic extensions provides a mechanism to register application-specific extensions for reference and reuse.
+<img alt="class diagram image of Query extension" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%205.0%20Programmer&#39;s%20Guide/Generic.jpg?api=v2">
+Components of interest include:
+<ul>
+  <li>
+    GenericExtension - The generic extension class. Classes that implement this class are accessible via the LexBIGService interface.
+  </li>
+  <li>
+    LexBIGServiceConvenienceMethods - Convenience methods to be implemented as a generic extension of the LexEVS API.
+  </li>
+</ul>
+<h3 id="LexEVS5.0Programmer&#39;sGuide-Utilities">
+  Utilities
+</h3>
+Defines helper classes externalized by the LexEVS API.
+<h4 id="LexEVS5.0Programmer&#39;sGuide-Iterators">
+  Iterators
+</h4>
+Iterators are used to provide controlled resolution of query results.
+<img alt="class diagram image of Iterators" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%205.0%20Programmer&#39;s%20Guide/Iterators.jpg?api=v2">
+Components of interest include:
+<ul>
+  <li>
+    EntityListIterator - Generic interface for flexible resolution of LexEVS objects.
+  </li>
+  <li>
+    ResolvedConceptReferencesIterator - An iterator for retrieving resolved coding scheme references.
+  </li>
+</ul>
+<h4 id="LexEVS5.0Programmer&#39;sGuide-SearchAlgorithms">
+  Search Algorithms
+</h4>
+Supported LexEVS Search AlgorithmsSearch Algorithm
+Name: LuceneQuery
+Version: 1.0
+Description: Search with the Lucene query syntax.
+See http://lucene.apache.org/java/2_3_2/queryparsersyntax.html
+
+Search Algorithm
+Name: DoubleMetaphoneLuceneQuery
+Version: 1.0
+Description: Search with the Lucene query syntax, using a &#39;sounds like&#39; algorithm.
+A search for &#39;atack&#39; will get a hit on &#39;attack&#39;
+See http://lucene.apache.org/java/2_3_2/queryparsersyntax.html
+
+Search Algorithm
+Name: StemmedLuceneQuery
+Version: 1.0
+Description: Search with the Lucene query syntax, using stemmed terms.
+A search for &#39;trees&#39; will get a hit on &#39;tree&#39;
+See http://lucene.apache.org/java/2_3_2/queryparsersyntax.html
+
+Search Algorithm
+Name: startsWith
+Version: 1.0
+Description: Equivalent to &#39;term*&#39; (case insensitive)
+
+Search Algorithm
+Name: exactMatch
+Version: 1.0
+Description: Exact match (case insensitive)
+
+Search Algorithm
+Name: contains
+Version: 1.0
+Description: Equivalent to &#39;* term* *&#39; - in other words - a trailing wildcard on a term
+(but no leading wild card) and the term can appear at any position.
+
+Search Algorithm
+Name: RegExp
+Version: 1.0
+Description: A Regular Expression query.  Searches against the lowercased text, so a
+regular expression that specifies an uppercase character will never return a match.
+Additionally, this searches against the entire string as a single token, rather than
+the tokenized string - so write your regular expression accordingly.
+Supported syntax is documented here:
+http://jakarta.apache.org/regexp/apidocs/org/apache/regexp/RE.html
+<h3 id="LexEVS5.0Programmer&#39;sGuide-AdditionalUtilityClasses">
+  Additional Utility Classes
+</h3>
+It is highly recommended that all LexEVS programmers familiarize themselves with the classes contained in the org.LexGrid.LexBIG.Utility package. Many useful features are provided in an effort to increase approachability of the API and assist the programmer in common tasks. This package currently contains the following classes:
+<ul>
+  <li>
+    Constructors - Helper class to ease creating common objects.
+  </li>
+  <li>
+    ConvenienceMethods - One-stop shopping for convenience methods that have been implemented against the LexEVS API.
+  </li>
+  <li>
+    LBConstants - Provides constants for use in the LexEVS API.
+  </li>
+  <li>
+    ObjectToString - Provides centralized formatting of LexEVS Objects to String representations.
+  </li>
+</ul>
+<h3 id="LexEVS5.0Programmer&#39;sGuide-CodeExamples">
+  Code Examples
+</h3>
+<h4 id="LexEVS5.0Programmer&#39;sGuide-ConceptResolution">
+  Concept Resolution
+</h4>
+Programmers access coded concepts by acquiring first a node set or graph. After specifying optional restrictions, the nodes in this set or graph can be resolved as a list of ConceptReference objects which in turn contain references to one or more Concept objects. The following example provides a simple query of concept codes:Java Code Snippet
+
+// Create a basic service object for data retrieval
+LexBIGService lbSvc = LexBIGServiceImpl.defaultInstance();
+
+// Create a concept reference list appropriate for this coding scheme and
+// this concept code where the parameters are a String array consisting of
+// a single value and the name of the coding scheme where this concept resides.
+ConceptReferenceList crefs = ConvenienceMethods.createConceptReferenceList(
+new String[], SAMPLE_SCHEME);
+
+// Initialize a coding scheme version object with a version number for the
+// sample scheme.
+CodingSchemeVersionOrTag csvt = new CodingSchemeVersionOrTag();
+csvt.setVersion(VERSION);
+
+// Initialize a CodedNodeSet Object with all concepts in our sample coding
+// scheme. (We named the scheme we wanted and by using the Boolean value,
+// false, retrieved both active and inactive concepts.) This method call
+// ignores the version tag using the null parameter.  The final
+// restrictToCodes(crefs) method call restricts the return to the single
+// code in the previously initialized list of one.
+CodedNodeSet nodes = lbSvc.getCodingSchemeConcepts(SAMPLE_SCHEME, csvt).
+restrictToCodes(crefs);
+
+// Build a list of references from the current (and already restricted) set
+// and restrict them further to the single property of NCI_NAME and
+// restrict to a single answer (parameter 1)).
+ResolvedConceptReferenceList matches = nodes.resolveToList(
+null, ConvenienceMethods.createLocalNameList(&#34;FULL_SYN&#34;), 1);
+
+// Does our list of one contain the single reference we were looking for?
+// If so, then initialize a ResolvedConceptReference with the result and
+// initialize a Concept object by calling the getReferencedEntry()
+// method.  The Concept object is the base information model object and
+// contains, among other things, the CONCEPT_NAME value we were seeking.
+// We retrieve it with a call to the first element in the properties list,
+// getting the text &amp;&amp; it&#39;s accompanying content.
+if(matches.getResolvedConceptReferenceCount() &lt;&gt; 0)
+{           ResolvedConceptReference ref = (ResolvedConceptReference)matches.
+enumerateResolvedConceptReference().nextElement();
+Concept entry = ref.getReferencedEntry();
+System.out.println(&#34;Matching synonym: &#34; +
+entry.getPresentation(0).getValue() );       }
+else
+{           System.out.println(&#34;No match found&#34;);       }
+<h4 id="LexEVS5.0Programmer&#39;sGuide-ServiceMetadataRetrieval">
+  Service Metadata Retrieval
+</h4>
+The LexEVS system maintains service metadata which can provide client programs with information about code system content and assigned copyright/licensing information. Below is an brief example showing how to access and print some of this metadata:Java Code Snippet
+
+// We can get a CodingSchemeRenderingList object directly from LexBigService
+LexBIGService lbs = LexBIGServiceImpl.defaultInstance();
+CodingSchemeRenderingList schemeList = lbs.getSupportedCodingSchemes();
+
+for (CodingSchemeRendering csr : schemeList.getCodingSchemeRendering())
+{
+CodingSchemeSummary css = csr.getCodingSchemeSummary();
+
+// Print separator then details from the CodingSchemeSummary
+System.out.println(&#34;==========================&#34;);
+System.out.println(ObjectToString.toString(css));
+
+// Set up a coding scheme reference to resolve Copyright
+String urn = css.getCodingSchemeURI();
+String version = css.getRepresentsVersion();
+CodingSchemeVersionOrTag csVorT =
+Constructors.createCodingSchemeVersionOrTagFromVersion(version);
+CodingScheme cs = lbs.resolveCodingScheme(urn, csVorT);
+System.out.println(&#34;Copyright: &#34; +cs.getCopyright().getContent());
+
+// Get the final details from the RenderingDetail
+RenderingDetail rd = csr.getRenderingDetail();
+System.out.println(ObjectToString.toString(rd));
+System.out.println();
+}
+<h3 id="LexEVS5.0Programmer&#39;sGuide-CombinatorialQueries">
+  Combinatorial Queries
+</h3>
+One of the most powerful features of the LexEVS architecture is the ability to define multiple search and sort criteria without intermediate retrieval of data from the LexEVS service. Consider the following code snippet:Java Code Snippet
+
+System.out.println(&#34;Example double restriction query with additional &#34;
++&#34;application of sort criteria and restricted return values.&#34;);
+// Declare the service...
+LexBIGServiceImpl lbs = LexBIGServiceImpl.defaultInstance();
+
+// Start with an unconstrained set of all codes for the vocabulary
+CodingSchemeVersionOrTag csvt = new CodingSchemeVersionOrTag();
+csvt.setVersion(VERSION2);
+CodedNodeSet cns = lbs.getCodingSchemeConcepts(SAMPLE_SCHEME2, csvt);
+
+// Constrain to concepts with designations (assigned text presentations
+// that contain text that sounds like &#39;Short Saphenous Vein&#39;
+cns = cns.restrictToMatchingDesignations(
+&#34;Short Safinus Vane&#34;,
+SearchDesignationOption.ALL,
+MatchAlgorithms.DoubleMetaphoneLuceneQuery.toString(),
+null);
+
+// Further restrict the results to concepts with a semantic type of
+// &#39;Anatomical Structure&#39;
+cns = cns.restrictToMatchingProperties(
+Constructors.createLocalNameList(&#34;Semantic_Type&#34;),
+null, &#34;Anatomical Structure&#34;,
+&#34;exactMatch&#34;,
+null);
+
+// Indicate that the resulting list should be sorted with the best
+// results first and then sorted by code if there is a tie.
+SortOptionList sortCriteria = Constructors.createSortOptionList(
+new String[] {&#34;matchToQuery&#34;, &#34;code&#34;});
+
+// Indicate to return only the assigned UMLS_CUI and
+// textualPresentation properties.
+LocalNameList restrictTo =ConvenienceMethods.createLocalNameList(
+new String[] {&#34;UMLS_CUI&#34;, &#34;textualPresentation&#34;} );
+
+// Still nothing computed yet.
+// Perform the query &amp;&amp; resolve the sorted/filtered list with a
+// maximum of 6 items returned.
+ResolvedConceptReferenceList list = cns.resolveToList(
+sortCriteria, restrictTo, null, 6);
+// Print the results
+ResolvedConceptReference[] rcr = list.getResolvedConceptReference();
+for (ResolvedConceptReference rc : rcr)
+{
+System.out.println(&#34;Resolved Concept: &#34; + rc.getConceptCode());
+}
+
+This example shows a simple yet powerful query to search a code system based on a &#39;sounds like&#39; match algorithm (the list of all available match algorithms can be listed using the &#39;ListExtensions -m&#39; admin script).
+<h4 id="LexEVS5.0Programmer&#39;sGuide-DeclaringtheTargetConceptSpace">
+  Declaring the Target Concept Space
+</h4>
+The coded node set (variable &#39;cns&#39;) is initially declared to query the NCI Thesaurus vocabulary. At this point the concept space included by the set can be thought of as unrestricted, addressing every defined coded entry (the &#39;false&#39; value on the declaration indicates to also include inactive concepts). However, it important to note that no search is performed by the LexEVS service at this time.
+<h4 id="LexEVS5.0Programmer&#39;sGuide-ApplyingFilterCriteria">
+  Applying Filter Criteria
+</h4>
+Similarly, no computation is performed (to realize query results) during invocation of the restrictToMatchingDesignations() and restrictToMatchingProperties() methods. However, these calls effectively narrow the target space even further, indicating that filters should be applied to the information returned by the LexEVS query service.
+<h4 id="LexEVS5.0Programmer&#39;sGuide-UsingtheLuceneQuerySyntaxandOtherTextMatchingFunctions">
+  Using the Lucene Query Syntax and Other Text Matching Functions
+</h4>
+The text criteria applied in methods such as restrictToMatchingDesignations() uses one of a number of powerful text processing applications to provide the user with broad capability for text based searches. Text matches can be simple applications of exactMatch, startsWith or contains algorithms as well as powerful regular expressions and Lucene Query syntax (used in the LuceneQuery function.) As shown above these options are passed into the restrictToMatchingDesignations() Method as parameters.Lucene Queries are well documented and can be very powerful. The uninitiated user may need some background on their use however. The user should start here with the official Lucene Query Parser documentation.
+Link provided for historical purposes http://lucene.apache.org/java/2_3_2/queryparsersyntax.html
+Keep in mind that some LexEVS queries such as &#34;startsWith&#34; and &#34;contains&#34; use wild card searches under the covers, so that use of wild cards in this context can cause errors in searches involving these search types.Instead it is best to use the flexibility of the Lucene Query searches in the matchingDesignation by using the Lucene Query searches in LexEVS where most searches will work much as described in the query syntax documentation.Special characters in the Lucene Query search can cause unexpected results. If you are not using special characters as recommended for various Lucene search mechanisms then your searches may not return expected results or may return an error. If the value you are searching upon contains say, parenthesis, you will need to place the value in quotations. The escape characters described in the Lucene Documentation do not work at this time.Likewise you should not expect to see a Lucene Query narrow down search results as you progressively enter a longer substring more closely matching your term of interest. Instead use the contains method.
+<h4 id="LexEVS5.0Programmer&#39;sGuide-ApplyingSortingCriteria">
+  Applying Sorting Criteria
+</h4>
+Multiple sort algorithms can be applied to control the order of items returned. In this case, we indicate that results are to be sorted based on primary and secondary criteria. The &#34;matchToQuery&#34; algorithm indicates to sort the result according to best match as determined by the search engine. The &#34;code&#34; item indicates to perform a secondary sort based on concept code.NoteThe list of all available sort algorithms can be listed using the &#39;ListExtensions -s&#39; admin script.
+<h4 id="LexEVS5.0Programmer&#39;sGuide-RestrictingtheInformationReturnedforMatchingItems">
+  Restricting the Information Returned for Matching Items
+</h4>
+The LexEVS API also allows the programmer to restrict the values returned for each matching concept. In this example, we chose to return only the UMLS CUI and assigned text presentations.
+<h4 id="LexEVS5.0Programmer&#39;sGuide-RetrievingtheResult">
+  Retrieving the Result
+</h4>
+A query is finally performed during the &#39;resolve&#39; step, with results returned to the declared list. It is at this point that the LexEVS service does the heavy lifting. By declaring the full extent of the request up front (namespace, match criteria, sort criteria, and returned values), the service then has the opportunity to optimize the query path. In addition, in this example we restrict the number of items returned to a maximum of 6. This combined approach has the benefit of reducing server-side processing while minimizing the volume and frequency of traffic between the client program and the LexEVS service.NoteWhile this section provides one example of combining criteria, this same pattern can be applied to many of the CodedNodeSet and CodedNodeGraph operations. It is strongly recommended that programmers familiarize themselves with this programming model and its application.
+<h4 id="LexEVS5.0Programmer&#39;sGuide-AdditionalResources">
+  Additional Resources
+</h4>
+The examples and automated test programs provided by the LexEVS installation (see the file breakdown in the section,
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427407" rel="nofollow">
+  #Overview
+</a>
+) are available as additional reference materials.
+<h3 id="LexEVS5.0Programmer&#39;sGuide-LexEVSGUI">
+  LexEVS GUI
+</h3>
+The LexEVS Graphical User Interface, or GUI, is an optional component of the LexEVS install which will be in the /gui folder of the base LexEVS installation (see file breakdown in the section,
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427407" rel="nofollow">
+  #Overview
+</a>
+). The GUI is meant to provide a simple tool to test LexEVS API methods and quickly view the results; almost all public methods defined by the LexEVS API are supported. This guide provides a brief overview of how the GUI can aid programmers in writing code to the LexEVS API.NoteThe LexEVS GUI supports both administrative and test functions. Please refer to the LexEVS Administrator&#39;s Guide for instructions on using the GUI as an administration tool.
+<h4 id="LexEVS5.0Programmer&#39;sGuide-LaunchingtheGUI">
+  Launching the GUI
+</h4>
+Depending on the operating systems that you selected at installation time, you should have one or more of the following programs in the /gui folder:
+Linux_64-lbGUI.sh		Linux-lbGUI.sh
+OSX-lbGUI.command		Windows-lbGUI.bat
+Launch the GUI by executing the appropriate script for your platform. You will be presented with an application that looks like this:
+<img alt="screenshot of the LexBIG Console GUI" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%205.0%20Programmer&#39;s%20Guide/GUI_Launch.jpg?api=v2">
+<h4 id="LexEVS5.0Programmer&#39;sGuide-Overview">
+  Overview
+</h4>
+The upper section of the GUI shows all of the code systems currently loaded, along with corresponding metadata. The lower section of the GUI is used to combine, restrict and resolve Code Sets and Code Graphs.The lower left section is where you can perform Boolean logic on Code Sets and Code Graphs. The lower right section is where you can introduce restrictions on Code Sets and Code Graphs and browse results.NoteThe menu options are used primarily for administrative functions, and are covered in detail by the LexEVS Administrator&#39;s Guide. In addition, all of the disabled buttons in the top half of the application are used for administrative functions, and are also described in the LexEVS Administrator&#39;s Guide.
+<h4 id="LexEVS5.0Programmer&#39;sGuide-CreatingNewQueries">
+  Creating New Queries
+</h4>
+There are four buttons on the top half that are of interest for creating queries.
+<ul>
+  <li>
+    Refresh - This button causes the LexEVS GUI to reread the available terminologies and their respective metadata. This can be useful when using the GUI to view a LexEVS environment that is being modified by another process.
+  </li>
+  <li>
+    Get History - If a terminology with available history data is selected, this button opens a history browser to view it via the NCI history API. This option is currently only applicable when working with the NCI Thesaurus terminology.
+  </li>
+  <li>
+    Get Code Set - This button causes the selected terminology to be added to the lower left section of the GUI as a code set - which is noted by a &#39;CS&#39; prefix.
+  </li>
+  <li>
+    Get Code Graph - This button causes the selected terminology to be added to the lower left section of the GUI as a code graph - which is noted by a &#39;CG&#39; prefix.
+  </li>
+</ul>
+<h4 id="LexEVS5.0Programmer&#39;sGuide-CustomizingQueries">
+  Customizing Queries
+</h4>
+After selecting a code system and clicking on Get Code Set or Get Code Graph, a row will be added to the lower left section of the GUI for each click. There are seven buttons in the lower left section that allow combinatorial logic between the code sets in the lower left.
+<ul>
+  <li>
+    Union - This button is enabled if two Code Sets or two Code Graphs are selected in the lower left. Clicking the button creates a new virtual Code Set or Code Graph which represents the Boolean union of the two selected items. All restrictions applied to the individual items still apply.
+  </li>
+  <li>
+    Intersection - This button is enabled if two Code Sets or two Code Graphs are selected in the lower left. Clicking the button creates a new virtual Code Set or Code Graph which represents the Boolean intersection of the two selected items. All restrictions applied to the individual items still apply.
+  </li>
+  <li>
+    Difference - This button is enabled if two Code Sets or two Code Graphs are selected in the lower left. Clicking the button creates a new virtual Code Set which represents the Boolean difference of the two selected Code Sets. All restrictions applied to the individual items still apply.
+  </li>
+  <li>
+    Restrict to Codes - This button is enabled if a Code Set and a Code Graph are selected in the lower left. Clicking the button creates a new virtual Code Graph which will be restricted to concept codes occurring in the selected Code Set.
+  </li>
+  <li>
+    Restrict to Source Codes - This button is enabled if a Code Set and a Code Graph are selected in the lower left. Clicking the button creates a new virtual Code Graph which will have its source codes restricted to codes occurring in the selected Code Set.
+  </li>
+  <li>
+    Restrict to Target Codes - This button is enabled if a Code Set and a Code Graph are selected in the lower left. Clicking the button creates a new virtual Code Graph which will have its target codes restricted to codes occurring in the selected Code Set.
+  </li>
+  <li>
+    Remove - This button is enabled if any Code Set or Code Graph (or virtual Code Set or Code Graph) is selected in the lower left. Clicking the button will remove the selected item from the list.
+  </li>
+</ul>
+The lower right section of the GUI is used to apply restrictions to Code Sets or Code Graphs, and set the variables that need to be passed into the resolve method.
+<h4 id="LexEVS5.0Programmer&#39;sGuide-WorkingwithCodeSets">
+  Working with Code Sets
+</h4>
+If a Code Set is selected in the lower left, then the lower right section will look like this:
+<img alt="screenshot of the lower portion of the GUI" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%205.0%20Programmer&#39;s%20Guide/Selected_Code_Set.jpg?api=v2">
+In the lower right section, there are two halves - the top half and the bottom half. The top half is used to apply restrictions. The bottom half provides query options and resolution.
+<ul>
+  <li>
+    Add - This button introduces a new restriction to the Coded Node Set. Clicking it will bring up the following dialog box for creating restrictions:
+    <img alt="screenshot of the Configure Restriction dialog box" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%205.0%20Programmer&#39;s%20Guide/Configure_Restriction_Window.jpg?api=v2">
+    The top drop down list indicates the type of restriction to add. The rest of the dialog box will change depending on the type of restriction selected. All required parameters for the selected restriction type will be presented.
+  </li>
+  <li>
+    Edit - This button is enabled when a restriction is selected. Clicking it allows revision of an existing restriction.
+  </li>
+  <li>
+    Remove -This button is enabled when a restriction is selected. Clicking it removes the selected restriction.
+  </li>
+  <li>
+    Only Include Active Codes - This check box indicates whether or not to include inactive codes when resolving the selected code set.
+  </li>
+  <li>
+    Set Sort Options - This button will bring up a dialog box to choose the desired sort order of the results.
+  </li>
+  <li>
+    Resolve Code Set - This button will bring up a result window where the Code Set will be resolved and displayed.
+  </li>
+</ul>
+<h4 id="LexEVS5.0Programmer&#39;sGuide-WorkingwithCodeGraphs">
+  Working with Code Graphs
+</h4>
+If you select a Coded Node Graph in the lower left section of the LexEVS GUI, the lower right section will look like the following figure, which is described in the text after the graphic:
+<img alt="screenshot of the lower portion of the GUI" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%205.0%20Programmer&#39;s%20Guide/Selected_Coded_Node_Graph.jpg?api=v2">
+Again, there are two halves to the lower right section. The top half allows restrictions to be applied to the selected Code Graph, and it works the same as it does for a Coded Node Set. Please see the section above on applying restrictions to a Coded Node Set.The lower half provides additional variables applicable when resolving a Coded Node Graph. For further explanation of these options, refer to the LexEVS API documentation.
+<ul>
+  <li>
+    Relation Container (Optional) - Indicates the CodingScheme Relations container to query. The drop down list is populated with allowable selections.
+  </li>
+  <li>
+    Focus Code (Optional) - Provides the code used as a starting point when resolving graph relations. This value is required for some queries, depending on the nature of requested associations.
+  </li>
+  <li>
+    Focus Code System (Optional) - Indicates the code system containing the Focus Code. The drop down list is populated with allowable selections.
+  </li>
+  <li>
+    Max Resolve Depth - How many levels deep should the graph be resolved? -1 is the default, which does not limit the depth.
+  </li>
+  <li>
+    Resolve Forward - Populate codes downstream from the focus node (based on directionality defined by each association).
+  </li>
+  <li>
+    Resolve Backward - Populate codes upstream from the focus node (based on directionality defined by each association).
+  </li>
+  <li>
+    Set Sort Options - This button will bring up a dialog box to choose the desired sort order of the results.
+  </li>
+  <li>
+    Resolve As Set - Resolves and displays the graph results as a coded node set.
+  </li>
+  <li>
+    Resolve As Graph -Resolves and displays the graph results.
+  </li>
+</ul>
+<h4 id="LexEVS5.0Programmer&#39;sGuide-ViewingQueryResults">
+  Viewing Query Results
+</h4>
+Clicking on the Resolve buttons for either a Coded Node Set or a Coded Node Graph will bring up the Result Browser window:
+<img alt="screenshot of the Result Browser window which is described in the following paragraph" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%205.0%20Programmer&#39;s%20Guide/Result_Browser_Window.jpg?api=v2">
+The left side shows a list of all the concept codes returned. When a concept code is selected on the left, the upper right will show a full description of the selected code. The lower right will show a graph view of the neighboring concepts.When a Coded Node Graph is resolved, the result viewing window will look like this (this is the same Code System as above):
+<img alt="screenshot of the result viewing window as described in the following paragraph" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%205.0%20Programmer&#39;s%20Guide/Result_Browser_Resolved_Coded_Node_Graph.jpg?api=v2">
+The left side still has a list of all of the concepts in the graph. The upper right will give a description of the selected concept. The lower right shows the entire graph.The lower right section is adjustable, and dynamic. It responds to mouse clicks, dragging, and numerous key combinations. Beyond a depth of 3, the graph may &#34;collapse&#34; and not show all of the nodes until you click on a node. Clicking on a node will cause it to expand out and display its children. Here are a list of key combinations recognized by the graph viewer:
+<ul>
+  <li>
+    Left Click + Mouse Movement - Drags the view.
+  </li>
+  <li>
+    Right Click + Mouse Movement Up Or Down - Zooms in or out.
+  </li>
+  <li>
+    Right Click (on white space) - Zooms the view to fit.
+  </li>
+  <li>
+    Ctrl + &#39;+&#39; - Expands the graph connection lines
+  </li>
+  <li>
+    Ctrl + &#39;-&#39; - Contracts the graph connection lines
+  </li>
+  <li>
+    Ctrl + &#39;1&#39; (or &#39;2&#39; or &#39;3&#39; or &#39;4&#39;) - Changes the orientation of the graph.
+  </li>
+</ul>
+<h2 id="LexEVS5.0Programmer&#39;sGuide-LexEVScaCOREDataServicesAPI">
+  LexEVS caCORE Data Services API
+</h2>
+<h3 id="LexEVS5.0Programmer&#39;sGuide-InteractingwithcaCORELexEVS">
+  Interacting with caCORE LexEVS
+</h3>
+This chapter describes the components of the caCORE LexEVS and the service interface layer provided by the EVS API architecture. It gives examples of how to use the EVS APIs. It also describes the Distributed LexEVS API and the Distributed LexEVS APIAdapter.
+<h3 id="LexEVS5.0Programmer&#39;sGuide-caCORELexEVSComponents">
+  caCORE LexEVS Components
+</h3>
+The caCORE LexEVS API is a public domain, open source wrapper that provides full access to the LexEVS Terminology Server. LexEVS hosts the NCI Thesaurus, the NCI Metathesaurus, and several other vocabularies. Java clients accessing the NCI Thesaurus and Metathesaurus vocabularies communicate their requests via the open source caCORE LexEVS APIs, as shown in the following figure.
+<img alt="graphic showing the LexEVS components which are described in the following paragraph" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%205.0%20Programmer&#39;s%20Guide/Overview_LexEVS_4.0_Release_Components.jpg?api=v2">
+The open source interfaces provided as part of caCORE LexEVS 5.x include Java APIs, a SOAP interface, and an HTTP REST interface. The Java APIs are based on the EVS 3.2 object model and the LexEVS Service object model.The EVS 3.2 model, exposed as part of caCORE 3.2, has been re-released with LexEVS as the back-end terminology service in place of the proprietary Apelon DTS back end. The SOAP and HTTP REST interfaces are also based on the 3.2 object model. The SDK 4.0 was used to generate the EVS 3.2 Java API, as well as the SOAP and HTTP REST interfaces.The only difference between the EVS 3.2 API exposed as part of the caCORE LexEVS 5.x and the API exposed as part of caCORE 3.2 is the back-end terminology server used to retrieve the vocabulary data. The interface (API calls) are the same and should only require minor adjustments to user applications.NoteYou cannot integrate caCORE 3.2 components with caCORE LexEVS 5.x. If you used multiple components of caCORE 3.2 (for example, EVS with caDSR), you need to continue to work with the caCORE 3.2 release until the other caCORE 4.0 components are available.The LexEVS object model was developed by the Mayo Clinic. In its native form, the associated API assumes a local, non-distributed means of access. With caCORE LexEVS 5.x, a proxy layer enables EVS API clients to access the native LexEVS API from anywhere without having to worry about the underlying data sources. This is called the Distributed LexEVS (DLB) API.The DLB Adapter is another option for caCORE LexEVS 5.x clients who choose to interface directly with the LexEVS API. This is essentially a set of convenience methods intended to simplify the use of the LexEVS API. For example, a series of method calls against the DLB API might equate to a single method call to the DLB Adapter.NoteThe DLB Adapter is not intended to represent a complete set of convenience methods. As part of the caCORE LexEVS 5.x release, the intention is that users will work with the DLB API and suggest useful methods of convenience to the EVS Development Team.
+<h3 id="LexEVS5.0Programmer&#39;sGuide-LexEVSDataSources">
+  LexEVS Data Sources
+</h3>
+The LexEVS data source is the open source LexEVS terminology server. EVS clients interface with the LexEVS API to retrieve desired vocabulary data. The EVS provides the NCI with services and resources for controlled biomedical vocabularies, including the NCI Thesaurus and the NCI Metathesaurus.
+<h4 id="LexEVS5.0Programmer&#39;sGuide-NCIThesaurus">
+  NCI Thesaurus
+</h4>
+The NCI Thesaurus is composed of over 27,000 concepts represented by about 78,000 terms. The Thesaurus is organized into 18 hierarchical trees covering areas such as Neoplasms, Drugs, Anatomy, Genes, Proteins, and Techniques. These terms are deployed by the NCI in its automated systems for uses such as key wording and database coding.
+<h4 id="LexEVS5.0Programmer&#39;sGuide-NCIMetathesaurus">
+  NCI Metathesaurus
+</h4>
+The NCI Metathesaurus maps terms from one standard vocabulary to another, facilitating collaboration, data sharing, and data pooling for clinical trials and scientific databases. The Metathesaurus is based on the Unified Medical Language System (UMLS) developed by the National Library of Medicine (NLM). It is composed of over 70 biomedical vocabularies.
+<h3 id="LexEVS5.0Programmer&#39;sGuide-Interfaces">
+  Interfaces
+</h3>
+Main interfaces included in the LexEVSAPI package.
+<h4 id="LexEVS5.0Programmer&#39;sGuide-LexEVSDistributed">
+  LexEVSDistributed
+</h4>
+The Distributed LexEVS Portion of LexEVSAPI. This interface is a framework for calling LexEVS API methods remotely, along with enforcing security measures.
+<a href="http://lexevsapi.nci.nih.gov/lexevsapi50/docs/org/LexGrid/LexBIG/caCore/interfaces/LexEVSDistributed.html" rel="nofollow">
+  JavaDoc
+</a>
+<h4 id="LexEVS5.0Programmer&#39;sGuide-LexEVSDataService">
+  LexEVSDataService
+</h4>
+The caCORE-SDK Data Service Portion of LexEVSAPI. This extends on the caCORE ApplicationService to provide additional Query Options.
+<a href="http://lexevsapi.nci.nih.gov/lexevsapi50/docs/org/LexGrid/LexBIG/caCore/interfaces/LexEVSDataService.html" rel="nofollow">
+  JavaDoc
+</a>
+<h4 id="LexEVS5.0Programmer&#39;sGuide-LexEVSService">
+  LexEVSService
+</h4>
+The Main LexEVSAPI Interface. This includes support for caCORE-SDK Data Service calls as well as remote LexBIG API calls.
+<a href="http://lexevsapi.nci.nih.gov/lexevsapi50/docs/org/LexGrid/LexBIG/caCore/interfaces/LexEVSService.html" rel="nofollow">
+  JavaDoc
+</a>
+<h3 id="LexEVS5.0Programmer&#39;sGuide-SearchParadigm">
+  Search Paradigm
+</h3>
+The caCORE LexEVS architecture includes a service layer that provides a single, common access paradigm to clients that use any of the provided interfaces. As an object-oriented middleware layer designed for flexible data access, caCORE LexEVS relies heavily on strongly typed objects and an object-in/object-out mechanism.Accessing and using a caCORE LexEVS system requires the following steps:
+<ol>
+  <li>
+    Ensure that the client application has access to the objects in the domain space.
+  </li>
+  <li>
+    Formulate the query criteria using the domain objects.
+  </li>
+  <li>
+    Establish a connection to the server.
+  </li>
+  <li>
+    Submit the query objects and specify the desired class of objects to be returned.
+  </li>
+  <li>
+    Use and manipulate the result set as desired.
+  </li>
+</ol>
+caCORE LexEVS systems use four native application programming interfaces (APIs). Each interface uses the same paradigm to provide access to the caCORE LexEVS domain model, with minor changes specific to the syntax and structure of the clients. The following sections describe each API, identify installation and configuration requirements, and provide code examples.The sequence diagram that follows illustrates the caCORE LexEVS API search mechanism implemented to access the NCI EVS vocabularies.
+<img alt="sequence diagram showing the caCORE 4.0 LexEVS API search mechanism" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%205.0%20Programmer&#39;s%20Guide/CaCORE_4.0_LexEVS_API_Search_Mechanism.jpg?api=v2">
+<h4 id="LexEVS5.0Programmer&#39;sGuide-QueryingtheSystem">
+  Querying the System
+</h4>
+LexEVS conforms to the caCORE SDK API - for more information see
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=187761540" rel="nofollow">
+  caCORE SDK 4.1 Programmer&#39;s Guide
+</a>
+.
+<h4 id="LexEVS5.0Programmer&#39;sGuide-QueryOptions">
+  QueryOptions
+</h4>
+<a href="http://lexevsapi.nci.nih.gov/lexevsapi50/docs/org/LexGrid/LexBIG/caCore/applicationservice/QueryOptions.html" rel="nofollow">
+  QueryOptions
+</a>
+are designed to give the user extra control over the query before it is sent to the system. QueryOptions may be used to modify a query in these ways:
+<ol>
+  <li>
+    &#39;CodingScheme&#39; - Restricts the query to the specified Coding Scheme, instead of querying every available Coding Scheme.
+  </li>
+  <li>
+    CodingSchemeVersionOrTag&#39; - Restricts the query to the specified Version of the Coding Scheme. Note that:
+    <ul>
+      <li>
+        This may NOT be specified without also specifying the &#39;CodingScheme&#39; attribute.
+      </li>
+      <li>
+        If left unset, it will default to the version of the Coding Scheme tagged as &#34;PRODUCTION&#34; in the system.
+      </li>
+    </ul>
+  </li>
+  <li>
+    &#39;SecurityTokens&#39; - Security Tokens to use with the specified query. These Security Tokens are scoped to the current query ONLY. An subsequent queries will also need to specify the necessary Query Options.
+  </li>
+  <li>
+    &#39;LazyLoad&#39; - Some high use-case model Objects have bee &#39;lazy-load&#39; enabled. This means that some attributes and associations of a model Object may not be fully populated when returned to the user. This allows for faster query times. This defaults to false, meaning that all attributes and associations will be eagerly fetched by the server and model Objects will always be fully populated. To enable this on applicable Objects, set to true.NoteLazy Loading may only be used in conjunction with specifying a Coding Scheme and Version with the &#39;CodingScheme&#39; and &#39;CodingSchemeVersionOrTag&#39; attributes above.
+  </li>
+  <li>
+    &#39;ResultPageSize&#39; - the page size of results to return. The higher the number, the more results the system will return to the user at once. The client will request the next group of query results transparenly. This parameter is useful for performance tuning. For example, if a query returns a result of10,000 Objects, a &#39;ResultPageSize&#39; of &#39;1000&#39; would make 10 calls to the server returning a page of 1000 results each time. If left unset, this value will default to the default set Page Size
+  </li>
+</ol>
+<h4 id="LexEVS5.0Programmer&#39;sGuide-ExamplesofUse">
+  Examples of Use
+</h4>
+Example 4.1: Query By Example with No Query OptionsJava Code Snippet
+public static void main(String[] args)
+{
+try {
+LexEVSApplicationService appService =
+(LexEVSApplicationService)ApplicationServiceProvider.
+getApplicationService(&#34;EvsServiceInfo&#34;);
+Entity entity = new Entity()
+entity.setEntityCode(&#34;C1234&#34;);
+List&lt;Entity&gt; list = appService.search(Entity.class, entity);
+} catch(ApplicationException ex)\{
+}
+}
+
+The following table explains specific statements in the code by line number.
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Line Number
+      </th>
+      <th>
+        Explanation
+      </th>
+    </tr>
+    <tr>
+      <td>
+        4
+      </td>
+      <td>
+        Creates an instance of a class that implements the LexEVSApplicationService interface. This interface defines the service methods used to access data objects.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        7
+      </td>
+      <td>
+        Construct the Query By Example Object and populate it with the desired search critieria. For this example, seach for any &#39;Entity&#39; with an &#39;entityCode&#39; attribute equaling &#39;C1234&#39;.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        9
+      </td>
+      <td>
+        Calls the search method of the LexEVSApplicationService object. This method returns a List Collection. This list will contain all of the &#39;Entity&#39; Objects that match the search critieria. It this case, it will return all &#39;Entity&#39; Objects with an &#39;entityCode&#39; of &#34;C1234&#34;.
+      </td>
+    </tr>
+  </tbody>
+</table>
+Example 4.2: Query By Example with Query OptionsJava Code Snippet
+public static void main(String[] args)
+{
+try {
+LexEVSApplicationService appService = (LexEVSApplicationService)ApplicationServiceProvider.
+getApplicationService(&#34;EvsServiceInfo&#34;);
+QueryOptions queryOptions = new QueryOptions();
+queryOptions.setCodingScheme(&#34;NCI Thesaurus&#34;);
+CodingSchemeVersionOrTag csvt = new CodingSchemeVersionOrTag();
+csvt.setVersion(&#34;09.10d&#34;);
+queryOptions.setCodingSchemeVersionOrTag(csvt);
+Entity entity = new Entity();
+entity.setEntityCode(&#34;C1234&#34;);
+List&amp;lt;Entity&amp;gt; list = appService.search(Entity.class, entity, queryOptions);
+}
+catch(ApplicationException ex){
+}
+}
+
+The following table explains specific statements in the code by line number.
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Line Number
+      </th>
+      <th>
+        Explanation
+      </th>
+    </tr>
+    <tr>
+      <td>
+        4
+      </td>
+      <td>
+        Creates an instance of a class that implements the LexEVSApplicationService interface. This interface defines the service methods used to access data objects.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        7
+      </td>
+      <td>
+        Construct the QueryOptions Object.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        8
+      </td>
+      <td>
+        Populate the QueryOptions with the desired Coding Scheme.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        9
+      </td>
+      <td>
+        Construct a CodingSchemeVersionOrTag Object.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        10
+      </td>
+      <td>
+        Populate the CodingSchemeVersionOrTag Object with the desired Version.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        11
+      </td>
+      <td>
+        Populate the QueryOptions with the above CodingSchemeVersionOrTag Object.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        12
+      </td>
+      <td>
+        Construct the Query By Example Object and populate it with the desired search critieria. For this example, seach for any &#39;Entity&#39; with an &#39;entityCode&#39; attribute equaling &#39;C1234&#39;.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        14
+      </td>
+      <td>
+        Calls the search method of the LexEVSApplicationService object, along with the QueryOptions. This method returns a List Collection. This list will contain all of the &#39;Entity&#39; Objects that match the search critieria, while being further modified by the QueryOptions. It this case, it will return all &#39;Entity&#39; Objects with an &#39;entityCode&#39; of &#34;C1234&#34; belonging to the CodingScheme &#34;NCI Thesaurus&#34; Version &#34;09.10d&#34;.
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h3 id="LexEVS5.0Programmer&#39;sGuide-WebServicesAPI">
+  Web Services API
+</h3>
+The caCORE LexEVS Web Services API enables access to caCORE LexEVS data and vocabulary data from development environments where the Java API cannot be used, or where use of XML Web services is more desirable. This includes non-Java platforms and languages such as Perl, C/C++, .NET framework (C#, VB.Net), and Python.The Web services interface can be used in any language-specific application that provides a mechanism for consuming XML Web services based on the Simple Object Access Protocol (SOAP). In those environments, connecting to caCORE LexEVS can be as simple as providing the end-point URL. Some platforms and languages require additional client-side code to handle the implementation of the SOAP envelope and the resolution of SOAP types.To view a list of packages that cater to different programming languages, visit
+<a href="http://www.w3.org/TR/SOAP/" rel="nofollow">
+  http://www.w3.org/TR/SOAP/
+</a>
+and
+<a href="http://www.soapware.org/" rel="nofollow">
+  http://www.soapware.org/
+</a>
+.To maximize standards-based interoperability, the caCORE Web service conforms to the Web Services Interoperability Organization (WS-I) basic profile. The WS-I basic profile provides a set of non-proprietary specifications and implementation guidelines that enable interoperability between diverse systems. For more information about WS-I compliance, visit
+<a href="http://www.ws-i.org" rel="nofollow">
+  http://www.ws-i.org
+</a>
+.On the server side, Apache Axis is used to provide SOAP-based, inter-application communication. Axis provides the appropriate serialization and deserialization methods for the JavaBeans to achieve an application-independent interface. For more information about Axis, visit
+<a href="http://ws.apache.org/axis/" rel="nofollow">
+  http://ws.apache.org/axis/
+</a>
+.
+<h4 id="LexEVS5.0Programmer&#39;sGuide-Configuration">
+  Configuration
+</h4>
+The caCORE/LexEVS WSDL file is located at
+<a href="http://lexevsapi.nci.nih.gov/lexevsapi50/services/lexevsapi50Service?wsdl" rel="nofollow">
+  http://lexevsapi.nci.nih.gov/lexevsapi50/services/lexevsapi50Service?wsdl
+</a>
+. In addition to describing the protocols, ports, and operations exposed by the caCORE LexEVS Web service, this file can be used by a number of IDEs and tools to generate stubs for caCORE LexEVS objects. This enables code on different platforms to instantiate native objects for use as parameters and return values for the Web service methods. For more information on how to use the WSDL file to generate class stubs, consult the specific documentation for your platform.The caCORE LexEVS Web services interface has a single end point called &lt;tt&gt;lexevsapi50Service&lt;/tt&gt;, which is located at
+<a href="http://lexevsapi.nci.nih.gov/lexevsapi50/services/lexevsapi50Service" rel="nofollow">
+  http://lexevsapi.nci.nih.gov/lexevsapi50/services/lexevsapi50Service
+</a>
+. Client applications should use this URL to invoke Web service methods.
+<h4 id="LexEVS5.0Programmer&#39;sGuide-BuildingaJavaSOAPClient">
+  Building a Java SOAP Client
+</h4>
+LexEVSAPI provides a tool to create a Java SOAP client capable of connecting to a LexEVSAPI SOAP service.In the ./webServiceSoapClient contains a build.xml file that will construct a LexEVSAPI SOAP client. Before building, you may edit this build.xml file to customize the build process. Editable properties include &#39;wsdlURL&#39; and &#39;webServiceNamespace&#39;. An example configuration is below:
+&lt;property name=&#34;wsdlURL&#34; value=&#34;http://bmidev4:8180/lexevsapi50/services/lexevsapi50Service?wsdl&#34;/&gt;
+&lt;property name=&#34;webServiceNamespace&#34; value=&#34;http://bmidev4:8180/lexevsapi50/services/lexevsapi50Service&#34;/&gt;
+To build the client, use the command &#39;ant all&#39; from the ./webServiceSoapClient directory.
+<h3 id="LexEVS5.0Programmer&#39;sGuide-XML-HTTPAPI">
+  XML-HTTP API
+</h3>
+The caCORE LexEVS XML-HTTP API, based on the REST (Representational State Transfer) architectural style, provides a simple interface using the HTTP protocol. In addition to its ability to be invoked from most Internet browsers, developers can use this interface to build applications that do not require any programming overhead other than an HTTP client. This is particularly useful for developing Web applications using AJAX (Asynchronous JavaScript and XML).
+<h4 id="LexEVS5.0Programmer&#39;sGuide-ServiceLocationandSyntax">
+  Service Location and Syntax
+</h4>
+The CORE EVS XML-HTTP interface uses the following URL syntax:
+http://{server}/{servlet}?query={returnClass}&amp;{criteria}
+	&amp;startIndex={index}
+	&amp;codingSchemeName={codingSchemeName}
+	&amp;codingSchemeVersion={codingSchemeVersion}
+The following table explains the URL syntax used by the caCORE LexEVS XML-HTTP interface, indicates whether specific elements are required, and gives examples.
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Element
+      </th>
+      <th>
+        Meaning
+      </th>
+      <th>
+        Required
+      </th>
+      <th>
+        Example
+      </th>
+    </tr>
+    <tr>
+      <td>
+        server
+      </td>
+      <td>
+        Name of the Web server on which the caCORE LexEVS 5.0 Web application is deployed.
+      </td>
+      <td>
+        Yes
+      </td>
+      <td>
+        lexevsapi.nci.nih.gov/lexevsapi50
+      </td>
+    </tr>
+    <tr>
+      <td>
+        servlet
+      </td>
+      <td>
+        URI and name of the servlet that will accept the HTTP GET requests.
+      </td>
+      <td>
+        Yes
+      </td>
+      <td>
+        lexevsapi50/GetXML
+
+        lexevsapi50/GetHTML
+      </td>
+    </tr>
+    <tr>
+      <td>
+        returnClass
+      </td>
+      <td>
+        Class name indicating the type of objects that this query should return.
+      </td>
+      <td>
+        Yes
+      </td>
+      <td>
+        query=DescLogicConcept
+      </td>
+    </tr>
+    <tr>
+      <td>
+        criteria
+      </td>
+      <td>
+        Search request criteria describing the requested objects.
+      </td>
+      <td>
+        Yes
+      </td>
+      <td>
+        DescLogicConcept [@id=2]
+      </td>
+    </tr>
+    <tr>
+      <td>
+        index
+      </td>
+      <td>
+        Starting index of the result set.
+      </td>
+      <td>
+        No
+      </td>
+      <td>
+        startIndex=25
+      </td>
+    </tr>
+    <tr>
+      <td>
+        codingSchemeName
+      </td>
+      <td>
+        Restrict the query to a specific Coding Scheme Name.
+      </td>
+      <td>
+        No
+      </td>
+      <td>
+        codingSchemeName=NCI_Thesaurus
+      </td>
+    </tr>
+    <tr>
+      <td>
+        codingSchemeVersion
+      </td>
+      <td>
+        Restrict the query to a specific Coding Scheme Version.NoteMust be used in conjunction with a &#39;codingSchemeName&#39;
+      </td>
+      <td>
+        No
+      </td>
+      <td>
+        codingSchemeVersion=09.12d
+      </td>
+    </tr>
+  </tbody>
+</table>
+The caCORE LexEVS architecture currently provides two servlets that accept incoming requests:
+<ul>
+  <li>
+    GetXML - returns results in an XML format that can be parsed and consumed by most programming languages and many document authoring and management tools.
+  </li>
+  <li>
+    GetHTML - presents result using a simple HTML interface that can be viewed by most modern Internet browsers.
+  </li>
+</ul>
+Within the request string of the URL, the criteria element specifies the search criteria using XQuery-like syntax. Within this syntax, square brackets ([ and ]) represent attributes and associated roles of a class, the at symbol (@) signals an attribute name/value pair, and a forward slash character
+<img src="https://wiki.nci.nih.gov/s/-y6pnqc/8804/nk8x3c/_/images/icons/emoticons/check.svg" alt="(tick)"/>
+specifies nested criteria.Criteria statements in XML-HTTP queries generally use the following syntax (although you can also build more complex statements):
+{ClassName}[@{attributeName}={value}] [@{attributeName}={value}]...
+ClassName}[@{attributeName}={value}]/
+{ClassName}[@{attributeName}={value}]/...
+The following table explains the syntax for criteria statements and gives examples.
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Parameter
+      </th>
+      <th>
+        Meaning
+      </th>
+      <th>
+        Example
+      </th>
+    </tr>
+    <tr>
+      <td>
+        ClassName
+      </td>
+      <td>
+        The name of a class.
+      </td>
+      <td>
+        Entity
+      </td>
+    </tr>
+    <tr>
+      <td>
+        attributeName
+      </td>
+      <td>
+        The name of an attribute of the return class or an associated class
+      </td>
+      <td>
+        entityCode
+      </td>
+    </tr>
+    <tr>
+      <td>
+        value
+      </td>
+      <td>
+        The value of an attribute.
+      </td>
+      <td>
+        C123*
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h4 id="LexEVS5.0Programmer&#39;sGuide-ExamplesofUse.1">
+  Examples of Use
+</h4>
+The example in the table below demonstrates the usage of the XML-HTTP interface. In actual usage, these queries would either be submitted by a block of code or entered in the address bar of a Web browser.NoteThe servlet name GetXML in each of the examples can be replaced with GetHTML to view with layout and markup in a browser.
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Query
+      </th>
+      <td>
+        http://evsapi.nci.nih.gov/evsapi41/GetXML?query=DescLogicConcept[_entityCode=C123*]
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Semantic Meaning
+      </th>
+      <td>
+        Find all objects of type Entity that contain an &#39;entityCode&#39; matching the pattern &#39;C123*&#39;.
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h4 id="LexEVS5.0Programmer&#39;sGuide-WorkingwithResultSets">
+  Working with Result Sets
+</h4>
+Because HTTP is a stateless protocol, the caCORE LexEVS server cannot detect the context of any incoming request. Consequently, each invocation of GetXML or GetHTML must contain all of the information necessary to retrieve the request, regardless of previous requests. Developers should consider this when working with the XML-HTTP interface.Controlling the Start IndexTo specify a specific start position in the result set, specify the startIndex parameter. This will scroll to the desired position within the set of results.Internal-Use ParametersA number of parameters, such as resultCounter, pageSize, and page, are used internally by the system and are not designed to be set by the user.NoteWhen specifying attribute values in the query string, note that use of the following characters generates an error: [ ] / \ # &amp; %
+<h3 id="LexEVS5.0Programmer&#39;sGuide-DistributedLexEVSAPI">
+  Distributed LexEVS API
+</h3>
+<h4 id="LexEVS5.0Programmer&#39;sGuide-Overview.1">
+  Overview
+</h4>
+In place of the existing EVS 3.2 object model, caCORE LexEVS is making a gradual transition toward a pure LexEVS back-end terminology server and exposure of the LexEVS Service object model. caCORE 3.2 and earlier required a custom API layer between external users of the system and the proprietary Apelon Terminology Server APIs. With the transition to LexEVS, caCORE LexEVS can publicly expose the open source terminology service API without requiring a custom API layer.
+<h4 id="LexEVS5.0Programmer&#39;sGuide-Architecture">
+  Architecture
+</h4>
+The LexEVS API is exposed by the LexEVS caCORE System for remote, distributed access. The caCORE System&#39;s LexEVSApplicationService class implements the LexBIGService interface, effectively exposing LexEVS via caCORE.Since in many cases the objects returned from the &lt;tt&gt;LexBIGService&lt;/tt&gt; are not merely beans, but full-fledged data access objects (DAOs), the caCORE LexEVS client is configured to proxy method calls into the LexEVS objects and forward them to the caCORE server so that they execute within the LexEVS environment. The following diagram shows the DLB environment for the caCORE LexEVS Server.
+<img alt="diagram showing the DLB architecture as described in the following paragraph" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%205.0%20Programmer&#39;s%20Guide/DLB_Architecture.jpg?api=v2">
+The DLB environment will be configured on the caCORE LexEVS Server (
+<a href="http://lexevsapi.nci.nic.gov/lexevsapi50" rel="nofollow">
+  http://lexevsapi.nci.nic.gov/lexevsapi50
+</a>
+). This will give the server access to the LexEVS database and other resources. The client must therefore go through the caCORE LexEVS server to access any LexEVS data.
+<h4 id="LexEVS5.0Programmer&#39;sGuide-LexEVSAnnotations">
+  LexEVS Annotations
+</h4>
+To address LexEVS DAOs, the LexEVS API integration incorporated the addition of (1) Java annotation marking methods that can be safely executed on the client side; and (2) classes that can be passed to the client without being wrapped by a proxy. The annotation is named @lgClientSideSafe. Every method in the LexEVS API that is accessible to the caCORE LexEVS user had to be considered and annotated if necessary.
+<h4 id="LexEVS5.0Programmer&#39;sGuide-AspectOrientedProgrammingProxies">
+  Aspect Oriented Programming Proxies
+</h4>
+LexEVS integration with caCORE LexEVS was accomplished using Spring Aspect Oriented Programming (AOP) to proxy the LexEVS classes and intercept calls to their methods. The caCORE LexEVS client wraps every object returned by the &lt;tt&gt;LexBIGService&lt;/tt&gt; inside an AOP Proxy with advice from a LexBIGMethodInterceptor (&#34;the interceptor&#34;).The interceptor is responsible for intercepting all client calls on the methods in each object. If a method is marked with the @lgClientSideSafe annotation, it proceeds normally. Otherwise, the object, method name, and parameters are sent to the caCORE LexEVS server for remote execution.
+<img alt="sequence diagram showing method interception" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%205.0%20Programmer&#39;s%20Guide/Sequence_Diagram_Showing_Method_Interception.jpg?api=v2">
+Figure 4.6 - Sequence diagram showing method interception
+<h4 id="LexEVS5.0Programmer&#39;sGuide-LexEVSAPIDocumentation">
+  LexEVS API Documentation
+</h4>
+The Mayo Clinic wrote the LexEVS 5.0 API. Documentation describing the LexEVS Service Model is available on the LexGRID Vocabulary Services for caBIG
+<a href="https://wiki.nci.nih.gov/x/eYBoCw" rel="nofollow">
+  GForge archive
+</a>
+.
+<h4 id="LexEVS5.0Programmer&#39;sGuide-LexEVSInstallationandConfiguration">
+  LexEVS Installation and Configuration
+</h4>
+The DLB API is strictly a Java interface and requires Internet access for remote connectivity to the caCORE LexEVS server. Access to the DLB API requires access to the lexevsapi-client.jar file, available for download on the NCICB Web site. The lexevsapi-client.jar file needs to be available in the classpath. For more information, see
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427407" rel="nofollow">
+  Installing and Configuring the LexEVS 5.0 Java API
+</a>
+.
+<h4 id="LexEVS5.0Programmer&#39;sGuide-ExampleofUse">
+  Example of Use
+</h4>
+Example 4.6: Using the DLB APIThe following code sample shows use of the DLB API to retrieve the list of available coding schemes in the LexEVS repository.
+
+
+import org.LexGrid.LexBIG.LexBIGService.LexBIGService;
+import org.LexGrid.LexBIG.Utility.Constructors;
+import org.LexGrid.LexBIG.caCore.interfaces.LexEVSApplicationService;
+import org.LexGrid.codingSchemes.CodingScheme;
+
+import gov.nih.nci.system.client.ApplicationServiceProvider;
+
+public class Test {
+
+LexBIGService lbSvc;
+
+public void run(String codingScheme, String version) {
+// Set the LexEVS URL (for remote access)
+String evsUrl = &#34;https://lexevsapi65.nci.nih.gov/lexevsapi65&#34;;
+
+// Get the LexBIG service reference from LexEVS Application Service
+try {
+lbSvc = (LexEVSApplicationService) ApplicationServiceProvider.getApplicationServiceFromUrl(evsUrl,
+&#34;EvsServiceInfo&#34;);
+} catch (Exception e1) {
+e1.printStackTrace();
+}
+// Resolve Scheme
+try {
+CodingScheme scheme = lbSvc.resolveCodingScheme(codingScheme,
+Constructors.createCodingSchemeVersionOrTagFromVersion(version));
+if(scheme != null) {
+System.out.println(&#34;Found scheme: &#34; + scheme.getCodingSchemeName());
+}else {
+System.out.println(&#34;Scheme not found: &#34; + codingScheme);
+}
+} catch (Exception e) {
+e.printStackTrace();
+}
+
+}
+
+/**
+* Main
+*/
+public static void main(String[] args) {
+String name = &#34;NCI Thesaurus&#34;;
+String version = &#34;18.03d&#34;;
+
+new Test().run(name, version);
+}
+}
+<h2 id="LexEVS5.0Programmer&#39;sGuide-LexEVSAnalyticalGridServiceAPI">
+  LexEVS Analytical Grid Service API
+</h2>
+The following tables summarize the operations available through the LexEVS Analytical Grid Service. Each of the operations is also defined in detail below. The grid analytical service and related operations are viewable via the
+<a href="http://cagrid-portal.nci.nih.gov" rel="nofollow">
+  caGrid Portal
+</a>
+.
+<h3 id="LexEVS5.0Programmer&#39;sGuide-UsingtheAPI">
+  Using the API
+</h3>
+There are two (2) different interfaces for accessing the LexEVS Grid Services:
+<ul>
+  <li>
+    org.LexGrid.LexBIG.cagrid.adapters.LexBIGServiceAdapter, or
+  </li>
+  <li>
+    org.LexGrid.LexBIG.cagrid.adapters.LexBIGServiceGridAdapter
+  </li>
+</ul>
+Option 1, org.LexGrid.LexBIG.cagrid.adapters.LexBIGServiceAdapter provides an interface for interacting with the LexEVS Grid Services. This Interface is intended to mirror the existing LexEVS API as much as possible. There is no object wrapping for semantic purposes on this interface. This allows existing applications of the LexEVS API to use Grid Services without code changes.This Interface may be acquired by instantiating LexBIGServiceAdapter with the Grid Service URL as a parameter.Java Code Snippet
+
+LexBIGService lbs = new LexBIGServiceAdapter(&#34;http://lexevsapi-analytical50.nci.nih.gov/wsrf/services/cagrid/LexEVSGridService&#34;);
+
+Option 2, org.LexGrid.LexBIG.cagrid.adapters.LexBIGServiceGridAdapter also provides an interface for interacting with the LexEVS Grid Services. However, this Interfaces is the semantically defined interface. All method parameters and return values are defined and annotated as CDEs to be loaded into caDSR. This Interface is intended to be caGrid Silver Level Compliant.This Interface may be acquired by instantiating LexBIGServiceGridAdapter with the Grid Service URL as a parameter.Java Code Snippet
+
+LexBIGServiceGrid lbs = new LexBIGServiceGridAdapter(&#34;http://lexevsapi-analytical50.nci.nih.gov/wsrf/services/cagrid/LexEVSGridService&#34;);
+<h3 id="LexEVS5.0Programmer&#39;sGuide-MethodDescriptions">
+  Method Descriptions
+</h3>
+<h4 id="LexEVS5.0Programmer&#39;sGuide-getCodingSchemeConcepts">
+  getCodingSchemeConcepts
+</h4>
+getCodingSchemeConcepts(CodingSchemeIdentification, CodingSchemeVersionOrTag)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Returns the set of all (or all active) concepts in the specified coding scheme.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.DataModel.cagrid.CodingSchemeIdentification org.LexGrid.LexBIG.DataModel.Core.CodingSchemeVersionOrTag
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.cagrid.LexBIGCaGridServices.CodedNodeSet.stubs.types.CodedNodeSetReference
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        RemoteException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details:
+      </th>
+      <td>
+        Implementation:
+        <ul>
+          <li>
+            Create a Resource on the server and populate it with the requested org.LexGrid.LexBIG.LexBIGService.CodedNodeSet.
+          </li>
+          <li>
+            Return the Client Reference to the user. This Reference has the above org.LexGrid.LexBIG.LexBIGService.CodedNodeSet as a Resource. An org.LexGrid.LexBIG.cagrid.LexBIGCaGridServices.service.CodedNodeSetClient object is built from the above Reference.   Sample Call:
+          </li>
+        </ul>
+        <ol>
+          <li>
+            Connect to the LexEVS caGrid Service using the org.LexGrid.LexBIG.cagrid.adapters.LexBIGServiceAdapter or org.LexGrid.LexBIG.cagrid.adapters.LexBIGServiceGridAdapter
+            LexBIGServiceGrid lbs = new LexBIGServiceGridAdapter(url);
+          </li>
+          <li>
+            Build a org.LexGrid.LexBIG.DataModel.Core.CodingSchemeVersionOrTag containing the Version information for the desired Coding Scheme
+            CodingSchemeVersionOrTag csvt = new CodingSchemeVersionOrTag();
+            csvt.setVersion(&#34;testVersion&#34;);
+          </li>
+          <li>
+            Build an org.LexGrid.LexBIG.DataModel.cagrid.CodingSchemeIdentification to hold the Coding Scheme name.
+            CodingSchemeIdentification codingScheme = new CodingSchemeIdentification();
+            codingScheme.setCode(code);
+          </li>
+          <li>
+            Invoke the LexBIG caGrid service as follows:
+            CodedNodeSetGrid cns = lbs.getCodingSchemeConcepts(codingScheme, csvt);
+          </li>
+        </ol>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h4 id="LexEVS5.0Programmer&#39;sGuide-getFilter">
+  getFilter
+</h4>
+getFilter(ExtensionIdentification)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Returns an instance of the filter extension registered with the given name.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.DataModel.cagrid.ExtensionIdentification
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.cagrid.LexBIGCaGridServices.Filter.stubs.types.FilterReference
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        RemoteException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details:
+      </th>
+      <td>
+        Implementation:
+        <ul>
+          <li>
+            Create a Resource on the server and populate it with the requested org.LexGrid.LexBIG.Extensions.Query.Filter
+          </li>
+          <li>
+            Return the Client Reference to the user. This Reference has the above org.LexGrid.LexBIG.Extensions.Query.Filter as a Resource. This client is a Service Context that allows the user to call regular org.LexGrid.LexBIG.Extensions.Query.Filter API calls through the grid service. An org.LexGrid.LexBIG.cagrid.LexBIGCaGridServices.Filter.client.FilterClient object is built from the above Reference. This FilterClient implements the Interface org.LexGrid.LexBIG.Extensions.Query.Filter. This makes calling Grid Service Calls through org.LexGrid.LexBIG.cagrid.LexBIGCaGridServices.Filter.client.FilterClient transparent to the end user.   Sample Call:
+          </li>
+        </ul>
+        <ol>
+          <li>
+            Connect to the LexEVS caGrid Service using the org.LexGrid.LexBIG.cagrid.adapters.LexBIGServiceAdapter or org.LexGrid.LexBIG.cagrid.adapters.LexBIGServiceGridAdapter
+            LexBIGServiceGrid lbs = new LexBIGServiceGridAdapter(url);
+          </li>
+          <li>
+            Build an org.LexGrid.LexBIG.DataModel.cagrid.ExtensionIdentification to hold the Extension name.
+            ExtensionIdentification extension = new ExtensionIdentification();
+            extension.setLexBIGExtensionName(name);
+          </li>
+          <li>
+            Invoke the LexEVS caGrid service as follows:
+            Filter filter = lbs.getFilter(extension);
+          </li>
+        </ol>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h4 id="LexEVS5.0Programmer&#39;sGuide-getSortAlgorithm">
+  getSortAlgorithm
+</h4>
+getSortAlgorithm(ExtensionIdentification)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Returns an instance of the sort extension registered with the given name.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.DataModel.cagrid.ExtensionIdentification
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.cagrid.LexBIGCaGridServices.Sort.stubs.types.SortReference
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        RemoteException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details:
+      </th>
+      <td>
+        Implementation:
+        <ul>
+          <li>
+            Create a Resource on the server and populate it with the requested org.LexGrid.LexBIG.Extensions.Query.Sort
+          </li>
+          <li>
+            Return the Client Reference to the user. This Reference has the above org.LexGrid.LexBIG.cagrid.LexBIGCaGridServices.Sort.client.SortClient as a Resource. This client is a Service Context that allows the user to call regular org.LexGrid.LexBIG.Extensions.Query.Sort API calls through the grid service. An org.LexGrid.LexBIG.cagrid.LexBIGCaGridServices.Sort.client.SortClient object is built from the above Reference. This SortClient implements the Interface org.LexGrid.LexBIG.Extensions.Query.Sort. This makes calling Grid Service Calls through org.LexGrid.LexBIG.cagrid.LexBIGCaGridServices.Sort.client.SortClient transparent to the end user.   Sample Call:
+          </li>
+        </ul>
+        <ol>
+          <li>
+            Connect to the LexEVS caGrid Service using the org.LexGrid.LexBIG.cagrid.adapters.LexBIGServiceAdapter or org.LexGrid.LexBIG.cagrid.adapters.LexBIGServiceGridAdapter
+            LexBIGServiceGrid lbs = new LexBIGServiceGridAdapter(url);
+          </li>
+          <li>
+            Build an org.LexGrid.LexBIG.DataModel.cagrid.ExtensionIdentification to hold the Extension name.
+            ExtensionIdentification extension = new ExtensionIdentification();
+            extension.setLexBIGExtensionName(name);
+          </li>
+          <li>
+            Invoke the LexEVS caGrid service as follows:
+            Filter filter = lbs.getSortAlgorithm(extension);
+          </li>
+        </ol>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h4 id="LexEVS5.0Programmer&#39;sGuide-getFilterExtensions">
+  getFilterExtensions
+</h4>
+getFilterExtensions()
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Returns a description of all registered extensions used to provide additional filtering of query results.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        none
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output
+      </th>
+      <td>
+        org.LexGrid.LexBIG.DataModel.Collections.ExtensionDescriptionList
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        RemoteException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details:
+      </th>
+      <td>
+        Implementation:  Call this method on the associated LexEVS Service instance (or Distributed LexEVS instance) on the server, and forward the results.   Sample Call:
+        <ol>
+          <li>
+            Connect to the LexEVS caGrid Service using the org.LexGrid.LexBIG.cagrid.adapters.LexBIGServiceAdapter or org.LexGrid.LexBIG.cagrid.adapters.LexBIGServiceGridAdapter
+            LexBIGServiceGrid lbs = new LexBIGServiceGridAdapter(url);
+          </li>
+          <li>
+            Invoke the LexEVS caGrid service as follows:
+            ExtensionDescriptionList extDescList = lbs.getFilterExtensions();
+          </li>
+        </ol>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h4 id="LexEVS5.0Programmer&#39;sGuide-getServiceMetadata">
+  getServiceMetadata
+</h4>
+getServiceMetadata()
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Return an interface to perform system-wide query over metadata for loaded code systems and providers.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        none
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.cagrid.LexBIGCaGridServices.LexBIGServiceMetadata.stubs.types.LexBIGServiceMetadataReference
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        RemoteException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details:
+      </th>
+      <td>
+        Implementation:
+        <ul>
+          <li>
+            Create a Resource on the server and populate it with the requested org.LexGrid.LexBIG.LexBIGService.LexBIGServiceMetadata
+          </li>
+          <li>
+            Return the LexBIGServiceMetadataClient to the user. This LexBIGServiceMetadataClient has the above org.LexGrid.LexBIG.LexBIGService.LexBIGServiceMetadata as a Resource. An org.LexGrid.LexBIG.cagrid.LexBIGCaGridServices.service.LexBIGServiceMetadataClient object is built from the above Reference.   Sample Call:
+          </li>
+        </ul>
+        <ol>
+          <li>
+            Connect to the LexEVS caGrid Service using the org.LexGrid.LexBIG.cagrid.adapters.LexBIGServiceAdapter or org.LexGrid.LexBIG.cagrid.adapters.LexBIGServiceGridAdapter
+            LexBIGServiceGrid lbs = new LexBIGServiceGridAdapter(url);
+          </li>
+          <li>
+            Invoke the LexEVS caGrid service as follows:
+            LexBIGServiceMetadataGrid metadata = lbs.getServiceMetadata();
+          </li>
+        </ol>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h4 id="LexEVS5.0Programmer&#39;sGuide-getSupportedCodingSchemes">
+  getSupportedCodingSchemes
+</h4>
+getSupportedCodingSchemes()
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Return a list of coding schemes and versions that are supported by this service, along with their status.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        none
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.DataModel.Collections.CodingSchemeRenderingList
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        RemoteException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details:
+      </th>
+      <td>
+        Implementation:  Call this method on the associated LexEVS Service instance (or Distributed LexEVS instance) on the server, and forward the results. Sample Call:
+        <ol>
+          <li>
+            Connect to the LexEVS caGrid Service using the org.LexGrid.LexBIG.cagrid.adapters.LexBIGServiceAdapter or org.LexGrid.LexBIG.cagrid.adapters.LexBIGServiceGridAdapter
+            LexBIGServiceGrid lbs = new LexBIGServiceGridAdapter(url);
+          </li>
+          <li>
+            Invoke the LexEVS caGrid service as follows:
+            CodingSchemeRenderingList csrl = lbs.getSupportedCodingSchemes();
+          </li>
+        </ol>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h4 id="LexEVS5.0Programmer&#39;sGuide-getLastUpdateTime">
+  getLastUpdateTime
+</h4>
+getLastUpdateTime()
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Return the last time that the content of this service was changed; null if no changes have occurred. Tag assignments do not count as service changes for this purpose.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        none
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        java.util.Date
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        RemoteException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details:
+      </th>
+      <td>
+        Implementation:  Call this method on the associated LexEVS Service instance (or Distributed LexEVS instance) on the server, and forward the results.   Sample Call:
+        <ol>
+          <li>
+            Connect to the LexEVS caGrid Service using the org.LexGrid.LexBIG.cagrid.adapters.LexBIGServiceAdapter or org.LexGrid.LexBIG.cagrid.adapters.LexBIGServiceGridAdapter
+            LexBIGServiceGrid lbs = new LexBIGServiceGridAdapter(url);
+          </li>
+          <li>
+            Invoke the LexEVS caGrid service as follows:
+            Date date = lbs.getLastUpdateTime();
+          </li>
+        </ol>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h4 id="LexEVS5.0Programmer&#39;sGuide-resolveCodingScheme">
+  resolveCodingScheme
+</h4>
+resolveCodingScheme(CodingSchemeIdentification, CodingSchemeVersionOrTag)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Return detailed coding scheme information given a specific tag or version identifier.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.DataModel.cagrid.CodingSchemeIdentification, org.LexGrid.LexBIG.DataModel.Core.CodingSchemeVersionOrTag
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        org.LexGrid.codingSchemes.CodingScheme
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        RemoteException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details:
+      </th>
+      <td>
+        Implementation:  Call this method on the associated LexEVS Service instance (or Distributed LexEVS instance) on the server, and forward the results.   Sample Call:
+        <ol>
+          <li>
+            Connect to the LexEVS caGrid Service using the org.LexGrid.LexBIG.cagrid.adapters.LexBIGServiceAdapter or org.LexGrid.LexBIG.cagrid.adapters.LexBIGServiceGridAdapter
+            LexBIGServiceGrid lbs = new LexBIGServiceGridAdapter(url);
+          </li>
+          <li>
+            Build an org.LexGrid.LexBIG.DataModel.cagrid.CodingSchemeIdentification to hold the Coding Scheme name.
+            CodingSchemeIdentification codingScheme = new CodingSchemeIdentification();
+            codingScheme.setCode(code);
+          </li>
+          <li>
+            Build a org.LexGrid.LexBIG.DataModel.Core.CodingSchemeVersionOrTag containing the Version information for the desired Coding Scheme
+            CodingSchemeVersionOrTag csvt = new CodingSchemeVersionOrTag();
+            csvt.setVersion(&#34;testVersion&#34;);
+          </li>
+          <li>
+            Invoke the LexEVS caGrid service as follows:
+            CodedNodeSetGrid cns = lbs.resolveCodingScheme(codingScheme, csvt);
+          </li>
+        </ol>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h4 id="LexEVS5.0Programmer&#39;sGuide-getNodeGraph">
+  getNodeGraph
+</h4>
+getNodeGraph(CodingSchemeIdentification, CodingSchemeVersionOrTag, RelationContainerIdentification)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Returns the node graph as represented in the particular relationship set in the coding scheme.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.DataModel.cagrid.CodingSchemeIdentification org.LexGrid.LexBIG.DataModel.Core.CodingSchemeVersionOrTag org.LexGrid.LexBIG.DataModel.cagrid.RelationContainerIdentification
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.cagrid.LexBIGCaGridServices. CodedNodeGraph.stubs.types.CodedNodeGraphReference
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        RemoteException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details:
+      </th>
+      <td>
+        Implementation:
+        <ul>
+          <li>
+            Create a Resource on the server and populate it with the requested org.LexGrid.LexBIG.LexBIGService.CodedNodeGraph.
+          </li>
+          <li>
+            Return the Client Reference to the user. This Reference has the above org.LexGrid.LexBIG.LexBIGService.CodedNodeGraph as a Resource. An org.LexGrid.LexBIG.cagrid.LexBIGCaGridServices.service.CodedNodeGraphClient object is built from the above Reference.   Sample Call:
+          </li>
+        </ul>
+        <ol>
+          <li>
+            Connect to the LexBIG caGrid Service using the org.LexGrid.LexBIG.cagrid.adapters.LexBIGServiceAdapter or org.LexGrid.LexBIG.cagrid.adapters.LexBIGServiceGridAdapter
+            LexBIGServiceGrid lbs = new LexBIGServiceGridAdapter(url);
+          </li>
+          <li>
+            Build an org.LexGrid.LexBIG.DataModel.cagrid.CodingSchemeIdentification to hold the Coding Scheme name.
+            CodingSchemeIdentification codingScheme = new CodingSchemeIdentification();
+            codingScheme.setCode(code);
+          </li>
+          <li>
+            Build an org.LexGrid.LexBIG.DataModel.Core.CodingSchemeVersionOrTag containing the Version information for the desired Coding Scheme
+            CodingSchemeVersionOrTag csvt = new CodingSchemeVersionOrTag();
+            csvt.setVersion(&#34;testVersion&#34;);
+          </li>
+          <li>
+            Build an org.LexGrid.LexBIG.DataModel.cagrid.RelationContainerIdentification containing the Relation Container information.
+            RelationContainerIdentification container = new RelationContainerIdentification();
+            container.setDc(name);
+          </li>
+          <li>
+            Invoke the LexEVS caGrid service as follows, providing String parameters for the desired Coding Scheme and Relationship Name:
+            CodedNodeGraphGrid cng = client.getNodeGraph(codingScheme, csvt, container);
+          </li>
+        </ol>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h4 id="LexEVS5.0Programmer&#39;sGuide-getMatchAlgorithms">
+  getMatchAlgorithms
+</h4>
+getMatchAlgorithms()
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Returns the node graph as represented in the particular relationship set in the coding scheme.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        none
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.DataModel.Collections.ModuleDescriptionList
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        RemoteException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details:
+      </th>
+      <td>
+        Implementation:  Call this method on the associated LexEVS Service instance (or Distributed LexEVS instance) on the server, and forward the results.   Sample Call:
+        <ol>
+          <li>
+            Connect to the LexEVS caGrid Service using the org.LexGrid.LexBIG.cagrid.adapters.LexBIGServiceAdapter or org.LexGrid.LexBIG.cagrid.adapters.LexBIGServiceGridAdapter
+            LexBIGServiceGrid lbs = new LexBIGServiceGridAdapter(url);
+          </li>
+          <li>
+            Invoke the LexEVS caGrid service as follows:
+            ModuleDescriptionList mdl = lbs.getMatchAlgorithms();
+          </li>
+        </ol>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h4 id="LexEVS5.0Programmer&#39;sGuide-getGenericExtensions">
+  getGenericExtensions
+</h4>
+getGenericExtensions()
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Returns a description of all registered extensions used to implement application-specific behavior that is centrally accessible from a LexBIGService.NoteOnly generic extensions (base class GenericExtension) will be listed here. All other classes are retrievable at the appropriate interface point (filter, sort, etc).
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        none
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.DataModel.Collections.ExtensionDescriptionList
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        RemoteException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details:
+      </th>
+      <td>
+        Implementation:  Call this method on the associated LexEVS Service instance (or Distributed LexEVS instance) on the server, and forward the results.   Sample Call:
+        <ol>
+          <li>
+            Connect to the LexEVS caGrid Service using the org.LexGrid.LexBIG.cagrid.adapters.LexBIGServiceAdapter or org.LexGrid.LexBIG.cagrid.adapters.LexBIGServiceGridAdapter
+            LexBIGServiceGrid lbs = new LexBIGServiceGridAdapter(url);
+          </li>
+          <li>
+            Invoke the LexEVS caGrid service as follows:
+            ExtensionDescriptionList edl = lbs.getGenericExtensions();
+          </li>
+        </ol>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h4 id="LexEVS5.0Programmer&#39;sGuide-getGenericExtension">
+  getGenericExtension
+</h4>
+getGenericExtensions(ExtensionIdentification)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Returns an instance of the application-specific extension registered with the given name.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.DataModel.cagrid.ExtensionIdentification
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.DataModel.Collections.SortDescriptionList
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        RemoteException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details:
+      </th>
+      <td>
+        Implementation:  Call this method on the associated LexEVS Service instance (or Distributed LexEVS instance) on the server, and forward the results.   Sample Call:
+        <ol>
+          <li>
+            Connect to the LexEVS caGrid Service using the org.LexGrid.LexBIG.cagrid.adapters.LexBIGServiceAdapter or org.LexGrid.LexBIG.cagrid.adapters.LexBIGServiceGridAdapter
+            LexBIGServiceGrid lbs = new LexBIGServiceGridAdapter(url);
+            NoteCurrently this method will return a LexBIGServiceConvenienceMethods instance.
+          </li>
+          <li>
+            Build an org.LexGrid.LexBIG.DataModel.cagrid.ExtensionIdentification to hold the Extension name.
+            ExtensionIdentification extension = new ExtensionIdentification();
+            extension.setLexBIGExtensionName(&#34;LexBIGServiceConvenienceMethods&#34;);
+          </li>
+          <li>
+            Invoke the LexEVS caGrid service as follows:
+            LexBIGServiceConvenienceMethodsGrid lbscm = lbs.getGenericExtensions(extension);
+          </li>
+          <li>
+            Return the LexBIGServiceConvenienceMethodsClient to the user. This LexBIGServiceConvenienceMethodsClient has the above org.LexGrid.LexBIG.Extensions.Generic.LexBIGServiceConvenienceMethods as a Resource. An org.LexGrid.LexBIG.cagrid.LexBIGCaGridServices.service.CodedNodeGraphClient object is built from the above Reference.
+          </li>
+        </ol>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h4 id="LexEVS5.0Programmer&#39;sGuide-getHistoryService">
+  getHistoryService
+</h4>
+getHistoryService(CodingSchemeIdentification)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Resolve a reference to the history api servicing the given coding scheme.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.DataModel.cagrid.CodingSchemeIdentification
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.cagrid.LexBIGCaGridServices.HistoryService.stubs.types.HistoryServiceReference
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        RemoteException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details:
+      </th>
+      <td>
+        Implementation:
+        <ul>
+          <li>
+            Call this method on the associated LexEVS Service instance (or Distributed LexEVS instance) on the server, and forward the results.
+          </li>
+          <li>
+            Return the HistoryServiceClient to the user. This HistoryServiceClient has the above org.LexGrid.LexBIG.History.HistoryService as a Resource. This Client is a Service Context that allows the user to call regular org.LexGrid.LexBIG.History.HistoryService API calls through the grid service. HistoryServiceClient implements the Interface org.LexGrid.LexBIG.History.HistoryService. This makes calling Grid Service Calls through org.LexGrid.LexBIG.cagrid.LexBIGCaGridServices.HistoryService.client.HistoryServiceClient transparent to the end user.   Sample Call:
+          </li>
+        </ul>
+        <ol>
+          <li>
+            Connect to the LexEVS caGrid Service using the org.LexGrid.LexBIG.cagrid.adapters.LexBIGServiceAdapter or org.LexGrid.LexBIG.cagrid.adapters.LexBIGServiceGridAdapter
+            LexBIGServiceGrid lbs = new LexBIGServiceGridAdapter(url);
+          </li>
+          <li>
+            Build an org.LexGrid.LexBIG.DataModel.cagrid.CodingSchemeIdentification to hold the Coding Scheme name.
+            CodingSchemeIdentification codingScheme = new CodingSchemeIdentification();
+            codingScheme.setCode(code);
+          </li>
+          <li>
+            Invoke the LexEVS caGrid service as follows:
+            HistoryServiceGrid history = lbs.getHistoryService(codingScheme);
+          </li>
+        </ol>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h4 id="LexEVS5.0Programmer&#39;sGuide-getSortAlgorithms">
+  getSortAlgorithms
+</h4>
+getSortAlgorithms(SortContext)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Returns a description of all registered extensions used to provide additional filtering of query results.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.DataModel.InterfaceElements.types.SortContext
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.DataModel.Collections.SortDescriptionList
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        RemoteException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details:
+      </th>
+      <td>
+        Implementation:  Call this method on the associated LexEVS Service instance (or Distributed LexEVS instance) on the server, and forward the results.   Sample Call:
+        <ol>
+          <li>
+            Connect to the LexEVS caGrid Service using the org.LexGrid.LexBIG.cagrid.adapters.LexBIGServiceAdapter or org.LexGrid.LexBIG.cagrid.adapters.LexBIGServiceGridAdapter
+            LexBIGServiceGrid lbs = new LexBIGServiceGridAdapter(url);
+          </li>
+          <li>
+            Invoke the LexEVS caGrid service as follows:
+            SortDescriptionList sortDescList = lbs.getSortAlgorithms(sortContext);
+          </li>
+        </ol>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h4 id="LexEVS5.0Programmer&#39;sGuide-resolveCodingSchemeCopyright">
+  resolveCodingSchemeCopyright
+</h4>
+resolveCodingSchemeCopyright
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Return coding scheme copyright given a specific tag or version identifier.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.DataModel.cagrid.CodingSchemeIdentification
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.DataModel.cagrid.CodingSchemeCopyRight
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        RemoteException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details:
+      </th>
+      <td>
+        Implementation:  Call this method on the associated LexEVS Service instance (or Distributed LexEVS instance) on the server, and forward the results.   Sample Call:
+        <ol>
+          <li>
+            Connect to the LexEVS caGrid Service using the org.LexGrid.LexBIG.cagrid.adapters.LexBIGServiceAdapter or org.LexGrid.LexBIG.cagrid.adapters.LexBIGServiceGridAdapter
+            LexBIGServiceGrid lbs = new LexBIGServiceGridAdapter(url);
+          </li>
+          <li>
+            Build an org.LexGrid.LexBIG.DataModel.cagrid.CodingSchemeIdentificationto hold the Coding Scheme name.
+            CodingSchemeIdentification codingScheme = new
+            CodingSchemeIdentification();
+            codingScheme.setCode(code);
+          </li>
+          <li>
+            Build an org.LexGrid.LexBIG.DataModel.Core.CodingSchemeVersionOrTagcontaining the Version information for the desired Coding Scheme
+            CodingSchemeVersionOrTag csvt = new CodingSchemeVersionOrTag();
+            csvt.setVersion(&#34;testVersion&#34;);
+          </li>
+          <li>
+            Invoke the LexEVS caGrid service as follows:
+            CodingSchemeCopyRight copyright = lbs.resolveCodingSchemeCopyright(codingScheme, csvt);
+          </li>
+        </ol>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h4 id="LexEVS5.0Programmer&#39;sGuide-setSecurityToken">
+  setSecurityToken
+</h4>
+setSecurityToken(CodingSchemeIdentification, SecurityToken)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Sets the Security Token for the given Coding Scheme.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.DataModel.cagrid.CodingSchemeIdentification, gov.nih.nci.evs.security.SecurityToken
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.cagrid.LexEVSGridService.stubs.types.LexEVSGridServiceReference.LexEVSGridServiceReference
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        RemoteException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details:
+      </th>
+      <td>
+        Implementation:  Call this method on the associated LexEVS Service instance (or Distributed LexEVS instance) on the server, and forward the results.   Sample Call:
+        <ol>
+          <li>
+            Connect to the LexEVS caGrid Service using the org.LexGrid.LexBIG.cagrid.adapters.LexBIGServiceAdapter or org.LexGrid.LexBIG.cagrid.adapters.LexBIGServiceGridAdapter
+            LexBIGServiceGrid lbs = new LexBIGServiceGridAdapter(url);
+          </li>
+          <li>
+            Build an org.LexGrid.LexBIG.DataModel.cagrid.CodingSchemeIdentification to hold the Coding Scheme name.
+            CodingSchemeIdentification codingScheme = new
+            CodingSchemeIdentification(); codingScheme.setName(&#34;codingScheme&#34;);
+          </li>
+          <li>
+            Build a gov.nih.nci.evs.security.SecurityTokencontaining the security information for the desired Coding Scheme.
+            SecurityToken metaToken = new SecurityToken();
+            metaToken.setAccessToken(&#34;token&#34;);
+          </li>
+          <li>
+            Invoke the LexEVS caGrid service as follows: This will return a reference to a new &#34;LexBIGServiceGrid&#34; instance that is associated with the security properties that were passed in.
+            LexBIGServiceGrid lbsg = lbs.setSecurityToken(codingScheme, metaToken);
+          </li>
+        </ol>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h3 id="LexEVS5.0Programmer&#39;sGuide-UsageInstructions">
+  Usage Instructions
+</h3>
+<h4 id="LexEVS5.0Programmer&#39;sGuide-ServiceURL">
+  Service URL
+</h4>
+The LexEVS Grid Service 4.2 URL is:
+Link provided for historical purposes http://lexevsapi.nci.nih.gov/wsrf/services/cagrid/LexEVSGridService]
+The service is also accessible via the
+<a href="http://cagrid-portal.nci.nih.gov/web/guest/home;jsessionid=AEEE79C27E8EDB4EC0117C2CE8857D49" rel="nofollow">
+  caGRID Portal
+</a>
+.
+<h4 id="LexEVS5.0Programmer&#39;sGuide-RequiredLibraries">
+  Required Libraries
+</h4>
+The libraries required for programmatic access to the LexEVS Grid Service are listed in the tables below.The following table lists the 3rd Party Libraries required for use of the LexEVS API Grid Service.
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Product
+      </th>
+      <th>
+        Jars
+      </th>
+      <th>
+        License
+      </th>
+      <th>
+        Home Page
+      </th>
+    </tr>
+    <tr>
+      <td>
+        Apache WS-Addressing
+      </td>
+      <td>
+        addressing-1.0.jar
+      </td>
+      <td>
+        <a href="http://www.ogsa-dai.ac.uk/documentation/ogsadai-wsi-2.2-thirdparty/addressing-1.0.LICENSE" rel="nofollow">
+          adressing 1.0.LICENSE
+        </a>
+      </td>
+      <td>
+        From Globus 4.0.2 Java Web Services Core lib directory:
+        <a href="http://www.globus.org/toolkit/downloads/4.0.2" rel="nofollow">
+          http://www.globus.org/toolkit/downloads/4.0.2
+        </a>
+        Source available at
+        <a href="http://ws.apache.org/addressing" rel="nofollow">
+          http://ws.apache.org/addressing
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Apache Axis
+      </td>
+      <td>
+        axis-ant.jar axis.jar commons-pool-1.3.jar commons-logging-1.1.jar commons-lang-2.2.jar commons-collections-3.2.jar commons-codec-1.3.jar log4j-1.2.8.jar jaxrpc.jar saaj.jar wsdl4j.jar
+      </td>
+      <td>
+        <a href="http://www.ogsa-dai.ac.uk/documentation/ogsadai-wsi-2.2/thirdparty/axis-jars.LICENSE" rel="nofollow">
+          axis-jars.LICENSE
+        </a>
+      </td>
+      <td>
+        <a href="http://ws.apache.org/axis" rel="nofollow">
+          http://ws.apache.org/axis
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Apache Xerces
+      </td>
+      <td>
+        xercesImpl.jar
+      </td>
+      <td>
+        <a href="http://www.ogsa-dai.ac.uk/documentation/ogsadai-wsi-2.2/thirdparty/xerces.LICENSE" rel="nofollow">
+          xerces.LICENSE
+        </a>
+      </td>
+      <td>
+        <a href="http://xerces.apache.org/xerces-j" rel="nofollow">
+          http://xerces.apache.org/xerces-j
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Apache Lucene
+      </td>
+      <td>
+        lucene-core-2.3.2.jar lucene-regex-2.3.2.jar lucene-snowball-2.3.2.jar
+      </td>
+      <td>
+        <a href="http://www.apache.org/licenses/LICENSE-2.0" rel="nofollow">
+          Lucene LICENSE
+        </a>
+      </td>
+      <td>
+        <a href="http://lucene.apache.org/" rel="nofollow">
+          http://lucene.apache.org/
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        ASM  all purpose Java bytecode manipulation and analysis framework
+      </td>
+      <td>
+        asm.jar
+      </td>
+      <td>
+        <a href="http://asm.objectweb.org/license.html" rel="nofollow">
+          http://asm.objectweb.org/license.html
+        </a>
+      </td>
+      <td>
+        <a href="http://asm.objectweb.org/" rel="nofollow">
+          http://asm.objectweb.org/
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Castor
+      </td>
+      <td>
+        castor-1.2.jar
+      </td>
+      <td>
+        <a href="http://www.castor.org/license.html" rel="nofollow">
+          http://www.castor.org/license.html
+        </a>
+      </td>
+      <td>
+        <a href="http://www.castor.org/index.html" rel="nofollow">
+          http://www.castor.org/index.html
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Globus Toolkit
+      </td>
+      <td>
+        cog-axis.jar cog-jglobus.jar
+      </td>
+      <td>
+        <a href="http://www.globus.org/toolkit/legal/4.0/" rel="nofollow">
+          http://www.globus.org/toolkit/legal/4.0/
+        </a>
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        Bouncy Castle Crypto APIs
+      </td>
+      <td>
+        jce-jdk13-125.jar
+      </td>
+      <td>
+        <a href="http://www.bouncycastle.org/licence.html" rel="nofollow">
+          http://www.bouncycastle.org/licence.html
+        </a>
+      </td>
+      <td>
+        <a href="http://www.bouncycastle.org/" rel="nofollow">
+          http://www.bouncycastle.org/
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Open Permis
+      </td>
+      <td>
+        wsrf_core.jar wsrf_core_stubs.jar
+      </td>
+      <td>
+        <a href="http://www.openpermis.org/BSDlicenceKent.txt" rel="nofollow">
+          http://www.openpermis.org/BSDlicenceKent.txt
+        </a>
+      </td>
+      <td>
+        <a href="http://www.openpermis.org/" rel="nofollow">
+          http://www.openpermis.org/
+        </a>
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        Apache WSS4J
+      </td>
+      <td>
+        wss4j.jar
+      </td>
+      <td>
+        <a href="http://ws.apache.org/wss4j/license.html" rel="nofollow">
+          http://ws.apache.org/wss4j/license.html
+        </a>
+      </td>
+      <td>
+        <a href="http://ws.apache.org/wss4j/" rel="nofollow">
+          http://ws.apache.org/wss4j/
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Spring
+      </td>
+      <td>
+        spring.jar
+      </td>
+      <td>
+        <a href="http://www.apache.org/licenses/LICENSE-2.0" rel="nofollow">
+          Spring LICENSE
+        </a>
+      </td>
+      <td>
+        <a href="http://www.springframework.org" rel="nofollow">
+          http://www.springframework.org
+        </a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+The following table lists the required NCICB/caBIG Libraries.
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Library
+      </th>
+      <th>
+        Associated JARs
+      </th>
+    </tr>
+    <tr>
+      <td>
+        caGrid Software Libraries
+      </td>
+      <td>
+        caGrid-ServiceSecurityProvider-client-1.2.jar caGrid-ServiceSecurityProvider-common-1.2.jar  caGrid-ServiceSecurityProvider-stubs-1.2.jar  caGrid-core-1.2.jar  caGrid-metadata-common-1.2.jar caGrid-metadata-data-1.2.jar  caGrid-metadata-security-1.2.jar  caGrid-metadatautils-1.2.jar
+      </td>
+    </tr>
+    <tr>
+      <td>
+        EVS API Libaries
+      </td>
+      <td>
+        evsapi42-beans.jar  evsapi42-framework.jar
+      </td>
+    </tr>
+    <tr>
+      <td>
+        LexEVS Grid Service Client Library
+      </td>
+      <td>
+        LexEVSGridService-client.jar
+      </td>
+    </tr>
+    <tr>
+      <td>
+        LexEVS Grid Service Stubs
+      </td>
+      <td>
+        LexEVSGridService-stubs.jar
+      </td>
+    </tr>
+    <tr>
+      <td>
+        LexEVS Grid Service Common
+      </td>
+      <td>
+        LexEVSGridService-common.jar
+      </td>
+    </tr>
+    <tr>
+      <td>
+        LexEVS Grid Service Service
+      </td>
+      <td>
+        LexEVSGridService-service.jar
+      </td>
+    </tr>
+    <tr>
+      <td>
+        LexEVS Grid Service Tests
+      </td>
+      <td>
+        LexEVSGridService-tests.jar
+      </td>
+    </tr>
+    <tr>
+      <td>
+        caCORE SDK Library
+      </td>
+      <td>
+        sdk-client-framework.jar
+      </td>
+    </tr>
+    <tr>
+      <td>
+        LexEVS API
+      </td>
+      <td>
+        lexbig.jar
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Custom Castor Serializer
+      </td>
+      <td>
+        castor-bean-serializer.jar
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h4 id="LexEVS5.0Programmer&#39;sGuide-Downloads">
+  Downloads
+</h4>
+For your convenience, the required libraries are available for download here:
+<a href="https://cbiit-download.nci.nih.gov/evs/LexEVS/v4.2/Grid/Release/lexevs42-gridsrvc-libs.jar" rel="nofollow">
+  lexevs42-gridsrvc-libs.jar
+</a>
+.To programmatically access the LexEVS API Grid Service, these libraries need to be added to your local classpath.
+<h3 id="LexEVS5.0Programmer&#39;sGuide-CodeExamples.1">
+  Code Examples
+</h3>
+<h4 id="LexEVS5.0Programmer&#39;sGuide-ExampleClientandServiceCallsandSOAPMessages">
+  Example Client and Service Calls and SOAP Messages
+</h4>
+See
+<a href="https://cbiit-download.nci.nih.gov/evs/LexEVS/v4.2/Grid/Release/TestClient.zip" rel="nofollow">
+  TestClient.zip
+</a>
+<h4 id="LexEVS5.0Programmer&#39;sGuide-ExampleAPIUsage">
+  Example API Usage
+</h4>
+Example 1: Searching for concepts in NCI Thesaurus containing the string &#34;Gene&#34;Java Code Snippet
+
+//Create a Connection to the Grid Service
+LexBIGServiceGrid lbs = new LexBIGServiceGridAdapter(gridServiceURL);
+
+//Set up the CodingSchemeIdentification object to define the Coding Scheme&lt;/font&gt;
+CodingSchemeIdentification csid = new CodingSchemeIdentification();
+csid.setName(&#34;NCI Thesaurus&#34;);
+
+//Get the CodedNodeSet for that CodingScheme (This returns a CodedNodeSet Service Context)
+CodedNodeSetGrid cnsg = lbs.getCodingSchemeConcepts(csid, null);
+//getCodingSchemeConcepts is a Grid Service Call
+
+//Set the text to match
+MatchCriteria matchText = new MatchCriteria();
+matchText.setText(&#34;Gene&#34;);
+//Define a SearchDesignationOption, if any
+SearchDesignationOption searchOption = new SearchDesignationOption();
+
+//Choose an algorithm to do the matching
+ExtensionIdentification matchAlgorithm = new ExtensionIdentification();
+matchAlgorithm.setLexBIGExtensionName(&#34;contains&#34;);
+
+//Chose a language
+LanguageIdentification language = new LanguageIdentification();
+language.setIdentifier(&#34;en&#34;);
+
+//Restrict the CodedNodeSet
+cnsg.restrictToMatchingDesignations(matchText, searchOption, matchAlgorithm, language);
+//restrictToMatchingDesignations is a Grid Service Call
+
+//Create a SetResolutionPolicy to handle the details of Resolving the CodedNodeSet
+//Here, we will set the Maximum number of Concepts returned to 10.
+SetResolutionPolicy resolvePolicy = new SetResolutionPolicy();
+resolvePolicy.setMaximumToReturn(10);
+
+//Do the resolve
+ResolvedConceptReferenceList rcrlist = cnsg.resolveToList(resolvePolicy);
+//resolveToList is a Grid Service Call
+
+//Use the returned ResolvedConceptReferenceList to print some details about the concepts found
+ResolvedConceptReference[] rcref = rcrlist.getResolvedConceptReference();
+for (int i = 0; i &lt; rcref.length; i++) {
+	System.out.println(rcref[i].getConceptCode());
+	System.out.println(rcref[i].getReferencedEntry().
+		getPresentation()[0].getText().getContent());
+
+}
+<h3 id="LexEVS5.0Programmer&#39;sGuide-ErrorHandling">
+  Error Handling
+</h3>
+<h4 id="LexEVS5.0Programmer&#39;sGuide-ErrorConnectingtoLexEVSGridService">
+  Error Connecting to LexEVS Grid Service
+</h4>
+When connecting through the Java Client, java.net.ConnectException, an org.apache.axis.types.URI.MalformedURIException may be thrown upon an unsuccessful attempt to connect.A MalformedURIException is thrown in the case if a poorly-formed URL string. In this case, the exception is thrown before an attempt to connect is even made.If the URL is well-formed, proper connection is tested. If the connection attempt fails, a ConnectException is thrown containing the reason for the failure.Java Code
+
+try{
+LexBIGServiceGridAdapter lbsg = new LexBIGServiceGridAdapter
+(&#34;http://localhost:8080/wsrf/services/cagrid/LexEVSGridService&#34;);
+} catch(java.net.ConnectException e){
+//Error Connecting
+e.printStackTrace();
+} catch(org.apache.axis.types.URI.MalformedURIException e){
+//URL Syntax Error
+e.printStackTrace();
+}
+
+This example shows a typical connection to the LexEVS Grid Service, with the two potential Exceptions being caught and handled as necessary.
+<h4 id="LexEVS5.0Programmer&#39;sGuide-LexEVSErrors">
+  LexEVS Errors
+</h4>
+LexEVS errors will be forwarded through the Distributed LexEVS layer and then on to the Grid layer. Input parameters, along with any other LexEVS (or Distributed LexEVS) errors will be detected on the server, not the client, and forwarded. All Generic LexEVS (or Distributed LexEVS) errors will be forwarded via a RemoteException, with the cause of the error and underlying LexEVS error message included.
+<h4 id="LexEVS5.0Programmer&#39;sGuide-InvalidServiceContextAccess">
+  Invalid Service Context Access
+</h4>
+Service Context Services are not meant to be called directly. If the client attempts to do so, an org.LexGrid.LexBIG.cagrid.LexEVSGridService.CodedNodeSet.stubs.types.InvalidServiceContextAccess Exception will be thrown. This indicates a call was made to a Service Context without obtaining a Service Context Reference via the Main Service. Refer to the
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427406" rel="nofollow">
+  Service Contexts and State section in the Design and Architecture Guide
+</a>
+for more information.
+<h3 id="LexEVS5.0Programmer&#39;sGuide-SecurityIssues">
+  Security Issues
+</h3>
+<h4 id="LexEVS5.0Programmer&#39;sGuide-LexEVSGridServiceSecurity">
+  LexEVS Grid Service Security
+</h4>
+Certain vocabulary content accessible through the LexEVS Grid Service may require extra authorization to access. Each client is required to supply its own access credentials via Security Tokens. These Security Tokens are implemented by a SecurityToken object:
+Name: SecurityToken
+Namespace: gme://caCORE.caCORE/3.2/gov.nih.nci.evs.security
+Package: gov.nih.nci.evs.security
+<h4 id="LexEVS5.0Programmer&#39;sGuide-AccessingSecureContent">
+  Accessing Secure Content
+</h4>
+A client establishes access to a secured vocabulary via the following Grid Service Calls:
+<ol>
+  <li>
+    Connect to the LexEVS caGrid Service
+    LexBIGServiceGrid lbs = new LexBIGServiceGridAdapter(url);
+  </li>
+  <li>
+    Build an org.LexGrid.LexBIG.DataModel.cagrid.CodingSchemeIdentificationto hold the Coding Scheme name.
+    CodingSchemeIdentification codingScheme = new CodingSchemeIdentification();
+    codingScheme.setName &#34;codingScheme&#34;;
+  </li>
+  <li>
+    Build a gov.nih.nci.evs.security.SecurityTokencontaining the security information for the desired Coding Scheme.
+    SecurityToken token = new SecurityToken();
+    token.setAccessToken(&#34;securityToken&#34;);
+  </li>
+  <li>
+    Invoke the LexEVS caGrid service as follows:
+    LexBIGServiceGrid lbsg = lbs.setSecurityToken(codingScheme, token);
+    This will return a reference to a new &#34;LexBIGServiceGrid&#34; instance that is associated with the security properties that were passed in.
+  </li>
+</ol>
+NoteIt is important to note that the Grid Service setSecurityToken returns an org.LexGrid.LexBIG.cagrid.LexEVSGridService.stubs.types.LexEVSGridServiceReference.LexEVSGridServiceReference object. This reference must be used to access the secured vocabularies.
+<h4 id="LexEVS5.0Programmer&#39;sGuide-Implementation">
+  Implementation
+</h4>
+Each call to &#34;setSecurityToken&#34; sets up a secured connection to Distributed LexEVS with the access privileges included in the SecurityToken parameter. The LexEVSGridServiceReference that is returned to the client contains a unique key identifier to the secure connection that has been created on the server. All subsequent calls the client makes through this LexEVSGridServiceReference will be made securely. If additional SecurityTokens are passed in through the &#34;setSecurityToken&#34; Grid Service, the additional security will be added and maintained.The &#34;setSecurityToken&#34; Grid Service is a stateful service. This means that after the client sets a SecurityToken, any subsequent call will be applied to that SecurityToken.Secure connections are not maintained on the server indefinitely, but are based on load conditions. The server will allow 30 unique secure connections to be set up for clients without any time limitations. As additional requests for secure connections are received by the server, connections will be released by the server on an &#39;oldest first&#39; basis. No connection, however, may be released prior to 5 minutes after its creation.If no SecurityTokens are passed in by the client, a non-secure Distributed LexEVS connection will be used. The server maintains one (and only one) un-secured Distributed LexEVS connection that is shared by any client not requesting security.NoteAll non-secured information accessed by the LexEVS Grid Service is publicly available from NCICB and users are expected to follow the licensing requirements currently in place for accessing and using NCI EVS information.
+<h2 id="LexEVS5.0Programmer&#39;sGuide-LexEVSDataGridServiceAPI">
+  LexEVS Data Grid Service API
+</h2>
+<h3 id="LexEVS5.0Programmer&#39;sGuide-TheLexEVSDataGridService">
+  The LexEVS Data Grid Service
+</h3>
+The LexEVS Data Grid Service is a standard caGrid Data service based on the
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427406" rel="nofollow">
+  LexEVS 2009 Model
+</a>
+.
+<h3 id="LexEVS5.0Programmer&#39;sGuide-caGridDataServiceDocumentation">
+  caGrid Data Service Documentation
+</h3>
+For complete documentation on caGrid Data Services, see
+<a href="http://cagrid.org/display/dataservices/Home" rel="nofollow">
+  caGrid Data Service Documentation
+</a>
+.
+<h3 id="LexEVS5.0Programmer&#39;sGuide-QueryingtheSystem.1">
+  Querying the System
+</h3>
+To query the LexEVS Data Grid Service, use the standard caGrid CQL query method to compose queries. See
+<a href="http://cagrid.org/display/dataservices12/Client+API" rel="nofollow">
+  caGrid Data Service API Documentation
+</a>
+for more information.Example LexEVS queries follow.
+<h4 id="LexEVS5.0Programmer&#39;sGuide-QueryforaConceptwithaSpecificCode">
+  Query for a Concept with a Specific Code
+</h4>
+Example: Concept: C12345Java Code Snippet
+&lt;CQLQuery xmlns=&#34;http://CQL.caBIG/1/gov.nih.nci.cagrid.CQLQuery&#34;&gt;
+&lt;Target name=&#34;org.LexGrid.concepts.Concept&#34;&gt;
+&lt;Attribute name=&#34;_entityCode&#34; value=&#34;C12345&#34; predicate=&#34;EQUAL_TO&#34;/&gt;
+&lt;/Target&gt;
+&lt;/CQLQuery&gt;
+<h4 id="LexEVS5.0Programmer&#39;sGuide-QueryforaConceptwithSpecificPresentationText">
+  Query for a Concept with Specific Presentation Text
+</h4>
+Example: A concept with a namespace &#39;SNOMED Clinical Terms&#39; that contains a Presentation equal to &#39;Heart&#39;Java Code Snippet
+&lt;ns1:CQLQuery xmlns:ns1=&#34;http://CQL.caBIG/1/gov.nih.nci.cagrid.CQLQuery&#34;&gt;
+&lt;ns1:Target name=&#34;org.LexGrid.concepts.Entity&#34;&gt;
+&lt;ns1:Group logicRelation=&#34;AND&#34;&gt;
+&lt;ns1:Association name=&#34;org.LexGrid.concepts.Presentation&#34; roleName=&#34;_presentationList&#34;&gt;
+&lt;ns1:Group logicRelation=&#34;AND&#34;&gt;
+&lt;ns1:Association name=&#34;org.LexGrid.commonTypes.Text&#34; roleName=&#34;_value&#34;&gt;
+&lt;ns1:Group logicRelation=&#34;AND&#34;&gt;
+&lt;ns1:Attribute name=&#34;_content&#34; predicate=&#34;EQUAL_TO&#34; value=&#34;Heart&#34;/&gt;
+&lt;/ns1:Group&gt;
+&lt;/ns1:Association&gt;
+&lt;/ns1:Group&gt;
+&lt;/ns1:Association&gt;
+&lt;ns1:Attribute name=&#34;_entityCodeNamespace&#34; predicate=&#34;EQUAL_TO&#34; value=&#34;SNOMED Clinical Terms&#34;/&gt;
+&lt;/ns1:Group&gt;
+&lt;/ns1:Target&gt;
+&lt;/ns1:CQLQuery&gt;
+<h4 id="LexEVS5.0Programmer&#39;sGuide-RestrictResultstoSpecificAttributes">
+  Restrict Results to Specific Attributes
+</h4>
+Example: Retrieve all of the &#39;localIds&#39; of any &#39;SupportedAssociation&#39; in the system.Java Code Snippet
+&lt;ns1:CQLQuery xmlns:ns1=&#34;http://CQL.caBIG/1/gov.nih.nci.cagrid.CQLQuery&#34;&gt;
+&lt;ns1:Target name=&#34;org.LexGrid.naming.SupportedAssociation&#34;/&gt;
+&lt;ns1:QueryModifier countOnly=&#34;false&#34;&gt;
+&lt;ns1:DistinctAttribute&gt;_localId&lt;/ns1:DistinctAttribute&gt;
+&lt;/ns1:QueryModifier&gt;
+&lt;/ns1:CQLQuery&gt; 

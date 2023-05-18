@@ -1,0 +1,587 @@
+Contents of this Page
+<ul>
+  <li>
+    <a href="#caMicroscopeAPIGuide-Naming" rel="nofollow">
+      Naming
+    </a>
+  </li>
+  <li>
+    <a href="#caMicroscopeAPIGuide-/ImageLoader" rel="nofollow">
+      /ImageLoader
+    </a>
+    <ul>
+      <li>
+        <a href="#caMicroscopeAPIGuide-Exampleof/ImageLoader" rel="nofollow">
+          Example of /ImageLoader
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#caMicroscopeAPIGuide-/uAIMDataLoader" rel="nofollow">
+      /uAIMDataLoader
+    </a>
+    <ul>
+      <li>
+        <a href="#caMicroscopeAPIGuide-Exampleof/uAIMDataLoader" rel="nofollow">
+          Example of /uAIMDataLoader
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#caMicroscopeAPIGuide-/ImageData" rel="nofollow">
+      /ImageData
+    </a>
+    <ul>
+      <li>
+        <a href="#caMicroscopeAPIGuide-Exampleof/ImageData" rel="nofollow">
+          Example of /ImageData
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#caMicroscopeAPIGuide-/MarkupData" rel="nofollow">
+      /MarkupData
+    </a>
+    <ul>
+      <li>
+        <a href="#caMicroscopeAPIGuide-Examplesof/MarkupData" rel="nofollow">
+          Examples of /MarkupData
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#caMicroscopeAPIGuide-/uAIMTemplates" rel="nofollow">
+      /uAIMTemplates
+    </a>
+    <ul>
+      <li>
+        <a href="#caMicroscopeAPIGuide-Examplesof/uAIMTemplates" rel="nofollow">
+          Examples of /uAIMTemplates
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#caMicroscopeAPIGuide-Jobs" rel="nofollow">
+      Jobs
+    </a>
+    <ul>
+      <li>
+        <a href="#caMicroscopeAPIGuide-Examplesof/Tasks" rel="nofollow">
+          Examples of /Tasks
+        </a>
+      </li>
+    </ul>
+  </li>
+</ul>
+<h2 id="caMicroscopeAPIGuide-Naming">
+  Naming
+</h2>
+<ul>
+  <li>
+    case_id: Used to uniquely identify an image.
+  </li>
+  <li>
+    execution_id: Used to uniquely identify an algorithm. A case_id can have multiple execution_ids associated with it.
+  </li>
+  <li>
+    subject_id: Used to uniquely idenify a patient. A subject_id can have multiple case_ids associated with it.
+  </li>
+</ul>
+<h2 id="caMicroscopeAPIGuide-/ImageLoader">
+  /ImageLoader
+</h2>
+The /ImageLoader resource is a Node application that extracts image metadata (such as width and height of the image) from the existing whole slide image and stores it in a Mongo database.
+<table>
+  <tbody>
+    <tr>
+      <th>
+        HTTP Verb
+      </th>
+      <th>
+        QueryEndpoint
+      </th>
+      <th>
+        Query Parameters(Input)
+      </th>
+      <th>
+        Output(Description)
+      </th>
+    </tr>
+    <tr>
+      <td>
+         POST
+      </td>
+      <td>
+         /submitImage
+      </td>
+      <td>
+         case_id, File_location, subject_id
+      </td>
+      <td>
+         {“status”: “Success”} on success
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h3 id="caMicroscopeAPIGuide-Exampleof/ImageLoader">
+  Example of /ImageLoader
+</h3>
+curl -v -F case_id=TCGA-02-0001 -F file_location=@TCGA-02-0001-01Z-00-DX1.83fce43e-42ac-4dcd-b156-2908e75f2e47.svs http://localhost:32799/submitData
+Optional study_id Return type: json On success returns: {&#34;status&#34;:&#34;success&#34;}case_id: The unique identifier for the imagefile_location: Location of the image on file system
+<h2 id="caMicroscopeAPIGuide-/uAIMDataLoader">
+  /uAIMDataLoader
+</h2>
+Node application that converts Aperio and binary masks to GeoJSON objects and stores them in a Mongo database
+<table>
+  <tbody>
+    <tr>
+      <th>
+        HTTP Verb
+      </th>
+      <th>
+        QueryEndpoint
+      </th>
+      <th>
+        Query Parameters(Input)
+      </th>
+      <th>
+        Output(Description)
+      </th>
+    </tr>
+    <tr>
+      <td>
+        POST
+      </td>
+      <td>
+         /submitMaskOrder
+      </td>
+      <td>
+        Case_id,Execution_id,Height,Width,X,Y,Type(optional)
+      </td>
+      <td>
+         {“jobId”: 12}
+      </td>
+    </tr>
+    <tr>
+      <td>
+        GET
+      </td>
+      <td>
+        /job/:id
+      </td>
+      <td>
+         None
+      </td>
+      <td>
+        {“status”:”incomplete”}
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h3 id="caMicroscopeAPIGuide-Exampleof/uAIMDataLoader">
+  Example of /uAIMDataLoader
+</h3>
+Example cURL command (Aperio):
+$ curl localhost:6000/submitMaskOrder -F mask=@1.png -F case_id=cbtc_test_11 -F execution_id=ganesh:test2 -F width=1743 -F height=2017 -F x=0 -F y=0
+Example cURL command (binary mask):
+$ curl localhost:6000/submitMaskOrder -F mask=@1.xml -F case_id=cbtc_test_11 -F execution_id=ganesh:test2 -F width=1743 -F height=2017 -F x=0 -F y=0 -F type= maskfile
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Variable
+      </th>
+      <th>
+        Definition
+      </th>
+    </tr>
+    <tr>
+      <td>
+        case_id
+      </td>
+      <td>
+        The unique identifier for the image
+      </td>
+    </tr>
+    <tr>
+      <td>
+        execution_id
+      </td>
+      <td>
+        The name(label) of the algorithm/run
+      </td>
+    </tr>
+    <tr>
+      <td>
+        width
+      </td>
+      <td>
+        width of the image/roi
+      </td>
+    </tr>
+    <tr>
+      <td>
+        height
+      </td>
+      <td>
+        height of the image/roi
+      </td>
+    </tr>
+    <tr>
+      <td>
+        x
+      </td>
+      <td>
+        top left x coordinate of the image/roi (Default: 0)
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        y
+      </td>
+      <td colspan="1">
+        top left y coordinate of the image/roi (Default:  0)
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="caMicroscopeAPIGuide-/ImageData">
+  /ImageData
+</h2>
+Bindaas APIs for handling Image Metadata. (Internal APIs, not meant to be exposed)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        HTTP Verb
+      </th>
+      <th>
+        QueryEndpoint
+      </th>
+      <th>
+        Query Parameters(Input)
+      </th>
+      <th colspan="1">
+        Output(Description)
+      </th>
+      <th colspan="1">
+        Additional Description
+      </th>
+    </tr>
+    <tr>
+      <td>
+        GET
+      </td>
+      <td>
+        /fileLocation
+      </td>
+      <td>
+        case_id
+      </td>
+      <td colspan="1">
+        Get file location of image
+      </td>
+      <td colspan="1">
+        Used by the caMicroscope viewer to give the image location to its backend server.
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1"></td>
+      <td colspan="1">
+         /mpp
+      </td>
+      <td colspan="1">
+         case_id
+      </td>
+      <td colspan="1">
+        Get mpp-x, mpp-y of the image
+      </td>
+      <td colspan="1">
+        Used by the viewer to adjust the scales.
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1"></td>
+      <td colspan="1">
+         /metadata
+      </td>
+      <td colspan="1">
+         case_id
+      </td>
+      <td colspan="1">
+        Get all metadata of the image(width, height, mpp etc.)
+      </td>
+      <td colspan="1">
+        Used by dynamic services to get width, height, and file location of the image.
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1"></td>
+      <td colspan="1">
+         /md5
+      </td>
+      <td colspan="1">
+         case_id
+      </td>
+      <td colspan="1">
+        Get MD5 of the image file
+      </td>
+      <td colspan="1">
+        Used to check the MD5 to make sure that the image was loaded successfully.
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        POST
+      </td>
+      <td colspan="1">
+        /json
+      </td>
+      <td colspan="1">
+        metdata
+      </td>
+      <td colspan="1">
+        metadata of the image in JSON format
+      </td>
+      <td colspan="1">
+        Stored in Mongo(db: Camicroscope, collection: ImageData).
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h3 id="caMicroscopeAPIGuide-Exampleof/ImageData">
+  Example of /ImageData
+</h3>
+POST
+$ curl -H &#34;Content-Type: application/json&#34; -X POST -d &#39;{&#34;case_id&#34;: &#34;TCGA-01-0001&#34;, &#34;width&#34;: 30000, &#34;height&#34;: 31000}&#39; http://localhost:9099/Camicroscope/ImageData/json
+
+GET
+$ curl http://localhost:9099/Camicroscope/ImageData/fileLocation
+<h2 id="caMicroscopeAPIGuide-/MarkupData">
+  /MarkupData
+</h2>
+Bindaas
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+    <col/>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        HTTP Verb
+      </th>
+      <th>
+        QueryEndpoint
+      </th>
+      <th>
+        Query Parameters(Input)
+      </th>
+      <th>
+        Output(Description)
+      </th>
+      <th>
+        Additional Information
+      </th>
+    </tr>
+    <tr>
+      <td>
+        GET
+      </td>
+      <td>
+         /multipleMarkups
+      </td>
+      <td>
+        case_id,x1,y1,x2,y2,footprint,algorithms
+      </td>
+      <td>
+         GeoJSON
+      </td>
+      <td>
+        x1, y1, x2, y2 are the coordinates of a rectangular region of interest.(x1,y1) is the top-left coordinate pair. (x2, y2) is the bottom-right coordinate pair.
+      </td>
+    </tr>
+    <tr>
+      <td>
+         N/A
+      </td>
+      <td>
+        /executionIds
+      </td>
+      <td>
+        case_id
+      </td>
+      <td>
+        List of execution IDs available for a case
+      </td>
+      <td>
+        The case_id uniquely identifies an image.The execution_ids identify the image segmentation algorithm that is run on images. The results of these images appear as green polygons in caMicroscope.
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h3 id="caMicroscopeAPIGuide-Examplesof/MarkupData">
+  Examples of /MarkupData
+</h3>
+<h2 id="caMicroscopeAPIGuide-/uAIMTemplates">
+  /uAIMTemplates
+</h2>
+Schema:
+<a href="https://github.com/joshfire/jsonform" rel="nofollow">
+  https://github.com/joshfire/jsonform
+  <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+    <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+  </a>
+</a>
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        HTTP Verb
+      </th>
+      <th>
+        QueryEndpoint
+      </th>
+      <th>
+        Query Parameters(Input)
+      </th>
+      <th>
+        Output(Description)
+      </th>
+    </tr>
+    <tr>
+      <td>
+         GET
+      </td>
+      <td>
+         /template
+      </td>
+      <td>
+         N/A
+      </td>
+      <td>
+         Jsonform template
+      </td>
+    </tr>
+    <tr>
+      <td>
+        POST
+      </td>
+      <td>
+         /json
+      </td>
+      <td>
+        Form in JSON format(see
+        <a href="https://github.com/joshfire/jsonform" rel="nofollow">
+          this
+        </a>
+        )
+      </td>
+      <td>
+        200 OK
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h3 id="caMicroscopeAPIGuide-Examplesof/uAIMTemplates">
+  Examples of /uAIMTemplates
+</h3>
+Examples of authoring a JSON form can be seen
+<a href="http://ulion.github.io/jsonform/playground/?example=fields-selectfieldset" rel="nofollow">
+  here.
+</a>
+<h2 id="caMicroscopeAPIGuide-Jobs">
+  Jobs
+</h2>
+APIs for posting and retrieving tasks for caMicroscope. It uses
+<a href="https://github.com/Automattic/kue" rel="nofollow">
+  Kue
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+to maintain the tasks. It is well documented.
+<table>
+  <tbody>
+    <tr>
+      <th>
+        HTTP Verb
+      </th>
+      <th>
+        QueryEndpoint
+      </th>
+      <th>
+        Query Parameters(Input)
+      </th>
+      <th>
+        Output(Description)
+      </th>
+    </tr>
+    <tr>
+      <td>
+        POST
+      </td>
+      <td>
+        /job
+      </td>
+      <td>
+        Job data in JSON format
+      </td>
+      <td>
+        N/A
+      </td>
+    </tr>
+    <tr>
+      <td>
+        GET
+      </td>
+      <td>
+        /job
+      </td>
+      <td>
+        task_id
+      </td>
+      <td>
+        N/A
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h3 id="caMicroscopeAPIGuide-Examplesof/Tasks">
+  Examples of /Tasks
+</h3>
+Example of POSTing a task
+$ curl -H &#34;Content-Type: application/json&#34; -X POST -d \
+&#39;{
+&#34;type&#34;: &#34;order&#34;,
+&#34;data&#34;: {
+
+},
+&#34;options&#34; : {
+&#34;attempts&#34;: 5,
+&#34;priority&#34;: &#34;high&#34;
+}
+}&#39; http://localhost:3000/job
+
+will output:   {&#34;message&#34;: &#34;job created&#34;, &#34;id&#34;: 3}
+
+This ID can be used to query the status of the job. GET /job/:id
+curl http://localhost/job/3
+Example of GETting status of a task
+{&#34;id&#34;:&#34;3&#34;,&#34;type&#34;:&#34;queue&#34;,&#34;data&#34;:{},&#34;priority&#34;:-10,&#34;progress&#34;:&#34;100&#34;,&#34;state&#34;:&#34;complete&#34;,&#34;attempts&#34;:null,&#34;created_at&#34;:&#34;1309973155248&#34;,&#34;updated_at&#34;:&#34;1309973155248&#34;,&#34;duration&#34;:&#34;15002&#34;}
+
+

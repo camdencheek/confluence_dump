@@ -1,0 +1,556 @@
+Contents
+<ul>
+  <li>
+    <a href="#LexBIG2008AdministratorTips,TricksandGotchas-BuildingtheLexBIGInstallerfromCVS" rel="nofollow">
+      Building the LexBIG Installer from CVS
+    </a>
+    <ul>
+      <li>
+        <a href="#LexBIG2008AdministratorTips,TricksandGotchas-LexBIGCVS" rel="nofollow">
+          LexBIG CVS
+        </a>
+      </li>
+      <li>
+        <a href="#LexBIG2008AdministratorTips,TricksandGotchas-Foldercontentandpurpose" rel="nofollow">
+          Folder content and purpose
+        </a>
+      </li>
+      <li>
+        <a href="#LexBIG2008AdministratorTips,TricksandGotchas-Howtoproducetheinstaller" rel="nofollow">
+          How to produce the installer
+        </a>
+      </li>
+      <li>
+        <a href="#LexBIG2008AdministratorTips,TricksandGotchas-Howtoenableydoc" rel="nofollow">
+          How to enable ydoc
+        </a>
+      </li>
+      <li>
+        <a href="#LexBIG2008AdministratorTips,TricksandGotchas-Othernotes" rel="nofollow">
+          Other notes
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#LexBIG2008AdministratorTips,TricksandGotchas-JBossMemorySettings" rel="nofollow">
+      JBoss Memory Settings
+    </a>
+  </li>
+  <li>
+    <a href="#LexBIG2008AdministratorTips,TricksandGotchas-ImprovingPerformanceonMySQL/Windows" rel="nofollow">
+      Improving Performance on MySQL/Windows
+    </a>
+  </li>
+  <li>
+    <a href="#LexBIG2008AdministratorTips,TricksandGotchas-ErrorConnectingtoMySQL" rel="nofollow">
+      Error Connecting to MySQL
+    </a>
+  </li>
+  <li>
+    <a href="#LexBIG2008AdministratorTips,TricksandGotchas-ConfiguringManifestFilesUsingCodingSchemeManifestEntries" rel="nofollow">
+      Configuring Manifest Files Using Coding Scheme Manifest Entries
+    </a>
+    <ul>
+      <li>
+        <a href="#LexBIG2008AdministratorTips,TricksandGotchas-Whatis%22CodingSchemeManifest%22?" rel="nofollow">
+          What is &#34;Coding Scheme Manifest&#34;?
+        </a>
+      </li>
+      <li>
+        <a href="#LexBIG2008AdministratorTips,TricksandGotchas-Whatis%22CodingScheme%22?" rel="nofollow">
+          What is &#34;Coding Scheme&#34;?
+        </a>
+      </li>
+      <li>
+        <a href="#LexBIG2008AdministratorTips,TricksandGotchas-Whydoweneeda%22CodingSchemeManifest%22?" rel="nofollow">
+          Why do we need a &#34;Coding Scheme Manifest&#34;?
+        </a>
+      </li>
+      <li>
+        <a href="#LexBIG2008AdministratorTips,TricksandGotchas-Howdowecreatea%22CodingSchemeManifest%22file?" rel="nofollow">
+          How do we create a &#34;Coding Scheme Manifest&#34; file?
+        </a>
+      </li>
+      <li>
+        <a href="#LexBIG2008AdministratorTips,TricksandGotchas-Couldyoupleaseprovidesomeexampleentriesinamanifestfile?" rel="nofollow">
+          Could you please provide some example entries in a manifest file?
+        </a>
+      </li>
+      <li>
+        <a href="#LexBIG2008AdministratorTips,TricksandGotchas-Whatcodechangesmayberequiredtouseamanifestfile?" rel="nofollow">
+          What code changes may be required to use a manifest file?
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#LexBIG2008AdministratorTips,TricksandGotchas-GeneratingRRFFilesfromUMLS" rel="nofollow">
+      Generating RRF Files from UMLS
+    </a>
+  </li>
+</ul>
+This page is intended to provide a ready-reference for LexBIG system administrators and candidate material for inclusion in the next release of the LexBIG Administration Guide.As primary reference, see the Installation and Administration Guide in the
+<a href="https://wiki.nci.nih.gov/x/eYBoCw" rel="nofollow">
+  GForge archive
+</a>
+.
+<h2 id="LexBIG2008AdministratorTips,TricksandGotchas-BuildingtheLexBIGInstallerfromCVS">
+  Building the LexBIG Installer from CVS
+</h2>
+<h3 id="LexBIG2008AdministratorTips,TricksandGotchas-LexBIGCVS">
+  LexBIG CVS
+</h3>
+LexBIG source folders have been distributed to the NCI CVS repository:
+Link provided for historical purposes
+cbiocvs2.nci.nih.gov:/share/content/gforge/lexbig
+This location is maintained as a mirror for all source and packaging materials required to build LexBIG product installers. Files are refreshed from the primary development repository (maintained internally by Mayo Clinic) for each milestone release.Development and build processes are not dependent on a particular CVS client or programming environment. However, files with the extension &#39;.classpath&#39; and &#39;.project&#39; have been inserted into each project folder to help facilitate compilation and use within the
+<a href="http://www.eclipse.org/" rel="nofollow">
+  Eclipse development environment
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+.
+<h3 id="LexBIG2008AdministratorTips,TricksandGotchas-Foldercontentandpurpose">
+  Folder content and purpose
+</h3>
+<ul>
+  <li>
+    lbCVSDeploy: Contains build and packaging resources. This includes third party jar files, sample vocabularies, and scripts used to build the LexBIG installer.
+  </li>
+  <li>
+    lbAdminDist: Contains source for command-line driven programs related to LexBIG administrative functions.
+  </li>
+  <li>
+    lbExamplesDist: Contains source for command-line driven programs used to provide interactive examples of basic operations running against the LexBIG API.
+  </li>
+  <li>
+    lbGUIDist: Contains source for the LexBIG graphical user interface.
+  </li>
+  <li>
+    lbInterfacesDist: Contains source for the LexBIG API definition.
+  </li>
+  <li>
+    lbImplDist: Contains source for the LexBIG API implementation.
+  </li>
+  <li>
+    lgModelDist: Contains source for the LexGrid vocabulary data model.
+  </li>
+  <li>
+    lbModelDist: Contains source for LexBIG extensions to the LexGrid data model.
+  </li>
+  <li>
+    lbTestDist: Contains source for programs used to perform automated validation of the LexBIG runtime environment.
+  </li>
+  <li>
+    lgUtilityDist: Contains source for various utility classes (e.g. persistence functions) required by the LexBIG API.
+  </li>
+</ul>
+<h3 id="LexBIG2008AdministratorTips,TricksandGotchas-Howtoproducetheinstaller">
+  How to produce the installer
+</h3>
+<ul>
+  <li>
+    Command line: Download and unzip the latest stable version of Ant from the
+    <a href="http://ant.apache.org/bindownload.cgi" rel="nofollow">
+      Apache site
+    </a>
+    <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+      <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+    </a>
+    . Check out all project folders from CVS, and then run the Ant command against the build.xml file provided in lbCVSDeploy. If successful, files will be created in /lbCVSDeploy/dist/.
+  </li>
+  <li>
+    Eclipse: Open the build.xml file in the Eclipse Ant view and run the default task. If successful, refresh the /lbCVSDeploy folder; files will be created in /lbCVSDeploy/dist.
+  </li>
+</ul>
+<h3 id="LexBIG2008AdministratorTips,TricksandGotchas-Howtoenableydoc">
+  How to enable ydoc
+</h3>
+<ul>
+  <li>
+    <a href="http://www.yworks.com/en/products_ydoc.htm" rel="nofollow">
+      yDoc
+    </a>
+    <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+      <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+    </a>
+    offers the capability to add UML diagrams to the generated LexBIG JavaDoc. If the yDoc directory is present and a valid license is located in the /yDoc/resources directory, the enhanced yDoc support is automatically enabled and used. If not, standard JavaDoc is produced.
+  </li>
+</ul>
+<h3 id="LexBIG2008AdministratorTips,TricksandGotchas-Othernotes">
+  Other notes
+</h3>
+<ul>
+  <li>
+    Some classpath and jar dependencies have been documented for reference in file /lbCVSDeploy/ClasspathConfig.txt.
+  </li>
+  <li>
+    Notes on the origin of the files are noted in /lbCVSDeploy/FILESOURCEs.txt.
+  </li>
+</ul>
+<h2 id="LexBIG2008AdministratorTips,TricksandGotchas-JBossMemorySettings">
+  JBoss Memory Settings
+</h2>
+JBoss tends to run out of memory while running with the default settings of JBoss. To fix the problem, modify the run.conf file under JBOSS_home/bin to change the memory setting and how frequently the rmi garbage collector runs, by editing the JAVA_OPTS line as follows:
+if [[ &#34;x$JAVA_OPTS&#34; = &#34;x&#34; ]; then
+JAVA_OPTS=&#34;-server -XX:!MaxPermSize=128m -Xms256m -Xmx2000m -Dsun.rmi.dgc.client.gcInterval=120000
+-Dsun.rmi.dgc.server.gcInterval=120000&#34;
+fi
+<h2 id="LexBIG2008AdministratorTips,TricksandGotchas-ImprovingPerformanceonMySQL/Windows">
+  Improving Performance on MySQL/Windows
+</h2>
+MySQL can be passed a jdbc option for the Windows local environment that may improve perfomance 30 to 50%.Try the following values in the config.props file for the DB_URL:
+SINGLE_DB_MODE=true
+DB_URL=jdbc:mysql:///&lt;dbname&gt;?socketFactory=com.mysql.jdbc.NamedPipeSocketFactory
+DB_DRIVER=org.gjt.mm.mysql.Driver
+DB_USER=root
+DB_PASSWORD=
+DB_PREFIX=lb
+DB_PARAM=
+
+This uses Windows Named Pipe function and avoids use of the TCP/IP protocol. It only works when connecting with a local iteration of the MySQL database on Windows.
+<h2 id="LexBIG2008AdministratorTips,TricksandGotchas-ErrorConnectingtoMySQL">
+  Error Connecting to MySQL
+</h2>
+LexBIG is distributed with an older version of the Java MySQL driver due to licensing concerns. If LexBIG reports an error concerning establishing a connection to the MySQL server yet the MySQL CLI is able to connect, a new version of Connector/J may be required.The latest version of Connector/J is available from MySQL.org. The new jar should be placed in the LexGrid/LexBIG/2.0.0/runtime/sqlDrivers/ directory. Remove the existing mm.mysql-2.0.6.jar to ensure that the class loader does not incorrectly load the older driver file.
+<h2 id="LexBIG2008AdministratorTips,TricksandGotchas-ConfiguringManifestFilesUsingCodingSchemeManifestEntries">
+  Configuring Manifest Files Using Coding Scheme Manifest Entries
+</h2>
+LexBIG Release July/Aug 2007
+<h3 id="LexBIG2008AdministratorTips,TricksandGotchas-Whatis&#34;CodingSchemeManifest&#34;?">
+  What is &#34;Coding Scheme Manifest&#34;?
+</h3>
+A &#34;Coding Scheme Manifest&#34; (or simply &#34;manifest&#34; as used interchangeably in this document) encapsulates the user supplied values to set for a coding scheme while loading or converting an OWL (currently it is supported only for OWL type of files) source to LexGrid format.
+<h3 id="LexBIG2008AdministratorTips,TricksandGotchas-Whatis&#34;CodingScheme&#34;?">
+  What is &#34;Coding Scheme&#34;?
+</h3>
+Coding Scheme is the term that is used to represent an ontology/terminology being loaded or converted. In the LexGrid data model a terminology is represented as a coding scheme and it can reference other coding schemes. An example of coding scheme is &#34;Amino Acid&#34; which is described in the &#34;amino-acid.owl&#34; file.A Coding Scheme has some meta information about it; values like &#39;formal name&#39;, &#39;local names&#39;, &#39;default language&#39;, &#39;version&#39;, &#39;copyright&#39;, &#39;sources&#39; to name some.
+<h3 id="LexBIG2008AdministratorTips,TricksandGotchas-Whydoweneeda&#34;CodingSchemeManifest&#34;?">
+  Why do we need a &#34;Coding Scheme Manifest&#34;?
+</h3>
+When a terminology is being converted to the LexGrid data model from its native format (in this case OWL), Coding Scheme information is read from the source file. Sometimes values may be missing (not provided or invalid) or the author/user of the terminology wants to override or set default values despite (or in addition to) what is provided in the source file. This can be accomplished using &#34;manifest&#34; files along with the source file.
+<h3 id="LexBIG2008AdministratorTips,TricksandGotchas-Howdowecreatea&#34;CodingSchemeManifest&#34;file?">
+  How do we create a &#34;Coding Scheme Manifest&#34; file?
+</h3>
+A coding scheme manifest file is a valid XML file, conforming to the schema defined by
+<a href="http://LexGrid.org/schema/LexBIG/2007/01/CodingSchemeManifestList.xsd" rel="nofollow">
+  http://LexGrid.org/schema/LexBIG/2007/01/CodingSchemeManifestList.xsd
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+.This XML file can define values for one or more coding schemes you are dealing with. Some coding scheme meta-information may not easily map to information in the source file. In this case a manifest file is of great help to bridge the gap and control the information flow while mapping to the LexGrid model. A detailed model of the LexGrid Coding Scheme and its fields can be found online. Structure of the schema for the manifest file is explained in the following table (manifest components refer to the original LexGrid model schema namespaces and types):
+<ul>
+  <li>
+    Coding Scheme Manifest entry field: &#39;&#39;&#39;id&#39;&#39;&#39;
+    <ul>
+      <li>
+        Type: lgCommon:registeredName
+      </li>
+      <li>
+        Required: Yes
+      </li>
+      <li>
+        Override flag set: Not applicable
+      </li>
+      <li>
+        Description: The registered name is the key used to find a coding scheme (for example a unique URL or namespace by which other people access same coding scheme). This String value will be used to identify the manifest entry in the manifest file for the coding scheme too. For example the registered name for coding scheme &#34;Amino-acid&#34; is
+        Historical link
+        http://www.co-ode.org/ontologies/amino-acid/2006/05/18/amino-acid.owl#
+        This string is also set as the coding scheme&#39;s registered name field in the LexGrid model.
+      </li>
+    </ul>
+  </li>
+</ul>
+<ul>
+  <li>
+    Coding Scheme Manifest entry field: &#39;&#39;&#39;codingScheme&#39;&#39;&#39;
+    <ul>
+      <li>
+        Type: lgBuiltin:localId
+      </li>
+      <li>
+        Required: No
+      </li>
+      <li>
+        Override flag set: Yes
+      </li>
+      <li>
+        Description: This value will be set for &#39;coding scheme name&#39; in the LexGrid format counterpart. If the override flag is set to &#39;true&#39;, the value provided in the source file will be replaced with this one. Otherwise, this value is treated as a default value and used only if the value is not provided in the source file.
+      </li>
+    </ul>
+  </li>
+</ul>
+<ul>
+  <li>
+    Coding Scheme Manifest entry field: &#39;&#39;&#39;entityDescription&#39;&#39;&#39;
+    <ul>
+      <li>
+        Type: lgCommon:entityDescription
+      </li>
+      <li>
+        Required: No
+      </li>
+      <li>
+        Override flag set: Yes
+      </li>
+      <li>
+        Description: This value will be set for &#39;coding scheme description&#39; in the LexGrid format counterpart. If the override flag is set to &#39;true&#39;, the value provided in the source file will be replaced with this one. Otherwise, this value is treated as a default value and used only if the value is not provided in the source file.
+      </li>
+    </ul>
+  </li>
+</ul>
+<ul>
+  <li>
+    Coding Scheme Manifest entry field: &#39;&#39;&#39;formalName&#39;&#39;&#39;
+    <ul>
+      <li>
+        Type: lgBuiltin:tsCaseIgnoreIA5String
+      </li>
+      <li>
+        Required: No
+      </li>
+      <li>
+        Override flag set: Yes
+      </li>
+      <li>
+        Description: This value will be set for &#39;coding scheme formal name&#39; in the LexGrid format counterpart. If the override flag is set to &#39;true&#39;, the value provided in the source file will be replaced with this one. Otherwise, this value is treated as a default value and used only if the value is not provided in the source file.
+      </li>
+    </ul>
+  </li>
+</ul>
+<ul>
+  <li>
+    Coding Scheme Manifest entry field: &#39;&#39;&#39;registeredName&#39;&#39;&#39;
+    <ul>
+      <li>
+        Type: lgCommon:registeredName
+      </li>
+      <li>
+        Required: No
+      </li>
+      <li>
+        Override flag set: Yes
+      </li>
+      <li>
+        Description: This value will be set for &#39;coding scheme registered name&#39; in the LexGrid format counterpart. If the override flag is set to &#39;true&#39;, the value provided in the source file will be replaced with this one. Otherwise, this value is treated as a default value and used only if the value is not provided in the source file.
+      </li>
+    </ul>
+  </li>
+</ul>
+<ul>
+  <li>
+    Coding Scheme Manifest entry field: &#39;&#39;&#39;defaultLanguage&#39;&#39;&#39;
+    <ul>
+      <li>
+        Type: lgCommon:defaultLanguage
+      </li>
+      <li>
+        Required: No
+      </li>
+      <li>
+        Override flag set: Yes
+      </li>
+      <li>
+        Description: This value will be set for &#39;coding scheme default language&#39; in the LexGrid format counterpart. If the override flag is set to &#39;true&#39;, the value provided in the source file will be replaced with this one. Otherwise, this value is treated as a default value and used only if the value is not provided in the source file.
+      </li>
+    </ul>
+  </li>
+</ul>
+<ul>
+  <li>
+    Coding Scheme Manifest entry field: &#39;&#39;&#39;representsVersion&#39;&#39;&#39;
+    <ul>
+      <li>
+        Type: lgCommon:version
+      </li>
+      <li>
+        Required: No
+      </li>
+      <li>
+        Override flag set: Yes
+      </li>
+      <li>
+        Description: This value will be set for &#39;coding scheme version&#39; in the LexGrid format counterpart. If the override flag is set to &#39;true&#39;, the value provided in the source file will be replaced with this one. Otherwise, this value is treated as a default value and used only if the value is not provided in the source file.
+      </li>
+    </ul>
+  </li>
+</ul>
+<ul>
+  <li>
+    Coding Scheme Manifest entry field: &#39;&#39;&#39;localName&#39;&#39;&#39;
+    <ul>
+      <li>
+        Type: lgBuiltin:tsCaseIgnoreIA5String
+      </li>
+      <li>
+        Required: No
+      </li>
+      <li>
+        &#34;To Add&#34; flag set: Yes
+      </li>
+      <li>
+        Description: This value will be added for &#39;coding scheme local names&#39;. If the add flag is set to &#39;true&#39;, this value will be added to the list of local names (if not there already). Otherwise, this value is treated as the default value and used only if the value is not provided in the source file.
+      </li>
+    </ul>
+  </li>
+</ul>
+<ul>
+  <li>
+    Coding Scheme Manifest entry field: &#39;&#39;&#39;source&#39;&#39;&#39;
+    <ul>
+      <li>
+        Type: lgCommon:source
+      </li>
+      <li>
+        Required: No
+      </li>
+      <li>
+        &#34;To Add&#34; flag set: Yes
+      </li>
+      <li>
+        Description: This value will be added for &#39;coding scheme sources&#39;. If the add flag is set to &#39;true&#39;, this value will be added to the list of sources (if not there already). Otherwise, this value is treated as the default value and used only if the value is not provided in the source file.
+      </li>
+    </ul>
+  </li>
+</ul>
+<ul>
+  <li>
+    Coding Scheme Manifest entry field: &#39;&#39;&#39;copyright&#39;&#39;&#39;
+    <ul>
+      <li>
+        Type: lgCommon:text
+      </li>
+      <li>
+        Required: No
+      </li>
+      <li>
+        Override flag set: Yes
+      </li>
+      <li>
+        Description: This value will be set for &#39;coding scheme copyright&#39; in the LexGrid format counterpart. If the override flag is set to &#39;true&#39;, the value provided in the source file will be replaced with this one. Otherwise, this value is treated as a default value and used only if the value is not provided in the source file.
+      </li>
+    </ul>
+  </li>
+</ul>
+<ul>
+  <li>
+    Coding Scheme Manifest entry field: &#39;&#39;&#39;mappings&#39;&#39;&#39;
+    <ul>
+      <li>
+        Type: lgCS:mappings
+      </li>
+      <li>
+        Required: No
+      </li>
+      <li>
+        &#34;To Add&#34; flag set: Yes
+      </li>
+      <li>
+        Description: This value will be added for &#39;coding scheme mappings&#39;. If the add flag is set to &#39;true&#39;, this value will be added to the list of mappings (if not there already). Otherwise, this value is treated as the default value and used only if the value is not provided in the source file.
+      </li>
+    </ul>
+  </li>
+</ul>
+<ul>
+  <li>
+    Coding Scheme Manifest entry field: &#39;&#39;&#39;associationDefinitions&#39;&#39;&#39;
+    <ul>
+      <li>
+        Type: lgRel:association
+      </li>
+      <li>
+        Required: No
+      </li>
+      <li>
+        &#34;To Add&#34; flag set: Yes
+      </li>
+      <li>
+        Description: This value will be added for &#39;coding scheme associations&#39;. If the add flag is set to &#39;true&#39;, this value will be added to the list of associations (if not there already). Otherwise, this value is treated as the default value and used only if the value is not provided in the source file. (Note: This option is used internally by the system to provide default recognition of some common associations.  It is typically not necessary to provide this value, however, since association definitions are automatically derived from the source.)
+      </li>
+    </ul>
+  </li>
+</ul>
+<h3 id="LexBIG2008AdministratorTips,TricksandGotchas-Couldyoupleaseprovidesomeexampleentriesinamanifestfile?">
+  Could you please provide some example entries in a manifest file?
+</h3>
+Here are some example coding scheme manifest entries:
+&lt;CodingSchemeManifestList
+xmlns:xsi=&#34;http://www.w3.org/2001/XMLSchema-instance&#34;
+xsi:schemaLocation=&#34;http://LexGrid.org/schema/2006/01/LexOnt/CodingSchemeManifestList
+http://LexGrid.org/schema/LexBIG/2007/01/CodingSchemeManifestList.xsd&#34;
+xmlns:owldef=&#34;http://LexGrid.org/schema/2006/01/LexOnt/CodingSchemeManifestList&#34;
+xmlns=&#34;http://LexGrid.org/schema/2006/01/LexOnt/CodingSchemeManifestList&#34;&gt;
+
+&lt;entry id=&#34;http://www.co-ode.org/ontologies/amino-acid/2006/05/18/amino-acid.owl#&#34;&gt;
+&lt;codingScheme&gt;amino&lt;/codingScheme&gt;
+&lt;entityDescription&gt;This is AminoAcide Description from Manifest.&lt;/entityDescription&gt;
+&lt;formalName&gt;Amino Acid Ontology&lt;/formalName&gt;
+&lt;defaultLanguage&gt;en&lt;/defaultLanguage&gt;
+&lt;representsVersion&gt;2005/10/11&lt;/representsVersion&gt;
+&lt;localName&gt;myLocalName&lt;/localName&gt;
+&lt;source subRef=&#34;ontologies&#34;&gt;COODE&lt;/source&gt;
+&lt;copyright&gt;This is copyright&lt;/copyright&gt;
+&lt;owldef:mappings dc=&#34;mappings&#34; xmlns=&#34;http://LexGrid.org/schema/2006/01/LexGrid/codingSchemes&#34;&gt;
+&lt;supportedLanguage localId=&#34;en&#34; urn=&#34;urn:oid:2.16.840.1.113883.6.84:en&#34;/&gt;
+&lt;supportedFormat localId=&#34;text_plain&#34; urn=&#34;urn:oid:2.16.840.1.113883.6.10:text_plain&#34;/&gt;
+&lt;supportedSource localId=&#34;COODE&#34; urn=&#34;http://www.co-ode.org/&#34;/&gt;
+&lt;/owldef:mappings&gt;
+&lt;associationDefinitions&gt;
+&lt;assoc association=&#34;testRelation&#34; forwardName=&#34;testRelation&#34;
+reverseName=&#34;testRelationInverse&#34;
+isTransitive=&#34;true&#34; isReflexive=&#34;true&#34;
+targetCodingScheme=
+&#34;http://www.co-ode.org/ontologies/amino-acid/2006/05/18/outside#&#34;/&gt;
+&lt;/associationDefinitions&gt;
+&lt;/entry&gt;
+
+&lt;entry id=&#34;urn:oid:2.16.840.1.113883.3.26.1.1&#34;&gt;
+&lt;codingScheme&gt;NCI Thesaurus CS Manifest&lt;/codingScheme&gt;
+&lt;entityDescription&gt;This is NCI Thesaurus Description from Manifest.&lt;/entityDescription&gt;
+&lt;formalName&gt;NCI Thesaurus Formal From Manifest&lt;/formalName&gt;
+&lt;defaultLanguage&gt;en&lt;/defaultLanguage&gt;
+&lt;representsVersion&gt;manifestVersion&lt;/representsVersion&gt;
+&lt;localName&gt;NCILocalName&lt;/localName&gt;
+&lt;source subRef=&#34;ontologies&#34; &gt;NCIManifestSource&lt;/source&gt;
+&lt;copyright&gt;This is copyright for NCI Thesaurus&lt;/copyright&gt; %%%
+&lt;owldef:mappings dc=&#34;mappings&#34; xmlns=&#34;http://LexGrid.org/schema/2006/01/LexGrid/codingSchemes&#34;&gt;
+&lt;supportedSource localId=&#34;COODE&#34; urn=&#34;http://www.co-ode.org/&#34;/&gt;
+&lt;/owldef:mappings&gt;
+&lt;associationDefinitions&gt;
+&lt;assoc association=&#34;testRelation&#34; forwardName=&#34;testRelation&#34;
+reverseName=&#34;testRelationInverse&#34;
+isTransitive=&#34;true&#34; isReflexive=&#34;true&#34;
+targetCodingScheme=
+&#34;urn:oid:2.16.840.1.113883.3.26.1.1&#34;/&gt;
+&lt;/associationDefinitions&gt;
+&lt;/entry&gt;
+&lt;/CodingSchemeManifestList&gt;
+<h3 id="LexBIG2008AdministratorTips,TricksandGotchas-Whatcodechangesmayberequiredtouseamanifestfile?">
+  What code changes may be required to use a manifest file?
+</h3>
+Currently a coding scheme manifest file is only supported when loading OWL sources. Support for other formats is in-works. If you want to use the manifest file, you can supply the manifest file URI to the following methods:
+&#34;org.LexGrid.LexBIG.Extensions.Load.OWL_Loader.load()&#34;
+&#34;org.LexGrid.LexBIG.Extensions.Load.OWL_Loader.validate()&#34;
+
+An example code snippet:
+LexBIGService lbs = new LexBIGServiceImpl();
+LexBIGServiceManager lbsm = lbs.getServiceManager(null);
+OWL_Loader loader = (OWL_Loader) lbsm.getLoader(&#34;OWLLoader&#34;);
+
+if (toValidateOnly)
+{
+loader.&#39;&#39;&#39;validate&#39;&#39;&#39;(source, manifest, vl);
+System.out.println(&#34;VALIDATION SUCCESSFUL&#34;);
+}
+else
+{
+loader.&#39;&#39;&#39;load&#39;&#39;&#39;(new File(&#34;resources/testData/amino-cid.owl&#34;).toURI(),%%%new File
+(&#34;resources/testData/aa-manifest.xml&#34;).toURI(), true, true);
+}
+<h2 id="LexBIG2008AdministratorTips,TricksandGotchas-GeneratingRRFFilesfromUMLS">
+  Generating RRF Files from UMLS
+</h2>
+When generating source RRF files from the Metathesaurus, the UMLS Metamorphosys tool should be set to output versionless source abbreviations rather than versioned source abbreviations in any RRF subset to be loaded to LexGrid. Failing to do so will create an incomplete database leaving the association and concept tables empty.

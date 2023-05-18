@@ -1,0 +1,34 @@
+Java Code Snippet
+
+	public void testDefinitionSource(){
+
+		String searchTerm = &#34;C12435&#34;;
+		String vocabName = &#34;NCI_Thesaurus&#34;;
+		String vocabTag = &#34;PRODUCTION&#34;;
+		ConceptReference cref = new ConceptReference();
+		cref.setConceptCode(searchTerm);
+		ConceptReferenceList ncrl = new ConceptReferenceList();
+		ncrl.addConceptReference(cref);
+
+		try {
+CodingSchemeVersionOrTag cvt = new CodingSchemeVersionOrTag();
+			cvt.setTag(vocabTag);
+			CodedNodeSet nodes = lbSvc.getNodeSet(vocabName, cvt, null);
+			nodes = nodes.restrictToCodes(ncrl);
+			ResolvedConceptReferenceList crl = nodes.resolveToList(null, null,
+					null, 20);
+			//codes are unique in NCIt, so you will only get one entity in the list
+			Entity concept = crl.getResolvedConceptReference(0).getEntity();
+			Definition[] defs = concept.getDefinition();
+			for (Definition def : defs) {
+				//Each definition in NCIt will only have one source.
+				Source[] sources = def.getSource();
+				Source defSource = sources[0];
+				String source = defSource.getContent();
+				System.out.println(&#34;Definition source &#34;+ source);
+			}
+
+		} catch (Exception ex) {
+			System.out.println(ex);
+		}
+	} 

@@ -1,0 +1,420 @@
+This page outlines the lexevs artifacts that were produced and where they were published on the Informatics Nexus server.  It also shows the migration to the NCI Nexus server and where they are published here.
+<h1 id="LexEVSBuildConfigurationsandStatus-Status">
+  Status
+</h1>
+Below is the status of what has been completed and the work that will be done next.
+<h2 id="LexEVSBuildConfigurationsandStatus-CompletedWork">
+  Completed Work
+</h2>
+<ul>
+  <li>
+    Migrate Nexus LexEVS artifacts from Informatics to NCI Nexus server.
+  </li>
+  <li>
+    Create NCI Nexus user with authority to publish to the NCI Nexus server.
+    <ul>
+      <li>
+        Service Account created: NCI_lexevs_nexus
+      </li>
+    </ul>
+  </li>
+  <li>
+    Ability for maven build script to publish to NCI Nexus server.
+    <ul>
+      <li>
+        CTS2 Framework build can publish artifacts to NCI Nexus Server.
+      </li>
+      <li>
+        Uses Service Account: NCI_lexevs_nexus
+      </li>
+    </ul>
+  </li>
+  <li>
+    Ability for Ant build script to publish artifacts to the NCI Nexus server.
+  </li>
+  <li>
+    Ability to encrypt the user/pw for publishing using an Ant script.
+    <ul>
+      <li>
+        This is accomplished by using enabling and using user tokens in Nexus.
+      </li>
+      <li>
+        <a href="https://books.sonatype.com/nexus-book/reference/usertoken.html" rel="nofollow">
+          https://books.sonatype.com/nexus-book/reference/usertoken.html
+        </a>
+      </li>
+    </ul>
+  </li>
+</ul>
+<h2 id="LexEVSBuildConfigurationsandStatus-WorkToDoNext">
+  Work To Do Next
+</h2>
+<h1 id="LexEVSBuildConfigurationsandStatus-NexusServers">
+  Nexus Servers
+</h1>
+<h2 id="LexEVSBuildConfigurationsandStatus-InformaticsNexusServer">
+  Informatics Nexus Server
+</h2>
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+    <col/>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        Project
+      </th>
+      <th>
+        Publish Process
+      </th>
+      <th>
+        Location: Release Artifacts
+      </th>
+      <th colspan="1">
+        Location: Snapshot Artifacts
+      </th>
+      <th colspan="1">
+        Notes
+      </th>
+    </tr>
+    <tr>
+      <td>
+        lexevs
+      </td>
+      <td>
+        ant script
+      </td>
+      <td>
+        16 directories under:
+        <ul>
+          <li>
+            <a href="http://informatics.mayo.edu/maven/content/repositories/releases/lexevs/" rel="nofollow">
+              http://informatics.mayo.edu/maven/content/repositories/releases/lexevs/
+            </a>
+          </li>
+        </ul>
+      </td>
+      <td colspan="1">
+        &lt;Same location as the release artifacts&gt;
+      </td>
+      <td colspan="1">
+        Snapshots and Releases are under the same release directory.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        cts2-framework
+      </td>
+      <td>
+        maven script
+      </td>
+      <td>
+        <ul>
+          <li>
+            <a href="http://informatics.mayo.edu/maven/content/repositories/releases/edu/mayo/cts2/cts2-framework/" rel="nofollow">
+              http://informatics.mayo.edu/maven/content/repositories/releases/edu/mayo/cts2/cts2-framework/
+            </a>
+          </li>
+          <li>
+            <a href="http://informatics.mayo.edu/maven/content/repositories/releases/edu/mayo/cts2/framework/" rel="nofollow">
+              http://informatics.mayo.edu/maven/content/repositories/releases/edu/mayo/cts2/framework/
+            </a>
+            <ul>
+              <li>
+                cts2-* directories
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </td>
+      <td colspan="1">
+        <ul>
+          <li>
+            <a href="http://informatics.mayo.edu/maven/content/repositories/snapshots/edu/mayo/cts2/cts2-framework/" rel="nofollow">
+              http://informatics.mayo.edu/maven/content/repositories/snapshots/edu/mayo/cts2/cts2-framework/
+            </a>
+          </li>
+          <li>
+            <a href="http://informatics.mayo.edu/maven/content/repositories/snapshots/edu/mayo/cts2/framework/" rel="nofollow">
+              http://informatics.mayo.edu/maven/content/repositories/snapshots/edu/mayo/cts2/framework/
+            </a>
+            <ul>
+              <li>
+                cts2-* directories
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </td>
+      <td colspan="1">
+        Snapshots are under a snapshots directory.Releases are under a release directory.
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        lexevs-remote
+      </td>
+      <td colspan="1">
+        manual
+      </td>
+      <td colspan="1">
+        3 directories:
+        <ul>
+          <li>
+            <a href="http://informatics.mayo.edu/maven/content/repositories/releases/lexevs/lexevs-remote-client/" rel="nofollow">
+              http://informatics.mayo.edu/maven/content/repositories/releases/lexevs/lexevs-remote-client/
+            </a>
+          </li>
+          <li>
+            <a href="http://informatics.mayo.edu/maven/content/repositories/releases/lexevs/lexevs-remote-core/" rel="nofollow">
+              http://informatics.mayo.edu/maven/content/repositories/releases/lexevs/lexevs-remote-core/
+            </a>
+          </li>
+          <li>
+            <a href="http://informatics.mayo.edu/maven/content/repositories/releases/lexevs/lexevs-remote-security/" rel="nofollow">
+              http://informatics.mayo.edu/maven/content/repositories/releases/lexevs/lexevs-remote-security/
+            </a>
+          </li>
+        </ul>
+      </td>
+      <td colspan="1">
+        &lt;Same location as the release artifacts&gt;
+      </td>
+      <td colspan="1">
+        Snapshots and Releases are under the same release directory.
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="LexEVSBuildConfigurationsandStatus-NCINexusServer">
+  NCI Nexus Server
+</h2>
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+    <col/>
+    <col/>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        Project
+      </th>
+      <th>
+        Publish Process
+      </th>
+      <th>
+        Location: Release Artifacts
+      </th>
+      <th colspan="1">
+        Location: Snapshot Artifacts
+      </th>
+      <th colspan="1">
+        Notes
+      </th>
+      <th colspan="1">
+        Status
+      </th>
+    </tr>
+    <tr>
+      <td>
+        lexevs
+      </td>
+      <td>
+        ant script
+      </td>
+      <td>
+        16 directories under:
+        <ul>
+          <li>
+            <a href="https://ncimvn.nci.nih.gov/nexus/content/repositories/LexEVSRelease/lexevs/" rel="nofollow">
+              https://ncimvn.nci.nih.gov/nexus/content/repositories/LexEVSRelease/lexevs/
+            </a>
+          </li>
+        </ul>
+      </td>
+      <td colspan="1">
+        16 directories under:
+        <ul>
+          <li>
+            <a href="https://ncimvn.nci.nih.gov/nexus/content/repositories/LexEVSSnapshots/lexevs/" rel="nofollow">
+              https://ncimvn.nci.nih.gov/nexus/content/repositories/LexEVSSnapshots/lexevs/
+            </a>
+          </li>
+        </ul>
+      </td>
+      <td colspan="1">
+        <ul>
+          <li>
+            To publish to the snapshot directory, the version needs to be in the form of *-SNAPHOT
+          </li>
+          <li>
+            Ant doesn&#39;t recognize this correctly.  We additionally need to update lbPackager/ivysettings.xml - Change the ncimvn.releases.repo property to point to the snapshots directory.
+          </li>
+          <li>
+            Create encrypted user/pw on Nexus
+            <ul>
+              <li>
+                log into Nexus UI with the user NCI_lexevs_nexus:
+                <a href="https://ncimvn.nci.nih.gov/nexus/#welcome" rel="nofollow">
+                  https://ncimvn.nci.nih.gov/nexus/#welcome
+                </a>
+              </li>
+              <li>
+                Select “profile” in the upper right pulldown
+              </li>
+              <li>
+                Select &#34;User Token in the drop down.
+              </li>
+              <li>
+                Click “Access User Token”.
+              </li>
+              <li>
+                For our purposes, we don&#39;t need the encrypted user.  (The user name is in our ivysettings.xml.)
+              </li>
+              <li>
+                Copy the encrypted password and use it in the Ant deploy command.
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </td>
+      <td colspan="1">
+        Success publishing lexevs artifacts to NCI Nexus server using an encrypted password.
+        <ul>
+          <li>
+            Uses
+            <ul>
+              <li>
+                ant -Dncimvn.password=&lt;encrypted password&gt; deploy
+                <ul>
+                  <li>
+                    password is for user NCI_lexevs_nexus
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        cts2-framework
+      </td>
+      <td>
+        maven script
+      </td>
+      <td>
+        <ul>
+          <li>
+            <a href="https://ncimvn.nci.nih.gov/nexus/content/repositories/LexEVSRelease/edu/mayo/cts2/cts2-framework/" rel="nofollow">
+              https://ncimvn.nci.nih.gov/nexus/content/repositories/LexEVSRelease/edu/mayo/cts2/cts2-framework/
+            </a>
+          </li>
+          <li>
+            <a href="https://ncimvn.nci.nih.gov/nexus/content/repositories/LexEVSRelease/edu/mayo/cts2/framework/" rel="nofollow">
+              https://ncimvn.nci.nih.gov/nexus/content/repositories/LexEVSRelease/edu/mayo/cts2/framework/
+            </a>
+            <ul>
+              <li>
+                cts2-* directories
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </td>
+      <td colspan="1">
+        <a href="https://ncimvn.nci.nih.gov/nexus/content/repositories/LexEVSSnapshots/edu/mayo/cts2/cts2-framework/" rel="nofollow">
+          https://ncimvn.nci.nih.gov/nexus/content/repositories/LexEVSSnapshots/edu/mayo/cts2/cts2-framework/
+        </a>
+        <a href="https://ncimvn.nci.nih.gov/nexus/content/repositories/LexEVSSnapshots/edu/mayo/cts2/framework/" rel="nofollow">
+          https://ncimvn.nci.nih.gov/nexus/content/repositories/LexEVSSnapshots/edu/mayo/cts2/framework/
+        </a>
+        <ul>
+          <li>
+            cts2-* directories
+          </li>
+        </ul>
+      </td>
+      <td colspan="1"></td>
+      <td colspan="1">
+        Success publishing CTS2 Framework to NCI Nexus server.
+        <ul>
+          <li>
+            Uses
+            <ul>
+              <li>
+                mvn release:prepare
+              </li>
+              <li>
+                mvn release:perform
+              </li>
+            </ul>
+          </li>
+          <li>
+            User: NCI_lexevs_nexus
+          </li>
+          <li>
+            Note the above way will automatically update all of the pom files versions.  This is a two step process.
+          </li>
+        </ul>
+        Alternatively, if the version is already set in the pom file, you can run the following to build and put the artifacts on the Nexus server:
+        <ul>
+          <li>
+            mvn clean deploy
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        lexevs-remote
+      </td>
+      <td colspan="1">
+        manual
+      </td>
+      <td colspan="1">
+        3 directories:
+        <ul>
+          <li>
+            <a href="https://ncimvn.nci.nih.gov/nexus/content/repositories/LexEVSRelease/lexevs/lexevs-remote-client/" rel="nofollow">
+              https://ncimvn.nci.nih.gov/nexus/content/repositories/LexEVSRelease/lexevs/lexevs-remote-client/
+            </a>
+          </li>
+          <li>
+            <a href="https://ncimvn.nci.nih.gov/nexus/content/repositories/LexEVSRelease/lexevs/lexevs-remote-core/" rel="nofollow">
+              https://ncimvn.nci.nih.gov/nexus/content/repositories/LexEVSRelease/lexevs/lexevs-remote-core/
+            </a>
+          </li>
+          <li>
+            <a href="https://ncimvn.nci.nih.gov/nexus/content/repositories/LexEVSRelease/lexevs/lexevs-remote-security/" rel="nofollow">
+              https://ncimvn.nci.nih.gov/nexus/content/repositories/LexEVSRelease/lexevs/lexevs-remote-security/
+            </a>
+          </li>
+        </ul>
+      </td>
+      <td colspan="1">
+        TBD
+      </td>
+      <td colspan="1">
+        Need to determine if snapshots will go to the lexevs release or snapshot directory:Snapshot directory
+        <ul>
+          <li>
+            <a href="https://ncimvn.nci.nih.gov/nexus/content/repositories/LexEVSSnapshots/" rel="nofollow">
+              https://ncimvn.nci.nih.gov/nexus/content/repositories/LexEVSSnapshots/
+            </a>
+          </li>
+        </ul>
+      </td>
+      <td colspan="1"></td>
+    </tr>
+  </tbody>
+</table>

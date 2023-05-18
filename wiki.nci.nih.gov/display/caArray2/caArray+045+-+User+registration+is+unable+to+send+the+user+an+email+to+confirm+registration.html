@@ -1,0 +1,82 @@
+<h1 id="caArray045Userregistrationisunabletosendtheuseranemailtoconfirmregistration-Question:Userregistrationisunabletosendtheuseranemailtoconfirmregistration.Whatdowedo?">
+  Question: User registration is unable to send the user an email to confirm registration. What do we do?
+</h1>
+Topic: caArray Usage
+
+Release: Up to caArray 2.x
+
+Date entered: 01/13/2010
+<h2 id="caArray045Userregistrationisunabletosendtheuseranemailtoconfirmregistration-DetailsabouttheQuestion">
+  Details about the Question
+</h2>
+The User Registration page shows the following error message at the top of the page: &#34;Unable to send the confirmation email&#34;. The user found the following relevant error in the log file:
+
+
+2009-12-09 13:48:45,765 ERROR [gov.nih.nci.caarray.web.action.registration.RegistrationAction] Failed to send an email com.sun.mail.smtp.SMTPSendFailedException: 530 5.7.0 Must issue a STARTTLS command first. 23sm72910qyk.3
+<h2 id="caArray045Userregistrationisunabletosendtheuseranemailtoconfirmregistration-Answer">
+  Answer
+</h2>
+This problem was due to incorrect mail parameter settings. The following two parameters were incorrectly set to be:
+
+mail.smtp.auth=Yes
+mail.smtp.starttls.enable=Yes
+
+The correct value should be &#34;True&#34; or &#34;False&#34;.
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Parameter
+      </th>
+      <th>
+        GUI Installer Text
+      </th>
+      <th>
+        Description
+      </th>
+      <th>
+        Permissible Value
+      </th>
+    </tr>
+    <tr>
+      <td>
+        mail.smtp.auth
+      </td>
+      <td>
+        &#34;Mail Server Authentication&#34;
+      </td>
+      <td>
+        Whether or not the mail server should be authenticated against.
+      </td>
+      <td>
+        &#34;true&#34; / &#34;false&#34;
+      </td>
+    </tr>
+    <tr>
+      <td>
+        mail.smtp.starttls.enable
+      </td>
+      <td>
+        &#34;Mail Server starttls&#34;
+      </td>
+      <td>
+        Whether or not the mail server should be communicated with using Transport Layer Security (TLS).
+      </td>
+      <td>
+        &#34;true&#34; / &#34;false&#34;
+      </td>
+    </tr>
+  </tbody>
+</table>
+For more information on what are the permissible values for caArray Installation, check out:
+<a href="https://wiki.nci.nih.gov/x/YBohAQ" rel="nofollow">
+  caArray 2.3.0 install.properties
+</a>
+<h2 id="caArray045Userregistrationisunabletosendtheuseranemailtoconfirmregistration-Haveacomment?">
+  Have a comment?
+</h2>
+Please leave your comment in the
+<a href="https://cabig-kc.nci.nih.gov/Molecular/forums/viewtopic.php?f=6&amp;t=577" rel="nofollow">
+  caArray End User Forum
+</a>
+. 

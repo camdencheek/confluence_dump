@@ -1,0 +1,715 @@
+You can print and export wiki pagesYou can send this page to a printer or convert it to a PDF, HTML, or Word document. See
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=32211220" rel="nofollow">
+  Printing and Exporting Wiki Pages
+</a>
+.This guide explains how to use Annotation and Image Markup (AIM) on ClearCanvas Workstation.
+<a href="http://www.clearcanvas.ca/dnn" rel="nofollow">
+  ClearCanvas
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+is an open-source imaging platform. This guide explains key procedures for creating and working with AIM annotation objects. The intended audience for this guide is a biomedical researcher familiar with the AIM information model.Contents of this Page
+<ul>
+  <li>
+    <a href="#AIMonClearCanvasWorkstation4.5User&#39;sGuide-WorkflowOverview" rel="nofollow">
+      Workflow Overview
+    </a>
+  </li>
+  <li>
+    <a href="#AIMonClearCanvasWorkstation4.5User&#39;sGuide-LoggingintoAIMonClearCanvasWorkstation" rel="nofollow">
+      Logging in to AIM on ClearCanvas Workstation
+    </a>
+  </li>
+  <li>
+    <a href="#AIMonClearCanvasWorkstation4.5User&#39;sGuide-ConfiguringtheAIMDataService2.0Plugin" rel="nofollow">
+      Configuring the AIM Data Service 2.0 Plugin
+    </a>
+  </li>
+  <li>
+    <a href="#AIMonClearCanvasWorkstation4.5User&#39;sGuide-UsingtheAIMDataService2.0Plugin" rel="nofollow">
+      Using the AIM Data Service 2.0 Plugin
+    </a>
+  </li>
+  <li>
+    <a href="#AIMonClearCanvasWorkstation4.5User&#39;sGuide-CreatingDICOMSegmentations(newin4.5)" rel="nofollow">
+      Creating DICOM Segmentations (new in 4.5)
+    </a>
+  </li>
+  <li>
+    <a href="#AIMonClearCanvasWorkstation4.5User&#39;sGuide-DownloadingImagesfromXNAT" rel="nofollow">
+      Downloading Images from XNAT
+    </a>
+  </li>
+  <li>
+    <a href="#AIMonClearCanvasWorkstation4.5User&#39;sGuide-SpecifyingPreferences" rel="nofollow">
+      Specifying Preferences
+    </a>
+    <ul>
+      <li>
+        <a href="#AIMonClearCanvasWorkstation4.5User&#39;sGuide-SpecifyingAIMPreferences" rel="nofollow">
+          Specifying AIM Preferences
+        </a>
+      </li>
+      <li>
+        <a href="#AIMonClearCanvasWorkstation4.5User&#39;sGuide-SpecifyingToolbarPreferences" rel="nofollow">
+          Specifying Toolbar Preferences
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#AIMonClearCanvasWorkstation4.5User&#39;sGuide-UsingtheAIMToolbar" rel="nofollow">
+      Using the AIM Toolbar
+    </a>
+    <ul>
+      <li>
+        <a href="#AIMonClearCanvasWorkstation4.5User&#39;sGuide-AIMTemplateTool" rel="nofollow">
+          AIM Template Tool
+        </a>
+      </li>
+      <li>
+        <a href="#AIMonClearCanvasWorkstation4.5User&#39;sGuide-AIMObjectLocatorTool" rel="nofollow">
+          AIM Object Locator Tool
+        </a>
+      </li>
+      <li>
+        <a href="#AIMonClearCanvasWorkstation4.5User&#39;sGuide-AIMAnnotationDetailsTool" rel="nofollow">
+          AIM Annotation Details Tool
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#AIMonClearCanvasWorkstation4.5User&#39;sGuide-ImportingAIMTemplates" rel="nofollow">
+      Importing AIM Templates
+    </a>
+    <ul>
+      <li>
+        <a href="#AIMonClearCanvasWorkstation4.5User&#39;sGuide-LocatingMissingAnswerChoices" rel="nofollow">
+          Locating Missing Answer Choices
+        </a>
+      </li>
+      <li>
+        <a href="#AIMonClearCanvasWorkstation4.5User&#39;sGuide-EnforcingMarkupRequirements" rel="nofollow">
+          Enforcing Markup Requirements
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#AIMonClearCanvasWorkstation4.5User&#39;sGuide-UserInformation" rel="nofollow">
+      User Information
+    </a>
+  </li>
+  <li>
+    <a href="#AIMonClearCanvasWorkstation4.5User&#39;sGuide-DetailedDescriptionofaQuestion" rel="nofollow">
+      Detailed Description of a Question
+    </a>
+  </li>
+  <li>
+    <a href="#AIMonClearCanvasWorkstation4.5User&#39;sGuide-DisplayingMarkupsfromDifferentUsers" rel="nofollow">
+      Displaying Markups from Different Users
+    </a>
+  </li>
+  <li>
+    <a href="#AIMonClearCanvasWorkstation4.5User&#39;sGuide-ViewingAIMDataforEachImageSeries" rel="nofollow">
+      Viewing AIM Data for Each Image Series
+    </a>
+  </li>
+  <li>
+    <a href="#AIMonClearCanvasWorkstation4.5User&#39;sGuide-UsingtheNationalBiomedicalImagingArchive(NBIA)DataService" rel="nofollow">
+      Using the National Biomedical Imaging Archive (NBIA) Data Service
+    </a>
+  </li>
+</ul>
+<h2 id="AIMonClearCanvasWorkstation4.5User&#39;sGuide-WorkflowOverview">
+  Workflow Overview
+</h2>
+AIM on ClearCanvas Workstation allows you to work with AIM templates that you created in
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=75006387" rel="nofollow">
+  AIM Template Builder
+</a>
+. A typical workflow from template design to application use follows.
+<ol>
+  <li>
+    Design what information is needed to be collected from an imaging study or clinical trial.
+  </li>
+  <li>
+    Create a set of questions and possible answer choices to each question. You can design the questions so that the respondent skips a set of consecutive questions.
+  </li>
+  <li>
+    Use AIM Template Builder (ATB) to
+    <a href="https://wiki.nci.nih.gov/display/AIM/AIM+Template+Builder+2.0+User%27s+Guide#AIMTemplateBuilder20UsersGuide-CreatingaTemplate" rel="nofollow">
+      create template(s)
+    </a>
+    .
+  </li>
+  <li>
+    <a href="https://wiki.nci.nih.gov/display/AIM/AIM+Template+Builder+2.0+User%27s+Guide#AIMTemplateBuilder20UsersGuide-ExportingaTemplateGroup" rel="nofollow">
+      Export the template or template group
+    </a>
+    from ATB.
+  </li>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=171704931" rel="nofollow">
+      Import the template file
+    </a>
+    to AIM on ClearCanvas Workstation.
+    <ol>
+      <li>
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=171704931" rel="nofollow">
+          Specify where to store AIM template XML documents
+        </a>
+        .
+      </li>
+      <li>
+        Use the data you collect.
+      </li>
+    </ol>
+  </li>
+</ol>
+<h2 id="AIMonClearCanvasWorkstation4.5User&#39;sGuide-LoggingintoAIMonClearCanvasWorkstation">
+  Logging in to AIM on ClearCanvas Workstation
+</h2>
+<ol>
+  <li>
+    Double-click the AIM on ClearCanvas Workstation icon.The Login dialog box appears.
+    <img alt="login dialog box" height="165" width="337" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/AIM/AIM%20on%20ClearCanvas%20Workstation%204.5%20User&#39;s%20Guide/Login.png?api=v2">
+  </li>
+  <li>
+    Your administrator should already have created a login name for you. Enter your full name followed by that login name.
+  </li>
+  <li>
+    Select the role you are playing in the clinical trial. Options are Performing, Referring, Requesting, Recording, Verifying, Assisting, Circulating, and Standby.
+  </li>
+  <li>
+    Select your number within your role in the clinical trial.
+  </li>
+  <li>
+    Click Login.The Explorer window appears, showing the DICOM tab.
+    <img alt="Explorer window of AIM on ClearCanvas Workstation 4.0, showing the DICOM tab" width="900" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/AIM/AIM%20on%20ClearCanvas%20Workstation%204.5%20User&#39;s%20Guide/Explorer-AIMonCC40.png?api=v2">
+  </li>
+</ol>
+<h2 id="AIMonClearCanvasWorkstation4.5User&#39;sGuide-ConfiguringtheAIMDataService2.0Plugin">
+  Configuring the AIM Data Service 2.0 Plugin
+</h2>
+You can configure AIM on ClearCanvas Workstation to connect to the AIM Data Service. The AIM Data Service is any set of data services that can accommodate the AIM data model. There is no public AIM Data Service but you can download it from
+<a href="http://imaging.cci.emory.edu/wiki/pages/viewpage.action?pageId=1572968" rel="nofollow">
+  http://imaging.cci.emory.edu/wiki/pages/viewpage.action?pageId=1572968
+</a>
+and then install and maintain it yourself.
+<ol>
+  <li>
+    Select Tools &gt; Preferences &gt; AIM &gt; AIM Data Service 2.0.The AIM Data Service 2.0 tab appears.
+    <img alt="AIM Options opened to the AIM Data Service 2.0 tab" width="500" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/AIM/AIM%20on%20ClearCanvas%20Workstation%204.5%20User&#39;s%20Guide/AIMDataService2.0.png?api=v2">
+  </li>
+  <li>
+    Enter the URL of an active AIM Data Service. If you do not enter a URL, AIM on ClearCanvas Workstation will not send any AIM XML documents to the AIM Data Service 2.0, and will store those documents locally.
+  </li>
+  <li>
+    Enter the Secure Token Service Login URL.
+  </li>
+  <li>
+    Click OK.
+  </li>
+</ol>
+<h2 id="AIMonClearCanvasWorkstation4.5User&#39;sGuide-UsingtheAIMDataService2.0Plugin">
+  Using the AIM Data Service 2.0 Plugin
+</h2>
+<ol>
+  <li>
+    Click the Explorer tab.
+  </li>
+  <li>
+    Click the AIM Data Service 2.0 tab.
+    <img alt="The Explorer tab opened to the AIM Data Service 2.0 subtab" width="600" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/AIM/AIM%20on%20ClearCanvas%20Workstation%204.5%20User&#39;s%20Guide/AIMDataService2.0Tab.png?api=v2">
+  </li>
+  <li>
+    Enter search criteria in the search fields to narrow your search, or leave them blank to retrieve a list of all annotations.
+  </li>
+  <li>
+    Click Search. The Log In dialog box appears.
+    <img alt="AIM Data Service Login dialog box" height="197" width="318" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/AIM/AIM%20on%20ClearCanvas%20Workstation%204.5%20User&#39;s%20Guide/AIMDataServiceLogin.png?api=v2">
+  </li>
+  <li>
+    Enter your user name and password for the AIM Data Service.
+  </li>
+  <li>
+    Click Log in. The search results appear in the results pane at the bottom of the tab.
+  </li>
+  <li>
+    Select an annotation from the list of results.
+  </li>
+  <li>
+    To download and import the annotation into the workstation, do one of the following:
+    <ul>
+      <li>
+        Click the Retrieve Selected Annotation button, or
+      </li>
+      <li>
+        Right-click a selected annotation and select Retrieve Selected Annotation from the context menu.
+      </li>
+    </ul>
+  </li>
+</ol>
+<h2 id="AIMonClearCanvasWorkstation4.5User&#39;sGuide-CreatingDICOMSegmentations(newin4.5)">
+  Creating DICOM Segmentations (new in 4.5)
+</h2>
+Two files, AnatomicRegionAndModifier.xml and SegmentationCategoryTypeModifier.xml are used to describe DICOM segmentations that you can create based on the DICOM standard. You may choose to create and import your own descriptions for anatomic regions and segmentation categories. In this case, you must follow XML schemas designed for an anatomic region (
+<a href="https://cbiit-download.nci.nih.gov/aim/releases/Segmentation/AnatomicRegionAndModifier.xsd" rel="nofollow">
+  https://cbiit-download.nci.nih.gov/aim/releases/Segmentation/AnatomicRegionAndModifier.xsd
+</a>
+) and the segmentation category (
+<a href="https://cbiit-download.nci.nih.gov/aim/releases/Segmentation/SegmentationCategoryTypeModifier.xsd" rel="nofollow">
+  https://cbiit-download.nci.nih.gov/aim/releases/Segmentation/SegmentationCategoryTypeModifier.xsd
+</a>
+).
+<ol>
+  <li>
+    Select Tools &gt; Preferences &gt; Segmentation.The Segmentation tab appears.
+    <img alt="Segmentation tab" width="450" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/AIM/AIM%20on%20ClearCanvas%20Workstation%204.5%20User&#39;s%20Guide/SegmentationTab.png?api=v2">
+    The DICOM segmentation tool also appears in the toolbar:
+    <img alt="DICOM segmentation tool" width="30" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/AIM/AIM%20on%20ClearCanvas%20Workstation%204.5%20User&#39;s%20Guide/SegToolbar.png?api=v2">
+    .
+    <img alt="Segmentation toolbar highlighted within AIM on ClearCanvas Workstation 4.54" width="600" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/AIM/AIM%20on%20ClearCanvas%20Workstation%204.5%20User&#39;s%20Guide/SegToolbarWorkstation.png?api=v2">
+  </li>
+  <li>
+    Use the freehand tool to manually draw a segmentation object:
+    <img alt="Freehand tool" width="30" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/AIM/AIM%20on%20ClearCanvas%20Workstation%204.5%20User&#39;s%20Guide/FreehandTool.png?api=v2">
+    . When you create a DICOM segmentation object, you draw many drawings on multiple images of the same thing. Assign the same name to each drawing to create a DICOM segmentation volume.When you create a segmentation on an image, the information about the image and frame number appears in the image list. This information describes a set of images that form a DICOM segmentation volume.
+    <img alt="Image list with information such as Image 6 Frame 1" width="400" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/AIM/AIM%20on%20ClearCanvas%20Workstation%204.5%20User&#39;s%20Guide/ImageList.png?api=v2">
+    <img alt="Context menu showing a Rename command" width="350" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/AIM/AIM%20on%20ClearCanvas%20Workstation%204.5%20User&#39;s%20Guide/Rename.png?api=v2">
+  </li>
+  <li>
+    Select values in the Segmentation Properties section.
+    <img alt="Segmentation properties including Selected Category, Type, Modifier, Anatomic Region, and Anatomic Region Modifier" width="450" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/AIM/AIM%20on%20ClearCanvas%20Workstation%204.5%20User&#39;s%20Guide/SegmentationProperties.png?api=v2">
+  </li>
+  <li>
+    Click Create Segmentation.
+  </li>
+  <li>
+    When prompted, confirm that you want to create a DICOM segmentation. Note that once you create a segmentation, you cannot modify or delete it.
+    <img alt="Confirm segmentation creation dialog box" width="400" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/AIM/AIM%20on%20ClearCanvas%20Workstation%204.5%20User&#39;s%20Guide/ConfirmSegCreation.png?api=v2">
+    You can, however, adjust the opacity level using the opacity slider bar.
+    <img alt="slider bar that allows you to adjust the opacity level" height="50" width="290" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/AIM/AIM%20on%20ClearCanvas%20Workstation%204.5%20User&#39;s%20Guide/OpacitySlider.png?api=v2">
+  </li>
+  <li>
+    When you create more than one DICOM segmentation, each DICOM segmentation with the same name is grouped together. A name is automatically added to the Name box. You must provide values in the Segmentation Properties section for each DICOM segmentation before you can create a DICOM segmentation.AIM on ClearCanvas Workstation automatically displays DICOM segmentations on images in studies with DICOM segmentation objects.
+  </li>
+</ol>
+<h2 id="AIMonClearCanvasWorkstation4.5User&#39;sGuide-DownloadingImagesfromXNAT">
+  Downloading Images from XNAT
+</h2>
+You can connect directly to the XNAT database from AIM on ClearCanvas Workstation and find imaging studies to download, then import those studies and work with them.Automatic importAIM on ClearCanvas workstation checks for imaging data you have downloaded in XNAT Central at the interval you select in the XNAT options and automatically imports it into the workstation. You can also manually check for downloads by clicking
+<img alt="XNAT Import button" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/AIM/AIM%20on%20ClearCanvas%20Workstation%204.5%20User&#39;s%20Guide/XNAT-import.png?api=v2">
+at any time.For more information about using XNAT, consult the
+<a href="https://wiki.xnat.org/x/5oF" rel="nofollow">
+  XNAT technical documentation
+</a>
+.
+<ol>
+  <li>
+    In AIM on ClearCanvas Workstation, specify the folder where you want to place images you download.
+    <ol>
+      <li>
+        Select Tools &gt; Preferences &gt; Tools.
+      </li>
+      <li>
+        Click XNAT.The XNAT options appear.
+        <img alt="XNAT options include XNAT URL, Auto Import Download Folder, and the number of seconds to check for downloads" width="500" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/AIM/AIM%20on%20ClearCanvas%20Workstation%204.5%20User&#39;s%20Guide/XNAT-options-folder.png?api=v2">
+      </li>
+      <li>
+        In the Auto Import Download Folder box, enter the path where you want to store downloaded images.  Make a note of this folder path for later, when you will specify this same folder path within XNAT .
+      </li>
+      <li>
+        Click OK.
+      </li>
+    </ol>
+  </li>
+  <li>
+    In the AIM on ClearCanvas toolbar, click
+    <img alt="XNAT button" height="26" width="39" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/AIM/AIM%20on%20ClearCanvas%20Workstation%204.5%20User&#39;s%20Guide/XNAT-icon.png?api=v2">
+    .
+    <a href="https://central.xnat.org" rel="nofollow">
+      XNAT CENTRAL
+    </a>
+    appears.
+    <img alt="XNAT Central." height="254" width="600" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/AIM/AIM%20on%20ClearCanvas%20Workstation%204.5%20User&#39;s%20Guide/XNAT-central.png?api=v2">
+  </li>
+  <li>
+    Register for XNAT Central, if needed, and then log in using your XNAT Central name and password.
+  </li>
+  <li>
+    Click a project name where the images are that you want to download.The study&#39;s details and subject summary appears. Since you have logged in, you can see the Actions menu options.
+    <img alt="Details and subject summary for a study." width="600" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/AIM/AIM%20on%20ClearCanvas%20Workstation%204.5%20User&#39;s%20Guide/XNAT-study.png?api=v2">
+  </li>
+  <li>
+    Decide if you want to download a single experiment&#39;s images or all of the study&#39;s images. Downloading a single experiment&#39;s images generally takes less storage space and time than downloading all of a study&#39;s images.
+  </li>
+  <li>
+    Download the images.
+    <ol>
+      <li>
+        To download a single experiment&#39;s images, do the following.
+        <ol>
+          <li>
+            Click a subject&#39;s link.The experiments appear.
+            <img alt="list of a study&#39;s experiments" width="500" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/AIM/AIM%20on%20ClearCanvas%20Workstation%204.5%20User&#39;s%20Guide/Experiments.png?api=v2">
+          </li>
+          <li>
+            Click an experiment&#39;s link.The scans appear.
+            <img alt="list of an experiment&#39;s scans" width="500" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/AIM/AIM%20on%20ClearCanvas%20Workstation%204.5%20User&#39;s%20Guide/session-images.png?api=v2">
+          </li>
+          <li>
+            Select Download &gt; Download Images.
+            <img alt="a single session&#39;s images listed by scan" width="500" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/AIM/AIM%20on%20ClearCanvas%20Workstation%204.5%20User&#39;s%20Guide/session-download.png?api=v2">
+          </li>
+          <li>
+            Select the download file type and which scans you want to download. The more scans you select, the longer the download will take and the more time it will take to download them.
+          </li>
+          <li>
+            Click Download.
+          </li>
+        </ol>
+      </li>
+      <li>
+        To download all of a study&#39;s images, do the following.
+        <ol>
+          <li>
+            Select Actions &gt; Download Images.
+            <img alt="imaging data download dialog box listing all of a study&#39;s sessions" width="600" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/AIM/AIM%20on%20ClearCanvas%20Workstation%204.5%20User&#39;s%20Guide/ImagingDataDownload.png?api=v2">
+          </li>
+          <li>
+            Confirm the sessions and image data you want to download, select the download format.
+          </li>
+          <li>
+            Click Submit.
+          </li>
+        </ol>
+      </li>
+      <li>
+        When your browser prompts you to save the file from XNAT, select Save &gt; Save As to specify the folder where the download should go. Make it the same path as that which you specified in step 1c in AIM on ClearCanvas Workstation.
+      </li>
+    </ol>
+  </li>
+  <li>
+    Check your destination folder for the images you downloaded. The downloaded file will be automatically uncompressed or unzipped and DICOM images in the zip file will be imported. The file will be deleted after importing DICOM files is done.
+  </li>
+</ol>
+<h2 id="AIMonClearCanvasWorkstation4.5User&#39;sGuide-SpecifyingPreferences">
+  Specifying Preferences
+</h2>
+You can specify AIM, Explorer, and Layout preferences. Some common options are described in the following sections.
+<h3 id="AIMonClearCanvasWorkstation4.5User&#39;sGuide-SpecifyingAIMPreferences">
+  Specifying AIM Preferences
+</h3>
+<ol>
+  <li>
+    Select Tools &gt; Preferences &gt; AIM.The Options dialog box appears.
+    <img alt="AIM options dialog box" width="500" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/AIM/AIM%20on%20ClearCanvas%20Workstation%204.5%20User&#39;s%20Guide/AIMOptions.png?api=v2">
+  </li>
+  <li>
+    Specify any of the following AIM preferences.
+    <table>
+      <tbody>
+        <tr>
+          <th>
+            Option
+          </th>
+          <th>
+            Description
+          </th>
+        </tr>
+        <tr>
+          <td>
+            Send New Annotations to caGrid
+          </td>
+          <td>
+            If selected, the workstation will send new annotations to the assigned caGrid location. Also see
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=171704931" rel="nofollow">
+              Specifying AIM Data Service Preferences
+            </a>
+            .By default, the Send New Annotations to caGrid option is disabled. You must enable this option in order to have new AIM XML documents sent to the AIM Data Service. If you have neither set the AIM Data Service destination nor enabled the Send New Annotations to caGrid option, you cannot send your existing AIM XML documents to the AIM Data Service.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Store New Annotations Locally
+          </td>
+          <td>
+            If selected, the workstation will store a copy of new annotations in the AIM XML format on the local computer. A user can assign where the AIM annotation documents can be stored on the local computer.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Required User Information
+          </td>
+          <td>
+            If selected, user credentials need to be entered before creating an AIM annotation document.
+          </td>
+        </tr>
+        <tr>
+          <td colspan="1">
+            Require Graphic Markup in Annotation
+          </td>
+          <td colspan="1">
+            If selected, a user must create at least one graphical drawing on an image before creating an AIM annotation document.
+          </td>
+        </tr>
+        <tr>
+          <td colspan="1">
+            Reset Template After Annotation Creation
+          </td>
+          <td colspan="1"></td>
+        </tr>
+        <tr>
+          <td colspan="1">
+            Use Crosshairs Instead of Arrows for Text Callouts
+          </td>
+          <td colspan="1">
+            Change the image used when you create text callouts.
+          </td>
+        </tr>
+        <tr>
+          <td colspan="1">
+            Templates Folder
+          </td>
+          <td colspan="1">
+            If entered, the directory will be used to search for AIM template XML documents.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    Click Apply.
+  </li>
+</ol>
+<h3 id="AIMonClearCanvasWorkstation4.5User&#39;sGuide-SpecifyingToolbarPreferences">
+  Specifying Toolbar Preferences
+</h3>
+You can change the size of icons and choose to show all icons on one screen. To do so, select Tools &gt; Preferences &gt; Toolbar. The recommended icon size is medium and it is also recommended that you select the Wrap long toolbars option.
+<img alt="Toolbar tab of the AIM Options dialog box" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/AIM/AIM%20on%20ClearCanvas%20Workstation%204.5%20User&#39;s%20Guide/worddav9fc7a8480ffc46bbe5b7e59dba768737.png?api=v2">
+<h2 id="AIMonClearCanvasWorkstation4.5User&#39;sGuide-UsingtheAIMToolbar">
+  Using the AIM Toolbar
+</h2>
+The following table describes four AIM tools that are available on the AIM on ClearCanvas Workstation.
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Tool
+      </th>
+      <th colspan="1">
+        Name
+      </th>
+      <th>
+        Description
+      </th>
+    </tr>
+    <tr>
+      <td>
+        <img alt="AIM Template button" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/AIM/AIM%20on%20ClearCanvas%20Workstation%204.5%20User&#39;s%20Guide/worddav1a00ecf0b68234ff0474dd9998ae71ee.png?api=v2">
+      </td>
+      <td colspan="1">
+        AIM Template
+      </td>
+      <td>
+        Displays a template based form with a set of questions and choice(s) of answers for each question. A user can import a new AIM template to that location. Create new annotation objects by completely filling out this form and clicking the Create Annotation button.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <img alt="AIM Object Locator button" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/AIM/AIM%20on%20ClearCanvas%20Workstation%204.5%20User&#39;s%20Guide/worddav1ff28c9994b0d6f8aabb73039be51b3e.png?api=v2">
+      </td>
+      <td colspan="1">
+        AIM Object Locator
+      </td>
+      <td>
+        Depicts available AIM objects in the currently displayed study without searching through every image in the study or series.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <img alt="AIM Details button" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/AIM/AIM%20on%20ClearCanvas%20Workstation%204.5%20User&#39;s%20Guide/worddav92230efbdac250e4dc9b8fd919da18f2.png?api=v2">
+      </td>
+      <td colspan="1">
+        AIM Annotation Details
+      </td>
+      <td>
+        Provides the ability to view specific areas of a selected graphic markup for an existing annotation.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <img alt="Closed Polygon Markup button" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/AIM/AIM%20on%20ClearCanvas%20Workstation%204.5%20User&#39;s%20Guide/worddav48e47f5bbfcf7b4be686d85ef0274981.png?api=v2">
+      </td>
+      <td colspan="1">
+        Closed Polygon Markup
+      </td>
+      <td>
+        Allows creation of a free hand graphical markup. This tool can be used in addition to existing ClearCanvas tools in creating graphical markup.
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h3 id="AIMonClearCanvasWorkstation4.5User&#39;sGuide-AIMTemplateTool">
+  AIM Template Tool
+</h3>
+To activate the AIM template tool in Figure 1, click the AIM template tool button (#1). If you put the pin down (#2), you can detach the AIM Template tab by putting the mouse pointer at the header (#3) and dragging it out, as illustrated in Figure 2.
+<img alt="Explorer window and AIM Template tab" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/AIM/AIM%20on%20ClearCanvas%20Workstation%204.5%20User&#39;s%20Guide/worddav751ddf5b92acfef706331113246f9c9e.png?api=v2">
+Figure 1. Activate AIM Template
+<img alt="AIM Template tab detached from Explorer window" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/AIM/AIM%20on%20ClearCanvas%20Workstation%204.5%20User&#39;s%20Guide/worddave15a3e6cc596f65fa53053fb123a15d9.png?api=v2">
+Figure 2. Detached AIM Template ToolImportantWhen an AIM annotation is created, the following conditions are applied (based on AIM default settings described in
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=171704931" rel="nofollow">
+  Specifying AIM Preferences
+</a>
+)
+<ol>
+  <li>
+    A user must answer all questions presented in the AIM Annotation window.
+  </li>
+  <li>
+    A graphical markup is required on an image if Require Graphic Markup in Annotation is selected before an AIM annotation can be saved to the AIM Data Service and/or stored locally.
+  </li>
+  <li>
+    User information must be entered if Require User Information is selected.
+  </li>
+</ol>
+<h3 id="AIMonClearCanvasWorkstation4.5User&#39;sGuide-AIMObjectLocatorTool">
+  AIM Object Locator Tool
+</h3>
+The AIM Object Locator tool, depicted in the following image, allows users to see existing AIM instances available in a study. A list of available AIM instances is displayed below the Available AIM Annotations section, which is #2 in the following image. To access this feature and see an AIM annotation, click Show Study, which is #3 in the following image.
+<img alt="AIM Locator showing available AIM annotations and a Show Study link" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/AIM/AIM%20on%20ClearCanvas%20Workstation%204.5%20User&#39;s%20Guide/worddav439c2ef3a8977ddafc101b3646020633.png?api=v2">
+<h3 id="AIMonClearCanvasWorkstation4.5User&#39;sGuide-AIMAnnotationDetailsTool">
+  AIM Annotation Details Tool
+</h3>
+The AIM annotation details, as illustrated by the following image, allow a user to examine detailed information captured in an AIM instance. To access this feature, you select an image containing an AIM instance and then click the AIM Details button, as shown in (#1). The AIM Annotation Details panel appears. This panel contains information tabs including Anatomic Entity, Imaging Observation, Calculations, and All Details. The All Details tab (shown in #3) allows a user to see information related to both Anatomic Entity and Imaging Observation and their characteristics.
+<img alt="AIM annotation details for a selected annotation" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/AIM/AIM%20on%20ClearCanvas%20Workstation%204.5%20User&#39;s%20Guide/worddav2411cb98711e826e806fe6f7a80ca2d0.png?api=v2">
+<h2 id="AIMonClearCanvasWorkstation4.5User&#39;sGuide-ImportingAIMTemplates">
+  Importing AIM Templates
+</h2>
+Import an AIM template XML document by clicking the AIM Template button. Windows Explorer opens the folder you already specified, which is described in
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=171704931" rel="nofollow">
+  Specifying AIM Preferences
+</a>
+.Importing Legacy AIM TemplatesYou can import AIM templates that were created using the AIM XML schema version 2 and above into AIM on ClearCanvas Workstation and capture all of the data in the original template.Unlike
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=75006387" rel="nofollow">
+  AIM Template Builder
+</a>
+, which updates AIM templates to the current XML schema version, AIM on ClearCanvas Workstation does not convert all of the information in AIM templates created in pre-2.0 XML schema versions. You can open legacy AIM templates in AIM on ClearCanvas Workstation but it is possible that not all of your questions and answer choices will appear. Data is not lost but options controlling the display of questions and answer choices are not automatically converted upon import.You can avoid this problem for legacy AIM templates by first opening the template in AIM Template Builder and reviewing the options set for each question and answer choice. Specifically, do the following
+<ul>
+  <li>
+    Ensure that the Should Display option is set to Yes.
+  </li>
+  <li>
+    Ensure that the number of Answer Choices is at least 1 for each question.
+  </li>
+</ul>
+Once you are sure that all of your question and answer choices have the correct options, save and then export your AIM template, then import the template into AIM on ClearCanvas Workstation.
+<img alt="Composite image showing XML folders on a hard drive and AIM Annotation dialog box" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/AIM/AIM%20on%20ClearCanvas%20Workstation%204.5%20User&#39;s%20Guide/worddavd03a3a29c9bb39d70b95decf3ca0921b.png?api=v2">
+Figure 7. Importing an AIM Template
+<h3 id="AIMonClearCanvasWorkstation4.5User&#39;sGuide-LocatingMissingAnswerChoices">
+  Locating Missing Answer Choices
+</h3>
+You can locate missing answer choices from a question after you import an AIM template. Click on the question mark icon to find out which questions do not have an answer.
+<img alt="Question mark icon next to the Create Annotation button in an imported AIM template" height="108" width="276" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/AIM/AIM%20on%20ClearCanvas%20Workstation%204.5%20User&#39;s%20Guide/AIMTemplateHelp.png?api=v2">
+<h3 id="AIMonClearCanvasWorkstation4.5User&#39;sGuide-EnforcingMarkupRequirements">
+  Enforcing Markup Requirements
+</h3>
+Before you can add an annotation to an image, AIM on ClearCanvas Workstation verifies that the annotation you have drawn complies with the rules in the AIM template. AIM on ClearCanvas Workstation verifies new annotations according to the following rules:
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Template Condition
+      </th>
+      <th>
+        Verification Condition
+      </th>
+    </tr>
+    <tr>
+      <td>
+        Template has multipoint geometric shape
+      </td>
+      <td>
+        Line or angular markup has to be drawn on image
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Template has polyline geometric shape
+      </td>
+      <td>
+        Rectangular or polygonal markup has to be drawn on image.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Template has circle or ellipse geometric shape
+      </td>
+      <td>
+        Elliptical markup has to be drawn on image.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Template has point geometric shape
+      </td>
+      <td>
+        Cross hair markup has to be drawn on image.
+      </td>
+    </tr>
+  </tbody>
+</table>
+In addition to verifying specific new annotations, AIM on ClearCanvas Workstation also checks that no additional marks are on the image that the template does not allow.To begin enforcing markup requirements, do the following:
+<ol>
+  <li>
+    Select Tools &gt; Preferences &gt; AIM.The AIM tab appears.
+  </li>
+  <li>
+    Select Require Graphic Markup in Annotation.
+    <img alt="Require Markup in Annotation checkbox on the AIM tab" width="500" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/AIM/AIM%20on%20ClearCanvas%20Workstation%204.5%20User&#39;s%20Guide/RequireGraphicMarkupinAnnotation.png?api=v2">
+  </li>
+  <li>
+    Click OK.
+  </li>
+</ol>
+<h2 id="AIMonClearCanvasWorkstation4.5User&#39;sGuide-UserInformation">
+  User Information
+</h2>
+Author information as depicted in (Figure 8) can be changed. To use this feature, click the User Info button to activate the AIM User Information form. Enter appropriate information and click Save.User information is savedThe user information will be saved on the workstation for future use. If you are sharing the workstation with another reader, you must change or at least verify that the information in the User Info section reflects your personal credentials.The
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=75006387" rel="nofollow">
+  AIM Template Builder
+</a>
+is a tool used to create an AIM template XML document.
+<img alt="AIM User Information dialog box" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/AIM/AIM%20on%20ClearCanvas%20Workstation%204.5%20User&#39;s%20Guide/worddav4e10ff629ab31ef7129cc559ce2cbded.png?api=v2">
+Figure 8. AIM User Information
+<h2 id="AIMonClearCanvasWorkstation4.5User&#39;sGuide-DetailedDescriptionofaQuestion">
+  Detailed Description of a Question
+</h2>
+A detailed description of a question can be seen by placing the mouse pointer over the first three characters of each feature name, as shown in Figure 9.
+<img alt="AIM Annotation dialog box showing pop-up window definition of a question" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/AIM/AIM%20on%20ClearCanvas%20Workstation%204.5%20User&#39;s%20Guide/worddav8637ba968963665d67cc71f8544166e1.png?api=v2">
+Figure 9. Detailed Description of a Question
+<h2 id="AIMonClearCanvasWorkstation4.5User&#39;sGuide-DisplayingMarkupsfromDifferentUsers">
+  Displaying Markups from Different Users
+</h2>
+For a given image in an imaging study that has more than one reader interpreting and creating AIM annotations, the workstation can display every annotation while allowing you to turn off markups from a selected group of readers. Figure 12 depicts an image with three markups from three readers. The markup from reader named qwe-3 was turned off.A right-mouse click on the image activates a pop-up menu with a Visible AIM Users option to turn readers&#39; markups on or off.
+<img alt="Visible AIM Users option is selected and three readers&#39; names are listed next to it" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/AIM/AIM%20on%20ClearCanvas%20Workstation%204.5%20User&#39;s%20Guide/worddav8021bf0972aab394b0ee79ca524c6bf8.png?api=v2">
+Figure 12. AIM Markup DisplayBy default, the workstation also displays annotations created by different users in different colors. You can change which colors are used for which user&#39;s AIM annotations. To assign a color to a user, go to Tools &gt; Preferences &gt; AIM &gt; Markup.By default, the Random checkbox (#2) is selected, which assigns a random color to each user&#39;s markup drawings. By clearing the Random checkbox, a default color is used instead. Colors may be assigned to a single user&#39;s markup drawings by selecting the color next to the user&#39;s name in the list.Click the Add Login button (#3) to add a new user to the list.Selected users may be removed from the list by clicking the Remove Selected button (#4). Users removed from the list will have their annotations reset to the default color. Select all users in the list by clicking the Select All button (#5). Click the Reset To Default Color button (#6) to reset the color assigned to selected users to the default color.
+<img alt="AIM Markup display options" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/AIM/AIM%20on%20ClearCanvas%20Workstation%204.5%20User&#39;s%20Guide/worddav8508fdb6d19b3907479644e87b07692c.png?api=v2">
+<h2 id="AIMonClearCanvasWorkstation4.5User&#39;sGuide-ViewingAIMDataforEachImageSeries">
+  Viewing AIM Data for Each Image Series
+</h2>
+You can see AIM annotations for an imaging study grouped by image series in the Available AIM Annotations section. The following screen shows two different image series. The first, Axial FSE, includes one AIM instance. The second, Axial T1, includes three AIM instances.
+<img alt="AIM annotations for an imaging study" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/AIM/AIM%20on%20ClearCanvas%20Workstation%204.5%20User&#39;s%20Guide/worddav0d45f4cd1b5259267828d09947174490.png?api=v2">
+<h2 id="AIMonClearCanvasWorkstation4.5User&#39;sGuide-UsingtheNationalBiomedicalImagingArchive(NBIA)DataService">
+  Using the National Biomedical Imaging Archive (NBIA) Data Service
+</h2>
+The NBIA Data Service tab, shown below, provides the ability to connect and retrieve studies from NBIA directly within the workstation. Holding the Ctrl key allows you to click and select multiple studies. Right-clicking a search result activates a feature that allows you to retrieve selected studies.
+<img alt="Explorer window showing NBIA studies" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/AIM/AIM%20on%20ClearCanvas%20Workstation%204.5%20User&#39;s%20Guide/worddavfe7d0a3ce2f75a5c8316e37a56a9a2a4.png?api=v2">
+Users can enter search parameters, shown below, based on a single value or multiple values of Patient ID, Patient&#39;s Name, Sex, Birth Date, Project name at NCI, Slice Thickness, Study Instance UID, and Modality.
+<img alt="Search NBIA dialog box" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/AIM/AIM%20on%20ClearCanvas%20Workstation%204.5%20User&#39;s%20Guide/worddavc7fd550051009b886912fad52c9b92be.png?api=v2">
+Columns in the NBIA Data Service page can be selected or deselected to display or hide an available result. The following image depicts that all available columns for the service have been selected.
+<img alt="Results with all available columns selected." src="https://wiki.nci.nih.gov/download/attachments/embedded-page/AIM/AIM%20on%20ClearCanvas%20Workstation%204.5%20User&#39;s%20Guide/worddav99a2db1da2a19b0b9ff976c0e09a020a.png?api=v2">

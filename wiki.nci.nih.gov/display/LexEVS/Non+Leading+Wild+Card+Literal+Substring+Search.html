@@ -1,0 +1,83 @@
+Contents of this Page
+<ul>
+  <li>
+    <a href="#NonLeadingWildCardLiteralSubstringSearch-NonLeadingWildCardLiteralSubstringImplementationDetails" rel="nofollow">
+      Non Leading Wild Card Literal Substring Implementation Details
+    </a>
+    <ul>
+      <li>
+        <a href="#NonLeadingWildCardLiteralSubstringSearch-Algorithm:" rel="nofollow">
+          Algorithm:
+        </a>
+      </li>
+      <li>
+        <a href="#NonLeadingWildCardLiteralSubstringSearch-Exampleofuse:" rel="nofollow">
+          Example of use:
+        </a>
+      </li>
+      <li>
+        <a href="#NonLeadingWildCardLiteralSubstringSearch-AssociatedJUnits:" rel="nofollow">
+          Associated JUnits:
+        </a>
+      </li>
+    </ul>
+  </li>
+</ul>
+<h2 id="NonLeadingWildCardLiteralSubstringSearch-NonLeadingWildCardLiteralSubstringImplementationDetails">
+  Non Leading Wild Card Literal Substring Implementation Details
+</h2>
+Search based on  \&#34;*some sub-string here*\&#34; Functions much like the Java String.indexOf method. Single term searches will match &#39;*term&#39; and &#39;term*&#39; but not &#39;*term*&#39;. This is because leading wildcards are very inefficient.  Special characters are included.
+<h3 id="NonLeadingWildCardLiteralSubstringSearch-Algorithm:">
+  Algorithm:
+</h3>
+The Non Leading Wild Card Literal Substring search has the following characteristics:
+<ul>
+  <li>
+    This search is case in-sensitive.
+  </li>
+  <li>
+    It searches on the literal property value and the literal reverse property value.
+  </li>
+  <li>
+    A trailing wild card is applied to the literal property value an the literal reverse property value.
+  </li>
+  <li>
+    The literal property part (without the wild cards) of the query is boosted by 50.  This gives a literal match priority.
+  </li>
+  <li>
+    Parsing is done with the following analyzer:
+    <ul>
+      <li>
+        literal_propertyValue - Uses our custom literal analyzer.  This literal analyzer uses Lucene&#39;s WhitespaceTokenizer with Lucene&#39;s LowerCaseFilter.
+      </li>
+    </ul>
+  </li>
+</ul>
+<h3 id="NonLeadingWildCardLiteralSubstringSearch-Exampleofuse:">
+  Example of use:
+</h3>
+The following examples are based on the Automobiles coding scheme.Example 1:Search string: grapLucene query: +(literal_propertyValue:grap* literal_reverse_propertyValue:parg*) literal_propertyValue:grap^50.0Result: 1 result
+<ul>
+  <li>
+    entity code: NoRelationsConcept
+  </li>
+  <li>
+    entity description: A concept for testing Graph Building on Concepts with no relations
+  </li>
+</ul>
+Example 2:Search string: rapLucene query: +(literal_propertyValue:rap* literal_reverse_propertyValue:par*) literal_propertyValue:rap^50.0Result: 0 results
+<ul>
+  <li>
+    entity code:
+  </li>
+  <li>
+    entity description:
+  </li>
+</ul>
+<h3 id="NonLeadingWildCardLiteralSubstringSearch-AssociatedJUnits:">
+  Associated JUnits:
+</h3>
+Junits can be found here:
+<a href="https://github.com/lexevs/lexevs/blob/master/lbTest/src/test/java/org/LexGrid/LexBIG/Impl/function/query/lucene/searchAlgorithms/TestSubStringNonLeadingWildcardLiteralSubString.java" rel="nofollow">
+  https://github.com/lexevs/lexevs/blob/master/lbTest/src/test/java/org/LexGrid/LexBIG/Impl/function/query/lucene/searchAlgorithms/TestSubStringNonLeadingWildcardLiteralSubString.java
+</a>

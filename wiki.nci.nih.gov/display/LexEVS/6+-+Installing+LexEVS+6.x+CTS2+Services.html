@@ -1,0 +1,243 @@
+Contents of this Page
+<ul>
+  <li>
+    <a href="#id-6InstallingLexEVS6.xCTS2Services-Prerequisites" rel="nofollow">
+      Prerequisites
+    </a>
+  </li>
+  <li>
+    <a href="#id-6InstallingLexEVS6.xCTS2Services-BuildtheLexEVSServicePlugin(Optional)" rel="nofollow">
+      Build the LexEVS Service Plugin (Optional)
+    </a>
+  </li>
+  <li>
+    <a href="#id-6InstallingLexEVS6.xCTS2Services-OSGItypeinstallation" rel="nofollow">
+      OSGI type installation
+    </a>
+  </li>
+  <li>
+    <a href="#id-6InstallingLexEVS6.xCTS2Services-Non-OSGItypeinstallation" rel="nofollow">
+      Non-OSGI type installation
+    </a>
+  </li>
+</ul>
+<table>
+  <colgroup>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        LexEVS 6.x Installation Links
+      </th>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427361" rel="nofollow">
+              Install Guide Main Page
+            </a>
+            <ul>
+              <li>
+                <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427338" rel="nofollow">
+                  Overview
+                </a>
+              </li>
+              <li>
+                <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427336" rel="nofollow">
+                  Prerequisites and Platforms
+                </a>
+              </li>
+              <li>
+                <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427547" rel="nofollow">
+                  Local Runtime
+                </a>
+              </li>
+              <li>
+                <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427333" rel="nofollow">
+                  Local Runtime Command Line
+                </a>
+              </li>
+              <li>
+                <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427330" rel="nofollow">
+                  Distributed
+                </a>
+              </li>
+              <li>
+                <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=159778666" rel="nofollow">
+                  CTS2 Services
+                </a>
+              </li>
+              <li>
+                <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=159778668" rel="nofollow">
+                  URI Resolver Service
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=69730353" rel="nofollow">
+              LexEVS 6.0 Main Page
+            </a>
+          </li>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427448" rel="nofollow">
+              LexEVS Current Release
+            </a>
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Prerequisites are dependent upon the type of installation.  This service has two basic kinds of installations, OSG and non-OSG.
+<h2 id="id-6InstallingLexEVS6.xCTS2Services-Prerequisites">
+  Prerequisites
+</h2>
+<ul>
+  <li>
+    Installation of
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427547" rel="nofollow">
+      LexEVS Runtime
+    </a>
+    and if desired the
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427486" rel="nofollow">
+      LexEVS Remote API
+    </a>
+    and all dependencies
+  </li>
+  <li>
+    Web application container for Non-OSGI installation
+  </li>
+  <li>
+    If building the LexEVS Plugin the following are required:
+    <ul>
+      <li>
+        Git 2.9.x
+      </li>
+      <li>
+        Maven 3.3.x
+      </li>
+      <li>
+        Java 1.8.x
+      </li>
+    </ul>
+  </li>
+</ul>
+<h2 id="id-6InstallingLexEVS6.xCTS2Services-BuildtheLexEVSServicePlugin(Optional)">
+  Build the LexEVS Service Plugin (Optional)
+</h2>
+See below for the pre-built plugin, Otherwise run
+git clone https://github.com/cts2/lexevs-service.git
+Change the directory to the lexevs-service.
+cd lexevs-service
+Change to the appropriate branch:6.1 branch:
+git checkout tags/qa_v6.1.rc8.05.2013
+6.2 branch:
+git checkout tags/v1.3.0.FINAL
+6.3 branch:
+git checkout tags/v1.4.0.FINAL
+6.4 branch:
+git checkout tags/1.5.0.FINAL
+6.4.1 branch Prior to building 6.4.1 (or later), the MAVEN_OPTS variable will need to be set as described here:
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=328337796" rel="nofollow">
+  LexEVS Nexus Migration to NCI
+</a>
+git checkout tags/1.5.1.2.FINAL
+6.5 branch:git checkout tags/1.6.0.FINAL Build the plugin.
+mvn clean install
+The resulting plugin will be found in the lexevs-service/target directory.
+<h2 id="id-6InstallingLexEVS6.xCTS2Services-OSGItypeinstallation">
+  OSGI type installation
+</h2>
+This kind of installation provides a quick way to set up a REST service and can be done against an existing installation of the LexEVS Remote API, such as that hosted by the National Cancer Institute.
+<ul>
+  <li>
+    Download the
+    <a href="http://informatics.mayo.edu/maven/content/repositories/releases/edu/mayo/cts2/framework/webapp/0.8.4/webapp-0.8.4-jetty-console.warar" rel="nofollow">
+      CTS2 Framework Standalone Server
+    </a>
+    <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+      <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+    </a>
+  </li>
+  <li>
+    Install and start the server:
+    <a href="http://informatics.mayo.edu/cts2/framework/installation/" rel="nofollow">
+      http://informatics.mayo.edu/cts2/framework/installation/
+    </a>
+    <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+      <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+    </a>
+  </li>
+  <li>
+    Download the following java jars to be installed as plugins:
+    <ul>
+      <li>
+        <a href="http://ebr.springsource.com/repository/app/bundle/version/download?name=com.springsource.net.sf.cglib&amp;version=2.2.0&amp;type=binary" rel="nofollow">
+          CGLIB
+        </a>
+        <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+          <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+        </a>
+      </li>
+      <li>
+        <a href="http://ebr.springsource.com/repository/app/bundle/version/download?name=com.springsource.org.aspectj.runtime&amp;version=1.7.1.RELEASE&amp;type=binary" rel="nofollow">
+          AspectJ Runtime
+        </a>
+        <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+          <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+        </a>
+      </li>
+      <li>
+        <a href="http://ebr.springsource.com/repository/app/bundle/version/download?name=com.springsource.org.aspectj.weaver&amp;version=1.7.1.RELEASE&amp;type=binary" rel="nofollow">
+          AspectJ Weaver
+        </a>
+        <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+          <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+        </a>
+      </li>
+      <li>
+        <a href="http://informatics.mayo.edu/maven/content/repositories/snapshots/edu/mayo/cts2/framework/lexevs-service/1.0.1-SNAPSHOT//0.1.0-SNAPSHOT/lexevs-service-0.1.0-20130506.181320-2.jar" rel="nofollow">
+          LexEVS Service Plugin
+        </a>
+        <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+          <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    Install each as detailed in
+    <a href="http://informatics.mayo.edu/cts2/framework/installing-a-service-plugin/" rel="nofollow">
+      Installing a Service Plugin
+    </a>
+    <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+      <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+    </a>
+  </li>
+</ul>
+Exception for the LexEVS Service PluginFollow the same steps for the LexEVS Service, except leave the Start Bundle box unchecked.
+<ul>
+  <li>
+    After the plugin has been installed, navigate to the Configuration tab of the Admin Console.
+  </li>
+</ul>
+<img alt="CTS2 Development Framework Web Console Configuration with LexEVS Plugin information" height="679" width="939" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/6%20-%20Installing%20LexEVS%206.x%20CTS2%20Services/configuration.png?api=v2">
+<ul>
+  <li>
+    Verify the configuration information is correct. It is set up to use the NCI 6.0 Remote LexEVS Service.
+  </li>
+</ul>
+<img alt="CTS2 Development Framework Web Console Bundles screen with LexEVS Service Plugin highlighted" height="702" width="1301" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/6%20-%20Installing%20LexEVS%206.x%20CTS2%20Services/bundles.png?api=v2">
+<h2 id="id-6InstallingLexEVS6.xCTS2Services-Non-OSGItypeinstallation">
+  Non-OSGI type installation
+</h2>
+This type of installation is more customizable and allows deployment to your own web container. Instructions are available on the
+<a href="https://github.com/cts2/lexevs-service/blob/master/README.md#installation-non-osgi" rel="nofollow">
+  CTS2 Github page
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>

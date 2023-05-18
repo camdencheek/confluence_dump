@@ -1,0 +1,1499 @@
+Contents of this Page
+<ul>
+  <li>
+    <a href="#LexEVS6.0CTS2Authoring3ConceptDomainAuthoringOperationAPI-Introduction" rel="nofollow">
+      Introduction
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.0CTS2Authoring3ConceptDomainAuthoringOperationAPI-Interface" rel="nofollow">
+      Interface
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.0CTS2Authoring3ConceptDomainAuthoringOperationAPI-RevisionInformation" rel="nofollow">
+      Revision Information
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.0CTS2Authoring3ConceptDomainAuthoringOperationAPI-AuthoringFunctions" rel="nofollow">
+      Authoring Functions
+    </a>
+    <ul>
+      <li>
+        <a href="#LexEVS6.0CTS2Authoring3ConceptDomainAuthoringOperationAPI-CreateOperations" rel="nofollow">
+          Create Operations
+        </a>
+        <ul>
+          <li>
+            <a href="#LexEVS6.0CTS2Authoring3ConceptDomainAuthoringOperationAPI-createConceptDomainCodeSystem" rel="nofollow">
+              createConceptDomainCodeSystem
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS6.0CTS2Authoring3ConceptDomainAuthoringOperationAPI-createConceptDomain" rel="nofollow">
+              createConceptDomain
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS6.0CTS2Authoring3ConceptDomainAuthoringOperationAPI-addConceptDomainProperty" rel="nofollow">
+              addConceptDomainProperty
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS6.0CTS2Authoring3ConceptDomainAuthoringOperationAPI-addConceptDomainToValueSetBinding" rel="nofollow">
+              addConceptDomainToValueSetBinding
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#LexEVS6.0CTS2Authoring3ConceptDomainAuthoringOperationAPI-EditOperations" rel="nofollow">
+          Edit Operations
+        </a>
+        <ul>
+          <li>
+            <a href="#LexEVS6.0CTS2Authoring3ConceptDomainAuthoringOperationAPI-updateConceptDomainProperty" rel="nofollow">
+              updateConceptDomainProperty
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#LexEVS6.0CTS2Authoring3ConceptDomainAuthoringOperationAPI-RemoveOperations" rel="nofollow">
+          Remove Operations
+        </a>
+        <ul>
+          <li>
+            <a href="#LexEVS6.0CTS2Authoring3ConceptDomainAuthoringOperationAPI-removeConceptDomain" rel="nofollow">
+              removeConceptDomain
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS6.0CTS2Authoring3ConceptDomainAuthoringOperationAPI-removeConceptDomainProperty" rel="nofollow">
+              removeConceptDomainProperty
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS6.0CTS2Authoring3ConceptDomainAuthoringOperationAPI-removeConceptDomainToValueSetBinding" rel="nofollow">
+              removeConceptDomainToValueSetBinding
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#LexEVS6.0CTS2Authoring3ConceptDomainAuthoringOperationAPI-VersionableChangeOperations" rel="nofollow">
+          Versionable Change Operations
+        </a>
+        <ul>
+          <li>
+            <a href="#LexEVS6.0CTS2Authoring3ConceptDomainAuthoringOperationAPI-updateConceptDomainStatus" rel="nofollow">
+              updateConceptDomainStatus
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS6.0CTS2Authoring3ConceptDomainAuthoringOperationAPI-activateConceptDomain" rel="nofollow">
+              activateConceptDomain
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS6.0CTS2Authoring3ConceptDomainAuthoringOperationAPI-deactivateConceptDomain" rel="nofollow">
+              deactivateConceptDomain
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS6.0CTS2Authoring3ConceptDomainAuthoringOperationAPI-updateConceptDomainVersionable" rel="nofollow">
+              updateConceptDomainVersionable
+            </a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        CTS2 Links for LexEVS 6.0
+      </th>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427281" rel="nofollow">
+              CTS2 API Main Page
+            </a>
+          </li>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427334" rel="nofollow">
+              Programmer&#39;s Guide Main Page
+            </a>
+          </li>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=69730353" rel="nofollow">
+              LexEVS 6.0 Main Page
+            </a>
+          </li>
+          <li>
+            <a href="https://wiki.nci.nih.gov/display/LexEVS" rel="nofollow">
+              LexEVS Current Release
+            </a>
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="LexEVS6.0CTS2Authoring3ConceptDomainAuthoringOperationAPI-Introduction">
+  Introduction
+</h2>
+LexEVS CTS2 Concept Domain Authoring API provides capability to author Concept Domain, maintain the binding between Concept Domain and the Value Sets and also the ability to create a Code System that can hold the Concept Domains.
+
+Here are the authoring functions that can be performed on concept domain:
+<ul>
+  <li>
+    Create - This function provides capability to create:
+    <ul>
+      <li>
+        New Code System to hold concept domains
+      </li>
+      <li>
+        New Concept Domain
+      </li>
+      <li>
+        Add new property to Concept Domain
+      </li>
+      <li>
+        Concept Domain to Value Set binding
+      </li>
+    </ul>
+  </li>
+  <li>
+    Edit - This function provides capability to update:
+    <ul>
+      <li>
+        Property of a Concept Domain
+      </li>
+    </ul>
+  </li>
+  <li>
+    Remove - This function provides capability to remove:
+    <ul>
+      <li>
+        Concept Domain
+      </li>
+      <li>
+        Property of a Concept Domain
+      </li>
+      <li>
+        Concept Domain to Value Set binding
+      </li>
+    </ul>
+  </li>
+  <li>
+    Versionable Change - This function provides capability to modify versionable attributes of Concept Domain like Status, Effective Date, Expiration Date, isActive and Owner:
+    <ul>
+      <li>
+        Concept Domain Status
+      </li>
+      <li>
+        Activate Concept Domain
+      </li>
+      <li>
+        De-Activate Concept Domain
+      </li>
+    </ul>
+  </li>
+</ul>
+<h2 id="LexEVS6.0CTS2Authoring3ConceptDomainAuthoringOperationAPI-Interface">
+  Interface
+</h2>
+org.lexevs.cts2.author.ConceptDomainAuthoringOperation is the main interface for all the authoring operations against Concept Domain. This interface can be accessed using main LexEVSCTS2 interface, like:
+
+
+
+org.lexevs.cts2.author.ConceptDomainAuthoringOperation cdAuthOp = new org.lexevs.cts2.LexEvsCTS2Impl().getAuthoringOperation().getConceptDomainAuthoringOperation();
+<h2 id="LexEVS6.0CTS2Authoring3ConceptDomainAuthoringOperationAPI-RevisionInformation">
+  Revision Information
+</h2>
+All the authoring functions described here requires information about the author and revision/version id to be assigned to entities for each of these operations. These is done passing object org.lexevs.cts2.core.update.RevisionInfo. RevisionInfo object has following attributes:
+<ul>
+  <li>
+    java.lang.String changeAgent - (Optional) The source that participated in this particular change.
+  </li>
+  <li>
+    java.lang.String changeInstruction - (Optional) A human or machine readable set of instructions on how to apply this change.
+  </li>
+  <li>
+    java.lang.String revisionId - (Mandatory) The unique identifier of this revision.
+  </li>
+  <li>
+    java.lang.Long editOrder - (Optional) The relative order that this revision is to be applied if in a systemRelease.
+  </li>
+  <li>
+    java.util.Date revisionDate - (Optional) The end date for which this version is operative (considered commited).
+  </li>
+  <li>
+    java.lang.String description -  (Optional) The description of the resource/change.
+  </li>
+  <li>
+    java.lang.String systemReleaseURI - (Optional) The official URI of this release
+  </li>
+</ul>
+<h2 id="LexEVS6.0CTS2Authoring3ConceptDomainAuthoringOperationAPI-AuthoringFunctions">
+  Authoring Functions
+</h2>
+Following sections contains detailed functions provided by ConceptDomainAuthoringOperation interface.
+<h3 id="LexEVS6.0CTS2Authoring3ConceptDomainAuthoringOperationAPI-CreateOperations">
+  Create Operations
+</h3>
+Create Operation provides capability to create a Code System to hold Concept Domains, Concept Domain, Property and binding between Concept Domain and Value Sets. For every entry that gets created, a unique revision(version) identifier will be assigned to that entry. This helps in retrieving snapshots of an entry based on its revision(version) identifier. This unique id can be passed in using the RevisionInfo object described above.
+<h4 id="LexEVS6.0CTS2Authoring3ConceptDomainAuthoringOperationAPI-createConceptDomainCodeSystem">
+  createConceptDomainCodeSystem
+</h4>
+This function provides capability to create a new Code System to contain a set of Concept Domains. The Code System is created by defining the set of meta-data properties that describe it. At this point there is no concept domain added.
+
+createConceptDomainCodeSystem(RevisionInfo revision, String codeSystemName, String codeSystemURI, String formalName, String defaultLanguage, long approxNumConcepts, String representsVersion, List&lt;String&gt; localNameList, List&lt;org.LexGrid.commonTypes.Source&gt; sourceList, Text copyright, Mappings mappings)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Creates new code system to hold concept domains.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        <ul>
+          <li>
+            org.lexevs.cts2.core.update.RevisionInfo revision - (Mandatory) Contains revision information like unique RevisionId, change description, author information etc.
+          </li>
+          <li>
+            java.lang.String codingSchemeName - (Mandatory) Concept Domain Code System Name.
+          </li>
+          <li>
+            java.lang.String codingSchemeURI - (Mandatory) Concept Domain Code System URI.
+          </li>
+          <li>
+            java.lang.String formalName - (Optional) Formal name of a Concept Domain Code System.
+          </li>
+          <li>
+            java.lang.String defaultLanguage - (Optional) Default language of Concept Domain Code System.
+          </li>
+          <li>
+            long approxNumConcepts - (Optional) Approximate number of concept domains this Concept Domain Code System may contain.
+          </li>
+          <li>
+            java.lang.String representsVersion - (Mandatory) Initial version of the Concept Domain Code System.
+          </li>
+          <li>
+            java.util.List&lt;java.lang.String&gt; localNameList - (Optional) Any local name(s)/reference(s) for this Concept Domain Code System used within the Code System.
+          </li>
+          <li>
+            java.util.List&lt;org.LexGrid.commonTypes.Source&gt; sourceList - (Optional) Source(s) of this Concept Domain Code System.
+          </li>
+          <li>
+            org.LexGrid.commonTypes.Text copyright - (Optional) Information about rights held in and over the Concept Domain Code System. Typically, copyright information includes a statement about various property rights associated with the Concept Domain Code System, including intellectual property rights.
+          </li>
+          <li>
+            org.LexGrid.naming.Mappings mappings - (Mandatory) A list of all of the local identifiers and defining URI&#39;s that are used in the Concept Domain Code System.
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        org.LexGrid.codingSchemes.CodingScheme - Created Concept Domain Code System
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Sample Call:
+      </th>
+      <td>
+        <ul>
+          <li>
+            Step 1: Instantiate ConceptDomainAuthoringOperation if it is not done yet:
+
+
+            org.lexevs.cts2.author.ConceptDomainAuthoringOperation cdAuthorOp = LexEvsCTS2Impl.defaultInstance().getAuthoringOperation().getConceptDomainAuthoringOperation();
+          </li>
+          <li>
+            Step 2: Populate RevisionInfo object:
+
+
+            RevisionInfo revInfo = new RevisionInfo();
+            revInfo.setChangeAgent(&#34;change Agent Name&#34;);
+            revInfo.setChangeInstruction(&#34;here goes the change Instructions&#34;);
+            revInfo.setDescription(&#34;description of the resource&#34;);
+            revInfo.setEditOrder(1L);
+            revInfo.setRevisionDate(new Date());
+            revInfo.setRevisionId(UUID.randomUUID().toString());
+          </li>
+          <li>
+            Step 3: Populate new concept domain code system meta data:
+
+
+            String codingSchemeURI = &#34;urn:oid:11.11.22.999&#34;;
+            String representsVersion = &#34;1.0&#34;;
+
+            String codingSchemeName = &#34;Concept Domain Coding Scheme&#34;;
+            String formalName = &#34;CTS 2 API Created Concept Domain Code System&#34;;
+            String defaultLanguage = &#34;en&#34;;
+            Long approxNumConcepts = new Long(1);
+            List&lt;String&gt; localNameList = Arrays.asList();
+
+            org.LexGrid.commonTypes.Source source = new org.LexGrid.commonTypes.Source();
+            source.setContent(&#34;source&#34;);
+            List&lt;org.LexGrid.commonTypes.Source&gt; sourceList = Arrays.asList(source);
+
+            Text copyright = new Text();
+            org.LexGrid.naming.Mappings mappings = new org.LexGrid.naming.Mappings();
+
+            org.LexGrid.naming.SupportedLanguage supportedLang = new org.LexGrid.naming.SupportedLanguage();
+
+            supportedLang.setLocalId(&#34;en&#34;);_
+            supportedLang.setUri(&#34;URI_for_lang_en&#34;);_
+
+            mappings.addSupportedLanguage(supportedLang);
+          </li>
+          <li>
+            Step 4: call create method to create the concept domain code system:
+
+
+            CodingScheme codeScheme = cdAuthorOp.createConceptDomainCodeSystem(revInfo, codingSchemeName, codingSchemeURI, formalName, defaultLanguage, approxNumConcepts, representsVersion, localNameList, sourceList, copyright, mappings);
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h4 id="LexEVS6.0CTS2Authoring3ConceptDomainAuthoringOperationAPI-createConceptDomain">
+  createConceptDomain
+</h4>
+This function creates a concept domain to be included in a Code System. The new concept domain is defined by the set of meta-data properties that describe it.
+
+createConceptDomain(String conceptDomainId, String conceptDomainName, String namespace, RevisionInfo revisionInfo, String description, String status, boolean isActive, Properties properties, String codeSystemNameOrURI, String codeSystemVersion)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Creates new concept domain in a code system.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        <ul>
+          <li>
+            java.lang.String conceptDomainId - (Mandatory) ID of a new concept domain.
+          </li>
+          <li>
+            java.lang.String conceptDomainName - (Mandatory) Name of a new concept domain.
+          </li>
+          <li>
+            java.lang.String namespace - (Mandatory) Namespace of a new concept domain.
+          </li>
+          <li>
+            org.lexevs.cts2.core.update.RevisionInfo revision - (Mandatory) Contains revision information like unique RevisionId, change description, author information etc.
+          </li>
+          <li>
+            java.lang.String description - (Mandatory) Description of a new concept domain.
+          </li>
+          <li>
+            java.lang.String status - (Optional) Status of new Concept Domain.
+          </li>
+          <li>
+            boolean isActive - (Optional) Status of new Concept Domain.
+          </li>
+          <li>
+            org.LexGrid.commonTypes.Properties - (Optional) List of properties for the new Concept Domain.
+          </li>
+          <li>
+            java.lang.String codeSystemNameOrURI - (Mandatory) Name or URI of a Code System that will hold this new Concept Domain.
+          </li>
+          <li>
+            java.lang.String codeSystemVersion - (Mandatory) Version of a Code System that will hold this new Concept Domain.
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        java.lang.String - concept domain id if created successfully
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Sample Call:
+      </th>
+      <td>
+        <ul>
+          <li>
+            Step 1: Instantiate ConceptDomainAuthoringOperation if it is not done yet:
+
+
+            org.lexevs.cts2.author.ConceptDomainAuthoringOperation cdAuthorOp = LexEvsCTS2Impl.defaultInstance().getAuthoringOperation().getConceptDomainAuthoringOperation();
+          </li>
+          <li>
+            Step 2: Populate RevisionInfo object:
+
+
+            RevisionInfo revInfo = new RevisionInfo();
+            revInfo.setChangeAgent(&#34;change Agent Name&#34;);
+            revInfo.setChangeInstruction(&#34;here goes the change Instructions&#34;);
+            revInfo.setDescription(&#34;description of the resource&#34;);
+            revInfo.setEditOrder(1L);
+            revInfo.setRevisionDate(new Date());
+            revInfo.setRevisionId(UUID.randomUUID().toString());
+          </li>
+          <li>
+            Step 3: Populate a properties to be added:
+
+
+            Property prop = new Property();
+            prop.setPropertyId(&#34;propertyId1&#34;);
+            prop.setPropertyName(&#34;propertyName&#34;);
+            prop.setIsActive(false);
+            prop.setLanguage(&#34;en&#34;);
+            prop.setOwner(&#34;owner&#34;);
+            prop.setPropertyType(PropertyTypes.PROPERTY.name());
+            Text text = new Text();
+            text.setContent(&#34;content&#34;);
+            text.setDataType(&#34;Text datatype&#34;);
+            prop.setValue(text);
+
+            Properties props = new Properties();
+
+            props.addProperty(prop);
+          </li>
+          <li>
+            Step 3: call create concept domain method by passing code system version and concept domain information:
+
+
+            String conceptDomainId = cdAuthOp.createConceptDomain(&#34;CD00A&#34;, &#34;Automobiles-CD&#34;, &#34;Automobiles&#34;, revInfo, &#34;Concept Domain for automobiles&#34;, &#34;pending&#34;, false, props, &#34;Automobile&#34;, &#34;1.0&#34;,);
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h4 id="LexEVS6.0CTS2Authoring3ConceptDomainAuthoringOperationAPI-addConceptDomainProperty">
+  addConceptDomainProperty
+</h4>
+This function provides capability to add a new property to a concept domain.
+
+addConceptDomainProperty(String conceptDomainId, String namespace, Property newProperty, String codeSystemNameOrURI, String codeSystemVersion, RevisionInfo revisionInfo)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Add new property for a concept domain.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        <ul>
+          <li>
+            java.lang.String conceptDomainId - (Mandatory) Identifier of a Concept Domain to which a new property will be added.
+          </li>
+          <li>
+            java.lang.String namespace - (Mandatory) Namespace of a Concept Domain to which a new property will be added.
+          </li>
+          <li>
+            org.LexGrid.commonTypes.Property newProperty - (Mandatory) New property that will be added to the concept domain.
+          </li>
+          <li>
+            java.lang.String codeSystemNameOrURI - (Mandatory) Name or URI of a Code System that contains the concept domain.
+          </li>
+          <li>
+            java.lang.String codeSystemVersion - (Mandatory) Version of a Code System that contains the concept domain.
+          </li>
+          <li>
+            org.lexevs.cts2.core.update.RevisionInfo revision - (Mandatory) Contains revision information like unique RevisionId, change description, author information etc.
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        boolean - True; if addition of new property was success
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Sample Call:
+      </th>
+      <td>
+        <ul>
+          <li>
+            Step 1: Instantiate ConceptDomainAuthoringOperation if it is not done yet:
+
+
+            org.lexevs.cts2.author.ConceptDomainAuthoringOperation cdAuthorOp = LexEvsCTS2Impl.defaultInstance().getAuthoringOperation().getConceptDomainAuthoringOperation();
+          </li>
+          <li>
+            Step 2: Populate RevisionInfo object:
+
+
+            RevisionInfo revInfo = new RevisionInfo();
+            revInfo.setChangeAgent(&#34;change Agent Name&#34;);
+            revInfo.setChangeInstruction(&#34;here goes the change Instructions&#34;);
+            revInfo.setDescription(&#34;description of the resource&#34;);
+            revInfo.setEditOrder(1L);
+            revInfo.setRevisionDate(new Date());
+            revInfo.setRevisionId(UUID.randomUUID().toString());
+          </li>
+          <li>
+            Step 3: Populate a property to be added:
+
+
+            Property prop = new Property();
+            prop.setPropertyId(&#34;propertyId1&#34;);
+            prop.setPropertyName(&#34;propertyName&#34;);
+            prop.setIsActive(false);
+            prop.setLanguage(&#34;en&#34;);
+            prop.setOwner(&#34;owner&#34;);
+            prop.setPropertyType(PropertyTypes.PROPERTY.name());
+            Text text = new Text();
+            text.setContent(&#34;content&#34;);
+            text.setDataType(&#34;Text datatype&#34;);
+            prop.setValue(text);
+          </li>
+          <li>
+            Step 4: call add property method by passing the code system information, concept domain information and a new property:
+
+
+            boolean added = cdAuthOp.addNewConceptDomainProperty(&#34;CD00A&#34;, &#34;Automobiles-CD&#34;, prop, &#34;Automobiles&#34;, &#34;1.0&#34;, revInfo);
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h4 id="LexEVS6.0CTS2Authoring3ConceptDomainAuthoringOperationAPI-addConceptDomainToValueSetBinding">
+  addConceptDomainToValueSetBinding
+</h4>
+This function provides capability to create a value set to concept domain binding.
+
+addConceptDomainToValueSetBinding(String conceptDomainId, String namespace, String codeSystemNameOrURI, String codeSystemVersion, URI valueSetURI, RevisionInfo revisionInfo)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Create a value set to concept domain binding.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        <ul>
+          <li>
+            java.lang.String conceptDomainId - (Mandatory) Identifier of a Concept Domain.
+          </li>
+          <li>
+            java.lang.String namespace - (Mandatory) Namespace of a Concept Domain.
+          </li>
+          <li>
+            java.lang.String codeSystemNameOrURI - (Mandatory) Name or URI of a Code System that contains the concept domain.
+          </li>
+          <li>
+            java.lang.String codeSystemVersion - (Mandatory) Version of a Code System that contains the concept domain.
+          </li>
+          <li>
+            java.net.URI valueSetURI - (Mandatory) URI of a value set that will be binded to the concept domain.
+          </li>
+          <li>
+            org.lexevs.cts2.core.update.RevisionInfo revision - (Mandatory) Contains revision information like unique RevisionId, change description, author information etc.
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        boolean - True; if binding was success
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Sample Call:
+      </th>
+      <td>
+        <ul>
+          <li>
+            Step 1: Instantiate ConceptDomainAuthoringOperation if it is not done yet:
+
+
+            org.lexevs.cts2.author.ConceptDomainAuthoringOperation cdAuthorOp = LexEvsCTS2Impl.defaultInstance().getAuthoringOperation().getConceptDomainAuthoringOperation();
+          </li>
+          <li>
+            Step 2: Populate RevisionInfo object:
+
+
+            RevisionInfo revInfo = new RevisionInfo();
+            revInfo.setChangeAgent(&#34;change Agent Name&#34;);
+            revInfo.setChangeInstruction(&#34;here goes the change Instructions&#34;);
+            revInfo.setDescription(&#34;description of the resource&#34;);
+            revInfo.setEditOrder(1L);
+            revInfo.setRevisionDate(new Date());
+            revInfo.setRevisionId(UUID.randomUUID().toString());
+          </li>
+          <li>
+            Step 3: call add binding method by passing the code system information, concept domain information and value set uri:
+
+
+            boolean added = cdAuthOp.addConceptDomainToValueSetBinding(&#34;CD00A&#34;, &#34;Automobiles-CD&#34;, &#34;Automobiles&#34;, &#34;1.0&#34;, &#34;some_value_set_uri&#34;, revInfo);
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h3 id="LexEVS6.0CTS2Authoring3ConceptDomainAuthoringOperationAPI-EditOperations">
+  Edit Operations
+</h3>
+The edit operation provides the capability to modify properties of a concept domain. For every entry that gets modified, a unique revision(version) identifier will be assigned to that entry. This helps in retrieving snapshots of an entry based on its revision(version) identifier. This unique id can be passed in using the RevisionInfo object described above.
+<h4 id="LexEVS6.0CTS2Authoring3ConceptDomainAuthoringOperationAPI-updateConceptDomainProperty">
+  updateConceptDomainProperty
+</h4>
+This function provides capability to modify existing property of a concept domain.
+
+updateConceptDomainProperty(String conceptDomainId, String namespace, Property changedProperty, String codeSystemNameOrURI, String codeSystemVersion, RevisionInfo revisionInfo)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Modifies existing property of a concept domain.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        <ul>
+          <li>
+            java.lang.String conceptDomainId - (Mandatory) Identifier of a Concept Domain that contains the property.
+          </li>
+          <li>
+            java.lang.String namespace - (Mandatory) Namespace of a concept domain that contains the property.
+          </li>
+          <li>
+            org.LexGrid.commonTypes.Property property - (Mandatory) Modified property.
+          </li>
+          <li>
+            java.lang.String codeSystemNameOrURI - (Mandatory) Name or URI of a Code System that contains the concept domain.
+          </li>
+          <li>
+            java.lang.String codeSystemVersion - (Mandatory) Version of a Code System that contains the concept domain.
+          </li>
+          <li>
+            org.lexevs.cts2.core.update.RevisionInfo revision - (Mandatory) Contains revision information like unique RevisionId, change description, author information etc.
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        boolean - True; if update was success
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Exception:
+      </td>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Sample Call:
+      </td>
+      <td>
+        <ul>
+          <li>
+            Step 1: Instantiate ConceptDomainAuthoringOperation if it is not done yet:
+
+
+            org.lexevs.cts2.author.ConceptDomainAuthoringOperation cdAuthorOp = LexEvsCTS2Impl.defaultInstance().getAuthoringOperation().getConceptDomainAuthoringOperation();
+          </li>
+          <li>
+            Step 2: Populate RevisionInfo object:
+
+
+            RevisionInfo revInfo = new RevisionInfo();
+            revInfo.setChangeAgent(&#34;change Agent Name&#34;);
+            revInfo.setChangeInstruction(&#34;here goes the change Instructions&#34;);
+            revInfo.setDescription(&#34;description of the resource&#34;);
+            revInfo.setEditOrder(1L);
+            revInfo.setRevisionDate(new Date());
+            revInfo.setRevisionId(UUID.randomUUID().toString());
+          </li>
+          <li>
+            Step 3: Populate a modified property. Just modified isActive to &#39;true&#39; and language to &#39;eng&#39; in property &#39;propertyId1&#39;:
+
+
+            Property prop = new Property();
+            prop.setPropertyId(&#34;propertyId1&#34;);
+            prop.setPropertyName(&#34;propertyName&#34;);
+            prop.setIsActive(true);
+            prop.setLanguage(&#34;eng&#34;);
+          </li>
+          <li>
+            Step 4: call update property method by passing the code system , concept domain information and the modified property:
+
+
+            boolean updated = cdAuthOp.updateConceptDomainProperty(&#34;CD0001&#34;, &#34;Automobiles-CD&#34;, prop, &#34;Automobiles&#34;, &#34;1.0&#34;, revInfo);
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h3 id="LexEVS6.0CTS2Authoring3ConceptDomainAuthoringOperationAPI-RemoveOperations">
+  Remove Operations
+</h3>
+Remove operation provides capability to remove concept domain, its property and its binding to value set.
+<h4 id="LexEVS6.0CTS2Authoring3ConceptDomainAuthoringOperationAPI-removeConceptDomain">
+  removeConceptDomain
+</h4>
+This function provides capability to remove a concept domain.
+
+removeConceptDomain(String conceptDomainId, String namespace, String codeSystemNameOrURI, String codeSystemVersion, RevisionInfo revisionInfo)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Removes a concept domain from code system.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        <ul>
+          <li>
+            java.lang.String conceptDomainId - (Mandatory) Identifier of a Concept Domain to be removed.
+          </li>
+          <li>
+            java.lang.String namespace - (Mandatory) Namespace of a Concept Domain to be removed.
+          </li>
+          <li>
+            java.lang.String codeSystemNameOrURI - (Mandatory) Name or URI of a Code System that contains the concept domain to be removed.
+          </li>
+          <li>
+            java.lang.String codeSystemVersion - (Mandatory) Version of a Code System that contains the concept domain to be removed.
+          </li>
+          <li>
+            org.lexevs.cts2.core.update.RevisionInfo revision - (Mandatory) Contains revision information like unique RevisionId, change description, author information etc.
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        boolean - True; if remove was success
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Sample Call:
+      </th>
+      <td>
+        <ul>
+          <li>
+            Step 1: Instantiate ConceptDomainAuthoringOperation if it is not done yet:
+
+
+            org.lexevs.cts2.author.ConceptDomainAuthoringOperation cdAuthorOp = LexEvsCTS2Impl.defaultInstance().getAuthoringOperation().getConceptDomainAuthoringOperation();
+          </li>
+          <li>
+            Step 2: Populate RevisionInfo object:
+
+
+            RevisionInfo revInfo = new RevisionInfo();
+            revInfo.setChangeAgent(&#34;change Agent Name&#34;);
+            revInfo.setChangeInstruction(&#34;here goes the change Instructions&#34;);
+            revInfo.setDescription(&#34;description of the resource&#34;);
+            revInfo.setEditOrder(1L);revInfo.setRevisionDate(new Date());
+            revInfo.setRevisionId(UUID.randomUUID().toString());
+          </li>
+          <li>
+            Step 3: call remove concept domain method by passing the code system and concept domain information:
+
+
+            boolean removed = cdAuthOp.deleteConcept(&#34;CD0001&#34;, &#34;Automobiles-CD&#34;, &#34;urn:oid:11.11.0.99&#34;, &#34;1.0&#34;, revInfo);
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h4 id="LexEVS6.0CTS2Authoring3ConceptDomainAuthoringOperationAPI-removeConceptDomainProperty">
+  removeConceptDomainProperty
+</h4>
+This function provides capability to remove property of a concept domain.
+
+removeConceptDomainProperty(String conceptDomainId, String namespace, Property property, String codeSystemNameOrURI, String codeSystemVersion, RevisionInfo revisionInfo)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Removes a property of a concept domain.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        <ul>
+          <li>
+            java.lang.String conceptDomainId - (Mandatory) Concept Domain identifier that contains the property.
+          </li>
+          <li>
+            java.lang.String namespace - (Mandatory) Namespace of a concept domain that contains the property.
+          </li>
+          <li>
+            org.LexGrid.commonType.Property property - (Mandatory) Property that needs to be removed.
+          </li>
+          <li>
+            java.lang.String codeSystemNameOrURI - (Mandatory) Code System URI/name that contains the concept domain.
+          </li>
+          <li>
+            java.lang.String representsVersion - (Mandatory) Version of the Code System that contains the concept domain.
+          </li>
+          <li>
+            org.lexevs.cts2.core.update.RevisionInfo revision - (Mandatory) Contains revision information like unique RevisionId, change description, author information etc.
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        boolean - True; if remove was success
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Sample Call:
+      </th>
+      <td>
+        <ul>
+          <li>
+            Step 1: Instantiate ConceptDomainAuthoringOperation if it is not done yet:
+
+
+            org.lexevs.cts2.author.ConceptDomainAuthoringOperation cdAuthorOp = LexEvsCTS2Impl.defaultInstance().getAuthoringOperation().getConceptDomainAuthoringOperation();
+          </li>
+          <li>
+            Step 2: Populate RevisionInfo object:
+
+
+            RevisionInfo revInfo = new RevisionInfo();
+            revInfo.setChangeAgent(&#34;change Agent Name&#34;);
+            revInfo.setChangeInstruction(&#34;here goes the change Instructions&#34;);
+            revInfo.setDescription(&#34;description of the resource&#34;);
+            revInfo.setEditOrder(1L);
+            revInfo.setRevisionDate(new Date());
+            revInfo.setRevisionId(UUID.randomUUID().toString());
+          </li>
+          <li>
+            Step 3: Populate property that needs to be removed:
+
+
+            Property propertyToRemove = new Property();
+            propertyToRemove.setPropertyId(&#34;p1&#34;);
+          </li>
+          <li>
+            Step 4: Call remove property method by passing the code system, concept domain and property information:
+
+
+            boolean removed = cdAuthOp.removeConceptDomainProperty(&#34;CD0001&#34;, &#34;Automobiles-CD&#34;, propertyToRemove, &#34;urn:oid:11.11.0.99&#34;, &#34;1.0&#34;, revInfo);
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h4 id="LexEVS6.0CTS2Authoring3ConceptDomainAuthoringOperationAPI-removeConceptDomainToValueSetBinding">
+  removeConceptDomainToValueSetBinding
+</h4>
+This function provides capability to remove value set to concept domain binding.
+
+removeConceptDomainToValueSetBinding(String conceptDomainId, String namespace, String codeSystemNameOrURI, String codeSystemVersion, URI valueSetURI, RevisionInfo revisionInfo)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Removes value set to concept domain binding.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        <ul>
+          <li>
+            java.lang.String conceptDomainId - (Mandatory) Concept Domain identifier.
+          </li>
+          <li>
+            java.lang.String namespace - (Mandatory) Namespace of a concept domain
+          </li>
+          <li>
+            java.lang.String codeSystemNameOrURI - (Mandatory) Code System URI/name that contains the concept domain.
+          </li>
+          <li>
+            java.lang.String representsVersion - (Mandatory) Version of the Code System that contains the concept domain.
+          </li>
+          <li>
+            java.net.UIR valueSetURI - (Mandatory) URI of a value set.
+          </li>
+          <li>
+            org.lexevs.cts2.core.update.RevisionInfo revision - (Mandatory) Contains revision information like unique RevisionId, change description, author information etc.
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        boolean - True; if binding remove was success
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Sample Call:
+      </th>
+      <td>
+        <ul>
+          <li>
+            Step 1: Instantiate ConceptDomainAuthoringOperation if it is not done yet:
+
+
+            org.lexevs.cts2.author.ConceptDomainAuthoringOperation cdAuthorOp = LexEvsCTS2Impl.defaultInstance().getAuthoringOperation().getConceptDomainAuthoringOperation();
+          </li>
+          <li>
+            Step 2: Populate RevisionInfo object:
+
+
+            revisionInfo revInfo = new RevisionInfo();
+            revInfo.setChangeAgent(&#34;change Agent Name&#34;);
+            revInfo.setChangeInstruction(&#34;here goes the change Instructions&#34;);
+            revInfo.setDescription(&#34;description of the resource&#34;);
+            revInfo.setEditOrder(1L);
+            revInfo.setRevisionDate(new Date());
+            revInfo.setRevisionId(UUID.randomUUID().toString());
+          </li>
+          <li>
+            Step 3: Call remove binding method by passing the code system, concept domain and value set information:
+
+
+            boolean removed = cdAuthOp.removeConceptDomainToValueSetBinding(&#34;CD0001&#34;, &#34;Automobiles-CD&#34;, &#34;urn:oid:11.11.0.99&#34;, &#34;1.0&#34;, &#34;some_value_set_uri&#34;, revInfo);
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h3 id="LexEVS6.0CTS2Authoring3ConceptDomainAuthoringOperationAPI-VersionableChangeOperations">
+  Versionable Change Operations
+</h3>
+Versionable Change operation provides capability to modify versionable attributes of Concept Domain like Status, Effective Date, Expiration Date, isActive and Owner.
+<h4 id="LexEVS6.0CTS2Authoring3ConceptDomainAuthoringOperationAPI-updateConceptDomainStatus">
+  updateConceptDomainStatus
+</h4>
+This function modifies the status of a concept domain.
+
+updateConceptDomainStatus(String conceptDomainId, String namespace, String newStatus, String codeSystemNameOrURI, String codeSystemVersion, RevisionInfo revisionInfo)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Modifies the status of a concept domain.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        <ul>
+          <li>
+            java.lang.String conceptDomainId - (Mandatory) identifier of a concept domain.
+          </li>
+          <li>
+            java.lang.String namespace - (Mandatory) Mamespace of a concept domain.
+          </li>
+          <li>
+            java.lang.String status - (Mandatory) Modified status value.
+          </li>
+          <li>
+            java.lang.String codeSystemNameOrURI - (Mandatory) Code System URI that contains the concept domain.
+          </li>
+          <li>
+            java.lang.String codeSystemVersion - (Mandatory) Version of the Code System that contains the concept domain.
+          </li>
+          <li>
+            org.lexevs.cts2.core.update.RevisionInfo revision - (Mandatory) Contains revision information like unique RevisionId, change description, author information etc.
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        boolean - True; if update was success
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Sample Call:
+      </th>
+      <td>
+        <ul>
+          <li>
+            Step 1: Instantiate ConceptDomainAuthoringOperation if it is not done yet:
+
+
+            org.lexevs.cts2.author.ConceptDomainAuthoringOperation cdAuthorOp = LexEvsCTS2Impl.defaultInstance().getAuthoringOperation().getConceptDomainAuthoringOperation();
+          </li>
+          <li>
+            Step 2: Populate RevisionInfo object:
+
+
+            revisionInfo revInfo = new RevisionInfo();
+            revInfo.setChangeAgent(&#34;change Agent Name&#34;);
+            revInfo.setChangeInstruction(&#34;here goes the change Instructions&#34;);
+            revInfo.setDescription(&#34;description of the resource&#34;);
+            revInfo.setEditOrder(1L);
+            revInfo.setRevisionDate(new Date());
+            revInfo.setRevisionId(UUID.randomUUID().toString());
+          </li>
+          <li>
+            Step 2: Call status change method by passing the code system, concept domain and status information:
+
+
+            boolean changed = cdAuthOp.updateConceptDomainStatus(&#34;CD00001&#34;, &#34;Automobiles-CD&#34;, &#34;Active&#34;, &#34;urn:oid:11.11.0.99&#34;, &#34;1.0&#34;, revInfo);
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h4 id="LexEVS6.0CTS2Authoring3ConceptDomainAuthoringOperationAPI-activateConceptDomain">
+  activateConceptDomain
+</h4>
+This function activates concept domain so that it can be accessed in the terminology service.
+
+activateConceptDomain(String conceptDomainId, String namespace, String codeSystemNameOrURI, String codeSystemVersion, RevisionInfo revisionInfo)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Activates concept domain.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        <ul>
+          <li>
+            java.lang.String conceptDomainId - (Mandatory) identifier of a concept domain.
+          </li>
+          <li>
+            java.lang.String namespace - (Mandatory) Mamespace of a concept domain.
+          </li>
+          <li>
+            java.lang.String codeSystemNameOrURI - (Mandatory) Code System URI that contains the concept domain.
+          </li>
+          <li>
+            java.lang.String codeSystemVersion - (Mandatory) Version of the Code System that contains the concept domain.
+          </li>
+          <li>
+            org.lexevs.cts2.core.update.RevisionInfo revision - (Mandatory) Contains revision information like unique RevisionId, change description, author information etc.
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        boolean - True; if activation was success
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Sample Call:
+      </th>
+      <td>
+        <ul>
+          <li>
+            Step 1: Instantiate ConceptDomainAuthoringOperation if it is not done yet:
+
+
+            org.lexevs.cts2.author.ConceptDomainAuthoringOperation cdAuthorOp = LexEvsCTS2Impl.defaultInstance().getAuthoringOperation().getConceptDomainAuthoringOperation();
+          </li>
+          <li>
+            Step 2: Populate RevisionInfo object:
+
+
+            revisionInfo revInfo = new RevisionInfo();
+            revInfo.setChangeAgent(&#34;change Agent Name&#34;);
+            revInfo.setChangeInstruction(&#34;here goes the change Instructions&#34;);
+            revInfo.setDescription(&#34;description of the resource&#34;);
+            revInfo.setEditOrder(1L);
+            revInfo.setRevisionDate(new Date());
+            revInfo.setRevisionId(UUID.randomUUID().toString());
+          </li>
+          <li>
+            Step 2: Call activate method by passing the code system and concept domain information:
+
+
+            boolean activated = cdAuthOp.activateConceptDomain(&#34;CD00001&#34;, &#34;Automobiles-CD&#34;, &#34;urn:oid:11.11.0.99&#34;, &#34;1.0&#34;, revInfo);
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h4 id="LexEVS6.0CTS2Authoring3ConceptDomainAuthoringOperationAPI-deactivateConceptDomain">
+  deactivateConceptDomain
+</h4>
+This function deactivates concept domain so that it can no longer be accessed in the terminology service.
+
+deactivateConceptDomain(String conceptDomainId, String namespace, String codeSystemNameOrURI, String codeSystemVersion, RevisionInfo revisionInfo)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Deactivates concept domain.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        <ul>
+          <li>
+            java.lang.String conceptDomainId - (Mandatory) identifier of a concept domain.
+          </li>
+          <li>
+            java.lang.String namespace - (Mandatory) Mamespace of a concept domain.
+          </li>
+          <li>
+            java.lang.String codeSystemNameOrURI - (Mandatory) Code System URI that contains the concept domain.
+          </li>
+          <li>
+            java.lang.String codeSystemVersion - (Mandatory) Version of the Code System that contains the concept domain.
+          </li>
+          <li>
+            org.lexevs.cts2.core.update.RevisionInfo revision - (Mandatory) Contains revision information like unique RevisionId, change description, author information etc.
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        boolean - True; if deactivation was success
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Sample Call:
+      </th>
+      <td>
+        <ul>
+          <li>
+            Step 1: Instantiate ConceptDomainAuthoringOperation if it is not done yet:
+
+
+            org.lexevs.cts2.author.ConceptDomainAuthoringOperation cdAuthorOp = LexEvsCTS2Impl.defaultInstance().getAuthoringOperation().getConceptDomainAuthoringOperation();
+          </li>
+          <li>
+            Step 2: Populate RevisionInfo object:
+
+
+            revisionInfo revInfo = new RevisionInfo();
+            revInfo.setChangeAgent(&#34;change Agent Name&#34;);
+            revInfo.setChangeInstruction(&#34;here goes the change Instructions&#34;);
+            revInfo.setDescription(&#34;description of the resource&#34;);
+            revInfo.setEditOrder(1L);
+            revInfo.setRevisionDate(new Date());
+            revInfo.setRevisionId(UUID.randomUUID().toString());
+          </li>
+          <li>
+            Step 2: Call deactivate method by passing the code system and concept domain information:
+
+
+            boolean deactivated = cdAuthOp.deactivateConceptDomain(&#34;CD00001&#34;, &#34;Automobiles-CD&#34;, &#34;urn:oid:11.11.0.99&#34;, &#34;1.0&#34;, revInfo);
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h4 id="LexEVS6.0CTS2Authoring3ConceptDomainAuthoringOperationAPI-updateConceptDomainVersionable">
+  updateConceptDomainVersionable
+</h4>
+This function provides capability to modify concept domain versionable attributes like effective date, expiration date, owner, status etc.
+
+updateConceptDomainVersionable(String conceptDomainId, String namespace, Versionable changedVersionable, String codeSystemNameOrURI, String codeSystemVersion, RevisionInfo revisionInfo)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Update concept domain versionable attributes like effective date, expiration date, owner, status etc.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        <ul>
+          <li>
+            java.lang.String conceptDomainId - (Mandatory) identifier of a concept domain.
+          </li>
+          <li>
+            java.lang.String namespace - (Mandatory) Mamespace of a concept domain.
+          </li>
+          <li>
+            org.LexGrid.commonTypes.Versionable changedVersionable - (Mandatory) versionable (like:owner, effectiveDate, expirationDate, status etc) changes.
+          </li>
+          <li>
+            java.lang.String codeSystemNameOrURI - (Mandatory) Code System URI that contains the concept domain.
+          </li>
+          <li>
+            java.lang.String codeSystemVersion - (Mandatory) Version of the Code System that contains the concept domain.
+          </li>
+          <li>
+            org.lexevs.cts2.core.update.RevisionInfo revision - (Mandatory) Contains revision information like unique RevisionId, change description, author information etc.
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        boolean - True; if update was success
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Sample Call:
+      </th>
+      <td>
+        <ul>
+          <li>
+            Step 1: Instantiate ConceptDomainAuthoringOperation if it is not done yet:
+
+
+            org.lexevs.cts2.author.ConceptDomainAuthoringOperation cdAuthorOp = LexEvsCTS2Impl.defaultInstance().getAuthoringOperation().getConceptDomainAuthoringOperation();
+          </li>
+          <li>
+            Step 2: Populate RevisionInfo object:
+
+
+            revisionInfo revInfo = new RevisionInfo();
+            revInfo.setChangeAgent(&#34;change Agent Name&#34;);
+            revInfo.setChangeInstruction(&#34;here goes the change Instructions&#34;);
+            revInfo.setDescription(&#34;description of the resource&#34;);
+            revInfo.setEditOrder(1L);
+            revInfo.setRevisionDate(new Date());
+            revInfo.setRevisionId(UUID.randomUUID().toString());
+          </li>
+          <li>
+            Step 2: Populate versionable changes:
+
+
+            Versionable changedVersionable = new Versionable();
+            changedVersionable.setEffectiveDate(new Date());
+            changedVersionable.setIsActive(true);
+            changedVersionable.setOwner(&#34;new Owner&#34;);
+            changedVersionable.setStatus(&#34;new status&#34;);
+          </li>
+          <li>
+            Step 3: Call change versionable method by passing the code system, concept domain and changed versionable information:
+
+
+            boolean changed = cdAuthOp.updateConceptDomainVersionable(&#34;CD00001&#34;, &#34;Automobiles-CD&#34;, changedVersionable, &#34;urn:oid:11.11.0.99&#34;, &#34;1.0&#34;, revInfo);
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>

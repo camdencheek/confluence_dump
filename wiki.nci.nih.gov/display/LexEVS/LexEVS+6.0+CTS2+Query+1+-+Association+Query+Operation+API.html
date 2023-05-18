@@ -1,0 +1,403 @@
+Contents of this Page
+<ul>
+  <li>
+    <a href="#LexEVS6.0CTS2Query1AssociationQueryOperationAPI-Introduction" rel="nofollow">
+      Introduction
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.0CTS2Query1AssociationQueryOperationAPI-Interface" rel="nofollow">
+      Interface
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.0CTS2Query1AssociationQueryOperationAPI-QueryFunctions" rel="nofollow">
+      Query Functions
+    </a>
+    <ul>
+      <li>
+        <a href="#LexEVS6.0CTS2Query1AssociationQueryOperationAPI-listAssociations" rel="nofollow">
+          listAssociations
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.0CTS2Query1AssociationQueryOperationAPI-determineTransitiveConceptRelationship" rel="nofollow">
+          determineTransitiveConceptRelationship
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.0CTS2Query1AssociationQueryOperationAPI-computeSubsumptionRelationship" rel="nofollow">
+          computeSubsumptionRelationship
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.0CTS2Query1AssociationQueryOperationAPI-getAssociationDetails" rel="nofollow">
+          getAssociationDetails
+        </a>
+      </li>
+    </ul>
+  </li>
+</ul>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        CTS2 Links for LexEVS 6.0
+      </th>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427281" rel="nofollow">
+              CTS2 API Main Page
+            </a>
+          </li>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427334" rel="nofollow">
+              Programmer&#39;s Guide Main Page
+            </a>
+          </li>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=69730353" rel="nofollow">
+              LexEVS 6.0 Main Page
+            </a>
+          </li>
+          <li>
+            <a href="https://wiki.nci.nih.gov/display/LexEVS" rel="nofollow">
+              LexEVS Current Release
+            </a>
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="LexEVS6.0CTS2Query1AssociationQueryOperationAPI-Introduction">
+  Introduction
+</h2>
+LexEVS CTS2 Association Query Operation API provides capability to query Associations available in the system.
+<h2 id="LexEVS6.0CTS2Query1AssociationQueryOperationAPI-Interface">
+  Interface
+</h2>
+org.lexevs.cts2.query.AssociationQueryOperation is the main interface for all the queries against Associations. This interface can be accessed using main LexEVSCTS2 interface:
+
+
+
+org.lexevs.cts2.query.AssociationQueryOperation associationQueryOp = new org.lexevs.cts2.LexEvsCTS2Impl().getQueryOperation().getAssociationQueryOperation();
+<h2 id="LexEVS6.0CTS2Query1AssociationQueryOperationAPI-QueryFunctions">
+  Query Functions
+</h2>
+Here are the major query functions available using AssociationQueryOperation interface:
+<h3 id="LexEVS6.0CTS2Query1AssociationQueryOperationAPI-listAssociations">
+  listAssociations
+</h3>
+This function returns the resolved concept reference (which contains the associations) according to given node.
+
+listAssociations(String codingSystemName CodingSchemeVersionOrTag versionOrTag String namespace String code String associationName boolean isBackward int depth int maxToReturn)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Returns the resolved concept reference (which contains the associations) according to given node.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        <ul>
+          <li>
+            java.lang.String codingSystemName - The code system of the Associations to be returned.
+          </li>
+          <li>
+            org.LexGrid.LexBIG.DataModel.Core.CodingSchemeVersionOrTag versionOrTag - (Optional) Version identifier of the code system (defaults to &#39;PRODUCTION&#39; tagged code systems)
+          </li>
+          <li>
+            java.lang.String namespace - The namespace of the Entity focus.
+          </li>
+          <li>
+            java.lang.String code - The code of the Entity focus.
+          </li>
+          <li>
+            java.lang.String associationName - (Optional) The Association to restrict to (if null, all Associations will be returned)
+          </li>
+          <li>
+            boolean isBackward - The code system of the Associations to be returned.
+          </li>
+          <li>
+            integer depth - The Association depth to traverse
+          </li>
+          <li>
+            integer maxToReturn - The max number of results to return (use &#39;-1&#39; for &#39;no limit&#39;)
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.DataModel.Collections.ResolvedConceptReferenceList - List of Associations
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Sample Call:
+      </th>
+      <td>
+        <ul>
+          <li>
+            Step 1: Instantiate CodeSystemQueryOperation if it is not done yet:
+
+
+            org.lexevs.cts2.query.AssociationQueryOperation associationQueryOp = new org.lexevs.cts2.LexEvsCTS2Impl().getQueryOperation().getAssociationQueryOperation();
+          </li>
+          <li>
+            Step 2: To get all the Associations for a given code and namespace:
+
+
+            org.LexGrid.LexBIG.DataModel.Collections.CodingSchemeRenderingList csrList = associationQueryOp.listAssociations(&#34;CodeSystem&#34;,null,&#34;ns&#34;,&#34;code&#34;,null,false,1,-1);
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h3 id="LexEVS6.0CTS2Query1AssociationQueryOperationAPI-determineTransitiveConceptRelationship">
+  determineTransitiveConceptRelationship
+</h3>
+Returns the path according to given two nodes.
+
+determineTransitiveConceptRelationship(String codingSystemName CodingSchemeVersionOrTag versionOrTag String relationContainerName String associationName String sourceCode String sourceNamespace String targetCode String targetNamespace)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Returns the path according to given two nodes.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        <ul>
+          <li>
+            java.lang.String codingSystemName - The code system of the Associations to be returned.
+          </li>
+          <li>
+            org.LexGrid.LexBIG.DataModel.Core.CodingSchemeVersionOrTag versionOrTag - (Optional) Version identifier of the code system (defaults to &#39;PRODUCTION&#39; tagged code systems)
+          </li>
+          <li>
+            java.lang.String relationContainerName - (Optional) The Relations Container name.
+          </li>
+          <li>
+            java.lang.String associationName - (Optional) The Association to restrict to (if null, all Associations will be used)
+          </li>
+          <li>
+            java.lang.String sourceCode - The source Entity code.
+          </li>
+          <li>
+            java.lang.String sourceNamespace - The source Entity namespace.
+          </li>
+          <li>
+            java.lang.String targetCode - The target Entity code.
+          </li>
+          <li>
+            java.lang.String targetNamespace - The target Entity namespace.
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.DataModel.Core.ResolvedConceptReference - The path between the two nodes.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Sample Call:
+      </th>
+      <td>
+        <ul>
+          <li>
+            Step 1: Instantiate CodeSystemQueryOperation if it is not done yet:
+
+
+            org.lexevs.cts2.query.AssociationQueryOperation associationQueryOp = new org.lexevs.cts2.LexEvsCTS2Impl().getQueryOperation().getAssociationQueryOperation();
+          </li>
+          <li>
+            Step 2: To get all the Associations for a given code and namespace:
+
+
+            org.LexGrid.LexBIG.DataModel.Collections.CodingSchemeRenderingList csrList = associationQueryOp.determineTransitiveConceptRelationship(&#34;CodeSystem&#34;,null,&#34;r1&#34;,&#34;hasSubtype&#34;,&#34;sc&#34;,&#34;sns&#34;,&#34;tc&#34;,&#34;tns&#34;);
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h3 id="LexEVS6.0CTS2Query1AssociationQueryOperationAPI-computeSubsumptionRelationship">
+  computeSubsumptionRelationship
+</h3>
+Return whether the two nodes has a transitive closure path.
+
+determineTransitiveConceptRelationship(String codingSystemName CodingSchemeVersionOrTag versionOrTag String associationType ConceptReference sourceCode, ConceptReference targetCode)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Return whether the two nodes has a transitive closure path.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        <ul>
+          <li>
+            java.lang.String codingSystemName - The code system of the Associations to be returned.
+          </li>
+          <li>
+            org.LexGrid.LexBIG.DataModel.Core.CodingSchemeVersionOrTag versionOrTag - (Optional) Version identifier of the code system (defaults to &#39;PRODUCTION&#39; tagged code systems)
+          </li>
+          <li>
+            java.lang.String associationType - (Optional) The Association to restrict to (if null, all Associations will be used)
+          </li>
+          <li>
+            org.LexGrid.LexBIG.DataModel.Core.ConceptReference sourceCode - The source Entity.
+          </li>
+          <li>
+            org.LexGrid.LexBIG.DataModel.Core.ConceptReference sourceNamespace - The target Entity.
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        boolean - &#39;true&#39; if the two nodes have a transitive closure path, &#39;false&#39; if not.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Sample Call:
+      </th>
+      <td>
+        <ul>
+          <li>
+            Step 1: Instantiate CodeSystemQueryOperation if it is not done yet:
+
+
+            org.lexevs.cts2.query.AssociationQueryOperation associationQueryOp = new org.lexevs.cts2.LexEvsCTS2Impl().getQueryOperation().getAssociationQueryOperation();
+          </li>
+          <li>
+            Step 2a: Create Concept References:
+
+
+            ConceptReference source = new ConceptReference();
+            source.setCode = &#34;sourceCode&#34;;
+            ConceptReference target= new ConceptReference();
+            target.setCode = &#34;targetCode&#34;;
+          </li>
+          <li>
+            Step 2b: To check the ConceptReferences for subsumption:
+
+
+            boolean isSubsumed = associationQueryOp.computeSubsumptionRelationship(&#34;CodeSystem&#34;,null,&#34;hasSubtype&#34;,source,target&#34;);
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h3 id="LexEVS6.0CTS2Query1AssociationQueryOperationAPI-getAssociationDetails">
+  getAssociationDetails
+</h3>
+Return association triple according to association instance id.
+
+getAssociationDetails(String codingSchemeName, CodingSchemeVersionOrTag versionOrTag, String associationInstanceId)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Return association triple according to association instance id.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        <ul>
+          <li>
+            java.lang.String codingSchemeName - (Mandatory) Name of the code system.
+          </li>
+          <li>
+            org.LexGrid.LexBIG.DataModel.Core.CodingSchemeVersionOrTag versionOrTag - (Optional) Version or tag (like &#39;dev&#39;, &#39;production&#39; etc) of the code system.
+          </li>
+          <li>
+            java.lang.String associationInstanceId - (Mandatory) The unique id of the triple.
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        org.lexevs.dao.database.service.association.AssociationService.AssociationTriple - Detailed Association Triple object
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Sample Call:
+      </th>
+      <td>
+        <ul>
+          <li>
+            Step 1: Instantiate CodeSystemQueryOperation if it is not done yet:
+
+
+            org.lexevs.cts2.query.AssociationQueryOperation associationQueryOp = new org.lexevs.cts2.LexEvsCTS2Impl().getQueryOperation().getAssociationQueryOperation();
+          </li>
+          <li>
+            Step 2: Populate CodeSystemVersionOrTag object:
+
+
+            CodingSchemeVersionOrTag versionOrTag = new CodingSchemeVersionOrTag();
+            versionOrTag.setVersion(&#34;1.0&#34;);
+          </li>
+          <li>
+            Step 3: Call getAssociationDetails method by providing code system version and association instance id:
+
+
+            AssociationTriple triple = csQueryOp.getAssociationDetails (&#34;Automobiles&#34;, versionOrTag, &#34;id12345&#34;);
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>

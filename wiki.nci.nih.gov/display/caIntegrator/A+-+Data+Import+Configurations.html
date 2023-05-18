@@ -1,0 +1,260 @@
+This appendix describes configurations for importing data into a study.Topics in this appendix include the following:
+<ul>
+  <li>
+    <a href="#ADataImportConfigurations-SubjectAnnotationDataConfiguration" rel="nofollow">
+      Subject Annotation Data Configuration
+    </a>
+  </li>
+  <li>
+    <a href="#ADataImportConfigurations-Delimited-TextAnnotationImport" rel="nofollow">
+      Delimited-Text Annotation Import
+    </a>
+  </li>
+  <li>
+    <a href="#ADataImportConfigurations-AnnotationFieldConfiguration" rel="nofollow">
+      Annotation Field Configuration
+    </a>
+  </li>
+  <li>
+    <a href="#ADataImportConfigurations-SampleDataConfiguration" rel="nofollow">
+      Sample Data Configuration
+    </a>
+  </li>
+  <li>
+    <a href="#ADataImportConfigurations-GenomicDataConfiguration" rel="nofollow">
+      Genomic Data Configuration
+    </a>
+  </li>
+  <li>
+    <a href="#ADataImportConfigurations-SupplementalFilesConfiguration" rel="nofollow">
+      Supplemental Files Configuration
+    </a>
+    <ul>
+      <li>
+        <a href="#ADataImportConfigurations-SingleSampleFormat" rel="nofollow">
+          Single Sample Format
+        </a>
+      </li>
+      <li>
+        <a href="#ADataImportConfigurations-MultipleSampleFormat" rel="nofollow">
+          Multiple Sample Format
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#ADataImportConfigurations-ImagingDataConfiguration" rel="nofollow">
+      Imaging Data Configuration
+    </a>
+  </li>
+</ul>
+<h2 id="ADataImportConfigurations-SubjectAnnotationDataConfiguration">
+  Subject Annotation Data Configuration
+</h2>
+The following subject annotation data configuration information is collected:
+<ul>
+  <li>
+    Subject annotation Data Source (delimited text)
+  </li>
+  <li>
+    Protocol Id (of study to import)
+  </li>
+</ul>
+For delimited text, see
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726039" rel="nofollow">
+  Delimited-Text Annotation Import
+</a>
+. For subject annotation files, one field must be identified as the subject identifier.See
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726039" rel="nofollow">
+  Annotation Field Configuration
+</a>
+for details on specification of visibility and browse configuration.
+<h2 id="ADataImportConfigurations-Delimited-TextAnnotationImport">
+  Delimited-Text Annotation Import
+</h2>
+Delimited-text annotation files must be in standard comma-separated value format. The file must include a header line that specifies the name for each field. Each row of data must contain the same number of values as the header row. The file must include a column that will be designated as the identifier (for example, subject identifier, sample identifier, etc.) for each row. Each identifier must be unique. After upload of the file, the Study Manager must indicate for each field a Field Descriptor Type: Annotation or Identifier. For each Field Descriptor Type Annotation the Study Manager must select a Data Type: date, numeric or string.After specification of these types, the file will be validated to ensure that the values are valid for the types selected and that the file conforms to the requirements given above.For more information, see
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726024" rel="nofollow">
+  Working with Annotations
+</a>
+.
+<h2 id="ADataImportConfigurations-AnnotationFieldConfiguration">
+  Annotation Field Configuration
+</h2>
+For each annotation field (regardless of the source), the Study Manager must specify the following information:
+<ul>
+  <li>
+    Annotation semantics: each annotation field (whether associated with a subject, image series, image or sample) must either:
+    <ul>
+      <li>
+        be associated with an existing annotation definition known to the system,
+      </li>
+      <li>
+        be associated to an existing CDE in caDSR or
+      </li>
+      <li>
+        have sufficient semantic metadata recorded so that the field may be submitted for registration as a CDE in caDSR.
+      </li>
+    </ul>
+  </li>
+  <li>
+    Field authorization: Each field must be either declared publicly visible or restricted to a list of groups. The default will be the visibility settings given at the study level. For more information, see
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726024" rel="nofollow">
+      Define Fields Page for Editing Annotations
+    </a>
+    .
+  </li>
+  <li>
+    Whether the field is to be included in the results list for a given entity type (i.e. Subject, Sample, Image Series or Array Data) when browsing data.
+  </li>
+  <li>
+    Whether the field is to be included in simple single-input searches when browsing data.
+  </li>
+</ul>
+For more information, see
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726024" rel="nofollow">
+  Adding Subject Annotation Data
+</a>
+.
+<h2 id="ADataImportConfigurations-SampleDataConfiguration">
+  Sample Data Configuration
+</h2>
+Sample data can be uploaded from either caArray 2 or from delimited-text import. Samples imported from caArray 2 may have annotations updated by use of the delimited-text import functionality, if sample annotation is required. Import from caArray 2 requires specification of the following information:
+<ul>
+  <li>
+    caArray server hostname
+  </li>
+  <li>
+    caArray server JNDI port
+  </li>
+  <li>
+    caArray username
+  </li>
+  <li>
+    caArray password
+  </li>
+  <li>
+    Either the experiment identifier (to import all samples in the experiment) or a file containing a comma-separated list of samples in the format &#34;experiment identifier&#34;, &#34;sample name&#34;.
+  </li>
+  <li>
+    Mapping of samples to subjects. This may be specified by a comma-separated list in the format &#34;subject identifier&#34;, &#34;sample identifier&#34; or by a regular-expression based mapping formula.
+  </li>
+</ul>
+When samples are imported via delimited-text import, the time-point is associated to the sample itself. This means that each sample may be associated with only one time-point (i.e. multiple time-points for the same sample are invalid).
+<h2 id="ADataImportConfigurations-GenomicDataConfiguration">
+  Genomic Data Configuration
+</h2>
+All genomic data (i.e. array data) is imported from caArray 2. First the Study Manager must specify sufficient information to map study samples to caArray 2 samples. If all samples were imported directly from caArray 2 as described in Special Requirement: Sample Data Configuration, no further information is required for this step. If samples were imported via delimited-text, the Study Manager must specify
+<ul>
+  <li>
+    caArray server hostname
+  </li>
+  <li>
+    caArray server JNDI port
+  </li>
+  <li>
+    caArray username
+  </li>
+  <li>
+    caArray password
+  </li>
+  <li>
+    A mapping of caIntegrator sample identifiers to caArray 2 samples, specified as a comma-separated list in the format &#34;caIntegrator sample identifier&#34;, &#34;caArray 2 experiment identifier&#34;, &#34;caArray 2 sample name&#34;.
+  </li>
+</ul>
+The system enables the Study Manager to navigate easily to the selected caArray 2 instance.Next, the system indicates the available platforms and array data types available for the study samples. The Study Manager must indicate which platforms and data types to import and for each platform/data type combination must specify the following:
+<ul>
+  <li>
+    Whether to import the data
+  </li>
+  <li>
+    The visibility of the data, either public or restricted to a set of groups. Low-level genotyping data (raw data and normalized) always has restricted visibility.
+  </li>
+</ul>
+See also
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726039" rel="nofollow">
+  Supplemental Files Configuration
+</a>
+.
+<h2 id="ADataImportConfigurations-SupplementalFilesConfiguration">
+  Supplemental Files Configuration
+</h2>
+This section describes the format that must be used when creating supplemental files for use by caIntegrator. The supplemental files described here are to be added to an experiment in caArray prior to configuring a study in caIntegrator.The file itself is a tab-delimited text file. The file extension can be anything, though users typically use .txt. The name of each supplemental file must be unique within a caArray experiment.Inside the file, each row in the file contains the data from one reporter. Each column in the file must have a unique header name, that is, you cannot give two different columns the same column name.There are two supported formats for these files:
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726039" rel="nofollow">
+  Single Sample Format
+</a>
+and
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726039" rel="nofollow">
+  Multiple Sample Format
+</a>
+.
+<h3 id="ADataImportConfigurations-SingleSampleFormat">
+  Single Sample Format
+</h3>
+Single sample format requires the following parameters:
+<ul>
+  <li>
+    Minimum of two required columns
+  </li>
+  <li>
+    One column must contain the reporter/probe name
+  </li>
+  <li>
+    One column must contain the value be reported by the reporter
+  </li>
+  <li>
+    The file can have additional columns, though other than reporter/probe name and value mentioned above, the rest will be ignored
+  </li>
+  <li>
+    One single sample file for each sample in the experiment
+  </li>
+</ul>
+An example of single sample format file is shown in the following figure
+<img alt="Example single sample file format, described in text" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/A%20-%20Data%20Import%20Configurations/single%20sample%20file%20format.png?api=v2">
+<h3 id="ADataImportConfigurations-MultipleSampleFormat">
+  Multiple Sample Format
+</h3>
+Multiple sample format requires the following parameters:
+<ul>
+  <li>
+    One column must contain the reporter/probe name.
+  </li>
+  <li>
+    Each additional columns are the reporter values such that there is one column per sample.
+  </li>
+  <li>
+    One multiple sample file for the whole experiment.NoteCurrently the multiple sample format is slower to load than the single sample format for platforms other than Agilent Copy Number. Future releases should show improvements in this performance.
+  </li>
+</ul>
+An example of multiple sample format file is shown in the following figure.
+<img alt="Example multiple sample format file, described in text" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/A%20-%20Data%20Import%20Configurations/multiple%20sample%20file%20format.png?api=v2">
+The following software programs create the supplemental data format used by caArray:
+<ul>
+  <li>
+    Affymetrix Expression Console – This software produces supplemental files. In Expression Console, use the &#34;Export Result&#34; function to create these files. Note that when you use an algorithm other than MAS5 to normalize the data (for example using RMA or Plier), Expression Console automatically creates a […summary.txt] file that contains extra lines on top of the derived data results. The extra lines all start with a &#34;#&#34; to signify that it is a remark. These lines are ignored by caIntegrator parsing.
+  </li>
+  <li>
+    Agilent GeneSpring GX – This software can export a results table in .txt format.
+  </li>
+</ul>
+<h2 id="ADataImportConfigurations-ImagingDataConfiguration">
+  Imaging Data Configuration
+</h2>
+The following imaging data configuration information is collected:
+<ul>
+  <li>
+    NBIA grid server hostname (defaults to CBIIT instance)
+  </li>
+  <li>
+    NBIA grid server port (defaults to CBIIT instance port)
+  </li>
+  <li>
+    Protocol Id
+  </li>
+  <li>
+    Mapping of NBIA Patients to subjects imported from subject annotation data source. This may be specified by a comma-separated list in the format &#34;subject identifier&#34;, &#34;NBIA patient identifier&#34; or by a regular-expression based mapping formula.
+  </li>
+  <li>
+    Which annotation fields to import from NBIA.
+  </li>
+</ul>
+The system enables the Study Manager to navigate easily to the selected caArray 2 instance.Additional annotation for either images or image series can be imported using the delimited-text import functionality.

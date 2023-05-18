@@ -1,0 +1,34 @@
+<h2 id="caInt0010HourlyJBossGridDiscoveryServiceJoberrorincaIntegrator&#39;sserverlog-Question:WhythereisanhourlyJBossGridDiscoveryServiceJoberrorincaIntegrator&#39;sserverlog?">
+  Question: Why there is an hourly JBoss GridDiscoveryServiceJob error in caIntegrator&#39;s server log?
+</h2>
+Topic: caIntegrator UsageRelease: Up to caIntegrator 1.3Date entered: 05/26/2011The question was posted in the
+<a href="https://cabig-kc.nci.nih.gov/Molecular/forums/viewtopic.php?f=24&amp;amp;t=702" rel="nofollow">
+  caIntegrator user forum
+</a>
+.
+<h2 id="caInt0010HourlyJBossGridDiscoveryServiceJoberrorincaIntegrator&#39;sserverlog-Answer">
+  Answer
+</h2>
+caIntegrator tries at every hour to connect to the caGrid index service in order to find caIntegrator client services such as the NBIA grid service and other grid services caIntegrator can connect to. As a result of this automatic pinging and re-connect, once a grid service such as an image data source is added to a study, the new grid-based image data source will be shown in the dropdown menu as a part of all available image grid data sources. If the attempt to reconnect results in an error, then the dropdown menu will only show the default grid data source that caIntegrator knows exists, such as the NBIA hosted at NCI. Neither success nor failure in the attempt to reconnect should impact performance.
+<h3 id="caInt0010HourlyJBossGridDiscoveryServiceJoberrorincaIntegrator&#39;sserverlog-ErrorExplanation">
+  Error Explanation
+</h3>
+There are two error messages shown in that KC post:
+<ul>
+  <li>
+    The first message is due to caIntegrator being unable to reach the grid index service. This would happen if the user&#39;s caIntegrator installation was behind a firewall or if the grid index service was down. The grid index server is contacted once per hour.
+  </li>
+</ul>
+<ul>
+  <li>
+    The second message is due to caIntegrator trying to connect to the NBIA grid service and not being able to reach the NBIA grid service. This would happen if the user&#39;s NBIA installation was behind a firewall or if the grid index service was down.
+  </li>
+</ul>
+<h2 id="caInt0010HourlyJBossGridDiscoveryServiceJoberrorincaIntegrator&#39;sserverlog-Haveacomment?">
+  Have a comment?
+</h2>
+Please leave your comment in the
+<a href="https://cabig-kc.nci.nih.gov/Molecular/forums/viewtopic.php?f=23&amp;t=461" rel="nofollow">
+  caIntegrator End User Forum
+</a>
+.

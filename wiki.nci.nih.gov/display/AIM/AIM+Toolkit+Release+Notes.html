@@ -1,0 +1,241 @@
+You can print and export wiki pages.Contents of this Page
+<ul>
+  <li>
+    <a href="#AIMToolkitReleaseNotes-Introduction" rel="nofollow">
+      Introduction
+    </a>
+  </li>
+  <li>
+    <a href="#AIMToolkitReleaseNotes-FeaturesintheAIM4.1Toolkit" rel="nofollow">
+      Features in the AIM 4.1 Toolkit
+    </a>
+  </li>
+  <li>
+    <a href="#AIMToolkitReleaseNotes-FeaturesintheAIM4.0Toolkit" rel="nofollow">
+      Features in the AIM 4.0 Toolkit
+    </a>
+  </li>
+  <li>
+    <a href="#AIMToolkitReleaseNotes-FeaturesintheAIM3.0.2Toolkit" rel="nofollow">
+      Features in the AIM 3.0.2 Toolkit
+    </a>
+  </li>
+  <li>
+    <a href="#AIMToolkitReleaseNotes-FeaturesintheAIM3.0.1Toolkit" rel="nofollow">
+      Features in the AIM 3.0.1 Toolkit
+    </a>
+  </li>
+  <li>
+    <a href="#AIMToolkitReleaseNotes-Support" rel="nofollow">
+      Support
+    </a>
+  </li>
+  <li>
+    <a href="#AIMToolkitReleaseNotes-Documentation" rel="nofollow">
+      Documentation
+    </a>
+  </li>
+</ul>
+<h2 id="AIMToolkitReleaseNotes-Introduction">
+  Introduction
+</h2>
+The Annotation and Image Markup (AIM) project includes an information model (the AIM model) and software tools to capture and create image annotations and markups using well-defined common data elements and controlled terminologies. The AIM model enhances interoperability and information exchange between imaging and health information systems.It captures the descriptive information for an image with user-generated graphical symbols placed on the image into a single common information source.  You can query AIM annotations to find images containing similar image content and correlate human image observations with other biomedical data.Downloads are listed on the
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=49776079" rel="nofollow">
+  main page of this AIM wiki
+</a>
+.The AIM Toolkit consists of the AIM C++ software library and a program called ANIVATR. The ANIVATR software application validates AIM annotations and transcodes them between AIM XML documents and AIM DICOM SR objects. ANIVATR does not have a capability to convert any XML documents or DICOM SR objects to AIM XML documents and AIM DICOM SR objects.
+<h2 id="AIMToolkitReleaseNotes-FeaturesintheAIM4.1Toolkit">
+  Features in the AIM 4.1 Toolkit
+</h2>
+This release makes AIM Toolkit 4.1 a cross-platform set of tools. New CMake support enables developers on Windows, Linux, and OS X operating systems to create native executable components. By supporting all three major operating systems, generating and using AIM data becomes universally available. The AIM Toolkit provides the AIM Library 4.1 for incorporating AIM model and data into third-party applications, and the AIM converter tool ANIVATR for direct manipulation of AIM documents in AIM 4.0 XML and AIM 4.0 DICOM SR formats.The following issues were fixed. Links open the issue in NCI Tracker.
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        Issue
+      </th>
+      <th>
+        Description
+      </th>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/AIM-124" rel="nofollow">
+          AIM-124
+        </a>
+      </td>
+      <td>
+        Fixed UID validation routine to check for zero-padded UID component values, e.g. 1.2.009.02 is invalid because non-zero UID component cannot start with 0.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/AIM-125" rel="nofollow">
+          AIM-125
+        </a>
+      </td>
+      <td>
+        Fixed time value validation to allow for 00:00 time values. This issue showed up with de-identified dates.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/AIM-126" rel="nofollow">
+          AIM-126
+        </a>
+      </td>
+      <td>
+        Improved consistency of the AIM Converter parameters. Now the parameter for XML documents is &#34;XML&#34; instead of the old &#34;AIM&#34;.
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        <a href="https://tracker.nci.nih.gov/browse/AIM-127" rel="nofollow">
+          AIM-127
+        </a>
+      </td>
+      <td colspan="1">
+        Improved error reporting by AIM Converter by not silently ignoring some of library error messages.
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        <a href="https://tracker.nci.nih.gov/browse/AIM-128" rel="nofollow">
+          AIM-128
+        </a>
+      </td>
+      <td colspan="1">
+        Implemented validation for the allowed length of every component of a coded element (code value, code meaning, coding scheme designator and coding scheme version).
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        <a href="https://tracker.nci.nih.gov/browse/AIM-129" rel="nofollow">
+          AIM-129
+        </a>
+      </td>
+      <td colspan="1">
+        Updated referenced AIMLib binaries to support Series Number changes.
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="AIMToolkitReleaseNotes-FeaturesintheAIM4.0Toolkit">
+  Features in the AIM 4.0 Toolkit
+</h2>
+The Annotation and Image Markup (AIM) information model version 4.0 has evolved in response to the feedback and changing requirements from the imaging community. The model has become more flexible and expressive. It defines AIM statements that describe a finding found on an image or series of images. These statements represent a relationship between the subject and object entities in the AIM foundation model. A class name that ends with “entity” can be used to create an AIM statement.AIM 4.0 has two models, AIM Foundation and AIM 4.0. The AIM Foundation model can be extended by imaging experts in a domain area such as molecular imaging and optical imaging. These experts can add additional classes to capture information currently not available in the AIM Foundation model. The AIM 4.0 model includes classes that are required to capture lesion tracking in the domains of radiology and oncology.You can explore images of the
+<a href="http://cbiit-download.nci.nih.gov/aim/releases/Model/AIM_Foundation/AIM_Foundation_v4_rv47.png" rel="nofollow">
+  AIM Foundation Model
+</a>
+and the
+<a href="https://wiki.nci.nih.gov/download/attachments/80152136/AIM_4.0_Radiology_Oncology_Information_Model.png?version=1&amp;modificationDate=1362355494000&amp;api=v2" rel="nofollow">
+  AIM 4.0 Radiology and Oncology Information Model
+</a>
+and
+<a href="https://wiki.nci.nih.gov/x/z4X3Ag" rel="nofollow">
+  download the corresponding UML models
+</a>
+.The AIM 4.0 Toolkit has the following new features:
+<ul>
+  <li>
+    Fully supports the ISO 21090 data type
+  </li>
+  <li>
+    Collects a question as a coded term for an annotation role entity, imaging physical entity (formerly known as anatomic entity), imaging physical entity characteristic, imaging observation entity, imaging observation entity characteristic, inference entity, calculation entity, task context entity, text annotation entity, DICOM segmentation entity, markup entity, URI image reference entity, or DICOM image reference entity
+  </li>
+  <li>
+    Explicitly captures relationships between entity classes in the AIM model via an AIM statement
+  </li>
+  <li>
+    Has the ability to store a three-dimensional graphical markup
+  </li>
+  <li>
+    Has the ability to store a lesion observation with or without a time point
+  </li>
+  <li>
+    Allows the storage of calculation results in a compressed format
+  </li>
+  <li>
+    Allows a workflow or task context assignment
+  </li>
+  <li>
+    Allows more than one AIM instance in one AIM file or collection
+  </li>
+  <li>
+    Supports post-coordinate terms (combines existing terms to create a new concept)
+  </li>
+</ul>
+<h2 id="AIMToolkitReleaseNotes-FeaturesintheAIM3.0.2Toolkit">
+  Features in the AIM 3.0.2 Toolkit
+</h2>
+The release is composed of the following four folders: doc, examples, lib and source.The doc folder includes AIM-related document and XML schemas.NoteUse AIM_v3_rv11_XML.xsd to create and validate AIM XML documents.The examples folder includes examples of DICOM images, AIM DICOM SR, AIM XML documents, and the ANIVATR tool, which converts between DICOM SR and XML document formats.The lib folder contains binaries for AIM XML library and the ANIVATR tool.The AIM Toolkit version 3.0.2 changes are as follows:
+<ul>
+  <li>
+    Added Linux (Ubuntu x86) make files.
+  </li>
+  <li>
+    Modified code to build on Linux platform.
+  </li>
+  <li>
+    Updated DCMTK to version 3.6.0 4. Update xerces-c to version 3.1.
+  </li>
+</ul>
+<h2 id="AIMToolkitReleaseNotes-FeaturesintheAIM3.0.1Toolkit">
+  Features in the AIM 3.0.1 Toolkit
+</h2>
+The AIM 3.0.1 Toolkit changes are as follows:
+<ul>
+  <li>
+    Added AIM Model Version property to the API (BaseModel class).
+  </li>
+  <li>
+    Used AIM Model Version in the Series Description of new AIM DICOM objects.
+  </li>
+  <li>
+    Fixed parsing of attribute values with namespaces.
+  </li>
+  <li>
+    Updated source code and precompiled binaries to include the latest changes.
+  </li>
+</ul>
+<h2 id="AIMToolkitReleaseNotes-Support">
+  Support
+</h2>
+If you need help, email
+<a href="mailto:ncicbiit@mail.nih.gov" rel="nofollow">
+  Application Support
+</a>
+.Technical support requests may be sent to
+<a href="mailto:AIMTeam@northwestern.edu" rel="nofollow">
+  AIMTeam@northwestern.edu
+</a>
+.
+<h2 id="AIMToolkitReleaseNotes-Documentation">
+  Documentation
+</h2>
+<ul>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=75006384" rel="nofollow">
+      AIM on ClearCanvas Workstation Documentation
+    </a>
+  </li>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=81789563" rel="nofollow">
+      AIM Template Service Documentation
+    </a>
+  </li>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=75006387" rel="nofollow">
+      AIM Template Builder Documentation
+    </a>
+  </li>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=75006390" rel="nofollow">
+      AIM Template Manager Documentation
+    </a>
+  </li>
+</ul>

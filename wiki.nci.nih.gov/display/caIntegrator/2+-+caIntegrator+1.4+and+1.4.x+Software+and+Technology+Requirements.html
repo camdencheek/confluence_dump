@@ -1,0 +1,279 @@
+This page includes the following topics:
+<ul>
+  <li>
+    <a href="#id-2caIntegrator1.4and1.4.xSoftwareandTechnologyRequirements-OperatingSystem" rel="nofollow">
+      Operating System
+    </a>
+  </li>
+  <li>
+    <a href="#id-2caIntegrator1.4and1.4.xSoftwareandTechnologyRequirements-RequiredSoftwareNotIncludedincaIntegrator" rel="nofollow">
+      Required Software Not Included in caIntegrator
+    </a>
+  </li>
+  <li>
+    <a href="#id-2caIntegrator1.4and1.4.xSoftwareandTechnologyRequirements-JavaSDKInstallation" rel="nofollow">
+      Java SDK Installation
+    </a>
+  </li>
+  <li>
+    <a href="#id-2caIntegrator1.4and1.4.xSoftwareandTechnologyRequirements-ApacheAntInstallation" rel="nofollow">
+      Apache Ant Installation
+    </a>
+    <ul>
+      <li>
+        <a href="#id-2caIntegrator1.4and1.4.xSoftwareandTechnologyRequirements-ApacheAntEnvironmentVariables" rel="nofollow">
+          Apache Ant Environment Variables
+        </a>
+        <ul>
+          <li>
+            <a href="#id-2caIntegrator1.4and1.4.xSoftwareandTechnologyRequirements-Linux" rel="nofollow">
+              Linux
+            </a>
+          </li>
+          <li>
+            <a href="#id-2caIntegrator1.4and1.4.xSoftwareandTechnologyRequirements-VerifyingtheEnvironmentVariablesinLinux" rel="nofollow">
+              Verifying the Environment Variables in Linux
+            </a>
+          </li>
+          <li>
+            <a href="#id-2caIntegrator1.4and1.4.xSoftwareandTechnologyRequirements-Windows" rel="nofollow">
+              Windows
+            </a>
+          </li>
+          <li>
+            <a href="#id-2caIntegrator1.4and1.4.xSoftwareandTechnologyRequirements-VerifyingtheEnvironmentVariablesinWindows" rel="nofollow">
+              Verifying the Environment Variables in Windows
+            </a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#id-2caIntegrator1.4and1.4.xSoftwareandTechnologyRequirements-MySQLInstallationandConfiguration" rel="nofollow">
+      MySQL Installation and Configuration
+    </a>
+  </li>
+</ul>
+Differences between v. 1.4 and 1.4.xThe only differences between installing versions1.4 and 1.4.x are in upgrading the application. See the description in
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=91796473" rel="nofollow">
+  Upgrading to caIntegrator 1.4.x
+</a>
+. All other content in this installation guide applies to both versions 1.4 and 1.4.x.
+<h2 id="id-2caIntegrator1.4and1.4.xSoftwareandTechnologyRequirements-OperatingSystem">
+  Operating System
+</h2>
+The caIntegrator v.1.4 and 1.4.x installations have been tested on Linux Red Hat Enterprise Linux AS 5 and AS 4 64/32-bit (for AMD chipset) and the Windows XP/2003 environments. While the installation may work in other Linux and Windows environments, it has only been tested in these environments.File descriptorsFor the system userid which will be used to start the caIntegrator application, you should specify permission to open at least 2048 file descriptors.
+<h2 id="id-2caIntegrator1.4and1.4.xSoftwareandTechnologyRequirements-RequiredSoftwareNotIncludedincaIntegrator">
+  Required Software Not Included in caIntegrator
+</h2>
+Many of the servers and services that make up caIntegrator are automatically installed as part of this caIntegrator v.1.4 or1.4.x installation. However, prior to the installation, you must download and install the following required tools and recommended versions in the order they are listed in the table. The software name, version, description, and URL hyperlinks (for download) are indicated in the table. Complete the directions for installing each, as directed on the corresponding website.
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Required Software Name and Version
+      </th>
+      <th>
+        Description
+      </th>
+    </tr>
+    <tr>
+      <td>
+        <a href="http://java.sun.com/products/archive/j2se/6u18/index.html" rel="nofollow">
+          Java 2 Platform Standard Edition 6.0 Update 31 (J2SE 6.0)
+        </a>
+        .
+        <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+          <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+        </a>
+        Be sure to download the correct Java SDK for your operating environment. For example, for Linux AMD 64, you would download jdk for Linux, linux-amd64-rpm.bin. For Windows, you might download jdk for Windows,windows-i586-p.exe.
+      </td>
+      <td>
+        The J2SE Development Kit (JDK) supports creating J2SE applications.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="http://archive.apache.org/dist/ant/binaries/apache-ant-1.8.2-bin.zip" rel="nofollow">
+          Apache Ant, 1.8.2
+        </a>
+        <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+          <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+        </a>
+      </td>
+      <td>
+        Apache Ant is a Java-based build tool.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="http://downloads.mysql.com/archives.php?p=mysql-5.1" rel="nofollow">
+          MySQL, 5.1.x
+        </a>
+        <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+          <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+        </a>
+      </td>
+      <td>
+        MySQL is an open-source database software application.
+      </td>
+    </tr>
+  </tbody>
+</table>
+ImportantAs you install each application, record the installation directory path, and the hostname of your MySQL DB server, and the DB admin username/password, if you are going to install UPT.
+<h2 id="id-2caIntegrator1.4and1.4.xSoftwareandTechnologyRequirements-JavaSDKInstallation">
+  Java SDK Installation
+</h2>
+When you install the Java SDK, you will be prompted to select the installation directory. Record the path, as this directory will be used when you set the environment variables.
+<h2 id="id-2caIntegrator1.4and1.4.xSoftwareandTechnologyRequirements-ApacheAntInstallation">
+  Apache Ant Installation
+</h2>
+<ul>
+  <li>
+    Unzip the Apache Ant distribution files using a command line unzip tool or a zip utility, such as WinZip.
+  </li>
+</ul>
+<ul>
+  <li>
+    After extracting the zip, you must set the environment variables, described in the following section, so that Ant is available in the system PATH.
+  </li>
+</ul>
+<h3 id="id-2caIntegrator1.4and1.4.xSoftwareandTechnologyRequirements-ApacheAntEnvironmentVariables">
+  Apache Ant Environment Variables
+</h3>
+Reason for setting variablesThe purpose of setting operating system environment variables is so that the Java SDK and Ant build tool are available to run from anywhere in the system.
+<h4 id="id-2caIntegrator1.4and1.4.xSoftwareandTechnologyRequirements-Linux">
+  Linux
+</h4>
+Variables in LinuxThe JAVA_HOME, ANT_HOME and PATH environment variables are set in /etc/profile. You may need to create the variables, or modify them if they already exist.To set the environmental variables in Linux, follow these steps:
+<ol>
+  <li>
+    As the root user, enter the following in the /etc/profile file. A PATH variable should already be created in this file, so be sure to define the JAVA_HOME and ANT_HOME export before the PATH export. Replace &lt;some_path&gt; with the correct path fragment for Java and Ant installations.    export JAVA_HOME=&lt;some_path&gt;/jdk1.6.0_31      export ANT_HOME=&lt;some_path&gt;/apache-ant-1.8.2  ;   export PATH=$JAVA_HOME/bin:$ANT_HOME/bin:$PATH
+  </li>
+  <li>
+    Log out and log back in so that the system recognizes your changes.
+  </li>
+</ol>
+<h4 id="id-2caIntegrator1.4and1.4.xSoftwareandTechnologyRequirements-VerifyingtheEnvironmentVariablesinLinux">
+  Verifying the Environment Variables in Linux
+</h4>
+To verify that environment variables have been set correctly, follow these steps:
+<ol>
+  <li>
+    From the command line, enter:    echo $JAVA_HOME      echo $ANT_HOME    Both of these commands should return the location where you installed these tools.
+  </li>
+  <li>
+    To verify your Java SDK installation, enter   java --version   from a command prompt. You should see java version &#34;1.6.0_31&#34;.
+  </li>
+  <li>
+    To verify your Ant installation, enter:   ant --version   from a command prompt. You should see: Apache Ant version 1.8.2
+  </li>
+</ol>
+<h4 id="id-2caIntegrator1.4and1.4.xSoftwareandTechnologyRequirements-Windows">
+  Windows
+</h4>
+To set the environmental variables in Windows, follow these steps:Variables in WindowsThe JAVA_HOME, ANT_HOME and PATH environment variables are set in the system properties.
+<ol>
+  <li>
+    In Windows, select Control Panel, then select the System application. In the System Properties window, select the Advanced tab.
+  </li>
+  <li>
+    On the Advanced tab, click the Environment Variables button. To add a new system variable, select the New button.
+    <ol>
+      <li>
+        In the Variable  n  ame text box, enter   JAVA_HOME  .
+      </li>
+      <li>
+        In the Variable  v  alue text box, enter the location of your Java installation.
+      </li>
+    </ol>
+  </li>
+  <li>
+    Click the New button again.
+    <ol>
+      <li>
+        In the Variable name text box, enter   ANT_HOME  .
+      </li>
+      <li>
+        In the Variable value text box, enter the location of your Ant installation.
+      </li>
+    </ol>
+  </li>
+  <li>
+    Select the PATH system environment variable, and select the Edit button. This opens the Edit System Variable dialog box.
+  </li>
+  <li>
+    In the Variable value text box, prepend the following text in front of the text that already exists in the Variable Value field.   %JAVA_HOME%\bin;%ANT_HOME%\bin;
+  </li>
+  <li>
+    Click OK.
+  </li>
+</ol>
+<h4 id="id-2caIntegrator1.4and1.4.xSoftwareandTechnologyRequirements-VerifyingtheEnvironmentVariablesinWindows">
+  Verifying the Environment Variables in Windows
+</h4>
+To verify the environment variables have been set correctly, follow these steps:
+<ol>
+  <li>
+    From the command line, enter:   echo %JAVA_HOME%  *  echo %ANT_HOME%  * Both of these commands should return the location where you installed these tools.
+  </li>
+  <li>
+    To verify your Java SDK installation, enter   java --version   from a command prompt. You should see java version &#34;1.6.0_31&#34;.
+  </li>
+  <li>
+    To verify your Ant installation, enter   ant --version
+  </li>
+</ol>
+Other environment variablesEnvironment variables for caIntegrator and, optionally, UPT are modified and set in those sections of this document:
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=91796470" rel="nofollow">
+  Installing a New caIntegrator v.1.4 or 1.4.x
+</a>
+and
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=91796466" rel="nofollow">
+  Downloading and Installing UPT - Optional
+</a>
+.
+<h2 id="id-2caIntegrator1.4and1.4.xSoftwareandTechnologyRequirements-MySQLInstallationandConfiguration">
+  MySQL Installation and Configuration
+</h2>
+A MySQL 5.1 server must be downloaded, installed and running in order for the caIntegrator installation to work successfully.To download and install MySQL, follow the steps outlined on the
+<a href="http://downloads.mysql.com/archives.php?p=mysql-5.1" rel="nofollow">
+  MySQL website
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+TipYou should consult the following three links to successfully set up secure and well-performing MySQL servers, in preparation for installing caIntegrator:
+<ul>
+  <li>
+    <a href="http://dev.mysql.com/doc/refman/5.1/en/security-guidelines.html" rel="nofollow">
+      MySQL Security Guide
+    </a>
+    <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+      <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+    </a>
+  </li>
+  <li>
+    Performance
+    <ul>
+      <li>
+        <a href="http://dev.mysql.com/doc/refman/5.1/en/innodb-tuning.html" rel="nofollow">
+          InnoDB engine performance tuning
+        </a>
+        <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+          <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+        </a>
+      </li>
+    </ul>
+  </li>
+</ul>
+More Tips
+<ul>
+  <li>
+    Record the MySQL root username/password chosen during the MySQL installation process, as you will need to use this as your database.system.user/ database.system.password later in the UPT installation process, should you choose to install UPT.
+  </li>
+  <li>
+    Note the MySQL port chosen during the MySQL installation process, as you will need to use this as your database.port later in both the caIntegrator and UPT (if installing UPT) installation processes.
+  </li>
+</ul>

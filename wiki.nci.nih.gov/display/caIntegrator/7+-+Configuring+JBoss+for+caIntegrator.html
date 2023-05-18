@@ -1,0 +1,129 @@
+Directions are given on this page for configuring JBoss. This page includes the following topics:
+<ul>
+  <li>
+    <a href="#id-7ConfiguringJBossforcaIntegrator-ConfiguringJBoss" rel="nofollow">
+      Configuring JBoss
+    </a>
+    <ul>
+      <li>
+        <a href="#id-7ConfiguringJBossforcaIntegrator-ConfiguringJBossServersandMySQLServertoRunasServices" rel="nofollow">
+          Configuring JBoss Servers and MySQL Server to Run as Services
+        </a>
+      </li>
+      <li>
+        <a href="#id-7ConfiguringJBossforcaIntegrator-RunningJBossasaService" rel="nofollow">
+          Running JBoss as a Service
+        </a>
+        <ul>
+          <li>
+            <a href="#id-7ConfiguringJBossforcaIntegrator-Linux" rel="nofollow">
+              Linux
+            </a>
+          </li>
+          <li>
+            <a href="#id-7ConfiguringJBossforcaIntegrator-Windows" rel="nofollow">
+              Windows
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#id-7ConfiguringJBossforcaIntegrator-RunningMySQLasaService" rel="nofollow">
+          Running MySQL as a Service
+        </a>
+        <ul>
+          <li>
+            <a href="#id-7ConfiguringJBossforcaIntegrator-Linux.1" rel="nofollow">
+              Linux
+            </a>
+          </li>
+          <li>
+            <a href="#id-7ConfiguringJBossforcaIntegrator-Windows.1" rel="nofollow">
+              Windows
+            </a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+caIntegrator versions 1.4 and 1.4.xAll content on this page applies to both versions of caIntegrator.
+<h2 id="id-7ConfiguringJBossforcaIntegrator-ConfiguringJBoss">
+  Configuring JBoss
+</h2>
+For Optimal PerformanceYou must modify your JBoss 5.1.0 configuration to increase the amount of available memory for the caIntegrator application. Directions for doing this in Windows are in the following step 1.To configure JBoss in Windows, follow these steps.
+<ol>
+  <li>
+    Modify the following entry to the JBoss run.bat file which is located at &lt;application_root_directory&gt;/jboss-5.1.0.GA-nci/bin/run.bat. Find the line that begins with set JAVA_OPTS= -Dbda=bda -Dprogram.name=%PROGNAME% -server and modify the &#34;-Xms256m -Xmx512m&#34; to read  &#34;-Xms4096m -Xmx4096m&#34; .Physical memoryIf 4096m is higher than the physical memory on the machine, then performance could be severely impacted with performance degradation and errors. 4096m of physical memory is recommended.WarningBe careful when copying and pasting from this installation guide. No spaces must come before and after the columns. A safe way to ensure that the text has no unwanted space and unwanted characters is to copy the text into a blank text editor such as NotePad first. Then you can correct the spacing and copy-paste back into the run.bat file.
+  </li>
+  <li>
+    Restart your JBoss 5.1.0 server for the changes to take effect. The method of doing this may depend on the start/stop/restart scripts you created after the installation. Most commonly, you can execute shutdown.bat and then run.bat under $JBOSS_HOME/bin. Refer to the publicly available
+    <a href="http://www.jboss.org" rel="nofollow">
+      JBoss user&#39;s guide
+    </a>
+    <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+      <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+    </a>
+    for more information.
+  </li>
+</ol>
+<h3 id="id-7ConfiguringJBossforcaIntegrator-ConfiguringJBossServersandMySQLServertoRunasServices">
+  Configuring JBoss Servers and MySQL Server to Run as Services
+</h3>
+JBoss &amp; MySQL as servicesMySQL and the JBoss server that make up caIntegrator, and the JBoss server optionally installed for UPT, must run continually as services. The instructions in this section cover all of these scenarios. For a caIntegrator deployment, there are at least three servers, and if UPT is installed, four servers:
+<ul>
+  <li>
+    JBoss 5.1.0 for UPT (optional)
+  </li>
+  <li>
+    JBoss 5.1.0 (for caIntegratorapplication)
+  </li>
+  <li>
+    MySQL 5.0.x
+  </li>
+</ul>
+<h3 id="id-7ConfiguringJBossforcaIntegrator-RunningJBossasaService">
+  Running JBoss as a Service
+</h3>
+BEFORE YOU BEGINThe default caIntegrator installation runs JBoss as a command line process using the user currently logged on. Therefore, when you log out as this user, JBoss will no longer be available for caIntegrator. For that reason, it is recommended that you configure your JBoss servers to run as a Linux or Windows service. The instructions are contained in this section.Before starting the caIntegrator JBOSS server, change the default location for user data. User data consists of various files that are saved by caIntegrator during the deployment and querying of studies. The default location for user data should be changed via the Djava.io.tmpdir jvm parameter in the Jboss run.conf file.   Example jvm parameter: -Djava.io.tmpdir=/local/content/caintegrator/jvmtmpTo run JBoss as a service, follow these steps:
+<h4 id="id-7ConfiguringJBossforcaIntegrator-Linux">
+  Linux
+</h4>
+See
+<a href="http://wiki.jboss.org/wiki/Wiki.jsp?page=StartJBossOnBootWithLinux" rel="nofollow">
+  http://wiki.jboss.org/wiki/Wiki.jsp?page=StartJBossOnBootWithLinux
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+.
+<h4 id="id-7ConfiguringJBossforcaIntegrator-Windows">
+  Windows
+</h4>
+To run an existing JBoss command line installation as a service, follow the directions for creating a user-defined service at
+<a href="http://support.microsoft.com/kb/137890/EN-US/" rel="nofollow">
+  http://support.microsoft.com/kb/137890/EN-US/
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+. You need to have access to the Windows Resource Kit.
+<h3 id="id-7ConfiguringJBossforcaIntegrator-RunningMySQLasaService">
+  Running MySQL as a Service
+</h3>
+Server installed?It is assumed that your MySQL server was installed as a service. If it was not, follow these recommendations for installing this server as a service.To run MySQL as a service, follow these steps:
+<h4 id="id-7ConfiguringJBossforcaIntegrator-Linux.1">
+  Linux
+</h4>
+See
+<a href="http://www.redhat.com/docs/manuals/enterprise/RHEL-AS-2.1-Manual/cluster-manager/s1-service-mysql.html" rel="nofollow">
+  http://www.redhat.com/docs/manuals/enterprise/RHEL-AS-2.1-Manual/cluster-manager/s1-service-mysql.html
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+.
+<h4 id="id-7ConfiguringJBossforcaIntegrator-Windows.1">
+  Windows
+</h4>
+When installing MySQL server on Windows, choose the option to run MySQL as a Windows service.

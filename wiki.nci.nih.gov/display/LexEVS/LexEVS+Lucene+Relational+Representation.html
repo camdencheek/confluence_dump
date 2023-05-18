@@ -1,0 +1,123 @@
+Document Information
+Author: Craig Stancl, Scott Bauer, Cory EndleEmail: Stancl.craig@mayo.edu,
+<a href="mailto:bauer.scott@mayo.edu" rel="nofollow">
+  bauer.scott@mayo.edu
+</a>
+,
+<a href="mailto:endle.cory@mayo.edu" rel="nofollow">
+  endle.cory@mayo.edu
+</a>
+Team: LexEVSContract: S13-500 MOD4Client: NCI CBIITNational Institutes of HeathUS Department of Health and Human Services
+Table of Contents
+<ul>
+  <li>
+    <a href="#LexEVSLuceneRelationalRepresentation-RelationalIndexingImplementationinCurrentLexEVS" rel="nofollow">
+      Relational Indexing Implementation in Current LexEVS
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVSLuceneRelationalRepresentation-ProposedRelationalIndexingImplementationunderLucene5.0.0" rel="nofollow">
+      Proposed Relational Indexing Implementation under Lucene 5.0.0
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVSLuceneRelationalRepresentation-RelationalQueryinginCurrentLexEVSImplementation" rel="nofollow">
+      Relational Querying in Current LexEVS Implementation
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVSLuceneRelationalRepresentation-RelationalQueryingUsingLucene5.0.0BlockJoinQuery" rel="nofollow">
+      Relational Querying Using Lucene 5.0.0 BlockJoinQuery
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVSLuceneRelationalRepresentation-TheRelationalPropertyQueryingMechanismProbleminLucene" rel="nofollow">
+      The Relational Property Querying Mechanism Problem in Lucene
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVSLuceneRelationalRepresentation-BoundaryDocsIndexRelatedClasses" rel="nofollow">
+      Boundary Docs Index Related Classes
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVSLuceneRelationalRepresentation-BoundaryDocsQueryRelatedClasses" rel="nofollow">
+      Boundary Docs Query Related Classes
+    </a>
+  </li>
+</ul>
+<h2 id="LexEVSLuceneRelationalRepresentation-RelationalIndexingImplementationinCurrentLexEVS">
+  Relational Indexing Implementation in Current LexEVS
+</h2>
+All Documents have a unique document Id that identifies them as &#34;the same&#34; entity, but the boundary docs provide additional evidence that they are the start and finish of a set of documents all related to the same concept by providing a &#34;CodeBoundary&#34; identifier indicating this is the start or end of the document set for this entity representation.  This effectively flattens the entity to properties relationship by adding all entity information to each property document which includes up to 34 indexed fields and about 9 stored fields.
+<img width="500" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%20Lucene%20Relational%20Representation/BoundaryDocs.png?api=v2">
+<h2 id="LexEVSLuceneRelationalRepresentation-ProposedRelationalIndexingImplementationunderLucene5.0.0">
+  Proposed Relational Indexing Implementation under Lucene 5.0.0
+</h2>
+Lucene provides support for limited relational expression starting with Lucene 3.4.  A single level parent/child relationship can be maintained as a one to many relationship between one document and several others.  This support provides LexEVS with an opportunity to improve index search times and reduce index size.
+<img width="500" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%20Lucene%20Relational%20Representation/BlockJoinIndex.png?api=v2">
+<h2 id="LexEVSLuceneRelationalRepresentation-RelationalQueryinginCurrentLexEVSImplementation">
+  Relational Querying in Current LexEVS Implementation
+</h2>
+LexEVS applies Lucene filters to get to the correct coding scheme level in the index and subsequently applies a series of queries.
+<img width="500" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%20Lucene%20Relational%20Representation/CurrentLuceneQuery.png?api=v2">
+<h2 id="LexEVSLuceneRelationalRepresentation-RelationalQueryingUsingLucene5.0.0BlockJoinQuery">
+  Relational Querying Using Lucene 5.0.0 BlockJoinQuery
+</h2>
+Regardless of whether we query from the Child or from the Parent we have access from one to the other.
+<img width="500" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%20Lucene%20Relational%20Representation/BlockJoinQuery.png?api=v2">
+A query is constructed to provide a wrapper to queries to the children of the parent document returning all matching document contained in the parent.  Filters on the parent, such as whether it is active or not work against the entity metadata contained there.  A collector verifies and provides sorting support for the result (formerly HitCollector)
+<img width="500" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%20Lucene%20Relational%20Representation/ToParentBlockJ.png?api=v2">
+<h2 id="LexEVSLuceneRelationalRepresentation-TheRelationalPropertyQueryingMechanismProbleminLucene">
+  The Relational Property Querying Mechanism Problem in Lucene
+</h2>
+<a href="https://wiki.nci.nih.gov/display/LexEVS/LexEVS+Lucene+Relational+Query+Implementation" title="LexEVS Lucene Relational Query Implementation" rel="nofollow">
+  LexEVS Lucene Relational Query Implementation
+</a>
+<h2 id="LexEVSLuceneRelationalRepresentation-BoundaryDocsIndexRelatedClasses">
+  Boundary Docs Index Related Classes
+</h2>
+ Boundary Docs Related Classes
+//This appears to be where a good part of the filtering on boundary docs takes place.  A rethinking and reimplementing of all of these will be necessary.
+org.lexevs.dao.index.lucene.v2010.entity.SingleTemplateDisposableLuceneCommonEntityDao
+org.lexevs.dao.index.lucene.AbstractBaseLuceneIndexTemplateDao
+org.lexevs.dao.index.access.entity.CommonEntityDao
+
+//Deeply integrated with boundary doc position and scoring.  Will need to be rethought and reimplemented against the new Collector class
+//in Lucene.  This will also be moved from the Indexer into the DAO project.
+edu.mayo.informatics.indexer.lucene.hitcollector.AbstractBestScoreOfEntityHitCollector&lt;T&gt;
+//This companion to it doesn’t seem to have a code path that calls it and may be able to be disposed of
+edu.mayo.informatics.indexer.lucene.hitcollector.BitSetFilteringBestScoreOfEntityHitCollector
+
+//These classes will all need to be revised or replaced to implement
+//the BlockJoinQuery indexing support
+edu.mayo.informatics.indexer.api.generators.DocumentFromStringsGenerator
+org.lexevs.dao.index.indexer.LuceneLoaderCodeIndexer
+org.lexevs.dao.index.indexer.LuceneLoaderCode
+
+//While most code paths for indexing flow through this class accessed through a BaseLoader class
+//a number of alternative paths include two special case loaders and the revision/authoring API
+org.lexevs.dao.index.indexer.EntityBatchingIndexCreator
+
+//Some query methods have remained the same and should not require updating when moving to 5.0.
+//This query building class and method should remain relatively untouched
+org.LexGrid.LexBIG.Impl.dataAccess.RestrictionImplementations.getQuery(Restriction, String, String)
+<h2 id="LexEVSLuceneRelationalRepresentation-BoundaryDocsQueryRelatedClasses">
+  Boundary Docs Query Related Classes
+</h2>
+Query Related Classes
+//This listing shows the hierarchy of methods when called by CodedNodeSetImpl through
+//AbstractMultiSingleLuceneIndexCodedNodeSet but represents one of several code paths to CodedNodeSetImpl
+org.lexevs.dao.index.lucenesupport.BaseLuceneIndexTemplate.search(Query, Filter, HitCollector)
+org.lexevs.dao.index.lucene.v2010.entity.SingleTemplateDisposableLuceneCommonEntityDao.query(Query)
+org.lexevs.dao.index.service.entity.LuceneEntityIndexService.queryCommonIndex(List&lt;AbsoluteCodingSchemeVersionReference&gt;, Query)
+org.LexGrid.LexBIG.Impl.helpers.lazyloading.AbstractLazyCodeHolderFactory.buildCodeHolder(List&lt;AbsoluteCodingSchemeVersionReference&gt;, Query)
+org.LexGrid.LexBIG.Impl.codednodeset.UnionSingleLuceneIndexCodedNodeSet.buildCodeHolder()
+org.LexGrid.LexBIG.Impl.codednodeset.AbstractMultiSingleLuceneIndexCodedNodeSet.toBruteForceMode(String, String)
+org.LexGrid.LexBIG.Impl.CodedNodeSetImpl.getCodeHolder()
+
+//Other code paths reach into the Simple Search Extension.  Portions of this will go away
+org.lexevs.dao.index.lucenesupport.BaseLuceneIndexTemplate.search(Query, Filter, HitCollector)
+org.lexevs.dao.index.lucene.v2013.search.LuceneSearchDao.query(Query)
+org.lexevs.dao.index.service.search.LuceneSearchIndexService.query(Set&lt;AbsoluteCodingSchemeVersionReference&gt;, Set&lt;AbsoluteCodingSchemeVersionReference&gt;, Query)
+org.LexGrid.LexBIG.Impl.Extensions.GenericExtensions.search.SearchExtensionImpl.search(String, Set&lt;CodingSchemeReference&gt;, Set&lt;CodingSchemeReference&gt;, MatchAlgorithm, boolean, boolean) 

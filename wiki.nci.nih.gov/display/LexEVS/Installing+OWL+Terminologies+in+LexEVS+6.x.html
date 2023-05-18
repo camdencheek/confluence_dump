@@ -1,0 +1,165 @@
+<ul>
+  <li>
+    <a href="#InstallingOWLTerminologiesinLexEVS6.x-OWLOneTerminologyLoads" rel="nofollow">
+      OWL One Terminology Loads
+    </a>
+  </li>
+  <li>
+    <a href="#InstallingOWLTerminologiesinLexEVS6.x-OWL2TerminologyLoads" rel="nofollow">
+      OWL2 Terminology Loads
+    </a>
+  </li>
+</ul>
+<h3 id="InstallingOWLTerminologiesinLexEVS6.x-OWLOneTerminologyLoads">
+  OWL One Terminology Loads
+</h3>
+Most OWL formatted loads make use of the least complicated procedure to achieve an installation. However, it is a popular format and LexEVS offers some extensive options for customizing a terminology at load time. Therefore step by step instructions are provided for an OWL load.
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Step
+      </th>
+      <th>
+        Action
+      </th>
+    </tr>
+    <tr>
+      <td>
+        1
+      </td>
+      <td>
+        Obtain an OWL formatted source.  The National Center for Bio Ontology (
+        <a href="http://bioportal.bioontology.org/" rel="nofollow">
+          NCBO
+        </a>
+        <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+          <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+        </a>
+        ) hosts OWL formatted and other sources and downloads of some sources are available.
+        <img alt="OWL formatted source list" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/Installing%20OWL%20Terminologies%20in%20LexEVS%206.x/Screen%20Shot%202011-11-18%20at%209.41.25%20AM.png?api=v2">
+        Save the source to a local folder.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        2
+      </td>
+      <td>
+        Load the source without options.  Load in Linux/Unix environments:
+        ./LoadOWL.sh -in &#34;file:///home/LargeStorage/ontologies/owl/amino-acid.owl&#34;
+
+        Load in Windows environments:
+        LoadOWL.bat -in &#34;file:///home/LargeStorage/ontologies/owl/amino-acid.owl&#34;
+
+        Sample output on success:
+        <img alt="screenshot of output" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/Installing%20OWL%20Terminologies%20in%20LexEVS%206.x/Screen%20Shot%202011-11-18%20at%2010.40.13%20AM.png?api=v2">
+      </td>
+    </tr>
+    <tr>
+      <td>
+        3
+      </td>
+      <td>
+        Load source with options:  Some sources may not offer much in the way of information about the terminology. Since this information is often found in resources outside the terminology itself, LexEVS offers an option to load it in an accompanying manifest file.  This is an example of an OWL file with minimal metadata about the terminology:
+        <img alt="screenshot of OWL file with minimal metadata about the terminology" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/Installing%20OWL%20Terminologies%20in%20LexEVS%206.x/Screen%20Shot%202011-11-18%20at%2012.49.24%20PM.png?api=v2">
+        and this manifest file allows the user to add appropriate metadata:
+        <img alt="screenshot of manifest file" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/Installing%20OWL%20Terminologies%20in%20LexEVS%206.x/Screen%20Shot%202011-11-18%20at%2012.48.16%20PM.png?api=v2">
+        Manifest file construction is detailed in the
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427272" rel="nofollow">
+          administrative guide
+        </a>
+        .  Loading in LInux/Unix
+        ./LoadOWL.sh -in &#34;file:///data/phont/LexEVS/test/resources/testData/camera.owl&#34; -mf &#34;file:///data/phont/LexEVS/test/resources/testData/Camera-manifest.xml&#34;
+
+        Loading in Windows
+        LoadOWL.bat -in  &#34;file:///data/phont/LexEVS/test/resources/testData/camera.owl&#34; -mf  &#34;file:///data/phont/LexEVS/test/resources/testData/Camera-manifest.xml&#34;
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h3 id="InstallingOWLTerminologiesinLexEVS6.x-OWL2TerminologyLoads">
+  OWL2 Terminology Loads
+</h3>
+Special considerations for OWL2 loads in LexEVS 6.x.    OWL2 offers some unique possibilities for authoring and representation.  Some terminologies contain a wide range of namespaces that need to be referenced within the code system in order for certain kinds of namespace based searches and hierarchy traversals to take place.   Other options for load alterations can be made via a preferences file which can set root nodes and enable loading of Axiom based restrictions as relationships via a &#34;strict owl&#34; interpretation of the source.
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Step
+      </th>
+      <th>
+        Action
+      </th>
+    </tr>
+    <tr>
+      <td>
+        1
+      </td>
+      <td>
+        Obtain or write an OWL2 sourceAn example is the OBI Ontology described here:
+        <a href="http://obi-ontology.org/page/Main_Page" rel="nofollow">
+          http://obi-ontology.org/page/Main_Page
+        </a>
+        With source currently available here:
+        <a href="http://svn.code.sf.net/p/obi/code/releases/2015-09-15/obi.owl" rel="nofollow">
+          http://svn.code.sf.net/p/obi/code/releases/2015-09-15/obi.owl
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        2
+      </td>
+      <td>
+        Create a manifest and preferences file for this sourceManifests are XML files formatted to an XML schema.  They are easiest to create when using an XML editor that can reference an XML schema.  The manifest schema is hosted here:
+        <a href="http://LexGrid.org/schema/2010/01/LexOnt/CodingSchemeManifest" rel="nofollow">
+          http://LexGrid.org/schema/2010/01/LexOnt/CodingSchemeManifest
+        </a>
+        For OWL2 the user can create one like the example for regular OWL above but add a tag for mappings that will help define namespaces in the OBI load:Mappings Tag
+        &lt;owldef:mappings dc=&#34;mappings&#34; xmlns=&#34;http://LexGrid.org/schema/2009/01/LexGrid/codingSchemes&#34;&gt;
+        As tag content supply a supported coding scheme for the enclosing coding scheme OBI.Coding Scheme
+        &lt;supportedCodingScheme isImported=&#34;false&#34; localId=&#34;obi&#34; urn=&#34;http://purl.obolibrary.org/obo/obi.owl#&#34; xmlns=&#34;http://LexGrid.org/schema/2008/01/LexGrid/codingSchemes&#34;/&gt;
+        After this tag define the namespace for the enclosing coding scheme with a reference to the enclosing coding scheme in the equivalent coding scheme attributeEnclosing Scheme Namespace
+        &lt;supportedNamespace localId=&#34;obi&#34; uri=&#34;http://purl.obolibrary.org/obo/obi.owl#&#34; equivalentCodingScheme=&#34;obi&#34;&gt;obi&lt;/supportedNamespace&gt;
+        All other namespaces can be defined in the same way with references from the original OWL source which are found in the xmlns attributes of the &#34;&lt;rdf:RDF tag.&#34;  Each with a reference to the enclosing coding scheme using the equivalentCodingScheme attributeSupported Namespace
+        &lt;supportedNamespace localId=&#34;dc&#34; uri=&#34;http://purl.org/dc/elements/1.1/&#34; equivalentCodingScheme=&#34;obi&#34;&gt;dc&lt;/supportedNamespace&gt;
+        &lt;supportedNamespace localId=&#34;doap&#34; uri=&#34;http://usefulinc.com/ns/doap#&#34; equivalentCodingScheme=&#34;obi&#34;&gt;doap&lt;/supportedNamespace&gt;
+        &lt;supportedNamespace localId=&#34;foaf&#34; uri=&#34;http://xmlns.com/foaf/0.1/&#34; equivalentCodingScheme=&#34;obi&#34;&gt;foaf&lt;/supportedNamespace&gt;
+        &lt;supportedNamespace localId=&#34;obo&#34; uri=&#34;http://purl.obolibrary.org/obo/&#34; equivalentCodingScheme=&#34;obi&#34;&gt;obo&lt;/supportedNamespace&gt;
+        &lt;supportedNamespace localId=&#34;oboInOwl&#34; uri=&#34;http://www.geneontology.org/formats/oboInOwl#&#34; equivalentCodingScheme=&#34;obi&#34;&gt;oboInOwl&lt;/supportedNamespace&gt;
+        &lt;supportedNamespace localId=&#34;owl&#34; uri=&#34;http://www.w3.org/2002/07/owl&#34; equivalentCodingScheme=&#34;obi&#34;&gt;owl&lt;/supportedNamespace&gt;
+        &lt;supportedNamespace localId=&#34;protege&#34; uri=&#34;http://protege.stanford.edu/plugins/owl/protege#&#34; equivalentCodingScheme=&#34;obi&#34;&gt;protege&lt;/supportedNamespace&gt;
+        &lt;supportedNamespace localId=&#34;rdf&#34; uri=&#34;http://www.w3.org/1999/02/22-rdf-syntax-ns&#34; equivalentCodingScheme=&#34;obi&#34;&gt;rdf&lt;/supportedNamespace&gt;
+        &lt;supportedNamespace localId=&#34;rdfs&#34; uri=&#34;http://www.w3.org/2000/01/rdf-schema&#34; equivalentCodingScheme=&#34;obi&#34;&gt;rdfs&lt;/supportedNamespace&gt;
+        &lt;supportedNamespace localId=&#34;xsd&#34; uri=&#34;http://www.w3.org/2001/XMLSchema&#34; equivalentCodingScheme=&#34;obi&#34;&gt;xsd&lt;/supportedNamespace&gt;
+        &lt;supportedNamespace localId=&#34;xml&#34; uri=&#34;http://www.w3.org/XML/1998/namespace&#34; equivalentCodingScheme=&#34;obi&#34;&gt;xml&lt;/supportedNamespace&gt;
+        Attached is a full example of a working manifest for OBI
+        <a href="https://wiki.nci.nih.gov/download/attachments/59214356/OBI_Apr2015_With_NamespaceToCS_MF.xml?version=3&amp;modificationDate=1447962464000&amp;api=v2" rel="nofollow">
+          OBI_Apr2015_With_NamespaceToCS_MF.xml
+        </a>
+        Preferences files work in a similar way to the manifest.  Instead of updating coding scheme data, they initiate programmatic switches determining how a variety of source definitions can be loaded. The preferences XML scheme is defined here:
+        <a href="http://LexGrid.org/schema/LexBIG/2009/01/Preferences/load/OWLLoadPreferences" rel="nofollow">
+          http://LexGrid.org/schema/LexBIG/2009/01/Preferences/load/OWLLoadPreferences
+        </a>
+        This includes setting nodes designated as root, i.e. without relational parent codes of any kind.Match Root Name
+        &lt;MatchRootName&gt;(BFO_0000001|Project|SVNRepository|ObsoleteClass|Version)&lt;/MatchRootName&gt;
+        Other applications for OWL2 include loading Axiom based restrictions as a variety of relationships.   This is accomplished by setting the strict owl tag value to true:Strict OWL
+        &lt;StrictOWLImplementation&gt;true&lt;/StrictOWLImplementation&gt;
+        A full working preferences file is attached below
+        <a href="https://wiki.nci.nih.gov/download/attachments/59214356/OBI_StrictOWL_PF.xml?version=1&amp;modificationDate=1447947724000&amp;api=v2" rel="nofollow">
+          OBI_StrictOWL_PF.xml
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        3
+      </td>
+      <td>
+        Load source with options using option files
+        ./LoadOWL2.sh -in &#34;file:///data/phont/LexEVS/test/resources/testData/obi.owl&#34; -mf &#34;file:///data/phont/LexEVS/test/resources/testData/OBI_Apr2015_With_NamespaceToCS_MF.xml&#34; -lp &#34;file:///data/phont/LexEVS/test/resources/testData/OBI_StrictOWL_PF.xml&#34;
+      </td>
+    </tr>
+  </tbody>
+</table>

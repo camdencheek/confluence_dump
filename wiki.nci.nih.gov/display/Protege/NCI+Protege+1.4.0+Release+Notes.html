@@ -1,0 +1,443 @@
+<h1 id="NCIProtege1.4.0ReleaseNotes-NCIProtégé1.4.0ReleaseNotes">
+  NCI Protégé 1.4.0 Release Notes
+</h1>
+Contents of this Page
+<ul>
+  <li>
+    <a href="#NCIProtege1.4.0ReleaseNotes-ProductChanges" rel="nofollow">
+      Product Changes
+    </a>
+  </li>
+  <li>
+    <a href="#NCIProtege1.4.0ReleaseNotes-NewFeatureHighlights" rel="nofollow">
+      New Feature Highlights
+    </a>
+  </li>
+  <li>
+    <a href="#NCIProtege1.4.0ReleaseNotes-BehaviortobeAwareOf" rel="nofollow">
+      Behavior to be Aware Of
+    </a>
+  </li>
+  <li>
+    <a href="#NCIProtege1.4.0ReleaseNotes-ListofNewFeaturesandBugFixes" rel="nofollow">
+      List of New Features and Bug Fixes
+    </a>
+  </li>
+  <li>
+    <a href="#NCIProtege1.4.0ReleaseNotes-OtherItemsClosed" rel="nofollow">
+      Other Items Closed
+    </a>
+  </li>
+  <li>
+    <a href="#NCIProtege1.4.0ReleaseNotes-COREProductDependencies" rel="nofollow">
+      CORE Product Dependencies
+    </a>
+  </li>
+  <li>
+    <a href="#NCIProtege1.4.0ReleaseNotes-ReleaseHistory" rel="nofollow">
+      Release History
+    </a>
+  </li>
+</ul>
+National Cancer Institute Center for Bioinformatics
+Protege 1.4.0 Release Notes
+15 Sep 2009
+<h2 id="NCIProtege1.4.0ReleaseNotes-ProductChanges">
+  Product Changes
+</h2>
+The objective of this Protégé 1.4 release is to harden the NCIEditTab plug-in for Protégé so the project can go into an operation and maintenance mode of operation, in lieu of actively developing releases of the product containing new features. Protégé 1.4 is planned to be the last major release of the NCIEditTab Protégé plug-in.
+<h2 id="NCIProtege1.4.0ReleaseNotes-NewFeatureHighlights">
+  New Feature Highlights
+</h2>
+Although much of the work in 1.4 involved refactoring existing code to simplify maintenance and enhance performance in various spots, a number of new features have been introduced in various areas.
+<ul>
+  <li>
+    Searching: The ability to use negation (NOT operator) in queries in the LQT
+  </li>
+</ul>
+<ul>
+  <li>
+    Searching: Lucene Match, Property Present, and Property Absent, added to the list of available search types in the LQT (which already included Exact, Contains, Starts With, Ends With, and Sounds Like). The Lucene Match allows queries to be constructed with multiple query strings separated by boolean operators (NOT, AND), thereby extending the range and flexibility of lexical queries that can be conducted in the LQT.
+  </li>
+</ul>
+<ul>
+  <li>
+    Property Restrictions: a simple GUI dialog for creating restrictions has been added to replace the Role expression dialog for simple restrictions; this is essentially the dialog used in the OWLClasses tab of Protege. The Role expression dialog now verifies that expressions have a valid Role Group format.
+  </li>
+</ul>
+<ul>
+  <li>
+    Export of resultsets from the LQT for reports in a spreadsheet format now includes Superclasses. Reports can now also be generated for concepts that are input as a list of codes. Hence, the mechanisms for generating a resultset for outputting reports includes concepts specified a) from lexicographic searches (in the LQT tab), b) by their tree placement (Report Writer sub-tab), and c) by a list of codes (also from the Report Writer sub-tab).
+  </li>
+</ul>
+<ul>
+  <li>
+    Batch Edits / Batch Loads: validation of complex properties and enumerations in property values.
+  </li>
+</ul>
+<h2 id="NCIProtege1.4.0ReleaseNotes-BehaviortobeAwareOf">
+  Behavior to be Aware Of
+</h2>
+A number of GForge items were created that need additional comment. With the exception of GForge items 23284, 23276, and 23057 (see below), which will be addressed in 1.4.1, the items listed here have been closed.
+<ul>
+  <li>
+    19949 Return of 60,082 results for a search
+  </li>
+</ul>
+Searching complex properties or the rdf:ID (:NAME) with specific Contains queries will result in the entire vocabulary being returned, as if a single wildcard character was the query string. This is because complex properties contain embedded XML and the rdf:ID contains a full URI. For instance, the following searches will return the entire NCIt vocabulary
+
+
+
+entity searched   query string
+FULL_SYN&amp;         name
+FULL_SYN&amp;         group
+FULL_SYN          source
+FULL_SYN          &gt;
+:NAME            /
+:NAME            :
+:NAME            http
+:NAME            Thesaurus
+:NAME            owl
+
+
+
+Similarly, a Contains search for &#34;reviewer&#34; or &#34;source&#34; in DEFINITION will return all the concepts with a DEFINITION property.
+
+By the same token, doing Exact searches on the above properties and the :NAME will fail unless the complex property value or URI is entered in its entirety.
+<ul>
+  <li>
+    23284 Batch edit to delete associations needs full association rdfs:ID
+  </li>
+</ul>
+This is deemed an inconsistency in behavior and is slated for a fix in 1.4.1.  For now, editors need to be aware that deleting associations in batch requires that the association&#39;s rdf:ID be entered in its entirety.
+<ul>
+  <li>
+    19970 Batch edit records with sequential escaped characters fail
+  </li>
+</ul>
+Exporting a txt file containing escapable characters from Excel results in Excel&#39;s escape character, the double-quote, being exported also.  Files derived from these exports used for a batch edit will fail. The files need to be cleaned up by searching and fixing the misplaced double-quotes.
+<ul>
+  <li>
+    21973 Browser does not refresh after bulk load
+  </li>
+</ul>
+To increase the performance of the bulk load, the event listeners are turned off during the batch load (and edit). This is by design and results in the behavior listed in GForge.
+<ul>
+  <li>
+    21569 Bulk Load prevents others from moving around in Protege
+  </li>
+</ul>
+This applies to GForge 21632 as well (Batch load of new concepts freezes GUI for other editors).
+
+Although issues that affected the performance of batch loads and edits were examined and their effects minimized in the 1.4.0 release, changes in the edit filters to satisfy QA requirements canceled out the performance increase. As discussed in other venues, batch edits and batch loads need to be dealt with through guidelines. As of this time, batch loads are being restricted to specific time periods of the day after editors have been notified.  Batch edits can be done without this restriction but notification must be sent out so that a) competing batch edits are not done at the same time, b) editors are aware that there might be an increased lag time in Protege&#39;s response due to the ongoing batch edit.
+<ul>
+  <li>
+    22004 Error message appears during a bulk edit when there is an error in the input file. The bulk edit freezes until the OK button on the error message is pressed.
+  </li>
+</ul>
+This issue has to do with concurrent edits being done by other editors on the same classes that are being batch-edited.  The warning messages are the correct behavior, and can only be prevented if the classes are not edited by more than one person (or batch edit) at the same time.
+<ul>
+  <li>
+    17711 Missing warning message to the user: causes protege to freeze.
+  </li>
+</ul>
+On selecting a &#34;hasValue&#34; modifier when owl:Thing is selected in the class widget, Protégé appears to freeze.  It is not frozen, the client is loading all the classes into the widget.  Editors need to be aware that if &#34;hasValue&#34; is to be used, in the class widget the &#34;class hierarchy&#34; view must be selected, instead of the &#34;instance&#34; view.
+<ul>
+  <li>
+    23276 In Copy pane, the Preferred_Name and PT are automatically sync&#39;ed with an improper AQ
+  </li>
+</ul>
+A warning message is displayed on changing a PT or PN, e.g. like when an AQ is created. If the editor does not wish to change the PT/PN, canceling out of the action will restore the concept to its initial state and other edits will also be lost and they&#39;ll need to be recreated. This GForge issue is is slated for modification in protege 1.4.1.  For the time being, editors need to be aware of this behavior.
+<ul>
+  <li>
+    23057 Lucene indexing failure with database data
+  </li>
+</ul>
+Searches in the LQT with &#34;lucene match&#34; might yield incorrect results if multiple concepts exist where the rdf:ID (the class name) only differs in case, e.g. &#34;tocopherol&#34; and &#34;Tocopherol&#34;.  The observed incorrect result is that only one class is returned instead of both.  This is due to a fetch action on the database being done in a case-insensitive manner. This GForge issue is slated for modification in Protégé 1.4.1. Editors need to be aware that under these conditions &#34;lucene match&#34; searches (and &#34;sounds like&#34;) won&#39;t be accurate.
+<h2 id="NCIProtege1.4.0ReleaseNotes-ListofNewFeaturesandBugFixes">
+  List of New Features and Bug Fixes
+</h2>
+3954&amp; Merging two concepts with incoming roles should not result in duplicates
+5967 New concepts go to bottom of the sibling list, rather than alphabetical
+7519 Changes ontology in database
+8302 Need automatic cursors in filler windows
+8407 Enter key does not close confirmation message box -- duplicate of #8611
+8590 Allow user to modify Superclasses in Copy tab
+8604 Improve load time of Edit tab
+8609 Retain frame sizes after switching tabs
+8610 Auto-select the previously selected Thesaurus
+8629 Provide ability to disable right click menu options from main tree
+10811 Restriction change frozen out
+11018 Catch client exception when server is down or being bounced
+11110 PROMPT-Table  wiew does not have ontologies&#39; names
+11114 PROMPT- &#39;Source knowledge bases&#39; window inconsistency
+11115 PROMPT- &#39;Table View&#39; crashes after visting &#39;Show sources&#39; window
+11891 deleting classes can cause spurious values showing up in class browser
+12358 PROMPT- Reject button in Tree view produces error message to the console
+12815 Track the last modeler who modified the assignment
+12817 Creating new workflow assignments
+12935 text is not trimmed
+13613 Does not change status of workflow to Updated when manager edits a concept
+13848 Allow search on null in AQP
+14404 If character in slot matches delimiter then export misaligns values
+14480 Make NCIEdit subtabs configurable
+14786 Focus jumps to new project after final row deleted
+14805 Have batch load verify all STYs are correct when loading
+15003 NCIWorkflow - reorder columns
+15174 No copy option on right click menus for Split function
+15175 (SEE COMMENTS) Invalid classification findings if premerge or pre-retire exists
+15381 Adding restrictions and the Advanced Query
+15493 Default Task Description of new Workflow assignment has typo
+15664 Assumption of role groups
+15752 In copy pane, modify restriction does not remember filler value
+15889 Merging two concepts with incoming properties should not result in duplicates
+15944 PROMPT: namespaces in Table view
+16012 User is able to accept changes that classifier suggest for inconsistant class - leads to issue
+16120 Addition of a date tag to retired concepts and to merged concepts
+16140 Copy Tab allows save of class with duplicate restrictions
+16152 Display of NCIEditTab Build Version
+16161 Comment on the confirmation &#39;OK&#39; box
+16163 Addition of Superclass in Copy/Split/PreMerge - allow &#39;defining&#39; superclass
+16533 Unnecessary warning when leaving Copy or Edit pane
+16775 Simplify adding a role
+16873 History records created on classification in client--server mode
+16887 Add definition field to window when cloning a class
+16926 :ROLE concrete - Prompt bug fix
+16983 Duplicates Items displayed on the main menu.
+17128 Changes tab does not show up after changing the Look and feel.
+17145 Protege freezes after chaning the Look and Feel the second time.
+17210 LQP/AQP - selection and output of superclasses
+17212 LQP/AQP - search for concepts lacking a property value
+17213 Selection criteria for concepts to be exported via LQP/AQP export function
+17214 Report writer - add export function currently in LQP/AQP
+17450 Loss of Concepts form the Hierarchy
+17570 Confusing message to the user when you drag the retiring concept into surviving concepts pane.
+17760 Workflow improvements
+17777 AQP sometimes returns an incomplete result set
+18116 LQT export of results is exporting entire path
+18163 Triple click on Change History causes UnsupportedOperationException
+18164 query in changes tab search box gives &#39;Please enter an expressioin&#39; error
+18177 Incorrect display of LQT search criteria
+18210 User can drag and drop a concept which has not been pre-merged into a merge pane.
+18232 Language should be serialialized as xml:lang attribute
+18497 RuntimeException when you click &#39;Edit form of type...&#39; button on Edit tab
+18536 Batch Load of new concepts interferes with other editors creating concepts
+18589 LQP view class buttons do not appear for class in PATO
+18599 Language display
+18616 Save of concept_history in NCI_DB format after Prompt should be altered or automated
+18831 LQT needs label at bottom to identify protege instance
+18929 A classifier run tags all concepts with protege:inferred properties
+18930 PROMPT tab allows start of compare even when another compare is running
+18959 sort of inferred results panel
+18961 queries in change tab
+18978 frame caching refactoring
+18981 switching subtabs in nciedittab is slow
+18988 Modifications to the reasoning server to support storage plug-ins
+18989 Add context information in reasoner client/server protocol to reject updates to unrelated ontologies
+18990 Reasoner URL as per-project preference (rather than per Protege Server)
+19000 Reduce reasoning time for explanations which include domain or range axioms
+19024 Merge process by GUI changed between 1.2.3.25 and 1.3.0.172
+19077 Not able to Split a concept :RuntimeException
+19100 property tab, can&#39;t edit enumerations
+19165 Display in Browser&#39; dialog for editing Unstructured Proposals shows wrong URL
+19308 OWL:Thing can be added as a filler value while adding a restriction or an association
+19361 FULL_SYN with incorrect format cannot be fixed in NCI Editor Edit Tab
+19499 Not able to drag and drop a concept in to Copy,Premerge,preretire,merge and retire pane.
+19520 Project is closed when you check Drag and Drop, while on edit tab.
+19522 Select Named Class does not reappear with a populated window after a search,so OWL:Thing gets added.
+19722 Could add OWL:Thing as a filler value and also as an association.
+19730 Error at save causes loss of all prior edits
+19734 Focus is incorrect after edit of subclass in PreRetire
+19792 LPQ gives duplicate results
+19826 Confirmation box when Preferred_Name is changed
+19850 Changing the Preferred Name in the copy tab does not change the NCI PT
+19934 Partonomy Tree Tab does not work
+19973 Nested Search fails with quantifier &#39;Only&#39;.
+19985 Defined Concepts in Hierarchy Browser not indicated
+20018 During a batch edit a new definition is accepted even without the qualifiers.
+20120 Problems editing a parent
+20134 Exception on switching to the LQT tab from the Report Writer tab
+20157 Couple of classes on the &#39;Select a name class&#39; dialogue are expanded upto 2nd node.
+20170 Configurability of Report Writer output
+20173 Cloned concepts have incorrectly diaplayed PN.
+20318 Lucene query tab will not search PATO
+20323 Prompt: NCI Concept History -- management of properties
+20420 Classification failed with a Reasoner error.
+20478 Unwanted Rick-click options.
+20510 Classes in the &#39;Select a named class&#39; dialogue not sorted alphabetically.
+20512 Right click menu options on the class browser can create, delete super classes.
+20624 Concept History plugin of Prompt writes empty string on referencecode
+20644 Case sensitivity when creating a copy.
+20698 Inability to exit merge panel when a non-pre-merged concept is accidentally dropped into merge panel
+20738 Cannot save/accept new child concept proposals imported from SMW
+20754 Add support for associations to merge/retire
+20914 Explanation tab should request one explanation initially, more only on user request
+20928 search invoked from the drop down is missing magnifying glasses
+20929 exporter is single quoting names from browser text
+21196 Lang is not displayed for a full syn or a definition.
+21271 Need to filter property choices so that only valid options are available.
+21301 Right click edit full syn in Copy pane unecessarily prompts warning messagebox
+21317 Empty Definition tags created on the New concept pane of Copy tab.
+21323 Modifying rdfs label does not update PN or PT full_syn
+21446 On the retire pane after clicking retire and before clicking save, a user can add properties to the retiring concept.
+21474 LQP Report inverted the query output
+21481 Copying the Preferred_Name from the main GUI enables the Save button
+21570 Able to edit a Retired Concept in a bulk process
+21576 Invalid Filler Value Errors
+21578 Unusual characters in cloned definition cause blank definition
+21579 Validating complex properties in batch edit
+21598 Multiple confirmation messages after a preretire save
+21629 APQ popup window still not labeled with terminology
+21630 Merge and retire cannot be completed because of protegeinferred:Sub/SuperclassOf
+21631 Clone without DEF gives empty &lt;def-definition&gt; but other qualifiers are present i.e. &lt;def-source&gt;, &lt;Definition_Review_Date&gt;
+21633 Hierarchy not displaying trees in alphabetical order
+21650 Lucene configuration-- minus 1 value does not function properly
+21651 Explanation Tab not in sync with Hierarchy Browser in NCIEditor tab
+21689 Strange behavior on Preferred Name change
+21712 Editor allows editing of retired concepts
+21856 Explanation server takes over 90 min to start
+21896 Dollow up bug #21650--Lucene Config setting -1
+21900 If clone a concept with no definition it does not retain the provided one
+22005 Restriction-based queries not working
+22010 carriage return allowed in property field?
+22021 Loss of Concepts form the Hierarchy with bad modeling
+22027 unable to bring concept upto Edit panel after failed BulkEdit
+22114 batch load/edit need to capture EVS History
+22333 BFO concepts with BGT subclasses have duplicate rdfs properties after prompt and file export
+22400 LQT results don&#39;t have search criteria appended at the end of the file.
+22404 Batch load causes NPE
+22723 Problem with property creation
+22856 lucene query incorrectly filters properties for search.
+23143 unable to save concept with Def_Curator property
+23205 Concept deleted when trying to replace owl:thing as a parent
+<h2 id="NCIProtege1.4.0ReleaseNotes-OtherItemsClosed">
+  Other Items Closed
+</h2>
+<ul>
+  <li>
+    The defects in the following list were not reproducible, some of these were deemed fixed as a by-product of refactoring.
+  </li>
+</ul>
+8947 Modal dialog does not stay on top
+13856 When client left open, log file grew to 4 GB
+18987 Cannot close project using File menu
+19292 Prompt - Doesn&#39;t display changes in User tab
+19569 ArrayIndexOutOfBoundsException when you edit concept for a package with a New change proposal
+20073 Unable to create a new class.
+20125 After editing for a while the Lucene menu at the top gets multiplied
+20625 Export to WIKI fails
+21445 Dragging a preretired concept into retire pane shows a message &#39;Concept has not been flagged for retirement&#39;.
+21484 Cannot retire a concept.
+21645 Errors at export in ADQ
+<ul>
+  <li>
+    The defects in the following list were either considered invalid or did not require a fix
+  </li>
+</ul>
+8608 Add Cut, Copy, and Paste options to main tree that modifies Superclass
+8918 Allows paste of Preferred Name but can not delete
+11600 Automatically switches Restriction when select a Restriction Property
+15182 Removal of XML tags from query export
+17144 Definition under the Edit tab not visible when you choose CDE/Motif and Window under Look and Feel
+17571 Search under the Class browser is not cleared after the search is done.
+17926 Ontology imports cause data problems when loading the explanation server from a Protege database
+18583 Hierarchy View too cluttered
+19383 Problems configuring the LQP
+19595 Welcome to Protege User&#39;s Guide link goes to the Geek
+20300 PATO concepts not found when criteria has &#39;Exact match&#39; but found with criteria &#39;contains&#39;.
+20475 Exception while adding property (right-click - Add Property) in the copy tab.
+20480 Expanding OWL:Thing using right click menu
+21084 Changes tab displays edits even after cleaning the changes ontology.
+21541 Prompt log output is acting differently than expected
+21624 Associations pointing to PATO concepts display ID not name
+<h2 id="NCIProtege1.4.0ReleaseNotes-COREProductDependencies">
+  CORE Product Dependencies
+</h2>
+No caCORE dependencies. This software is used for editing and maintaining NCI Thesaurus and BiomedGT.
+<h2 id="NCIProtege1.4.0ReleaseNotes-ReleaseHistory">
+  Release History
+</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Release
+      </th>
+      <th>
+        Date
+      </th>
+    </tr>
+    <tr>
+      <td>
+        1.0
+      </td>
+      <td>
+        Jun 07
+      </td>
+    </tr>
+    <tr>
+      <td>
+        1.1
+      </td>
+      <td>
+        Sept 07
+      </td>
+    </tr>
+    <tr>
+      <td>
+        1.2.0
+      </td>
+      <td>
+        Dec 07
+      </td>
+    </tr>
+    <tr>
+      <td>
+        1.2.1
+      </td>
+      <td>
+        Feb 08
+      </td>
+    </tr>
+    <tr>
+      <td>
+        1.2.2
+      </td>
+      <td>
+        May 08
+      </td>
+    </tr>
+    <tr>
+      <td>
+        1.2.3
+      </td>
+      <td>
+        Jul 08
+      </td>
+    </tr>
+    <tr>
+      <td>
+        1.2.3 Patch
+      </td>
+      <td>
+        Aug 08
+      </td>
+    </tr>
+    <tr>
+      <td>
+        1.3.0
+      </td>
+      <td>
+        Mar 09
+      </td>
+    </tr>
+    <tr>
+      <td>
+        1.4.0
+      </td>
+      <td>
+        Sep 09
+      </td>
+    </tr>
+  </tbody>
+</table>

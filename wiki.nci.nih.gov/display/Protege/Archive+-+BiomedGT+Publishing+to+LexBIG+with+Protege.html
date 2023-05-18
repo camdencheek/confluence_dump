@@ -1,0 +1,185 @@
+<h1 id="ArchiveBiomedGTPublishingtoLexBIGwithProtege-Archive-BiomedGTPublishingtoLexBIGwithProtégé">
+  Archive - BiomedGT Publishing to LexBIG with Protégé
+</h1>
+Contents of this Page
+<ul>
+  <li>
+    <a href="#ArchiveBiomedGTPublishingtoLexBIGwithProtege-Aboutthispage" rel="nofollow">
+      About this page
+    </a>
+  </li>
+  <li>
+    <a href="#ArchiveBiomedGTPublishingtoLexBIGwithProtege-ProcessOverview" rel="nofollow">
+      Process Overview
+    </a>
+    <ul>
+      <li>
+        <a href="#ArchiveBiomedGTPublishingtoLexBIGwithProtege-RunaPromptbaselinecomparison(workflowmanager)" rel="nofollow">
+          Run a Prompt baseline comparison (workflow manager)
+        </a>
+      </li>
+      <li>
+        <a href="#ArchiveBiomedGTPublishingtoLexBIGwithProtege-Operationstasks" rel="nofollow">
+          Operations tasks
+        </a>
+        <ul>
+          <li>
+            <a href="#ArchiveBiomedGTPublishingtoLexBIGwithProtege-Eliminateunpublishablepropertiesandroles" rel="nofollow">
+              Eliminate unpublishable properties and roles
+            </a>
+          </li>
+          <li>
+            <a href="#ArchiveBiomedGTPublishingtoLexBIGwithProtege-GenerateOntylogformattedfileandflattextfile" rel="nofollow">
+              Generate Ontylog formatted file and flat text file
+            </a>
+          </li>
+          <li>
+            <a href="#ArchiveBiomedGTPublishingtoLexBIGwithProtege-LoadOWLfileintoLexBIGwithcumulativehistory;compareproductiontoQA" rel="nofollow">
+              Load OWL file into LexBIG with cumulative history; compare production to QA
+            </a>
+          </li>
+          <li>
+            <a href="#ArchiveBiomedGTPublishingtoLexBIGwithProtege-LoadOntylogversionintoDTS" rel="nofollow">
+              Load Ontylog version into DTS
+            </a>
+          </li>
+          <li>
+            <a href="#ArchiveBiomedGTPublishingtoLexBIGwithProtege-TagQAversionasProduction;publishvocabulary" rel="nofollow">
+              Tag QA version as Production; publish vocabulary
+            </a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+<h2 id="ArchiveBiomedGTPublishingtoLexBIGwithProtege-Aboutthispage">
+  About this page
+</h2>
+This page explains the process and the procedural steps for publishing BiomedGT content to LexBIG.
+<h2 id="ArchiveBiomedGTPublishingtoLexBIGwithProtege-ProcessOverview">
+  Process Overview
+</h2>
+The following sections explain the steps for each procedure in the publishing process.
+<h3 id="ArchiveBiomedGTPublishingtoLexBIGwithProtege-RunaPromptbaselinecomparison(workflowmanager)">
+  Run a Prompt baseline comparison (workflow manager)
+</h3>
+Using the Prompt plug-in, a workflow manager follows these steps:
+<ol>
+  <li>
+    Runs a bi-weekly comparison of the current Protégé database against the baseline from the last comparison.
+  </li>
+  <li>
+    Exports a copy of the master Protégé project file and uses it as a baseline during the next comparison cycle.
+  </li>
+</ol>
+<h3 id="ArchiveBiomedGTPublishingtoLexBIGwithProtege-Operationstasks">
+  Operations tasks
+</h3>
+Approximately once a month, Operations publishes the baseline file to LexBIG. This section describes each task.
+<h4 id="ArchiveBiomedGTPublishingtoLexBIGwithProtege-Eliminateunpublishablepropertiesandroles">
+  Eliminate unpublishable properties and roles
+</h4>
+NoteCurrently the OWL version of the TDE baseline is loaded into Protégé and classified solely for QA purposes. This is to verify that the removal of roles did not create any classification issues. Since we are going to
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=8160083" rel="nofollow">
+  EVS:classify the Ontylog output
+</a>
+, this may no longer be necessary.
+
+To eliminate unpublishable properties and roles, Operations runs a Prompt comparison. This procedure accomplishes the following:
+<ul>
+  <li>
+    Compares the current and the previous baseline against the edit history as recorded in the evs_history table, revealing such editing errors as
+    <ul>
+      <li>
+        concepts created and retired in the same publishing cycle;
+      </li>
+      <li>
+        concepts that have no history; and
+      </li>
+      <li>
+        history records that have no matching concepts.
+      </li>
+    </ul>
+  </li>
+  <li>
+    Cleans up the history and exports it to the concept_history table for editing. Cleanup tasks include
+    <ul>
+      <li>
+        combining multiple modifies on a concept into a single modify record; and
+      </li>
+      <li>
+        eliminating modify records on concepts that have been created, merged, split, or retired.
+      </li>
+    </ul>
+  </li>
+  <li>
+    Exports a number of history files from the concept_history table for publication, including
+    <ul>
+      <li>
+        a cumulative history for publication in LexBIG;
+      </li>
+      <li>
+        a monthly history showing all publishable history records for the cycle; and
+      </li>
+      <li>
+        a monthly history highlighting only creations and retirements (including splits and merges) for use by the caDSR.
+      </li>
+    </ul>
+  </li>
+</ul>
+<h4 id="ArchiveBiomedGTPublishingtoLexBIGwithProtege-GenerateOntylogformattedfileandflattextfile">
+  Generate Ontylog formatted file and flat text file
+</h4>
+Operations generates an Ontylog-formatted file for input into the DTS and for download. The baseline processing also generates a flat file for download.
+
+NoteThis process supports caCORE 3.2. Once caCORE 3.2 is retired, the process will be discontinued.
+<h4 id="ArchiveBiomedGTPublishingtoLexBIGwithProtege-LoadOWLfileintoLexBIGwithcumulativehistory;compareproductiontoQA">
+  Load OWL file into LexBIG with cumulative history; compare production to QA
+</h4>
+<ol>
+  <li>
+    Load the OWL file into LexBIG on the Dev server, along with the cumulative history up to the date the baseline file was created.
+  </li>
+  <li>
+    Tag baseline as QA.
+  </li>
+</ol>
+This resides side by side with the previous PRODUCTION version.
+<ol>
+  <li>
+    Run a series of scripts to compare the data in the PRODUCTION version to the data in QA.
+  </li>
+</ol>
+These scripts will most likely be run against the LexBIG API, since that is the form in which the user will see the data.
+<h4 id="ArchiveBiomedGTPublishingtoLexBIGwithProtege-LoadOntylogversionintoDTS">
+  Load Ontylog version into DTS
+</h4>
+Operations loads the Ontylog version of the vocabulary into DTS. The method of loading requires that the data be loaded into TDE, classified, then transferred into DTS using Apelon-created applications.
+
+The classification step can be considered a QA marker, as some bad transformations can cause classification to fail. Bad formatting can also result in a failure to load to TDE or to transfer to the DTS.
+<h4 id="ArchiveBiomedGTPublishingtoLexBIGwithProtege-TagQAversionasProduction;publishvocabulary">
+  Tag QA version as Production; publish vocabulary
+</h4>
+Once the tests return satisfactory results, Operations follows these steps:
+<ol>
+  <li>
+    Removes the old PRODUCTION version.
+  </li>
+  <li>
+    Tags the QA version is tagged as PRODUCTION.
+  </li>
+</ol>
+The vocabulary enters the promotion schedule and is given an expected publication date in the EVS schedule.
+<ol>
+  <li>
+    Loads the final output files, both data and history, into the FTP server in preparation for final publication.
+  </li>
+  <li>
+    Publishes the history files as soon as possible so that EVS-reliant data can be verified for use in the caDSR.
+  </li>
+</ol>
+Notes:
+The data on Dev will be transferred up the tiers along parallel tracks. We will push the DTS data to QA and make it available on the nciterms-qa website. We will push the LexBIG data to the software QA server and make it available on the bioportal-dataqa website.
+
+After the data has been on QA for one to two weeks, we will send deployment requests to move both DTS and LexBIG up to Stage. After a day there, it can be moved to production. 

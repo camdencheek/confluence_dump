@@ -1,0 +1,809 @@
+Contents of this Page
+<ul>
+  <li>
+    <a href="#LexEVS6.0CTS2Administration1LoadAPI-Introduction" rel="nofollow">
+      Introduction
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.0CTS2Administration1LoadAPI-LoadInterfaces" rel="nofollow">
+      Load Interfaces
+    </a>
+    <ul>
+      <li>
+        <a href="#LexEVS6.0CTS2Administration1LoadAPI-CodeSystemLoader" rel="nofollow">
+          Code System Loader
+        </a>
+        <ul>
+          <li>
+            <a href="#LexEVS6.0CTS2Administration1LoadAPI-LoadingCodeSystemfromaFile" rel="nofollow">
+              Loading Code System from a File
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS6.0CTS2Administration1LoadAPI-LoadingCodeSystemObject" rel="nofollow">
+              Loading Code System Object
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#LexEVS6.0CTS2Administration1LoadAPI-ValueSetLoader" rel="nofollow">
+          Value Set Loader
+        </a>
+        <ul>
+          <li>
+            <a href="#LexEVS6.0CTS2Administration1LoadAPI-LoadingValueSetDefinitionfromaFile" rel="nofollow">
+              Loading Value Set Definition from a File
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS6.0CTS2Administration1LoadAPI-LoadingValueSetDefinitionObject" rel="nofollow">
+              Loading Value Set Definition Object
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#LexEVS6.0CTS2Administration1LoadAPI-AssociationLoader" rel="nofollow">
+          Association Loader
+        </a>
+        <ul>
+          <li>
+            <a href="#LexEVS6.0CTS2Administration1LoadAPI-LoadingAssociationsfromaFile" rel="nofollow">
+              Loading Associations from a File
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS6.0CTS2Administration1LoadAPI-LoadingAssociationsfromanObject" rel="nofollow">
+              Loading Associations from an Object
+            </a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        CTS2 Links for LexEVS 6.0
+      </th>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427281" rel="nofollow">
+              CTS2 API Main Page
+            </a>
+          </li>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427334" rel="nofollow">
+              Programmer&#39;s Guide Main Page
+            </a>
+          </li>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=69730353" rel="nofollow">
+              LexEVS 6.0 Main Page
+            </a>
+          </li>
+          <li>
+            <a href="https://wiki.nci.nih.gov/display/LexEVS" rel="nofollow">
+              LexEVS Current Release
+            </a>
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="LexEVS6.0CTS2Administration1LoadAPI-Introduction">
+  Introduction
+</h2>
+LexEVS CTS2 Load API provides capability to load complete or incremental updates of Code System, Value Sets and Association contents. It also provides capability to activate and deactivate loaded contents.
+<h2 id="LexEVS6.0CTS2Administration1LoadAPI-LoadInterfaces">
+  Load Interfaces
+</h2>
+There are three major load interfaces proved, each for loading specific content:
+<ul>
+  <li>
+    Code System loader - Provides capability to load complete or partial contents of Code System plus functions to activate and deactivate loaded Code System.
+  </li>
+  <li>
+    Value Sets loader - Provides capability to load Value Sets.
+  </li>
+  <li>
+    Association loader - Provides capability to load Associations.
+  </li>
+</ul>
+Each of these interfaces can be accessed using:
+
+
+
+org.lexevs.cts2.admin.load.CodeSystemLoadOperation csLoadOp = new org.lexevs.cts2.LexEvsCTS2Impl().getAdminOperation().getCodeSystemLoadOperation();
+org.lexevs.cts2.admin.load.ValueSetLoadOperation vsLoadOp = new org.lexevs.cts2.LexEvsCTS2Impl().getAdminOperation().getValueSetLoadOperation();
+org.lexevs.cts2.admin.load.AssociationLoadOperation assnLoadOp = new org.lexevs.cts2.LexEvsCTS2Impl().getAdminOperation().getAssociationLoadOperation();
+<h3 id="LexEVS6.0CTS2Administration1LoadAPI-CodeSystemLoader">
+  Code System Loader
+</h3>
+org.lexevs.cts2.admin.load.CodeSystemLoadOperation is the main interface which can be used to load, activate and deactivate Code System. This interface can be accessed using main LexEVSCTS2 interface, like:
+
+
+
+org.lexevs.cts2.admin.load.CodeSystemLoadOperation csLoadOp = new org.lexevs.cts2.LexEvsCTS2Impl().getAdminOperation().getCodeSystemLoadOperation();
+
+
+
+There are two different methods available to load Code System:
+<ul>
+  <li>
+    Loading Code System from a file - This method provides capability to load complete Code System contents that are present in a file system.
+  </li>
+  <li>
+    Loading Code System Object - This method provides capability to load supplied Code System Object.
+  </li>
+</ul>
+<h4 id="LexEVS6.0CTS2Administration1LoadAPI-LoadingCodeSystemfromaFile">
+  Loading Code System from a File
+</h4>
+This function provides the capability to load Code System found in the file using the loader specified.
+
+load(URI source, URI metadata, URI manifest, String loaderName, Boolean stopOnErrors, Boolean async, Boolean overwriteMetadata, String versionTag, Boolean activate)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Loads Code System found in source file using the loader specified.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        <ul>
+          <li>
+            java.net.URI source - (Mandatory) URI corresponding to the code system file.
+          </li>
+          <li>
+            java.net.URI metadata - (Optional) URI of the XML file containing custom code system meta data. Loads additional data to be maintained and queried as terminology meta-information within the system. All tags and values are interpreted as simple text-based key/value pairs.
+          </li>
+          <li>
+            java.net.URI manifest - (Optional) URI corresponding to the manifest file. The LexGrid Manifest accommodates the need to supplement or override default information provided by the source.  More specifically, the manifest provides a means to customize the same code system metadata defined by the LexGrid model, since each element of the manifest extends directly from an element used to define the LexGrid coding scheme(aka code system) object. Each extended element allows for the administrator to specify whether the manifest definition replaces or supplements original values provided in the terminology source.  Like the LexGrid Terminology model, the manifest is defined by a formal model mastered as XML Schema.
+          </li>
+          <li>
+            java.lang.String loaderName - (Mandatory) Loader to use for loading the code system. Use getSupportedLoaderNames() method to get all the loaders supported by the service.
+            For example, &#39;OBOLoader&#39; could be used to load code system source that is in OBO format, &#39;OWLLoader&#39; for code system source in OWL format, &#39;LexGrid_Loader&#39; for Code System in LexGrid XML format, etc.
+          </li>
+          <li>
+            boolean stopOnErrors - (Optional) default is false. True means stop if any load error is detected. False means attempt to load what can be loaded if recoverable errors are encountered.
+          </li>
+          <li>
+            boolean async - (Optional) Flag controlling whether load occurs in the calling thread.
+            If true, the load will occur in a separate asynchronous process.
+            If false, this method blocks until the load operation completes or fails. Regardless of setting, the getStatus and getLog calls are used to fetch results.
+          </li>
+          <li>
+            boolean_overwriteMetadata - (Optional) If true, existing meta data for the code system will be erased. If false, new meta data will be appended to existing meta data.
+          </li>
+          <li>
+            java.lang.String versionTag - (Optional) The tag (e.g &#34;devel&#34;, &#34;production&#34;, ...) to be set for the this code system.
+          </li>
+          <li>
+            boolean activate - (Optional) True: activates the code system after the load.
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        Array of edu.mayo.informatics.lexgrid.convert.utility.URNVersionPair - URN and Version of the loaded code system
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Sample Call:
+      </th>
+      <td>
+        <ul>
+          <li>
+            Step 1: Instantiate CodeSystemLoadOperation if it is not done yet:
+
+
+            org.lexevs.cts2.admin.load.CodeSystemLoadOperation csLoadOp = new org.lexevs.cts2.LexEvsCTS2Impl().getAdminOperation().getCodeSystemLoadOperation();
+          </li>
+          <li>
+            Step 2: Call load method by passing the inputfile location and other parameter values:
+
+
+            URNVersionPair[] csloaded = csLoad.load(new File(&#34;resources/testData/fungal_anatomy.obo&#34;).toURI(), null, null, &#34;OBOLoader&#34;, true, true, true, &#34;DEV&#34;, true);
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h4 id="LexEVS6.0CTS2Administration1LoadAPI-LoadingCodeSystemObject">
+  Loading Code System Object
+</h4>
+This function provides the capability to load supplied Code System object.
+
+load(CodingScheme codeSystem, URI metadata, Boolean stopOnErrors, Boolean async, Boolean overwriteMetadata, String versionTag, Boolean activate)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Loads supplied Code System Object.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        <ul>
+          <li>
+            org.LexGrid.codingSchemes.CodingScheme codeSystem - (Mandatory) Code System Object to be loaded into the terminology service.
+          </li>
+          <li>
+            java.net.URI metadata - (Optional) URI of the XML file containing custom code system meta data. Loads additional data to be maintained and queried as terminology meta-information within the system. All tags and values are interpreted as simple text-based key/value pairs.
+          </li>
+          <li>
+            boolean stopOnErrors - (Optional) default is false. True means stop if any load error is detected. False means attempt to load what can be loaded if recoverable errors are encountered.
+          </li>
+          <li>
+            boolean async - (Optional) Flag controlling whether load occurs in the calling thread.
+            If true, the load will occur in a separate asynchronous process.
+            If false, this method blocks until the load operation completes or fails. Regardless of setting, the getStatus and getLog calls are used to fetch results.
+          </li>
+          <li>
+            boolean overwriteMetadata_ - (Optional) If true, existing meta data for the code system will be erased. If false, new meta data will be appended to existing meta data.
+          </li>
+          <li>
+            java.lang.String versionTag - (Optional) The tag (e.g &#34;devel&#34;, &#34;production&#34;, ...) to be set for the this code system.
+          </li>
+          <li>
+            boolean activate - (Optional) True: activates the code system after the load.
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        Array of edu.mayo.informatics.lexgrid.convert.utility.URNVersionPair - URN and Version of the loaded code system
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Sample Call:
+      </th>
+      <td>
+        <ul>
+          <li>
+            Step 1: Instantiate CodeSystemLoadOperation if it is not done yet:
+
+
+            org.lexevs.cts2.admin.load.CodeSystemLoadOperation csLoadOp = new org.lexevs.cts2.LexEvsCTS2Impl().getAdminOperation().getCodeSystemLoadOperation();
+          </li>
+          <li>
+            Step 2: Populate Code System Object:
+
+
+            org.LexGrid.codingSchemes.CodingScheme cs = new org.LexGrid.codingSchemes.CodingScheme();
+            cs.setApproxNumConcepts(new Long(4));
+            cs.setCodingSchemeName(&#34;miniautomobiles&#34;);
+            cs.setFormalName(&#34;miniautomobiles&#34;);
+            cs.setCodingSchemeURI(&#34;11.22.33.44&#34;);
+            org.LexGrid.commonTypes.Text copyright = new org.LexGrid.commonTypes.Text();
+            copyright.setContent(&#34;Copyright Mayo Clinic.&#34;);
+            cs.setCopyright(copyright);
+            cs.setDefaultLanguage(&#34;en&#34;);
+            cs.setMappings(new org.LexGrid.naming.Mappings());
+            cs.setRepresentsVersion(&#34;1.1&#34;);
+
+            org.LexGrid.naming.SupportedAssociation saHasSubType = edu.mayo.informatics.lexgrid.convert.exporters.xml.lgxml.factory.SupportedAssociationFactory.createSupportedAssociationHasSubType();
+
+            cs.getMappings().addSupportedAssociation(saHasSubType);
+            org.LexGrid.naming.SupportedAssociation saUses = edu.mayo.informatics.lexgrid.convert.exporters.xml.lgxml.factory.SupportedAssociationFactory.createSupportedAssociationUses();
+            cs.getMappings().addSupportedAssociation(saUses);
+
+            org.LexGrid.relations.Relations rels = new org.LexGrid.relations.Relations();
+            rels.setContainerName(&#34;asD&#34;);
+
+            org.LexGrid.relations.AssociationPredicate ap = new org.LexGrid.relations.AssociationPredicate();
+            ap.setAssociationName(&#34;hasSubtype&#34;);
+            rels.addAssociationPredicate(ap);
+
+            ap = new org.LexGrid.relations.AssociationPredicate();
+
+            ap.setAssociationName(&#34;uses&#34;);
+
+            rels.addAssociationPredicate(ap);
+
+            cs.addRelations(rels);
+          </li>
+          <li>
+            Step 3: Call load method by passing the Code System Object and other parameter values:
+
+
+            URNVersionPair[] csloaded = csLoad.load(cs, null, true, false, true, &#34;DEV&#34;, true);
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h3 id="LexEVS6.0CTS2Administration1LoadAPI-ValueSetLoader">
+  Value Set Loader
+</h3>
+Value Set is stored in repository in terms of definitions, in LexEVS, it is known as &#39;Value Set Definition&#39;. As name indicates, it is a definition of a value set contents, NOT the expanded value set contents that will be loaded. During the runtime, these definitions are resolved against the supplied Code System Version to return expanded Value Set contents. Visit
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427293" rel="nofollow">
+  LexEVS 6.0 Value Set and Pick List Definition Guide
+</a>
+for detailed information about LexEVS Value Set Definition.
+
+org.lexevs.cts2.admin.load.ValueSetLoadOperation is the main interface which can be used to load Value Set Definition. This interface can be accessed using main LexEVSCTS2 interface, like:
+
+
+
+org.lexevs.cts2.admin.load.ValueSetLoadOperation vsLoadOp = new org.lexevs.cts2.LexEvsCTS2Impl().getAdminOperation().getValueSetLoadOperation();
+
+
+
+Similar to Code System, there are two different methods available to load Value Sets:
+<ul>
+  <li>
+    Loading Value Set Definition from a file - This method provides capability to load Value Set Definition(s) that are present in a file system.
+  </li>
+  <li>
+    Loading Value Set Definition Object - This method provides capability to load supplied Value Set Definition Object.
+  </li>
+</ul>
+<h4 id="LexEVS6.0CTS2Administration1LoadAPI-LoadingValueSetDefinitionfromaFile">
+  Loading Value Set Definition from a File
+</h4>
+This function provides the capability to load Value Set Definition(s) found in the file using the loader specified.
+
+load(URI source, URI releaseURI, String loaderName, Boolean stopOnErrors)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Loads Value Set Definition(s) found in source file using the loader specified.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        <ul>
+          <li>
+            java.net.URI source - (Mandatory) URI corresponding to the Value Set Definition(s) file.
+          </li>
+          <li>
+            java.net.URI releaseURI - (Optional) Release URI the loaded contents belong to.
+          </li>
+          <li>
+            java.lang.String loaderName - (Mandatory) Loader to use for loading the Value Set Definition. Use getSupportedLoaderNames() method to get all the loaders supported by the service.
+            For example, use &#39;LexGrid_Loader&#39; to load file containing Value Set Definition(s) in LexGrid XML format, etc.
+          </li>
+          <li>
+            boolean stopOnErrors - (Optional) default is false. True means stop if any load error is detected. False means attempt to load what can be loaded if recoverable errors are encountered.
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        Array of edu.mayo.informatics.lexgrid.convert.utility.URNVersionPair - URI and Version of the loaded Value Set Definition
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Sample Call:
+      </th>
+      <td>
+        <ul>
+          <li>
+            Step 1: Instantiate ValueSetLoadOperation if it is not done yet:
+
+
+            org.lexevs.cts2.admin.load.ValueSetLoadOperation vsLoadOp = new org.lexevs.cts2.LexEvsCTS2Impl().getAdminOperation().getValueSetLoadOperation();
+          </li>
+          <li>
+            Step 2: Call load method by passing the inputfile location and other parameter values:
+
+
+            URNVersionPair[] vsloaded = vsLoad.load(new File(&#34;resources/testData/vsTestData.xml&#34;).toURI(), null, &#34;LexGrid_Loader&#34;, true);
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h4 id="LexEVS6.0CTS2Administration1LoadAPI-LoadingValueSetDefinitionObject">
+  Loading Value Set Definition Object
+</h4>
+This function provides the capability to load supplied Value Set Definition object.
+
+load(ValueSetDefinition valueSetDefinition, URI releaseURI, Boolean stopOnErrors)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Loads supplied Value Set Definition Object.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        <ul>
+          <li>
+            org.LexGrid.valueSets.ValueSetDefinition valueSetDefinition - (Mandatory) Value Set Definition Object to be loaded into the terminology service.
+          </li>
+          <li>
+            java.net.URI releaseURI - (Optional) Release URI the loaded contents belong to.
+          </li>
+          <li>
+            boolean stopOnErrors - (Optional) default is false. True means stop if any load error is detected. False means attempt to load what can be loaded if recoverable errors are encountered.
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        java.lang.String - URI of Value Set Definition loaded
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Sample Call:
+      </th>
+      <td>
+        <ul>
+          <li>
+            Step 1: Instantiate ValueSetLoadOperation if it is not done yet:
+
+
+            org.lexevs.cts2.admin.load.ValueSetLoadOperation vsLoadOp = new org.lexevs.cts2.LexEvsCTS2Impl().getAdminOperation().getValueSetLoadOperation();_
+          </li>
+          <li>
+            Step 2: Populate Code System Object:
+
+
+            org.LexGrid.valueSets.ValueSetDefinition vsd = new org.LexGrid.valueSets.ValueSetDefinition();
+            vsd.setValueSetDefinitionURI(&#34;SRITEST:JUNIT:TEST:VSD1&#34;);
+            vsd.setValueSetDefinitionName(&#34;JUnit test vsd 1&#34;);
+            vsd.setConceptDomain(&#34;cd&#34;);
+            vsd.addRepresentsRealmOrContext(&#34;context&#34;);
+            vsd.setDefaultCodingScheme(&#34;Automobiles&#34;);
+            vsd.setIsActive(false);
+            vsd.setOwner(&#34;cts2&#34;);
+            java.util.List&lt;org.LexGrid.commonTypes.Source&gt; srcList = new ArrayList&lt;org.LexGrid.commonTypes.Source&gt;();
+            org.LexGrid.commonTypes.Source src = new org.LexGrid.commonTypes.Source();
+            src.setContent(&#34;lexevs&#34;);
+            srcList.add(src);
+            src = new org.LexGrid.commonTypes.Source();
+            src.setContent(&#34;cts2&#34;);
+            srcList.add(src);
+            vsd.setSource(srcList);
+
+            org.LexGrid.valueSets.DefinitionEntry de = new org.LexGrid.valueSets.DefinitionEntry();
+            de.setRuleOrder(1L);
+            de.setOperator(org.LexGrid.valueSets.types.DefinitionOperator.OR);
+            org.LexGrid.valueSets.CodingSchemeReference csr = new org.LexGrid.valueSets.CodingSchemeReference();
+            csr.setCodingScheme(&#34;Automobiles&#34;);
+            de.setCodingSchemeReference(csr);
+
+            vsd.addDefinitionEntry(de);
+          </li>
+          <li>
+            Step 3: Call load method by passing the Value Set Definition Object and other parameter values:
+
+
+            String vsdURI = vsLoadOp.load(vsd, null, true);;
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h3 id="LexEVS6.0CTS2Administration1LoadAPI-AssociationLoader">
+  Association Loader
+</h3>
+org.lexevs.cts2.admin.load.AssociationLoadOperation is the main interface which can be used to load Associations with in a Code System. This interface can be accessed using main LexEVSCTS2 interface, like:
+
+
+
+org.lexevs.cts2.admin.load.AssociationLoadOperation assnLoadOp = new org.lexevs.cts2.LexEvsCTS2Impl().getAdminOperation().getAssociationLoadOperation();
+
+
+
+There are two different methods available to load Associations:
+<ul>
+  <li>
+    Load Associations from a file - This method provides capability to load Associations from a file system.
+  </li>
+  <li>
+    Load Associations from an Object - This method provides capability to load Associations supplied with in a Code System Object.
+  </li>
+</ul>
+<h4 id="LexEVS6.0CTS2Administration1LoadAPI-LoadingAssociationsfromaFile">
+  Loading Associations from a File
+</h4>
+This function provides the capability to load Associations found in the file using the loader specified.
+
+importAssociationVersion(URI source, URI metadata, URI manifest, String loaderName, Boolean stopOnErrors, Boolean async, Boolean overwriteMetadata, String versionTag, Boolean activate)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Loads Associations found in source file using the loader specified.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        <ul>
+          <li>
+            java.net.URI source - (Mandatory) URI corresponding to the file that contains Associations.
+          </li>
+          <li>
+            java.net.URI metadata - (Optional) URI of the XML file containing custom meta data for the code system that contains this associations. Loads additional data to be maintained and queried as terminology meta-information within the system. All tags and values are interpreted as simple text-based key/value pairs.
+          </li>
+          <li>
+            java.net.URI manifest - (Optional) URI corresponding to the manifest file. The LexGrid Manifest accommodates the need to supplement or override default information provided by the source.  More specifically, the manifest provides a means to customize the same code system metadata defined by the LexGrid model, since each element of the manifest extends directly from an element used to define the LexGrid coding scheme(aka code system) object. Each extended element allows for the administrator to specify whether the manifest definition replaces or supplements original values provided in the terminology source.  Like the LexGrid Terminology model, the manifest is defined by a formal model mastered as XML Schema.
+          </li>
+          <li>
+            java.lang.String loaderName - (Mandatory) Loader to use for loading the associations. Use getSupportedLoaderNames() method to get all the loaders supported by the service.
+            For example, &#39;OBOLoader&#39; could be used to load code system source that is in OBO format, &#39;OWLLoader&#39; for code system source in OWL format, &#39;LexGrid_Loader&#39; for Code System in LexGrid XML format, etc.
+          </li>
+          <li>
+            boolean stopOnErrors - (Optional) default is false. True means stop if any load error is detected. False means attempt to load what can be loaded if recoverable errors are encountered.
+          </li>
+          <li>
+            boolean async - (Optional) Flag controlling whether load occurs in the calling thread.
+            If true, the load will occur in a separate asynchronous process.
+            If false, this method blocks until the load operation completes or fails. Regardless of setting, the getStatus and getLog calls are used to fetch results.
+          </li>
+          <li>
+            boolean overwriteMetadata_ - (Optional) If true, existing meta data for the code system will be erased. If false, new meta data will be appended to existing meta data.
+          </li>
+          <li>
+            java.lang.String versionTag - (Optional) The tag (e.g &#34;devel&#34;, &#34;production&#34;, ...) to be set for the the code system that contains this associations.
+          </li>
+          <li>
+            boolean activate - (Optional) True: activates the code system that contains this association after the load.
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        None
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Sample Call:
+      </th>
+      <td>
+        <ul>
+          <li>
+            Step 1: Instantiate AssociationLoadOperation if it is not done yet:
+
+
+            org.lexevs.cts2.admin.load.AssociationLoadOperation assnLoadOp = new org.lexevs.cts2.LexEvsCTS2Impl().getAdminOperation().getAssociationLoadOperation();
+          </li>
+          <li>
+            Step 2: Call load method by passing the inputfile location and other parameter values:
+
+
+            assnLoad.importAssociationVersion(new File(&#34;resources/testData/fungal_anatomy.obo&#34;).toURI(), null, null, &#34;OBOLoader&#34;, true, true, true, &#34;DEV&#34;, true);
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h4 id="LexEVS6.0CTS2Administration1LoadAPI-LoadingAssociationsfromanObject">
+  Loading Associations from an Object
+</h4>
+This function provides the capability to load Associations supplied with in a Code System object.
+
+importAssociationVersion(CodingScheme codeSystem, URI metadata, Boolean stopOnErrors, Boolean async, Boolean overwriteMetadata, String versionTag, Boolean activate)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Loads Associations supplied with in Code System Object.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        <ul>
+          <li>
+            org.LexGrid.codingSchemes.CodingScheme codeSystem - (Mandatory) Code System Object that contains Associations to be loaded into the terminology service.
+          </li>
+          <li>
+            java.net.URI metadata - (Optional) URI of the XML file containing custom meta data of code system that contains this associations. Loads additional data to be maintained and queried as terminology meta-information within the system. All tags and values are interpreted as simple text-based key/value pairs.
+          </li>
+          <li>
+            boolean stopOnErrors - (Optional) default is false. True means stop if any load error is detected. False means attempt to load what can be loaded if recoverable errors are encountered.
+          </li>
+          <li>
+            boolean async - (Optional) Flag controlling whether load occurs in the calling thread.
+            If true, the load will occur in a separate asynchronous process.
+            If false, this method blocks until the load operation completes or fails. Regardless of setting, the getStatus and getLog calls are used to fetch results.
+          </li>
+          <li>
+            *boolean overwriteMetadata - (Optional) If true, existing meta data for the code system will be erased. If false, new meta data will be appended to existing meta data.
+          </li>
+          <li>
+            java.lang.String versionTag - (Optional) The tag (e.g &#34;devel&#34;, &#34;production&#34;, ...) to be set for the code system that contains this associations.
+          </li>
+          <li>
+            boolean activate - (Optional) True: activates the code system that contains this associations after the load.
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        None
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Sample Call:
+      </th>
+      <td>
+        <ul>
+          <li>
+            Step 1: Instantiate AssociationLoadOperation if it is not done yet:
+
+
+            org.lexevs.cts2.admin.load.AssociationLoadOperation assnLoadOp = new org.lexevs.cts2.LexEvsCTS2Impl().getAdminOperation().getAssociationLoadOperation();
+          </li>
+          <li>
+            Step 2: Populate Code System Object:
+
+
+            org.LexGrid.codingSchemes.CodingScheme cs = new org.LexGrid.codingSchemes.CodingScheme();
+            cs.setApproxNumConcepts(new Long(4));
+            cs.setCodingSchemeName(&#34;miniautomobiles&#34;);
+            cs.setFormalName(&#34;miniautomobiles&#34;);
+            cs.setCodingSchemeURI(&#34;11.22.33.44&#34;);
+            org.LexGrid.commonTypes.Text copyright = new org.LexGrid.commonTypes.Text();
+            copyright.setContent(&#34;Copyright Mayo Clinic.&#34;);
+            cs.setCopyright(copyright);
+            cs.setDefaultLanguage(&#34;en&#34;);
+            cs.setMappings(new org.LexGrid.naming.Mappings());
+            cs.setRepresentsVersion(&#34;1.1&#34;);
+
+            org.LexGrid.naming.SupportedAssociation saHasSubType = edu.mayo.informatics.lexgrid.convert.exporters.xml.lgxml.factory.SupportedAssociationFactory.createSupportedAssociationHasSubType();
+
+            cs.getMappings().addSupportedAssociation(saHasSubType);
+            org.LexGrid.naming.SupportedAssociation saUses = edu.mayo.informatics.lexgrid.convert.exporters.xml.lgxml.factory.SupportedAssociationFactory.createSupportedAssociationUses();
+            cs.getMappings().addSupportedAssociation(saUses);
+
+            org.LexGrid.relations.Relations rels = new org.LexGrid.relations.Relations();
+            rels.setContainerName(&#34;asD&#34;);
+
+            org.LexGrid.relations.AssociationPredicate ap = new org.LexGrid.relations.AssociationPredicate();
+            ap.setAssociationName(&#34;hasSubtype&#34;);
+            rels.addAssociationPredicate(ap);
+
+            ap = new org.LexGrid.relations.AssociationPredicate();
+
+            ap.setAssociationName(&#34;uses&#34;);
+
+            rels.addAssociationPredicate(ap);
+
+            cs.addRelations(rels);
+          </li>
+          <li>
+            Step 3: Call load method by passing the Code System Object and other parameter values:
+
+
+            assnLoad.importAssociationVersion(cs, null, true, false, true, &#34;DEV&#34;, true);
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>

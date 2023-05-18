@@ -1,0 +1,41 @@
+LIDC AIM Telconv Notes
+Tuesday, June 23, 2009
+LIDC Call with additional participants
+
+Pat Mongkolwat explained DICOM Segmentation Object:
+Binary: is each voxel included - 0 or 1
+Fractional: - two types -
+1)         probability (%)
+2)         occupancy (% of the voxel occupied by tumor)
+
+LIDC PMAPS:
+1.         No readers - score 0
+2.         1 reader (out of four) = ¼
+3.         Denominator is number of readers who thought it was a nodule.(depends on number of readers)
+
+How will we validate the AIM LIDC data?
+Chuck - do analysis of the data... (not necessary to visualize) to test...
+Tony Reeves - also could use the Cornell web tool.... (have all the public cases on their site)
+QIWS testing:  UCLA or Chicago. (maybe Roger)
+
+Action on PMAP -
+
+Pat - AIM assumes a DICOM object...  w/o a DICOM segmentation object then it won&#39;t work.
+Channin - can you create a DICOM representation of the pmap?
+DICOM objects now exist for segmentation...
+
+Proposed scenario:  In annotationofannotation, have the segmentation object associated with the annotation.
+The pmap in xml gets converted to a dicom object... (by Qinyan Pan - we will have to ask her to assess the technical difficulty of this.
+1)         find the appropriate DICOM supplement - to  see how much work is involved in converting a DICOM object from the pmaps...
+DICOM segmentation objects may not be widely accepted yet...
+.. but what are you going to do otherwise..we should add segmentation support to &#34;XIP&#34;workstation requirements
+
+Still some questions about DICOM segmentation objects:
+We should add the DICOM segmentation objects
+DICOM part 3 p. 828 -  8.20   ...
+Mike McN - is the LIDC meaning the same as &#34;only a proportion of that voxel
+DICOM - does it mean, for example, 75% fat
+Mathematically it works but do the semantics work?  We would need to make the semantics clear &#34;segmented property&#34;
+Worse case:  submit a change proposal to DICOM to create 3rd type.
+
+Imaging:Here is the DICOM specification document for DICOM segmentation objects.

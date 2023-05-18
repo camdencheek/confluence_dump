@@ -1,0 +1,844 @@
+<h1 id="SubjectAccrualDataElementsforCompleteTrialsIncludev4.4-titletop"></h1>
+Topic Links
+<ul>
+  <li>
+    <a href="#SubjectAccrualDataElementsforCompleteTrialsIncludev4.4-AccrualDataElementsTablewithCTRPAcceptedValues" rel="nofollow">
+      Accrual Data Elements Table with CTRP Accepted Values
+    </a>
+  </li>
+  <li>
+    <a href="#SubjectAccrualDataElementsforCompleteTrialsIncludev4.4-AccrualDataElementsTablewithCDUSAcceptedValues" rel="nofollow">
+      Accrual Data Elements Table with CDUS Accepted Values
+    </a>
+  </li>
+</ul>
+This section contains detailed information on each of the data elements included in the Batch Upload file. Use of CDUS Values Although you can use CDUS values, they are being phased out in the CTRP. It is best, therefore, to use the CTRP values listed in the table below. When you create a batch file, ensure that each data element conforms to the requirements.
+<ul>
+  <li>
+    List each data element in its appropriate position in a given row
+  </li>
+  <li>
+    Use the correct character cases (CAPITAL vs. lower case letters)
+  </li>
+  <li>
+    Use the correct character lengths (number of characters allowed in a single field)
+  </li>
+  <li>
+    If a comma is part of the value, enclose the field in double quotes. Otherwise the use of double quotes is optional.
+  </li>
+</ul>
+<h2 id="SubjectAccrualDataElementsforCompleteTrialsIncludev4.4-AccrualDataElementsTablewithCTRPAcceptedValues">
+  Accrual Data Elements Table with CTRP Accepted Values
+</h2>
+ Accrual Data Elements table with CTRP-Accepted values for Complete trials
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+    <col/>
+    <col/>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        Accrual Data Element Name
+      </th>
+      <th>
+        Mandatory=M; Optional=O Conditional = C
+      </th>
+      <th>
+        Definition
+      </th>
+      <th>
+        CTRP Accepted Values
+      </th>
+      <th>
+        Information Model Class / Diagram Mapping
+      </th>
+      <th>
+        Comments/Conditions
+      </th>
+    </tr>
+    <tr>
+      <td>
+        Study Identifier
+      </td>
+      <td>
+        M
+      </td>
+      <td>
+        Unique identifier assigned to the study
+      </td>
+      <td>
+        NCI, CTEP, or DCP Identifier
+      </td>
+      <td>
+        Study Protocol / assignedIdentfier
+      </td>
+      <td>
+        --
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Study Subject Identifier
+      </td>
+      <td>
+        M
+      </td>
+      <td>
+        Unique identifier (numeric or alphanumeric) assigned to subjects in a study
+      </td>
+      <td>
+        Any numeric or alphanumeric value assigned to a study subject
+      </td>
+      <td>
+        Study Subject / identifier
+      </td>
+      <td>
+        --
+      </td>
+    </tr>
+    <tr>
+      <td>
+        ZIP Code
+      </td>
+      <td>
+        C
+      </td>
+      <td>
+        String of characters used to identify the five-digit Zone Improvement Plan (ZIP) code that represents the geographic segment that is a subunit of the ZIP code, assigned by the U.S. Postal Service to a geographic location to facilitate mail delivery.
+      </td>
+      <td>
+        5 digit numeric ZIP code
+      </td>
+      <td>
+        Patient / postalAddress
+      </td>
+      <td>
+        Mandatory if patient’s Country of Residence is U.S.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Country of Residence
+      </td>
+      <td>
+        C
+      </td>
+      <td>
+        For non-U.S. residents only. This should be used when patient participation from foreign countries is involved. For patients from outside the U.S., enter the foreign country code. Leave blank if the patient is a U.S. resident. CTRP is using the International Standards Organization country codes.  Note: Either Zip code (if U.S resident) or country code (if not U.S resident) is mandatory.
+      </td>
+      <td>
+        2-letter ISO Country Codes
+      </td>
+      <td>
+        Patient / postalAddress
+      </td>
+      <td>
+        Mandatory if not U.S.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Patient’s Date of Birth
+      </td>
+      <td>
+        M
+      </td>
+      <td>
+        The month and year on which the person was born
+      </td>
+      <td>
+        YYYYMM
+      </td>
+      <td>
+        Patient / birthDate
+      </td>
+      <td>
+        Year and Month are mandatory.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Gender of a Person
+      </td>
+      <td>
+        M
+      </td>
+      <td>
+        Text designations that identify gender. Gender is described as the assemblage of properties that distinguish people on the basis of their societal roles
+      </td>
+      <td>
+        <ul>
+          <li>
+            Male
+          </li>
+          <li>
+            Female
+          </li>
+          <li>
+            Unspecified
+          </li>
+          <li>
+            Unknown
+          </li>
+        </ul>
+      </td>
+      <td>
+        Patient / sexCode
+      </td>
+      <td>
+        Identification of gender is based upon self-report and may come from a form, questionnaire, interview, etc.Genders in batch files do not have to correspond to the gender indicated as a trial eligibility criterion.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Ethnicity
+      </td>
+      <td>
+        M
+      </td>
+      <td>
+        Text for reporting information about ethnicity based on the Office of Management and Budget (OMB) categories
+      </td>
+      <td>
+        <ul>
+          <li>
+            Hispanic or Latino
+          </li>
+          <li>
+            Not Hispanic or Latino
+          </li>
+          <li>
+            Not Reported
+          </li>
+          <li>
+            Unknown
+          </li>
+        </ul>
+      </td>
+      <td>
+        Patient / ethnicGroupCode
+      </td>
+      <td>
+        --
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Payment Method
+      </td>
+      <td>
+        O
+      </td>
+      <td>
+        Term for an entity, organization, government, corporation, health plan sponsor, or any other financial agent who pays a healthcare provider for the healthcare service rendered to a person or reimburses the cost of the healthcare service
+      </td>
+      <td>
+        <ul>
+          <li>
+            Private Insurance
+          </li>
+          <li>
+            Medicare
+          </li>
+          <li>
+            Medicare and Private Insurance
+          </li>
+          <li>
+            Medicaid
+          </li>
+          <li>
+            Medicaid and Medicare
+          </li>
+          <li>
+            Military or Veterans Sponsored, NOS
+          </li>
+          <li>
+            Military Sponsored (Including CHAMPUS &amp; TRICARE)
+          </li>
+          <li>
+            Veterans Sponsored
+          </li>
+          <li>
+            Self-Pay (No Insurance)
+          </li>
+          <li>
+            No Means of Payment (No Insurance)
+          </li>
+          <li>
+            Managed Care
+          </li>
+          <li>
+            State Supplemental Health Insurance
+          </li>
+          <li>
+            Other
+          </li>
+          <li>
+            Unknown
+          </li>
+        </ul>
+      </td>
+      <td>
+        StudySubject / paymentMethodCode
+      </td>
+      <td>
+        Payment Method Codes in batch files are not case-sensitive.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Subject Registration Date
+      </td>
+      <td>
+        M
+      </td>
+      <td>
+        Date the subject was registered to the study
+      </td>
+      <td>
+        YYYYMMDD
+      </td>
+      <td>
+        PerformedSubjectMilestone / registrationDate
+      </td>
+      <td>
+        --
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Registering Group Code
+      </td>
+      <td colspan="1">
+        O
+      </td>
+      <td colspan="1">
+        Unique CTEP Group code assigned to the group that originally registered the patient for the study
+      </td>
+      <td colspan="1">
+        --
+      </td>
+      <td colspan="1">
+        StudySubject / registrationGroupId
+      </td>
+      <td colspan="1">
+        For trials with Group participation, provide CTEP Group Code, if available
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Study Site Identifier
+      </td>
+      <td colspan="1">
+        M
+      </td>
+      <td colspan="1">
+        Unique identifier (PO ID) assigned to the institution accruing the patient to the study
+      </td>
+      <td colspan="1">
+        CTRP Person/Organization ID (PO ID)
+      </td>
+      <td colspan="1">
+        Study Site / identifier
+      </td>
+      <td colspan="1">
+        --
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Subject Disease Code
+      </td>
+      <td>
+        M
+      </td>
+      <td>
+        Code that identifies a disease
+      </td>
+      <td>
+        <ul>
+          <li>
+            CTEP Simplified Disease Code (SDC) terms
+          </li>
+          <li>
+            ICD-9-CM codes
+          </li>
+          <li>
+            ICD-O-3 codes
+          </li>
+          <li>
+            ICD-10
+          </li>
+        </ul>
+      </td>
+      <td>
+        For SDC Disease Code: StudySubject / diease_identifier  For ICD-9 Disease Code: StudySubject / icd9diease_identifier
+      </td>
+      <td>
+        Disease code is mandatory for all trials except those managed by DCP PIO.Cancer specific ICD-9-CM disease codes in the range 140 to 239. Information about these disease codes is available at
+        <a href="http://www.icd9data.com" rel="nofollow">
+          http://www.icd9data.com
+        </a>
+        <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+          <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+        </a>
+        For trials using ICD-O-3 terminology, use this position for Site and Morphology (which must include Histology and Behavior Codes). When using both Site and Histology codes, separate them by a semicolon ( ; ). Site codes are available at
+        <a href="https://codes.iarc.fr/usingicdo.php" rel="nofollow">
+          https://codes.iarc.fr/usingicdo.php
+        </a>
+        .For Disease Codes for disease not specified, healthy volunteers and donors see
+        <a href="https://wiki.nci.nih.gov/display/CTRPdoc/Disease+Codes+for+Disease+not+Specified%2C+Healthy+Volunteers+and+Donors+-+Include+v4.4" rel="nofollow">
+          Disease Codes for Disease not Specified, Healthy Volunteers and Donors - Include v4.4
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Race
+      </td>
+      <td>
+        M
+      </td>
+      <td>
+        Text for reporting information about race based on the Office of Management and Budget (OMB) categories
+      </td>
+      <td>
+        <ul>
+          <li>
+            American Indian or Alaska Native
+          </li>
+          <li>
+            Asian
+          </li>
+          <li>
+            Black or African American
+          </li>
+          <li>
+            Native Hawaiian or Other Pacific Islander
+          </li>
+          <li>
+            Not Reported
+          </li>
+          <li>
+            Unknown
+          </li>
+          <li>
+            White
+          </li>
+        </ul>
+      </td>
+      <td>
+        Patient / raceCode
+      </td>
+      <td>
+        Multiple races in batch files are permissible even if &#34;Not Reported&#34; or &#34;Unknown&#34; is indicated.
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Change Code
+      </td>
+      <td colspan="1">
+        O
+      </td>
+      <td colspan="1">
+        Additions or changes since the last report
+      </td>
+      <td colspan="1">
+        <ul>
+          <li>
+            1
+          </li>
+          <li>
+            2
+          </li>
+          <li>
+            NULL
+          </li>
+        </ul>
+      </td>
+      <td colspan="1">
+        AccrualCollections / changeCode
+      </td>
+      <td colspan="1">
+        1 or NULL = changes in the file;  the CTRP system processes and saves the submission2 = If the trial&#39;s current accrual is 0, the CTRP system processes the file as a Code 1 change. If the trial&#39;s current accrual is greater than 0, the system saves the file but does not process it.
+      </td>
+    </tr>
+  </tbody>
+</table>
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=335854453" rel="nofollow">
+  Return to top of page
+</a>
+<h2 id="SubjectAccrualDataElementsforCompleteTrialsIncludev4.4-AccrualDataElementsTablewithCDUSAcceptedValues">
+  Accrual Data Elements Table with CDUS Accepted Values
+</h2>
+ Accrual Data Elements table with CDUS-Accepted values for Complete trials
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+    <col/>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th colspan="1">
+        Accrual Data Element Name
+      </th>
+      <th>
+        Mandatory=M; Optional=O Conditional = C
+      </th>
+      <th>
+        Definition
+      </th>
+      <th>
+        CDUS Accepted Values
+      </th>
+      <th>
+        Comments/Conditions
+      </th>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Study Identifier
+      </td>
+      <td>
+        M
+      </td>
+      <td>
+        Unique identifier assigned to the study
+      </td>
+      <td>
+        CTEP Identifier
+      </td>
+      <td>
+         --
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Study Subject Identifier
+      </td>
+      <td>
+        M
+      </td>
+      <td>
+        Unique identifier (numeric or alphanumeric) assigned to subjects in a study
+      </td>
+      <td>
+        Any numeric or alphanumeric value assigned to a study subject
+      </td>
+      <td>
+        --
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        ZIP Code
+      </td>
+      <td>
+        C
+      </td>
+      <td>
+        String of characters used to identify the five-digit Zone Improvement Plan (ZIP) code that represents the geographic segment that is a subunit of the ZIP code, assigned by the U.S. Postal Service to a geographic location to facilitate mail delivery.
+      </td>
+      <td>
+        5 digit numeric ZIP code
+      </td>
+      <td>
+        Mandatory if patient’s Country of Residence is U.S.
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Country of Residence
+      </td>
+      <td>
+        C
+      </td>
+      <td>
+        For non-U.S. residents only. This should be used when patient participation from foreign countries is involved. For patients from outside the U.S., enter the foreign country code. Leave blank if the patient is a U.S. resident. CTRP is using the International Standards Organization country codes.  Note: Either Zip code (if U.S resident) or country code (if not U.S resident) is mandatory.
+      </td>
+      <td>
+        2-letter ISO Country Codes
+      </td>
+      <td>
+        Mandatory if not U.S.
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Patient’s Date of Birth
+      </td>
+      <td>
+        M
+      </td>
+      <td>
+        The month and year on which the person was born
+      </td>
+      <td>
+        YYYYMM
+      </td>
+      <td>
+        Year and Month are mandatory
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Gender of a Person
+      </td>
+      <td>
+        M
+      </td>
+      <td>
+        Text designations that identify gender. Gender is described as the assemblage of properties that distinguish people on the basis of their societal roles
+      </td>
+      <td>
+        <ul>
+          <li>
+            1 = Male
+          </li>
+          <li>
+            2 = Female
+          </li>
+          <li>
+            9 = Unknown
+          </li>
+        </ul>
+      </td>
+      <td>
+        Identification of gender is based upon self-report and may come from a form, questionnaire, interview, etc.
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Ethnicity
+      </td>
+      <td>
+        M
+      </td>
+      <td>
+        Text for reporting information about ethnicity based on the Office of Management and Budget (OMB) categories
+      </td>
+      <td>
+        <ul>
+          <li>
+            1 = Hispanic or Latino
+          </li>
+          <li>
+            2 = Not Hispanic or Latino
+          </li>
+          <li>
+            8 = Not Reported
+          </li>
+          <li>
+            9 = Unknown
+          </li>
+        </ul>
+      </td>
+      <td>
+        --
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Payment Method
+      </td>
+      <td>
+        O
+      </td>
+      <td>
+        Term for an entity, organization, government, corporation, health plan sponsor, or any other financial agent who pays a healthcare provider for the healthcare service rendered to a person or reimburses the cost of the healthcare service
+      </td>
+      <td>
+        <ul>
+          <li>
+            1 = Private Insurance
+          </li>
+          <li>
+            2 = Medicare
+          </li>
+          <li>
+            3 = Medicare and Private Insurance
+          </li>
+          <li>
+            4 = Medicaid
+          </li>
+          <li>
+            5 = Medicaid and Medicare
+          </li>
+          <li>
+            6 = Military or Veterans Sponsored, Not Otherwise Specified (NOS)
+          </li>
+          <li>
+            6A = Military Sponsored (including CHAMPUS or TRICARE)
+          </li>
+          <li>
+            6B = Veterans Sponsored
+          </li>
+          <li>
+            7 = Self pay (no insurance)
+          </li>
+          <li>
+            8 = No means of payment (no insurance)
+          </li>
+          <li>
+            98 = Other
+          </li>
+          <li>
+            99 = Unknown
+          </li>
+        </ul>
+      </td>
+      <td>
+        --
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Subject Registration Date
+      </td>
+      <td>
+        M
+      </td>
+      <td>
+        Date the subject was registered to the study
+      </td>
+      <td>
+        YYYYMMDD
+      </td>
+      <td>
+        --
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Registering Group Code
+      </td>
+      <td colspan="1">
+        O
+      </td>
+      <td colspan="1">
+        Unique CTEP Group code assigned to the group that originally registered the patient for the study
+      </td>
+      <td colspan="1">
+         --
+      </td>
+      <td colspan="1">
+        --
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Study Site Identifier
+      </td>
+      <td colspan="1">
+        M
+      </td>
+      <td colspan="1">
+        Unique identifier (PO ID) assigned to the institution accruing the patient to the study
+      </td>
+      <td colspan="1">
+        CTEP Site  ID
+      </td>
+      <td colspan="1">
+        --
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Subject Disease Code
+      </td>
+      <td>
+        M
+      </td>
+      <td>
+        Code that identifies a disease
+      </td>
+      <td>
+        <ul>
+          <li>
+            CTEP Simplified Disease Code (SDC) terms
+          </li>
+          <li>
+            ICD-9-CM codes
+          </li>
+        </ul>
+      </td>
+      <td>
+        Disease code is mandatory for all trials except those managed by DCP PIO.Cancer specific ICD-9-CM disease codes in the range 140 to 239. Information about these disease codes is available at
+        <a href="http://www.icd9data.com" rel="nofollow">
+          http://www.icd9data.com
+        </a>
+        <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+          <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Race
+      </td>
+      <td>
+        M
+      </td>
+      <td>
+        Text for reporting information about race based on the Office of Management and Budget (OMB) categories
+      </td>
+      <td>
+        <ul>
+          <li>
+            01 = White
+          </li>
+          <li>
+            03 = Black or African American
+          </li>
+          <li>
+            04 = Native Hawaiian or Other Pacific Islander
+          </li>
+          <li>
+            05 = Asian
+          </li>
+          <li>
+            06 = American Indian or Alaska Native
+          </li>
+          <li>
+            98 = Not Reported
+          </li>
+          <li>
+            99 = Unknown
+          </li>
+        </ul>
+      </td>
+      <td>
+        --
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Change Code
+      </td>
+      <td>
+        O
+      </td>
+      <td>
+        Additions or changes since the last report
+      </td>
+      <td>
+        --
+      </td>
+      <td>
+        --
+      </td>
+    </tr>
+  </tbody>
+</table>
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=335854453" rel="nofollow">
+  Return to top of page
+</a>

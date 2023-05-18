@@ -1,0 +1,1066 @@
+<h1 id="NCICTRPTrialRegistrationRESTServiceGuide-top"></h1>
+Topic Links
+<ul>
+  <li>
+    <a href="#NCICTRPTrialRegistrationRESTServiceGuide-Introduction" rel="nofollow">
+      Introduction
+    </a>
+  </li>
+  <li>
+    <a href="#NCICTRPTrialRegistrationRESTServiceGuide-ServiceEndpoints" rel="nofollow">
+      Service Endpoints
+    </a>
+  </li>
+  <li>
+    <a href="#NCICTRPTrialRegistrationRESTServiceGuide-AccessRequirements" rel="nofollow">
+      Access Requirements
+    </a>
+  </li>
+  <li>
+    <a href="#NCICTRPTrialRegistrationRESTServiceGuide-XMLSchema" rel="nofollow">
+      XML Schema
+    </a>
+  </li>
+  <li>
+    <a href="#NCICTRPTrialRegistrationRESTServiceGuide-PersonsandOrganizations-RequirementsandRecommendations" rel="nofollow">
+      Persons and Organizations - Requirements and Recommendations
+    </a>
+  </li>
+  <li>
+    <a href="#NCICTRPTrialRegistrationRESTServiceGuide-APISpecification" rel="nofollow">
+      API Specification
+    </a>
+    <ul>
+      <li>
+        <a href="#NCICTRPTrialRegistrationRESTServiceGuide-RegisteranAbbreviatedTrial" rel="nofollow">
+          Register an Abbreviated Trial
+        </a>
+      </li>
+      <li>
+        <a href="#NCICTRPTrialRegistrationRESTServiceGuide-UpdateanAbbreviatedTrial" rel="nofollow">
+          Update an Abbreviated Trial
+        </a>
+      </li>
+      <li>
+        <a href="#NCICTRPTrialRegistrationRESTServiceGuide-RegisteraCompleteTrial" rel="nofollow">
+          Register a Complete Trial
+        </a>
+      </li>
+      <li>
+        <a href="#NCICTRPTrialRegistrationRESTServiceGuide-UpdateaCompleteTrial" rel="nofollow">
+          Update a Complete Trial
+        </a>
+      </li>
+      <li>
+        <a href="#NCICTRPTrialRegistrationRESTServiceGuide-AmendaCompleteTrial" rel="nofollow">
+          Amend a Complete Trial
+        </a>
+      </li>
+    </ul>
+  </li>
+</ul>
+This section provides instructions for registering, updating, and amending Complete and Abbreviated trials via the NCI CTRP Trial Registration REST Service.
+<h2 id="NCICTRPTrialRegistrationRESTServiceGuide-Introduction">
+  Introduction
+</h2>
+Trial Registration REST Service is a CTRP Web Service that provides the following operations in a REST-like fashion:
+<ul>
+  <li>
+    Register an Abbreviated trial in CTRP from ClinicalTrials.gov using a ClinicalTrials.gov Trial Identifier
+  </li>
+  <li>
+    Update an Abbreviated trial in CTRP
+  </li>
+  <li>
+    Register a Complete interventional or non-interventional trial in CTRP
+  </li>
+  <li>
+    Update a Complete trial in CTRP
+  </li>
+  <li>
+    Amend a Complete trial in CTRP
+  </li>
+</ul>
+The service uses XML for data exchange.Program CodesThe program codes feature (not to be confused with
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=341184466" rel="nofollow">
+  NCI Division and Program Values
+</a>
+) has been enhanced. The system ignores program codes unless the trial is one of the following:
+<ul>
+  <li>
+    Complete trial with a lead organization as a member of your cancer center family of organizations.
+  </li>
+  <li>
+    Abbreviated trial where such a member is a participant.
+  </li>
+</ul>
+The system validates program code values against those listed on the Manage Program Codes Master List page for your affiliated cancer center. For details, refer to
+<a href="https://wiki.nci.nih.gov/display/CTRPdoc/Registration+Site+Administration#RegistrationSiteAdministration-ManagingProgramCodes" rel="nofollow">
+  Managing Program Codes
+</a>
+.
+<h2 id="NCICTRPTrialRegistrationRESTServiceGuide-ServiceEndpoints">
+  Service Endpoints
+</h2>
+Inside the NIH Firewall (VPN required)
+<ul>
+  <li>
+    DEVINT:
+    <a href="https://trials-int.nci.nih.gov/services" rel="nofollow">
+      https://trials-int.nci.nih.gov/services
+    </a>
+  </li>
+</ul>
+Outside of the NIH Firewall
+<ul>
+  <li>
+    STAGE:
+    <a href="https://trials-stage.nci.nih.gov/services" rel="nofollow">
+      https://trials-stage.nci.nih.gov/services
+    </a>
+  </li>
+  <li>
+    PROD:
+    <a href="https://trials.nci.nih.gov/services" rel="nofollow">
+      https://trials.nci.nih.gov/services
+    </a>
+  </li>
+</ul>
+<h2 id="NCICTRPTrialRegistrationRESTServiceGuide-AccessRequirements">
+  Access Requirements
+</h2>
+To use the service, you must have a valid NCI CTRP account. For instructions, refer to
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=149619594" rel="nofollow">
+  Creating New NCI CTRP User Accounts
+</a>
+. All service endpoints require Okta token authentication with your NCI CTRP Client ID and Client Secret. Contact
+<a href="mailto:CTRP_support@nih.gov" rel="nofollow">
+  CTRP_support@nih.gov
+</a>
+ to have a NCI CTRP Client ID and Client secret generated for your CTRP REST account. See the following document for generating an Okta access token using your CTRP Client ID and Client Secret:
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=453017988" rel="nofollow">
+  NCI CTRP API Authentication Guide
+</a>
+<h2 id="NCICTRPTrialRegistrationRESTServiceGuide-XMLSchema">
+  XML Schema
+</h2>
+The service uses XML for data exchange. All XML elements going in or out of the service are defined and validated against the following XML schemas:
+<ul>
+  <li>
+    <a href="https://github.com/BIAD/ctrp_docs/blob/master/shared/ws.xsd" rel="nofollow">
+      ws.xsd
+    </a>
+    <a href="https://github.com/BIAD/ctrp_docs/blob/master/shared/ws.xsd" rel="nofollow"></a>
+  </li>
+  <li>
+    <a href="https://github.com/BIAD/ctrp_docs/blob/master/shared/po.xsd" rel="nofollow">
+      po.xsd
+    </a>
+  </li>
+</ul>
+XML schemas are well-annotated with inline documentation that explains the purpose and meaning of various elements, types, and attributes. These schemas specify which elements are required and the required order of those elements. Specific elements required for service operations are explained in the sections below.
+<h2 id="NCICTRPTrialRegistrationRESTServiceGuide-PersonsandOrganizations-RequirementsandRecommendations">
+  Persons and Organizations - Requirements and Recommendations
+</h2>
+Registering or amending Complete trials in the CTRP involves organizations and persons that have the following roles in clinical trials: lead organization, sponsor, principal investigator, and so on. Use person identifiers (PO IDs) and organization identifiers (CTEP IDs) when you register a trial whenever possible. If they do not already exist, request that they be created prior to trial registration, by submitting a request to the CTRO at
+<a href="mailto:ncictro@mail.nih.gov" rel="nofollow">
+  ncictro@mail.nih.gov
+</a>
+<h2 id="NCICTRPTrialRegistrationRESTServiceGuide-APISpecification">
+  API Specification
+</h2>
+<h3 id="NCICTRPTrialRegistrationRESTServiceGuide-RegisteranAbbreviatedTrial">
+  Register an Abbreviated Trial
+</h3>
+Register an Abbreviated trial in CTRP by pulling trial data from ClinicalTrials.gov using a ClinicalTrials.gov Trial Identifier.
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        HTTP Method
+      </th>
+      <td>
+        POST
+      </td>
+    </tr>
+    <tr>
+      <th>
+        URL
+      </th>
+      <td>
+        /trials/abbreviated/{nct}Parameters{nct}.  ClinicalTrials.gov Trial Identifier
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Request Body
+      </th>
+      <td>
+        Empty
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Response Body
+      </th>
+      <td>
+        XML document withTrialRegistrationConfirmationMIME Type: application/xml
+      </td>
+    </tr>
+    <tr>
+      <th>
+        HTTP Response Code
+      </th>
+      <td>
+        200. Success400. Validation error401. Invalid username/password or insufficient permissions to access the service.412. A study with the given identifier already exists in CTRP.500. Error: Duplicate Trial Submission: A trial exists in the system with the same Lead Organization Trial Identifier for the selected Lead Organization
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Examples
+      </th>
+      <td>
+        URL:
+        <a href="https://trials-stage.nci.nih.gov/services/trials/abbreviated/NCT02208700" rel="nofollow">
+          https://trials-stage.nci.nih.gov/services/trials/abbreviated/NCT02208700
+        </a>
+        Response:
+
+         Expand source
+
+
+        &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34; standalone=&#34;yes&#34;?&gt;
+        &lt;TrialRegistrationConfirmation xmlns=&#34;gov.nih.nci.pa.webservices.types&#34;
+        xmlns:ns2=&#34;gov.nih.nci.po.webservices.types.trimmed&#34;&gt;
+        &lt;paTrialID&gt;137908558&lt;/paTrialID&gt;
+        &lt;nciTrialID&gt;NCI-2014-00496&lt;/nciTrialID&gt;
+        &lt;/TrialRegistrationConfirmation&gt;
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h3 id="NCICTRPTrialRegistrationRESTServiceGuide-UpdateanAbbreviatedTrial">
+  Update an Abbreviated Trial
+</h3>
+Request to update an Abbreviated trial in CTRP.
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        HTTP Method
+      </th>
+      <td>
+        POST
+      </td>
+    </tr>
+    <tr>
+      <th>
+        URL
+      </th>
+      <td>
+        /trials/abbreviated/{idType}/{trialID}Parameters {idType}.  Type of identifier you want to use to identify a trial in CTRP. Possible values: pa, nci, ctep. {trialID}.  Trial identifier value itself.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Request Body
+      </th>
+      <td>
+        XML document withAbbreviatedTrialUpdateMIME Type: application/xml
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Response Body
+      </th>
+      <td>
+        XML document withTrialRegistrationConfirmationMIME Type: application/xml
+      </td>
+    </tr>
+    <tr>
+      <th>
+        HTTP Response Code
+      </th>
+      <td>
+        200. Success400. Validation error (including the condition when you are not allowed to update a particular trial)401. Invalid username/password or insufficient permissions to access the service.404. One of the Persons/Organizations acting on the trial was not found in PO500. Internal server error
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Examples
+      </th>
+      <td>
+        URL:
+        <a href="https://trials-stage.nci.nih.gov/services/trials/abbreviated/nci/NCI-2014-00496" rel="nofollow">
+          https://trials-stage.nci.nih.gov/services/trials/abbreviated/nci/NCI-2014-00496
+        </a>
+        Request:
+
+         Expand source
+
+
+        &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34; standalone=&#34;yes&#34;?&gt;
+        &lt;tns:AbbreviatedTrialUpdate
+        xmlns:tns=&#34;gov.nih.nci.pa.webservices.types&#34;
+        xmlns:tns1=&#34;gov.nih.nci.po.webservices.types.trimmed&#34;
+        xmlns:xsi=&#34;http://www.w3.org/2001/XMLSchema-instance&#34;
+        xsi:schemaLocation=&#34;gov.nih.nci.pa.webservices.types ../../src/resources/ws.xsd &#34;&gt;
+
+        	&lt;tns:clinicalTrialsDotGovTrialID&gt;NCT87654321&lt;/tns:clinicalTrialsDotGovTrialID&gt;
+        	&lt;tns:irbApprovalDocument filename=&#34;irb_u.pdf&#34;&gt;dGVzdA==&lt;/tns:irbApprovalDocument&gt;
+        	&lt;tns:informedConsentDocument filename=&#34;consent_u.pdf&#34;&gt;dGVzdA==&lt;/tns:informedConsentDocument&gt;
+        	&lt;tns:otherDocument filename=&#34;other_u1.pdf&#34;&gt;dGVzdA==&lt;/tns:otherDocument&gt;
+        &lt;/tns:AbbreviatedTrialUpdate&gt;
+
+        Response:
+
+         Expand source
+
+
+        &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34; standalone=&#34;yes&#34;?&gt;
+        &lt;TrialRegistrationConfirmation
+        xmlns=&#34;gov.nih.nci.pa.webservices.types&#34;
+        xmlns:ns2=&#34;gov.nih.nci.po.webservices.types.trimmed&#34;&gt;
+        &lt;paTrialID&gt;137908558&lt;/paTrialID&gt;
+        &lt;nciTrialID&gt;NCI-2014-00496&lt;/nciTrialID&gt;
+        &lt;/TrialRegistrationConfirmation&gt;
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h3 id="NCICTRPTrialRegistrationRESTServiceGuide-RegisteraCompleteTrial">
+  Register a Complete Trial
+</h3>
+Request to register a Complete trial in CTRP.
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        HTTP Method
+      </th>
+      <td>
+        POST
+      </td>
+    </tr>
+    <tr>
+      <th>
+        URL
+      </th>
+      <td>
+        /trials/complete
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Request Body
+      </th>
+      <td>
+        XML document withCompleteTrialRegistrationMIME Type: application/xml
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Response Body
+      </th>
+      <td>
+        XML document withTrialRegistrationConfirmationMIME Type: application/xml.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        HTTP Response Code
+      </th>
+      <td>
+        200. Success400. Validation error401. Invalid username/password or insufficient permissions to access the service.404. One of the Persons/Organizations acting on the trial was not found in PO500. Internal server error
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Examples
+      </th>
+      <td>
+        URL:
+        <a href="https://trials-stage.nci.nih.gov/services/trials/complete" rel="nofollow">
+          https://trials-stage.nci.nih.gov/services/trials/complete
+        </a>
+        Request (referring to existing Organizations and Persons by ID):
+
+         Expand source
+
+
+        &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34; standalone=&#34;yes&#34;?&gt;
+        &lt;tns:CompleteTrialRegistration
+        xmlns:tns=&#34;gov.nih.nci.pa.webservices.types&#34;
+        xmlns:tns1=&#34;gov.nih.nci.po.webservices.types.trimmed&#34;
+        xmlns:xsi=&#34;http://www.w3.org/2001/XMLSchema-instance&#34;
+        xsi:schemaLocation=&#34;gov.nih.nci.pa.webservices.types ../../src/resources/ws.xsd &#34;&gt;
+
+
+        &lt;tns:leadOrgTrialID&gt;REST00001&lt;/tns:leadOrgTrialID&gt;
+        &lt;tns:clinicalTrialsDotGovTrialID&gt;NCT12345678&lt;/tns:clinicalTrialsDotGovTrialID&gt;
+        &lt;tns:dcpIdentifier&gt;DCP123&lt;/tns:dcpIdentifier&gt;
+        &lt;tns:otherTrialID&gt;OTHER00000000001&lt;/tns:otherTrialID&gt;
+        &lt;tns:title&gt;A Phase I Study of REST Trial Registration&lt;/tns:title&gt;
+        &lt;tns:phase&gt;I&lt;/tns:phase&gt;
+        &lt;tns:pilot&gt;false&lt;/tns:pilot&gt;
+        &lt;tns:accrualDiseaseTerminology&gt;SDC&lt;/tns:accrualDiseaseTerminology&gt;
+        &lt;tns:primaryPurpose&gt;Other&lt;/tns:primaryPurpose&gt;
+        &lt;tns:primaryPurposeOtherDescription&gt;Additional description of the trial&#39;s purpose&lt;/tns:primaryPurposeOtherDescription&gt;
+        &lt;tns:interventionalDesign&gt;
+        &lt;tns:secondaryPurpose&gt;Other&lt;/tns:secondaryPurpose&gt;
+        &lt;tns:secondaryPurposeOtherDescription&gt;Additional description of the trial&#39;s purpose&lt;/tns:secondaryPurposeOtherDescription&gt;
+        &lt;/tns:interventionalDesign&gt;
+        &lt;tns:leadOrganization&gt;
+        &lt;tns:existingOrganization&gt;
+        &lt;tns:poID&gt;1&lt;/tns:poID&gt;
+        &lt;/tns:existingOrganization&gt;
+        &lt;/tns:leadOrganization&gt;
+        &lt;tns:pi&gt;
+        &lt;tns:existingPerson&gt;
+        &lt;tns:poID&gt;10&lt;/tns:poID&gt;
+        &lt;/tns:existingPerson&gt;
+        &lt;/tns:pi&gt;
+        &lt;tns:sponsor&gt;
+        &lt;tns:existingOrganization&gt;
+        &lt;tns:poID&gt;2&lt;/tns:poID&gt;
+        &lt;/tns:existingOrganization&gt;
+        &lt;/tns:sponsor&gt;
+        &lt;tns:responsibleParty&gt;
+        &lt;tns:type&gt;Sponsor&lt;/tns:type&gt;
+        &lt;/tns:responsibleParty&gt;
+        &lt;tns:summary4FundingSponsor&gt;
+        &lt;tns:existingOrganization&gt;
+        &lt;tns:poID&gt;3&lt;/tns:poID&gt;
+        &lt;/tns:existingOrganization&gt;
+        &lt;/tns:summary4FundingSponsor&gt;
+        &lt;tns:programCode&gt;PG00001&lt;/tns:programCode&gt;
+        &lt;tns:fundedByNciGrant&gt;false&lt;/tns:fundedByNciGrant&gt;
+        &lt;tns:grant&gt;
+        &lt;tns:fundingMechanism&gt;B01&lt;/tns:fundingMechanism&gt;
+        &lt;tns:nihInstitutionCode&gt;AA&lt;/tns:nihInstitutionCode&gt;
+        &lt;tns:serialNumber&gt;111111&lt;/tns:serialNumber&gt;
+        &lt;tns:nciDivisionProgramCode&gt;CCR&lt;/tns:nciDivisionProgramCode&gt;
+        &lt;tns:fundingPercentage&gt;100.0&lt;/tns:fundingPercentage&gt;
+        &lt;/tns:grant&gt;
+        &lt;tns:trialStatus&gt;In Review&lt;/tns:trialStatus&gt;
+        &lt;tns:whyStopped&gt;If study stopped, enter the reason why.&lt;/tns:whyStopped&gt;
+        &lt;tns:trialStatusDate&gt;2014-07-15&lt;/tns:trialStatusDate&gt;
+        &lt;tns:trialStartDate type=&#34;Actual&#34;&gt;2014-07-15&lt;/tns:trialStartDate&gt;
+        &lt;tns:primaryCompletionDate type=&#34;Anticipated&#34;&gt;2018-07-15&lt;/tns:primaryCompletionDate&gt;
+        &lt;tns:completionDate type=&#34;Anticipated&#34;&gt;2018-07-15&lt;/tns:completionDate&gt;
+        &lt;tns:ind&gt;
+        &lt;tns:number&gt;111111&lt;/tns:number&gt;
+        &lt;tns:grantor&gt;CDER&lt;/tns:grantor&gt;
+        &lt;tns:holderType&gt;NIH&lt;/tns:holderType&gt;
+        &lt;tns:nihInstitution&gt;NEI&lt;/tns:nihInstitution&gt;
+        &lt;tns:expandedAccess&gt;true&lt;/tns:expandedAccess&gt;
+        &lt;tns:expandedAccessRecord&gt;NCT12345688&lt;/tns:expandedAccessRecord&gt;
+        &lt;/tns:ind&gt;
+        &lt;tns:ide&gt;
+        &lt;tns:number&gt;222222&lt;/tns:number&gt;
+        &lt;tns:grantor&gt;CDRH&lt;/tns:grantor&gt;
+        &lt;tns:holderType&gt;NCI&lt;/tns:holderType&gt;
+        &lt;tns:nciDivisionProgramCode&gt;CCR&lt;/tns:nciDivisionProgramCode&gt;
+        &lt;tns:expandedAccess&gt;unknown&lt;/tns:expandedAccess&gt;
+        &lt;/tns:ide&gt;
+        &lt;tns:regulatoryInformation&gt;
+        &lt;tns:fdaRegulatedDrug&gt;true&lt;/tns:fdaRegulatedDrug&gt;
+        &lt;tns:fdaRegulatedDevice&gt;true&lt;/tns:fdaRegulatedDevice&gt;
+        &lt;tns:approvalClearance&gt;false&lt;/tns:approvalClearance&gt;
+        &lt;tns:marketSurveillance&gt;true&lt;/tns:marketSurveillance&gt;
+        &lt;tns:usaExport&gt;true&lt;/tns:usaExport&gt;
+        &lt;tns:fdaRegulated&gt;true&lt;/tns:fdaRegulated&gt;
+        &lt;tns:section801&gt;true&lt;/tns:section801&gt;
+        &lt;tns:delayedPosting&gt;false&lt;/tns:delayedPosting&gt;
+        &lt;tns:dataMonitoringCommitteeAppointed&gt;true&lt;/tns:dataMonitoringCommitteeAppointed&gt;
+        &lt;/tns:regulatoryInformation&gt;
+        &lt;tns:protocolDocument filename=&#34;protocol.pdf&#34;&gt;dGVzdA==&lt;/tns:protocolDocument&gt;
+        &lt;tns:irbApprovalDocument filename=&#34;irb.pdf&#34;&gt;dGVzdA==&lt;/tns:irbApprovalDocument&gt;
+        &lt;tns:participatingSitesDocument
+        filename=&#34;sites.pdf&#34;&gt;dGVzdA==&lt;/tns:participatingSitesDocument&gt;
+        &lt;tns:informedConsentDocument filename=&#34;consent.pdf&#34;&gt;dGVzdA==&lt;/tns:informedConsentDocument&gt;
+        &lt;tns:otherDocument filename=&#34;other.pdf&#34;&gt;dGVzdA==&lt;/tns:otherDocument&gt;
+        &lt;tns:category&gt;Externally Peer-Reviewed&lt;/tns:category&gt;
+        &lt;tns:trialOwner&gt;submitter-ci@example.com&lt;/tns:trialOwner&gt;
+        &lt;/tns:CompleteTrialRegistration&gt;
+
+        Request (non-interventional trial):
+
+         Expand source
+
+
+        &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34; standalone=&#34;yes&#34;?&gt;
+        &lt;tns:CompleteTrialRegistration
+        xmlns:tns=&#34;gov.nih.nci.pa.webservices.types&#34;
+        	xmlns:tns1=&#34;gov.nih.nci.po.webservices.types.trimmed&#34;
+        xmlns:xsi=&#34;http://www.w3.org/2001/XMLSchema-instance&#34;
+        	xsi:schemaLocation=&#34;gov.nih.nci.pa.webservices.types ../../src/resources/ws.xsd &#34;&gt;
+
+
+        	&lt;tns:leadOrgTrialID&gt;REST00001&lt;/tns:leadOrgTrialID&gt;
+        	&lt;tns:clinicalTrialsDotGovTrialID&gt;NCT01234567&lt;/tns:clinicalTrialsDotGovTrialID&gt;
+        	&lt;tns:otherTrialID&gt;OTHER00000000002&lt;/tns:otherTrialID&gt;
+        	&lt;tns:title&gt;A Phase I Study of REST Trial Registration&lt;/tns:title&gt;
+        	&lt;tns:phase&gt;I&lt;/tns:phase&gt;
+        	&lt;tns:pilot&gt;false&lt;/tns:pilot&gt;
+        	&lt;tns:accrualDiseaseTerminology&gt;ICD10&lt;/tns:accrualDiseaseTerminology&gt;
+        	&lt;tns:primaryPurpose&gt;Other&lt;/tns:primaryPurpose&gt;
+        	&lt;tns:primaryPurposeOtherDescription&gt;Additional description of the trial&#39;s purpose&lt;/tns:primaryPurposeOtherDescription&gt;
+        	&lt;tns:nonInterventionalDesign&gt;
+        		&lt;tns:trialType&gt;Observational&lt;/tns:trialType&gt;
+        		&lt;tns:studyModelCode&gt;Other&lt;/tns:studyModelCode&gt;
+        		&lt;tns:studyModelCodeOtherDescription&gt;studyModelCode other&lt;/tns:studyModelCodeOtherDescription&gt;
+        		&lt;tns:timePerspectiveCode&gt;Other&lt;/tns:timePerspectiveCode&gt;
+        		&lt;tns:timePerspectiveCodeOtherDescription&gt;timePerspectiveCode other&lt;/tns:timePerspectiveCodeOtherDescription&gt;
+        	&lt;/tns:nonInterventionalDesign&gt;
+        	&lt;tns:leadOrganization&gt;
+        		&lt;tns:existingOrganization&gt;
+        			&lt;tns:poID&gt;1&lt;/tns:poID&gt;
+        		&lt;/tns:existingOrganization&gt;
+        	&lt;/tns:leadOrganization&gt;
+        	&lt;tns:pi&gt;
+        		&lt;tns:existingPerson&gt;
+        			&lt;tns:poID&gt;10&lt;/tns:poID&gt;
+        		&lt;/tns:existingPerson&gt;
+        	&lt;/tns:pi&gt;
+        	&lt;tns:sponsor&gt;
+        		&lt;tns:existingOrganization&gt;
+        			&lt;tns:poID&gt;2&lt;/tns:poID&gt;
+        		&lt;/tns:existingOrganization&gt;
+        	&lt;/tns:sponsor&gt;
+        	&lt;tns:responsibleParty&gt;
+        		&lt;tns:type&gt;Sponsor&lt;/tns:type&gt;
+        	&lt;/tns:responsibleParty&gt;
+        	&lt;tns:summary4FundingSponsor&gt;
+        		&lt;tns:existingOrganization&gt;
+        			&lt;tns:poID&gt;3&lt;/tns:poID&gt;
+        		&lt;/tns:existingOrganization&gt;
+        	&lt;/tns:summary4FundingSponsor&gt;
+        	&lt;tns:programCode&gt;PG00001&lt;/tns:programCode&gt;
+        	&lt;tns:fundedByNciGrant&gt;false&lt;/tns:fundedByNciGrant&gt;
+        	&lt;tns:grant&gt;
+        		&lt;tns:fundingMechanism&gt;B09&lt;/tns:fundingMechanism&gt;
+        		&lt;tns:nihInstitutionCode&gt;AA&lt;/tns:nihInstitutionCode&gt;
+        		&lt;tns:serialNumber&gt;111111&lt;/tns:serialNumber&gt;
+        		&lt;tns:nciDivisionProgramCode&gt;CCR&lt;/tns:nciDivisionProgramCode&gt;
+        		&lt;tns:fundingPercentage&gt;100.0&lt;/tns:fundingPercentage&gt;
+        	&lt;/tns:grant&gt;
+        	&lt;tns:trialStatus&gt;In Review&lt;/tns:trialStatus&gt;
+        	&lt;tns:whyStopped&gt;If study stopped, enter the reason why.&lt;/tns:whyStopped&gt;
+        	&lt;tns:trialStatusDate&gt;2014-07-15&lt;/tns:trialStatusDate&gt;
+        	&lt;tns:trialStartDate type=&#34;Actual&#34;&gt;2014-07-15&lt;/tns:trialStartDate&gt;
+        	&lt;tns:primaryCompletionDate type=&#34;Anticipated&#34;&gt;2018-07-15&lt;/tns:primaryCompletionDate&gt;
+        	&lt;tns:completionDate type=&#34;Anticipated&#34;&gt;2018-07-15&lt;/tns:completionDate&gt;
+        	&lt;tns:ind&gt;
+        		&lt;tns:number&gt;111111&lt;/tns:number&gt;
+        		&lt;tns:grantor&gt;CDER&lt;/tns:grantor&gt;
+        		&lt;tns:holderType&gt;NIH&lt;/tns:holderType&gt;
+        		&lt;tns:nihInstitution&gt;NEI&lt;/tns:nihInstitution&gt;
+        		&lt;tns:expandedAccess&gt;true&lt;/tns:expandedAccess&gt;
+        &lt;tns:expandedAccessRecord&gt;NCT12345688&lt;/tns:expandedAccessRecord&gt;
+        	&lt;/tns:ind&gt;
+        	&lt;tns:ide&gt;
+        		&lt;tns:number&gt;222222&lt;/tns:number&gt;
+        		&lt;tns:grantor&gt;CDRH&lt;/tns:grantor&gt;
+        		&lt;tns:holderType&gt;NCI&lt;/tns:holderType&gt;
+        		&lt;tns:nciDivisionProgramCode&gt;CCR&lt;/tns:nciDivisionProgramCode&gt;
+        		&lt;tns:expandedAccess&gt;unknown&lt;/tns:expandedAccess&gt;
+        	&lt;/tns:ide&gt;
+        	&lt;tns:regulatoryInformation&gt;
+        &lt;tns:fdaRegulatedDrug&gt;true&lt;/tns:fdaRegulatedDrug&gt;
+        &lt;tns:fdaRegulatedDevice&gt;true&lt;/tns:fdaRegulatedDevice&gt;
+        &lt;tns:approvalClearance&gt;false&lt;/tns:approvalClearance&gt;
+        &lt;tns:marketSurveillance&gt;true&lt;/tns:marketSurveillance&gt;
+        &lt;tns:usaExport&gt;true&lt;/tns:usaExport&gt;
+        		&lt;tns:fdaRegulated&gt;true&lt;/tns:fdaRegulated&gt;
+        		&lt;tns:section801&gt;true&lt;/tns:section801&gt;
+        		&lt;tns:delayedPosting&gt;false&lt;/tns:delayedPosting&gt;
+        		&lt;tns:dataMonitoringCommitteeAppointed&gt;true&lt;/tns:dataMonitoringCommitteeAppointed&gt;
+        	&lt;/tns:regulatoryInformation&gt;
+        	&lt;tns:protocolDocument filename=&#34;protocol.pdf&#34;&gt;dGVzdA==&lt;/tns:protocolDocument&gt;
+        	&lt;tns:irbApprovalDocument filename=&#34;irb.pdf&#34;&gt;dGVzdA==&lt;/tns:irbApprovalDocument&gt;
+        	&lt;tns:participatingSitesDocument
+        		filename=&#34;sites.pdf&#34;&gt;dGVzdA==&lt;/tns:participatingSitesDocument&gt;
+        	&lt;tns:informedConsentDocument filename=&#34;consent.pdf&#34;&gt;dGVzdA==&lt;/tns:informedConsentDocument&gt;
+        	&lt;tns:otherDocument filename=&#34;other.pdf&#34;&gt;dGVzdA==&lt;/tns:otherDocument&gt;
+        	&lt;tns:category&gt;Externally Peer-Reviewed&lt;/tns:category&gt;
+        	&lt;tns:trialOwner&gt;submitter-ci@example.com&lt;/tns:trialOwner&gt;
+        &lt;/tns:CompleteTrialRegistration&gt;
+
+
+        Request (trial with minimum data):
+
+         Expand source
+
+
+        &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34; standalone=&#34;yes&#34;?&gt;
+        &lt;tns:CompleteTrialRegistration
+        xmlns:tns=&#34;gov.nih.nci.pa.webservices.types&#34;
+        	xmlns:tns1=&#34;gov.nih.nci.po.webservices.types.trimmed&#34;
+        xmlns:xsi=&#34;http://www.w3.org/2001/XMLSchema-instance&#34;
+        	xsi:schemaLocation=&#34;gov.nih.nci.pa.webservices.types ../../src/resources/ws.xsd &#34;&gt;
+
+
+        	&lt;tns:leadOrgTrialID&gt;REST00001&lt;/tns:leadOrgTrialID&gt;
+        	&lt;tns:title&gt;A Phase I Study of REST Trial Registration&lt;/tns:title&gt;
+        	&lt;tns:phase&gt;I&lt;/tns:phase&gt;
+        	&lt;tns:accrualDiseaseTerminology&gt;ICD10&lt;/tns:accrualDiseaseTerminology&gt;
+        	&lt;tns:primaryPurpose&gt;Treatment&lt;/tns:primaryPurpose&gt;
+        	&lt;tns:interventionalDesign /&gt;
+        	&lt;tns:leadOrganization&gt;
+        		&lt;tns:existingOrganization&gt;
+        			&lt;tns:poID&gt;1&lt;/tns:poID&gt;
+        		&lt;/tns:existingOrganization&gt;
+        	&lt;/tns:leadOrganization&gt;
+        	&lt;tns:pi&gt;
+        		&lt;tns:existingPerson&gt;
+        			&lt;tns:poID&gt;10&lt;/tns:poID&gt;
+        		&lt;/tns:existingPerson&gt;
+        	&lt;/tns:pi&gt;
+        	&lt;tns:summary4FundingSponsor&gt;
+        		&lt;tns:existingOrganization&gt;
+        			&lt;tns:poID&gt;2&lt;/tns:poID&gt;
+        		&lt;/tns:existingOrganization&gt;
+        	&lt;/tns:summary4FundingSponsor&gt;
+        	&lt;tns:fundedByNciGrant&gt;false&lt;/tns:fundedByNciGrant&gt;
+        	&lt;tns:trialStatus&gt;In Review&lt;/tns:trialStatus&gt;
+        	&lt;tns:trialStatusDate&gt;2001-01-01&lt;/tns:trialStatusDate&gt;
+        	&lt;tns:trialStartDate type=&#34;Actual&#34;&gt;2001-01-01
+        	&lt;/tns:trialStartDate&gt;
+        	&lt;tns:primaryCompletionDate type=&#34;Actual&#34;&gt;2001-01-01
+        	&lt;/tns:primaryCompletionDate&gt;
+        	&lt;tns:protocolDocument filename=&#34;protocol.pdf&#34;&gt;MA==
+        	&lt;/tns:protocolDocument&gt;
+        	&lt;tns:irbApprovalDocument filename=&#34;irb.pdf&#34;&gt;MA==
+        	&lt;/tns:irbApprovalDocument&gt;
+        	&lt;tns:category&gt;National&lt;/tns:category&gt;
+        	&lt;tns:trialOwner&gt;submitter-ci@example.com&lt;/tns:trialOwner&gt;
+        &lt;/tns:CompleteTrialRegistration&gt;
+
+
+        Request (trial where responsible party is Sponsor-Investigator):
+
+         Expand source
+
+
+        &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34; standalone=&#34;yes&#34;?&gt;
+        &lt;tns:CompleteTrialRegistration
+        xmlns:tns=&#34;gov.nih.nci.pa.webservices.types&#34;
+        	xmlns:tns1=&#34;gov.nih.nci.po.webservices.types.trimmed&#34;
+        xmlns:xsi=&#34;http://www.w3.org/2001/XMLSchema-instance&#34;
+        	xsi:schemaLocation=&#34;gov.nih.nci.pa.webservices.types ../../src/resources/ws.xsd &#34;&gt;
+
+
+        	&lt;tns:leadOrgTrialID&gt;REST00001&lt;/tns:leadOrgTrialID&gt;
+        	&lt;tns:clinicalTrialsDotGovTrialID&gt;NCT12345678&lt;/tns:clinicalTrialsDotGovTrialID&gt;
+        	&lt;tns:otherTrialID&gt;OTHER00000000001&lt;/tns:otherTrialID&gt;
+        	&lt;tns:title&gt;A Phase I Study of REST Trial Registration&lt;/tns:title&gt;
+        	&lt;tns:phase&gt;I&lt;/tns:phase&gt;
+        	&lt;tns:pilot&gt;false&lt;/tns:pilot&gt;
+        	&lt;tns:accrualDiseaseTerminology&gt;ICD10&lt;/tns:accrualDiseaseTerminology&gt;
+        	&lt;tns:primaryPurpose&gt;Other&lt;/tns:primaryPurpose&gt;
+        	&lt;tns:primaryPurposeOtherDescription&gt;Additional description of the trial&#39;s purpose&lt;/tns:primaryPurposeOtherDescription&gt;
+        	&lt;tns:interventionalDesign&gt;
+        		&lt;tns:secondaryPurpose&gt;Other&lt;/tns:secondaryPurpose&gt;
+        		&lt;tns:secondaryPurposeOtherDescription&gt;Additional description of the trial&#39;s purpose&lt;/tns:secondaryPurposeOtherDescription&gt;
+        	&lt;/tns:interventionalDesign&gt;
+        	&lt;tns:leadOrganization&gt;
+        		&lt;tns:existingOrganization&gt;
+        			&lt;tns:poID&gt;1&lt;/tns:poID&gt;
+        		&lt;/tns:existingOrganization&gt;
+        	&lt;/tns:leadOrganization&gt;
+        	&lt;tns:pi&gt;
+        		&lt;tns:existingPerson&gt;
+        			&lt;tns:poID&gt;10&lt;/tns:poID&gt;
+        		&lt;/tns:existingPerson&gt;
+        	&lt;/tns:pi&gt;
+        	&lt;tns:sponsor&gt;
+        		&lt;tns:existingOrganization&gt;
+        			&lt;tns:poID&gt;2&lt;/tns:poID&gt;
+        		&lt;/tns:existingOrganization&gt;
+        	&lt;/tns:sponsor&gt;
+        	&lt;tns:responsibleParty&gt;
+        		&lt;tns:type&gt;Sponsor-Investigator&lt;/tns:type&gt;
+        		&lt;tns:investigator&gt;
+        		&lt;tns:existingPerson&gt;
+        			&lt;tns:poID&gt;1&lt;/tns:poID&gt;
+        		&lt;/tns:existingPerson&gt;
+        		&lt;/tns:investigator&gt;
+        		&lt;tns:investigatorTitle&gt;CEO &amp;amp; Chairman&lt;/tns:investigatorTitle&gt;
+        	&lt;/tns:responsibleParty&gt;
+        	&lt;tns:summary4FundingSponsor&gt;
+        		&lt;tns:existingOrganization&gt;
+        			&lt;tns:poID&gt;3&lt;/tns:poID&gt;
+        		&lt;/tns:existingOrganization&gt;
+        	&lt;/tns:summary4FundingSponsor&gt;
+        	&lt;tns:programCode&gt;PG00001&lt;/tns:programCode&gt;
+        	&lt;tns:fundedByNciGrant&gt;false&lt;/tns:fundedByNciGrant&gt;
+        	&lt;tns:grant&gt;
+        		&lt;tns:fundingMechanism&gt;B09&lt;/tns:fundingMechanism&gt;
+        		&lt;tns:nihInstitutionCode&gt;AA&lt;/tns:nihInstitutionCode&gt;
+        		&lt;tns:serialNumber&gt;111111&lt;/tns:serialNumber&gt;
+        		&lt;tns:nciDivisionProgramCode&gt;CCR&lt;/tns:nciDivisionProgramCode&gt;
+        		&lt;tns:fundingPercentage&gt;100.0&lt;/tns:fundingPercentage&gt;
+        	&lt;/tns:grant&gt;
+        	&lt;tns:trialStatus&gt;In Review&lt;/tns:trialStatus&gt;
+        	&lt;tns:whyStopped&gt;If study stopped, enter the reason why.&lt;/tns:whyStopped&gt;
+        	&lt;tns:trialStatusDate&gt;2014-07-15&lt;/tns:trialStatusDate&gt;
+        	&lt;tns:trialStartDate type=&#34;Actual&#34;&gt;2014-07-15&lt;/tns:trialStartDate&gt;
+        	&lt;tns:primaryCompletionDate type=&#34;Anticipated&#34;&gt;2018-07-15&lt;/tns:primaryCompletionDate&gt;
+        	&lt;tns:completionDate type=&#34;Anticipated&#34;&gt;2018-07-15&lt;/tns:completionDate&gt;
+        	&lt;tns:ind&gt;
+        		&lt;tns:number&gt;111111&lt;/tns:number&gt;
+        		&lt;tns:grantor&gt;CDER&lt;/tns:grantor&gt;
+        		&lt;tns:holderType&gt;NIH&lt;/tns:holderType&gt;
+        		&lt;tns:nihInstitution&gt;NEI&lt;/tns:nihInstitution&gt;
+        		&lt;tns:expandedAccess&gt;true&lt;/tns:expandedAccess&gt;
+        &lt;tns:expandedAccessRecord&gt;NCT12345688&lt;/tns:expandedAccessRecord&gt;
+        	&lt;/tns:ind&gt;
+        	&lt;tns:ide&gt;
+        		&lt;tns:number&gt;222222&lt;/tns:number&gt;
+        		&lt;tns:grantor&gt;CDRH&lt;/tns:grantor&gt;
+        		&lt;tns:holderType&gt;NCI&lt;/tns:holderType&gt;
+        		&lt;tns:nciDivisionProgramCode&gt;CCR&lt;/tns:nciDivisionProgramCode&gt;
+        		&lt;tns:expandedAccess&gt;unknown&lt;/tns:expandedAccess&gt;
+        	&lt;/tns:ide&gt;
+        	&lt;tns:regulatoryInformation&gt;
+        &lt;tns:fdaRegulatedDrug&gt;true&lt;/tns:fdaRegulatedDrug&gt;
+        &lt;tns:fdaRegulatedDevice&gt;true&lt;/tns:fdaRegulatedDevice&gt;
+        &lt;tns:approvalClearance&gt;false&lt;/tns:approvalClearance&gt;
+        &lt;tns:marketSurveillance&gt;true&lt;/tns:marketSurveillance&gt;
+        &lt;tns:usaExport&gt;true&lt;/tns:usaExport&gt;
+        		&lt;tns:fdaRegulated&gt;true&lt;/tns:fdaRegulated&gt;
+        		&lt;tns:section801&gt;true&lt;/tns:section801&gt;
+        		&lt;tns:delayedPosting&gt;false&lt;/tns:delayedPosting&gt;
+        		&lt;tns:dataMonitoringCommitteeAppointed&gt;true&lt;/tns:dataMonitoringCommitteeAppointed&gt;
+        	&lt;/tns:regulatoryInformation&gt;
+        	&lt;tns:protocolDocument filename=&#34;protocol.pdf&#34;&gt;dGVzdA==&lt;/tns:protocolDocument&gt;
+        	&lt;tns:irbApprovalDocument filename=&#34;irb.pdf&#34;&gt;dGVzdA==&lt;/tns:irbApprovalDocument&gt;
+        	&lt;tns:participatingSitesDocument
+        		filename=&#34;sites.pdf&#34;&gt;dGVzdA==&lt;/tns:participatingSitesDocument&gt;
+        	&lt;tns:informedConsentDocument filename=&#34;consent.pdf&#34;&gt;dGVzdA==&lt;/tns:informedConsentDocument&gt;
+        	&lt;tns:otherDocument filename=&#34;other.pdf&#34;&gt;dGVzdA==&lt;/tns:otherDocument&gt;
+        	&lt;tns:category&gt;Externally Peer-Reviewed&lt;/tns:category&gt;
+        	&lt;tns:trialOwner&gt;submitter-ci@example.com&lt;/tns:trialOwner&gt;
+        &lt;/tns:CompleteTrialRegistration&gt;
+
+
+        Response:
+
+         Expand source
+
+
+        &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34; standalone=&#34;yes&#34;?&gt;
+        &lt;TrialRegistrationConfirmation xmlns=&#34;gov.nih.nci.pa.webservices.types&#34;
+        xmlns:ns2=&#34;gov.nih.nci.po.webservices.types.trimmed&#34;&gt;
+        &lt;paTrialID&gt;137908558&lt;/paTrialID&gt;
+        &lt;nciTrialID&gt;NCI-2014-00496&lt;/nciTrialID&gt;
+        &lt;/TrialRegistrationConfirmation&gt;
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h3 id="NCICTRPTrialRegistrationRESTServiceGuide-UpdateaCompleteTrial">
+  Update a Complete Trial
+</h3>
+Request to update a Complete trial in CTRP.
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        HTTP Method
+      </th>
+      <td>
+        POST
+      </td>
+    </tr>
+    <tr>
+      <th>
+        URL
+      </th>
+      <td>
+        /trials/complete/{idType}/{trialID}Parameters {idType}.  Type of identifier you want to use to identify a trial in CTRP. Possible values: pa, nci, ctep, dcp. {trialID}.  Trial identifier value itself.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Request Body
+      </th>
+      <td>
+        XML document withCompleteTrialUpdateMIME Type: application/xml
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Response Body
+      </th>
+      <td>
+        XML document withTrialRegistrationConfirmationMIME Type: application/xml
+      </td>
+    </tr>
+    <tr>
+      <th>
+        HTTP Response Code
+      </th>
+      <td>
+        200. Success400. Validation error (including the condition when you are not allowed to update a particular trial)401. Invalid username/password or insufficient permissions to access the service.500. Internal server error
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Examples
+      </th>
+      <td>
+        URL:
+        <a href="https://trials-stage.nci.nih.gov/services/trials/complete/nci/NCI-2014-00496" rel="nofollow">
+          https://trials-stage.nci.nih.gov/services/trials/complete/nci/NCI-2014-00496
+        </a>
+        Request:
+
+         Expand source
+
+
+        &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34; standalone=&#34;yes&#34;?&gt;
+        &lt;tns:CompleteTrialUpdate
+        xmlns:tns=&#34;gov.nih.nci.pa.webservices.types&#34;
+        xmlns:tns1=&#34;gov.nih.nci.po.webservices.types.trimmed&#34;
+        xmlns:xsi=&#34;http://www.w3.org/2001/XMLSchema-instance&#34;
+        xsi:schemaLocation=&#34;gov.nih.nci.pa.webservices.types ../../src/resources/ws.xsd &#34;&gt;
+
+        &lt;tns:clinicalTrialsDotGovTrialID&gt;NCT12345678&lt;/tns:clinicalTrialsDotGovTrialID&gt;
+        &lt;tns:otherTrialID&gt;OTHER00000000001&lt;/tns:otherTrialID&gt;
+        &lt;tns:accrualDiseaseTerminology&gt;ICD-O-3&lt;/tns:accrualDiseaseTerminology&gt;
+        &lt;tns:grant&gt;
+        &lt;tns:fundingMechanism&gt;C06&lt;/tns:fundingMechanism&gt;
+        &lt;tns:nihInstitutionCode&gt;AA&lt;/tns:nihInstitutionCode&gt;
+        &lt;tns:serialNumber&gt;111111&lt;/tns:serialNumber&gt;
+        &lt;tns:nciDivisionProgramCode&gt;CCR&lt;/tns:nciDivisionProgramCode&gt;
+        &lt;tns:fundingPercentage&gt;100.0&lt;/tns:fundingPercentage&gt;
+        &lt;/tns:grant&gt;
+        &lt;tns:trialStatus&gt;Approved&lt;/tns:trialStatus&gt;
+        &lt;tns:whyStopped&gt;If study stopped, enter the reason why.&lt;/tns:whyStopped&gt;
+        &lt;tns:trialStatusDate&gt;2014-07-07&lt;/tns:trialStatusDate&gt;
+        &lt;tns:trialStartDate type=&#34;Actual&#34;&gt;2010-01-11&lt;/tns:trialStartDate&gt;
+        &lt;tns:primaryCompletionDate type=&#34;Anticipated&#34;&gt;2025-01-01&lt;/tns:primaryCompletionDate&gt;
+        &lt;tns:completionDate type=&#34;Anticipated&#34;&gt;2050-01-01&lt;/tns:completionDate&gt;
+        &lt;tns:protocolDocument filename=&#34;protocol_updated.pdf&#34;&gt;dGVzdA==&lt;/tns:protocolDocument&gt;
+        &lt;tns:irbApprovalDocument filename=&#34;irb_updated.pdf&#34;&gt;dGVzdA==&lt;/tns:irbApprovalDocument&gt;
+        &lt;tns:participatingSitesDocument
+        filename=&#34;sites_updated.pdf&#34;&gt;dGVzdA==&lt;/tns:participatingSitesDocument&gt;
+        &lt;tns:informedConsentDocument filename=&#34;consent_updated.pdf&#34;&gt;dGVzdA==&lt;/tns:informedConsentDocument&gt;
+        &lt;tns:otherDocument filename=&#34;other_updated.pdf&#34;&gt;dGVzdA==&lt;/tns:otherDocument&gt;
+        	&lt;tns:trialOwner&gt;submitter-ci@example.com&lt;/tns:trialOwner&gt;
+        &lt;/tns:CompleteTrialUpdate&gt;
+
+
+
+        Response:
+
+         Expand source
+
+
+        &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34; standalone=&#34;yes&#34;?&gt;
+        &lt;TrialRegistrationConfirmation xmlns=&#34;gov.nih.nci.pa.webservices.types&#34;
+        xmlns:ns2=&#34;gov.nih.nci.po.webservices.types.trimmed&#34;&gt;
+        &lt;paTrialID&gt;137908558&lt;/paTrialID&gt;
+        &lt;nciTrialID&gt;NCI-2014-00496&lt;/nciTrialID&gt;
+        &lt;/TrialRegistrationConfirmation&gt;
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h3 id="NCICTRPTrialRegistrationRESTServiceGuide-AmendaCompleteTrial">
+  Amend a Complete Trial
+</h3>
+Request to amend a Complete trial in CTRP.
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        HTTP Method
+      </th>
+      <td>
+        PUT
+      </td>
+    </tr>
+    <tr>
+      <th>
+        URL
+      </th>
+      <td>
+        /trials/complete/{idType}/{trialID}Parameters {idType}.  Type of identifier you want to use to identify a trial in CTRP. Possible values: pa, nci, ctep, dcp. {trialID}.  Trial identifier value itself.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Request Body
+      </th>
+      <td>
+        XML document withCompleteTrialAmendment MIME Type: application/xml
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Response Body
+      </th>
+      <td>
+        XML document withTrialRegistrationConfirmationMIME Type: application/xml
+      </td>
+    </tr>
+    <tr>
+      <th>
+        HTTP Response Code
+      </th>
+      <td>
+        200. Success400. Validation error (including the condition when you are not allowed to amend a particular trial)401. Invalid username/password or insufficient permissions to access the service.404. One of the Persons/Organizations acting on the trial was not found in PO500. Internal server error
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Examples
+      </th>
+      <td>
+        URL:
+        <a href="https://trials-stage.nci.nih.gov/services/trials/complete/nci/NCI-2014-00496" rel="nofollow">
+          https://trials-stage.nci.nih.gov/services/trials/complete/nci/NCI-2014-00496
+        </a>
+        Request:
+
+         Expand source
+
+
+        &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34; standalone=&#34;yes&#34;?&gt;
+        &lt;tns:CompleteTrialAmendment
+        xmlns:tns=&#34;gov.nih.nci.pa.webservices.types&#34;
+        xmlns:tns1=&#34;gov.nih.nci.po.webservices.types.trimmed&#34;
+        xmlns:xsi=&#34;http://www.w3.org/2001/XMLSchema-instance&#34;
+        xsi:schemaLocation=&#34;gov.nih.nci.pa.webservices.types ../../src/resources/ws.xsd &#34;&gt;
+
+
+        &lt;tns:leadOrgTrialID&gt;REST00001&lt;/tns:leadOrgTrialID&gt;
+        &lt;tns:clinicalTrialsDotGovTrialID&gt;NCT12345678&lt;/tns:clinicalTrialsDotGovTrialID&gt;
+        &lt;tns:dcpIdentifier&gt;DCP999999999999&lt;/tns:dcpIdentifier&gt;
+        &lt;tns:otherTrialID&gt;OTHER00000000001&lt;/tns:otherTrialID&gt;
+        &lt;tns:title&gt;A Phase I Study of REST Trial Amendment&lt;/tns:title&gt;
+        &lt;tns:phase&gt;I&lt;/tns:phase&gt;
+        &lt;tns:pilot&gt;false&lt;/tns:pilot&gt;
+        &lt;tns:accrualDiseaseTerminology&gt;SDC&lt;/tns:accrualDiseaseTerminology&gt;
+        &lt;tns:primaryPurpose&gt;Other&lt;/tns:primaryPurpose&gt;
+        &lt;tns:primaryPurposeOtherDescription&gt;Additional description of the trial&#39;s purpose&lt;/tns:primaryPurposeOtherDescription&gt;
+        &lt;tns:interventionalDesign&gt;
+        &lt;tns:secondaryPurpose&gt;Other&lt;/tns:secondaryPurpose&gt;
+        &lt;tns:secondaryPurposeOtherDescription&gt;Additional description of the trial&#39;s purpose&lt;/tns:secondaryPurposeOtherDescription&gt;
+        &lt;/tns:interventionalDesign&gt;
+        &lt;tns:leadOrganization&gt;
+        &lt;tns:existingOrganization&gt;
+        &lt;tns:poID&gt;1&lt;/tns:poID&gt;
+        &lt;/tns:existingOrganization&gt;
+        &lt;/tns:leadOrganization&gt;
+        &lt;tns:pi&gt;
+        &lt;tns:existingPerson&gt;
+        &lt;tns:poID&gt;10&lt;/tns:poID&gt;
+        &lt;/tns:existingPerson&gt;
+        &lt;/tns:pi&gt;
+        &lt;tns:sponsor&gt;
+        &lt;tns:existingOrganization&gt;
+        &lt;tns:poID&gt;2&lt;/tns:poID&gt;
+        &lt;/tns:existingOrganization&gt;
+        &lt;/tns:sponsor&gt;
+        &lt;tns:responsibleParty&gt;
+        &lt;tns:type&gt;Sponsor&lt;/tns:type&gt;
+        &lt;/tns:responsibleParty&gt;
+        &lt;tns:summary4FundingSponsor&gt;
+        &lt;tns:existingOrganization&gt;
+        &lt;tns:poID&gt;3&lt;/tns:poID&gt;
+        &lt;/tns:existingOrganization&gt;
+        &lt;/tns:summary4FundingSponsor&gt;
+        &lt;tns:programCode&gt;PG00002&lt;/tns:programCode&gt;
+        &lt;tns:fundedByNciGrant&gt;false&lt;/tns:fundedByNciGrant&gt;
+        &lt;tns:grant&gt;
+        &lt;tns:fundingMechanism&gt;B01&lt;/tns:fundingMechanism&gt;
+        &lt;tns:nihInstitutionCode&gt;AA&lt;/tns:nihInstitutionCode&gt;
+        &lt;tns:serialNumber&gt;111111&lt;/tns:serialNumber&gt;
+        &lt;tns:nciDivisionProgramCode&gt;CCR&lt;/tns:nciDivisionProgramCode&gt;
+        &lt;tns:fundingPercentage&gt;100.0&lt;/tns:fundingPercentage&gt;
+        &lt;/tns:grant&gt;
+        &lt;tns:trialStatus&gt;In Review&lt;/tns:trialStatus&gt;
+        &lt;tns:whyStopped&gt;If study stopped, enter the reason why.&lt;/tns:whyStopped&gt;
+        &lt;tns:trialStatusDate&gt;2014-07-15&lt;/tns:trialStatusDate&gt;
+        &lt;tns:trialStartDate type=&#34;Actual&#34;&gt;2014-07-15&lt;/tns:trialStartDate&gt;
+        &lt;tns:primaryCompletionDate type=&#34;Anticipated&#34;&gt;2018-07-15&lt;/tns:primaryCompletionDate&gt;
+        &lt;tns:completionDate type=&#34;Anticipated&#34;&gt;2018-07-15&lt;/tns:completionDate&gt;
+        &lt;tns:ind&gt;
+        &lt;tns:number&gt;111111&lt;/tns:number&gt;
+        &lt;tns:grantor&gt;CDER&lt;/tns:grantor&gt;
+        &lt;tns:holderType&gt;NIH&lt;/tns:holderType&gt;
+        &lt;tns:nihInstitution&gt;NEI&lt;/tns:nihInstitution&gt;
+        &lt;tns:expandedAccess&gt;true&lt;/tns:expandedAccess&gt;
+        &lt;tns:expandedAccessRecord&gt;NCT12345688&lt;/tns:expandedAccessRecord&gt;
+        &lt;/tns:ind&gt;
+        &lt;tns:ide&gt;
+        &lt;tns:number&gt;222222&lt;/tns:number&gt;
+        &lt;tns:grantor&gt;CDRH&lt;/tns:grantor&gt;
+        &lt;tns:holderType&gt;NCI&lt;/tns:holderType&gt;
+        &lt;tns:nciDivisionProgramCode&gt;CCR&lt;/tns:nciDivisionProgramCode&gt;
+        &lt;tns:expandedAccess&gt;unknown&lt;/tns:expandedAccess&gt;
+        &lt;/tns:ide&gt;
+        &lt;tns:regulatoryInformation&gt;
+        &lt;tns:fdaRegulatedDrug&gt;true&lt;/tns:fdaRegulatedDrug&gt;
+        &lt;tns:fdaRegulatedDevice&gt;true&lt;/tns:fdaRegulatedDevice&gt;
+        &lt;tns:approvalClearance&gt;true&lt;/tns:approvalClearance&gt;
+        &lt;tns:marketSurveillance&gt;true&lt;/tns:marketSurveillance&gt;
+        &lt;tns:usaExport&gt;true&lt;/tns:usaExport&gt;
+        &lt;tns:fdaRegulated&gt;true&lt;/tns:fdaRegulated&gt;
+        &lt;tns:section801&gt;true&lt;/tns:section801&gt;
+        &lt;tns:delayedPosting&gt;false&lt;/tns:delayedPosting&gt;
+        &lt;tns:dataMonitoringCommitteeAppointed&gt;true&lt;/tns:dataMonitoringCommitteeAppointed&gt;
+        &lt;/tns:regulatoryInformation&gt;
+        &lt;tns:protocolDocument filename=&#34;protocol.pdf&#34;&gt;dGVzdA==&lt;/tns:protocolDocument&gt;
+        &lt;tns:irbApprovalDocument filename=&#34;irb.pdf&#34;&gt;dGVzdA==&lt;/tns:irbApprovalDocument&gt;
+        &lt;tns:participatingSitesDocument
+        filename=&#34;sites.pdf&#34;&gt;dGVzdA==&lt;/tns:participatingSitesDocument&gt;
+        &lt;tns:informedConsentDocument filename=&#34;consent.pdf&#34;&gt;dGVzdA==&lt;/tns:informedConsentDocument&gt;
+        &lt;tns:otherDocument filename=&#34;other.pdf&#34;&gt;dGVzdA==&lt;/tns:otherDocument&gt;
+        &lt;tns:amendmentNumber&gt;99&lt;/tns:amendmentNumber&gt;
+        &lt;tns:amendmentDate&gt;2014-08-01&lt;/tns:amendmentDate&gt;
+        &lt;tns:ctepIdentifier&gt;CTEP99999999&lt;/tns:ctepIdentifier&gt;
+        &lt;tns:changeMemoDocument filename=&#34;memo.pdf&#34;&gt;dGVzdA==&lt;/tns:changeMemoDocument&gt;
+        &lt;tns:protocolHighlightDocument filename=&#34;high.pdf&#34;&gt;dGVzdA==&lt;/tns:protocolHighlightDocument&gt;
+        &lt;/tns:CompleteTrialAmendment&gt;
+
+
+        Response:
+
+         Expand source
+
+
+        &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34; standalone=&#34;yes&#34;?&gt;
+        &lt;TrialRegistrationConfirmation xmlns=&#34;gov.nih.nci.pa.webservices.types&#34;
+        xmlns:ns2=&#34;gov.nih.nci.po.webservices.types.trimmed&#34;&gt;
+        &lt;paTrialID&gt;137908558&lt;/paTrialID&gt;
+        &lt;nciTrialID&gt;NCI-2014-00496&lt;/nciTrialID&gt;
+        &lt;/TrialRegistrationConfirmation&gt;
+      </td>
+    </tr>
+  </tbody>
+</table>

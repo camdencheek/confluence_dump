@@ -1,0 +1,641 @@
+Contents of this Page
+<ul>
+  <li>
+    <a href="#id-2LexEVS5.xQueryServiceExtension-Introduction" rel="nofollow">
+      Introduction
+    </a>
+  </li>
+  <li>
+    <a href="#id-2LexEVS5.xQueryServiceExtension-LuceneLazyLoading" rel="nofollow">
+      Lucene Lazy Loading
+    </a>
+    <ul>
+      <li>
+        <a href="#id-2LexEVS5.xQueryServiceExtension-Background-LuceneDocuments" rel="nofollow">
+          Background - Lucene Documents
+        </a>
+      </li>
+      <li>
+        <a href="#id-2LexEVS5.xQueryServiceExtension-Background-QueryingLucene" rel="nofollow">
+          Background - Querying Lucene
+        </a>
+      </li>
+      <li>
+        <a href="#id-2LexEVS5.xQueryServiceExtension-LazyRetrieval" rel="nofollow">
+          Lazy Retrieval
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#id-2LexEVS5.xQueryServiceExtension-Searching" rel="nofollow">
+      Searching
+    </a>
+    <ul>
+      <li>
+        <a href="#id-2LexEVS5.xQueryServiceExtension-Theorg.LexGrid.LexBIG.Extensions.Extendable.SearchInterface" rel="nofollow">
+          The org.LexGrid.LexBIG.Extensions.Extendable.Search Interface
+        </a>
+      </li>
+      <li>
+        <a href="#id-2LexEVS5.xQueryServiceExtension-DefaultAND" rel="nofollow">
+          Default AND
+        </a>
+      </li>
+      <li>
+        <a href="#id-2LexEVS5.xQueryServiceExtension-Algorithms" rel="nofollow">
+          Algorithms
+        </a>
+        <ul>
+          <li>
+            <a href="#id-2LexEVS5.xQueryServiceExtension-MorepreciseDoubleMetaphoneQuery" rel="nofollow">
+              More precise DoubleMetaphoneQuery
+            </a>
+          </li>
+          <li>
+            <a href="#id-2LexEVS5.xQueryServiceExtension-WeightedDoubleMetaphoneQuery" rel="nofollow">
+              WeightedDoubleMetaphoneQuery
+            </a>
+          </li>
+          <li>
+            <a href="#id-2LexEVS5.xQueryServiceExtension-Case-insensitiveSubstring" rel="nofollow">
+              Case-insensitive Substring
+            </a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#id-2LexEVS5.xQueryServiceExtension-Sorting" rel="nofollow">
+      Sorting
+    </a>
+    <ul>
+      <li>
+        <a href="#id-2LexEVS5.xQueryServiceExtension-Theorg.LexGrid.LexBIG.Extensions.Extendable.SortInterface" rel="nofollow">
+          The org.LexGrid.LexBIG.Extensions.Extendable.Sort Interface
+        </a>
+      </li>
+      <li>
+        <a href="#id-2LexEVS5.xQueryServiceExtension-SortingonDifferentClassTypes" rel="nofollow">
+          Sorting on Different Class Types
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#id-2LexEVS5.xQueryServiceExtension-SQLOptimizations" rel="nofollow">
+      SQL Optimizations
+    </a>
+    <ul>
+      <li>
+        <a href="#id-2LexEVS5.xQueryServiceExtension-Then+1SELECTSProblem" rel="nofollow">
+          The n+1 SELECTS Problem
+        </a>
+      </li>
+      <li>
+        <a href="#id-2LexEVS5.xQueryServiceExtension-Then+1SELECTSProblemExample" rel="nofollow">
+          The n+1 SELECTS Problem Example
+        </a>
+      </li>
+      <li>
+        <a href="#id-2LexEVS5.xQueryServiceExtension-Then+1SELECTSSolutionExample" rel="nofollow">
+          The n+1 SELECTS Solution Example
+        </a>
+      </li>
+    </ul>
+  </li>
+</ul>
+<h2 id="id-2LexEVS5.xQueryServiceExtension-Introduction">
+  Introduction
+</h2>
+This document is a section of the
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427453" rel="nofollow">
+  LexEVS 5.x Programmer&#39;s Guide
+</a>
+. It is new for LexEVS v5.1.
+
+LexEVS v5.1 implements the following performance and behavior enhancements in the Query Services Extension:
+<ul>
+  <li>
+    Lucene lazy loading for improved query retrieval performance
+  </li>
+  <li>
+    Search interface for plugging in custom search algorithms
+  </li>
+  <li>
+    Enhanced and new search algorithms for improved accuracy and performance
+  </li>
+  <li>
+    Sort interface for plugging in custom sort algorithms
+  </li>
+  <li>
+    SQL optimization for improved performance in large scale query retrievals
+  </li>
+</ul>
+<h2 id="id-2LexEVS5.xQueryServiceExtension-LuceneLazyLoading">
+  Lucene Lazy Loading
+</h2>
+After the Lucene search is complete, the system stores only the Document id of documents that match the search criteria. Then, when information from the document is needed, it is retrieved from the document. This is helpful in iterator-type scenarios, where retrieval can be done one at a time.
+<h3 id="id-2LexEVS5.xQueryServiceExtension-Background-LuceneDocuments">
+  Background - Lucene Documents
+</h3>
+Lucene stores information in documents, and these documents have fields that are used to hold information. Each document has a unique id. For example, an index of people may be indexed in Lucene as:
+
+&lt;source&gt;
+
+
+Document: id 1
+First Name: John
+Last Name: Doe
+Sex: Male
+Age: 45
+
+Document: id 2
+First Name: Jane
+Last Name: Doe
+Sex: Female
+Age: 40
+
+... etc.
+
+
+&lt;/source&gt;
+
+LexEVS stores information about entities in this way. Property names and values, as well as qualifiers, language, and various other information about the entity are held in Lucene indexes.
+<h3 id="id-2LexEVS5.xQueryServiceExtension-Background-QueryingLucene">
+  Background - Querying Lucene
+</h3>
+Lucene provides a query mechanism to search through the indexed documents. Given a search query, Lucene will provide the document id and the score of the match. (Lucene assigns every match a score, depending on the strength of the match given the query.)
+
+So, if the above index is queried for &#34;First Name = Jane AND Last Name = Doe&#34;, the result will be the document id of the match (2), and the score of the match (a float number, usually between 1 and 10).
+
+Notice that none of the other information is returned, such as sex or age. It is useful for that extra information to be there, because if it exists in the Lucene indexes we do not have to make a database query for it. But, retrieving data from Lucene documents is expensive, just as retrieving data from a database would be.
+<h3 id="id-2LexEVS5.xQueryServiceExtension-LazyRetrieval">
+  Lazy Retrieval
+</h3>
+Lazy retrieval can be leveraged to increase performance in LexEVS. Consider this simplified LexEVS entity index:
+
+&lt;source&gt;
+
+
+Document: id 1
+Code: C12345
+Name: Heart
+
+Document: id 2
+Code: C67890
+Name: Foot
+
+Document: id 3
+Code: C98765
+Name: Heart Attack
+
+
+&lt;/source&gt;
+
+If a user constructs a query (Name = Heart*), the query will return with the matching Document ids (1 and 2). Previously, LexEVS would immediately retrieve the Code and Name fields from the matches, and use them to construct the results that would be ultimately returned to the user. This does not scale well, especially for general queries in large ontologies. In a large ontology, a query of (Name = Heart*) may match tens of thousands of documents. Retrieving the information from all these documents is a significant performance concern.
+
+Instead of retrieving the information up front, LexEVS will simply store the document id for later use. When this information is actually needed by the user (for example, the information needs to be displayed), it is retrieved on demand.
+<h2 id="id-2LexEVS5.xQueryServiceExtension-Searching">
+  Searching
+</h2>
+<h3 id="id-2LexEVS5.xQueryServiceExtension-Theorg.LexGrid.LexBIG.Extensions.Extendable.SearchInterface">
+  The org.LexGrid.LexBIG.Extensions.Extendable.Search Interface
+</h3>
+This interface enables the user to plug in custom search algorithms. Users can construct any type of query given search text. The query can include wildcards, it can group search terms, etc.
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Class:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Extensions.Extendable.Search
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Method:
+      </th>
+      <td>
+        public org.apache.lucene.search.Query buildQuery(String searchText)
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Given a String search string, build a query object to match indexed Lucene documents
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h3 id="id-2LexEVS5.xQueryServiceExtension-DefaultAND">
+  Default AND
+</h3>
+Previously, for most search algorithms Lucene applied an OR to the terms if multiple terms were input as search text. For example, a search of &#39;heart attack&#39; would match all documents containing &#39;heart&#39; OR &#39;attack&#39;. This lead to non-intuitive query results being returned. In LexEVS 5.1, the Lucene default is changed to AND. Consequently, search precision is increased and returned results are more intuitive. In most cases the AND shrinks the number of results returned for a given query, which in turn increases overall performance.
+<h3 id="id-2LexEVS5.xQueryServiceExtension-Algorithms">
+  Algorithms
+</h3>
+<h4 id="id-2LexEVS5.xQueryServiceExtension-MorepreciseDoubleMetaphoneQuery">
+  More precise DoubleMetaphoneQuery
+</h4>
+DoubleMetaphoneQueries enable the user to input incorrectly spelled search text, while still returning results. Because this is a &#39;fuzzy&#39; search, it is important to structure the Query in a way that the most appropriate results are returned to the user first. For example, the Metaphone computed value for &#34;Breast&#34; and &#34;Prostrate&#34; is the same. Given the search term &#34;Breast&#34;, both &#34;Breast&#34; and &#34;Prostrate&#34; will match with exactly the same score. Technically, this is correct behavior, but to the end user this is not desirable. To overcome this, LexEVS v5.1 has introduced a new query, WeightedDoubleMetaphoneQuery.
+<h4 id="id-2LexEVS5.xQueryServiceExtension-WeightedDoubleMetaphoneQuery">
+  WeightedDoubleMetaphoneQuery
+</h4>
+This algorithm does not automatically assume that the user has spelled the terms incorrectly. Searches are also based on the actual text that the user has input, along with the Metaphone value. Again, if the user input &#34;Breast&#34;, the query will still match &#34;Breast&#34; and &#34;Prostrate&#34;, but &#34;Breast&#34; will have a higher match score, because the actual user text is considered. This algorithm adds a greater precision to this fuzzy-type query.
+
+Algorithm:
+&lt;source&gt;
+
+
+get: user text input
+2: total score = 0
+3: metaphone score = 0
+4: actual score = 0
+5: metaphone value = lucene.computeMetaphoneValue(user text input)
+6: metaphone score = lucene.scoreMetaphoneValue(metaphone value)
+7: actual score = lucene.score(user text input)
+8: total score = metaphone score + actual score
+9: halt
+
+
+&lt;/source&gt;
+<h4 id="id-2LexEVS5.xQueryServiceExtension-Case-insensitiveSubstring">
+  Case-insensitive Substring
+</h4>
+The SubStringSearch algorithm is intended to find substrings within a large string. For example:
+&#39;with a heart attack&#39;
+...will match:
+&#39;The patient with a heart attack was seen today.&#39;
+
+Also, a leading and trailing wildcard will be added, so
+&#39;th a heart atta&#39;
+...will also match:
+&#39;The patient wi_th a heart atta_ck was seen today.&#39;
+
+Algorithm:
+&lt;source&gt;
+
+
+get: user text input
+2: user text input = &#39;*&#39; + user text input + &#39;*&#39;
+3: score = lucene.score(user text input)
+4: halt
+
+
+&lt;/source&gt;
+<h2 id="id-2LexEVS5.xQueryServiceExtension-Sorting">
+  Sorting
+</h2>
+<h3 id="id-2LexEVS5.xQueryServiceExtension-Theorg.LexGrid.LexBIG.Extensions.Extendable.SortInterface">
+  The org.LexGrid.LexBIG.Extensions.Extendable.Sort Interface
+</h3>
+This interface allows users to plug in customized Sort algorithms to sort query results:
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Class:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Extensions.Extendable.Sort
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Method:
+      </th>
+      <td>
+        public Comparator getComparatorForSearchClass(Class searchClass) throws LBParameterException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Given a Class that this Sort is valid for, return the correct Comparator to compare the results and sort.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Method:
+      </th>
+      <td>
+        public boolean isSortValidForClass(Class&lt;?&gt; clazz)
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Return whether or not this Sort is valid for Sorting on a given Class.
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h3 id="id-2LexEVS5.xQueryServiceExtension-SortingonDifferentClassTypes">
+  Sorting on Different Class Types
+</h3>
+A single Sort may be applicable for a variety of Class types. For instance, both an &#39;Association&#39; and an &#39;Entity&#39; may be sorted by &#39;Code&#39;, but the actual implementation of retrieving the Code and comparing it may be different between the two. It is the job of the Sort to implement a Comparator for each potential Class that it is eligible to sort.
+<ul>
+  <li>
+    Default Sorting  All result sets are sorted by default by Lucene Score, meaning that the best match according to Lucene will always be returned first by default. Note that if two or more result sets are being Unioned, Intersected, or Differenced, the user must explicitly call a &#39;matchToQuery&#39; sort on the result set as a whole to order all of the results.
+  </li>
+  <li>
+    8Sort Contexts*  Sorts may be applicable in one or more &#39;Contexts.&#39; (see: org.LexGrid.LexBIG.DataModel.InterfaceElements.types.SortContext)
+    This means that a Sort may apply only to a CodedNodeSet, or only to a CodedNodeGraph, or some combination. Sorts will only be employed by the API if they match the Context in which the results are being sorted.
+  </li>
+  <li>
+    Performance Issues  Sorting is generally computationally expensive, because in order to correctly sort, the field to be sorted has to be fully retrieved for the entire result set. For very specific or refined queries, this may not be a problem, but for large ontologies or very general queries, performance may be a concern. To alleviate this, &#39;Post sort&#39; has been introduced.
+  </li>
+  <li>
+    Post Sorting  In order to minimize the performance impact of sorting, users are encouraged to use a &#39;Post sort&#39; where possible. A Post sort is done after the result set has been restricted, thus limiting the amount of information that must be retrieved in order to perform the sort. For instance, a query may match a set of Entities:
+  </li>
+</ul>
+&lt;source&gt;
+
+
+\{&#34;Heart&#34;, &#34;Heart Failure&#34;, &#34;Heart Attack&#34;, &#34;Arm&#34;, &#34;Finger&#34;, ...\}
+
+
+&lt;/source&gt;
+
+As described earlier, all results are by default sorted by Lucene score, so if we limit the result set to the top 3, the result is:
+&lt;source&gt;
+
+
+\{&#34;Heart&#34;, &#34;Heart Failure&#34;, &#34;Heart Attack&#34;\}
+
+
+&lt;/source&gt;
+
+The restricted set can then be &#39;Post&#39; sorted; and because the result set has been limited to a reasonable number of matches, sorting and retrieval time can be minimized.
+
+Algorithm:
+&lt;source&gt;
+
+
+1: get: Sort requested by user
+2: get: Context sort is being applied to
+3: if: sort is not valid for Context
+halt
+4: else:
+5: get: Class to be sorted on
+6: if: sort is not valid for Class
+halt
+7: get: Comparator for Sort - given (Class to be sorted on)
+8: sort results using Comparator for Sort
+9: halt
+
+
+&lt;/source&gt;
+<h2 id="id-2LexEVS5.xQueryServiceExtension-SQLOptimizations">
+  SQL Optimizations
+</h2>
+<h3 id="id-2LexEVS5.xQueryServiceExtension-Then+1SELECTSProblem">
+  The n+1 SELECTS Problem
+</h3>
+The n+1 SELECTS Problem refers to how information can optimally be retrieved from the database, preferably using as few queries as possible. This is desirable because query overhead is a concern. Every query must be packaged and sent to the database engine, processed, packaged again and transferred to the client. Although the overhead may be minimal (a few milliseconds), it does not scale. Although sometimes obvious, n+1 queries can remain in a system undetected until scaling problems are noticed.
+
+To avoid this problem, a JOIN query can be used.
+
+In LexEVS v5.1, there were three n+1 SELECT queries fixed:
+<ul>
+  <li>
+    The EntryState while building the CodedEntry
+  </li>
+  <li>
+    The EntityDescription on AssociatedConcepts
+  </li>
+  <li>
+    AssociationQualifiers on AssociatedConcepts
+  </li>
+</ul>
+<h3 id="id-2LexEVS5.xQueryServiceExtension-Then+1SELECTSProblemExample">
+  The n+1 SELECTS Problem Example
+</h3>
+Given two database tables, retrieve the Code, Name, and Qualifier for each Code
+
+Table Codes
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Code
+      </th>
+      <th>
+        Name
+      </th>
+    </tr>
+    <tr>
+      <td>
+        C01234
+      </td>
+      <td>
+        Heart
+      </td>
+    </tr>
+    <tr>
+      <td>
+        C98765
+      </td>
+      <td>
+        Heart Attack
+      </td>
+    </tr>
+  </tbody>
+</table>
+Table Qualifiers
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Code
+      </th>
+      <th>
+        Qualifier
+      </th>
+    </tr>
+    <tr>
+      <td>
+        C01234
+      </td>
+      <td>
+        isAnOrgan
+      </td>
+    </tr>
+    <tr>
+      <td>
+        C98765
+      </td>
+      <td>
+        isADisease
+      </td>
+    </tr>
+  </tbody>
+</table>
+&lt;source&gt;
+
+
+SELECT * FROM Codes
+
+
+&lt;/source&gt;
+
+Results in:
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Code
+      </th>
+      <th>
+        Name
+      </th>
+    </tr>
+    <tr>
+      <td>
+        C01234
+      </td>
+      <td>
+        Heart
+      </td>
+    </tr>
+    <tr>
+      <td>
+        C98765
+      </td>
+      <td>
+        Heart Attack
+      </td>
+    </tr>
+  </tbody>
+</table>
+To get the Qualifiers, separate SELECTs must be used for each.
+&lt;source&gt;
+
+
+SELECT * FROM Qualifiers where Code = C01234
+And
+SELECT * FROM Qualifiers where Code = C98765
+
+
+&lt;/source&gt;
+
+This sequence results in 1 Query to retrieve the data from the Codes table, and then n Queries from the Qualifiers table. This results in n+1 total Queries.
+<h3 id="id-2LexEVS5.xQueryServiceExtension-Then+1SELECTSSolutionExample">
+  The n+1 SELECTS Solution Example
+</h3>
+Given two database tables, retrieve the Code, Name, and Qualifier for each Code.
+
+Table Codes
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Code
+      </th>
+      <th>
+        Name
+      </th>
+    </tr>
+    <tr>
+      <td>
+        C01234
+      </td>
+      <td>
+        Heart
+      </td>
+    </tr>
+    <tr>
+      <td>
+        C98765
+      </td>
+      <td>
+        Heart Attack
+      </td>
+    </tr>
+  </tbody>
+</table>
+Table Qualifiers
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Code
+      </th>
+      <th>
+        Qualifier
+      </th>
+    </tr>
+    <tr>
+      <td>
+        C01234
+      </td>
+      <td>
+        isAnOrgan
+      </td>
+    </tr>
+    <tr>
+      <td>
+        C98765
+      </td>
+      <td>
+        isADisease
+      </td>
+    </tr>
+  </tbody>
+</table>
+&lt;source&gt;
+
+
+SELECT * FROM Codes JOIN Qualifiers ON Code
+
+
+&lt;/source&gt;
+
+Results in:
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Code
+      </th>
+      <th>
+        Name
+      </th>
+      <th>
+        Qualifier
+      </th>
+    </tr>
+    <tr>
+      <td>
+        C01234
+      </td>
+      <td>
+        Heart
+      </td>
+      <td>
+        isAnOrgan
+      </td>
+    </tr>
+    <tr>
+      <td>
+        C98765
+      </td>
+      <td>
+        Heart Attack
+      </td>
+      <td>
+        isADisease
+      </td>
+    </tr>
+  </tbody>
+</table>
+Because of the JOIN, only one Query is needed to retrieve all of the data from the database. 

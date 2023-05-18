@@ -1,0 +1,182 @@
+ Contents of This Page
+<ul>
+  <li>
+    <a href="#LexEVS6.1DesignDocumentDetailedDesignLoaderHL7MIF-UseCases" rel="nofollow">
+      Use Cases
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.1DesignDocumentDetailedDesignLoaderHL7MIF-Mappingfromthe.coremifFilestoLexEVS" rel="nofollow">
+      Mapping from the .coremif Files to LexEVS
+    </a>
+    <ul>
+      <li>
+        <a href="#LexEVS6.1DesignDocumentDetailedDesignLoaderHL7MIF-CoreMIFsource" rel="nofollow">
+          Core MIF source
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.1DesignDocumentDetailedDesignLoaderHL7MIF-RIMCoreMIF" rel="nofollow">
+          RIM Core MIF
+        </a>
+        <ul>
+          <li>
+            <a href="#LexEVS6.1DesignDocumentDetailedDesignLoaderHL7MIF-ASuperimposedHierarchywithConnectionstotheVocabularyMIF?" rel="nofollow">
+              A Superimposed Hierarchy with Connections to the Vocabulary MIF?
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS6.1DesignDocumentDetailedDesignLoaderHL7MIF-WhatareEntitiesintheRIMCoreMIF?" rel="nofollow">
+              What are Entities in the RIM Core MIF?
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS6.1DesignDocumentDetailedDesignLoaderHL7MIF-ThePurposeofEntrypointsintheRIMcore." rel="nofollow">
+              The Purpose of Entrypoints in the RIM core.
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#LexEVS6.1DesignDocumentDetailedDesignLoaderHL7MIF-VocabularyCoreMIF" rel="nofollow">
+          Vocabulary Core MIF
+        </a>
+        <ul>
+          <li>
+            <a href="#LexEVS6.1DesignDocumentDetailedDesignLoaderHL7MIF-Relationships" rel="nofollow">
+              Relationships
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS6.1DesignDocumentDetailedDesignLoaderHL7MIF-Entities" rel="nofollow">
+              Entities
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS6.1DesignDocumentDetailedDesignLoaderHL7MIF-ValueSets" rel="nofollow">
+              Value Sets
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#LexEVS6.1DesignDocumentDetailedDesignLoaderHL7MIF-ToBeDetermined" rel="nofollow">
+          To Be Determined
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#LexEVS6.1DesignDocumentDetailedDesignLoaderHL7MIF-ImplementationDesign" rel="nofollow">
+      Implementation Design
+    </a>
+  </li>
+</ul>
+Document Information
+Author: Bauer, Scott Email: Bauer.Scott@mayo.edu Team: LexEVS Contract: ST12-1106  Client: NCI CBIIT National Institutes of Heath US Department of Health and Human Services
+Revision History
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Version
+      </th>
+      <th>
+        Date
+      </th>
+      <th>
+        Description of Changes
+      </th>
+      <th>
+        Author
+      </th>
+    </tr>
+    <tr>
+      <td>
+        1.0
+      </td>
+      <td>
+        2013/03/05
+      </td>
+      <td>
+        Initial Version
+      </td>
+      <td>
+        Bauer, Scott
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="LexEVS6.1DesignDocumentDetailedDesignLoaderHL7MIF-UseCases">
+  Use Cases
+</h2>
+Previous implementations of the HL7 loaded into LexEVS have made use of artifacts in the RIM database.  The current requirements call for loading data directly from the Model Interchange format XML documents also known as MIF.   These sources expand the set of likely entities and relationships as well as add some assertions about concept domains and data types defined in the expanded definitions of the RIM available in the .coremif documents. This creates some problems around the unique identifier used for entities defined in the current HL7 load implementation as no correlation exists for the uniquely defined values in those portions of the .coremif documents where correlations to entities from the MIF to LexGrid will require further definition. What follows is a proposed implementation of the load of the MIF, with some questions as to how to deal with additional values and some interpretations of the MIF xml structure in the context of it&#39;s mapping to the LexGrid Data Model.
+<h2 id="LexEVS6.1DesignDocumentDetailedDesignLoaderHL7MIF-Mappingfromthe.coremifFilestoLexEVS">
+  Mapping from the .coremif Files to LexEVS
+</h2>
+<h3 id="LexEVS6.1DesignDocumentDetailedDesignLoaderHL7MIF-CoreMIFsource">
+  Core MIF source
+</h3>
+Two separate source files exist with the file extension coremif in the RIM distribution package, &#34;DEF=UV=RIM=&lt;version&gt;&#34; and &#34;DEF=UV=VO=&lt;version&gt;.&#34;  The first defines a kind of super hierarchy to the RIM and the second defines the values and relationships that are consistent with the current load of the HL7 RIM to LexEVS.  Opportunities for expressing entities and assertions that define entity relationships exist for the &#34;DEF=UV=RIM&#34; or RIM core MIF that should be outlined here.  Also connections from this MIF file to the DEF=UV=VO, or vocabulary, file can further define relationships to the values that are currently expressed in the old LexEVS mapping.
+<h3 id="LexEVS6.1DesignDocumentDetailedDesignLoaderHL7MIF-RIMCoreMIF">
+  RIM Core MIF
+</h3>
+<h4 id="LexEVS6.1DesignDocumentDetailedDesignLoaderHL7MIF-ASuperimposedHierarchywithConnectionstotheVocabularyMIF?">
+  A Superimposed Hierarchy with Connections to the Vocabulary MIF?
+</h4>
+The RIM core MIF expresses a number of tags under the root static model that are defined as subject area packages.  We know from the defining xsd that these are sub-packages and we can see that one sub-package can be nested within another, implying that one package is a subclass of another.  Furthermore some sub-packages define contained class tags implying yet another area of sub classification.  We can deduce relationships from these that will allow us to map to LexEVS associations.
+<img alt="MIF example as described (1)" width="900" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%206.1%20Design%20Document%20-%20Detailed%20Design%20-%20Loader%20-%20HL7%20MIF/Screen%20Shot%202013-03-07%20at%203.58.27%20PM.png?api=v2">
+<img alt="MIF example as described (2)" height="337" width="900" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%206.1%20Design%20Document%20-%20Detailed%20Design%20-%20Loader%20-%20HL7%20MIF/Screen%20Shot%202013-03-07%20at%204.02.43%20PM.png?api=v2">
+When the contained classes are elsewhere fully defined in the RIM core MIF, attributes and annotations are declared that normally might map to Entities and Entity Properties respectively in LexEVS.  However, the attribute tagged values will sometimes bear references to a data type tag or a concept domain tag, both of which are defined in the vocabulary core MIF and correlate to the the code systems also defined there.  We could pre-correlate this relationship by persisting this as a LexEVS association making the attribute a first class entity, or we could leave it as a property and post-correlate the relationship for interested users through a series of LexEVS calls.
+<img alt="MIF example as described (3)" height="209" width="803" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%206.1%20Design%20Document%20-%20Detailed%20Design%20-%20Loader%20-%20HL7%20MIF/Screen%20Shot%202013-03-07%20at%204.24.01%20PM.png?api=v2">
+<img alt="MIF example as described (4)" height="144" width="607" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%206.1%20Design%20Document%20-%20Detailed%20Design%20-%20Loader%20-%20HL7%20MIF/Screen%20Shot%202013-03-07%20at%204.24.22%20PM.png?api=v2">
+Some instances of contained classes are otherwise defined as concepts in code systems designated by the definingVocabulary tag in the RIM core MIF.  This is another relationship between files that will need consideration for definition in LexEVS.
+<img alt="MIF example as described (5)" width="700" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%206.1%20Design%20Document%20-%20Detailed%20Design%20-%20Loader%20-%20HL7%20MIF/Screen%20Shot%202013-03-07%20at%204.32.52%20PM.png?api=v2">
+<h4 id="LexEVS6.1DesignDocumentDetailedDesignLoaderHL7MIF-WhatareEntitiesintheRIMCoreMIF?">
+  What are Entities in the RIM Core MIF?
+</h4>
+If It&#39;s decided that subjectAreaPackage definitions and containedClasses should be represented as Entities in LexEVS then additional tasks will be creating unique entity identifiers for them.  Defining tags and attributes in these elements can be mapped to presentations, definitions and other property types as necessary.
+<h4 id="LexEVS6.1DesignDocumentDetailedDesignLoaderHL7MIF-ThePurposeofEntrypointsintheRIMcore.">
+  The Purpose of Entrypoints in the RIM core.
+</h4>
+Some few values are expressed in the RIM core MIF as attributes in an entryPoint tag, if these should be expressed in LexEVS, some determination will have to be made.
+<h3 id="LexEVS6.1DesignDocumentDetailedDesignLoaderHL7MIF-VocabularyCoreMIF">
+  Vocabulary Core MIF
+</h3>
+<h4 id="LexEVS6.1DesignDocumentDetailedDesignLoaderHL7MIF-Relationships">
+  Relationships
+</h4>
+The vocabulary core MIF will map in a manner similar to the  previous load, with some exceptions.  Relationships will be defined with names noted in the concept relationship tag attribute &#34;relationshipName&#34; where previously all relationships were named &#34;hasSubtype.&#34;  Otherwise, relationships with the code system will be created based on containment and can maintain the hasSubtype designation.  Most hierarchies defined in LexEVS provide a leaf-to-root resolve direction.  The HL7 load was an exception.  This should be revisited in this design.
+<h4 id="LexEVS6.1DesignDocumentDetailedDesignLoaderHL7MIF-Entities">
+  Entities
+</h4>
+We will otherwise map the definition tag to a definition type property in the LexGrid and concept property tag attributes will define the numerical portion of the unique identifier where the concept property name is &#34;internalId.&#34;  The code tag will define the other portion of the unique identifier using the code attribute to concatenate to the end of the numerical identifier preceded by a colon.  These should complete conformance, to a certain extent, with with old LexEVS load of the RIM from the MSAccess database.
+<h4 id="LexEVS6.1DesignDocumentDetailedDesignLoaderHL7MIF-ValueSets">
+  Value Sets
+</h4>
+Value sets are expressed in the vocabulary core MIF that are not currently being loaded to LexEVS. It appears that these value sets are tied to code systems defined in the MIF and that other values from other coding schemes are sometimes combined with them when applied using the unionWithContent tag.  An evaluation of these will need to be made to determine how and whether to load these as value sets in LexEVS.
+<h3 id="LexEVS6.1DesignDocumentDetailedDesignLoaderHL7MIF-ToBeDetermined">
+  To Be Determined
+</h3>
+<ol>
+  <li>
+    How value sets are defined in the vocabulary core MIF and how and whether they will be mapped to LexEVS.
+  </li>
+  <li>
+    How much of the RIM core MIF should be mapped to LexEVS, if any, and whether relationships implied in the defininigCodeSystem, dataType and conceptDomain tags should be expressed in LexEVS.
+  </li>
+  <li>
+    whether attributes in the RIM core MIF under contained classes be first class entities.
+  </li>
+  <li>
+    whether entryPoint designations should somehow be expressed in LexEVS (These are rather opaquely defined in the static-base xsd. &#34;Identifies a class within the model that may be used as the initial class in a serializable representation of the model&#34; for the purposes of defining this as an entry to a vocabulary representation in LexEVS).
+  </li>
+  <li>
+    verification of all mapping proposals with stakeholders.
+  </li>
+</ol>
+<h2 id="LexEVS6.1DesignDocumentDetailedDesignLoaderHL7MIF-ImplementationDesign">
+  Implementation Design
+</h2>
+The loading application will stream and parse the XML elements into coding scheme, entity and association elements where they can be tied together as a coding scheme object and loaded to the LexGrid data base.
+<img alt="HL7 MIF Loader diagram" width="900" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%206.1%20Design%20Document%20-%20Detailed%20Design%20-%20Loader%20-%20HL7%20MIF/HL7MIFLoader.png?api=v2">

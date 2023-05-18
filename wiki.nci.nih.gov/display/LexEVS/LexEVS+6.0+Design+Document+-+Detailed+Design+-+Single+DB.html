@@ -1,0 +1,80 @@
+Document Information
+Author: Craig Stancl
+Email: Stancl.craig@mayo.edu
+Team: LexEVS
+Contract: CBITT BOA Subcontract# 29XS223
+Client: NCI CBIIT
+National Institutes of Heath
+US Department of Health and Human Services
+
+
+Revision History
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Version
+      </th>
+      <th>
+        Date
+      </th>
+      <th>
+        Description of Changes
+      </th>
+      <th>
+        Author
+      </th>
+    </tr>
+    <tr>
+      <td>
+        1.0
+      </td>
+      <td>
+        5/14/10
+      </td>
+      <td>
+        Initial Version Approved via Design Review
+      </td>
+      <td>
+        Team
+      </td>
+    </tr>
+  </tbody>
+</table>
+This document describes use of a Single Database Table versus Multiple Database Tables.
+
+LexEVS 6.0 will include an option to load CodingSchemes into a single, common set of tables, or individual sets of tables for each CodingSchemes. Some considerations for each option:
+<ul>
+  <li>
+    Single Table Advantages:
+    <ul>
+      <li>
+        Limits Table proliferation in the database.
+      </li>
+      <li>
+        All Coding Schemes centralized into one table.
+      </li>
+    </ul>
+  </li>
+  <li>
+    Single Table Disadvantages:
+    <ul>
+      <li>
+        Possible performance penalty. A query will be executed against the common table, which will be many times larger than the ontology loaded as an individual table.
+      </li>
+    </ul>
+  </li>
+</ul>
+To the underlying API, the actual table that data is stored in will be abstracted. All queries will except a Prefix -- whether that prefix is from the common table, or from an individual table, the query remains the same.
+
+The prefix will be stored in the registry table of the database. The prefixed is then obtained given a CodingScheme URI and Version. Every CodingScheme will be loaded in the Registry, and the prefix will be retrievable given its URI and Version.
+<img src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%206.0%20Design%20Document%20-%20Detailed%20Design%20-%20Single%20DB/Registry.jpg?api=v2">
+Prefixes are automatically injected into SQL statements to direct the SQL to the appropriate table. For instance:
+
+
+
+SELECT FROM $prefix$entity WHERE ...
+
+
+
+Prior to the execution of the SQL statement, the &#39;$prefix$&#39; placeholder will be replaced with the actual prefix retrieved from the Registry. 

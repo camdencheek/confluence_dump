@@ -1,0 +1,11 @@
+Java Code Snippet
+CodedNodeSet nodeSet = evsService.getNodeSet(&#34;NCI MetaThesaurus&#34;, null, null);
+
+//Tell the api that you want to get back only the PRESENTATION type properties
+CodedNodeSet.PropertyType[] types = new CodedNodeSet.PropertyType[1];
+types[0] = CodedNodeSet.PropertyType.PRESENTATION;
+
+//Now create the reference to the CUI you wish to retrieve
+ConceptReferenceList crl = new ConceptReferenceList();
+crl.addConceptReference(ConvenienceMethods.createConceptReference(&#34;C0029045&#34;,&#34;NCIMetaThesaurus&#34;));
+nodeSet = nodeSet.restrictToCodes(crl); 

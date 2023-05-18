@@ -1,0 +1,95 @@
+<h1 id="caArray057caArraydeployedinEclipseexceptionwhencaArraytested-Question:IdeployedcaArrayinEclipsebutgotanexceptionwhenItestedcaArray.Why?">
+  Question: I deployed caArray in Eclipse but got an exception when I tested caArray. Why?
+</h1>
+Topic: caArray Installation and Upgrade
+
+Release: Up to caArray 2.x
+
+Date entered: 04/14/2010
+<h2 id="caArray057caArraydeployedinEclipseexceptionwhencaArraytested-DetailsabouttheQuestion">
+  Details about the Question
+</h2>
+I deployed caArray in Eclipse and tried to test the program. When I clicked on the &#34;Manage array design&#34;, I got exceptions. The first part of the exceptions was like these:
+
+
+
+java.lang.IllegalArgumentException: Category is null
+at gov.nih.nci.caarray.business.vocabulary.VocabularyServiceBean.getTerms(VocabularyServiceBean.java:134)
+at gov.nih.nci.caarray.business.vocabulary.VocabularyServiceBean.getTerms(VocabularyServiceBean.java:126)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+at java.lang.reflect.Method.invoke(Method.java:585)
+at org.jboss.aop.joinpoint.MethodInvocation.invokeNext(MethodInvocation.java:112)
+at org.jboss.ejb3.interceptor.InvocationContextImpl.proceed(InvocationContextImpl.java:166)
+at gov.nih.nci.caarray.application.ExceptionLoggingInterceptor.logException(ExceptionLoggingInterceptor.java:107)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+at java.lang.reflect.Method.invoke(Method.java:585)
+at org.jboss.ejb3.interceptor.InvocationContextImpl.proceed(InvocationContextImpl.java:118)
+......
+......
+......
+at gov.nih.nci.caarray.web.filter.CacheControlFilter.doFilter(CacheControlFilter.java:132)
+at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:202)
+at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:173)
+at gov.nih.nci.caarray.web.filter.UpgradeFilter.doFilter(UpgradeFilter.java:121)
+at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:202)
+at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:173)
+at org.jboss.web.tomcat.filters.ReplyHeaderFilter.doFilter(ReplyHeaderFilter.java:96)
+at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:202)
+at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:173)
+at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:213)
+at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:178)
+at org.jboss.web.tomcat.security.SecurityAssociationValve.invoke(SecurityAssociationValve.java:175)
+at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:524)
+at org.jboss.web.tomcat.security.JaccContextValve.invoke(JaccContextValve.java:74)
+at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:126)
+at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:105)
+at org.jboss.web.tomcat.tc5.jca.CachedConnectionValve.invoke(CachedConnectionValve.java:156)
+at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:107)
+at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:148)
+at org.apache.coyote.http11.Http11Processor.process(Http11Processor.java:869)
+at org.apache.coyote.http11.Http11BaseProtocol$Http11ConnectionHandler.processConnection(Http11BaseProtocol.java:664)
+at org.apache.tomcat.util.net.PoolTcpEndpoint.processSocket(PoolTcpEndpoint.java:527)
+at org.apache.tomcat.util.net.MasterSlaveWorkerThread.run(MasterSlaveWorkerThread.java:112)
+at java.lang.Thread.run(Thread.java:595)&#34;
+<h2 id="caArray057caArraydeployedinEclipseexceptionwhencaArraytested-Answer">
+  Answer
+</h2>
+This type of the exception could be caused by an empty caArray schema. The user should verify if the caArray schema has been setup properly by:
+<ol>
+  <li>
+    Opening the caArray database to see if the tables have been installed.
+  </li>
+  <li>
+    Querying a known caArray table in MySQL Client:
+
+
+    SELECT * FROM category
+  </li>
+</ol>
+If the schema is indeed empty, it can be reinstalled via the steps below:
+<ol>
+  <li>
+    Shut down the caArray JBoss server.
+  </li>
+  <li>
+    Run the following ant command from the software/build folder:
+
+
+    ant database:reinitialize
+  </li>
+  <li>
+    Restart caArray JBoss
+  </li>
+</ol>
+<h2 id="caArray057caArraydeployedinEclipseexceptionwhencaArraytested-Haveacomment?">
+  Have a comment?
+</h2>
+Please leave your comment in the
+<a href="https://cabig-kc.nci.nih.gov/Molecular/forums/viewtopic.php?f=6&amp;t=577" rel="nofollow">
+  caArray End User Forum
+</a>
+. 

@@ -1,0 +1,43 @@
+The get-data macro displays stored field data and provides for formatting. When data is inside a table-data or repeating-data macro, the get-data macro can retrieve it.This page provides the following information:
+<ul>
+  <li>
+    <a href="#DisplayandFormatFieldDatawiththeGetDataMacro-GetDataMacro" rel="nofollow">
+      Get Data Macro
+    </a>
+  </li>
+  <li>
+    <a href="#DisplayandFormatFieldDatawiththeGetDataMacro-Get-dataMacroUsedwithRepeating-dataMacro" rel="nofollow">
+      Get-data Macro Used with Repeating-data Macro
+    </a>
+  </li>
+</ul>
+<a href="https://docs.servicerocket.com/display/SCAF/get-data" rel="nofollow">
+  More information
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+<h2 id="DisplayandFormatFieldDatawiththeGetDataMacro-GetDataMacro">
+  Get Data Macro
+</h2>
+The general form is
+{get-data:name=[Field Name]|format=[date or number format]}Default value{get-data}
+In this example, there is no data to get.
+{get-data:name=Group Name.Field Name|format=#,##0.00}Default value{get-data}
+The output of the get data macro is &#34;Default value.&#34;Default valueIn this example, there is a date to get.
+{date-data:YearMonthDay|format=yyyy-MMM-dd}today{date-data}
+
+{get-data:name=YearMonthDay|format=yyyy-MMM-dd}{get-data}
+
+The date data macro establishes the date, initially today&#39;s date when the macro was created. Afterwards, in the Edit Contents view select a new date from the calendar picker.2014-Dec-10The date selected changes and the get data macro displays the last date selected when the page is saved and refreshes automatically.2014-Dec-10
+<h2 id="DisplayandFormatFieldDatawiththeGetDataMacro-Get-dataMacroUsedwithRepeating-dataMacro">
+  Get-data Macro Used with Repeating-data Macro
+</h2>
+The general form is
+{repeating-data:MonthDayYear}
+{date-data:YearMonthDay|format=yyyy-MMM-dd}today{date-data}
+{repeating-data}
+
+{get-data:name=YearMonthDay|format=yyyy-MMM-dd}{get-data}
+
+An example follows.The date data macro establishes the date, initially the date the macro was created. The repeating data macro displays a plus sign in the Edit Contents view. Click the plus sign to add one or more date displays, selected from the calendar picker provided by the date data macro.2015-Dec-112014-Dec-12The get data macro displays data selected from the first date data macro only.2014-Dec-10

@@ -1,0 +1,429 @@
+Directions are given on this page for upgrading caIntegrator from 1.3 to 1.4 or from 1.4 to 1.4.2 . This page includes the following topics:
+<ul>
+  <li>
+    <a href="#id-6UpgradingcaIntegrator-UpgradingcaIntegrator1.3to1.4" rel="nofollow">
+      Upgrading caIntegrator 1.3 to 1.4
+    </a>
+    <ul>
+      <li>
+        <a href="#id-6UpgradingcaIntegrator-OverviewofPropertiesFiles" rel="nofollow">
+          Overview of Properties Files
+        </a>
+      </li>
+      <li>
+        <a href="#id-6UpgradingcaIntegrator-UpgradingcaIntegratortov.1.4UsingtheGUIInstaller" rel="nofollow">
+          Upgrading caIntegrator to v.1.4 Using the GUI Installer
+        </a>
+      </li>
+      <li>
+        <a href="#id-6UpgradingcaIntegrator-UpgradingcaIntegratortov.1.4UsingtheCommand-LineInstaller" rel="nofollow">
+          Upgrading caIntegrator to v. 1.4 Using the Command-Line Installer
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#id-6UpgradingcaIntegrator-UpgradingtocaIntegrator1.4.2" rel="nofollow">
+      Upgrading to caIntegrator 1.4.2
+    </a>
+    <ul>
+      <li>
+        <a href="#id-6UpgradingcaIntegrator-OverviewofPropertiesFiles.1" rel="nofollow">
+          Overview of Properties Files
+        </a>
+      </li>
+      <li>
+        <a href="#id-6UpgradingcaIntegrator-UpgradingcaIntegratortov.1.4.2UsingtheGUIInstaller" rel="nofollow">
+          Upgrading caIntegrator to v.1.4.2 Using the GUI Installer
+        </a>
+      </li>
+      <li>
+        <a href="#id-6UpgradingcaIntegrator-UpgradingcaIntegratortov.1.4.2UsingtheCommand-LineInstaller" rel="nofollow">
+          Upgrading caIntegrator to v.1.4.2 Using the Command-Line Installer
+        </a>
+      </li>
+    </ul>
+  </li>
+</ul>
+<h3 id="id-6UpgradingcaIntegrator-UpgradingcaIntegrator1.3to1.4">
+  Upgrading caIntegrator 1.3 to 1.4
+</h3>
+This section describes how to upgrade your product from caIntegrator 1.3 to caIntegrator 1.4. The directions in this section presume that you have a valid and functioning caIntegrator 1.3. It also assumes that Java SDK, Apache Ant and MySQL have all been successfully uploaded and installed, as described on pages
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=91796442" rel="nofollow">
+  Required Software Not Included in caIntegrator
+</a>
+ .You can perform an upgrade installation of caIntegrator v.1.3 using either of these two methods:
+<ul>
+  <li>
+    A GUI Installation wizard. Instructions for this method are found in
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=91796473" rel="nofollow">
+      Upgrading caIntegrator Using the GUI Installer
+    </a>
+    .
+  </li>
+  <li>
+    A command-line installation. Instructions for this method are found in
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=91796473" rel="nofollow">
+      Upgrading caIntegrator Using the Command-Line Installer
+    </a>
+    .
+  </li>
+</ul>
+BEFORE YOU BEGIN
+<ul>
+  <li>
+    Important: Backup the 1.3 database. You need to create a reliable copy of your entire caIntegrator database.
+  </li>
+  <li>
+    Important: Backup the current installation of caIntegrator and artifacts from the original installation, such as properties files.
+  </li>
+</ul>
+If you are performing a new installation, go directly to
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=91796470" rel="nofollow">
+  Installing caIntegrator v.1.4 Application and Services
+</a>
+.
+<h4 id="id-6UpgradingcaIntegrator-OverviewofPropertiesFiles">
+  Overview of Properties Files
+</h4>
+When you installed the previous version of caIntegrator 1.3, you configured the install.properties file. To complete the upgrade to caIntegrator 1.4, you must use some of the values from the original install.properties to configure values in the installer wizard GUI.See steps 3 &amp; 4 in
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=91796473" rel="nofollow">
+  Upgrading caIntegrator Using the Command-Line Installer
+</a>
+for more information.
+<h4 id="id-6UpgradingcaIntegrator-UpgradingcaIntegratortov.1.4UsingtheGUIInstaller">
+  Upgrading caIntegrator to v.1.4 Using the GUI Installer
+</h4>
+For detailed information on all of the GUI installer fields, refer to the
+<a href="https://wiki.nci.nih.gov/x/NAUuAQ" rel="nofollow">
+  BDA Properties page
+</a>
+.To perform an upgrade to caIntegrator 1.4 using the GUI Installation Wizard, follow these steps:
+<ol>
+  <li>
+    Because of the upgrade from JBOSS4 to JBOSS5 in the caIntegrator 1.4 release, two GUI installer invocations are required. The first will install the new JBOSS5 in the same directory as the existing JBOSS4 and the second will update the database.
+  </li>
+  <li>
+    Open the install.properties file for the existing 1.3 installation located at &lt;user home&gt;/.installer-caintegrator/caintegrator_installer/install.properties and save it as install.properties_v1.3 to your desktop for reference during the upgrade.
+  </li>
+  <li>
+    Open a command prompt in the directory where you downloaded the caintegrator2_gui_distribution_1.4.jar-201207171753.jar and invoke the GUI installer using this: java --jar caintegrator2_gui_distribution_1.4.jar-201207171753.jar.
+  </li>
+  <li>
+    The Installation Wizard opens to facilitate the installation process. Click Next to proceed through the pages of the wizard, beginning with progressing past the Welcome page.
+  </li>
+  <li>
+    Review the release notes.
+  </li>
+  <li>
+    You must accept the license agreement to continue.
+  </li>
+  <li>
+    Select the Install installation type in step #4.
+  </li>
+  <li>
+    Select JBoss in step #6.
+  </li>
+  <li>
+    Configure the JBoss Server-related settings.
+  </li>
+  <li>
+    Specify the authentication type that caIntegrator is using. If you choose LDAP, configure the LDAP information: the LDAP Host Name, the LDAP Search Base, and the LDAP Search Prefix. An example of the Host Name is  ldaps://myldaphost.mydomain.com:636 .
+  </li>
+  <li>
+    Review the summary of gathered information.
+  </li>
+  <li>
+    Click Next to proceed through the next two pages.
+  </li>
+  <li>
+    After you click Next from reviewing the installation destination, the installer runs. The installation wizard displays the installation progress and completion.
+  </li>
+  <li>
+    When you are informed that the process is finished, click Done in the lower right corner to close the installation wizard.
+  </li>
+  <li>
+    At this point if you open your web browser to the installed instance you will see a MYSQLGrammerException error displayed.
+  </li>
+  <li>
+    Before invoking the GUI installer again, stop the server.
+  </li>
+  <li>
+    Open a command prompt in the directory where you downloaded the caintegrator2_gui_distribution_1.4.jar-201207171753.jar and invoke the GUI installer using this: java --jar caintegrator2_gui_distribution_1.4.jar-201207171753.jar.
+  </li>
+  <li>
+    The Installation Wizard opens to facilitate the installation process. Click Next to proceed through the pages of the wizard, beginning with progressing past the Welcome page.
+  </li>
+  <li>
+    You must accept the license agreement to continue.
+  </li>
+  <li>
+    Select the Upgrade installation type in step #4.
+  </li>
+  <li>
+    Select Everything in step #6.
+  </li>
+  <li>
+    Configure the JBoss Server-related settings.
+  </li>
+  <li>
+    Specify the authentication type that caIntegrator is using. If you choose LDAP, configure the LDAP information: the LDAP Host Name, the LDAP Search Base, and the LDAP Search Prefix. An example of the Host Name is  ldaps://myldaphost.mydomain.com:636 .
+  </li>
+  <li>
+    Review the summary of gathered information.Review the selected upgrade installation type and the upgrade destination.
+  </li>
+  <li>
+    Click Next to proceed through the next two pages.
+  </li>
+  <li>
+    After you click Next from reviewing the installation destination, the installer runs. The installation wizard displays the installation progress and completion.
+  </li>
+  <li>
+    To verify the caIntegrator installation, open your web browser to the installed instance. The URL follows this format: http://&lt;jboss.server.hostname&gt;:&lt;jboss.server.port&gt;/caintegrator. Example:
+    <a href="http://hostname:47210/caintegrator" rel="nofollow">
+      http://hostname:47210/caintegrator
+    </a>
+    and enter  ncimanager  as the user and  changeme  as the password. Refer to the original install.properties for the correct jboss.server.hostname and jboss.server.port values.
+  </li>
+  <li>
+    Once the update is verified you can delete the JBOSS4 directory.
+  </li>
+</ol>
+<h4 id="id-6UpgradingcaIntegrator-UpgradingcaIntegratortov.1.4UsingtheCommand-LineInstaller">
+  Upgrading caIntegrator to v. 1.4 Using the Command-Line Installer
+</h4>
+To perform an upgrade to caIntegrator 1.4 using the command-line, follow these steps:
+<ol>
+  <li>
+    Because of the upgrade from JBOSS4 to JBOSS5 in the caIntegrator 1.4 release, two ant commands are required. The first will install the new JBOSS5 in the same directory as the existing JBOSS4 and the second will update the database.
+  </li>
+  <li>
+    Open the install.properties file found in the application.base.path directory and save it to your desktop as install.properties.v1.3.1 for reference during the upgrade.
+  </li>
+  <li>
+    Delete the caintegrator2-install-1.3.1.zip file from its directory such as the application.base.path directory.
+  </li>
+  <li>
+    Download caintegrator2-install-1.4.zip to the directory where the previous install zip file was such as the application.base.path directory. From the directory where you downloaded the install zip file, extract the files, using one of these two methods:
+    <ol>
+      <li>
+        Open a command prompt and use it to extract this file. For example, you may enter a command such as   unzip -q caintegrator2-install-1.4.zip  . You must have a ZIP tool installed.
+      </li>
+      <li>
+        Use WinZip or a similar utility to unzip the files.
+      </li>
+    </ol>
+  </li>
+  <li>
+    When asked if you would like to replace the existing files, respond All.
+  </li>
+  <li>
+    Open the install.properties file and replace all REPLACE_VALUE properties with the values in the install.properties.v1.3.1 file. Before doing so, review
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=91796462" rel="nofollow">
+      Working with Properties Files
+    </a>
+     .  For the latest details about configuring the properties for your updated environment, refer to the
+    <a href="https://wiki.nci.nih.gov/x/NAUuAQ" rel="nofollow">
+      BDA Properties page
+    </a>
+    .
+  </li>
+  <li>
+    In the DATABASE SETTINGS section of the install.properties file replace database.re-create=true with database.re-create=false. In the DATABASE SETTINGS section of the install.properties file add the property and value exclude.database=true.
+  </li>
+  <li>
+    Save this file to your desktop as install.properties.v1.4step1. Save this file to your desktop a second time, this time as install.properties. Upload the install.properties file to the application.base.path directory.Modifying property valuesYou shouldn&#39;t need to modify the other default values as we have chosen unique ports to reduce the risk of other applications using the same values. However, be sure to check the *.properties file to verify that the ports in this file are not being used by other applications.
+  </li>
+  <li>
+    From the command line, navigate to the directory where you unzipped the installer file and type  ant . This is the first of two ant commands. The anticipated duration is anywhere 1-15 minutes depending on your system&#39;s speed, power and memory.
+  </li>
+  <li>
+    When the installer detects that a database exists, it warns you to back it up, which you were instructed to do earlier in this process. Press Y to proceed.
+  </li>
+  <li>
+    If you open the application now in a browser window you will see a MYSQLGrammerException error.
+  </li>
+  <li>
+    Stop the server.
+  </li>
+  <li>
+    Open the install.properties file and revert database.re-create=false back to database.re-create=true. Delete the property and value exclude.database=true.
+  </li>
+  <li>
+    Save this file to your desktop as install.properties.v1.4step2. Save this file to your desktop a second time, this time as install.properties. Upload the install.properties file to the application.base.path directory.
+  </li>
+  <li>
+    From the command line, navigate to the directory where you unzipped the installer file and type  ant
+    <a href="http://upgradedatabase" rel="nofollow">
+      upgrade:database
+    </a>
+    <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+      <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+    </a>
+    .
+  </li>
+  <li>
+    Restart the server.
+  </li>
+  <li>
+    To verify caIntegrator installation, open your web browser to the installed instance. The URL follows this format: http://&lt;jboss.server.hostname&gt;:&lt;jboss.server.port&gt;/caintegrator /workspace.action. Example:
+    <a href="http://hostname:47210/caintegrator/workspace.action" rel="nofollow">
+      http://hostname:47210/caintegrator/workspace.action
+    </a>
+    and enter  ncimanager  as the user and  changeme  as the password. Refer to the original install.properties for the correct jboss.server.hostname and jboss.server.port values.
+  </li>
+  <li>
+    Once the update is verified you can delete the JBOSS4 directory.
+  </li>
+</ol>
+<h3 id="id-6UpgradingcaIntegrator-UpgradingtocaIntegrator1.4.2">
+  Upgrading to caIntegrator 1.4.2
+</h3>
+This section describes how to upgrade your product from caIntegrator 1.4 or 1.4.1 to caIntegrator 1.4.2. The directions in this section presume that you have a valid and functioning caIntegrator 1.4 or caIntegrator 1.4.1. It also assumes that Java SDK, Apache Ant and MySQL have all been successfully uploaded and installed, as described on pages
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=91796442" rel="nofollow">
+  Required Software Not Included in caIntegrator
+</a>
+ . For upgrading from version 1.4 to 1.4.2, simply use the caintegrator updater, described in the following sections.You can perform an upgrade installation of caIntegrator to v.1.4.2 using either of these two methods:
+<ul>
+  <li>
+    A GUI Installation wizard. Instructions for this method are found in
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=91796473" rel="nofollow">
+      Upgrading caIntegrator to v.1.4.2 Using the GUI Installer
+    </a>
+    .
+  </li>
+  <li>
+    A command-line installation. Instructions for this method are found in
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=91796473" rel="nofollow">
+      Upgrading caIntegrator to v.1.4.2 Using the Command-Line Installer
+    </a>
+    .
+  </li>
+</ul>
+BEFORE YOU BEGIN
+<ul>
+  <li>
+    Important: Backup the database. You need to create a reliable copy of your entire caIntegrator database.
+  </li>
+  <li>
+    Important: Backup the current installation of caIntegrator and artifacts from the original installation, such as properties files.
+  </li>
+</ul>
+If you are performing a new installation, go directly to
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=91796470" rel="nofollow">
+  Installing caIntegrator v.1.4 or 1.4.2 Application and Services
+</a>
+.
+<h4 id="id-6UpgradingcaIntegrator-OverviewofPropertiesFiles.1">
+  Overview of Properties Files
+</h4>
+When you installed the previous version of caIntegrator 1.4 or 1.4.1, you configured the install.properties file. To complete the upgrade to caIntegrator 1.4.2, you must use some of the values from the original install.properties to configure values in the installer wizard GUI.See steps 3 &amp; 4 in
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=91796473" rel="nofollow">
+  Upgrading caIntegrator to v.1.4.2 Using the Command-Line Installer
+</a>
+r for more information.
+<h4 id="id-6UpgradingcaIntegrator-UpgradingcaIntegratortov.1.4.2UsingtheGUIInstaller">
+  Upgrading caIntegrator to v.1.4.2 Using the GUI Installer
+</h4>
+For detailed information on all of the GUI installer fields, refer to the
+<a href="https://wiki.nci.nih.gov/x/NAUuAQ" rel="nofollow">
+  BDA Properties page
+</a>
+.To perform an upgrade to caIntegrator 1.4.2 using the GUI Installation Wizard, follow these steps:
+<ol>
+  <li>
+    Open the install.properties file for the existing 1.4 installation located at &lt;user home&gt;/.installer-caintegrator/caintegrator_installer/install.properties and save it as install.properties_v1.4.2 to your desktop for reference during the upgrade.
+  </li>
+  <li>
+    Open a command prompt in the directory where you downloaded the caintegrator_gui_distribution_1.4.2.jar and invoke the GUI installer using this: java --jar caintegrator_gui_distribution_1.4.2.jar.
+  </li>
+  <li>
+    The Installation Wizard opens to facilitate the installation process. Click Next to proceed through the pages of the wizard, beginning with progressing past the Welcome page.
+  </li>
+  <li>
+    Review the release notes.
+  </li>
+  <li>
+    You must accept the license agreement to continue.
+    <ol>
+      <li>
+        Select the Upgrade installation type in step #4.
+      </li>
+      <li>
+        Select Everything in step #6.
+      </li>
+    </ol>
+  </li>
+  <li>
+    Configure the JBoss Server-related settings.
+  </li>
+  <li>
+    Specify the authentication type that caIntegrator is using. If you choose LDAP, configure the LDAP information: the LDAP Host Name, the LDAP Search Base, and the LDAP Search Prefix. An example of the Host Name is  ldaps://myldaphost.mydomain.com:636 .
+  </li>
+  <li>
+    Review the summary of gathered information.Review the selected upgrade installation type and the upgrade destination.
+  </li>
+  <li>
+    Click Next to proceed through the next two pages.
+  </li>
+  <li>
+    After you click Next from reviewing the installation destination, the installer runs. The installation wizard displays the installation progress and completion.
+  </li>
+  <li>
+    To verify the caIntegrator installation, open your web browser to the installed instance. The URL follows this format: http://&lt;jboss.server.hostname&gt;:&lt;jboss.server.port&gt;/caintegrator. Example:
+    <a href="http://hostname:47210/caintegrator" rel="nofollow">
+      http://hostname:47210/caintegrator
+    </a>
+    and enter  ncimanager  as the user and  changeme  as the password. Refer to the original install.properties for the correct jboss.server.hostname and jboss.server.port values.
+  </li>
+</ol>
+<h4 id="id-6UpgradingcaIntegrator-UpgradingcaIntegratortov.1.4.2UsingtheCommand-LineInstaller">
+  Upgrading caIntegrator to v.1.4.2 Using the Command-Line Installer
+</h4>
+To perform an upgrade to caIntegrator 1.4.2 using the command-line, follow these steps:
+<ol>
+  <li>
+    Open the install.properties file found in the application.base.path directory and save it to your desktop as install.properties.v1.4.2 for reference during the upgrade.
+  </li>
+  <li>
+    Download caintegrator-upgrade-1.4.2.zip to the directory where the previous install zip file was such as the application.base.path directory. From the directory where you downloaded the install zip file, extract the files, using one of these two methods:
+    <ol>
+      <li>
+        Open a command prompt and use it to extract this file. For example, you may enter a command such as   unzip -q caintegrator-upgrade-1.4.2.zip. You must have a ZIP tool installed.
+      </li>
+      <li>
+        Use WinZip or a similar utility to unzip the files.
+      </li>
+    </ol>
+  </li>
+  <li>
+    When asked if you would like to replace the existing files, respond All.
+  </li>
+  <li>
+    Open the upgrade.properties file and replace all REPLACE_VALUE properties with the values in the install.properties.v1.4.2 file. Before doing so, review
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=91796462" rel="nofollow">
+      Working with Properties Files
+    </a>
+     .  For the latest details about configuring the properties for your updated environment, refer to the
+    <a href="https://wiki.nci.nih.gov/x/NAUuAQ" rel="nofollow">
+      BDA Properties page
+    </a>
+    .
+  </li>
+  <li>
+    Save this file to your desktop as upgrade.properties. Upload the upgrade.properties file to the application.base.path directory.Modifying property valuesYou shouldn&#39;t need to modify the other default values as we have chosen unique ports to reduce the risk of other applications using the same values. However, be sure to check the *.properties file to verify that the ports in this file are not being used by other applications.
+  </li>
+  <li>
+    From the command line, navigate to the directory where you unzipped the installer file and type  ant. The anticipated duration is anywhere 1-15 minutes depending on your system&#39;s speed, power and memory.
+  </li>
+  <li>
+    When the installer detects that a database exists, it warns you to back it up, which you were instructed to do earlier in this process. Press Y to proceed.
+  </li>
+  <li>
+    To verify caIntegrator installation, open your web browser to the installed instance. The URL follows this format: http://&lt;jboss.server.hostname&gt;:&lt;jboss.server.port&gt;/caintegrator /workspace.action. Example:
+    <a href="http://hostname:47210/caintegrator/workspace.action" rel="nofollow">
+      http://hostname:47210/caintegrator/workspace.action
+    </a>
+    and enter  ncimanager  as the user and  changeme  as the password. Refer to the original install.properties for the correct jboss.server.hostname and jboss.server.port values.
+  </li>
+</ol>

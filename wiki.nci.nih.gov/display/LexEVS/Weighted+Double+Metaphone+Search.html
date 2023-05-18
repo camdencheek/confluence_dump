@@ -1,0 +1,126 @@
+Contents of this Page
+<ul>
+  <li>
+    <a href="#WeightedDoubleMetaphoneSearch-WeightedDoubleMetaphoneImplementationDetails" rel="nofollow">
+      Weighted Double Metaphone Implementation Details
+    </a>
+    <ul>
+      <li>
+        <a href="#WeightedDoubleMetaphoneSearch-Algorithm:" rel="nofollow">
+          Algorithm:
+        </a>
+      </li>
+      <li>
+        <a href="#WeightedDoubleMetaphoneSearch-Exampleofuse:" rel="nofollow">
+          Example of use:
+        </a>
+      </li>
+      <li>
+        <a href="#WeightedDoubleMetaphoneSearch-AssociatedJUnits:" rel="nofollow">
+          Associated JUnits:
+        </a>
+      </li>
+    </ul>
+  </li>
+</ul>
+<h2 id="WeightedDoubleMetaphoneSearch-WeightedDoubleMetaphoneImplementationDetails">
+  Weighted Double Metaphone Implementation Details
+</h2>
+Search with the Lucene query syntax, using a &#39;sounds like&#39; algorithm.  The exact user-entered text is taken into account, so correct spelling will override the &#39;sounds like&#39; algorithm.  Searches on the same indexed property value as the other double metaphone search.
+<h3 id="WeightedDoubleMetaphoneSearch-Algorithm:">
+  Algorithm:
+</h3>
+The Weighted Double Metaphone search has the following characteristics:
+<ul>
+  <li>
+    This search is case in-sensitive.
+  </li>
+  <li>
+    It searches on the double metaphone property value and the property value.
+  </li>
+  <li>
+    Preference is given to the matches with the correct spelling.
+  </li>
+  <li>
+    Parsing is done with the following analyzers:
+    <ul>
+      <li>
+        dm_propertyValue - Uses our custom double metaphone analyzer.  This has the following filters:
+        <ul>
+          <li>
+            LowerCaseFilter - for setting to lowercase
+          </li>
+          <li>
+            StopFilter - to remove stop words (the, a, etc.) from the search
+          </li>
+          <li>
+            DoubleMetaphoneFilter - for testing double metaphone sounds
+          </li>
+        </ul>
+      </li>
+      <li>
+        propertyValue - Uses our custom standard analyzer that has no stop words.
+      </li>
+    </ul>
+  </li>
+</ul>
+<h3 id="WeightedDoubleMetaphoneSearch-Exampleofuse:">
+  Example of use:
+</h3>
+The following examples are based on the Automobiles coding scheme.Example 1:Search string: carLucene query: +dm_propertyValue:KR propertyValue:carResult: 2 results
+<ul>
+  <li>
+    Result 1:
+    <ul>
+      <li>
+        entity code: C0001
+      </li>
+      <li>
+        entity description: Car
+      </li>
+    </ul>
+  </li>
+  <li>
+    Result 2:
+    <ul>
+      <li>
+        entity code: C0002
+      </li>
+      <li>
+        entity description: Kar
+      </li>
+    </ul>
+  </li>
+</ul>
+Example 2:Search string: karLucene query: +dm_propertyValue:KR propertyValue:karResult: 2 results
+<ul>
+  <li>
+    Result 1:
+    <ul>
+      <li>
+        entity code: C0002
+      </li>
+      <li>
+        entity description: Kar
+      </li>
+    </ul>
+  </li>
+  <li>
+    Result 2:
+    <ul>
+      <li>
+        entity code: C0001
+      </li>
+      <li>
+        entity description: Car
+      </li>
+    </ul>
+  </li>
+</ul>
+<h3 id="WeightedDoubleMetaphoneSearch-AssociatedJUnits:">
+  Associated JUnits:
+</h3>
+Junits can be found here:
+<a href="https://github.com/lexevs/lexevs/blob/master/lbTest/src/test/java/org/LexGrid/LexBIG/Impl/function/query/lucene/searchAlgorithms/TestWeightedDoubleMetaphone.java" rel="nofollow">
+  https://github.com/lexevs/lexevs/blob/master/lbTest/src/test/java/org/LexGrid/LexBIG/Impl/function/query/lucene/searchAlgorithms/TestWeightedDoubleMetaphone.java
+</a>

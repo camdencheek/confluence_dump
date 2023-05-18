@@ -1,0 +1,49 @@
+<h1 id="caArray076UploadingandstoringQCdataincaArray-Question:HowcanIuploadandstoreQCdataincaArray?">
+  Question: How can I upload and store QC data in caArray?
+</h1>
+Topic: caArray Usage
+
+Release: caArray 2.4.0
+
+Date entered: 01/18/2011
+<h2 id="caArray076UploadingandstoringQCdataincaArray-DetailsabouttheQuestion">
+  Details about the Question
+</h2>
+We want to add the QC data of an experiment in caArray, and we do not see any field in caArray related to this. Where in caArray can we store this type of data?
+
+Here is the type of QC data we capture for arrays:
+<ul>
+  <li>
+    Chip Lot #, Hybridization Date, Chip Status (Good, Dim, Scratch, Background, Bad-Other) - For all types of arrays
+  </li>
+  <li>
+    cQC, QC call rate, - For SNP 6.0 arrays
+  </li>
+  <li>
+    AUC - For Gene 1.0 ST/Exon 1.0 ST arrays
+  </li>
+  <li>
+    Noise, Scale Factor, %P - For 3&#39;IVT arrays
+  </li>
+  <li>
+    % Probe set present - For miRNA arraysshrivass
+  </li>
+</ul>
+<a href="https://cabig-kc.nci.nih.gov/Molecular/forums/viewtopic.php?f=6&amp;t=651&amp;sid=357fafd703fc81899e2472e06895c822" rel="nofollow">
+  Original post on the Forum
+</a>
+<h2 id="caArray076UploadingandstoringQCdataincaArray-Answer">
+  Answer
+</h2>
+The QC data as mentioned in the question can be added as Comment[] columns in your MAGE-TAB SDRF.
+Ideally, they would be Characteristics associated with the Hybridization Name or Scan Name column. Unfortunately, the MAGE-TAB specification does not allow Characteristic[] columns for Hybridization Name or Scan Name. We recommend that you include these QC annotations as Comment[] columns following either the Hybridization Name or Scan Name column.
+
+One thing to keep in mind is that caArray does not currently parse the contents of Comment columns and store the values in the database. But these annotations would be captured in the SDRF file itself, which is stored as is by caArray.
+<h2 id="caArray076UploadingandstoringQCdataincaArray-Haveacomment?">
+  Have a comment?
+</h2>
+Please leave your comment in the
+<a href="https://cabig-kc.nci.nih.gov/Molecular/forums/viewtopic.php?f=6&amp;t=577" rel="nofollow">
+  caArray End User Forum
+</a>
+. 

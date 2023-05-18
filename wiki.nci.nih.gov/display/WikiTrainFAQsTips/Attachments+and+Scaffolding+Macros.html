@@ -1,0 +1,68 @@
+<h1 id="AttachmentsandScaffoldingMacros-AttachmentsandScaffoldingMacros">
+  Attachments and Scaffolding Macros
+</h1>
+This page explains two macros as follows:
+<ul>
+  <li>
+    <a href="#AttachmentsandScaffoldingMacros-AttachmentDatamacro" rel="nofollow">
+      Attachment Data macro
+    </a>
+    <ul>
+      <li>
+        <a href="#AttachmentsandScaffoldingMacros-ExampleOneAttachmentData" rel="nofollow">
+          Example One Attachment Data
+        </a>
+      </li>
+      <li>
+        <a href="#AttachmentsandScaffoldingMacros-ExampleTwoAttachmentData" rel="nofollow">
+          Example Two Attachment Data
+        </a>
+      </li>
+      <li>
+        <a href="#AttachmentsandScaffoldingMacros-ExampleThreeAttachmentData" rel="nofollow">
+          Example Three Attachment Data
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#AttachmentsandScaffoldingMacros-AttachmentOptionsmacro" rel="nofollow">
+      Attachment Options macro
+    </a>
+  </li>
+</ul>
+<h2 id="AttachmentsandScaffoldingMacros-AttachmentDatamacro">
+  Attachment Data macro
+</h2>
+The attachment data macro allows the user to select or upload an attachment. If there are no attachments of the type specified, you can attach any file from the local drive. If there are attachments of the type specified, the macro offers the list of those attachments.The general form is
+{attachment-data:Name|include=&lt;regular expression&gt;|exclude=&lt;regular expression&gt;}
+<h3 id="AttachmentsandScaffoldingMacros-ExampleOneAttachmentData">
+  Example One Attachment Data
+</h3>
+In this example and the next, because the reporting plugin is not installed, there would be a message that a macro is unknown. Therefore the examples are not shown.
+|| Image File: | {attachment-data:Image|include=.*gif,.*jpg} |
+|| Image Display: | \{report-image:data:Image &gt; reference:value &gt; attachment:download path\} |
+<h3 id="AttachmentsandScaffoldingMacros-ExampleTwoAttachmentData">
+  Example Two Attachment Data
+</h3>
+|| Image: | {hidden-data}
+{attachment-data:Image|include=.*gif,.*jpg}
+{hidden-data} \{report-image:data:Image &gt; reference:value &gt; attachment:download path\}  |
+<h3 id="AttachmentsandScaffoldingMacros-ExampleThreeAttachmentData">
+  Example Three Attachment Data
+</h3>
+{attachment-data:Any}
+The file in this example was selected from a list of attachments to this page.
+<h2 id="AttachmentsandScaffoldingMacros-AttachmentOptionsmacro">
+  Attachment Options macro
+</h2>
+The attachment options macro generates a selectable list of attachments to the specified content, which by default is the current page.The general form is:
+{attachment-options:content=[content name]|include=&lt;regular expression&gt;|exclude=&lt;regular expression&gt;}
+An example follows. The last item or items selected appear on the page.
+{list-data:List of Image Options|type=check|multiple=true}
+{attachment-options:content=Attachments and Scaffolding Macros|include=.*gif,.*jpg}
+{attachment-options:content=Attachments and Scaffolding Macros|include=.*png}
+{list-data}
+<a href="https://wiki.nci.nih.gov/download/attachments/39915226/caDSR_logo_90x.gif?version=1&amp;modificationDate=1301978408000&amp;api=v2" rel="nofollow">
+  caDSR_logo_90x.gif
+</a>

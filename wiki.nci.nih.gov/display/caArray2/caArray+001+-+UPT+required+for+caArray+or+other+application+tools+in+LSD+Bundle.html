@@ -1,0 +1,34 @@
+Unable to render {include} The included page could not be found.
+<h1 id="caArray001UPTrequiredforcaArrayorotherapplicationtoolsinLSDBundle-Question:IsUPTrequiredforcaArrayorotherapplicationtoolsintheLSDBundle?">
+  Question: Is UPT required for caArray or other application tools in the LSD Bundle?
+</h1>
+Topic: caArray and UPT Installation Release: Up to caArray 2.2.0 Date entered: 12/18/2008
+<h2 id="caArray001UPTrequiredforcaArrayorotherapplicationtoolsinLSDBundle-Answer">
+  Answer
+</h2>
+Yes. The User Provisioning Tool (UPT) is an LSD user management tool that provides the authorization policy to all LSD applications. To configure the application properly, UPT has to be properly installed prior to any other LSD application installation.The Life Sciences Distribution (LSD) applications use Common Security Module (CSM) APIs to enforce Authorization Policy. In their business logic applications make CSM API calls to check if users have access and permissions before providing any access to the underlying data. The Authorization policy is stored in the CSM Schema and provisioned by the CSM User Provisioning Tool (UPT). The LSD bundle is architected with the capability to share a single database and single UPT for all applications.The diagram below is a simplified illustration of two components used in the caArray application: caArray and UPT. The caArray application runs in its own container (application server). UPT runs in a separate container. Both caArray and UPT have their own CSM schema. caArray user information will be created and maintained with UPT, but stored in the caArray CSM schema.Diagram of caArray Components
+<img alt="Diagram of caArray Components as explained in the preceding paragraph" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caArray2/caArray%20001%20-%20UPT%20required%20for%20caArray%20or%20other%20application%20tools%20in%20LSD%20Bundle/CaArray-components.JPG?api=v2">
+<ul>
+  <li>
+    For more information about UPT Architecture, refer to:
+    <a href="https://wiki.nci.nih.gov/x/ygGy" rel="nofollow">
+      NCI&#39;s UPT FAQ
+    </a>
+    .
+  </li>
+  <li>
+    For more information about UPT installation, refer to: the
+    <a href="http://ncisvn.nci.nih.gov/svn/files/trunk/lsd/LSD_R1_1_0_GA/lsd_1_1_0/lsd_1_1_0_installation_guide.pdf" rel="nofollow">
+      UPT Section in the LSD installation guide
+    </a>
+    (page 10).
+  </li>
+</ul>
+<h2 id="caArray001UPTrequiredforcaArrayorotherapplicationtoolsinLSDBundle-Haveacomment?">
+  Have a comment?
+</h2>
+Please leave your comment in the
+<a href="https://cabig-kc.nci.nih.gov/Molecular/forums/viewtopic.php?f=6&amp;t=577" rel="nofollow">
+  caArray End User Forum
+</a>
+.

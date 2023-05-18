@@ -1,0 +1,110 @@
+<ol>
+  <li>
+    Update on Qinyan&#39;s completed &#39;Franken AIM&#39; model creation and generation of an AIM data service using the &#39;Franken AIM model&#39;.
+    <ol>
+      <li>
+        AIM model 1.12 did not have the &#34;rating object&#34;.  The LIDC needs this for conversion to AIM.  Pat has indicated to Qinyan that this would be in AIM 2.0 whenever it&#39;s released
+      </li>
+      <li>
+        Other minor changes were also required, but Qinyan has indicated that these other minor changes are also things that were already proposed by the AIM developers for AIM 2.0
+      </li>
+      <li>
+        In the interim we have modified the 1.12 model slightly to add in these objects that we need and dubbed it &#39;Franken AIM&#39;
+      </li>
+      <li>
+        When AIM 2.0 is released we will adopt that since it will have all of these changes (plus all the other improvements in AIM 2.0)
+      </li>
+      <li>
+        Urgency is that caIntegrator 2 is ready to use AIM data and needs real data to load to test/demonstrate functionality
+      </li>
+    </ol>
+  </li>
+  <li>
+    Update on LIDC annotation conversion program changes to use Franken AIM model
+    <ol>
+      <li>
+        LIDC conversion program updated to utilize this Franken AIM model
+      </li>
+      <li>
+        Qinyan has used it to generate the first thirty series of LIDC
+      </li>
+    </ol>
+  </li>
+  <li>
+    Review conversion of first thirty series of LIDC collection for feedback
+    <ol>
+      <li>
+        These have been posted on the wiki as an attachment on the &#34;LIDC to AIM Conversion Program&#34; page
+      </li>
+      <li>
+        Feedback from the call: perhaps rating object should not be a &#34;double&#34; and should be an &#34;integer&#34; instead.  Requested that Qinyan follow up with the AIM team to discuss this because saying, for example, 4.0 instead of just 4 might imply a different level of precision than was intended. (i.e. it might imply 4.1 was an option when indeed the only options were integers between 1 and 5)
+      </li>
+    </ol>
+  </li>
+  <li>
+    Discuss how we are going to validate those files (Sam/Mike, I think we need your help here)
+    <ol>
+      <li>
+        Qinyan wanted to know how we can validate these tests or if someone can help
+      </li>
+      <li>
+        John asked if it was even possible to validate this until we&#39;ve also done the AnnotationOfAnnotation work as well which has not yet been done by Qinyan
+      </li>
+      <li>
+        Qinyan proposed we could look at the original file with the QIWS and then use an AIM compatible viewer that can redraw the AIM annotations and see if they match
+      </li>
+      <li>
+        Qinyan mentioned that Thai has been tasked to modify ImageJ to potentially do something like this
+      </li>
+      <li>
+        Mike suggested we check in with Bob S about AVT&#39;s progress in doing this
+      </li>
+      <li>
+        Justin noted that IPAD can write out AIM but cannot redraw annotations from the XML yet as of last time we talked to Daniel Rubin.  We are also not sure what the status is of the ClearCanvas plugin that David Channin&#39;s team has built and whether it could do this.
+      </li>
+      <li>
+        Would XIP be able to quickly generate something that could do this?
+      </li>
+      <li>
+        Justin will follow up with Lawrence, Bob, Daniel, and David to see if any of them can help us address this issue.
+      </li>
+    </ol>
+  </li>
+  <li>
+    Qinyan is working on a mass uploading program which uploads all LIDC annotation files (around 18000 of them) to AIM data service and is having a memory problem with AIM data service/Berkeley xml DB. She would like to discuss possible solutions for solving the problem.  She has suggested that Tony might be particularly helpful in addressing this.
+    <ol>
+      <li>
+        Qinyan increased the memory on Tomcat but it did not help with the issue
+      </li>
+      <li>
+        Tony suggested trying sending smaller batches to see if that would make a difference
+      </li>
+      <li>
+        Qinyan mentioned that required stopping Tomcat?
+      </li>
+      <li>
+        Tony suggested that upgrading Tomcat to v5.5 seems to work with caGrid 1.2 even though it&#39;s not officially recommended until caGrid v1.3.  He thinks using Tomcat 5.5 might potentially have better memory management.
+      </li>
+      <li>
+        Also possible the memory setting was not changed in the correct place
+      </li>
+      <li>
+        Tony to investigate the issue further and get back to Qinyan with more advice
+      </li>
+    </ol>
+  </li>
+  <li>
+    Find out if Qinyan can get some sample annotation files for the Vasari collection.
+    <ol>
+      <li>
+        John to provide XLS to Qinyan that contains all the scores created by Adam F
+      </li>
+      <li>
+        Justin to push the submission of the Vasari data to NBIA
+      </li>
+      <li>
+        Justin to ping Janice Chilli about progress on submitting the Vasari terms to caDSR
+      </li>
+    </ol>
+  </li>
+</ol>

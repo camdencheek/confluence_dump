@@ -1,0 +1,83 @@
+Contents of this Page
+<ul>
+  <li>
+    <a href="#LiteralContainsSearch-LiteralContainsImplementationDetails" rel="nofollow">
+      Literal Contains Implementation Details
+    </a>
+    <ul>
+      <li>
+        <a href="#LiteralContainsSearch-Algorithm:" rel="nofollow">
+          Algorithm:
+        </a>
+      </li>
+      <li>
+        <a href="#LiteralContainsSearch-Exampleofuse:" rel="nofollow">
+          Example of use:
+        </a>
+      </li>
+      <li>
+        <a href="#LiteralContainsSearch-AssociatedJUnits:" rel="nofollow">
+          Associated JUnits:
+        </a>
+      </li>
+    </ul>
+  </li>
+</ul>
+<h2 id="LiteralContainsSearch-LiteralContainsImplementationDetails">
+  Literal Contains Implementation Details
+</h2>
+Works the same as contains but uses the literal property value enabling searches on special characters.
+<h3 id="LiteralContainsSearch-Algorithm:">
+  Algorithm:
+</h3>
+The Literal Contains search has the following characteristics:
+<ul>
+  <li>
+    This search is case in-sensitive.
+  </li>
+  <li>
+    It searches on the literal property.
+  </li>
+  <li>
+    A trailing wild card is added to each token in the search text.
+  </li>
+  <li>
+    The literal property part (without the wild cards) of the query is boosted by 50.  This gives a literal match priority.
+  </li>
+  <li>
+    Parsing is done with the following analyzer:
+    <ul>
+      <li>
+        literal_propertyValue - Uses our custom literal analyzer.  This literal analyzer uses Lucene&#39;s WhitespaceTokenizer with Lucene&#39;s LowerCaseFilter.
+      </li>
+    </ul>
+  </li>
+</ul>
+<h3 id="LiteralContainsSearch-Exampleofuse:">
+  Example of use:
+</h3>
+The following examples are based on the Automobiles coding scheme.Example 1:Search string: a^sLucene query: +literal_propertyValue:a^s* literal_propertyValue:a\^s^50.0Result: 1 result
+<ul>
+  <li>
+    entity code: SpecialCharactersConcept
+  </li>
+  <li>
+    entity description: Concept containing special characters
+  </li>
+</ul>
+Example 2:Search string: a^s sp*cial co{nce]ptLucene query: +(+literal_propertyValue:a^s* +literal_propertyValue:sp*cial* +literal_propertyValue:co{nce]pt*) ((+literal_propertyValue:a\^s +literal_propertyValue:sp\*cial +literal_propertyValue:co\{nce\]pt)^50.0)Result: 1 result
+<ul>
+  <li>
+    entity code: SpecialCharactersConcept
+  </li>
+  <li>
+    entity description: Concept containing special characters
+  </li>
+</ul>
+<h3 id="LiteralContainsSearch-AssociatedJUnits:">
+  Associated JUnits:
+</h3>
+Junit tests can be found here:
+<a href="https://github.com/lexevs/lexevs/blob/master/lbTest/src/test/java/org/LexGrid/LexBIG/Impl/function/query/lucene/searchAlgorithms/TestLiteralContains.java" rel="nofollow">
+  https://github.com/lexevs/lexevs/blob/master/lbTest/src/test/java/org/LexGrid/LexBIG/Impl/function/query/lucene/searchAlgorithms/TestLiteralContains.java
+</a>

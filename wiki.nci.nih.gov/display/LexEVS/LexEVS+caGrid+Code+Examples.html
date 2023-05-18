@@ -1,0 +1,177 @@
+Contents of this Page
+<ul>
+  <li>
+    <a href="#LexEVScaGridCodeExamples-ConnectiontotheLexEVSGridService" rel="nofollow">
+      Connection to the LexEVS Grid Service
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVScaGridCodeExamples-SearchingforconceptsinNCIThesauruscontainingthestring%22Gene%22" rel="nofollow">
+      Searching for concepts in NCI Thesaurus containing the string &#34;Gene&#34;
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVScaGridCodeExamples-RequestHistoryService" rel="nofollow">
+      Request History Service
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVScaGridCodeExamples-RequestLexBIGServiceMetadata" rel="nofollow">
+      Request LexBIGService Metadata
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVScaGridCodeExamples-RequestLexBIGServiceConvenienceMethods" rel="nofollow">
+      Request LexBIGService Convenience Methods
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVScaGridCodeExamples-LexBIGServiceAdapter" rel="nofollow">
+      LexBIGService Adapter
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVScaGridCodeExamples-LexBIGServiceGridAdapter" rel="nofollow">
+      LexBIGService Grid Adapter
+    </a>
+  </li>
+</ul>
+<table>
+  <colgroup>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        LexEVS Code Examples Links
+      </th>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427524" rel="nofollow">
+              LexEVS API Code Examples
+            </a>
+          </li>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427523" rel="nofollow">
+              LexEVS Java RMI Code Examples
+            </a>
+          </li>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=322011703" rel="nofollow">
+              LexEVS CTS2 Code Examples
+            </a>
+          </li>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427451" rel="nofollow">
+              LexEVS REST Code Migration Guide
+            </a>
+          </li>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=373003616" rel="nofollow">
+              LexEVS 6.5.1
+            </a>
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="LexEVScaGridCodeExamples-ConnectiontotheLexEVSGridService">
+  Connection to the LexEVS Grid Service
+</h2>
+Java Code
+
+try{
+LexBIGServiceGridAdapter lbsg = new LexBIGServiceGridAdapter
+(&#34;http://localhost:8080/wsrf/services/cagrid/LexEVSGridService&#34;);
+} catch(java.net.ConnectException e){
+//Error Connecting
+e.printStackTrace();
+} catch(org.apache.axis.types.URI.MalformedURIException e){
+//URL Syntax Error
+e.printStackTrace();
+}
+<h2 id="LexEVScaGridCodeExamples-SearchingforconceptsinNCIThesauruscontainingthestring&#34;Gene&#34;">
+  Searching for concepts in NCI Thesaurus containing the string &#34;Gene&#34;
+</h2>
+Java Code Snippet
+
+//Create a Connection to the Grid Service
+LexBIGServiceGrid lbs = new LexBIGServiceGridAdapter(gridServiceURL);
+
+//Set up the CodingSchemeIdentification object to define the Coding Scheme&lt;/font&gt;
+CodingSchemeIdentification csid = new CodingSchemeIdentification();
+csid.setName(&#34;NCI Thesaurus&#34;);
+
+//Get the CodedNodeSet for that CodingScheme (This returns a CodedNodeSet Service Context)
+CodedNodeSetGrid cnsg = lbs.getCodingSchemeConcepts(csid, null);
+//getCodingSchemeConcepts is a Grid Service Call
+
+//Set the text to match
+MatchCriteria matchText = new MatchCriteria();
+matchText.setText(&#34;Gene&#34;);
+//Define a SearchDesignationOption, if any
+SearchDesignationOption searchOption = new SearchDesignationOption();
+
+//Choose an algorithm to do the matching
+ExtensionIdentification matchAlgorithm = new ExtensionIdentification();
+matchAlgorithm.setLexBIGExtensionName(&#34;contains&#34;);
+
+//Chose a language
+LanguageIdentification language = new LanguageIdentification();
+language.setIdentifier(&#34;en&#34;);
+
+//Restrict the CodedNodeSet
+cnsg.restrictToMatchingDesignations(matchText, searchOption, matchAlgorithm, language);
+//restrictToMatchingDesignations is a Grid Service Call
+
+//Create a SetResolutionPolicy to handle the details of Resolving the CodedNodeSet
+//Here, we will set the Maximum number of Concepts returned to 10.
+SetResolutionPolicy resolvePolicy = new SetResolutionPolicy();
+resolvePolicy.setMaximumToReturn(10);
+
+//Do the resolve
+ResolvedConceptReferenceList rcrlist = cnsg.resolveToList(resolvePolicy);
+//resolveToList is a Grid Service Call
+
+//Use the returned ResolvedConceptReferenceList to print some details about the concepts found
+ResolvedConceptReference[] rcref = rcrlist.getResolvedConceptReference();
+for (int i = 0; i &lt; rcref.length; i++) {
+	System.out.println(rcref[i].getConceptCode());
+	System.out.println(rcref[i].getReferencedEntry().
+		getPresentation()[0].getText().getContent());
+
+}
+<h2 id="LexEVScaGridCodeExamples-RequestHistoryService">
+  Request History Service
+</h2>
+Java Code Snippet
+
+HistoryServiceGrid history = lbs.getHistoryService(org.LexGrid.LexBIG.DataModel.cagrid.CodingSchemeIdentification);
+<h2 id="LexEVScaGridCodeExamples-RequestLexBIGServiceMetadata">
+  Request LexBIGService Metadata
+</h2>
+Java Code Snippet
+
+LexBIGServiceMetadataGrid metadata = lbs.getServiceMetadata();
+<h2 id="LexEVScaGridCodeExamples-RequestLexBIGServiceConvenienceMethods">
+  Request LexBIGService Convenience Methods
+</h2>
+Java Code Snippet
+
+LexBIGServiceConvenienceMethodsGrid lbscm = lbs.getGenericExtensions(org.LexGrid.LexBIG.DataModel.cagrid.ExtensionIdentification);
+<h2 id="LexEVScaGridCodeExamples-LexBIGServiceAdapter">
+  LexBIGService Adapter
+</h2>
+Java Code Snippet
+
+LexBIGService lbs = new LexBIGServiceAdapter(&#34;http://lexevsapi-analytical50.nci.nih.gov/wsrf/services/cagrid/LexEVSGridService&#34;);
+<h2 id="LexEVScaGridCodeExamples-LexBIGServiceGridAdapter">
+  LexBIGService Grid Adapter
+</h2>
+Java Code Snippet
+
+LexBIGServiceGrid lbs = new LexBIGServiceGridAdapter(&#34;http://lexevsapi-analytical50.nci.nih.gov/wsrf/services/cagrid/LexEVSGridService&#34;); 

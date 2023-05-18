@@ -1,0 +1,321 @@
+The list below outlines the priority features ordered and grouped by priorities.
+<h2 id="caArrayRoadmap-DevelopmentFocus-Featuresplannedfor2.5.0">
+  Development Focus - Features planned for 2.5.0
+</h2>
+The following features are planned for caArray 2.5.0:
+<ul>
+  <li>
+    Large data support
+    <ul>
+      <li>
+        Upon upload, store files (as-is) on the file system instead of in the database.
+      </li>
+      <li>
+        Provide an Uploader client that allows the User to select a large number of files from a local directory and upload to caArray, with support for “pause” and “resume” and failure recovery. (E.g., Flickr Uploadr)
+      </li>
+      <li>
+        Break import into smaller transactions to avoid long-running transactions and to avoid MySQL transaction import limit on parsed data values.
+      </li>
+    </ul>
+  </li>
+  <li>
+    Other
+    <ul>
+      <li>
+        Plugin architecture that supports easy addition of new parsers as well as different file storage options
+      </li>
+      <li>
+        Update the technology stack (Jboss 5.1, Java 6)
+      </li>
+    </ul>
+  </li>
+</ul>
+<h2 id="caArrayRoadmap-DevelopmentFocus-Featuresplannedbeyond2.5.0">
+  Development Focus - Features planned beyond 2.5.0
+</h2>
+The following features are next in line after caArray 2.5.0:
+<ul>
+  <li>
+    Grid security and Single sign-on to support TRANSCEND
+  </li>
+  <li>
+    Audit trail to support TRANSCEND
+  </li>
+  <li>
+    File-level security (if necessary for TRANSCEND)
+  </li>
+  <li>
+    Maintenance and Bug fixes including the Collaborator group defect which prevents collaborators from seeing files that have been uploaded but not yet imported.
+  </li>
+</ul>
+<h2 id="caArrayRoadmap-MajorFeaturesinScheduledandPastReleases">
+  Major Features in Scheduled and Past Releases
+</h2>
+The table below outlines the major features in scheduled and past release(s).
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Version
+      </th>
+      <th>
+        Development Focus
+      </th>
+      <th>
+        Release Date
+      </th>
+    </tr>
+    <tr>
+      <td>
+        2.4.1
+      </td>
+      <td>
+        This release represents a feature release of the caArray 2 software. Highlights of caArray 2.4.1 are:
+        <ul>
+          <li>
+            Visibility into the queue of import and validation jobs, and where your job is in relation to other jobs in the system. Ability to cancel a queued job. For details about this feature, refer to the
+            <a href="https://wiki.nci.nih.gov/x/Oxo9Ag" rel="nofollow">
+              Submitting Data to an Experiment
+            </a>
+            chapter in the
+            <a href="https://wiki.nci.nih.gov/x/LBo9Ag" rel="nofollow">
+              caArray User&#39;s Guide
+            </a>
+            .
+          </li>
+          <li>
+            Search for experiments by publication author or PubMed ID.
+          </li>
+          <li>
+            Organisms are now restricted to terms from the NCBI Taxonomy.
+          </li>
+          <li>
+            Bug fix to allow proper import of Agilent array design files where the chromosome name is not in a strictly numeric or X/Y format.
+          </li>
+          <li>
+            The installer no longer depends on an internet connection.
+          </li>
+          <li>
+            Fix to bug where experiments with multiple array designs may cause copy number data to get imported as &#34;Imported (Not Parsed)&#34;.
+          </li>
+        </ul>
+      </td>
+      <td>
+        September 2011
+      </td>
+    </tr>
+    <tr>
+      <td>
+        2.4.0
+      </td>
+      <td>
+        This release represents a feature release of the caArray 2 software: Focus is around data parser. The following data parsers will be included in caArray 2.4.0:
+        <ul>
+          <li>
+            Agilent:
+            <ul>
+              <li>
+                GEML/xml array designs (aCGH, gene expression and miRNA)
+              </li>
+              <li>
+                Raw TXT data files (aCGH, gene expression and miRNA)
+              </li>
+            </ul>
+          </li>
+          <li>
+            Nimblegen - Community Code Contribution:
+            <ul>
+              <li>
+                NDF array designs
+              </li>
+              <li>
+                Pair Report (raw and normalized) data files
+              </li>
+            </ul>
+          </li>
+          <li>
+            Illumina:
+            <ul>
+              <li>
+                BGX/TXT array designs
+              </li>
+              <li>
+                Gene expression: Sample Probe Profile TXT files with unique Probe_Id
+              </li>
+              <li>
+                Genotyping: Processed matrix TXT files with unique IlmnID values
+              </li>
+            </ul>
+          </li>
+          <li>
+            Affymetrix:
+            <ul>
+              <li>
+                AGCC/Command Console formats for CDF, CEL and CHP files.
+              </li>
+              <li>
+                CNCHP files with copy number and LOH data.
+              </li>
+            </ul>
+          </li>
+          <li>
+            Copy number data in MAGE-TAB Data Matrix format
+          </li>
+        </ul>
+      </td>
+      <td>
+        August 2010
+      </td>
+    </tr>
+    <tr>
+      <td>
+        2.3.1
+      </td>
+      <td>
+        This release represents a feature release of the caArray 2 software: Focus is around data export to GEO. Highlights of caArray 2.3.1 include:
+        <ul>
+          <li>
+            caArray will allow the user to export an experiment into GEO SOFT format. This SOFT package can then be submitted to GEO.
+          </li>
+          <li>
+            The initial release will support single-channel experiments that have Affymetrix CHP data files, and that are based on array designs (platforms) already in GEO.
+          </li>
+          <li>
+            Focussing on CHP files allows us to package the native data files in the SOFT package as opposed to having to derive data tables to include in the SOFT submission.
+          </li>
+        </ul>
+      </td>
+      <td>
+        February 2010
+      </td>
+    </tr>
+    <tr>
+      <td>
+        2.3.0
+      </td>
+      <td>
+        This release represents a feature release of the caArray 2 software: Focus is around new programmatic interface to caArray application. Highlights of caArray 2.3.0 include:
+        <ul>
+          <li>
+            15578: Redesign Grid API to support backwards compatibililty via external data model
+          </li>
+          <li>
+            18908: Keep an audit trail of permissions changes made to an experiment.
+          </li>
+        </ul>
+      </td>
+      <td>
+        October 2009
+      </td>
+    </tr>
+    <tr>
+      <td>
+        2.2.1
+      </td>
+      <td>
+        This release represents a minor release of the caArray 2.x software: Focus is around access control and ownership of experiments. Highlights of caArray 2.2.1 include:
+        <ul>
+          <li>
+            19324: Genepix data files must require an accompanying SDRF and sample names must not be mandated.
+          </li>
+          <li>
+            15443: Ability to change experiment ownership
+          </li>
+          <li>
+            19532: System administrator should be able to change collaborator group ownership.
+          </li>
+        </ul>
+      </td>
+      <td>
+        April/May 2009
+      </td>
+    </tr>
+    <tr>
+      <td>
+        2.2.0
+      </td>
+      <td>
+        80 features/issues were addressed
+        <ul>
+          <li>
+            Highlights:
+            <ul>
+              <li>
+                Sample search:
+                <ul>
+                  <li>
+                    The user can now search for biomaterials (Samples and Sources) in the system.
+                  </li>
+                  <li>
+                    The keyword search can be applied to one of a list of standard or predefined categories, or to arbitrary categories previously imported into the system via Characteristic[] columns in a MAGE-TAB SDRF document.
+                  </li>
+                </ul>
+              </li>
+              <li>
+                Export experiment annotations in MAGE-TAB format:
+                <ul>
+                  <li>
+                    The user can generate and download a MAGE-TAB file set describing the annotations of an experiment.
+                  </li>
+                  <li>
+                    The generated MAGE-TAB includes the relationship between biomaterials, hybridizations and data files, and also characteristics of the biomaterials.
+                  </li>
+                  <li>
+                    The generated MAGE-TAB does not contain information about experimental factors, protocols, publications or people.
+                  </li>
+                </ul>
+              </li>
+              <li>
+                Bulk-update of experiment annotations using MAGE-TAB import:
+                <ul>
+                  <li>
+                    When a MAGE-TAB file set is being imported, the System recognizes references to existing biomaterials and hybridizations by name.
+                  </li>
+                  <li>
+                    Biomaterial linkages can be modified in an additive way via MAGE-TAB import. Existing linkages and biomaterials cannot be deleted via MAGE-TAB import.
+                  </li>
+                  <li>
+                    Biomaterial characteristics can be modified or new characteristics added via MAGE-TAB import.
+                  </li>
+                </ul>
+              </li>
+              <li>
+                Support for GEO and ScanArray data:
+                <ul>
+                  <li>
+                    Data files can be designated as GEO SOFT or GEO GSM and then imported (without parsing) and associated with samples.
+                  </li>
+                  <li>
+                    ScanArray CSV data files can be imported (without parsing) and associated with samples.
+                  </li>
+                </ul>
+              </li>
+              <li>
+                Enhanced usability of permissions management workflow:
+                <ul>
+                  <li>
+                    While setting sample-selective access for an experiment, the user can do a keyword search for Samples against a set of categories, select the Samples of interest, and grant access to the selected Samples as a whole.
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </td>
+      <td>
+        January 2009
+      </td>
+    </tr>
+    <tr>
+      <td>
+        2.1.1
+      </td>
+      <td>
+        Become part of the Life Science Distribution
+      </td>
+      <td>
+        October 2008
+      </td>
+    </tr>
+  </tbody>
+</table>

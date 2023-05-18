@@ -1,0 +1,490 @@
+Contents of this Page
+<ul>
+  <li>
+    <a href="#Init6pm23.pm5BrainTumorinsilicostudyPathologyandRadiologydatamodels-Init6pm23.1-AgileMetadataManagement" rel="nofollow">
+      Init6pm23.1 - Agile Metadata Management
+    </a>
+  </li>
+  <li>
+    <a href="#Init6pm23.pm5BrainTumorinsilicostudyPathologyandRadiologydatamodels-Init6pm23.2-ModelingandSharingAnalyticalAlgorithms" rel="nofollow">
+      Init6pm23.2 - Modeling and Sharing Analytical Algorithms
+    </a>
+  </li>
+  <li>
+    <a href="#Init6pm23.pm5BrainTumorinsilicostudyPathologyandRadiologydatamodels-Init6pm23.3-ModelingLabandResearchMethodology" rel="nofollow">
+      Init6pm23.3 - Modeling Lab and Research Methodology
+    </a>
+  </li>
+</ul>
+A Brain Tumor in silico use case consists of determining genetic, gene expression and outcome correlates of high resolution nuclear morphometry in the diffuse gliomas and their relation to MR features using Rembardt and TCGA datasets.  This involves integrative analysis involving Pathology, Radiology and molecular data.  The following semantic infrastructure use cases fall out of these requirements:
+<h2 id="Init6pm23.pm5BrainTumorinsilicostudyPathologyandRadiologydatamodels-Init6pm23.1-AgileMetadataManagement">
+  Init6pm23.1 - Agile Metadata Management
+</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Use Case Number
+      </th>
+      <td>
+        Init6pm23.1
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Brief Description
+      </th>
+      <td>
+        Specific scientific data elements will be shared amongst collaborators, requiring the need for a way to semantically describe the data.  However, through the course of the study, new data elements will be added and some data element may change.  Therefore, there is a need for an agile modeling approach that does not require significant effort to modify the information model and register the semantic metadata.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Actor(s) for this particular use case
+      </th>
+      <td>
+        Information Modeler
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Pre-condition
+        The state of the system before the user interacts with it
+      </th>
+      <td>
+        An information model is represented in UML, registered in the metadata repository, and in active use.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Post condition
+        The state of the system after the user interacts with it
+      </th>
+      <td>
+        The information model is updated and able to be used in production.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Steps to take
+        The step-by-step description of how users will interact with the system to achieve a specific business goal or function
+      </th>
+      <td>
+        <ol>
+          <li>
+            The Information Modeler updates the UML model
+            <ol>
+              <li>
+                Classes and attributes are added
+              </li>
+              <li>
+                Classes and attributes are removed
+              </li>
+              <li>
+                Classes and attributes are renamed
+              </li>
+              <li>
+                Attribute datatypes are changed
+              </li>
+            </ol>
+          </li>
+          <li>
+            The new updates are propagated to the metadata repository (e.g. as a newly versioned model, set of changes to an existing model, etc.)
+          </li>
+          <li>
+            The model changes are implemented in the production data and analysis systems
+          </li>
+          <li>
+            The model updates are used in the production systems
+          </li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Alternate Flow
+        Things which would prevent the normal flow of the use case
+      </th>
+      <td>
+        None.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Priority
+        The priority of implementing the use case: High, Medium or Low
+      </th>
+      <td>
+        High
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Associated Links
+        The brief user stories, each describing the user interacts with the system for the one function only of the use case. There would potentially be a number of user stories that make up the use case.
+      </th>
+      <td>
+        <a href="https://wiki.nci.nih.gov/x/ZwZyAQ" rel="nofollow">
+          Init6pm23
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Fit criterion/Acceptance Criterion
+        How would actor describe the acceptable usage scenarios for the software or service that meets the actor&#39;s requirement?
+      </th>
+      <td>
+        The modeling must be able to be performed and updated in a light-weight, Agile environment.  Minimally, updates may be made monthly on an iterative basis.  They should take no longer than days to define and propagate to the metadata repository.
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="Init6pm23.pm5BrainTumorinsilicostudyPathologyandRadiologydatamodels-Init6pm23.2-ModelingandSharingAnalyticalAlgorithms">
+  Init6pm23.2 - Modeling and Sharing Analytical Algorithms
+</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Use Case Number
+      </th>
+      <td>
+        Init6pm23.2
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Brief Description
+      </th>
+      <td>
+        Data elements are generated using specific algorithms.  There needs to be a way to model the features of the algorithm itself and tie it back to the original data.  One of the features of the algorithm could be the code of the algorithm itself.  It would be ideal if this type of model could be generalized for use in the caBIG analytical community.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Actor(s) for this particular use case
+      </th>
+      <td>
+        Information Modeler, Software Engineer
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Pre-condition
+        The state of the system before the user interacts with it
+      </th>
+      <td>
+        An algorithm exists, it is coded, and its features are known.  Outputs from the analytical routine are modeled and registered.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Post condition
+        The state of the system after the user interacts with it
+      </th>
+      <td>
+        A semantically sound description of the algorithm is defined, able to be shared with others, and able to be associated with data that the algorithm created.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Steps to take
+        The step-by-step description of how users will interact with the system to achieve a specific business goal or function
+      </th>
+      <td>
+        <ol>
+          <li>
+            The Information Modeler imports the standard analytical routine semantic metadata model into his UML model.
+          </li>
+          <li>
+            The Information Modeler extends the analytical routine metadata as needed
+          </li>
+          <li>
+            The Information Modeler associates output parameter data elements to the analytical metadata
+          </li>
+          <li>
+            The Information Modeler registers his model, including input parameters, output parameters, and associated extended analytical routine metadata
+          </li>
+          <li>
+            The Software Engineer generates a grid service using the registered metadata
+          </li>
+          <li>
+            The Software Engineer provides the analytical routine metadata values, which is exposed in the service-level metadata
+          </li>
+          <li>
+            The Software Engineer implements the system, which links the analytical outputs to the analytical routine data.
+          </li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Alternate Flow
+        Things which would prevent the normal flow of the use case
+      </th>
+      <td>
+        None.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Priority
+        The priority of implementing the use case: High, Medium or Low
+      </th>
+      <td>
+        Medium
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Associated Links
+        The brief user stories, each describing the user interacts with the system for the one function only of the use case. There would potentially be a number of user stories that make up the use case.
+      </th>
+      <td>
+        <a href="https://wiki.nci.nih.gov/x/ZwZyAQ" rel="nofollow">
+          Init6pm23
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Fit criterion/Acceptance Criterion
+        How would actor describe the acceptable usage scenarios for the software or service that meets the actor&#39;s requirement?
+      </th>
+      <td>
+        A common standard model is highly desirable, though it is necessary for different Information Modelers to extend it.
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="Init6pm23.pm5BrainTumorinsilicostudyPathologyandRadiologydatamodels-Init6pm23.3-ModelingLabandResearchMethodology">
+  Init6pm23.3 - Modeling Lab and Research Methodology
+</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Use Case Number
+      </th>
+      <td>
+        Init6pm23.3
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Brief Description
+      </th>
+      <td>
+        Metadata describing analytical results should link to the methodology used to generate the input data, such as the way that the biological specimens are analyzed and treated.  In some cases, there can be clear overlap between the research methodology and the study design, which should be linked if possible.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Actor(s) for this particular use case
+      </th>
+      <td>
+        Information Modeler, Software Engineer
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Pre-condition
+        The state of the system before the user interacts with it
+      </th>
+      <td>
+        Input data to analytical services has been generated using a particular set of steps, which is termed the methodology.  A UML model exists for modeling the input parameter data.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Post condition
+        The state of the system after the user interacts with it
+      </th>
+      <td>
+        Research methodology metadata is modeled and associated to input parameter metadata.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Steps to take
+        The step-by-step description of how users will interact with the system to achieve a specific business goal or function
+      </th>
+      <td>
+        <ol>
+          <li>
+            The Information Modeler imports the standard research methodology semantic metadata model into his UML model.
+          </li>
+          <li>
+            The Information Modeler extends the research methodology semantic metadata as needed
+          </li>
+          <li>
+            The Information Modeler associates input parameter data elements to the research methodology semantic metadata
+          </li>
+          <li>
+            The Information Modeler associates study design data elements to the research methodology semantic metadata
+          </li>
+          <li>
+            The Information Modeler registers his model, including input parameters and associated extended research methodology semantic metadata
+          </li>
+          <li>
+            The Software Engineer generates a grid service using the registered metadata
+          </li>
+          <li>
+            The Software Engineer implements the system, which links the analytical inputs to the research methodology data.
+          </li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Alternate Flow
+        Things which would prevent the normal flow of the use case
+      </td>
+      <td>
+        Researcher enters the research methodology data when the input parameter data is entered into the system.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Priority
+        The priority of implementing the use case: High, Medium or Low
+      </th>
+      <td>
+        Medium
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Associated Links
+        The brief user stories, each describing the user interacts with the system for the one function only of the use case. There would potentially be a number of user stories that make up the use case.
+      </th>
+      <td>
+        <a href="https://wiki.nci.nih.gov/x/ZwZyAQ" rel="nofollow">
+          Init6pm23
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Fit criterion/Acceptance Criterion
+        How would actor describe the acceptable usage scenarios for the software or service that meets the actor&#39;s requirement?
+      </th>
+      <td>
+        A common standard model is highly desirable, though it is necessary for different Information Modelers to extend it.
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h1 id="Init6pm23.pm5BrainTumorinsilicostudyPathologyandRadiologydatamodels-Init6pm23.4-AnalyticalProvenanceTracking">
+  Init6pm23.4 - Analytical Provenance Tracking
+</h1>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Use Case Number
+      </th>
+      <td>
+        Init6pm23.4
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Brief Description
+      </th>
+      <td>
+        The ultimate result of the scientific use case is to design a classifier that predicts outcome.  It will be necessary to describe the classifier, as well as have that description link back to the data that is used to generate it.  In other words, the provenance of the data must be captured.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Actor(s) for this particular use case
+      </th>
+      <td>
+        Information Modeler
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Pre-condition
+        The state of the system before the user interacts with it
+      </th>
+      <td>
+        Information models exist and are registered for analytical input data, output data, analytical algorithm, and research methodology.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Post condition
+        The state of the system after the user interacts with it
+      </th>
+      <td>
+        The inputs, analytical service, and outputs are linked through standard provenance data.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Steps to take
+        The step-by-step description of how users will interact with the system to achieve a specific business goal or function
+      </th>
+      <td>
+        <ol>
+          <li>
+            The Information Modeler imports the standard provenance semantic metadata model into his UML model.
+          </li>
+          <li>
+            The Information Modeler extends the provenance semantic metadata as needed
+          </li>
+          <li>
+            The Information Modeler associates all data that needs tracking to the provenance metadata
+          </li>
+          <li>
+            The Information Modeler registers his model, including input parameters and associated extended provenance semantic metadata
+          </li>
+          <li>
+            The Software Engineer implements the system, which links the analytical data via provenance data.
+          </li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Alternate Flow
+        Things which would prevent the normal flow of the use case
+      </th>
+      <td>
+        A Researcher uses provenance to backtrack an analytical flow.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Priority
+        The priority of implementing the use case: High, Medium or Low
+      </th>
+      <td>
+        High
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Associated Links
+        The brief user stories, each describing the user interacts with the system for the one function only of the use case. There would potentially be a number of user stories that make up the use case.
+      </th>
+      <td>
+        <a href="https://wiki.nci.nih.gov/x/ZwZyAQ" rel="nofollow">
+          Init6pm23
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Fit criterion/Acceptance Criterion
+        How would actor describe the acceptable usage scenarios for the software or service that meets the actor&#39;s requirement?
+      </th>
+      <td>
+        A common standard model is highly desirable, though it is necessary for different Information Modelers to extend it.
+      </td>
+    </tr>
+  </tbody>
+</table>

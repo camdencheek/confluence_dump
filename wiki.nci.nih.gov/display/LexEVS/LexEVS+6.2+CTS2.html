@@ -1,0 +1,153 @@
+Contents of this Page
+<ul>
+  <li>
+    <a href="#LexEVS6.2CTS2-CTS2APIDocumentation" rel="nofollow">
+      CTS2 API Documentation
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.2CTS2-ValueSetServices" rel="nofollow">
+      Value Set Services
+    </a>
+    <ul>
+      <li>
+        <a href="#LexEVS6.2CTS2-ValueSetReadMethods" rel="nofollow">
+          Value Set Read Methods
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.2CTS2-ValueSetQueryMethods" rel="nofollow">
+          Value Set Query Methods
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#LexEVS6.2CTS2-EntitiesActiveFlag" rel="nofollow">
+      Entities Active Flag
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.2CTS2-UpgradeofCTS2ServicestoCTS21.1" rel="nofollow">
+      Upgrade of CTS2 Services to CTS2 1.1
+    </a>
+  </li>
+</ul>
+<h1 id="LexEVS6.2CTS2-LexEVS6.2CTS2OverviewofChanges">
+  LexEVS 6.2 CTS2 Overview of Changes
+</h1>
+LexEVS 6.2 CTS2 release consisted of the following changes:
+<ul>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=232685948" rel="nofollow">
+      Interactive CTS2 API Documentation
+    </a>
+  </li>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=232685948" rel="nofollow">
+      Value Set Services
+    </a>
+  </li>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=232685948" rel="nofollow">
+      Entities Active Flag
+    </a>
+  </li>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=232686106" rel="nofollow">
+      LexEVS 6.2 CTS2 Alternate Landing Page
+    </a>
+  </li>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=232685948" rel="nofollow">
+      Upgrade to CTS2 1.1 framework
+    </a>
+  </li>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=232685948" rel="nofollow">
+      Updated LexEVS CTS2 Service to the CTS2 1.1 specification as implemented in the CTS2 Development Framework
+    </a>
+  </li>
+</ul>
+Additionally, the
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427281" rel="nofollow">
+  LexEVS 6.0 CTS2 API
+</a>
+code base has been removed in this release.
+<h2 id="LexEVS6.2CTS2-CTS2APIDocumentation">
+  <img src="https://wiki.nci.nih.gov/s/-y6pnqc/8804/nk8x3c/_/images/icons/emoticons/star_red.svg" alt="(red star)"/>
+   CTS2 API Documentation
+</h2>
+<a href="https://lexevscts2.herokuapp.com/cts2" rel="nofollow">
+  Interactive CTS2 API Documentation
+</a>
+ is also available for LexEVS CTS2 6.2.
+<ul>
+  <li>
+    Note that issue
+    <a href="https://tracker.nci.nih.gov/browse/LEXEVSCTS2-21" rel="nofollow">
+      LEXEVSCTS2-21
+    </a>
+     will affect value set resolution REST calls with value set names greater than 50 characters.  This will be fixed in the next release.
+  </li>
+</ul>
+<h2 id="LexEVS6.2CTS2-ValueSetServices">
+  Value Set Services
+</h2>
+In LexEVS 6.2 CTS2, the following profile was implemented:Structural Profile: Value Set
+<ul>
+  <li>
+    Functional Profile: Read
+  </li>
+  <li>
+    Functional Profile: Query
+  </li>
+</ul>
+<h3 id="LexEVS6.2CTS2-ValueSetReadMethods">
+  Value Set Read Methods
+</h3>
+The following CTS2 Value Set Read services have been implemented:Value Set Read
+http://&lt;base url&gt;/valuesets
+Value Set Current Definition
+http://&lt;base url&gt;/valueset/&lt;value set name&gt;/definition/&lt;value set id&gt;
+Value Set Resolution
+http://&lt;base url&gt;/valueset/&lt;value set name&gt;/definition/&lt;value set id&gt;/resolution
+<h3 id="LexEVS6.2CTS2-ValueSetQueryMethods">
+  Value Set Query Methods
+</h3>
+The following CTS2 Value Set Query services have been implemented:Value Set Query
+http://&lt;base url&gt;/valuesets?matchvalue=&lt;search string&gt;
+<h2 id="LexEVS6.2CTS2-EntitiesActiveFlag">
+  Entities Active Flag
+</h2>
+LexEVS 6.2 CTS2 service accepts an &#34;active&#34; flag for entities.  If no flag is present, the LexEVS 6.2 CTS2 service will return only active entities.The two options for the active flag are:
+<ul>
+  <li>
+    ACTIVE_ONLY - The inquiry only applies to ACTIVE entries.
+  </li>
+  <li>
+    ACTIVE_AND_INACTIVE - The inquiry applies to both ACTIVE and INACTIVE entries
+  </li>
+</ul>
+Entities - Active Only
+http://&lt;base url&gt;/codesystem/Automobiles/version/1.0/entities?active=ACTIVE_ONLY
+Entities - Active and Inactive
+http://&lt;base url&gt;/codesystem/Automobiles/version/1.0/entities?active=ACTIVE_AND_INACTIVE
+<h2 id="LexEVS6.2CTS2-UpgradeofCTS2ServicestoCTS21.1">
+  Upgrade of CTS2 Services to CTS2 1.1
+</h2>
+The CTS2 compliant REST service was updated from the 1.0 to 1.1 version of the CTS2 specification. This updated CTS2 compliant service provides core support of the
+<a href="http://www.omg.org/spec/CTS2/1.1/" rel="nofollow">
+  Common Terminology Services 2 (CTS2) 1.1
+</a>
+<a href="http://www.cancer.gov/global/web/policies/exit" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/73598628/exit_small.png?version=1&amp;modificationDate=1331098601000&amp;api=v2">
+</a>
+functionality as described in the
+<a href="http://www.omg.org/spec/CTS2/1.1/" rel="nofollow">
+  OMG CTS2 specification 1.1
+</a>
+<a href="http://www.cancer.gov/global/web/policies/exit" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/73598628/exit_small.png?version=1&amp;modificationDate=1331098601000&amp;api=v2">
+</a>
+.

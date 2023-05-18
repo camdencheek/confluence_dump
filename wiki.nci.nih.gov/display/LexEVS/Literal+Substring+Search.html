@@ -1,0 +1,86 @@
+Contents of this Page
+<ul>
+  <li>
+    <a href="#LiteralSubstringSearch-LiteralSubstringImplementationDetails" rel="nofollow">
+      Literal Substring Implementation Details
+    </a>
+    <ul>
+      <li>
+        <a href="#LiteralSubstringSearch-Algorithm:" rel="nofollow">
+          Algorithm:
+        </a>
+      </li>
+      <li>
+        <a href="#LiteralSubstringSearch-Exampleofuse:" rel="nofollow">
+          Example of use:
+        </a>
+      </li>
+      <li>
+        <a href="#LiteralSubstringSearch-AssociatedJUnits:" rel="nofollow">
+          Associated JUnits:
+        </a>
+      </li>
+    </ul>
+  </li>
+</ul>
+<h2 id="LiteralSubstringSearch-LiteralSubstringImplementationDetails">
+  Literal Substring Implementation Details
+</h2>
+The same as the substring search but with special characters enabled.
+<h3 id="LiteralSubstringSearch-Algorithm:">
+  Algorithm:
+</h3>
+The Literal Substring search has the following characteristics:
+<ul>
+  <li>
+    This search is case in-sensitive.
+  </li>
+  <li>
+    It only searches on the literal property value and the literal reverse property value.
+  </li>
+  <li>
+    A leading and trailing wild card is added to the token in the search text.
+  </li>
+  <li>
+    The literal property part (without the wild cards) of the query is boosted by 50.  This gives a literal match priority.
+  </li>
+  <li>
+    Parsing is done with the following analyzers:
+    <ul>
+      <li>
+        literal_propertyValue - Uses our custom literal analyzer.  This literal analyzer uses Lucene&#39;s WhitespaceTokenizer with Lucene&#39;s LowerCaseFilter.
+      </li>
+      <li>
+        propertyValue - Uses our custom standard analyzer that has no stop words.
+      </li>
+    </ul>
+  </li>
+</ul>
+<h3 id="LiteralSubstringSearch-Exampleofuse:">
+  Example of use:
+</h3>
+The following examples are based on the Automobiles coding scheme.Example 1:Search string: a^sLucene query: +literal_propertyValue:*a^s* literal_propertyValue:a^s^50.0Result: 1 result
+<ul>
+  <li>
+    entity code: SpecialCharactersConcept
+  </li>
+  <li>
+    entity description: Concept containing special characters
+  </li>
+</ul>
+Example 2:Search string: a^s sp*cialLucene query: +spanNear([mask(spanWildcardQuery(literal_reverse_propertyValue:s^a*)) as propertyValue, mask(spanWildcardQuery(literal_propertyValue:sp*cial*)) as propertyValue], 0, true) ((+literal_propertyValue:a^s +literal_propertyValue:sp*cial)^50.0)Result: 1 result
+<ul>
+  <li>
+    entity code: SpecialCharactersConcept
+  </li>
+  <li>
+    entity description: Concept containing special characters
+  </li>
+</ul>
+<h3 id="LiteralSubstringSearch-AssociatedJUnits:">
+  Associated JUnits:
+</h3>
+Junits can be found here:
+<a href="https://github.com/lexevs/lexevs/blob/master/lbTest/src/test/java/org/LexGrid/LexBIG/Impl/function/query/lucene/searchAlgorithms/TestLiteralSubString.java" rel="nofollow">
+  https://github.com/lexevs/lexevs/blob/master/lbTest/src/test/java/org/LexGrid/LexBIG/Impl/function/query/lucene/searchAlgorithms/TestLiteralSubString.java
+</a>

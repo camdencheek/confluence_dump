@@ -1,0 +1,859 @@
+Contents of this Page
+<ul>
+  <li>
+    <a href="#KnowledgeRepositoryTestPlan-Introduction" rel="nofollow">
+      Introduction
+    </a>
+    <ul>
+      <li>
+        <a href="#KnowledgeRepositoryTestPlan-Background" rel="nofollow">
+          Background
+        </a>
+      </li>
+      <li>
+        <a href="#KnowledgeRepositoryTestPlan-Scope" rel="nofollow">
+          Scope
+        </a>
+      </li>
+      <li>
+        <a href="#KnowledgeRepositoryTestPlan-Resources" rel="nofollow">
+          Resources
+        </a>
+      </li>
+      <li>
+        <a href="#KnowledgeRepositoryTestPlan-TeamMembers" rel="nofollow">
+          Team Members
+        </a>
+      </li>
+      <li>
+        <a href="#KnowledgeRepositoryTestPlan-ContactInformation" rel="nofollow">
+          Contact Information
+        </a>
+      </li>
+      <li>
+        <a href="#KnowledgeRepositoryTestPlan-RelatedDocuments" rel="nofollow">
+          Related Documents
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#KnowledgeRepositoryTestPlan-SoftwareTestStrategy" rel="nofollow">
+      Software Test Strategy
+    </a>
+    <ul>
+      <li>
+        <a href="#KnowledgeRepositoryTestPlan-Objectives" rel="nofollow">
+          Objectives
+        </a>
+      </li>
+      <li>
+        <a href="#KnowledgeRepositoryTestPlan-Approach" rel="nofollow">
+          Approach
+        </a>
+      </li>
+      <li>
+        <a href="#KnowledgeRepositoryTestPlan-UnitTesting" rel="nofollow">
+          Unit Testing
+        </a>
+      </li>
+      <li>
+        <a href="#KnowledgeRepositoryTestPlan-IntegrationandSystemTesting" rel="nofollow">
+          Integration and System Testing
+        </a>
+      </li>
+      <li>
+        <a href="#KnowledgeRepositoryTestPlan-Non-functionalTesting" rel="nofollow">
+          Non-functional Testing
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#KnowledgeRepositoryTestPlan-DescriptionofFunctionality" rel="nofollow">
+      Description of Functionality
+    </a>
+  </li>
+  <li>
+    <a href="#KnowledgeRepositoryTestPlan-DependenciesandAssumptions" rel="nofollow">
+      Dependencies and Assumptions
+    </a>
+  </li>
+  <li>
+    <a href="#KnowledgeRepositoryTestPlan-GeneralCriteriaforSuccess" rel="nofollow">
+      General Criteria for Success
+    </a>
+    <ul>
+      <li>
+        <a href="#KnowledgeRepositoryTestPlan-ReadinessCriteria" rel="nofollow">
+          Readiness Criteria
+        </a>
+      </li>
+      <li>
+        <a href="#KnowledgeRepositoryTestPlan-Pass/FailCriteria" rel="nofollow">
+          Pass/Fail Criteria
+        </a>
+      </li>
+      <li>
+        <a href="#KnowledgeRepositoryTestPlan-CompletionCriteria" rel="nofollow">
+          Completion Criteria
+        </a>
+      </li>
+      <li>
+        <a href="#KnowledgeRepositoryTestPlan-AcceptanceCriteria" rel="nofollow">
+          Acceptance Criteria
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#KnowledgeRepositoryTestPlan-SoftwareTestEnvironment-GeneralEnvironment" rel="nofollow">
+      Software Test Environment - General Environment
+    </a>
+  </li>
+  <li>
+    <a href="#KnowledgeRepositoryTestPlan-ParticipatingOrganizations" rel="nofollow">
+      Participating Organizations
+    </a>
+  </li>
+  <li>
+    <a href="#KnowledgeRepositoryTestPlan-TestSchedules" rel="nofollow">
+      Test Schedules
+    </a>
+  </li>
+  <li>
+    <a href="#KnowledgeRepositoryTestPlan-Risks" rel="nofollow">
+      Risks
+    </a>
+  </li>
+</ul>
+<h2 id="KnowledgeRepositoryTestPlan-Introduction">
+  Introduction
+</h2>
+<h3 id="KnowledgeRepositoryTestPlan-Background">
+  Background
+</h3>
+The primary goal for this Architecture, Development, and Deployment of a Knowledge Repository and Service is to address the needs of this extended community for a scalable, decentralized infrastructure for managing and disseminating operational metadata and information models, and their associated semantic constructs.  The vision for the project is to re-imagine the caBIG technology environment as a more open and more readily extensible framework, one that can grow with less dependency on the centralized processes and systems that are manifest in the first generation of caBIG technology.  In particular, the role of the central metadata registry, the caDSR, must be redefined as a federation of metadata registries that can be instantiated and plugged into the caBIG grid or an extended community &#34;cloud&#34; by any qualified entity.
+
+The caDSR has a suite of tools and APIs that support workflows for metadata development, browsing and retrieval.  In addition, the caDSR has been adapted to support the UML model-driven development paradigm adopted by caBIG.  UML-defined information models such as those from the BRIDG project, caArray, caTissue, and others are each registered in the caDSR through conversion of the model elements into ISO11179 metadata constructs.  This functionality, and the workflows that it supports, has evolved over an 8-year period and is now quite mature.  It satisfies the current requirements for semantic representation in the current caBIG developer and user community, but it is ill-suited to serve the new requirements for decentralization and indefinite scalability in the broader health care community. The goal of this program is therefore to harvest and recycle the best elements of the first generation of caBIG metadata infrastructure, and to then incorporate those elements into a redesigned and modernized technology stack that is engineered from the start to support a federated deployment topology with far less centralized administration.
+<h3 id="KnowledgeRepositoryTestPlan-Scope">
+  Scope
+</h3>
+This Test Plan prescribes the scope, approach, resources, and schedule of the testing activities. It identifies the items being tested, features to be tested, testing tasks to be performed, personnel responsible for each task, and risks associated with this plan.
+
+The scope of testing on the project is limited to the requirements identified in the project&#39;s
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=24275652" rel="nofollow">
+  Knowledge Repository Requirements Specification
+</a>
+. The project has been broken up into four phases (Inception, Elaboration, Construction, and Transition) with one month iterations in each. Requirements for separate functional areas are determined at the start of each iteration. The impact of this on the Test Plan is that the specifics of the test plan and the test data will be determined as requirements are included in the
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=24275652" rel="nofollow">
+  SRS
+</a>
+.
+<h3 id="KnowledgeRepositoryTestPlan-Resources">
+  Resources
+</h3>
+<h3 id="KnowledgeRepositoryTestPlan-TeamMembers">
+  Team Members
+</h3>
+<table>
+  <tbody>
+    <tr>
+      <th colspan="1">
+        Role
+      </th>
+      <th>
+        Member
+      </th>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Project Director
+      </td>
+      <td>
+        <a href="mailto:joshua.phillips@semanticbits.com" rel="nofollow">
+          Joshua Phillips
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Project Manager
+      </td>
+      <td>
+        <a href="mailto:beate.mahious@semanticbits.com" rel="nofollow">
+          Beate Mahious
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Subject Matter Expert
+      </td>
+      <td>
+        <a href="mailto:ram.chilukuri@semanticbits.com" rel="nofollow">
+          Ram Chilukuri
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Architect
+      </td>
+      <td>
+        <a href="mailto:tom.digre@semanticbits.com" rel="nofollow">
+          Tom Digre
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Lead Business Analyst
+      </td>
+      <td>
+        <a href="mailto:alan.blair@semanticbits.com" rel="nofollow">
+          Alan Blair
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Senior Business Analyst
+      </td>
+      <td>
+        <a href="mailto:patrick.mcconell@semanticbits.com" rel="nofollow">
+          Patrick McConnell
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Senior Software Engineer
+      </td>
+      <td>
+        <a href="mailto:carols.perez@semanticbits.com" rel="nofollow">
+          Carlos Perez
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Software Engineer
+      </td>
+      <td>
+        TBN
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Quality Assurance Engineer
+      </td>
+      <td>
+        TBN
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Technical Writer
+      </td>
+      <td>
+        TBN
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h3 id="KnowledgeRepositoryTestPlan-ContactInformation">
+  Contact Information
+</h3>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Name
+      </th>
+      <th>
+        Company
+      </th>
+      <th>
+        Role
+      </th>
+      <th>
+        phone
+      </th>
+      <th>
+        email
+      </th>
+    </tr>
+    <tr>
+      <td>
+        Dave Hau
+      </td>
+      <td>
+        CBIIT - NIH
+      </td>
+      <td>
+        Inter-Team Project Oversight
+      </td>
+      <td>
+        ---
+      </td>
+      <td>
+        ---
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Larry Brem
+      </td>
+      <td>
+        CBIIT - NIH
+      </td>
+      <td>
+        Inter-Team Project Oversight
+      </td>
+      <td>
+        ---
+      </td>
+      <td>
+        breml@mail.nih.gov
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Tim Casey
+      </td>
+      <td>
+        CBIIT - NIH
+      </td>
+      <td>
+        Inter-Team Project Oversight
+      </td>
+      <td>
+        ---
+      </td>
+      <td>
+        timothy.casey@nih.gov
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Ram Chilukuri
+      </td>
+      <td>
+        SemanticBits
+      </td>
+      <td>
+        SME
+      </td>
+      <td>
+        ---
+      </td>
+      <td>
+        ram.chilukuri@semanticbits.com
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Joshua Phillips
+      </td>
+      <td>
+        SemanticBits
+      </td>
+      <td>
+        Project Lead
+      </td>
+      <td>
+        410.624.9155
+      </td>
+      <td>
+        joshua.phillips@semanticbits.com
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Bea Mahious
+      </td>
+      <td>
+        SemanticBits
+      </td>
+      <td>
+        Project Manager
+      </td>
+      <td>
+        443.797.5462
+      </td>
+      <td>
+        beate.mahious@semanticbits.com
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Carlos Perez
+      </td>
+      <td>
+        SemanticBits
+      </td>
+      <td>
+        Technical Lead/Senior Software Engineer
+      </td>
+      <td>
+        ---
+      </td>
+      <td>
+        carlos.perez@semanticbits.com
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Stijn Heymans
+      </td>
+      <td>
+        SemanticBits
+      </td>
+      <td>
+        Software Engineer
+      </td>
+      <td>
+        ---
+      </td>
+      <td>
+        stijn.heymans@semanticbits.com
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Tom Digre
+      </td>
+      <td>
+        SemanticBits
+      </td>
+      <td>
+        Chief Architect
+      </td>
+      <td>
+        ---
+      </td>
+      <td>
+        tom.digre@semanticbits.com
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Alan Blair
+      </td>
+      <td>
+        SemanticBits
+      </td>
+      <td>
+        Lead Business Analyst
+      </td>
+      <td>
+        (c)703-966-5355 (o)703-787-9656 ex: 248
+      </td>
+      <td>
+        alan.blair@semanticbits.com
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Patrick McConnell
+      </td>
+      <td>
+        SemanticBits
+      </td>
+      <td>
+        Senior Business Analyst
+      </td>
+      <td>
+        404-939-7623
+      </td>
+      <td>
+        patrick.mcconnell@semanticbits.com
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Matthew McKinnerey
+      </td>
+      <td>
+        SemanticBits
+      </td>
+      <td>
+        Lead Business Analyst
+      </td>
+      <td>
+        ---
+      </td>
+      <td>
+        mathew.mckinnerey@semanticbits.com
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h3 id="KnowledgeRepositoryTestPlan-RelatedDocuments">
+  Related Documents
+</h3>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        End User
+      </th>
+      <th>
+        Analysis
+      </th>
+      <th>
+        Technical
+      </th>
+      <th>
+        Management
+      </th>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=24275548" rel="nofollow">
+          Knowledge Repository Project Page
+        </a>
+        User Manual
+        Release Notes
+        Installation Guide
+        Developer Guide
+        API Document
+      </td>
+      <td>
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=24275652" rel="nofollow">
+          Requirements Specification
+        </a>
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=24275794" rel="nofollow">
+          Use Cases
+        </a>
+      </td>
+      <td>
+        Architecture Guide
+        CFSS
+        PSM
+        PIM
+      </td>
+      <td>
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=24275790" rel="nofollow">
+          Vision and Scope
+        </a>
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=24275787" rel="nofollow">
+          Roadmap
+        </a>
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=24275783" rel="nofollow">
+          Project Plan
+        </a>
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=24275777" rel="nofollow">
+          Work Breakdown Structure
+        </a>
+        <a href="http://spreadsheets.google.com/pub?key=tIl368ANn-lc0AZTpjdfuIw&amp;output=html" rel="nofollow">
+          Product Backlog
+        </a>
+        <a href="http://spreadsheets.google.com/pub?key=tlcFRGds22bdp9_G1fn2ZHw&amp;output=html" rel="nofollow">
+          Sprint Backlogs
+        </a>
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=24275780" rel="nofollow">
+          Communications Plan
+        </a>
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=24275792" rel="nofollow">
+          Test Plan
+        </a>
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=24275760" rel="nofollow">
+          Risk Matrix
+        </a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="KnowledgeRepositoryTestPlan-SoftwareTestStrategy">
+  Software Test Strategy
+</h2>
+<h3 id="KnowledgeRepositoryTestPlan-Objectives">
+  Objectives
+</h3>
+The Knowledge Repository will result in a production system that is fully functional with respect to the requirements. The overall object of this test plan is to provide unit, integration, and quality assurance testing for the whole of the delivered software. Unit testing is done during code development to verify correct function of source code modules, and to perform regression tests when code is refactored. Integration tests verify that the modules function together when combined in the production system. User acceptance testing verifies that software requirements and business value have been achieved.
+<h3 id="KnowledgeRepositoryTestPlan-Approach">
+  Approach
+</h3>
+The testing approach is to convert the use cases described in the
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=24275794" rel="nofollow">
+  use case document
+</a>
+into a number of automated unit and integration tests to ensure the software conforms to the requirements. The following proposes the approach for testing the Knowledge Repository:
+<ul>
+  <li>
+    Create a clear, complete set of test cases from the use case documents and review it with all stakeholders.
+  </li>
+  <li>
+    Throughout the project, maintain the Requirements Traceability Matrix so that any stakeholders or tester has a concise record of what tests are run for each requirement.
+  </li>
+  <li>
+    All test cases will be command line accessible to take advantage of continuous integration testing thru the use of ANT for all testing phases.
+  </li>
+</ul>
+Some of the practices that the SemanticBits team will adopt are:
+<ul>
+  <li>
+    Derive test cases/unit tests from updated functional specifications of all relevant use cases. Unit tests and testing scenarios will be constructed in parallel with core development efforts, while validating the specifications against the relevant use cases. The use of diagrammatic representations of use cases in the form of task-based flow-charts, state diagrams, or UML sequence diagrams may facilitate creation of test cases and monitoring outcomes.
+  </li>
+  <li>
+    Teaming testers with developers to provide close coordination, feedback, and understanding of specific modules for testing purposes.
+  </li>
+  <li>
+    Ongoing peer-review of design and code as a team based form of software inspection. Each developer will review and run code written by another developer on a regular basis (acting as QA inspectors in turns), along with joint code review to gain consensus on best practices and common problems.
+  </li>
+  <li>
+    Automated test execution using Ant and unit testing to support rapid testing, capturing issues earlier in the development lifecycle, and providing detailed logs of frequent test results (through nightly builds). The automated test environment will be carefully setup to ensure accurate and consistent testing outcomes.
+  </li>
+  <li>
+    Regression testing ensures that the changes made in the current software do not affect the functionality of the existing software. Regression testing can be performed either by hand or by an automated process. The regression testing will be achieved by using a nightly build.
+  </li>
+  <li>
+    Continuous Testing uses excess cycles on a developer&#39;s workstation to continuously run regression tests in the background, providing rapid feedback about test failures as source code is edited. It reduces the time and energy required to keep code well-tested, and prevents regression errors from persisting uncaught for long periods of time
+  </li>
+  <li>
+    Integration and System testing tests multiple software components that have each received prior and separate unit testing. Both the communication between components and APIs, as well as overall system-wide performance testing should be conducted.
+  </li>
+  <li>
+    Usability Testing to ensure that the overall user experience is intuitive, while all interfaces and features both appear consistent and function as expected. Comprehensive usability testing will be conducted with potential users (non-developers) with realistic scenarios and the results will be documented for all developers to review.
+  </li>
+  <li>
+    Bug-tracking and resolution will be managed by regularly posting all bugs and performance reports encountered in GForge, with follow-up resolution and pending issues clearly indicated for all developers and QA testing personnel to review.
+  </li>
+</ul>
+<h3 id="KnowledgeRepositoryTestPlan-UnitTesting">
+  Unit Testing
+</h3>
+A Unit test is used to test classes and other elements as programmers build them. JUnit and HTTPunit are two good frameworks for unit testing. We define and track tests using a testing dashboard called Hudson.  Every time code is changed, it is automatically and continuously built and tested.  Compilation or test failures are immediately sent to the development team for resolution.  Except during periods of major refactoring effort, the build/test should not be broken for more than 4 hours.  Hudson also generates regular reports on test coverage by lines of code, paths of execution, package, and component.  The goal for test coverage is 95% of the code, and the development team strives towards this goal in every iteration.  When appropriate test coverage is not met, dedicated time in the next iteration is given entirely to completing test coverage.
+
+For testing components, that deal with database interactions (create, read, update, delete operations), it is important to use fresh database to ensure no existing data corrupt the integrity of the test results. Also for testing certain components it is imperative to have a certain set of data already in the repository. To achieve this repository level isolation from the actual component at the time of testing, we use DBUnit. This not only elegantly meets all the criteria above but also provides an automated and developer friendly way of building the pre-requisite repository.
+<h3 id="KnowledgeRepositoryTestPlan-IntegrationandSystemTesting">
+  Integration and System Testing
+</h3>
+The purpose of the Integration and System Testing is to detect any inconsistencies between the software units that are integrated, called assemblages, or between any of the assemblages and hardware. SemanticBits follows what is commonly known as an &#39;umbrella&#39; approach to integration/system testing, which requires testing along functional data and control-flow paths. First, the inputs for functions are integrated in a bottom-up pattern. The outputs for each function are then integrated in a top-down manner. The primary advantage of this approach is the degree of support for early release of limited functionality, which aligns best with an incremental, agile approach. One scenario where the benefit of umbrella approach can be instantly seen is while testing web components, which require mock http inputs for elegant MVC integration testing. Using Spring Mock design and the umbrella approach, SemanticBits has efficiently written integration and system test cases for the web layer in several web applications including C3PR, caAERS and PSC.  Furthermore, SemanticBits has a long history of providing comprehensive automated tests.  We were the original developers of the caGrid testing infrastructure, which provides a mechanism to build, configure, deploy, and test entire caGrid components.  We regularly apply these approaches to all of our development projects.
+
+Integration testing validates the integration of components within or across systems. These tests can and should be automated and require no external code dependencies though may require non-code dependencies (such as a database). A typical Integration Test pattern is to automatically deploy components, initialize them, test them, and tear them down.  We will apply Integration Tests specifically to the services, where we will follow the pattern above.  For example, we will be able to in an automated way build, configure, deploy, and cross-test each of the MDR, Model, and Knowledge Management services together.  This type of integration testing is necessary to insure that these critical systems can work together appropriately.
+
+System testing validates deployed systems. These tests can and should be automated, though they require that systems (code) be manually deployed. These test often run end-user workflows that can be automated on existing (sometimes production) systems.  We can provide system tests for the deployed services and web applications.  This will be especially important starting in iteration 7 where SemanticBits will begin deploying against the NCI tiers.
+<h3 id="KnowledgeRepositoryTestPlan-Non-functionalTesting">
+  Non-functional Testing
+</h3>
+SemanticBits has in-depth experience developing and applying non-functional tests, such as performance, load, scalability, and stress testing. All these tests fall in the same category and are closely related to each other. Performance test touch on the aspect of a system&#39;s speed under a particular workload. This can be measured in terms of response time (the time it takes between initial request and the response).
+Load is a measurement of the usage of the system whereby a server is said to experience high load when its supported application is being heavily trafficked.  Scalability tests whether an application will have a response time that increases linearly as load increases and will be able to process more and more volume by adding more hardware resources in a linear (not exponential) fashion.  This type of testing has two forms:
+<ul>
+  <li>
+    Test response time with the increase in the size of the database
+  </li>
+  <li>
+    Test response time with the increase in the number of concurrent users
+  </li>
+</ul>
+The purpose of load and scalability testing is to ensure the application will have a good response time during peak usage. Stress testing is a subset of load testing that is used to determine the stability of a given system or entity. It involves testing beyond operational capacity, often to a breaking point, in order to observe the results.  SemanticBits has extensive experience in using tools such as InfraRED for profiling and diagnosing problems associated with the non-functional aspects of the system. We have successfully used this tool for C3PR and caAERS, as well as understanding performance implications of the COPPA NCI Enterprise Services.
+<h2 id="KnowledgeRepositoryTestPlan-DescriptionofFunctionality">
+  Description of Functionality
+</h2>
+See the following documents:
+<ul>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=24275652" rel="nofollow">
+      Requirements
+    </a>
+  </li>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=24275794" rel="nofollow">
+      Use Cases
+    </a>
+  </li>
+</ul>
+<h2 id="KnowledgeRepositoryTestPlan-DependenciesandAssumptions">
+  Dependencies and Assumptions
+</h2>
+Java Programming Language: the Knowledge Repository is developed in the Java programming language. The Java 6 SDK is being used for development. Integration tests and other tools and utilities will be written in ruby, groovy, or other appropriate languages that are useful in the testing environment. These languages provide some features that are not available in Java.
+
+Application Server: The C3PR implementation requires a Java application server. Apache Tomcat and the Globus container will be used for development and testing.
+
+Relational Database: The backend database targets both Postgres and Oracle relational databases. Unit tests will be run against both target databases.
+
+Web Browser: User acceptance testing and integration testing will target the Internet Explorer 6.x/7.x and Firefox 2.x web browsers.
+<h2 id="KnowledgeRepositoryTestPlan-GeneralCriteriaforSuccess">
+  General Criteria for Success
+</h2>
+Criteria for overall success are 100% success of all automated unit tests and most tests are satisfactory successful of the manual tests. Focus in phase I will be on automated testing, and focus in phase II will be on manual user acceptance testing and performance testing.
+<h3 id="KnowledgeRepositoryTestPlan-ReadinessCriteria">
+  Readiness Criteria
+</h3>
+Tests will be ready to be written when the following criteria have been met:
+<ul>
+  <li>
+    Use cases are complete
+  </li>
+  <li>
+    Use cases are translated into executable tests
+  </li>
+  <li>
+    APIs are available for individual modules
+  </li>
+</ul>
+Tests will be ready to be run when:
+<ul>
+  <li>
+    Source code for individual modules is available and runnable
+  </li>
+  <li>
+    The tests are written
+  </li>
+  <li>
+    Dependent services are deployed
+  </li>
+</ul>
+<h3 id="KnowledgeRepositoryTestPlan-Pass/FailCriteria">
+  Pass/Fail Criteria
+</h3>
+The follow criteria will be employed for determining the success of individual tests:
+<ul>
+  <li>
+    Appropriate data returned: equality comparison of results to locally cached data
+  </li>
+  <li>
+    Performance: documentation of performance in time and subjective determination that performance is acceptable for the complexity of the operation
+  </li>
+</ul>
+<h3 id="KnowledgeRepositoryTestPlan-CompletionCriteria">
+  Completion Criteria
+</h3>
+The criteria for completion of the testing procedures is that the system produces the output desired by the user within expected performance requirements. Testing is considered completed when:
+<ul>
+  <li>
+    The assigned test scripts have been executed.
+  </li>
+  <li>
+    Defects and discrepancies are documented, resolved, verified, or designated as future changes.
+  </li>
+</ul>
+<h3 id="KnowledgeRepositoryTestPlan-AcceptanceCriteria">
+  Acceptance Criteria
+</h3>
+For user acceptance testing, a range of bug severities will be employed such that a severity can be assigned to the success of each test case. For example, a tester could assign acceptable, acceptable with issues, unacceptable. For unit, system, and integration testing, acceptance is determined by the automated test completing successfully.
+
+When testing is complete, the software is acceptable when the test manager and project manager determine that existing unresolved issues are documented and within subjective tolerance. Both user acceptance testing and automated system/integration/unit tests will be taken into consideration.
+<h2 id="KnowledgeRepositoryTestPlan-SoftwareTestEnvironment-GeneralEnvironment">
+  Software Test Environment - General Environment
+</h2>
+Subsequent sections are to describe the software test environment at each intended test site.
+
+The Test Environment: The Test Environment is a stable area for independent system and integration testing by the Test Team. This area consists of objects as they are completed by Developers and meet the requirements for promotion. This environment ensures that objects are tested with the latest stable version of other objects that may also be under development. The test environment is initially populated with the latest operational application and then updated with new changed objects from the development environment.
+
+The Acceptance Testing Environment: The acceptance-testing environment provides a near-production environment for the client acceptance testing. The release is delivered by the SCM group and managed by the client.
+
+Software Items
+<ul>
+  <li>
+    Java 1.6.x: used to run the Java programs that make up the tests
+  </li>
+  <li>
+    Ant 1.6.x: used to run automated tests in batch
+  </li>
+  <li>
+    JUnit 3.x/.4.x: used to implemented specific stateless test cases for automated unit testing
+  </li>
+  <li>
+    Microsoft Word: used to document testing activities
+  </li>
+  <li>
+    Microsoft Excel: used to document testing activities
+  </li>
+  <li>
+    SVN: used to version test results
+  </li>
+</ul>
+Hardware and Firmware Items
+<ul>
+  <li>
+    Continuous build machine: TBD
+  </li>
+  <li>
+    Test deployment machine: TBD
+  </li>
+</ul>
+Other Materials
+
+None.
+<h2 id="KnowledgeRepositoryTestPlan-ParticipatingOrganizations">
+  Participating Organizations
+</h2>
+The testing group consists of the project&#39;s Test Manager, and the Tester(s). The groups listed below are responsible for the respective types of testing:
+<ul>
+  <li>
+    Unit Testing: Development team members from SemanticBits will be responsible for conducting the unit tests.
+  </li>
+  <li>
+    Integration Testing: Development team members from SemanticBits will be responsible for conducting the integration tests.
+  </li>
+  <li>
+    User Acceptance Testing: The QA team from NCI will perform User Acceptance Tests.
+  </li>
+</ul>
+<h2 id="KnowledgeRepositoryTestPlan-TestSchedules">
+  Test Schedules
+</h2>
+The Test Manager will coordinate with the Project Manager and add the planned testing activities to the master project schedule. Refer to the project SDP and schedule for additional information.
+<h2 id="KnowledgeRepositoryTestPlan-Risks">
+  Risks
+</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        ID
+      </th>
+      <th>
+        Risk
+      </th>
+      <th>
+        Date Surfaced
+      </th>
+      <th>
+        Status
+      </th>
+      <th>
+        Impact
+      </th>
+      <th>
+        Likelihood
+      </th>
+      <th>
+        Mitigation Strategy
+      </th>
+      <th>
+        Mitigation Outcome
+      </th>
+    </tr>
+    <tr>
+      <td>
+        —
+      </td>
+      <td>
+        —
+      </td>
+      <td>
+        —
+      </td>
+      <td>
+        —
+      </td>
+      <td>
+        —
+      </td>
+      <td>
+        —
+      </td>
+      <td>
+        —
+      </td>
+      <td>
+        —
+      </td>
+    </tr>
+  </tbody>
+</table>

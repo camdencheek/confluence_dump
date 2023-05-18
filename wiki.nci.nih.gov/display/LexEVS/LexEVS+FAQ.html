@@ -1,0 +1,271 @@
+Contents of this Page
+<ul>
+  <li>
+    <a href="#LexEVSFAQ-EndUserFAQ" rel="nofollow">
+      End User FAQ
+    </a>
+    <ul>
+      <li>
+        <a href="#LexEVSFAQ-WheredoIfindtheLexEVSlogfiles?" rel="nofollow">
+          Where do I find the LexEVS log files?
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVSFAQ-DoesLexEVScleanupthedatabaseafterafailedload?" rel="nofollow">
+          Does LexEVS clean up the database after a failed load?
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVSFAQ-Howdoesonesetupa5.XclientthataccessesyourLexGRIDservicesinsteadofhavingtoloadthemlocallyintoyourowndatabase?" rel="nofollow">
+          How does one set up a 5.X client that accesses your LexGRID services instead of having to load them locally into your own database?
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVSFAQ-WhydoIgetthefollowingerrorduringloading-ORA-00972:identifieristoolong?" rel="nofollow">
+          Why do I get the following error during loading - ORA-00972: identifier is too long?
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVSFAQ-LoadingUMLSSNOMED,howmuchtime?" rel="nofollow">
+          Loading UMLS SNOMED, how much time?
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVSFAQ-WhatisthedifferencebetweentheAssociationObjectattributes&#39;entityCode&#39;and&#39;associationName&#39;?" rel="nofollow">
+          What is the difference between the Association Object attributes &#39;entityCode&#39; and &#39;associationName&#39;?
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVSFAQ-Isitnecessarytoloadamappingontologyasanontologyextensionoftheontologybeingmapped?" rel="nofollow">
+          Is it necessary to load a mapping ontology as an ontology extension of the ontology being mapped?
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#LexEVSFAQ-DeveloperFAQ" rel="nofollow">
+      Developer FAQ
+    </a>
+    <ul>
+      <li>
+        <a href="#LexEVSFAQ-InshortwhichistherightdirtoloadintoEclipse?" rel="nofollow">
+          In short which is the right dir to load into Eclipse?
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVSFAQ-HowdoyoudebugLexBIG/LexEVS?" rel="nofollow">
+          How do you debug LexBIG/LexEVS?
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVSFAQ-Inadditionto%22contains%22,whatotheralgorithmsareavailableout-of-boxforLexEVSgridservice?" rel="nofollow">
+          In addition to &#34;contains&#34;, what other algorithms are available out-of-box for LexEVS grid service?
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVSFAQ-IwaswonderingiftherewasawaytousetheLexEVSRESTAPItoperformqueriesthatreturnedconceptcodesbasedonsearchterms." rel="nofollow">
+          I was wondering if there was a way to use the LexEVS REST API to perform queries that returned concept codes based on search terms.
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVSFAQ-WhatisthebestwaytofindoutthecurrentcodingSchemeVersionforboththeNCI_ThesaurusandNCI_MetaThesaurus?" rel="nofollow">
+          What is the best way to find out the current codingSchemeVersion for both the NCI_Thesaurus and NCI_MetaThesaurus?
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVSFAQ-ArethereanychangesintheresultSetschemadependingonwhetherthecodingSchemeVersioninthequeryhasbeenset?" rel="nofollow">
+          Are there any changes in the resultSet schema depending on whether the codingSchemeVersion in the query has been set?
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVSFAQ-WhenusingLexEVS,howdoIgetthenumberofresolvedconceptswithoutfetchingallofthem?" rel="nofollow">
+          When using LexEVS, how do I get the number of resolved concepts without fetching all of them?
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVSFAQ-IsLexBIGServiceinstancethreadsafe?" rel="nofollow">
+          Is LexBIGService instance thread safe?
+        </a>
+      </li>
+    </ul>
+  </li>
+</ul>
+<h2 id="LexEVSFAQ-EndUserFAQ">
+  End User FAQ
+</h2>
+<h3 id="LexEVSFAQ-WheredoIfindtheLexEVSlogfiles?">
+  Where do I find the LexEVS log files?
+</h3>
+For the LexEVS runtime you will find the log files here by default:&lt;LexEVS Install Root&gt;/logsunless this location was changed using the &lt;tt&gt;LOG_FILE_LOCATION&lt;/tt&gt; entry in the config file called &lt;LexEVS Install Root&gt;/resources/config/lbconfig.propswhere &lt;LexEVS Install Root&gt; by default is:Linux: /usr/LexGrid/LexEVS/&lt;version&gt;Windows: \Program Files\LexGrid\LexEVS_&lt;version&gt;_and &lt;version&gt; is the version of LexEVS installed.
+<h3 id="LexEVSFAQ-DoesLexEVScleanupthedatabaseafterafailedload?">
+  Does LexEVS clean up the database after a failed load?
+</h3>
+Yes - if LexEVS hits a non-recoverable error it will fail the load and clean up/drop any tables it was loading to.There are exceptions to this. For instance, if the power goes out during the middle of a load, or the process ends suddenly for any other reason, the cleanup routine won&#39;t have a chance to be called and you will probably have to clean out the tables manually.Thread:
+<a href="https://cabig-kc.nci.nih.gov/Vocab/forums/viewtopic.php?f=13&amp;amp;t=223" rel="nofollow">
+  Oracle error while loading UMLS
+</a>
+<h3 id="LexEVSFAQ-Howdoesonesetupa5.XclientthataccessesyourLexGRIDservicesinsteadofhavingtoloadthemlocallyintoyourowndatabase?">
+  How does one set up a 5.X client that accesses your LexGRID services instead of having to load them locally into your own database?
+</h3>
+Here&#39;s a few things to get you started:The Distributed LexEVS/caGrid GUI (includes source in the zip):
+<a href="https://cbiit-download.nci.nih.gov/evs/LexEVS/v5.0/Release/LexEVS_50_Remote_GUI.zip" title="LexEVS" rel="nofollow">
+  5.0 Remote GUI zip
+</a>
+Some general LexEVS 5.0 example code:
+<a href="https://cbiit-download.nci.nih.gov/evs/LexEVS/v5.0/Release/LexEVS_50_Example_Code.zip" title="LexEVS" rel="nofollow">
+  5.0 Example Code zip
+</a>
+Small sample Distributed LexEVS Sample Client with source:
+<a href="https://wiki.nci.nih.gov/download/attachments/62427423/LexEVS_50_Distributed_Sample_Client.zip?version=1&amp;modificationDate=1330136181000&amp;api=v2" rel="nofollow">
+  5.0 Distributed Sample Client zip
+</a>
+Launch with:
+ant runTestClient
+
+Thread:
+<a href="https://cabig-kc.nci.nih.gov/Vocab/forums/viewtopic.php?f=13&amp;amp;t=172" rel="nofollow">
+  Questions on running a sample LexEVS program
+</a>
+<h3 id="LexEVSFAQ-WhydoIgetthefollowingerrorduringloading-ORA-00972:identifieristoolong?">
+  Why do I get the following error during loading - ORA-00972: identifier is too long?
+</h3>
+In your /resources/config/lbconfig.props file of your LexBIG installation, the &#39;DB_PREFIX&#39; value needs to be blank for Oracle --&gt; DB_PREFIX=This is because Oracle puts a limit on table name length, and adding a prefix to the table names will exceed Oracle&#39;s limit.Thread:
+<a href="https://cabig-kc.nci.nih.gov/Vocab/forums/viewtopic.php?f=13&amp;amp;t=221" rel="nofollow">
+  Loading UMLS causing Oracle error
+</a>
+<h3 id="LexEVSFAQ-LoadingUMLSSNOMED,howmuchtime?">
+  Loading UMLS SNOMED, how much time?
+</h3>
+The best thing to do to shorten up load time for a single ontology in UMLS is to subset the RRF files with MetamorphoSys. Dealing with a subset of the UMLS is much easier for the loader to deal with than the UMLS as whole.You could try loading through one of the admin scripts. It does the same thing but you won&#39;t have to use the GUI.Time will vary a lot depending on hardware and database config, so it&#39;s hard to estimate. You most likely won&#39;t gain much by adding ram – the bottleneck is usually how many inserts/second your database can handle. As a guideline, we load SNOMED (subsetted) in a dual quad core 32GB RAM in about 8 hours. This is with the db specially set up for fast inserts and tuned to what we&#39;re trying to do. The most important thing is to keep an eye on the logs and make sure progress is still being made, as it is hard to estimate how much time it will take.Thread:
+<a href="https://cabig-kc.nci.nih.gov/Vocab/forums/viewtopic.php?f=13&amp;amp;t=233" rel="nofollow">
+  Loading UMLS SNOMED, how much time
+</a>
+<h3 id="LexEVSFAQ-WhatisthedifferencebetweentheAssociationObjectattributes&#39;entityCode&#39;and&#39;associationName&#39;?">
+  What is the difference between the Association Object attributes &#39;entityCode&#39; and &#39;associationName&#39;?
+</h3>
+For 5.x, an Association is a type of Entity – meaning it has an EntityCode, EntityCodeNamespace, etc. It can also contain Properties and participate in relationships with other Entities. An &#39;Association&#39; is a special type of Entity, whereas its job is to describe relationships that Entities may have to each other. It can describe the forward and reversion directional names, flags to indicate whether the Association is Transitive or not, and so on.The &#39;associationName&#39; is simply the name given to the relationship.So: Father -&gt; &#39;hasChild&#39; -&gt; HisSon In this case &#39;hasChild&#39; is the &#39;associationName&#39;But, in LexEVS 5.x an Association is also an Entity, so it must also have an &#39;entityCode&#39;. The &#39;entityCode&#39; can (and often is) the same as the &#39;associationEntity&#39;, but it does not have to be. It is simply the unique identifier of the Entity – the &#39;entityCode&#39; can be any String.
+<h3 id="LexEVSFAQ-Isitnecessarytoloadamappingontologyasanontologyextensionoftheontologybeingmapped?">
+  Is it necessary to load a mapping ontology as an ontology extension of the ontology being mapped?
+</h3>
+A &#34;mapping&#34; ontology should never be an &#34;extension&#34; of one of the ontologies it is mapping. By default, a &#34;mapping&#34; ontology imports the contents of the mapped ontologies automatically.Thread:
+<a href="https://tracker.nci.nih.gov/browse/LEXEVS-448" rel="nofollow">
+  Loading a map as and extension to a vocab changes restrictToCodes() behavior
+</a>
+<h2 id="LexEVSFAQ-DeveloperFAQ">
+  Developer FAQ
+</h2>
+<h3 id="LexEVSFAQ-InshortwhichistherightdirtoloadintoEclipse?">
+  In short which is the right dir to load into Eclipse?
+</h3>
+If you&#39;re looking to bring everything into Eclipse, I would recommend checking out from SVN – because that way you&#39;ll get all the Eclipse metadata type files with it. You should be able to use anonymous checkout for these. Here&#39;s the projects you&#39;ll need to check out, each as an individual Eclipse project:
+<ul>
+  <li>
+    Indexer
+  </li>
+  <li>
+    lbAdmin
+  </li>
+  <li>
+    lbExamples
+  </li>
+  <li>
+    lbGUI
+  </li>
+  <li>
+    lbImpl
+  </li>
+  <li>
+    lbInterfaces
+  </li>
+  <li>
+    lbModel
+  </li>
+  <li>
+    lbPackager
+  </li>
+  <li>
+    lgConverter
+  </li>
+  <li>
+    lgModel
+  </li>
+  <li>
+    lgModel.emf
+  </li>
+  <li>
+    lgResourceReader
+  </li>
+  <li>
+    lgSharedLibraries
+  </li>
+  <li>
+    lbUtil
+  </li>
+</ul>
+Thread:
+<a href="https://cabig-kc.nci.nih.gov/Vocab/forums/viewtopic.php?f=16&amp;amp;t=173" rel="nofollow">
+  LexEVS/LexBIG source tree question
+</a>
+<h3 id="LexEVSFAQ-HowdoyoudebugLexBIG/LexEVS?">
+  How do you debug LexBIG/LexEVS?
+</h3>
+As for debugging, there&#39;s a couple of different ways to go about that. First, you can run the GUI from Eclipse. When you checked things out you should have gotten some run configurations named &#34;LB_GUI&#34; or something similar. There&#39;s various ones for different OS&#39;s. What&#39;s handy about that is the GUI does a pretty good job of reflecting our API, so you can work through API calls and set breakpoints as you go. When I want to debug something, sometimes I just start the GUI in debug mode and then put breakpoints as needed.Another thing I sometimes do is just create another eclipse project (say, &#39;LexEVSTestProject&#39;) in my Eclipse environment. The key here is to include the &#39;lbImpl&#39; as a required project. This will pull in all the LexEVS classes and config files into your classpath. Then, you can write code in your test project and debug that way.Thread:
+<a href="https://cabig-kc.nci.nih.gov/Vocab/forums/viewtopic.php?f=16&amp;amp;t=173" rel="nofollow">
+  LexEVS/LexBIG source tree question
+</a>
+<h3 id="LexEVSFAQ-Inadditionto&#34;contains&#34;,whatotheralgorithmsareavailableout-of-boxforLexEVSgridservice?">
+  In addition to &#34;contains&#34;, what other algorithms are available out-of-box for LexEVS grid service?
+</h3>
+There are a list of algorithms with a short description in the &#34;Programmer&#39;s Guide&#34;, Section &#34;Search Algorithms&#34;Thread:
+<a href="https://cabig-kc.nci.nih.gov/Vocab/forums/viewtopic.php?f=16&amp;amp;t=169" rel="nofollow">
+  List of LexEVS Algorithms Available
+</a>
+<h3 id="LexEVSFAQ-IwaswonderingiftherewasawaytousetheLexEVSRESTAPItoperformqueriesthatreturnedconceptcodesbasedonsearchterms.">
+  I was wondering if there was a way to use the LexEVS REST API to perform queries that returned concept codes based on search terms.
+</h3>
+General LexEVS REST Documentation can be found in the &#34;Programmers Guide,&#34; Section&#34; XML-HTTP API&#34;Thread:
+<a href="https://cabig-kc.nci.nih.gov/Vocab/forums/viewtopic.php?f=16&amp;amp;t=180" rel="nofollow">
+  Question on Using LexEVS REST API
+</a>
+Thread:
+<a href="https://cabig-kc.nci.nih.gov/Vocab/forums/viewtopic.php?f=13&amp;amp;t=218" rel="nofollow">
+  XML-HTTP API for LexEVS
+</a>
+Thread:
+<a href="https://cabig-kc.nci.nih.gov/Vocab/forums/viewtopic.php?f=13&amp;amp;t=97&amp;amp;start=0" rel="nofollow">
+  LexBIG 5.0 REST API
+</a>
+<h3 id="LexEVSFAQ-WhatisthebestwaytofindoutthecurrentcodingSchemeVersionforboththeNCI_ThesaurusandNCI_MetaThesaurus?">
+  What is the best way to find out the current codingSchemeVersion for both the NCI_Thesaurus and NCI_MetaThesaurus?
+</h3>
+You could use this to get information about the CodingScheme itself. The representsVersion will display the version for the vocabulary
+http://lexevsapi.nci.nih.gov/lexevsapi50/GetXML?query=org.LexGrid.codingSchemes.CodingScheme&amp;org.LexGrid.codingSchemes.CodingScheme[@_codingSchemeName=NCI_Thesaurus]
+
+Thread:
+<a href="https://cabig-kc.nci.nih.gov/Vocab/forums/viewtopic.php?f=13&amp;amp;t=224" rel="nofollow">
+  HTTP REST Interface: Attribute startIndex Vs. statIndex?
+</a>
+<h3 id="LexEVSFAQ-ArethereanychangesintheresultSetschemadependingonwhetherthecodingSchemeVersioninthequeryhasbeenset?">
+  Are there any changes in the resultSet schema depending on whether the codingSchemeVersion in the query has been set?
+</h3>
+If the codingSchemeName AND version are both set, the system does not need to retrieve all of the results at once – some collections can be lazy loaded (for instance, the Presentation List, Definition List, etc). In this case, a link will be provided to access the results, and the results themselves will not be loaded immediately. If just the codingSchemeName is provided, the system can&#39;t lazy load anything (because just a codingSchemeName is ambiguous – there may be several different versions of a loaded codingScheme), and all results are returned at once. This is done for performance reasons, specifically because loading all Properties of a large amount of Concepts can be expensive.Thread:
+<a href="https://cabig-kc.nci.nih.gov/Vocab/forums/viewtopic.php?f=13&amp;amp;t=225" rel="nofollow">
+  resultSet on setting/unsetting codingSchemeVersion
+</a>
+<h3 id="LexEVSFAQ-WhenusingLexEVS,howdoIgetthenumberofresolvedconceptswithoutfetchingallofthem?">
+  When using LexEVS, how do I get the number of resolved concepts without fetching all of them?
+</h3>
+You could resolve the CodedNodeSet to a ResolvedConceptReferencesIterator – then call &#39;numberRemaining()&#39; on the iterator to get the number. This way, you won&#39;t have to resolve everything all at once.Thread:
+<a href="https://cabig-kc.nci.nih.gov/Vocab/forums/viewtopic.php?f=13&amp;amp;t=204" rel="nofollow">
+  Getting only number of resolved concepts?
+</a>
+<h3 id="LexEVSFAQ-IsLexBIGServiceinstancethreadsafe?">
+  Is LexBIGService instance thread safe?
+</h3>
+For example: I have a servlet and I&#39;d like to initialize the only instance of LexBIGService in init() method. And then, in subsequent HTTP calls, use this instance. I do initialization in following way:
+appSvc = (LexBIGService) ApplicationServiceProvider.getApplicationServiceFromUrl(url, &#34;EvsServiceInfo&#34;);
+
+Yes, that should be fine – there are a few things to note however.Usually in a caCORE SDK system when you call &#39;ApplicationServiceProvider.getApplicationServiceFromUrl(url, &#34;...&#34;); more than once with the same parameters, you&#39;ll just get the same object returned to you (at least in caCORE SDK 4.0). This happens because its basically set up as a Spring singleton-scoped bean. We had to stray from that a little because we allow the user to store a list of registered security tokens for secured vocabs on the client side. Because of this, we can&#39;t have the LexBIGService be a singleton because then if a different user called ApplicationServiceProvider.getApplicationServiceFromUrl(url, &#34;...&#34;); from the same VM, they&#39;d get all the other users&#39; registered security tokens, which we don&#39;t want. So how it works for us is every call to &#39;ApplicationServiceProvider.getApplicationServiceFromUrl(url, &#34;...&#34;); returns a Prototype-scope (i.e. new instance) Proxy of LexBIGService.So, yes, calling appSvc = (LexBIGService) ApplicationServiceProvider.getApplicationServiceFromUrl(url, &#34;EvsServiceInfo&#34;); in some sort of init() method or factory would be fine – as long as everything that is using that LexBIGService is ok with sharing the same security tokens.A scenario where this wouldn&#39;t work out is if you had a web site where a user could log in, register some security tokens... etc. You would want to create a new LexBIGService for every user so that you would be sure that their security tokens would stay independent of each other. In other words, make the LexBIGService &#34;session&#34; scoped.Thread:
+<a href="https://cabig-kc.nci.nih.gov/Vocab/forums/viewtopic.php?f=13&amp;amp;t=110" rel="nofollow">
+  LexBIGService instance thread safe?
+</a>

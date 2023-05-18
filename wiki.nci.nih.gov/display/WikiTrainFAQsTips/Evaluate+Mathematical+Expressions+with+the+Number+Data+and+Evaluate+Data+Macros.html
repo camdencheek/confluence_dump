@@ -1,0 +1,69 @@
+<ul>
+  <li>
+    <a href="#EvaluateMathematicalExpressionswiththeNumberDataandEvaluateDataMacros-BasicMathematics" rel="nofollow">
+      Basic Mathematics
+    </a>
+  </li>
+  <li>
+    <a href="#EvaluateMathematicalExpressionswiththeNumberDataandEvaluateDataMacros-EvaluatingDatainTables" rel="nofollow">
+      Evaluating Data in Tables
+    </a>
+  </li>
+</ul>
+The evaluate data macro allows evaluation of mathematical expressions using data in number data macros.
+<a href="https://docs.servicerocket.com/display/SCAF/eval-data" rel="nofollow">
+  More information on the evaluate data macro
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+<h2 id="EvaluateMathematicalExpressionswiththeNumberDataandEvaluateDataMacros-BasicMathematics">
+  Basic Mathematics
+</h2>
+The following calculates the value of a fraction, initially 1/2.
+Numerator: {number-data:Numerator|decimal=true}1{number-data}
+Denominator: {number-data:Denominator|decimal=true}2{number-data}
+
+Result: {eval-data:Result|format=#0.0}${Numerator}/${Denominator}{eval-data}
+Percentage: {eval-data:Percentage|format=##0\%}round(${Result} * 100, 0){eval-data}
+Observation: The Basic Mathematics example, with the formatting by the java.text.DecimalFormat rules shown in the example from Atlassian, yields the result 5000%. To obtain 50 it was necessary to remove a slash (\) and percent symbol (%) which is the correct percentage markup and shows the percent sign.The number data macro establishes the numerator. Enter a new value in the Edit Contents view.1The number data macro establishes the denominator. Enter a new value in the Edit Contents view.2The evaluate data macro displays the result:0.5The evaluate data macro displays the percentage:50
+<h2 id="EvaluateMathematicalExpressionswiththeNumberDataandEvaluateDataMacros-EvaluatingDatainTables">
+  Evaluating Data in Tables
+</h2>
+An example follows.
+{table-data:Values}
+|| Name || Value ||
+| {text-data:Name}{text-data} | {number-data:Value}{number-data} |
+{table-data}
+
+Sum: {eval-data:Sum}sumtable(&#34;Values&#34;, &#34;Value&#34;){eval-data}
+Average: {eval-data:Average}avgtable(&#34;Values&#34;, &#34;Value&#34;){eval-data}
+
+The table data macro contains a table with text data for the name and number data for the value. In the Edit Contents view, click the plus sign to add a row and enter values for each row.
+<table>
+  <tr>
+    <th>
+      Name
+    </th>
+    <th>
+      Value
+    </th>
+  </tr>
+  <tr>
+    <td>
+      Value one
+    </td>
+    <td>
+      10
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Value two
+    </td>
+    <td>
+      12
+    </td>
+  </tr>
+</table>
+The evaluate data macro calculates the sum of the values in the table:22The evaluate data macro calculates the average of the values in the table:11

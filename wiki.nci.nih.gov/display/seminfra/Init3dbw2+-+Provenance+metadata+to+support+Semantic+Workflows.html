@@ -1,0 +1,504 @@
+<h2 id="Init3dbw2ProvenancemetadatatosupportSemanticWorkflows-InitialAnalysis:">
+  Initial Analysis:
+</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Item
+      </th>
+      <th>
+        Information/Response
+      </th>
+    </tr>
+    <tr>
+      <td>
+        Date:
+      </td>
+      <td>
+        12/10/2009
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Requirement # unique id &lt;SemCon Ops Initiative&gt;.&lt;analysts initials&gt;&lt;requirement number&gt;
+        e.g. Init1dbw1
+        (eventually linked to Use Cases)
+      </td>
+      <td>
+        Init3dbw2
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Originator/Customer&#39;s Name:
+      </td>
+      <td>
+        Yolanda Gil
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Originator/Customer&#39;s Company:
+      </td>
+      <td>
+        USC
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Stakeholder Community:
+        Enter appropriate category of stakeholder from Primary Stakeholders:
+        <ul>
+          <li>
+            Software and Application designers and architects
+          </li>
+          <li>
+            Software and Application engineers and developers
+          </li>
+          <li>
+            Scientific and medical researchers
+          </li>
+          <li>
+            Medical research protocol designers
+          </li>
+          <li>
+            Clinical and scientific research data and metadata managers
+          </li>
+          <li>
+            Clinicians
+          </li>
+          <li>
+            Patients
+          </li>
+          <li>
+            Medical research study participants
+          </li>
+          <li>
+            Broader Stakeholders: caBIG® Community WS NIH projects and related commercial COTS vendors (caEHR, SDO&#39;s (HL7, CDISC); International Collaborators (e.g NCRI, cancerGrid, China), Government and regulatory bodies (FDA, CDC, ONC)
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=63996268" rel="nofollow">
+              (link to view SemConOps Stakeholders description
+            </a>
+            ).
+          </li>
+        </ul>
+      </td>
+      <td>
+        cancer/medical researcher
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Summary of requirement pre-interview, by Reviewer:
+      </td>
+      <td>
+        This will require additional information be collected about teh dataset, to go along side the data as an object.  Additionally, there will be metadata about the individual data fields, that will allow appropriate transformations if needed between codesets, and this higher level data will describe the things that need to have been done to the data &#34;the protocol&#34; for the data.
+        There were 3 usage scenarios described for which having this type of metadata is needed.  It will describe the provenance metadata/pre-processing as a workflow at sufficent level of detail to learn about whether the data are suitable for processing for specific purposes.
+
+
+        1: Construct, Store and Reuse workflows from existing discoverable data and services
+        Narrative: A cancer researcher searches the grid or internet for data of interest and finds one or more sources of data in genomic repositories that is available for use.  He asks the system if there are any services on the grid that accept this kind of data, and expects for the system to tell him about the service, whether the data can be aggregated, if so it does it, if not it tells him why not and offers options for transforming the data so it will be usable.  The system detects if its possible to do something additional to the data to make it usable to the service (pre-processing), and if there is a transformation, allows him to find an existing transformation he can reuse,  or build and save a new transformation.  He can discover what processes or pre-processing was performed on the data he has found.  He can assess whether or not the data is really suitable for use based on some known, domain specific information the system has about this service, or the algorithms it uses, and compare the data to these known requirements, the system will tell him if it is a good match or not.  The system will let him make changes to the workflow, adding or removing steps.  The researcher can run the service with the data he has found and save the results.  When he saves the results, enough information about the workflow and the parameters/processes that were performed on the data are captured from the authoring tool to allow discovery and reuse of this workflow by others.
+
+        2: Discover data of interest: A researcher wants to find data that has already been collected for use with caArray.  They are able to find the data and to inspect the system to learn about what type of cells are in the database, what type of pathology is available for the data, etc.
+
+        3. Aggregate data of interest: A researcher is able to query the system to find data that can be combined with their data.  It is able to compare the characteristics of the dataset to ensure that the data are combinable, for example .
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Recommended Next Step Enter one: Follow-up interview, Observe, Use Case Template (text), Use Case Model (formalized/UML diagram), Group Discussion, Prototype, Waiting Room
+      </td>
+      <td>
+        Semantic workflows use cases - this is similar to Anand&#39;s requirement.
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="Init3dbw2ProvenancemetadatatosupportSemanticWorkflows-Interview">
+  Interview
+</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Item
+      </th>
+      <th>
+        Script / Question
+      </th>
+      <th>
+        Information/Response
+      </th>
+    </tr>
+    <tr>
+      <td>
+        1
+      </td>
+      <td>
+        Hello, my name is NAME. I am calling you today because NCI and caBIG are working toward a new and improved version of the semantic infrastructure to better support integration scenarios.   Our first step was to organize requirements collected over the past year. Your organization has expressed a requirement/need for BRIEF STATEMENT OF USER REQUIREMENT.  This has been identified as potentially a critical component to support application/data and service integration, and we need more information in order to enable us to meet this requirement.  Do you have about 30 minutes to talk about this?
+      </td>
+      <td>
+        If yes, proceed. If no, note a good time to call back.
+
+      </td>
+    </tr>
+    <tr>
+      <td>
+        2
+      </td>
+      <td>
+        Do you have any solution integration needs? If so, what are they? Have you envisioned new ways of interacting with existing or new parts of the semantic  infrastructure?
+        (prompt to elicit changes/new ways of using the infrastructure)
+      </td>
+      <td>
+        Yolanda develops workflows and has some use cases that can leverage semantics.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        3
+      </td>
+      <td>
+        Are there any business changes you are assuming we will be able to deal with?
+        (prompt to elicit changes/new ways of using the infrastructure)
+      </td>
+      <td>
+        envision certain capabilities will exist - suggested that they be captured in pre-conditions
+      </td>
+    </tr>
+    <tr>
+      <td>
+        4
+      </td>
+      <td>
+        Are there any capabilities you are expecting to be available to support your needs?
+        (prompt to elicit expectations/dependencies)
+      </td>
+      <td>
+        Provenance metadata objects linked to data objects; workflow authoring engine; software developers who can translate domain specific validation rules into algorithms that can be stored and used to query against domain specific provenance instances;
+      </td>
+    </tr>
+    <tr>
+      <td>
+        5
+      </td>
+      <td>
+        Do you use any of the existing software/services? If so, what do you like or dislike about it?
+        (if related to existing capability)
+      </td>
+      <td>
+        No
+      </td>
+    </tr>
+    <tr>
+      <td>
+        6
+      </td>
+      <td>
+        If this requirement in met, what would be the benefits? If you do not have it, what would be the negative impact?  (prompt to elicit benefits/value - will help to prioritize)
+      </td>
+      <td>
+        Researchers could easily run existing workflows with new data; researchers could find data and experiments that could be performed; researchers could find data and experiments related to their area of interest or data to help support their finding or hypothesis; new scientific discoveries could be made
+      </td>
+    </tr>
+    <tr>
+      <td>
+        7
+      </td>
+      <td>
+        If, for any reason, we were not able to create that solution, do you think there might be another way to solve this issue? Can you think of an alternative solution?
+        (prompt to elicit alternative solutions/workarounds)
+        (to be prepared by the Requirement Analyst)
+      </td>
+      <td>
+        TBD
+      </td>
+    </tr>
+    <tr>
+      <td>
+        8
+      </td>
+      <td>
+        Would you agree that we can summarize your requirement like this?  (Summarize one requirement in 2-3 lines and read back to interviewee for confirmation.)
+      </td>
+      <td>
+        Create the ability to develop semantic workflows to leverage and build upon services and data available through the grid and internet
+      </td>
+    </tr>
+    <tr>
+      <td>
+        9
+      </td>
+      <td>
+        How important is this requirement to the interviewee? Required: Customer Priority/Annotationrement Analyst
+        (Provides concrete assessment of the relative importance for the requirements specification)
+      </td>
+      <td>
+        Select:
+        <ol>
+          <li>
+            Must have
+          </li>
+          <li>
+            Should have
+          </li>
+          <li>
+            Nice to have but not essential
+          </li>
+          <li>
+            Other (describe)
+          </li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        10
+      </td>
+      <td>
+        On a scale from 1 to 3 with 1 being &#34;not satisfied&#34; to 3 &#34;completely satisfied&#34;, how would you rate your overall satisfaction with the product if this requirement was met?  (Relative rating/ranking of how satisfied or dissatisfied interviewee would be if this requirement were met/not met)
+      </td>
+      <td>
+        Select:
+        <ol>
+          <li>
+            Not satisfied
+          </li>
+          <li>
+            Mostly satisfied
+          </li>
+          <li>
+            Completely satisfied
+          </li>
+          <li>
+            Other (describe)
+          </li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        11
+      </td>
+      <td>
+        Are there other requirements that you would like to share with us? I&#39;d be more than happy to call you back another time, or if you have another 10 minutes, please share other issues you can think of.
+        (prompt to elicit any hidden - potentially higher priority requirements if they exist)
+      </td>
+      <td>
+        (If yes, take notes to use in on a new page with this template; if time not available now, try to make appointment for another call.)
+      </td>
+    </tr>
+    <tr>
+      <td>
+        12
+      </td>
+      <td>
+        Who else should we talk to in order to elicit more information about this need?
+      </td>
+      <td>
+        Name of contact(s)
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>
+        For specific service enhancement or requirement from Forum entry:
+      </td>
+      <td>
+        ---
+      </td>
+    </tr>
+    <tr>
+      <td>
+        13
+      </td>
+      <td>
+        Can you or someone else give me a step-by-step description of how you would describe the expected performance/behavior of the software in order for you to feel that your requirement is met?
+        (Required: Fit Criterion - will help us create test cases and user acceptance criteria - to be prepared by the Requirement Analyst)
+      </td>
+      <td>
+        ---
+      </td>
+    </tr>
+    <tr>
+      <td>
+        14
+      </td>
+      <td>
+        Forum Link:
+      </td>
+      <td>
+        ---
+      </td>
+    </tr>
+    <tr>
+      <td>
+        15
+      </td>
+      <td>
+        URLs (optional):
+      </td>
+      <td>
+        Links to pages or applications related to this requirement
+      </td>
+    </tr>
+    <tr>
+      <td>
+        16
+      </td>
+      <td>
+        References (optional):
+      </td>
+      <td>
+        Links to articles, papers or presentations related to this requirement
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="Init3dbw2ProvenancemetadatatosupportSemanticWorkflows-PostInterview-ongoingthroughoutdevelopmentofusecases:">
+  Post Interview - ongoing throughout development of use cases:
+</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Item
+      </th>
+      <th>
+        Description
+      </th>
+      <th>
+        Information/Response
+      </th>
+    </tr>
+    <tr>
+      <td>
+        Requirement Type (required)
+      </td>
+      <td>
+        Analyst&#39;s assessement of the most appropriate category/type of requirement (no need to ask interviewee):
+        <ul>
+          <li>
+            Functional: Fundamental or essential to the product - describes what the product has to do or what processing is needed
+          </li>
+          <li>
+            Nonfunctional: properties the functions must have such as performance, usability, training or documentation
+            <ul>
+              <li>
+                Project constraint: schedule or budget constraints
+              </li>
+              <li>
+                Design constraint: impose restrictions on how the product must be designed, such as conformant to ISO 11179, utilizes 21090 or is able to work on a particular type of device
+              </li>
+              <li>
+                Project driver: business-related forces such as descriptions of stakeholders or purpose of the product/project
+              </li>
+              <li>
+                Project issue: conditions that will contribute to the success or failure of the project
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </td>
+      <td>
+        Functional and Non-functional Design constraints (new metamodels)
+      </td>
+    </tr>
+    <tr>
+      <td>
+        ConOp Initiative(s)
+        Requirements Analyst/Business Analyst
+      </td>
+      <td>
+        <ul>
+          <li>
+            Select most appropriate initiative: (click for descriptions)
+          </li>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=63996260" rel="nofollow">
+              Initiative 1 - Distributed, federated metadata repositories and model repositories and operations
+            </a>
+          </li>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=63996259" rel="nofollow">
+              Initiative 2 - Automated generation of metadata from line-of-business artifacts
+            </a>
+          </li>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=63996262" rel="nofollow">
+              Initiative 3 - Rules management and contracts support (behavioral semantics)
+            </a>
+          </li>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=63996261" rel="nofollow">
+              Initiative 4 - Semantics support for W3C service oriented architecture resources
+            </a>
+          </li>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=63996264" rel="nofollow">
+              Initiative 5 - HL7 CTS II/ OMG MIF compliant federated terminology services
+            </a>
+          </li>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=63996263" rel="nofollow">
+              Initiative 6 - Controlled biomedical terminology, ontology and metadata content
+            </a>
+          </li>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=63996266" rel="nofollow">
+              Initiative 7 - Assessment of semantic unification of compositional and derivational models
+            </a>
+          </li>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=63996253" rel="nofollow">
+              Initiative 8 - Other
+            </a>
+          </li>
+        </ul>
+      </td>
+      <td>
+        Init 1, Init 3, Init 4
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Use Case Linkage (required)
+        Business Analyst
+      </td>
+      <td>
+        Which use case(s) is this requirement linked to?  (should follow Use Case numbering scheme &lt;SemCon Ops Initiative&gt;.&lt;analysts initials&gt;&lt;requirement number&gt;.&lt;use case number&gt;, for example Init1dbw1.1, Init1dbw1.2, Init2dbw2.1, 2.2, etc.
+      </td>
+      <td>
+        Use case Number(s):TBD
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Conflicts / Dependencies(required)
+        Requirements Analyst/ Business Analyst
+      </td>
+      <td>
+        Are there any conflicts with other requirements / use cases?
+      </td>
+      <td>
+        Yes, there are dependencies on data and analytical services exposing provenance data and relating it to their data objects; dependent on analysts to create rules from domain specific documentation about how data should be curated/processed in order to run the experiment successfully/validly
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Next Step (required)
+        (Requirement Analyst / Business Analyst)
+      </td>
+      <td>
+        After reviewing the results of the interview, the forum, and all other materials related to this requirement, the analyst should recommend the next step, then attach the Tiny Link (on the Info tab) for this page to the
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=63996252" rel="nofollow">
+          Master List
+        </a>
+        table.
+      </td>
+      <td>
+        Develop Use Case template (text) and schedule Follow-up interview - Possibly assign to Baris
+      </td>
+    </tr>
+  </tbody>
+</table>

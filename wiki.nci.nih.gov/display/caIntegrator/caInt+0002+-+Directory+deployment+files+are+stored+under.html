@@ -1,0 +1,54 @@
+<h1 id="caInt0002Directorydeploymentfilesarestoredunder-Question:Whichdirectoryaredeploymentfilesstoredunder?">
+  Question: Which directory are deployment files stored under?
+</h1>
+Contents
+<ul>
+  <li>
+    <a href="#caInt0002Directorydeploymentfilesarestoredunder-Answer" rel="nofollow">
+      Answer
+    </a>
+  </li>
+  <li>
+    <a href="#caInt0002Directorydeploymentfilesarestoredunder-Haveacomment?" rel="nofollow">
+      Have a comment?
+    </a>
+  </li>
+</ul>
+Topic: caIntegrator Installation and Upgrade
+
+Release: caIntegrator 1.2
+
+Date entered: 11/14/2010
+<h2 id="caInt0002Directorydeploymentfilesarestoredunder-Answer">
+  Answer
+</h2>
+Currently (as of 10/08/2010), by default, deployment files go under directory /tmp. You need to reconfigure to change the directory during the installation. Otherwise, data under /tmp will be wiped out when the server is rebooted. This problem will be fixed in a future release.
+
+Meanwhile, with current version, you need to switch directories by setting a jvm parameter in the jboss run.conf. Here is an example:
+
+
+-Djava.io.tmpdir=/local/content/caintegrator2/jvmtmp
+
+
+Also, if you shutdown jboss first, you can copy the contents from one location to another.
+
+Alternatively, you can use the CONFIGURATION_PARAMETER table to update where it goes. An example follows.
+
+
+INSERT into CONFIGURATION_PARAMETER (PARAMETER, RAW_VALUE)
+values (&#39;STUDY_FILE_STORAGE_DIRECTORY&#39;, &#39;D:\\cai2ApplicationFiles&#39;);
+INSERT into CONFIGURATION_PARAMETER (PARAMETER, RAW_VALUE)
+values (&#39;TEMP_DOWNLOAD_STORAGE_DIRECTORY&#39;, &#39;D:\\cai2ApplicationFiles\\tmpDownload&#39;);
+INSERT into CONFIGURATION_PARAMETER (PARAMETER, RAW_VALUE)
+values (&#39;USER_FILE_STORAGE_DIRECTORY&#39;, &#39;D:\\cai2ApplicationFiles\\cai2UserFiles&#39;);
+
+
+However if you do change these values, you&#39;ll want to copy over what is in your tmp directory to what you choose here.
+<h2 id="caInt0002Directorydeploymentfilesarestoredunder-Haveacomment?">
+  Have a comment?
+</h2>
+Please leave your comment in the
+<a href="https://cabig-kc.nci.nih.gov/Molecular/forums/viewtopic.php?f=23&amp;t=461" rel="nofollow">
+  caIntegrator End User Forum
+</a>
+. 

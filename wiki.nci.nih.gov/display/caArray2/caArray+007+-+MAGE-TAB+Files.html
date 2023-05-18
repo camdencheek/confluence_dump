@@ -1,0 +1,223 @@
+<h1 id="caArray007MAGETABFiles-Question:WhatareMAGE-TABFiles?">
+  Question: What are MAGE-TAB Files?
+</h1>
+Topic: caArray Usage
+
+Release: caArray 2.X
+
+Date entered: 02/12/2009
+
+Topics on this page include the following:
+<ul>
+  <li>
+    <a href="#caArray007MAGETABFiles-Answer" rel="nofollow">
+      Answer
+    </a>
+    <ul>
+      <li>
+        <a href="#caArray007MAGETABFiles-MAGE-TABandDataFilesRelationships" rel="nofollow">
+          MAGE-TAB and Data Files Relationships
+        </a>
+      </li>
+      <li>
+        <a href="#caArray007MAGETABFiles-BuildingMAGE-TABFormattedfiles" rel="nofollow">
+          Building MAGE-TAB Formatted files
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#caArray007MAGETABFiles-Haveacomment?" rel="nofollow">
+      Have a comment?
+    </a>
+  </li>
+</ul>
+<h2 id="caArray007MAGETABFiles-Answer">
+  Answer
+</h2>
+MAGE-TAB (MicroArray Gene Expression Tabular) files, considered the MAGE-TAB data set, refer to simple tab-delimited, spreadsheet-based files, which can be used for annotating and communicating microarray data in a
+<a href="http://www.mged.org/Workgroups/MIAME/miame.html" rel="nofollow">
+  MIAME compliant fashion
+</a>
+. MAGE-TAB specification is based on the
+<a href="http://www.mged.org/Workgroups/MAGE/mage.html" rel="nofollow">
+  Microarray and Gene Expression
+</a>
+Object Model (
+<a href="http://www.mged.org/Workgroups/MIAME/miame_mage-om.html" rel="nofollow">
+  MAGE-OM
+</a>
+). The MAGE-TAB
+<a href="http://www.mged.org/mage-tab/spec1.0.html" rel="nofollow">
+  specification document
+</a>
+and related
+<a href="http://www.biomedcentral.com/1471-2105/7/489" rel="nofollow">
+  publications
+</a>
+provide more details on the format.
+
+The MAGE-TAB specification defines four different types of files to fully describe a microarray investigation. The following table summarizes the definition for each of these file types.
+<table>
+  <tbody>
+    <tr>
+      <th>
+        File Type
+      </th>
+      <th>
+        File Extension
+      </th>
+      <th>
+        Description
+      </th>
+      <th>
+        Processed by caArray
+      </th>
+    </tr>
+    <tr>
+      <td>
+        Investigation Description Format (IDF)
+      </td>
+      <td>
+        .idf
+      </td>
+      <td>
+        A MAGE-TAB tab-delimited file providing general information about the investigation, including its name, a brief description, the investigator&#39;s contact details, bibliographic references, ontologies/databases referenced and free text descriptions of the protocols used in the investigation.
+        WarningIn a tab-separated line in the IDF, there must be no empty columns, i.e. two tabs with nothing between them. Empty columns will result in import failure.
+      </td>
+      <td>
+        Yes. Parsed, validated before import
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Sample and Data Relationship Format (SDRF)
+      </td>
+      <td>
+        .sdrf
+      </td>
+      <td>
+        A MAGE-TAB tab-delimited file (or files) describing the relationships between samples, arrays, data, and other objects used or produced in the investigation, and providing all MIAME information that is not provided elsewhere. An SDRF contains all of the information linking the samples to your data files, (for example, Affymetrix CEL, Affymetrix CHP). Each row in the table represents a hybridization channel, and the columns represent the steps of the experiment, read from left to right.
+      </td>
+      <td>
+        Yes. Parsed, validated before import
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Array Design Format (ADF)
+      </td>
+      <td>
+        .adf
+      </td>
+      <td>
+        A tab-delimited file with standardized column names describing the design of an array, e.g., what sequence is located at each position on an array and what the annotation of this sequence is. MAGE-TAB ADF files are not required in a caArray experiment.
+      </td>
+      <td>
+        Can be uploaded, but are not parsed. Vendor-specific Array Design Files are recommended, if available.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Raw and processed data files
+      </td>
+      <td>
+        .txt or other
+      </td>
+      <td>
+        Raw data files: ASCII or binary files, typically in their native formats. Processed (derived) data: tab-delimited text format; can be MAGE-TAB data matrix files. Processed data can be binary as well, such as Affymetrix MASS generated CHP files.
+      </td>
+      <td>
+        Of data matrix files, only copy number data matrix files are parsed.
+      </td>
+    </tr>
+  </tbody>
+</table>
+To load an experiment into caArray using the MAGE-TAB format, you must create the first two file types shown in the table above, IDF and SDRF. See
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=42832077" rel="nofollow">
+  Building MAGE-TAB Formatted Files
+</a>
+. You also must make sure that the corresponding Array Design (the third file type) for your experiment has been loaded into caArray. The fourth file type, raw and/or derived (processed) data files are created by the instruments reading the array results.
+
+The files described in the table make up the MAGE-TAB data set. They can be categorized into two groups: descriptive files and array data files. Some of the files are in MAGE-TAB format (see the
+<a href="http://tab2mage.sourceforge.net/docs/magetab_docs.html" rel="nofollow">
+  Sourceforge overview
+</a>
+) and others are supported as part of the MAGE-TAB data set. See the following figure and its description below.
+<img alt="illustration showing components of MAGE-TAB data set in caArray. See Text" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caArray2/caArray%20007%20-%20MAGE-TAB%20Files/MAGE-TAB-Files2.png?api=v2">
+The descriptive files include IDF, SDRF and Array Design Files. Note that the MAGE-TAB format Array Design File (designated as ADF) is not mandatory in caArray, since array design files for the common arrays are usually available from their respective array providers. If an array design file (which may not be MAGE-TAB format) is available from its array provider, it should be chosen over an ADF file. MAGE-TAB ADF files are not parsed by caArray. Array design files, whether native or ADF, are uploaded using the
+<a href="https://wiki.nci.nih.gov/x/Nxo9Ag#6-CurationTools-ManagingArrayDesigns" rel="nofollow">
+  Manage Array Design
+</a>
+interface under Curation on the caArray left sidebar. The MAGE-TAB file types, IDF, SDRF and data matrix files, on the other hand, are uploaded on the
+<a href="https://wiki.nci.nih.gov/x/Oxo9Ag#7-SubmittingDatatoanExperiment-ImportingMAGETABData" rel="nofollow">
+  Manage Data page
+</a>
+.
+
+Array data files consist of raw array data and/or derived array data. A variety of raw data files, produced by several different scanner makes and models, are supported by the caArray MAGE-TAB parser even though these raw data may not be in MAGE-TAB format. Derived array data refers to either normalized array data, or a data file with data combined from more than one hybridization or scan. The caArray MAGE-TAB parser supports some of these non-MAGE-TAB files, as well. Derived array data files in MAGE-TAB format are called data matrix files. The only data matrix files that caArray parses are copy number data matrix files. For more information, see
+<a href="https://wiki.nci.nih.gov/x/Oxo9Ag#7-SubmittingDatatoanExperiment-AboutFileTypesincaArray" rel="nofollow">
+  File Types in caArray
+</a>
+.
+
+See also
+<a href="https://wiki.nci.nih.gov/x/Oxo9Ag#7-SubmittingDatatoanExperiment-AboutFileTypesincaArray" rel="nofollow">
+  About File Types in caArray
+</a>
+and
+<a href="https://wiki.nci.nih.gov/x/Oxo9Ag#7-SubmittingDatatoanExperiment-MAGETABincaArrayOverview" rel="nofollow">
+  MAGE-TAB in caArray--Overview
+</a>
+in the caArray User&#39;s Guide.
+<h3 id="caArray007MAGETABFiles-MAGE-TABandDataFilesRelationships">
+  MAGE-TAB and Data Files Relationships
+</h3>
+MAGE-TAB files imported into caARRAY map to data files also imported into the same caARRAY experiment. The following figure illustrates the relationship.
+<img alt="diagram illustrating the relationships of MAGE-TAB files to data files in caArray" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caArray2/caArray%20007%20-%20MAGE-TAB%20Files/MAGE-TAB%20relationships2.png?api=v2">
+<h3 id="caArray007MAGETABFiles-BuildingMAGE-TABFormattedfiles">
+  Building MAGE-TAB Formatted files
+</h3>
+Because of the varied nature of every caArray experiment and its corresponding data, it is impossible to outline the exact steps for creating a caArray-compatible MAGE-TAB file. There are strict guidelines, however, for characteristics of MAGE-TAB files that meet the criteria. Refer to
+<a href="https://wiki.nci.nih.gov/x/Rho9Ag" rel="nofollow">
+  Appendix A - MAGE-TAB in caArray
+</a>
+in the caArray User&#39;s Guide for specific details regarding caArray-compatible MAGE-TAB files. To provide context, see the
+<a href="http://www.mged.org/mage-tab/spec1.0.html" rel="nofollow">
+  MAGE-TAB Specification document
+</a>
+.
+
+To get started, you can generate a MAGE-TAB template file from
+<a href="http://www.mged.org/mage-tab/tools.html" rel="nofollow">
+  EMBL-EBI&#39;s MAGE TAB site
+</a>
+, or create your own IDF and SDRF files based on the
+<a href="http://tab2mage.sourceforge.net/docs/magetab_docs.html" rel="nofollow">
+  Sourceforge MAGE-TAB documentation
+</a>
+.
+
+It is essential that you review the details in
+<a href="https://wiki.nci.nih.gov/x/Rho9Ag" rel="nofollow">
+  Appendix A - MAGE-TAB in caArray
+</a>
+to ensure that your MAGE-TAB files meet the specifications for compatibility with caArray.
+
+For more information about when to use MAGE-TAB annotation files in caArray, refer to
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=42832087" rel="nofollow">
+  caArray 008 - Should I use the Annotations Tab or MAGE-TAB annotation Files in caArray?
+</a>
+. For more information on how to upload MAGE-TAB files, refer to
+<a href="https://wiki.nci.nih.gov/x/Oxo9Ag#7-SubmittingDatatoanExperiment-ImportingMAGETABData" rel="nofollow">
+  Importing MAGE_TAB Files
+</a>
+in the caArray User&#39;s Guide.
+<h2 id="caArray007MAGETABFiles-Haveacomment?">
+  Have a comment?
+</h2>
+Please leave your comment in the
+<a href="https://cabig-kc.nci.nih.gov/Molecular/forums/viewtopic.php?f=6&amp;t=577" rel="nofollow">
+  caArray End User Forum
+</a>
+. 

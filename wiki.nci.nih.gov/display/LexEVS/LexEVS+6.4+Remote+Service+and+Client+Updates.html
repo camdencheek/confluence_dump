@@ -1,0 +1,313 @@
+  Contents of this Page
+<ul>
+  <li>
+    <a href="#LexEVS6.4RemoteServiceandClientUpdates-DistributedClient" rel="nofollow">
+      Distributed Client
+    </a>
+    <ul>
+      <li>
+        <a href="#LexEVS6.4RemoteServiceandClientUpdates-UpdatedJars" rel="nofollow">
+          Updated Jars
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.4RemoteServiceandClientUpdates-LuceneJarsRemoved" rel="nofollow">
+          Lucene Jars Removed
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.4RemoteServiceandClientUpdates-LuceneJarsAdded" rel="nofollow">
+          Lucene Jars Added
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.4RemoteServiceandClientUpdates-SerializationJarsAdded" rel="nofollow">
+          Serialization Jars Added
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.4RemoteServiceandClientUpdates-NewdependentJars" rel="nofollow">
+          New dependent Jars
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.4RemoteServiceandClientUpdates-HTTPSUpdates" rel="nofollow">
+          HTTPS Updates
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#LexEVS6.4RemoteServiceandClientUpdates-RemoteService" rel="nofollow">
+      Remote Service
+    </a>
+    <ul>
+      <li>
+        <a href="#LexEVS6.4RemoteServiceandClientUpdates-UpdatedJars.1" rel="nofollow">
+          Updated Jars
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.4RemoteServiceandClientUpdates-LuceneJarsRemoved.1" rel="nofollow">
+          Lucene Jars Removed
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.4RemoteServiceandClientUpdates-LuceneJarsAdded.1" rel="nofollow">
+          Lucene Jars Added
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.4RemoteServiceandClientUpdates-SerializationJarsAdded.1" rel="nofollow">
+          Serialization Jars Added
+        </a>
+      </li>
+    </ul>
+  </li>
+</ul>
+This document describes the changes that were made to both the Remote Client and the Remote Service to make them compatible with LexEVS 6.4 (Lucene changes).
+<h2 id="LexEVS6.4RemoteServiceandClientUpdates-DistributedClient">
+  Distributed Client
+</h2>
+The distributed client project can be found on GitHub here:
+<a href="https://github.com/lexevs/LexEVS_Distributed_Client" rel="nofollow">
+  https://github.com/lexevs/LexEVS_Distributed_Client
+</a>
+The following list of jar changes have been made in the LexEVS_Distributed_Client/lib directory.  Additionally, the classpath has been updated to reference the jar changes.
+<h3 id="LexEVS6.4RemoteServiceandClientUpdates-UpdatedJars">
+  Updated Jars
+</h3>
+The following jars have been updated to a newer version to keep them in line with LexEVS:
+<ul>
+  <li>
+    lexbig.jar  - Latest jar from LexEVS Lucene build
+  </li>
+  <li>
+    lexevsapi64-beans.jar (replaced lexevsapi62-beans.jar)
+  </li>
+  <li>
+    lexevsapi64-framework.jar (replaced lexevsapi62-framework.jar)
+  </li>
+  <li>
+    LexEVSSecurity.jar (replaced  existing LexEVSSecurity.jar)
+  </li>
+  <li>
+    commons-codec-1.10.jar (replaced commons-codec-1.3.jar)
+  </li>
+</ul>
+<h3 id="LexEVS6.4RemoteServiceandClientUpdates-LuceneJarsRemoved">
+  Lucene Jars Removed
+</h3>
+The following jars are from Lucene 2.4.1 and have been removed:
+<ul>
+  <li>
+    lucene-analyzers-2.4.1.jar
+  </li>
+  <li>
+    lucene-core-2.4.1.jar
+  </li>
+  <li>
+    lucene-queries-2.4.1.jar
+  </li>
+  <li>
+    lucene-regex-2.4.1.jar
+  </li>
+  <li>
+    lucene-snowball-2.4.1.jar
+  </li>
+</ul>
+<h3 id="LexEVS6.4RemoteServiceandClientUpdates-LuceneJarsAdded">
+  Lucene Jars Added
+</h3>
+The following jars from Lucene 5.3.1 have been added:
+<ul>
+  <li>
+    lucene-analyzers-common-5.3.1.jar
+  </li>
+  <li>
+    lucene-analyzers-phonetic-5.3.1.jar
+  </li>
+  <li>
+    lucene-codecs-5.3.1.jar
+  </li>
+  <li>
+    lucene-core-5.3.1.jar
+  </li>
+  <li>
+    lucene-join-5.3.1.jar
+  </li>
+  <li>
+    lucene-queries-5.3.1.jar
+  </li>
+  <li>
+    lucene-queryparser-5.3.1.jar
+  </li>
+  <li>
+    lucene-sandbox-5.3.1.jar
+  </li>
+  <li>
+    lucene-test-framework-5.3.1.jar
+  </li>
+</ul>
+<h3 id="LexEVS6.4RemoteServiceandClientUpdates-SerializationJarsAdded">
+  Serialization Jars Added
+</h3>
+The following jars have been added for assisting with serializing Lucene objects (Lucene no longer serializes their objects):
+<ul>
+  <li>
+    kryo-2.21.jar
+  </li>
+  <li>
+    kryo-serializers-0.37.jar
+  </li>
+  <li>
+    minlog-1.2.jar
+  </li>
+</ul>
+<h3 id="LexEVS6.4RemoteServiceandClientUpdates-NewdependentJars">
+  New dependent Jars
+</h3>
+The following jars are new dependencies:
+<ul>
+  <li>
+    aspectjrt-1.6.8.jar
+  </li>
+  <li>
+    aspectjweaver-1.6.8.jar
+  </li>
+  <li>
+    commons-dbcp-1.4.jar
+  </li>
+  <li>
+    commons-httpclient-3.1.0.jar
+  </li>
+</ul>
+<h3 id="LexEVS6.4RemoteServiceandClientUpdates-HTTPSUpdates">
+  HTTPS Updates
+</h3>
+The following jar must be updated to 6.4.1 to support HTTPS updates from 6.4
+<ul>
+  <li>
+    lexevs-remote.client.6.4.jar
+  </li>
+</ul>
+Combined with changing service URLs to any HTTPS services should allow the processing of valid certificates.
+<h2 id="LexEVS6.4RemoteServiceandClientUpdates-RemoteService">
+  Remote Service
+</h2>
+The remote service project can be found on GitHub here:
+<a href="https://github.com/lexevs/lexevs-remote" rel="nofollow">
+  https://github.com/lexevs/lexevs-remote
+</a>
+The following list of jar changes have been made in the LexEVSService/system/lib directory.  Additionally, the classpath has been updated to reference the jar changes.
+<h3 id="LexEVS6.4RemoteServiceandClientUpdates-UpdatedJars.1">
+  Updated Jars
+</h3>
+The following jars have been updated to a newer version to keep them in line with LexEVS:
+<ul>
+  <li>
+    lexbig.jar  - Latest jar from LexEVS Lucene build
+  </li>
+  <li>
+    arq-2.8.5.jar (replaced arq.jar)
+  </li>
+  <li>
+    aspectjrt-1.7.2.jar (replaced aspectjrt-1.6.8.jar)
+  </li>
+  <li>
+    aspectjweaver-1.7.2.jar (replaced aspectjweaver-1.6.8.jar)
+  </li>
+  <li>
+    commons-beanutils-1.8.3.jar (replaced commons-beanutils-1.8.0.jar)
+  </li>
+  <li>
+    commons-cli-1.2.jar (replaced commons-cli-1.0.jar)
+  </li>
+  <li>
+    commons-codec-1.10.jar (replaced commons-codec-1.3.jar)
+  </li>
+  <li>
+    hsqldb-2.0.0.jar (replaced hsqldb-1.8.0.10.jar)
+  </li>
+  <li>
+    icu4j-3.6.1.jar (replaced icu4j-3.6.jar)
+  </li>
+  <li>
+    jena-2.6.4.jar (replaced jena-2.5.4.jar)
+  </li>
+  <li>
+    junit-4.10.jar (replaced junit-4.4.jar)
+  </li>
+  <li>
+    looks-2.1.4.jar (replaced looks-2.1.3.jar)
+  </li>
+</ul>
+<h3 id="LexEVS6.4RemoteServiceandClientUpdates-LuceneJarsRemoved.1">
+  Lucene Jars Removed
+</h3>
+The following jars are from Lucene 2.4.1 and have been removed:
+<ul>
+  <li>
+    lucene-analyzers-2.4.1.jar
+  </li>
+  <li>
+    lucene-core-2.4.1.jar
+  </li>
+  <li>
+    lucene-queries-2.4.1.jar
+  </li>
+  <li>
+    lucene-regex-2.4.1.jar
+  </li>
+  <li>
+    lucene-snowball-2.4.1.jar
+  </li>
+</ul>
+<h3 id="LexEVS6.4RemoteServiceandClientUpdates-LuceneJarsAdded.1">
+  Lucene Jars Added
+</h3>
+The following jars from Lucene 5.3.1 have been added:
+<ul>
+  <li>
+    lucene-analyzers-common-5.3.1.jar
+  </li>
+  <li>
+    lucene-analyzers-phonetic-5.3.1.jar
+  </li>
+  <li>
+    lucene-codecs-5.3.1.jar
+  </li>
+  <li>
+    lucene-core-5.3.1.jar
+  </li>
+  <li>
+    lucene-join-5.3.1.jar
+  </li>
+  <li>
+    lucene-queries-5.3.1.jar
+  </li>
+  <li>
+    lucene-queryparser-5.3.1.jar
+  </li>
+  <li>
+    lucene-sandbox-5.3.1.jar
+  </li>
+  <li>
+    lucene-test-framework-5.3.1.jar
+  </li>
+</ul>
+<h3 id="LexEVS6.4RemoteServiceandClientUpdates-SerializationJarsAdded.1">
+  Serialization Jars Added
+</h3>
+The following jars have been added for assisting with serializing Lucene objects (Lucene no longer serializes their objects):
+<ul>
+  <li>
+    kryo-2.21.jar
+  </li>
+  <li>
+    kryo-serializers-0.37.jar
+  </li>
+  <li>
+    minlog-1.2.jar
+  </li>
+</ul>

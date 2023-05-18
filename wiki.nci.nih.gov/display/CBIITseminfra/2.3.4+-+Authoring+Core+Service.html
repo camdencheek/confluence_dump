@@ -1,0 +1,54 @@
+The authoring core provides the ability to create and manage change sets and properties – aspects that are common to all authoring services.
+
+The LexEVS API and the LexGrid model have been designed to provide capabilities to make changes to the terminology elements such as code system or value sets.
+
+However, the current LexGrid architecture and model is based on the premise that the information being provided is valid and consistent and is not designed to support partially formed artifacts such as concepts without associated codes and associations that have a source but no target.
+
+The LexEVS authoring task assumes that there is an external authoring tool that persists partially formed content and performs the necessary validation and reasoning tasks prior to the content being incrementally loaded into the LexEVS services.
+
+We see this as being a necessary separation, as the potential combination of editors, reasoners, terminology models, other terminology management tooling is almost limitless, and each of these will have its own requirements when it comes to completeness and validity.
+
+Important Note
+Before the changed terminology content is sent to LexEVS Authoring API to process, the client application should make sure that the contents are valid.
+<ul>
+  <li>
+    The contents should either be in LexGrid XML format or a LexGrid java object.
+  </li>
+  <li>
+    The entry level for the changed contents should be at either systemRelease or revision level.
+  </li>
+  <li>
+    The input format will be validated against the LexGrid schema for compliance. If validation fails, an exception will be thrown.
+  </li>
+  <li>
+    Each change request in the revision package is validated sequentially. Each individual request validation will be performed based on the premise that all requests that precede it have been applied (for example, if there are two change requests, one to create a new coding scheme and the second to create a new entity for the coding scheme, the new entity request is validated on the assumption that the coding scheme has been created. The service may validate the entire revision or it may cease validation at any point after an error is detected. This is up to the service provider.
+  </li>
+  <li>
+    If no errors are detected in previous step, the change package is submitted to the business rules &#34;hook&#34;, which can apply additional validation, logging and error checking. If the business rules hook returns an error, no further processing is done and the result is returned to the submitter.
+  </li>
+  <li>
+    If the submission passed step two, the complete set of changes will be applied to the service. If, for any reason, an error occurs, such as a network failure or a database failure, the entire revision will be rolled back. Otherwise, the set of changes will be committed.
+  </li>
+</ul>
+The intent of the change requests is as follows:
+<ul>
+  <li>
+    NEW - to create a new versionable element
+  </li>
+  <li>
+    MODIFY - to change the attributes of an existing versionable element
+  </li>
+  <li>
+    VERSIONABLE - to change (or schedule a change of) the status of a versionable element within the context of the containing service.
+  </li>
+  <li>
+    REMOVE - to remove a versionable element from the service. (Note that VERSIONABLE Retire should be used if the element and its history should remain.)
+  </li>
+  <li>
+    DEPENDENT - no changes are to be made to the named element itself, but a versionable element whose identity is dependent upon this element is to undergo a change.
+  </li>
+</ul>
+Additional information is available at:
+<a href="https://wiki.nci.nih.gov/display/EVS/LexEVS+6.0+Design+Document+-+Detailed+Design+-+Authoring#LexEVS6.0DesignDocument-DetailedDesign-Authoring-LexEVSAuthoringArchitecture%3A" rel="nofollow">
+  LexEVS Authoring
+</a>

@@ -1,0 +1,14 @@
+<ul>
+  <li>
+    BUSN (business identifier). An identifier whose scope is defined by business practices associated with the object. In contrast to the other scope identifiers, the scope of the use of the ID is not necessarily restricted to a single object, but may be reused for other objects closely associated with the object due to business practice.
+  </li>
+  <li>
+    OBJ (object identifier). The identifier associated with a particular object. It remains consistent as the object undergoes state transitions.
+  </li>
+  <li>
+    VER (version identifier). An identifier that references a particular object as it existed at a given point in time. The identifier SHALL change with each state transition on the object. That is, the version identifier of an object prior to a “suspend” state transition is distinct from the identifier of the object after the state transition. Each  version identifier can be tied to exactly one Control Act event which brought that version into being (though the control act may never be instantiated).Applications that do not support versioning of objects must ignore and not persist these IDs to avoid confusion resulting from leaving the same identifier on an object that undergoes changes.
+  </li>
+  <li>
+    VW (view specific identifier). An identifier for a particular snapshot of a version of the object. This identifies a view of the business object at a particular point in time, and as such identifies a set of data items that can be digitally signed and/or attested. This is in contrast to the Version Identifier which identifies the object at a specific time, but not the amount of information being asserted about the object. This identifier would be changed when a transformation of the information is performed (e.g., to add code translations, to provide a simplified textual rendering, or to provide additional information about the object as it existed at the specific point in time).
+  </li>
+</ul>

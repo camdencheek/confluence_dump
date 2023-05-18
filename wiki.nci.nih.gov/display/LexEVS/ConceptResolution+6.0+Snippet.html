@@ -1,0 +1,38 @@
+Java Code Snippet
+
+// Create a basic service object for data retrieval
+LexBIGServiceImpl lbs = LexBIGServiceImpl.defaultInstance();
+
+// Create a list of unique references (concept codes) for this coding scheme.
+// Parameters:
+//       A String array initialized with a single concept code
+//       The name of the target Coding Scheme.
+ConceptReferenceList crefs = ConvenienceMethods.createConceptReferenceList(
+new String[], SAMPLE_SCHEME);
+
+// Initialize a coding scheme version object the version of the
+// sample scheme.
+CodingSchemeVersionOrTag csvt = new CodingSchemeVersionOrTag();
+csvt.setVersion(VERSION);
+
+// Initialize a CodedNodeSet Object with all possible concepts in our sample coding
+// scheme, then restrict the node set to a single node using restrictToCodes(crefs)
+CodedNodeSet nodes = lbs.getCodingSchemeConcepts(SAMPLE_SCHEME, csvt).
+restrictToCodes(crefs);
+
+// Build a potential list of references from the current (and already restricted) set
+// and restrict them to the single property name &#34;textualPresentation&#34; and
+// allow the list a size of 1.
+ResolvedConceptReferenceList matches = nodes.resolveToList(
+null, ConvenienceMethods.createLocalNameList(&#34;textualPresentation&#34;), null, 1);
+
+// Check the list size to see if any references are returned.  If true
+// get the only referenced entity in the list and print out it&#39;s &#34;presentation&#34;
+// or textual representation.
+if(matches.getResolvedConceptReferenceCount() &gt; 0)
+{
+ResolvedConceptReference ref = (ResolvedConceptReference)matches.
+enumerateResolvedConceptReference().nextElement();
+Entity entry = ref.getReferencedEntry();
+System.out.println(&#34;Matching Name: &#34; +
+entry.getPresentation(0).getValue().getContent() ); 

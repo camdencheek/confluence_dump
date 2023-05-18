@@ -1,0 +1,27 @@
+To customize an enabled package or to deploy newly enabled packages as web services, perform the following:
+<ol>
+  <li>
+    Create a deployment project directory with the command
+    R -e &#34;library(RWebServices); unpackAntScript(&#39;/path/to&#39;)&#34;
+    Visit the RWebServicesEnv.properties and RWebServicesTuning.properties files in this directory to ensure suitable configuration.
+  </li>
+  <li>
+    In the directory created above, execute the following commands to unpack and compile the package
+    ant map-package –Dpkg=&lt;package&gt; -DcaGridProj=/path/to
+    ant unpack-package –Dpkg=&lt;package&gt;
+    ant precompile
+    Combine several packages into a single service with a comma-separated list of packages in place of a single &lt;package&gt; name.
+  </li>
+  <li>
+    To use data types or methods of the package, build the jar for the package and copy it into the lib directory of a cagrid web service module with an ant command combined with: –Dpkg=xxx –DcaGridProj=xxx:
+    ant cagrid-build –Dpkg=&lt;package&gt; -DcaGridProj=/path/to/cagrid_webservice
+  </li>
+  <li>
+    Go to the cagrid web service module directory
+    ant deployTomcat
+    to deploy cagrid web service to Tomcat server.
+  </li>
+  <li>
+    Go to Tomcat server and restart Tomcat.
+  </li>
+</ol>

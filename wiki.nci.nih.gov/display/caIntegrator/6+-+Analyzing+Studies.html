@@ -1,0 +1,1844 @@
+This chapter describes how to use caIntegrator tools to analyze data in subject annotation or genomic studies that have been deployed in caIntegrator.Topics in this chapter include the following:
+<ul>
+  <li>
+    <a href="#id-6AnalyzingStudies-DataAnalysisOverview" rel="nofollow">
+      Data Analysis Overview
+    </a>
+  </li>
+  <li>
+    <a href="#id-6AnalyzingStudies-CreatingKaplan-MeierPlots" rel="nofollow">
+      Creating Kaplan-Meier Plots
+    </a>
+    <ul>
+      <li>
+        <a href="#id-6AnalyzingStudies-K-MPlotforAnnotations" rel="nofollow">
+          K-M Plot for Annotations
+        </a>
+      </li>
+      <li>
+        <a href="#id-6AnalyzingStudies-K-MPlotforGeneExpression" rel="nofollow">
+          K-M Plot for Gene Expression
+        </a>
+      </li>
+      <li>
+        <a href="#id-6AnalyzingStudies-K-MPlotforQueriesandSavedLists" rel="nofollow">
+          K-M Plot for Queries and Saved Lists
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#id-6AnalyzingStudies-CreatingGeneExpressionPlots" rel="nofollow">
+      Creating Gene Expression Plots
+    </a>
+    <ul>
+      <li>
+        <a href="#id-6AnalyzingStudies-GeneExpressionValuePlotforAnnotation" rel="nofollow">
+          Gene Expression Value Plot for Annotation
+        </a>
+      </li>
+      <li>
+        <a href="#id-6AnalyzingStudies-GeneExpressionValuePlotforGenomicQueries" rel="nofollow">
+          Gene Expression Value Plot for Genomic Queries
+        </a>
+      </li>
+      <li>
+        <a href="#id-6AnalyzingStudies-GeneExpressionValuePlotforAnnotationandSavedListQueries" rel="nofollow">
+          Gene Expression Value Plot for Annotation and Saved List Queries
+        </a>
+      </li>
+      <li>
+        <a href="#id-6AnalyzingStudies-UnderstandingaGeneExpressionPlot" rel="nofollow">
+          Understanding a Gene Expression Plot
+        </a>
+        <ul>
+          <li>
+            <a href="#id-6AnalyzingStudies-ChoosingGenes" rel="nofollow">
+              Choosing Genes
+            </a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#id-6AnalyzingStudies-AnalyzingDatawithGenePattern" rel="nofollow">
+      Analyzing Data with GenePattern
+    </a>
+    <ul>
+      <li>
+        <a href="#id-6AnalyzingStudies-GenePatternModules" rel="nofollow">
+          GenePattern Modules
+        </a>
+      </li>
+      <li>
+        <a href="#id-6AnalyzingStudies-ComparativeMarkerSelection(CMS)Analysis" rel="nofollow">
+          Comparative Marker Selection (CMS) Analysis
+        </a>
+      </li>
+      <li>
+        <a href="#id-6AnalyzingStudies-PrincipalComponentAnalysis(PCA)" rel="nofollow">
+          Principal Component Analysis (PCA)
+        </a>
+      </li>
+      <li>
+        <a href="#id-6AnalyzingStudies-GISTIC-SupportedAnalysis" rel="nofollow">
+          GISTIC-Supported Analysis
+        </a>
+        <ul>
+          <li>
+            <a href="#id-6AnalyzingStudies-EditingaGISTICAnalysis" rel="nofollow">
+              Editing a GISTIC Analysis
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#id-6AnalyzingStudies-ViewingDatawiththeIntegrativeGenomicsViewer" rel="nofollow">
+          Viewing Data with the Integrative Genomics Viewer
+        </a>
+        <ul>
+          <li>
+            <a href="#id-6AnalyzingStudies-Method1IGV" rel="nofollow">
+              Method 1 IGV
+            </a>
+          </li>
+          <li>
+            <a href="#id-6AnalyzingStudies-Method2IGV" rel="nofollow">
+              Method 2 IGV
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#id-6AnalyzingStudies-ViewingDatawithHeatMapViewer" rel="nofollow">
+          Viewing Data with Heat Map Viewer
+        </a>
+        <ul>
+          <ul>
+            <li>
+              <a href="#id-6AnalyzingStudies-Method1HMV" rel="nofollow">
+                Method 1 HMV
+              </a>
+            </li>
+            <li>
+              <a href="#id-6AnalyzingStudies-Method2HMV" rel="nofollow">
+                Method 2 HMV
+              </a>
+            </li>
+          </ul>
+          <li>
+            <a href="#id-6AnalyzingStudies-JavaforIGVandHeatMapViewer" rel="nofollow">
+              Java for IGV and Heat Map Viewer
+            </a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+<h2 id="id-6AnalyzingStudies-DataAnalysisOverview">
+  Data Analysis Overview
+</h2>
+Once a study has been deployed, you can analyze the data using caIntegrator analysis tools.You can verify that the study has &#34;Deployed&#34; status by selecting the study name in the My Studies dropdown selector. After selecting the study name, click Home in the left sidebar of the caIntegrator menu. A study summary should appear, including a status field. If the status is not deployed, or if the study summary does not appear, then the study is not deployed nor available for analysis.If the study is ready for analysis, you will see an Analysis Tools menu in the left sidebar with the following options:
+<ul>
+  <li>
+    K-M Plot: This tool analyzes subject annotation data, generating a Kaplan-Meier (K-M) plot based on survival data sets. See
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726029" rel="nofollow">
+      Creating Kaplan-Meier Plots
+    </a>
+    .
+  </li>
+  <li>
+    Gene Expression Plot: This tool analyzes annotation, subject annotation or genomic data based on gene expression values. See
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726029" rel="nofollow">
+      Creating Gene Expression Plots
+    </a>
+    .
+  </li>
+  <li>
+    GenePattern: This feature provides an express link to GenePattern where you can perform analyses on selected caIntegrator studies, or it enables you to perform several GenePattern analyses on the grid. See
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726029" rel="nofollow">
+      Analyzing Data with GenePattern
+    </a>
+    .
+  </li>
+</ul>
+After defining or running the analysis on selected data sets, analysis results display on the same page, allowing you to review the analysis method parameters you defined.
+<h2 id="id-6AnalyzingStudies-CreatingKaplan-MeierPlots">
+  Creating Kaplan-Meier Plots
+</h2>
+This help topic opens from any of the three K-M plot tabs. For specific details about working with these tabs, see the following topics:
+<ul>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726029" rel="nofollow">
+      K-M Plot for Annotations
+    </a>
+  </li>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726029" rel="nofollow">
+      K-M Plot for Gene Expression
+    </a>
+  </li>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726029" rel="nofollow">
+      K-M Plot for Queries and Saved Lists
+    </a>
+  </li>
+</ul>
+The Kaplan-Meier method analyzes comparative groups of subjects or samples. In caIntegrator, the K-M method can compare survival statistics among comparative groups. You can configure the
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726024" rel="nofollow">
+  survival data
+</a>
+in the application. For example, you might identify a group of patients with smoking history and compare survival rates with a group of non-smoking patients, or compare the survival data for two groups of patients with a specific disease type, based on Karnofsky scores. You could compare groups of subjects with varying gene expression levels. You can also identify data sets using the query feature in the application, saving the queries, then configuring the K-M to compare groups identified by the queries.The key is to first identify subsets of subjects or samples that meet criteria you want to establish, thus filtering the data you want to compare. Next, generate a K-M plot based on their survival probability as a function of time. Survival differences are analyzed by the log-rank test.caIntegrator calculates the log-rank p-value for the data, indicating the significance of the difference in survival between any two groups of samples. The log rank p-value is calculated using the Mantel-Haenszel method. The p-values are recalculated every time a new plot is generated.Before performing K-M plotTo perform a K-M plot analysis, survival data must have been identified for the study you want to analyze or an Annotation Field Descriptor such as DAYSTODEATH has been set to Data Type &#39;numeric&#39;. For more information, see
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726024" rel="nofollow">
+  Defining Survival Values
+</a>
+.
+<h3 id="id-6AnalyzingStudies-K-MPlotforAnnotations">
+  K-M Plot for Annotations
+</h3>
+The groups identified for this K-M plot generation are based on annotations.
+<ol>
+  <li>
+    Select the study whose data you want to analyze in the upper right portion of the caIntegrator page.
+  </li>
+  <li>
+    Under Analysis Tools on the left sidebar, select K-M Plot.
+  </li>
+  <li>
+    Select the For Annotation tab at the top of the page, shown in the following figure.
+    <img alt="For Annotation tab, described in text" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/6%20-%20Analyzing%20Studies/KM%20plot280.PNG?api=v2">
+  </li>
+  <li>
+    The groups to be compared in the K-M plot originate from one patient group. Varying data sets are based upon multiple values corresponding to the selected annotation. Define Patient Groups using the options described in the following table:
+    <table>
+      <tbody>
+        <tr>
+          <th>
+            Field
+          </th>
+          <th>
+            Description
+          </th>
+        </tr>
+        <tr>
+          <td>
+            Annotation Type
+          </td>
+          <td>
+            Select the annotation type that identifies the patient group. Selections are based on the data in the chosen study.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Annotation
+          </td>
+          <td>
+            Select an annotation. Fields are based on the annotation type you select. For example, if you choose Subject, then you could select Gender or Radiation Type or any field that would distinguish the patients into groups based upon their values.TipOnly annotations that are defined with permissible values display in the drop-down list.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Values
+          </td>
+          <td>
+            Using conventional selection techniques, select two or more values which will be the basis for the K-M plot. Permissible (available) values or &#34;No Values&#34; correspond to the selected annotation.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Survival Value
+          </td>
+          <td>
+            Survival value is the length of time the patient lived. caIntegrator displays valid survival values entered for this study. Select the survival measure which is the unit of measurement for the survival value to be used for the plot.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    Click the Create Plot button.
+  </li>
+</ol>
+caIntegrator generates the plot, as shown in the following figure. The plot displays below the plot criteria.
+<img alt="K-M plot, described in text" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/6%20-%20Analyzing%20Studies/KM%20annotation%20results80.PNG?api=v2">
+<ul>
+  <li>
+    The number of subjects for each group is embedded in the legend below the plot.
+  </li>
+  <li>
+    caIntegrator generates a P-value for the selected groups; it displays at the bottom of the page. A low P-value generally has more significance than a high P-value.
+  </li>
+  <li>
+    For information regarding the P-value calculation, see
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726029" rel="nofollow">
+      Creating Kaplan-Meier Plots
+    </a>
+    .
+  </li>
+</ul>
+<h3 id="id-6AnalyzingStudies-K-MPlotforGeneExpression">
+  K-M Plot for Gene Expression
+</h3>
+caIntegrator allows you to compare expression levels for one given gene in different representative groups. The relative expression level is referred to as &#34;fold change&#34;. Fold change is the ratio of the measured gene expression value in an experimental sample as determined by a reporter to a reference value calculated for that reporter against all control samples. The reference value is calculated by taking the mean of the log2 of the expression values for all control samples for the reporter in question. The log2 mean value, n, is then converted back to a comparable expression signal by returning 2 to the exponent n.To create a K-M plot illustrating gene expression values, follow these steps:
+<ol>
+  <li>
+    Select the study whose data you want to analyze in the upper right portion of the caIntegrator page. You must select a study with gene expression data.
+  </li>
+  <li>
+    Under Analysis Tools on the left sidebar, select K-M Plot.
+  </li>
+  <li>
+    Select the For Gene Expression tab, shown in the following figure. Plot criteria are described in the table following the figure.
+    <img alt="K-M plot, described in text" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/6%20-%20Analyzing%20Studies/Region%20Capture280.PNG?api=v2">
+    <table>
+      <tbody>
+        <tr>
+          <th>
+            Field
+          </th>
+          <th>
+            Description
+          </th>
+        </tr>
+        <tr>
+          <td>
+            Gene Symbol
+          </td>
+          <td>
+            Enter one or more gene symbols in the text box or click the icons to locate genes in the following databases. If you enter more than one gene in the text box, separate the entries by commas.caIntegrator provides three methods whereby you can obtain gene symbols for calculating a KM or gene expression plot. For more information, see
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=50694033" rel="nofollow">
+              Choosing Genes
+            </a>
+            ..
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Expression Type
+          </td>
+          <td>
+            By Fold Change: This option allows you to define in the next two fields the over- and under-expression criteria expressed in terms of fold-change. Fold change is the ratio of the measured gene expression value for an experimental sample to the expression value for the control sample. By Expression Level: This option allows you to run a KM gene expression plot when there is no control group nor reference data set. In the next two fields, enter values Overexpressed (above expression level) or Underexpressed (below expression level).
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Survival Value
+          </td>
+          <td>
+            Survival value, the length of time the patient lived, is required for both expression types. Select the survival measure which is the unit of measurement for the survival value to be used for the plot.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Control Sample Sets
+          </td>
+          <td>
+            This field is required only for fold change data. One or more control sets are created by the study manager when a study is deployed. Select the Control Sample Set you would like to use to calculate fold-change.Platform for control setIf the study has more than one platform associated with it, the platform is inherently selected when you select the control set. Control sets are comprised of samples from only one platform.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    Click the Create Plot button.
+  </li>
+</ol>
+caIntegrator generates the plot which displays below the plot criteria. An example displays in the following figure.
+<img alt="Example plot, described in text" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/6%20-%20Analyzing%20Studies/KM%20g%20ex%20results80.PNG?api=v2">
+<ul>
+  <li>
+    The gene symbol for each group represented in the data appears with its color correlation to the plot embedded in the legend below the plot. Three lines on this plot represent each gene symbol entered for the plot. Each line of the three represents a subgroup of people carrying the gene--one line for overexpressed values, one line for under expressed values and one line for intermediate values which represents gene values that are not up-regulated nor down-regulated.
+  </li>
+  <li>
+    In queries that include a fold change criterion and that are configured to return genomic data, raw expression values are replaced with calculated fold change values.
+  </li>
+  <li>
+    A P-value is also generated for the selected groups; it displays at the bottom of the page. A low P-value generally has more significance than a high P-value.
+  </li>
+  <li>
+    For information regarding the P-value calculation, see
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726029" rel="nofollow">
+      Creating Kaplan-Meier Plots
+    </a>
+    .
+  </li>
+</ul>
+<h3 id="id-6AnalyzingStudies-K-MPlotforQueriesandSavedLists">
+  K-M Plot for Queries and Saved Lists
+</h3>
+You can identify data sets using the query feature in the application. You can manipulate the queries to find the groups you want to compare, save the queries, then configure the K-M to compare the query groups. This is one method of limiting the data considered in the K-M plot calculation.
+<ol>
+  <li>
+    Select the study whose data you want to analyze in the upper right portion of the caIntegrator page. The queries you identify for the K-M plot must have been saved previously in caIntegrator.
+  </li>
+  <li>
+    Under Analysis Tools on the left sidebar, select K-M Plot.
+  </li>
+  <li>
+    Select the For Queries and Saved Lists tab, shown in the following figure. The criteria for the plot are described in the table below the figure.
+    <img alt="Example plot showing plot criteria, described in text" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/6%20-%20Analyzing%20Studies/Region%20Capture380.PNG?api=v2">
+    <table>
+      <tbody>
+        <tr>
+          <th>
+            Field
+          </th>
+          <th>
+            Description
+          </th>
+        </tr>
+        <tr>
+          <td>
+            Queries
+          </td>
+          <td>
+            Select Queries whose data you want to analyze from the All Available Queries panel and move them to the Selected Queries panel using the Add &gt;&gt; button. Note:Genomic queries do not appear in the lists; they cannot be selected for this type of K-M plot.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Exclusive Subject in Queries
+          </td>
+          <td>
+            Check the box if you want to exclude any subjects that appear in both (or all) queries selected for the plot, thus eliminating overlap.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Add Additional Group...all other subjects
+          </td>
+          <td>
+            Check the box to create an additional group of all other subjects that are not in selected query groups.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Survival value
+          </td>
+          <td>
+            Survival value is the length of time the patient lived. Select the survival measure which is the unit of measurement for the survival value to be used for the plot.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    Click the Create Plot button.
+  </li>
+</ol>
+caIntegrator generates the plot which then displays below the plot criteria. An example displays in the following figure.
+<img alt="Example plot, described in text" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/6%20-%20Analyzing%20Studies/KM%20queries%20results80.PNG?api=v2">
+<ul>
+  <li>
+    The number of subjects for each group is embedded in the legend below the plot.
+  </li>
+  <li>
+    A P-value is also generated for the selected groups; it displays at the bottom of the page. A low P-value generally has more significance than a high P-value.
+  </li>
+  <li>
+    For information regarding the P-value calculation, see
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726029" rel="nofollow">
+      Creating Kaplan-Meier Plots
+    </a>
+    .
+  </li>
+</ul>
+<h2 id="id-6AnalyzingStudies-CreatingGeneExpressionPlots">
+  Creating Gene Expression Plots
+</h2>
+Gene expression plots compare signal values from reporters or genes. This statistical tool allows you to compare values for multiple genes at a time; it does not limit your comparison to only two sets of data. It also allows you to compare expression levels for selected genes against expression levels for a set of control samples designated at the time of study definition.caIntegrator provides three ways to generate meaningful gene expression plots, indicated by tabs on the page. The tabs are independent of each other and allow you to select the genes, reporters and sample groups to be analyzed on the plot.
+<ul>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726029" rel="nofollow">
+      Gene Expression Value Plot for Annotation
+    </a>
+    – You can locate genes in the caBIO directories or caIntegrator Gene Lists. You can learn more about the genes in the CGAP directory. You can define criteria for the plot using subject annotation and image annotations.
+  </li>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726029" rel="nofollow">
+      Gene Expression Value Plot for Genomic Queries
+    </a>
+    – You can select data based on saved genomic queries.
+  </li>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726029" rel="nofollow">
+      Gene Expression Value Plot for Annotation and Saved List Queries
+    </a>
+    – You can select data based on saved subject annotation queries. You can locate genes in the caBIO directories or caIntegrator Gene Lists.
+  </li>
+</ul>
+See also
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726029" rel="nofollow">
+  Understanding a Gene Expression Plot
+</a>
+.
+<h3 id="id-6AnalyzingStudies-GeneExpressionValuePlotforAnnotation">
+  Gene Expression Value Plot for Annotation
+</h3>
+To generate a gene expression plot, follow these steps:
+<ol>
+  <li>
+    Select the study whose data you want to analyze in the upper right portion of the caIntegrator page. (You must select a study which has genomic data.)
+  </li>
+  <li>
+    Under Analysis Tools on the left sidebar, select Gene Expression Plot. This opens a page with three tabs.
+  </li>
+  <li>
+    Select the For Annotation tab, shown in the following figure. Criteria for the plot are described in the table following the figure.
+    <img alt="Gene expression value tab showing fields for configuring gene expression annotation value plot. Fields are described in text." src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/6%20-%20Analyzing%20Studies/GE%20plot%20setup%20annotation80.PNG?api=v2">
+    <table>
+      <tbody>
+        <tr>
+          <th>
+            Field
+          </th>
+          <td>
+            Description
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Gene Symbol
+          </td>
+          <td>
+            Enter one or more gene symbols in the text box or click the icons to locate genes in the following databases. If you enter more than one gene in the text box, separate the entries by commas.caIntegrator provides three methods whereby you can obtain gene symbols for calculating a KM or gene expression plot. For more information, see
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=50694033" rel="nofollow">
+              Choosing Genes
+            </a>
+            .
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Reporter Type
+          </td>
+          <td>
+            Select the radio button that describes the reporter type: Reporter ID--Summarizes expression levels for all reporters you specify. Gene Name--Summarizes expression levels at the gene level. Platform--This field displays only if the study has multiple platforms. Select the appropriate platform for the plot. The platform you select determines the genes used for the plot.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Sample Groups
+          </td>
+          <td>
+            Choose among the following options: Annotation Type--Select the annotation type; selections are based on the data in the chosen study. Annotation--Select an annotation; fields are based on the annotation type you select. For example, if you choose Subject, then you could select Gender or Radiation Type or any field that would organize the subjects into groups based upon study values. Values--Using conventional selection techniques, select one or more values which will be the basis for the plot. Permissible (available) values or &#34;No Values&#34; correspond to the selected annotation.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Add Additional Group...
+          </td>
+          <td>
+            Define as follows: ...all other subjects – Check the box to create an additional group of all other subjects that are not in selected query groups. ..control group – Check the box to display an additional group of control samples for this study. The control set should be composed of only samples which are mapped to subjects. See
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726024" rel="nofollow">
+              Uploading Control Samples
+            </a>
+            .
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    Click the Create Plot button.
+  </li>
+</ol>
+caIntegrator generates the plot which displays below the plot criteria in bar graph format. Legends below the plot indicate the plot input. By default, the plot shows the median calculation summaries of gene expression. An example displays in the following figure.
+<img alt="Example plot, described in text" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/6%20-%20Analyzing%20Studies/GE%20plot%20result%20annotation75.PNG?api=v2">
+<ul>
+  <li>
+    You can recalculate the data display by changing the Plot Type above the graph.
+  </li>
+  <li>
+    You can modify the plot parameters and click the Reset button to recalculate the plot.
+  </li>
+</ul>
+See also See
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726029" rel="nofollow">
+  Understanding a Gene Expression Plot
+</a>
+.
+<h3 id="id-6AnalyzingStudies-GeneExpressionValuePlotforGenomicQueries">
+  Gene Expression Value Plot for Genomic Queries
+</h3>
+Data to be analyzed on this tab must have been saved as a genomic query. For more information, see
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726023" rel="nofollow">
+  Saving a Query
+</a>
+.To generate a gene expression plot using a genomic query, follow these steps:
+<ol>
+  <li>
+    Select the study whose data you want to analyze in the upper right portion of the caIntegrator page. (You must select a study which has genomic data.)
+  </li>
+  <li>
+    Under Analysis Tools on the left sidebar, select Gene Expression Plot.
+  </li>
+  <li>
+    Select the For Genomic Queries tab, shown in the following figure. Criteria for the plot are described in the table following the figure.
+    <img alt="Example plot showing plot criteria, described in text" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/6%20-%20Analyzing%20Studies/GE%20plot%20setup%20genomic80.PNG?api=v2">
+    <table>
+      <tbody>
+        <tr>
+          <th>
+            Field
+          </th>
+          <th>
+            Description
+          </th>
+        </tr>
+        <tr>
+          <td>
+            Genomic Query
+          </td>
+          <td>
+            Click on the genomic query upon which the plot is to be based.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Reporter Type
+          </td>
+          <td>
+            Select the radio button that describes the reporter type: Reporter ID--Summarizes expression levels for all reporters you specify. Gene Name--Summarizes expression levels at the gene level.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    Click Create Plot. caIntegrator generates the plot, as shown in the following figure. The plot displays below the plot criteria. Legends below the plot indicate the plot input.
+    <img alt="Example plot, described in text" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/6%20-%20Analyzing%20Studies/GE%20plot%20result%20genomic75.PNG?api=v2">
+  </li>
+</ol>
+<ul>
+  <li>
+    You can recalculate the data display by changing the Plot Type above the graph.
+  </li>
+  <li>
+    You can modify the plot parameters and click the Reset button to recalculate the plot.
+  </li>
+</ul>
+See also
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726029" rel="nofollow">
+  Understanding a Gene Expression Plot
+</a>
+.
+<h3 id="id-6AnalyzingStudies-GeneExpressionValuePlotforAnnotationandSavedListQueries">
+  Gene Expression Value Plot for Annotation and Saved List Queries
+</h3>
+Data to be analyzed on this tab must have been saved as a subject annotation query, but it must have genomic data identified in the query. For more information, see
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726024" rel="nofollow">
+  Adding or Editing Genomic Data
+</a>
+. For the genomic data, you must identify genes whose expression values are used to calculate the plot.To generate the plot, follow these steps:
+<ol>
+  <li>
+    Select the study whose data you want to analyze in the upper right portion of the caIntegrator page. You must select a study saved as a subject annotation study, but which has genomic data.
+  </li>
+  <li>
+    Under Analysis Tools on the left sidebar, select Gene Expression Plot.
+  </li>
+  <li>
+    Select the For Annotation Queries and Saved Lists tab, shown in the following figure. Plot criteria are described in the table following the figure.
+    <img alt="Example annotation queries and saved list tab, described in text" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/6%20-%20Analyzing%20Studies/GE%20plot%20setup%20annotations%20saved%20queries80.PNG?api=v2">
+    <table>
+      <tbody>
+        <tr>
+          <th>
+            Field
+          </th>
+          <th>
+            Description
+          </th>
+        </tr>
+        <tr>
+          <td>
+            Gene Symbol
+          </td>
+          <td>
+            Enter one or more gene symbols in the text box or click the icons to locate genes in the following databases. If you enter more than one gene in the text box, separate the entries by commas.caIntegrator provides three methods whereby you can obtain gene symbols for calculating a KM or gene expression plot. For more information, see
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=50694033" rel="nofollow">
+              Choosing Genes
+            </a>
+            .
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Reporter Type
+          </td>
+          <td>
+            Select the radio button that describes the reporter type: Reporter ID – Summarizes expression levels for all reporters you specify. Gene Name – Summarizes expression levels at the gene level.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Platform
+          </td>
+          <td>
+            This field displays only if the study has multiple platforms. Select the appropriate platform for the plot. The platform you select determines the genes used for the plot.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Saved Queries
+          </td>
+          <td>
+            Choose among the available saved queries and lists. Build your selections in the right panel by using the Add &gt; and Remove &lt; buttons.Prefixes for listsThe [SL] and [Q] prefixes to list names indicate &#34;Subject Lists&#34; or &#34;Saved Queries&#34;. A &#34;G&#34; in the prefix indicates the list is Global. For more information, see
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726038" rel="nofollow">
+              Creating a Gene or Subject List
+            </a>
+            .
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Exclusive Subjects...
+          </td>
+          <td>
+            To remove subjects in your queries and lists selection from queries or lists you use subsequently for analysis, check the button. This allows you to use them exclusively for the current analysis.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Add Additional Group...
+          </td>
+          <td>
+            Define as follows: ...all other subjects – Check the box to create an additional group of all other subjects that are not in selected query groups. ...control group – Check the box to display an additional group of control samples for this study. The control set should be composed of only samples which are mapped to subjects. See
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726024" rel="nofollow">
+              Uploading Control Samples
+            </a>
+            .
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    Click the Create Plot button.
+  </li>
+</ol>
+caIntegrator generates the plot in bar graph format which displays below the plot criteria. By default, legends below the plot indicate the plot input. An example displays in the following figure.
+<img alt="Example plot, described in text" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/6%20-%20Analyzing%20Studies/GE%20plot%20result%20clin%20queries75.PNG?api=v2">
+<ul>
+  <li>
+    You can recalculate the data display by changing the Plot Type above the graph.
+  </li>
+  <li>
+    You can modify the plot parameters and click the Reset button to recalculate the plot.
+  </li>
+</ul>
+See also See
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726029" rel="nofollow">
+  Understanding a Gene Expression Plot
+</a>
+.
+<h3 id="id-6AnalyzingStudies-UnderstandingaGeneExpressionPlot">
+  Understanding a Gene Expression Plot
+</h3>
+Above the plot, you can select various plot types. When you do so, the plot is recalculated. Although all of the plots in this section appear similar, note the differences in calculation results and legends between the Y axis on each of the plots.When you perform a Gene Expression simple search, by default the Gene Expression Plot appears, as shown in the following figure.
+<img alt="Example plot, described in text" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/6%20-%20Analyzing%20Studies/plot%20type%20mean75.PNG?api=v2">
+The Mean Gene Expression Plot shown in the following figure displays mean expression intensity (Geometric mean) versus Groups.
+<img alt="Example plot, described in text" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/6%20-%20Analyzing%20Studies/plot%20type%20median75.PNG?api=v2">
+The log2 intensity Gene Expression Plot, shown in the following figure, displays average expression intensities for the gene of interest based on Affymetrix GeneChip arrays (U133 Plus 2.0 arrays).
+<img alt="Example plot, described in text" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/6%20-%20Analyzing%20Studies/plot%20type%20log2%20intensity75.PNG?api=v2">
+The box and whisker log2 expression intensity plot displays a box plot. A box and whisker plot can display the following data:
+<ul>
+  <li>
+    Indicate whether a distribution is skewed and whether there are potential unusual observations (outliers) in the data set
+  </li>
+  <li>
+    Perform a large number of observations
+  </li>
+  <li>
+    Compare two or more data sets
+  </li>
+  <li>
+    Compare distributions because the center, spread, and overall range are immediately apparent
+  </li>
+</ul>
+The box and whisker plot in the following figure is based on the same data set represented in the three previous figures.
+<img alt="Example plot, described in text" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/6%20-%20Analyzing%20Studies/plot%20type%20box%20and%20whisker80.PNG?api=v2">
+In descriptive statistics, a box plot or boxplot, also known as a box-and-whisker diagram or plot, is a convenient way of graphically depicting groups of numerical data through their five-number summaries (the smallest observation excluding outliers, lower quartile [Q1], median [Q2], upper quartile [Q3], and largest observation excluding outliers).The box is defined by Q1 and Q3 with a line in the middle for Q2. The interquartile range, or IQR, is defined as Q3-Q1. The lines above and below the box, or &#39;whiskers&#39;, are at the largest and smallest non-outliers. Outliers are defined as values that are more than 1.5 * IQR greater than Q3 and less than 1.5 * IQR than Q1. Outliers, if present, are shown as open circles, shown in the following figure.
+<img alt="Example plot, described in text" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/6%20-%20Analyzing%20Studies/box%20and%20whisker%20w%20coins80.PNG?api=v2">
+Boxplots can be useful to display differences between populations without making any assumptions of the underlying statistical distribution: they are non-parametric. The spacings between the different parts of the box help indicate the degree of dispersion (spread) and skewness in the data.
+<h4 id="id-6AnalyzingStudies-ChoosingGenes">
+  Choosing Genes
+</h4>
+To obtain gene names for a gene expression search or analysis, use one of the following three methods described in this section: bioDBnet, Gene List or CGAP.
+<ul>
+  <li>
+    bioDBnet– This link searches bioDBnet for gene IDs, symbols or genes within pathways. Then caIntegrator pulls identified genes into the application for analysis.
+    <ol>
+      <li>
+        Click bioDBnet.
+      </li>
+      <li>
+        Enter Search Terms. Note that caIntegrator can perform a search on a partial HUGO symbol. For example, as search using  ACH *  would find matches with &#39;achalasia&#39; and &#39;arachidonate&#39;.
+      </li>
+      <li>
+        Select if you want to search in Gene IDs, Gene Symbols, Gene Aliases,  Pathways (from the drop-down list), or Search Pathways for Genes.
+        <ul>
+          <li>
+            Gene IDs searches the exact gene ID(s) you enter.
+          </li>
+          <li>
+            Gene Symbols searches only the Unigene and HUGO gene symbols in bioDBnet.
+          </li>
+          <li>
+            Gene Aliases searches for one or more gene symbols which are synonymous for the current gene symbol.
+          </li>
+          <li>
+            Pathways searches only the pathway names in bioDBnet.
+          </li>
+          <li>
+            Search Pathways for Genes searches for pathways containing gene(s) you specify for the search.
+          </li>
+        </ul>
+      </li>
+      <li>
+        Select Show only genes that are part of this (caIntegrator) study or Case Sensitive Search if either of these criteria are to be applied to the search. (By default, the search is case insensitive.)
+      </li>
+      <li>
+        Choose the Taxon from the drop-down list and click Search. (The Taxon criterion defaults to Human.) The search results display on the same page below the search criteria. The following figure shows search criteria and a few of the listed search results.
+        <img alt="Example bioDBnet gene search criteria and search results" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/Choosing%20Genes/bioDBnetsearch85.png?api=v2">
+      </li>
+      <li>
+        In the search results, use the check boxes to identify the genes whose symbols you want to use in the gene expression analysis.
+      </li>
+      <li>
+        Click Use Genes at the bottom of the page. This pulls the checked genes into the Gene Symbol text box on the Criteria tab. The following figure reveals some of the genes pulled into the Gene Symbol text box.
+        <img alt="example of genes in Gene Symbol text box" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/Choosing%20Genes/cabio%20genes%20pulled%20in80.PNG?api=v2">
+      </li>
+    </ol>
+  </li>
+  <li>
+    Gene List– This link locates gene lists saved in caIntegrator.
+    <ol>
+      <li>
+        Click the Genes List icon (
+        <img alt="gene list icon" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/Choosing%20Genes/gene%20list%20icon.png?api=v2">
+        ) to open a Gene List Picker dialog. For more information, see
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726038" rel="nofollow">
+          Creating a Gene or Subject List
+        </a>
+        .If a GISTIC analysis has been run, you may see the following options:
+        <ul>
+          <li>
+            GISTIC Amplified genes is a list of gene symbols in which the corresponding regions of the genome are significantly amplified.
+          </li>
+          <li>
+            GISTIC Deleted genes is a list of gene symbols in which the corresponding regions of the genome are significantly deleted.
+          </li>
+        </ul>
+      </li>
+      <li>
+        In the drop-down menu that lists previously saved gene lists, select a gene list. In the list that appears, use the check boxes to identify the genes whose symbols you want to use in the gene expression analysis.
+      </li>
+      <li>
+        Click Use Genes at the bottom of the dialog. This pulls the checked genes into the Search Criteria tab.
+      </li>
+    </ol>
+  </li>
+  <li>
+    CGAP – Use this directory to identify genes. Before clicking the CGAP icon (
+    <img alt="CGAP icon" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/Choosing%20Genes/CGAP%20icon.png?api=v2">
+    ) you must enter gene symbols in the text box. This link does not pull anything into caIntegrator but does provide information about the gene(s) whose names you entered.
+  </li>
+</ul>
+<h2 id="id-6AnalyzingStudies-AnalyzingDatawithGenePattern">
+  Analyzing Data with GenePattern
+</h2>
+GenePattern is an application developed at the Broad Institute that enables researchers to access various methods to analyze genomic data. caIntegrator provides an express link to GenePattern where you can analyze data in any caIntegrator study.Information is included in this section for connecting to GenePattern from caIntegrator. Directions for launching specific GenePattern tools from caIntegrator are included as well, but you may want to refer to
+<a href="http://www.broadinstitute.org/cancer/software/genepattern/tutorial/gp_concepts.html" rel="nofollow">
+  additional GenePattern documentation
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+.You have two options for using GenePattern from caIntegrator:
+<ul>
+  <li>
+    Option 1 – Use the web-interface of any available GenePattern instances. To use the public instance from Broad, first
+    <a href="http://genepattern.broadinstitute.org/gp/pages/login.jsf" rel="nofollow">
+      register for an account
+    </a>
+    . In caIntegrator, enter the URL for connecting:
+    <a href="http://genepattern.broadinstitute.org/gp/services/Analysis," rel="nofollow">
+      http://genepattern.broadinstitute.org/gp/services/Analysis,
+    </a>
+    <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+      <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+    </a>
+    then enter your user ID and password.
+  </li>
+  <li>
+    Option 2 – Use GenePattern on the grid.
+  </li>
+</ul>
+The GenePattern feature in caIntegrator currently supports three analyses on the grid:
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726029" rel="nofollow">
+  Comparative Marker Selection (CMS) Analysis
+</a>
+,
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726029" rel="nofollow">
+  Principal Component Analysis (PCA)
+</a>
+and
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726029" rel="nofollow">
+  GISTIC-Supported Analysis
+</a>
+.TipIf you are using the web interface to access GenePattern (option #1 listed above), then you can run other GenePattern tools in addition to CMS, PCA and GISTIC.
+<ol>
+  <li>
+    Select the study whose data you want to analyze in the upper right portion of the caIntegrator page.
+  </li>
+  <li>
+    Click GenePattern Analysis in the left sidebar of caIntegrator. This opens the GenePattern Analysis Status page, shown in the following figure.
+    <img alt="GenePattern Analysis Status page, described in text" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/6%20-%20Analyzing%20Studies/GP%20analysis%20options80.PNG?api=v2">
+  </li>
+  <li>
+    Select from the drop-down list the type of GenePattern analysis you want to run on the data.
+    <ul>
+      <li>
+        GenePattern Modules--This option launches a session within GenePattern from which you can launch analyses. See
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726029" rel="nofollow">
+          Gene Pattern Modules
+        </a>
+        .
+      </li>
+      <li>
+        Comparative Marker Selection (Grid Service)--This option enables you to run this GenePattern analysis on the grid. See
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726029" rel="nofollow">
+          Comparative Marker Selection (CMS) Analysis
+        </a>
+        .
+      </li>
+      <li>
+        Principal Component Analysis (Grid Service). This option enables you to run this GenePattern analysis on the grid. See
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726029" rel="nofollow">
+          Principal Component Analysis (PCA)
+        </a>
+        .
+      </li>
+      <li>
+        GISTIC (Grid Service). This option enables you to run this GenePattern analysis on the grid. See
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726029" rel="nofollow">
+          GISTIC-Supported Analysis
+        </a>
+        |.
+      </li>
+    </ul>
+  </li>
+  <li>
+    Click the New Analysis Job button to open a corresponding page where you can configure the analysis parameters.
+  </li>
+</ol>
+<h3 id="id-6AnalyzingStudies-GenePatternModules">
+  GenePattern Modules
+</h3>
+NoteTo launch the analyses described in this section, you must have a registered GenePattern account. For more information, see
+<a href="http://genepattern.broadinstitute.org/gp/pages/login.jsf" rel="nofollow">
+  http://genepattern.broadinstitute.org/gp/pages/login.jsf
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+.
+<ol>
+  <li>
+    To configure the link for accessing GenePattern from caIntegrator, open the appropriate page as described in
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726029" rel="nofollow">
+      Analyzing Data with GenePattern
+    </a>
+    .
+  </li>
+  <li>
+    Select the study whose data you want to analyze in the upper right portion of the caIntegrator page.
+  </li>
+  <li>
+    Click GenePattern Analysis in the left sidebar of caIntegrator. This opens the GenePattern Analysis Status page.
+  </li>
+  <li>
+    Make sure GenePattern Modules is selected in the drop down list. Click New Analysis Job.
+  </li>
+  <li>
+    In the GenePattern Analysis dialog box, shown in the following figure, specify connection information and click Connect. Fields are described in the table following the figure.
+    <img alt="GenePattern Analysis, described in text" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/6%20-%20Analyzing%20Studies/GP%20analysis%20URL80.PNG?api=v2">
+    <table>
+      <tbody>
+        <tr>
+          <th>
+            Field
+          </th>
+          <th>
+            Description
+          </th>
+        </tr>
+        <tr>
+          <td>
+            Server URL
+          </td>
+          <td>
+            Enter any GenePattern publicly available URL, such as
+            <a href="http://genepattern.broadinstitute.org/gp/pages/login.jsf" rel="nofollow">
+              http://genepattern.broadinstitute.org/gp/pages/login.jsf
+            </a>
+            <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+              <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+            </a>
+            .
+          </td>
+        </tr>
+        <tr>
+          <td>
+            GenePattern Username
+          </td>
+          <td>
+            Enter your GenePattern user name.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            GenePattern Password
+          </td>
+          <td>
+            Enter your GenePattern password.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    After logging in with the GenePattern profile, the dialog box, shown in the following figure, expands to include fields for defining the GenePattern analysis.
+    <img alt="GenePattern dialog box, described in text" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/6%20-%20Analyzing%20Studies/GP%20analysis%20options%20280.PNG?api=v2">
+  </li>
+  <li>
+    Enter information for the following fields. Fields with a red asterisk are required.
+    <table>
+      <tbody>
+        <tr>
+          <th>
+            Field
+          </th>
+          <th>
+            Description
+          </th>
+        </tr>
+        <tr>
+          <td>
+            Job Name*
+          </td>
+          <td>
+            Enter a unique name for the analysis
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Analysis Method
+          </td>
+          <td>
+            Select any method from the drop down list. Click Analysis Method Documentation for descriptions of the different analysis methods.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Data
+          </td>
+          <td>
+            All genomic data is selected by default. Select from the list any list that has been created for this study.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            cls
+          </td>
+          <td>
+            Select any annotation field. The CLS file format defines phenotype (class or template) labels and associates each sample in the expression data with a label. It uses spaces or tabs to separate the fields. The CLS file format differs somewhat depending on whether you are defining categorical or continuous phenotypes:  Categorical labels define discrete phenotypes; for example, normal vs tumor).  Continuous phenotypes are used for time series experiments or to define the profile of a gene of interest (gene neighbors).NoteMost GenePattern modules are intended for use with categorical phenotypes. Therefore, unless the module documentation explicitly states otherwise, a CLS file should define categorical labels.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            prediction.results.file
+          </td>
+          <td>
+            Enter the name of this file which is part of the output from a GenePattern module.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    Click Perform Analysis. Based on the analysis method you select, you may be asked to add more information for the analysis. For more information, refer to the GenePattern Help site:
+    <a href="http://www.broadinstitute.org/cancer/software/genepattern/tutorial/gp_concepts" rel="nofollow">
+      http://www.broadinstitute.org/cancer/software/genepattern/tutorial/gp_concepts
+    </a>
+    <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+      <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+    </a>
+    .
+  </li>
+</ol>
+Once the analysis is launched, caIntegrator returns to the GenePattern Analysis Status page where you can monitor the status of your current study, which is listed in the Analysis Method column. You can also view information about other GP analyses that have been run on this study. An example displays in the following figure.
+<img alt="Example Gene Pattern analysis, described in text" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/6%20-%20Analyzing%20Studies/GP%20status80.PNG?api=v2">
+If you choose to access GenePattern in this way, you can continue to use GenePattern tools from within that application. See GenePattern user documentation for more information.TipIf you run these analyses within GenePattern itself, you may be able to view results in the GenePattern visualization module. Click View Results on the row where the results are listed. If you run them on the grid from caIntegrator, your results will be available only in spreadsheet and XML format.You can run GenePattern analyses for Comparative Marker Selection, Principal Component Analysis and GISTIC-based analysis on the grid if you choose.
+<h3 id="id-6AnalyzingStudies-ComparativeMarkerSelection(CMS)Analysis">
+  Comparative Marker Selection (CMS) Analysis
+</h3>
+The Comparative Marker Selection (CMS) module implements several methods to look for expression values that correlate with the differences between classes of samples. Given two classes of samples, CMS finds expression values that correlate with the difference between those two classes. If there are more than two classes, CMS can perform one-vs-all or all-pairs comparisons, depending on which option is chosen.For more information, see
+<a href="http://www.broadinstitute.org/cgi-bin/cancer/software/genepattern/modules/gp_modules.cgi" rel="nofollow">
+  GenePattern
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+.To perform a CMS analysis, follow these steps:
+<ol>
+  <li>
+    Select the study whose data you want to analyze in the upper right portion of the caIntegrator page. You must select a study saved as a subject annotation study, but which has genomic data.
+  </li>
+  <li>
+    Click GenePattern Analysis in the left sidebar of caIntegrator. This opens the GenePattern Analysis Status page.
+  </li>
+  <li>
+    In the GenePattern Analysis Status page, select Comparative Marker Selection (Grid Service) from the drop down list and click New Analysis Job. This opens the Comparative Marker Selection Analysis page, shown in the following figure.
+    <img alt="Example GenePattern analysis, described in text" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/6%20-%20Analyzing%20Studies/CMS%20criteria80.png?api=v2">
+  </li>
+  <li>
+    Select or define CMS analysis parameters, described in the following table. An asterisk indicates required fields. The default settings are valid; they should provide valid results.
+    <table>
+      <tbody>
+        <tr>
+          <th>
+            CMS Parameter
+          </th>
+          <th>
+            Description
+          </th>
+        </tr>
+        <tr>
+          <td>
+            Job Name*
+          </td>
+          <td>
+            Assign a unique name to the analysis you are configuring.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Preprocess Server*
+          </td>
+          <td>
+            A server which hosts the grid-enabled data GenePattern PreProcess Dataset module. Select one from the list and caIntegrator will use the selected server for this portion of the processing.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Comparative Server*
+          </td>
+          <td>
+            A server which hosts the grid-enabled data GenePattern Comparative Marker Selection module. Select one from the list and caIntegrator will use the selected server for this portion of the processing.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Annotation Queries and Lists*
+          </td>
+          <td>
+            All subject annotation queries and gene lists with appropriate data for the analysis are listed. Select and move two or more queries from the All Available Queries panel to the Selected Queries panel using the Add &gt; and Remove &lt; buttons.  Note: The [SL] and [Q] prefixes to list names indicate &#34;Subject Lists&#34; or &#34;Saved Queries&#34;. A &#34;G&#34; in the prefix indicates the list is Global. For more information, see
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726038" rel="nofollow">
+              Creating a Gene or Subject List
+            </a>
+            .
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Filter Flag
+          </td>
+          <td>
+            Variation filter and thresholding flag
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Preprocessing Flag*
+          </td>
+          <td>
+            Discretization and normalization flag
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Min Change*
+          </td>
+          <td>
+            Minimum fold change for filter
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Min Delta*
+          </td>
+          <td>
+            Minimum delta for filter
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Threshold*
+          </td>
+          <td>
+            Value for threshold
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Ceiling*
+          </td>
+          <td>
+            Value for ceiling
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Max Sigma Binning*
+          </td>
+          <td>
+            Maximum sigma for binning
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Probability Threshold*
+          </td>
+          <td>
+            Value for uniform probability threshold filter
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Num Exclude*
+          </td>
+          <td>
+            Number of experiments to exclude (max &amp; min) before applying variation filter
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Log Base Two
+          </td>
+          <td>
+            Whether to take the log base two after thresholding; default setting is &#34;Yes&#34;.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Number of Columns Above Threshold*
+          </td>
+          <td>
+            Remove row if n columns are not &gt;= than the given threshold  In other words, the module can remove rows in which the given number of columns does not contain a value greater or equal to a user defined threshold.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Test Direction*
+          </td>
+          <td>
+            The test to perform (up-regulated for class0; up-regulated for class1, two sided). By default, Comparative Marker Selection performs the two-sided test.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Test Statistic*
+          </td>
+          <td>
+            Select the statistic to use.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Min Std*
+          </td>
+          <td>
+            The minimum standard deviation if test statistic includes the min std option. Used only if test statistic includes the min std option.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Number of Permutations*
+          </td>
+          <td>
+            The number of permutations to perform. (Use 0 to calculate asymptotic P-values.) The number of permutations you specify depends on the number of hypotheses being tested and the significance level that you want to achieve (3). The greater the number of permutations, the more accurate the P-value.  Complete – Perform all possible permutations. By default, complete is set to No and Number of Permutations determines the number of permutations performed. If you have a small number of samples, you might want to perform all possible permutations.  Balanced – Perform balanced permutations
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Random Seed*
+          </td>
+          <td>
+            The seed for the random number generator.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Smooth P-values
+          </td>
+          <td>
+            Whether to smooth P-values by using the Laplace&#39;s Rule of Succession. By default, Smooth P-values is set to Yes, which means P-values are always less than 1.0 and greater than 0.0.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Phenotype Test*
+          </td>
+          <td>
+            Tests to perform when class membership has more than 2 classes: one versus-all, all pairs.  Note: The P-values obtained from the one-versus-all comparison are not fully corrected for multiple hypothesis testing.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    When you have completed the form, click Perform Analysis. caIntegrator takes you to the JobStatus/Launch page where you will see the job and its status in the Status column of the list, shown in the following figure.
+    <img src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/6%20-%20Analyzing%20Studies/CMS%20launched80.PNG?api=v2">
+  </li>
+  <li>
+    When the job is complete, the system displays a completion date on the GenePattern Analysis status page. Click the Download link. This downloads zipped result files to your local work station. The number of files and their file type will vary according to the processing. The results format is compatible with GenePattern visualizers and can be uploaded within GenePattern.
+  </li>
+</ol>
+<h3 id="id-6AnalyzingStudies-PrincipalComponentAnalysis(PCA)">
+  Principal Component Analysis (PCA)
+</h3>
+Principal Component Analysis is typically used to transform a collection of correlated variables into a smaller number of uncorrelated variables, or components. Those components are typically sorted so that the first one captures most of the underlying variability and each succeeding component captures as much of the remaining variability as possible.You can configure GenePattern grid parameters for preprocessing the dataset in addition to PCA module parameters. For more information, see the
+<a href="http://www.broadinstitute.org/cgi-bin/cancer/software/genepattern/modules/gp_modules.cgi" rel="nofollow">
+  GenePattern website
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+.To perform a PCA analysis, follow these steps:
+<ol>
+  <li>
+    Select the study whose data you want to analyze in the upper right portion of the caIntegrator page. You must select a study with gene expression data.
+  </li>
+  <li>
+    Click GenePattern Analysis in the left sidebar of caIntegrator. This opens the GenePattern Analysis Status page.
+  </li>
+  <li>
+    Select Principal Component Analysis (Grid Service) from the drop down list and click New Analysis Job. This opens the Principal Component Analysis page, shown in the following figure.
+    <img alt="Example PCA page, described in text" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/6%20-%20Analyzing%20Studies/PCA280.png?api=v2">
+  </li>
+  <li>
+    Select or define PCA analysis parameters, described in the following table. An asterisk indicates required fields. You must enter a job name and select an annotation query, but you can accept the default settings for other options.
+    <table>
+      <tbody>
+        <tr>
+          <th>
+            PCA Parameters
+          </th>
+          <th>
+            Description
+          </th>
+        </tr>
+        <tr>
+          <td>
+            Job Name*
+          </td>
+          <td>
+            Assign a unique name to the analysis you are configuring.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Principal Component Analysis Server*
+          </td>
+          <td>
+            A server which hosts the grid-enabled data GenePattern Principal Component Analysis module. Select one from the list and caIntegrator will use the selected server for this portion of the processing.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Annotation Queries*
+          </td>
+          <td>
+            All annotation queries display in this list. Select one or more of these queries to define which samples are analyzed using PCA. If you select more than one query, then the union of the samples returned by the multiple queries is analyzed.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Cluster By*
+          </td>
+          <td>
+            Selecting rows looks for principal components across all expression values, and selecting columns looks for principal components across all samples.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    If you want to preprocess the data set, click Enable the Preprocess Dataset. This opens an additional set of parameters, shown in the following figure and described in the following table. The preprocessing is executed prior to running the PCA.
+    <img alt="Example PCA result, described in text" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/6%20-%20Analyzing%20Studies/PCA%20preprocess%20parameters80.PNG?api=v2">
+    <table>
+      <tbody>
+        <tr>
+          <th>
+            PCA Preprocessing Parameters
+          </th>
+          <th>
+            Description
+          </th>
+        </tr>
+        <tr>
+          <td>
+            Preprocess Server*
+          </td>
+          <td>
+            A server which hosts the grid-enabled data GenePattern PreProcess Dataset module. Select one from the list and caIntegrator will use the selected server for this portion of the processing.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Filter Flag
+          </td>
+          <td>
+            Variation filter and thresholding flag
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Preprocessing Flag
+          </td>
+          <td>
+            Discretization and normalization flag
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Min Change
+          </td>
+          <td>
+            Minimum fold change for filter
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Min Delta
+          </td>
+          <td>
+            Minimum delta for filter
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Threshold
+          </td>
+          <td>
+            Value for threshold
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Ceiling
+          </td>
+          <td>
+            Value for ceiling
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Max Sigma Binning
+          </td>
+          <td>
+            Maximum sigma for binning
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Probability Threshold
+          </td>
+          <td>
+            Value for uniform probability threshold filter
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Num Exclude
+          </td>
+          <td>
+            Number of experiments to exclude (max &amp; min) before applying variation filter
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Log Base Two
+          </td>
+          <td>
+            Whether to take the log base two after thresholding
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Number of Columns Above Threshold
+          </td>
+          <td>
+            Remove row if n columns no &gt;= than the given threshold
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    When you have completed the form, click Perform Analysis.
+  </li>
+  <li>
+    When the job is complete, the system displays a completion date on the GenePattern Analysis status page. Click the Download link. This downloads zipped result files to your local work station. The number of files and their file type will vary according to the processing. The results format is compatible with GenePattern visualizers and can be uploaded within GenePattern.
+  </li>
+</ol>
+<h3 id="id-6AnalyzingStudies-GISTIC-SupportedAnalysis">
+  GISTIC-Supported Analysis
+</h3>
+NoteThe GISTIC test option displays only if the study contains copy number or SNP data. For more information, see
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726024" rel="nofollow">
+  Configuring Copy Number Data
+</a>
+.The GISTIC Module is a GenePattern tool that identifies regions of the genome that are significantly amplified or deleted across a set of samples. For more information, see
+<a href="http://www.broadinstitute.org/cgi-bin/cancer/software/genepattern/modules/gp_modules.cgi" rel="nofollow">
+  GenePattern Module documentation
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+.To perform a GISTIC-supported analysis, follow these steps:
+<ol>
+  <li>
+    Select the study whose data you want to analyze in the upper right portion of the caIntegrator page. You must select a study with copy number (either Affymetrix SNP or Agilent Copy Number) data.
+  </li>
+  <li>
+    Click GenePattern Analysis in the left sidebar of caIntegrator. This opens the GenePattern Analysis Status page.
+  </li>
+  <li>
+    In the GenePattern Analysis Status page, select GISTIC (Grid Service) from the drop down list and click New Analysis Job. This opens the GISTIC Analysis page, shown in the following figure.
+    <img alt="Example GenePattern Analysis Status page, described in text" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/6%20-%20Analyzing%20Studies/GISTIC80.PNG?api=v2">
+  </li>
+  <li>
+    Select or define GISTIC analysis parameters, described in the following table. You must indicate a Job Name, but you can accept the other default settings, which are valid and should produce valid results. Asterisks identify required fields.
+    <table>
+      <tbody>
+        <tr>
+          <th>
+            GISTIC Parameters
+          </th>
+          <th>
+            Description
+          </th>
+        </tr>
+        <tr>
+          <td>
+            Job Name*
+          </td>
+          <td>
+            Assign a unique name to the analysis you are configuring.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            GISTIC Service Type*
+          </td>
+          <td>
+            Select whether to use the GISTIC web service or grid service and provide or select the service address. If the web service is selected, authentication information is also required
+          </td>
+        </tr>
+        <tr>
+          <td>
+            GenePattern User Name/Password
+          </td>
+          <td>
+            Include these to log into GenePattern for the analysis.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Annotation Queries and Lists
+          </td>
+          <td>
+            All annotation queries display in this list as well as an option to select all non-control samples. Select an annotation query if you wish to run GISTIC on a subset of the data and select all non-control samples if wish to include all samples.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Select Platform
+          </td>
+          <td>
+            This option appears only if more than one copy number platform exists in the study. Select the appropriate platform from the drop-down list.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Exclude Sample Control Set*
+          </td>
+          <td>
+            From the drop-down list, select the name of the control set you want to exclude from the analysis. Click None if that is applicable.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Amplifications Threshold*
+          </td>
+          <td>
+            Threshold for copy number amplifications. Regions with a log2 ratio above this value are considered amplified. Default = 0.1.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Deletions Threshold*
+          </td>
+          <td>
+            Threshold for copy number deletions. Regions with a log2 ratio below the negative of this value are considered deletions. Default = 0.1.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Join Segment Size*
+          </td>
+          <td>
+            Smallest number of markers to allow in segments from the segmented data. Segments that contain fewer than this number of markers are joined to the neighboring segment that is closest in copy number. Default = 4.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            QV Thresh[hold]*
+          </td>
+          <td>
+            Threshold for q-values. Regions with q-values below this number are considered significant. Default = 0.25.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Remove X*
+          </td>
+          <td>
+            Flag indicating whether to remove data from the X-chromosome before analysis. Allowed values = {1,0}. Default = 1(yes).
+          </td>
+        </tr>
+        <tr>
+          <td>
+            https://wiki.nci.nih.gov/pages/editpage.action?pageId=48726029#cnv File
+          </td>
+          <td>
+            This selection is optional.  Browse for the file. There are two options for the CNV file.  Option #1 enables you to identify CNVs by marker name. Permissible file format is described as follows:  A two column, tab-delimited file with an optional header row. The marker names given in this file must match the marker names given in the markers_file. The CNV identifiers are for user use and can be arbitrary. The column headers are:  Marker Name  CNV Identifier  Option #2 enables you to identify CNVs by genomic location. Permissible file format is described as follows:  A 6 column, tab-delimited file with an optional header row. The &#39;CNV Identifier&#39;, &#39;Narrow Region Start&#39; and &#39;Narrow Region End&#39; are for user use and can be arbitrary. The column headers are:  CNV Identifier  Chromosome  Narrow Region Start  Narrow Region End  Wide Region Start  Wide Region End
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    When you have completed the form, click Perform Analysis.
+  </li>
+  <li>
+    When the job is complete, the system displays a completion date on the GenePattern Analysis status page. Click the Download link. This downloads zipped result files to your local work station. The number of files and their file type will vary according to the processing. The results format is compatible with GenePattern visualizers and can be uploaded within GenePattern.
+  </li>
+</ol>
+Additionally, upon completion of a successful GISTIC anaylsis, caIntegrator automatically displays the two gene lists that it generates in the Gene List Picker so that you can use them in a caIntegrator query or plot calculation. The lists are visible only to your userID. For more information, see
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726029" rel="nofollow">
+  Choosing Genes
+</a>
+. The genes will also display in Saved Copy Number Analyses in the left sidebar. See
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726029" rel="nofollow">
+  Editing a GISTIC Analysis
+</a>
+.CautionIf samples from a copy number source are deleted, the GISTIC job in which they are appear is also deleted.
+<h4 id="id-6AnalyzingStudies-EditingaGISTICAnalysis">
+  Editing a GISTIC Analysis
+</h4>
+To view a GISTIC analysis page in caIntegrator where you can review or edit analysis parameters and results, under Study Data in the left sidebar, click Saved Copy Number Analysis. Select the analysis you want to open. The system displays analysis parameters and gene lists that that were retrieved from the analysis, as shown in the following figure.
+<img alt="Example GISTIC result, described in text" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/6%20-%20Analyzing%20Studies/GISTIC%20edit80.PNG?api=v2">
+TipIn the context of copy number data, &#39;Amplified genes&#39;, shown in this figure, refers to a list of gene symbols in which the corresponding regions of the genome are significantly amplified. &#39;Deleted genes&#39;, also shown in this figure, is a list of gene symbols in which the corresponding regions of the genome are significantly deleted.From this page you can rename or delete the analysis.
+<ul>
+  <li>
+    To rename the analysis, click the Rename button.
+  </li>
+  <li>
+    To delete the analysis, click the Delete button.
+  </li>
+</ul>
+As long as you leave this analysis in the study, caIntegrator lists the genes retrieved from the analysis in the Gene Picker dialog box when you open it.See also
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726038" rel="nofollow">
+  Creating a Gene or Subject List
+</a>
+and
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726038" rel="nofollow">
+  Editing a Gene or Subject List
+</a>
+.
+<h3 id="id-6AnalyzingStudies-ViewingDatawiththeIntegrativeGenomicsViewer">
+  Viewing Data with the Integrative Genomics Viewer
+</h3>
+Once you have run a query for
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726023" rel="nofollow">
+  gene expression
+</a>
+, or have run analyses for
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726023" rel="nofollow">
+  copy number
+</a>
+, or analyses for genomic data, you can view results in the Integrative Genomics Viewer (IGV).The IGV is a high-performance visualization tool for interactive exploration of large, integrated datasets. It supports a wide variety of data types including sequence alignments, microarrays, and genomic annotations.IGV informationFor more information about the Integrative Genomics Viewer or to connect independently to the IGV home page, see
+<a href="http://www.broadinstitute.org/software/igv/home" rel="nofollow">
+  Integrative Genomics Viewer
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+.You may also want to refer to the
+<a href="http://www.broadinstitute.org/software/igv/UserGuide" rel="nofollow">
+  IGV User Guide
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+. The IGV viewer and the NCI Heat Map viewer both require you to install a version of Java containing Java Web Start. For more information, see
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=50694583" rel="nofollow">
+  Java for IGV and Heat Map Viewer
+</a>
+.There are two ways to integrate caIntegrator with the IGV. To configure the connection to IGV, follow one of these methods.
+<h6 id="id-6AnalyzingStudies-Method1IGV">
+  Method 1 IGV
+</h6>
+<ol>
+  <li>
+    With the appropriate study open, at the bottom of the Query Results page, click the View in Integrative Genomics Viewer button.
+  </li>
+  <li>
+    If you click the button at the bottom of the page with any of the query results line items selected, caIntegrator creates IGV files, with a monitor informing you of this. After the files are created, click the Launch Integrative Viewer hypertext link.
+  </li>
+  <li>
+    Follow the instructions through the intermediate dialog boxes. After clicking Open with the Java program listed, the IGV.jnlp opens, displaying the dataset in the computer screen. An example displays in the following figure.
+    <img alt="illustration of step, described in text" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/Viewing%20Data%20with%20IGV%20and%20HMV/IGV%20session80.PNG?api=v2">
+  </li>
+  <li>
+    Move your mouse to hover over the genes graphic at the bottom of the page, indicated in the figure.
+  </li>
+  <li>
+    Click the mouse when you&#39;ve identified a gene of interest. This opens the genome site at UCSC, where you can learn more about the gene. The following figures exhibits the kind of metadata you can expect from the UCSC genome site.
+    <img alt="illustration of step, described in text" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/Viewing%20Data%20with%20IGV%20and%20HMV/GABRG1%20at%20UCSC80.PNG?api=v2">
+  </li>
+</ol>
+<h6 id="id-6AnalyzingStudies-Method2IGV">
+  Method 2 IGV
+</h6>
+<ol>
+  <li>
+    With the appropriate study open, click Integrative Genomics Viewer on the left sidebar. This opens the View IGV Selector page, shown in the following figure.
+    <img alt="illustration of step, described in text" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/Viewing%20Data%20with%20IGV%20and%20HMV/IGV%20Selector80.PNG?api=v2">
+  </li>
+  <li>
+    In the drop-down list, select the Gene Expression Platform for the data you want to view.
+  </li>
+  <li>
+    Select the Copy Number Platform ID.
+  </li>
+  <li>
+    The Annotations - Default panel displays existing annotation fields for the gene expression data in the open study. Select those fields you want to view when you open the IGV. Use the buttons for convenience if you want to Select All or Unselect All, when all are checked.
+  </li>
+  <li>
+    Click View to see the data in the Integrative Genomic Viewer. caIntegrator creates IGV files of the data.
+  </li>
+  <li>
+    After the files are created, click the Launch Integrative Viewer hypertext link that appears.
+  </li>
+  <li>
+    Continue with Step 3 in
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=50694583" rel="nofollow">
+      Method 1 IGV
+    </a>
+    .
+  </li>
+</ol>
+<h3 id="id-6AnalyzingStudies-ViewingDatawithHeatMapViewer">
+  Viewing Data with Heat Map Viewer
+</h3>
+Once you have run a query for
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726023" rel="nofollow">
+  gene expression
+</a>
+, or for
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726023" rel="nofollow">
+  copy number
+</a>
+, or have run analyses on genomic data, you can view results in the Heat Map Viewer (HMV).HMV informationFor more information about the Heat Map Viewer or to connect independently to the HMV home page, see
+<a href="https://cgwb.nci.nih.gov/cgi-bin/heatmap" rel="nofollow">
+  Heat Map Viewer documentation
+</a>
+or
+<a href="https://cgwb.nci.nih.gov/goldenPath/heatmap/documentation/index.html" rel="nofollow">
+  HMV documentation
+</a>
+. The IGV viewer and the NCI Heat Map viewer both require you to install a version of Java containing Java Web Start. For more information, see
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=50694583" rel="nofollow">
+  Java for IGV and Heat Map Viewer.
+</a>
+.There are two ways to integrate caIntegrator with the Heat Map Viewer. To configure the connection, follow one of these methods.
+<h6 id="id-6AnalyzingStudies-Method1HMV">
+  Method 1 HMV
+</h6>
+<ol>
+  <li>
+    With the appropriate study open, at the bottom of the Query Results page, click the View in Heat Map Viewer button.
+  </li>
+  <li>
+    If you click the button at the bottom of the page with any of the query results line items selected, caIntegrator creates HMV files, with a monitor informing you of this. After the files are created, click the Launch Heat Map Viewer hypertext link.
+  </li>
+  <li>
+    Follow the instructions through the intermediate dialog boxes. After clicking Open with the Java program listed, the runs, displaying the dataset in the computer screen. An example displays in the following figure.
+    <img alt="illustration of step, described in text" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/Viewing%20Data%20with%20IGV%20and%20HMV/heat%20map%20viewer%20results280.PNG?api=v2">
+  </li>
+</ol>
+<h6 id="id-6AnalyzingStudies-Method2HMV">
+  Method 2 HMV
+</h6>
+<ol>
+  <li>
+    With the appropriate study open, click Heat Map Viewer on the left sidebar. This opens the View Heat Map Viewer Selector page, shown in the following figure.
+    <img alt="illustration of step, described in text" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/Viewing%20Data%20with%20IGV%20and%20HMV/view%20heat%20map%20selector80.PNG?api=v2">
+  </li>
+  <li>
+    Select the appropriate Copy Number Platform in the drop down list.
+  </li>
+  <li>
+    The Annotations - Default panel displays existing annotation fields for the gene expression data in the open study. Select one or more annotations in the annotation list. For convenience, you can use the Select All or Unselect All buttons.
+  </li>
+  <li>
+    Click View to view the data you select in Heat Map Viewer. caIntegrator creates Heat Map Viewer files of the data.
+  </li>
+  <li>
+    After the files are created, click the Launch Heat Map Viewer hypertext link that appears.
+  </li>
+  <li>
+    Continue with Step 3 in
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=50694583" rel="nofollow">
+      Method 1 HMV
+    </a>
+    .HMV help filesFor interpretation of the results and using HMV features, see the help files opened from HMV.
+  </li>
+</ol>
+<h4 id="id-6AnalyzingStudies-JavaforIGVandHeatMapViewer">
+  Java for IGV and Heat Map Viewer
+</h4>
+To use the IGV and the NCI Heat Map viewer, described in
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=50694583" rel="nofollow">
+  Viewing Data with the Integrative Genomics Viewer
+</a>
+and
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=50694583" rel="nofollow">
+  Viewing Data with Heat Map Viewer
+</a>
+, you must install a version of Java containing Java Web Start. You must install recent versions of the Java Development Kit (JDK 1.5.0 aka JDK 5.0 or newer) or Java Runtime Environment (JRE 1.5.0 aka JRE 5.0 or newer). The easiest option is to install
+<a href="http://www.java.com/en/download/faq/java_webstart.xml" rel="nofollow">
+  JRE 5.0
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+Without Java Web Start, when you click Launch Integrative Genomics Viewer or Launch Heat Map Viewer, a dialog box displays in your browser giving you the option to save or open with igv.jnlp (IGV) or retrieveFile.jnlp (HMV). Clicking the Open option starts the Java Web Start Launcher (default), installing the Java app so that you can view the files.Upon first launchThe first time you launch the IGV or HMV with Java properly installed, regardless of browser type, a warning may appear: the &#34;the digital signature cannot be verified&#34;. Click Run to proceed with opening the viewer.

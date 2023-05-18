@@ -1,0 +1,191 @@
+<h1 id="caArray009HighlightsforBuildingcaArray&#39;sMAGETABAnnotationFiles-HighlightsforBuildingcaArray&#39;sMAGE-TABAnnotationFiles">
+  Highlights for Building caArray&#39;s MAGE-TAB Annotation Files
+</h1>
+Topic: caArray UsageRelease: Up to caArray 2.2Date entered: 02/17/2009Contents of this Page
+<ul>
+  <li>
+    <a href="#caArray009HighlightsforBuildingcaArray&#39;sMAGETABAnnotationFiles-Introduction" rel="nofollow">
+      Introduction
+    </a>
+  </li>
+  <li>
+    <a href="#caArray009HighlightsforBuildingcaArray&#39;sMAGETABAnnotationFiles-RecognizedFieldsandValidationRulesforMAGE-TABAnnotationFiles" rel="nofollow">
+      Recognized Fields and Validation Rules for MAGE-TAB Annotation Files
+    </a>
+  </li>
+  <li>
+    <a href="#caArray009HighlightsforBuildingcaArray&#39;sMAGETABAnnotationFiles-MAGE-TABFiles:UploadandImport" rel="nofollow">
+      MAGE-TAB Files: Upload and Import
+    </a>
+  </li>
+  <li>
+    <a href="#caArray009HighlightsforBuildingcaArray&#39;sMAGETABAnnotationFiles-SDRFFileHasHigherPriority" rel="nofollow">
+      SDRF File Has Higher Priority
+    </a>
+  </li>
+  <li>
+    <a href="#caArray009HighlightsforBuildingcaArray&#39;sMAGETABAnnotationFiles-KnownBugListincaArray" rel="nofollow">
+      Known Bug List in caArray
+    </a>
+  </li>
+  <li>
+    <a href="#caArray009HighlightsforBuildingcaArray&#39;sMAGETABAnnotationFiles-FurtherReadingsonMAGE-TABFiles" rel="nofollow">
+      Further Readings on MAGE-TAB Files
+    </a>
+  </li>
+  <li>
+    <a href="#caArray009HighlightsforBuildingcaArray&#39;sMAGETABAnnotationFiles-Haveacomment?" rel="nofollow">
+      Have a comment?
+    </a>
+  </li>
+</ul>
+<h2 id="caArray009HighlightsforBuildingcaArray&#39;sMAGETABAnnotationFiles-Introduction">
+  Introduction
+</h2>
+caArray has been designed to handle MAGE-TAB data using certain conventions. The
+<a href="https://wiki.nci.nih.gov/x/LBo9Ag" rel="nofollow">
+  caArray User Guide
+</a>
+devotes a section in Chapter 7 – Submitting Data to
+<a href="https://wiki.nci.nih.gov/x/Oxo9Ag#7-SubmittingDatatoanExperiment-ImportingMAGETABData" rel="nofollow">
+  Importing MAGE-TAB
+</a>
+and an entire
+<a href="https://wiki.nci.nih.gov/x/Rho9Ag" rel="nofollow">
+  appendix
+</a>
+to working with MAGE-TAB files in caArray. The appendix specifically includes much specific detail from recognized data fields to validation rules essential for importing MAGE-TAB files. Highlights are outlined below to offer you a quick start.
+<h2 id="caArray009HighlightsforBuildingcaArray&#39;sMAGETABAnnotationFiles-RecognizedFieldsandValidationRulesforMAGE-TABAnnotationFiles">
+  Recognized Fields and Validation Rules for MAGE-TAB Annotation Files
+</h2>
+<ul>
+  <li>
+    You can describe your experiment in great detail with the convenience of managing MAGE-TAB files in spreadsheet format. For example, a biomaterial (source, sample, extract, or labeled extract) named in one column can be followed by any number of characteristics columns containing annotation data about that biomaterial. It should be noted that caArray has requirements about which fields should be used and the order in which they must be listed. For example, in an SDRF file, the biomaterials columns must follow the order of Source Name - Sample Name - Extract Name - Labeled Extract Name. See
+    <a href="https://wiki.nci.nih.gov/x/Rho9Ag#A-MAGE-TABincaArray-BiomaterialsColumnOrderinanSDRF" rel="nofollow">
+      Biomaterial Column Order in an SDRF
+    </a>
+    .
+  </li>
+  <li>
+    Controlled vocabularies should be used in IDF and SDRF files. The commonly used vocabularies can be found in
+    <a href="http://mged.sourceforge.net/ontologies/MGEDontology.php" rel="nofollow">
+      MGED Ontology
+    </a>
+    (MO) or the
+    <a href="http://ncit.nci.nih.gov/ncitbrowser/" rel="nofollow">
+      NCI Thesaurus
+    </a>
+    . Each TERM SOURCE REF should have an entry in the IDF file. If term source is unknown, use &#34;caArray&#34; in the TERM SOURCE REF column. See
+    <a href="https://wiki.nci.nih.gov/x/Rho9Ag#A-MAGE-TABincaArray-TermSourceREFinanSDRF" rel="nofollow">
+      Term Source REF
+    </a>
+    .
+  </li>
+  <li>
+    All column types are not mandatory in the SDRF. caArray can auto-generate missing biomaterials and associate protocols intelligently.
+  </li>
+</ul>
+For a detailed list of recognized fields and validation rules for IDF and SDRF files, refer to
+<a href="https://wiki.nci.nih.gov/x/Rho9Ag" rel="nofollow">
+  Appendix A
+</a>
+in the User&#39;s Guide.
+<h2 id="caArray009HighlightsforBuildingcaArray&#39;sMAGETABAnnotationFiles-MAGE-TABFiles:UploadandImport">
+  MAGE-TAB Files: Upload and Import
+</h2>
+See
+<a href="https://wiki.nci.nih.gov/x/Oxo9Ag#7-SubmittingDatatoanExperiment-ImportingMAGETABData" rel="nofollow">
+  Importing MAGE-TAB Data
+</a>
+in the caArray User&#39;s Guide for more information about all points noted in this section.
+<ol>
+  <li>
+    MAGE-TAB Files must be imported into experiments. That is, an experiment needs to be created before MAGE-TAB files are imported.
+  </li>
+  <li>
+    Although only one IDF is allowed per import session, multiple IDF files are allowed per experiment.
+  </li>
+  <li>
+    IDF, SDRF(s), data file(s) referenced in SDRF files must be validated and imported together.
+  </li>
+  <li>
+    Data files that are not referred to by SDRF files can also be imported into the same experiment, but they must be uploaded, validated and imported in a separate session from IDF/DSRF files.
+  </li>
+  <li>
+    MAGE-TAB ADF and Data Matrix files can be uploaded, but caArray does not parse these files. the exception is copy number data matrix files, which caArray does parse. See
+    <a href="https://wiki.nci.nih.gov/x/Oxo9Ag#7-SubmittingDatatoanExperiment-AboutFileTypesincaArray" rel="nofollow">
+      About File Types in caArray
+    </a>
+    .
+  </li>
+</ol>
+<h2 id="caArray009HighlightsforBuildingcaArray&#39;sMAGETABAnnotationFiles-SDRFFileHasHigherPriority">
+  SDRF File Has Higher Priority
+</h2>
+Annotations can be configured via the Annotations tab in caArray or via an SDRF file (
+<a href="https://wiki.nci.nih.gov/x/15CNAg" rel="nofollow">
+  Annotations Tab vs. MAGE-TAB Annotation Files in caArray
+</a>
+). The designation in the SDRF is authoritative. For example: The tissue site for one sample is set to be &#34;Lung&#34; from the annotation interface, but it is set to be &#34;Brain&#34; in the SDRF file. Upon data upload, the tissue site will be shown as &#34;Brain&#34;, since SDRF file has higher priority than &#34;Annotation&#34; interface. See
+<a href="https://wiki.nci.nih.gov/x/Rho9Ag#A-MAGE-TABincaArray-SDRFDecidesRawversusDerivedDataFile" rel="nofollow">
+  SDRF Decides Raw versus Derived Data File
+</a>
+.
+<h2 id="caArray009HighlightsforBuildingcaArray&#39;sMAGETABAnnotationFiles-KnownBugListincaArray">
+  Known Bug List in caArray
+</h2>
+Known Bug List for MAGE-TAB Files
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Error Message
+      </th>
+      <th>
+        Known Bugs
+      </th>
+    </tr>
+    <tr>
+      <td>
+        &#34;Term Source Ref is not preceded by valid data type&#34;
+      </td>
+      <td>
+        Factor Value can not have &#34;Term Source REF&#34; followed
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="caArray009HighlightsforBuildingcaArray&#39;sMAGETABAnnotationFiles-FurtherReadingsonMAGE-TABFiles">
+  Further Readings on MAGE-TAB Files
+</h2>
+<ul>
+  <li>
+    For more information on MAGE-TAB Files, refer to
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=42832077" rel="nofollow">
+      caArray 007 - MAGE-TAB Files
+    </a>
+    .
+  </li>
+  <li>
+    For more information on when to use MAGE-TAB Annotation Files, refer to
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=42832087" rel="nofollow">
+      caArray 008 - Using the Annotations tab or MAGE-TAB annotation files to annotate an experiment
+    </a>
+    .
+  </li>
+  <li>
+    For more information on How to upload MAGE-TAB files, refer to
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=42832243" rel="nofollow">
+      caArray 002 - Uploading MicroArray Gene Expression Data into caArray
+    </a>
+    .
+  </li>
+</ul>
+<h2 id="caArray009HighlightsforBuildingcaArray&#39;sMAGETABAnnotationFiles-Haveacomment?">
+  Have a comment?
+</h2>
+Please leave your comment in the
+<a href="https://cabig-kc.nci.nih.gov/Molecular/forums/viewtopic.php?f=6&amp;t=577" rel="nofollow">
+  caArray End User Forum
+</a>
+.

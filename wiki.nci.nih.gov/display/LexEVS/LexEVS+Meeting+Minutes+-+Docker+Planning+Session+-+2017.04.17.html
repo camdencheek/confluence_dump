@@ -1,0 +1,198 @@
+<h2 id="LexEVSMeetingMinutesDockerPlanningSession2017.04.17-Attendees">
+   Attendees
+</h2>
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        Name
+      </th>
+      <th>
+        Role
+      </th>
+      <th colspan="1">
+        Present
+      </th>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Mensah, Jacob
+      </td>
+      <td colspan="1">
+        NIH/NCI [C]
+      </td>
+      <td colspan="1">
+        x
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Hartman, Phil
+      </td>
+      <td>
+        NIH/NCI [C]
+      </td>
+      <td>
+        x
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Wei, Lu
+      </td>
+      <td colspan="1">
+        NIH/NCI [C]
+      </td>
+      <td colspan="1">
+        x
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Bauer, Scott
+      </td>
+      <td colspan="1">
+        Mayo
+      </td>
+      <td colspan="1">
+        x
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Stancl, Craig
+      </td>
+      <td colspan="1">
+        Mayo
+      </td>
+      <td colspan="1"></td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Endle,  Cory
+      </td>
+      <td colspan="1">
+        Mayo
+      </td>
+      <td colspan="1">
+        x
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="LexEVSMeetingMinutesDockerPlanningSession2017.04.17-Links">
+  Links
+</h2>
+<ul>
+  <li>
+    LexEVS Docker Overview
+  </li>
+  <li>
+    <ul>
+      <li>
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=341185929" rel="nofollow">
+          LexEVS 16X237 Docker Setup
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    Docker scripts: lexevs-system-test git repository
+    <ul>
+      <li>
+        <a href="https://github.com/lexevs/lexevs-system-test/tree/v6.5.0" rel="nofollow">
+          https://github.com/lexevs/lexevs-system-test/tree/v6.5.0
+        </a>
+      </li>
+    </ul>
+  </li>
+</ul>
+<h2 id="LexEVSMeetingMinutesDockerPlanningSession2017.04.17-Agenda">
+  Agenda
+</h2>
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <td colspan="1">
+        Discuss next steps after NCI Docker server is configured.
+        <ul>
+          <li>
+            Who is configuring Docker to run our LexEVS system tests?
+            <ul>
+              <li>
+                What do they need from the Mayo team?
+              </li>
+            </ul>
+          </li>
+          <li>
+            Who is configuring Jenkins to run the above Docker scripts?
+            <ul>
+              <li>
+                What do they need from the Mayo team?
+              </li>
+            </ul>
+          </li>
+          <li>
+            Are there other tasks that can be done at this time?
+          </li>
+        </ul>
+      </td>
+      <td colspan="1">
+        Discussion Points:
+        <ul>
+          <li>
+            Docker server VM (2 CPU, 4 GB RAM) created and configured.
+            <ul>
+              <li>
+                Wei suggested increasing memory to 8GB.
+              </li>
+            </ul>
+          </li>
+          <li>
+            Next set up test.sh script as it is at Mayo
+          </li>
+          <li>
+            Wei suggested to use a Jenkins slave to checkout out system test and run the test.sh.
+            <ul>
+              <li>
+                This will need access to the the local file system to gather all test results.
+              </li>
+            </ul>
+          </li>
+          <li>
+            Phil suggested setting up a new instance of Jenkins that runs CentOS 7
+            <ul>
+              <li>
+                Jenkins will be installed/configured next week.
+              </li>
+              <li>
+                Wei suggested running the script on an existing Jenkins server while Phil sets the new instance up.  This testing can be done now.
+              </li>
+            </ul>
+          </li>
+          <li>
+            Phil/Wei will run test.sh Docker script outside of Jenkins when the server is configured (end of this week).
+          </li>
+        </ul>
+        Decision Points:
+        <ul>
+          <li>
+            Look into building images (separating them out) in the Docker script
+          </li>
+          <li>
+            Cory to send test.sh script to team and git repository.
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>

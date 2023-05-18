@@ -1,0 +1,323 @@
+<h2 id="LexEVSMeetingMinutesValueSetArchitecturePlanningSession2017.01.06-Attendees">
+   Attendees
+</h2>
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        Name
+      </th>
+      <th>
+        Role
+      </th>
+      <th colspan="1">
+        Present
+      </th>
+    </tr>
+    <tr>
+      <td>
+        Wright, Larry
+      </td>
+      <td>
+        NIH/NCI
+      </td>
+      <td colspan="1">
+        x
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Fragoso, Gilberto
+      </td>
+      <td>
+        NIH/NCI
+      </td>
+      <td colspan="1"></td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Safran, Tracy
+      </td>
+      <td colspan="1">
+        NIH/NCI [C]
+      </td>
+      <td colspan="1">
+        x
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Ong, Kim L
+      </td>
+      <td colspan="1">
+        IS
+      </td>
+      <td colspan="1">
+        x
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Wynne, Robert
+      </td>
+      <td>
+        NIH/NCI [C]
+      </td>
+      <td>
+        x
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Lucas, Jason
+      </td>
+      <td colspan="1">
+        NIH/NCI [C]
+      </td>
+      <td colspan="1">
+        x
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Bauer, Scott
+      </td>
+      <td colspan="1">
+        Mayo
+      </td>
+      <td colspan="1">
+        x
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Stancl, Craig
+      </td>
+      <td colspan="1">
+        Mayo
+      </td>
+      <td colspan="1">
+        x
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Endle,  Cory
+      </td>
+      <td colspan="1">
+        Mayo
+      </td>
+      <td colspan="1">
+        x
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="LexEVSMeetingMinutesValueSetArchitecturePlanningSession2017.01.06-Agenda">
+  Agenda
+</h2>
+Goals:
+<ul>
+  <li>
+    Better understand the struggles and issues associated to loading value sets.   Once those are identified, understand the actual requirements.
+  </li>
+  <li>
+    Once requirements are agreed upon, propose solutions to satisfy them.
+  </li>
+</ul>
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <td colspan="1">
+        Additional requirements
+        <ul>
+          <li>
+            Value set resolution
+          </li>
+          <li>
+            Search and manipulation
+          </li>
+        </ul>
+      </td>
+      <td colspan="1">
+        Discussion Points: Decision Points:
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Review Value Set workflow process (Tracy and Rob)
+        <ul>
+          <li>
+            The goal is to identify the areas of the workflow that cause the greatest issues. (for example, long load time for 700 value sets)
+          </li>
+        </ul>
+      </td>
+      <td colspan="1">
+        Discussion Points:
+        <ul>
+          <li>
+            What are the requirements for resolving value sets?
+            <ul>
+              <li>
+                Performance parameters?
+              </li>
+            </ul>
+          </li>
+          <li>
+            Rob mentioned there are 760 resolved value sets - loaded over the weekend.  Last one took about 2.5 days.
+            <ul>
+              <li>
+                This is run once a month.
+              </li>
+              <li>
+                Is there a simpler/quicker way to resolve these value sets?
+              </li>
+              <li>
+                Better logging would help to determine if there were any failures for resolving the value sets.
+              </li>
+              <li>
+                Rob suggested that if the script ran over night, this would be acceptable.
+              </li>
+            </ul>
+          </li>
+          <li>
+            Scott mentioned we could make the value sets transitive.  This would make loading resolved values sets perform better.
+          </li>
+          <li>
+            Rob questioned if we can load multiple values in parallel.
+          </li>
+          <li>
+            Kim asked if we need to resolve all of these value sets every month.
+            <ul>
+              <li>
+                Produce a large OWL file that contains entities with the value sets.
+              </li>
+              <li>
+                This file needs value set membership information.
+              </li>
+              <li>
+                Can search against this large file.
+              </li>
+              <li>
+                This is all in the LexEVS environment.
+              </li>
+              <li>
+                Kim would need a convenient API method to generate this output file.
+              </li>
+              <li>
+                There are a few value sets that are not from NCI Thesaurus.
+              </li>
+            </ul>
+          </li>
+          <li>
+            We will need to verify that the value sets are consistent from the current method of generating them to any new method of creating them.
+          </li>
+          <li>
+            Tracy mentioned that most value sets (about 700 of them) are concept in subset.  The hierarchy of the targets are about 2 levels deep.
+          </li>
+          <li>
+            Most of the value sets can be built off from the information in the NCI Thesaurus.
+          </li>
+        </ul>
+        Decision Points:
+        <ul>
+          <li>
+            Requirements
+            <ul>
+              <li>
+                Ability to audit and simplify the workflow.
+              </li>
+              <li>
+                Better logging to help determine if there were any failures for resolving the 760 value sets.
+              </li>
+              <li>
+                Rob suggested that if the script ran over night, this would be acceptable.
+              </li>
+              <li>
+                Ability to quickly resolve value sets on the fly.
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Discuss and capture issues for further review.
+      </td>
+      <td colspan="1">
+        Discussion Points: Decision Points:
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="LexEVSMeetingMinutesValueSetArchitecturePlanningSession2017.01.06-REFERENCES">
+  REFERENCES
+</h2>
+<h2 id="LexEVSMeetingMinutesValueSetArchitecturePlanningSession2017.01.06-ValueSetIssuesIdentifiedduring2016.12TechnicalFace-To-Face">
+  Value Set Issues Identified during 2016.12 Technical Face-To-Face
+</h2>
+<ul>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=332250069" rel="nofollow">
+      2016.12 Technical Face-To-Face Prioritization List
+    </a>
+  </li>
+</ul>
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        Priority
+      </th>
+      <th>
+        Issue
+      </th>
+    </tr>
+    <tr>
+      <td>
+        1
+      </td>
+      <td>
+        Investigate ability to be able to determine if Resolved VS coding scheme has changed.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        1
+      </td>
+      <td>
+        Investigate ability to update as needed (not have to load all 700 at the same time). Decrease time it takes to publish/deploy.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        2
+      </td>
+      <td>
+        Investigate ability to be able to determine if Value Set Definition has changed.
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        2
+      </td>
+      <td colspan="1">
+        Investigate ability to capture &#34;Hierarchal Value Sets&#34; as coding schemes with hierarchy. (inside value set)
+      </td>
+    </tr>
+  </tbody>
+</table>

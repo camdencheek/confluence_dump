@@ -1,0 +1,72 @@
+<h1 id="caArray012AddinganorganismtotheOrganismListincaArray-Question:HowdoIaddanorganismtotheOrganismListincaArray?">
+  Question: How do I add an organism to the Organism List in caArray?
+</h1>
+Topic: caArray Usage
+
+Release: Up to caArray 2.2
+
+Date entered: 03/06/2009
+<h2 id="caArray012AddinganorganismtotheOrganismListincaArray-DetailsabouttheQuestion">
+  Details about the Question
+</h2>
+I did not see my sample organism on the Organism list. How can I add mine to the list?
+<h2 id="caArray012AddinganorganismtotheOrganismListincaArray-Answer">
+  Answer
+</h2>
+<h3 id="caArray012AddinganorganismtotheOrganismListincaArray-OrganismList">
+  Organism List
+</h3>
+&#34;Organism&#34; represents the source of sample biomaterial used in an experiment. It is one of the mandatory fields describing each caArray experiment. An initialization script, which is part of the caArray installation package, will insert the most commonly used organisms into caArray&#39;s database table: Organism. The organisms can then be selected from two drop-down lists in following sections:
+<ul>
+  <li>
+    Create New Experiment
+  </li>
+  <li>
+    Import New Array Design
+  </li>
+</ul>
+<h3 id="caArray012AddinganorganismtotheOrganismListincaArray-ManuallyAddingOrganism">
+  Manually Adding Organism
+</h3>
+If the organism list in caArray does not contain the organism for your samples, there are two other ways to add new organisms into caArray.
+<ul>
+  <li>
+    Any new organism defined in the MAGE-TAB Annotation files (caArray 007 - What are the MAGE-TAB Files?) that are used to annotate experiments will be automatically added to caArray&#39;s database during the data file import. The organism is defined in MAGE-TAB&#39;s SDRF file following the sample source definition. It has the column heading &#34;Characteristics[MATKC:Organism].
+  </li>
+</ul>
+<ul>
+  <li>
+    New organisms can also be manually added at the database level. The SQL statement below is a simple insert statement that can be used to add a new entry to Organism table:
+  </li>
+</ul>
+insert into organism
+(ncbi_taxonomy_id, common_name, scientific_name, taxonomy_rank, term_source)
+select 9606, &#39;human&#39;, &#39;Homo sapiens&#39;, &#39;species&#39;, id
+from term_source where term_source.name=&#39;ncbitax&#39;;
+
+
+
+There are two fields that need to be clarified in this SQL statement:
+<ul>
+  <li>
+    term_source: This is a numeric field. It is really the term source identifier, ID, from term_source table. In the example above, the scientific name is defined in the
+    <a href="http://www.ncbi.nlm.nih.gov/Taxonomy/" rel="nofollow">
+      ncbitax taxonomy
+    </a>
+    , a known source already defined in the term_source table. If your taxonomy source is not in the Term_Source table yet, it needs to be added into the Term_Source table prior to executing this insert statement.
+  </li>
+</ul>
+<ul>
+  <li>
+    ncbi_taxonomy_id: it is the taxonomy ID used by ncbitax.
+  </li>
+</ul>
+Prior to any database modification, a database backup is highly recommended.
+<h2 id="caArray012AddinganorganismtotheOrganismListincaArray-Haveacomment?">
+  Have a comment?
+</h2>
+Please leave your comment in the
+<a href="https://cabig-kc.nci.nih.gov/Molecular/forums/viewtopic.php?f=6&amp;t=577" rel="nofollow">
+  caArray End User Forum
+</a>
+. 

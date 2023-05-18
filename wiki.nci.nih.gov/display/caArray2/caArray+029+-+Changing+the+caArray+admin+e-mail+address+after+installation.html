@@ -1,0 +1,29 @@
+<h1 id="caArray029ChangingthecaArrayadminemailaddressafterinstallation-Question:HowdoIchangethecaArrayadmine-mailaddressafterinstallation?">
+  Question: How do I change the caArray admin e-mail address after installation?
+</h1>
+Topic: caArray Usage
+
+Release: Up to caArray 2.x
+
+Date entered: 08/31/2009
+<h2 id="caArray029ChangingthecaArrayadminemailaddressafterinstallation-DetailsabouttheQuestion">
+  Details about the Question
+</h2>
+Can I change the admin (caArray registration) e-mail address after installation? I had tried to configure it in the JBOSS of caArray, however it did not seem to work.
+<h2 id="caArray029ChangingthecaArrayadminemailaddressafterinstallation-Answer">
+  Answer
+</h2>
+Yes, you can update the admin email address after caArray installation. The &#34;To:&#34; and &#34;From:&#34; email addresses can be updated in the MySQL DB. Here is the example SQL that will set both values:
+
+
+
+update config_parameter set raw_value = &#39;sysadmin@mydomain.com&#39; where param = &#39;REG_EMAIL_TO&#39;;
+update config_parameter set raw_value = &#39;noreply@mydomain.com&#39; where param = &#39;EMAIL_FROM&#39;;
+<h2 id="caArray029ChangingthecaArrayadminemailaddressafterinstallation-Haveacomment?">
+  Have a comment?
+</h2>
+Please leave your comment in the
+<a href="https://cabig-kc.nci.nih.gov/Molecular/forums/viewtopic.php?f=6&amp;t=577" rel="nofollow">
+  caArray End User Forum
+</a>
+. 

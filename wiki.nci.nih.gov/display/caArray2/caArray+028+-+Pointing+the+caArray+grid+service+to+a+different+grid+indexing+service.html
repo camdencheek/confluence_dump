@@ -1,0 +1,64 @@
+<h1 id="caArray028PointingthecaArraygridservicetoadifferentgridindexingservice-Question:HowdoIpointthecaArraygridservicetoadifferentgridindexingservice?">
+  Question: How do I point the caArray grid service to a different grid indexing service?
+</h1>
+Topic: caArray Installation and Upgrade
+
+Release: caArray 2.x and up
+
+Date entered: 08/21/2009
+<h2 id="caArray028PointingthecaArraygridservicetoadifferentgridindexingservice-DetailsabouttheQuestion">
+  Details about the Question
+</h2>
+Our current caArray instance is on caGrid&#39;s production indexing service. Since this instance becomes our staging server, can we point it to caGrid&#39;s training indexing server?
+<h2 id="caArray028PointingthecaArraygridservicetoadifferentgridindexingservice-Answer">
+  Answer
+</h2>
+Yes, you can point your caArray instance to a different grid indexing service.
+
+Currently, there are two public caGrid indexing servers: production and training caGrid services. Each caArray instance can only be deployed on one of the caGrid services. The URL for the caArray grid service is defined in the file below:
+
+
+
+$JBOSS_HOME/server/default/deploy/wsrf.war/WEB-INF/etc/cagrid_CaArraySvc/CaArraySvc_registration.xml
+<h3 id="caArray028PointingthecaArraygridservicetoadifferentgridindexingservice-Case1.caArrayserverisalreadyononeofthegridservices">
+  Case 1. caArray server is already on one of the grid services
+</h3>
+If your caArray service is already on the production grid service, you need to alter the Index service URL (&lt;ServiceGroupEPR&gt;&lt;wsa:Address&gt;) from the production grid URL:
+
+
+
+http://cagrid-index.nci.nih.gov:8080/wsrf/services/DefaultIndexService
+
+
+
+to the caGrid&#39;s training grid URL:
+
+
+
+http://index.training.cagrid.org:8080/wsrf/services/DefaultIndexService
+
+
+
+Once the URL is changed, restart the JBOSS server to reset the service.
+
+To see if your caArray instance has been successfully installed on the grid service, please refer to
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=42832079" rel="nofollow">
+  caArray 006 - Step by Step Guide to Install caArray 2.x Grid Service (caArray 2.2 and Under)
+</a>
+, Step by Step Guide to Install caArray 2.x Grid Service, Step 8: Can I see my caGrid Service online?
+<h3 id="caArray028PointingthecaArraygridservicetoadifferentgridindexingservice-Case2.caArrayserverisnotcurrentlyonanygridservice">
+  Case 2.  caArray server is not currently on any grid service
+</h3>
+If your caArray instance has not been installed on any of the caBIG® grid services, please refer to
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=42832079" rel="nofollow">
+  caArray 006 - Step by Step Guide to Install caArray 2.x Grid Service (caArray 2.2 and Under)
+</a>
+, Step by Step Guide to Install caArray 2.x Grid Service, to set up the grid service of your choice.
+<h2 id="caArray028PointingthecaArraygridservicetoadifferentgridindexingservice-Haveacomment?">
+  Have a comment?
+</h2>
+Please leave your comment in the
+<a href="https://cabig-kc.nci.nih.gov/Molecular/forums/viewtopic.php?f=6&amp;t=577" rel="nofollow">
+  caArray End User Forum
+</a>
+. 

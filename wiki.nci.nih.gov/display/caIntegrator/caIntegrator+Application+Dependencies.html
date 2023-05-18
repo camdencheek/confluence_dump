@@ -1,0 +1,229 @@
+Contents of this Page
+<ul>
+  <li>
+    <a href="#caIntegratorApplicationDependencies-Overview" rel="nofollow">
+      Overview
+    </a>
+  </li>
+  <li>
+    <a href="#caIntegratorApplicationDependencies-ApplicationDependencies" rel="nofollow">
+      Application Dependencies
+    </a>
+  </li>
+</ul>
+<h2 id="caIntegratorApplicationDependencies-Overview">
+  Overview
+</h2>
+As an integrating/translational platform, caIntegrator depends on service-level or API interfaces for several other applications in the caBIG suite of tools. Many of these applications have ongoing development and deploy multiple releases each year. In order to better plan for potential breakage or retest necessary in caIntegrator, the team undertook an analysis of these dependencies and the planned release schedules for each. This document highlights dependencies and serves as a place to discuss any breakage to caIntegrator and to schedule this into an iteration.
+<h2 id="caIntegratorApplicationDependencies-ApplicationDependencies">
+  Application Dependencies
+</h2>
+The following applications are used by caIntegrator and require some sort of dependency management.  This table will track upcoming releases and any known changes or retest required for these releases. This work can then be scheduled into an upcoming caIntegrator iteration.
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Application / Service
+      </th>
+      <th>
+        Version  Supported by  caIntegrator 1.3.1
+      </th>
+      <th>
+        Version  Supported by  caIntegrator 1.4
+      </th>
+      <th>
+        Next  Planned Version
+      </th>
+      <th>
+        Projected  Release  Date
+      </th>
+      <th>
+        Interface Summary / Needed caIntegrator Changes
+      </th>
+    </tr>
+    <tr>
+      <td>
+        caArray
+      </td>
+      <td>
+        2.4
+      </td>
+      <td>
+        2.5
+      </td>
+      <td>
+        2.5
+      </td>
+      <td>
+        7/2012
+      </td>
+      <td>
+        Use Java RMI-based &#34;external model&#34; API   No data on what will change or a release date.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        NBIA
+      </td>
+      <td>
+        4.4
+      </td>
+      <td>
+        5.0
+      </td>
+      <td>
+        TBD
+      </td>
+      <td>
+        10/31/10
+      </td>
+      <td>
+        Use caGrid data service for CQL queries and caGrid grid file transfer service.   No changes to the API for 4.5. Version 4.5 does support secure Grid services, so we will need to implement support for secure services sometime in the future.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        AIM
+      </td>
+      <td>
+        1.5
+      </td>
+      <td>
+        1.5
+      </td>
+      <td>
+        TBD
+      </td>
+      <td>
+        TBD
+      </td>
+      <td>
+        The AIM 3.0 API deprecates the caGrid interface and instead supports only a RESTful interface described
+        <a href="http://confluence.cci.emory.edu:8090/display/IVI/AIM+RESTful+Service+API" rel="nofollow">
+          here
+        </a>
+        . The API also introduces a new data model. caIntegrator will require integration implementation changes in a future release to support this new API
+      </td>
+    </tr>
+    <tr>
+      <td>
+        GenePattern
+      </td>
+      <td>
+        3.2.1
+      </td>
+      <td>
+        3.2.1
+      </td>
+      <td>
+        3.2.3
+      </td>
+      <td>
+        TBD
+      </td>
+      <td>
+        caGrid analytical service used for genomic algorithms
+      </td>
+    </tr>
+    <tr>
+      <td>
+        caDNAcopy (part of Bioconductor)
+      </td>
+      <td>
+        caDNAcopy 1.2 Bioconductor 1.9 (contains DNAcopy 1.8.1)
+      </td>
+      <td>
+        caDNAcopy 1.2 Bioconductor 1.9 (contains DNAcopy 1.8.1)
+      </td>
+      <td>
+        TBD
+      </td>
+      <td>
+        TBD
+      </td>
+      <td>
+        caGrid anaytical service for caDNAcopy used for copy number data during study deployment.  Deployed as part of Bioconductor. We are examining non-functional changes to improve performance (multi-threading) and logging.  No information on planned future releases of this tool. We do not need to adopt Bioconductor upgrades unless there are fixes to DNAcopy (which is an optional install under Bioconductor).
+      </td>
+    </tr>
+    <tr>
+      <td>
+        caBio
+      </td>
+      <td>
+        4.3
+      </td>
+      <td>
+        4.3
+      </td>
+      <td>
+        MAservice 1.0
+      </td>
+      <td>
+        TBD
+      </td>
+      <td>
+        REST API used for keyword or pathway based gene search   caBio functionality being replaced by MA service. Meeting with caBio team and caIntegrator scheduled for 11/10/10 to ensure all caIntegrator requirements are met.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        caDSR
+      </td>
+      <td>
+        4.3
+      </td>
+      <td>
+        4.3
+      </td>
+      <td>
+        TBD
+      </td>
+      <td>
+        TBD
+      </td>
+      <td>
+        NCI Vocabulary Service
+      </td>
+    </tr>
+    <tr>
+      <td>
+        UPT
+      </td>
+      <td>
+        4.2
+      </td>
+      <td>
+        4.2.3
+      </td>
+      <td>
+        TBD
+      </td>
+      <td>
+        2/2012
+      </td>
+      <td>
+        User Authentication and Authorization management.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        caGrid
+      </td>
+      <td>
+        1.2
+      </td>
+      <td>
+        1.4
+      </td>
+      <td>
+        TBD
+      </td>
+      <td>
+        TBD
+      </td>
+      <td>
+        core caGrid component
+      </td>
+    </tr>
+  </tbody>
+</table>

@@ -1,0 +1,2186 @@
+Document Information
+Author: Craig StanclEmail:
+<a href="mailto:Stancl.craig@mayo.edu" rel="nofollow">
+  Stancl.craig@mayo.edu
+</a>
+Team: LexEVSContract: S13-500 MOD4Client: NCI CBIITNational Institutes of HeathUS Department of Health and Human Services
+Contents of this Page
+<ul>
+  <li>
+    <a href="#LexEVS6.3DesignDocumentDetailedDesignOWL2enhancements,modificationsandnewfeatures-Design" rel="nofollow">
+      Design
+    </a>
+  </li>
+</ul>
+ OverviewLoading OWL2 sources is part of an ongoing project to create a viable mapping of OWL2 sources into the LexGrid model.  Challenges presented by this mapping include the punning of some owl classes into individuals and providing a mapping of annotations properties into a variety of LexEVS objects depending on the nature of the OWL2 annotation property.  In some cases drilling down into the NAry structure of boolean sentences to construct relationships that are otherwise hidden by the nature of anonymous class was necessary.  Individual examples of these issues have been detailed in the spread sheet below.
+<a href="https://tracker.nci.nih.gov/browse/LEXEVS-583" rel="nofollow">
+  LEXEVS-583
+</a>
+-
+Getting issue details...
+STATUS
+<a href="https://tracker.nci.nih.gov/browse/LEXEVS-614" rel="nofollow">
+  LEXEVS-614
+</a>
+-
+Getting issue details...
+STATUS
+
+
+<h2 id="LexEVS6.3DesignDocumentDetailedDesignOWL2enhancements,modificationsandnewfeatures-Design">
+  Design
+</h2>
+<table id="TBL1683167275233">
+  <tr>
+    <th>
+      JIRA
+    </th>
+    <th>
+      entities
+    </th>
+    <th>
+      test entity
+    </th>
+    <th>
+      test annotation
+    </th>
+    <th>
+      comment
+    </th>
+    <th>
+      LbGUI Structure
+    </th>
+    <th>
+      LbGUI annotation
+    </th>
+    <th>
+      Priority
+    </th>
+    <th>
+      LexEVS Team Comments
+    </th>
+    <th>
+      0.1.2
+    </th>
+    <th>
+      0.1.1
+    </th>
+    <th>
+      0.1.3
+    </th>
+    <th>
+      0.1.0
+    </th>
+  </tr>
+  <tr>
+    <td>
+      LEXEVS-775
+    </td>
+    <td>
+      Ontology metadata
+    </td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>
+      1
+    </td>
+    <td>
+      Make sure the OWL:Ontology tag contents are expressed as coding scheme metadata
+    </td>
+    <td>
+      Yes
+    </td>
+    <td>
+      Yes
+    </td>
+    <td>
+      Yes
+    </td>
+    <td>
+      Yes
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>
+      special class
+    </td>
+    <td>
+      C123 (Gene)
+    </td>
+    <td></td>
+    <td></td>
+    <td>
+      +
+    </td>
+    <td></td>
+    <td>
+      0
+    </td>
+    <td></td>
+    <td>
+      N/A
+    </td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>
+      LEXEVS-776
+    </td>
+    <td>
+      external class
+    </td>
+    <td>
+      http://purl.obolibrary.org/obo/CL_0000000  (Cell)
+      http://purl.obolibrary.org/obo/CL_0000148  (melanocyte)
+    </td>
+    <td></td>
+    <td>
+      entity code missing &#34;http:&#34; portion
+    </td>
+    <td>
+      ?
+    </td>
+    <td></td>
+    <td>
+      5 (?)
+    </td>
+    <td>
+      the issue is that depending on the context, the &#34;http&#34; might be present, raising the question of whether the references can be trusted.  See e.g. item 85 vs 97
+    </td>
+    <td>
+      Yes
+    </td>
+    <td>
+      Yes
+    </td>
+    <td>
+      Yes
+    </td>
+    <td>
+      Yes
+    </td>
+  </tr>
+  <tr>
+    <td>
+      LEXEVS-777
+    </td>
+    <td>
+      datatype property
+    </td>
+    <td>
+      has_physical_location
+      in_organism
+      semanticType
+    </td>
+    <td></td>
+    <td>
+      no datatype ranges are shown in lbgui (in_organism and semanticType)
+    </td>
+    <td>
+      +/-
+    </td>
+    <td></td>
+    <td>
+      1
+    </td>
+    <td>
+      Some properties will be treated as first class entity.  Range one of would be treated as flattened list.  See sematic type.  See also in_organism where we&#39;d add provenance and definition
+    </td>
+    <td>
+      Yes
+    </td>
+    <td>
+      Yes
+    </td>
+    <td>
+      Yes
+    </td>
+    <td>
+      Yes
+    </td>
+  </tr>
+  <tr>
+    <td>
+      LEXEVS-778
+    </td>
+    <td>
+      annotation property
+    </td>
+    <td>
+      AssociationLIT
+      AssociationSTR
+      AssociationURI
+      AssociationV1
+      date
+      definition
+      note
+      provenance
+      semanticType
+      source term
+      term_type
+    </td>
+    <td></td>
+    <td>
+      only AssociationV1 and semanticType show up in primitive-unannotated (dual definitions with ranges)
+    </td>
+    <td>
+      -
+    </td>
+    <td></td>
+    <td>
+      2
+    </td>
+    <td>
+      lexevs has built-in properties for various things, e.g. definitions.  But there are other properties that are not built into the lexevs model that might still be needed to be exposed to the end-user.  Properties to be attached to the enitity such as in_organizm.
+    </td>
+    <td>
+      Yes
+    </td>
+    <td>
+      Yes
+    </td>
+    <td>
+      N/A
+    </td>
+    <td>
+      N/A
+    </td>
+  </tr>
+  <tr>
+    <td>
+      LEXEVS-779
+    </td>
+    <td>
+      anonymous class (test with unattached restriction)
+    </td>
+    <td>
+      Patient_Has_Finding some Finding SubClassOf SickPatient
+    </td>
+    <td></td>
+    <td>
+      express in LexEVS?  Yes.
+    </td>
+    <td>
+      -
+    </td>
+    <td></td>
+    <td>
+      3
+    </td>
+    <td>
+      Left hand side is anon node subClass is the association.  The intersection does not seem to be expressed in the annotated primitives.  Assuming it is acceptably resolved for the defined annotated.
+    </td>
+    <td>
+      Yes
+    </td>
+    <td>
+      Yes
+    </td>
+    <td>
+      Yes
+    </td>
+    <td>
+      Yes
+    </td>
+  </tr>
+  <tr>
+    <td>
+      LEXEVS-780
+    </td>
+    <td>
+      association, annotation (literal)
+    </td>
+    <td>
+      AssociationLIT
+    </td>
+    <td></td>
+    <td></td>
+    <td>
+      -
+    </td>
+    <td></td>
+    <td>
+      1
+    </td>
+    <td></td>
+    <td>
+      Yes
+    </td>
+    <td></td>
+    <td>
+      N/A
+    </td>
+    <td>
+      N/A
+    </td>
+  </tr>
+  <tr>
+    <td>
+      LEXEVS-781
+    </td>
+    <td>
+      association, annotation (anyURI)
+    </td>
+    <td>
+      AsoociationURI
+    </td>
+    <td></td>
+    <td></td>
+    <td>
+      -
+    </td>
+    <td></td>
+    <td>
+      1
+    </td>
+    <td></td>
+    <td>
+      Yes
+    </td>
+    <td>
+      Yes
+    </td>
+    <td>
+      N/A
+    </td>
+    <td>
+      N/A
+    </td>
+  </tr>
+  <tr>
+    <td>
+      LEXEVS-782
+    </td>
+    <td>
+      association, annotation (string)
+    </td>
+    <td>
+      AssociationSTR
+    </td>
+    <td></td>
+    <td></td>
+    <td>
+      -
+    </td>
+    <td></td>
+    <td>
+      1
+    </td>
+    <td></td>
+    <td>
+      Yes
+    </td>
+    <td>
+      Yes
+    </td>
+    <td>
+      N/A
+    </td>
+    <td>
+      N/A
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>
+      annotations on entities (declaration)
+    </td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>
+      LEXEVS-783
+    </td>
+    <td>
+      annotation on anonymous class (test with unattached restriction)
+    </td>
+    <td>
+      Patient_Has_Finding some Finding SubClassOf SickPatient
+    </td>
+    <td>
+      note, provenance, source
+    </td>
+    <td>
+      expose in lexevs?  Yes.  See above for priority.
+    </td>
+    <td>
+      -
+    </td>
+    <td>
+      +
+    </td>
+    <td>
+      3
+    </td>
+    <td></td>
+    <td>
+      Yes
+    </td>
+    <td>
+      Yes
+    </td>
+    <td>
+      N/A
+    </td>
+    <td>
+      N/A
+    </td>
+  </tr>
+  <tr>
+    <td>
+      LEXEVS-784
+    </td>
+    <td>
+      annotation on association, object + annotation (v1)
+    </td>
+    <td>
+      term
+    </td>
+    <td></td>
+    <td>
+      not consistent with other properties
+    </td>
+    <td>
+      -
+    </td>
+    <td>
+      +
+    </td>
+    <td>
+      1
+    </td>
+    <td>
+      not specific to these &#34;association&#34; properties, their metadata should be included as if they were first class citizens. Referring to the annotations in 10-12
+    </td>
+    <td>
+      Yes
+    </td>
+    <td>
+      Yes
+    </td>
+    <td>
+      N/A
+    </td>
+    <td>
+      N/A
+    </td>
+  </tr>
+  <tr>
+    <td>
+      LEXEVS-785
+    </td>
+    <td>
+      annotation on association, annotation (literal)
+    </td>
+    <td>
+      term
+    </td>
+    <td></td>
+    <td>
+      not consistent with other properties
+    </td>
+    <td>
+      -
+    </td>
+    <td>
+      +
+    </td>
+    <td>
+      1
+    </td>
+    <td>
+      Not to be loaded as assoc entity -- only as a property on a class.  This because the filler type is not anyURI.
+    </td>
+    <td>
+      Yes
+    </td>
+    <td>
+      Yes
+    </td>
+    <td>
+      N/A
+    </td>
+    <td>
+      N/A
+    </td>
+  </tr>
+  <tr>
+    <td>
+      LEXEVS-786
+    </td>
+    <td>
+      annotation on association, annotation (anyURI)
+    </td>
+    <td>
+      term
+    </td>
+    <td></td>
+    <td>
+      not consistent with other properties
+    </td>
+    <td>
+      -
+    </td>
+    <td>
+      +
+    </td>
+    <td>
+      1
+    </td>
+    <td>
+      Needs Entity description.  Annotated on
+    </td>
+    <td>
+      Yes
+    </td>
+    <td>
+      Yes
+    </td>
+    <td>
+      N/A
+    </td>
+    <td>
+      N/A
+    </td>
+  </tr>
+  <tr>
+    <td>
+      LEXEVS-787
+    </td>
+    <td>
+      annotation on association, annotation (string)
+    </td>
+    <td>
+      term
+    </td>
+    <td></td>
+    <td>
+      not consistent with other properties
+    </td>
+    <td>
+      -
+    </td>
+    <td>
+      +
+    </td>
+    <td>
+      1
+    </td>
+    <td>
+      Not to be loaded as assoc entity -- only as a property on a class.  This because the filler type is not anyURI.
+    </td>
+    <td>
+      Yes
+    </td>
+    <td>
+      Yes
+    </td>
+    <td>
+      N/A
+    </td>
+    <td>
+      N/A
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>
+      axioms, annotated
+    </td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>
+      N/A
+    </td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>
+      LEXEVS-788
+    </td>
+    <td>
+      subclassOf, external named class
+    </td>
+    <td>
+      Epithelial_Cell isa Cell =
+    </td>
+    <td>
+      definition on subclass axiom
+    </td>
+    <td>
+      &#34;http&#34; of external class, missing?
+    </td>
+    <td>
+      +/-
+    </td>
+    <td>
+      +
+    </td>
+    <td>
+      5 (?)
+    </td>
+    <td></td>
+    <td>
+      Yes
+    </td>
+    <td>
+      Yes
+    </td>
+    <td>
+      Yes
+    </td>
+    <td>
+      Yes
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>
+      subclassOf, intersection named classes
+    </td>
+    <td>
+      TotalPerson isa Person and PersonRole
+    </td>
+    <td>
+      note on subclass axiom
+    </td>
+    <td>
+      PersonRole not extracted
+    </td>
+    <td>
+      -
+    </td>
+    <td>
+      +
+    </td>
+    <td>
+      5
+    </td>
+    <td>
+      question: should we also present the standalone conjuntion.
+    </td>
+    <td>
+      Dup?
+    </td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>
+      subclassOf, union named classes
+    </td>
+    <td>
+      Prognosis isa (PrognosisGood or PrognosisBad), SickPatient isa Patient and (CancerPatient or MildlySickPatient or VerySickPatient)
+    </td>
+    <td>
+      note on subclass axiom
+    </td>
+    <td>
+      unions anon classes appear parsed because the subclasses are &#34;[R]subClassOf&#34;
+    </td>
+    <td>
+      +/=
+    </td>
+    <td>
+      +
+    </td>
+    <td>
+      0
+    </td>
+    <td></td>
+    <td>
+      Dup?
+    </td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>
+      subclassOf, union named disjoint classes
+    </td>
+    <td>
+      Gene isa disjointunion(Braf or Brca1 or Erbb2 or Mefv or OncogeneTim or Ras or Actin)
+    </td>
+    <td>
+      note on disjoint union
+    </td>
+    <td>
+      the classes in the disjoint union appear parsed, but it&#39;s because they are also subclasses (see above)
+    </td>
+    <td>
+      +/-
+    </td>
+    <td>
+      -
+    </td>
+    <td>
+      5
+    </td>
+    <td></td>
+    <td>
+      Dup?
+    </td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>
+      subclassOf, complement named class
+    </td>
+    <td>
+      HealthyPatient not(SickPatient)
+    </td>
+    <td>
+      note on subclass axiom
+    </td>
+    <td>
+      anon class not parsed
+    </td>
+    <td>
+      -
+    </td>
+    <td>
+      +
+    </td>
+    <td>
+      3
+    </td>
+    <td>
+      representation issue
+    </td>
+    <td>
+      Dup?
+    </td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>
+      subclassOf, one of
+    </td>
+    <td>
+      Finding one of (Fever, PaleSkin, ShallowBreathing) [individuals]
+    </td>
+    <td>
+      note on subclass axiom
+    </td>
+    <td>
+      anon class appears parsed because the individuals have [R]type relations
+    </td>
+    <td>
+      N/A
+    </td>
+    <td>
+      +
+    </td>
+    <td>
+      0
+    </td>
+    <td></td>
+    <td>
+      Dup?
+    </td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>
+      Dup?
+    </td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>
+      subclassOf, some datatype restriction
+    </td>
+    <td>
+      ras isa gene and has_physical_location some positiveInteger
+    </td>
+    <td>
+      note on subclass axiom
+    </td>
+    <td>
+      anon class not parsed
+    </td>
+    <td>
+      -
+    </td>
+    <td>
+      +
+    </td>
+    <td>
+      3
+    </td>
+    <td>
+      representation issue
+    </td>
+    <td>
+      Dup?
+    </td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>
+      subclassOf, all datatype restriction
+    </td>
+    <td>
+      k-ras isa gene and has_physical_location all positiveInteger
+    </td>
+    <td>
+      note on subclass axiom
+    </td>
+    <td>
+      anon class not parsed
+    </td>
+    <td>
+      -
+    </td>
+    <td>
+      +
+    </td>
+    <td>
+      3
+    </td>
+    <td>
+      representation issue
+    </td>
+    <td>
+      Dup?
+    </td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>
+      subclassOf, datatype hasValue
+    </td>
+    <td>
+      oncogeneTim isa gene and has_physical_location value 12345
+    </td>
+    <td>
+      note on subclass axiom
+    </td>
+    <td>
+      anon class not parsed
+    </td>
+    <td>
+      -
+    </td>
+    <td>
+      +
+    </td>
+    <td>
+      3
+    </td>
+    <td>
+      representation issue
+    </td>
+    <td>
+      Dup?
+    </td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>
+      subclassOf, some objectype restriction
+    </td>
+    <td>
+      SOS isa gene and gene_related_to_disease some NeoplasticDisease
+    </td>
+    <td>
+      note on subclass axiom
+    </td>
+    <td>
+      anon class not parsed
+    </td>
+    <td>
+      -
+    </td>
+    <td>
+      +
+    </td>
+    <td>
+      5
+    </td>
+    <td></td>
+    <td>
+      Dup?
+    </td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>
+      subclassOf, some objectype restriction external class
+    </td>
+    <td>
+      braf isa gene and gene_expressed_in some melanocyte
+    </td>
+    <td>
+      note on subclass axiom
+    </td>
+    <td>
+      anon class not parsed. &#34;http&#34; present in class IRI
+    </td>
+    <td>
+      -
+    </td>
+    <td>
+      +
+    </td>
+    <td>
+      5
+    </td>
+    <td></td>
+    <td>
+      Dup?
+    </td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>
+      subclassOf, all objectype restriction external class
+    </td>
+    <td>
+      erbb2 isa gene and gene_expressed_in only melanocyte
+    </td>
+    <td>
+      note on subclass axiom
+    </td>
+    <td>
+      anon class not parsed. &#34;http&#34; present in class IRI
+    </td>
+    <td>
+      -
+    </td>
+    <td>
+      +
+    </td>
+    <td>
+      5
+    </td>
+    <td></td>
+    <td>
+      Dup?
+    </td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>
+      subclassOf, all objectype restriction
+    </td>
+    <td>
+      shh isa gene and gene_related_to_disease only NeoplasticDisease
+    </td>
+    <td>
+      note on subclass axiom
+    </td>
+    <td>
+      anon class not parsed
+    </td>
+    <td>
+      -
+    </td>
+    <td>
+      +
+    </td>
+    <td>
+      5
+    </td>
+    <td></td>
+    <td>
+      Dup?
+    </td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>
+      subclassOf, object hasValue
+    </td>
+    <td>
+      Mefv isa Gene and gene_related_to_disease value Fever
+    </td>
+    <td>
+      note on subclass axiom
+    </td>
+    <td>
+      anon class not parsed. Individual present
+    </td>
+    <td>
+      -
+    </td>
+    <td>
+      +
+    </td>
+    <td>
+      5
+    </td>
+    <td></td>
+    <td>
+      Dup?
+    </td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>
+      subclassOf, intersection object restrictions
+    </td>
+    <td>
+      MildlySickCancerPatient isa MildlySickPatient and (patient_has_finding some TumorBenign)  and (patient_has_prognosis some PrognosisGood)
+    </td>
+    <td>
+      note on subclass axiom
+    </td>
+    <td>
+      anon class not parsed
+    </td>
+    <td>
+      -
+    </td>
+    <td>
+      +
+    </td>
+    <td>
+      5
+    </td>
+    <td></td>
+    <td>
+      Dup?
+    </td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>
+      subclassOf, union object restrictions
+    </td>
+    <td>
+      VerySickCancerPatient isa VerySickPatient and (patient_has_finding some TumorMalignant) or (patient_has_prognosis some PrognosisBad)
+    </td>
+    <td>
+      note on subclass axiom
+    </td>
+    <td>
+      anon class not parsed
+    </td>
+    <td>
+      -
+    </td>
+    <td>
+      +
+    </td>
+    <td>
+      5
+    </td>
+    <td></td>
+    <td>
+      Dup?
+    </td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>
+      subclassOf, role group
+    </td>
+    <td>
+      CancerPatient isa SickPatient and ((patient_has_finding some TumorBenign) and (patient_has_prognosis some PrognosisGood)) or ((patient_has_finding some TumorMalignant) and (patient_has_prognosis some PrognosisBad))
+    </td>
+    <td>
+      note on subclass axiom
+    </td>
+    <td>
+      anon class not parsed
+    </td>
+    <td>
+      -
+    </td>
+    <td>
+      +
+    </td>
+    <td>
+      5
+    </td>
+    <td></td>
+    <td>
+      Dup?
+    </td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>
+      subclassOf, class expression (intersection object &amp; datatype)
+    </td>
+    <td>
+      brca1 isa gene and ((gene_expressed_in some EpithelialCell) and (in_organism value &#34;homo sapiens))
+    </td>
+    <td></td>
+    <td>
+      anon class not parsed
+    </td>
+    <td>
+      -
+    </td>
+    <td>
+      +
+    </td>
+    <td>
+      3
+    </td>
+    <td>
+      representation issue
+    </td>
+    <td>
+      Dup?
+    </td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>
+      subclassOf, class expression (union object &amp; datatype)
+    </td>
+    <td>
+      actin isa gene and ((gene_expressedin some EpithelialCell) or (in_organism value &#34;all Organisms&#34;))
+    </td>
+    <td></td>
+    <td>
+      anon class not parsed
+    </td>
+    <td>
+      -
+    </td>
+    <td>
+      +
+    </td>
+    <td>
+      3
+    </td>
+    <td>
+      representation issue
+    </td>
+    <td>
+      Dup?
+    </td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>
+      LEXEVS-789
+    </td>
+    <td>
+      association internal class (PrognosisGood)
+    </td>
+    <td>
+      HappyPatientDrivingAround:  Associations V1, STR, URI, LIT, and URI as resource
+    </td>
+    <td></td>
+    <td>
+      type=anyURI is not being used for the association (V1 unannotated, OWLAPI issue)
+    </td>
+    <td>
+      -
+    </td>
+    <td>
+      +
+    </td>
+    <td>
+      5
+    </td>
+    <td></td>
+    <td>
+      Yes
+    </td>
+    <td>
+      Yes
+    </td>
+    <td>
+      N/A
+    </td>
+    <td>
+      N/A
+    </td>
+  </tr>
+  <tr>
+    <td>
+      LEXEVS-790
+    </td>
+    <td>
+      association external class (melanocyte)
+    </td>
+    <td>
+      HappyPatientWalkingAround:  Associations V1, STR, URI, LIT, and URI as resource
+    </td>
+    <td></td>
+    <td>
+      1) as above, 2) &#34;http&#34; not present in the external class&#39; URI,  3) annotation on V1 belongs to another property
+    </td>
+    <td>
+      -
+    </td>
+    <td>
+      +
+    </td>
+    <td>
+      5
+    </td>
+    <td></td>
+    <td>
+      Yes
+    </td>
+    <td>
+      Yes
+    </td>
+    <td>
+      N/A
+    </td>
+    <td>
+      N/A
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>
+      LEXEVS-791
+    </td>
+    <td>
+      equivalentClass, external named class
+    </td>
+    <td></td>
+    <td></td>
+    <td>
+      (external class does not have &#34;http&#34;)
+    </td>
+    <td>
+      -
+    </td>
+    <td></td>
+    <td>
+      5 (?)
+    </td>
+    <td></td>
+    <td>
+      Yes
+    </td>
+    <td>
+      Yes
+    </td>
+    <td>
+      Yes
+    </td>
+    <td>
+      Yes
+    </td>
+  </tr>
+  <tr>
+    <td>
+      LEXEVS-792
+    </td>
+    <td>
+      equivalentClass, intersection named classes
+    </td>
+    <td>
+      TotalPerson isa Person and PersonRole
+    </td>
+    <td>
+      note
+    </td>
+    <td>
+      anon class not parsed
+    </td>
+    <td>
+      -
+    </td>
+    <td>
+      +
+    </td>
+    <td>
+      5
+    </td>
+    <td></td>
+    <td>
+      Yes
+    </td>
+    <td>
+      Yes
+    </td>
+    <td>
+      Yes
+    </td>
+    <td>
+      Yes
+    </td>
+  </tr>
+  <tr>
+    <td>
+      LEXEVS-793
+    </td>
+    <td>
+      equivalentClass, union named disjoint classes
+    </td>
+    <td>
+      Gene isa disjointunion(Braf or Brca1 or Erbb2 or Mefv or OncogeneTim or Ras or Actin)
+    </td>
+    <td>
+      note; (already a defined class)
+    </td>
+    <td>
+      anon class not displayed, can&#39;t confirm. (SB, I don&#39;t see OncogeneTim or Brca1  in Protégé or the source.  I&#39;m leaving them out of the test case and putting in SHH, k-Ras and SOS.)
+    </td>
+    <td>
+      +
+    </td>
+    <td>
+      +
+    </td>
+    <td>
+      5
+    </td>
+    <td></td>
+    <td>
+      Yes
+    </td>
+    <td>
+      Yes
+    </td>
+    <td>
+      Yes
+    </td>
+    <td>
+      Yes
+    </td>
+  </tr>
+  <tr>
+    <td>
+      LEXEVS-794
+    </td>
+    <td>
+      equivalentClass, complement named class
+    </td>
+    <td>
+      HealthyPatient not(SickPatient)
+    </td>
+    <td>
+      note
+    </td>
+    <td>
+      anon class not parsed
+    </td>
+    <td>
+      -
+    </td>
+    <td>
+      +
+    </td>
+    <td>
+      3
+    </td>
+    <td></td>
+    <td>
+      Yes
+    </td>
+    <td>
+      Yes
+    </td>
+    <td>
+      Yes
+    </td>
+    <td>
+      Yes
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>
+      LEXEVS-795
+    </td>
+    <td>
+      equivalentClass, some datatype restriction
+    </td>
+    <td>
+      ras isa gene and has_physical_location some positiveInteger
+    </td>
+    <td>
+      note
+    </td>
+    <td>
+      anon class not parsed
+    </td>
+    <td>
+      -
+    </td>
+    <td>
+      +
+    </td>
+    <td>
+      3
+    </td>
+    <td>
+      representation issue:  Must be designated as something other than a concept
+    </td>
+    <td>
+      Yes
+    </td>
+    <td>
+      Yes
+    </td>
+    <td>
+      Yes
+    </td>
+    <td>
+      Yes
+    </td>
+  </tr>
+  <tr>
+    <td>
+      LEXEVS-796
+    </td>
+    <td>
+      equivalentClass, all datatype restriction
+    </td>
+    <td>
+      k-ras isa gene and has_physical_location all positiveInteger
+    </td>
+    <td>
+      note
+    </td>
+    <td>
+      anon class not parsed
+    </td>
+    <td>
+      -
+    </td>
+    <td>
+      +
+    </td>
+    <td>
+      3
+    </td>
+    <td>
+      representation issue
+    </td>
+    <td>
+      Yes
+    </td>
+    <td>
+      Yes
+    </td>
+    <td>
+      Yes
+    </td>
+    <td>
+      Yes
+    </td>
+  </tr>
+  <tr>
+    <td>
+      LEXEVS-797
+    </td>
+    <td>
+      equivalentClass, datatype hasValue (inconsistent class)
+    </td>
+    <td>
+      oncogeneTim isa gene and has_physical_location value 12345
+    </td>
+    <td>
+      note
+    </td>
+    <td>
+      anon class not parsed
+    </td>
+    <td>
+      -
+    </td>
+    <td>
+      +
+    </td>
+    <td>
+      3
+    </td>
+    <td>
+      representation issue
+    </td>
+    <td>
+      Yes
+    </td>
+    <td>
+      Yes
+    </td>
+    <td>
+      Yes
+    </td>
+    <td>
+      Yes
+    </td>
+  </tr>
+  <tr>
+    <td>
+      LEXEVS-798
+    </td>
+    <td>
+      equivalentClass, some objectype restriction
+    </td>
+    <td>
+      SOS isa gene and gene_related_to_disease some NeoplasticDisease
+    </td>
+    <td>
+      note
+    </td>
+    <td>
+      anon class not parsed
+    </td>
+    <td>
+      +
+    </td>
+    <td>
+      +
+    </td>
+    <td>
+      5
+    </td>
+    <td></td>
+    <td>
+      Yes
+    </td>
+    <td>
+      Yes
+    </td>
+    <td>
+      Yes
+    </td>
+    <td>
+      Yes
+    </td>
+  </tr>
+  <tr>
+    <td>
+      LEXEVS-799
+    </td>
+    <td>
+      equivalentClass, some objectype restriction external class
+    </td>
+    <td>
+      braf isa gene and gene_expressed_in some melanocyte
+    </td>
+    <td>
+      note
+    </td>
+    <td>
+      anon class not parsed (external class has &#34;http&#34;)
+    </td>
+    <td>
+      -
+    </td>
+    <td>
+      +
+    </td>
+    <td>
+      5
+    </td>
+    <td></td>
+    <td>
+      Yes
+    </td>
+    <td>
+      Yes
+    </td>
+    <td>
+      Yes
+    </td>
+    <td>
+      Yes
+    </td>
+  </tr>
+  <tr>
+    <td>
+      LEXEVS-800
+    </td>
+    <td>
+      equivalentClass, all objectype restriction external class
+    </td>
+    <td>
+      erbb2 isa gene and gene_expressed_in only melanocyte
+    </td>
+    <td>
+      note
+    </td>
+    <td>
+      anon class not parsed
+    </td>
+    <td>
+      -
+    </td>
+    <td>
+      +
+    </td>
+    <td>
+      5
+    </td>
+    <td></td>
+    <td>
+      Yes
+    </td>
+    <td>
+      Yes
+    </td>
+    <td>
+      Yes
+    </td>
+    <td>
+      Yes
+    </td>
+  </tr>
+  <tr>
+    <td>
+      LEXEVS-801
+    </td>
+    <td>
+      equivalentClass, all objectype restriction
+    </td>
+    <td>
+      shh isa gene and gene_related_to_disease only NeoplasticDisease
+    </td>
+    <td>
+      note
+    </td>
+    <td>
+      anon class not parsed
+    </td>
+    <td>
+      -
+    </td>
+    <td>
+      +
+    </td>
+    <td>
+      5
+    </td>
+    <td></td>
+    <td>
+      Yes
+    </td>
+    <td>
+      Yes
+    </td>
+    <td>
+      Yes
+    </td>
+    <td>
+      Yes
+    </td>
+  </tr>
+  <tr>
+    <td>
+      LEXEVS-802
+    </td>
+    <td>
+      equivalentClass, object hasValue
+    </td>
+    <td>
+      Mefv isa Gene and gene_related_to_disease value Fever
+    </td>
+    <td>
+      note
+    </td>
+    <td>
+      anon class not parsed
+    </td>
+    <td>
+      -
+    </td>
+    <td>
+      +
+    </td>
+    <td>
+      5
+    </td>
+    <td></td>
+    <td>
+      Yes
+    </td>
+    <td>
+      Yes
+    </td>
+    <td>
+      Yes
+    </td>
+    <td>
+      Yes
+    </td>
+  </tr>
+  <tr>
+    <td>
+      LEXEVS-803
+    </td>
+    <td>
+      equivalentClass, intersection object restrictions
+    </td>
+    <td>
+      MildlySickCancerPatient isa MildlySickPatient and (patient_has_finding some TumorBenign)  and (patient_has_prognosis some PrognosisGood)
+    </td>
+    <td>
+      note
+    </td>
+    <td>
+      anon class not parsed
+    </td>
+    <td>
+      -
+    </td>
+    <td>
+      +
+    </td>
+    <td>
+      5
+    </td>
+    <td></td>
+    <td>
+      Yes
+    </td>
+    <td>
+      Yes
+    </td>
+    <td>
+      Yes
+    </td>
+    <td>
+      Yes
+    </td>
+  </tr>
+  <tr>
+    <td>
+      LEXEVS-804
+    </td>
+    <td>
+      equivalentClass, union object restrictions
+    </td>
+    <td>
+      VerySickCancerPatient isa VerySickPatient and (patient_has_finding some TumorMalignant) or (patient_has_prognosis some PrognosisBad)
+    </td>
+    <td>
+      note
+    </td>
+    <td>
+      anon class not parsed
+    </td>
+    <td>
+      -
+    </td>
+    <td>
+      +
+    </td>
+    <td>
+      5
+    </td>
+    <td></td>
+    <td>
+      Yes
+    </td>
+    <td>
+      Yes
+    </td>
+    <td>
+      Yes
+    </td>
+    <td>
+      Yes
+    </td>
+  </tr>
+  <tr>
+    <td>
+      LEXEVS-805
+    </td>
+    <td>
+      equivalentClass, role group
+    </td>
+    <td>
+      CancerPatient isa SickPatient and ((patient_has_finding some TumorBenign) and (patient_has_prognosis some PrognosisGood)) or ((patient_has_finding some TumorMalignant) and (patient_has_prognosis some PrognosisBad))
+    </td>
+    <td>
+      note
+    </td>
+    <td>
+      anon class not parsed
+    </td>
+    <td>
+      -
+    </td>
+    <td>
+      +
+    </td>
+    <td>
+      5
+    </td>
+    <td></td>
+    <td>
+      Yes
+    </td>
+    <td>
+      Yes
+    </td>
+    <td>
+      Yes
+    </td>
+    <td>
+      Yes
+    </td>
+  </tr>
+  <tr>
+    <td>
+      LEXEVS-806
+    </td>
+    <td>
+      equivalentClass, class expression (intersection object &amp; datatype)
+    </td>
+    <td>
+      brca1 isa gene and ((gene_expressed_in some EpithelialCell) and (in_organism value &#34;homo sapiens))
+    </td>
+    <td>
+      note
+    </td>
+    <td>
+      anon class not parsed (SB, at the very least missing in_organism)
+    </td>
+    <td>
+      -
+    </td>
+    <td>
+      +
+    </td>
+    <td>
+      3
+    </td>
+    <td>
+      representation issue
+    </td>
+    <td>
+      Yes
+    </td>
+    <td>
+      Yes
+    </td>
+    <td>
+      Yes
+    </td>
+    <td>
+      Yes
+    </td>
+  </tr>
+  <tr>
+    <td>
+      LEXEVS-807
+    </td>
+    <td>
+      equivalentClass, class expression (union object &amp; datatype)
+    </td>
+    <td>
+      actin isa gene and ((gene_expressedin some EpithelialCell) or (in_organism value &#34;all Organisms&#34;))
+    </td>
+    <td>
+      note
+    </td>
+    <td>
+      anon class not parsed(SB, at the very least missing in_organism)
+    </td>
+    <td>
+      -
+    </td>
+    <td>
+      -
+    </td>
+    <td>
+      3
+    </td>
+    <td>
+      representation issue
+    </td>
+    <td>
+      Yes
+    </td>
+    <td>
+      Yes
+    </td>
+    <td>
+      Yes
+    </td>
+    <td>
+      Yes
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>
+      not covered
+    </td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>
+      no cardinality
+    </td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>
+      no symmetry, reflexive, functional,…
+    </td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+</table>

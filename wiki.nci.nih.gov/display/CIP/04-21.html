@@ -1,0 +1,61 @@
+<h1 id="id-0421-MeetingMinutesforLIDCtoAIM3.0Conversion">
+  Meeting Minutes for LIDC to AIM 3.0 Conversion
+</h1>
+Date and Time: Apr. 21, 2010 1 pm to 2 pm
+
+Location:    2115 E. Jefferson/6th Floor/Conference Room 6010
+
+Attendees:      McNitt-Gray,Michael; Samuel G. Armato III; Kascic, Eric;    Mongkolwat, Pat; Kirby, Justin; Pan, Qinyan
+
+Agenda item:
+1.    Discussed adding  AnatomicEntity lung to LIDC annotation files in AIM 3.0.
+Qinyan stated the general approach of adopting AIM 3.0 changes is to analyzing the new elements and attributes added in AIM 3.0 and investigate to see if there are any contents in LIDC annotation can be mapped to. If a new AIM element and/or attribute is optional and LIDC annotation has no info can be mapped to, then the new AIM element and/or attribute will not be created in converted LIDC annotation files in AIM 3.0 format.  The only exception is for AnatomicEntity element. LIDC annotation provides no info for AnatomicEntity but it is general knowledge that all LIDC annotation is about lung image.  For future database queries, Qinyan suggested to add AnatomicEntity to all converted annotation files.  Mike confirmed that AnatomicEntity for all LIDC annotation files is lung only.
+
+2.    Discussed if it is necessary to create AnatomicEntityCharacteristic element.
+Mike and Same confirmed no anatomic descriptors are ever given in LIDC annotation or image markup. So no AnatomicEntityCharacteristic element will be added to LIDC annotation in AIM format.
+
+3.    Discussed if any element in LIDC annotation could be mapped to AIM  Inference element.
+Mike and Sam pointed out the &#34;Likelihood of Malignancy rating&#34; is closest we got for Inference and pondered about if it should be mapped to Inference instead of mapping to ImageObservation. Qinyan stated Inference class has no place to hold the numerical rating and its description. Pat suggested using Scale element associated with ImageObservationCharacteric to hold Likelihood of Malignancy.  Mike and Sam agreed mapping Malignancy element in LIDC annotation to ImageObservationCharacteric in AIM.
+
+4.    Validated that LIDC annotation does not contain info for AIM Segmentation and Calculation element.
+Mike and Sam confirmed neither DICOM segmentation nor Calculation is provided in LIDC annotation.
+
+5.    Discussed how to deal with &#34;annotationConfidence&#34; attribute which added to AnatomicEntity, AnatomicEntityCharacteristic, ImagingObservation, ImagingObservationCharacteristic and Inference class in AIM 3.0
+All agreeed that annotationConfidence will not be added to converted LIDC annotation files since it is not provided in current LIDC annotation.
+
+6.    Defined the missing terminologies used in ImageObservationCharacteric.
+Mike and Sam suggested the missing terminologies should be defined as the followings:
+Sphericity Level 2
+Sphericity Level 4
+Margin Level 2
+Margin Level 3
+Margin Level 4
+Lobulation Level 2
+Lobulation Level 3
+Lobulation Level 4
+Spiculation Level 2
+Spiculation Level 3
+Spiculation Level 4
+Texture Level 2
+Texture Level 4
+
+7.    Confirmed and approved the following classes and attributes are not applicable for LIDC annotation files:
+AnatomicEntityCharacteristic
+AIMStatus
+AnnotationRole
+Inference
+NonQuantifyable
+Calculation
+CalculationData
+CalculationResult
+&#34;annotatorConfidence&#34; attribute  in the below classes.
+AnatomicEntity
+AnatomicEntityCharacteristic
+ImagingObservation
+ImagingObservationCharacteristic
+Inference
+
+8.    Pat  offered the help on the  validation of the transformed LIDC annotation file especially the ImageObservation section.
+
+Action Item:
+1.    Qinyan is going to map an annotation file manually and sent it to Pat for validation.

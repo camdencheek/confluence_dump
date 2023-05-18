@@ -1,0 +1,186 @@
+Contents of this Page
+<ul>
+  <li>
+    <a href="#LexEVSJavaRMICodeExamples-CodeFiles" rel="nofollow">
+      Code Files
+    </a>
+    <ul>
+      <li>
+        <a href="#LexEVSJavaRMICodeExamples-DistributedCodingSchemeList" rel="nofollow">
+          Distributed Coding Scheme List
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVSJavaRMICodeExamples-ResolveCodingScheme" rel="nofollow">
+          Resolve Coding Scheme
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVSJavaRMICodeExamples-CodedNodeSetSnippet" rel="nofollow">
+          Coded Node Set Snippet
+        </a>
+        <ul>
+          <li>
+            <a href="#LexEVSJavaRMICodeExamples-CodedNodeGraphSnippet" rel="nofollow">
+              Coded Node Graph Snippet
+            </a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+<table>
+  <colgroup>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        LexEVS Code Examples Links
+      </th>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427524" rel="nofollow">
+              LexEVS API Code Examples
+            </a>
+          </li>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427523" rel="nofollow">
+              LexEVS Java RMI Code Examples
+            </a>
+          </li>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=322011703" rel="nofollow">
+              LexEVS CTS2 Code Examples
+            </a>
+          </li>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427451" rel="nofollow">
+              LexEVS REST Code Migration Guide
+            </a>
+          </li>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=373003616" rel="nofollow">
+              LexEVS 6.5.1
+            </a>
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="LexEVSJavaRMICodeExamples-CodeFiles">
+  Code Files
+</h2>
+<h3 id="LexEVSJavaRMICodeExamples-DistributedCodingSchemeList">
+  Distributed Coding Scheme List
+</h3>
+Java Code Snippet
+import org.LexGrid.LexBIG.DataModel.Collections.CodingSchemeRenderingList;
+import org.LexGrid.LexBIG.DataModel.InterfaceElements.CodingSchemeRendering;
+import org.LexGrid.LexBIG.Exceptions.LBInvocationException;
+import org.LexGrid.LexBIG.caCore.interfaces.LexEVSApplicationService;
+import org.LexGrid.LexBIG.caCore.interfaces.LexEVSDistributed;
+import org.LexGrid.LexBIG.caCore.interfaces.LexEVSService;
+
+import gov.nih.nci.system.client.ApplicationServiceProvider;
+
+public class RemoteTestClient {
+
+private String serviceUrl = &#34;https://lexevsapi65.nci.nih.gov/lexevsapi65&#34;;
+private LexEVSService lexevsService;
+
+public static void main(String args[]) throws Exception {
+RemoteTestClient client = new RemoteTestClient();
+client.queryLexEVSDistributed();
+}
+
+public RemoteTestClient() throws Exception {
+lexevsService = (LexEVSApplicationService)ApplicationServiceProvider
+.getApplicationServiceFromUrl(serviceUrl, &#34;EvsServiceInfo&#34;);
+}
+
+public void queryLexEVSDistributed() throws LBInvocationException {
+LexEVSDistributed distributedSvc = lexevsService;
+CodingSchemeRenderingList csrl = distributedSvc.getSupportedCodingSchemes();
+CodingSchemeRendering[] csr = csrl.getCodingSchemeRendering();
+for(int i=0;i&lt;csr.length;i++){
+
+System.out.println(&#34;\t\tOutput: &#34; + &#34;Coding Scheme: &#34; + csr[i].getCodingSchemeSummary().getLocalName());
+System.out.println(&#34;\t\tOutput: &#34; + &#34;  -- Version: &#34; + csr[i].getCodingSchemeSummary().getRepresentsVersion());
+System.out.println(&#34;\t\tOutput: &#34; + &#34;  -- URI: &#34; + csr[i].getCodingSchemeSummary().getCodingSchemeURI());
+}
+}
+
+}
+<h3 id="LexEVSJavaRMICodeExamples-ResolveCodingScheme">
+  Resolve Coding Scheme
+</h3>
+import org.LexGrid.LexBIG.LexBIGService.LexBIGService;
+import org.LexGrid.LexBIG.Utility.Constructors;
+import org.LexGrid.LexBIG.caCore.interfaces.LexEVSApplicationService;
+import org.LexGrid.codingSchemes.CodingScheme;
+
+import gov.nih.nci.system.client.ApplicationServiceProvider;
+
+public class Test {
+
+LexBIGService lbSvc;
+
+public void run(String codingScheme, String version) {
+// Set the LexEVS URL (for remote access)
+String evsUrl = &#34;https://lexevsapi65.nci.nih.gov/lexevsapi65&#34;;
+
+// Get the LexBIG service reference from LexEVS Application Service
+try {
+lbSvc = (LexEVSApplicationService) ApplicationServiceProvider.getApplicationServiceFromUrl(evsUrl,
+&#34;EvsServiceInfo&#34;);
+} catch (Exception e1) {
+e1.printStackTrace();
+}
+// Resolve Scheme
+try {
+CodingScheme scheme = lbSvc.resolveCodingScheme(codingScheme,
+Constructors.createCodingSchemeVersionOrTagFromVersion(version));
+if(scheme != null) {
+System.out.println(&#34;Found scheme: &#34; + scheme.getCodingSchemeName());
+}else {
+System.out.println(&#34;Scheme not found: &#34; + codingScheme);
+}
+} catch (Exception e) {
+e.printStackTrace();
+}
+
+}
+
+/**
+* Main
+*/
+public static void main(String[] args) {
+String name = &#34;NCI Thesaurus&#34;;
+String version = &#34;18.03d&#34;;
+
+new Test().run(name, version);
+}
+}
+<h3 id="LexEVSJavaRMICodeExamples-CodedNodeSetSnippet">
+  Coded Node Set Snippet
+</h3>
+Java Code Snippet
+LexBIGService lbs  = (LexBIGService)ApplicationServiceProvider.getApplicationServiceFromUrl(serviceUrl, &#34;EvsServiceInfo&#34;);
+CodedNodeSet cns = lbs.getCodingSchemeConcepts(
+	String codingScheme,
+	org.LexGrid.LexBIG.DataModel.Core.CodingSchemeVersionOrTag);
+<h4 id="LexEVSJavaRMICodeExamples-CodedNodeGraphSnippet">
+  Coded Node Graph Snippet
+</h4>
+Java Code Snippet
+LexBIGService lbs  = (LexBIGService)ApplicationServiceProvider.getApplicationServiceFromUrl(serviceUrl, &#34;EvsServiceInfo&#34;);
+CodedNodeGraph cng = lbs.getNodeGraph(
+String codingScheme,
+org.LexGrid.LexBIG.DataModel.Core.CodingSchemeVersionOrTag,
+String relationsContainerName (Optional); 

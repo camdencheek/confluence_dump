@@ -1,0 +1,841 @@
+Contents of this Page
+<ul>
+  <li>
+    <a href="#id-3LexEVS6.xLoaderFramework-Introduction" rel="nofollow">
+      Introduction
+    </a>
+  </li>
+  <li>
+    <a href="#id-3LexEVS6.xLoaderFramework-LoaderFrameworkBackgroundandEnhancements" rel="nofollow">
+      Loader Framework Background and Enhancements
+    </a>
+  </li>
+  <li>
+    <a href="#id-3LexEVS6.xLoaderFramework-Scope" rel="nofollow">
+      Scope
+    </a>
+  </li>
+  <li>
+    <a href="#id-3LexEVS6.xLoaderFramework-Architecture" rel="nofollow">
+      Architecture
+    </a>
+  </li>
+  <li>
+    <a href="#id-3LexEVS6.xLoaderFramework-Dependencies" rel="nofollow">
+      Dependencies
+    </a>
+  </li>
+  <li>
+    <a href="#id-3LexEVS6.xLoaderFramework-DevelopmentandBuildEnvironment" rel="nofollow">
+      Development and Build Environment
+    </a>
+    <ul>
+      <li>
+        <a href="#id-3LexEVS6.xLoaderFramework-ThirdPartyTools" rel="nofollow">
+          Third Party Tools
+        </a>
+      </li>
+      <li>
+        <a href="#id-3LexEVS6.xLoaderFramework-LoaderFrameworkCode" rel="nofollow">
+          Loader Framework Code
+        </a>
+        <ul>
+          <li>
+            <a href="#id-3LexEVS6.xLoaderFramework-LoaderFrameworkProjects" rel="nofollow">
+              Loader Framework Projects
+            </a>
+          </li>
+          <li>
+            <a href="#id-3LexEVS6.xLoaderFramework-LoaderProejctsUsingtheNewFramework" rel="nofollow">
+              Loader Proejcts Using the New Framework
+            </a>
+          </li>
+          <li>
+            <a href="#id-3LexEVS6.xLoaderFramework-Maven" rel="nofollow">
+              Maven
+            </a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#id-3LexEVS6.xLoaderFramework-HowtoUsetheLoaderFramework:ARoadmap" rel="nofollow">
+      How to Use the Loader Framework: A Roadmap
+    </a>
+    <ul>
+      <li>
+        <a href="#id-3LexEVS6.xLoaderFramework-Spring" rel="nofollow">
+          Spring
+        </a>
+      </li>
+      <li>
+        <a href="#id-3LexEVS6.xLoaderFramework-ItemReader/ItemProcessor" rel="nofollow">
+          ItemReader/ItemProcessor
+        </a>
+      </li>
+      <li>
+        <a href="#id-3LexEVS6.xLoaderFramework-MavenSetup" rel="nofollow">
+          Maven Setup
+        </a>
+      </li>
+      <li>
+        <a href="#id-3LexEVS6.xLoaderFramework-EclipseProjectSetup" rel="nofollow">
+          Eclipse Project Setup
+        </a>
+      </li>
+      <li>
+        <a href="#id-3LexEVS6.xLoaderFramework-ConfigureyourSpringConfig(myLoader.xml)" rel="nofollow">
+          Configure your Spring Config (myLoader.xml)
+        </a>
+      </li>
+      <li>
+        <a href="#id-3LexEVS6.xLoaderFramework-Beans" rel="nofollow">
+          Beans
+        </a>
+        <ul>
+          <li>
+            <a href="#id-3LexEVS6.xLoaderFramework-Bean" rel="nofollow">
+              Bean
+            </a>
+          </li>
+          <li>
+            <a href="#id-3LexEVS6.xLoaderFramework-Job" rel="nofollow">
+              Job
+            </a>
+          </li>
+          <li>
+            <a href="#id-3LexEVS6.xLoaderFramework-Step" rel="nofollow">
+              Step
+            </a>
+          </li>
+          <li>
+            <a href="#id-3LexEVS6.xLoaderFramework-Tasklet" rel="nofollow">
+              Tasklet
+            </a>
+          </li>
+          <li>
+            <a href="#id-3LexEVS6.xLoaderFramework-Chunk" rel="nofollow">
+              Chunk
+            </a>
+          </li>
+          <li>
+            <a href="#id-3LexEVS6.xLoaderFramework-Reader" rel="nofollow">
+              Reader
+            </a>
+          </li>
+          <li>
+            <a href="#id-3LexEVS6.xLoaderFramework-Processor" rel="nofollow">
+              Processor
+            </a>
+          </li>
+          <li>
+            <a href="#id-3LexEVS6.xLoaderFramework-Writer" rel="nofollow">
+              Writer
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#id-3LexEVS6.xLoaderFramework-KeyDirectories" rel="nofollow">
+          Key Directories
+        </a>
+      </li>
+      <li>
+        <a href="#id-3LexEVS6.xLoaderFramework-Algorithms" rel="nofollow">
+          Algorithms
+        </a>
+      </li>
+      <li>
+        <a href="#id-3LexEVS6.xLoaderFramework-BatchProcesses" rel="nofollow">
+          Batch Processes
+        </a>
+      </li>
+      <li>
+        <a href="#id-3LexEVS6.xLoaderFramework-ErrorHandling" rel="nofollow">
+          Error Handling
+        </a>
+      </li>
+      <li>
+        <a href="#id-3LexEVS6.xLoaderFramework-DatabaseChanges" rel="nofollow">
+          Database Changes
+        </a>
+      </li>
+      <li>
+        <a href="#id-3LexEVS6.xLoaderFramework-Client" rel="nofollow">
+          Client
+        </a>
+      </li>
+      <li>
+        <a href="#id-3LexEVS6.xLoaderFramework-JSP/HTML" rel="nofollow">
+          JSP/HTML
+        </a>
+      </li>
+      <li>
+        <a href="#id-3LexEVS6.xLoaderFramework-Servlet" rel="nofollow">
+          Servlet
+        </a>
+      </li>
+      <li>
+        <a href="#id-3LexEVS6.xLoaderFramework-SecurityIssues" rel="nofollow">
+          Security Issues
+        </a>
+      </li>
+      <li>
+        <a href="#id-3LexEVS6.xLoaderFramework-Performance" rel="nofollow">
+          Performance
+        </a>
+      </li>
+      <li>
+        <a href="#id-3LexEVS6.xLoaderFramework-Internationalization" rel="nofollow">
+          Internationalization
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#id-3LexEVS6.xLoaderFramework-Installation/Packaging" rel="nofollow">
+      Installation / Packaging
+    </a>
+  </li>
+  <li>
+    <a href="#id-3LexEVS6.xLoaderFramework-Migration" rel="nofollow">
+      Migration
+    </a>
+  </li>
+  <li>
+    <a href="#id-3LexEVS6.xLoaderFramework-Testing" rel="nofollow">
+      Testing
+    </a>
+    <ul>
+      <li>
+        <a href="#id-3LexEVS6.xLoaderFramework-TestGuidelines" rel="nofollow">
+          Test Guidelines
+        </a>
+      </li>
+      <li>
+        <a href="#id-3LexEVS6.xLoaderFramework-TestCases" rel="nofollow">
+          Test Cases
+        </a>
+      </li>
+      <li>
+        <a href="#id-3LexEVS6.xLoaderFramework-TestResults" rel="nofollow">
+          Test Results
+        </a>
+      </li>
+    </ul>
+  </li>
+</ul>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        LexEVS 6.x Loader Links
+      </th>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=56798165" rel="nofollow">
+              Loader Use Guide
+            </a>
+          </li>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427363" rel="nofollow">
+              Loader Guide for developers
+            </a>
+            <ul>
+              <li>
+                <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427362" rel="nofollow">
+                  Included Loaders
+                </a>
+              </li>
+              <li>
+                <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427366" rel="nofollow">
+                  Model Element Mapping
+                </a>
+              </li>
+              <li>
+                <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427364" rel="nofollow">
+                  Loader Framework
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=69730353" rel="nofollow">
+              LexEVS 6.0 Main Page
+            </a>
+          </li>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427448" rel="nofollow">
+              LexEVS Current Release
+            </a>
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="id-3LexEVS6.xLoaderFramework-Introduction">
+  Introduction
+</h2>
+This document provides the detailed design and implementation of the Loader Framework Extension. It is the goal of this document to provide enough information to enable application developers to create custom loaders. This document assumes the developer is already familiar with the LexEVS software. The Loader Framework created in LexEVS 5.1 is the same for LexEVS 6.0.
+<h2 id="id-3LexEVS6.xLoaderFramework-LoaderFrameworkBackgroundandEnhancements">
+  Loader Framework Background and Enhancements
+</h2>
+Previous versions of LexEVS software have provided a set of loaders within an existing legacy framework which served LexEVS developers well over many years. But as LexEVS has gained users, and requests for new loaders have grown, it was decided to create a new loader framework.Created in LexEVS v5.1, the loader framework meets these emerging needs compared to the loader framework of previous versions:
+<ul>
+  <li>
+    is easier to extend
+  </li>
+  <li>
+    provides improved performance
+  </li>
+  <li>
+    enables dynamic loading of new loaders
+  </li>
+  <li>
+    leverages proven open source components, such as Spring Batch and Hibernate
+  </li>
+</ul>
+Also, the new framework is completely independent of existing loader code, so there is no impact to existing loaders.
+<h2 id="id-3LexEVS6.xLoaderFramework-Scope">
+  Scope
+</h2>
+The Loader Framework provides a way for LexEVS developers to write new loaders and have them recognized dynamically by the LexEVS code. Also the framework provides help to loader developers in the form of utility classes and interfaces.
+<h2 id="id-3LexEVS6.xLoaderFramework-Architecture">
+  Architecture
+</h2>
+The image below shows the major components of the Loader Framework.  (A) A hypothetical new loader in relation to the loader framework, and what expected API usage would be.  (B) Ideally, the new loader can make most if its API calls through the utilities provided by the Loader Framework API.  (C) Some work will need to be done with Spring (C) such as configuration of a Spring config file.  (D and E) It may or may not be necessary for a loader to use Hibernate or the LexBIG API. Again, the hope is that much of the work a new loader may need to do can be accomplished by the Loader Framework API.The Loader Framework utilizes Spring Batch for managing its Java objects to improve performance and Hibernate provides the mapping to the LexGrid database.
+<img alt="image showing the components of the loader framework as described in the content above" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/3%20-%20LexEVS%206.x%20Loader%20Framework/LexEVS_5.1_Loader_image003.gif?api=v2">
+<h2 id="id-3LexEVS6.xLoaderFramework-Dependencies">
+  Dependencies
+</h2>
+<ul>
+  <li>
+    This Loader Framework requires LexEVS release 6.x.
+  </li>
+  <li>
+    Development systems are required to install the Sun Java Development Kit (SDK) or Java Runtime Environment (JRE) version 1.7.
+  </li>
+  <li>
+    Maven 3.x.
+  </li>
+  <li>
+    For software and hardware dependencies for the system hosting the LexEVS runtime, refer to the
+    <a href="https://wiki.nci.nih.gov/display/LexEVS/LexEVS#LexEVS-InstallationandDownloads" rel="nofollow">
+      Installation and downloads
+    </a>
+    of the summary page for the latest release.
+  </li>
+</ul>
+<h2 id="id-3LexEVS6.xLoaderFramework-DevelopmentandBuildEnvironment">
+  Development and Build Environment
+</h2>
+<h3 id="id-3LexEVS6.xLoaderFramework-ThirdPartyTools">
+  Third Party Tools
+</h3>
+<ul>
+  <ul>
+    <li>
+      Spring: A lightweight open-source application framework.
+      <ul>
+        <li>
+          <a href="http://www.springsource.com/" rel="nofollow">
+            Spring
+          </a>
+          <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+            <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+          </a>
+        </li>
+        <li>
+          <a href="http://static.springsource.org/spring-batch/" rel="nofollow">
+            Spring Batch
+          </a>
+          <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+            <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+          </a>
+        </li>
+        <li>
+          <a href="http://static.springsource.org/spring-batch/reference/html/index.html" rel="nofollow">
+            Spring Batch Reference
+          </a>
+          <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+            <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+          </a>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a href="https://www.hibernate.org/" rel="nofollow">
+        Hibernate
+      </a>
+      : An open source Java persistence framework
+      <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+        <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+      </a>
+    </li>
+  </ul>
+</ul>
+<ul>
+  <ul>
+    <li>
+      <a href="http://maven.apache.org/" rel="nofollow">
+        Maven
+      </a>
+      : Apache build manager for Java projects
+      <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+        <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+      </a>
+    </li>
+  </ul>
+</ul>
+<ul>
+  <ul>
+    <li>
+      <a href="http://www.eclipse.org/" rel="nofollow">
+        Eclipse
+      </a>
+      : An Open Source IDE
+      <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+        <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+      </a>
+    </li>
+  </ul>
+</ul>
+<h3 id="id-3LexEVS6.xLoaderFramework-LoaderFrameworkCode">
+  Loader Framework Code
+</h3>
+The Loader Framework code is available in the NCI Subversion (SVN) repository. It is comprised of three Framework projects. Also at the time of this writing there are three projects in the repository that utilize the Loader Framework.
+<h4 id="id-3LexEVS6.xLoaderFramework-LoaderFrameworkProjects">
+  Loader Framework Projects
+</h4>
+<ul>
+  <li>
+    PersistanceLayer: a Hibernate connector to the LexBIG database
+  </li>
+  <li>
+    Loader-framework: a framework that sets up build information for Maven
+  </li>
+  <li>
+    Loader-framework-core: a framework that contains all the interfaces and utilities; also contains an extendable class &#34;AbstractSpringBatchLoader&#34; that all new Loaders should extend
+  </li>
+</ul>
+<h4 id="id-3LexEVS6.xLoaderFramework-LoaderProejctsUsingtheNewFramework">
+  Loader Proejcts Using the New Framework
+</h4>
+<ul>
+  <li>
+    abstract-rrf-loader: a holder for common rrf-based loader code
+  </li>
+  <li>
+    meta-loader: a new loader to read the NCI MetaThesaurus
+  </li>
+  <li>
+    umls-loader: a loader for reading Unified Medical Language System (UMLS) content
+  </li>
+</ul>
+<h4 id="id-3LexEVS6.xLoaderFramework-Maven">
+  Maven
+</h4>
+The preceding projects utilize Maven for build and dependency management. You may obtain the
+<a href="http://m2eclipse.codehaus.org" rel="nofollow">
+  Maven plugin for Eclipse
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+.
+<h2 id="id-3LexEVS6.xLoaderFramework-HowtoUsetheLoaderFramework:ARoadmap">
+  How to Use the Loader Framework: A Roadmap
+</h2>
+You can write a loader that uses the Loader Framework. The loader would follow this general process:
+<ol>
+  <li>
+    Read the raw data from the file into intermediate data structures, such as a user-defined ICD9SourceObject object.
+  </li>
+  <li>
+    Process the user-defined objects into LexGrid model objects.
+  </li>
+  <li>
+    Write the data in the LexGrid objects to the database.
+  </li>
+</ol>
+An example may help in understanding the Framework. Our discussion will refer to the illustration below. Let&#39;s say we are writing a loader to load the ICD-9-CM codes and their descriptions, which are contained in a text file. We know we&#39;ll need a data structure to hold the data after we&#39;ve read it so we have a class:
+&lt;source&gt;
+ICD9SourceObject \{
+String id;
+String descr;
+String getId() \{ return id; \}
+\}
+&lt;/source&gt;
+
+The Loader Framework uses Spring Batch to manage the reading, processing, and writing of data. Spring provides classes and interfaces to help do this work, and the Loader Framework also provides utilities to help loader developers. In our example, illustrated below, we will write a class that will use the Spring ItemReader interface. It will take a line of text and return an ICD9SourceObject (shown as 1 and 2). Next we&#39;ll want to process that data into a LexEVS object such as an Entity object. So we&#39;ll write class that implements Spring&#39;s ItemProcessor interface. It will take our ICD9SourceObject and output a LexEVS Entity object (shown as 3 and 4). Finally, we&#39;ll want to write the data to the database (shown as 5). Note that the LexEVS model objects provided in the Loader Framework are generated by Hibernate and utilize Hibernate to write the data to the database. This will free us from having to write SQL.
+<img alt="diagram showing example loader framework as described in the content above" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/3%20-%20LexEVS%206.x%20Loader%20Framework/LexEVS_5.1_Loader_image004.jpg?api=v2">
+<h3 id="id-3LexEVS6.xLoaderFramework-Spring">
+  Spring
+</h3>
+Configure Spring to be aware of your objects and to manage them. This is done via an XML configuration file. More details on the Spring config file are below.
+<h3 id="id-3LexEVS6.xLoaderFramework-ItemReader/ItemProcessor">
+  ItemReader/ItemProcessor
+</h3>
+Either write a class implementing this interface or use one of the Spring helper classes that already implement this interface. If you use one of the Spring classes, you may need to provide one of your own helper classes to construct your internal data structure object, such as ICD9SourceObject. Provide it to the Spring object via a setProperty call configured in the Spring config file.
+<h3 id="id-3LexEVS6.xLoaderFramework-MavenSetup">
+  Maven Setup
+</h3>
+The projects containing the Loader Framework (PersistanceLayer , loader-framework , and loader-framework-core) use Maven for dependency management and build. You will still use Eclipse as your IDE and code repository, but you will need to install a Maven plugin for Eclipse.
+<ol>
+  <li>
+    Install the
+    <a href="http://m2eclipse.sonatype.org/" rel="nofollow">
+      Maven plugin for Eclipse
+    </a>
+    <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+      <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+    </a>
+    .
+  </li>
+  <li>
+    Provide a URL and userid/password to a Maven repository on a server (which manages your dependencies or dependent jar files). The Maven repository at Mayo Clinic is
+    http://bmidev4:8282/nexus-webapp-1.3.3/index.html
+  </li>
+  <li>
+    Import the Loader Framework classes from SVN.
+  </li>
+  <li>
+    You will most likely see build errors about missing jars. Resolve those by right clicking on the project with errors, select Maven, and Resolve Dependencies. This will pull the dependent jars from the Maven repository into your local environment.
+  </li>
+  <li>
+    To build a Maven project, right click on the project, select Maven, then select assembly:assembly.
+  </li>
+</ol>
+<h3 id="id-3LexEVS6.xLoaderFramework-EclipseProjectSetup">
+  Eclipse Project Setup
+</h3>
+When you create a new loader project in Eclipse, it is recommended you follow the Maven directory structure. By following this convention, Maven can build the project and find the test cases.The following diagram is from the Maven documentation:
+<img alt="screenshot of the Maven directory structure" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/3%20-%20LexEVS%206.x%20Loader%20Framework/LexEVS_5.1_Eclipse_Project.gif?api=v2">
+For more information on the Maven project, refer to the
+<a href="http://maven.apache.org/guides/getting-started/maven-in-five-minutes.html" rel="nofollow">
+  documentation
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+.
+<h3 id="id-3LexEVS6.xLoaderFramework-ConfigureyourSpringConfig(myLoader.xml)">
+  Configure your Spring Config (myLoader.xml)
+</h3>
+Spring is a lightweight bean management container; among other things, it contains a batch function that is utilized by the Loader Framework. A loader using the framework will need to work closely with Spring Batch. The way it does that is through Spring&#39;s configuration file where you configure beans (your loader code) and how the loader code should be utilized by Spring Batch (by configuring a Job, Step, and other Spring Batch stuff in the spring config file). Here is sample code:
+&lt;source&gt;
+&lt;job id=&#34;ioSampleJob&#34;&gt;
+&lt;step name=&#34;step1&#34;&gt;
+&lt;tasklet
+&lt;chunk reader=&#34;fooReader&#34; processor=&#34;fooProcessor&#34; writer=&#34;compositeItemWriter&#34; commit-interval=&#34;100&#34;&gt;
+&lt;/chunk&gt;
+&lt;/tasklet&gt;
+&lt;/step&gt;
+&lt;/job&gt;
+
+&lt;bean id= &#34;compositeItemWriter&#34; class=&#34;...compositeItemWriter&#34;&gt;
+&lt;property name=&#34;delegate&#34; ref=&#34;barWriter&#34; /&gt;
+&lt;/bean&gt;
+
+&lt;bean id=&#34;barWriter&#34; class=&#34;...barWriter&#34; /&gt;
+&lt;/source&gt;
+
+What follows is a brief overview of those tags related to the LoaderFramework. For more detail refer to the
+<a href="http://static.springsource.org/spring-batch/reference/html/index.html" rel="nofollow">
+  Spring documentation
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+.
+<h3 id="id-3LexEVS6.xLoaderFramework-Beans">
+  Beans
+</h3>
+The beans:beans tag is the all-encompassing tag. You define all your other tags in it. You can also define an import within this tag to import an external Spring config file. (Import is not shown in the sample image above.)
+<h4 id="id-3LexEVS6.xLoaderFramework-Bean">
+  Bean
+</h4>
+Use these tags, beans:bean&#39;, to define the beans to be managed by the Spring container by specifying the packaged qualified class name. You can also specify inititialization values and set bean properties within these tags.
+&lt;source&gt;
+&lt;beans:bean id=&#34;umlsCuiPropertyProcessor&#34; parent=&#34;umlsDefaultPropertyProcessor&#34; class=&#34;org.lexgrid.loader.processor.EntityPropertyProcessor&#34;&gt;
+&lt;beans:property name=&#34;propertyResolver&#34; ref=&#34;umlsCuiPropertyResolver&#34; /&gt;
+&lt;/beans:bean&gt;
+&lt;/source&gt;
+<h4 id="id-3LexEVS6.xLoaderFramework-Job">
+  Job
+</h4>
+The job tag is the main unit of work. The job is comprised of one or more steps that define the work to be done. Other advanced and interesting things can be done within the Job such as using split and flow tags to indicate work that can be done in parellel steps to improve performance.
+&lt;source&gt;
+&lt;job id=&#34;umlsJob&#34; restartable=&#34;true&#34;&gt;
+&lt;step id=&#34;populateStagingTable&#34; next=&#34;loadHardcodedValues&#34; parent=&#34;stagingTablePopulatorStepFactory&#34;/&gt;
+...
+&lt;/Source&gt;
+<h4 id="id-3LexEVS6.xLoaderFramework-Step">
+  Step
+</h4>
+One or more step tags make up a job and can vary from simple to complex in content. Among other things, you can specify which step should be executed next.
+<h4 id="id-3LexEVS6.xLoaderFramework-Tasklet">
+  Tasklet
+</h4>
+You can do anything you want within a Tasklet, such as sending an email or a LexBIG function such as indexing. You are not limited to just database operations. The Spring documentation also has this to say about Tasklets:The Tasklet is a simple interface that has one method, execute, which will be a called repeatedly  by the TaskletStep until it either returns RepeatStatus.FINISHED or throws an exception to signal  a failure. Each call to the Tasklet is wrapped in a transaction.
+<h4 id="id-3LexEVS6.xLoaderFramework-Chunk">
+  Chunk
+</h4>
+Spring documentation says it best:Spring Batch uses a &#34;Chunk-Oriented&#34; processing style within its most common implementation. Chunk- oriented processing refers to reading the data one at a time, and creating &#34;chunks&#34; that will be  written out, within a transaction boundary. One item is read in from an ItemReader, handed to an  ItemWriter, and aggregated. Once the number of items read equals the commit interval, the entire  chunk is written out via the ItemWriter, and then the transaction is committed.
+<h4 id="id-3LexEVS6.xLoaderFramework-Reader">
+  Reader
+</h4>
+An attribute of the chunk tag. Here is the class that you defined implementing the Spring ItemReader interface to read data from your data file and create domain-specific objects.
+<h4 id="id-3LexEVS6.xLoaderFramework-Processor">
+  Processor
+</h4>
+Another attribute of the chunk tag. This is the class that implements the ItemProcessor interface where other manipulations of the domain objects take place. In the case of the Loader Framework, we create LexGrid model objects from the domain objects so that they can be written to the database via Hibernate. Note that this is not a required attribute. In theory, if you had a data source from which you could read such that you could create LexBIG objects immediately, you would not need a processor. In practice this would most likely not be the case, but rather you need to work with the data to get it into LexBIG objects.
+<h4 id="id-3LexEVS6.xLoaderFramework-Writer">
+  Writer
+</h4>
+Attribute of the chunk tag. This class will implement the Spring interface ItemWriter. In the case of the Loader Framework, these classes have been written for you. They are the LexGrid model objects that use Hibernate to write to the database.
+<h3 id="id-3LexEVS6.xLoaderFramework-KeyDirectories">
+  Key Directories
+</h3>
+Below is an image of the loader-framework-core project in Eclipse, which shows the key directories of the Loader Framework. The following is a summary of the contents of those directories.
+<img alt="image of the loader-framework-core project in Eclipse as described in the preceding sentence and the table below" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/3%20-%20LexEVS%206.x%20Loader%20Framework/LexEVS_5.1_Loader_image006.jpg?api=v2">
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Directory
+      </th>
+      <th>
+        Summary
+      </th>
+    </tr>
+    <tr>
+      <td>
+        connection
+      </td>
+      <td>
+        Connect to LexBIG and do LexBIG tasks such as register and activate
+      </td>
+    </tr>
+    <tr>
+      <td>
+        constants
+      </td>
+      <td>
+        Assorted constants
+      </td>
+    </tr>
+    <tr>
+      <td>
+        dao
+      </td>
+      <td>
+        Access to the LexBIG database
+      </td>
+    </tr>
+    <tr>
+      <td>
+        data
+      </td>
+      <td>
+        Directly related to data going into the LexBIG database tables
+      </td>
+    </tr>
+    <tr>
+      <td>
+        database
+      </td>
+      <td>
+        Database-specific tasks not related to data, such as finding out the database type (MySQL, Oracle)
+      </td>
+    </tr>
+    <tr>
+      <td>
+        fieldsetter
+      </td>
+      <td>
+        Spring-related classes for helping to write to the database
+      </td>
+    </tr>
+    <tr>
+      <td>
+        lexbigadmin
+      </td>
+      <td>
+        Common tasks for LexBIG to perform, such as indexing
+      </td>
+    </tr>
+    <tr>
+      <td>
+        listener
+      </td>
+      <td>
+        Listeners you can attach to a load so that the code will execute at certain points in the load, such as a cleanup listener that runs when the load is finished, or a setup listener, etc.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        logging
+      </td>
+      <td>
+        Access to the LexBIG logger
+      </td>
+    </tr>
+    <tr>
+      <td>
+        processor
+      </td>
+      <td>
+        Important directory: classes to which you can pass a domain-specific object and which will return a LexBIG object
+      </td>
+    </tr>
+    <tr>
+      <td>
+        properties
+      </td>
+      <td>
+        Code used internally by the Loader Framework
+      </td>
+    </tr>
+    <tr>
+      <td>
+        reader
+      </td>
+      <td>
+        Readers and reader-related tools for loader developers
+      </td>
+    </tr>
+    <tr>
+      <td>
+        rowmapper
+      </td>
+      <td>
+        Classes for reading from a database; currently experimental code
+      </td>
+    </tr>
+    <tr>
+      <td>
+        setup
+      </td>
+      <td>
+        Loader developers should not need to dive into this directory. Classes such as JobRepositoryManager that help Spring do its work; as Spring hums along it keeps tables of its internal workings.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        staging
+      </td>
+      <td>
+        Helper classes to use if your loader needs to load data to the database temporarily
+      </td>
+    </tr>
+    <tr>
+      <td>
+        wrappers
+      </td>
+      <td>
+        Helper classes and data structures such as a Code/CodingScheme class
+      </td>
+    </tr>
+    <tr>
+      <td>
+        writer
+      </td>
+      <td>
+        Miscellaneous classes that write to the database. These are not the same classes you would use in your loader, i.e the LexBIG model objects that use Hibernate. Those classes are contained in the PersistanceLayer project (shown below). It is by using those classes in the PersistenceLayer that you let the Loader Framework do some of the heavy lifting for you.
+      </td>
+    </tr>
+  </tbody>
+</table>
+<img alt="screenshot of the PersistanceLayer project in Eclipse" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/3%20-%20LexEVS%206.x%20Loader%20Framework/LexEVS_5.1_Loader_image007.gif?api=v2">
+<h3 id="id-3LexEVS6.xLoaderFramework-Algorithms">
+  Algorithms
+</h3>
+None
+<h3 id="id-3LexEVS6.xLoaderFramework-BatchProcesses">
+  Batch Processes
+</h3>
+None
+<h3 id="id-3LexEVS6.xLoaderFramework-ErrorHandling">
+  Error Handling
+</h3>
+Spring Batch gives the Loader Framework some degree of recovery from errors. Like the other features of Spring, error handling is something you need to configure in the Spring config file. Basically, Spring will keep track of the steps it has executed and make note of any step that has failed. Those failed steps can be re-run at a later time. The Spring documentation provides additional information on this function. See
+<a href="http://static.springsource.org/spring-batch/reference/html/configureJob.html" rel="nofollow">
+  ConfigureJob
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+and
+<a href="http://static.springsource.org/spring-batch/reference/html/configureStep.html" rel="nofollow">
+  ConfigureStep
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+.
+<h3 id="id-3LexEVS6.xLoaderFramework-DatabaseChanges">
+  Database Changes
+</h3>
+None
+<h3 id="id-3LexEVS6.xLoaderFramework-Client">
+  Client
+</h3>
+Loaders written to use the new framework will be called via the command line or script. Currently, the LexBIG GUI does not provide a framework to dynamically load extendable GUI components.
+<h3 id="id-3LexEVS6.xLoaderFramework-JSP/HTML">
+  JSP/HTML
+</h3>
+None
+<h3 id="id-3LexEVS6.xLoaderFramework-Servlet">
+  Servlet
+</h3>
+None
+<h3 id="id-3LexEVS6.xLoaderFramework-SecurityIssues">
+  Security Issues
+</h3>
+None
+<h3 id="id-3LexEVS6.xLoaderFramework-Performance">
+  Performance
+</h3>
+Spring can accommodate parallel processing to enhance performance. The Spring documentation provides a good discussion of this topic. Refer to the
+<a href="http://static.springsource.org/spring-batch/reference/html/scalability.html" rel="nofollow">
+  Scalability
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+page.
+<h3 id="id-3LexEVS6.xLoaderFramework-Internationalization">
+  Internationalization
+</h3>
+Not internationalized
+<h2 id="id-3LexEVS6.xLoaderFramework-Installation/Packaging">
+  Installation / Packaging
+</h2>
+The Loader Framework is packaged as a LexBIG extension and thus is not included in the LexBIG jar
+<h2 id="id-3LexEVS6.xLoaderFramework-Migration">
+  Migration
+</h2>
+None
+<h2 id="id-3LexEVS6.xLoaderFramework-Testing">
+  Testing
+</h2>
+Automated tests are run via Maven. As mentioned earlier, the projects containing the Loader Framework code are configured to work with Maven. The illustration below shows the PersistenceLayer project and its standard Maven layout. Notice the structure of the test code mirrors the structure of the application code. To run the automated test in our Eclipse environment, we select the project, right click, select Run As and select Maven test. Maven does the rest.
+<img alt="PersistenceLayer project structure as described above" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/3%20-%20LexEVS%206.x%20Loader%20Framework/LexEVS_5.1_Loader_image008.jpg?api=v2">
+<h3 id="id-3LexEVS6.xLoaderFramework-TestGuidelines">
+  Test Guidelines
+</h3>
+The test cases are also integrated into the LexBIG 5.1 build environment and are run with each build.
+<h3 id="id-3LexEVS6.xLoaderFramework-TestCases">
+  Test Cases
+</h3>
+See System Testing
+<h3 id="id-3LexEVS6.xLoaderFramework-TestResults">
+  Test Results
+</h3>
+See System Testing

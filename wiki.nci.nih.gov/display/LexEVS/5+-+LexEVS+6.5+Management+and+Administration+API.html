@@ -1,0 +1,92 @@
+ Contents of this Page
+<ul>
+  <li>
+    <a href="#id-5LexEVS6.5ManagementandAdministrationAPI-LexEVSAuthoringServiceManagementMethods" rel="nofollow">
+      LexEVS Authoring Service Management Methods
+    </a>
+    <ul>
+      <li>
+        <a href="#id-5LexEVS6.5ManagementandAdministrationAPI-InsertEntity" rel="nofollow">
+          Insert Entity
+        </a>
+      </li>
+      <li>
+        <a href="#id-5LexEVS6.5ManagementandAdministrationAPI-UpdatinganExistingEntity" rel="nofollow">
+          Updating an Existing Entity
+        </a>
+      </li>
+    </ul>
+  </li>
+</ul>
+<h2 id="id-5LexEVS6.5ManagementandAdministrationAPI-LexEVSAuthoringServiceManagementMethods">
+  LexEVS Authoring Service Management Methods
+</h2>
+The following examples show how to insert an entity and update an existing entity.
+<h3 id="id-5LexEVS6.5ManagementandAdministrationAPI-InsertEntity">
+  Insert Entity
+</h3>
+private VersionableEventEntityService service;
+private AuthoringService authoringService;
+
+CodingScheme scheme = new CodingScheme();
+scheme.setApproxNumConcepts(111l);
+scheme.setCodingSchemeName(&#34;testName&#34;);
+scheme.setCodingSchemeURI(&#34;uri&#34;);
+scheme.setRepresentsVersion(&#34;v1&#34;);
+
+authoringService.loadRevision(scheme, null, null);
+
+CodingScheme cs = codingSchemeservice.getCodingSchemeByUriAndVersion(&#34;uri&#34;, &#34;v1&#34;);
+System.out.println(cs);
+
+Entity entity = new Entity();
+entity.setEntityCode(&#34;c1&#34;);
+entity.setEntityCodeNamespace(&#34;ns&#34;);
+
+service.insertEntity(&#34;uri&#34;, &#34;v1&#34;, entity);
+<h3 id="id-5LexEVS6.5ManagementandAdministrationAPI-UpdatinganExistingEntity">
+  Updating an Existing Entity
+</h3>
+private VersionableEventEntityService service;
+	private AuthoringService authoringService;
+
+
+	CodingScheme scheme = new CodingScheme();
+scheme.setApproxNumConcepts(111l);
+scheme.setCodingSchemeName(&#34;testName&#34;);
+scheme.setCodingSchemeURI(&#34;uri&#34;);
+scheme.setRepresentsVersion(&#34;v1&#34;);
+
+authoringService.loadRevision(scheme, null, null);
+
+CodingScheme cs = codingSchemeservice.getCodingSchemeByUriAndVersion(&#34;uri&#34;, &#34;v1&#34;);
+System.out.println(cs);
+
+// Create a new entity
+Entity entity = new Entity();
+entity.setEntityCode(&#34;c1&#34;);
+entity.setEntityCodeNamespace(&#34;ns&#34;);
+entity.setIsDefined(false);
+
+EntryState entryState = new EntryState();
+entryState.setChangeType(ChangeType.MODIFY);
+entity.setEntryState(entryState);
+
+EntityDescription ed = new EntityDescription();
+ed.setContent(&#34;pre-update&#34;);
+entity.setEntityDescription(ed);
+
+// Insert the new entity
+service.insertEntity(&#34;uri&#34;, &#34;v1&#34;, entity);
+
+// Update the entity description
+entity.getEntityDescription().setContent(&#34;post-update&#34;);
+
+try {
+		// Update the entity
+service.updateEntity(&#34;uri&#34;, &#34;v1&#34;, entity);
+} catch (Exception e) {
+
+}
+
+Entity modifiedEntity = service.getEntity(&#34;uri&#34;, &#34;v1&#34;, &#34;c1&#34;, &#34;ns&#34;);

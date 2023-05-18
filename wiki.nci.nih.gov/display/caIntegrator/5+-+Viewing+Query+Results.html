@@ -1,0 +1,707 @@
+This chapter describes search results that caIntegrator returns after queries.Topics in this chapter include the following:
+<ul>
+  <li>
+    <a href="#id-5ViewingQueryResults-QueryResultsOverview" rel="nofollow">
+      Query Results Overview
+    </a>
+  </li>
+  <li>
+    <a href="#id-5ViewingQueryResults-SubjectAnnotationandImagingDataResults" rel="nofollow">
+      Subject Annotation and Imaging Data Results
+    </a>
+  </li>
+  <li>
+    <a href="#id-5ViewingQueryResults-GeneExpressionDataResults" rel="nofollow">
+      Gene Expression Data Results
+    </a>
+    <ul>
+      <li>
+        <a href="#id-5ViewingQueryResults-CopyNumberDataResults" rel="nofollow">
+          Copy Number Data Results
+        </a>
+      </li>
+      <li>
+        <a href="#id-5ViewingQueryResults-CreatingaGeneorSubjectList" rel="nofollow">
+          Creating a Gene or Subject List
+        </a>
+        <ul>
+          <li>
+            <a href="#id-5ViewingQueryResults-EditingaGeneorSubjectList" rel="nofollow">
+              Editing a Gene or Subject List
+            </a>
+          </li>
+          <li>
+            <a href="#id-5ViewingQueryResults-ChoosingGenes" rel="nofollow">
+              Choosing Genes
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#id-5ViewingQueryResults-ViewingDatawiththeIntegrativeGenomicsViewer" rel="nofollow">
+          Viewing Data with the Integrative Genomics Viewer
+        </a>
+        <ul>
+          <li>
+            <a href="#id-5ViewingQueryResults-Method1IGV" rel="nofollow">
+              Method 1 IGV
+            </a>
+          </li>
+          <li>
+            <a href="#id-5ViewingQueryResults-Method2IGV" rel="nofollow">
+              Method 2 IGV
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#id-5ViewingQueryResults-ViewingDatawithHeatMapViewer" rel="nofollow">
+          Viewing Data with Heat Map Viewer
+        </a>
+        <ul>
+          <ul>
+            <li>
+              <a href="#id-5ViewingQueryResults-Method1HMV" rel="nofollow">
+                Method 1 HMV
+              </a>
+            </li>
+            <li>
+              <a href="#id-5ViewingQueryResults-Method2HMV" rel="nofollow">
+                Method 2 HMV
+              </a>
+            </li>
+          </ul>
+          <li>
+            <a href="#id-5ViewingQueryResults-JavaforIGVandHeatMapViewer" rel="nofollow">
+              Java for IGV and Heat Map Viewer
+            </a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#id-5ViewingQueryResults-ExpandingImagingDataResults" rel="nofollow">
+      Expanding Imaging Data Results
+    </a>
+    <ul>
+      <li>
+        <a href="#id-5ViewingQueryResults-caIntegratorandNBIA" rel="nofollow">
+          caIntegrator and NBIA
+        </a>
+      </li>
+      <li>
+        <a href="#id-5ViewingQueryResults-RetrievingDICOMImages" rel="nofollow">
+          Retrieving DICOM Images
+        </a>
+      </li>
+      <li>
+        <a href="#id-5ViewingQueryResults-ExampleofRetrievingImages" rel="nofollow">
+          Example of Retrieving Images
+        </a>
+      </li>
+      <li>
+        <a href="#id-5ViewingQueryResults-RelationshipofSubjecttoStudytoSeriestoImages" rel="nofollow">
+          Relationship of Subject to Study to Series to Images
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#id-5ViewingQueryResults-ExportingData" rel="nofollow">
+      Exporting Data
+    </a>
+  </li>
+</ul>
+<h2 id="id-5ViewingQueryResults-QueryResultsOverview">
+  Query Results Overview
+</h2>
+After you launch a search of a caIntegrator study, the system automatically opens the Query Results tab showing the results of your search. If you have not configured the column and sort display parameters before launching the search, by default the tab shows only the subject identifiers and a column that allows you to select each row of the data subset.To display and/or sort additional data, you must return to the
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726023" rel="nofollow">
+  Results Type Tab
+</a>
+and/or
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726023" rel="nofollow">
+  Sorting Tab
+</a>
+to set display parameters, then re-run the search. The new search results will display the additional information, with the columns and data sorted as you specified.caIntegrator paginates search results into pages of configurable size (default 20) with standard paginated navigation controls. To sort columns by ascending or descending parameters for on any displayed field, click on the underlined column header.The query results that can display depend upon the criteria you established for the search. Follow the links below for more information about the category of data you searched.You can download search results as a CSV file. The file contains the annotations, columns and data sort configurations you specified in the search query. See
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726038" rel="nofollow">
+  Exporting Data
+</a>
+.See
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726038" rel="nofollow">
+  Subject Annotation and Imaging Data Results
+</a>
+,
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726038" rel="nofollow">
+  Gene Expression Data Results
+</a>
+, and
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726038" rel="nofollow">
+  Expanding Imaging Data Results
+</a>
+.
+<h2 id="id-5ViewingQueryResults-SubjectAnnotationandImagingDataResults">
+  Subject Annotation and Imaging Data Results
+</h2>
+If you run the search before configuring column and sort display parameters, only the [subject] ID that meet the criteria and a column allowing you to select each row appear on the table, as shown in the following figure.
+<img alt="Subject annotation and imaging data results, described in text" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/5%20-%20Viewing%20Query%20Results/imaging%20subj%20ID%20only75.PNG?api=v2">
+You can add details for one or more subjects by configuring them on the Results Type tab. Annotations listed there are the column headers in the CSV file(s) that were uploaded to the study. For information about using the Results Type tab, see
+<a href="https://wiki.nci.nih.gov/x/B4DnAg#3-SearchingacaIntegratorStudy-ResultsTypeTab" rel="nofollow">
+  Results Type Tab
+</a>
+.
+<h2 id="id-5ViewingQueryResults-GeneExpressionDataResults">
+  Gene Expression Data Results
+</h2>
+If after defining gene expression criteria on the Criteria tab, you select the Gene Expression result type on the Results Type tab, genomic data search results display in a gene expression data matrix. Because the data was downloaded from caArray, the data permissions granted there still apply. In other words, if you have been given access to the data in caArray, you can see it in caIntegrator.You can select on the Results Type tab a preferred orientation for displaying the results: genes in rows and subjects in columns, or genes in columns and subjects in rows.For Gene criteria, caIntegrator finds and summarizes at the gene level all reporters that match criteria for the gene you defined on the Criteria tab. When displaying results at the gene level, the mean is displayed if there are two probes, the median if there is an odd number of probes greater than two and the mean of the two median probes if there is an even number of probes greater than two. Next to each gene symbol, caIntegrator displays an icon (
+<img alt="gene information icon, described in text" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/5%20-%20Viewing%20Query%20Results/info%20icon.png?api=v2">
+) which you can click to open the Cancer Genome Anatomy Project (CGAP) showing data for the gene. Gene symbols and icons are identified in the following figure.
+<img alt="Gene symbols and icons, described in text" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/5%20-%20Viewing%20Query%20Results/Region%20Capture480.PNG?api=v2">
+If you have selected Gene Expression on the Results Type tab, then the column headers are a clickable label which sorts the entire table on that column. If you selected Reporter ID on the Results Type tab, the Reporter ID is clickable (and the gene is not clickable).For fold-change criteria, the cells display the normalized signal-based value for a given reporter for a given sample. In the results matrix, caIntegrator highlights matrix values for fold change results that meet fold change criteria. Red represents upregulated values and blue indicates downregulated values. The following two figures display gene name search results with gene reporter type display in the first and reporter ID reporter type display in the second. Note the left hand column in each example.Gene reporter type display
+<img alt="Genomic query example results, described in text" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/5%20-%20Viewing%20Query%20Results/genomic%20query%20results80.PNG?api=v2">
+Reporter ID reporter type display
+<img alt="Gene Reporter Type with 6 genes listed by name in rows with corresponding expressions values displaying in rows. Reporter ID and subjects appear in columns corresponding to appropriate values." src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/5%20-%20Viewing%20Query%20Results/genomic%20query%20results%20ID80.PNG?api=v2">
+<ul>
+  <li>
+    Genomic data does not display in tandem with subject annotation and imaging data; it only displays when you select the Gene Expression result type on the Results Type tab. Genomic data is however, filtered by subject annotation and imaging query criteria configured on the Criteria tab.
+  </li>
+  <li>
+    Click the Export Options CSV link to download the CSV file whose data displays on the Search Results tab. When you do so, the CSV file opens automatically in MS Excel or similar applications for working with spreadsheets, showing the columns and sorting as you defined them in caIntegrator on the appropriate tabs.
+  </li>
+</ul>
+You can save genes identified in the search results as a gene list. For more information, see
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726038" rel="nofollow">
+  Creating a Gene or Subject List
+</a>
+.
+<h3 id="id-5ViewingQueryResults-CopyNumberDataResults">
+  Copy Number Data Results
+</h3>
+After defining copy number criteria on the Criteria tab and running a
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726023" rel="nofollow">
+  copy number query
+</a>
+, you should select the Copy Number result type on the
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726023" rel="nofollow">
+  Results Type Tab
+</a>
+, and rerun the query. Copy number data search results display in a data matrix containing samples vs. genomic regions.
+<ul>
+  <li>
+    Gene symbols display parallel to chromosome regions on the matrix.
+  </li>
+  <li>
+    Sample ID column headings display the Subject ID/Sample ID (for example, E09262/E09262) because each calculation is based on a comparison of a tumor and matched blood sample from the same subject.
+  </li>
+  <li>
+    The values in the Sample ID columns are mean segment values as calculated by the DNAcopy algorithm, shown in the following figure. These are expressed as log2 (test/reference, as in tumor/normal). For more information about the algorithm, see
+    <a href="http://www.bioconductor.org/packages/2.8/bioc/html/DNAcopy.html" rel="nofollow">
+      Bioconductor
+    </a>
+    <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+      <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+    </a>
+    .
+    <img alt="Data matrix displaying copy number search results. Refer to text." src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/5%20-%20Viewing%20Query%20Results/CN%20search%20180.PNG?api=v2">
+    DNAcopy ouput values can be negative. If the test and the reference genomic samples both have two copies of a chromosomal region, the ratio of test/reference is &#39;1&#39;, and the log2(1) = 0. That is, if there is no change in the chromosomal structure, then the value is 0. If there are more copies in the test sample (amplification of the chromosomal segment), the ratio of test to reference is greater than 1, and the log2(test/reference) is greater than 0. For example, if the test sample has 6, the ratio or test/reference is 6/2 = 3; log2(3) = 1.58. In a deletion, the test is less than the reference, for example 1. The DNAcopy output value would be log2(1/2) = log2(0.5) = -1.0. Values below -0.6 are often considered a deletion.
+  </li>
+</ul>
+<h3 id="id-5ViewingQueryResults-CreatingaGeneorSubjectList">
+  Creating a Gene or Subject List
+</h3>
+From any page in caIntegrator that shows such a group, you can save a list of genes or subjects so you can use it for searches or analyses. This functionality can also be used where a gene or subject list was created outside of caIntegrator, for example, a list of subjects with validated mutation such as from TCGA projects, or a list of subjects with high EGFR expression or any lists of subjects with genomic or clinical characteristics determined with other tools.To create a list, follow these steps:
+<ol>
+  <li>
+    Click the Create New List link in the left sidebar. This opens the Manage List page, shown in the following figure.
+    <img alt="Manage Gene List page for creating a gene list. See text for instructions about using this page." src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/5%20-%20Viewing%20Query%20Results/gene%20list80.PNG?api=v2">
+  </li>
+  <li>
+    Enter a name for the gene or subject list.
+  </li>
+  <li>
+    Enter a description (optional).
+  </li>
+  <li>
+    Select Make Visible to Others if you want the list to be visible to anyone who views the study. This selection places the list in the Global List folder in the left sidebar under Saved Lists. In any box where you can select lists, the term &#39;Global&#39; will identify any list so identified when the list is created.
+  </li>
+  <li>
+    Select the List Type, Subject or Gene.
+    <ul>
+      <li>
+        If you select Subject, enter the Subject IDs in the text box that appears. Proceed with step 7.
+      </li>
+      <li>
+        If you select Gene, proceed with step 6.
+      </li>
+    </ul>
+  </li>
+  <li>
+    For Gene Symbol, caIntegrator provides three methods whereby you can obtain gene symbols for creating a gene list. For more information, see
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726038" rel="nofollow">
+      Choosing Genes
+    </a>
+    .
+  </li>
+  <li>
+    If you so choose, you can upload a gene or subject ID list. For the Upload File field, click the Browse button to navigate to a .csv file made up of gene symbols. caIntegrator converts the comma-separated content to a gene list.
+  </li>
+  <li>
+    Click Create List at the bottom of the page. caIntegrator now opens the Edit [Subject or Gene] List page which shows the name and symbols of the newest gene list, shown in the following figure.
+    <img alt="Example Edit Gene List, described in text" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/5%20-%20Viewing%20Query%20Results/edit%20gene%20list80.png?api=v2">
+  </li>
+</ol>
+See
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726038" rel="nofollow">
+  Editing a Gene or Subject List
+</a>
+for information about the edit feature.NoteWhen you perform a GISTIC analysis, caIntegrator automatically saves the retrieved genes in the Saved Copy Number analysis in the left sidebar. For a query or plot analysis, they also appear in the Gene Picker dialog box described in
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726038" rel="nofollow">
+  Choosing Genes
+</a>
+.
+<h4 id="id-5ViewingQueryResults-EditingaGeneorSubjectList">
+  Editing a Gene or Subject List
+</h4>
+To view a gene list or subject list in caIntegrator, under Study Data in the left sidebar, click Saved Lists &gt; Global Lists, or My Lists. Select the list/analysis you want to open. The system displays gene or subject lists that have been saved for the open study.  You can initiate the following functions on this page:
+<ol>
+  <li>
+    Click on any of the list names or the list icon (
+    <img alt="gene list icon" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/5%20-%20Viewing%20Query%20Results/gene%20list%20icon.png?api=v2">
+    ) to rerun the query from which the gene or subject list was first created. If the list is a gene list, in the query results, you can click on the gene information icon (
+    <img alt="icon that you click to open gene metadata" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/5%20-%20Viewing%20Query%20Results/info%20icon.png?api=v2">
+    ) to open the Cancer Genome Anatomy Project (CGAP) showing metadata for the gene.
+  </li>
+  <li>
+    Click the edit icon (
+    <img alt="edit icon" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/5%20-%20Viewing%20Query%20Results/edit%20icon.png?api=v2">
+    ) to open an Edit Gene/Subject List dialog box. On this page you can review the list of gene symbols or subject IDs included in the list shown in the following figure.
+    <img alt="edit gene list page, described in text" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/5%20-%20Viewing%20Query%20Results/edit%20gene%20list80.png?api=v2">
+  </li>
+  <li>
+    In the Edit [List Type] dialog box, you can perform the following tasks:
+    <ul>
+      <li>
+        To rename the list in the [List Type] List Name text box, enter the new list name.
+      </li>
+      <li>
+        You can change the visibility of the list in the appropriate check box.
+      </li>
+      <li>
+        To delete the list, click the Delete button.
+      </li>
+    </ul>
+  </li>
+  <li>
+    Click Save to save your changes or Cancel to leave the page without making changes.
+  </li>
+</ol>
+Once a list is created, you cannot edit the list contents.
+<h4 id="id-5ViewingQueryResults-ChoosingGenes">
+  Choosing Genes
+</h4>
+To obtain gene names for a gene expression search or analysis, use one of the following three methods described in this section: bioDBnet, Gene List or CGAP.
+<ul>
+  <li>
+    bioDBnet– This link searches bioDBnet for gene IDs, symbols or genes within pathways. Then caIntegrator pulls identified genes into the application for analysis.
+    <ol>
+      <li>
+        Click bioDBnet.
+      </li>
+      <li>
+        Enter Search Terms. Note that caIntegrator can perform a search on a partial HUGO symbol. For example, as search using  ACH *  would find matches with &#39;achalasia&#39; and &#39;arachidonate&#39;.
+      </li>
+      <li>
+        Select if you want to search in Gene IDs, Gene Symbols, Gene Aliases,  Pathways (from the drop-down list), or Search Pathways for Genes.
+        <ul>
+          <li>
+            Gene IDs searches the exact gene ID(s) you enter.
+          </li>
+          <li>
+            Gene Symbols searches only the Unigene and HUGO gene symbols in bioDBnet.
+          </li>
+          <li>
+            Gene Aliases searches for one or more gene symbols which are synonymous for the current gene symbol.
+          </li>
+          <li>
+            Pathways searches only the pathway names in bioDBnet.
+          </li>
+          <li>
+            Search Pathways for Genes searches for pathways containing gene(s) you specify for the search.
+          </li>
+        </ul>
+      </li>
+      <li>
+        Select Show only genes that are part of this (caIntegrator) study or Case Sensitive Search if either of these criteria are to be applied to the search. (By default, the search is case insensitive.)
+      </li>
+      <li>
+        Choose the Taxon from the drop-down list and click Search. (The Taxon criterion defaults to Human.) The search results display on the same page below the search criteria. The following figure shows search criteria and a few of the listed search results.
+        <img alt="Example bioDBnet gene search criteria and search results" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/Choosing%20Genes/bioDBnetsearch85.png?api=v2">
+      </li>
+      <li>
+        In the search results, use the check boxes to identify the genes whose symbols you want to use in the gene expression analysis.
+      </li>
+      <li>
+        Click Use Genes at the bottom of the page. This pulls the checked genes into the Gene Symbol text box on the Criteria tab. The following figure reveals some of the genes pulled into the Gene Symbol text box.
+        <img alt="example of genes in Gene Symbol text box" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/Choosing%20Genes/cabio%20genes%20pulled%20in80.PNG?api=v2">
+      </li>
+    </ol>
+  </li>
+  <li>
+    Gene List– This link locates gene lists saved in caIntegrator.
+    <ol>
+      <li>
+        Click the Genes List icon (
+        <img alt="gene list icon" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/Choosing%20Genes/gene%20list%20icon.png?api=v2">
+        ) to open a Gene List Picker dialog. For more information, see
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726038" rel="nofollow">
+          Creating a Gene or Subject List
+        </a>
+        .If a GISTIC analysis has been run, you may see the following options:
+        <ul>
+          <li>
+            GISTIC Amplified genes is a list of gene symbols in which the corresponding regions of the genome are significantly amplified.
+          </li>
+          <li>
+            GISTIC Deleted genes is a list of gene symbols in which the corresponding regions of the genome are significantly deleted.
+          </li>
+        </ul>
+      </li>
+      <li>
+        In the drop-down menu that lists previously saved gene lists, select a gene list. In the list that appears, use the check boxes to identify the genes whose symbols you want to use in the gene expression analysis.
+      </li>
+      <li>
+        Click Use Genes at the bottom of the dialog. This pulls the checked genes into the Search Criteria tab.
+      </li>
+    </ol>
+  </li>
+  <li>
+    CGAP – Use this directory to identify genes. Before clicking the CGAP icon (
+    <img alt="CGAP icon" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/Choosing%20Genes/CGAP%20icon.png?api=v2">
+    ) you must enter gene symbols in the text box. This link does not pull anything into caIntegrator but does provide information about the gene(s) whose names you entered.
+  </li>
+</ul>
+<h3 id="id-5ViewingQueryResults-ViewingDatawiththeIntegrativeGenomicsViewer">
+  Viewing Data with the Integrative Genomics Viewer
+</h3>
+Once you have run a query for
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726023" rel="nofollow">
+  gene expression
+</a>
+, or have run analyses for
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726023" rel="nofollow">
+  copy number
+</a>
+, or analyses for genomic data, you can view results in the Integrative Genomics Viewer (IGV).The IGV is a high-performance visualization tool for interactive exploration of large, integrated datasets. It supports a wide variety of data types including sequence alignments, microarrays, and genomic annotations.IGV informationFor more information about the Integrative Genomics Viewer or to connect independently to the IGV home page, see
+<a href="http://www.broadinstitute.org/software/igv/home" rel="nofollow">
+  Integrative Genomics Viewer
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+.You may also want to refer to the
+<a href="http://www.broadinstitute.org/software/igv/UserGuide" rel="nofollow">
+  IGV User Guide
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+. The IGV viewer and the NCI Heat Map viewer both require you to install a version of Java containing Java Web Start. For more information, see
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=50694583" rel="nofollow">
+  Java for IGV and Heat Map Viewer
+</a>
+.There are two ways to integrate caIntegrator with the IGV. To configure the connection to IGV, follow one of these methods.
+<h6 id="id-5ViewingQueryResults-Method1IGV">
+  Method 1 IGV
+</h6>
+<ol>
+  <li>
+    With the appropriate study open, at the bottom of the Query Results page, click the View in Integrative Genomics Viewer button.
+  </li>
+  <li>
+    If you click the button at the bottom of the page with any of the query results line items selected, caIntegrator creates IGV files, with a monitor informing you of this. After the files are created, click the Launch Integrative Viewer hypertext link.
+  </li>
+  <li>
+    Follow the instructions through the intermediate dialog boxes. After clicking Open with the Java program listed, the IGV.jnlp opens, displaying the dataset in the computer screen. An example displays in the following figure.
+    <img alt="illustration of step, described in text" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/Viewing%20Data%20with%20IGV%20and%20HMV/IGV%20session80.PNG?api=v2">
+  </li>
+  <li>
+    Move your mouse to hover over the genes graphic at the bottom of the page, indicated in the figure.
+  </li>
+  <li>
+    Click the mouse when you&#39;ve identified a gene of interest. This opens the genome site at UCSC, where you can learn more about the gene. The following figures exhibits the kind of metadata you can expect from the UCSC genome site.
+    <img alt="illustration of step, described in text" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/Viewing%20Data%20with%20IGV%20and%20HMV/GABRG1%20at%20UCSC80.PNG?api=v2">
+  </li>
+</ol>
+<h6 id="id-5ViewingQueryResults-Method2IGV">
+  Method 2 IGV
+</h6>
+<ol>
+  <li>
+    With the appropriate study open, click Integrative Genomics Viewer on the left sidebar. This opens the View IGV Selector page, shown in the following figure.
+    <img alt="illustration of step, described in text" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/Viewing%20Data%20with%20IGV%20and%20HMV/IGV%20Selector80.PNG?api=v2">
+  </li>
+  <li>
+    In the drop-down list, select the Gene Expression Platform for the data you want to view.
+  </li>
+  <li>
+    Select the Copy Number Platform ID.
+  </li>
+  <li>
+    The Annotations - Default panel displays existing annotation fields for the gene expression data in the open study. Select those fields you want to view when you open the IGV. Use the buttons for convenience if you want to Select All or Unselect All, when all are checked.
+  </li>
+  <li>
+    Click View to see the data in the Integrative Genomic Viewer. caIntegrator creates IGV files of the data.
+  </li>
+  <li>
+    After the files are created, click the Launch Integrative Viewer hypertext link that appears.
+  </li>
+  <li>
+    Continue with Step 3 in
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=50694583" rel="nofollow">
+      Method 1 IGV
+    </a>
+    .
+  </li>
+</ol>
+<h3 id="id-5ViewingQueryResults-ViewingDatawithHeatMapViewer">
+  Viewing Data with Heat Map Viewer
+</h3>
+Once you have run a query for
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726023" rel="nofollow">
+  gene expression
+</a>
+, or for
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726023" rel="nofollow">
+  copy number
+</a>
+, or have run analyses on genomic data, you can view results in the Heat Map Viewer (HMV).HMV informationFor more information about the Heat Map Viewer or to connect independently to the HMV home page, see
+<a href="https://cgwb.nci.nih.gov/cgi-bin/heatmap" rel="nofollow">
+  Heat Map Viewer documentation
+</a>
+or
+<a href="https://cgwb.nci.nih.gov/goldenPath/heatmap/documentation/index.html" rel="nofollow">
+  HMV documentation
+</a>
+. The IGV viewer and the NCI Heat Map viewer both require you to install a version of Java containing Java Web Start. For more information, see
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=50694583" rel="nofollow">
+  Java for IGV and Heat Map Viewer.
+</a>
+.There are two ways to integrate caIntegrator with the Heat Map Viewer. To configure the connection, follow one of these methods.
+<h6 id="id-5ViewingQueryResults-Method1HMV">
+  Method 1 HMV
+</h6>
+<ol>
+  <li>
+    With the appropriate study open, at the bottom of the Query Results page, click the View in Heat Map Viewer button.
+  </li>
+  <li>
+    If you click the button at the bottom of the page with any of the query results line items selected, caIntegrator creates HMV files, with a monitor informing you of this. After the files are created, click the Launch Heat Map Viewer hypertext link.
+  </li>
+  <li>
+    Follow the instructions through the intermediate dialog boxes. After clicking Open with the Java program listed, the runs, displaying the dataset in the computer screen. An example displays in the following figure.
+    <img alt="illustration of step, described in text" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/Viewing%20Data%20with%20IGV%20and%20HMV/heat%20map%20viewer%20results280.PNG?api=v2">
+  </li>
+</ol>
+<h6 id="id-5ViewingQueryResults-Method2HMV">
+  Method 2 HMV
+</h6>
+<ol>
+  <li>
+    With the appropriate study open, click Heat Map Viewer on the left sidebar. This opens the View Heat Map Viewer Selector page, shown in the following figure.
+    <img alt="illustration of step, described in text" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/Viewing%20Data%20with%20IGV%20and%20HMV/view%20heat%20map%20selector80.PNG?api=v2">
+  </li>
+  <li>
+    Select the appropriate Copy Number Platform in the drop down list.
+  </li>
+  <li>
+    The Annotations - Default panel displays existing annotation fields for the gene expression data in the open study. Select one or more annotations in the annotation list. For convenience, you can use the Select All or Unselect All buttons.
+  </li>
+  <li>
+    Click View to view the data you select in Heat Map Viewer. caIntegrator creates Heat Map Viewer files of the data.
+  </li>
+  <li>
+    After the files are created, click the Launch Heat Map Viewer hypertext link that appears.
+  </li>
+  <li>
+    Continue with Step 3 in
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=50694583" rel="nofollow">
+      Method 1 HMV
+    </a>
+    .HMV help filesFor interpretation of the results and using HMV features, see the help files opened from HMV.
+  </li>
+</ol>
+<h4 id="id-5ViewingQueryResults-JavaforIGVandHeatMapViewer">
+  Java for IGV and Heat Map Viewer
+</h4>
+To use the IGV and the NCI Heat Map viewer, described in
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=50694583" rel="nofollow">
+  Viewing Data with the Integrative Genomics Viewer
+</a>
+and
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=50694583" rel="nofollow">
+  Viewing Data with Heat Map Viewer
+</a>
+, you must install a version of Java containing Java Web Start. You must install recent versions of the Java Development Kit (JDK 1.5.0 aka JDK 5.0 or newer) or Java Runtime Environment (JRE 1.5.0 aka JRE 5.0 or newer). The easiest option is to install
+<a href="http://www.java.com/en/download/faq/java_webstart.xml" rel="nofollow">
+  JRE 5.0
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+Without Java Web Start, when you click Launch Integrative Genomics Viewer or Launch Heat Map Viewer, a dialog box displays in your browser giving you the option to save or open with igv.jnlp (IGV) or retrieveFile.jnlp (HMV). Clicking the Open option starts the Java Web Start Launcher (default), installing the Java app so that you can view the files.Upon first launchThe first time you launch the IGV or HMV with Java properly installed, regardless of browser type, a warning may appear: the &#34;the digital signature cannot be verified&#34;. Click Run to proceed with opening the viewer.
+<h2 id="id-5ViewingQueryResults-ExpandingImagingDataResults">
+  Expanding Imaging Data Results
+</h2>
+In reviewing imaging search results, it is important to understand the hierarchy of submissions in NBIA. For more information, see
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726038" rel="nofollow">
+  Relationship of Subject to Study to Series to Images
+</a>
+.If you run a search before configuring column and sort display parameters, only the Subject Identifiers for the patients/images that meet the criteria and a column containing one check box per row display by default. An example displays in the following figure.
+<img src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/5%20-%20Viewing%20Query%20Results/imaging%20subj%20ID%20only75.PNG?api=v2">
+If your annotation choice on the Results Type page identifies annotations such as tumor size or tumor location, the search results display image series subsets that have those annotations, or any annotations you check on the Results Type page. The check boxes work in conjunction with buttons at the bottom of the results page, shown in the following figure. By expanding display parameters, you can view complete details for image search results.
+<img alt="Search results page, described in text" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/5%20-%20Viewing%20Query%20Results/search%20image%20results80.png?api=v2">
+You can add more details for images by configuring image annotations on the Results Type tab. Annotations listed there are the column headers in the image series CSV file(s) that were uploaded to the study. Examples of image details include the following:
+<ul>
+  <li>
+    All image details (name, size, etc.)
+  </li>
+  <li>
+    The series to which the image belongs
+  </li>
+  <li>
+    Image feature attributes
+  </li>
+  <li>
+    The subject ID. Click the subject ID under Annotations on the Results Type tab to display this.
+  </li>
+</ul>
+You can set display parameters for the results on the Columns and Sorting tabs. For more information, see
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726023" rel="nofollow">
+  Results Type Tab
+</a>
+.  See also
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726038" rel="nofollow">
+  caIntegrator and NBIA
+</a>
+,
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726038" rel="nofollow">
+  Retrieving DICOM Images
+</a>
+and
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726038" rel="nofollow">
+  Example of Retrieving Images
+</a>
+.
+<h3 id="id-5ViewingQueryResults-caIntegratorandNBIA">
+  caIntegrator and NBIA
+</h3>
+Images can be accessed in NBIA if you see buttons on the Search Results page. See the Imaging Note in
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726023" rel="nofollow">
+  Results Type Tab
+</a>
+. You can click links on the Search Results tab to view or download image data.
+<ul>
+  <li>
+    View in NBIA – This link corresponds to each Image Series listed in the results table. If you click the link, NBIA opens to the login page. After you log in, NBIA brings up the first image in the corresponding image series; an example is shown in the following figure. You must log into NBIA to see the data. On the NBIA page that opens, you can opt to view the entire series containing this image, or you can display the image as a large JPEG-formatted image. You can also add the image to the NBIA basket. For more information, see the NBIA online help or user&#39;s guide accessible from NBIA.
+    <img alt="An example showing the first image in an image series" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/5%20-%20Viewing%20Query%20Results/NBIA%20image90.PNG?api=v2">
+  </li>
+</ul>
+<ul>
+  <li>
+    Forward to NBIA – This button is linked to results you have selected by row. Click the button to open NBIA, where the image series you select are loaded in the NBIA image basket. In the event that the caIntegrator study was NOT configured with image annotation for an image series, caIntegrator sends NBIA a list of Study Instance UIDs, for which NBIA will add all corresponding image series to the basket. In the event that the caIntegrator study was configured with annotations for an image series, the system sends NBIA a list of Image Series IDs, for which NBIA adds all corresponding image series to the basket.
+  </li>
+</ul>
+<h3 id="id-5ViewingQueryResults-RetrievingDICOMImages">
+  Retrieving DICOM Images
+</h3>
+On the caIntegrator imaging data Search Results page, you can click the Retrieve DICOM Images button which is linked to results you have selected by row. caIntegrator retrieves the corresponding image(s) from NBIA through the grid. NBIA organizes the download file by patient ID, StudyInstance UID, and ImageSeries UID, and compresses it into a zip file. When caIntegrator notifies you that the file is retrieved, the DICOM Retrieval page indicates whether the retrieved files are Study Instance UIDs or Image Series UIDs, shown in the following figure.
+<img alt="DICOM retrieval page, described in text" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/5%20-%20Viewing%20Query%20Results/DICOM%20retrieval80.PNG?api=v2">
+Click the Download DICOM link to download and save the file. caIntegrator unzips the file and displays the list of images in the file. To open the DICOM images, you must have a DICOM image viewer application installed on your computer. For more information about one such viewer, see
+<a href="http://www.e-dicom.com/viewers.php" rel="nofollow">
+  http://www.e-dicom.com/viewers.php
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+.In the search results, not all of the subjects in the data subset may be mapped to image series IDs. If you select a mixture of subjects, some of which have image annotations as indicated by an image series ID and some of which do not have image annotations (no image series ID), when you click the Retrieve DICOM Images button, NBIA retrieves the images for the entire NBIA study instance UID that includes the image seriesIDs you checked.If on the Search Results tab you select only subjects that have image annotations as indicated by an image series ID, when you click the Retrieve DICOM Images button, NBIA retrieves images for the NBIA image series that were matched in the search. If the results are a mixture, but you select one specific row with a valid image annotation, caIntegrator aggregates to the image series. If results are a mixture and you select multiple rows, caIntegrator aggregates to the NBIA study in which multiple image series you have selected in the search results are found.If your query does not have image annotations and all check boxes are selected, results will go up to image series UID and gives all image series in it. Search results may ultimately depend on how the study was created. For example, if no image series display in query results, it means they were not mapped in the study. In that case, the results &#34;move&#34; up to Study Instance UIDs.To best understand this, it is important to review the hierarchy of submissions in NBIA. For more information, see
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726038" rel="nofollow">
+  Relationship of Subject to Study to Series to Images
+</a>
+.
+<h3 id="id-5ViewingQueryResults-ExampleofRetrievingImages">
+  Example of Retrieving Images
+</h3>
+If you are searching a study that has image data and image annotation(s) for at least one image series, you would follow these steps:
+<ol>
+  <li>
+    Open a study in caIntegrator that has imaging data associated with it that points to the production NBIA server.
+  </li>
+  <li>
+    Run a query that will have image series or subjects (patients) who are associated to Image Studies and select a few of those subjects in the check box.
+  </li>
+  <li>
+    Click the Retrieve Dicom Images button. Note that it aggregates to the image study.
+  </li>
+  <li>
+    Now go back to Results Type tab, select all image annotations and run the query again.
+  </li>
+  <li>
+    Select an image series type column and click the Retrieve Dicom Images button. caIntegrator now aggregates to the Image Series that were selected and not the Image Study.
+  </li>
+  <li>
+    Select a row that doesn&#39;t have image series data, and a row that does, and push the button. This should aggregate to the study for the rows selected.
+  </li>
+  <li>
+    Click Forward to NBIA. You should see the same types of aggregation for these tests.
+  </li>
+</ol>
+When the image Study is in the checked boxes (regardless of image series being there or not), the system aggregates up to the Image Study level.
+<h3 id="id-5ViewingQueryResults-RelationshipofSubjecttoStudytoSeriestoImages">
+  Relationship of Subject to Study to Series to Images
+</h3>
+This flowchart illustrates the relationship of subject to study to series and lastly to images. In the case of human data, the subject is most likely a patient.
+<img alt="flowchart as described in text" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/Relationship%20of%20Subject%20to%20Study%20to%20Series%20to%20Images/relationship.png?api=v2">
+For example, the Study Instance UID is the set of images resulting from one patient office visit. When you upload a spreadsheet of an image series, the hierarchy of images in an image series might look like this:Study Instance UID (one office visit):Brain (image series)
+<ul>
+  <li>
+    Brain image 1
+  </li>
+  <li>
+    Brain image 2
+  </li>
+  <li>
+    Brain image 3
+  </li>
+</ul>
+Leg (image series)
+<ul>
+  <li>
+    Leg image 1
+  </li>
+  <li>
+    Leg image 2
+  </li>
+  <li>
+    Leg image 3
+  </li>
+</ul>
+You can add details for images by configuring image annotations on the Results Type tab. Annotations listed there are the column headers in the image series CSV file(s) that were uploaded to the study. Examples of image details include the following:
+<ul>
+  <li>
+    All image details (name, size, etc.)
+  </li>
+  <li>
+    The series that the image belongs to
+  </li>
+  <li>
+    Image feature attributes
+  </li>
+  <li>
+    The subject ID. Click the subject ID under Annotations on the Results Type tab to display this.
+  </li>
+</ul>
+<h2 id="id-5ViewingQueryResults-ExportingData">
+  Exporting Data
+</h2>
+You can choose to download tabular search results as a CSV file. Click the Export .csv link at the bottom of the page. You may need to scroll the page to see it. The file contains the annotations, columns and data sort configurations you specified in the search query.NoteYou will not see the Export option when gene expression data displays as query results.

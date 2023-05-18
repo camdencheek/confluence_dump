@@ -1,0 +1,219 @@
+<h2 id="LexEVSMeetingMinutesValueSetArchitecturePlanningSession2017.01.19-Attendees">
+   Attendees
+</h2>
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        Name
+      </th>
+      <th>
+        Role
+      </th>
+      <th colspan="1">
+        Present
+      </th>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Ong, Kim L
+      </td>
+      <td colspan="1">
+        IS
+      </td>
+      <td colspan="1">
+        x
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Lucas, Jason R
+      </td>
+      <td colspan="1">
+        IS
+      </td>
+      <td colspan="1">
+        x
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Safran, Tracy
+      </td>
+      <td colspan="1">
+        NIH/NCI [C]
+      </td>
+      <td colspan="1">
+        x
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Wynne, Robert
+      </td>
+      <td>
+        NIH/NCI [C]
+      </td>
+      <td>
+        x
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Bauer, Scott
+      </td>
+      <td colspan="1">
+        Mayo
+      </td>
+      <td colspan="1">
+        x
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Stancl, Craig
+      </td>
+      <td colspan="1">
+        Mayo
+      </td>
+      <td colspan="1">
+        x
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Endle,  Cory
+      </td>
+      <td colspan="1">
+        Mayo
+      </td>
+      <td colspan="1">
+        x
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="LexEVSMeetingMinutesValueSetArchitecturePlanningSession2017.01.19-Agenda">
+  Agenda
+</h2>
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <td colspan="1">
+        Review of Kim&#39;s Resolved Value Set Proposal (Kim)
+      </td>
+      <td colspan="1">
+        Discussion Points:
+        <ul>
+          <li>
+            Kim described his approach:
+            <ul>
+              <li>
+                Kim&#39;s approach would eliminate the need for all of the current resolved value sets.
+              </li>
+              <li>
+                Kim&#39;s one OWL file would replace all of these.
+              </li>
+              <li>
+                Can use Protege to find all parent-child (subClassOf) and concept_in_subset (A8) relationships in NCI Thesaurus.
+              </li>
+              <li>
+                Resolving values sets with Kim&#39;s OWL file would take about 5 seconds.
+              </li>
+            </ul>
+          </li>
+          <li>
+            OWL file would be loaded after VS coding schemes are loaded.
+            <ul>
+              <li>
+                All 740 value set definitions would be created.
+              </li>
+            </ul>
+          </li>
+          <li>
+            This would bypass the existing lexevs value set API
+          </li>
+          <li>
+            We would use the OWL API to pull data out of the OWL text file.
+          </li>
+          <li>
+            We would need extra code generated against the OWL API to accomplish this.
+          </li>
+          <li>
+            With this change, the browser will change from the RSV API to the coding scheme API.
+          </li>
+          <li>
+            These changes are only for the NCIT.
+          </li>
+          <li>
+            The LexEVS model and API will not change.
+          </li>
+          <li>
+            The generated OWL file doesn&#39;t have a single header concept.
+            <ul>
+              <li>
+                The top node
+              </li>
+            </ul>
+          </li>
+          <li>
+            Kim confirmed that the value set editors will not have any additional work using this process.
+          </li>
+        </ul>
+        Decision Points:
+        <ul>
+          <li>
+            Requirements
+            <ul>
+              <li>
+                Generate: NCI_Thesaurus_Value_Set.owl file
+              </li>
+              <li>
+                Create convenience method: restrictToMatchingProperties (OR) on multiple matching values.
+                <ul>
+                  <li>
+                    What is the expected input/output?
+                  </li>
+                  <li>
+                    Kim to provide a use case/example for the input/output
+                  </li>
+                </ul>
+              </li>
+              <li>
+                Load OWL file in less than an hour.
+              </li>
+              <li>
+                Kim to make list of all requirements for generating the OWL file.
+              </li>
+            </ul>
+          </li>
+          <li>
+            Create a JIRA item to track this issue.
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="LexEVSMeetingMinutesValueSetArchitecturePlanningSession2017.01.19-REFERENCES">
+  REFERENCES
+</h2>
+<h2 id="LexEVSMeetingMinutesValueSetArchitecturePlanningSession2017.01.19-Kim&#39;svaluesetproposalreferencefile">
+  Kim&#39;s value set proposal reference file
+</h2>
+<a href="/display/LexEVS/LexEVS+Meeting+Minutes+-+Value+Set+Architecture+Planning+Session+-+2017.01.19?preview=%2F337294218%2F337294220%2Fvalue_set_alternative_approach.txt" rel="nofollow">
+  value_set_alternative_ap…
+</a>
+Value Set Issues Identified during 2016.12 Technical Face-To-Face
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=332250069" rel="nofollow">
+  2016.12 Technical Face-To-Face Prioritization List
+</a>

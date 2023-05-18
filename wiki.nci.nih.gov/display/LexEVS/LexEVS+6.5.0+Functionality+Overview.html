@@ -1,0 +1,542 @@
+The following information was designed to give an overview of the functionality contained within the Lexical Grid Enterprise Vocabulary Services (LexEVS). As a beginner or experienced terminology user you will find this information useful when choosing if the LexEVS services are right for your institution or application.Each area of LexEVS is broken down with its primary value proposition and additional items for you to consider. Note: LexEVS 6.5.0 has been released and includes technology stack updates.  For more information on LexEVS 6.5.0, see
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=338237250" rel="nofollow">
+  LexEVS 6.5.0 Release Notes
+</a>
+and
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=345670414" rel="nofollow">
+  LexEVS 6.5.0 Installation Options
+</a>
+.
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        Service Area
+      </th>
+      <th>
+        Main Functions
+      </th>
+      <th>
+        Additional Functional Qualification
+      </th>
+    </tr>
+    <tr>
+      <td>
+        Model - The LexGrid model is Mayo Clinic&#39;s proposal for standard storage of controlled vocabularies and ontologies. These are the high-level objects incorporated into the model definition.
+      </td>
+      <td>
+        <ul>
+          <li>
+            Coding System - each vocabulary is modeled as an individual Code System, which could be seen as a container for concepts, relationships, properties and meta data.
+          </li>
+          <li>
+            Entity - each entity could be of type &#39;Concept&#39;, &#39;Instance&#39;, &#39;Association&#39; etc.
+          </li>
+          <li>
+            Concept - subclass of Entity.
+          </li>
+          <li>
+            Association - subclass of Entity, and represents the relationship between Concepts.
+          </li>
+          <li>
+            Instance - subclass of Entity.
+          </li>
+          <li>
+            Property - association with the Coding System, Entity or Association.
+          </li>
+          <li>
+            Value Set Definition - the contents are coded entities defined in referencing Code System. Value Set can contain coded entities from one or more Code System.
+          </li>
+          <li>
+            Pick List Definition - defines an ordered list of entity codes and preferred designations drawn from a resolved Value Set Definition.
+          </li>
+        </ul>
+      </td>
+      <td>
+        <ul>
+          <li>
+            Supports synonyms.
+          </li>
+          <li>
+            Alternate definitions are available.
+          </li>
+          <li>
+            Supports property qualifiers, however, properties cannot have properties.
+          </li>
+          <li>
+            Supports relationships of multiple types.
+          </li>
+          <li>
+            Provides Code System metadata.
+          </li>
+          <li>
+            Mapping relationship, including &#34;translations&#34; between terminologies.
+          </li>
+          <li>
+            Supports user-defined properties.
+          </li>
+          <li>
+            Supports translation or terms with another associated human language.
+          </li>
+          <li>
+            Supports Subset (concepts related via &#34;is-a&#34; in downward direction).
+          </li>
+          <li>
+            Supports Subset (concepts related via an explicit set relationship).
+          </li>
+          <li>
+            Relationships are managed as concepts, for example they have names.
+          </li>
+          <li>
+            Create subsets with features such as hierarchy, sequencing, grouping, history, and language.
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Authoring - The APIs provide the capability to author a Code System and its contents.
+      </td>
+      <td>
+        <ul>
+          <li>
+            Create new Code System, Code System Property, Concept, Concept Property, Association (add Qualifiers to the Association), and supplement.
+          </li>
+          <li>
+            Edit Code System meta data, Code System Property, Concept meta data, Concept Property and Association type.
+          </li>
+          <li>
+            Remove entire Code System, Code System Property, Concept, Concept Property.
+          </li>
+          <li>
+            Change status of Code System or Concept, such as retiring.
+          </li>
+          <li>
+            Allows designation of the officially supported Code System, Concept, or Value Set.
+          </li>
+          <li>
+            Determine source and target Code System for an Association.
+          </li>
+          <li>
+            New Code System consisting of mappings of one system&#39;s concept to another.
+          </li>
+          <li>
+            New mapping for an existing mapping scheme.
+          </li>
+        </ul>
+      </td>
+      <td>
+        <ul>
+          <li>
+            The LexEVS user interface supports efficient manual use for query and test operations even when operating on large data sets.
+          </li>
+          <li>
+            A Code System or concept authoring user interface is not available.
+          </li>
+          <li>
+            A developers GUI for Value Set authoring is available.
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Versioning - An ordered collection of state changes that define the transformation of a set of resources from one consistent state to another.
+      </td>
+      <td>
+        <ul>
+          <li>
+            Provides release information about content loaded into the LexEVS system.
+          </li>
+          <li>
+            Versionable Entities are the resources that can undergo change over time while maintaining its identity. All the LexGrid elements that can undergo changes such as Entity, CodingScheme, ValueSetDefinition, property, etc. are Versionable Entities.
+          </li>
+        </ul>
+      </td>
+      <td>
+        <ul>
+          <li>
+            The version of loaded content can be checked via APIs, command line, or GUI.
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        CTS2 - Support for Common Terminology Services.
+      </td>
+      <td>
+        <ul>
+          <li>
+            CTS2 defines the functional requirements of a set of service interfaces to allow the representation, access, and maintenance of terminology content either locally, or across a federation of terminology service nodes.
+          </li>
+        </ul>
+      </td>
+      <td>
+        <ul>
+          <li>
+            Fully compliant with CTS2 1.1
+          </li>
+          <li>
+            Now featuring CTS2 compliant Query and Read services
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Mapping - Concept, Instance, or Association mapping between two different ontologies.
+      </td>
+      <td>
+        <ul>
+          <li>
+            LexEVS provides inter-terminology relationship support, authoring, and loading.
+          </li>
+        </ul>
+      </td>
+      <td>
+        <ul>
+          <li>
+            Mapping scheme is loaded independent of the mapped ontologies.
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Value Set - Value Set Definition within the LexGrid logical model defines the contents of a Value Set. The contents are coded entities defined in the referenced Code System.
+      </td>
+      <td>
+        <ul>
+          <li>
+            Administration - ability to load, export, and remove a Value Set Definition.
+          </li>
+          <li>
+            Query - ability to apply user restrictions and dynamically resolve the definitions at run time.
+          </li>
+          <li>
+            Resolve - ability to resolve a Value Set Definition dynamically against selected Code System version and return all Concepts belonging to the Value Set.
+          </li>
+        </ul>
+      </td>
+      <td>
+        <ul>
+          <li>
+            Value Sets can contain coded entities from one or more Code Systems.
+          </li>
+          <li>
+            A developer&#39;s Value Set and Pick List user interface is available.
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Pick List - Pick List Definition within the LexGrid logical model defines an ordered list of entity codes and corresponding presentations drawn from a resolved Value Set Definition.
+      </td>
+      <td>
+        <ul>
+          <li>
+            Administration - ability to load, export and remove Pick List Definitions.
+          </li>
+          <li>
+            Query - ability to apply user restrictions and dynamically resolve the definitions at run time.
+          </li>
+          <li>
+            Resolve - ability to resolve Pick List Definition dynamically against a selected Code System version and return all concepts or selected concepts belonging to the Pick List.
+          </li>
+        </ul>
+      </td>
+      <td>
+        <ul>
+          <li>
+            Pick Lists can be defined using exclusion or inclusion criteria.
+          </li>
+          <li>
+            A developer&#39;s Value Set and Pick List user interface is available.
+          </li>
+          <li>
+            Refine Pick Lists by constraints such as the human language or the context of the concept.
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Loaders - LexEVS includes the loaders listed in this document.
+      </td>
+      <td>
+        <ul>
+          <li>
+            NCI MetaThesaurus Loader
+          </li>
+          <li>
+            OBO loader
+          </li>
+          <li>
+            OWL loader
+          </li>
+          <li>
+            OWL2 Loader
+          </li>
+          <li>
+            Text loader
+          </li>
+          <li>
+            UMLS loader
+          </li>
+          <li>
+            HL7 MIF loader
+          </li>
+          <li>
+            MedDRA loader
+          </li>
+          <li>
+            MetaData loader
+          </li>
+          <li>
+            NCI history loader
+          </li>
+          <li>
+            OBO history loader
+          </li>
+          <li>
+            ICD9 loader
+          </li>
+          <li>
+            ICD10 loader
+          </li>
+          <li>
+            ICD general equivalence mapping loader
+          </li>
+        </ul>
+      </td>
+      <td>
+        <ul>
+          <li>
+            Create custom loaders using the Loader Framework extension.
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Exporters - LexEVS includes predefined exporters.
+      </td>
+      <td>
+        <ul>
+          <li>
+            LexGrid XML exporter with filter functionality
+          </li>
+          <li>
+            OBO exporter
+          </li>
+          <li>
+            OWL/RDF exporter
+          </li>
+        </ul>
+      </td>
+      <td>
+        <ul>
+          <li>
+            Supports the versioning of concepts, value sets, and terminologies.
+          </li>
+          <li>
+            Create custom exporters using the Exporter Framework extension.
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Query - LexEVS provides a set of query services and APIs
+      </td>
+      <td>
+        <ul>
+          <li>
+            By Entity - Code Node Set.
+          </li>
+          <li>
+            By association - Code Node Graph.
+          </li>
+          <li>
+            Concept Domain Query API - provides capability to query Concept Domain available in the LexEVS system and also to query the binding between Value Set and Concept Domain.
+          </li>
+          <li>
+            Usage Context Query API - provides capability to query Usage Context available in the LexEVS system and also to query the binding between Value Set and Concept Domain in conjunction with Usage Context.
+          </li>
+          <li>
+            Value Set Query API - provides capability to query Value Sets available in the LexEVS system and also to query the binding between Value Set and concept domain.
+          </li>
+        </ul>
+      </td>
+      <td>
+        <ul>
+          <li>
+            Provides answers to queries concerning the LexEVS system capabilities, terminologies supported, relationship types, search algorithms, and versions.
+          </li>
+          <li>
+            Provides answers to queries concerning terminology properties.
+          </li>
+          <li>
+            Supports search based on all concept properties and relationships.
+          </li>
+          <li>
+            Supports a variety of robust and varied methods for querying the LexEVS system.
+          </li>
+          <li>
+            Presents more than one concept at time for comparison purposes.
+          </li>
+          <li>
+            Supports search based on any of a concept&#39;s properties or relationships.
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Web services
+      </td>
+      <td>
+        LexEVS CTS2
+        <ul>
+          <li>
+            REST
+          </li>
+        </ul>
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        Extensibility - LexEVS provides extendability through a pluggable framework for use locally or as contributions to the community via open source.
+      </td>
+      <td>
+        <ul>
+          <li>
+            The LexEVS APIs, the core APIs, fall into three primary categories:
+            <ul>
+              <li>
+                Core services - Includes the LexBIGService, LexBIGServiceManager, CodedNodeSet and CodedNodeGraph classes, which provide the initial entry points for programmatic access to all LexEVS system features and data.
+              </li>
+              <li>
+                Service extensions - The extension mechanism provides for pluggable features. Current extension points allow for the introduction of custom load and indexing mechanisms; unique query, sort, and filter mechanisms; and generic functional extensions which can be advertised for availability to client programs.
+              </li>
+              <li>
+                Utilities - Utility classes, such as those implementing iterator support, are provided by the LexEVS system to provide convenience and optimize the handling of resources accessed through the LexEVS runtime.
+              </li>
+            </ul>
+          </li>
+          <li>
+            caCORE Data Services API: it is a public domain, open source wrapper that provides full access to the LexEVS Terminology Server. LexEVS hosts the NCI Thesaurus, the NCI Metathesaurus, and several other vocabularies.
+          </li>
+          <li>
+            Analytical Grid Service API: uses a version of the LexGRID/LexBIG model, extended to support ISO 21090 Datatypes, and fits for Grid Client Applications.
+          </li>
+          <li>
+            Data Grid Services API: is a standard caGrid Data service. See caGrid Data Service Documentation and caGrid Data Service API Documentation for more information.
+          </li>
+          <li>
+            CTS2 API:  provides REST based services for QUERY and READ services.
+          </li>
+        </ul>
+      </td>
+      <td>
+        <ul>
+          <li>
+            LexEVS uses an open architecture supporting extensions created by external organizations.
+          </li>
+          <li>
+            The LexEVS code base and documentation of algorithms (including description logic) is open source to support maintenance and extensibility.
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Semantic Web - LexEVS supports the semantic web.
+      </td>
+      <td>
+        <ul>
+          <li>
+            OWL/RDF loader and API.
+          </li>
+          <li>
+            OWL/RDF exporter and API.
+          </li>
+          <li>
+            OWL/RDF exporter can export an ontology to a triple store, based on Jena 2.6.3.
+          </li>
+        </ul>
+      </td>
+      <td>
+        <ul>
+          <li>
+            Import and export functions can be executed via APIs, command line, or GUI.
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Performance Upgrades
+      </td>
+      <td colspan="1">
+        <ul>
+          <li>
+            Large Hierarchy resolutions for large groups of once removed neighbors.
+          </li>
+          <li>
+            Global search over all terminologies implemented.
+          </li>
+          <li>
+            Resolution of Value Sets through local persistence option.
+          </li>
+        </ul>
+      </td>
+      <td colspan="1"></td>
+    </tr>
+    <tr>
+      <td>
+        Other - Relevant non-functional attributes are typically covered by the underlying architecture.
+      </td>
+      <td>
+        <ul>
+          <li>
+            Security
+          </li>
+          <li>
+            Availability
+          </li>
+          <li>
+            Backup and Recovery
+          </li>
+          <li>
+            Scalability and performance
+          </li>
+          <li>
+            License
+          </li>
+        </ul>
+      </td>
+      <td>
+        <ul>
+          <li>
+            Custom security implementation configurable per Coding System in a distributed environment.
+          </li>
+          <li>
+            Install instructions contain recommended approaches for certain database management systems.
+          </li>
+          <li>
+            Conforms to licensing needs.
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>

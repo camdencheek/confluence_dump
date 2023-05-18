@@ -1,0 +1,76 @@
+Using this optional method of installing a LexEVS Local Runtime you can avoid going through the GUI install steps.  This is particularly useful if you have multiple servers upon which you would like to install a LexEVS Local Runtime with very similar components.  This install mechanism does not replace the need to
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427488" rel="nofollow">
+  configure
+</a>
+and
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427488" rel="nofollow">
+  test
+</a>
+a LexEVS Local Runtime just as you would if installed using the GUI installer.
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Step
+      </th>
+      <th>
+        Action
+      </th>
+    </tr>
+    <tr>
+      <td>
+        1. Download the latest version of the Local Runtime GUI install package (you may already have this from previous installs) and the latest command line install configuration XML file from the right.  The location you have chosen to save this on your computer will be referred to as the SAVE_DIRECTORY.
+        NoteAccess to the downloads does not require an account.  If you are having trouble downloading files then you may need to disable pop-up blockers or check any firewall settings at your site.
+      </td>
+      <td>
+        Unable to render {include} The included page could not be found.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        2. Edit the following file to configure the components to be installed:
+
+
+        LexEVS-install-config-{version}.xml
+
+
+        &lt;installpath&gt; can be modified to any location of your choice. The components &#34;Product Information&#34; and &#34;Runtime and Administration Toolkit&#34; are required. Remove lines in the configuration file for those components that you do not want to be installed. By default, the file is configured to install all packages.
+        NoteThis image shows the file being edited to only include the required components for a minimum install.  All license and preface comments have been removed.
+      </td>
+      <td>
+        <img alt="Configuration file shown in an editor." src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/6%20-%20Installing%20LexEVS%205.x%20and%20Higher%20Local%20Runtime%20(Optional%20Command%20Line%20Method)/Install-Config_XML_File.jpg?api=v2">
+      </td>
+    </tr>
+    <tr>
+      <td>
+        3. At a command prompt change to the SAVE_DIRECTORY:
+
+
+        cd {SAVE_DIRECTORY}
+
+
+        Then enter the command:
+
+        java -jar LexEVS-install-{version}.jar LexEVS-install-config-{version}.xml
+
+        ...where version is the version you downloaded
+        For example:
+
+
+        java -jar LexEVS-install-5.1.jar LexEVS-install-config-5.1.xml
+      </td>
+      <td>
+        <img alt="Command prompt showing complete installation without a GUI." src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/6%20-%20Installing%20LexEVS%205.x%20and%20Higher%20Local%20Runtime%20(Optional%20Command%20Line%20Method)/Command_Prompt.jpg?api=v2">
+      </td>
+    </tr>
+  </tbody>
+</table>
+When these steps are complete,
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427488" rel="nofollow">
+  configure
+</a>
+and
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427488" rel="nofollow">
+  test
+</a>
+your LexEVS Local Runtime. 

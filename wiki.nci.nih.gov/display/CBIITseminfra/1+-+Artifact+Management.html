@@ -1,0 +1,269 @@
+The Semantic Infrastructure supports management, analysis, annotation, publication, query, and transformation of artifacts, including static and dynamic models.
+
+Managed artifacts include:
+<ul>
+  <li>
+    Static Models
+  </li>
+  <li>
+    Dynamic Models
+  </li>
+  <li>
+    Unstructured documents, images, and other content
+  </li>
+  <li>
+    Clinical forms
+  </li>
+  <li>
+    Service specifications
+  </li>
+  <li>
+    Metadata for all managed artifacts
+  </li>
+</ul>
+Artifact management primarily deals with managing artifact lifecycle and authoring of artifact metadata.
+
+The Semantic Infrastructure is a Service-Oriented Architecture (SOA), a system of services. Within SOA, a service description is an artifact, usually document-based, that defines or references the information needed to use, deploy, manage and otherwise control a service. This includes not only the information and behavior models associated with a service to define the service interface but also includes information needed to decide whether the service is appropriate for the current needs of the service consumer. Thus, the service description will also include information such as service reachability, service  functionality, and the policies and contracts associated with a service. In short, a service description artifact is an interlinked set of documents (that is, artifacts), which ultimately encompasses all artifacts of interest in the Semantic Infrastructure..
+
+A service description, and consequently the artifacts it includes, have a number of architecture implications for artifacts managed by the Semantic Infrastructure:
+
+Description will change over time and its contents will reflect changing needs and context. This  requires the existence of:
+<ul>
+  <li>
+    mechanisms to support the storage, referencing, and access to normative definitions of one or more versioning schemes that may be applied to identify different aggregations of descriptive information, where the different schemes may be versions of a versioning scheme itself;
+  </li>
+  <li>
+    configuration management mechanisms to capture the contents of the each aggregation and apply a unique identifier in a manner consistent with an identified versioning scheme;
+  </li>
+  <li>
+    one or more mechanisms to support the storage, referencing, and access to conversion relationships between versioning schemes, and the mechanisms to carry out such  conversions.
+  </li>
+</ul>
+Description makes use of defined semantics, where the semantics may be used for categorization or providing other property and value information for description classes. This requires the existence of:
+<ul>
+  <li>
+    semantic models that provide normative descriptions of the utilized terms, where the  models may range from a simple dictionary of terms to an ontology showing complex relationships and capable of supporting enhanced reasoning;
+  </li>
+  <li>
+    mechanisms to support the storage, referencing, and access to these semantic models;
+  </li>
+  <li>
+    configuration management mechanisms to capture the normative description of each semantic model and to apply a unique identifier in a manner consistent with an identified versioning scheme;
+  </li>
+  <li>
+    one or more mechanisms to support the storage, referencing, and access to conversion relationships between semantic models, and the mechanisms to carry out such conversions.
+  </li>
+</ul>
+Descriptions include references to metrics which describe the operational characteristics of the subjects being described. This requires the existence of:
+<ul>
+  <li>
+    the infrastructure monitoring and reporting information on SOA resources;
+  </li>
+  <li>
+    possible interfaces to access to service-specific metrics information;
+  </li>
+  <li>
+    mechanisms to catalog and enable discovery of which metrics are available for a described resources and information on how these metrics can be accessed;
+  </li>
+  <li>
+    mechanisms to catalog and enable discovery of compliance records associated with policies and contracts that are based on these metrics.
+  </li>
+</ul>
+Descriptions of the interactions are important for enabling auditability and repeatability, thereby establishing a context for results and support for understanding observed change in performance or results. This requires the existence of:
+<ul>
+  <li>
+    one or more mechanisms to capture, describe, store, discover, and retrieve interaction logs, execution contexts, and the combined interaction descriptions;
+  </li>
+  <li>
+    one or more mechanisms for attaching to any results the means to identify and retrieve the interaction description under which the results were generated.
+  </li>
+</ul>
+Descriptions may capture very focused information subsets or can be an aggregate of numerous component descriptions. Service description is an example of a likely aggregate for which manual maintenance of all aspects would not be feasible. This requires the existence of:
+<ul>
+  <li>
+    tools to facilitate identifying description elements that are to be aggregated to assemble the composite description;
+  </li>
+  <li>
+    tools to facilitate identifying the sources of information to associate with the description elements;
+  </li>
+  <li>
+    tools to collect the identified description elements and their associated sources into a standard, referenceable format that can support general access and understanding;
+  </li>
+  <li>
+    tools to automatically update the composite description as the component sources change, and to consistently apply versioning schemes to identify the new description contents and the type and significance of change that occurred.
+  </li>
+</ul>
+Descriptions provide up-to-date information on what a resource is, the conditions for interacting  with the resource, and the results of such interactions. As such, the description is the source of vital information in establishing willingness to interact with a resource, reachability to make interaction possible, and compliance with relevant conditions of use. This requires the existence  of:
+<ul>
+  <li>
+    one or more discovery mechanisms that enable searching for described resources that best meet the criteria specified by a service participant, where the discovery mechanism will have access to individual descriptions, possibly through some repository mechanism;
+  </li>
+  <li>
+    tools to appropriately track users of the descriptions and notify them when a new version of the description is available.
+  </li>
+</ul>
+Functional Profile Group
+<ul>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=32769332" rel="nofollow">
+      1.1 - Administer Artifacts
+    </a>
+    Artifact lifecycle management defines profiles to manage the lifecycle, governance, provenance, versioning, and representation of artifacts, as well as the relationships between artifacts.
+    <ul>
+      <li>
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=32769346" rel="nofollow">
+          1.1.1 - Governance
+        </a>
+        Service Oriented Architecture is an architectural paradigm for organizing and utilizing distributed capabilities that may be under the control of different ownership domains. Consequently, it is important that organizations that plan to engage in service interactions adopt governance policies and procedures sufficient to ensure that there is standardization across both internal and external organizational boundaries to promote the effective creation and use of SOA-based services.
+      </li>
+      <li>
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=32769348" rel="nofollow">
+          1.1.2 - Load
+        </a>
+        Load any new artifact, through multiple interfaces
+      </li>
+      <li>
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=32769350" rel="nofollow">
+          1.1.3 - Manage
+        </a>
+        Determine provenance, jurisdiction, authority and intellectual property.
+      </li>
+      <li>
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=32769352" rel="nofollow">
+          1.1.4 - Register
+        </a>
+        Mediated awareness promotes loose coupling by keeping the consumers and services from explicitly  referring to each other and the descriptions. Mediation lets interaction vary independently. Rather than all  potential service consumers being informed on a continual basis about all services, there is a known or  agreed upon facility or location that houses the service description.  A common mechanism for mediated awareness is a registry-repository.
+      </li>
+      <li>
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=32769354" rel="nofollow">
+          1.1.5 - Version
+        </a>
+        The Semantic Infrastructure keeps track of each version, any relevant provenance information (e.g., who made the change), and supports the concept of being able to revert to any prior state. This version control would include the authoring of any new metadata (making contexts more explicit) and the assertions of model alignments.
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=32769334" rel="nofollow">
+      1.2 - Analyze Artifacts
+    </a>
+    Analyze Artifacts defines  profiles supporting the analysis of artifacts utilizing semantic queries, reasoning,  rules, and data mediation.
+    <ul>
+      <li>
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=32769356" rel="nofollow">
+          1.2.1 - Analysis
+        </a>
+        Information and behavioral models,  in conjunction with discovery mechanisms, mediation, classification, traceability from requirement to operation,  and interaction logs, enable comprehensive analysis to be performed through-out the life-cycle of artifacts , from design through run-time implementation.
+      </li>
+      <li>
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=32769358" rel="nofollow">
+          1.2.2 - Reasoning
+        </a>
+        The semantic models managed by the Semantic Infrastructure enable enhanced reasoning.
+      </li>
+      <li>
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=32769360" rel="nofollow">
+          1.2.3 - Rules
+        </a>
+        A Rule is a prescribed guide for carrying out activities and processes leading to desired results,  e.g. the operational realization of policies.  A Regulation is a mandated process or the specific details that derive from the interpretation of  Rules and lead to measureable quantities against which compliance can be measured.  Policy is made operational through the promulgating and implementing of Rules and Regulations
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=32769336" rel="nofollow">
+      1.3 - Model and Annotate
+    </a>
+    The Model and Annotate category defines profiles supporting models, and includes capabilities related to model maintenance, constraints, bindings, extensions, and semantic annotations.
+    <ul>
+      <li>
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=32769362" rel="nofollow">
+          1.3.1 - Bind Models
+        </a>
+        An artifact description associates a resource with normative definitions of value specifiers.  A value specifier includes a collection of value sets.  A value set is defined in terms of its structure and semantics.  A property-value pair construct binds an artifact description to the semantics of a value set within a given execution context.
+      </li>
+      <li>
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=32769364" rel="nofollow">
+          1.3.2 - Constrain
+        </a>
+        A policy represents some constraint or condition on the use, deployment or description of a  resource as defined by a participant or, more generally, a stakeholder.   A contract is a constraint  that has the agreement of the constrained participants.  A policy constraint is a measurable proposition that characterizes the constraint that the policy is  about.  A permission constraint governs the ability of a participant or other actor to perform an action or  enter some specified state.  An obligation constraint governs the requirement that a participant must perform some action or maintain some state.
+      </li>
+      <li>
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=32769366" rel="nofollow">
+          1.3.3 - Extend
+        </a>
+        A policy represents some constraint or condition on the use, deployment or description of a  resource as defined by a participant or, more generally, a stakeholder.    A permission constraint governs the ability of a participant or other actor to perform an action or  enter some specified state.   The ability to extend a service specification, including any associated model artifact, is subject to the permission policies embodied in the contract between the participants.
+      </li>
+      <li>
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=32769368" rel="nofollow">
+          1.3.4 - Model
+        </a>
+        Create, destroy, edit, and maintain models.
+      </li>
+      <li>
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=32769370" rel="nofollow">
+          1.3.5 - Semantic Annotation
+        </a>
+        In a diverse information environment, semantics must be used to clearly indicate the meaning of data. This requirement is expected to be addressed by the Semantic Infrastructure, although there will be a touchpoint between the caGrid 2.0 and the Semantic Infrastructure to annotate data with semantics.
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=32769338" rel="nofollow">
+      1.4 - Publish
+    </a>
+    The ability to publish and discover information models will be supported by the semantic infrastructure, and the platform will leverage these capabilities.
+    <ul>
+      <li>
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=32769373" rel="nofollow">
+          1.4.1 - Publish and Discover Information Models
+        </a>
+        The ability to publish and discover information models will be supported by the semantic infrastructure, and the platform will leverage these capabilities.
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=32769340" rel="nofollow">
+      1.5 - Search and Access
+    </a>
+    The Semantic Infrastructure enables integrated access, search, and visualization of artifacts using a variety of search criteria, model serialization formats,  and user interaction empowerment tools.
+    <ul>
+      <li>
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=32769375" rel="nofollow">
+          1.5.1 - Access
+        </a>
+        Download models/forms definitions in different formats.
+      </li>
+      <li>
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=32769377" rel="nofollow">
+          1.5.2 - Search
+        </a>
+        Search, using different criteria.
+      </li>
+      <li>
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=32769379" rel="nofollow">
+          1.5.3 - View
+        </a>
+        Information visualization.
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=32769342" rel="nofollow">
+      1.6 - Transform
+    </a>
+    Transform defines profiles for management and application of transformations to support multiple views, serialization formats,  inter-operability, semantic convergence, model migration, model merge and compare, and provisioning of target artifacts.
+    <ul>
+      <li>
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=32769381" rel="nofollow">
+          1.6.1 - Associate Transforms
+        </a>
+        Integration with the Semantic Infrastructure will enable reasoning, semantic query, data mediation (for example, ad hoc data transformation).
+      </li>
+      <li>
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=32769383" rel="nofollow">
+          1.6.2 - Transform
+        </a>
+        Create represention and views of the information, realized through the appropriate transforms.
+      </li>
+    </ul>
+  </li>
+</ul>

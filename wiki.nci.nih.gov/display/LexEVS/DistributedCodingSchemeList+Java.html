@@ -1,0 +1,38 @@
+Java Code Snippet
+import org.LexGrid.LexBIG.DataModel.Collections.CodingSchemeRenderingList;
+import org.LexGrid.LexBIG.DataModel.InterfaceElements.CodingSchemeRendering;
+import org.LexGrid.LexBIG.Exceptions.LBInvocationException;
+import org.LexGrid.LexBIG.caCore.interfaces.LexEVSApplicationService;
+import org.LexGrid.LexBIG.caCore.interfaces.LexEVSDistributed;
+import org.LexGrid.LexBIG.caCore.interfaces.LexEVSService;
+
+import gov.nih.nci.system.client.ApplicationServiceProvider;
+
+public class RemoteTestClient {
+
+private String serviceUrl = &#34;https://lexevsapi65.nci.nih.gov/lexevsapi65&#34;;
+private LexEVSService lexevsService;
+
+public static void main(String args[]) throws Exception {
+RemoteTestClient client = new RemoteTestClient();
+client.queryLexEVSDistributed();
+}
+
+public RemoteTestClient() throws Exception {
+lexevsService = (LexEVSApplicationService)ApplicationServiceProvider
+.getApplicationServiceFromUrl(serviceUrl, &#34;EvsServiceInfo&#34;);
+}
+
+public void queryLexEVSDistributed() throws LBInvocationException {
+LexEVSDistributed distributedSvc = lexevsService;
+CodingSchemeRenderingList csrl = distributedSvc.getSupportedCodingSchemes();
+CodingSchemeRendering[] csr = csrl.getCodingSchemeRendering();
+for(int i=0;i&lt;csr.length;i++){
+
+System.out.println(&#34;\t\tOutput: &#34; + &#34;Coding Scheme: &#34; + csr[i].getCodingSchemeSummary().getLocalName());
+System.out.println(&#34;\t\tOutput: &#34; + &#34;  -- Version: &#34; + csr[i].getCodingSchemeSummary().getRepresentsVersion());
+System.out.println(&#34;\t\tOutput: &#34; + &#34;  -- URI: &#34; + csr[i].getCodingSchemeSummary().getCodingSchemeURI());
+}
+}
+
+} 

@@ -1,0 +1,166 @@
+1. AIM unique identifier questions.
+
+Question by John:
+
+Does AIM not currently support uniquely tying  an annotation to a  nodule?  In the &#34;ImageAnnotation&#34; tag there is the attribute &#34;uniqueindentifier&#34; that appears to be restricted to DICOM UID format.
+
+LIDC is more nodule-centric, you could say, (and RIDER is even more so, tracking nodules over time).   How do we use &#34;ImageAnnotation&#34; to track a unique nodule over time?
+Answer by Channin, David (NMH)
+
+Consider a nodule N1 found in patient P1 at time T1 by reader R1. N1P1T1R1; that gets AIM Image Annotation UID: 123
+Then N1P1T1R gets AIM Image Annotation UID: 345
+The adjudicator comes along and says AnnotationOfAnnoation UID: 567 references UID:123 and UID: 345, are the same object, average of two readers = &#34;xyz&#34;, etc.
+
+Notes from telconv 2/17/09:
+
+Each annotation gets a unique ID
+Second annotation gets its own unique id.
+
+Difference between LIDC and AIM:
+
+LIDC assigns a physical ID to each nodule.  AIM relies on AnnotationofAnnotation for nodule tracking.
+
+Mike McNitt G says he worked through it with Bob Schwanke at the last face to face...
+
+What is the attribute in which you store that nodule mapping information:
+
+Next action - discuss Bob Schwanke and Pat Mongolowat on the phone at the same time.
+
+
+
+2. The new annotation type definition we would like to add to AIM model.
+
+Question by Qinyan:
+
+Here is the new annotation type definition we would like to add to AIM model.  The new type is marked red:
+
+
+
+&lt;xs:simpleType name=&#34;ImageAnnotationIdentifier&#34;&gt;
+
+&lt;xs:restriction base=&#34;xs:string&#34;&gt;
+
+&lt;xs:enumeration value=&#34;RECIST_Baseline_Target_Lesion&#34;/&gt;
+
+&lt;xs:enumeration value=&#34;RECIST_Baseline_Non-target_Lesion&#34;/&gt;
+
+&lt;xs:enumeration value=&#34;RECIST_Fellow-up_Target_Lesion&#34;/&gt;
+
+&lt;xs:enumeration value=&#34;RECIST_Fellow-up_Non-target_Lesion&#34;/&gt;
+
+&lt;xs:enumeration value=&#34;LIDC_Chest_CT_Nodule&#34;/&gt;
+
+                                       &lt;xs:enumeration value=&#34;LIDC_Chest_CT_NonNodule&#34;/&gt;
+
+&lt;xs:enumeration value=&#34;Teaching&#34;/&gt;
+
+&lt;xs:enumeration value=&#34;Quality_Control&#34;/&gt;
+
+&lt;xs:enumeration value=&#34;Clinical_Finding&#34;/&gt;
+
+&lt;xs:enumeration value=&#34;Other&#34;/&gt;
+
+&lt;xs:enumeration value=&#34;Brain_Tumor_Baseline_Target_Lesion&#34;/&gt;
+
+&lt;xs:enumeration value=&#34;Brain_Tumor_Baseline_Non-Target_Lesion&#34;/&gt;
+
+&lt;/xs:restriction&gt;
+
+&lt;/xs:simpleType&gt;
+
+
+Answer by Pat:
+
+For nodule case: you can use New_Lesion or Target_Lesion
+
+For nonNodule case: you can use Non_Target_lesion.
+
+The new values domain for ImageAnnotation and AnnotationOfAnnotaiton
+are as follows.
+
+ImageAnnotation
+
+Clinical_Finding
+New_Lesion
+Non_Target_Lesion
+Non_Lesion_at_Baseline
+LIDC_Chest_CT_Nodule
+Quality_Control
+Target_Lesion
+Teaching
+AnnotationOfAnnotation
+
+Interval_Change
+Summary_statistic
+Sum_of_Longest_Diameter
+
+
+Notes from telconv 02/17/09:
+
+Mike McNitt:  Target_Lesion and Non_Target_Lesion have specific RECIST Meanings.   Non-Nodule in LIDC means &#34;we&#39;ve seen this, it&#39;s not a nodule, don&#39;t worry about it&#34;.
+
+Q:  Can AIM allow you to re-purpose, or clarify your application-specific definitions?
+
+Q:  Is there a dictionary for the meaning of Non_Target_Lesion?  Are the meanings defined - linking in CDE browser with LIDC -  Stuart Turner?  this is not in Radlex.
+
+
+3. imageZ position vs SOPInstanceUID
+
+Question by Justin:
+
+Quick questions in the LIDC annotation you list both an Image Z position and the SopInstanceUID.  Here is an example of information on a particular nodule:
+
+&lt;roi&gt;
+&lt;imageZposition&gt;-147.979996&lt;/imageZposition&gt;
+&lt;imageSOP_UID&gt;1.2.826.0.1.3680043.2.656.2.1.1.242.53&lt;/imageSOP_UID&gt;
+&lt;inclusion&gt;TRUE&lt;/inclusion&gt;
+&lt;edgeMap&gt;
+&lt;xCoord&gt;130&lt;/xCoord&gt;
+&lt;yCoord&gt;179&lt;/yCoord&gt;
+&lt;/edgeMap&gt;
+&lt;/roi&gt;
+
+If a reader only had the SOPInstance UID and the X/Y coordinates would they be able to find the nodule without the Z position?  We&#39;re considering using this format to convey the location information in AIM:
+
+&lt;SpatialCoordinate
+CoordinateIndex=&#34;0&#34;
+Id=&#34;0&#34;
+imageReferenceUID=&#34;1.2.826.0.1.3680043.2.656.2.1.1.242.53&#34;
+xsi:type&#34;TwoDimensionalSpatialCoordinate&#34;
+x=&#34;130&#34;
+y=&#34;179&#34; /&gt;
+
+Do you think this would work?  Or is the Z position required to make sense of the nodule location?
+
+Answer by Mike:
+
+If I remember this correctly (and there is significant probability that I don&#39;t), Peyton Bland of Michigan (cc&#39;ed on this email to correct me) had some experience that there was some issue with the image Z position in the DICOM header and that the image SOP_UID was a much more reliable value for finding the right slice.
+
+That said, I think we included the z position just in case as it is much more intuitive value and we had the SOP UID as backup in case these were confusing/missing/uninformative for some reason (you can just never tell with DICOM).
+
+Anyone remember something similar to that ? (Peyton? Richie? David? Sam?).
+
+Answer by  Peyton:
+
+Based on the fact that you mentioned the word &#34;reliable&#34; in reference to finding z position, I think it goes like this: Based on an experience we had in the past, the DICOM tag &#34;Slice Location&#34; (0020 1041) is not reliable: We saw some cases where the sign seemed to be wrong.  Plus, it is a Type 2 tag (I think) which means that it might not have a value.  But no problem... &#34;Image Position Patient&#34; (0020 0032) is the tag to use: It is a Type 1 tag (required to have a value), and in our experience, has the &#34;correct&#34; z value.  So presumably this DICOM tag is used for the value of *our* &lt;imageZposition&gt; XML tag.
+
+So more directly to Justin&#39;s question...  Can &#34;SOP Instance UID&#34; (0008 0018) be used?  I guess so.  It just means that the image having the indicated &#34;SOP Instance UID&#34; would have to be parsed for the value of the &#34;Image Position Patient&#34; tag.  This tag has a value like &#34;-143.600006-122.000000-260.434998&#34;; we grab the 3rd element, &#34;-260.434998&#34; since CTs are axials.  (And be careful with those &#34;\&#34;s when parsing!)  Presumably this value is used by the drawing tools to populate the &lt;imageZposition&gt; XML tag.
+
+So if I can read a little between the lines of Justin&#39;s question, I think he&#39;s saying that having both &lt;imageSOP_UID&gt; and &lt;imageZposition&gt; is redundant since the latter can be derived from the former.  I know we had discussions about this type of redundancy in the LIDC Implementation group (but can&#39;t remember specifics).  I will say, however, that *not* having a separate &lt;imageZposition&gt; tag would have made some things *much* harder to do in the course of doing QA/QC, writing MAX, etc., but maybe that&#39;s just me (although your 2nd parag, Mike, supports my bias toward including the z value).
+
+Notes from telconv 02/17/09:
+
+
+Comments:
+
+&#34;If you just give me Z position - some people use slice number, some people use SOPInstanceUID, some people use Z position - shall we keep some redunancy?&#34;
+
+How Z position works:
+
+They put the patient in a position, make an arbitrary reference point.
+
+&#34;Anatomic Landmark&#34;
+
+when sam sends out his QA -
+
+Q - how is z position re-created on a scan (how is the Anatomic Landmark referenced?) 

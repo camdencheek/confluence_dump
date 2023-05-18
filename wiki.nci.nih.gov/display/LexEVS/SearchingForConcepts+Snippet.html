@@ -1,0 +1,48 @@
+Java Code Snippet
+
+//Create a Connection to the Grid Service
+LexBIGServiceGrid lbs = new LexBIGServiceGridAdapter(gridServiceURL);
+
+//Set up the CodingSchemeIdentification object to define the Coding Scheme&lt;/font&gt;
+CodingSchemeIdentification csid = new CodingSchemeIdentification();
+csid.setName(&#34;NCI Thesaurus&#34;);
+
+//Get the CodedNodeSet for that CodingScheme (This returns a CodedNodeSet Service Context)
+CodedNodeSetGrid cnsg = lbs.getCodingSchemeConcepts(csid, null);
+//getCodingSchemeConcepts is a Grid Service Call
+
+//Set the text to match
+MatchCriteria matchText = new MatchCriteria();
+matchText.setText(&#34;Gene&#34;);
+//Define a SearchDesignationOption, if any
+SearchDesignationOption searchOption = new SearchDesignationOption();
+
+//Choose an algorithm to do the matching
+ExtensionIdentification matchAlgorithm = new ExtensionIdentification();
+matchAlgorithm.setLexBIGExtensionName(&#34;contains&#34;);
+
+//Chose a language
+LanguageIdentification language = new LanguageIdentification();
+language.setIdentifier(&#34;en&#34;);
+
+//Restrict the CodedNodeSet
+cnsg.restrictToMatchingDesignations(matchText, searchOption, matchAlgorithm, language);
+//restrictToMatchingDesignations is a Grid Service Call
+
+//Create a SetResolutionPolicy to handle the details of Resolving the CodedNodeSet
+//Here, we will set the Maximum number of Concepts returned to 10.
+SetResolutionPolicy resolvePolicy = new SetResolutionPolicy();
+resolvePolicy.setMaximumToReturn(10);
+
+//Do the resolve
+ResolvedConceptReferenceList rcrlist = cnsg.resolveToList(resolvePolicy);
+//resolveToList is a Grid Service Call
+
+//Use the returned ResolvedConceptReferenceList to print some details about the concepts found
+ResolvedConceptReference[] rcref = rcrlist.getResolvedConceptReference();
+for (int i = 0; i &lt; rcref.length; i++) {
+	System.out.println(rcref[i].getConceptCode());
+	System.out.println(rcref[i].getReferencedEntry().
+		getPresentation()[0].getText().getContent());
+
+} 

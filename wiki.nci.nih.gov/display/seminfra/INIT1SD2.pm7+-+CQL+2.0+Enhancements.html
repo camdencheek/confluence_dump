@@ -1,0 +1,747 @@
+Contents of this Page
+<ul>
+  <li>
+    <a href="#INIT1SD2.pm7CQL2.0Enhancements-Getstatusofqueryprocess" rel="nofollow">
+      Get status of query process
+    </a>
+  </li>
+  <li>
+    <a href="#INIT1SD2.pm7CQL2.0Enhancements-Getintermediatequeryresults" rel="nofollow">
+      Get intermediate query results
+    </a>
+  </li>
+  <li>
+    <a href="#INIT1SD2.pm7CQL2.0Enhancements-Cancelportionsofaquery" rel="nofollow">
+      Cancel portions of a query
+    </a>
+  </li>
+  <li>
+    <a href="#INIT1SD2.pm7CQL2.0Enhancements-Interrogateaserviceforadditionaldatainformation" rel="nofollow">
+      Interrogate a service for additional data information
+    </a>
+  </li>
+  <li>
+    <a href="#INIT1SD2.pm7CQL2.0Enhancements-Specifycomplexityoffederatedjoins" rel="nofollow">
+      Specify complexity of federated joins
+    </a>
+  </li>
+  <li>
+    <a href="#INIT1SD2.pm7CQL2.0Enhancements-Customizecomplexityofsupportedqueries" rel="nofollow">
+      Customize complexity of supported queries
+    </a>
+  </li>
+</ul>
+<h2 id="INIT1SD2.pm7CQL2.0Enhancements-Getstatusofqueryprocess">
+  Get status of query process
+</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Use Case Number
+      </th>
+      <td>
+        INIT1SD2.pm7.1
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Brief Description
+      </th>
+      <td>
+        When a long-running query is submitted to a number of different federated services, it is desirable to be able to provide users with a status update on the progress of the query, including which services have completed, how much data has been returned, and (if possible) how much work is left.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Actor(s) for this particular use case
+      </th>
+      <td>
+        Cancer Researcher
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Pre-condition
+        The state of the system before the user interacts with it
+      </th>
+      <td>
+        A number of services are available upon which a federated query can be performed.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Post condition
+        The state of the system after the user interacts with it
+      </th>
+      <td>
+        The user is updated with the status of the query.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Steps to take
+        The step-by-step description of how users will interact with the system to achieve a specific business goal or function
+      </th>
+      <td>
+        <ol>
+          <li>
+            The user constructs a federated query and submits it to multiple services
+          </li>
+          <li>
+            The user periodically requests status updates on the progress of the query from the federated query processor
+          </li>
+          <li>
+            The user receives information on which services have completed processing the query, how much data has been processed, and/or how much work/time is required to complete the query
+          </li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Alternate Flow
+        Things which would prevent the normal flow of the use case
+      </th>
+      <td>
+        None.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Priority
+        The priority of implementing the use case: High, Medium or Low
+      </th>
+      <td>
+        Medium.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Associated Links
+        The brief user stories, each describing the user interacts with the system for the one function only of the use case. There would potentially be a number of user stories that make up the use case.
+      </th>
+      <td>
+        <ul>
+          <li>
+            <a href="https://wiki.nci.nih.gov/display/VCDE/INIT1SD2-CQL+2.0+Enhancements" rel="nofollow">
+              INIT1SD2-CQL 2.0 Enhancements
+            </a>
+          </li>
+          <li>
+            <a href="https://cabig-kc.nci.nih.gov/Vocab/forums/viewtopic.php?f=36&amp;t=132" rel="nofollow">
+              CQL 2.0 Enhancements
+            </a>
+          </li>
+          <li>
+            <a href="https://cagrid.org/display/dataservices/CQL+2+Use+Cases" rel="nofollow">
+              CQL 2 Use Cases
+            </a>
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Fit criterion/Acceptance Criterion
+        How would actor describe the acceptable usage scenarios for the software or service that meets the actor&#39;s requirement?
+      </th>
+      <td>
+        Minimally, the user should be informed on which services have completed execution of the query, which are still working on the query, and how much time has passed for each service.
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="INIT1SD2.pm7CQL2.0Enhancements-Getintermediatequeryresults">
+  Get intermediate query results
+</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Use Case Number
+      </th>
+      <td>
+        INIT1SD2.pm7.2
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Brief Description
+      </th>
+      <td>
+        After receiving a status update that a federated query has completed on some services, the user may want to fetch and view the results from the completed sub-queries.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Actor(s) for this particular use case
+      </th>
+      <td>
+        Cancer Researcher
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Pre-condition
+        The state of the system before the user interacts with it
+      </th>
+      <td>
+        A federated query has been submitted to multiple services and a subset of them have completed.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Post condition
+        The state of the system after the user interacts with it
+      </th>
+      <td>
+        The user receives intermediate data from the completed sub-queries.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Steps to take
+        The step-by-step description of how users will interact with the system to achieve a specific business goal or function
+      </th>
+      <td>
+        <ol>
+          <li>
+            The Cancer Researcher finds from a status update that a subset of queries have completed from his federated query
+          </li>
+          <li>
+            The Cancer Researcher selects the services that he&#39;d like to fetch the intermediate results from
+          </li>
+          <li>
+            The Cancer Researcher fetches those results and views them while the other sub-queries are being completed by the other systems
+          </li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Alternate Flow
+        Things which would prevent the normal flow of the use case
+      </th>
+      <td>
+        None.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Priority
+        The priority of implementing the use case: High, Medium or Low
+      </th>
+      <td>
+        Medium.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Associated Links
+        The brief user stories, each describing the user interacts with the system for the one function only of the use case. There would potentially be a number of user stories that make up the use case.
+      </th>
+      <td>
+        <ul>
+          <li>
+            <a href="https://wiki.nci.nih.gov/display/VCDE/INIT1SD2-CQL+2.0+Enhancements" rel="nofollow">
+              INIT1SD2-CQL 2.0 Enhancements
+            </a>
+          </li>
+          <li>
+            <a href="https://cabig-kc.nci.nih.gov/Vocab/forums/viewtopic.php?f=36&amp;t=132" rel="nofollow">
+              CQL 2.0 Enhancements
+            </a>
+          </li>
+          <li>
+            <a href="https://cagrid.org/display/dataservices/CQL+2+Use+Cases" rel="nofollow">
+              CQL 2 Use Cases
+            </a>
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Fit criterion/Acceptance Criterion
+        How would actor describe the acceptable usage scenarios for the software or service that meets the actor&#39;s requirement?
+      </th>
+      <td>
+        The Cancer Researcher can view intermediate results in order to determine whether to continue the processing of the federated query.
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="INIT1SD2.pm7CQL2.0Enhancements-Cancelportionsofaquery">
+  Cancel portions of a query
+</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Use Case Number
+      </th>
+      <td>
+        INIT1SD2.pm7.3
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Brief Description
+      </th>
+      <td>
+        After reviewing intermediate results or after a federated query takes too long to complete at some number of services, the Cancer Researcher may choose to cancel the processing of the query at any number of the services.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Actor(s) for this particular use case
+      </th>
+      <td>
+        Cancer Researcher
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Pre-condition
+        The state of the system before the user interacts with it
+      </th>
+      <td>
+        A federated query is running at a number of services.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Post condition
+        The state of the system after the user interacts with it
+      </th>
+      <td>
+        The selected services have canceled processing of the federated query, and data is available at all services that have completed
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Steps to take
+        The step-by-step description of how users will interact with the system to achieve a specific business goal or function
+      </th>
+      <td>
+        <ol>
+          <li>
+            The Cancer Researcher views the list of services that have completed and are processing the federated query, as well as the time spent processing the query.
+          </li>
+          <li>
+            The Cancer Researcher selects those services for which he wants to cancel the query
+          </li>
+          <li>
+            The services cease to process the query
+          </li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Alternate Flow
+        Things which would prevent the normal flow of the use case
+      </th>
+      <td>
+        The Cancer Researcher sets a time limit to set on the query, and the status update returns whether the time limit has been met and the query has been canceled (see use case below).
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Priority
+        The priority of implementing the use case: High, Medium or Low
+      </th>
+      <td>
+        Medium.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Associated Links
+        The brief user stories, each describing the user interacts with the system for the one function only of the use case. There would potentially be a number of user stories that make up the use case.
+      </th>
+      <td>
+        <ul>
+          <li>
+            <a href="https://wiki.nci.nih.gov/display/VCDE/INIT1SD2-CQL+2.0+Enhancements" rel="nofollow">
+              INIT1SD2-CQL 2.0 Enhancements
+            </a>
+          </li>
+          <li>
+            <a href="https://cabig-kc.nci.nih.gov/Vocab/forums/viewtopic.php?f=36&amp;t=132" rel="nofollow">
+              CQL 2.0 Enhancements
+            </a>
+          </li>
+          <li>
+            <a href="https://cagrid.org/display/dataservices/CQL+2+Use+Cases" rel="nofollow">
+              CQL 2 Use Cases
+            </a>
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Fit criterion/Acceptance Criterion
+        How would actor describe the acceptable usage scenarios for the software or service that meets the actor&#39;s requirement?
+      </th>
+      <td>
+        Query processing is completed totally, but the status of canceled remains for some period of time (as determined by the service or the query itself).
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="INIT1SD2.pm7CQL2.0Enhancements-Interrogateaserviceforadditionaldatainformation">
+  Interrogate a service for additional data information
+</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Use Case Number
+      </th>
+      <td>
+        INIT1SD2.pm7.4
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Brief Description
+      </th>
+      <td>
+        Before issuing a federated query, the user may want to determine which services to query based upon criteria such as how many data objects are stored within the service, etc.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Actor(s) for this particular use case
+      </th>
+      <td>
+        Cancer Researcher
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Pre-condition
+        The state of the system before the user interacts with it
+      </th>
+      <td>
+        A number of services are available upon which a federated query can be performed.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Post condition
+        The state of the system after the user interacts with it
+      </th>
+      <td>
+        The user has extra information on the data stored by each service referenced by the federated query.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Steps to take
+        The step-by-step description of how users will interact with the system to achieve a specific business goal or function
+      </th>
+      <td>
+        <ol>
+          <li>
+            The Cancer Researcher constructs a federated query
+          </li>
+          <li>
+            The Cancer Researcher views a list of the services available to issue the query upon
+          </li>
+          <li>
+            The Cancer Research interrogates each service to determine whether to include it, gathering information about the number of data items, available data, etc.
+          </li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Alternate Flow
+        Things which would prevent the normal flow of the use case
+      </th>
+      <td>
+        None.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Priority
+        The priority of implementing the use case: High, Medium or Low
+      </th>
+      <td>
+        Low.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Associated Links
+        The brief user stories, each describing the user interacts with the system for the one function only of the use case. There would potentially be a number of user stories that make up the use case.
+      </th>
+      <td>
+        <ul>
+          <li>
+            <a href="https://wiki.nci.nih.gov/display/VCDE/INIT1SD2-CQL+2.0+Enhancements" rel="nofollow">
+              INIT1SD2-CQL 2.0 Enhancements
+            </a>
+          </li>
+          <li>
+            <a href="https://cabig-kc.nci.nih.gov/Vocab/forums/viewtopic.php?f=36&amp;t=132" rel="nofollow">
+              CQL 2.0 Enhancements
+            </a>
+          </li>
+          <li>
+            <a href="https://cagrid.org/display/dataservices/CQL+2+Use+Cases" rel="nofollow">
+              CQL 2 Use Cases
+            </a>
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Fit criterion/Acceptance Criterion
+        How would actor describe the acceptable usage scenarios for the software or service that meets the actor&#39;s requirement?
+      </th>
+      <td>
+        It is necessary that at least the number of data objects is returned, but it would also be desirable to know which data elements from the information model have associated data.
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="INIT1SD2.pm7CQL2.0Enhancements-Specifycomplexityoffederatedjoins">
+  Specify complexity of federated joins
+</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Use Case Number
+      </th>
+      <td>
+        INIT1SD2.pm7.4
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Brief Description
+      </th>
+      <td>
+        Before issuing a query, a user may want to specify constraints on it that limits its complexity in order to make sure that it completes in satisfactory time.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Actor(s) for this particular use case
+      </th>
+      <td>
+        Cancer Researcher
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Pre-condition
+        The state of the system before the user interacts with it
+      </th>
+      <td>
+        A number of services are available upon which a federated query can be performed.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Post condition
+        The state of the system after the user interacts with it
+      </th>
+      <td>
+        The federated query is augmented with complexity limits
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Steps to take
+        The step-by-step description of how users will interact with the system to achieve a specific business goal or function
+      </th>
+      <td>
+        <ol>
+          <li>
+            The Cancer Researcher constructs a federated query and selects the services to run it against
+          </li>
+          <li>
+            The Cancer Researcher determines the factors that should be limited when running the query, such as time limit, a limit to the number of data items returned, and whether cross-organization joins should be performed (e.g. to limit the joins between services within an organization rather than across organizations)
+          </li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Alternate Flow
+        Things which would prevent the normal flow of the use case
+      </th>
+      <td>
+        The Cancer Researcher views the default complexity limit factors (from the query tool and from the services themselves) and modifies them if desired.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Priority
+        The priority of implementing the use case: High, Medium or Low
+      </th>
+      <td>
+        Medium
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Associated Links
+        The brief user stories, each describing the user interacts with the system for the one function only of the use case. There would potentially be a number of user stories that make up the use case.
+      </th>
+      <td>
+        <ul>
+          <li>
+            <a href="https://wiki.nci.nih.gov/display/VCDE/INIT1SD2-CQL+2.0+Enhancements" rel="nofollow">
+              INIT1SD2-CQL 2.0 Enhancements
+            </a>
+          </li>
+          <li>
+            <a href="https://cabig-kc.nci.nih.gov/Vocab/forums/viewtopic.php?f=36&amp;t=132" rel="nofollow">
+              CQL 2.0 Enhancements
+            </a>
+          </li>
+          <li>
+            <a href="https://cagrid.org/display/dataservices/CQL+2+Use+Cases" rel="nofollow">
+              CQL 2 Use Cases
+            </a>
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Fit criterion/Acceptance Criterion
+        How would actor describe the acceptable usage scenarios for the software or service that meets the actor&#39;s requirement?
+      </th>
+      <td>
+        Minimally, a user must be able to determine that joins across different services remain within an organization rather than go across organizations (because there would not be common identifiers).
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="INIT1SD2.pm7CQL2.0Enhancements-Customizecomplexityofsupportedqueries">
+  Customize complexity of supported queries
+</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Use Case Number
+      </th>
+      <td>
+        INIT1SD2.pm7.5
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Brief Description
+      </th>
+      <td>
+        Some queries can be intractable or impractical to complete.  When the level of complexity of these types of queries is well understood, it is important that the Software Engineer is able to configure the query processor to handle them appropriately.  This includes the amount of data that can be returned, the length of time that can be spent processing a query, and the number of joins that are allowed.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Actor(s) for this particular use case
+      </th>
+      <td>
+        Software Engineer
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Pre-condition
+        The state of the system before the user interacts with it
+      </th>
+      <td>
+        A service has been developed that supports queries.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Post condition
+        The state of the system after the user interacts with it
+      </th>
+      <td>
+        The service is configured to handle complex queries appropriately.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Steps to take
+        The step-by-step description of how users will interact with the system to achieve a specific business goal or function
+      </th>
+      <td>
+        <ol>
+          <li>
+            The Software Engineer configures the handling of different aspects of query complexity, including the amount of data that can be returned, the length of time that can be spent processing a query, and the number of joins that are allowed
+          </li>
+          <li>
+            The Software Engineer deploys the service
+          </li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Alternate Flow
+        Things which would prevent the normal flow of the use case
+      </th>
+      <td>
+        The Software Engineer changes the configuration of a deployed service.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Priority
+        The priority of implementing the use case: High, Medium or Low
+      </th>
+      <td>
+        Low
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Associated Links
+        The brief user stories, each describing the user interacts with the system for the one function only of the use case. There would potentially be a number of user stories that make up the use case.
+      </th>
+      <td>
+        <ul>
+          <li>
+            <a href="https://wiki.nci.nih.gov/display/VCDE/INIT1SD2-CQL+2.0+Enhancements" rel="nofollow">
+              INIT1SD2-CQL 2.0 Enhancements
+            </a>
+          </li>
+          <li>
+            <a href="https://cabig-kc.nci.nih.gov/Vocab/forums/viewtopic.php?f=36&amp;t=132" rel="nofollow">
+              CQL 2.0 Enhancements
+            </a>
+          </li>
+          <li>
+            <a href="https://cagrid.org/display/dataservices/CQL+2+Use+Cases" rel="nofollow">
+              CQL 2 Use Cases
+            </a>
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Fit criterion/Acceptance Criterion
+        How would actor describe the acceptable usage scenarios for the software or service that meets the actor&#39;s requirement?
+      </th>
+      <td>
+        Minimally, the number of joins and amount of data returned should be supported.
+      </td>
+    </tr>
+  </tbody>
+</table>

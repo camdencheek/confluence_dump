@@ -1,0 +1,337 @@
+Contents of this Page
+<ul>
+  <li>
+    <a href="#LexEVS5.xMigrationGuide-DocumentSections" rel="nofollow">
+      Document Sections
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS5.xMigrationGuide-LexEVSReleaseHighlights" rel="nofollow">
+      LexEVS Release Highlights
+    </a>
+    <ul>
+      <li>
+        <a href="#LexEVS5.xMigrationGuide-LexEVSv5.0Highlights" rel="nofollow">
+          LexEVS v5.0 Highlights
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS5.xMigrationGuide-LexEVSv5.1Highlights" rel="nofollow">
+          LexEVS v5.1 Highlights
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#LexEVS5.xMigrationGuide-UnifiedDesign" rel="nofollow">
+      Unified Design
+    </a>
+    <ul>
+      <li>
+        <a href="#LexEVS5.xMigrationGuide-NewNamingofComponents" rel="nofollow">
+          New Naming of Components
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS5.xMigrationGuide-SupportedProgrammingInterfaces" rel="nofollow">
+          Supported Programming Interfaces
+        </a>
+      </li>
+    </ul>
+  </li>
+</ul>
+You can migrate directly from LexEVS 4.x to any 5.x version. This guide will be updated as needed for each release, and release-specific information will be noted.
+<h2 id="LexEVS5.xMigrationGuide-DocumentSections">
+  Document Sections
+</h2>
+<ul>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427518" rel="nofollow">
+      LexEVS model
+    </a>
+  </li>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427517" rel="nofollow">
+      LexEVS database
+    </a>
+  </li>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427519" rel="nofollow">
+      EVS API to LexEVS API migration
+    </a>
+  </li>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427516" rel="nofollow">
+      OWL loader
+    </a>
+  </li>
+</ul>
+<h2 id="LexEVS5.xMigrationGuide-LexEVSReleaseHighlights">
+  LexEVS Release Highlights
+</h2>
+LexEVS 5.x represents the next generation of NCI Enterprise Vocabulary Services. In the 5.x releases, the LexBIG Java API and LexGrid model serve as the strategic EVS interfaces, replacing the legacy EVS API and the EVS 3.2 model.
+
+This section provides a cumulative list of release highlights beginning with LexEVS v5.0.
+<h3 id="LexEVS5.xMigrationGuide-LexEVSv5.0Highlights">
+  LexEVS v5.0 Highlights
+</h3>
+<ul>
+  <li>
+    Release date May 2009
+  </li>
+  <li>
+    First release to completely shift from the EVS Model and EVS API to LexBIG API (LexEVS)
+  </li>
+  <li>
+    Consistent naming and release numbers for API and services
+  </li>
+  <li>
+    Introduction of LexGrid-based QBE services
+  </li>
+  <li>
+    Unified OWL loader
+  </li>
+  <li>
+    The 2008/01 model is updated to the 2009/01 LexGrid Model
+  </li>
+</ul>
+<h3 id="LexEVS5.xMigrationGuide-LexEVSv5.1Highlights">
+  LexEVS v5.1 Highlights
+</h3>
+<ul>
+  <li>
+    Release date December 2009
+  </li>
+  <li>
+    Custom data support - ability to load custom data; provide custom loading feasibility/recommendation report
+  </li>
+  <li>
+    Enhanced query performance and behavior
+    <ul>
+      <li>
+        Lucene 2.4 fast search engine with lazy document loading
+      </li>
+      <li>
+        Plug-in search framework that allows a text query string input and generates a Lucene query output; introducing the org.LexGrid.LexBIG.Extensions.Query.Search interface
+      </li>
+      <li>
+        Plug-in sort framework that allows rapid creation of new sort algorithms and techniques
+      </li>
+      <li>
+        SQL query optimizations that increase database performance
+      </li>
+    </ul>
+  </li>
+  <li>
+    Value domain and pick list services added - this addresses an important part of the semantic infrastructure that is needed in caBIG
+  </li>
+  <li>
+    Loader framework enhancements - improved loading capability; allows loaders to be modular
+  </li>
+  <li>
+    RRF loader enhancements - ability to fully load RRF data; support the NCI Metathesaurus Browser
+  </li>
+  <li>
+    API enhancements - efficiently support expanded search options and large concept relationships sets
+  </li>
+  <li>
+    BDA (Build and Deployment Automation) support - deployment of LexEVS project artifacts to remote servers
+  </li>
+</ul>
+<h2 id="LexEVS5.xMigrationGuide-UnifiedDesign">
+  Unified Design
+</h2>
+The unified design of LexEVS 5.x no longer supports the EVS Model and EVS API. Both have been completely replaced with these LexEVS components: LexEVS caCORE SDK, LexEVS caGRID, LexEVS Distributed Java, LexGrid Model/Database as represented in the following diagram.
+<img alt="diagram of the Release 5.x LexEVS Components as listed in the preceding sentence" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%205.x%20Migration%20Guide/LexEVS_50_Unified_Diagram_v1.1.jpg?api=v2">
+<h3 id="LexEVS5.xMigrationGuide-NewNamingofComponents">
+  New Naming of Components
+</h3>
+The convergence of LexEVS 5.x components has introduced new naming of components:
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Design Components
+      </th>
+      <th>
+        Release 4.2
+      </th>
+      <th>
+        Release 5.x
+      </th>
+    </tr>
+    <tr>
+      <td>
+        EVS Model Version
+      </td>
+      <td>
+        3.2
+      </td>
+      <td>
+        No Longer Available
+      </td>
+    </tr>
+    <tr>
+      <td>
+        EVS API Version
+      </td>
+      <td>
+        3.2
+      </td>
+      <td>
+        No Longer Available
+      </td>
+    </tr>
+    <tr>
+      <td>
+        LexGrid Model Version
+      </td>
+      <td>
+        2008/01
+      </td>
+      <td>
+        2009/01
+      </td>
+    </tr>
+    <tr>
+      <td>
+        LexBIG API Version
+      </td>
+      <td>
+        2.3.0
+      </td>
+      <td>
+        LexEVS 5.x
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h3 id="LexEVS5.xMigrationGuide-SupportedProgrammingInterfaces">
+  Supported Programming Interfaces
+</h3>
+The supported programming interfaces are now all provided by LexEVS:
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Supported Programming Interfaces
+      </th>
+      <th>
+        Release 4.2
+      </th>
+      <th>
+        Release 5.x
+      </th>
+    </tr>
+    <tr>
+      <td>
+        Direct Java
+      </td>
+      <td>
+        LexBIG
+      </td>
+      <td>
+        LexEVS
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Distributed Java (RMI)
+      </td>
+      <td>
+        LexBIG
+      </td>
+      <td>
+        LexEVS
+      </td>
+    </tr>
+    <tr>
+      <td>
+        caCORE SDK Services
+      </td>
+      <td>
+        EVS
+      </td>
+      <td>
+        LexEVS
+      </td>
+    </tr>
+    <tr>
+      <td>
+        caGRID Service
+      </td>
+      <td>
+        EVS, LexEVS
+      </td>
+      <td>
+        LexEVS
+      </td>
+    </tr>
+  </tbody>
+</table>
+As a result, definitions have been unified to represent LexEVS.  The following definitions are provided for reference.
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Term
+      </th>
+      <th>
+        Definition
+      </th>
+    </tr>
+    <tr>
+      <td>
+        LexGrid
+      </td>
+      <td>
+        <ul>
+          <li>
+            LexGridVocabulary model underlying the LexBIG API.
+          </li>
+          <li>
+            Sometimes used as a generic reference to work based off this model.
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        LexBIG
+      </td>
+      <td>
+        <ul>
+          <li>
+            A new API with rich functionality developed for NCI caBIG to access LexGrid-based vocabularies.
+          </li>
+          <li>
+            Serves as the internal &#39;engine&#39; for traditional EVS APIs.
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        EVS
+      </td>
+      <td>
+        <ul>
+          <li>
+            NCI Enterprise Vocabulary Services model, API, and content.
+          </li>
+          <li>
+            For model and API, references legacy components being replaced by LexGrid (model) and LexBIG (API).
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        LexEVS
+      </td>
+      <td>
+        Adopted as project name to describe merging of LexGrid model and LexBIG API as the mainstream EVS interfaces.
+      </td>
+    </tr>
+  </tbody>
+</table>

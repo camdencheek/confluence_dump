@@ -1,0 +1,317 @@
+<h1 id="ProtegeSoftwareUpdatesandConfiguringNewDatabaseProject-ProtégéSoftwareUpdatesandConfiguringNewDatabaseProject">
+  Protégé Software Updates and Configuring New Database Project
+</h1>
+A new project file will need to be created using the raw OWL file located in /app/protégé/data/Protégé_x.x/&lt;PROTÉGÉ INSTANCE&gt;. Usually newer, more fresher data is available by the editors after performing a PROMPT of production data. Each baseline file that is created after each session can be used as test data. If however, for some reason, an OWL file must be created manually, instructions are available on how to
+<a href="https://wiki.nci.nih.gov/display/EVS/Exporting+Data+from+Production+DB+Into+OWL+File+Format" rel="nofollow">
+  export data from the production database
+</a>
+.
+<ul>
+  <li>
+    As long as no changes have been made to the behavior of the startup scripts, the following files and scripts should be copied over from the old Protégé.Server version to the new folder:
+    run_rmiregistry.sh
+    run_protege\_ server_nci.sh
+    shutdown_protege_server.sh
+    codegen.properties
+    codegen.dat
+  </li>
+</ul>
+<ul>
+  <li>
+    If you do need to use new scripts, make sure to adjust the memory upwards from the default in the run_protege_server_nci.sh script. The following
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=16744723" rel="nofollow">
+      table
+    </a>
+    displays how much memory to allocate for each script, per tier. You will also need to adjust the rmi.registry and rmi.server ports, the hostname and the metaproject location in this same file. Please view Appendix A for port information for each tier.
+  </li>
+</ul>
+<ul>
+  <li>
+    As long as no changes have been made to the behavior of the startup scripts, navigate to the Protégé.Client folder and transfer the following script:
+    run_protege_BGT.sh (BiomedGT) or run_protege_NCIT.sh (NCIThesaurus)
+  </li>
+  <li>
+    If you do need to use a new script, make sure the -Xmx memory is adjusted upwards from the default from the
+    <a href="https://wiki.nci.nih.gov/display/EVS/StartUp+Script+Memory+Allocation+per+Tier" rel="nofollow">
+      table
+    </a>
+    .
+  </li>
+</ul>
+<ul>
+  <li>
+    As long as no changes have been made to the behavior of the startup scripts, navigate to the Explanation.Server directory and transfer the following files:
+    restart_explanation_server.sh
+    stop_explanation_server.sh
+    start_explanation_server.sh
+  </li>
+</ul>
+The &#39;protege_install&#39; path will need to modified in order to specify the correct Protégé server version.
+<ul>
+  <li>
+    To edit, type &#39;vi _start_explanation_server.sh&#39; to view the script from the vi editor. Type &#39;shift + I&#39; and edit the server number to the correct version number. Press &#39;esc&#39;, then &#39;:wq&#39; to save changes and exit the editor.
+  </li>
+</ul>
+<ul>
+  <li>
+    If you do need to use a new script, utilize the
+    <a href="https://wiki.nci.nih.gov/display/EVS/StartUp+Script+Memory+Allocation+per+Tier" rel="nofollow">
+      table
+    </a>
+    for the explanation server startup script. There should be no other edits that need to be made.
+  </li>
+</ul>
+<ul>
+  <li>
+    Navigate to the Protégé server, and open the &#39;codegen.properties&#39; file using a vi editor. To do this, type &#39;vi codegen.properties&#39;. Once the file is viewable from vi, type &#34;i&#34; to edit. The code.prefix value can be adjusted, depending on which Protégé Instance is being used. BiomedGT used a prefix of &#39;B&#39;, while NCI Thesaurus uses &#39;C&#39;. Keep the seed number at 100000. Save and exit the file by typing &#39;esc&#39;, then &#39;:wq&#39;.
+  </li>
+</ul>
+<ul>
+  <li>
+    Open the &#39;codegen.dat&#39; file in the vi editor. You will notice a number which represents a code that will be assigned to the concept code created in the database project. Set this number to 102000. Save and exit the file.
+  </li>
+</ul>
+<ul>
+  <li>
+    Open the Protégé client folder, and click on &#39;run_protege&lt;PROTEGE-INSTANCE&gt;_&#39; to open the client. Once it is open, click on &#34;Create New Project&#34;. Select OWL/RDF File, and check &#34;Create from existing source&#34;. Click Next.
+  </li>
+</ul>
+<ul>
+  <li>
+    A window will open requesting the address of the source of the OWL file. Navigate to /app/protege/data/Protege_x.x/&lt;PROTEGE-INSTANCE&gt;/ and select the OWL file, and click next. Leave the next two windows to their default values, then click Finish. Loading the file to the client will take approximately 5-10 minutes.
+  </li>
+  <li>
+    The following few steps reference the deprecated BiomedGT project and may be ignored.
+  </li>
+</ul>
+<ul>
+  <li>
+    Once the file is loaded, the ontology repository settings will need to be changed if configuring a BiomedGT project. From the menu bar, click &#39;OWL&#39;, and &#39;Ontology Repositories&#39;. The Repository Manager window is now displayed with a list of default project repository locations underneath the &#39;Project repository&#39; tab. Remove the following URL repositories:
+    http://ncicb.nih.gov/xml/owl/EVS/BGTCommonWords.owl
+    http://ncicb.nih.gov/xml/owl/EVS/BGTThesaurusNodes.owl
+    http://ncicb.nih.gov/xml/owl/EVS/External.owl
+  </li>
+</ul>
+<ul>
+  <li>
+    There should be two URLs remaining, one referencing BFO, and another referencing protege-dc. Those will remain as is.
+  </li>
+</ul>
+<ul>
+  <li>
+    The removed repositories will then be re-added to the list, but referenced locally. Accessing local copies of an external ontology increases performance as well as dependability of the ontology (the ontology URL might be down). To read locally, click on the white plus button located at the top right of the window.
+  </li>
+</ul>
+<ul>
+  <li>
+    Follow the wizard by specifying the location of your local folder. Ensure that the &#39;Force Read-Only&#39; box is unchecked.
+  </li>
+</ul>
+<ul>
+  <li>
+    Once the window is closed, a pop-up window is displayed prompting you to save the settings and to reload the data into the client. Select the &#39;Reload&#39; button, and the client should save the settings and reload the client. This step should anywhere from 10-20 minutes, depending on your machine&#39;s resources.
+  </li>
+  <li>
+    End of steps pertaining to BiomedGT
+  </li>
+</ul>
+<ul>
+  <li>
+    Once loaded (the GUI should be visible with the OWL file displayed), the project file can now be converted to a Clark &amp; Parsia OWL/RDF database. Click File, Convert Project to Format, Clark &amp; Parsia OWL / RDF database.
+  </li>
+</ul>
+<ul>
+  <li>
+    In the database info window, enter all requested database info and click finish. Give the Project name the following naming convention: &lt;PROTEGE INSTANCE&gt;-YYMMDD-DB.pprj. Note that the JDBC URL must be in the following format: jdbc:mysql://&lt;databasehostname&gt;:&lt;port&gt;/&lt;database name&gt; (Please look at the
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=15796898" rel="nofollow">
+      database info
+    </a>
+    for each instance and tier). Give the table name the following naming convention: &lt;PROTEGE-INSTANCE&gt;_&lt;YYMMDD&gt;_&lt;tier&gt;_&lt;release number&gt;. Conversion can take anywhere up to 2.5 hours.
+  </li>
+</ul>
+<ul>
+  <li>
+    After conversion of the project file, you can verify that the database has been created by utilizing a DBMS (such as DB Visualizer) to view if the table has been created. Once verified, the project is now ready to be configured from the client.
+  </li>
+</ul>
+<ul>
+  <li>
+    Set transitivity by clicking the properties tag, and perform a search for the &#39;Anatomic_Structure_Has_Location&#39; property. Select, and check the box marked transitive. Repeat the same step for the &#39;Anatomic_Structure_Is_Physical_Part_Of&#39; property.
+  </li>
+</ul>
+<ul>
+  <li>
+    Set the display slots by clicking the NCIEdit tab, and clicking the &#34;F&#34; tab on the very far top right section of the page. You will now be within the Form Editor section. Set the &#39;Display Slot&#39; drop down to &#39;rdfs:label&#39;.
+  </li>
+</ul>
+<ul>
+  <li>
+    Next, click the Properties tab, and click the &#34;F&#34; tab on the very right. Click &#39;OK&#39; for the forms dialogue box. On the left hand menu, click on &#39;owl:DatatypeProperty, and set its display slot drop down to &#39;rdfs:label&#39;. Next, click on the owl:ObjectProperty on the left hand menu, and set its display slot drop down field to &#39;rdfs:label&#39; as well.
+  </li>
+</ul>
+<ul>
+  <li>
+    Click &#39;OWL&#39; on the menu tab, and select &#39;preferences&#39;. On the General tab, Disable the drag and drop feature, and set the explanation server URL to &#39;http://&lt;Protege Server Address&gt;:&lt;port&gt;/explain. The correct port per tier can be determined from the
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=15796898" rel="nofollow">
+      tier-specific info page
+    </a>
+    .
+  </li>
+</ul>
+<ul>
+  <li>
+    In the Tests tab, disable test of deprecated classes/properties. This should be the fifth entry down.
+  </li>
+</ul>
+<ul>
+  <li>
+    Click on the visibility tab from the window, and disable all the boxes in the MetaClasses section. Close the window.
+  </li>
+</ul>
+<ul>
+  <li>
+    Click &#39;EditTab&#39; on the menu bar, and select &#39;preferences&#39;. Click on the &#39;panels&#39; tab, and ensure that all four checkboxes are checked (Retire, Split, Merge, and Copy). Click the close button.
+  </li>
+</ul>
+<ul>
+  <li>
+    Click &#39;Project&#39; on the menu bar, and select &#39;configure&#39;. On the Tab Widgets tab, enable only the following boxes from the Widgets tab and put in the following order:
+    NCIEditTab
+    LuceneQueryPlugin
+    OWLPropertiesTab
+    OWLMetadataTag
+    ChangesTab
+    ExplanationTab
+  </li>
+</ul>
+<ul>
+  <li>
+    Click on the &#39;options&#39; tab and enable journaling and disable redo/undo.
+  </li>
+</ul>
+<ul>
+  <li>
+    After closing the configurations window, a changes ontology window will appear prompting you to select how to configure the annotations project. Currently, all annotations and changes are being stored into a database table. Select the radio option to create a changes ontology to a database table (Should be the 2nd button).
+  </li>
+</ul>
+<ul>
+  <li>
+    A window will appear requesting all database information, Keep all fields to their default values, except the table name. Another name will need to be assigned to distinguish the annotations table.  It is good practice to prefix the name of this table &#34;annotation_[tablename]&#34;. Once the table is renamed, click &#39;OK&#39;. This process should take a few seconds.
+  </li>
+</ul>
+<ul>
+  <li>
+    From the menu bar, select &#39;Lucene&#34; and select &#39;Index Ontologies. A window will pop up. Accept all slots. Check both the &#39;Phonetic Indexer&#39; and the &#39;Standard Indexer&#39;, and and select &#39;OK&#39;. After indexing has completed (this should take less than 20 minutes on a Production quality machine), a new Lucene folder will be stored in the same directory as your database project file.
+  </li>
+</ul>
+<ul>
+  <li>
+    At this point, if a previous version of the Protege and Explanation servers are running, they will need to be shutdown. For best practices, the RMI registry will need to be shutdown as well. Advertise via email that the tier&#39;s current Protege instance will be brought down. To shutdown, open another SSH connection to the same server. Type &#39;ps -ef | grep server&#39; to see view the current protege processes running. If both explanation and Protege servers are running, shutdown the explanation server first.
+  </li>
+</ul>
+<ul>
+  <li>
+    Type &#39;cd /usr/local/protege/Protege_x.x/&lt;PROTEGE INSTANCE&gt;Explanation.Server-x.x.x. Type _&#39;./stop_explanation_server.sh http:localhost:&lt;port&gt;/explain/&#39;. After the executing, the following message should be displayed in the console: &#39;_Request sent to server.&#39; This message indicates that the explanation server has successfully communicated with the Protege server that it will be shutting down. Next, do a &#39;ps -ef | grep server&#39; to see if the explanation server was killed.
+  </li>
+</ul>
+<ul>
+  <li>
+    Navigate to the previous version Protege server folder by typing &#39;cd ../Protege.Server-x.x.x&#39;. Once in the directory, type &#39;./shutdown_protege_server.sh localhost:&lt;server port&gt;. A message will appear on the console that the server has been shut down. The RMI registry is also shutdown from this directory. Unfortunately, there is no script to shutdown the RMI registry, however, can be killed manually. To determine which port you want to kill, refer to the
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=15796898" rel="nofollow">
+      tier-specific info page
+    </a>
+    . Once the correct port has been determined, type &#39;ps -ef | grep rmi&#39; to figure out which process ID is running the port that needs to be killed. To kill the process, type &#39;kill -9 &lt;RMI Process ID&gt;&#39;.  Once executed, type ps -ef | grep rmi again to see if the process has been terminated.
+  </li>
+</ul>
+<ul>
+  <li>
+    Now that the all servers from the previous version have been shutdown, the explanation servers for the latest version must now be restarted. Navigate to the latest version&#39;s explanation server folder by typing &#39;cd /usr/local/protege.Protege_x.x/&lt;PROTEGE INSTANCE&gt;/Explanation.Server-x.x.x.
+  </li>
+</ul>
+<ul>
+  <li>
+    Once in the directory, type &#39;./start_explanation_server.sh --protege-standalone --port &lt;port number&gt; /app/protege/data/Protege_x.x/&lt;PROTEGE INSTANCE&gt;/&lt;DB PROEJCT NAME&gt;.pprj. _ After the server has initiated start up, type &#39;tail -f nohup.out&#39; to view start up status. Within the nohup.out file, the explanation server has started when you see &#34;Jena, Classification, and Extracting&#39; processes all complete, and a &#34;Server started, listening on port xxxx&#34; message.
+  </li>
+</ul>
+<ul>
+  <li>
+    Once the server is up and running, go back to the client GUI, click on the &#39;Reasoning&#39; menu, and ensure that &#34;Clark&amp;Parsia Custom Protege 3.x Reasoner&#34; is selected on the menu list. Click on the &#39;Reasoning menu again, and scroll down to &#34;Clark&amp;Parsia Custom Protege 3.x Reasoner Details&#34; and ensure that the &#39;Synchronize on query&#39; box is checked. Click &#39;OK&#39;.
+  </li>
+</ul>
+<ul>
+  <li>
+    The Changes tab will now be disabled from the GUI, since all changes will be recorded to the database. To disable, click on &#39;Projects&#39;, &#39;Configure&#39; and uncheck the &#39;ChangesTab&#39; box. Click &#39;OK&#39;, and the changes tab should now be gone from the GUI.
+  </li>
+</ul>
+<ul>
+  <li>
+    Click File, Save Project.
+  </li>
+</ul>
+<ul>
+  <li>
+    Select File, Convert Project to Format. A window will appear prompting to select a conversion file type. Select &#39;OWL/RDF&#39;, and store in app/protégé/data/Protégé_x.x/&lt;PROTÉGÉ INSTANCE&gt;. Label the file with the current date and &#34;file&#34;. Example: BiomedGT-yymmdd-file.pprj. Set the Language drop-down field to &#39;XML/RDF ABREV&#39;. You will notice a small dialogue box displaying the conversion progress. This step may take approximately 30 minutes depending on the size of the database project. Once completed, the dialogue box should disappear, and the client should display the new file project.
+  </li>
+</ul>
+<ul>
+  <li>
+    Close the project WITHOUT saving the file project (the file project automatically gets saved), however, leave the Protégé client open.
+  </li>
+</ul>
+<ul>
+  <li>
+    Open the nci_metaproject.pprj located at /app/protégé/data/&lt;PROTÉGÉ INSTACE&gt;/meta/. Click on the project tab underneath the SYSTEM-CLASS tab on the left-hand side menu. Select the &#39;Instances&#39; tab at the top of the page. You will notice an &#39;Instance Browser&#39; section, and an &#39;Instance Editor&#39; section. The instance browser specifies the display name of your project, and the Instance Editor specifies the path of your database project. Click on the display project name and set the correct path to your project files.  There should be a project instance for both the main ontology and annotation ontology.
+  </li>
+  <li>
+    Within the nci_metaproject, the changes ontology projects (annotation files) should also not be made visible to users when trying to access a project on the server. If this has not already been configured, please view the
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=15796889" rel="nofollow">
+      DisplayInList setup instructions
+    </a>
+    .
+  </li>
+  <li>
+    To add users, select the &#39;User&#39; class and within the Instance Browser, clone an existing user and modify the username and password.
+  </li>
+  <li>
+    Save the metaproject and exit the client.
+  </li>
+</ul>
+<ul>
+  <li>
+    Verify that the port numbers in the run_protege_server_nci.sh script correspond to the port numbers in run_rmiregistry.sh. Please refer to Appendix A for tier specific port numbers.
+  </li>
+</ul>
+<ul>
+  <li>
+    Restart the RMI registry by running run_rmiregistry.sh. Type &#39;ps -ef | grep rmi&#39; to see if the rmi process has started.
+  </li>
+</ul>
+<ul>
+  <li>
+    Restart the Protégé Server, using the run_protege_server_nci.sh script. The console will indicate that the server has started and is ready to accept connections.
+  </li>
+</ul>
+<ul>
+  <li>
+    Connect to the server via Protégé client to confirm that the project is viewable from the GUIrun_protege_&lt;PROTÉGÉ INSTANCE&gt;.sh. Enter proper login information.
+  </li>
+</ul>
+<ul>
+  <li>
+    Select the desired project from the project display window.
+  </li>
+</ul>
+<ul>
+  <li>
+    The client should now display the database project file, accessed via the Protege server.
+  </li>
+</ul>
+<ul>
+  <li>
+    Once tested, the client can now be
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=15796893" rel="nofollow">
+      posted up on the GForge website
+    </a>
+    posted to the sFTP to be downloaded by users.
+  </li>
+</ul>

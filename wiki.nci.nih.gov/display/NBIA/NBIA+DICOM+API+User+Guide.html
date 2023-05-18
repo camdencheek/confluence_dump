@@ -1,0 +1,29 @@
+NBIA includes an initial iteration of a DICOM API. You can use a DICOM client such as K-PACS to access the API. Only public collections are available via the API. The API includes two methods, C-FIND and C-GET, with the following restrictions:
+<ul>
+  <li>
+    C-FIND
+    <ul>
+      <li>
+        Returns data at the study level
+      </li>
+      <li>
+        Can search on PatientName, PatientID, StudyInstanceUID, and StudyDescription
+      </li>
+      <li>
+        Requires the entering of some level of search criteria
+      </li>
+    </ul>
+  </li>
+  <li>
+    C-MOVE
+    <ul>
+      <li>
+        Retrieves images found from C-FIND based on StudyInstanceUID and SeriesInstanceUID
+      </li>
+      <li>
+        Assumes receiving SCP port of 104 the default DICOM port
+      </li>
+    </ul>
+  </li>
+</ul>
+The AE Title for a server running NBIA is always NBIA.

@@ -1,0 +1,181 @@
+You can print and export wiki pagesUnable to render {include} The included page could not be found.Contents of this Page
+<ul>
+  <li>
+    <a href="#AIMTemplateService2.0InstallationGuide-IntroductiontotheAIMTemplateService" rel="nofollow">
+      Introduction to the AIM Template Service
+    </a>
+  </li>
+  <li>
+    <a href="#AIMTemplateService2.0InstallationGuide-InstallingtheAIMTemplateService" rel="nofollow">
+      Installing the AIM Template Service
+    </a>
+  </li>
+</ul>
+<h2 id="AIMTemplateService2.0InstallationGuide-IntroductiontotheAIMTemplateService">
+  Introduction to the AIM Template Service
+</h2>
+The AIM Template Service (ATS) is a web service application that makes it possible for you to upload (publish) and download AIM templates created using a caBIG® Annotation and Image Markup (AIM) tool such as
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=75006387" rel="nofollow">
+  AIM Template Builder
+</a>
+. You can import AIM template files to AIM Template Builder and modify them there. You can then use AIM Template Builder to export the template(s) to an AIM template file. If you want to share that file, you can upload it to ATS.AIM templates contain a set of well-defined questions and answer choices to facilitate collecting information for a particular purpose, such as The Cancer Genome Atlas Glioblastoma (TCGA GBM) study. AIM templates ensure that users can annotate medical images using a controlled vocabulary and standard template. This results in simple and constrained annotations that are reproducible and consistent.A valid AIM template is validated by AIM schemas (version 1, revision 18/19/23).Refer to the
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=81789563" rel="nofollow">
+  AIM Template Service documentation
+</a>
+for more information about ATS features.
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=100663585" rel="nofollow">
+  Return to top of page
+</a>
+<h2 id="AIMTemplateService2.0InstallationGuide-InstallingtheAIMTemplateService">
+  Installing the AIM Template Service
+</h2>
+<ol>
+  <li>
+    Download the Berkley DB XML version suitable for your platform from
+    <a href="http://www.oracle.com/technetwork/database/berkeleydb/downloads/index.html" rel="nofollow">
+      http://www.oracle.com/technetwork/database/berkeleydb/downloads/index.html
+    </a>
+    <img height="387" width="618" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/AIM/AIM%20Template%20Service%202.0%20Installation%20Guide/OracleBerkeleyDB.png?api=v2">
+    The version used for this installation guide is Berkley DB XML 2.5.16.
+  </li>
+  <li>
+    Install the software.
+    <ol>
+      <li>
+        Select the Java integration option. On Unix, you may need to run this command from the installation folder: sh buildall.sh --enable-java.
+      </li>
+      <li>
+        On Windows, modify the PATH environment variable to include the DB XML executables. The database executables must be included in the PATH for the software to work properly.
+      </li>
+      <li>
+        Optionally, download a pre-built Windows x64 version of Berkley DB XML from the ATS download location. Follow the instructions that are included with the downloaded file to configure your Windows 64-bit environment.
+      </li>
+    </ol>
+  </li>
+  <li>
+    Install Java 6 JDK with the latest updates from:
+    <a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html" rel="nofollow">
+      http://www.oracle.com/technetwork/java/javase/downloads/index.html
+    </a>
+  </li>
+  <li>
+    Download the ATS software package, ATS-1.1.rar, and store it in a folder.
+  </li>
+  <li>
+    Uncompress the ATS package, ATS-1.1.rar. The archive file contains the folder ATS-1.1 that includes AIM Template Service executables.
+    <ol>
+      <li>
+        Windows – click the compressed file to open; drag its content out to a folder, e.g. C:\ATS-1.1
+      </li>
+      <li>
+        Unix – unrar ATS-1.1.rar. This creates a new folder called ATS-1.1.
+      </li>
+    </ol>
+  </li>
+  <li>
+    Create the certificate.
+    <ol>
+      <li>
+        [optional] Create your certificate(s) to run ATS over HTTPS.
+      </li>
+    </ol>
+  </li>
+  <li>
+    Edit serverConfig.txt as follows.
+    <ol>
+      <li>
+        Navigate to the ATS-1.1 folder.
+      </li>
+      <li>
+        Edit serverConfig.txt as follows.
+        <ol>
+          <li>
+            port  = 4433 (AIM template service server port)
+          </li>
+          <li>
+            dbpath  = C:\ATS-1.1\xmldb (Path to a location where you want to store ATS data)
+          </li>
+          <li>
+            CaGridSecurityUrl  = (URL for STS authentication service)
+          </li>
+          <li>
+            keystorepath  = (path to the keystore) (Optional. Required if running over https)
+          </li>
+          <li>
+            keystorename  = (name of the keystore file) (Optional. Required if running over https)
+          </li>
+        </ol>
+      </li>
+    </ol>
+  </li>
+  <li>
+    Create the database as follows.
+    <ol>
+      <li>
+        Create a writable database folder, e.g. C:\ATS-1.1\xmldb – must correspond to the value of  dbpath  specified in serverConfig.txt.
+      </li>
+      <li>
+        [optional] Open the command line and open the database folder.
+      </li>
+      <li>
+        [optional] In the database folder, run dbxml. This opens the XML DB shell.
+      </li>
+      <li>
+        [optional] In the XML DB shell, run createContainer ats_prod.dbxml. This creates an empty AIM Template Service database.
+      </li>
+    </ol>
+  </li>
+  <li>
+    Run the ATS application as follows.
+    <ol>
+      <li>
+        Windows
+        <ol>
+          <li>
+            Open the Administrator command line prompt.
+          </li>
+          <li>
+            Navigate to the ATS-1.1 folder.
+          </li>
+          <li>
+            Type %JAVA_HOME%\bin\java” -Djavax.net.ssl.trustStore=certificates/stsClient.jks -Djavax.net.ssl.trustStorePassword=yearkiwi -jar AimTemplateService.jarSet the JAVA_HOME environment variable to point to your JDK location.
+          </li>
+        </ol>
+      </li>
+      <li>
+        Unix
+        <ol>
+          <li>
+            Open a terminal window.
+          </li>
+          <li>
+            Navigate to the ATS-1.1 folder.
+          </li>
+          <li>
+            Type java -Djava.library.path=/home/john /dbxml-2.5.16/install/lib/ -Djavax.net.ssl.trustStore=certificate/stsClient.jks -Djavax.net.ssl.trustStorePassword=yearkiwi -jar AimTemplateService.jarThe java.library.path value depends on where you have installed Oracle DB XML.
+          </li>
+        </ol>
+      </li>
+      <li>
+        Watch console output for errors and warnings.
+      </li>
+    </ol>
+  </li>
+  <li>
+    Validate the installation as follows.
+    <ol>
+      <li>
+        Open a web browser on another computer.
+      </li>
+      <li>
+        Navigate to http[s]://&lt;your server name&gt;:&lt;your port&gt;/
+      </li>
+      <li>
+        Log in using your caGRID login credentials or as a guest.
+      </li>
+    </ol>
+  </li>
+</ol>
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=100663585" rel="nofollow">
+  Return to top of page
+</a>

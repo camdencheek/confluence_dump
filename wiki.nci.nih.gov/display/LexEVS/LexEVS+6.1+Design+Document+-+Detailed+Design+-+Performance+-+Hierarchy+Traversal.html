@@ -1,0 +1,93 @@
+Contents of This Page
+<ul>
+  <li>
+    <a href="#LexEVS6.1DesignDocumentDetailedDesignPerformanceHierarchyTraversal-Overview" rel="nofollow">
+      Overview
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.1DesignDocumentDetailedDesignPerformanceHierarchyTraversal-DatabaseHierarchyPerformanceEvaluation" rel="nofollow">
+      Database Hierarchy Performance Evaluation
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.1DesignDocumentDetailedDesignPerformanceHierarchyTraversal-LexEVSAssociationLogicalModel" rel="nofollow">
+      LexEVS Association Logical Model
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.1DesignDocumentDetailedDesignPerformanceHierarchyTraversal-LexEVSHierarchyPerformanceArchitecture" rel="nofollow">
+      LexEVS Hierarchy Performance Architecture
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.1DesignDocumentDetailedDesignPerformanceHierarchyTraversal-CodeConsiderations" rel="nofollow">
+      Code Considerations
+    </a>
+  </li>
+</ul>
+Document Information
+Author: Bauer, Scott Email: bauer.scott@mayo.edu Team: LexEVS Contract: ST12-1106  Client: NCI CBIIT National Institutes of Heath US Department of Health and Human Services
+Revision History
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Version
+      </th>
+      <th>
+        Date
+      </th>
+      <th>
+        Description of Changes
+      </th>
+      <th>
+        Author
+      </th>
+    </tr>
+    <tr>
+      <td>
+        1.0
+      </td>
+      <td>
+        2013/03/05
+      </td>
+      <td>
+        Initial Version
+      </td>
+      <td>
+        Bauer, Scott
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="LexEVS6.1DesignDocumentDetailedDesignPerformanceHierarchyTraversal-Overview">
+  Overview
+</h2>
+LexEVS has long relied on a relational database to provide the data store for semantic assertions made about the entity level constructs in terminologies and ontologies. Recently it has become clear that graph database technology has matured enough to allow the the relationships between entities defined by these assertions to be stored in a way that better reflects the nodes and edges of these relationships. Benchmarking tests and practicality reviews have led the LexEVS team to the conclusion that a graph database back end for LexEVS associations will vastly improve traversal performance time and potentially simplify implementation of the association API.
+<h2 id="LexEVS6.1DesignDocumentDetailedDesignPerformanceHierarchyTraversal-DatabaseHierarchyPerformanceEvaluation">
+  Database Hierarchy Performance Evaluation
+</h2>
+New technologies such as the MVRB-tree algorithm implmented in the OrientDB graph database have proved far more efficient and scalable than the traditional relational data base management system.
+<img alt="Graph Traversals" width="500" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%206.1%20Design%20Document%20-%20Detailed%20Design%20-%20Performance%20-%20Hierarchy%20Traversal/GraphTraversal.png?api=v2">
+<h2 id="LexEVS6.1DesignDocumentDetailedDesignPerformanceHierarchyTraversal-LexEVSAssociationLogicalModel">
+  LexEVS Association Logical Model
+</h2>
+The LexGrid Model defines relationships in terms of a source and target node with an edge defined separately in the AssociationPredicate model element. These are the construction basics for larger coded node graphs which are currently represented in a relational schema. The performance restrictions of the relational schema have been well documented above. The source and target structure of LexGrid will be mapped to the structure of the higher performing graph database OrientDB.
+<img alt="associationinstance class diagram" width="500" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%206.1%20Design%20Document%20-%20Detailed%20Design%20-%20Performance%20-%20Hierarchy%20Traversal/associationInstance.png?api=v2">
+While the graph based database seems capable to handle the functions shown in the diagram above, some calls to LexEVS will continue to access some of the model elements that define metadata about the association.
+<img alt="association class diagram" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%206.1%20Design%20Document%20-%20Detailed%20Design%20-%20Performance%20-%20Hierarchy%20Traversal/association2.png?api=v2">
+LexGrid in the LexEVS schema (From the MySQL workbench)
+<img alt="LexGrid in the LexEVS schema (From the MySQL workbench)" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%206.1%20Design%20Document%20-%20Detailed%20Design%20-%20Performance%20-%20Hierarchy%20Traversal/Screen%20Shot%202013-03-01%20at%209.50.20%20AM.png?api=v2">
+Mapping LexGrid data model elements to OrientDB
+<img alt="Mapping LexGrid data model elements to OrientDB" width="500" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%206.1%20Design%20Document%20-%20Detailed%20Design%20-%20Performance%20-%20Hierarchy%20Traversal/OrientDBLexGridMapping.png?api=v2">
+<h2 id="LexEVS6.1DesignDocumentDetailedDesignPerformanceHierarchyTraversal-LexEVSHierarchyPerformanceArchitecture">
+  LexEVS Hierarchy Performance Architecture
+</h2>
+While the new implementation of the node graph will largely run against the OrientDB service, some portions of the legacy LexEVS API will be needed to access various metadata and property elements.
+<img alt="Portions of the legacy LexEVS API needed to access various metadata and property elements" width="500" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%206.1%20Design%20Document%20-%20Detailed%20Design%20-%20Performance%20-%20Hierarchy%20Traversal/OrientDBLexEVSIntegration.png?api=v2">
+<h2 id="LexEVS6.1DesignDocumentDetailedDesignPerformanceHierarchyTraversal-CodeConsiderations">
+  Code Considerations
+</h2>
+A CodedNodeFactory will determine whether this is an implementation that uses the graph database in conjunction with the relational database or a purely relational database. And a newly implemented DAO and OrientDBCodedNodeGraph provide the underpinnings of what will be a higher performance version of LexEVS&#39; traversal of relationship hierarchies in stored terminologies.
+<img alt="CodedNodeFactory and CodedNodeGraph" width="500" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%206.1%20Design%20Document%20-%20Detailed%20Design%20-%20Performance%20-%20Hierarchy%20Traversal/Classdesign.png?api=v2">

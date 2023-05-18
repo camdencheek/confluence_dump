@@ -1,0 +1,57 @@
+This page explains how to generate lists as follows.
+<ul>
+  <li>
+    <a href="#SelectableListsCreatedwithScaffoldingMacrosAttachments,ContentOptions,UserOptions-Listofattachments" rel="nofollow">
+      List of attachments
+    </a>
+  </li>
+  <li>
+    <a href="#SelectableListsCreatedwithScaffoldingMacrosAttachments,ContentOptions,UserOptions-Listofcontentbytypeofcontent:contentoptionsmacro" rel="nofollow">
+      List of content by type of content: content options macro
+    </a>
+  </li>
+  <li>
+    <a href="#SelectableListsCreatedwithScaffoldingMacrosAttachments,ContentOptions,UserOptions-Listofusers:useroptionsmacro" rel="nofollow">
+      List of users: user options macro
+    </a>
+  </li>
+</ul>
+<a href="https://docs.servicerocket.com/display/SCAF/user-options" rel="nofollow">
+  More information on the user options macro
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+<h2 id="SelectableListsCreatedwithScaffoldingMacrosAttachments,ContentOptions,UserOptions-Listofattachments">
+  List of attachments
+</h2>
+Refer to
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=39915226" rel="nofollow">
+  Attachments and Scaffolding Macros
+</a>
+.
+<h2 id="SelectableListsCreatedwithScaffoldingMacrosAttachments,ContentOptions,UserOptions-Listofcontentbytypeofcontent:contentoptionsmacro">
+  List of content by type of content: content options macro
+</h2>
+The content options macro generates a list of Confluence content according to content type. One or more items on the list may be selected. This may be, for example, pages or blog posts. The option that was last selected appears on the page.The general form is
+{content-options:parent=[parent page]|ancestor=[ancestor page]|spaces=[space list]|branches=[all, parents, children]}
+An example follows. The complete markup includes the text sort and date filter macros are from the Reporting Plugin, not installed on this wiki.
+{list-data:Children}
+{content-options:parent=@self}
+{text-sort:page:title|order=descending}
+{date-filter:page:modification date|minValue=-30d}
+{content-options}
+{list-data}
+The list data macro establishes a list of child pages. The content options macro establishes characteristics of the list. In the Edit Contents view, select a page to list. The example yields a blank list. Therefore the macros are not used on this page and the output is not shown.
+<h2 id="SelectableListsCreatedwithScaffoldingMacrosAttachments,ContentOptions,UserOptions-Listofusers:useroptionsmacro">
+  List of users: user options macro
+</h2>
+The general form is
+{list-data:Users}
+{user-options:group=my-group|match=all}
+{text-sort:user:full name}
+{date-filter:signup date|minValue=-1y}
+{user-options}
+{list-data}
+
+The list data macro establishes a selectable list of users who match the user options and reporting plugin filters specified, if that plugin is installed. The default user selected is the user who authored the macro. The reporting plugin is not installed on this wiki. The macros are not used on this page and the output is not shown.

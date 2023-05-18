@@ -1,0 +1,697 @@
+Document Information
+Author: Craig Stancl, Scott Bauer, Cory Endle Email: Stancl.craig@mayo.edu, bauer.scott@mayo.edu, endle.cory@mayo.edu Team: LexEVS Contract: S13-500 MOD4 Client: NCI CBIIT National Institutes of Heath US Department of Health and Human Services
+Contents of this Page
+<ul>
+  <li>
+    <a href="#LexEVS6.4SoftwareDesignDocument-DesignScopeandRequirements" rel="nofollow">
+      Design Scope and Requirements
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.4SoftwareDesignDocument-DetailedDesign" rel="nofollow">
+      Detailed Design
+    </a>
+    <ul>
+      <li>
+        <a href="#LexEVS6.4SoftwareDesignDocument-CodeDecoupling" rel="nofollow">
+          Code Decoupling
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.4SoftwareDesignDocument-Multi-IndexSearches" rel="nofollow">
+          Multi-Index Searches
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.4SoftwareDesignDocument-ChangingtheRelationalRepresentationinLucene" rel="nofollow">
+          Changing the Relational Representation in Lucene
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.4SoftwareDesignDocument-Per-segmentSearch" rel="nofollow">
+          Per-segment Search
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.4SoftwareDesignDocument-HitCollectortoCollectorUpdates" rel="nofollow">
+          Hit Collector to Collector Updates
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.4SoftwareDesignDocument-AnalyzerUpdates" rel="nofollow">
+          Analyzer Updates
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.4SoftwareDesignDocument-IndexCodeRefactor:RemovingtheIndexerProject" rel="nofollow">
+          Index Code Refactor: Removing the Indexer Project
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.4SoftwareDesignDocument-AuditofTextMatchingUseCases" rel="nofollow">
+          Audit of Text Matching Use Cases
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.4SoftwareDesignDocument-ConsiderationofBuildImpacts" rel="nofollow">
+          Consideration of Build Impacts
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.4SoftwareDesignDocument-IndexCompatibilitywithPreviousIndexVersions" rel="nofollow">
+          Index Compatibility with Previous Index Versions
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.4SoftwareDesignDocument-PaginationinLucene" rel="nofollow">
+          Pagination in Lucene
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#LexEVS6.4SoftwareDesignDocument-ImpactstoExistingUsers/Applications" rel="nofollow">
+      Impacts to Existing Users / Applications
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.4SoftwareDesignDocument-DecisionPoints-ApprovalNeeded" rel="nofollow">
+      Decision Points - Approval Needed
+    </a>
+    <ul>
+      <li>
+        <a href="#LexEVS6.4SoftwareDesignDocument-PaginationinLucene-DEFERRED" rel="nofollow">
+          Pagination in Lucene - DEFERRED
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.4SoftwareDesignDocument-ReductionofTextMatchingAlgorithms" rel="nofollow">
+          Reduction of Text Matching Algorithms
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.4SoftwareDesignDocument-LuceneCodeDecoupling-DEFERRED" rel="nofollow">
+          Lucene Code Decoupling - DEFERRED
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#LexEVS6.4SoftwareDesignDocument-RelevantJIRAItems" rel="nofollow">
+      Relevant JIRA Items
+    </a>
+    <ul>
+      <li>
+        <a href="#LexEVS6.4SoftwareDesignDocument-DetailedDesign-ProvidethearchitectureanddesignforthenewLucenefeature." rel="nofollow">
+          Detailed Design - Provide the architecture and design for the new Lucene feature.
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.4SoftwareDesignDocument-NCITrackerkey,summary,type,created,updated,due,assignee,reporter,priority,status,resolution7954a81f-12da-3366-a0ef-97c806660e7cLEXEVS-724" rel="nofollow">
+          LEXEVS-724 - Getting issue details... STATUS
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.4SoftwareDesignDocument-ThefollowingJIRAitemsareallpartofLEXEVS-724." rel="nofollow">
+          The following JIRA items are all part of LEXEVS-724.
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.4SoftwareDesignDocument-NCITrackerkey,summary,type,created,updated,due,assignee,reporter,priority,status,resolution7954a81f-12da-3366-a0ef-97c806660e7cLEXEVS-813" rel="nofollow">
+          LEXEVS-813 - Getting issue details... STATUS
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.4SoftwareDesignDocument-NCITrackerkey,summary,type,created,updated,due,assignee,reporter,priority,status,resolution7954a81f-12da-3366-a0ef-97c806660e7cLEXEVS-814" rel="nofollow">
+          LEXEVS-814 - Getting issue details... STATUS
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.4SoftwareDesignDocument-NCITrackerkey,summary,type,created,updated,due,assignee,reporter,priority,status,resolution7954a81f-12da-3366-a0ef-97c806660e7cLEXEVS-815" rel="nofollow">
+          LEXEVS-815 - Getting issue details... STATUS
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.4SoftwareDesignDocument-NCITrackerkey,summary,type,created,updated,due,assignee,reporter,priority,status,resolution7954a81f-12da-3366-a0ef-97c806660e7cLEXEVS-816" rel="nofollow">
+          LEXEVS-816 - Getting issue details... STATUS
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.4SoftwareDesignDocument-NCITrackerkey,summary,type,created,updated,due,assignee,reporter,priority,status,resolution7954a81f-12da-3366-a0ef-97c806660e7cLEXEVS-817" rel="nofollow">
+          LEXEVS-817 - Getting issue details... STATUS
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.4SoftwareDesignDocument-NCITrackerkey,summary,type,created,updated,due,assignee,reporter,priority,status,resolution7954a81f-12da-3366-a0ef-97c806660e7cLEXEVS-818" rel="nofollow">
+          LEXEVS-818 - Getting issue details... STATUS
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.4SoftwareDesignDocument-NCITrackerkey,summary,type,created,updated,due,assignee,reporter,priority,status,resolution7954a81f-12da-3366-a0ef-97c806660e7cLEXEVS-819" rel="nofollow">
+          LEXEVS-819 - Getting issue details... STATUS
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.4SoftwareDesignDocument-NCITrackerkey,summary,type,created,updated,due,assignee,reporter,priority,status,resolution7954a81f-12da-3366-a0ef-97c806660e7cLEXEVS-820" rel="nofollow">
+          LEXEVS-820 - Getting issue details... STATUS
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.4SoftwareDesignDocument-NCITrackerkey,summary,type,created,updated,due,assignee,reporter,priority,status,resolution7954a81f-12da-3366-a0ef-97c806660e7cLEXEVS-821" rel="nofollow">
+          LEXEVS-821 - Getting issue details... STATUS
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.4SoftwareDesignDocument-NCITrackerkey,summary,type,created,updated,due,assignee,reporter,priority,status,resolution7954a81f-12da-3366-a0ef-97c806660e7cLEXEVS-822" rel="nofollow">
+          LEXEVS-822 - Getting issue details... STATUS
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.4SoftwareDesignDocument-NCITrackerkey,summary,type,created,updated,due,assignee,reporter,priority,status,resolution7954a81f-12da-3366-a0ef-97c806660e7cLEXEVS-823" rel="nofollow">
+          LEXEVS-823 - Getting issue details... STATUS
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.4SoftwareDesignDocument-NCITrackerkey,summary,type,created,updated,due,assignee,reporter,priority,status,resolution7954a81f-12da-3366-a0ef-97c806660e7cLEXEVS-824" rel="nofollow">
+          LEXEVS-824 - Getting issue details... STATUS
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.4SoftwareDesignDocument-NCITrackerkey,summary,type,created,updated,due,assignee,reporter,priority,status,resolution7954a81f-12da-3366-a0ef-97c806660e7cLEXEVS-825" rel="nofollow">
+          LEXEVS-825 - Getting issue details... STATUS
+        </a>
+      </li>
+    </ul>
+  </li>
+</ul>
+The purpose of this document is to collect, analyze, and define high-level needs for and designed features of the National Cancer Institute Center for Biomedical Informatics and Information Technology (NCI CBIIT) LexEVS Release 6.4.The focus is on the functionalities proposed by the stakeholders and target users to make a better product.
+<h2 id="LexEVS6.4SoftwareDesignDocument-DesignScopeandRequirements">
+  Design Scope and Requirements
+</h2>
+The LexEVS 6.4 Scope Document can be found here:
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=270532770" rel="nofollow">
+  LexEVS 6.4 Scope Document
+</a>
+<h2 id="LexEVS6.4SoftwareDesignDocument-DetailedDesign">
+  Detailed Design
+</h2>
+The following sections specify how the design will satisfy the requirements for the Lucene search upgrade.  This design reflects the wide ranging changes that will be necessary to LexEVS to fully update over three full releases of Lucene.  Since Lucene is the heart of the search mechanism that powers efficient searches in LexEVS these changes are necessarily extensive.  The focus of these changes can be broken down, to some extent, into three areas.
+<ul>
+  <li>
+    Code decoupling from the current Lucene to allow for easier updates to the underlying search implementation.
+  </li>
+  <li>
+    Multi-index searches to replace single index searches.  This will allow easier maintenance than the large, monolithic index we currently use.
+  </li>
+  <li>
+    Using the built in relational index structures of the latest Lucene release to replace the hand built version of this in the current LexEVS implementation.
+  </li>
+  <li>
+    Code refactoring to the latest Lucene code base.  This requires extensive changes to the code base including replacement of objects with similar behavior for the current code base  and adjusting to changes in the Lucene API.  This also includes reimplementing a number of customized Lucene analyzers and HitCollectors to insure compatibility with current code unit tests and user expectations.
+  </li>
+</ul>
+Some classes are called out to indicate the extent of the changes and to document some of the details of intended adjustments.
+<h3 id="LexEVS6.4SoftwareDesignDocument-CodeDecoupling">
+  Code Decoupling
+</h3>
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=285115551" rel="nofollow">
+  LexEVS Code Decoupling
+</a>
+<h3 id="LexEVS6.4SoftwareDesignDocument-Multi-IndexSearches">
+  Multi-Index Searches
+</h3>
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=284262591" rel="nofollow">
+  LexEVS Multi-index Lucene Implementation
+</a>
+<h3 id="LexEVS6.4SoftwareDesignDocument-ChangingtheRelationalRepresentationinLucene">
+  Changing the Relational Representation in Lucene
+</h3>
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=284262539" rel="nofollow">
+  LexEVS Lucene Relational Representation
+</a>
+<h3 id="LexEVS6.4SoftwareDesignDocument-Per-segmentSearch">
+  Per-segment Search
+</h3>
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=285114906" rel="nofollow">
+  LexEVS Per-segment Search Implementation
+</a>
+<h3 id="LexEVS6.4SoftwareDesignDocument-HitCollectortoCollectorUpdates">
+  Hit Collector to Collector Updates
+</h3>
+<a href="https://wiki.nci.nih.gov/display/LexEVS/LexEVS+HitCollector+Update" title="LexEVS HitCollector Update" rel="nofollow">
+  LexEVS HitCollector Update
+</a>
+<h3 id="LexEVS6.4SoftwareDesignDocument-AnalyzerUpdates">
+  Analyzer Updates
+</h3>
+<a href="https://wiki.nci.nih.gov/display/LexEVS/LexEVS+Analyzer+Updates" title="LexEVS Analyzer Updates" rel="nofollow">
+  LexEVS Analyzer Updates
+</a>
+<h3 id="LexEVS6.4SoftwareDesignDocument-IndexCodeRefactor:RemovingtheIndexerProject">
+  Index Code Refactor: Removing the Indexer Project
+</h3>
+<a href="https://wiki.nci.nih.gov/display/LexEVS/LexEVS+Indexer+Refactor" title="LexEVS Indexer Refactor" rel="nofollow">
+  LexEVS Indexer Refactor
+</a>
+<h3 id="LexEVS6.4SoftwareDesignDocument-AuditofTextMatchingUseCases">
+  Audit of Text Matching Use Cases
+</h3>
+<a href="https://wiki.nci.nih.gov/display/LexEVS/LexEVS+Text+Match+Algorithm+Audit" title="LexEVS Text Match Algorithm Audit" rel="nofollow">
+  LexEVS Text Match Algorithm Audit
+</a>
+<h3 id="LexEVS6.4SoftwareDesignDocument-ConsiderationofBuildImpacts">
+  Consideration of Build Impacts
+</h3>
+<a href="https://wiki.nci.nih.gov/display/LexEVS/Consideration+of+Build+Impacts" title="Consideration of Build Impacts" rel="nofollow">
+  Consideration of Build Impacts
+</a>
+<h3 id="LexEVS6.4SoftwareDesignDocument-IndexCompatibilitywithPreviousIndexVersions">
+  Index Compatibility with Previous Index Versions
+</h3>
+This update will be to Lucene 5.0.  This version of Lucene has some backwards compatibility with Lucene 4.0 indexes.  However it is completely incompatible with indexes versions 3.x and earlier.  While LexEVS API&#39;s will maintain backwards compatibilities, any indexes from previous installed will have to be re-indexed in the latest implementation.
+<h3 id="LexEVS6.4SoftwareDesignDocument-PaginationinLucene">
+  Pagination in Lucene
+</h3>
+Lazy loading pagination is a broad concept in LexEVS and can encompass both graph and node set capabilities.  Because this scope is large we are going to consider this out of scope for this project unless we can define a fairly narrow definition of what we want to do with Lucene&#39;s version of this.  Currently some lazy loading occurs under the covers in the iterators returned by the coded node set implementation.  We also have  node graph pagination.  In either case we may not need a reimplementation in order to update our Lucene implementation.  We are suggesting this become a possible priority for a later implementation and won&#39;t fully describe how this might be done here.
+<h2 id="LexEVS6.4SoftwareDesignDocument-ImpactstoExistingUsers/Applications">
+  Impacts to Existing Users / Applications
+</h2>
+Minimal impact overall expected with increased performance and maintenance efficiency expected.
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Impact Description
+      </th>
+      <th>
+        Reference to documented impact
+      </th>
+    </tr>
+    <tr>
+      <td>
+        Text Matching Algorithm Changes. Support for a wide ranging text matching capability creates potential for heavy maintenance. We have attempted to characterize the similarities between some term matching implementations with an eye towards exclusion or combination. This exclusion and combination only affects end users if we remove labels as algorithm switches.
+      </td>
+      <td>
+        Not specifically impact documentation but a background document:
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=285115895" rel="nofollow">
+          LexEVS Text Match Algorithm Audit
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Index File System Changes. Index files will exist per coding scheme. This creates the opportunity for unmerged terminology indexes that should improve maintenance efficiency through quicker load times and the ability to identify and remove broken indexes without having to reindex the entire service. This will change the appearance of the file system but should not cause any issues for end users. The API will remain the same.
+      </td>
+      <td>
+        Background:
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=284262591" rel="nofollow">
+          LexEVS Multi-index Lucene Implementation
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Faster Query Performance on at Least Some Queries. The goal is to at least make queries no slower than current queries. The use of Block Join Queries has a reputation for being faster. This implementation has some opportunity to provide small indexes if we can properly capitalize during implementation.
+      </td>
+      <td>
+        Background:
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=284262539" rel="nofollow">
+          LexEVS Lucene Relational Representation
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Index Optimization Function Will Go Away. Index optimization no longer serves the purpose originally intended in Lucene. The optimization function should be deprecated and the implementation changed to output a message that indexes no longer need optimizing.
+      </td>
+      <td colspan="1"></td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="LexEVS6.4SoftwareDesignDocument-DecisionPoints-ApprovalNeeded">
+  Decision Points - Approval Needed
+</h2>
+<h4 id="LexEVS6.4SoftwareDesignDocument-PaginationinLucene-DEFERRED">
+  Pagination in Lucene - DEFERRED
+</h4>
+Reference:
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=270532776" rel="nofollow">
+  LexEVS 6.4 Software Design Document
+</a>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Sign off
+      </th>
+      <th>
+        Date
+      </th>
+      <th>
+        Role
+      </th>
+      <th>
+        CBIIT or Stakeholder Organization
+      </th>
+      <th>
+        Approver&#39;s Comments (If disapproved indicate specific areas for improvement.)
+      </th>
+    </tr>
+    <tr>
+      <td>
+        Larry Wright
+      </td>
+      <td>
+        4/24/2015
+      </td>
+      <td>
+        Govt Project Manager
+      </td>
+      <td>
+        CBIIT EVS
+      </td>
+      <td>
+        ---
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Sherri de Coronado
+      </td>
+      <td>
+        4/30/2015
+      </td>
+      <td>
+        Govt Sponsor
+      </td>
+      <td>
+        CBIIT EVS
+      </td>
+      <td>
+        —
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Kumar Kuntipuram
+      </td>
+      <td>
+        4/30/2015
+      </td>
+      <td>
+        TPM
+      </td>
+      <td>
+        Leidos Biomed
+      </td>
+      <td>
+        —
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h4 id="LexEVS6.4SoftwareDesignDocument-ReductionofTextMatchingAlgorithms">
+  Reduction of Text Matching Algorithms
+</h4>
+Reference:
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=285115895" rel="nofollow">
+  LexEVS Text Match Algorithm Audit
+</a>
+Text Matching Algorithms to be continued:  This list to be provided when the development team begins to work on these algorithms.
+<ul>
+  <li>
+    Consideration needs to be given to &#34;Contains&#34; search as it doesn&#39;t currently behave correctly. (JIRA LEXEVS-XX)
+  </li>
+</ul>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Sign off
+      </th>
+      <th>
+        Date
+      </th>
+      <th>
+        Role
+      </th>
+      <th>
+        CBIIT or Stakeholder Organization
+      </th>
+      <th>
+        Approver&#39;s Comments (If disapproved indicate specific areas for improvement.)
+      </th>
+    </tr>
+    <tr>
+      <td>
+        Larry Wright
+      </td>
+      <td>
+        4/24/2015
+      </td>
+      <td>
+        Govt Project Manager
+      </td>
+      <td>
+        CBIIT EVS
+      </td>
+      <td>
+        ---
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Sherri de Coronado
+      </td>
+      <td>
+        4/30/2015
+      </td>
+      <td>
+        Govt Sponsor
+      </td>
+      <td>
+        CBIIT EVS
+      </td>
+      <td>
+        —
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Kumar Kuntipuram
+      </td>
+      <td>
+        4/30/2015
+      </td>
+      <td>
+        TPM
+      </td>
+      <td>
+        Leidos Biomed
+      </td>
+      <td>
+        —
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h4 id="LexEVS6.4SoftwareDesignDocument-LuceneCodeDecoupling-DEFERRED">
+  Lucene Code Decoupling - DEFERRED
+</h4>
+Reference:
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=285115551" rel="nofollow">
+  LexEVS Code Decoupling
+</a>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Sign off
+      </th>
+      <th>
+        Date
+      </th>
+      <th>
+        Role
+      </th>
+      <th>
+        CBIIT or Stakeholder Organization
+      </th>
+      <th>
+        Approver&#39;s Comments (If disapproved indicate specific areas for improvement.)
+      </th>
+    </tr>
+    <tr>
+      <td>
+        Larry Wright
+      </td>
+      <td>
+        4/24/2015
+      </td>
+      <td>
+        Govt Project Manager
+      </td>
+      <td>
+        CBIIT EVS
+      </td>
+      <td>
+        ---
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Sherri de Coronado
+      </td>
+      <td>
+        4/30/2015
+      </td>
+      <td>
+        Govt Sponsor
+      </td>
+      <td>
+        CBIIT EVS
+      </td>
+      <td>
+        —
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Kumar Kuntipuran
+      </td>
+      <td>
+        4/30/2015
+      </td>
+      <td>
+        TPM
+      </td>
+      <td>
+        Leidos Biomed
+      </td>
+      <td>
+        —
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="LexEVS6.4SoftwareDesignDocument-RelevantJIRAItems">
+  Relevant JIRA Items
+</h2>
+<h3 id="LexEVS6.4SoftwareDesignDocument-DetailedDesign-ProvidethearchitectureanddesignforthenewLucenefeature.">
+  Detailed Design - Provide the architecture and design for the new Lucene feature.
+</h3>
+<h3 id="LexEVS6.4SoftwareDesignDocument-NCITrackerkey,summary,type,created,updated,due,assignee,reporter,priority,status,resolution7954a81f-12da-3366-a0ef-97c806660e7cLEXEVS-724">
+  <a href="https://tracker.nci.nih.gov/browse/LEXEVS-724" rel="nofollow">
+    LEXEVS-724
+  </a>
+  -
+  Getting issue details...
+  STATUS
+</h3>
+<h3 id="LexEVS6.4SoftwareDesignDocument-ThefollowingJIRAitemsareallpartofLEXEVS-724.">
+  The following JIRA items are all part of LEXEVS-724.
+</h3>
+<h3 id="LexEVS6.4SoftwareDesignDocument-NCITrackerkey,summary,type,created,updated,due,assignee,reporter,priority,status,resolution7954a81f-12da-3366-a0ef-97c806660e7cLEXEVS-813">
+  <a href="https://tracker.nci.nih.gov/browse/LEXEVS-813" rel="nofollow">
+    LEXEVS-813
+  </a>
+  -
+  Getting issue details...
+  STATUS
+</h3>
+<h3 id="LexEVS6.4SoftwareDesignDocument-NCITrackerkey,summary,type,created,updated,due,assignee,reporter,priority,status,resolution7954a81f-12da-3366-a0ef-97c806660e7cLEXEVS-814">
+  <a href="https://tracker.nci.nih.gov/browse/LEXEVS-814" rel="nofollow">
+    LEXEVS-814
+  </a>
+  -
+  Getting issue details...
+  STATUS
+</h3>
+<h3 id="LexEVS6.4SoftwareDesignDocument-NCITrackerkey,summary,type,created,updated,due,assignee,reporter,priority,status,resolution7954a81f-12da-3366-a0ef-97c806660e7cLEXEVS-815">
+  <a href="https://tracker.nci.nih.gov/browse/LEXEVS-815" rel="nofollow">
+    LEXEVS-815
+  </a>
+  -
+  Getting issue details...
+  STATUS
+</h3>
+<h3 id="LexEVS6.4SoftwareDesignDocument-NCITrackerkey,summary,type,created,updated,due,assignee,reporter,priority,status,resolution7954a81f-12da-3366-a0ef-97c806660e7cLEXEVS-816">
+  <a href="https://tracker.nci.nih.gov/browse/LEXEVS-816" rel="nofollow">
+    LEXEVS-816
+  </a>
+  -
+  Getting issue details...
+  STATUS
+</h3>
+<h3 id="LexEVS6.4SoftwareDesignDocument-NCITrackerkey,summary,type,created,updated,due,assignee,reporter,priority,status,resolution7954a81f-12da-3366-a0ef-97c806660e7cLEXEVS-817">
+  <a href="https://tracker.nci.nih.gov/browse/LEXEVS-817" rel="nofollow">
+    LEXEVS-817
+  </a>
+  -
+  Getting issue details...
+  STATUS
+</h3>
+<h3 id="LexEVS6.4SoftwareDesignDocument-NCITrackerkey,summary,type,created,updated,due,assignee,reporter,priority,status,resolution7954a81f-12da-3366-a0ef-97c806660e7cLEXEVS-818">
+  <a href="https://tracker.nci.nih.gov/browse/LEXEVS-818" rel="nofollow">
+    LEXEVS-818
+  </a>
+  -
+  Getting issue details...
+  STATUS
+</h3>
+<h3 id="LexEVS6.4SoftwareDesignDocument-NCITrackerkey,summary,type,created,updated,due,assignee,reporter,priority,status,resolution7954a81f-12da-3366-a0ef-97c806660e7cLEXEVS-819">
+  <a href="https://tracker.nci.nih.gov/browse/LEXEVS-819" rel="nofollow">
+    LEXEVS-819
+  </a>
+  -
+  Getting issue details...
+  STATUS
+</h3>
+<h3 id="LexEVS6.4SoftwareDesignDocument-NCITrackerkey,summary,type,created,updated,due,assignee,reporter,priority,status,resolution7954a81f-12da-3366-a0ef-97c806660e7cLEXEVS-820">
+  <a href="https://tracker.nci.nih.gov/browse/LEXEVS-820" rel="nofollow">
+    LEXEVS-820
+  </a>
+  -
+  Getting issue details...
+  STATUS
+</h3>
+<h3 id="LexEVS6.4SoftwareDesignDocument-NCITrackerkey,summary,type,created,updated,due,assignee,reporter,priority,status,resolution7954a81f-12da-3366-a0ef-97c806660e7cLEXEVS-821">
+  <a href="https://tracker.nci.nih.gov/browse/LEXEVS-821" rel="nofollow">
+    LEXEVS-821
+  </a>
+  -
+  Getting issue details...
+  STATUS
+</h3>
+<h3 id="LexEVS6.4SoftwareDesignDocument-NCITrackerkey,summary,type,created,updated,due,assignee,reporter,priority,status,resolution7954a81f-12da-3366-a0ef-97c806660e7cLEXEVS-822">
+  <a href="https://tracker.nci.nih.gov/browse/LEXEVS-822" rel="nofollow">
+    LEXEVS-822
+  </a>
+  -
+  Getting issue details...
+  STATUS
+</h3>
+<h3 id="LexEVS6.4SoftwareDesignDocument-NCITrackerkey,summary,type,created,updated,due,assignee,reporter,priority,status,resolution7954a81f-12da-3366-a0ef-97c806660e7cLEXEVS-823">
+  <a href="https://tracker.nci.nih.gov/browse/LEXEVS-823" rel="nofollow">
+    LEXEVS-823
+  </a>
+  -
+  Getting issue details...
+  STATUS
+</h3>
+<h3 id="LexEVS6.4SoftwareDesignDocument-NCITrackerkey,summary,type,created,updated,due,assignee,reporter,priority,status,resolution7954a81f-12da-3366-a0ef-97c806660e7cLEXEVS-824">
+  <a href="https://tracker.nci.nih.gov/browse/LEXEVS-824" rel="nofollow">
+    LEXEVS-824
+  </a>
+  -
+  Getting issue details...
+  STATUS
+</h3>
+<h3 id="LexEVS6.4SoftwareDesignDocument-NCITrackerkey,summary,type,created,updated,due,assignee,reporter,priority,status,resolution7954a81f-12da-3366-a0ef-97c806660e7cLEXEVS-825">
+  <a href="https://tracker.nci.nih.gov/browse/LEXEVS-825" rel="nofollow">
+    LEXEVS-825
+  </a>
+  -
+  Getting issue details...
+  STATUS
+</h3>

@@ -1,0 +1,169 @@
+Contents of this Page
+<ul>
+  <li>
+    <a href="#Study-Description" rel="nofollow">
+      Description
+    </a>
+  </li>
+  <li>
+    <a href="#Study-FileFormat" rel="nofollow">
+      File Format
+    </a>
+  </li>
+  <li>
+    <a href="#Study-Fields" rel="nofollow">
+      Fields
+    </a>
+    <ul>
+      <li>
+        <a href="#Study-Nodes" rel="nofollow">
+          Nodes
+        </a>
+      </li>
+      <li>
+        <a href="#Study-AttributesofStudyNodes" rel="nofollow">
+          Attributes of Study Nodes
+        </a>
+      </li>
+      <li>
+        <a href="#Study-QualifiersforStudyNodes%E2%80%99Attributes" rel="nofollow">
+          Qualifiers for Study Nodes’ Attributes
+        </a>
+      </li>
+      <li>
+        <a href="#Study-Otherstudyfields" rel="nofollow">
+          Other study fields
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#Study-Files" rel="nofollow">
+      Files
+    </a>
+  </li>
+</ul>
+Additional Information
+<ul>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=60001198" rel="nofollow">
+      Study File Examples
+    </a>
+  </li>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=253887739" rel="nofollow">
+      Study File Template
+    </a>
+  </li>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=253887751" rel="nofollow">
+      Study File Glossary
+    </a>
+  </li>
+</ul>
+<h2 id="Study-Description">
+  Description
+</h2>
+The study file provides a mapping between the samples (biospecimens and material samples) and processing events (occurs whenever a protocol is applied) associated with a study. It also provides values for the parameters and factors associated with an assay of the sample. In ISA-TAB-Nano, factors can be either entered in the study file or in the assay file. For physico-chemical characterizations of nanomaterials, the sample is the nanomaterial. For in-vitro and in-vivo characterizations, the sample is the biological specimen (cell line, animal, and so forth). The nanomaterial applied to a biospecimen in an in-vitro or in-vivo assay is considered as a study factor along with other factors that vary in the experiment (for example, dose). The study file is required as it functions as the primary mapping file between the samples and the assay. For studies involving nanomaterials (also applies to small molecules), the material file allows for a detailed description of the composition and characteristics of the nanomaterial, and the ISA-TAB-Nano material file name is referenced as a qualifier for the source sample (nanomaterial) in the study file.
+<h2 id="Study-FileFormat">
+  File Format
+</h2>
+The ISA-TAB-Nano study file leverages the ISA-TAB file format, which is a horizontal-based spreadsheet format with column headers in the first row. The following table provides an example subset of this format.Example Subset of the Study File Format
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        A
+      </th>
+      <th>
+        B
+      </th>
+      <th>
+        C
+      </th>
+    </tr>
+    <tr>
+      <td>
+        Source Name
+      </td>
+      <td>
+        Material Type
+      </td>
+      <td>
+        Characteristic[cell type]
+      </td>
+    </tr>
+    <tr>
+      <td>
+        LLC-PK1
+      </td>
+      <td>
+        biospecimen
+      </td>
+      <td>
+        porcine proximal tubule cells
+      </td>
+    </tr>
+    <tr>
+      <td>
+        LLC-PK1
+      </td>
+      <td>
+        biospecimen
+      </td>
+      <td>
+        porcine proximal tubule cells
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="Study-Fields">
+  Fields
+</h2>
+The concept specified within the bracket “[ ]” is a variable depending on the type of sample. According to the ISA-TAB specification, the Study file has different types of fields called nodes, attributes of nodes, qualifiers of nodes’ attributes, and other valid fields. The tables on the
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=60001198" rel="nofollow">
+  Study File Example
+</a>
+page provide additional examples of files using these different types of fields.
+<h3 id="Study-Nodes">
+  Nodes
+</h3>
+Source Name---The unique identification name of the source from where the sample is derived. If the sample assayed is a biological specimen, its source is the starting biological material from which the sample was derived after the application of a protocol. The name of the source typically refers to the cell line or animal number for biological specimens. If the sample assayed is a nanoparticle sample or some chemical substance not derived from a biological material, then the corresponding source name should refer to the starting sample that was modified by a protocol for the assay. Source names can be qualified using the following column attributes: Characteristics [ ], Material Type, Provider, and Comment.Sample Name---The unique identification name of the sample. The sample is obtained after the application of a protocol Sample names can be qualified using the following column attributes: Characteristics [ ], Material Type, Provider, and Comment.
+<h3 id="Study-AttributesofStudyNodes">
+  Attributes of Study Nodes
+</h3>
+One or more attributes can be used to provide more information about a study node. The different node attributes are described below:Material Type---An attribute for the Source Name or Sample Name (for example, biospecimen, nanoparticle sample, small molecule etc.). The term can be a free-text description or taken from an ontology or a controlled vocabulary. If it is the latter, then the following qualifiers are used: Term Accession Number and Term Source REF.Characteristics [ ]---An attribute for Source Name and Sample Name. The term for each characteristics [ ] attribute is written within brackets (for example, Characteristics [organism], Characteristics [cell type], etc.).Provider---An attribute for Source Name, which refers to the name of the person or the vendor providing the source sample.Attributes of processing events for study nodes--- One or more attributes can be used to describe a step in the preparation of a sample.Protocol REF---The name of the protocol used to prepare the sample. This name should match a value for the field study protocol name in the investigation file (within the study protocols section).Performer---The name of the person who carried out the protocol.Date---The calendar day on which the protocol was carried out. The date format should be in YYYY-MM-DD. If there are other dates to be recorded (for example, the date when a sample was received from a vendor), one should create a Comment [ ] column and specify the type of date within the square brackets (such as Comment [date received]).Parameter Value [&lt;parameter name]---Value of a parameter, which may be invariant, when applying a protocol. The parameter name is written within brackets and must match the term used as value for the Study Protocol Parameter Name in the ISA-TAB-Nano investigation file.
+<h3 id="Study-QualifiersforStudyNodes’Attributes">
+  Qualifiers for Study Nodes’ Attributes
+</h3>
+Each node attribute may be qualified using the following concepts, if applicable.Unit---The standard of measurement used if the values for Characteristic [ ], Parameter Value [ ] or Factor Value [ ] columns are quantitative and dimensional. If the term for Unit is from an ontology/controlled vocabulary, then its Term Accession Number and the Term Source REF should be defined in the ISA-TAB-Nano Study File.Term Accession Number---Identification number of a term selected from an ontology or a controlled vocabulary, if the term is entered as a value in Source Name, Material Type, Characteristics [ ], Parameter Value [ ], Unit or Factor Value [ ] columns.Term Source REF---The name which identifies the source from where a term is selected and entered in ISA-TAB-Nano study files. This name should match one of the names entered in the Term Source Name field in the ISA-TAB-Nano Investigation file.
+<h3 id="Study-Otherstudyfields">
+  Other study fields
+</h3>
+Factor Value [&lt;factor name&gt;]---The value of an experimental variable manipulated by the investigator with the intention to affect the subject of study (such as stressor). Factor names are given in brackets, and must be defined in the ISA-TAB-Nano investigation file in the STUDY FACTORS section.Comment [ ]---Any comment that provides additional information, which is added only when no other appropriate field exists. Comment fields should be attached to the closest node or the closest field.
+<h2 id="Study-Files">
+  Files
+</h2>
+The following pages provide the study file examples, template, and glossary:
+<ul>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=60001198" rel="nofollow">
+      Study File Examples
+    </a>
+  </li>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=253887739" rel="nofollow">
+      Study File Template
+    </a>
+  </li>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=253887751" rel="nofollow">
+      Study File Glossary
+    </a>
+  </li>
+</ul>

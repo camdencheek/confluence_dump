@@ -1,0 +1,618 @@
+Contents of this Page
+<ul>
+  <li>
+    <a href="#Init1pm11.pm3LSDAMrefinementandutilization-Init1pm11.2-RefineAnalysisModel" rel="nofollow">
+      Init1pm11.2 - Refine Analysis Model
+    </a>
+  </li>
+  <li>
+    <a href="#Init1pm11.pm3LSDAMrefinementandutilization-Init1pm11.3-DeriveImplementationModel" rel="nofollow">
+      Init1pm11.3 - Derive Implementation Model
+    </a>
+  </li>
+  <li>
+    <a href="#Init1pm11.pm3LSDAMrefinementandutilization-Init1pm11.4-GenerateMappingDocument" rel="nofollow">
+      Init1pm11.4 - Generate Mapping Document
+    </a>
+  </li>
+  <li>
+    <a href="#Init1pm11.pm3LSDAMrefinementandutilization-Init1pm11.5-RegisterDAM-derivedImplementationModel" rel="nofollow">
+      Init1pm11.5 - Register DAM-derived Implementation Model
+    </a>
+  </li>
+</ul>
+<h1 id="Init1pm11.pm3LSDAMrefinementandutilization-Init1pm11.1-ImportAnalysisModel">
+  Init1pm11.1 - Import Analysis Model
+</h1>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Use Case Number
+      </th>
+      <td>
+        Init1pm11.1
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Brief Description
+      </th>
+      <td>
+        The first step in working with a DAM is to import the DAM into your modeling tool so that you can further refine it for your specific needs.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Actor(s) for this particular use case
+      </th>
+      <td>
+        Information Modeler
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Pre-condition
+        The state of the system before the user interacts with it
+      </th>
+      <td>
+        DAM is registered in a metadata repository
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Post condition
+        The state of the system after the user interacts with it
+      </th>
+      <td>
+        The DAM is available within the Information Modeler&#39;s UML modeling tool and represented by classes, attributes, and associations.  T
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Steps to take
+        The step-by-step description of how users will interact with the system to achieve a specific business goal or function
+      </th>
+      <td>
+        <ol>
+          <li>
+            Information Modeler opens modeling tool
+          </li>
+          <li>
+            Information Modeler searches metadata repository for the desired DAM
+          </li>
+          <li>
+            Information Modeler imports the DAM into his modeling tool
+          </li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Alternate Flow
+        Things which would prevent the normal flow of the use case
+      </th>
+      <td>
+        An alternate flow to this use case is that the Information Modeler imports the DAM from another information model (which may be refined rather than the vanilla DAM).  Therefore, it may be desirable for Information Modelers to register refined DAMs themselves to be shared with others.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Priority
+        The priority of implementing the use case: High, Medium or Low
+      </th>
+      <td>
+        High
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Associated Links
+        The brief user stories, each describing the user interacts with the system for the one function only of the use case. There would potentially be a number of user stories that make up the use case.
+      </th>
+      <td>
+        <a href="https://wiki.nci.nih.gov/x/yQRyAQ" rel="nofollow">
+          Init1pm11 - LS DAM refinement and utilization
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Fit criterion/Acceptance Criterion
+        How would actor describe the acceptable usage scenarios for the software or service that meets the actor&#39;s requirement?
+      </th>
+      <td>
+        The Information Modeler must be able to import a DAM into his UML modeling tool, it must be represented fully (so that it can be refined), and it must be able to be derived into an implementation model.
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="Init1pm11.pm3LSDAMrefinementandutilization-Init1pm11.2-RefineAnalysisModel">
+  Init1pm11.2 - Refine Analysis Model
+</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Use Case Number
+      </th>
+      <td>
+        Init1pm11.2
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Brief Description
+      </th>
+      <td>
+        The second step in working with a DAM is to refine it by identifying those classes, attributes, and associations that will not be reused.  These should be marked up in the UML in some fashion as to indicate that they are not included in the information model.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Actor(s) for this particular use case
+      </th>
+      <td>
+        Information Modeler
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Pre-condition
+        The state of the system before the user interacts with it
+      </th>
+      <td>
+        The DAM has been imported in the model (see use Init1pm11.1 above)
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Post condition
+        The state of the system after the user interacts with it
+      </th>
+      <td>
+        The DAM has been refined within the Information Modeler&#39;s information model (in UML).
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Steps to take
+        The step-by-step description of how users will interact with the system to achieve a specific business goal or function
+      </th>
+      <td>
+        <ol>
+          <li>
+            The Information Modeler refines enumerations
+            <ol>
+              <li>
+                The Information Modeler specifies which enumerations are omitted
+              </li>
+              <li>
+                The Information Modeler specifies which enumerated values are omitted
+              </li>
+            </ol>
+          </li>
+          <li>
+            The Information Modeler refines classes
+            <ol>
+              <li>
+                The Information Modeler specifies which attributes are omitted
+              </li>
+              <li>
+                The Information Modeler specifies which classes are omitted
+              </li>
+            </ol>
+          </li>
+          <li>
+            The Information Modeler refines associations
+            <ol>
+              <li>
+                The Information Modeler specifies which associations are omitted
+              </li>
+            </ol>
+          </li>
+          <li>
+            The Information Modeler annotates any special considerations, rules, mappings, etc.
+          </li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Alternate Flow
+        Things which would prevent the normal flow of the use case
+      </th>
+      <td>
+        The steps above do not preclude the creation of ECCF documents or other mappings/specification documents.  However, this use case does ease the creation of such documents because the DAM is derived directly from the metadata repository (meaning it has the appropriate level of specification/documentation already) and the refinements are made in conformance with the metadata repository conventions.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Priority
+        The priority of implementing the use case: High, Medium or Low
+      </th>
+      <td>
+        High
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Associated Links
+        The brief user stories, each describing the user interacts with the system for the one function only of the use case. There would potentially be a number of user stories that make up the use case.
+      </th>
+      <td>
+        <a href="https://wiki.nci.nih.gov/x/yQRyAQ" rel="nofollow">
+          Init1pm11 - LS DAM refinement and utilization
+        </a>
+        <ul>
+          <li>
+            <a href="#Init1pm11.pm3LSDAMrefinementandutilization-Init1pm11.1-ImportAnalysisModel" rel="nofollow">
+              Init1pm11.1 - Import Analysis Model
+            </a>
+            <ul>
+              <li>
+                <a href="#Init1pm11.pm3LSDAMrefinementandutilization-Init1pm11.2-RefineAnalysisModel" rel="nofollow">
+                  Init1pm11.2 - Refine Analysis Model
+                </a>
+              </li>
+              <li>
+                <a href="#Init1pm11.pm3LSDAMrefinementandutilization-Init1pm11.3-DeriveImplementationModel" rel="nofollow">
+                  Init1pm11.3 - Derive Implementation Model
+                </a>
+              </li>
+              <li>
+                <a href="#Init1pm11.pm3LSDAMrefinementandutilization-Init1pm11.4-GenerateMappingDocument" rel="nofollow">
+                  Init1pm11.4 - Generate Mapping Document
+                </a>
+              </li>
+              <li>
+                <a href="#Init1pm11.pm3LSDAMrefinementandutilization-Init1pm11.5-RegisterDAM-derivedImplementationModel" rel="nofollow">
+                  Init1pm11.5 - Register DAM-derived Implementation Model
+                </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Fit criterion/Acceptance Criterion
+        How would actor describe the acceptable usage scenarios for the software or service that meets the actor&#39;s requirement?
+      </th>
+      <td>
+        The DAM should be localized using the conventions of the UML modeling tool.  That is, it is highly desirable that user actions be constrained by what will be conformant when the DAM is registered and shared, as well as when the DAM is used to create an implementation model.
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="Init1pm11.pm3LSDAMrefinementandutilization-Init1pm11.3-DeriveImplementationModel">
+  Init1pm11.3 - Derive Implementation Model
+</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Use Case Number
+      </th>
+      <td>
+        Init1pm11.3
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Brief Description
+      </th>
+      <td>
+        The third step in working with a DAM is to derive an implementation model based upon the DAM.  The Information Modeler imports the refined DAM into his implementation model package and adds the necessary specificity such that it can be implemented.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Actor(s) for this particular use case
+      </th>
+      <td>
+        Information Modeler
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Pre-condition
+        The state of the system before the user interacts with it
+      </th>
+      <td>
+        The DAM has been refined in the Information Modelers UML modeling tool using the necessary metadata repository conventions.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Post condition
+        The state of the system after the user interacts with it
+      </th>
+      <td>
+        An implementation model is created that has the necessary information for semantic annotation and registration, as well as the necessary information for generating a DAM mapping document.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Steps to take
+        The step-by-step description of how users will interact with the system to achieve a specific business goal or function
+      </th>
+      <td>
+        <ol>
+          <li>
+            The Information Modeler imports the refined DAM into his  implementation space/package.
+          </li>
+          <li>
+            The Information Modeler refines the imported entities
+            <ol>
+              <li>
+                The Information Modeler modifies the names of classes, attributes, and association endpoints
+              </li>
+              <li>
+                The Information Modeler updates the multiplicities of associations
+              </li>
+              <li>
+                The Information Modeler updates the datatype of each attribute
+              </li>
+              <li>
+                The Information Modeler updates enumerations
+              </li>
+            </ol>
+          </li>
+          <li>
+            The Information Modeler adds additional modeling entities, including classes, attributes, associations, and enumerations
+          </li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Alternate Flow
+        Things which would prevent the normal flow of the use case
+      </th>
+      <td>
+        The Information Modeler updates an existing implementation model that has previously been derived from a DAM.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Priority
+        The priority of implementing the use case: High, Medium or Low
+      </th>
+      <td>
+        High
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Associated Links
+        The brief user stories, each describing the user interacts with the system for the one function only of the use case. There would potentially be a number of user stories that make up the use case.
+      </th>
+      <td>
+        <a href="https://wiki.nci.nih.gov/x/yQRyAQ" rel="nofollow">
+          Init1pm11 - LS DAM refinement and utilization
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Fit criterion/Acceptance Criterion
+        How would actor describe the acceptable usage scenarios for the software or service that meets the actor&#39;s requirement?
+      </th>
+      <td>
+        <ol>
+          <li>
+            The resulting implementation model has necessary annotations to generate a mapping document that includes modifications to derived DAM entities and additional model entities
+          </li>
+        </ol>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="Init1pm11.pm3LSDAMrefinementandutilization-Init1pm11.4-GenerateMappingDocument">
+  Init1pm11.4 - Generate Mapping Document
+</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Use Case Number
+      </th>
+      <td>
+        Init1pm11.4
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Brief Description
+      </th>
+      <td>
+        The next step in the DAM process is to create a document that describes the changes and additions to the DAM.  This includes name changes, excluded classes/attributes, and added classes/attributes.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Actor(s) for this particular use case
+      </th>
+      <td>
+        Information Modeler
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Pre-condition
+        The state of the system before the user interacts with it
+      </th>
+      <td>
+        A DAM-derived implementation model exists in the Information Modeler&#39;s UML modeling tool with all required annotations to generate a mapping document.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Post condition
+        The state of the system after the user interacts with it
+      </th>
+      <td>
+        A mapping document is generated.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Steps to take
+        The step-by-step description of how users will interact with the system to achieve a specific business goal or function
+      </th>
+      <td>
+        <ul>
+          <li>
+            The Information Modeler selects the implementation model and DAM
+          </li>
+          <li>
+            The Information Modeler performs the steps directly from his UML modeling tool to generate a mapping document
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Alternate Flow
+        Things which would prevent the normal flow of the use case
+      </th>
+      <td>
+        None.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Priority
+        The priority of implementing the use case: High, Medium or Low
+      </th>
+      <td>
+        High
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Associated Links
+        The brief user stories, each describing the user interacts with the system for the one function only of the use case. There would potentially be a number of user stories that make up the use case.
+      </th>
+      <td>
+        <a href="https://wiki.nci.nih.gov/x/yQRyAQ" rel="nofollow">
+          Init1pm11 - LS DAM refinement and utilization
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Fit criterion/Acceptance Criterion
+        How would actor describe the acceptable usage scenarios for the software or service that meets the actor&#39;s requirement?
+      </th>
+      <td>
+        None.
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="Init1pm11.pm3LSDAMrefinementandutilization-Init1pm11.5-RegisterDAM-derivedImplementationModel">
+  Init1pm11.5 - Register DAM-derived Implementation Model
+</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Use Case Number
+      </th>
+      <td>
+        Init1pm11.5
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Brief Description
+      </th>
+      <td>
+        The final step in the DAM process is to register a DAM-derived implementation model.  This use case is important because it is important to share in the metadata repository the relationship of the implementation model to the original DAM, and, if possible, to the derived DAM.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Actor(s) for this particular use case
+      </th>
+      <td>
+        Information Modeler
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Pre-condition
+        The state of the system before the user interacts with it
+      </th>
+      <td>
+        A refined DAM and completed DAM-derived implementation model exists in the Information Modelers UML tool.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Post condition
+        The state of the system after the user interacts with it
+      </th>
+      <td>
+        The refined DAM and implementation model are registered in the metadata repository.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Steps to take
+        The step-by-step description of how users will interact with the system to achieve a specific business goal or function
+      </th>
+      <td>
+        <ol>
+          <li>
+            The Information Modeler selects the refined DAM and completes the steps necessary to register it in the metadata repository.
+          </li>
+          <li>
+            The Information Modeler selects the implementation model and completes the steps necessary to register it in the metadata repository.
+          </li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Alternate Flow
+        Things which would prevent the normal flow of the use case
+      </th>
+      <td>
+        None.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Priority
+        The priority of implementing the use case: High, Medium or Low
+      </th>
+      <td>
+        High
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Associated Links
+        The brief user stories, each describing the user interacts with the system for the one function only of the use case. There would potentially be a number of user stories that make up the use case.
+      </th>
+      <td>
+        <a href="https://wiki.nci.nih.gov/x/yQRyAQ" rel="nofollow">
+          Init1pm11 - LS DAM refinement and utilization
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Fit criterion/Acceptance Criterion
+        How would actor describe the acceptable usage scenarios for the software or service that meets the actor&#39;s requirement?
+      </th>
+      <td>
+        The relationships between the original DAM, the derived DAM, and the implementation model are captured in the metadata repository.
+      </td>
+    </tr>
+  </tbody>
+</table>

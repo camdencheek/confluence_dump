@@ -1,0 +1,582 @@
+<table id="TBL1683165930501">
+  <tr>
+    <th>
+      Gap Area
+    </th>
+    <th>
+      Tasks
+    </th>
+    <th>
+      CIP Priority
+    </th>
+    <th>
+      NBIA  release Update
+    </th>
+    <th>
+      Comments
+    </th>
+    <th>
+      Slide # on Gap Analysis Powerpoint
+    </th>
+  </tr>
+  <tr>
+    <td>
+      QC Tools
+    </td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>
+      5
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>
+      Improve response time for all actions in the QC tool
+    </td>
+    <td>
+      1
+    </td>
+    <td>
+      4.4
+    </td>
+    <td>
+      QC tool is not functional due to system time-outs.  Current implementation times out upon performing just about any change in visibility status making it effectively unusable.  All changes in visibility are currently being routed to the dev team who have to manually write a SQL query to change the visibility status as requested and then submit a ticket to app support to have the database modified.
+    </td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>
+      Add the ability to delete images from the QC tool
+    </td>
+    <td>
+      2
+    </td>
+    <td>
+      4.4
+    </td>
+    <td>
+      Problems requiring removal of data are not actionable without DBA actions on back-end.  It is a regular occurrence when first starting a new collection that a few tries might be required before getting the anonymization schema correct.  It would be extremely helpful if we could clean up these test attempts via the QC tool.  The current process is to route these requests through the dev team who manually generate appropriate SQL queries who then submit a ticket to App Support.  This takes away time that the dev team could be working on new features or bug fixes.  Also, for remote deployments, cancer centers might not have the technical expertise readily available to deal with issues like this the way that CBIIT does.
+    </td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>
+      Add the ability to change the collection name, site name, or site id from within the QC tool
+    </td>
+    <td>
+      3
+    </td>
+    <td></td>
+    <td>
+      Problems with provenance attribution are not addressable.  Over time we have had multiple scenarios where it has been decided to break apart a collection into small sub collections.  We have also had situations where a submission came in with typos in these fields.  Rather than having to resubmit everything we have opted instead to correct the information in the database.  Doing this follows the same procedures mentioned above for when we need to delete images.  It would again increase overall efficiency if data administrators could do this themselves without relying on technical personnel.
+    </td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>
+      Implement UCD-Group recommended UI changes
+    </td>
+    <td></td>
+    <td>
+      Subset in 4.4 ( look and feel, adding collection description-popup, checkbox handling)
+    </td>
+    <td>
+      The NBIA dev team have concluded a series of design meetings with recommendations for the QC tools.
+    </td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>
+      Fix wrong counts in Verify Submision tool
+    </td>
+    <td>
+      2
+    </td>
+    <td>
+      4.3
+    </td>
+    <td>
+      Verify submission tool shows inaccurate results
+    </td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>
+      Protected Health Information
+    </td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>
+      6
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>
+      Create the remaining profiles as predefined options in CTP per DICOM Working Group 18&#39;s Supplement 142
+    </td>
+    <td>
+      2
+    </td>
+    <td>
+      CIP is preparing them and sending them to John Perry.  This is a client-side CTP feature orthogonal to NBIA release schedule
+    </td>
+    <td>
+      At this point only the &#34;Basic&#34; profile has been integrated.  There are several other profiles that are recommended for a less aggressive method of de-identification.  These should also be included as pre-definined profiles in CTP.  The Basic profile is too aggressive for most NBIA collections.  Considerable work is required to improve the guidance and tools
+    </td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>
+      Query and Retrieval
+    </td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>
+      7
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>
+      Improve the overall GUI
+    </td>
+    <td>
+      3
+    </td>
+    <td>
+      Ongoing…
+    </td>
+    <td>
+      The current UI is in dire need of a 21st century overhaul to modernize the appearance of NBIA and bring it in line with some of the other caBIG applications&#39; interfaces.
+    </td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>
+      Implement the ability to search on all (90) DICOM tags stored in the NBIA relational database.
+    </td>
+    <td>
+      3
+    </td>
+    <td>
+      4.3 (not all)  not expanded to 4.4 - waiting for feedback - expanding to RT tags would also require expanding the UML model
+    </td>
+    <td>
+      Only 12 of the DICOM tags parsed into the NBIA database are accesible to the user through the web interface.   In addition to the structured query page there should be a page allowing access to any of the tags stored in the database.
+    </td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>
+      Eliminate the zipping process from downloads and replace it with a &#34;download manager&#34;
+    </td>
+    <td>
+      3
+    </td>
+    <td>
+      4.3
+    </td>
+    <td>
+      Zipping the images is time consuming and resource intensive.  It creates a duplicate copy of whatever the user requested for a 10 day period, meaning that a user who chooses to download very huge data sets could effectively take down the server by sucking up the remaining free space on the hard disks as the zip files are generated.  It would be better if NBIA instead installed a plugin or java web start type of thin client on the user&#39;s machine that allowed NBIA to serve them the files directly without zipping.  It would be ideal if this thin client allowed the user to pause their downloads and resume at a later time if necessary.
+    </td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>
+      Reporting and Metrics - CIP
+    </td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>
+      13
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>
+      Create centralized reporting utilities for oversight of the NBIA
+    </td>
+    <td>
+      2
+    </td>
+    <td></td>
+    <td>
+      Stakeholders such as CBIIT management or CIP leadership needs reporting tools that allow them to easily see what is going on in NBIA.  This would include things like being able to find out statistics on submissions, downloads, new users, system uptime, etc.
+    </td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>
+      Create centralized reporting utilities for submitters to use in determining that their data is being received successfully and to track historical metrics
+    </td>
+    <td>
+      3
+    </td>
+    <td>
+      4.3 as included in Verify Submission (not a report per se)
+    </td>
+    <td>
+      This would include things like improving the verify submission tool to provide clear and concise submission statistics
+    </td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>
+      Create a reporting page that allows end users to see site statistics
+    </td>
+    <td>
+      4
+    </td>
+    <td></td>
+    <td>
+      This would include things like letting them see what new collections were recently submitted, what collections have had new images added, how many total collections/images/etc we have in the archive
+    </td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>
+      Collections and organization
+    </td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>
+      9
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>
+      Re-brand the &#34;saved query&#34; feature and improve it to allow for users to share these saved collections of images with each other (if user permissions are sufficient) or with the entire community
+    </td>
+    <td>
+      4
+    </td>
+    <td></td>
+    <td>
+      By design images are submitted into the system and become a part of a static collection.  However there are many times when users might be interested in creating a new collection that includes data from more than one static collection and sharing just a particular subsection or combination of multiple collections with colleagues.  Series and &#34;Collections&#34; need to have a many-to-many type relationship: a series can be part of one to many collections, etc.
+    </td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>
+      Add collection meta data into NBIA (or at least make it easily accessible if it&#39;s hosted outside NBIA)
+    </td>
+    <td>
+      3
+    </td>
+    <td>
+      4.4
+    </td>
+    <td>
+      The steps involved in updating the &#34;NBIA Portal&#34; Collection Page are tedious and are not linked directly to the collections when a user is inside the NBIA.  We have been storing a wealth of background information and other meta data on the wiki because it is more flexible and easy to update quickly but this does not solve the issue of making it easy for a user to find this info because it&#39;s not linked to from NBIA&#39;s search page. it would be ideal if users had easy access to this information about the collections directly from within NBIA.
+    </td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>
+      Reference Favorite List
+    </td>
+    <td></td>
+    <td>
+      4.4
+    </td>
+    <td>
+      Static list that could be cited in publications to allow readers to easily download the data upon which the research was done.  Will include security and features to support editing by author.
+    </td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>
+      Testing
+    </td>
+    <td></td>
+    <td>
+      4
+    </td>
+    <td></td>
+    <td></td>
+    <td>
+      3
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>
+      Provide a set of instructions for verifying NBIA and CTP have been successfully installed
+    </td>
+    <td>
+      2
+    </td>
+    <td>
+      4.4 (tentative)
+    </td>
+    <td>
+      Currently after completing installation there is nothing that explains to a user how to test an image submission and confirm that everything is working.
+    </td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>
+      Provide test data in the NBIA installation package for performing validation of successful installation
+    </td>
+    <td>
+      2
+    </td>
+    <td>
+      4.4 (tentative)
+    </td>
+    <td>
+      Improved installation Testing, a standard set of test images.  CIP will provide data sets- CBIIT will have to integrate the testing into the install package.
+    </td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>
+      Integrated visualization and Analysis
+    </td>
+    <td></td>
+    <td>
+      4
+    </td>
+    <td></td>
+    <td></td>
+    <td>
+      10
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>
+      Remove the ability to store annotations in NBIA and instead focus on integration with AIM data services
+    </td>
+    <td>
+      4
+    </td>
+    <td>
+      Still waiting for production AIM submiistion/retrieval/query
+    </td>
+    <td>
+      this implies that production level AIM data services need to be setup prior to addressing this
+    </td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>
+      Continue investigating ways to improve workstation integration with NBIA
+    </td>
+    <td>
+      4
+    </td>
+    <td></td>
+    <td>
+      I-response/clearcanvas/kitware/xip/etc
+    </td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>
+      Remove the curation spreadsheet functionality
+    </td>
+    <td>
+      4
+    </td>
+    <td>
+      4.3
+    </td>
+    <td>
+      Clinical data (survival, etc) integration is no longer supported by NBIA.  caIntegrator2 studies or other tools would be required.
+    </td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>
+      Security and Permission
+    </td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>
+      8
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>
+      auto-creation of security elements for new submissions
+    </td>
+    <td>
+      4
+    </td>
+    <td></td>
+    <td>
+      it would greatly cut down on the administrative work load required for NBIA if new protection elements and groups were generated automatically when data for a new collection is received
+    </td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>
+      integration of CTP and UPT
+    </td>
+    <td>
+      5
+    </td>
+    <td></td>
+    <td>
+      currently CTP and NBIA both grant role based access to users of each component.  CTP tracks these credentials in a flat file.  It would be ideal if management of these roles could be handled through the UPT just like the roles are for NBIA.
+    </td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>
+      Workflow management
+    </td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>
+      12
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>
+      Project centric management dashboard
+    </td>
+    <td>
+      5
+    </td>
+    <td>
+      WIKI is playing the role here - but not the automatic generation of metrics
+    </td>
+    <td>
+      a management dashboard that is Collection centric so that individuals responsible for a collection can have one interface to all required information/actions.
+    </td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>
+      Documentation
+    </td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>
+      1
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>
+      Improved installation, user guides
+    </td>
+    <td>
+      7
+    </td>
+    <td>
+      ongoing…
+    </td>
+    <td>
+      continue to improve documentation
+    </td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>
+      Improve submission documentation
+    </td>
+    <td>
+      3
+    </td>
+    <td>
+      ongoing…
+    </td>
+    <td>
+      In particular, because we have recently migrated to CTP as a submission platform and also because CTP has made large leaps in functionality in recent months there is some catching up we need to do with regards to documenting everything it does.  A lot of this documenation can be found on the RSNA wiki but their documentation is more general and so we need to fill in gaps that are specific to using CTP with NBIA
+    </td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>
+      Include documentation about how to use CTP to effectively de-identify images for removing PHI
+    </td>
+    <td>
+      2
+    </td>
+    <td></td>
+    <td>
+      CTP now has built in profiles.  The Supplement 142 Basic Profile is included as a default.  Whatever CTP user documentation is included should specify that this is the official recommended means of de-identifying data per DICOM WG 18.
+    </td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>
+      Submission
+    </td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>
+      Protocol  enforcement
+    </td>
+    <td>
+      8
+    </td>
+    <td></td>
+    <td>
+      it&#39;s possible to use filters in CTP to perform protocol enforcement during submission (ensuring only expected modalities are received, etc).
+    </td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>
+      Improve the integration between CTP and NBIA to allow them to communicate to each other to help make it easy for submitters to be sure all their data made it into the system
+    </td>
+    <td>
+      2
+    </td>
+    <td>
+      4.4
+    </td>
+    <td>
+      Currently the NBIA system has no way of knowing how much data was actually sent to it via CTP.  Verification that nothing was lost during a submission is done manually by asking the submitter to count the total number of images they sent and then comparing it to the reports generated by the Verify Submission tool in NBIA.  CTP and NBIA should be able to communicate with each other to automate this process, making it easier to find out if any images didn&#39;t get submitted properly and to be able to resolve any problems that come up.  (John Perry recently added an Object Tracker stage in CTP to help address this and is willing to enhance it further to allow it to talk to NBIA to fully close the submission loop)  Round-trip confirmation of submissions (Data submitter checks at the client to confirm on successful stores at NBIA
+    </td>
+    <td></td>
+  </tr>
+</table>

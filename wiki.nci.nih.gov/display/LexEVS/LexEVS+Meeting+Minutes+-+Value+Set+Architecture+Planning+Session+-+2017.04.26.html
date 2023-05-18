@@ -1,0 +1,286 @@
+<h2 id="LexEVSMeetingMinutesValueSetArchitecturePlanningSession2017.04.26-Attendees">
+   Attendees
+</h2>
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        Name
+      </th>
+      <th>
+        Role
+      </th>
+      <th colspan="1">
+        Present
+      </th>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Safran, Tracy
+      </td>
+      <td colspan="1">
+        NIH/NCI [C]
+      </td>
+      <td colspan="1">
+        x
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Wynne, Robert
+      </td>
+      <td>
+        NIH/NCI [C]
+      </td>
+      <td>
+        x
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Ong, Kim L
+      </td>
+      <td colspan="1">
+        IS
+      </td>
+      <td colspan="1">
+        x
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Lucas, Jason R
+      </td>
+      <td colspan="1">
+        IS
+      </td>
+      <td colspan="1">
+        x
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Bauer, Scott
+      </td>
+      <td colspan="1">
+        Mayo
+      </td>
+      <td colspan="1">
+        x
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Stancl, Craig
+      </td>
+      <td colspan="1">
+        Mayo
+      </td>
+      <td colspan="1"></td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Endle,  Cory
+      </td>
+      <td colspan="1">
+        Mayo
+      </td>
+      <td colspan="1">
+        x
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="LexEVSMeetingMinutesValueSetArchitecturePlanningSession2017.04.26-Resources">
+  Resources
+</h2>
+<ul>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=337293605" rel="nofollow">
+      LexEVS 6.5.1 Value Set Architecture
+    </a>
+  </li>
+</ul>
+<h2 id="LexEVSMeetingMinutesValueSetArchitecturePlanningSession2017.04.26-Agenda">
+  Agenda
+</h2>
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <td colspan="1">
+        Review and further define requirements on the value set architecture page.
+      </td>
+      <td colspan="1">
+        Discussion Points:
+        <ul>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=337293605" rel="nofollow">
+              LexEVS 6.5.1 Value Set Architecture
+            </a>
+          </li>
+          <li>
+            Kim - Need to improve efficiency of retrieving value set data for view of the tree in browser.
+            <ul>
+              <li>
+                Kim asked if we will be creating the tree for him.
+              </li>
+            </ul>
+          </li>
+          <li>
+            We reviewed the &#34;Discussion Points&#34; section of the VS Architecture page.
+            <ul>
+              <li>
+                Stakeholders -
+                <ul>
+                  <li>
+                    FDA, CDISC, are users through the files.
+                  </li>
+                  <li>
+                    Users of the LexEVS are the editors.  The write value sets into the NCI Thesaurus.
+                  </li>
+                  <li>
+                    They generate files through the ReportWriter (that interacts through LexEVS).
+                  </li>
+                  <li>
+                    They also use the browser to view the value sets.
+                  </li>
+                </ul>
+              </li>
+              <li>
+                Work Flow - End user interface
+                <ul>
+                  <li>
+                    Tracy suggested that a shell script would be adequate.
+                  </li>
+                </ul>
+              </li>
+              <li>
+                What considerations/requirements drive the development of an architecture that encompasses hierarchical value sets and new resolution mechanisms?
+                <ul>
+                  <li>
+                    View as hierarchies in the browser.
+                  </li>
+                  <li>
+                    This would be an extension.
+                  </li>
+                  <li>
+                    There are a couple of value sets that have a few hundred.  Neoplasm has 3000.  There is one that has 8000.
+                  </li>
+                  <li>
+                    How deep are these value sets?
+                    <ul>
+                      <li>
+                        Some are 8-9 levels
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    Flavors of Hierarchical Value Sets
+                    <ul>
+                      <li>
+                        Source to Target association based Value Sets
+                        <ul>
+                          <li>
+                            NICHD parent value sets. Not doing anything with these currently.  Association is read and creates external file.
+                          </li>
+                          <li>
+                            CDRH parent value sets.
+                          </li>
+                        </ul>
+                      </li>
+                      <li>
+                        subClassOf based Value Sets
+                        <ul>
+                          <li>
+                            Neoplasm -
+                          </li>
+                        </ul>
+                      </li>
+                      <li>
+                        Alternative Hierarchy
+                        <ul>
+                          <li>
+                            Source to Target
+                          </li>
+                          <li>
+                            Transitive restrictions in the NCI thesaurus
+                          </li>
+                          <li>
+                            Example: Anatomical structure is physical part of
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    Two things to consider:
+                    <ul>
+                      <li>
+                        How to arrange value sets.
+                      </li>
+                      <li>
+                        How to arrange concepts within a value set (out of scope).
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    LexEVS will provide extensions that will help load these value set use cases as value set coding schemes
+                  </li>
+                </ul>
+              </li>
+              <li>
+                Create OWL source for some/all values sets from LexEVS api or other source? (OWL export of value sets)
+                <ul>
+                  <li>
+                    This is a performance based consideration.  Not a requirement at this time.
+                  </li>
+                </ul>
+              </li>
+              <li>
+                What user needs around the report writer generate requirements for LexEVS or the LexEVS team?
+                <ul>
+                  <li>
+                    None.  It uses NCIT coding scheme itself, not the value sets.
+                  </li>
+                  <li>
+                    Moving to SPARQL
+                  </li>
+                </ul>
+              </li>
+              <li>
+                Does Excel spread sheet generation fall into the scope of LexEVS value set resolution or otherwise generate requirements for the LexEVS team?
+                <ul>
+                  <li>
+                    No
+                  </li>
+                </ul>
+              </li>
+              <li>
+                Do the users/stakeholders in the value set API have any new requirements beyond those already stated
+                <ul>
+                  <li>
+                    Modified result sets from CTS2 - only return specified parts of an entity, not all the values in the entity.
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        Decision Points:
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1"></td>
+      <td colspan="1"></td>
+    </tr>
+  </tbody>
+</table>

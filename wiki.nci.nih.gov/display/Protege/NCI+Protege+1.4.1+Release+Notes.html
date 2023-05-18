@@ -1,0 +1,758 @@
+<h1 id="NCIProtege1.4.1ReleaseNotes-NCIProtégé1.4.1ReleaseNotes">
+  NCI Protégé 1.4.1 Release Notes
+</h1>
+Contents of this Page
+<ul>
+  <li>
+    <a href="#NCIProtege1.4.1ReleaseNotes-ProductChanges" rel="nofollow">
+      Product Changes
+    </a>
+  </li>
+  <li>
+    <a href="#NCIProtege1.4.1ReleaseNotes-NewFeatureHighlights" rel="nofollow">
+      New Feature Highlights
+    </a>
+  </li>
+  <li>
+    <a href="#NCIProtege1.4.1ReleaseNotes-ListofNewFeatures" rel="nofollow">
+      List of New Features
+    </a>
+  </li>
+  <li>
+    <a href="#NCIProtege1.4.1ReleaseNotes-ListofBugFixes" rel="nofollow">
+      List of Bug Fixes
+    </a>
+  </li>
+  <li>
+    <a href="#NCIProtege1.4.1ReleaseNotes-OtherItemsClosed" rel="nofollow">
+      Other Items Closed
+    </a>
+  </li>
+  <li>
+    <a href="#NCIProtege1.4.1ReleaseNotes-COREProductDependencies" rel="nofollow">
+      CORE Product Dependencies
+    </a>
+  </li>
+  <li>
+    <a href="#NCIProtege1.4.1ReleaseNotes-ReleaseHistory" rel="nofollow">
+      Release History
+    </a>
+  </li>
+</ul>
+National Cancer Institute Center for Bioinformatics
+Protege 1.4.1 Release Notes
+28 January 2010
+<h2 id="NCIProtege1.4.1ReleaseNotes-ProductChanges">
+  Product Changes
+</h2>
+The objective of this release of Protege 1.4.1 is to provide bugs fixes found in previous. Protege releases as well as completing a feature request for formatting of the complex properties and improving performance for batch edits.
+<h2 id="NCIProtege1.4.1ReleaseNotes-NewFeatureHighlights">
+  New Feature Highlights
+</h2>
+<ul>
+  <li>
+    2948: Object properties available in role construction dialog are restricted according to the domain of the class that the role is being asserted on
+  </li>
+</ul>
+<ul>
+  <li>
+    6082: Forward and Backward navigation buttons have been enabled in the NCIEditTab.
+  </li>
+</ul>
+<ul>
+  <li>
+    16121: Buttons to make a class Defined or Primitive have been added to the NCIEditTab. If the entire list of Necessary conditions is to be made Necessary and Sufficient, the conditions don&#39;t need to be made defining one at a time, pressing the appropriate button makes all these conditions N&amp;S. The same applies to making a class primitive starting from a defined class. Individual conditions can still be made either defining or non-defining as necessary.
+  </li>
+</ul>
+<ul>
+  <li>
+    21375: Internal format of complex properties has been modified. An xml schema is now used to specify the format. This affects batch editing jobs that include complex properties. The format to use for DEFINITION and ALT_DEFINITION in a batch edit is:
+  </li>
+</ul>
+&lt;ncicp:ComplexDefinition xmlns:ncicp=&#34;http://ncicb.nci.nih.gov/xml/owl/EVS/ComplexProperties.xsd#&#34;&gt;&lt;ncicp:def-definition&gt;Text of DEFINITION.&lt;/ncicp:def-definition&gt;&lt;ncicp:def-source&gt;NCI or some other&lt;/ncicp:def-source&gt;&lt;ncicp:attr&gt;some attribution&lt;/ncicp:attr&gt;&lt;ncicp:Definition_Reviewer_Name&gt;Someone&#39;s name&lt;/ncicp:Definition_Reviewer_Name&gt;&lt;ncicp:Definition_Review_Date&gt;a date in YYMMDD format&lt;/ncicp:Definition_Review_Date&gt;&lt;/ncicp:ComplexDefinition&gt;
+
+If no attribution is required the entire set of tags can be eliminated from the above. And the format for a FULL_SYN is:
+
+&lt;ncicp:ComplexTerm xmlns:ncicp=&#34;http://ncicb.nci.nih.gov/xml/owl/EVS/ComplexProperties.xsd#&#34;&gt;&lt;ncicp:term-name&gt;some term&lt;/ncicp:term-name&gt;&lt;ncicp:term-group&gt;PT or another type&lt;/ncicp:term-group&gt;&lt;ncicp:term-source&gt;NCI or another source&lt;/ncicp:term-source&gt;&lt;ncicp:source-code&gt;some code&lt;/ncicp:source-code&gt;&lt;/ncicp:ComplexTerm&gt;
+
+If no source code is required the entire set of tags can be eliminated from the above.
+<h2 id="NCIProtege1.4.1ReleaseNotes-ListofNewFeatures">
+  List of New Features
+</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        GForge number
+        (hyperlinked)
+      </th>
+      <th>
+        Brief description of item
+      </th>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://gforge.nci.nih.gov/tracker/index.php?func=detail&amp;aid=18997&amp;group_id=174&amp;atid=822" rel="nofollow">
+          18997
+        </a>
+      </td>
+      <td>
+        Protege tab for reasoning server administration (including status information and kb reload)
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://gforge.nci.nih.gov/tracker/index.php?func=detail&amp;aid=22870&amp;group_id=174&amp;atid=822" rel="nofollow">
+          22870
+        </a>
+      </td>
+      <td>
+        Would like to do &#39;property present&#39; LQT queries with object properties
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://gforge.nci.nih.gov/tracker/index.php?func=detail&amp;aid=2948&amp;group_id=174&amp;atid=822" rel="nofollow">
+          2948
+        </a>
+      </td>
+      <td>
+        Domain and Range checks on property restrictions at edit time
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://gforge.nci.nih.gov/tracker/index.php?func=detail&amp;aid=23003&amp;group_id=174&amp;atid=822" rel="nofollow">
+          23003
+        </a>
+      </td>
+      <td>
+        Not able to have a NOT query in the nested query
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://gforge.nci.nih.gov/tracker/index.php?func=detail&amp;aid=23297&amp;group_id=174&amp;atid=822" rel="nofollow">
+          23297
+        </a>
+      </td>
+      <td>
+        Restrict access to OWLClasses tab
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://gforge.nci.nih.gov/tracker/index.php?func=detail&amp;aid=23516&amp;group_id=174&amp;atid=822" rel="nofollow">
+          23516
+        </a>
+      </td>
+      <td>
+        the changes ontology sees changes involving internal protege classification slots (e.g. protege:inferredSuperclassOf)
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://gforge.nci.nih.gov/tracker/index.php?func=detail&amp;aid=21375&amp;group_id=174&amp;atid=822" rel="nofollow">
+          21375
+        </a>
+      </td>
+      <td>
+        Use of parseType=Literal for complex properties
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://gforge.nci.nih.gov/tracker/index.php?func=detail&amp;aid=18533&amp;group_id=174&amp;atid=822" rel="nofollow">
+          18533
+        </a>
+      </td>
+      <td>
+        Changes Tab does not reflect items created in Batch Load
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://gforge.nci.nih.gov/tracker/index.php?func=detail&amp;aid=16324&amp;group_id=174&amp;atid=822" rel="nofollow">
+          16324
+        </a>
+      </td>
+      <td>
+        Need indication of classifier run
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://gforge.nci.nih.gov/tracker/index.php?func=detail&amp;aid=16121&amp;group_id=174&amp;atid=822" rel="nofollow">
+          16121
+        </a>
+      </td>
+      <td>
+        Button to make a concept defined
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://gforge.nci.nih.gov/tracker/index.php?func=detail&amp;aid=6082&amp;group_id=174&amp;atid=822" rel="nofollow">
+          6082
+        </a>
+      </td>
+      <td>
+        BACK and FORWARD Buttons
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="NCIProtege1.4.1ReleaseNotes-ListofBugFixes">
+  List of Bug Fixes
+</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        GForge number
+        (hyperlinked)
+      </th>
+      <th>
+        Brief description of item
+      </th>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://gforge.nci.nih.gov/tracker/index.php?func=detail&amp;aid=24801&amp;group_id=174&amp;atid=822" rel="nofollow">
+          24801
+        </a>
+      </td>
+      <td>
+        Focus of editor switches while creating restrictions
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://gforge.nci.nih.gov/tracker/index.php?func=detail&amp;aid=22400&amp;group_id=174&amp;atid=822" rel="nofollow">
+          22400
+        </a>
+      </td>
+      <td>
+        LQT results don&#39;t have search criteria appended at the end of the file.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://gforge.nci.nih.gov/tracker/index.php?func=detail&amp;aid=22680&amp;group_id=174&amp;atid=822" rel="nofollow">
+          22680
+        </a>
+      </td>
+      <td>
+        Restrictions added flagged as changes to Restriction classes in Prompt
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://gforge.nci.nih.gov/tracker/index.php?func=detail&amp;aid=24503&amp;group_id=174&amp;atid=822" rel="nofollow">
+          24503
+        </a>
+      </td>
+      <td>
+        LQT nested query causes error dialog
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://gforge.nci.nih.gov/tracker/index.php?func=detail&amp;aid=24435&amp;group_id=174&amp;atid=822" rel="nofollow">
+          24435
+        </a>
+      </td>
+      <td>
+        fitering inherited restrictions
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://gforge.nci.nih.gov/tracker/index.php?func=detail&amp;aid=24343&amp;group_id=174&amp;atid=822" rel="nofollow">
+          24343
+        </a>
+      </td>
+      <td>
+        Cannot edit restriction that has an apostrophe in the filler value
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://gforge.nci.nih.gov/tracker/index.php?func=detail&amp;aid=24301&amp;group_id=174&amp;atid=822" rel="nofollow">
+          24301
+        </a>
+      </td>
+      <td>
+        Add Individual button should only be enabled when hasValue is selected
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://gforge.nci.nih.gov/tracker/index.php?func=detail&amp;aid=23284&amp;group_id=174&amp;atid=822" rel="nofollow">
+          23284
+        </a>
+      </td>
+      <td>
+        Batch edit to delete associations needs full association rdfs:ID
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://gforge.nci.nih.gov/tracker/index.php?func=detail&amp;aid=24196&amp;group_id=174&amp;atid=822" rel="nofollow">
+          24196
+        </a>
+      </td>
+      <td>
+        Restore nci-specific export function in inferred tree widget
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://gforge.nci.nih.gov/tracker/index.php?func=detail&amp;aid=19404&amp;group_id=174&amp;atid=822" rel="nofollow">
+          19404
+        </a>
+      </td>
+      <td>
+        Link which opens when an unstructured proposal is imported, opens an xml.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://gforge.nci.nih.gov/tracker/index.php?func=detail&amp;aid=20587&amp;group_id=174&amp;atid=822" rel="nofollow">
+          20587
+        </a>
+      </td>
+      <td>
+        infinite loop in Report Writer
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://gforge.nci.nih.gov/tracker/index.php?func=detail&amp;aid=22969&amp;group_id=174&amp;atid=822" rel="nofollow">
+          22969
+        </a>
+      </td>
+      <td>
+        Report Writer fails on rerun after a cancel
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://gforge.nci.nih.gov/tracker/index.php?func=detail&amp;aid=22984&amp;group_id=174&amp;atid=822" rel="nofollow">
+          22984
+        </a>
+      </td>
+      <td>
+        null pointer in Protege OWL layer
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://gforge.nci.nih.gov/tracker/index.php?func=detail&amp;aid=23006&amp;group_id=174&amp;atid=822" rel="nofollow">
+          23006
+        </a>
+      </td>
+      <td>
+        Can&#39;t change tabs unless focus is on a concept
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://gforge.nci.nih.gov/tracker/index.php?func=detail&amp;aid=23204&amp;group_id=174&amp;atid=822" rel="nofollow">
+          23204
+        </a>
+      </td>
+      <td>
+        After split one of the classes ended up with owl:thing as the only parent
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://gforge.nci.nih.gov/tracker/index.php?func=detail&amp;aid=23276&amp;group_id=174&amp;atid=822" rel="nofollow">
+          23276
+        </a>
+      </td>
+      <td>
+        In Copy pane, the Preferred_Name and PT are automatically sync&#39;ed with an improper AQ.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://gforge.nci.nih.gov/tracker/index.php?func=detail&amp;aid=23431&amp;group_id=174&amp;atid=822" rel="nofollow">
+          23431
+        </a>
+      </td>
+      <td>
+        Editing a role with Cardinality requires reselecting Cardinality
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://gforge.nci.nih.gov/tracker/index.php?func=detail&amp;aid=23529&amp;group_id=174&amp;atid=822" rel="nofollow">
+          23529
+        </a>
+      </td>
+      <td>
+        Report Writer shows anon class defined by conjunction of NandS
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://gforge.nci.nih.gov/tracker/index.php?func=detail&amp;aid=23716&amp;group_id=174&amp;atid=822" rel="nofollow">
+          23716
+        </a>
+      </td>
+      <td>
+        Report Writer incapable of generate completed report
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://gforge.nci.nih.gov/tracker/index.php?func=detail&amp;aid=23613&amp;group_id=174&amp;atid=822" rel="nofollow">
+          23613
+        </a>
+      </td>
+      <td>
+        CompleteableCache throws a nullpointer exception
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://gforge.nci.nih.gov/tracker/index.php?func=detail&amp;aid=23057&amp;group_id=174&amp;atid=822" rel="nofollow">
+          23057
+        </a>
+      </td>
+      <td>
+        Lucene indexing failure with database data
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://gforge.nci.nih.gov/tracker/index.php?func=detail&amp;aid=23631&amp;group_id=174&amp;atid=822" rel="nofollow">
+          23631
+        </a>
+      </td>
+      <td>
+        Refresh of screen after classification slow and using up desktop resources
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://gforge.nci.nih.gov/tracker/index.php?func=detail&amp;aid=22879&amp;group_id=174&amp;atid=822" rel="nofollow">
+          22879
+        </a>
+      </td>
+      <td>
+        BatchEditor gives a false positive
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://gforge.nci.nih.gov/tracker/index.php?func=detail&amp;aid=23530&amp;group_id=174&amp;atid=822" rel="nofollow">
+          23530
+        </a>
+      </td>
+      <td>
+        Cannot edit the concept from workflow
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://gforge.nci.nih.gov/tracker/index.php?func=detail&amp;aid=23969&amp;group_id=174&amp;atid=822" rel="nofollow">
+          23969
+        </a>
+      </td>
+      <td>
+        Batch edit takes a long time
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://gforge.nci.nih.gov/tracker/index.php?func=detail&amp;aid=22434&amp;group_id=174&amp;atid=822" rel="nofollow">
+          22434
+        </a>
+      </td>
+      <td>
+        database accumulates garbage over a period of time
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://gforge.nci.nih.gov/tracker/index.php?func=detail&amp;aid=22405&amp;group_id=174&amp;atid=822" rel="nofollow">
+          22405
+        </a>
+      </td>
+      <td>
+        NPE when selecting row from PROMPT differences table
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://gforge.nci.nih.gov/tracker/index.php?func=detail&amp;aid=20018&amp;group_id=174&amp;atid=822" rel="nofollow">
+          20018
+        </a>
+      </td>
+      <td>
+        During a batch edit a new definition is accepted even without the qualifiers.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://gforge.nci.nih.gov/tracker/index.php?func=detail&amp;aid=13586&amp;group_id=174&amp;atid=822" rel="nofollow">
+          13586
+        </a>
+      </td>
+      <td>
+        Can the Read-Only view look like the Review pane (have one page with all class info)?
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://gforge.nci.nih.gov/tracker/index.php?func=detail&amp;aid=22781&amp;group_id=174&amp;atid=822" rel="nofollow">
+          22781
+        </a>
+      </td>
+      <td>
+        Protege 1.4 loads ndf-rt with exceptions, property tab has the ugly widget
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://gforge.nci.nih.gov/tracker/index.php?func=detail&amp;aid=15632&amp;group_id=174&amp;atid=822" rel="nofollow">
+          15632
+        </a>
+      </td>
+      <td>
+        Inability to reject and/or ignore suggestions from the classifier
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://gforge.nci.nih.gov/tracker/index.php?func=detail&amp;aid=22786&amp;group_id=174&amp;atid=822" rel="nofollow">
+          22786
+        </a>
+      </td>
+      <td>
+        Expands the first top level node under owl:Thing when add Restriction
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://gforge.nci.nih.gov/tracker/index.php?func=detail&amp;aid=23495&amp;group_id=174&amp;atid=822" rel="nofollow">
+          23495
+        </a>
+      </td>
+      <td>
+        Slow performance when creating new concepts including split and copy
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="NCIProtege1.4.1ReleaseNotes-OtherItemsClosed">
+  Other Items Closed
+</h2>
+The defects in the following list were not reproducible, or were fixed as a by-product of refactoring, or were related to configuration setup.
+<table>
+  <tbody>
+    <tr>
+      <th>
+        GForge number
+        (hyperlinked)
+      </th>
+      <th>
+        Brief description of item
+      </th>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://gforge.nci.nih.gov/tracker/?func=detail&amp;group_id=174&amp;aid=24781&amp;atid=822" rel="nofollow">
+          24781
+        </a>
+      </td>
+      <td>
+        Legacy_Concept_Name issues
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://gforge.nci.nih.gov/tracker/?group_id=174&amp;atid=822&amp;func=detail&amp;aid=23545" rel="nofollow">
+          23545
+        </a>
+      </td>
+      <td>
+        ReadCommited Cache throws a nullpointer exception.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://gforge.nci.nih.gov/tracker/?group_id=174&amp;atid=822&amp;func=detail&amp;aid=23998" rel="nofollow">
+          23998
+        </a>
+      </td>
+      <td>
+        (duplicate of 24360 ) Runtime errors during batch edit
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://gforge.nci.nih.gov/tracker/?group_id=174&amp;atid=822&amp;func=detail&amp;aid=21685" rel="nofollow">
+          21685
+        </a>
+      </td>
+      <td>
+        Imports ontologies through the metadata tab is not working
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://gforge.nci.nih.gov/tracker/?group_id=174&amp;atid=822&amp;func=detail&amp;aid=19046" rel="nofollow">
+          19046
+        </a>
+      </td>
+      <td>
+        Error editing concepts from workflow with changes in ConceptType
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://gforge.nci.nih.gov/tracker/?group_id=174&amp;atid=822&amp;func=detail&amp;aid=6067" rel="nofollow">
+          6067
+        </a>
+      </td>
+      <td>
+        rethink and redesign workflow of pre-merge/pre-retire
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://gforge.nci.nih.gov/tracker/?group_id=174&amp;atid=822&amp;func=detail&amp;aid=18033" rel="nofollow">
+          18033
+        </a>
+      </td>
+      <td>
+        Make Changes tab show login and log out
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://gforge.nci.nih.gov/tracker/?func=detail&amp;group_id=174&amp;aid=23818&amp;atid=822" rel="nofollow">
+          23818
+        </a>
+      </td>
+      <td>
+        popup windows are inaccessible in Citrix protege
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://gforge.nci.nih.gov/tracker/index.php?func=detail&amp;aid=22101&amp;group_id=174&amp;atid=822" rel="nofollow">
+          22101
+        </a>
+      </td>
+      <td>
+        Wrong Starting Point for Add/Edit Parent Class -- dup 22786
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="NCIProtege1.4.1ReleaseNotes-COREProductDependencies">
+  CORE Product Dependencies
+</h2>
+No caCORE dependencies. This software is used for editing and maintaining NCI Thesaurus and BiomedGT
+<h2 id="NCIProtege1.4.1ReleaseNotes-ReleaseHistory">
+  Release History
+</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Release
+      </th>
+      <th>
+        Date
+      </th>
+    </tr>
+    <tr>
+      <td>
+        1.0
+      </td>
+      <td>
+        Jun 07
+      </td>
+    </tr>
+    <tr>
+      <td>
+        1.1
+      </td>
+      <td>
+        Sept 07
+      </td>
+    </tr>
+    <tr>
+      <td>
+        1.2.0
+      </td>
+      <td>
+        Dec 07
+      </td>
+    </tr>
+    <tr>
+      <td>
+        1.2.1
+      </td>
+      <td>
+        Feb 08
+      </td>
+    </tr>
+    <tr>
+      <td>
+        1.2.2
+      </td>
+      <td>
+        May 08
+      </td>
+    </tr>
+    <tr>
+      <td>
+        1.2.3
+      </td>
+      <td>
+        Jul 08
+      </td>
+    </tr>
+    <tr>
+      <td>
+        1.2.3 Patch
+      </td>
+      <td>
+        Aug 08
+      </td>
+    </tr>
+    <tr>
+      <td>
+        1.3.0
+      </td>
+      <td>
+        Mar 09
+      </td>
+    </tr>
+    <tr>
+      <td>
+        1.4.0
+      </td>
+      <td>
+        Sep 09
+      </td>
+    </tr>
+    <tr>
+      <td>
+        1.4.1
+      </td>
+      <td>
+        Jan 10
+      </td>
+    </tr>
+  </tbody>
+</table>

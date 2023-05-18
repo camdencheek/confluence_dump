@@ -1,0 +1,366 @@
+This chapter describes the process for creating and managing user accounts in caIntegrator. It also discusses the processes for managing ownership and access to studies in caIntegrator.This chapter includes the following topics.
+<ul>
+  <li>
+    <a href="#id-7AdministeringUserAccounts-OverviewofAdministeringcaIntegratorUserAccountsUsingUPT" rel="nofollow">
+      Overview of Administering caIntegrator User Accounts Using UPT
+    </a>
+  </li>
+  <li>
+    <a href="#id-7AdministeringUserAccounts-WorkflowforCreatingUserAccesstocaIntegrator" rel="nofollow">
+      Workflow for Creating User Access to caIntegrator
+    </a>
+    <ul>
+      <li>
+        <a href="#id-7AdministeringUserAccounts-CreatingaNewcaIntegratorUser" rel="nofollow">
+          Creating a New caIntegrator User
+        </a>
+      </li>
+      <li>
+        <a href="#id-7AdministeringUserAccounts-AddingaUsertoaUserGroup" rel="nofollow">
+          Adding a User to a User Group
+        </a>
+      </li>
+      <li>
+        <a href="#id-7AdministeringUserAccounts-CreatingaNewUserGroup" rel="nofollow">
+          Creating a New User Group
+        </a>
+      </li>
+      <li>
+        <a href="#id-7AdministeringUserAccounts-AssigningaUserGrouptoaProtectionGroup" rel="nofollow">
+          Assigning a User Group to a Protection Group
+        </a>
+      </li>
+      <li>
+        <a href="#id-7AdministeringUserAccounts-CreatingaNewProtectionGroup" rel="nofollow">
+          Creating a New Protection Group
+        </a>
+      </li>
+      <li>
+        <a href="#id-7AdministeringUserAccounts-ChangingaUserPassword" rel="nofollow">
+          Changing a User Password
+        </a>
+      </li>
+    </ul>
+  </li>
+</ul>
+NoteThe options for performing user management tasks are visible in caIntegrator on the left sidebar of the browser only if you have these Admin privileges.
+<h2 id="id-7AdministeringUserAccounts-OverviewofAdministeringcaIntegratorUserAccountsUsingUPT">
+  Overview of Administering caIntegrator User Accounts Using UPT
+</h2>
+New User?If you are interested in registering an account in caIntegrator, see
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=47383454" rel="nofollow">
+  Registering as a New caIntegrator User
+</a>
+.In caIntegrator, all tasks related to creating and managing user accounts can be performed only by a caIntegrator administrator using the CBIIT User Provisioning Tool (UPT) v. 4.2. The following sections discuss the use of the UPT for performing these tasks. For further information about UPT, see Chapter 3 of the
+<a href="https://wiki.nci.nih.gov/x/5C0lBQ" rel="nofollow">
+  CSM 5.0 Programmer&#39;s Guide
+</a>
+.The UPT is a separately installed application which serves as the user management interface for all National Cancer Institute CBIIT Life Sciences Distribution (LSD) applications, including caIntegrator. The UPT application is the central point for all user management functionality within caIntegrator. You can use UPT to add new users and to apply user group assignments to the caIntegrator database directly. The UPT groups can refer to predefined groups such as Study Manager or Study Investigator, which determine what roles the user has.The following terms are used both in this chapter and in the UPT to define user-related roles:
+<ul>
+  <li>
+    User – a person who is accessing caIntegrator. The user has an associated account and user ID.
+  </li>
+  <li>
+    User Group – a group of users, typically grouped by organization and role, for example, &#34;Columbia University Study Managers&#34;
+  </li>
+  <li>
+    Protection Group – a group of studies given a secure status and typically grouped by organization, for example, &#34;Columbia University Protected Studies&#34;.
+  </li>
+</ul>
+<h2 id="id-7AdministeringUserAccounts-WorkflowforCreatingUserAccesstocaIntegrator">
+  Workflow for Creating User Access to caIntegrator
+</h2>
+The following steps summarize the process for establishing user access to caIntegrator:
+<ol>
+  <li>
+    A potential user requests a user account in caIntegrator. See
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=47383454" rel="nofollow">
+      Registering as a New caIntegrator User
+    </a>
+    .
+  </li>
+  <li>
+    You, as a caIntegrator administrator, check if the User already exists in caIntegrator. If not,
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726032" rel="nofollow">
+      create the new User
+    </a>
+    .
+  </li>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726032" rel="nofollow">
+      Link the new User to a User Group
+    </a>
+    . A &#34;group&#34; is a collection of users. Check if the requestor&#39;s User Group already exists in caIntegrator. If not,
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726032" rel="nofollow">
+      create a new User Group
+    </a>
+    .
+  </li>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726032" rel="nofollow">
+      Link the User Group to a Protection Group
+    </a>
+    . Check if the Protection Group (for example, &#34;Columbia University Protected Studies&#34;), containing the studies to which this new user wants access currently exists. If not,
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726032" rel="nofollow">
+      create a new Protection Group
+    </a>
+    . Protection Group AccessIf the Protection Group already exists, contact the Organizational Contact person to confirm that it is OK to give this person access to this Protection Group.
+  </li>
+  <li>
+    Give the requestor&#39;s User Group access to the Protection Group. See
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726032" rel="nofollow">
+      Assigning a User Group to a Protection Group
+    </a>
+    .
+  </li>
+</ol>
+<h3 id="id-7AdministeringUserAccounts-CreatingaNewcaIntegratorUser">
+  Creating a New caIntegrator User
+</h3>
+To create a new
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726032" rel="nofollow">
+  User
+</a>
+in caIntegrator, follow these steps:
+<ol>
+  <li>
+    Log into UPT as a caIntegrator Admin.
+  </li>
+  <li>
+    Search to see if the user already exists. Click the User menu option.
+  </li>
+  <li>
+    On the User page that opens, click Select an Existing User.
+  </li>
+  <li>
+    Use the form and search for the user. If you define no criteria, UPT returns a list of all caIntegrator users currently in the system. See the following figure for an example.
+    <img alt="The example shows a list of current caIntegrator users in UPT after a user search" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/7%20-%20Administering%20User%20Accounts/UPT%20search%20user80.PNG?api=v2">
+  </li>
+  <li>
+    If the user does not already exist (is not listed in the search results), then create a new user. To do so, select the User menu option again, then click Create a New User. This opens the page for creating a new caIntegrator user.
+  </li>
+  <li>
+    Enter details only for the following required fields:
+    <ul>
+      <li>
+        User Login Name
+      </li>
+      <li>
+        User First Name
+      </li>
+      <li>
+        User Last Name
+      </li>
+      <li>
+        User PasswordCautionIf the requestor is an LDAP user, then the User Login Name must match the LDAP login ID AND the User Password field must be left blank. If the requestor is not an LDAP user, then provide a password.
+      </li>
+    </ul>
+  </li>
+  <li>
+    Click Add to confirm the new user.
+  </li>
+</ol>
+At this point, you can add the new user to a
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726032" rel="nofollow">
+  user group
+</a>
+where you can assign roles to the user, and the user group to a
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726032" rel="nofollow">
+  protection group
+</a>
+where you can assign limited visiblities to the new user.It is possible for administrators to use a 3rd-party tool to create caIntegrator users and passwords, then link this system to UPT. For more information about this option, contact
+<a href="https://wiki.nci.nih.gov/x/RoDnAg#UsingthisGuide-ApplicationSupport" rel="nofollow">
+  CBIIT Application Support
+</a>
+.
+<h3 id="id-7AdministeringUserAccounts-AddingaUsertoaUserGroup">
+  Adding a User to a User Group
+</h3>
+Once you have created a new user, that user can be linked to a collection of users called a
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726032" rel="nofollow">
+  user group;
+</a>
+the user group would then be assigned to a
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726032" rel="nofollow">
+  protection group
+</a>
+.Assigning Users to Groups greatly improves the ease with which you, the admin, can provision access rights. You can instantly assign a role and protection group to an entire group of users instead of repeating the same assignment for each individual user.For example, you can assign a new user to a user group to which you have already assigned a specific role, and then assign that user group to the protection group, or you can assign a role collectively to a protection group after it is created. If a user group and/or protection group with your selected role(s) does not exist, then you can
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726032" rel="nofollow">
+  create such a group
+</a>
+. For more information about roles, see
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=47383454" rel="nofollow">
+  caIntegrator Roles.
+</a>
+To add a user to an existing user group, follow these steps:
+<ol>
+  <li>
+    Log into UPT as caIntegrator Admin.
+  </li>
+  <li>
+    Find the user that you want to assign to a user group. Click the User menu option, then click Select an Existing User.
+  </li>
+  <li>
+    Enter the name of the user you are looking for and click Search. If you define no criteria, UPT returns a list of all caIntegrator users currently in the system, as shown in the following figure.
+    <img alt="Example UPT page showing a list of current caIntegrator users. See text." src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/7%20-%20Administering%20User%20Accounts/UPT%20search%20user80.PNG?api=v2">
+  </li>
+  <li>
+    Select the radio button next to the name and click View Details. The User Details page open, showing brief details about the user you selected.
+  </li>
+  <li>
+    Click the Associated Groups button at the bottom of the page. This opens the page where you can assign a user to a group, as shown in the following figure. The user you selected displays at the top of the page.
+    <img alt="Example UPT page for assigning a user to user groups. See text." src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/7%20-%20Administering%20User%20Accounts/UPT%20user%20and%20groups%20page75.PNG?api=v2">
+  </li>
+  <li>
+    In the Available Groups list, select one or more groups that you want the user to be in and click Assign.If such a group does not exist, you can
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726032" rel="nofollow">
+      create a new user group
+    </a>
+    .
+  </li>
+  <li>
+    At the bottom of the page click Update Association. This completes the assigning of the user to the user group. Now the user will have access to any studies to which the user group has been given access.User in Multiple GroupsYou can add a user to more than one user group. For example, a user could be assigned to &#34;Columbia University Study Managers&#34; as well as to &#34;Columbia University Study Investigators&#34;.
+  </li>
+</ol>
+<h3 id="id-7AdministeringUserAccounts-CreatingaNewUserGroup">
+  Creating a New User Group
+</h3>
+To create a new user group in caIntegrator, follow these steps:
+<ol>
+  <li>
+    Login to UPT as caIntegrator Admin.
+  </li>
+  <li>
+    If a user group that meets your specifications does not already exist, then you can create a new and unique user group. Click the Group menu option, then click Create a new Group.
+  </li>
+  <li>
+    On the form that opens, enter a unique Group Name and a description, if appropriate. Click Add.
+  </li>
+  <li>
+    Follow the directions in
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726032" rel="nofollow">
+      Adding a User to a User Group
+    </a>
+    to link the new user to the new group you created.Naming ConventionThe recommended naming convention for a new User Group is  [insert organization name] Study [insert role]s  . Example: &#34;Columbia University Study Managers&#34;.
+  </li>
+</ol>
+<h3 id="id-7AdministeringUserAccounts-AssigningaUserGrouptoaProtectionGroup">
+  Assigning a User Group to a Protection Group
+</h3>
+To give a user group access to a protection group (a group of protected studies), follow these steps:
+<ol>
+  <li>
+    Login to UPT as caIntegrator Admin.
+  </li>
+  <li>
+    Find the user group you want to assign to the the protection group.
+  </li>
+  <li>
+    Click the Group menu option and click Select an Existing Group.
+  </li>
+  <li>
+    In the page that opens, click Search. If you define no criteria, UPT returns a list of all caIntegrator groups currently in the system. An example is shown in the following figure.
+    <img alt="Example UPT page showing Group search results. See text." src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/7%20-%20Administering%20User%20Accounts/UPT%20search%20groups80.PNG?api=v2">
+  </li>
+  <li>
+    Select the radio button next to the group name you want to assign to the protection group, and click View Details. This opens the Group Details page. An example is shown in the following figure.
+    <img alt="Group Details page, described in text" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/7%20-%20Administering%20User%20Accounts/UPT%20NCI%20Study%20Managers%20group80.PNG?api=v2">
+  </li>
+  <li>
+    Below the group details, click Associated PG &amp; Roles. The page that opens, shown in the following figure, displays any PG to which the user group is already assigned.
+    <img alt="Example UPT page that shows any PGs to which the selected user group is already assigned" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/7%20-%20Administering%20User%20Accounts/UPT%20group%20PG%20and%20roles80.PNG?api=v2">
+  </li>
+  <li>
+    Below the group name, examine if the protection group of your choice is already listed there. If so, this means your user group is already assigned to the protection group of choice, and you can skip the remainder of the steps in this section. If the Protection Group is not listed there, then click Back.
+  </li>
+  <li>
+    Back on the User Group details page, click Assign PG &amp; Roles. This opens the Group, Protection Group and Rules Association page where you can assign a role to the user. caIntegrator roles are defined in the following table:
+    <table>
+      <tbody>
+        <tr>
+          <th>
+            Role Name
+          </th>
+          <th>
+            Role Definition
+          </th>
+        </tr>
+        <tr>
+          <td>
+            STUDY_MANAGER_ROLE
+          </td>
+          <td>
+            Assigning this role allows the user to modify existing studies, create new studies, and deploy existing studies.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            STUDY_INVESTIGATOR_ROLE
+          </td>
+          <td>
+            Assigning this role allows the user to search the study, save queries about the study and perform analyses.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            PLATFORM_MANAGER_ROLE
+          </td>
+          <td>
+            Assigning this role allows the user to create and delete array platforms for the entire caIntegrator installation. Caution: Array platforms are shared by all users and studies in the caIntegrator installation. A user with this role can affect the platforms that are used by by all users and studies in the caIntegrator installation.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    If this user group is a group of study managers, then select STUDY_MANAGER_ROLE. If this user group is a group of study investigators, then select STUDY_INVESTIGATOR_ROLE. AFter making your selection, click Assign.
+  </li>
+</ol>
+Click Update Associationat the bottom of the page. This completes the assigning of the user group to the protection group you chose.Roles Across GroupsIf a User has the STUDY_MANAGER_ROLE role for more than one Protection Group, then any study that the User creates will be assign to each of those Protection Groups.
+<h3 id="id-7AdministeringUserAccounts-CreatingaNewProtectionGroup">
+  Creating a New Protection Group
+</h3>
+If the Protection Group with the appropriate settings does not exist, you can create a new protection group by following these steps.
+<ol>
+  <li>
+    Login to UPT as caIntegrator Admin.
+  </li>
+  <li>
+    Click the Protection Group menu option.
+  </li>
+  <li>
+    On the page that opens, click Create a New Protection Group. The page opens for defining PG Group details, shown in the following figure.
+    <img alt="Example UPT page that shows fields for defining a new protection group" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/7%20-%20Administering%20User%20Accounts/UPT%20new%20PG80.PNG?api=v2">
+  </li>
+  <li>
+    Enter a unique Protection Group Name and Description, if appropriate. Click Add.Naming ConventionThe recommended naming convention is  [insert organization name here] Protected Studies . Example: &#34;Columbia University Protected Studies&#34;.
+  </li>
+</ol>
+<h3 id="id-7AdministeringUserAccounts-ChangingaUserPassword">
+  Changing a User Password
+</h3>
+To change a password for a user, follow these steps:
+<ol>
+  <li>
+    Confirm if the user is an LDAP user or not. If the user is an LDAP user, then this person must change their password using the NCI password change utility. Skip the rest of these steps. If the user is not an LDAP user, then continue with the rest of these steps.
+  </li>
+  <li>
+    Log into UPT as caIntegrator Admin.
+  </li>
+  <li>
+    Find the user that you want to change. Click the User menu option, then Select an Existing User.
+  </li>
+  <li>
+    Enter the name of the user you are looking for and click Search. If you define no criteria, UPT returns a list of all caIntegrator users.
+  </li>
+  <li>
+    Select the radio button next to the name and click View Details.
+  </li>
+  <li>
+    In the page that opens, shown in the following figure, replace the User Password and Confirm Password fields with the new password.
+    <img alt="UPT page for changing users passwords, described in text" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/7%20-%20Administering%20User%20Accounts/UPT%20user%20details%20change%20password80.PNG?api=v2">
+  </li>
+  <li>
+    At the bottom of the page click Update.
+  </li>
+</ol>

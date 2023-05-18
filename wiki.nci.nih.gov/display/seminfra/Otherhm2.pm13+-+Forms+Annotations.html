@@ -1,0 +1,645 @@
+Contents of this Page
+<ul>
+  <li>
+    <a href="#Otherhm2.pm13FormsAnnotations-DefineConditionalCDEs" rel="nofollow">
+      Define Conditional CDEs
+    </a>
+  </li>
+  <li>
+    <a href="#Otherhm2.pm13FormsAnnotations-Definenon-editableCDEs" rel="nofollow">
+      Define non-editable CDEs
+    </a>
+  </li>
+  <li>
+    <a href="#Otherhm2.pm13FormsAnnotations-DefinedefaultvaluesforCDEs" rel="nofollow">
+      Define default values for CDEs
+    </a>
+  </li>
+  <li>
+    <a href="#Otherhm2.pm13FormsAnnotations-DefineaCDEasderived" rel="nofollow">
+      Define a CDE as derived
+    </a>
+  </li>
+  <li>
+    <a href="#Otherhm2.pm13FormsAnnotations-DefineamoduleofCDEs" rel="nofollow">
+      Define a module of CDEs
+    </a>
+  </li>
+</ul>
+<h2 id="Otherhm2.pm13FormsAnnotations-DefineConditionalCDEs">
+  Define Conditional CDEs
+</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Use Case Number
+      </th>
+      <td>
+        Otherhm2.pm13.1
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Brief Description
+      </th>
+      <td>
+        In data collections forms, it is often important to enforce specific rules that determine which data elements are captured.  These rules are termed as &#34;conditional&#34; CDEs or &#34;skip patterns&#34;.  For example, if male is selected for the gender CDE question, then the question about whether the patient is pregnant would be skipped.  More complex conditionals can be defined that require mathematical evaluation (less than, greater than), etc.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Actor(s) for this particular use case
+      </th>
+      <td>
+        Metadata Specialist, Clinical Researcher
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Pre-condition  The state of the system before the user interacts with it
+      </th>
+      <td>
+        None.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Post condition  The state of the system after the user interacts with it
+      </th>
+      <td>
+        Data is collected with conditional steps.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Steps to take  The step-by-step description of how users will interact with the system to achieve a specific business goal or function
+      </th>
+      <td>
+        <ol>
+          <li>
+            The Metadata Specialist selects and defines a set of CDEs for use within a data collection form
+          </li>
+          <li>
+            The Metadata Specialist associates skip patterns with specific CDEs, which defines the action to be taken (CDEs to be skipped) depending on the answer.
+          </li>
+          <li>
+            The Metadata Specialist deploys the form for data collection.
+          </li>
+          <li>
+            The Clinical Researcher captures data using the form
+          </li>
+          <li>
+            When conditional CDEs are reached within the form, the skip patterns are conditionally executed.
+          </li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Alternate Flow  Things which would prevent the normal flow of the use case
+      </th>
+      <td>
+        None.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Priority  The priority of implementing the use case: High, Medium or Low
+      </th>
+      <td>
+        High.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Associated Links  The brief user stories, each describing the user interacts with the system for the one function only of the use case. There would potentially be a number of user stories that make up the use case.
+      </th>
+      <td>
+        <ul>
+          <li>
+            <a href="https://wiki.nci.nih.gov/x/iSxyAQ" rel="nofollow">
+              Otherhm2 - Conditional CDEs
+            </a>
+          </li>
+          <li>
+            <a href="https://wiki.nci.nih.gov/x/vgRyAQ" rel="nofollow">
+              Init1pm9 - Automate
+            </a>
+          </li>
+          <li>
+            <a href="https://cabig-kc.nci.nih.gov/Vocab/forums/viewtopic.php?f=44&amp;t=140" rel="nofollow">
+              Conditional CDEs
+            </a>
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Fit criterion/Acceptance Criterion   How would actor describe the acceptable usage scenarios for the software or service that meets the actor&#39;s requirement?
+      </th>
+      <td>
+        The skip pattern must be associated with the CDE and optionally reusable.
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="Otherhm2.pm13FormsAnnotations-Definenon-editableCDEs">
+  Define non-editable CDEs
+</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Use Case Number
+      </th>
+      <td>
+        Otherhm2.pm13.2
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Brief Description
+      </th>
+      <td>
+        In data collections forms, it is often important to enforce that some values are not editable. These data elements could have a default value, be derived from other data elements (such as age from date of birth), or be derived from other systems.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Actor(s) for this particular use case
+      </th>
+      <td>
+        Metadata Specialist, Clinical Researcher
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Pre-condition  The state of the system before the user interacts with it
+      </th>
+      <td>
+        None.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Post condition  The state of the system after the user interacts with it
+      </th>
+      <td>
+        Data is collected with non-editable CDEs not captured from user input directly
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Steps to take  The step-by-step description of how users will interact with the system to achieve a specific business goal or function
+      </th>
+      <td>
+        <ol>
+          <li>
+            The Metadata Specialist selects and defines a set of CDEs for use within a data collection form
+          </li>
+          <li>
+            The Metadata Specialist associates non-editable details for specific CDEs.
+          </li>
+          <li>
+            The Metadata Specialist set the isEditable indicator to &#34;NO&#34;.
+          </li>
+          <li>
+            The Metadata Specialist deploys the form for data collection.
+          </li>
+          <li>
+            The Clinical Researcher captures data using the form
+          </li>
+          <li>
+            When non-editable CDEs are reached within the form, the Clinical Researcher is unable to enter data for that field.
+          </li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Alternate Flow  Things which would prevent the normal flow of the use case
+      </th>
+      <td>
+        None.  No conditions of the CDE will establish this indicator.  All items will be null unless explicitly set to &#34;Yes&#34; or &#34;No&#34;.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Priority  The priority of implementing the use case: High, Medium or Low
+      </th>
+      <td>
+        High.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Associated Links  The brief user stories, each describing the user interacts with the system for the one function only of the use case. There would potentially be a number of user stories that make up the use case.
+      </th>
+      <td>
+        <ul>
+          <li>
+            <a href="https://wiki.nci.nih.gov/x/iSxyAQ" rel="nofollow">
+              Otherhm2 - Conditional CDEs
+            </a>
+          </li>
+          <li>
+            <a href="https://wiki.nci.nih.gov/x/vgRyAQ" rel="nofollow">
+              Init1pm9 - Automate
+            </a>
+          </li>
+          <li>
+            <a href="https://cabig-kc.nci.nih.gov/Vocab/forums/viewtopic.php?f=44&amp;t=140" rel="nofollow">
+              Conditional CDEs
+            </a>
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Fit criterion/Acceptance Criterion   How would actor describe the acceptable usage scenarios for the software or service that meets the actor&#39;s requirement?
+      </th>
+      <td>
+        None.
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="Otherhm2.pm13FormsAnnotations-DefinedefaultvaluesforCDEs">
+  Define default values for CDEs
+</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Use Case Number
+      </th>
+      <td>
+        Otherhm2.pm13.3
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Brief Description
+      </th>
+      <td>
+        In data collections forms, sometimes it is important to define a default value for a CDE.  This improves accuracy and can make some forms quicker to fill out.  When combined with non-editable CDEs, this provides a forms author a way to enter a constant into a form.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Actor(s) for this particular use case
+      </th>
+      <td>
+        Metadata Specialist, Clinical Researcher
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Pre-condition  The state of the system before the user interacts with it
+      </th>
+      <td>
+        None.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Post condition  The state of the system after the user interacts with it
+      </th>
+      <td>
+        Data is collected with default values in CDEs
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Steps to take  The step-by-step description of how users will interact with the system to achieve a specific business goal or function
+      </th>
+      <td>
+        <ol>
+          <li>
+            The Metadata Specialist selects and defines a set of CDEs for use within a data collection form
+          </li>
+          <li>
+            The Metadata Specialist associates default values for specific CDEs.
+          </li>
+          <li>
+            The Metadata Specialist associates either isEditable to &#34;Yes&#34; or &#34;No&#34; as needed.
+          </li>
+          <li>
+            The Metadata Specialist deploys the form for data collection.
+          </li>
+          <li>
+            The Clinical Researcher captures data using the form
+          </li>
+          <li>
+            When default value CDEs are reached within the form, the value is pre-entered for the Clinical Researcher
+          </li>
+          <li>
+            The Clinical Researcher can change the value if he desires if the isEditable is set to &#34;Yes&#34;, but cannot change the value if the isEditable is set to &#34;No&#34;.
+          </li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Alternate Flow  Things which would prevent the normal flow of the use case
+      </th>
+      <td>
+        When the value for a CDE is defined as a set of possible values, the default value must be selected from the value set and is automatically selected for the Clinical Researcher when editing the form.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Priority  The priority of implementing the use case: High, Medium or Low
+      </th>
+      <td>
+        High.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Associated Links  The brief user stories, each describing the user interacts with the system for the one function only of the use case. There would potentially be a number of user stories that make up the use case.
+      </th>
+      <td>
+        <ul>
+          <li>
+            <a href="https://wiki.nci.nih.gov/x/iSxyAQ" rel="nofollow">
+              Otherhm2 - Conditional CDEs
+            </a>
+          </li>
+          <li>
+            <a href="https://wiki.nci.nih.gov/x/vgRyAQ" rel="nofollow">
+              Init1pm9 - Automate
+            </a>
+          </li>
+          <li>
+            <a href="https://cabig-kc.nci.nih.gov/Vocab/forums/viewtopic.php?f=44&amp;t=140" rel="nofollow">
+              Conditional CDEs
+            </a>
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Fit criterion/Acceptance Criterion   How would actor describe the acceptable usage scenarios for the software or service that meets the actor&#39;s requirement?
+      </th>
+      <td>
+        None.
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="Otherhm2.pm13FormsAnnotations-DefineaCDEasderived">
+  Define a CDE as derived
+</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Use Case Number
+      </th>
+      <td>
+        Otherhm2.pm13.4
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Brief Description
+      </th>
+      <td>
+        In data collections forms, it is possible that the value of a CDE is derived from the values of other CDEs.  For example, an Address CDE may be derived from a set of CDEs for Street, ZipCode, City, and State.  A derived CDE is often combined with the non-editable flag so that, when presented in a form, the user does not directly edit the value because it is composed from other values.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Actor(s) for this particular use case
+      </th>
+      <td>
+        Metadata Specialist, Clinical Researcher
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Pre-condition  The state of the system before the user interacts with it
+      </th>
+      <td>
+        None.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Post condition  The state of the system after the user interacts with it
+      </th>
+      <td>
+        Data is collected for a derived CDEs
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Steps to take  The step-by-step description of how users will interact with the system to achieve a specific business goal or function
+      </th>
+      <td>
+        <ol>
+          <li>
+            The Metadata Specialist selects and defines a set of CDEs for use within a data collection form
+          </li>
+          <li>
+            The Metadata Specialist can see which CDEs are derived when building the form.
+          </li>
+          <li>
+            The Metadata Specialist set isEdtiable to either &#34;Yes&#34; or &#34;No&#34; as needed.
+          </li>
+          <li>
+            The Metadata Specialist deploys the form for data collection.
+          </li>
+          <li>
+            The Clinical Researcher captures data using the form
+          </li>
+          <li>
+            Once the CDEs that are being used to derive a value are filled in, the derived CDE value can be evaluated.
+          </li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Alternate Flow  Things which would prevent the normal flow of the use case
+      </th>
+      <td>
+        <ol>
+          <li>
+            If the isEditable is set to &#34;Yes&#34;, the researcher can fill a value.
+          </li>
+          <li>
+            If the isEditable is set to &#34;No&#34;, the researcher cannot fill in a value.
+          </li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Priority  The priority of implementing the use case: High, Medium or Low
+      </th>
+      <td>
+        High.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Associated Links  The brief user stories, each describing the user interacts with the system for the one function only of the use case. There would potentially be a number of user stories that make up the use case.
+      </th>
+      <td>
+        <ul>
+          <li>
+            <a href="https://wiki.nci.nih.gov/x/iSxyAQ" rel="nofollow">
+              Otherhm2 - Conditional CDEs
+            </a>
+          </li>
+          <li>
+            <a href="https://wiki.nci.nih.gov/x/vgRyAQ" rel="nofollow">
+              Init1pm9 - Automate
+            </a>
+          </li>
+          <li>
+            <a href="https://cabig-kc.nci.nih.gov/Vocab/forums/viewtopic.php?f=44&amp;t=140" rel="nofollow">
+              Conditional CDEs
+            </a>
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Fit criterion/Acceptance Criterion   How would actor describe the acceptable usage scenarios for the software or service that meets the actor&#39;s requirement?
+      </th>
+      <td>
+        None.
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="Otherhm2.pm13FormsAnnotations-DefineamoduleofCDEs">
+  Define a module of CDEs
+</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Use Case Number
+      </th>
+      <td>
+        Otherhm2.pm13.5
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Brief Description
+      </th>
+      <td>
+        In data collections forms, sometimes it is important to define a set of CDEs that must be asked completely in a certain order.  The question and answer pattern within the module itself has semantic meaning, and, if broken, is invalidated.  A module it sometimes combined with the non-editable flag to indicate that it cannot be altered.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Actor(s) for this particular use case
+      </th>
+      <td>
+        Metadata Specialist, Clinical Researcher
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Pre-condition  The state of the system before the user interacts with it
+      </th>
+      <td>
+        None.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Post condition  The state of the system after the user interacts with it
+      </th>
+      <td>
+        Data is collected for the modules of a form
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Steps to take  The step-by-step description of how users will interact with the system to achieve a specific business goal or function
+      </th>
+      <td>
+        <ol>
+          <li>
+            The Metadata Specialist selects and defines a set of CDEs for use within a data collection form
+          </li>
+          <li>
+            The Metadata Specialist selects a subset of CDEs to be contained within a module
+          </li>
+          <li>
+            The Metadata Specialist deploys the form for data collection.
+          </li>
+          <li>
+            The Clinical Researcher captures data using the form
+          </li>
+          <li>
+            When a module is reached, all questions must be answered in the pattern described by the module
+          </li>
+          <li>
+            If the module is not completed as specified, no values are captured for it
+          </li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Alternate Flow  Things which would prevent the normal flow of the use case
+      </th>
+      <td>
+        None.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Priority  The priority of implementing the use case: High, Medium or Low
+      </th>
+      <td>
+        High.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Associated Links  The brief user stories, each describing the user interacts with the system for the one function only of the use case. There would potentially be a number of user stories that make up the use case.
+      </th>
+      <td>
+        <ul>
+          <li>
+            <a href="https://wiki.nci.nih.gov/x/iSxyAQ" rel="nofollow">
+              Otherhm2 - Conditional CDEs
+            </a>
+          </li>
+          <li>
+            <a href="https://wiki.nci.nih.gov/x/vgRyAQ" rel="nofollow">
+              Init1pm9 - Automate
+            </a>
+          </li>
+          <li>
+            <a href="https://cabig-kc.nci.nih.gov/Vocab/forums/viewtopic.php?f=44&amp;t=140" rel="nofollow">
+              Conditional CDEs
+            </a>
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Fit criterion/Acceptance Criterion   How would actor describe the acceptable usage scenarios for the software or service that meets the actor&#39;s requirement?
+      </th>
+      <td>
+        None.
+      </td>
+    </tr>
+  </tbody>
+</table>

@@ -1,0 +1,447 @@
+<h1 id="caArray054StepByStepGuidetoInstallandUsecaArrayImporter-Step-By-StepGuidetoInstallandUsecaArrayImporter">
+  Step-By-Step Guide to Install and Use caArray Importer
+</h1>
+Topic: caArray Installation and UpgradeRelease: caArray 2.3 and 2.4.xDate entered: 03/19/2010Contents of this Page
+<ul>
+  <li>
+    <a href="#caArray054StepByStepGuidetoInstallandUsecaArrayImporter-AboutcaArrayImporter" rel="nofollow">
+      About caArray Importer
+    </a>
+  </li>
+  <li>
+    <a href="#caArray054StepByStepGuidetoInstallandUsecaArrayImporter-DownloadcaArrayImporter" rel="nofollow">
+      Download caArray Importer
+    </a>
+  </li>
+  <li>
+    <a href="#caArray054StepByStepGuidetoInstallandUsecaArrayImporter-caArrayImporterCompatibility" rel="nofollow">
+      caArray Importer Compatibility
+    </a>
+  </li>
+  <li>
+    <a href="#caArray054StepByStepGuidetoInstallandUsecaArrayImporter-caArrayImporterDistributionContents" rel="nofollow">
+      caArray Importer Distribution Contents
+    </a>
+  </li>
+  <li>
+    <a href="#caArray054StepByStepGuidetoInstallandUsecaArrayImporter-Pre-Requisites" rel="nofollow">
+      Pre-Requisites
+    </a>
+  </li>
+  <li>
+    <a href="#caArray054StepByStepGuidetoInstallandUsecaArrayImporter-InitialConfiguration" rel="nofollow">
+      Initial Configuration
+    </a>
+  </li>
+  <li>
+    <a href="#caArray054StepByStepGuidetoInstallandUsecaArrayImporter-PreliminaryStepsforcaArrayVersions2.4andHigher" rel="nofollow">
+      Preliminary Steps for caArray Versions 2.4 and Higher
+    </a>
+    <ul>
+      <li>
+        <a href="#caArray054StepByStepGuidetoInstallandUsecaArrayImporter-ForALLVersionsofcaArray2.4AndHigher" rel="nofollow">
+          For ALL Versions of caArray 2.4 And Higher
+        </a>
+      </li>
+      <li>
+        <a href="#caArray054StepByStepGuidetoInstallandUsecaArrayImporter-ForcaArrayVersion2.4.0.xONLY" rel="nofollow">
+          For caArray Version 2.4.0.x ONLY
+        </a>
+      </li>
+      <li>
+        <a href="#caArray054StepByStepGuidetoInstallandUsecaArrayImporter-ForcaArrayVersion2.4.1ONLY" rel="nofollow">
+          For caArray Version 2.4.1 ONLY
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#caArray054StepByStepGuidetoInstallandUsecaArrayImporter-RepackagingandRedeployingthecaArrayServer" rel="nofollow">
+      Repackaging and Redeploying the caArray Server
+    </a>
+    <ul>
+      <li>
+        <a href="#caArray054StepByStepGuidetoInstallandUsecaArrayImporter-Step1.Updatethecaarray.earfile" rel="nofollow">
+          Step 1. Update the caarray.ear file
+        </a>
+      </li>
+      <li>
+        <a href="#caArray054StepByStepGuidetoInstallandUsecaArrayImporter-Step2.Deploytheupdatedcaarray.earfile" rel="nofollow">
+          Step 2. Deploy the updated caarray.ear file
+        </a>
+      </li>
+      <li>
+        <a href="#caArray054StepByStepGuidetoInstallandUsecaArrayImporter-Step3.UpdatingthecaArrayClientLibrary" rel="nofollow">
+          Step 3. Updating the caArray Client Library
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#caArray054StepByStepGuidetoInstallandUsecaArrayImporter-UsingthecaArrayImporterAPI" rel="nofollow">
+      Using the caArray Importer API
+    </a>
+    <ul>
+      <li>
+        <a href="#caArray054StepByStepGuidetoInstallandUsecaArrayImporter-Scenario1.UploadAffymetrix250KNspandStySNPData" rel="nofollow">
+          Scenario 1. Upload Affymetrix 250K Nsp and Sty SNP Data
+        </a>
+      </li>
+      <li>
+        <a href="#caArray054StepByStepGuidetoInstallandUsecaArrayImporter-Scenario2.UploadAffymetrixExpressionFiles" rel="nofollow">
+          Scenario 2. Upload Affymetrix Expression Files
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#caArray054StepByStepGuidetoInstallandUsecaArrayImporter-Haveacomment?" rel="nofollow">
+      Have a comment?
+    </a>
+  </li>
+</ul>
+<h2 id="caArray054StepByStepGuidetoInstallandUsecaArrayImporter-AboutcaArrayImporter">
+  About caArray Importer
+</h2>
+Developed by Dr. Matthew Eldridge, Head of the Bioinformatics Core facility at Cancer Research UK&#39;s Cambridge Research Institute, caArray Importer v1.0.2 is an open-source package that extends the caArray Java API to provide programmatic access to the following functionality:
+<ol>
+  <li>
+    Retrieval of imported array designs
+  </li>
+  <li>
+    Creation, modification and deletion of projects
+  </li>
+  <li>
+    Upload, validation and import of array data files
+  </li>
+  <li>
+    Modification of file type
+  </li>
+  <li>
+    File removal
+  </li>
+</ol>
+<h2 id="caArray054StepByStepGuidetoInstallandUsecaArrayImporter-DownloadcaArrayImporter">
+  Download caArray Importer
+</h2>
+caArray Importer v1.0.2 can be
+<a href="https://wiki.nci.nih.gov/download/attachments/59999322/Caarray-importer-1.0.2.zip?version=1&amp;modificationDate=1321978756000&amp;api=v2" rel="nofollow">
+  downloaded
+</a>
+.
+<h2 id="caArray054StepByStepGuidetoInstallandUsecaArrayImporter-caArrayImporterCompatibility">
+  caArray Importer Compatibility
+</h2>
+This version of the caArray API extension is compatible with versions 2.3 and later. It is not compatible with caArray version 2.2.1 or earlier releases.Note that, for versions 2.4 and later, some of the source code and build files in the caArray Importer distribution must be modified before they can be compiled and deployed. The modifications, which are described later in this article, are slightly different depending on the exact version of caArray you are running (i.e., 2.4.0.2 versus 2.4.1).
+<h2 id="caArray054StepByStepGuidetoInstallandUsecaArrayImporter-caArrayImporterDistributionContents">
+  caArray Importer Distribution Contents
+</h2>
+caArray Importer Distribution Contents
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Components
+      </th>
+      <th>
+        Description
+      </th>
+    </tr>
+    <tr>
+      <td>
+        LICENSE.txt
+      </td>
+      <td>
+        The Apache License version 2.0 under which the source code in this distribution is released.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        build.xml
+      </td>
+      <td>
+        Apache Ant build file for compiling source code, updating the caArray server and client library, and running the example client application.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        build.properties
+      </td>
+      <td>
+        Properties file for the Ant build in which the locations of the caArray server ear and client distribution should be set.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        apidocs
+      </td>
+      <td>
+        Contains the Javadoc documentation for both server and client classes that constitute the caArray Importer API as well as the example client application.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        caarray-ejb
+      </td>
+      <td>
+        Contains source code for the Enterprise JavaBean (EJB) that provides programmatic access to caArray functionality for creating projects, uploading, validating and importing array data files, etc.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        caarray-client
+      </td>
+      <td>
+        Contains source code for the modified CaArrayServer class (no longer marked final to enable subclassing) used to connect to and access the caArray server and a subclass that provides access to the interface for the caArray Importer EJB.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        example
+      </td>
+      <td>
+        Contains source code for an example client application that demonstrates how to use the caArray Importer API.
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="caArray054StepByStepGuidetoInstallandUsecaArrayImporter-Pre-Requisites">
+  Pre-Requisites
+</h2>
+caArray Importer Pre-requisites
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Components
+      </th>
+      <th>
+        Description
+      </th>
+    </tr>
+    <tr>
+      <td>
+        Java 2 Platform Standard Edition 5.0 Update 10 (J2SE 5.0)
+      </td>
+      <td>
+        Building and running Java applications
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Apache Ant 1.7.0
+      </td>
+      <td>
+        Building and running Java applications
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Set JAVA_HOME and ANT_HOME environment variables
+      </td>
+      <td>
+        Refer to the
+        <a href="https://wiki.nci.nih.gov/x/9AO8AQ" rel="nofollow">
+          caArray installation guide
+        </a>
+        for further details
+      </td>
+    </tr>
+    <tr>
+      <td>
+        caArray legacy client distribution
+      </td>
+      <td>
+        Download from the
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=167543025" rel="nofollow">
+          caArray GForge files archive
+        </a>
+        (login required)
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="caArray054StepByStepGuidetoInstallandUsecaArrayImporter-InitialConfiguration">
+  Initial Configuration
+</h2>
+The initial configuration of caArray Importer is specified by multiple parameters in the build.properties file, which is located in the root level of the caArray Importer distribution archive. For the parameters below, in most cases a user only needs to update the server.base.dir property. Note that the value for this property varies depending on the particular version of caArray you are running.caArray Importer Initial Configuration
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Parameters
+      </th>
+      <th>
+        Description
+      </th>
+    </tr>
+    <tr>
+      <td>
+        client.legacy.zip=caarray-client-legacy.zip
+      </td>
+      <td>
+        The location of the caArray Java client distribution zip file. By default it is assumed to be in the current working directory and named caarray-client-legacy.zip.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+          <li>
+            server.base.dir=C:/programs/caarray/caarray2_3_0 (for v2.3)
+          </li>
+          <li>
+            server.base.dir=C:/programs/caarray/caarray2_4_0_1 (for v2.4.0.1)
+          </li>
+          <li>
+            server.base.dir=C:/programs/caarray/caarray2_4_1 (for v2.4.1)
+          </li>
+        </ul>
+      </td>
+      <td>
+        The base directory in which the caArray server was installed. The directory provided depends on the exact caArray version you are running.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        server.deploy.dir=${server.base.dir}/jboss-4.0.5.GA/server/default/deploy
+      </td>
+      <td>
+        The actual deployment directory. Normally this does not need to be changed. This can be left empty if you do not have write access to the deployment directory. In that case, you must manually copy it over after the caarray.ear file is updated.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        server.ear=${server.deploy.dir}/caarray.ear
+      </td>
+      <td>
+        The target caarray server ear file. Normally this does not need to be changed.
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="caArray054StepByStepGuidetoInstallandUsecaArrayImporter-PreliminaryStepsforcaArrayVersions2.4andHigher">
+  Preliminary Steps for caArray Versions 2.4 and Higher
+</h2>
+If you are running caArray v2.4 or higher, you must perform the steps outlined below before proceeding to repackage and redeploy the caArray server enterprise archive. Note that some of the steps vary depending on the exact version of caArray you are running.
+<h3 id="caArray054StepByStepGuidetoInstallandUsecaArrayImporter-ForALLVersionsofcaArray2.4AndHigher">
+  For ALL Versions of caArray 2.4 And Higher
+</h3>
+The build.xml file included in the stock caArray Importer distribution does not work with caArray v2.4 and higher. You must either download this modified
+<a href="https://wiki.nci.nih.gov/download/attachments/59999322/build.xml?version=1&amp;modificationDate=1321997227000&amp;api=v2" rel="nofollow">
+  build.xml
+</a>
+file or manually edit the stock build.xml as described below:1) In the property declarations towards the top of the file, you will see the following line of code which declares the property  client.libs  :   &lt;property name=&#34;client.libs&#34; value=&#34;*  /lib/java/  *.jar&#34;/&gt;Add the following line of code beneath it to declare another property called &#39;client.libs.grid&#39;:   &lt;property name=&#34;client.libs.grid&#34; value=&#34;*  /lib/grid/  *.jar&#34;/&gt;2) Then, locate the following snippet of code further down in the build.xml file...&lt;path id=&#34;example.classpath&#34;&gt;        &lt;pathelement location=&#34;${example.classes.dir}&#34;/&gt;        &lt;pathelement location=&#34;${updated.client.jar}&#34;/&gt;        &lt;fileset dir=&#34;${client.dist.dir}&#34;&gt;           &lt;include name=&#34;${client.libs}&#34;/&gt;        &lt;/fileset&gt;    &lt;/path&gt;...and add the newly declared &#39;client.libs.grid&#39; property by inserting the following line of code after &lt;include name=&#34;${client.libs}&#34;/&gt;  &#39;... &lt;include name=&#34;${client.libs.grid}&#34;/&gt;...so that the modified code snippet will appear as follows (inserted line of code highlighted in bold):&lt;path id=&#34;example.classpath&#34;&gt;        &lt;pathelement location=&#34;${example.classes.dir}&#34;/&gt;        &lt;pathelement location=&#34;${updated.client.jar}&#34;/&gt;        &lt;fileset dir=&#34;${client.dist.dir}&#34;&gt;           &lt;include name=&#34;${client.libs}&#34;/&gt;            &lt;include name=&#34;${client.libs.grid}&#34;/&gt;         &lt;/fileset&gt;    &lt;/path&gt;
+<h3 id="caArray054StepByStepGuidetoInstallandUsecaArrayImporter-ForcaArrayVersion2.4.0.xONLY">
+  For caArray Version 2.4.0.x ONLY
+</h3>
+You must revise a single line of code in the server-side Enterprise Java Bean (EJB) source file CaArrayImporterServiceBean.java as described below. This file is located at the following path within the caArray Importer distribution archive:  \caarray-ejb\src\main\java\org\cruk\cri\caarray\services :Replace line 401 in the original source:Project project = projectManagementService.getProject(projectId);With the following line of code:Project project = projectManagementService.getProjectByPublicId(&#34;EXP-&#34;+projectId.toString());
+<h3 id="caArray054StepByStepGuidetoInstallandUsecaArrayImporter-ForcaArrayVersion2.4.1ONLY">
+  For caArray Version 2.4.1 ONLY
+</h3>
+You must revise three different lines of code in the server-side Enterprise Java Bean (EJB) source file CaArrayImporterServiceBean.java as described below. This file is located at the following path within the caArray Importer distribution archive:  \caarray-ejb\src\main\java\org\cruk\cri\caarray\services :_First, replace line 46 in the original source file:_import gov.nih.nci.caarray.util.UsernameHolder;with this one:import gov.nih.nci.caarray.util.CaArrayUsernameHolder;Then, replace line 188 in the original source  file: Person person = new Person(UsernameHolder.getCsmUser());With this one:Person person = new Person(CaArrayUsernameHolder.getCsmUser());Finally, replace line 401 in the original source  file: Project project = projectManagementService.getProject(projectId);With the following line of code:Project project = projectManagementService.getProjectByPublicId(&#34;EXP-&#34;+projectId.toString());
+<h2 id="caArray054StepByStepGuidetoInstallandUsecaArrayImporter-RepackagingandRedeployingthecaArrayServer">
+  Repackaging and Redeploying the caArray Server
+</h2>
+The following steps repackage the caArray server enterprise archive, caarray.ear, with the additional EJB and associated classes that constitute the caArray Importer API extension.
+<h3 id="caArray054StepByStepGuidetoInstallandUsecaArrayImporter-Step1.Updatethecaarray.earfile">
+  Step 1. Update the caarray.ear file
+</h3>
+$ ant update-ear
+Note that &#39;$&#39; represents the command prompt and may differ depending on your operating system or shell.There are four steps involved in this process:
+<ol>
+  <li>
+    Copies the caarray.ear archive to the current directory
+  </li>
+  <li>
+    Unpacks its contents to a local subdirectory
+  </li>
+  <li>
+    Compiles the caArray Importer EJB and associated classes
+  </li>
+  <li>
+    Repackages the archive with these additional classes
+  </li>
+</ol>
+<h3 id="caArray054StepByStepGuidetoInstallandUsecaArrayImporter-Step2.Deploytheupdatedcaarray.earfile">
+  Step 2. Deploy the updated caarray.ear file
+</h3>
+$ ant deploy-ear
+This step does not work unless you have write access to the caArray JBoss server deployment directory (see
+<a href="http://wiki.c2b2.columbia.edu/icrkc/index.php/Talk:Caarray053#Initial_Configuration" rel="nofollow">
+  initial Configuration
+</a>
+). In that case, you should manually copy the caarray.ear file to the ${server.base.dir}/jboss-4.0.5.GA/server/default/deploy directory on which the caArray server is running.There is no need to restart the caArray JBoss server. This step should recognize the newly deployed archive and automatically redeploy it. Redeployment may take a few minutes to complete. You can check progress in the server log, ${server.base.dir}/jboss-4.0.5.GA/server/default/log/server.log
+<h3 id="caArray054StepByStepGuidetoInstallandUsecaArrayImporter-Step3.UpdatingthecaArrayClientLibrary">
+  Step 3. Updating the caArray Client Library
+</h3>
+This step repackages the client library with additional classes required to make use of the caArray Importer API.
+$ ant update-client-jar
+This unpacks the legacy client distribution zip file, compiles the modified CaArray Server class and its subclass (see content description for caarray-client above), and repackages the client library jar file with these classes and some additional classes from the caArray server required by the caArray Importer.
+<h2 id="caArray054StepByStepGuidetoInstallandUsecaArrayImporter-UsingthecaArrayImporterAPI">
+  Using the caArray Importer API
+</h2>
+<h3 id="caArray054StepByStepGuidetoInstallandUsecaArrayImporter-Scenario1.UploadAffymetrix250KNspandStySNPData">
+  Scenario 1. Upload Affymetrix 250K Nsp and Sty SNP Data
+</h3>
+An example client-side program is provided to demonstrate the creation of a new project and the upload, validation and import of array data files. The source code can be found in the following file:
+example/src/main/java/org/cruk/cri/caarray/client/CaArrayImporterExample.java
+
+The example client program creates a new project and uploads all files in the arraydata directory.To run the example client program, follow the steps below:
+<ol>
+  <li>
+    Make sure that your Java classpath includes the updated client library. (This is taken care of if you run the example using Ant as shown below).
+  </li>
+  <li>
+    Upload the array design files for the Affymetrix Mapping 250K Nsp and Sty chips into caArray using caArray web interface.
+  </li>
+  <li>
+    Create a directory called arraydata in the same location as that in which you execute the client-side program.
+  </li>
+  <li>
+    Copy a few Affymetrix 250K data files (CEL, CHP) and optionally MAGE-TAB IDF and SDRF files to the arraydata directory .
+  </li>
+  <li>
+    Run command below:
+    $ ant compile-example
+    $ ant run-example
+  </li>
+</ol>
+<h3 id="caArray054StepByStepGuidetoInstallandUsecaArrayImporter-Scenario2.UploadAffymetrixExpressionFiles">
+  Scenario 2. Upload Affymetrix Expression Files
+</h3>
+To upload Affymetrix expression files, follow the steps below:
+<ol>
+  <li>
+    Upload the related array designs into the caArray web interface.
+  </li>
+  <li>
+    Modify the values for the following constants in CaArrayImporterExample.java. Note that the values provided are for illustration purpose only and must be replaced:
+    private static final String SERVER_HOST = &#34;yourCaArrayServerHost&#34;;
+    private static final int SERVER_JNDI_PORT = 31099;
+    private static final String USERNAME = &#34;yourUsername&#34;;
+    private static final String PASSWORD = &#34;yourPswd&#34;;
+    public static String TITLE = &#34;Test Affymetrix Expression Project&#34;;
+    public static String PROVIDER = &#34;Affymetrix&#34;;
+    public static String ASSAY_TYPE = &#34;Gene Expression&#34;;
+    public static String[) ARRAY_DESIGNS = new String(] \{ &#34;HG-U133_Plus_2&#34; \};
+  </li>
+  <li>
+    If you have your data files stored under a directory (for example: C:/data/caarray/MAGEdataFiles) different from the arraydata created in scenario 1, replace the directory arraydatawith the path to that directory as shown below in the function &#34;main&#34;. It can be either relative or absolute path:
+    client.uploadFiles(project, &#34;C:/data/caarray/MAGEdataFiles&#34;);
+  </li>
+  <li>
+    Copy a few Affymetrix HG-U133_Plus_2 data files (CEL, CHP) and optionally MAGE-TAB IDF and SDRF files to the C:/data/caarray/MAGEdataFiles directory .
+  </li>
+  <li>
+    Run the command below:
+    $ ant compile-example
+    $ ant run-example
+  </li>
+</ol>
+<h2 id="caArray054StepByStepGuidetoInstallandUsecaArrayImporter-Haveacomment?">
+  Have a comment?
+</h2>
+Please leave your comments in
+<a href="https://cabig-kc.nci.nih.gov/Molecular/forums/viewtopic.php?f=6&amp;t=497" rel="nofollow">
+  caArray End User Forum
+</a>

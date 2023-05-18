@@ -1,0 +1,83 @@
+Contents of this Page
+<ul>
+  <li>
+    <a href="#StemmedLuceneSearch-StemmedLuceneImplementationDetails" rel="nofollow">
+      Stemmed Lucene Implementation Details
+    </a>
+    <ul>
+      <li>
+        <a href="#StemmedLuceneSearch-Algorithm:" rel="nofollow">
+          Algorithm:
+        </a>
+      </li>
+      <li>
+        <a href="#StemmedLuceneSearch-Exampleofuse:" rel="nofollow">
+          Example of use:
+        </a>
+      </li>
+      <li>
+        <a href="#StemmedLuceneSearch-AssociatedJUnits:" rel="nofollow">
+          Associated JUnits:
+        </a>
+      </li>
+    </ul>
+  </li>
+</ul>
+<h2 id="StemmedLuceneSearch-StemmedLuceneImplementationDetails">
+  Stemmed Lucene Implementation Details
+</h2>
+Search with the Lucene query syntax, using stemmed terms.  A search for &#39;trees&#39; will get a hit on &#39;tree&#39;  This requires an extra indexed field when it is enabled in the load.
+<h3 id="StemmedLuceneSearch-Algorithm:">
+  Algorithm:
+</h3>
+The Stemmed Lucene search has the following characteristics:
+<ul>
+  <li>
+    This search is case in-sensitive.
+  </li>
+  <li>
+    It searches on the stem property value.
+  </li>
+  <li>
+    Parsing is done with our custom stemming analyzer.  This has the following filters:
+    <ul>
+      <li>
+        LowerCaseFilter - for setting to lowercase
+      </li>
+      <li>
+        StopFilter - to remove stop words (the, a, etc.) from the search
+      </li>
+      <li>
+        SnowballFilter - for stemming
+      </li>
+    </ul>
+  </li>
+</ul>
+<h3 id="StemmedLuceneSearch-Exampleofuse:">
+  Example of use:
+</h3>
+The following examples are based on the Automobiles coding scheme.Example 1:Search string: AutomobilesLucene query: stem_propertyValue:automobilResult: 1 result
+<ul>
+  <li>
+    entity code: A0001
+  </li>
+  <li>
+    entity description: Automobile
+  </li>
+</ul>
+Example 2:Search string: AutomobiledLucene query: stem_propertyValue:automobilResult: 1 result
+<ul>
+  <li>
+    entity code: A0001
+  </li>
+  <li>
+    entity description: Automobile
+  </li>
+</ul>
+<h3 id="StemmedLuceneSearch-AssociatedJUnits:">
+  Associated JUnits:
+</h3>
+Junits can be found here:
+<a href="https://github.com/lexevs/lexevs/blob/master/lbTest/src/test/java/org/LexGrid/LexBIG/Impl/function/query/lucene/searchAlgorithms/TestStemming.java" rel="nofollow">
+  https://github.com/lexevs/lexevs/blob/master/lbTest/src/test/java/org/LexGrid/LexBIG/Impl/function/query/lucene/searchAlgorithms/TestStemming.java
+</a>

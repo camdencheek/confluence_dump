@@ -1,0 +1,72 @@
+<h1 id="caArray020ConfiguringEclipseforcaArray-Question:HowdoIconfigureEclipseforcaArray?">
+  Question: How do I configure Eclipse for caArray?
+</h1>
+Topic: caArray Installation and Upgrade
+
+Release: Up to caArray 2.X
+
+Date entered: 05/18/2009
+Date modified: 09/25/2010
+<h2 id="caArray020ConfiguringEclipseforcaArray-Answer">
+  Answer
+</h2>
+Please follow these instructions to get caArray trunk codebase configured inside Eclipse:
+
+1. Use a SVN client such as Sliksvn or Subclipse plugin for Eclipse to check out the
+<a href="https://ncisvn.nci.nih.gov/svn/caarray2" rel="nofollow">
+  caArray codebase
+</a>
+. You have to choose the trunk or a branch to a new and clean directory (&lt;trunk home&gt;: for example: c:\apps\caarray2).
+2. Install
+<a href="http://ant.apache.org/ivy/ivyde/download.cgi" rel="nofollow">
+  IvyDE Eclipse plugin
+</a>
+for Ivy classpath management and restart Eclipse.
+3. Go to &#34;Window&#34; / &#34;Preferences&#34; / &#34;Ivy&#34; and set &#34;Global settings&#34; by navigating to &lt;trunk home&gt;/software/master_build/ivy-caarray-settings.xml and click &#34;OK&#34;.
+4. Open the &lt;trunk home&gt;/software/master_build/ivy-caarray-settings.xml file in a text editor and comment-out the filesystem resolver with name &#39;local-repo&#39;, as this resolver is only useful for developers at NCI, then save the file. The portion of XML code to be commented out is shown below:
+<img alt="Ivy DEXML Settings" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caArray2/caArray%20020%20-%20Configuring%20Eclipse%20for%20caArray/IvyDEXMLSettings.jpg?api=v2">
+The modified XML file is attached below for reference:
+<a href="https://wiki.nci.nih.gov/download/attachments/42832137/ivy-caarray-settings-modified.xml?version=1&amp;modificationDate=1325713080000&amp;api=v2" rel="nofollow">
+  ivy-caarray-settings-modified.xml
+</a>
+5. In Eclipse Navigator tab, right click in panel and select &#34;Import&#34;, and then &#34;Existing Projects into Workspace&#34; and in &#34;Select root directory&#34; navigate to &lt;trunk home&gt; and click &#34;Finish&#34;.
+6. Make sure that you have Ant 1.7+ in your PATH.
+7. Make sure that JAVA_HOME environment variable set to Java 1.5.x.
+8. Make sure that your computer has network access to the MySQL database containing caArray schema (You should have the database up and running).
+9. Make sure that the bin directory of your svn client such as sliksvn is in your PATH.
+10. Make sure to have variable &#34;ANT_OPTS&#34; defined and &#34;-Xmx1024m&#34; as variable value. Your computer needs to have at least 1.5 GB of memory.
+11. It was previously possible to deploy caArray to a non-caArray installer-provided JBoss server, but with 2.4.0 it is no longer the case. Developers should first install caArray using either the command line or GUI installer, and then should configure a deployment properties file to deploy caArray codebase to the installer-provided JBoss server. Actually, it is a good practice to do it for any version.
+12. Make sure that the JBOSS_HOME points to the root directory of your JBoss 4.0.5.
+13. Create a new file &lt;trunk home&gt;/software/build/local.properties (A sample of a customized local.properties file is attached to this article for reference.) Save it as local.properties). Property values depend on your environment. Some of the properties that you most likely will need are:
+
+
+
+(1). database.system.user=&lt;root&gt;
+(2). database.system.password=&lt;root user&#39;s password&gt;
+(3). database.server=&lt;MySQL server&gt;
+(4). database.port=&lt;MySQL port&gt;
+(5). database.user=&lt;caArray DB connection username&gt;
+(6). database.password=&lt;caArray DB connection password&gt;
+(7). database.name=&lt;caArray DB name&gt;
+
+
+
+14. Start a window command prompt, go to the &lt;trunk home&gt;/software/build directory, type &#34;ant&#34; to build caArray and to run all unit tests and code checks.
+15. The build might fail with a single error during Unit testing, which is ok at this point. Please verify this by clicking &lt;trunk home&gt;/software/build/site/junit/unit/index.html.
+16. Type &#34;ant deploy&#34; in &lt;trunk home&gt;/software/build  to deploy caArray.
+17. Go to the JBoss bin directory and start JBoss using the run.bat/sh script. The caArray.ear should be deployed.
+18. Go to &#34;
+<a href="http://yourcomputername:8080/caarray/" rel="nofollow">
+  http://yourcomputername:8080/caarray/
+</a>
+&#34; to see the web interface of the running caArray application installed on your computer.
+19. If you are having problems with svn:getinfo target failing during builds, just pass in the following ant command-line property: -Dnosvn=true.
+20. With this process, you should have the caArray project in Eclipse and be able to build and run caArray at the command line. We are testing to see if there are caveats with building from Eclipse.
+<h2 id="caArray020ConfiguringEclipseforcaArray-Haveacomment?">
+  Have a comment?
+</h2>
+Please leave your comment in the
+<a href="https://cabig-kc.nci.nih.gov/Molecular/forums/viewtopic.php?f=6&amp;t=577" rel="nofollow">
+  caArray End User Forum
+</a>
+. 

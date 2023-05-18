@@ -1,0 +1,392 @@
+Contents of this Page
+<ul>
+  <li>
+    <a href="#id-1.6.1AssociateTransforms-Summary" rel="nofollow">
+      Summary
+    </a>
+    <ul>
+      <li>
+        <a href="#id-1.6.1AssociateTransforms-Descriptionoftheprofile" rel="nofollow">
+          Description of the profile
+        </a>
+      </li>
+      <li>
+        <a href="#id-1.6.1AssociateTransforms-Capabilities" rel="nofollow">
+          Capabilities
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#id-1.6.1AssociateTransforms-Requirementstraceability" rel="nofollow">
+      Requirements traceability
+    </a>
+  </li>
+  <li>
+    <a href="#id-1.6.1AssociateTransforms-EAID_DC3BDB96_AB7D_4eb0_8257_EC2059B78818adhocModels" rel="nofollow">
+      adhocModels
+    </a>
+    <ul>
+      <li>
+        <a href="#id-1.6.1AssociateTransforms-Description" rel="nofollow">
+          Description
+        </a>
+      </li>
+      <li>
+        <a href="#id-1.6.1AssociateTransforms-Requirementsaddressed" rel="nofollow">
+          Requirements addressed
+        </a>
+      </li>
+      <li>
+        <a href="#id-1.6.1AssociateTransforms-Overviewofpossibleoperations" rel="nofollow">
+          Overview of possible operations
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#id-1.6.1AssociateTransforms-_16_5_1_24a0131_1283883848524_921169_2108mappingDefinition" rel="nofollow">
+      mappingDefinition
+    </a>
+    <ul>
+      <li>
+        <a href="#id-1.6.1AssociateTransforms-Description.1" rel="nofollow">
+          Description
+        </a>
+      </li>
+      <li>
+        <a href="#id-1.6.1AssociateTransforms-Requirementsaddressed.1" rel="nofollow">
+          Requirements addressed
+        </a>
+      </li>
+      <li>
+        <a href="#id-1.6.1AssociateTransforms-Overviewofpossibleoperations.1" rel="nofollow">
+          Overview of possible operations
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#id-1.6.1AssociateTransforms-_16_5_1_24a0131_1283884161579_374349_2132mappingExecution" rel="nofollow">
+      mappingExecution
+    </a>
+    <ul>
+      <li>
+        <a href="#id-1.6.1AssociateTransforms-Description.2" rel="nofollow">
+          Description
+        </a>
+      </li>
+      <li>
+        <a href="#id-1.6.1AssociateTransforms-Requirementsaddressed.2" rel="nofollow">
+          Requirements addressed
+        </a>
+      </li>
+      <li>
+        <a href="#id-1.6.1AssociateTransforms-Overviewofpossibleoperations.2" rel="nofollow">
+          Overview of possible operations
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#id-1.6.1AssociateTransforms-_16_5_1_24a0131_1283884158625_197174_2120mappingRules" rel="nofollow">
+      mappingRules
+    </a>
+    <ul>
+      <li>
+        <a href="#id-1.6.1AssociateTransforms-Description.3" rel="nofollow">
+          Description
+        </a>
+      </li>
+      <li>
+        <a href="#id-1.6.1AssociateTransforms-Requirementsaddressed.3" rel="nofollow">
+          Requirements addressed
+        </a>
+      </li>
+      <li>
+        <a href="#id-1.6.1AssociateTransforms-Overviewofpossibleoperations.3" rel="nofollow">
+          Overview of possible operations
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#id-1.6.1AssociateTransforms-EAID_774C1DCC_7823_4e94_93FF_886D88C1B114saveMappings" rel="nofollow">
+      saveMappings
+    </a>
+    <ul>
+      <li>
+        <a href="#id-1.6.1AssociateTransforms-Description.4" rel="nofollow">
+          Description
+        </a>
+      </li>
+      <li>
+        <a href="#id-1.6.1AssociateTransforms-Requirementsaddressed.4" rel="nofollow">
+          Requirements addressed
+        </a>
+      </li>
+      <li>
+        <a href="#id-1.6.1AssociateTransforms-Overviewofpossibleoperations.4" rel="nofollow">
+          Overview of possible operations
+        </a>
+      </li>
+    </ul>
+  </li>
+</ul>
+<h5 id="id-1.6.1AssociateTransforms-Summary">
+  Summary
+</h5>
+<h6 id="id-1.6.1AssociateTransforms-Descriptionoftheprofile">
+  Description of the profile
+</h6>
+Integration with the Semantic Infrastructure will enable reasoning, semantic query, data mediation (for example, ad hoc data transformation).
+
+Within the Semantic Infrastructure, the notion of transformation is defined in terms of mediation:  the resolution of incongruities occurring across heterogeneous data sources, where the data source may be any kind of artifact or model instance.  The architectural implications of mediation are reflected in the set of capabilities provided by the Associate Transform functional profile.
+
+Associate Transforms specializes capabilities architecturally implied by its associated concepts of  DataMediation , Mediation .  The implied architectural capabilities are described in the following paragraphs.
+
+
+
+DataMediation The most common type of mismatch in the SemanticWeb occurs due to usage of different terminologies by entities that shall interchange information. Within ontology-based environments like the Semantic Web, this results from usage of heterogeneous ontologies as the terminological basis for resource or information descriptions. A main merit of ontologies is that such mismatches can be handled on a semantic level by so-called ontology integration technique.  Regarding representation formats and transfer protocols, a suitable way of resolving such heterogeneities is to lift the data from the syntactic to a semantic level on basis of ontologies, and then resolve the mismatches on this level.
+
+The  Data Mediator is invoked in two situations: during the discovery phase and during the communication phase. The need for data mediation is necessary when the ontologies of the goal and of the candidate or selected web service are different - in both the discovery or the communication phase. For data level heterogeneity handling, it uses  ontology mapping techniques to resolve the mismatches that can appear between two given ontologies. The mappings between ontologies are created in a semi-automatic manner during design time and stored in a persistent storage. That is, these mappings are retrieved during run-time  and applied on the incoming data (i.e. ontology instances) to transform it from the terms of one ontology in the terms of another ontology (this process in known as instance transformation). The same mappings can also be used for determining which concepts from the mapped ontologies are semantically related (and how). The former functionality is required to enable the process level mediation (it solves the data heterogeneity for the communication stage), while the latter is required to enable the functional level mediation (solves the data heterogeneity that appears in the functional descriptions).
+
+Mediation Strategies and methodologies for mediation.
+
+Mediation includes the following capabilities:
+<ul>
+  <li>
+    the creation of mappings,based on model artifacts.
+  </li>
+  <li>
+    the creation of appropriate mapping rules, based on model artifacts in conjunction with references to instances. Since the execution environment includes the Semantic Infrastructure, all mediated models conform to the SI meta-meta-model.
+  </li>
+  <li>
+    the execution of the mapping rules, which acts on the instance data taking as input source instances and having as output the target, mediated, instances
+  </li>
+</ul>
+<h6 id="id-1.6.1AssociateTransforms-Capabilities">
+  Capabilities
+</h6>
+<ul>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=32769381" rel="nofollow">
+      adhocModels
+    </a>
+  </li>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=32769381" rel="nofollow">
+      mappingDefinition
+    </a>
+  </li>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=32769381" rel="nofollow">
+      mappingExecution
+    </a>
+  </li>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=32769381" rel="nofollow">
+      mappingRules
+    </a>
+  </li>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=32769381" rel="nofollow">
+      saveMappings
+    </a>
+  </li>
+</ul>
+<h5 id="id-1.6.1AssociateTransforms-Requirementstraceability">
+  Requirements traceability
+</h5>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Requirement
+      </th>
+      <th>
+        Source
+      </th>
+      <th>
+        Capability
+      </th>
+    </tr>
+    <tr>
+      <td>
+        Need to be able to support curated and &#34;ad-hoc&#34; models that describe spatial regions of interest and associated attributes such as the nuclear size, shape, intensity and texture parameters
+      </td>
+      <td>
+        Gap Analysis::Extend::146.1 - Support Spatial Data
+      </td>
+      <td>
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=32769381" rel="nofollow">
+          adhocModels
+        </a>
+      </td>
+    </tr>
+    <tr></tr>
+    <tr>
+      <td>
+        Store mappings between data elements that identify tokens that have semantically similar data for use in run-time transformations.
+      </td>
+      <td>
+        Gap Analysis::Transform::158 - Run-time transformation use of mappings
+      </td>
+      <td>
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=32769381" rel="nofollow">
+          saveMappings
+        </a>
+      </td>
+    </tr>
+    <tr></tr>
+    <tr>
+      <td>
+        Artifact lifecycle management and metadata requirements include the ability to:       * Manage lifecycle, governance and versioning of the models, content and forms      * Establish relationships and dependencies between models, content and forms          * Determine provenance, jurisdiction, authority and intellectual property          * Create represention and views of the information, realized through the appropriate transforms          * Provide access control and other security constraints          * Create annotations for better discovery and searching of artifacts          * Develop usage scenarios and context for the information          * Provide terminology and value set binding  The artifacts are bound to the services via the service metadata. The service metadata combined with the artifacts and supporting metadata provide a comprehensive service specification.    The artifact management requirements listed above are derived from the following use cases:   * caEHR: The caEHR project has adopted ECCF for specifications and CDA documents for interoperability. The caEHR project requirements include the need for an infrastructure for managing all the artifacts generated during specification process, including HL7 models and documents. The caEHR project also intends to publish these artifacts for the community and vendors. The infrastructure needs to support better discovery, making all the relevant information available in the right context.   * ONC and other external EHR adopters: ONC has adopted CCD and CCR for meaningful use. All national EHR implementations are expected to support forms and the semantics of these forms play a critical role in interoperability. The semantic infrastructure must provide a mechanism to create, store and manage these forms.   * Clinical Trials: Clinical trials use forms to capture clinical information, and the semantics captured by these forms are critical for interoperability and reporting. The semantic infrastructure must provide a mechanism to manage the lifecycle of these forms.
+      </td>
+      <td>
+        Semantic Infrastructure Requirements::Artifact Management::Artifact Lifecycle Management
+      </td>
+      <td>
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=32769381" rel="nofollow">
+          saveMappings
+        </a>
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=32769381" rel="nofollow">
+          adhocModels
+        </a>
+      </td>
+    </tr>
+    <tr></tr>
+    <tr>
+      <td>
+        The Web Service Execution Environment (WSMX) is an environment that is designed to allow dynamic mediation, selection and invocation of web services.  For the purposes of the Semantic Infrastructure roadmap, the WSMX specification has been abstracted to be applicable to any SOA environment, and  to mediation of any artifact.    A range of different models or ontologies describing the same or related problem domains could be created by different entities throughout the world. This implies that more and more systems and applications require mediation in order to be able to integrate and use heterogeneous data sources. Mapping between models is required in several classes of application, such as Information Integration and Semantic Web, Data Migration or Ontology Merging.     Unfortunately, there is always a trade-off between how accurate these mappings are and the degree of automation that can be offered. There are approaches able to provide these kinds of mappings (also known as alignments) between different schemas or ontologies using machine learning techniques  in an automatic manner but only with limited accuracy. In order to rule out the false results, the domain expert has to validate and check the mappings or the alignment at the end of the process. Another type of approach considers the human intervention from the beginning, proposing an interactive mapping process where the tool suggestions and the human user validations alternate in the process until the final result is achieved.     The  mediation solution presented in this roadmap follows the second approach described above: we propose well-defined strategies and methodologies for the mapping process in order to guarantee - the most correct and complete mappings possible, together with a set of algorithms and strategies meant to make the mapping task much easier (reducing it to simple validations and choices). We adopted this approach because we believe that in the context of SOA Services and business transactions the transformations on data must be 100% accurate. In addition, we consider that an interactive approach towards mapping creation is much more appropriate in the case of medium/large ontologies and also when the intention is to abstract the domain expert (using a graphical interface) from the underlying logical formalism used to represent the mappings.      There are four types of heterogeneities that can occur within the SOA. Each heterogeneity type requires a specific technique for mismatch resolution, referred to as levels of mediation:   * Terminology: Services or other resources use different terminologies; e.g. one entity understands name to be the full name of a person, and another one defines name to only denote the family name. This can hamper successful interoperation on the semantic level, i.e. concerning the meaning of information.  * Representation Format and Transfer Protocol: resources that interact use different formats or languages for information representation (e.g. HTML, XML, RDF, OWL, etc.), or different protocols for information transfer (e.g. HTTP, RPC, etc.); incompatibilities on this level obviously can hamper prosperous information interchange.  * Functionality: specific to services, this refers to functionalities of a provider and a requester that do not match exactly. This enforces complex and thus expensive reasoning procedures for detecting services usable for a given request; the need for such expensive operations can be reduced by gaining and utilizing knowledge on the functional heterogeneities  * Business Process: also specific to services, this denotes mismatches in the supported interaction behavior of services and clients. This can hamper successful interaction on a behavioral level for consumption or interaction of  services.     The process of mediation generally consists of three main steps:   * the creation of mappings,based on model artifacts.  *  the creation of appropriate mapping rules, based on model artifacts in conjunction with references to instances. Since the execution environment includes the Semantic Infrastructure, all mediated models conform to the SI meta-meta-model.   * the execution of the mapping rules, which acts on the instance data taking as input source instances and having as output the target, mediated, instances      Service message exchanges are represented in terms of the sender&#39;s models, and each of the business partners (e.g. enterprises) understands only messages expressed in terms of its own model. One of the roles of the execution environment (by mean of mediation), is to transform, if necessary, the received message from the terms of sender&#39;s model into the terms of the receiver&#39;s model, before sending it further. From the perspective of the models, each message contains instances of the source model that have to be transformed into instances of the target model.     WSMX  distinguishes four different types of mediators :   *  mediators that link two goals. This link represents the refinement of the source goal into the target goal  * data mediators that import models and resolve possible representation mismatches between models.  * mediators that link web service to goals, meaning that the web service (totally or partially) fulfils the goal to which it is linked. The mediators may explicitly state the difference between the two entities and map different vocabularies (through the use of  data Mediators).  * mediators linking two Web Services.
+      </td>
+      <td>
+        Semantic Profile::OASIS Semantic SOA::Mediation
+      </td>
+      <td>
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=32769381" rel="nofollow">
+          mappingDefinition
+        </a>
+        from inherited abstract profile Mediation
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=32769381" rel="nofollow">
+          mappingRules
+        </a>
+        from inherited abstract profile Mediation
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=32769381" rel="nofollow">
+          mappingExecution
+        </a>
+        from inherited abstract profile Mediation
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h5 id="id-1.6.1AssociateTransforms-EAID_DC3BDB96_AB7D_4eb0_8257_EC2059B78818adhocModels">
+  adhocModels
+</h5>
+<h6 id="id-1.6.1AssociateTransforms-Description">
+  Description
+</h6>
+Need to be able to support curated and &#34;ad-hoc&#34; models that describe spatial regions of interest and associated attributes such as the nuclear size, shape, intensity and texture parameters
+<h6 id="id-1.6.1AssociateTransforms-Requirementsaddressed">
+  Requirements addressed
+</h6>
+<ul>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=32769381" rel="nofollow">
+      146.1 - Support Spatial Data
+    </a>
+  </li>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=32769381" rel="nofollow">
+      Artifact Lifecycle Management
+    </a>
+  </li>
+</ul>
+<h6 id="id-1.6.1AssociateTransforms-Overviewofpossibleoperations">
+  Overview of possible operations
+</h6>
+<h5 id="id-1.6.1AssociateTransforms-_16_5_1_24a0131_1283883848524_921169_2108mappingDefinition">
+  mappingDefinition
+</h5>
+<h6 id="id-1.6.1AssociateTransforms-Description.1">
+  Description
+</h6>
+The creation, destruction, editing, managing of mappings, based on model artifacts.
+<h6 id="id-1.6.1AssociateTransforms-Requirementsaddressed.1">
+  Requirements addressed
+</h6>
+<ul>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=32769381" rel="nofollow">
+      Mediation
+    </a>
+  </li>
+</ul>
+<h6 id="id-1.6.1AssociateTransforms-Overviewofpossibleoperations.1">
+  Overview of possible operations
+</h6>
+<h5 id="id-1.6.1AssociateTransforms-_16_5_1_24a0131_1283884161579_374349_2132mappingExecution">
+  mappingExecution
+</h5>
+<h6 id="id-1.6.1AssociateTransforms-Description.2">
+  Description
+</h6>
+The execution of the mapping rules, which acts on incoming source instances and provides mediated target  instances.
+<h6 id="id-1.6.1AssociateTransforms-Requirementsaddressed.2">
+  Requirements addressed
+</h6>
+<ul>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=32769381" rel="nofollow">
+      Mediation
+    </a>
+  </li>
+</ul>
+<h6 id="id-1.6.1AssociateTransforms-Overviewofpossibleoperations.2">
+  Overview of possible operations
+</h6>
+<h5 id="id-1.6.1AssociateTransforms-_16_5_1_24a0131_1283884158625_197174_2120mappingRules">
+  mappingRules
+</h5>
+<h6 id="id-1.6.1AssociateTransforms-Description.3">
+  Description
+</h6>
+The creation, destruction, editing, managing of appropriate mapping rules, based on model artifacts in conjunction with references to instances. Since the execution environment includes the Semantic Infrastructure, all mediated models conform to the SI meta-meta-model.
+<h6 id="id-1.6.1AssociateTransforms-Requirementsaddressed.3">
+  Requirements addressed
+</h6>
+<ul>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=32769381" rel="nofollow">
+      Mediation
+    </a>
+  </li>
+</ul>
+<h6 id="id-1.6.1AssociateTransforms-Overviewofpossibleoperations.3">
+  Overview of possible operations
+</h6>
+<h5 id="id-1.6.1AssociateTransforms-EAID_774C1DCC_7823_4e94_93FF_886D88C1B114saveMappings">
+  saveMappings
+</h5>
+<h6 id="id-1.6.1AssociateTransforms-Description.4">
+  Description
+</h6>
+Store mappings between data elements that identify tokens that have semantically similar data for use in runtime transformations.
+<h6 id="id-1.6.1AssociateTransforms-Requirementsaddressed.4">
+  Requirements addressed
+</h6>
+<ul>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=32769381" rel="nofollow">
+      158 - Run-time transformation use of mappings
+    </a>
+  </li>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=32769381" rel="nofollow">
+      Artifact Lifecycle Management
+    </a>
+  </li>
+</ul>
+<h6 id="id-1.6.1AssociateTransforms-Overviewofpossibleoperations.4">
+  Overview of possible operations
+</h6>

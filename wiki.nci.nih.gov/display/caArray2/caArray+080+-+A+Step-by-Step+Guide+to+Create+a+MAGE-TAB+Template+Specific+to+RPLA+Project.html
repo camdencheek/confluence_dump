@@ -1,0 +1,150 @@
+<h1 id="caArray080AStepbyStepGuidetoCreateaMAGETABTemplateSpecifictoRPLAProject-AStep-by-StepGuidetoCreateaMAGE-TABTemplateSpecifictoRPLAProject">
+  A Step-by-Step Guide to Create a MAGE-TAB Template Specific to RPLA Project
+</h1>
+Topic: caArray Installation and Upgrade
+
+Release: caArray 2.4.0
+
+Date entered: 04/20/2011
+
+Contents of this Page
+<ul>
+  <li>
+    <a href="#caArray080AStepbyStepGuidetoCreateaMAGETABTemplateSpecifictoRPLAProject-Introduction" rel="nofollow">
+      Introduction
+    </a>
+  </li>
+  <li>
+    <a href="#caArray080AStepbyStepGuidetoCreateaMAGETABTemplateSpecifictoRPLAProject-Createnewprovider(s)" rel="nofollow">
+      Create new provider(s)
+    </a>
+  </li>
+  <li>
+    <a href="#caArray080AStepbyStepGuidetoCreateaMAGETABTemplateSpecifictoRPLAProject-CreatenewAssayType" rel="nofollow">
+      Create new Assay Type
+    </a>
+  </li>
+  <li>
+    <a href="#caArray080AStepbyStepGuidetoCreateaMAGETABTemplateSpecifictoRPLAProject-CheckifcaArrayisavalidTermSource" rel="nofollow">
+      Check if caArray is a valid Term Source
+    </a>
+  </li>
+  <li>
+    <a href="#caArray080AStepbyStepGuidetoCreateaMAGETABTemplateSpecifictoRPLAProject-Addanewterminologyterm" rel="nofollow">
+      Add a new terminology term
+    </a>
+  </li>
+  <li>
+    <a href="#caArray080AStepbyStepGuidetoCreateaMAGETABTemplateSpecifictoRPLAProject-CreateadummyArrayDesignFileforRPLA" rel="nofollow">
+      Create a dummy Array Design File for RPLA
+    </a>
+  </li>
+  <li>
+    <a href="#caArray080AStepbyStepGuidetoCreateaMAGETABTemplateSpecifictoRPLAProject-UploadtheDummyArrayDesignfileincaArray" rel="nofollow">
+      Upload the Dummy Array Design file in caArray
+    </a>
+  </li>
+  <li>
+    <a href="#caArray080AStepbyStepGuidetoCreateaMAGETABTemplateSpecifictoRPLAProject-UpdateArray_DesignTable" rel="nofollow">
+      Update Array_Design Table
+    </a>
+  </li>
+  <li>
+    <a href="#caArray080AStepbyStepGuidetoCreateaMAGETABTemplateSpecifictoRPLAProject-CreateNewFileTypesforRPLAdatafiles" rel="nofollow">
+      Create New File Types for RPLA data files
+    </a>
+  </li>
+  <li>
+    <a href="#caArray080AStepbyStepGuidetoCreateaMAGETABTemplateSpecifictoRPLAProject-Haveacomment?" rel="nofollow">
+      Have a comment?
+    </a>
+  </li>
+</ul>
+<h2 id="caArray080AStepbyStepGuidetoCreateaMAGETABTemplateSpecifictoRPLAProject-Introduction">
+  Introduction
+</h2>
+Developed by Leandro Hermida, this step-by-step guide will help RPLA project user to create a RPLA specific MAGE-TAB template.
+<h2 id="caArray080AStepbyStepGuidetoCreateaMAGETABTemplateSpecifictoRPLAProject-Createnewprovider(s)">
+  Create new provider(s)
+</h2>
+Create RPLA providers in the contact table as for other array providers:
+
+insert into contact (discriminator, provider, name) values (&#39;O&#39;, 1,&#39;Zeptosens&#39;);
+
+
+After the insert, use the statement below to find the ID for the contact just created:
+
+Select ID from contact where name =&#39;Zeptosens&#39;;
+<h2 id="caArray080AStepbyStepGuidetoCreateaMAGETABTemplateSpecifictoRPLAProject-CreatenewAssayType">
+  Create new Assay Type
+</h2>
+Create a new RPLA assay type in the database in the assay_type table:
+
+insert into assay_type (name) values (&#39;RPLA&#39;);
+<h2 id="caArray080AStepbyStepGuidetoCreateaMAGETABTemplateSpecifictoRPLAProject-CheckifcaArrayisavalidTermSource">
+  Check if caArray is a valid Term Source
+</h2>
+Since a new technical term: reverse_phase_protein_array_features would be inserted into term_source table under the source of caArray, it is necessary to check if the source of *caArray*has already been added in term_source table. During the normal caArray installation, caArray should have been added to the term_source table with a default ID =4. To verify, apply the select statement below:
+
+select * from term_source where name=&#39;caArray&#39;
+
+
+If caArray is not a valid source in the term_source table, it should be added with the insert statement below:
+
+insert into term_source (name, version, url) values (&#39;caArray&#39;,&#39;2.0&#39;,&#39;https://array.nci.nih.gov&#39;)
+<h2 id="caArray080AStepbyStepGuidetoCreateaMAGETABTemplateSpecifictoRPLAProject-Addanewterminologyterm">
+  Add a new terminology term
+</h2>
+After the source caArray has been added, use the SELECT statement above to find the ID for the source caArray just created in the term_source table. The id will be used in the insert statement below to add the new terminology reverse_phase_protein_array_features to the term table:
+
+insert into term (value, source) values(&#39;reverse_phase_protein_array_features&#39;, &lt;id of term_source inserted above&gt;);
+
+
+Use the SELECT statement below to find the ID for the term just created:
+
+SELECT ID from term where value = &#39;reverse_phase_protein_array_features&#39;;
+
+
+Use this ID in the INSERT statement below:
+
+insert into term_categories (term_id, category_id) values (&lt;id of term inserted above&gt;, 224);
+<h2 id="caArray080AStepbyStepGuidetoCreateaMAGETABTemplateSpecifictoRPLAProject-CreateadummyArrayDesignFileforRPLA">
+  Create a dummy Array Design File for RPLA
+</h2>
+Create MAGE-TAB ADF dummy array design files (.ADF files) for the array provider Zeptosens, created in Step 1. The dummy file can be a empty file with a simple header.
+<h2 id="caArray080AStepbyStepGuidetoCreateaMAGETABTemplateSpecifictoRPLAProject-UploadtheDummyArrayDesignfileincaArray">
+  Upload the Dummy Array Design file in caArray
+</h2>
+Upload new array designs for each ADF using the caArray web application (For more details, please refer to Using caArray: Uploading Array Design File). The new file will have the final status of &#34;Imported no Parsed&#34;.
+<h2 id="caArray080AStepbyStepGuidetoCreateaMAGETABTemplateSpecifictoRPLAProject-UpdateArray_DesignTable">
+  Update Array_Design Table
+</h2>
+After uploading dummy array designs into caArray, update their array_design table entries in the database to lsid_authority to be Zeptosens.com, lsid_namespace to be PhysicalArrayDesign. This SQL statement will work only after the array design file is added to caArray.
+
+
+update array_design set lsid_authority = &#39;Zeptosens.com&#39;,
+lsid_namespace = &#39;PhysicalArrayDesign&#39; where provider = &lt;id of contact inserted above&gt;;
+<h2 id="caArray080AStepbyStepGuidetoCreateaMAGETABTemplateSpecifictoRPLAProject-CreateNewFileTypesforRPLAdatafiles">
+  Create New File Types for RPLA data files
+</h2>
+The next step is to create new file types for the RPLA data file formats you have. This modification is not at the database level, but file level. The file is:
+
+
+caarray_src_2_3_1_1/caarray.war/src/main/java/ApplicationResources.properties
+
+
+Following is an example the RPLA data file in text format:
+
+
+experiment.files.filetype.Zeptosens_TXT = Zeptosens TXT
+
+
+After the properties is edited, caArray must be rebuilt and redeployed.
+<h2 id="caArray080AStepbyStepGuidetoCreateaMAGETABTemplateSpecifictoRPLAProject-Haveacomment?">
+  Have a comment?
+</h2>
+Please leave your comment in the
+<a href="https://cabig-kc.nci.nih.gov/Molecular/forums/viewtopic.php?f=6&amp;t=577" rel="nofollow">
+  caArray End User Forum
+</a>
+. 

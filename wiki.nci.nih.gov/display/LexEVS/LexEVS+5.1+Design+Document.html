@@ -1,0 +1,4444 @@
+Table of Contents
+<ul>
+  <li>
+    <a href="#LexEVS5.1DesignDocument-DesignScope" rel="nofollow">
+      Design Scope
+    </a>
+    <ul>
+      <li>
+        <a href="#LexEVS5.1DesignDocument-GForgeitems" rel="nofollow">
+          GForge items
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS5.1DesignDocument-SolutionArchitecture" rel="nofollow">
+          Solution Architecture
+        </a>
+        <ul>
+          <li>
+            <a href="#LexEVS5.1DesignDocument-HighLevelArchitecture" rel="nofollow">
+              High Level Architecture
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS5.1DesignDocument-QueryPerformanceandBehaviorEnhancements" rel="nofollow">
+              Query Performance and Behavior Enhancements
+            </a>
+            <ul>
+              <li>
+                <a href="#LexEVS5.1DesignDocument-Lucene-LazyDocumentLoading" rel="nofollow">
+                  Lucene - Lazy Document Loading
+                </a>
+              </li>
+              <li>
+                <a href="#LexEVS5.1DesignDocument-UpdatetoLucene2.4Code" rel="nofollow">
+                  Update to Lucene 2.4 Code
+                </a>
+              </li>
+              <li>
+                <a href="#LexEVS5.1DesignDocument-Searching-Plug-inSearchFramework" rel="nofollow">
+                  Searching - Plug-in Search Framework
+                </a>
+              </li>
+              <li>
+                <a href="#LexEVS5.1DesignDocument-Sorting-Plug-inSortFramework" rel="nofollow">
+                  Sorting - Plug-in Sort Framework
+                </a>
+              </li>
+              <li>
+                <a href="#LexEVS5.1DesignDocument-SQL-SQLqueryoptimizationstoincreasedatabaseperformance" rel="nofollow">
+                  SQL - SQL query optimizations to increase database performance
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#LexEVS5.1DesignDocument-NCIMetaThesaurausContent(RRF)" rel="nofollow">
+              NCI MetaThesauraus Content (RRF)
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS5.1DesignDocument-ValueDomainSupport" rel="nofollow">
+              Value Domain Support
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS5.1DesignDocument-ImprovedLoaderFramework" rel="nofollow">
+              Improved Loader Framework
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS5.1DesignDocument-BDASupport" rel="nofollow">
+              BDA Support
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#LexEVS5.1DesignDocument-Crossproductdependencies" rel="nofollow">
+          Cross product dependencies
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS5.1DesignDocument-Changesintechnology" rel="nofollow">
+          Changes in technology
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS5.1DesignDocument-Assumptions" rel="nofollow">
+          Assumptions
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS5.1DesignDocument-Risks" rel="nofollow">
+          Risks
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#LexEVS5.1DesignDocument-DetailedDesign" rel="nofollow">
+      Detailed Design
+    </a>
+    <ul>
+      <li>
+        <a href="#LexEVS5.1DesignDocument-QueryPerformanceandBehaviorEnhancementsDetailedDesign" rel="nofollow">
+          Query Performance and Behavior Enhancements Detailed Design
+        </a>
+        <ul>
+          <li>
+            <a href="#LexEVS5.1DesignDocument-LuceneLazyLoading" rel="nofollow">
+              Lucene Lazy Loading
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS5.1DesignDocument-Searching" rel="nofollow">
+              Searching
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS5.1DesignDocument-Sorting" rel="nofollow">
+              Sorting
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS5.1DesignDocument-SQLOptimizations" rel="nofollow">
+              SQL Optimizations
+            </a>
+            <ul>
+              <li>
+                <a href="#LexEVS5.1DesignDocument-Then+1SELECTSProblem" rel="nofollow">
+                  The n+1 SELECTS Problem
+                </a>
+              </li>
+              <li>
+                <a href="#LexEVS5.1DesignDocument-Then+1SELECTSProblemExample" rel="nofollow">
+                  The n+1 SELECTS Problem Example
+                </a>
+              </li>
+              <li>
+                <a href="#LexEVS5.1DesignDocument-Then+1SELECTSProblemExample(Solution)" rel="nofollow">
+                  The n+1 SELECTS Problem Example (Solution)
+                </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#LexEVS5.1DesignDocument-MetathesaurausContent(RRF)DetailedDesign" rel="nofollow">
+          Metathesauraus Content (RRF) Detailed Design
+        </a>
+        <ul>
+          <li>
+            <a href="#LexEVS5.1DesignDocument-DataModelElements" rel="nofollow">
+              Data Model Elements
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS5.1DesignDocument-RetrievalandAPIDocumentation" rel="nofollow">
+              Retrieval and API Documentation
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS5.1DesignDocument-MRREL.RRFFile" rel="nofollow">
+              MRREL.RRF File
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS5.1DesignDocument-MRSAT.RRF" rel="nofollow">
+              MRSAT.RRF
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS5.1DesignDocument-MRRANK.RRF" rel="nofollow">
+              MRRANK.RRF
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS5.1DesignDocument-MRSAB.RRF" rel="nofollow">
+              MRSAB.RRF
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS5.1DesignDocument-MRMAP.RRF,MRSMAP.RRF" rel="nofollow">
+              MRMAP.RRF, MRSMAP.RRF
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS5.1DesignDocument-MRHIER.RRF" rel="nofollow">
+              MRHIER.RRF
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS5.1DesignDocument-MRDOC.RRF" rel="nofollow">
+              MRDOC.RRF
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS5.1DesignDocument-MRDEF.RRF" rel="nofollow">
+              MRDEF.RRF
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS5.1DesignDocument-MRCONSO.RRF" rel="nofollow">
+              MRCONSO.RRF
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#LexEVS5.1DesignDocument-ValueDomainSupportDetailedDesign" rel="nofollow">
+          Value Domain Support Detailed Design
+        </a>
+        <ul>
+          <li>
+            <a href="#LexEVS5.1DesignDocument-Scope" rel="nofollow">
+              Scope
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS5.1DesignDocument-Architecture" rel="nofollow">
+              Architecture
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS5.1DesignDocument-LexGridValueDomainmodel" rel="nofollow">
+              LexGrid Value Domain model
+            </a>
+            <ul>
+              <li>
+                <a href="#LexEVS5.1DesignDocument-ValueDomainDefinition" rel="nofollow">
+                  Value Domain Definition
+                </a>
+              </li>
+              <li>
+                <a href="#LexEVS5.1DesignDocument-ValueDomainDefinitionEntry" rel="nofollow">
+                  Value Domain Definition Entry
+                </a>
+              </li>
+              <li>
+                <a href="#LexEVS5.1DesignDocument-CodingSchemeReference" rel="nofollow">
+                  Coding Scheme Reference
+                </a>
+              </li>
+              <li>
+                <a href="#LexEVS5.1DesignDocument-ValueDomainReferences" rel="nofollow">
+                  Value Domain References
+                </a>
+              </li>
+              <li>
+                <a href="#LexEVS5.1DesignDocument-EntityReference" rel="nofollow">
+                  Entity Reference
+                </a>
+              </li>
+              <li>
+                <a href="#LexEVS5.1DesignDocument-DefinitionOperator" rel="nofollow">
+                  Definition Operator
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#LexEVS5.1DesignDocument-LexGridPickListModel" rel="nofollow">
+              LexGrid Pick List Model
+            </a>
+            <ul>
+              <li>
+                <a href="#LexEVS5.1DesignDocument-PickListDefinition" rel="nofollow">
+                  Pick List Definition
+                </a>
+              </li>
+              <li>
+                <a href="#LexEVS5.1DesignDocument-PickListEntryNode" rel="nofollow">
+                  Pick List Entry Node
+                </a>
+              </li>
+              <li>
+                <a href="#LexEVS5.1DesignDocument-PickListEntry" rel="nofollow">
+                  Pick List Entry
+                </a>
+              </li>
+              <li>
+                <a href="#LexEVS5.1DesignDocument-PickListEntryExclusion" rel="nofollow">
+                  Pick List Entry Exclusion
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#LexEVS5.1DesignDocument-ValueDomainDefinitionsPossibleForms" rel="nofollow">
+              Value Domain Definitions Possible Forms
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS5.1DesignDocument-ValueDomainResolution" rel="nofollow">
+              Value Domain Resolution
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS5.1DesignDocument-PickListDefinitionsPossibleForms" rel="nofollow">
+              Pick List Definitions Possible Forms
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS5.1DesignDocument-PickListResolution" rel="nofollow">
+              Pick List Resolution
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS5.1DesignDocument-LexEVSValueDomainandPickListServiceClassDiagram" rel="nofollow">
+              LexEVS Value Domain and Pick List Service Class Diagram
+            </a>
+            <ul>
+              <li>
+                <a href="#LexEVS5.1DesignDocument-CommonServicesClassDiagram" rel="nofollow">
+                  Common Services Class Diagram
+                </a>
+              </li>
+              <li>
+                <a href="#LexEVS5.1DesignDocument-ValueDomainClassDiagram" rel="nofollow">
+                  Value Domain Class Diagram
+                </a>
+              </li>
+              <li>
+                <a href="#LexEVS5.1DesignDocument-PickListClassDiagram" rel="nofollow">
+                  Pick List Class Diagram
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#LexEVS5.1DesignDocument-LexBIGServicesClassDiagram" rel="nofollow">
+              LexBIG Services Class Diagram
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS5.1DesignDocument-MainServiceAPI" rel="nofollow">
+              Main Service API
+            </a>
+            <ul>
+              <li>
+                <a href="#LexEVS5.1DesignDocument-LexBIGAPI" rel="nofollow">
+                  LexBIG API
+                </a>
+              </li>
+              <li>
+                <a href="#LexEVS5.1DesignDocument-LexEVSValueDomainServiceAPI-LoadingValueDomain" rel="nofollow">
+                  LexEVS Value Domain Service API - Loading Value Domain
+                </a>
+              </li>
+              <li>
+                <a href="#LexEVS5.1DesignDocument-ValidateXMLresources" rel="nofollow">
+                  Validate XML resources
+                </a>
+              </li>
+              <li>
+                <a href="#LexEVS5.1DesignDocument-QueryValueDomain" rel="nofollow">
+                  Query Value Domain
+                </a>
+              </li>
+              <li>
+                <a href="#LexEVS5.1DesignDocument-RemoveValueDomainDefinition" rel="nofollow">
+                  Remove Value Domain Definition
+                </a>
+              </li>
+              <li>
+                <a href="#LexEVS5.1DesignDocument-DropValueDomaintables" rel="nofollow">
+                  Drop Value Domain tables
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#LexEVS5.1DesignDocument-LexEVSPickListServiceAPI" rel="nofollow">
+              LexEVS Pick List Service API
+            </a>
+            <ul>
+              <li>
+                <a href="#LexEVS5.1DesignDocument-LoadingPickList" rel="nofollow">
+                  Loading Pick List
+                </a>
+              </li>
+              <li>
+                <a href="#LexEVS5.1DesignDocument-ValidateXMLresources.1" rel="nofollow">
+                  Validate XML resources
+                </a>
+              </li>
+              <li>
+                <a href="#LexEVS5.1DesignDocument-QueryPickList" rel="nofollow">
+                  Query Pick List
+                </a>
+              </li>
+              <li>
+                <a href="#LexEVS5.1DesignDocument-RemovePickListDefinition" rel="nofollow">
+                  Remove Pick List Definition
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#LexEVS5.1DesignDocument-ResolvedValueDomainObjects" rel="nofollow">
+              Resolved Value Domain Objects
+            </a>
+            <ul>
+              <li>
+                <a href="#LexEVS5.1DesignDocument-ResolvedValueDomainCodedNodeSet" rel="nofollow">
+                  ResolvedValueDomainCodedNodeSet
+                </a>
+              </li>
+              <li>
+                <a href="#LexEVS5.1DesignDocument-ResolvedValueDomainDefinition" rel="nofollow">
+                  ResolvedValueDomainDefinition
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#LexEVS5.1DesignDocument-ResolvedPickListObjects" rel="nofollow">
+              Resolved Pick List Objects
+            </a>
+            <ul>
+              <li>
+                <a href="#LexEVS5.1DesignDocument-ResolvedPickListEntry" rel="nofollow">
+                  ResolvedPickListEntry
+                </a>
+              </li>
+              <li>
+                <a href="#LexEVS5.1DesignDocument-ResolvedPickListEntryList" rel="nofollow">
+                  ResolvedPickListEntryList
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#LexEVS5.1DesignDocument-ErrorHandling" rel="nofollow">
+              Error Handling
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS5.1DesignDocument-LoadScripts" rel="nofollow">
+              Load Scripts
+            </a>
+            <ul>
+              <li>
+                <a href="#LexEVS5.1DesignDocument-ValueDomainLoader" rel="nofollow">
+                  Value Domain Loader
+                </a>
+              </li>
+              <li>
+                <a href="#LexEVS5.1DesignDocument-PickListLoader" rel="nofollow">
+                  Pick List Loader
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#LexEVS5.1DesignDocument-SampleXMLfiles" rel="nofollow">
+              Sample XML files
+            </a>
+            <ul>
+              <li>
+                <a href="#LexEVS5.1DesignDocument-ValueDomainDefinitions" rel="nofollow">
+                  Value Domain Definitions
+                </a>
+              </li>
+              <li>
+                <a href="#LexEVS5.1DesignDocument-PickListDefinitions" rel="nofollow">
+                  Pick List Definitions
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#LexEVS5.1DesignDocument-Databasestructure" rel="nofollow">
+              Database structure
+            </a>
+            <ul>
+              <li>
+                <a href="#LexEVS5.1DesignDocument-ValueDomainTables" rel="nofollow">
+                  Value Domain Tables
+                </a>
+              </li>
+              <li>
+                <a href="#LexEVS5.1DesignDocument-PickListTables" rel="nofollow">
+                  Pick List Tables
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#LexEVS5.1DesignDocument-Installation/Packaging" rel="nofollow">
+              Installation / Packaging
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS5.1DesignDocument-SystemTesting" rel="nofollow">
+              System Testing
+            </a>
+            <ul>
+              <li>
+                <a href="#LexEVS5.1DesignDocument-ValueDomainService" rel="nofollow">
+                  Value Domain Service
+                </a>
+              </li>
+              <li>
+                <a href="#LexEVS5.1DesignDocument-PickListService" rel="nofollow">
+                  Pick List Service
+                </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#LexEVS5.1DesignDocument-ImprovedLoaderFrameworkDetailedDesign" rel="nofollow">
+          Improved Loader Framework Detailed Design
+        </a>
+        <ul>
+          <li>
+            <a href="#LexEVS5.1DesignDocument-DocumentPurpose" rel="nofollow">
+              Document Purpose
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS5.1DesignDocument-ImplementationOverview" rel="nofollow">
+              Implementation Overview
+            </a>
+            <ul>
+              <li>
+                <a href="#LexEVS5.1DesignDocument-Description" rel="nofollow">
+                  Description
+                </a>
+              </li>
+              <li>
+                <a href="#LexEVS5.1DesignDocument-Scope.1" rel="nofollow">
+                  Scope
+                </a>
+              </li>
+              <li>
+                <a href="#LexEVS5.1DesignDocument-Architecture.1" rel="nofollow">
+                  Architecture
+                </a>
+              </li>
+              <li>
+                <a href="#LexEVS5.1DesignDocument-Assumptions.1" rel="nofollow">
+                  Assumptions
+                </a>
+              </li>
+              <li>
+                <a href="#LexEVS5.1DesignDocument-Dependencies" rel="nofollow">
+                  Dependencies
+                </a>
+              </li>
+              <li>
+                <a href="#LexEVS5.1DesignDocument-Issues" rel="nofollow">
+                  Issues
+                </a>
+              </li>
+              <li>
+                <a href="#LexEVS5.1DesignDocument-ThirdPartyTools" rel="nofollow">
+                  Third Party Tools
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#LexEVS5.1DesignDocument-ImplementationContents" rel="nofollow">
+              Implementation Contents
+            </a>
+            <ul>
+              <li>
+                <a href="#LexEVS5.1DesignDocument-DevelopmentandBuildEnvironment" rel="nofollow">
+                  Development and Build Environment
+                </a>
+              </li>
+              <li>
+                <a href="#LexEVS5.1DesignDocument-HowtoUsetheLoaderFramework:ARoadmap" rel="nofollow">
+                  How to Use the Loader Framework: A Roadmap
+                </a>
+              </li>
+              <li>
+                <a href="#LexEVS5.1DesignDocument-KeyDirectories" rel="nofollow">
+                  Key Directories
+                </a>
+              </li>
+              <li>
+                <a href="#LexEVS5.1DesignDocument-Algorithms" rel="nofollow">
+                  Algorithms
+                </a>
+              </li>
+              <li>
+                <a href="#LexEVS5.1DesignDocument-BatchProcesses" rel="nofollow">
+                  Batch Processes
+                </a>
+              </li>
+              <li>
+                <a href="#LexEVS5.1DesignDocument-ErrorHandling.1" rel="nofollow">
+                  Error Handling
+                </a>
+              </li>
+              <li>
+                <a href="#LexEVS5.1DesignDocument-DatabaseChanges" rel="nofollow">
+                  Database Changes
+                </a>
+              </li>
+              <li>
+                <a href="#LexEVS5.1DesignDocument-Client" rel="nofollow">
+                  Client
+                </a>
+              </li>
+              <li>
+                <a href="#LexEVS5.1DesignDocument-JSP/HTML" rel="nofollow">
+                  JSP/HTML
+                </a>
+              </li>
+              <li>
+                <a href="#LexEVS5.1DesignDocument-Servlet" rel="nofollow">
+                  Servlet
+                </a>
+              </li>
+              <li>
+                <a href="#LexEVS5.1DesignDocument-SecurityIssues" rel="nofollow">
+                  Security Issues
+                </a>
+              </li>
+              <li>
+                <a href="#LexEVS5.1DesignDocument-Performance" rel="nofollow">
+                  Performance
+                </a>
+              </li>
+              <li>
+                <a href="#LexEVS5.1DesignDocument-Internationalization" rel="nofollow">
+                  Internationalization
+                </a>
+              </li>
+              <li>
+                <a href="#LexEVS5.1DesignDocument-Installation/Packaging.1" rel="nofollow">
+                  Installation / Packaging
+                </a>
+              </li>
+              <li>
+                <a href="#LexEVS5.1DesignDocument-Migration" rel="nofollow">
+                  Migration
+                </a>
+              </li>
+              <li>
+                <a href="#LexEVS5.1DesignDocument-DocumentationConsiderations" rel="nofollow">
+                  Documentation Considerations
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#LexEVS5.1DesignDocument-Testing" rel="nofollow">
+              Testing
+            </a>
+            <ul>
+              <li>
+                <a href="#LexEVS5.1DesignDocument-TestGuidelines" rel="nofollow">
+                  Test Guidelines
+                </a>
+              </li>
+              <li>
+                <a href="#LexEVS5.1DesignDocument-TestCases" rel="nofollow">
+                  Test Cases
+                </a>
+              </li>
+              <li>
+                <a href="#LexEVS5.1DesignDocument-TestResults" rel="nofollow">
+                  Test Results
+                </a>
+              </li>
+              <li>
+                <a href="#LexEVS5.1DesignDocument-CustomLoaderFeasibilityReportandRecommendation" rel="nofollow">
+                  Custom Loader Feasibility Report and Recommendation
+                </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#LexEVS5.1DesignDocument-BDASupportDetailedDesign" rel="nofollow">
+          BDA Support Detailed Design
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#LexEVS5.1DesignDocument-ImplementationPlan" rel="nofollow">
+      Implementation Plan
+    </a>
+    <ul>
+      <li>
+        <a href="#LexEVS5.1DesignDocument-Technicalenvironment" rel="nofollow">
+          Technical environment
+        </a>
+        <ul>
+          <li>
+            <a href="#LexEVS5.1DesignDocument-Software(TechnologyStack)" rel="nofollow">
+              Software (Technology Stack)
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS5.1DesignDocument-ServerHardware" rel="nofollow">
+              Server Hardware
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS5.1DesignDocument-Storage" rel="nofollow">
+              Storage
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS5.1DesignDocument-Networking" rel="nofollow">
+              Networking
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#LexEVS5.1DesignDocument-Externaldependencies" rel="nofollow">
+          External dependencies
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS5.1DesignDocument-Team/Locationperformingdevelopment" rel="nofollow">
+          Team/Location performing development
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS5.1DesignDocument-ProceduresforDevelopment" rel="nofollow">
+          Procedures for Development
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS5.1DesignDocument-Detailedschedule" rel="nofollow">
+          Detailed schedule
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS5.1DesignDocument-Traininganddocumentationrequirements" rel="nofollow">
+          Training and documentation requirements
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS5.1DesignDocument-Downloadcenterchanges" rel="nofollow">
+          Download center changes
+        </a>
+      </li>
+    </ul>
+  </li>
+</ul>
+Document information
+Author: Traci St.Martin/Craig Stancl/Kevin Peterson/Scott Bauer/Sridhar Dwarkanath/Mike Turk Email: stmartin.traci@mayo.edu Team: LexEVS/EVS Contract: SAIC Subcontract#28XS112 Client: NCI CBIIT National Institutes of Heath US Department of Health and Human Services
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Sign off
+      </th>
+      <th>
+        Date
+      </th>
+      <th>
+        Role
+      </th>
+      <th>
+        CBIIT or Stakeholder Organization
+      </th>
+      <th>
+        Reviewer&#39;s Comments (If disapproved indicate specific areas for improvement.)
+      </th>
+    </tr>
+    <tr>
+      <td>
+        —
+      </td>
+      <td>
+        —
+      </td>
+      <td>
+        —
+      </td>
+      <td>
+        —
+      </td>
+      <td>
+        —
+      </td>
+    </tr>
+  </tbody>
+</table>
+The purpose of this document is to collect, analyze, and define high-level needs for and designed features of the National Cancer Institute Center for Biomedical Informatics and Information Technology (NCI CBIIT) caCORE LexEVS Release 5.1. The focus is on the functionalities proposed by the stakeholders and target users to make a better product. The use case documents show in detail how the features meet these needs.
+<h2 id="LexEVS5.1DesignDocument-DesignScope">
+  Design Scope
+</h2>
+The scope of this release of the LexEVS 5.1 is to support the Metathesaurus Browser project by enhancing search and sorting performance as well as RRF loader changes to more accurately reflect the data. In addition we will explore enhancements to the loader framework and provide a recommendation/implementation for value set/domain support.Please view the
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=18383605" rel="nofollow">
+  LexEVS 5.1 Scope document
+</a>
+.
+<h3 id="LexEVS5.1DesignDocument-GForgeitems">
+  GForge items
+</h3>
+Please view the
+<a href="https://gforge.nci.nih.gov/tracker/?group_id=491" rel="nofollow">
+  LexEVS 5.1 GForge items
+</a>
+.
+<h3 id="LexEVS5.1DesignDocument-SolutionArchitecture">
+  Solution Architecture
+</h3>
+Proposed technical solution to satisfy the following requirements:
+<ul>
+  <li>
+    Query Performance and Behavior Enhancements - Improve the API to support the needs of the Metathesaurus Browser&#39;s query response.
+  </li>
+  <li>
+    Metathesauraus Content (RRF) - Improve the loader to support full loading of RRF data as necessary for proper operation of the Methathesaurus Browser.
+  </li>
+  <li>
+    Value Domain Support - Address an important part of the Semantic Infrastructure that is needed in caBIG.
+  </li>
+  <li>
+    Improved Loader Framework - Improve the loading capability and allow loaders to be modular.
+  </li>
+  <li>
+    BDA Support - Deployment of LexEVS Project Artifacts to Remote Servers
+  </li>
+</ul>
+<h4 id="LexEVS5.1DesignDocument-HighLevelArchitecture">
+  High Level Architecture
+</h4>
+The LexEVS 5.1 infrastructure exhibits an n-tiered architecture with client interfaces, server components, domain objects, data sources, and back-end systems (Figure 1.1). This n-tiered system divides tasks or requests among different servers and data stores. This isolates the client from the details of where and how data is retrieved from different data stores.The system also performs common tasks such as logging and provides a level of security for protected content. Clients (browsers, applications) receive information through designated application programming interfaces (APIs). Java applications communicate with back-end objects via domain objects packaged within the client.jar. Non-Java applications can communicate via SOAP (Simple Object Access Protocol) or REST (Representational State Transfer) services.Most of the LexEVS API infrastructure is written in the Java programming language and leverages reusable, third-party components.  The service infrastructure is composed of the following layers: Application Service layer -  accepts incoming requests from all public interfaces and translates them, as required, to Java calls in terms of the native LexEVS API. Non-SDK queries are invoked against the Distributed LexEVS API, which handles client authentication and acts as proxy to invoke the equivalent function against the LexEVS core Java API. The caGrid and SDK-generated services are optionally run in an application server separate from the Distributed LexEVS API.  The LexEVS caCORE SDK services work directly against the database, via Hibernate bindings, to resolve stored objects without intermediate translation of calls in terms of the LexEVS API. However, the LexEVS SDK services do still require access to metadata and security information stored by the Distributed and Core LexEVS API environment to resolve the specific database location for requested objects and to verify access to protected resources, respectively.  From the client prospective, the LexEVS services will function as &#34;ports&#34; accessible through the caGrid 1.3 service architectural model. LexEVS services will follow the caGrid architecture for analytical and data services. See the caGrid 1.3 documentation for architectural details:
+<a href="https://cabig.nci.nih.gov/workspaces/Architecture/caGrid/" rel="nofollow">
+  https://cabig.nci.nih.gov/workspaces/Architecture/caGrid/
+</a>
+Core API layer   -  underpins all LexEVS API requests. Search of pre-populated Lucene index files is used to evaluate query results before incurring cost of database access. Access to the LexGrid database is performed as required to populate returned objects using pooled connections. Data Source layer--- is responsible for storage and access to all data required to represent the objects returned through API invocation.High Level Design Diagram
+<img alt="high level diagram" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%205.1%20Design%20Document/arch_diagram_5.1.png?api=v2">
+<h4 id="LexEVS5.1DesignDocument-QueryPerformanceandBehaviorEnhancements">
+  Query Performance and Behavior Enhancements
+</h4>
+<h5 id="LexEVS5.1DesignDocument-Lucene-LazyDocumentLoading">
+  Lucene - Lazy Document Loading
+</h5>
+Lucene is very fast as a search engine. Given a text string, Lucene can find matching documents in huge indexes very fast. This is the purpose and strength of Lucene. Lucene is not, however, a database. Retrieving information from the documents that the search found as &#39;hits&#39; is slow.Consider this scenario: A user searches for &#39;heart&#39; in the NCI MetaThesaurus. When Lucene does its search, it will return probably 50,000+ &#39;hits&#39;. This search is done very fast. LexEVS previously would retrieve all of those documents to populate the ResolvedConceptReference. Retrieving this many documents from Lucene is slow.The solution is to is lazy load the documents as needed. After the Lucene search is complete, we only store the Document Id. Then, when information from the document is needed, it is retrieved from the document. This is helpful in Iterator-type scenarios, where retrieval can be done one at a time.
+<h5 id="LexEVS5.1DesignDocument-UpdatetoLucene2.4Code">
+  Update to Lucene 2.4 Code
+</h5>
+As we move forward, it is important to keep current with the latest Lucene API. Not only is this important for performance reasons -- it will limit our ability to upgrade our Lucene dependencies if we rely on deprecated methods.
+<h5 id="LexEVS5.1DesignDocument-Searching-Plug-inSearchFramework">
+  Searching - Plug-in Search Framework
+</h5>
+We advertise our Searches as being &#39;extensions&#39;, but in reality it is very difficult (or impossible) for a use to create a plug-in type Search.The Interface org.LexGrid.LexBIG.Extensions.Query.Search will be introduced. The purpose of this interface is to give users a plug-in type Interface to implement different search strategies. This interface will accept a text query string and output a Lucene Query.
+<h5 id="LexEVS5.1DesignDocument-Sorting-Plug-inSortFramework">
+  Sorting - Plug-in Sort Framework
+</h5>
+As with Searching, Sort algorithms are not currently easily extended. A well defined and &#39;Extension-ready&#39; interface would allow users to add additional search functionality on demand, without rebuilding or recompiling.The existing Interface org.LexGrid.LexBIG.Extensions.Query.Search will be expanded to allow for easy implementation and flexibility, allowing rapid creation of new Sort Algorithms and techniques.
+<h5 id="LexEVS5.1DesignDocument-SQL-SQLqueryoptimizationstoincreasedatabaseperformance">
+  SQL - SQL query optimizations to increase database performance
+</h5>
+Join EntityDescription when building AssociatedConcepts  The &#39;EntityDescription&#39; field of &#39;Entity&#39; is being retrieved with a separate SQL call. This will allow the building of AssociatedConcepts with minimal calls to the database.Furthermore, this will allow the &#39;EntityDescription&#39; to be available without requiring the actual &#39;CodedEntry&#39; to be resolved. For most usescases, this should enable users to resolve Graphs with &#39;CodedEntryDepth=0&#39;. Avoiding any resolving of the CodedEntry will keep resolve times to a minimum.Join EntryState when building CodedEntry  The EntryState is now populated with a seperate SQL SELECT query to the database. This results in one SELECT statement per CodedEntry returned - and there is potential for a large number of CodedEntries to be resolved at once. Populating this with a JOIN instead of a SELECT will be more efficient and not require additional unnecessary SELECT queries to the database.
+<h4 id="LexEVS5.1DesignDocument-NCIMetaThesaurausContent(RRF)">
+  NCI MetaThesauraus Content (RRF)
+</h4>
+Loads of the NCI MetaThesaurus RRF formatted data into the LexGrid model require a number of loader adjustments in order to accurately reflect the state of the data as it exists in the current RRF files. No model or API changes will be necessary to accommodate the data; changes will be made directly to to the loader.
+<h4 id="LexEVS5.1DesignDocument-ValueDomainSupport">
+  Value Domain Support
+</h4>
+The LexEVS Value Domain and Pick List service will provide ability to load Value Domain and Pick List Definitions into LexGrid repository and provides ability to apply user restrictions and dynamically resolve the definitions during run time. Both Value Domain and Pick List service are integrated part of LexEVS core API.The LexEVS Value Domain and Pick List service will provide programmatic access to load Value Domain and Pick List Definitions using the domain objects that are available via the LexGrid logical model. The LexEVS Value Domain and Pick List service will provide ability to apply certain user restrictions (ex: pickListId, valueDomain URI etc) and dynamically resolve the Value Domain and Pick List definitions during the run timeThe LexEVS Value Domain and Pick List Service meant to expose the API particularly for the Value Domain and Pick List elements of the LexGrid Logical Model. For more information on LexGrid model see http://informatics.mayo.edu\\
+<h4 id="LexEVS5.1DesignDocument-ImprovedLoaderFramework">
+  Improved Loader Framework
+</h4>
+LexEVS already provides a set of loaders within an existing legacy framework which has served LexEVS developers well over the years. But as LexEVS has gained users, and requests for new loaders has grown , it was decided that a new Loader Framework should be developed. The new framework: provides classes and interfaces that are more modular and easier to extend; improved loader performance; allows dynamic loading of new loaders; is built upon proven open source technologies such as SpringBatch and Hibernate, and finally, the new Loader Framework code is completely independent of the current loader code in LexEVS so there will be no impact to current loaders.
+<h4 id="LexEVS5.1DesignDocument-BDASupport">
+  BDA Support
+</h4>
+LexEVS uses the BDA (Build and Deployment Automation) system to build and deploy artifacts. This build script that produces these artifacts and deploys them is kicked off via a build server (an instance of Anthill pro).
+<h3 id="LexEVS5.1DesignDocument-Crossproductdependencies">
+  Cross product dependencies
+</h3>
+Include a link to the
+<a href="https://wiki.nci.nih.gov/x/hIx8" rel="nofollow">
+  Core Product Dependency Matrix
+</a>
+.
+<h3 id="LexEVS5.1DesignDocument-Changesintechnology">
+  Changes in technology
+</h3>
+Include any new dependencies in the
+<a href="https://wiki.nci.nih.gov/x/hIx8" rel="nofollow">
+  Core Product Dependency Matrix
+</a>
+and summarize them here.
+<ul>
+  <li>
+    No new dependencies exist.
+  </li>
+</ul>
+<h3 id="LexEVS5.1DesignDocument-Assumptions">
+  Assumptions
+</h3>
+List any assumptions.
+<h3 id="LexEVS5.1DesignDocument-Risks">
+  Risks
+</h3>
+<ul>
+  <li>
+    Increased load time and storage requirements due to additional Meta (RRF) content.
+    <ul>
+      <li>
+        Due to the additional content to load from RRF files, there is a risk of increased loading times and increased storage requirements. The new loader framework should mitigate the increased loading times (providing a faster load while increasing content to be loaded).
+      </li>
+    </ul>
+  </li>
+</ul>
+<h2 id="LexEVS5.1DesignDocument-DetailedDesign">
+  Detailed Design
+</h2>
+Specify how the solution architecture will satisfy the requirements. This should include high level descriptions of program logic (for example in structured English), identifying container services to be used, and so on.
+<h3 id="LexEVS5.1DesignDocument-QueryPerformanceandBehaviorEnhancementsDetailedDesign">
+  Query Performance and Behavior Enhancements Detailed Design
+</h3>
+<h4 id="LexEVS5.1DesignDocument-LuceneLazyLoading">
+  Lucene Lazy Loading
+</h4>
+Backgroud - Lucene Documents  Lucene stores information in Documents, and these Documents have Fields that are used to hold information. Each Document has a unique id.For example, an index of People may be indexed in Lucene as:
+Document: id 1
+First Name: John
+Last Name: Doe
+Sex: Male
+Age: 45
+
+Document: id 2
+First Name: Jane
+Last Name: Doe
+Sex: Female
+Age: 40
+
+... etc.
+
+LexEVS stores information about Entities in this way. Property names and values, as well as Qualifiers, Language, and various other information about the Entity are held in Lucene indexes.Backgronud - Querying LuceneLucene provides a Query mechanism to search through the indexed documents. Given a search query, Lucene will provide the Document id and the score of the match (Lucene assigns every match a &#39;score&#39;, depending on the strength of the match given the query).So, if the above index is queried for &#34;First Name = Jane AND Last Name = Doe&#34;, the result will be the Document id of the match (2), and the score of the match (a float number, usually between 1 and 10).Notice that none of the other information is returned, such as Sex or Age. It is useful for that extra information to be there, because if it exists in the Lucene indexes we do not have to make a database query for it. BUT, retrieving data from Lucene Documents is expensive, just as retrieving data from a database would be.
+<ul>
+  <li>
+    Lazy Retrieval We can leverage this to increase performance in LexEVS. Consider this simplified LexEVS Entity index:
+  </li>
+</ul>
+Document: id 1
+Code: C12345
+Name: Heart
+
+Document: id 2
+Code: C67890
+Name: Foot
+
+Document: id 3
+Code: C98765
+Name: Heart Attack
+
+If a user constructs a Query (Name = Heart*), the query will return with the matching Document ids (1 and 2). Previously, LexEVS would immediately retrieve the &#39;Code&#39; and &#39;Name&#39; fields from the matches, and use them to construct the results that would be ultimately returned to the user. This does not scale well, especially for general queries in large ontologies. In a large ontology, a Query of (Name = Heart*) may match tens of thousands of Documents. Retrieving the information from all these Documents is a significant performance concern.Instead of retrieving the information up front, LexEVS will simply store the Document id for later use. When this information is actually needed by the user (for example, the information needs to be displayed), it is retrieved on demand.
+<h4 id="LexEVS5.1DesignDocument-Searching">
+  Searching
+</h4>
+To allow users to plug in custom search algorithms, the LexEVS Extension framework needed to be extended to include Searches.The org.LexGrid.LexBIG.Extensions.Extendable.Search interface consists of one method to be implemented:
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Class:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Extensions.Extendable.Search
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Method:
+      </th>
+      <td>
+        public org.apache.lucene.search.Query buildQuery(String searchText)
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Given a String search string, build a Query object to match indexed Lucene Documents
+      </td>
+    </tr>
+  </tbody>
+</table>
+This enables the user to construct any type of Query given search text. Wildcards may be added, search terms may be grouped, etc.AND vs. OR  Previously, for most search algorithms Lucene applied an &#39;OR&#39; to the terms if multiple terms were input as search text. For example, a search of &#39;heart attack&#39; would match all documents containing &#39;heart&#39; OR all documents containing &#39;attack&#39;. This lead to non-intuitive results being returned to the user. Changing Lucene to default to an &#39;AND&#39; type strategy will increase search precision and in most cases shrink the amount of results returned for a given query, which will in turn increase overall performance.AlgorithmsMore precice DoubleMetaphoneQuery  DoubleMetaphoneQueries enable the user to input incorrectly spelled search text, while still returning results. Because this is a &#39;fuzzy&#39; search, it is important to structure the Query in a way that the most appropriate results are returned to the user first.For example, the Metaphone computed value for &#34;Breast&#34; and &#34;Prostrate&#34; is the same. Given the search term &#34;Breast&#34;, both &#34;Breast&#34; and &#34;Prostrate&#34; will match with exactly the same score. Technically, this is correct behavior, but to the end user this is not desirable. To overcome this, we have introduced a new query, WeightedDoubleMetaphoneQuery.WeightedDoubleMetaphoneQuery  This algorithm does not automatically assume that the user has spelled the terms incorrectly. Searches are also based on the actual text that the user has input, along with the Metaphone value. Again, if the user input &#34;Breast&#34;, the query will still match &#34;Breast&#34; and &#34;Prostrate&#34;, but &#34;Breast&#34; will have a higher match score, because the actual user text is considered. This will add a greater precision to this fuzzy-type query.Algorithm:
+get: user text input
+2: total score = 0
+3: metaphone score = 0
+4: actual score = 0
+5: metaphone value = lucene.computeMetaphoneValue(user text input)
+6: metaphone score = lucene.scoreMetaphoneValue(metaphone value)
+7: actual score = lucene.score(user text input)
+8: total score = metaphone score + actual score
+9: halt
+
+Case-insensitive substringSubStringSearch - This algorithm is intended to find substrings within a large string. For example: &#34;with a heart attack&#34; Will match: &#34;The patient with a heart attack was seen today&#34;.Also, a leading and trailing wildcard will be added, so &#34;th a heart atta&#34; Will also match: &#34;The patient with a heart attack was seen today&#34;.Algorithm:
+get: user text input
+2: user text input = &#39;*&#39; + user text input + &#39;*&#39;
+3: score = lucene.score(user text input)
+4: halt
+<h4 id="LexEVS5.1DesignDocument-Sorting">
+  Sorting
+</h4>
+Sorting matched results is important part of interacting with the LexEVS API. Allowing users to plug in customized Sort algorithms helps LexEVS to be more flexible to more groups of users. To implement a Sorting algorithm, a user must implement the org.LexGrid.LexBIG.Extensions.Extendable.Sort Interface.
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Class:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Extensions.Extendable.Sort
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Method:
+      </th>
+      <td>
+        public &lt;T&gt; Comparator&lt;T&gt; getComparatorForSearchClass(Class&lt;T&gt; searchClass) throws LBParameterException  Description: Given a Class that this Sort is valid for, return the correct Comparator to compare the results and sort.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Method:
+      </th>
+      <td>
+        public boolean isSortValidForClass(Class&lt;?&gt; clazz);  Description: Return whether or not this Sort is valid for Sorting on a given Class
+      </td>
+    </tr>
+  </tbody>
+</table>
+<ul>
+  <li>
+    Sorting on Different Class types
+    <ul>
+      <li>
+        A single Sort may be applicable for a variety of Class types. For instance, both an &#39;Association&#39; and an &#39;Entity&#39; may be sorted by &#39;Code&#39;, but the actual implementation of retrieving the Code and comparing it may be different between the two. It is the job of the Sort to implement a Comparator for each potential Class that it is eligible to sort.
+      </li>
+    </ul>
+  </li>
+  <li>
+    Default Sorting
+    <ul>
+      <li>
+        All result sets are sorted by default by Lucene Score, meaning that the best match according to Lucene will always be returned first by default. Note that if two or more result sets are being Unioned, Intersected, or Differenced, the user must explicitly call a &#39;matchToQuery&#39; sort on the result set as a whole to order all of the results.
+      </li>
+    </ul>
+  </li>
+  <li>
+    Sort Contexts
+    <ul>
+      <li>
+        Sorts may be applicable in one or more &#39;Contexts&#39; (see: org.LexGrid.LexBIG.DataModel.InterfaceElements.types.SortContext) This means that a Sort may apply only to a CodedNodeSet, or only to a CodedNodeGraph, or some combination. Sorts will only be employed by the API if they match the Context in which the results are being sorted.
+      </li>
+    </ul>
+  </li>
+  <li>
+    Performance Issues
+    <ul>
+      <li>
+        Sorting is generally computationally expensive, because in order to correctly sort, the field to be sorted has to be fully retrieved for the entire result set. For very specific or refined queries, this may not be a problem, but for large ontologies or very general queries, performance may be a concern. To alleviate this, &#39;Post sort&#39; has been introduced.
+      </li>
+    </ul>
+  </li>
+  <li>
+    Post Sorting
+    <ul>
+      <li>
+        In order to minimize the performance impact of sorting, users are encouraged to use a &#39;Post sort&#39; where possible. A Post sort is done after the result set has been restricted, thus limiting the amount of information that must be retrieved in order to perform the sort. For instance, a query may match a set of Entities:
+        {&#34;Heart&#34;, &#34;Heart Failure&#34;, &#34;Heart Attack&#34;, &#34;Arm&#34;, &#34;Finger&#34;, ...}
+      </li>
+    </ul>
+  </li>
+</ul>
+As described earlier, all results are by default sorted by Lucene score, so if we limit the result set to the top 3, the result is:
+{&#34;Heart&#34;, &#34;Heart Failure&#34;, &#34;Heart Attack&#34;}
+
+The restricted set can then be &#39;Post&#39; sorted - and because the result set has be limited to a reasonable number of matches, sorting and retrieval time can be minimized.Algorithm:
+1: get: Sort requested by user
+2: get: Context sort is being applied to
+3: if: sort is not valid for Context
+halt
+4: else:
+5: get: Class to be sorted on
+6: if: sort is not valid for Class
+halt
+7: get: Comparator for Sort - given (Class to be sorted on)
+8: sort results using Comparator for Sort
+9: halt
+<h4 id="LexEVS5.1DesignDocument-SQLOptimizations">
+  SQL Optimizations
+</h4>
+<h5 id="LexEVS5.1DesignDocument-Then+1SELECTSProblem">
+  The n+1 SELECTS Problem
+</h5>
+The n+1 SELECTS Problem refers to how information can optimally be retrieved from the database, preferably using as few queries as possible. This is desirable because:
+<ul>
+  <li>
+    Query overhead is a concern. Every query must be packaged and sent to the database engine, processed, packaged again and transferred to the client. Although the overhead may be minimal (a few milliseconds), it does not scale.
+  </li>
+</ul>
+To avoid this, a JOIN query can be used.
+<h5 id="LexEVS5.1DesignDocument-Then+1SELECTSProblemExample">
+  The n+1 SELECTS Problem Example
+</h5>
+Given two database tables, retrieve the Code, Name, and Qualifier for each CodeTable Codes
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Code
+      </th>
+      <th>
+        Name
+      </th>
+    </tr>
+    <tr>
+      <td>
+        C01234
+      </td>
+      <td>
+        Heart
+      </td>
+    </tr>
+    <tr>
+      <td>
+        C98765
+      </td>
+      <td>
+        Heart Attack
+      </td>
+    </tr>
+  </tbody>
+</table>
+Table Qualifiers
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Code
+      </th>
+      <th>
+        Qualifier
+      </th>
+    </tr>
+    <tr>
+      <td>
+        C01234
+      </td>
+      <td>
+        isAnOrgan
+      </td>
+    </tr>
+    <tr>
+      <td>
+        C98765
+      </td>
+      <td>
+        isADisease
+      </td>
+    </tr>
+  </tbody>
+</table>
+SELECT * FROM Codes
+
+Results in:
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Code
+      </th>
+      <th>
+        Name
+      </th>
+    </tr>
+    <tr>
+      <td>
+        C01234
+      </td>
+      <td>
+        Heart
+      </td>
+    </tr>
+    <tr>
+      <td>
+        C98765
+      </td>
+      <td>
+        Heart Attack
+      </td>
+    </tr>
+  </tbody>
+</table>
+To get the Qualifiers, separate SELECTs must be used for each.
+SELECT * FROM Qualifiers where Code = C01234
+And
+SELECT * FROM Qualifiers where Code = C98765
+
+This sequence results in 1 Query to retrieve the data from the Codes table, and then n Queries from the Qualifiers table. This results in n+1 total Queries.
+<h5 id="LexEVS5.1DesignDocument-Then+1SELECTSProblemExample(Solution)">
+  The n+1 SELECTS Problem Example (Solution)
+</h5>
+Given two database tables, retrieve the Code, Name, and Qualifier for each CodeTable Codes
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Code
+      </th>
+      <th>
+        Name
+      </th>
+    </tr>
+    <tr>
+      <td>
+        C01234
+      </td>
+      <td>
+        Heart
+      </td>
+    </tr>
+    <tr>
+      <td>
+        C98765
+      </td>
+      <td>
+        Heart Attack
+      </td>
+    </tr>
+  </tbody>
+</table>
+Table Qualifiers
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Code
+      </th>
+      <th>
+        Qualifier
+      </th>
+    </tr>
+    <tr>
+      <td>
+        C01234
+      </td>
+      <td>
+        isAnOrgan
+      </td>
+    </tr>
+    <tr>
+      <td>
+        C98765
+      </td>
+      <td>
+        isADisease
+      </td>
+    </tr>
+  </tbody>
+</table>
+SELECT * FROM Codes JOIN Qualifiers ON Code
+
+Results in:
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Code
+      </th>
+      <th>
+        Name
+      </th>
+      <th>
+        Qualifier
+      </th>
+    </tr>
+    <tr>
+      <td>
+        C01234
+      </td>
+      <td>
+        Heart
+      </td>
+      <td>
+        isAnOrgan
+      </td>
+    </tr>
+    <tr>
+      <td>
+        C98765
+      </td>
+      <td>
+        Heart Attack
+      </td>
+      <td>
+        isADisease
+      </td>
+    </tr>
+  </tbody>
+</table>
+Because of the JOIN, only one Query is needed to retrieve all of the data from the database.Although sometimes obvious, n+1 queries can remain in a system undetected until scaling problems are noticed.In LexEVS there were 3 n+1 SELECT queries fixed:
+<ul>
+  <li>
+    The EntryState while building the CodedEntry.
+  </li>
+  <li>
+    The EntityDescription on AssociatedConcepts
+  </li>
+  <li>
+    AssociationQualifiers on AssociatedConcepts
+  </li>
+</ul>
+<h3 id="LexEVS5.1DesignDocument-MetathesaurausContent(RRF)DetailedDesign">
+  Metathesauraus Content (RRF) Detailed Design
+</h3>
+Loads of the NCI MetaThesaurus RRF formatted data into the LexGrid model require a number of adjustments in order to accurately reflect the state of the data as it exists in the current RRF files.
+<h4 id="LexEVS5.1DesignDocument-DataModelElements">
+  Data Model Elements
+</h4>
+Most data elements will be loaded as either properties or property qualifiers:
+<img alt=" properties diagram" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%205.1%20Design%20Document/Property.JPG?api=v2">
+A few will be loaded as qualifiers to associations.
+<h4 id="LexEVS5.1DesignDocument-RetrievalandAPIDocumentation">
+  Retrieval and API Documentation
+</h4>
+No new API retrieval methods will be implemented in the scope of LexEVS 5.1. However, some may be required in the scope of 6.0 for any mapping elements implemented as new model elements or model extensions to LexGrid. No changes to user interfaces will occur. Service methods for loading these elements will be consistent with the new Spring Batch loader framework.
+<h4 id="LexEVS5.1DesignDocument-MRREL.RRFFile">
+  MRREL.RRF File
+</h4>
+Problem:REL and RELA column elements from the RRF source need to be connected. Currently these are loaded as separate relationships preventing the user from connecting to the REL/RELA combinations that actually occur in the NCI-META (e.g. RELA may be different for same REL value in different sources).Requirement:A single relationship should be loaded for a REL/RELA combination for a particular SAB between two CUIs.Solution:Since RELA type RRF elements have been defined as relationship names specific to sources and not independent relationships themselves, these elements will be loaded as association qualifiers in the LexGrid model.Problem and Requirement:User is unable to distinguish individual relationships from one source or another. The same association &#34;entity&#34; exists only once but has two &#34;source&#34; qualifiers. User is unable to distinguish the AUI1/STYPE1 and AUI2/STYPE2 which gives us the information about what source data structures are actually being connected by MRREL entries. Users also need the ability to associate AUI/STYPE fields with SAB. Users sole choice for rendering a relationship in terms of the strings on either side is to use preferred concept names.Proposed Solution:Propose AUI to AUI - the way CUI to CUI are currently handled in the implementation. Propose entity to entity relationship - will still have to account for CUI to CUI relationships. Load each unique RUI (would be quite large). They would need to be listed as supported association (this is not traditional how it is used).Load supporting column elements from MRREL.RRF including contents of: AUI1, STYPE1, AUI2, STYPE2, SRUI, SAB, RG, SUPPRESS, CVF, RUIThese will be available as elements of the overriding Metathesaurus Association and loaded as association qualifiersProblem:Self Referencing Relationships (CUI1 = CUI2) cannot be fully represented in our model. Previously, these were loaded as PropertyLinks. This fit into the LexEVS model well, but left out important RRF information. Most notably, PropertyLinks cannot contain Qualifiers like normal relations can. Because of the increased number of Qualifiers that are required to be placed on relations, much information would be lost representing these relations as PropertyLinksSolution:Do not treat a CUI1 = CUI2 relationships differently than a CUI1 != CUI2 relationship. For API and query purposes, qualify these relationships with a &#39;selfReferencing=true&#39; Qualifier. In this way, we can still avoid cycles in the API, but maintain all relevant Qualifier information in the relation.
+<h4 id="LexEVS5.1DesignDocument-MRSAT.RRF">
+  MRSAT.RRF
+</h4>
+Problem:MRSAT.RRF is not loaded but only accessed for given preferred term algorithms. This data should be loaded as concept properties (STYPE=CUI), properties on properties (STYPE=AUI, SAUI, CODE, SCUI, SDUI), qualifiers on associations (STYPE=RUI,SRUI). Some complexity may arise as concept properties can have additional qualifiers, but property-properties cannot and association-qualifiers cannot.Requirement:If the STYPE is something other than RUI or SRUI, you can load that row as an entity property. The fields you&#39;d want to capture are:CUI - We use this as the entityCode and is loaded as such in the table.METAUI - load as a propertyQualifier (name=METAUI, value)STYPE - load as a propertyQualifier (name=STYPE, value)ATUI - load as propertyIdATN - load as property nameSAB - load as a propertyQualifier (typeName=source)ATV- load as a propertyValueSUPPRESS - load as propertyQualifier if value != N
+<h4 id="LexEVS5.1DesignDocument-MRRANK.RRF">
+  MRRANK.RRF
+</h4>
+Problem:SAB specific ranking of representational form in MRRANK is not exposed to the user (used in an underlying ranking and specifying of preferred presentations for a given concept)Requirement:Load elements of MRRANK so that they are available to the user.Proposed Solution:Load MRRANK as property qualifier on Presentation type property with the property Name of &#34;mrrank.&#34;Retrieval:Available in current LexEVS api
+<h4 id="LexEVS5.1DesignDocument-MRSAB.RRF">
+  MRSAB.RRF
+</h4>
+Problem:MRSAB.RRF file data is not loaded or is otherwise unavailable to the user.Requirement:Load MRSAB.RRF file data as metadataImplemented Solution:Entire content of each row of MRSAB file is loaded as metadata to an external xml file with tags created from column names and value inserted between tags as is appropriate
+<h4 id="LexEVS5.1DesignDocument-MRMAP.RRF,MRSMAP.RRF">
+  MRMAP.RRF, MRSMAP.RRF
+</h4>
+Problem:MRMAP.RRF source load is not supported in current load. Currently this RRF file is not populated in NCI Metathesaurus distributions. Mapping is not explicitly supported in the LexGrid Model.Requirement:Load MRMAP data.Solution:To be evaluated for a load to current model elements or possible new model mapping elements. The general agreement is that this is more appropriately implemented in 6.0.
+<h4 id="LexEVS5.1DesignDocument-MRHIER.RRF">
+  MRHIER.RRF
+</h4>
+Problem:HCD is loaded as a property on the presentation but the SAB isn&#39;t associated with it so we do not know the source of the HCD. (only look at row that has HCD field populated) Path to Root, (PTR) is also not loaded, but is instead used to determine path to root operations in LexEVS.Requirement:These elements need to be loaded and available from the LexEVS apiSolution:Load HCD associated field SAB as property qualifier when HCD is present. Load PTR as property.
+<h4 id="LexEVS5.1DesignDocument-MRDOC.RRF">
+  MRDOC.RRF
+</h4>
+Problem:MRDOC contains metadata unavailable to the user. It is not loaded by LexEVS.Requirement:This metadata will be made available to the user.Solution:MRDOC&#39;s column names and content will be processed as tag/value mappings to a metadata file.
+<h4 id="LexEVS5.1DesignDocument-MRDEF.RRF">
+  MRDEF.RRF
+</h4>
+Problem:Some values from each row are not loaded by LexEVS.Requirement:AUI should be loaded to connect it with the presentation ATUI, SUPPRESS, CVF, SATAUI should be loaded and exposed to the user.ATUI, SUPPRESS, CVF, SATAUI, column values will be loaded as property qualifiers on the Definition type property derived from MRDEF column.
+<h4 id="LexEVS5.1DesignDocument-MRCONSO.RRF">
+  MRCONSO.RRF
+</h4>
+Problem:Some elements from the columns of MRCONSO.RRF are not loaded by LexEVS.Requirement:Load LUI, SUI, SAUI, SDUI, SUPPRESS, CVS fields and expose to the user.Solution:All noted values will be loaded as property qualifiers.
+<h3 id="LexEVS5.1DesignDocument-ValueDomainSupportDetailedDesign">
+  Value Domain Support Detailed Design
+</h3>
+The LexEVS Value Domain and Pick List service will provide ability to load Value Domain and Pick List Definitions into LexGrid repository and provides ability to apply user restrictions and dynamically resolve the definitions during run time. Both Value Domain and Pick List service are integrated part of LexEVS core API.
+<h4 id="LexEVS5.1DesignDocument-Scope">
+  Scope
+</h4>
+The LexEVS Value Domain and Pick List service will provide programmatic access to load Value Domain and Pick List Definitions using the domain objects that are available via the LexGrid logical model.The LexEVS Value Domain and Pick List service will provide ability to apply certain user restrictions (ex: pickListId, valueDomain URI etc) and dynamically resolve the Value Domain and Pick List definitions during the run time.
+<h4 id="LexEVS5.1DesignDocument-Architecture">
+  Architecture
+</h4>
+The LexEVS Value Domain and Pick List Service meant to expose the API particularly for the Value Domain and Pick List elements of the LexGrid Logical Model. For more information on LexGrid model see
+<a href="http://informatics.mayo.edu/" rel="nofollow">
+  http://informatics.mayo.edu/
+</a>
+<h4 id="LexEVS5.1DesignDocument-LexGridValueDomainmodel">
+  LexGrid Value Domain model
+</h4>
+Here is a UML representation of Value Domain within LexGrid 200901 model.
+<img alt="UML representation of Value Domain within LexGrid 200901 model" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%205.1%20Design%20Document/value_domain_VDModel.jpg?api=v2">
+<h5 id="LexEVS5.1DesignDocument-ValueDomainDefinition">
+  Value Domain Definition
+</h5>
+A definition of a given value domain. A value domain can be a simple description with no associated value domain entries, or it can consist of one or more definitionEntries that resolve to an enumerated list of entityCodes when applied to one or more codingScheme versions.Attributes of Value Domain Definition :Source: The local identifiers of the source(s) of this property. Must match a local id of a supportedSource in the corresponding mappings section. representsRealmOrContext: The local identifiers of the context(s) in which this value domain applies. Must match a local id of a supportedContext in the corresponding mappings section. valueDomainURI: The URI of this value domain. valueDomainName: The name of this domain, if any. defaultCodingScheme: Local name of the primary coding scheme from which the domain is drawn. defaultCodingScheme must match a local id of a supportedCodingScheme in the mappings section.
+<h5 id="LexEVS5.1DesignDocument-ValueDomainDefinitionEntry">
+  Value Domain Definition Entry
+</h5>
+A reference to an entry code, a coding scheme or another value domain along with the instructions about how the reference is applied. Definition entrys are applied in entryOrder, with each successive entry either adding to or subtracting from the final set of entity codes.Attributes of Value Domain Definition Entry :ruleOrder: The unique identifier of the definition entry within the definition as well as the relative order in which this entry should be applied operator: How this entry is to be applied to the value domain
+<h5 id="LexEVS5.1DesignDocument-CodingSchemeReference">
+  Coding Scheme Reference
+</h5>
+A reference to all of the entity codes in a given coding scheme.Attributes of Coding Scheme Reference :codingScheme: The local identifier of the coding scheme that the entity codes are drawn from . codingSchemeName must match a local id of a supportedCodingScheme in the mappings section.
+<h5 id="LexEVS5.1DesignDocument-ValueDomainReferences">
+  Value Domain References
+</h5>
+A reference to the set of codes defined in another value domain.Attributes of Value Domain Reference :valueDomainURI: The URI of the value domain to apply the operator to. This value domain may be contained within the local service or may need to be resolved externally.
+<h5 id="LexEVS5.1DesignDocument-EntityReference">
+  Entity Reference
+</h5>
+A reference to an entityCode and/or one or more entityCodes that have a relationship to the specified entity code.Attributes of Entity Reference :entityCode: The entity code being referenced. entityCodeNamespace: Local identifier of the namespace of the entityCode. entityCodeNamespace must match a local id of a supportedNamespace in the corresponding mappings section. If omitted, the URI of the defaultCodingScheme will be used as the URI of the entity code. leafOnly: If true and referenceAssociation is supplied and referenceAssociation is defined as transitive, include all entity codes that are &#34;leaves&#34; in transitive closure of referenceAssociation as applied to entity code. Default: false referenceAssociation: The local identifier of an association that appears in the native relations collection in the default coding scheme. This association is used to describe a set of entity codes. If absent, only the entityCode itself is included in this definition. targetToSource: If true and referenceAssociation is supplied, navigate from entityCode as the association target to the corresponding sources. If transitiveClosure is true and the referenceAssociation is transitive, include all the ancestors in the list rather than just the direct &#34;parents&#34; (sources). transitiveClosure: If true and referenceAssociation is supplied and referenceAssociation is defined as transitive, include all entity codes that belong to transitive closure of referenceAssociation as applied to entity code. Default: false
+<h5 id="LexEVS5.1DesignDocument-DefinitionOperator">
+  Definition Operator
+</h5>
+The description of how a given definition entry is applied.Attributes of Definition Operator :OR: Add the set of entityCodes described by the currentEntity to the value domain. (logical OR) SUBTRACT: Subtract (remove) the set of entityCodes described by the currentEntity to the value domain. (logical NAND) AND: Only include the entity codes that are both in the value domain and the definition entry. (logical AND)
+<h4 id="LexEVS5.1DesignDocument-LexGridPickListModel">
+  LexGrid Pick List Model
+</h4>
+Here is a UML representation of Pick List within LexGrid 200901 model:
+<img alt="UML representation of Pick List within LexGrid 200901 model" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%205.1%20Design%20Document/value_domain_PLModel.jpg?api=v2">
+<h5 id="LexEVS5.1DesignDocument-PickListDefinition">
+  Pick List Definition
+</h5>
+An ordered list of entity codes and corresponding presentations drawn from a value domain.Attributes of Pick List Definition :Source: The local identifiers of the source(s) of this pick list definition. Must match a local id of a supportedSource in the corresponding mappings section. pickListId: An identifier that uniquely names this list within the context of the collection. representsValueDomain: The URI of the value domain definition that is represented by this pick list defaultEntityCodeNamespace: Local name of the namespace to which the entry codes in this list belong. defaultEntityCodeNamespace must match a local id of a supportedNamespace in the mappings section. defaultLanguage: The local identifier of the language that is used to generate the text of this pick list if not otherwise specified. Note that this language does NOT necessarily have any coorelation with the language of a pickListEntry itself or the language of the target user. defaultLanguage must match a local id of a supportedLanguage in the mappings section. defaultSortOrder: The local identifier of a sort order that is used as the default in the definition of the pick list defaultPickContext: The local identifiers of the context used in the definition of the pick list. completeDomain: True means that this pick list should represent all of the entries in the domain. Any active entity codes that aren&#39;t in the specific pick list entries are added to the end, using the designations identified by the defaultLanguage, defaultSortOrder and defaultPickContext. Default: false
+<h5 id="LexEVS5.1DesignDocument-PickListEntryNode">
+  Pick List Entry Node
+</h5>
+An inclusion (pickListEntry) or exclusion (pickListEntryExclusion) in a pick list definitionAttributes of Pick List Entry Node :pickListEntryId: Unique identifier of this node within the list.
+<h5 id="LexEVS5.1DesignDocument-PickListEntry">
+  Pick List Entry
+</h5>
+An entity code and corresponding textual representation.Attributes of Pick List Entry:pickText: The text that represents this node in the pick list. Some business rules may require that this string match a presentation associated with the entityCode pickContext: The local identifiers of the context(s) in which this entry applies. pickContext must match a local id of a supportedContext in the mappings section entryOrder: Relative order of this entry in the list. pickListEntries without a supplied order follow the all entries with an order, and the order is not defined. entityCode: Entity code associated with this entry. entityCodeNamespace: Local identifier of the namespace of the entity code if different than the pickListDefinition defaultEntityCodeNamespace. entityCodeNamespace must match a local id of a supportedNamespace in the mappings section. propertyId: The property identifier associated with the entityCode and entityCodeNamespace that the pickText was derived from. If absent, the pick text can be anything. Some terminologies may have business rules requiring this attribute to be present. isDefault: True means that this is the default entry for the supplied language and context. matchIfNoContext: True means that this entry can be used if no contexts are supplied, even though pickContext ispresent. Language: The local name of the language to be used when the application/user supplies a selection language matches. If absent, this matches all languages. language must match a local id od of a supportedLanguage in the mappings section.
+<h5 id="LexEVS5.1DesignDocument-PickListEntryExclusion">
+  Pick List Entry Exclusion
+</h5>
+An entity code that is explicitly excluded from a pick list.Attributes of Pick List Entry Exclusion:entityCode: Entity code associated with this entry. entityCodeNamespace: Local identifier of the namespace of the entity code if different than the pickListDefinition defaultEntityCodeNamespace. entityCodeNamespace must match a local id of a supportedNamespace in the mappings section.
+<h4 id="LexEVS5.1DesignDocument-ValueDomainDefinitionsPossibleForms">
+  Value Domain Definitions Possible Forms
+</h4>
+<ul>
+  <li>
+    Code system/concept code + relationship + additional rules (leaf only, immediate children, etc)
+  </li>
+  <li>
+    Code system - all concept codes in the system
+  </li>
+  <li>
+    Code system/concept code - individual code
+  </li>
+  <li>
+    Combination of any of the above with OR/AND/SUBTRACT operators
+  </li>
+</ul>
+<h4 id="LexEVS5.1DesignDocument-ValueDomainResolution">
+  Value Domain Resolution
+</h4>
+<ul>
+  <li>
+    A value domain definition has to be made against a specific version of a code system. But it doesn&#39;t have to be resolved against the same version.
+  </li>
+  <li>
+    Even a simple list (a,b,c,d) needs to be resolved as, at some future date, &#34;c&#34; might be retired.
+  </li>
+  <li>
+    Resolution does not create static artifact.
+  </li>
+</ul>
+<h4 id="LexEVS5.1DesignDocument-PickListDefinitionsPossibleForms">
+  Pick List Definitions Possible Forms
+</h4>
+<ul>
+  <li>
+    Value Domain - all concept codes in the value domain
+  </li>
+  <li>
+    Code system/concept code - individual code (inclusion and exclusion)
+  </li>
+</ul>
+<h4 id="LexEVS5.1DesignDocument-PickListResolution">
+  Pick List Resolution
+</h4>
+<ul>
+  <li>
+    A picklist definition has to be made against a specific value domain.
+  </li>
+  <li>
+    Even a simple list (a,b,c,d) needs to be resolved as, at some future date, &#34;c&#34; might be retired.
+  </li>
+  <li>
+    Resolution does not create static artifact.
+  </li>
+</ul>
+<h4 id="LexEVS5.1DesignDocument-LexEVSValueDomainandPickListServiceClassDiagram">
+  LexEVS Value Domain and Pick List Service Class Diagram
+</h4>
+<h5 id="LexEVS5.1DesignDocument-CommonServicesClassDiagram">
+  Common Services Class Diagram
+</h5>
+These are the classes that are used commonly across Value Domain and Pick List implementation.
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Class Name
+      </th>
+      <td>
+        Description
+      </td>
+    </tr>
+    <tr>
+      <th>
+        VDEntryTypeServices
+      </th>
+      <td>
+        Class to handle Entry Type objects to and fro database .
+      </td>
+    </tr>
+    <tr>
+      <th>
+        VDEntryStateServices
+      </th>
+      <td>
+        Class to handle Entry State objects to and fro database.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        VDPropertyServices
+      </th>
+      <td>
+        Class to handle Property objects to and fro database.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        VDMappingServices
+      </th>
+      <td>
+        Class to handle supported Mappings objects to and fro database.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        VDServiceHelper
+      </th>
+      <td>
+        Helper class containing methods that are commonly used.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        VDBaseSQLServices
+      </th>
+      <td>
+        Class to handle SQL Services.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        VDBaseService
+      </th>
+      <td>
+        Base service class to handle all Value Domain and Pick List related objects to and from database.
+      </td>
+    </tr>
+  </tbody>
+</table>
+<img alt="value domain CommonClassDiagram" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%205.1%20Design%20Document/value_domain_CommonClassDiagram.jpg?api=v2">
+<h5 id="LexEVS5.1DesignDocument-ValueDomainClassDiagram">
+  Value Domain Class Diagram
+</h5>
+Classes that implement LexEVS Value Domain API
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Class Name
+      </th>
+      <td>
+        Description
+      </td>
+    </tr>
+    <tr>
+      <th>
+        VDSServices
+      </th>
+      <td>
+        Class to handle list of Value Domain Definitions Object to and fro database
+      </td>
+    </tr>
+    <tr>
+      <th>
+        VDServices
+      </th>
+      <td>
+        Class to handle individual Value Domain Definition objects to and fro database.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        VDEntryServices
+      </th>
+      <td>
+        Class to handle Value Domain Entry objects to and fro database.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        LexEVSValueDomainServices
+      </th>
+      <td>
+        Primary interface for LexEVS Value Domain API
+      </td>
+    </tr>
+    <tr>
+      <th>
+        LexEVSValueDomainServicesImpl
+      </th>
+      <td>
+        Implementation of LexEVSValueDomainServices which is primary interface for LexEVS Value Domain API.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        LoadValueDomain
+      </th>
+      <td>
+        Imports the value Domain Definitions in the source file, provided in LexGrid canonical format, to the LexBIG repository.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        ResolvedValueDomainCodedNodeSet
+      </th>
+      <td>
+        Contains coding scheme version reference list that was used to resolve the value domain and the coded node set.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        ResolvedValueDomainDefinition
+      </th>
+      <td>
+        A resolved Value Domain definition containing the coding scheme version reference list that was used to resolve the value domain and an iterator for resolved concepts.
+      </td>
+    </tr>
+  </tbody>
+</table>
+<img alt="value domain VDClassDiagram" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%205.1%20Design%20Document/value_domain_VDClassDiagram.jpg?api=v2">
+<h5 id="LexEVS5.1DesignDocument-PickListClassDiagram">
+  Pick List Class Diagram
+</h5>
+Classes that implements LexEVS Pick List API
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Class Name
+      </th>
+      <th>
+        Description
+      </th>
+    </tr>
+    <tr>
+      <td>
+        PickListsServices
+      </td>
+      <td>
+        Class to handle list of Pick List Definitions.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        PickListServices
+      </td>
+      <td>
+        Class to handle individual Pick List Definition objects to and fro database.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        PLEntryServices
+      </td>
+      <td>
+        Class to handle Pick List Entry objects to and fro database.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        LexEVSPickListServices
+      </td>
+      <td>
+        Primary interface for LexEVS Pick List API.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        LexEVSPickListServicesImpl
+      </td>
+      <td>
+        Implementation of LexEVSPickListServices which is primary interface for LexEVS Pick List API.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        LoadPickList
+      </td>
+      <td>
+        Imports the Pick List Definitions in the source file, provided in LexGrid canonical format, to the LexBIG repository.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        ResolvedPickListEntyList
+      </td>
+      <td>
+        Class to hold list of resolved pick list entries.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        ResolvedPickListEntry
+      </td>
+      <td>
+        Bean for resolved pick list entries.
+      </td>
+    </tr>
+  </tbody>
+</table>
+<img src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%205.1%20Design%20Document/value_domain_PLClassDiagram.jpg?api=v2">
+<h4 id="LexEVS5.1DesignDocument-LexBIGServicesClassDiagram">
+  LexBIG Services Class Diagram
+</h4>
+An interface to LexEVS Value Domain and Pick List Services could be obtained using an instance of LexBigService.
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Method Name
+      </th>
+      <td>
+        Description
+      </td>
+    </tr>
+    <tr>
+      <th>
+        getValueDomainService()
+      </th>
+      <td>
+        Returns an interface to LexEVS Value Domain API
+      </td>
+    </tr>
+    <tr>
+      <th>
+        getPickListService()
+      </th>
+      <td>
+        Returns an interface to LexEVS Pick List API.
+      </td>
+    </tr>
+  </tbody>
+</table>
+<img alt="value domain LexBIGServiceClassDiagram" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%205.1%20Design%20Document/value_domain_LexBIGServiceClassDiagram.jpg?api=v2">
+<h4 id="LexEVS5.1DesignDocument-MainServiceAPI">
+  Main Service API
+</h4>
+<h5 id="LexEVS5.1DesignDocument-LexBIGAPI">
+  LexBIG API
+</h5>
+An interface to LexEVS Value Domain and Pick List Services could be obtained using an instance of LexBigService.
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Information
+      </th>
+      <td>
+        getValueDomainService()
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Returns an interface to LexEVS Value Domain API.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        none
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        org.lexgrid.valuedomain.LexEVSValueDomainServices
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details:
+      </th>
+      <td>
+        Implementation:   Step 1: Call this method on the associated LexBIG Service instance.   Sample Call:   Using LexBIGService instance :  org.lexgrid.valuedomain.LexEVSValueDomainServices vds = lbs.getValueDomainService();
+      </td>
+    </tr>
+  </tbody>
+</table>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Information
+      </th>
+      <td>
+        getPickListService()
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Returns an interface to LexEVS Pick List API.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        none
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        org.lexgrid valuedomain.LexEVSPickListServices
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details:
+      </th>
+      <td>
+        Implementation:   Step 1: Call this method on the associated LexBIG Service instance.   Sample Call:   Using LexBIGService instance :  _ _org.lexgrid.valuedomain.LexEVSPickListServices vds = lbs.getPickListService();
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h5 id="LexEVS5.1DesignDocument-LexEVSValueDomainServiceAPI-LoadingValueDomain">
+  LexEVS Value Domain Service API - Loading Value Domain
+</h5>
+There are three methods that could be used to load Value Domain Definitions :
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Information
+      </th>
+      <td>
+        loadValueDomain(ValueDomainDefinition vddef, String systemReleaseURI)
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Loads supplied valueDomainDefinition object
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        org.LexGrid.emf.valueDomains.ValueDomainDefinition,  String
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        none
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details:
+      </th>
+      <td>
+        Implementation:   Step 1: Call this method on the associated LexEVS Value Domain Service instance to load a Value Domain Definition object and the System Release URI this definition belongs to.   Sample Call:   Step 1 : Using LexBIGService instance, get the LexEVSValueDomainServices interface :  org.lexgrid.valuedomain.LexEVSValueDomainServices vds = lbs.getValueDomainService();  Step 2 :Create and populate the ValueDomainDefinition object  ValueDomainDefinition can be created using :  org.LexGrid.emf.valueDomains.ValueDomainDefinition valueDomain = org.LexGrid.emf.valueDomains.ValuedomainsFactory.eINSTANCE.createValueDomainDefinition();  And data for valueDomain object can be populated by using set methods :  valueDomain.setValueDomainURI( uri );  valueDomain.setValueDomainName( name );  valueDomain.setDefaultCodingScheme( cs );  valueDomain.setEntityDescription( ed );  Similarly, DefinitionEntry, Property, Mapping objects can be created and assign to the valueDomain object.  valueDomain.getDefinitionEntry.add( vdEntry );  valueDomain.setProperties( propertisObject );  valueDomain.setMappings( mappingsObject );  Step 3 : call the load method by passing the Value Domain Definition object and the System Release URI :  vds.loadvalueDomain( valueDomain,&#34;Release 2009&#34; );
+      </td>
+    </tr>
+  </tbody>
+</table>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Information
+      </th>
+      <td>
+        loadValueDomain(InputStream inputStream,boolean failOnAllErrors))
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Loads valueDomainDefinitions found in inputStream
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        java.io.InputStream  boolean
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        none
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        Exception
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details:
+      </th>
+      <td>
+        Implementation:   Step 1: Call this method on the associated LexEVS Value Domain Service instance to load all Value Domain Definitions from the inputstream.   Sample Call:   Step 1 : Using LexBIGService instance, get the LexEVSValueDomainServices interface org.lexgrid.valuedomain.LexEVSValueDomainServices vds = lbs.getValueDomainService();  Step 2 :Call load method by passing the inputSteam and boolean flag whether to stop on load errors. :  vds.loadvalueDomain( inputStream, true );
+      </td>
+    </tr>
+  </tbody>
+</table>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Information
+      </th>
+      <td>
+        loadValueDomain(String xmlFileLocation, boolean failOnAllErrors)
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Loads valueDomainDefinitions found in input xml file
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        java.lang.String  boolean
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        none
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        Exception
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details:
+      </th>
+      <td>
+        Implementation:   Step 1: Call this method on the associated LexEVS Value Domain Service instance to load all Value Domain Definitions found in an XML file that is in LexGrid format.      Sample Call:   Step 1 : Using LexBIGService instance, get the LexEVSValueDomainServices interface org.lexgrid.valuedomain.LexEVSValueDomainServices vds = lbs.getValueDomainService();  Step 2 :Call load method by passing the inputfile location and boolean flag whether to stop on load errors. :  vds.loadvalueDomain( inputXMLFile, true );
+      </td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+<h5 id="LexEVS5.1DesignDocument-ValidateXMLresources">
+  Validate XML resources
+</h5>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Information
+      </th>
+      <td>
+        validate(URI uri, int valicationLevel) throws LBParameterException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Perform validation of the candidate resource without loading data.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        java.net.URI  int
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        none
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        Org.LexGrid.LexBIG.Exceptions.LBParameterException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details:
+      </th>
+      <td>
+        Implementation:   Step 1: Call this method on the associated LexEVS Value Domain Service instance to validate the XML file that is in LexGrid format. This call will not load the data in XML file.      Sample Call:   Step 1 : Using LexBIGService instance, get the LexEVSValueDomainServices interface org.lexgrid.valuedomain.LexEVSValueDomainServices vds = lbs.getValueDomainService();  Step 2 :Call validate method for validation by supplying URI of the XML file and validation level:  Supported validationLevels includes :  0 = Verify document is well-formed  1 = Verify document is valid    vds.validaten( uriOfXMLFile, true );
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h5 id="LexEVS5.1DesignDocument-QueryValueDomain">
+  Query Value Domain
+</h5>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Information
+      </th>
+      <td>
+        isConceptInDomain(String entityCode, URI valueDomainURI)
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Determine if the supplied entity code is a valid result for the supplied value domain and, if it is, return the particular codingSchemeVersion that was used.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        java.lang.String,  java.net.URI
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.DataModel.Core. AbsoluteCodingSchemeVersionReference
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details:
+      </th>
+      <td>
+        Implementation:   Step 1: Call this method on the associated LexEVS Value Domain Service instance to determine if the supplied entity code is a valid in the supplied Value Domain URI. If it is, return Coding Scheme URI and the Version that was used to resolve, other wise, returns null.      Sample Call:   Step 1 : Using LexBIGService instance, get the LexEVSValueDomainServices interface org.lexgrid.valuedomain.LexEVSValueDomainServices vds = lbs.getValueDomainService();  Step 2 :Call isConceptInComdin method:  AbsoluteCodingSchemeVersionReference acsvr =   vds.isConceptInDomain( &#34;conceptA&#34;,&#34;valueDomainURI&#34; );
+      </td>
+    </tr>
+  </tbody>
+</table>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Information
+      </th>
+      <td>
+        isConceptInDomain(String entityCode, URI entityCodeNamespace, CodingSchemeVersionOrTag csvt, URI valueDomainURI)
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Similar to previous method, this method determine if the supplied entity code and entity namespace is a valid result for the supplied value domain when resolved against supplied Coding Scheme Version or Tag.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        java.lang.String,  java.net.URI,  org.LexGrid.LexBIG.DataModel.Core. CodingSchemeVersionOrTag  java.net.URI
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.DataModel.Core. AbsoluteCodingSchemeVersionReference
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details:
+      </th>
+      <td>
+        Implementation:   Step 1: Call this method on the associated LexEVS Value Domain Service instance to determine if the supplied entity code and its entity namespace is a valid in the supplied Value Domain URI when resolved against supplied Coding Scheme Version or Tag. If it is, return Coding Scheme URI and the Version that was used to resolve, other wise, returns null.      Sample Call:   Step 1 : Using LexBIGService instance, get the LexEVSValueDomainServices interface org.lexgrid.valuedomain.LexEVSValueDomainServices vds = lbs.getValueDomainService();  Step 2 :Call isConceptInDomain method:  AbsoluteCodingSchemeVersionReference acsvr =   vds.isConceptInDomain( &#34;conceptA&#34;,&#34;conceptAEntityNamespace&#34;,  &#34;codingSchemeVersion&#34;,&#34;valueDomainURI&#34; );
+      </td>
+    </tr>
+  </tbody>
+</table>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Information
+      </th>
+      <td>
+        resolveValueDomain(URI valueDomainURI, AbsoluteCodingSchemeVersionReferenceList csVersionList)
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Resolve a value domain using the supplied set of coding scheme versions.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        java.net.URI,  org.LexGrid.LexBIG.DataModel.Core. AbsoluteCodingSchemeVersionReferenceList
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        org.lexgrid.valuedomain.dto.ResolvedValueDomainDefinition
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details:
+      </th>
+      <td>
+        Implementation:   Step 1: Call this method on the associated LexEVS Value Domain Service instance to resolve supplied value domain against list of Coding Scheme versions if supplied. If Coding Scheme Versions list is not supplied, API will resolve against any version of the loaded Coding Scheme that is referenced by the Value Domain.   Returns, object ResolvedValueDomainDefinition which contains AbsoluteCodingSchemeVersionReferenceList which tells which all Coding Scheme and the versions were used for this resolve, plus the ResolvedConceptReferencesIterator, which is an iterator for all the valid concepts that belongs to the Value Domain and Value Domain Definition itself.   Sample Call:   Step 1 : Using LexBIGService instance, get the LexEVSValueDomainServices interface org.lexgrid.valuedomain.LexEVSValueDomainServices vds = lbs.getValueDomainService();  Step 2 :Create AbsoluteCodingSchemeVersionReferenceList:  AbsoluteCodingSchemeVersionReferenceList csvList = new AbsoluteCodingSchemeVersionReferenceList();  csvList.addAbsoluteCodingSchemeVersionReference(Constructors.  createAbsoluteCodingSchemeVersionReference(&#34;Automobiles&#34;, &#34;2.0&#34;));  csvList.addAbsoluteCodingSchemeVersionReference(Constructors.  createAbsoluteCodingSchemeVersionReference(&#34;AutomobilesParts&#34;, &#34;2.0&#34;));  Step 3 :Call resolveValueDomain method:  ResolvedValueDomainDefinition rvdDef =   vds.resolveValueDomain ( &#34;valueDomainURI&#34;,csvList );
+      </td>
+    </tr>
+  </tbody>
+</table>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Information
+      </th>
+      <td>
+        isSubDomain(URI childValueDomainURI, URI parentValueDomainURI)
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Check whether childValueDomainURI is a child of parentValueDomainURI.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        java.net.URI,  java.net.URI
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        boolean
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details:
+      </th>
+      <td>
+        Implementation:   Step 1: Call this method on the associated LexEVS Value Domain Service instance to determine if all the concepts that gets resolved from supplied Child Value Domain URI is children of concepts that gets resolved from Parent Value Domain URI. Return true, if it is otherwise return false.   Sample Call:   Step 1 : Using LexBIGService instance, get the LexEVSValueDomainServices interface org.lexgrid.valuedomain.LexEVSValueDomainServices vds = lbs.getValueDomainService();  Step 2 :Call isSubDomain method:  boolean isSubDomain =   vds.isSubDomain ( childValueDomainURI, parentValueDomainURI );
+      </td>
+    </tr>
+  </tbody>
+</table>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Information
+      </th>
+      <td>
+        getValueDomainDefinition(URI valueDomainURI)
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Returns value domain definition for supplied value domain URI.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        java.net.URI
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        org.LexGrid.emf.valueDomains.ValueDomainDefinition
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details:
+      </th>
+      <td>
+        Implementation:   Step 1: Call this method on the associated LexEVS Value Domain Service instance to get the Value Domain Definition of supplied Value Domain URI.   Sample Call:   Step 1 : Using LexBIGService instance, get the LexEVSValueDomainServices interface org.lexgrid.valuedomain.LexEVSValueDomainServices vds = lbs.getValueDomainService();  Step 2 :Call getValueDomainDefinition   method:  ValueDomainDefinition vdDef   =   vds.getValueDomainDefinition ( valueDomainURI );
+      </td>
+    </tr>
+  </tbody>
+</table>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Information
+      </th>
+      <td>
+        listValueDomains(String valueDomainName)
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Return the URI&#39;s for the value domain definition(s) for the supplied domain name. If the name is null, returns everything. If the name is not null, returns the value domain(s) that have the assigned name.  Note: plural because there is no guarantee of valueDomain uniqueness. If the name is the empty string &#34;&#34;, returns all unnamed valueDomains.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        java.lang.String
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        java.net.URI[]
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details:
+      </th>
+      <td>
+        Implementation:   Step 1: Call this method on the associated LexEVS Value Domain Service instance to get the list of Value Domain URI that matches the supplied name.      Sample Call:   Step 1 : Using LexBIGService instance, get the LexEVSValueDomainServices interface org.lexgrid.valuedomain.LexEVSValueDomainServices vds = lbs.getValueDomainService();  Step 2 :Call listValueDomains   method:  URI[] uris   =   vds.listValueDomains(&#34; someValueDomainName&#34; );
+      </td>
+    </tr>
+  </tbody>
+</table>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Information
+      </th>
+      <td>
+        getAllValueDomainsWithNoNames()
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Return the URI&#39;s of all unnamed value domain definition(s).
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        none
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        java.net.URI[]
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details:
+      </th>
+      <td>
+        Implementation:   Step 1: Call this method on the associated LexEVS Value Domain Service instance to get the list of Value Domain URI that have no names.      Sample Call:   Step 1 : Using LexBIGService instance, get the LexEVSValueDomainServices interface org.lexgrid.valuedomain.LexEVSValueDomainServices vds = lbs.getValueDomainService();  Step 2 :Call getAllValueDomainsWithNoNames   method:  URI[] uris   =   vds.getAllValueDomainsWithNoNames();
+      </td>
+    </tr>
+  </tbody>
+</table>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Information
+      </th>
+      <td>
+        getValueDomainEntitiesForTerm(String term, URI valueDomainURI, String matchAlgorithm)
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Resolves the value domain supplied and restricts to the term and matchAlgorith supplied. Return object ResolvedValueDomainCodedNodeSet contains the codingScheme URI and Version that was used to resolve and the CodedNodeSet.  Note : the CodedNodeSet is unresolved
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        java.lang.String,  java.net.URI,  java.lang.String
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        org.lexgrid.valuedomain.dto.ResolvedValueDomainCodedNodeSet
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details:
+      </th>
+      <td>
+        Implementation:   Step 1: Call this method on the associated LexEVS Value Domain Service instance to get the resolved Value Domain Entries as CodedNodeSet that is restricted to supplied term and the match algorithm.   Returned CodedNodeSet is not resolved.   Sample Call:   Step 1 : Using LexBIGService instance, get the LexEVSValueDomainServices interface org.lexgrid.valuedomain.LexEVSValueDomainServices vds = lbs.getValueDomainService();  Step 2 :Call getValueDomainEntriesForTerm   method:  ResolvedValueDomainCodedNodeSet vdvns   =   vds.getValueDomainEntriesForTerm (&#34;General Motors&#34;, new URI(&#34;AUTO:AllDomesticANDGM&#34;), MatchAlgorithms.exactMatch.name() );
+      </td>
+    </tr>
+  </tbody>
+</table>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Information
+      </th>
+      <td>
+        getCodingSchemesInValueDomain(URI valueDomainURI)
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Returns list of coding scheme summary that is referenced by the supplied value domain.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        java.net.URI
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.DataModel.Collections. AbsoluteCodingSchemeVersionReferenceList
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details:
+      </th>
+      <td>
+        Implementation:   Step 1: Call this method on the associated LexEVS Value Domain Service instance to get List of all Coding Scheme URI and Versions the supplied Value Domain URI references.      Sample Call:   Step 1 : Using LexBIGService instance, get the LexEVSValueDomainServices interface org.lexgrid.valuedomain.LexEVSValueDomainServices vds = lbs.getValueDomainService();  Step 2 :Call getCodingSchemesInValueDomain   method:  AbsoluteCodingSchemeVersionReferenceList csvList   =   vds.getCodingSchemesInValueDomain( new URI(&#34;AUTO:AllDomesticANDGM&#34;) );
+      </td>
+    </tr>
+  </tbody>
+</table>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Information
+      </th>
+      <td>
+        isDomain(String entityCode, String codingSchemeName, CodingSchemeVersionOrTag csvt)
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Determine if the supplied entity code is of type valueDomain in supplied coding scheme and, if it is, return the true, otherwise return false.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        java.lang.String,  java.lang.String  org.LexGrid.LexBIG.DataModel.Core. CodingSchemeVersionOrTag
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        boolean
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details:
+      </th>
+      <td>
+        Implementation:   Step 1: Call this method on the associated LexEVS Value Domain Service instance to check if supplied entity code is of type valueDomain in supplied Coding Scheme.      Sample Call:   Step 1 : Using LexBIGService instance, get the LexEVSValueDomainServices interface org.lexgrid.valuedomain.LexEVSValueDomainServices vds = lbs.getValueDomainService();  Step 2 :Call isDomain   method:  boolean isDomain   =   vds.isDomain (&#34;VD005&#34;, &#34;Automobiles&#34;, Constructors.createCodingSchemeVersionOrTag(null, &#34;2.0&#34;)) );
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h5 id="LexEVS5.1DesignDocument-RemoveValueDomainDefinition">
+  Remove Value Domain Definition
+</h5>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Information
+      </th>
+      <td>
+        removeValueDomain(URI valueDomainURI)
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Removes supplied value domain definition from the system.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        java.net.URI
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        none
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException,  org.LexGrid.managedobj.RemoveException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details:
+      </th>
+      <td>
+        Implementation:   Step 1: Call this method on the associated LexEVS Value Domain Service instance to remove Value Domain Definition from the system that matches the supplied URI.      Sample Call:   Step 1 : Using LexBIGService instance, get the LexEVSValueDomainServices interface org.lexgrid.valuedomain.LexEVSValueDomainServices vds = lbs.getValueDomainService();  Step 2 :Call removeValueDomain   method:  vds.removeValueDomain ( new URI(&#34;AUTO:AllDomesticANDGM&#34;) );
+      </td>
+    </tr>
+  </tbody>
+</table>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Information
+      </th>
+      <td>
+        removeAllValueDomains()
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Removes all value domain definitions from the system.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        none
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        none
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException,  org.LexGrid.managedobj.RemoveException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details:
+      </th>
+      <td>
+        Implementation:   Step 1: Call this method on the associated LexEVS Value Domain Service instance to remove all the Value Domain Definitions that are loaded in the system.      Sample Call:   Step 1 : Using LexBIGService instance, get the LexEVSValueDomainServices interface org.lexgrid.valuedomain.LexEVSValueDomainServices vds = lbs.getValueDomainService();  Step 2 :Call removeAllValueDomains   method:  vds.removeAllValueDomains();
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h5 id="LexEVS5.1DesignDocument-DropValueDomaintables">
+  Drop Value Domain tables
+</h5>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Information
+      </th>
+      <td>
+        dropValueDomainTables()
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Description:
+      </td>
+      <td>
+        Drops value domain tables only if there are no value domain and pick list entries.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Input:
+      </td>
+      <td>
+        none
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Output:
+      </td>
+      <td>
+        none
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Exception:
+      </td>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException,  org.LexGrid.managedobj.RemoveException
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Implementation Details:
+      </td>
+      <td>
+        Implementation:   Step 1: Call this method on the associated LexEVS Value Domain Service instance to drop both Value Domain and Pick List tables. The tables will be dropped only if there are no entries in both Value Domain and Pick List tables.      Sample Call:   Step 1 : Using LexBIGService instance, get the LexEVSValueDomainServices interface org.lexgrid.valuedomain.LexEVSValueDomainServices vds = lbs.getValueDomainService();  Step 2 :Call dropValueDomainTables   method:  vds.dropValueDomainTables();
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h4 id="LexEVS5.1DesignDocument-LexEVSPickListServiceAPI">
+  LexEVS Pick List Service API
+</h4>
+<h5 id="LexEVS5.1DesignDocument-LoadingPickList">
+  Loading Pick List
+</h5>
+There are three methods that could be used to load Pick List Definitions :
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Information
+      </th>
+      <td>
+        loadPickList(PickListDefinition pldef, String systemReleaseURI)
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Loads supplied Pick List Definition object
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        org.LexGrid.emf.valueDomains.PickListDefinition,  String
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        none
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details:
+      </th>
+      <td>
+        Implementation:   Step 1: Call this method on the associated LexEVS Pick List Service instance to load Pick List Definition object and the System Release URI this definition belongs to.   Sample Call:   Step 1 : Using LexBIGService instance, get the LexEVSPickListServices interface :  org.lexgrid.valuedomain.LexEVSPickListServices pls = lbs.getPickListService();  Step 2 :Create and populate the PickListDefinition object  PickListDefinition can be created using :  org.LexGrid.emf.valueDomains.PickListDefinition pickList = org.LexGrid.emf.valueDomains.ValuedomainsFactory.eINSTANCE.createPickListDefinition();  And data for pickList object can be populated by using set methods :  pickList.setPickListId( pickListId );  pickList.setRepresentsValueDomain( vdURI );  pickList.setCompleteDomain( true );  pickList.setDefaultEntityCodeNamespace( ecns );  pickList.setDefaultLanguage( &#34;en&#34; );  pickList.setDefaultSortOrder( &#34;asc&#34; );  pickList.setIsActive( true );  pickList.setEntityDescription( ed );  Similarly, PickListEntryNode, Property, Mapping objects can be created and assign to the pickList object.  pickList.getPickListEntryNode.add( pickListEntry );  pickList.setProperties( propertisObject );  pickList.setMappings( mappingsObject );  Step 3 : call the load method by passing the Pick List Definition object and the System Release URI :  pls.loadPickList( pickList,&#34;Release 2009&#34; );
+      </td>
+    </tr>
+  </tbody>
+</table>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Information
+      </th>
+      <td>
+        loadPickList(InputStream inputStream, boolean failOnAllErrors)
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Loads Pick List Definitions found in inputStream
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        java.io.InputStream  boolean
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        none
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        Exception
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details:
+      </th>
+      <td>
+        Implementation:   Step 1: Call this method on the associated LexEVS Pick List Service instance to load all Pick List Definitions from the inputstream.   Sample Call:   Step 1 : Using LexBIGService instance, get the LexEVS PickList Services interface org.lexgrid.valuedomain.LexEVSPickListServices pls = lbs.getPickListService();  Step 2 :Call load method by passing the inputSteam and boolean flag whether to stop on load errors. :  pls.loadPickList( inputStream, true );
+      </td>
+    </tr>
+  </tbody>
+</table>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Information
+      </th>
+      <td>
+        loadPickList (String xmlFileLocation, boolean failOnAllErrors)
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Loads Pick List Definitions found in input xml file
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        java.lang.String  boolean
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        none
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        Exception
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details:
+      </th>
+      <td>
+        Implementation:   Step 1: Call this method on the associated LexEVS Pick List Service instance to load all Pick List Definitions found in an XML file that is in LexGrid format.      Sample Call:   Step 1 : Using LexBIGService instance, get the LexEVSPickListServices interface org.lexgrid.valuedomain.LexEVSPickListServices pls = lbs.getPickListService();  Step 2 :Call load method by passing the inputfile location and boolean flag whether to stop on load errors. :  pls.loadPickList( inputXMLFile, true );
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h5 id="LexEVS5.1DesignDocument-ValidateXMLresources.1">
+  Validate XML resources
+</h5>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Information
+      </th>
+      <td>
+        validate(URI uri, int valicationLevel) throws LBParameterException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Perform validation of the candidate resource without loading data.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        java.net.URI  int
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        none
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        Org.LexGrid.LexBIG.Exceptions.LBParameterException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details:
+      </th>
+      <td>
+        Implementation:   Step 1: Call this method on the associated LexEVS Pick List Service instance to validate the XML file that is in LexGrid format. This call will not load the data in XML file.      Sample Call:   Step 1 : Using LexBIGService instance, get the LexEVSPickListServices interface org.lexgrid.valuedomain.LexEVSPickListServices pls = lbs.getPickListService();  Step 2 :Call validate method for validation by supplying URI of the XML file and validation level:  Supported validationLevels includes :  0 = Verify document is well-formed  1 = Verify document is valid    pls.validate( uriOfXMLFile, true );
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h5 id="LexEVS5.1DesignDocument-QueryPickList">
+  Query Pick List
+</h5>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Information
+      </th>
+      <td>
+        getPickListDefinitionById(String pickListId)
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Returns pickList definition for supplied pickListId.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        java.lang.String
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        org.LexGrid.emf.valueDomains.PickListDefinition
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details:
+      </th>
+      <td>
+        Implementation:   Step 1: Call this method on the associated LexEVS Pick List Service instance to get Pick List Definition for supplied pickListId.      Sample Call:   Step 1 : Using LexBIGService instance, get the LexEVSPickListServices interface org.lexgrid.valuedomain.LexEVSPickListServices pls = lbs.getPickListService();  Step 2 :Call getPickListDefinitionById   method:  PickListDefinition plDef   =   pls.getPickListDefinitionById( &#34;AUTO:DomesticAutoMakers&#34; );
+      </td>
+    </tr>
+  </tbody>
+</table>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Information
+      </th>
+      <td>
+        getPickListDefinitionsForDomain(URI valueDomainURI)
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Returns all the pickList definitions that represents supplied valueDomain URI.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        java.net.URI
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        org.LexGrid.emf.valueDomains.PickListDefinition[]
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details:
+      </th>
+      <td>
+        Implementation:   Step 1: Call this method on the associated LexEVS Pick List Service instance to get all the Pick List Definitions that are represented by supplied Value Domain URI.      Sample Call:   Step 1 : Using LexBIGService instance, get the LexEVSPickListServices interface org.lexgrid.valuedomain.LexEVSPickListServices pls = lbs.getPickListService();  Step 2 :Call getPickListDefinitionsForDomain method:  PickListDefinition[] plDefs   =   pls.getPickListDefinitionsForDomain( valueDomainURI );
+      </td>
+    </tr>
+  </tbody>
+</table>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Information
+      </th>
+      <td>
+        getPickListValueDomain(String pickListId)
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Returns an URI of the represented valueDomain of the pickList.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        java.lang.String
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        java.net.URI
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details:
+      </th>
+      <td>
+        Implementation:   Step 1: Call this method on the associated LexEVS Pick List Service instance to get an Value Domain URI represented by supplied pickListId.   Sample Call:   Step 1 : Using LexBIGService instance, get the LexEVSPickListServices interface org.lexgrid.valuedomain.LexEVSPickListServices pls = lbs.getPickListService();  Step 2 :Call getPickListValueDomain method:  URI vdURI   = pls.getPickListValueDomain ( &#34;AUTO:DomesticAutoMakers&#34; );
+      </td>
+    </tr>
+  </tbody>
+</table>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Information
+      </th>
+      <td>
+        listPickListIds()
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Returns a list of pickListIds that are available in the system.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        none
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        java.util.List&lt;java.lang.String&gt;
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details:
+      </th>
+      <td>
+        Implementation:   Step 1: Call this method on the associated LexEVS Pick List Service instance to get all the PickListIds that are loaded in the system.      Sample Call:   Step 1 : Using LexBIGService instance, get the LexEVSPickListServices interface org.lexgrid.valuedomain.LexEVSPickListServices pls = lbs.getPickListService();  Step 2 :Call listPickListIds method:  List&lt;String&gt; plList   =   pls.listPickListIds();
+      </td>
+    </tr>
+  </tbody>
+</table>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Information
+      </th>
+      <td>
+        resolvePickList(String pickListId, boolean sortByText)
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Resolves pickList definition for supplied pickListId.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        java.langString,  boolean
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        org.lexgrid.valuedomain.dto.ResolvedPickListEntryList
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details:
+      </th>
+      <td>
+        Implementation:   Step 1: Call this method on the associated LexEVS Pick List Service instance to get the   resolved Pick List Entries for the supplied pickListId. Optionally, if sortByTests is true, sort the pickText in the list.      Sample Call:   Step 1 : Using LexBIGService instance, get the LexEVSPickListServices interface org.lexgrid.valuedomain.LexEVSPickListServices pls = lbs.getPickListService();  Step 2 :Call resolvePickList   method:  ResolvedPickListEntryList pleList   =   pls.resolvePickList ( &#34;AUTO:DomesticAutoMakers&#34;, true );
+      </td>
+    </tr>
+  </tbody>
+</table>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Information
+      </th>
+      <td>
+        resolvePickListForTerm(String pickListId, String term, String matchAlgorithm, String language, String[] context, boolean sortByText)
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Resolves pickList definition by applying  supplied arguments.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        java.lang.String,  java.lang.String,  java.lang.String,  java.lang.String,  java.lang.String[],  boolean
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        org.lexgrid.valuedomain.dto.ResolvedPickListEntryList
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Implementation Details:
+      </th>
+      <td>
+        Implementation:   Step 1: Call this method on the associated LexEVS Pick List Service instance to get list of Pick List Entries that  matches the term supplied and meets other supplied restrictions.      Sample Call:   Step 1 : Using LexBIGService instance, get the LexEVSPickListServices interface org.lexgrid.valuedomain.LexEVSPickListServices pls = lbs.getPickListService();  Step 2 :Call resolvePickListForTerm   method:  ResolvedPickListEntryList pleList   =   pls.resolvePickListForTerm (&#34; AUTO:DomesticAutoMakers&#34;,&#34;Jaguar&#34;, MatchAlgorithms.exactMatch.name(), &#34;en&#34;, null, true );
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h5 id="LexEVS5.1DesignDocument-RemovePickListDefinition">
+  Remove Pick List Definition
+</h5>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Information
+      </th>
+      <td>
+        removePickList(String pickListId)
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Removes supplied Pick List Definition from the system.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        java.lang.String
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        none
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException,  org.LexGrid.managedobj.RemoveException
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Implementation Details:
+      </td>
+      <td>
+        Implementation:   Step 1: Call this method on the associated LexEVS Pick List Service instance to remove Pick List Definition from the system that matches the supplied pickListId.      Sample Call:   Step 1 : Using LexBIGService instance, get the LexEVSPickListServices interface org.lexgrid.valuedomain.LexEVSPickListServices pls = lbs.getPickListService();  Step 2 :Call removePickList   method:  vds.removePickList ( &#34;AUTO:AllDomesticANDGM&#34; );
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h4 id="LexEVS5.1DesignDocument-ResolvedValueDomainObjects">
+  Resolved Value Domain Objects
+</h4>
+<h5 id="LexEVS5.1DesignDocument-ResolvedValueDomainCodedNodeSet">
+  ResolvedValueDomainCodedNodeSet
+</h5>
+Contains Coding Scheme Version reference list that was used to resolve the Value Domain and the CodedNodeSet. The CodedNodeSet is not resolved.
+<h5 id="LexEVS5.1DesignDocument-ResolvedValueDomainDefinition">
+  ResolvedValueDomainDefinition
+</h5>
+A resolved Value Domain Definition containing the Coding Scheme Version reference list that was used to resolve the Value Domain and an iterator for resolved concepts.
+<h4 id="LexEVS5.1DesignDocument-ResolvedPickListObjects">
+  Resolved Pick List Objects
+</h4>
+<h5 id="LexEVS5.1DesignDocument-ResolvedPickListEntry">
+  ResolvedPickListEntry
+</h5>
+Contains resolved Pick List Entry Nodes
+<h5 id="LexEVS5.1DesignDocument-ResolvedPickListEntryList">
+  ResolvedPickListEntryList
+</h5>
+Contains the list of resolved Pick List Entries. Also provides helpful features to add, remove, enumerate Pick List Entries.
+<h4 id="LexEVS5.1DesignDocument-ErrorHandling">
+  Error Handling
+</h4>
+Both LexEVS Value Domain and Pick List services uses org.LexGrid.LexBIG.Impl.loaders.MessageDirector to direct all fatal, error, warning, info messages with appropriate messages to the LexBIG log files in the &#39;log&#39; folder of LexEVS install directory.Along with MessageDirector, the services will also make use of org.LexGrid.LexBIG.exception.LBException to throw any fatal and error messages to the log file as well as to console.
+<h4 id="LexEVS5.1DesignDocument-LoadScripts">
+  Load Scripts
+</h4>
+Scripts to load Value Domain and Pick List Definitions into LexEVS system will be located under &#39;Admin&#39; folder of LexEVS install directory. This loader scripts will only load data in XML file that is in LexGrid format.
+<h5 id="LexEVS5.1DesignDocument-ValueDomainLoader">
+  Value Domain Loader
+</h5>
+LoadValueDomain.bat for Windows environment and LoadValueDomain.sh for Unix environment. Both these scripts take in following parameters :
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Parameter
+      </th>
+      <th>
+        Function
+      </th>
+    </tr>
+    <tr>
+      <td>
+        -in
+      </td>
+      <td>
+        Input &lt;uri&gt; URI or path specifying location of the source file.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        -v
+      </td>
+      <td>
+        Validate &lt;int&gt; Perform validation of the candidate resource without loading data.  Supported levels of validation includes :  0 = Verify document is well-formed  1 = Verify document is valid
+      </td>
+    </tr>
+  </tbody>
+</table>
+Example:
+sh LoadValueDomain.sh \-in &#34;file:///path/to/file.xml&#34;
+<h5 id="LexEVS5.1DesignDocument-PickListLoader">
+  Pick List Loader
+</h5>
+LoadPickList.bat for Windows environment and LoadPickList.sh for Unix environment. Both these scripts take in following parameters:
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Parameter
+      </th>
+      <th>
+        Function
+      </th>
+    </tr>
+    <tr>
+      <td>
+        -in
+      </td>
+      <td>
+        Input &lt;uri&gt; URI or path specifying location of the source file.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        -v
+      </td>
+      <td>
+        Validate &lt;int&gt; Perform validation of the candidate resource without loading data.  Supported levels of validation includes :  0 = Verify document is well-formed  1 = Verify document is valid
+      </td>
+    </tr>
+  </tbody>
+</table>
+Example:
+sh LoadPickList.sh \-in &#34;file:///path/to/file.xml&#34;
+<h4 id="LexEVS5.1DesignDocument-SampleXMLfiles">
+  Sample XML files
+</h4>
+<h5 id="LexEVS5.1DesignDocument-ValueDomainDefinitions">
+  Value Domain Definitions
+</h5>
+Below is a sample XML file containing Value Domain Definitions in LexGrid format that can be loaded using LexEVS Value Domain Service.
+&lt;systemRelease xmlns:xsi=&#34;http://www.w3.org/2001/XMLSchema-instance&#34;
+xsi:schemaLocation=&#34;http://LexGrid.org/schema/2009/01/LexGrid/versions http://LexGrid.org/schema/2009/01/LexGrid/versions.xsd&#34;
+xmlns=&#34;http://LexGrid.org/schema/2009/01/LexGrid/versions&#34; xmlns:lgVer=&#34;http://LexGrid.org/schema/2009/01/LexGrid/versions&#34;
+xmlns:lgCommon=&#34;http://LexGrid.org/schema/2009/01/LexGrid/commonTypes&#34; xmlns:data=&#34;data&#34;
+xmlns:lgVD=&#34;http://LexGrid.org/schema/2009/01/LexGrid/valueDomains&#34; xmlns:lgNaming=&#34;http://LexGrid.org/schema/2009/01/LexGrid/naming&#34;
+releaseURI=&#34;http://testRelease/04&#34; releaseDate=&#34;2008-11-07T14:55:51.615-06:00&#34;&gt;
+&lt;lgCommon:entityDescription&gt;Sample value domains&lt;/lgCommon:entityDescription&gt;
+&lt;lgVer:valueDomains&gt;
+&lt;lgVD:mappings&gt;
+&lt;lgNaming:supportedAssociation localId=&#34;hasSubtype&#34; uri=&#34;urn:oid:1.3.6.1.4.1.2114.108.1.8.1&#34;&gt;hasSubtype&lt;/lgNaming:supportedAssociation&gt;
+&lt;lgNaming:supportedCodingScheme localId=&#34;Automobiles&#34; uri=&#34;urn:oid:11.11.0.1&#34;&gt;Automobiles&lt;/lgNaming:supportedCodingScheme&gt;
+&lt;lgNaming:supportedDataType localId=&#34;testhtml&#34;&gt;test/html&lt;/lgNaming:supportedDataType&gt;
+&lt;lgNaming:supportedDataType localId=&#34;textplain&#34;&gt;text/plain&lt;/lgNaming:supportedDataType&gt;
+&lt;lgNaming:supportedHierarchy localId=&#34;is_a&#34; associationNames=&#34;hasSubtype&#34; isForwardNavigable=&#34;true&#34; rootCode=&#34;@&#34;&gt;hasSubtype&lt;/lgNaming:supportedHierarchy&gt;
+&lt;lgNaming:supportedLanguage localId=&#34;en&#34; uri=&#34;www.en.org/orsomething&#34;&gt;en&lt;/lgNaming:supportedLanguage&gt;
+&lt;lgNaming:supportedNamespace localId=&#34;Automobiles&#34; uri=&#34;urn:oid:11.11.0.1&#34; equivalentCodingScheme=&#34;Automobiles&#34;&gt;Automobiles&lt;/lgNaming:supportedNamespace&gt;
+&lt;lgNaming:supportedProperty localId=&#34;textualPresentation&#34;&gt;textualPresentation&lt;/lgNaming:supportedProperty&gt;
+&lt;lgNaming:supportedSource localId=&#34;lexgrid.org&#34;&gt;lexgrid.org&lt;/lgNaming:supportedSource&gt;
+&lt;lgNaming:supportedSource localId=&#34;_111101&#34;&gt;11.11.0.1&lt;/lgNaming:supportedSource&gt;
+&lt;/lgVD:mappings&gt;
+&lt;lgVD:valueDomainDefinition valueDomainURI=&#34;SRITEST:AUTO:DomesticAutoMakers&#34; valueDomainName=&#34;Domestic Auto Makers&#34; defaultCodingScheme=&#34;Automobiles&#34; effectiveDate=&#34;2009-01-01T11:00:00Z&#34; isActive=&#34;true&#34; status=&#34;ACTIVE&#34;&gt;
+&lt;lgVD:properties&gt;
+&lt;lgCommon:property propertyName=&#34;textualPresentation&#34;&gt;
+&lt;lgCommon:value&gt; Domestic Auto Makers&lt;/lgCommon:value&gt;
+&lt;/lgCommon:property&gt;
+&lt;/lgVD:properties&gt;
+&lt;lgVD:definitionEntry ruleOrder=&#34;1&#34; operator=&#34;OR&#34;&gt;
+&lt;lgVD:entityReference entityCode=&#34;005&#34; referenceAssociation=&#34;hasSubtype&#34; transitiveClosure=&#34;true&#34;  targetToSource=&#34;false&#34; leafOnly=&#34;false&#34;/&gt;
+&lt;/lgVD:definitionEntry&gt;
+&lt;/lgVD:valueDomainDefinition&gt;
+&lt;lgVD:valueDomainDefinition valueDomainURI=&#34;SRITEST:AUTO:AllDomesticButGM&#34; valueDomainName=&#34;All Domestic Autos But GM&#34; defaultCodingScheme=&#34;Automobiles&#34; effectiveDate=&#34;2009-01-01T11:00:00Z&#34; isActive=&#34;true&#34; status=&#34;ACTIVE&#34;&gt;
+&lt;lgVD:properties&gt;
+&lt;lgCommon:property propertyName=&#34;textualPresentation&#34;&gt;
+&lt;lgCommon:value&gt; Domestic Auto Makers&lt;/lgCommon:value&gt;
+&lt;/lgCommon:property&gt;
+&lt;/lgVD:properties&gt;
+&lt;lgVD:definitionEntry ruleOrder=&#34;1&#34; operator=&#34;OR&#34;&gt;
+&lt;lgVD:entityReference entityCode=&#34;005&#34; referenceAssociation=&#34;hasSubtype&#34; transitiveClosure=&#34;true&#34;  targetToSource=&#34;false&#34; leafOnly=&#34;false&#34;/&gt;
+&lt;/lgVD:definitionEntry&gt;
+&lt;lgVD:definitionEntry ruleOrder=&#34;2&#34; operator=&#34;SUBTRACT&#34;&gt;
+&lt;lgVD:entityReference entityCode=&#34;GM&#34; referenceAssociation=&#34;hasSubtype&#34; transitiveClosure=&#34;true&#34;  targetToSource=&#34;false&#34; leafOnly=&#34;false&#34;/&gt;
+&lt;/lgVD:definitionEntry&gt;
+&lt;/lgVD:valueDomainDefinition&gt;
+&lt;lgVD:valueDomainDefinition valueDomainURI=&#34;SRITEST:AUTO:AllDomesticANDGM&#34; valueDomainName=&#34;All Domestic Autos AND GM&#34; defaultCodingScheme=&#34;Automobiles&#34; effectiveDate=&#34;2009-01-01T11:00:00Z&#34; isActive=&#34;true&#34; status=&#34;ACTIVE&#34;&gt;
+&lt;lgVD:properties&gt;
+&lt;lgCommon:property propertyName=&#34;textualPresentation&#34;&gt;
+&lt;lgCommon:value&gt; Domestic Auto Makers AND GM&lt;/lgCommon:value&gt;
+&lt;/lgCommon:property&gt;
+&lt;/lgVD:properties&gt;
+&lt;lgVD:definitionEntry ruleOrder=&#34;1&#34; operator=&#34;OR&#34;&gt;
+&lt;lgVD:entityReference entityCode=&#34;005&#34; referenceAssociation=&#34;hasSubtype&#34; transitiveClosure=&#34;true&#34;  targetToSource=&#34;false&#34; leafOnly=&#34;false&#34;/&gt;
+&lt;/lgVD:definitionEntry&gt;
+&lt;lgVD:definitionEntry ruleOrder=&#34;2&#34; operator=&#34;AND&#34;&gt;
+&lt;lgVD:entityReference entityCode=&#34;GM&#34; referenceAssociation=&#34;hasSubtype&#34; transitiveClosure=&#34;true&#34;  targetToSource=&#34;false&#34; leafOnly=&#34;false&#34;/&gt;
+&lt;/lgVD:definitionEntry&gt;
+&lt;/lgVD:valueDomainDefinition&gt;
+&lt;lgVD:valueDomainDefinition valueDomainURI=&#34;SRITEST:AUTO:DomasticLeafOnly&#34; valueDomainName=&#34;Domestic Leaf Only&#34; defaultCodingScheme=&#34;Automobiles&#34; effectiveDate=&#34;2009-01-01T11:00:00Z&#34; isActive=&#34;true&#34; status=&#34;ACTIVE&#34;&gt;
+&lt;lgVD:properties&gt;
+&lt;lgCommon:property propertyName=&#34;textualPresentation&#34;&gt;
+&lt;lgCommon:value&gt;Domestic Leaf Only&lt;/lgCommon:value&gt;
+&lt;/lgCommon:property&gt;
+&lt;/lgVD:properties&gt;
+&lt;lgVD:definitionEntry ruleOrder=&#34;1&#34; operator=&#34;OR&#34;&gt;
+&lt;lgVD:entityReference entityCode=&#34;005&#34; referenceAssociation=&#34;hasSubtype&#34; transitiveClosure=&#34;true&#34;  targetToSource=&#34;false&#34; leafOnly=&#34;true&#34;/&gt;
+&lt;/lgVD:definitionEntry&gt;
+&lt;/lgVD:valueDomainDefinition&gt;
+&lt;/lgVer:valueDomains&gt;
+&lt;/systemRelease&gt;
+<h5 id="LexEVS5.1DesignDocument-PickListDefinitions">
+  Pick List Definitions
+</h5>
+Below is a sample XML file containing Pick List Definitions in LexGrid format that can be loaded using LexEVS Pick List Service.
+&lt;systemRelease xmlns:xsi=&#34;http://www.w3.org/2001/XMLSchema-instance&#34;
+xsi:schemaLocation=&#34;http://LexGrid.org/schema/2009/01/LexGrid/versions http://LexGrid.org/schema/2009/01/LexGrid/versions.xsd&#34;
+xmlns=&#34;http://LexGrid.org/schema/2009/01/LexGrid/versions&#34; xmlns:lgVer=&#34;http://LexGrid.org/schema/2009/01/LexGrid/versions&#34;
+xmlns:lgCommon=&#34;http://LexGrid.org/schema/2009/01/LexGrid/commonTypes&#34; xmlns:data=&#34;data&#34;
+xmlns:lgVD=&#34;http://LexGrid.org/schema/2009/01/LexGrid/valueDomains&#34; xmlns:lgNaming=&#34;http://LexGrid.org/schema/2009/01/LexGrid/naming&#34;
+releaseURI=&#34;http://testRelease/04&#34; releaseDate=&#34;2008-11-07T14:55:51.615-06:00&#34;&gt;
+&lt;lgCommon:entityDescription&gt;Sample value domains&lt;/lgCommon:entityDescription&gt;
+&lt;pickLists&gt;
+&lt;lgVD:mappings&gt;
+&lt;lgNaming:supportedCodingScheme localId=&#34;Automobiles&#34; uri=&#34;urn:oid:11.11.0.1&#34;&gt;Automobiles&lt;/lgNaming:supportedCodingScheme&gt;
+&lt;lgNaming:supportedLanguage localId=&#34;en&#34; uri=&#34;www.en.org/orsomething&#34;&gt;en&lt;/lgNaming:supportedLanguage&gt;
+&lt;lgNaming:supportedNamespace localId=&#34;Automobiles&#34; uri=&#34;urn:oid:11.11.0.1&#34; equivalentCodingScheme=&#34;Automobiles&#34;&gt;Automobiles&lt;/lgNaming:supportedNamespace&gt;
+&lt;lgNaming:supportedProperty localId=&#34;textualPresentation&#34;&gt;textualPresentation&lt;/lgNaming:supportedProperty&gt;
+&lt;lgNaming:supportedSource localId=&#34;lexgrid.org&#34;&gt;lexgrid.org&lt;/lgNaming:supportedSource&gt;
+&lt;lgNaming:supportedSource localId=&#34;_111101&#34;&gt;11.11.0.1&lt;/lgNaming:supportedSource&gt;
+&lt;/lgVD:mappings&gt;
+&lt;lgVD:pickListDefinition pickListId=&#34;SRITEST:AUTO:DomesticAutoMakers&#34; representsValueDomain=&#34;SRITEST:AUTO:DomesticAutoMakers&#34; isActive=&#34;true&#34; defaultEntityCodeNamespace=&#34;Automobiles&#34; defaultLanguage=&#34;en&#34; completeDomain=&#34;false&#34;&gt;
+&lt;lgCommon:owner&gt;Owner for Domestic Auto Makers&lt;/lgCommon:owner&gt;
+&lt;lgCommon:entityDescription&gt;DomesticAutoMakers&lt;/lgCommon:entityDescription&gt;
+&lt;lgVD:mappings&gt;
+&lt;lgNaming:supportedCodingScheme localId=&#34;Automobiles&#34; uri=&#34;urn:oid:11.11.0.1&#34;&gt;Automobiles&lt;/lgNaming:supportedCodingScheme&gt;
+&lt;lgNaming:supportedDataType localId=&#34;texthtml&#34;&gt;text/html&lt;/lgNaming:supportedDataType&gt;
+&lt;lgNaming:supportedDataType localId=&#34;textplain&#34;&gt;text/plain&lt;/lgNaming:supportedDataType&gt;
+&lt;lgNaming:supportedLanguage localId=&#34;en&#34; uri=&#34;www.en.org/orsomething&#34;&gt;en&lt;/lgNaming:supportedLanguage&gt;
+&lt;lgNaming:supportedNamespace localId=&#34;Automobiles&#34; uri=&#34;urn:oid:11.11.0.1&#34; equivalentCodingScheme=&#34;Automobiles&#34;&gt;Automobiles&lt;/lgNaming:supportedNamespace&gt;
+&lt;lgNaming:supportedProperty localId=&#34;textualPresentation&#34;&gt;textualPresentation&lt;/lgNaming:supportedProperty&gt;
+&lt;lgNaming:supportedSource  assemblyRule=&#34;rule1&#34; uri=&#34;http://informatics.mayo.edu&#34; localId=&#34;lexgrid.org&#34;&gt;lexgrid.org&lt;/lgNaming:supportedSource&gt;
+&lt;lgNaming:supportedSource localId=&#34;_111101&#34;&gt;11.11.0.1&lt;/lgNaming:supportedSource&gt;
+&lt;/lgVD:mappings&gt;
+&lt;lgVD:pickListEntryNode pickListEntryId=&#34;PLGMp1&#34; isActive=&#34;true&#34;&gt;
+&lt;lgCommon:owner&gt;Owner for PLGMp1&lt;/lgCommon:owner&gt;
+&lt;lgCommon:entryState containingRevision=&#34;R001&#34; relativeOrder=&#34;1&#34; changeType=&#34;NEW&#34; prevRevision=&#34;R00A&#34;/&gt;
+&lt;lgVD:inclusionEntry entityCode=&#34;GM&#34; entityCodeNamespace=&#34;Automobiles&#34; propertyId=&#34;p1&#34;&gt;
+&lt;lgVD:pickText&gt;General Motors&lt;/lgVD:pickText&gt;
+&lt;/lgVD:inclusionEntry&gt;
+&lt;lgVD:properties&gt;
+&lt;lgCommon:property propertyName=&#34;textualPresentation&#34; isActive=&#34;true&#34; language=&#34;en&#34; propertyId=&#34;p1&#34; propertyType=&#34;presentation&#34; status=&#34;active&#34; effectiveDate=&#34;2001-12-17T09:30:47Z&#34; expirationDate=&#34;2011-12-17T09:30:47Z&#34;&gt;
+&lt;lgCommon:owner role=&#34;role&#34; subRef=&#34;subref&#34;&gt;General Motors&lt;/lgCommon:owner&gt;
+&lt;lgCommon:entryState containingRevision=&#34;R001&#34; relativeOrder=&#34;1&#34; changeType=&#34;NEW&#34; prevRevision=&#34;R00A&#34;/&gt;
+&lt;lgCommon:source subRef=&#34;subref1&#34; role=&#34;role1&#34;&gt;General Motors&lt;/lgCommon:source&gt;
+&lt;lgCommon:value dataType=&#34;textplain&#34;&gt;Property for General Motors&lt;/lgCommon:value&gt;
+&lt;/lgCommon:property&gt;
+&lt;/lgVD:properties&gt;
+&lt;/lgVD:pickListEntryNode&gt;
+&lt;lgVD:pickListEntryNode pickListEntryId=&#34;PLGMp2&#34; isActive=&#34;true&#34;&gt;
+&lt;lgCommon:owner&gt;Owner for PLGMp2&lt;/lgCommon:owner&gt;
+&lt;lgCommon:entryState containingRevision=&#34;R001&#34; relativeOrder=&#34;1&#34; changeType=&#34;NEW&#34; prevRevision=&#34;R00A&#34;/&gt;
+&lt;lgVD:inclusionEntry entityCode=&#34;GM&#34; entityCodeNamespace=&#34;Automobiles&#34; propertyId=&#34;p2&#34;&gt;
+&lt;lgVD:pickText&gt;GM&lt;/lgVD:pickText&gt;
+&lt;/lgVD:inclusionEntry&gt;
+&lt;/lgVD:pickListEntryNode&gt;
+&lt;lgVD:pickListEntryNode pickListEntryId=&#34;PLJaguarp1&#34; isActive=&#34;true&#34;&gt;
+&lt;lgCommon:owner&gt;Owner for PLJaguarp1&lt;/lgCommon:owner&gt;
+&lt;lgCommon:entryState containingRevision=&#34;R001&#34; relativeOrder=&#34;1&#34; changeType=&#34;NEW&#34; prevRevision=&#34;R00A&#34;/&gt;
+&lt;lgVD:inclusionEntry entityCode=&#34;Jaguar&#34; entityCodeNamespace=&#34;Automobiles&#34; propertyId=&#34;p1&#34;&gt;
+&lt;lgVD:pickText&gt;Jaguar&lt;/lgVD:pickText&gt;
+&lt;/lgVD:inclusionEntry&gt;
+&lt;/lgVD:pickListEntryNode&gt;
+&lt;lgVD:pickListEntryNode pickListEntryId=&#34;PLChevroletp1&#34; isActive=&#34;true&#34;&gt;
+&lt;lgCommon:owner&gt;Owner for PLChevroletp1&lt;/lgCommon:owner&gt;
+&lt;lgCommon:entryState containingRevision=&#34;R001&#34; relativeOrder=&#34;1&#34; changeType=&#34;NEW&#34; prevRevision=&#34;R00A&#34;/&gt;
+&lt;lgVD:inclusionEntry entityCode=&#34;Chevy&#34; entityCodeNamespace=&#34;Automobiles&#34; propertyId=&#34;p1&#34;&gt;
+&lt;lgVD:pickText&gt;Chevrolet&lt;/lgVD:pickText&gt;
+&lt;/lgVD:inclusionEntry&gt;
+&lt;/lgVD:pickListEntryNode&gt;
+&lt;/lgVD:pickListDefinition&gt;
+&lt;lgVD:pickListDefinition pickListId=&#34;SRITEST:AUTO:DomasticLeafOnly&#34; representsValueDomain=&#34;SRITEST:AUTO:DomasticLeafOnly&#34; completeDomain=&#34;true&#34; defaultEntityCodeNamespace=&#34;Automobiles&#34; defaultLanguage=&#34;en&#34; isActive=&#34;true&#34;&gt;
+&lt;lgCommon:entityDescription&gt;Leaf Only Nodes of Domastic AutoMakers&lt;/lgCommon:entityDescription&gt;
+&lt;/lgVD:pickListDefinition&gt;
+&lt;/pickLists&gt;
+&lt;/systemRelease&gt;
+<h4 id="LexEVS5.1DesignDocument-Databasestructure">
+  Database structure
+</h4>
+<h5 id="LexEVS5.1DesignDocument-ValueDomainTables">
+  Value Domain Tables
+</h5>
+<img src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%205.1%20Design%20Document/value_domain_VDTablesDiagram.jpg?api=v2">
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Table Name
+      </th>
+      <th>
+        Description
+      </th>
+    </tr>
+    <tr>
+      <td>
+        valueDomain
+      </td>
+      <td>
+        Will contain Value Domain Definition information
+      </td>
+    </tr>
+    <tr>
+      <td>
+        vdEntry
+      </td>
+      <td>
+        Contains Value Domain Entries information and its rules
+      </td>
+    </tr>
+    <tr>
+      <td>
+        entryState
+      </td>
+      <td>
+        Contains entry state details of every entry
+      </td>
+    </tr>
+    <tr>
+      <td>
+        mappings
+      </td>
+      <td>
+        Contains supported mapping information for a Value Domain Definition
+      </td>
+    </tr>
+    <tr>
+      <td>
+        property
+      </td>
+      <td>
+        Contains Property informations for Value Domain Definition
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h5 id="LexEVS5.1DesignDocument-PickListTables">
+  Pick List Tables
+</h5>
+<img alt="value domain PLTablesDiagram" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%205.1%20Design%20Document/value_domain_PLTablesDiagram.jpg?api=v2">
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Table Name
+      </th>
+      <th>
+        Description
+      </th>
+    </tr>
+    <tr>
+      <td>
+        pickList
+      </td>
+      <td>
+        Will contain Pick List Definition information
+      </td>
+    </tr>
+    <tr>
+      <td>
+        plEntry
+      </td>
+      <td>
+        Contains Pick List Entry Nodes information
+      </td>
+    </tr>
+    <tr>
+      <td>
+        entryState
+      </td>
+      <td>
+        Contains entry state details of every entry
+      </td>
+    </tr>
+    <tr>
+      <td>
+        mappings
+      </td>
+      <td>
+        Contains supported mapping information for a Pick List Definition
+      </td>
+    </tr>
+    <tr>
+      <td>
+        property
+      </td>
+      <td>
+        Contains Property informations for Pick List Definition and its Nodes
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h4 id="LexEVS5.1DesignDocument-Installation/Packaging">
+  Installation / Packaging
+</h4>
+Both LexEVS Value Domain and Pick List services are integrated part of core LexEVS API and will be packaged and installed with other LexEVS services.
+<h4 id="LexEVS5.1DesignDocument-SystemTesting">
+  System Testing
+</h4>
+<h5 id="LexEVS5.1DesignDocument-ValueDomainService">
+  Value Domain Service
+</h5>
+The System test case for the LexEVS Value Domain service is performed using the JUnit test suite:org.LexGrid.LexBIG.Impl.testUtility.VDAllTestsThis test suite will be run as part of regular LexEVS test suites AllTestsAllConfigs and AllTestsNormalConfigs.
+<h5 id="LexEVS5.1DesignDocument-PickListService">
+  Pick List Service
+</h5>
+The System test case for the LexEVS Value Domain service is performed using the JUnit test suite:org.LexGrid.LexBIG.Impl.testUtility.PickListAllTestsThis test suite will be run as part of regular LexEVS test suites AllTestsAllConfigs and AllTestsNormalConfigs.
+<h3 id="LexEVS5.1DesignDocument-ImprovedLoaderFrameworkDetailedDesign">
+  Improved Loader Framework Detailed Design
+</h3>
+<h4 id="LexEVS5.1DesignDocument-DocumentPurpose">
+  Document Purpose
+</h4>
+This document provides the detailed design and implementation of LexBIG Enterprise Vocabulary Service (LexEVS) Loader Framework Extension. It is also the goal of this document to provide enough information to allow those persons wishing to create their own loaders can do so. This document will also assume the reader is already familiar with the LexEVS software.
+<h4 id="LexEVS5.1DesignDocument-ImplementationOverview">
+  Implementation Overview
+</h4>
+<h5 id="LexEVS5.1DesignDocument-Description">
+  Description
+</h5>
+The LexEVS software already provides a set of loaders within an existing legacy framework which served LexEVS developers well over many years. But as LexEVS has gained users, and requests for new loaders has grown , it was decided that a new loader framework should be developed that would: (1) be easier to extend (2) provide improved performance (3) dynamic loading of new loaders (4) take advantage of proven open source components such as Spring Batch and Hibernate.Specifically, this development work addresses &#34;TASK 6 - IMPROVE LEXEVS LOADING FRAMEWORK&#34; in the National Cancer Institute (NCI) Statement of Work (SOW) document (reference ?????).Also, this Framework is completely independent of the current loader code so there is no impact to current loaders.
+<h5 id="LexEVS5.1DesignDocument-Scope.1">
+  Scope
+</h5>
+The LexEVS Loader Framework will provide a way for LexEVS developers to write new loaders and have them recognized dynamically by the LexEVS code. Also the framework will provide help to loader developers in the form of utility classes and interfaces.
+<h5 id="LexEVS5.1DesignDocument-Architecture.1">
+  Architecture
+</h5>
+The LexEVS Loaders Framework extend the functionality of LexBIG 5.0 . For more information on LexBIG, refer to
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427415" rel="nofollow">
+  LexEVS 5.0
+</a>
+.High Level OverviewThe following figure shows the major components of the Loader Framework (A) in relation to a hypothetical new loader and what expected API usage would be. Ideally, the new loader can find make most if its API calls through the utilities provided by the Loader Framework API (B). Some work will need to be done with Spring (C) such as configuration of a Spring config file. Also it may or may not be necessary for a loader to use Hibernate (D) or use the LexBIG API (E). However, again, the hope is that much of the work a new loader may need to do can be accomplished by the Loader Framework API.The Loader Framework utilizes Spring Batch for managing its Java objects to improve performance and Hibernate provides the mapping to the LexGrid database.
+<img alt="diagram of major components of the Loader Framework" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%205.1%20Design%20Document/loader_image003.gif?api=v2">
+<h5 id="LexEVS5.1DesignDocument-Assumptions.1">
+  Assumptions
+</h5>
+<ul>
+  <li>
+    None
+  </li>
+</ul>
+<h5 id="LexEVS5.1DesignDocument-Dependencies">
+  Dependencies
+</h5>
+<ul>
+  <li>
+    This Loader Framework requires LexEVS release 5.0 or above.
+  </li>
+  <li>
+    Development system are required to install the Sun Java Development Kit (SDK) or Java Runtime Environment (JRE) version 1.5.0_11 or above.
+  </li>
+  <li>
+    Maven 2.1 or greater.
+  </li>
+  <li>
+    For software and hardware dependencies for the system hosting the LexEVS runtime, refer to the
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427403" rel="nofollow">
+      LexEVS 5.0 Documentation
+    </a>
+    .
+  </li>
+</ul>
+<h5 id="LexEVS5.1DesignDocument-Issues">
+  Issues
+</h5>
+<ul>
+  <li>
+    None
+  </li>
+</ul>
+<h5 id="LexEVS5.1DesignDocument-ThirdPartyTools">
+  Third Party Tools
+</h5>
+<ul>
+  <li>
+    Spring: A lightweight open-source application framework.
+    <ul>
+      <li>
+        Spring see
+        <a href="http://www.springsource.com/" rel="nofollow">
+          http://www.springsource.com/
+        </a>
+      </li>
+      <li>
+        Spring Batch see
+        <a href="http://static.springsource.org/spring-batch/" rel="nofollow">
+          http://static.springsource.org/spring-batch/
+        </a>
+      </li>
+      <li>
+        Sprint Batch Reference see
+        <a href="http://static.springsource.org/spring-batch/reference/html/index.html" rel="nofollow">
+          http://static.springsource.org/spring-batch/reference/html/index.html
+        </a>
+      </li>
+    </ul>
+  </li>
+</ul>
+<ul>
+  <li>
+    Hibernate: An open source Java persistence framework. See
+    <a href="https://www.hibernate.org/" rel="nofollow">
+      https://www.hibernate.org/
+    </a>
+  </li>
+  <li>
+    Maven: Apache build manager for Java projects. See
+    <a href="http://maven.apache.org/" rel="nofollow">
+      http://maven.apache.org/
+    </a>
+  </li>
+  <li>
+    Eclipse: An Open Source IDE. See
+    <a href="http://www.eclipse.org/" rel="nofollow">
+      http://www.eclipse.org/
+    </a>
+  </li>
+</ul>
+<h4 id="LexEVS5.1DesignDocument-ImplementationContents">
+  Implementation Contents
+</h4>
+<h5 id="LexEVS5.1DesignDocument-DevelopmentandBuildEnvironment">
+  Development and Build Environment
+</h5>
+The Loader Framework code is available in the NCI Subversion (SVN) repository. It is comprised of three Framework projects. Also at the time of this writing there are three projects in the repository that utilize the Loader Framework. These projects utilize Maven for build and dependency management.Loader Framework Projects
+<ul>
+  <li>
+    PersistanceLayer: is a Hibernate connector to the LexBIG database.
+  </li>
+  <li>
+    Loader-framework: sets up build information for Maven.
+  </li>
+  <li>
+    Loader-framework-core: contains all the interfaces and utilities. Also contains an extendable class &#34;AbstractSpringBatchLoader&#34; that all new Loaders should extend.
+  </li>
+</ul>
+Loader Proejcts Using the New Framework
+<ul>
+  <li>
+    abstract-rrf-loader: is a holder for common rrf-based loader code
+  </li>
+  <li>
+    meta-loader: new loader to read the NCI MetaThesaurus
+  </li>
+  <li>
+    umls-loader: a loader for reading Unified Medical Language System (UMLS) content.
+  </li>
+</ul>
+MavenThe above projects are built and managed by Maven. Maven plugin for Eclipse:
+<a href="http://m2eclipse.codehaus.org/" rel="nofollow">
+  http://m2eclipse.codehaus.org/
+</a>
+<h5 id="LexEVS5.1DesignDocument-HowtoUsetheLoaderFramework:ARoadmap">
+  How to Use the Loader Framework: A Roadmap
+</h5>
+So you want to write a loader and use the Loader Framework. What are the key considerations? In general the process can be described as:
+<ol>
+  <li>
+    Reading the raw data from the file into intermediate data structures such as a user defined ICD9SourceObject object.
+  </li>
+  <li>
+    Process the user defined objects into LexGrid model object.
+  </li>
+  <li>
+    Write the data in the LexGrid objects to the database.
+  </li>
+</ol>
+An example may help in understanding the Framework. Our discussion will refer to the following figure. Lets say we are writing a loader to load the ICD-9-CM codes and their description which are contained in a text file. We know we&#39;ll need a data structure to hold the data after we&#39;ve read it so we have a class:
+ICD9SourceObject {
+String id;
+String descr;
+String getId() { return id; }
+}
+
+Enter Spring. The Loader Framework uses Spring Batch to manage the reading, processing and writing of data. Spring provides classes and interfaces to help do this work and the Loader Framework also provides utilities to help loader developers. In our example, we will write a class that will use the Spring ItemReader interface. It will take a line of text and return an ICD9SourceObject (1 and 2). Next we&#39;ll want to process that data into a LexEVS object such as an Entity object. So we&#39;ll write class that implements Spring&#39;s ItemProcessor interface. It will take our ICD9SourceObject and output a LexEVS Entity object (3,4). Finally, we&#39;ll want to write the data to the database (5). Note that the LexEVS model objects provided in the Loader Framework are generated by Hibernate and utilize Hibernate to write the data to the database. This will free us from having to write SQL.
+<img alt="flow diagram of loader framework processing as described in the preceding paragraph" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%205.1%20Design%20Document/loader_image004.jpg?api=v2">
+Spring  You will need to configure Spring to be aware of your objects and how to manage them. This is done via a XML configuration file. More details on the Spring config file below.ItemReader/ItemProcessor  You will either write a class implementing this interface or use one of the Spring helper classes that already implement this interface. If you use one of the Spring classes you may need to provide one of your own helper classes to construct your internal data structure object, such as ICD9SourceObject. You would provide it to the Spring object via a setProperty call configured in the Spring config file.Maven Set upThe projects containing the Loader Framework (PersistanceLayer , loader-framework , and loader-framework-core) use Maven for dependency management and build. You will still use Eclipse as your IDE and code repository but you will need to install a Maven plugin for Eclipse which can be found at:
+<a href="http://m2eclipse.sonatype.org/" rel="nofollow">
+  http://m2eclipse.sonatype.org/
+</a>
+After the plugin is installed you&#39;ll need to provide a URL and userid/password to a Maven repository on a server (which manages your dependencies or dependent jar files). Ours here at Mayo is:
+<a href="http://bmidev4:8282/nexus-webapp-1.3.3/index.html" rel="nofollow">
+  http://bmidev4:8282/nexus-webapp-1.3.3/index.html
+</a>
+Once Maven is configured you can import the Loader Framework classes from SVN. Upon doing that you will most likely see build errors about missing jars. Resolve those by right clicking on the project with errors, select &#39;Maven&#39;, and &#39;Resolve Dependencies&#39;. This will pull the dependant jars from the Maven repository into your local environment.To build a Maven project, right click on the project, select &#39;Maven&#39;, then select &#39;assembly:assembly&#39;.Eclipse Project Set upWhen loader developers create a new loader project in Eclipse it is recommended they follow the Maven directory structure. By following this convention Maven can build the project and find the test cases.From the Maven documentation:
+<img alt="image of text documenting Eclipse project structure" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%205.1%20Design%20Document/Eclipse_Project.gif?api=v2">
+For more information on the Maven project refer to the
+<a href="http://maven.apache.org/guides/getting-started/maven-in-five-minutes.html" rel="nofollow">
+  documentation on apache.org
+</a>
+.Configure your Spring Config (myLoader.xml)Spring is a lightweight bean management container and among other things it contains a batch function which is utilized by the Loader Framework. A loader using the framework will need to work closely with Spring Batch and the way it does that is through Spring&#39;s configuration file where you configure beans (your loader code) and how the loader code should be utilized by Spring Batch (by configuring a Job, Step and other Spring Batch stuff in the spring config file). What follows is a brief overview of those tags related to the LoaderFramework. For more detail refer to the
+<a href="http://static.springsource.org/spring-batch/reference/html/index.html" rel="nofollow">
+  Spring documentation
+</a>
+.
+<img alt="image of loader code" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%205.1%20Design%20Document/loader_image005.gif?api=v2">
+BeansThe &#39;beans:beans&#39; tag is the all-encompassing tag. You define all your other tags in here. You can also define an import within this tag to import an external Spring config file. Not shown in figure 3.BeanUse these tags, &#39;beans:bean&#39;, to define the beans to be managed by the Spring container by specifying the packaged qualified class name. You can also specify inititialization values and set bean properties within these tags.
+&lt;beans:bean id=&#34;umlsCuiPropertyProcessor&#34; parent=&#34;umlsDefaultPropertyProcessor&#34; class=&#34;org.lexgrid.loader.processor.EntityPropertyProcessor&#34;&gt;
+&lt;beans:property name=&#34;propertyResolver&#34; ref=&#34;umlsCuiPropertyResolver&#34; /&gt;
+&lt;/beans:bean&gt;
+
+JobThe &#39;job&#39; tag is the main unit of work. The job is comprised of one or more steps that define the work to be done. Other advanced and interesting things can be done within the Job such as using &#39;split&#39; and &#39;flow&#39; tags to indicate work that can be done in parellel steps to improve performance.
+&lt;job id=&#34;umlsJob&#34; restartable=&#34;true&#34;&gt;
+&lt;step id=&#34;populateStagingTable&#34; next=&#34;loadHardcodedValues&#34; parent=&#34;stagingTablePopulatorStepFactory&#34;/&gt;
+...
+
+StepOne or more step tags make up a job and can very from simple to complex in content. Among other things, you can specify which step should be executed next.TaskletYou can do anything you want within a Tasklet such as sending an email or a LexBIG function such as indexing. You&#39;re not limited to just database operations. The Spring documentation also has this to say about Tasklets:The Tasklet is a simple interface that has one method, execute, which will be a called repeatedly by the TaskletStep until it either returns RepeatStatus.FINISHED or throws an exception to signal a failure. Each call to the Tasklet is wrapped in a transactionChunkSpring documentation says it best:Spring Batch uses a &#39;Chunk Oriented&#39; processing style within its most common implementation. Chunk oriented processing refers to reading the data one at a time, and creating &#39;chunks&#39; that will be written out, within a transaction boundary. One item is read in from an ItemReader, handed to an ItemWriter, and aggregated. Once the number of items read equals the commit interval, the entire chunk is written out via the ItemWriter, and then the transaction is committed.ReaderAn attribute of the chunk tag. Here is the class that you defined implementing the Spring ItemReader interface to read data from your data file and create domain-specific objects.ProcessorAnother attribute of the chunk tag. This is the class that implements the ItemProcessor interface where other manipulations of the domain objects take place. In the case of the Loader Framework we create LexGrid model objects from the domain objects so that they can be written to the database via Hibernate. Note that this is not a required attribute. In theory if you had a data source you could read from such that you could create LexBIG object immediately you would not have need of a processor. In practice this is most likely not be the case. You will need to work with the data to get it into LexBIG objects.WriterAttribute of the chunk tag. This class will implement the Spring interface ItemWriter. In the case of the Loader Framework these classes have been written for you. They are the LexGrid model objects that use Hibernate to write to the database.
+<h5 id="LexEVS5.1DesignDocument-KeyDirectories">
+  Key Directories
+</h5>
+Below is an image of the loader-framework-core project in Eclipse which shows the key directories of the Loader Framework. The following is a summary of the contents of those directories.
+<img src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%205.1%20Design%20Document/loader_image006.jpg?api=v2">
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Directory
+      </th>
+      <th>
+        Summary
+      </th>
+    </tr>
+    <tr>
+      <td>
+        connection
+      </td>
+      <td>
+        Connect to LexBIG and do LexBIG tasks such as register and activate.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        constants
+      </td>
+      <td>
+        Assorted constants.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        dao
+      </td>
+      <td>
+        Access to the LexBIG database.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        data
+      </td>
+      <td>
+        Directly related to data going into the LexBIG database tables.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        database
+      </td>
+      <td>
+        Database specific tasks not related to data, such as finding out the database type (MySQL, Oracle)
+      </td>
+    </tr>
+    <tr>
+      <td>
+        fieldsetter
+      </td>
+      <td>
+        Spring related classes for helping to write to the database.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        lexbigadmin
+      </td>
+      <td>
+        Common tasks you want LexBIG to do for you such as indexing.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        listener
+      </td>
+      <td>
+        You can attach listeners to a load so that the code will execute and certain points in the load such as a cleanup listener that runs when the load is finished or a setup listener etc...
+      </td>
+    </tr>
+    <tr>
+      <td>
+        logging
+      </td>
+      <td>
+        Gives you access to the LexBIG logger.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        processor
+      </td>
+      <td>
+        Important directory. Contains classes that you can pass your domain specific object to and will return a LexBIG object.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        properties
+      </td>
+      <td>
+        Code used internally by the Loader Framework.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        reader
+      </td>
+      <td>
+        Readers and reader-related tools for loader developers.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        rowmapper
+      </td>
+      <td>
+        Classes for reading from a database. Currently experimental code.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        setup
+      </td>
+      <td>
+        Classes such as JobRepositoryManager that help Spring do its work. As Spring hums along it keeps tables of its internal workings. Loader developers should not need to dive into this directory.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        staging
+      </td>
+      <td>
+        If your loader needs to load data to the database temporarlily you can find helper classes in this directory.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        wrappers
+      </td>
+      <td>
+        Helper classes and data strucutres such as a Code/CodingScheme class.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        writer
+      </td>
+      <td>
+        Miscellaneous classes that write to the database. These are not the same ones you&#39;d use in your loader, i.e the LexBIG model objects that use Hibernate. Those classes are contained in the PersistenceLayer project (next figure). It is by using those classes in the PersistenceLayer that you let the Loader Framework do some of the heavy lifting for you.
+      </td>
+    </tr>
+  </tbody>
+</table>
+<img src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%205.1%20Design%20Document/loader_image007.gif?api=v2">
+<h5 id="LexEVS5.1DesignDocument-Algorithms">
+  Algorithms
+</h5>
+None
+<h5 id="LexEVS5.1DesignDocument-BatchProcesses">
+  Batch Processes
+</h5>
+None
+<h5 id="LexEVS5.1DesignDocument-ErrorHandling.1">
+  Error Handling
+</h5>
+Spring Batch gives the Loader Framework some degree of recovery from errors. Like the other features of Spring it is something the Loader developer would need to configure in their Spring config file. Basically, Spring will keep track of the steps it has executed and make note of any step that has failed. Those failed steps can be re-run at a later time. The Spring documentation provides additional information on this function. Refer to the
+<a href="http://static.springsource.org/spring-batch/reference/html/configureJob.html" rel="nofollow">
+  configure job documentation
+</a>
+and
+<a href="http://static.springsource.org/spring-batch/reference/html/configureStep.html" rel="nofollow">
+  configure step documentation
+</a>
+.
+<h5 id="LexEVS5.1DesignDocument-DatabaseChanges">
+  Database Changes
+</h5>
+None
+<h5 id="LexEVS5.1DesignDocument-Client">
+  Client
+</h5>
+Currently, the LexBIG GUI does not provide a framework to dynamically load extendable GUI components. While not impossible to extend the GUI functionality especially for those working closely with the LexBIG code, loaders written to use the new framework should expect that their loader will be called via the command line or script.
+<h5 id="LexEVS5.1DesignDocument-JSP/HTML">
+  JSP/HTML
+</h5>
+None
+<h5 id="LexEVS5.1DesignDocument-Servlet">
+  Servlet
+</h5>
+None.
+<h5 id="LexEVS5.1DesignDocument-SecurityIssues">
+  Security Issues
+</h5>
+None.
+<h5 id="LexEVS5.1DesignDocument-Performance">
+  Performance
+</h5>
+Spring can accommodate parallel processing to enhance performance. The Spring documentation provides a good discussion of this topic. Refer to
+<a href="http://static.springsource.org/spring-batch/reference/html/scalability.html" rel="nofollow">
+  scalability on springsource.org
+</a>
+.
+<h5 id="LexEVS5.1DesignDocument-Internationalization">
+  Internationalization
+</h5>
+Not internationalized.
+<h5 id="LexEVS5.1DesignDocument-Installation/Packaging.1">
+  Installation / Packaging
+</h5>
+The Loader Framework is packaged as a LexBIG extension and thus is not included in the LexBIG jar.
+<h5 id="LexEVS5.1DesignDocument-Migration">
+  Migration
+</h5>
+None.
+<h5 id="LexEVS5.1DesignDocument-DocumentationConsiderations">
+  Documentation Considerations
+</h5>
+The Loader Framework will also be described in the Knowledge Center.
+<h4 id="LexEVS5.1DesignDocument-Testing">
+  Testing
+</h4>
+Automated tests are run via Maven. As mentioned earlier the projects containing the Loader Framework code are configured to work with Maven. The following figure shows the PersistenceLayer project and its standard Maven layout. Notice the structure of the test code mirrors the structure of the application code. To run the automated test in our Eclipse environment we select the project, right click, select &#39;Run As&#39; and select &#39;Maven test&#39;. Maven will do the rest.
+<img src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%205.1%20Design%20Document/loader_image008.jpg?api=v2">
+<h5 id="LexEVS5.1DesignDocument-TestGuidelines">
+  Test Guidelines
+</h5>
+The test cases are also integrated into the LexBIG 5.1 build environment and are run with each build.
+<h5 id="LexEVS5.1DesignDocument-TestCases">
+  Test Cases
+</h5>
+See System Testing.
+<h5 id="LexEVS5.1DesignDocument-TestResults">
+  Test Results
+</h5>
+See System Testing.
+<h5 id="LexEVS5.1DesignDocument-CustomLoaderFeasibilityReportandRecommendation">
+  Custom Loader Feasibility Report and Recommendation
+</h5>
+Persistence Layer FeasibilityThe Persistence Layer enables LexEVS to have a single access point to the underlying database. This has several advantages:
+<ol>
+  <li>
+    The DAO is implemented as an Interface, not a concrete class. We can implement this interface with Hibernate, JDBC, Ibatis, or any other Persistence tool or framework.
+  </li>
+  <li>
+    All loaders can now share a single entry point to the database, and are not limited by memory constraints as some of the EMF persistence was.
+  </li>
+  <li>
+    Connection Pooling and management is abstracted from the code and pluggable. Data source implementations may be switched and Connection Pooling may be configured without recompiling code.
+  </li>
+  <li>
+    Transactions may be defined programmatically via AOP interceptors.
+  </li>
+</ol>
+As LexEVS moves forward, the Persistence Layer is also flexible enough to play a part in the runtime Query API. With this, the runtime and loader code would be able to share a common Data Access Layer - we would then have a true DAO Layer.Loader Framework FeasibiltyThe Loader Framework has been implemented for two loaders, the UMLS single ontology loader and the NCI Metathesaurus loader. These loaders that implement the Loader Framework simple must define the READ and TRANSFORMATION mechanisms for the load, as well as load order and flow. All common details of Loading to LexEVS will be dealt with by the Loader Framework and will not have to be implemented. Tools exist for:
+<ol>
+  <li>
+    Lucene Indexing
+  </li>
+  <li>
+    Registering CodingSchemes
+  </li>
+  <li>
+    Changing CodingScheme status (to ACTIVE, INACTIVE, etc)
+  </li>
+  <li>
+    Building the Transitivity Closure table
+  </li>
+  <li>
+    Adding Supported Attributes
+  </li>
+  <li>
+    Detecting Database type
+  </li>
+  <li>
+    Staging temporary data to the database
+  </li>
+  <li>
+    Restarting failed loads
+  </li>
+  <li>
+    Integrating with LexEVS logging
+  </li>
+  <li>
+    Detecting and handling Root Nodes
+  </li>
+  <li>
+    ...and more common LexEVS load related tasks
+  </li>
+</ol>
+Also, to aid in Transformation, basic building blocks have been created that users may extend, such as:
+<ol>
+  <li>
+    Processors for all of LexEVS Model Objects
+  </li>
+  <li>
+    Various List Processors
+  </li>
+  <li>
+    Grouping Processors
+  </li>
+  <li>
+    Auto-Supported Attribute adding Processors
+  </li>
+  <li>
+    Several basic Resolvers to extract LexEVS Specific data from the source
+  </li>
+  <li>
+    ... various other Processors for specialized tasks
+  </li>
+</ol>
+Several Utilities are also available for Reading and Writing, such as:
+<ol>
+  <li>
+    Group Readers
+  </li>
+  <li>
+    Group Writers
+  </li>
+  <li>
+    Writers configurable to skip certain records
+  </li>
+  <li>
+    Partitionable readers to break up large source files
+  </li>
+  <li>
+    Error checking Readers and Writers
+  </li>
+  <li>
+    A Validating framework for inspecting content before it is inserted into the database.
+  </li>
+  <li>
+    etc.
+  </li>
+</ol>
+<h3 id="LexEVS5.1DesignDocument-BDASupportDetailedDesign">
+  BDA Support Detailed Design
+</h3>
+LexEVS uses the BDA (Build and Deployment Automation) system to build and deploy artifacts. This build script that produces these artifacts and deploys them is kicked off via a build server (an instance of Anthill pro).Currently LexEVS has builds for a local java application, a web enabled java application, a data service, an analytical grid service and a data grid service.Each of these is produced as a separate artifact via a single build call. The local Java application is built and integrated into the web application. The data service is also integrated into the web application. Separate analytical and data grid services are also created.Once artifacts are successfully compiled and packaged in to jars, wars and zip files the build script makes contact with the remote server tier it is about to install to, and begins pushing artifacts out to application containers.In this case two separate JBoss server instances are required. In one instance the web enabled application (lexevsapi) is copied to the remote server as a war file, it is accompanied by a grid data service zip file that is unzipped into a typical war file directory structure. In the other instance the LexEVS grid analytical service is deployed. In every case the server is stopped, configured as necessary, receives the new war file or directory and is started again. The BDA process is considered to be successful when all project builds are complete, all artifacts are deployed, and each public interface of these services is verified.
+<h2 id="LexEVS5.1DesignDocument-ImplementationPlan">
+  Implementation Plan
+</h2>
+This will include the technical environment (HW,OS, Middleware), external dependencies, teams/locations performing development and procedures for development (e.g. lifecycle model,CM), and a detailed schedule.
+<h3 id="LexEVS5.1DesignDocument-Technicalenvironment">
+  Technical environment
+</h3>
+No new environment requirements exist for the the LexEVS 5.1, with the exception of additional storage to accommodate larger content loads.
+<h4 id="LexEVS5.1DesignDocument-Software(TechnologyStack)">
+  Software (Technology Stack)
+</h4>
+Operating System
+<ul>
+  <li>
+    Linux (though no operating system dependencies currently exist)
+  </li>
+</ul>
+Application Server
+<ul>
+  <li>
+    JBoss 4.0.5
+  </li>
+</ul>
+Database Server
+<ul>
+  <li>
+    MySQL 5.0.45
+  </li>
+</ul>
+Other Software Components
+<ul>
+  <li>
+    caGrid 1.3 / Globus 4.0.3
+  </li>
+</ul>
+<h4 id="LexEVS5.1DesignDocument-ServerHardware">
+  Server Hardware
+</h4>
+Server
+<ul>
+  <li>
+    NCI standard hardware.
+  </li>
+</ul>
+Minimum Processor Speed
+<ul>
+  <li>
+    Minimum required by JBoss.
+  </li>
+</ul>
+Minimum Memory
+<ul>
+  <li>
+    Minimum required by JBoss.
+  </li>
+</ul>
+<h4 id="LexEVS5.1DesignDocument-Storage">
+  Storage
+</h4>
+Expected file server disk storage (in MB)
+<ul>
+  <li>
+    200GB (May increase due to additional RRF content load)
+  </li>
+</ul>
+Expected database storage (in MB)
+<ul>
+  <li>
+    100GB (May increase due to additional RRF content load)
+  </li>
+</ul>
+<h4 id="LexEVS5.1DesignDocument-Networking">
+  Networking
+</h4>
+Application specific port assignments
+<ul>
+  <li>
+    Standard port required by JBoss to externalize LexEVS grid service. May be assigned any suitably available port #.
+  </li>
+</ul>
+JBoss Container ConsiderationsThere are specific requirements for JBoss containers for LexEVS 5.1.In order to support multiple versions of LexEVS (for example 5.0 and 5.1), there are JBoss considerations.
+<ul>
+  <li>
+    Both lexevsapi 5.0 and 5.1 in the same container. This means that both
+    <a href="http://lexevsapi.nci.nih.gov/lexevsapi50" rel="nofollow">
+      http://lexevsapi.nci.nih.gov/lexevsapi50
+    </a>
+    and
+    <a href="http://lexevsapi.nci.nih.gov/lexevsapi51" rel="nofollow">
+      http://lexevsapi.nci.nih.gov/lexevsapi51
+    </a>
+    can exist in the same Jboss container.
+  </li>
+</ul>
+<ul>
+  <li>
+    Grid services can NOT be in the same JBoss container because of naming - they both need to be named /wsrf in the container. This results in the use of 1 JBoss container for LexEVS 5.0 and 1 JBoss container for LexEVS 5.1.
+  </li>
+</ul>
+<h3 id="LexEVS5.1DesignDocument-Externaldependencies">
+  External dependencies
+</h3>
+N/A
+<h3 id="LexEVS5.1DesignDocument-Team/Locationperformingdevelopment">
+  Team/Location performing development
+</h3>
+<ul>
+  <li>
+    Traci St. Martin / Mayo Clinic
+  </li>
+  <li>
+    Craig Stancl / Mayo Clinic
+  </li>
+  <li>
+    Scott Bauer / Mayo Clinic
+  </li>
+  <li>
+    Kevin Peterson / Mayo Clinic
+  </li>
+  <li>
+    Sridhar Dwarkanath / Mayo Clinic
+  </li>
+  <li>
+    Michael Turk / Mayo Clinic
+  </li>
+</ul>
+<h3 id="LexEVS5.1DesignDocument-ProceduresforDevelopment">
+  Procedures for Development
+</h3>
+Development will follow procedures as defined by NCI.
+<h3 id="LexEVS5.1DesignDocument-Detailedschedule">
+  Detailed schedule
+</h3>
+The LexEVS 5.1 project plan is located on
+<a href="https://cbiit-download.nci.nih.gov/evs/LexEVS/v5.1/Management/LexEVS5.1Projectplan.mpp" rel="nofollow">
+  the Gforge archive in MS Project format
+</a>
+and
+<a href="https://cbiit-download.nci.nih.gov/evs/LexEVS/v5.0/Management/LexEVS5.0Projectplan.mpp" rel="nofollow">
+  PDF format
+</a>
+The LexEVS 5.1 BDA Project plan is located at
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=18947334" rel="nofollow">
+  LexEVS 5.1 BDA Project Plan
+</a>
+(login required).
+<h3 id="LexEVS5.1DesignDocument-Traininganddocumentationrequirements">
+  Training and documentation requirements
+</h3>
+Documentation for LexEVS 5.1 will be provided by the Vocabulary Knowledge Center:
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427450" rel="nofollow">
+  LexEVS Guides and Training
+</a>
+.
+<h3 id="LexEVS5.1DesignDocument-Downloadcenterchanges">
+  Download center changes
+</h3>
+Downloads for LexEVS 5.1 will be located on the
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427448" rel="nofollow">
+  LexEVS
+</a>
+wiki.

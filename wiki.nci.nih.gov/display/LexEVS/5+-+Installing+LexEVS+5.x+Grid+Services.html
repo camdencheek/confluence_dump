@@ -1,0 +1,413 @@
+Contents of this Page
+<ul>
+  <li>
+    <a href="#id-5InstallingLexEVS5.xGridServices-Introduction" rel="nofollow">
+      Introduction
+    </a>
+  </li>
+  <li>
+    <a href="#id-5InstallingLexEVS5.xGridServices-PreliminaryConsiderations" rel="nofollow">
+      Preliminary Considerations
+    </a>
+  </li>
+  <li>
+    <a href="#id-5InstallingLexEVS5.xGridServices-DownloadingandInstallingtheLexEVSDataorAnalyticalGridServices" rel="nofollow">
+      Downloading and Installing the LexEVS Data or Analytical Grid Services
+    </a>
+  </li>
+  <li>
+    <a href="#id-5InstallingLexEVS5.xGridServices-TestingtheLexEVSGridServices" rel="nofollow">
+      Testing the LexEVS Grid Services
+    </a>
+  </li>
+  <li>
+    <a href="#id-5InstallingLexEVS5.xGridServices-Troubleshooting" rel="nofollow">
+      Troubleshooting
+    </a>
+  </li>
+</ul>
+<h2 id="id-5InstallingLexEVS5.xGridServices-Introduction">
+  Introduction
+</h2>
+This document is a section of the
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427405" rel="nofollow">
+  Installation Guide
+</a>
+.
+
+
+This section provides requirements, instructions, and troubleshooting information for installing LexEVS Grid Services.
+<h2 id="id-5InstallingLexEVS5.xGridServices-PreliminaryConsiderations">
+  Preliminary Considerations
+</h2>
+<ul>
+  <li>
+    The
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427530" rel="nofollow">
+      LexEVS 5.x Supported Platforms
+    </a>
+    are the same for this environment as they are for the Local Runtime and the Remote API.
+  </li>
+</ul>
+<ul>
+  <li>
+    Before installing the LexEVS Grid Services environment you must have both a
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427488" rel="nofollow">
+      LexEVS Local Runtime
+    </a>
+    installed and a
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427486" rel="nofollow">
+      LexEVS Remote API
+    </a>
+    working.
+  </li>
+</ul>
+<ul>
+  <li>
+    Just like the Remote API install, it is not required that you load a terminology into the Local Runtime in order to complete the installation of the Grid Services environment.  However, the Grid services are not very useful if they have nothing in the underlying Local Runtime to query against.
+  </li>
+</ul>
+<ul>
+  <li>
+    This environment currently has no additional
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427532" rel="nofollow">
+      Prerequisite Software
+    </a>
+    beyond that of the the Remote API.
+  </li>
+</ul>
+<ul>
+  <li>
+    Complete the
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427487" rel="nofollow">
+      #Downloading and Installing the LexEVS Data or Analytical Grid Services
+    </a>
+    steps below.
+  </li>
+</ul>
+Once you have completed the Grid Services environment install steps and the verification test as described in this guide then you should be ready to start using the Grid Services features to meet the needs of your application.  Not counting prerequisite software products the installation and verification should not take more than 30 minutes.
+<h2 id="id-5InstallingLexEVS5.xGridServices-DownloadingandInstallingtheLexEVSDataorAnalyticalGridServices">
+  Downloading and Installing the LexEVS Data or Analytical Grid Services
+</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Step
+      </th>
+      <th>
+        Action
+      </th>
+    </tr>
+    <tr>
+      <td>
+        1. Download the latest version of the LexEVS Analytical or Data Services ZIP file from the right.  You have a choice between ZIP files tailored for JBoss or Apache Tomcat installations.  The location you have chosen to save this on your computer will be referred to as the SAVE_DIRECTORY.  Our command examples will use scratch as this directory.
+        NoteAccess to the downloads does not require an account.  If you are having trouble downloading files then you may need to disable pop-up blockers or check any firewall settings at your site.
+      </td>
+      <td>
+        LexEVS caGrid Analytical Services   Includes caGrid Analytical Services working in terms of the LexGrid model and LexEVS API. These can be deployed to an Apache Tomcat or JBoss container. Each ZIP file contains a wsrf.war file.
+        <a href="https://cbiit-download.nci.nih.gov/evs/LexEVS/v5.1/Release/LexEVS_51_caGRIDServices_analytical_tomcat.zip" rel="nofollow">
+          LexEVS_51_caGRIDServices_analytical_tomcat.zip
+        </a>
+        <a href="https://cbiit-download.nci.nih.gov/evs/LexEVS/v5.1/Release/LexEVS_51_caGRIDServices_analytical_jboss.zip" rel="nofollow">
+          LexEVS_51_caGRIDServices_analytical_jboss.zip
+        </a>
+        LexEVS caGrid Data Services   Includes caGrid Data Services working in terms of the LexGrid model and LexEVS API. These can be deployed to an Apache Tomcat or JBoss container. Each ZIP file contains a wsrf.war file.
+        <a href="https://cbiit-download.nci.nih.gov/evs/LexEVS/v5.1/Release/LexEVS_51_caGRIDServices_data_tomcat.zip" rel="nofollow">
+          LexEVS_51_caGRIDServices_data_tomcat.zip
+        </a>
+        <a href="https://cbiit-download.nci.nih.gov/evs/LexEVS/v5.1/Release/LexEVS_51_caGRIDServices_data_jboss.zip" rel="nofollow">
+          LexEVS_51_caGRIDServices_data_jboss.zip
+        </a>
+        LexEVS caGrid GUI   Provides a traditional graphical user interface that provides access to basic browse and query functions provided by LexEVS caGrid Services.
+        <a href="https://cbiit-download.nci.nih.gov/evs/LexEVS/v5.0/Release/LexEVS_50_Remote_GUI.zip" rel="nofollow">
+          LexEVS_50_caGridGUI.zip
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        2. Unzip the file or files you have downloaded to SAVE_DIRECTORY.
+        WarningEach ZIP contains a file by the same name.  This is by design because you can not deploy the Data or Analytical Grid Services to the same server.  Therefore you must do these one at a time or unzip them to multiple locations.
+        NoteWindows typically understands ZIP files and can extract files.  Unix has an unzip command.  Other utilities can be used such as WinZip or 7-Zip.
+      </td>
+      <td>
+        <img alt="Unzipping the LexEVS services" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/5%20-%20Installing%20LexEVS%205.x%20Grid%20Services/Unzip_lexevs_services.png?api=v2">
+      </td>
+    </tr>
+    <tr>
+      <td>
+        3. Shut down your application or servlet container. This presumes that you have already installed a web server as outlined in the Prerequisite Software. The command to do the shut down will be web server specific.  See the documentation for your web server for information on how to do this.  There may be many alternatives.
+        JBoss example:
+        <ul>
+          <li>
+            Windows:
+            shutdown.bat -S
+          </li>
+          <li>
+            Unix:
+            ./shutdown.sh -S
+            If you experience Java errors then the server may already be down.
+          </li>
+        </ul>
+      </td>
+      <td>
+        <img alt="Shutting down the JBoss server" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/5%20-%20Installing%20LexEVS%205.x%20Grid%20Services/jboss_shutdown.PNG?api=v2">
+      </td>
+    </tr>
+    <tr>
+      <td>
+        4. Create a directory for the web archive.
+        Create a directory called wsrf.war inside the following directory:
+
+
+        {WEB_SERVER_HOME}\{DEPLOYMENT_HOME}
+
+
+        ...where WEB_SERVER_HOME is your application server home directory
+        DEPLOYMENT_HOME is the Web Archive deployment directory for your application server
+        JBoss example:
+        <ul>
+          <li>
+            Windows:
+            c:\jboss-4.0.5.GA\server\default\deploy
+          </li>
+          <li>
+            Unix:
+            /jboss-4.0.5.GA/server/default/deploy
+            For example:
+          </li>
+          <li>
+            Windows:
+            mkdir wsrf.war
+          </li>
+          <li>
+            Unix:
+            mkdir wsrf.war
+          </li>
+        </ul>
+      </td>
+      <td>
+        <img alt="Create the web archive directory" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/5%20-%20Installing%20LexEVS%205.x%20Grid%20Services/Create_wsrf_war_dir.png?api=v2">
+      </td>
+    </tr>
+    <tr>
+      <td>
+        5. Unzip the wsrf.war file to the wsrf.war directory.
+        JBoss example:
+        <ul>
+          <li>
+            Windows:
+            From: c:\scratch\wsrf.war
+            To: c:\jboss-4.0.5.GA\server\default\deploy\wsrf.war
+          </li>
+          <li>
+            Unix:
+            From: /scratch/wsrf.war
+            To: /jboss-4.0.5.GA/server/default/deploy\wsrf.war
+            Windows does not see WAR files as compressed files, therefore you must obtain an unzip utility such as
+            <a href="http://www.7-zip.org" rel="nofollow">
+              7-zip
+            </a>
+            or
+            <a href="http://www.winzip.com" rel="nofollow">
+              WinZip
+            </a>
+            .  In Unix you should be able to use the unzip command.
+          </li>
+        </ul>
+      </td>
+      <td>
+        <img alt="Deploying the services web archive file" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/5%20-%20Installing%20LexEVS%205.x%20Grid%20Services/GridService_deploy.PNG?api=v2">
+      </td>
+    </tr>
+    <tr>
+      <td>
+        6. Download LexEVS_51_client.zip from the right.  This is from the client for a Remote API install.
+      </td>
+      <td>
+        LexEVS Remote API Client   Enables Java programs to establish a connection to an already-deployed LexEVS Remote API node.
+        <a href="https://cbiit-download.nci.nih.gov/evs/LexEVS/v5.1/Release/LexEVS_51_client.zip" rel="nofollow">
+          LexEVS_51_client.zip
+        </a>
+        LexEVS Remote API Client 3rd Party dependencies   Contains all the code required by the LexEVS Remote API Client.
+        <a href="https://cbiit-download.nci.nih.gov/evs/LexEVS/v5.1/Release/lexevsapi51-client-dependencies.zip" rel="nofollow">
+          lexevsapi51-client-dependencies.zip
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        7. Unzip LexEVS_51_client.zip to the SAVE_DIRECTORY.
+      </td>
+      <td>
+        <img alt="Unzipping the Remote API client." src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/5%20-%20Installing%20LexEVS%205.x%20Grid%20Services/Unzip_lexevs_services.png?api=v2">
+      </td>
+    </tr>
+    <tr>
+      <td>
+        8. Copy the application-config-client.xml file out of the unzipped client and into the deployed wsrf.war directory structure.
+
+
+        copy {SAVE_DIRECTORY}\LexEVS_51_client\conf\application-config-client.xml {WEB_SERVER_HOME}\{DEPLOYMENT_HOME}\wsrf.war\WEB-INF\classes
+
+
+        ...where SAVE_DIRECTORY is the location of the downloaded file. WEB_SERVER_HOME is your application server home directory. DEPLOYMENT_HOME is the Web Archive deployment directory for your application server.
+        JBoss example:
+        <ul>
+          <li>
+            Windows:
+            copy c:\scratch\LexEVS_51_client\conf\application-config-client.xml c:\jboss-4.0.5.GA\server\default\deploy\wsrf.war\WEB-INF\classes
+          </li>
+          <li>
+            Unix:
+            copy /scratch/LexEVS_51_client/conf/application-config-client.xml c:/jboss-4.0.5.GA/server/default/deploy/wsrf.war/WEB-INF/classes
+            NoteIf you are repeating these steps for the other services WAR file then it will have its own separate application-config-client.xml file that will be similarly placed in the WEB-INF/classes folder of the exploded WAR file.
+          </li>
+        </ul>
+      </td>
+      <td>
+        <img alt="Copy the applications client configuration file to classes home directory." src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/5%20-%20Installing%20LexEVS%205.x%20Grid%20Services/Copy_app_config_client.png?api=v2">
+      </td>
+    </tr>
+    <tr>
+      <td>
+        9. Edit the application-config-client.xml file.  There are three lines where you need to have the proper URL as a value.  The three lines are found:
+        <ol>
+          <li>
+            in the EvsServiceInfo bean with this text &lt;entry key=&#34;APPLICATION_SERVICE_URL&#34;
+          </li>
+          <li>
+            in the AppService bean with this text &lt;property name=&#34;serviceUrl&#34;
+          </li>
+          <li>
+            (OPTIONAL) in the EvsAuthenticationProvider bean with this text &lt;property name=&#34;serviceUrl&#34;
+            The values each have a URL like this:
+
+
+            http://{SERVER_ADDRESS}/{WAR_FILE_DEPLOYED}/
+
+
+            For each, you must change the SERVER_ADDRESS and WAR_FILE_DEPLOYED only.
+            ...where SERVER_ADDRESS is the address of your server (domain and optionally  the port number). WAR_FILE_DEPLOYED is the name of the WAR file you placed in the server directories for deployment.
+            Example lines for the file:
+
+
+            &lt;entry key=&#34;APPLICATION_SERVICE_URL&#34; value=&#34;http://localhost:8080/lexevsapi51/http/applicationService&#34;/&gt;}}
+
+
+
+
+            {{&lt;property name=&#34;serviceUrl&#34; value=&#34;http://localhost:8080/lexevsapi51/http/applicationService&#34;/&gt;}}
+
+
+
+
+            &lt;property name=&#34;serviceUrl&#34; value=&#34;http://localhost:8080/lexevsapi51/http/applicationService&#34;/&gt;
+          </li>
+        </ol>
+      </td>
+      <td>
+        <img alt="Editing the applications client configuration file with circles around locations to change." src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/5%20-%20Installing%20LexEVS%205.x%20Grid%20Services/edit_app_config_client.png?api=v2">
+      </td>
+    </tr>
+    <tr>
+      <td>
+        10. There are 8 JAR files that must be copied from the LexEVS Subversion repository to your application server&#39;s class path.  Open a browser to here:
+        <a href="https://ncisvn.nci.nih.gov/svn/lexevs/base/v5/trunk/lexevs_service_cagrid/LexEVSAnalyiticalService/gs.lib/" rel="nofollow">
+          https://ncisvn.nci.nih.gov/svn/lexevs/base/v5/trunk/lexevs_service_cagrid/LexEVSAnalyiticalService/gs.lib/
+        </a>
+        , and copy each of the JAR files to here:
+
+
+        {WEB_SERVER_HOME}\{LIB_HOME}
+
+
+        ...where WEB_SERVER_HOME is your application server home directory. LIB_HOME is the server&#39;s library directory.
+        JBoss example:
+        <ul>
+          <li>
+            Windows:
+            c:\jboss-4.0.5.GA\server\default\lib
+          </li>
+          <li>
+            Unix:
+            /jboss-4.0.5.GA/server/default/lib/
+            Each service is in its own server.  These files must be copied into each server.  If your web application server supports it there may be a way to place a single set of these files into a common location for all your application servers.
+            NoteAlso, watch out for port conflicts by making sure you select an alternate range for binding the ports on a separate server.  When the Data or Analytical Grid Services server runs at the same time they each must have unique port numbers to use.
+          </li>
+        </ul>
+      </td>
+      <td>
+        <img alt="Starting the JBoss server." src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/5%20-%20Installing%20LexEVS%205.x%20Grid%20Services/download_globus_jar_files.png?api=v2">
+      </td>
+    </tr>
+    <tr>
+      <td>
+        11. Repeat these steps for the other service if you are doing them one at a time.
+      </td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="id-5InstallingLexEVS5.xGridServices-TestingtheLexEVSGridServices">
+  Testing the LexEVS Grid Services
+</h2>
+<table>
+  <tbody>
+    <tr>
+      <td>
+        1. Start your application or servlet container if it is not already started.  The start command will be web server specific.  See the documentation for your web server for information on how to do this.
+        JBoss example:
+        <ul>
+          <li>
+            Windows:
+            Run.bat -c default
+          </li>
+          <li>
+            Unix:
+            ./Run.sh -c default
+          </li>
+        </ul>
+      </td>
+      <td>
+        <img alt="Starting the JBoss server." src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/5%20-%20Installing%20LexEVS%205.x%20Grid%20Services/jboss_start.PNG?api=v2">
+      </td>
+    </tr>
+    <tr>
+      <td>
+        2. Verify the installation by opening a browser to either
+
+
+        http://{SERVER_ADDRESS}/wsrf/services/cagrid/LexEVSDataService
+
+
+        or
+
+
+        http://{SERVER_ADDRESS}/wsrf/services/cagrid/LexEVSGridService
+
+
+        ...where SERVER_ADDRESS is the address of your server (domain and optionally the port number)
+        For example:
+        <a href="http://localhost:8080/wsrf/services/cagrid/LexEVSDataService" rel="nofollow">
+          http://localhost:8080/wsrf/services/cagrid/LexEVSDataService
+        </a>
+        or
+        <a href="http://localhost:8080/wsrf/services/cagrid/LexEVSGridService" rel="nofollow">
+          http://localhost:8080/wsrf/services/cagrid/LexEVSGridService
+        </a>
+        If you are using localhost then your browser must be running on the same server as LexEVS
+      </td>
+      <td>
+        <img alt="Default web page after successful start of LexEVS Grid Services." src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/5%20-%20Installing%20LexEVS%205.x%20Grid%20Services/Grid_Service_home.PNG?api=v2">
+      </td>
+    </tr>
+  </tbody>
+</table>
+If you see the typical Axis service message then you have successfully installed the LexEVS Grid Service.
+Congratulations!
+<h2 id="id-5InstallingLexEVS5.xGridServices-Troubleshooting">
+  Troubleshooting
+</h2>
+Deployment errors may occur if all instances of references in the application-config-client.xml are not correctly configured with the web address of a Remote API install. 

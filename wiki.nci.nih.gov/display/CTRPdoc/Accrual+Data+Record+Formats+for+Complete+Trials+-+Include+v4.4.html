@@ -1,0 +1,25 @@
+Each line of the data file contains one record, is prefixed by the table name, and is comma delimited.Important!Use blank fields for those fields that are included in the CDUS standard but not used by the CTRP.Valid Record Formats and Field Sequence
+COLLECTIONS,&lt;Study_Identifier&gt;,,,,,,,,,&lt;Change_Code&gt;
+PATIENTS,&lt;Study_Identifier&gt;,&lt;Study_Subject_Identifier&gt;,&lt;Zip_Code&gt;,&lt;Country_Code&gt;,&lt;Birth_Date&gt;,&lt;Gender&gt;,&lt;Ethnicity&gt;,&lt;Payment_Method&gt;,&lt;Subject_Registration_Date&gt;,&lt;Registering_Group_Identifier&gt;,&lt;Study_Site_Identifier&gt;,,,,,,,,,,&lt;Subject_Disease_Code&gt;,,
+PATIENT_RACES,&lt;Study_Identifier&gt;,&lt;Study_Subject_Identifier&gt;,&lt;Race&gt;
+The following is an example batch file for a study that has three study subjects, and one race per subject using CTRP accepted valid values. In the example below &#34;Male&#34;, for example, is used instead of a CDUS accepted numeric value of &#34;1&#34;.Example Batch File
+COLLECTIONS,&#34;NCI-2011-03861&#34;,,,,,,,,,1
+PATIENTS,&#34;NCI-2011-03861&#34;,873222899999999,84124,,196311,Male,Unknown,Private Insurance,20060809,CALGB,149280,,,,,,,,,,238.7,,
+PATIENTS,&#34;NCI-2011-03861&#34;,8732228,84124,,196311,Male,Unknown,Private Insurance,20060809,CALGB,149280,,,,,,,,,,238.7,,
+PATIENTS,&#34;NCI-2011-03861&#34;,1,84124,,196311,Male,Unknown,Private Insurance,20060809,CALGB,149280,,,,,,,,,,185.0,,
+&#34;PATIENT_RACES&#34;,&#34;NCI-2011-03861&#34;,8732228,White
+&#34;PATIENT_RACES&#34;,&#34;NCI-2011-03861&#34;,873222899999999,Asian
+&#34;PATIENT_RACES&#34;,&#34;NCI-2011-03861&#34;,1,White
+The following is another example batch file, accepted by CTRP, for the same study but using CDUS accepted numeric codes instead of the text values used in the example above .Example Batch File
+COLLECTIONS,&#34;NCI-2011-03861&#34;,,,,,,,,,1
+PATIENTS,&#34;NCI-2011-03861&#34;,873222899999999,84124,,196311,1,9,1,20060809,CALGB,149280,,,,,,,,,,238.7,,
+PATIENTS,&#34;NCI-2011-03861&#34;,8732228,84124,,196311,1,9,1,20060809,CALGB,149280,,,,,,,,,,238.7,,
+PATIENTS,&#34;NCI-2011-03861&#34;,1,84124,,196311,1,9,1,20060809,CALGB,149280,,,,,,,,,,185.0,,
+&#34;PATIENT_RACES&#34;,&#34;NCI-2011-03861&#34;,8732228,01
+&#34;PATIENT_RACES&#34;,&#34;NCI-2011-03861&#34;,873222899999999,05
+&#34;PATIENT_RACES&#34;,&#34;NCI-2011-03861&#34;,1,01
+Special CharactersIf you include any of the following characters in a value, enclose the field with double quotes:! &#34; # $ % &amp; &#39; ( ) * +  , -  . / : ; &lt; &gt; = ? @ [] \^ _{} | ~If you enclose a field with double quotes (as in &#34;NCI-2012-00225&#34;), CTRP interprets the string inside the quote exactly as presented. If the field does not contain any special characters, the quote marks are optional.   ICD-O-3 Trial Format for Topography CodesFor trials using ICD-O-3 codes, use the
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=333337811" rel="nofollow">
+  Subject Disease Code position
+</a>
+for ICD-O-3 Topography and Morphology (which must include Histology and Behavior codes). When you use both Topography and Morphology codes, separate them by a semi-colon as per the example below.Format:  site code; histology codeCode: C64.9;8000/3Examples:SDC TopographyPATIENTS,&#34;NCI-2011-03861&#34;,8732228,84124,,196311,1,9,1,20060809,CALGB,149280,,,,,,,,,,238.7,,ICD-O-3 Topography and MorphologyPATIENTS,&#34;NCI-2011-03861&#34;,8732228,84124,,196311,1,9,1,20060809,CALGB,149280,,,,,,,,,,C64.9;8000/3,,

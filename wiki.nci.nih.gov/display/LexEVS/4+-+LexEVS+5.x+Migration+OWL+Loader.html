@@ -1,0 +1,233 @@
+Contents of this Page
+<ul>
+  <li>
+    <a href="#id-4LexEVS5.xMigrationOWLLoader-Introduction" rel="nofollow">
+      Introduction
+    </a>
+  </li>
+  <li>
+    <a href="#id-4LexEVS5.xMigrationOWLLoader-OWLLoaderEnhancements" rel="nofollow">
+      OWL Loader Enhancements
+    </a>
+  </li>
+</ul>
+<h2 id="id-4LexEVS5.xMigrationOWLLoader-Introduction">
+  Introduction
+</h2>
+This document is a section of the
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427409" rel="nofollow">
+  Migration Guide
+</a>
+.
+
+For more information about the OWL loader, see
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427498" rel="nofollow">
+  Loader Guide
+</a>
+.
+<h2 id="id-4LexEVS5.xMigrationOWLLoader-OWLLoaderEnhancements">
+  OWL Loader Enhancements
+</h2>
+Substantial changes have been implemented in LexEVS 5.0 during the conversion of the OWL loader. The NCI OWL loader has been decommissioned and replaced with a more generic Protégé OWL loader. All effort has been made to ensure that no previous functionally has been lost during this transition. Priority was given to maintaining existing functionality while improving the OWL loader.
+
+Enhancements and changes made to the OWL loader:
+<ul>
+  <li>
+    Improve OWL model footprint by upgrading to latest Protégé (3.4 w/improved support for database streaming)
+  </li>
+</ul>
+<ul>
+  <li>
+    Provide ability to enable use the Protégé DB support (Protégé database will serve as cache while we build the LexEVS model from OWL)
+  </li>
+</ul>
+<ul>
+  <li>
+    Add support for NCI-based complex props (processing of XML fragments)
+  </li>
+</ul>
+<ul>
+  <li>
+    Add support for preferences
+  </li>
+</ul>
+<ul>
+  <li>
+    Add support for manifest
+  </li>
+</ul>
+<ul>
+  <li>
+    Add support to split role and associations (consider splitat relation container level as done by NCIT loader)
+  </li>
+</ul>
+<ul>
+  <li>
+    When resolving IndividualProperties, changed casting from &#39;OWLNamedClass&#39; to super interface &#39;RDFSNamedClass&#39;.
+  </li>
+</ul>
+<ul>
+  <li>
+    When determining the Entity Id, there were some spots that were using the &#39;getBrowserText()&#39; method on the &#39;OWLNamedClass&#39; class.  The &#39;getBrowserText()&#39; was intended to give Protege a nice display string – but in order to get the id we wanted we want to use the &#39;getLocalName()&#39; method.
+  </li>
+</ul>
+<ul>
+  <li>
+    Now we do not create &#39;domain&#39; and &#39;range&#39; associations if there is no target of the association.
+  </li>
+</ul>
+<ul>
+  <li>
+    When processing OWLObjectProperties, changed casting from &#39;OWLObjectProperty&#39; to super interface &#39;RDFProperty&#39;
+  </li>
+</ul>
+<ul>
+  <li>
+    When processing Instances, changed casting from &#39;OWLNamedClass&#39; to super interface &#39;RDFSClass&#39;, and &#39;OWLIndividual&#39; to super interface &#39;RDFResource&#39;.
+  </li>
+</ul>
+<ul>
+  <li>
+    When determining the the Entity code during load of an association, we now parse the string based on a colon OR hash symbol.
+    For example:
+
+    http://someNamespace.org:C12345
+
+    would resolve to &#39;C12345&#39; and
+
+    http://someNamespace.org#C12345
+
+    would also resolve to &#39;C12345&#39;
+    We used to process only the colon.
+  </li>
+</ul>
+<ul>
+  <li>
+    The isDefined() property is now set on created entities.
+  </li>
+</ul>
+<ul>
+  <li>
+    Removed the following OWL preferences - dataTypeNameBoolean, associatonNameHasType, and associationNameHasTypeURN.
+  </li>
+</ul>
+<ul>
+  <li>
+    Annotation properties are now stored in terms of presentation/comments.
+  </li>
+</ul>
+<ul>
+  <li>
+    Manifest supports forward and reverse association names.
+  </li>
+</ul>
+<ul>
+  <li>
+    The codedNodeSet restriction added to restrict lucene-based queries.
+  </li>
+</ul>
+<ul>
+  <li>
+    RDF local names are used instead of &#39;textualPresentation&#39; and &#39;comment&#39; property names.
+  </li>
+</ul>
+<ul>
+  <li>
+    Updated SupportedCodingScheme.isImported set to &#34;true&#34; as default.
+  </li>
+</ul>
+<ul>
+  <li>
+    The previous NCI Loader and related dependencies have been removed.
+  </li>
+</ul>
+<ul>
+  <li>
+    Non-concept entities by EMF EntityService are being handled correctly.
+  </li>
+</ul>
+<ul>
+  <li>
+    Memory profiling options 0 and 3 removed from external interfaces.
+  </li>
+</ul>
+<ul>
+  <li>
+    Instances are streamed under the enhanced memory profile options.
+  </li>
+</ul>
+<ul>
+  <li>
+    Update made to properly store/retrieve the entity type in lucene indexing.
+  </li>
+</ul>
+<ul>
+  <li>
+    Update made for use of association code as the &#39;id&#39; in supported associations are consistent with hierarchy and general API declarations that work with associations (same for GUI interfaces).
+  </li>
+</ul>
+<ul>
+  <li>
+    Loader preference &#34;CreateConceptForObjectProp&#34; is added. It controls whether concept entities are created for object properties defined in the OWL source.  The default is false.
+  </li>
+</ul>
+<ul>
+  <li>
+    Loader preference &#34;DatatypePropSwitch&#34; is added. It controls how data type properties are converted to components of the LexGrid model.  If &#39;association&#39; is specified, each data type property is recorded in LexGrid as an entity-to-entity relationship.  If &#39;conceptProperty&#39; is specified, traditional LexGrid properties are created and assigned directly to new entities.  If &#39;both&#39; is specified, both entity relationships and standard LexGrid entity properties are generated.  The default is &#39;both&#39;.
+  </li>
+</ul>
+<ul>
+  <li>
+    Namespace prefixes from the owl source will be registered as supportedNamespace instead of supportedCodingScheme.
+  </li>
+</ul>
+<ul>
+  <li>
+    Copyright information is no more hardcoded into the loader.  The copyright should be specified in the manifest.
+  </li>
+</ul>
+<ul>
+  <li>
+    The Loader will not hardcode the codingschemeName as NCI_Thesaurus. Manifest option has to be used to change it.
+  </li>
+</ul>
+<ul>
+  <li>
+    Associations have been distributed among two containers (association and roles)
+  </li>
+</ul>
+<ul>
+  <li>
+    Concepts will not have properties &#34;NCI-preferred-term&#34; and &#34;CONCEPT-NAME&#34;. How ever, required properties can be introduced by using preferences option &#34;PrioritizedPresentationNames&#34;, &#34;PrioritizedDefinitionNames&#34; and &#34;PrioritizedCommentNames&#34;.
+  </li>
+</ul>
+<ul>
+  <li>
+    Complex properties are not handled by default by the owl loader. Use preference option &#34;ProcessComplexProps&#34; to enable it.
+  </li>
+</ul>
+<ul>
+  <li>
+    The restrictions an equivalent class are connected to the parent concept as it was done in NCI-OWL loader.  However, if strict owl implementation is required (restrictions an equivalent class not connected to the parent concept) , use the preference option &#34;StrictOWLImplementation&#34;
+  </li>
+</ul>
+<ul>
+  <li>
+    Deprecated concepts issue has been resolved by comparing &#34;rdfResource.getRDFType().getName()&#34; with the literal.
+  </li>
+</ul>
+<ul>
+  <li>
+    Root node identification: If the preference option &#34;MatchRootName&#34; is specified, the root nodes are identified from it. Otherwise root node is identified from the protege owl api.
+  </li>
+</ul>
+<ul>
+  <li>
+    The associations &#34;hasInstance&#34;, &#34;hasDomain&#34;, &#34;hasRange&#34;, &#34;hasDatatype&#34; and &#34;hasDatatypeValue&#34; has been renamed to &#34;instance&#34;, &#34;domain&#34;, &#34;range&#34;, &#34;datatype&#34;, &#34;datatypevalue&#34; respectively.
+  </li>
+</ul>
+<ul>
+  <li>
+    LexGrid data streaming options have been introduced for effective memory utilizations. Users can choose the memory safe modes based on the requirements.
+  </li>
+</ul>

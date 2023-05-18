@@ -1,0 +1,84 @@
+<h1 id="ProtegeSoftwareUpdates-ProtégéSoftwareUpdates">
+  Protégé Software Updates
+</h1>
+<h2 id="ProtegeSoftwareUpdates-SoftwareUpdatesOnly">
+  Software Updates Only
+</h2>
+<ul>
+  <li>
+    Copy the following folders and scripts from the previous version Protégé server folder to the newly created server folder:
+
+    run_rmiregistry.sh
+    run_protege\_ server_nci.sh
+    shutdown_protege_server.sh
+    PromptNCIPlugins.properties
+    protege.properties
+    codegen.dat
+
+    workflow folder
+  </li>
+</ul>
+<ul>
+  <li>
+    Navigate to the Protégé.Client folder and transfer the following script:
+
+    run_protege &lt;PROTÉGÉ INSTANCE&gt;.sh
+    protege.properties
+    PromptNCIPlugins.properties
+  </li>
+</ul>
+<ul>
+  <li>
+    Navigate to the Explanation.Server directory and transfer the following files:
+
+    start_explanation_server.sh
+    restart_explanation_server.sh
+    stop_explanation_server.sh
+  </li>
+</ul>
+<ul>
+  <li>
+    Open the start_explanation_server.sh file, and modify the following line to match the newest Protégé server version number:
+
+    protege_install=/usr/local/protégé/Protégé_x.x/&lt;PROTÉGÉ INSTANCE&gt;/Protege.Server-x.x.x
+  </li>
+</ul>
+<ul>
+  <li>
+    If there is a previous version of the explanation server running, shutdown is required before starting the new instance. To verify, type &#39;ps -ef | grep server&#39; to view all running server instances. If an explanation server is running, you should see two different processes, one for the explanation server, as well as the Protégé server.
+  </li>
+</ul>
+<ul>
+  <li>
+    Navigate to the previous explanation server folder version (this folder should be located in the same directory as the newest version), and run the explanation server folder shutdown script (./stop_explanation_server.sh). You can type &#39;ps -ef | grep server&#39; to verify that the explanation server process has been terminated:
+  </li>
+</ul>
+<ul>
+  <li>
+    Navigate to the new explanation server folder (usr/local/protégé/Protégé_x.x/&lt;PROTÉGÉ INSTANCE&gt;/Explanation.Server-x.x.x) and run &#39;./start_explanation_server.sh --protege-standalone --port &lt;port&gt; /app/protege/data/Protege_x.x/&lt;PROTEGE-INSTANCE&gt;/database-project.pprj. To determine the proper port number to use, refer to the
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=15796898" rel="nofollow">
+      tier specific info page
+    </a>
+    . After the server has initiated startup, type &#39;tail -f nohup.out&#39; to view start up status. Within the nohup.out file, the explanation server indicates it is started when you can see the message &#34;Jena, Classification, and Extracting&#39; all have been initialized, and finally a &#34;Server started, listening on port xxxx .....&#34;.
+  </li>
+</ul>
+<ul>
+  <li>
+    After the explanation server is up and running, the same steps must be performed for proper Protégé server startup. If there is a previous version running, it must be shutdown before starting the new version. Type &#39;ps -ef | grep server&#39; to view all server instances, and if a previous instance is running, navigate to the previous version&#39;s server folder (/usr/local/protege/Protege_x.x/&lt;PROTEGE_INSTANCE&gt;/&lt;previous Protege server instance&gt;, and run the server shutdown script (./shutdown_protege_server.sh localhost:&lt;port&gt;). Notice for the Protégé server shutdown script the port is passed as an argument. This will be needed for proper server shutdown.
+  </li>
+</ul>
+<ul>
+  <li>
+    Navigate to your Protégé server directory, and verify if there is a softlink to the workflow directory. This directory contains records of users assigned workflow tasks, and can be viewed from the NCI Workflow tab from the client, if proper workflow permissions have been provided. If the softlink is not present, type &#39;ln - /app/protégé/data/workflow&#39;. This command will create a soft link to the workflow folder which is centralized in the specified directory.
+  </li>
+</ul>
+<ul>
+  <li>
+    Restart the server by running &#39;run_protege_server_nci.sh.&#39; Type &#39;tail -f console.txt&#39; to verify that it&#39;s up and running. You will see a message displaying &#34;Protege server ready to accept connections&#34;.
+  </li>
+</ul>
+<ul>
+  <li>
+    Connect to the dev server via Protégé client to by navigating to the new client folder and running &#39;run_protege_&lt;PROTÉGÉ INSTANCE&gt;.sh&#39;. Type in the username / password and select a project from the project list display window. Confirm that the project is viewable from the GUI.
+  </li>
+</ul>

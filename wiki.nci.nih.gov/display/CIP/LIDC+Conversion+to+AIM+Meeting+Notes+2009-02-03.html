@@ -1,0 +1,60 @@
+February 3, 2009
+
+Participants: John Freymann, Justin Kirby, Qinyan Pan, Pat Mongolowat
+
+Pat:
+
+AIM Schema Generation:
+
+First we curate UML in Enterprise Architect.
+
+Generate xmi file
+
+use caCORE 3.2.1 to generate XML schema for AIM
+
+Then modify it by hand
+
+
+Separately, we use EA to generate some C++ library (non-platform-specific), manually modify
+
+THis C++ is a representation of an AIM object
+
+use this code to generate DICOM SR, AIM XML documents
+
+for each attribute we have a method, we have a set/get.
+
+
+ Tony does not use the C++ library.  He uses the AIM Schema directly.
+
+
+AIM Schema has two types:
+
+1)
+<a href="https://wiki.nci.nih.gov/download/attachments/12682065/AIM_v1_rv12_XML.xsd" rel="nofollow">
+  Bi-directional Schema
+</a>
+(file name ends with &#34;model&#34;)
+
+This is a superset of uni-directional
+
+For example, when you translate these UML diagrams to an XML, you would be able to create an AIM object.  User, equipment can be root.
+
+Why? Because it supports more queries such as &#34;Get the total number of RECIST markups that Reader One generated&#34;
+
+This was requested by Baris Susek (the mentor)
+
+2)
+<a href="https://wiki.nci.nih.gov/download/attachments/12682065/AIM_v1_rv12_XML.xsd" rel="nofollow">
+  Uni-directional Schema
+</a>
+only &#34;image annotation&#34; and &#34;annotation annotation&#34; are roots.
+
+The reason this one is still supported to generate AIM XML document
+
+ImageZPosition
+
+David Clunie and Larry Tarbox should be referenced for DICOM 3D implementation that will be referenced in AIM.
+
+No reference implementation in AIM for 3D objects exists.
+
+Does IPAD save markups in 3D? 

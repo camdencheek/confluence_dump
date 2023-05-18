@@ -1,0 +1,59 @@
+<h1 id="caArray011InvalidLoginorNoApplicationfounderrorwhenlogginginviaUPT-Question:WhatdoIdowhenIseetheerror&#34;InvalidLogin&#34;orthe&#34;NoApplicationfound&#34;errorwhenIloginviaUPT&#34;?">
+  Question: What do I do when I see the error &#34;Invalid Login&#34; or the &#34;No Application found&#34; error when I log in via UPT&#34;?
+</h1>
+Topic: caArray Installation and Upgrade
+
+Release: Up to caArray 2.X
+
+Date entered: 2/25/2009
+<h2 id="caArray011InvalidLoginorNoApplicationfounderrorwhenlogginginviaUPT-DetailsabouttheQuestion">
+  Details about the Question
+</h2>
+I created a new UPT user and UPT application (caArray) in UPT using the configuration from the caArray install guide. However, when logging in as the new user and specifying caArray as the application, I encountered the following error:
+
+&#34;No Application found for the Context Name. Invalid database login credentials in the application hibernate configuration file.&#34;
+
+I know my database login credentials are correct because they are the same for all the LSD install.
+<h2 id="caArray011InvalidLoginorNoApplicationfounderrorwhenlogginginviaUPT-Answer">
+  Answer
+</h2>
+The following are the common scenarios associated with login errors:
+<ul>
+  <li>
+    The user was not created in the right schema. If a caArray user is created properly, the user will be found in caArray&#39;s CSM_User table. To avoid any confusion, it is recommended to use different names for the database/schema owner and application admin/user. For details, see
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=42832241" rel="nofollow">
+      caArray 003 - Creating a caArray user with UPT
+    </a>
+    , How to Create caArray User with UPT?
+  </li>
+</ul>
+<ul>
+  <li>
+    The Application Name created with UPT is case sensitive. For example, caaaray is not equal to caArray.
+  </li>
+</ul>
+<ul>
+  <li>
+    UPT does not support the environment variable substitution string (${}) for application configuration. Only literals are accepted. See
+    <a href="http://wiki.c2b2.columbia.edu/icrkc/index.php/" rel="nofollow">
+      MATKC:Caarray000009#Create_caArray_Application_with_UPT
+    </a>
+    .     Link out of date?
+    <ul>
+      <li>
+        Incorrect: Application Database Driver: ${com.mysql.jdbc.Driver}
+      </li>
+      <li>
+        Correct:   Application Database Driver: com.mysql.jdbc.Driver
+      </li>
+    </ul>
+  </li>
+</ul>
+<h2 id="caArray011InvalidLoginorNoApplicationfounderrorwhenlogginginviaUPT-Haveacomment?">
+  Have a comment?
+</h2>
+Please leave your comment in the
+<a href="https://cabig-kc.nci.nih.gov/Molecular/forums/viewtopic.php?f=6&amp;t=577" rel="nofollow">
+  caArray End User Forum
+</a>
+. 

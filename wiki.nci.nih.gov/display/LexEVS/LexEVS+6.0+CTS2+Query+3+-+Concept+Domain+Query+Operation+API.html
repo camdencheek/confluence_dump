@@ -1,0 +1,714 @@
+Contents of this Page
+<ul>
+  <li>
+    <a href="#LexEVS6.0CTS2Query3ConceptDomainQueryOperationAPI-Introduction" rel="nofollow">
+      Introduction
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.0CTS2Query3ConceptDomainQueryOperationAPI-Interface" rel="nofollow">
+      Interface
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.0CTS2Query3ConceptDomainQueryOperationAPI-QueryFunctions" rel="nofollow">
+      Query Functions
+    </a>
+    <ul>
+      <li>
+        <a href="#LexEVS6.0CTS2Query3ConceptDomainQueryOperationAPI-getConceptDomainCodingScheme" rel="nofollow">
+          getConceptDomainCodingScheme
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.0CTS2Query3ConceptDomainQueryOperationAPI-getConceptDomainEntity" rel="nofollow">
+          getConceptDomainEntity
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.0CTS2Query3ConceptDomainQueryOperationAPI-getConceptDomainEntitisWithName" rel="nofollow">
+          getConceptDomainEntitisWithName
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.0CTS2Query3ConceptDomainQueryOperationAPI-getConceptDomainCodedNodeSet" rel="nofollow">
+          getConceptDomainCodedNodeSet
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.0CTS2Query3ConceptDomainQueryOperationAPI-listAllConceptDomainEntities" rel="nofollow">
+          listAllConceptDomainEntities
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.0CTS2Query3ConceptDomainQueryOperationAPI-listAllConceptDomainIds" rel="nofollow">
+          listAllConceptDomainIds
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.0CTS2Query3ConceptDomainQueryOperationAPI-getConceptDomainBindings" rel="nofollow">
+          getConceptDomainBindings
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.0CTS2Query3ConceptDomainQueryOperationAPI-isEntityInConceptDomain" rel="nofollow">
+          isEntityInConceptDomain
+        </a>
+      </li>
+    </ul>
+  </li>
+</ul>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        CTS2 Links for LexEVS 6.0
+      </th>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427281" rel="nofollow">
+              CTS2 API Main Page
+            </a>
+          </li>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427334" rel="nofollow">
+              Programmer&#39;s Guide Main Page
+            </a>
+          </li>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=69730353" rel="nofollow">
+              LexEVS 6.0 Main Page
+            </a>
+          </li>
+          <li>
+            <a href="https://wiki.nci.nih.gov/display/LexEVS" rel="nofollow">
+              LexEVS Current Release
+            </a>
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="LexEVS6.0CTS2Query3ConceptDomainQueryOperationAPI-Introduction">
+  Introduction
+</h2>
+LexEVS CTS2 Concept Domain Query API provides capability to query Concept Domain available in the system and also to query the binding between Value Set and Concept Domain. In LexEVS, the Concept Domain is essentially an entity of type &#39;conceptDomain&#39; in a code system version. Using LexEVS CTS 2 Authoring or Loader interfaces, you could create a Code System specially for Concept Domain entities, but this is not necessary, but will be convenient to have concept domains in specific code system(s).
+<h2 id="LexEVS6.0CTS2Query3ConceptDomainQueryOperationAPI-Interface">
+  Interface
+</h2>
+org.lexevs.cts2.query.ConceptDomainQueryOperation is the main interface for all the queries against Concept Domain. This interface can be accessed using main LexEVSCTS2 interface, like:
+
+
+
+org.lexevs.cts2.query.ConceptDomainQueryOperation cdQueryOp = new org.lexevs.cts2.LexEvsCTS2Impl().getQueryOperation().getConceptDomainQueryOperation();
+<h2 id="LexEVS6.0CTS2Query3ConceptDomainQueryOperationAPI-QueryFunctions">
+  Query Functions
+</h2>
+Here are the major query functions available using ConceptDomainQueryOperation interface:
+<h3 id="LexEVS6.0CTS2Query3ConceptDomainQueryOperationAPI-getConceptDomainCodingScheme">
+  getConceptDomainCodingScheme
+</h3>
+This function returns detailed concept domain code system.
+
+getConceptDomainCodingScheme(String codeSystemNameOrURI, String codeSystemVersion)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Gets the concept domain code system.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        <ul>
+          <li>
+            java.lang.String codeSystemNameOrURI - (Mandatory) Name or URI of the code system that contains concept domain entities.
+          </li>
+          <li>
+            java.lang.String codeSystemVersion - (Optional) Version of of the code system that contains concept domain entities.
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        org.LexGrid.codingSchemes.CodingScheme - Detailed concept domain Code System
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Sample Call:
+      </th>
+      <td>
+        <ul>
+          <li>
+            Step 1: Instantiate ConceptDomainQueryOperation if it is not done yet:
+
+
+            org.lexevs.cts2.query.ConceptDomainQueryOperation cdQueryOp = new org.lexevs.cts2.LexEvsCTS2Impl().getQueryOperation().getConceptDomainQueryOperation();
+          </li>
+          <li>
+            Step 2: Call getConceptDomainCodingScheme method to get detailed concept domain code system:
+
+
+            org.LexGrid.codingSchemes.CodingScheme conceptDomainCS = cdQuery.getConceptDomainCodingScheme(&#34;conceptDomainCodingScheme&#34;, &#34;1.0&#34;);
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h3 id="LexEVS6.0CTS2Query3ConceptDomainQueryOperationAPI-getConceptDomainEntity">
+  getConceptDomainEntity
+</h3>
+This function returns detailed concept domain entity.
+
+getConceptDomainEntity(String conceptDomainId, String namespace, String codeSystemNameOrURI, String codeSystemVersion)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Returns concept domain entity object of the concept domain id.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        <ul>
+          <li>
+            java.lang.String conceptDomainId - (Mandatory) ID of a concept domain.
+          </li>
+          <li>
+            java.lang.String namespace - (Optional) Namespace of a concept domain.
+          </li>
+          <li>
+            java.lang.String codeSystemNameOrURI - (Mandatory) Name or URI of code system that contains the concept domain.
+          </li>
+          <li>
+            java.lang.String codeSystemVersion - (Optional) Version of code system that contains the concept domain.
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        org.LexGrid.concepts.Entity - Detailed concept domain entity
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Sample Call:
+      </td>
+      <td>
+        <ul>
+          <li>
+            Step 1: Instantiate ConceptDomainQueryOperation if it is not done yet:
+
+
+            org.lexevs.cts2.query.ConceptDomainQueryOperation cdQueryOp = new org.lexevs.cts2.LexEvsCTS2Impl().getQueryOperation().getConceptDomainQueryOperation();
+          </li>
+          <li>
+            Step 2: Call getConceptDomainEntity method to get detailed concept domain entity:
+
+
+            org.LexGrid.concepts.Entity conceptDomainEntity = cdQuery.getConceptDomainEntity(&#34;ActAdjudicationInformationCode&#34;, null, &#34;conceptDomainCodingScheme&#34;, &#34;1.0&#34;);
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h3 id="LexEVS6.0CTS2Query3ConceptDomainQueryOperationAPI-getConceptDomainEntitisWithName">
+  getConceptDomainEntitisWithName
+</h3>
+This function returns all the concept domain entities that matches the concept domain name supplied.
+
+getConceptDomainEntitisWithName(String conceptDomainName, String codeSystemNameOrURI, String codeSystemVersion, SearchDesignationOption option, String matchAlgorithm, String language)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Returns list of concept domain entities matching the name provided.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        <ul>
+          <li>
+            java.lang.String conceptDomainName - (Mandatory) Name of a concept domain to match.
+          </li>
+          <li>
+            java.lang.String codeSystemNameOrURI - (Mandatory) Name or URI of code system that contains the concept domain.
+          </li>
+          <li>
+            java.lang.String codeSystemVersion - (Optional) Version of code system that contains the concept domain.
+            org.LexGrid.LexBIG.LexBIGService.CodedNodeSet.SearchDesignationOption option - (Optional) Indicates the designations to search (one of the enumerated type SearchDesignationOption).
+          </li>
+          <li>
+            java.lang.String matchAlgorithm - (Mandatory) Local name of the match algorithm - possible algorithms are returned in LexEVSCTS2.getSupportedSearchAlgorithmNames().
+          </li>
+          <li>
+            java.lang.String language - (Optional) Language of search string. If missing, uses the default language specified in the context.
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        java.util.List&lt;org.LexGrid.concepts.Entity&gt; - List of detailed concept domain entities that match supplied concept domain name.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Sample Call:
+      </th>
+      <td>
+        <ul>
+          <li>
+            Step 1: Instantiate ConceptDomainQueryOperation if it is not done yet:
+
+
+            org.lexevs.cts2.query.ConceptDomainQueryOperation cdQueryOp = new org.lexevs.cts2.LexEvsCTS2Impl().getQueryOperation().getConceptDomainQueryOperation();
+          </li>
+          <li>
+            Step 2: Call getConceptDomainEntitisWithName method by passing the name to search:
+
+
+            java.util.List&lt;org.LexGrid.concepts.Entity&gt; conceptDomainEntities = cdQuery.getConceptDomainEntitisWithName(&#34;code&#34;, &#34;conceptDomainCodingScheme&#34;, null, null, &#34;subString&#34;, null);
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h3 id="LexEVS6.0CTS2Query3ConceptDomainQueryOperationAPI-getConceptDomainCodedNodeSet">
+  getConceptDomainCodedNodeSet
+</h3>
+This is a helper function that returns Coded Node Set(CNS) for concept domain entities. Further restrictions like, matchingDesignation, Status, Properties, etc., can be applied on this CNS and than resolved.
+
+getConceptDomainCodedNodeSet(String codeSystemNameOrURI, String codeSystemVersion)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Returns coded node set for concept domain entities.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        <ul>
+          <li>
+            java.lang.String codeSystemNameOrURI - (Mandatory) Name or URI of code system that contains the concept domain.
+          </li>
+          <li>
+            java.lang.String codeSystemVersion - (Optional) Version of code system that contains the concept domain.
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.LexBIGService.CodedNodeSet - Unresolved Concept Domain coded node set.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Sample Call:
+      </th>
+      <td>
+        <ul>
+          <li>
+            Step 1: Instantiate ConceptDomainQueryOperation if it is not done yet:
+
+
+            org.lexevs.cts2.query.ConceptDomainQueryOperation cdQueryOp = new org.lexevs.cts2.LexEvsCTS2Impl().getQueryOperation().getConceptDomainQueryOperation();
+          </li>
+          <li>
+            Step 2: Call getConceptDomainCodedNodeSet to get Concept Domain Coded node Set:
+
+
+            CodedNodeSet conceptDomainCNS = cdQuery.getConceptDomainCodedNodeSet(&#34;conceptDomainCodingScheme&#34;, null);
+          </li>
+          <li>
+            Step 3: Apply restrictions to the CNS and resolve:
+
+
+            conceptDomainCNS.restrictToMatchingProperties(null, new PropertyType[] { PropertyType.PRESENTATION }, &#34;Auto&#34;, &#34;startsWith&#34;, null);_
+            org.LexGrid.LexBIG.DataModel.Core.ResolvedConceptReference[] rcr = conceptDomainCNS.resolveToList(null, null, null, 1).getResolvedConceptReference();
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h3 id="LexEVS6.0CTS2Query3ConceptDomainQueryOperationAPI-listAllConceptDomainEntities">
+  listAllConceptDomainEntities
+</h3>
+This function returns all the Concept Domain entities found in supplied code system version.
+
+listAllConceptDomainEntities(String codeSystemNameOrURI, String codeSystemVersion)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Returns all the Concept Domain entities found in supplied code system version.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        <ul>
+          <li>
+            java.lang.String codeSystemNameOrURI - (Mandatory) Name or URI of code system that contains the concept domain.
+          </li>
+          <li>
+            java.lang.String codeSystemVersion - (Optional) Version of code system that contains the concept domain.
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        java.util.List&lt;org.LexGrid.concepts.Entity&gt; - List of concept domain entities found in supplied code system version.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Sample Call:
+      </th>
+      <td>
+        <ul>
+          <li>
+            Step 1: Instantiate ConceptDomainQueryOperation if it is not done yet:
+
+
+            org.lexevs.cts2.query.ConceptDomainQueryOperation cdQueryOp = new org.lexevs.cts2.LexEvsCTS2Impl().getQueryOperation().getConceptDomainQueryOperation();
+          </li>
+          <li>
+            Step 2: Call listAllConceptDomainEntities to get all Concept Domains:
+
+
+            java.util.List&lt;org.LexGrid.concepts.Entity&gt; conceptDomains = cdQuery.listAllConceptDomainEntities(&#34;conceptDomainCodingScheme&#34;, &#34;1.0&#34;);
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h3 id="LexEVS6.0CTS2Query3ConceptDomainQueryOperationAPI-listAllConceptDomainIds">
+  listAllConceptDomainIds
+</h3>
+This function is similar to previous one, but instead of returning detailed Concept Domain entities, it just returns identifiers of the concept domain.
+
+listAllConceptDomainIds(String codeSystemNameOrURI, String codeSystemVersion)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Returns all the Concept Domain identifiers found in supplied code system version.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        <ul>
+          <li>
+            java.lang.String codeSystemNameOrURI - (Mandatory) Name or URI of code system that contains the concept domain.
+          </li>
+          <li>
+            java.lang.String codeSystemVersion - (Optional) Version of code system that contains the concept domain.
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        java.util.List&lt;String&gt; - List of concept domain identifiers found in supplied code system version.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Sample Call:
+      </th>
+      <td>
+        <ul>
+          <li>
+            Step 1: Instantiate ConceptDomainQueryOperation if it is not done yet:
+
+
+            org.lexevs.cts2.query.ConceptDomainQueryOperation cdQueryOp = new org.lexevs.cts2.LexEvsCTS2Impl().getQueryOperation().getConceptDomainQueryOperation();
+          </li>
+          <li>
+            Step 2: Call listAllConceptDomainIds to get all Concept Domain identifiers:
+
+
+            java.util.List&lt;java.lang.String&gt; conceptDomainIds = cdQuery.listAllConceptDomainIds(&#34;conceptDomainCodingScheme&#34;, &#34;1.0&#34;);
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h3 id="LexEVS6.0CTS2Query3ConceptDomainQueryOperationAPI-getConceptDomainBindings">
+  getConceptDomainBindings
+</h3>
+This function returns list of value set definition URIs that are bound to given concept domain.
+
+getConceptDomainBindings(String conceptDomainId, String codeSystemNameOrURI)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Returns list of value set definition URIs that are bound to given concept domain.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        <ul>
+          <li>
+            java.lang.String conceptDomainId - (Mandatory) Concept Domain identifier.
+          </li>
+          <li>
+            java.lang.String codeSystemNameOrURI - (Mandatory) Name or URI of code system that contains the concept domain.
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        java.util.List&lt;String&gt; - List of Value Set Definition URIs that are bound to supplied concept domain.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Sample Call:
+      </th>
+      <td>
+        <ul>
+          <li>
+            Step 1: Instantiate ConceptDomainQueryOperation if it is not done yet:
+
+
+            org.lexevs.cts2.query.ConceptDomainQueryOperation cdQueryOp = new org.lexevs.cts2.LexEvsCTS2Impl().getQueryOperation().getConceptDomainQueryOperation();
+          </li>
+          <li>
+            Step 2: Call getConceptDomainBindings to get all Concept Domain identifiers:
+
+
+            java.util.List&lt;java.lang.String&gt; valueSetURIS = cdQuery.getConceptDomainBindings(&#34;AcknowledgementDetailCode&#34;, &#34;conceptDomainCodingScheme&#34;);
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h3 id="LexEVS6.0CTS2Query3ConceptDomainQueryOperationAPI-isEntityInConceptDomain">
+  isEntityInConceptDomain
+</h3>
+This function determines whether the supplied coded concept exists in a code system in use for the specified concept domain, optionally within specific usage contexts. Returns true if a coded concept is an element of a value set expansion bound to the provided concept domain, or bound to both concept domain and usage context.
+
+isEntityInConceptDomain(String conceptDomainId, String namespace, String codeSystemNameOrURI, String entityCode, AbsoluteCodingSchemeVersionReferenceList codingSchemeVersionList, List&lt;String&gt; usageContext)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Determines whether the supplied coded concept exists in a code system in use for the specified concept domain, optionally within specific usage contexts. Returns true if a coded concept is an element of a value set expansion bound to the provided concept domain, or bound to both concept domain and usage context.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        <ul>
+          <li>
+            java.lang.String conceptDomainId - (Mandatory) Concept Domain identifier.
+          </li>
+          <li>
+            java.lang.String namespace - (Optional) Concept Domain namespace.
+          </li>
+          <li>
+            java.lang.String codeSystemNameOrURI - (Mandatory) Name or URI of code system that contains the concept domain.
+          </li>
+          <li>
+            java.lang.String entityCode - (Mandatory) Entity code to check if it participates in concept domain.
+            org.LexGrid.LexBIG.DataModel.Collections.AbsoluteCodingSchemeVersionReferenceList codingSchemeVersionList - (Mandatory) List of code system URI and version that contains the entity code and to be used to resolve.
+          </li>
+          <li>
+            java.util.List&lt;java.lang.String&gt; usageContext - (Optional) List of usage context.
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        java.util.List&lt;String&gt; - List of Value Set Definition URIs that are bound to concept domain (and usageContext) and that contains given entity code.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Sample Call:
+      </th>
+      <td>
+        <ul>
+          <li>
+            Step 1: Instantiate ConceptDomainQueryOperation if it is not done yet:
+
+
+            org.lexevs.cts2.query.ConceptDomainQueryOperation cdQueryOp = new org.lexevs.cts2.LexEvsCTS2Impl().getQueryOperation().getConceptDomainQueryOperation();
+          </li>
+          <li>
+            Step 2: Populate CodingSchemeVersionList that contains the entity code:
+
+
+            org.LexGrid.LexBIG.DataModel.Collections.AbsoluteCodingSchemeVersionReferenceList codingSchemeVersionList = new org.LexGrid.LexBIG.DataModel.Collections.AbsoluteCodingSchemeVersionReferenceList();
+            org.LexGrid.LexBIG.DataModel.Collections.AbsoluteCodingSchemeVersionReference codingSchemeVersion = new org.LexGrid.LexBIG.DataModel.Collections.AbsoluteCodingSchemeVersionReference();
+            codingSchemeVersion.setCodingSchemeURN(&#34;urn:oid:cts:1.1.1&#34;);
+            codingSchemeVersion.setCodingSchemeVersion(&#34;1.0&#34;);
+            codingSchemeVersionList.addAbsoluteCodingSchemeVersionReference(codingSchemeVersion);
+          </li>
+          <li>
+            Step 3: Call isEntityInConceptDomain to get all value set definition URIs that are bound to concept domain and contains given entity code:
+
+
+            java.util.List&lt;java.lang.String&gt; valueSetURIS = cdQuery.isEntityInConceptDomain(&#34;Automobiles&#34;, null, &#34;conceptDomainCodingScheme&#34;, &#34;GM&#34;, codingSchemeVersionList, null);
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>

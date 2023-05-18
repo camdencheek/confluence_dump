@@ -1,0 +1,2308 @@
+Contents of this Page
+<ul>
+  <li>
+    <a href="#LexEVS6.xUMLSMappings-UMLSMappingCodingScheme" rel="nofollow">
+      UMLS Mapping Coding Scheme
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.xUMLSMappings-UMLSMappingEntities" rel="nofollow">
+      UMLS Mapping Entities
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.xUMLSMappings-UMLSMappingRelations" rel="nofollow">
+      UMLS Mapping Relations
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.xUMLSMappings-SNOMEDUMLSMapping" rel="nofollow">
+      SNOMED UMLS Mapping
+    </a>
+  </li>
+</ul>
+This section will be updated with the RRF loader enhancements implemented in LexEVS v5.1 and LexEVS 6.0. Until then, go to section
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427494" rel="nofollow">
+  3 - LexEVS 5.x Loader Source Mapping
+</a>
+of this guide.
+<h2 id="LexEVS6.xUMLSMappings-UMLSMappingCodingScheme">
+  UMLS Mapping Coding Scheme
+</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        RRF File Name
+      </th>
+      <th>
+        RRF Column Name
+      </th>
+      <th>
+        RRF Definition
+      </th>
+      <th>
+        NCI Meta only
+      </th>
+      <th>
+        LexGrid Model Element
+      </th>
+      <th>
+        Comments
+      </th>
+    </tr>
+    <tr>
+      <td>
+        MRSAB.RRF
+      </td>
+      <td>
+        SVER
+      </td>
+      <td>
+        Release date or version number of a source
+      </td>
+      <td>
+        NA
+      </td>
+      <td>
+        codingScheme.representsVersion
+      </td>
+      <td>
+        No comments
+      </td>
+    </tr>
+    <tr>
+      <td>
+        MRSAB.RRF
+      </td>
+      <td>
+        SSN
+      </td>
+      <td>
+        Source short name
+      </td>
+      <td>
+        NA
+      </td>
+      <td>
+        codingScheme.codingSchemeName
+      </td>
+      <td>
+        No comments
+      </td>
+    </tr>
+    <tr>
+      <td>
+        MRSAB.RRF
+      </td>
+      <td>
+        SON
+      </td>
+      <td>
+        Source Official Name
+      </td>
+      <td>
+        NA
+      </td>
+      <td>
+        codingScheme.formalName
+      </td>
+      <td>
+        No comments
+      </td>
+    </tr>
+    <tr>
+      <td>
+        MRSAB.RRF
+      </td>
+      <td>
+        LAT
+      </td>
+      <td>
+        Language of Term(s)
+      </td>
+      <td>
+        NA
+      </td>
+      <td>
+        codingScheme.defaultLanguage
+      </td>
+      <td>
+        No comments
+      </td>
+    </tr>
+    <tr>
+      <td>
+        MRSAB.RRF
+      </td>
+      <td>
+        TRF
+      </td>
+      <td>
+        Term frequency for a source
+      </td>
+      <td>
+        NA
+      </td>
+      <td>
+        codingScheme.approxNumConcepts
+      </td>
+      <td>
+        No comments
+      </td>
+    </tr>
+    <tr>
+      <td>
+        MRSAB.RRF
+      </td>
+      <td>
+        SCIT
+      </td>
+      <td>
+        Source citation
+      </td>
+      <td>
+        NA
+      </td>
+      <td>
+        codingScheme.entityDescription
+      </td>
+      <td>
+        inherits entityDescription from versionableAndDescribable
+      </td>
+    </tr>
+    <tr>
+      <td>
+        MRSAB.RRF
+      </td>
+      <td>
+        SCC
+      </td>
+      <td>
+        Content contact info for a source
+      </td>
+      <td>
+        NA
+      </td>
+      <td>
+        codingScheme.copyright
+      </td>
+      <td>
+        No comments
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>
+        NA
+      </td>
+      <td>
+        codingScheme.codingSchemeURI
+      </td>
+      <td>
+        Pulled from iso mapping configuration file using method getISOString(RSAB from MRSAB.RRF)
+      </td>
+    </tr>
+    <tr>
+      <td>
+        MRDOC.RRF
+      </td>
+      <td>
+        EXPL
+      </td>
+      <td>
+        Detailed explanation
+      </td>
+      <td>
+        x
+      </td>
+      <td>
+        codingScheme.representsVersion
+      </td>
+      <td>
+        Where Dockey = &#34;RELEASE&#34; and value = &#34;umls.release.name&#34;
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>
+        x
+      </td>
+      <td>
+        codingScheme.codingSchemeName
+      </td>
+      <td>
+        Hard coded in java file as &#34;NCI MetaThesaurus&#34;
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>
+        x
+      </td>
+      <td>
+        codingScheme.formalName
+      </td>
+      <td>
+        Hard coded in java file as &#34;NCI MetaThesaurus&#34;
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>
+        x
+      </td>
+      <td>
+        codingScheme.defaultLanguage
+      </td>
+      <td>
+        Hard coded in java file as &#34;ENG&#34;
+      </td>
+    </tr>
+    <tr>
+      <td>
+        MRCONSO.RRF
+      </td>
+      <td></td>
+      <td></td>
+      <td>
+        x
+      </td>
+      <td>
+        codingScheme.approxNumConcepts
+      </td>
+      <td>
+        Count of CODE value in MRCONSO.RRF
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>
+        x
+      </td>
+      <td>
+        codingScheme.entityDescription
+      </td>
+      <td>
+        Hard coded in java file as &#34;NCI MetaThesaurus loaded from RRF files.&#34;
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>
+        x
+      </td>
+      <td>
+        codingScheme.copyright
+      </td>
+      <td>
+        Hard coded in java file as &#34;Some material in the NCI Metathesaurus is from copyrighted sources of the respective copyright claimants. All sources appearing in the NCI Metathesaurus are licensed or authorized for NCI use. Users of the NCI Metathesaurus are responsible for compliance with the terms of these licenses and with any copyright restrictions and are referred to NCI Center of Bioinformatics for license terms and to the copyright notices appearing in the original sources, all of which are obtainable online by reference at
+        <a href="http://ncimeta.nci.nih.gov/" rel="nofollow">
+          http://ncimeta.nci.nih.gov/
+        </a>
+        .&#34;
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>
+        NA
+      </td>
+      <td>
+        codingScheme.localNameList
+      </td>
+      <td>
+        Hard coded as constant in java file as &#34;localName&#34;
+      </td>
+    </tr>
+    <tr>
+      <td>
+        MRSAB.RRF
+      </td>
+      <td>
+        SON
+      </td>
+      <td>
+        Source Official Name
+      </td>
+      <td>
+        NA
+      </td>
+      <td>
+        codingScheme.localNameList.
+      </td>
+      <td>
+        No comments
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>
+        NA
+      </td>
+      <td>
+        codingScheme.localNameList
+      </td>
+      <td>
+        Hard coded as constant in java file as &#34;localName&#34;
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>
+        NA
+      </td>
+      <td>
+        codingScheme.localNameList.
+      </td>
+      <td>
+        Pulled from iso mapping configuration file using method getISOString(RSAB from MRSAB.RRF)
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>
+        NA
+      </td>
+      <td>
+        codingScheme.source
+      </td>
+      <td>
+        Hard coded as constant in java file as &#34;source&#34;
+      </td>
+    </tr>
+    <tr>
+      <td>
+        MRDOC.RRF
+      </td>
+      <td>
+        EXPL
+      </td>
+      <td>
+        Detailed explanation
+      </td>
+      <td>
+        NA
+      </td>
+      <td>
+        codingScheme.source.content
+      </td>
+      <td>
+        String concatenation of &#34;UMLS-&#34; and value of EXPL
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>
+        x
+      </td>
+      <td>
+        codingScheme.localNameList
+      </td>
+      <td>
+        Hard coded as constant in java file as &#34;localName&#34;
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>
+        x
+      </td>
+      <td>
+        codingScheme.localNameList.
+      </td>
+      <td>
+        Hard coded in java file as &#34;NCI Thesaurus&#34;
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>
+        x
+      </td>
+      <td>
+        codingScheme.localNameList
+      </td>
+      <td>
+        Hard coded as constant in java file as &#34;localName&#34;
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>
+        x
+      </td>
+      <td>
+        codingScheme.localNameList.
+      </td>
+      <td>
+        Hard coded in java file as &#34;NCI_Thesaurus&#34;
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>
+        x
+      </td>
+      <td>
+        codingScheme.localNameList
+      </td>
+      <td>
+        Hard coded as constant in java file as &#34;localName&#34;
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>
+        x
+      </td>
+      <td>
+        codingScheme.localNameList.
+      </td>
+      <td>
+        Hard coded in java file as &#34;10001&#34;
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>
+        x
+      </td>
+      <td>
+        codingScheme.localNameList
+      </td>
+      <td>
+        Hard coded as constant in java file as &#34;source&#34;
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>
+        x
+      </td>
+      <td>
+        codingScheme.localNameList.
+      </td>
+      <td>
+        Hard coded in java file as &#34;RRF Files&#34;
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>
+        NA
+      </td>
+      <td>
+        mappings.supportedFormat
+      </td>
+      <td>
+        Hard coded as constant in java file as &#34;Format&#34;
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>
+        NA
+      </td>
+      <td>
+        mappings.supportedFormat.localId
+      </td>
+      <td>
+        Hard coded as one of several constants in a java file
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>
+        NA
+      </td>
+      <td>
+        mappings.supportedAssociation
+      </td>
+      <td>
+        Hard coded as constant in java file as &#34;Association&#34;
+      </td>
+    </tr>
+    <tr>
+      <td>
+        MRREL.RRF
+      </td>
+      <td>
+        REL, RELA
+      </td>
+      <td>
+        Relationship, Relationship attribute
+      </td>
+      <td>
+        NA
+      </td>
+      <td>
+        mappings.supportedAssociation.localId
+      </td>
+      <td>
+        No comments
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>
+        NA
+      </td>
+      <td>
+        mappings.supportedContext
+      </td>
+      <td>
+        Hard coded as constant in java file as &#34;Context&#34; May not be used in individual RRF load
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>
+        NA
+      </td>
+      <td>
+        mappings.supportedSource
+      </td>
+      <td>
+        Hard coded as constant in java file as &#34;Source&#34; May not be used in individual RRF load
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>
+        NA
+      </td>
+      <td></td>
+      <td>
+        No comments
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>
+        NA
+      </td>
+      <td>
+        mappings.supportedHierarchy
+      </td>
+      <td>
+        Hard coded as constant in java file as &#34;Hierarchy&#34;
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>
+        NA
+      </td>
+      <td>
+        mappings.supportedAssociationQualifier
+      </td>
+      <td>
+        Hard coded as constant in java file as &#34;AssociationQualifier&#34;
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>
+        NA
+      </td>
+      <td>
+        mappings.supportedProperty
+      </td>
+      <td>
+        Hard coded as constant in java file as &#34;Property&#34;
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>
+        NA
+      </td>
+      <td>
+        mappings.supportedLanguage
+      </td>
+      <td>
+        Hard coded as constant in java file as &#34;Language&#34;
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>
+        NA
+      </td>
+      <td>
+        mappings.supportedCodingScheme
+      </td>
+      <td>
+        Hard coded as constant in java file as &#34;CodingScheme&#34;
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>
+        NA
+      </td>
+      <td>
+        mappings.supportedRepresentationalForm
+      </td>
+      <td>
+        Hard coded as constant in java file as &#34;RepresentationalForm&#34;
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>
+        NA
+      </td>
+      <td>
+        mappings.supportedConceptStatus
+      </td>
+      <td>
+        Hard coded as constant in java file as &#34;ConceptStatus&#34;
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>
+        NA
+      </td>
+      <td>
+        mappings.supportedPropertyLink
+      </td>
+      <td>
+        Hard coded as constant in java file as &#34;PropertyLink&#34;
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>
+        NA
+      </td>
+      <td>
+        mappings.supportedPropertyQualifier
+      </td>
+      <td>
+        Hard coded as constant in java file as &#34;PropertyQualifier&#34;
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>
+        NA
+      </td>
+      <td>
+        mappings.supportedDataType
+      </td>
+      <td>
+        Hard coded as constant in java file as &#34;DataType&#34;
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="LexEVS6.xUMLSMappings-UMLSMappingEntities">
+  UMLS Mapping Entities
+</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        RRF File Name
+      </th>
+      <th>
+        RRF Column Name
+      </th>
+      <th>
+        RRF Definition
+      </th>
+      <th>
+        NCI Meta only
+      </th>
+      <th>
+        LexGrid Model Element
+      </th>
+      <th>
+        Comments
+      </th>
+    </tr>
+    <tr>
+      <td>
+        MRCONSO.RRF
+      </td>
+      <td>
+        CODE
+      </td>
+      <td>
+        Unique Identifier or code for string in source
+      </td>
+      <td>
+        NA
+      </td>
+      <td>
+        Entity.entityCode
+      </td>
+      <td>
+        No comments
+      </td>
+    </tr>
+    <tr>
+      <td>
+        MRCONSO.RRF
+      </td>
+      <td>
+        CUI
+      </td>
+      <td>
+        Unique identifier for Entity
+      </td>
+      <td>
+        x
+      </td>
+      <td>
+        Entity.entityCode
+      </td>
+      <td>
+        No comments
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>
+        NA
+      </td>
+      <td>
+        Entity.isActive
+      </td>
+      <td>
+        Hardcoded in parameter as true.
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>
+        NA
+      </td>
+      <td>
+        Entity.status
+      </td>
+      <td>
+        Hard coded as constant in java file as &#34;Active&#34;
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>
+        NA
+      </td>
+      <td>
+        Entity.isAnonymous
+      </td>
+      <td>
+        Hardcoded in parameter as false.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        MRCONSO.RRF
+      </td>
+      <td>
+        STR
+      </td>
+      <td>
+        String
+      </td>
+      <td>
+        NA
+      </td>
+      <td>
+        Entity.entityDescription
+      </td>
+      <td>
+        No comments
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>
+        NA
+      </td>
+      <td></td>
+      <td>
+        No comments
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>
+        No comments
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>
+        NA
+      </td>
+      <td>
+        Entity.Property.Format
+      </td>
+      <td>
+        Hard coded as constant in java file as &#34;text/plain&#34; or null
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>
+        NA
+      </td>
+      <td>
+        Entity.Property.propertyName
+      </td>
+      <td>
+        May be hard coded as constant in java file as one of several properties.
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>
+        NA
+      </td>
+      <td>
+        Entity.Property.usageContext
+      </td>
+      <td>
+        No comments
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>
+        NA
+      </td>
+      <td>
+        Entity.Property.propertyId
+      </td>
+      <td>
+        Generated value for property using &#34;P&#34; concatenated with a steadily incremented numerical value.
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>
+        NA
+      </td>
+      <td>
+        Entity.presentation.propertyId
+      </td>
+      <td>
+        Generated value for property textual presentation using &#34;T&#34; concatenated with a steadily incremented numerical value.
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>
+        NA
+      </td>
+      <td>
+        Entity.comment.propertyId
+      </td>
+      <td>
+        Generated value for property comment using &#34;C&#34; concatenated with a steadily incremented numerical value.
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>
+        NA
+      </td>
+      <td>
+        Entity.definition.propertyId
+      </td>
+      <td>
+        Generated value for property definition using &#34;D&#34; concatenated with a steadily incremented numerical value.
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>
+        NA
+      </td>
+      <td>
+        Entity.instruction.propertyId
+      </td>
+      <td>
+        Generated value for property instruction using &#34;I&#34; concatenated with a steadily incremented numerical value.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        MRCONSO.RRF
+      </td>
+      <td>
+        CUI
+      </td>
+      <td>
+        Unique identifier for Entity
+      </td>
+      <td>
+        NA
+      </td>
+      <td>
+        Entity.Property.text.content.
+      </td>
+      <td>
+        No comments
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>
+        NA
+      </td>
+      <td>
+        Entity.Property.propertyId
+      </td>
+      <td>
+        Generated value for property using &#34;CUI&#34; concatenated with a steadily incremented numerical value.
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>
+        NA
+      </td>
+      <td>
+        Entity.Property.propertyName
+      </td>
+      <td>
+        hard coded as constant in java file as &#34;UMLS_CUI&#34;
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>
+        NA
+      </td>
+      <td>
+        Entity.Property.propertyType
+      </td>
+      <td>
+        hard coded as constant in java file as &#34;property&#34;
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>
+        NA
+      </td>
+      <td>
+        Entity.Property.format
+      </td>
+      <td>
+        left as null
+      </td>
+    </tr>
+    <tr>
+      <td>
+        MRSTY.RRF
+      </td>
+      <td>
+        STY
+      </td>
+      <td>
+        Semantic type
+      </td>
+      <td>
+        NA
+      </td>
+      <td>
+        Entity.Property.text.content
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>
+        NA
+      </td>
+      <td>
+        Entity.Property.propertyId
+      </td>
+      <td>
+        Generated value for property using &#34;SemType&#34; concatenated with a steadily incremented numerical value.
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>
+        NA
+      </td>
+      <td>
+        Entity.Property.propertyName
+      </td>
+      <td>
+        hard coded as constant in java file as &#34;Semantic_Type&#34;
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>
+        NA
+      </td>
+      <td>
+        Entity.Property.propertyType
+      </td>
+      <td>
+        hard coded as constant in java file as &#34;property&#34;
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>
+        NA
+      </td>
+      <td>
+        Entity.Property.value.dataType
+      </td>
+      <td>
+        Hard coded as constant in java file as &#34;text/plain&#34;
+      </td>
+    </tr>
+    <tr>
+      <td>
+        MRCONSO.RRF
+      </td>
+      <td>
+        LAT
+      </td>
+      <td>
+        Language of Term(s)
+      </td>
+      <td>
+        NA
+      </td>
+      <td>
+        Entity.Property.language
+      </td>
+      <td>
+        Logic of code simply selects the first definition in the source as the preferred source
+      </td>
+    </tr>
+    <tr>
+      <td>
+        MRCONSO.RRF
+      </td>
+      <td>
+        TS
+      </td>
+      <td>
+        Term status
+      </td>
+      <td>
+        NA
+      </td>
+      <td>
+        Entity.presentation.isPreferred
+      </td>
+      <td>
+        One or a combination of these RRF values determines whether a presentation is preferred: LAT, TS, STT, ISPREF, RANK.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        MRCONSO.RRF
+      </td>
+      <td>
+        STT
+      </td>
+      <td>
+        String type
+      </td>
+      <td>
+        NA
+      </td>
+      <td>
+        Entity.presentation.isPreferred
+      </td>
+      <td>
+        One or a combination of these RRF values determines whether a presentation is preferred: LAT, TS, STT, ISPREF, RANK.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        MRCONSO.RRF
+      </td>
+      <td>
+        ISPREF
+      </td>
+      <td>
+        Indicates whether AUI is preferred
+      </td>
+      <td>
+        NA
+      </td>
+      <td>
+        Entity.presentation.isPreferred
+      </td>
+      <td>
+        One or a combination of these RRF values determines whether a presentation is preferred: LAT, TS, STT, ISPREF, RANK.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        MRRANK.RRF
+      </td>
+      <td>
+        RANK
+      </td>
+      <td>
+        Termgroup ranking
+      </td>
+      <td>
+        NA
+      </td>
+      <td>
+        Entity.presentation.isPreferred
+      </td>
+      <td>
+        One or a combination of these RRF values determines whether a presentation is preferred: LAT, TS, STT, ISPREF, RANK.
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>
+        NA
+      </td>
+      <td>
+        Entity.presentation.isPreferred
+      </td>
+      <td>
+        The first presentation for each language is automatically marked as isPreferred=&#34;true&#34; after using comparator to sort list of presentations using comparator to evaluate each presentation based on a combination of values from LAT, TS, STT, ISPREF, RANK.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        MRDEF.RRF
+      </td>
+      <td>
+        DEF
+      </td>
+      <td>
+        Definition
+      </td>
+      <td>
+        NA
+      </td>
+      <td>
+        Entity.definition.text.content
+      </td>
+      <td>
+        No comments
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>
+        NA
+      </td>
+      <td>
+        Entity.definition.isPreferred
+      </td>
+      <td>
+        Logic of code simply selects the first definition in the source as the preferred source
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>
+        NA
+      </td>
+      <td></td>
+      <td>
+        No comments
+      </td>
+    </tr>
+    <tr>
+      <td>
+        MRSAT.RRF
+      </td>
+      <td>
+        ATN
+      </td>
+      <td>
+        Attribute name
+      </td>
+      <td>
+        NA
+      </td>
+      <td>
+        Entity.Property.propertyType
+      </td>
+      <td>
+        Translated to a LexGrid property type. For values AN, CX, HN this property is typed as a &#34;COMMENT&#34; in LexGrid. For value EV this property is typed &#34;PRESENTATION&#34; This only occurs when the STYPE points to the CODE, SCUI or SDUI columns in MRREL.RRF or MRCONSO.RRF. If the STYPE points to SAUI then the values are loaded as property qualifiers.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        MRSAT.RRF
+      </td>
+      <td>
+        ATV
+      </td>
+      <td>
+        Attribute value
+      </td>
+      <td>
+        NA
+      </td>
+      <td>
+        Entity.Property.value
+      </td>
+      <td>
+        No comments
+      </td>
+    </tr>
+    <tr>
+      <td>
+        MRSAT.RRF
+      </td>
+      <td>
+        ATN
+      </td>
+      <td>
+        Attribute name
+      </td>
+      <td>
+        NA
+      </td>
+      <td>
+        Entity.Property.propertyQualifier.propertyQualifierName
+      </td>
+      <td>
+        If the STYPE points to SAUI then the value is loaded as a property qualifier attribute
+      </td>
+    </tr>
+    <tr>
+      <td>
+        MRSAT.RRF
+      </td>
+      <td>
+        ATV
+      </td>
+      <td>
+        Attribute value
+      </td>
+      <td>
+        NA
+      </td>
+      <td>
+        Entity.Property.propertyQualifier.value
+      </td>
+      <td>
+        If the STYPE points to SAUI then the value is loaded as a property qualifier attribute
+      </td>
+    </tr>
+    <tr>
+      <td>
+        MRSAT.RRF
+      </td>
+      <td>
+        ATUI
+      </td>
+      <td>
+        Unique identifier for attribute
+      </td>
+      <td>
+        NA
+      </td>
+      <td>
+        Entity.Property.propertyId
+      </td>
+      <td>
+        No comments
+      </td>
+    </tr>
+    <tr>
+      <td>
+        MRSAT.RRF
+      </td>
+      <td>
+        METAUI
+      </td>
+      <td>
+        Metathesaurus asserted unique identifier
+      </td>
+      <td>
+        NA
+      </td>
+      <td>
+        Entity.Property.PropertyQualifier.propertyQualifierName
+      </td>
+      <td>
+        set to &#34;METAUI&#34;
+      </td>
+    </tr>
+    <tr>
+      <td>
+        MRSAT.RRF
+      </td>
+      <td>
+        METAUI
+      </td>
+      <td>
+        Metathesaurus asserted unique identifier
+      </td>
+      <td>
+        NA
+      </td>
+      <td>
+        Entity.Property.PropertyQualifier.value
+      </td>
+      <td>
+        METAUI column value
+      </td>
+    </tr>
+    <tr>
+      <td>
+        MRSAT.RRF
+      </td>
+      <td>
+        STYPE
+      </td>
+      <td>
+        The name of the column in MRCONSO.RRF or MRREL.RRF that contains the identifier to which the attribute is attached
+      </td>
+      <td>
+        NA
+      </td>
+      <td>
+        Entity.Property.PropertyQualifier.propertyQualifierName
+      </td>
+      <td>
+        set to &#34;STYPE&#34;
+      </td>
+    </tr>
+    <tr>
+      <td>
+        MRSAT.RRF
+      </td>
+      <td>
+        STYPE
+      </td>
+      <td>
+        The name of the column in MRCONSO.RRF or MRREL.RRF that contains the identifier to which the attribute is attached
+      </td>
+      <td>
+        NA
+      </td>
+      <td>
+        Entity.Property.PropertyQualifier.value
+      </td>
+      <td>
+        STYPE column value
+      </td>
+    </tr>
+    <tr>
+      <td>
+        MRSAT.RRF
+      </td>
+      <td>
+        SUPPRESS
+      </td>
+      <td>
+        Suppressible flag
+      </td>
+      <td>
+        NA
+      </td>
+      <td>
+        Entity.Property.PropertyQualifier.propertyQualifierName
+      </td>
+      <td>
+        set to &#34;SUPPRESS&#34;
+      </td>
+    </tr>
+    <tr>
+      <td>
+        MRSAT.RRF
+      </td>
+      <td>
+        SUPPRESS
+      </td>
+      <td>
+        Suppressible flag
+      </td>
+      <td>
+        NA
+      </td>
+      <td>
+        Entity.Property.PropertyQualifier.value
+      </td>
+      <td>
+        STYPE column value if not null
+      </td>
+    </tr>
+    <tr>
+      <td>
+        MRCONSO.RRF
+      </td>
+      <td>
+        SAB
+      </td>
+      <td></td>
+      <td>
+        x
+      </td>
+      <td>
+        Entity.Property.source.content
+      </td>
+      <td>
+        No comments
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>
+        x
+      </td>
+      <td>
+        Entity.Property.propertyQualifier.propertyQualifierName
+      </td>
+      <td>
+        hard coded as constant in java file as &#34;source-code&#34;
+      </td>
+    </tr>
+    <tr>
+      <td>
+        MRCONSO.RRF
+      </td>
+      <td>
+        CODE
+      </td>
+      <td></td>
+      <td>
+        x
+      </td>
+      <td>
+        Entity.Property.propertyQualifier.value
+      </td>
+      <td>
+        No comments
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>
+        x
+      </td>
+      <td>
+        Entity.Property.propertyQualifier.propertyQualifierName
+      </td>
+      <td>
+        hard coded as constant in java file as &#34;AUI&#34;
+      </td>
+    </tr>
+    <tr>
+      <td>
+        MRCONSO.RRF
+      </td>
+      <td>
+        AUI
+      </td>
+      <td></td>
+      <td>
+        x
+      </td>
+      <td>
+        Entity.Property.propertyQualifier.value
+      </td>
+      <td>
+        No comments
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>
+        NA
+      </td>
+      <td>
+        Entity.presentation.representationalForm
+      </td>
+      <td>
+        When ATN value is EV this presentation will be given a representationalForm of &#34;Abbrev.&#34;
+      </td>
+    </tr>
+    <tr>
+      <td>
+        MRCONSO.RRF
+      </td>
+      <td>
+        TTY
+      </td>
+      <td>
+        Term type in source
+      </td>
+      <td>
+        NA
+      </td>
+      <td>
+        Entity.presentation.representationForm
+      </td>
+      <td>
+        When TTY value is FN then representationalForm is represented as &#34;Full Form&#34; Otherwise the representationalForm is the same as the TTY source (i.e. if TTY is PT then representationalForm is PT.) PT is one of the preferred presentations.
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>
+        NA
+      </td>
+      <td>
+        Entity.Property.propertyQualifier.propertyQualifierId
+      </td>
+      <td>
+        hard coded as &#34;HCD&#34;
+      </td>
+    </tr>
+    <tr>
+      <td>
+        MRHIER.RRF
+      </td>
+      <td>
+        HCD
+      </td>
+      <td>
+        Source asserted hierarchical number or code for this atom in this context
+      </td>
+      <td>
+        NA
+      </td>
+      <td>
+        Entity.Property.propertyQualifier.content
+      </td>
+      <td>
+        This propertyQualifier is present when the HCD is populated in the the MRHIER file. The corresponding code and property for entity or code is qualified as a code or entity with a context derived heirarchy.
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="LexEVS6.xUMLSMappings-UMLSMappingRelations">
+  UMLS Mapping Relations
+</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        RRF File Name
+      </th>
+      <th>
+        RRF Column Name
+      </th>
+      <th>
+        RRF Definition
+      </th>
+      <th>
+        NCI Meta only
+      </th>
+      <th>
+        LexGrid Model Element
+      </th>
+      <th>
+        Comments
+      </th>
+    </tr>
+    <tr>
+      <td>
+        MRREL.RRF
+      </td>
+      <td>
+        CUI1
+      </td>
+      <td>
+        Unique identifier for first concept
+      </td>
+      <td>
+        NA
+      </td>
+      <td></td>
+      <td>
+        No comments
+      </td>
+    </tr>
+    <tr>
+      <td>
+        MRREL.RRF
+      </td>
+      <td>
+        AUI1
+      </td>
+      <td>
+        Unique identifier for first atom
+      </td>
+      <td>
+        NA
+      </td>
+      <td></td>
+      <td>
+        No comments
+      </td>
+    </tr>
+    <tr>
+      <td>
+        MRCONSO.RRF
+      </td>
+      <td>
+        CODE
+      </td>
+      <td>
+        Unique Identifier or code for string in source
+      </td>
+      <td>
+        NA
+      </td>
+      <td>
+        ConceptReference.conceptCode (Model element is a ResolvedConceptReference with the value sourceOf attached to the appropriate AssociationList containing this particular REL or RELA association name.)
+      </td>
+      <td>
+        Mapping to the CODE depends upon the CUI or a combination of CUI and AUI values. If the CODE value is &#34;NOCODE&#34; then LexBIG concatenates &#34;NOCODE&#34; with a &#34;-&#34; and the CUI value. Target or source code value requires use of the DIR flag which indicates the directionality of the relationship in REL or RELA. CUI1 can be used as a pointer to the source CODE value if DIR equals Y, else CUI1 is the targetCode. Similarly, if an AUI exists AUI1 can be an indicator for CODE value to be either or source or target depending on the DIR flag.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        MRREL.RRF
+      </td>
+      <td>
+        CUI2
+      </td>
+      <td>
+        Unique identifier for second concept
+      </td>
+      <td>
+        NA
+      </td>
+      <td></td>
+      <td>
+        No comments
+      </td>
+    </tr>
+    <tr>
+      <td>
+        MRREL.RRF
+      </td>
+      <td>
+        AUI2
+      </td>
+      <td>
+        Unique identifier for second atom
+      </td>
+      <td>
+        NA
+      </td>
+      <td></td>
+      <td>
+        No comments
+      </td>
+    </tr>
+    <tr>
+      <td>
+        MRCONSO.RRF
+      </td>
+      <td>
+        CODE
+      </td>
+      <td>
+        Unique Identifier or code for string in source
+      </td>
+      <td>
+        NA
+      </td>
+      <td>
+        ConceptReference.conceptCode (Model element is a ResolvedConceptReference with the value targetOf attached to the appropriate AssociationList containing this particular REL or RELA association name.)
+      </td>
+      <td>
+        Mapping to the CODE depends upon the CUI or a combination of CUI and AUI values. If the CODE value is &#34;NOCODE&#34; then LexBIG concatenates &#34;NOCODE&#34; with a &#34;-&#34; and the CUI value. Target or source code value requires use of the DIR flag which indicates the directionality of the relationship in REL or RELA. CUI2 can be used as a pointer to the source CODE value if DIR equals Y, else CUI1 is the targetCode. Similarly, if an AUI exists AUI2 can be an indicator for CODE value to be either or source or target depending on the DIR flag.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        MRREL.RRF
+      </td>
+      <td>
+        DIR
+      </td>
+      <td>
+        Source asserted directionality flag
+      </td>
+      <td>
+        NA
+      </td>
+      <td></td>
+      <td>
+        The UMLS directional flag. Y indicates that this is the direction of the RELA relationship in its source; N indicates that it is not; otherwise indicates that it is not important or has not yet been determined. (If blank RELA, we interpret as &#39;N&#39;, based on empirical review of meta files).
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        MRREL.RRF
+      </td>
+      <td>
+        RELA
+      </td>
+      <td>
+        Relationship attribute
+      </td>
+      <td>
+        NA
+      </td>
+      <td>
+        AssociationPredicate.associationName
+      </td>
+      <td>
+        Source defined associations. If RELA value is &#34;inverse_isa&#34; then it is changed to &#34;hasSubtype.&#34; All others mapped as defined in source.
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        MRREL.RRF
+      </td>
+      <td>
+        REL
+      </td>
+      <td>
+        Relationship
+      </td>
+      <td>
+        NA
+      </td>
+      <td>
+        AssociationPredicate.associationName
+      </td>
+      <td>
+        UMLS defined associations
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        MRSAT.RRF
+      </td>
+      <td>
+        METAUI
+      </td>
+      <td>
+        Metathesaurus asserted unique identifier
+      </td>
+      <td>
+        NA
+      </td>
+      <td></td>
+      <td>
+        Presence of RUI in MRSAT.RRF METAUI column indicates the association defined in MRREL has an association qualifier. Currentely only MedDRA uses these.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        MRSAT.RRF
+      </td>
+      <td>
+        ATN
+      </td>
+      <td></td>
+      <td>
+        NA
+      </td>
+      <td>
+        AssociatedConcept.nameAndValueList.name
+      </td>
+      <td>
+        No comments
+      </td>
+    </tr>
+    <tr>
+      <td>
+        MRSAT.RRF
+      </td>
+      <td>
+        ATV
+      </td>
+      <td></td>
+      <td>
+        NA
+      </td>
+      <td>
+        AssociationQualification.nameAndValueList.content
+      </td>
+      <td>
+        No comments
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>
+        NA
+      </td>
+      <td>
+        AssociatedConcept.nameAndValueList.name
+      </td>
+      <td>
+        qualifier name is hard coded to &#34;HCD&#34; This association qualifier is attached to an association when the HCD field in MRHIER.RRF is populated. Associations are identified by evaluating a structured series of AUI&#39;s that describe the path to root (PTR field in MRHIER) Once these associations are identified they have and association qualifier attached to them with the value of the HCD loaded as the qualifier.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        MRHIER.RRF
+      </td>
+      <td>
+        HCD
+      </td>
+      <td></td>
+      <td>
+        NA
+      </td>
+      <td>
+        AssociationQualification.nameAndValueList.content
+      </td>
+      <td>
+        No comments
+      </td>
+    </tr>
+    <tr>
+      <td>
+        MRSAB.RRF
+      </td>
+      <td>
+        SSN
+      </td>
+      <td>
+        Source short name
+      </td>
+      <td>
+        NA
+      </td>
+      <td>
+        association.codingSchemeId (Inherited from Entity)
+      </td>
+      <td>
+        No comments
+      </td>
+    </tr>
+    <tr>
+      <td>
+        MRREL.RR
+      </td>
+      <td>
+        REL or RELA
+      </td>
+      <td>
+        Relationship or Relationship attribute
+      </td>
+      <td>
+        NA
+      </td>
+      <td>
+        AssociationEntity.forwardName
+      </td>
+      <td>
+        unqualified REL or RELA value (inverse_isa remains the same)
+      </td>
+    </tr>
+    <tr>
+      <td>
+        MRDOC.RRF
+      </td>
+      <td>
+        EXPL
+      </td>
+      <td>
+        Detailed explanation
+      </td>
+      <td>
+        NA
+      </td>
+      <td>
+        AssociationEntity.reverseName
+      </td>
+      <td>
+        Where DOCKEY in MRDOC equals REL or RELA and value is the association name and TYPE is REL or RELA name prepended to &#34;_inverse&#34;.
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>
+        NA
+      </td>
+      <td>
+        association.isNavigable
+      </td>
+      <td>
+        hard coded as Boolean with value true.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        MRREL.RRF
+      </td>
+      <td>
+        SAB, REL, RELA
+      </td>
+      <td>
+        Source abbreviation
+      </td>
+      <td>
+        NA
+      </td>
+      <td>
+        AssociationEntity.isTransitive
+      </td>
+      <td>
+        True when the name of the association can be mapped to a source defined in the SAB attribute of MRREL.RRF. Not the SAB value itself, but extrapolated from it using SAB to REL, RELA relationship.
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>
+        NA
+      </td>
+      <td>
+        AssociatableElement.entityDescription.content (inheritance path for entityDescription is Entity-&gt;versionableAndDescribable)
+      </td>
+      <td>
+        Hard coded to: &#34;UMLS-defined relationships&#34;
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>
+        NA
+      </td>
+      <td>
+        relations.containerName
+      </td>
+      <td>
+        If REL, this is hard coded as &#34;UMLS-Relations&#34; if RELA then it is hard coded to &#34;Relations&#34;
+      </td>
+    </tr>
+    <tr>
+      <td>
+        MRREL.RRF
+      </td>
+      <td>
+        REL, RELA
+      </td>
+      <td></td>
+      <td>
+        x
+      </td>
+      <td>
+        propertyLink.link
+      </td>
+      <td>
+        This is a link established when the MRREL.RRF file contains a relationship where the CUI is related to itself. Under these conditions the relationship is mapped as a property link with the MRREL defined relationship mapped as the link value.
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>
+        x
+      </td>
+      <td>
+        propertyLink.sourceProperty
+      </td>
+      <td>
+        Generated as a propertyId for concept, ex: &#34;T-10&#34; This is retrieved based on the AUI value in MRCONSO.RRF from the entityPropertyMultiAttrib table where the AUI equals the attributeValue column.
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>
+        x
+      </td>
+      <td>
+        propertyLink.targetProperty
+      </td>
+      <td>
+        Generated as a propertyId for concept, ex: &#34;T-10&#34; This is retrieved based on the AUI value in MRCONSO.RRF from the entityPropertyMultiAttrib table where the AUI equals the attributeValue column.
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="LexEVS6.xUMLSMappings-SNOMEDUMLSMapping">
+  SNOMED UMLS Mapping
+</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        RRF File Name
+      </th>
+      <th>
+        RRF Column Name
+      </th>
+      <th>
+        RRF Definition
+      </th>
+      <th>
+        LexGrid Model Element
+      </th>
+      <th>
+        Comments
+      </th>
+    </tr>
+    <tr>
+      <td>
+        RSAB.RRF
+      </td>
+      <td>
+        SVER
+      </td>
+      <td>
+        Release date or version number of a source
+      </td>
+      <td>
+        codingScheme.representsVersion
+      </td>
+      <td>
+        No comments
+      </td>
+    </tr>
+    <tr>
+      <td>
+        RSAB.RRF
+      </td>
+      <td>
+        SSN
+      </td>
+      <td>
+        Source short name
+      </td>
+      <td>
+        codingScheme.codingScheme?
+      </td>
+      <td>
+        No comments
+      </td>
+    </tr>
+    <tr>
+      <td>
+        RSAB.RRF
+      </td>
+      <td>
+        SON
+      </td>
+      <td>
+        Source Official Name
+      </td>
+      <td>
+        codingScheme.formalName
+      </td>
+      <td>
+        No comments
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td>
+        Hard coded to &#34;en&#34;
+      </td>
+      <td>
+        codingScheme.defaultLanguage
+      </td>
+      <td>
+        No comments
+      </td>
+    </tr>
+    <tr>
+      <td>
+        MRSAT.RRF
+      </td>
+      <td>
+        ATV
+      </td>
+      <td>
+        None
+      </td>
+      <td>
+        concept.presentation.language
+      </td>
+      <td>
+        Unique to snomed.
+      </td>
+    </tr>
+  </tbody>
+</table>

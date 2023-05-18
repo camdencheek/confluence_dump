@@ -1,0 +1,190 @@
+Contents of this Page
+<ul>
+  <li>
+    <a href="#LexEVSRESTCodeMigrationGuide-LexEVSDataServicestobediscontinued." rel="nofollow">
+      LexEVS Data Services to be discontinued.
+    </a>
+    <ul>
+      <li>
+        <a href="#LexEVSRESTCodeMigrationGuide-GetCodingSchemedetails" rel="nofollow">
+          Get CodingScheme details
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVSRESTCodeMigrationGuide-GetConceptbyCode" rel="nofollow">
+          Get Concept by Code
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVSRESTCodeMigrationGuide-GetConceptbyCodewithwildcard-Notsupported" rel="nofollow">
+          Get Concept by Code with wildcard - Not supported
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVSRESTCodeMigrationGuide-SearchforConceptbyEntityDescription-Notfullysupported" rel="nofollow">
+          Search for Concept by EntityDescription - Not fully supported
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVSRESTCodeMigrationGuide-SearchforConceptwithwildcard" rel="nofollow">
+          Search for Concept with wildcard
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVSRESTCodeMigrationGuide-SearchforConceptbyPresentation-Notfullysupported" rel="nofollow">
+          Search for Concept by Presentation - Not fully supported
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVSRESTCodeMigrationGuide-ShowPresentationsofaConcept-Notfullysupported" rel="nofollow">
+          Show Presentations of a Concept - Not fully supported
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVSRESTCodeMigrationGuide-ShowDefinitionsofaConcept-Notfullysupported" rel="nofollow">
+          Show Definitions of a Concept - Not fully supported
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVSRESTCodeMigrationGuide-ShowSupportedAssociationsforaCodingScheme-Notsupported" rel="nofollow">
+          Show Supported Associations for a CodingScheme - Not supported
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#LexEVSRESTCodeMigrationGuide-caCOREtoLexEVSXMLMapping" rel="nofollow">
+      caCORE to LexEVS XML Mapping
+    </a>
+  </li>
+</ul>
+<table>
+  <colgroup>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        LexEVS Code Examples Links
+      </th>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427524" rel="nofollow">
+              LexEVS API Code Examples
+            </a>
+          </li>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427523" rel="nofollow">
+              LexEVS Java RMI Code Examples
+            </a>
+          </li>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=322011703" rel="nofollow">
+              LexEVS CTS2 Code Examples
+            </a>
+          </li>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427451" rel="nofollow">
+              LexEVS REST Code Migration Guide
+            </a>
+          </li>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=373003616" rel="nofollow">
+              LexEVS 6.5.1
+            </a>
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="LexEVSRESTCodeMigrationGuide-LexEVSDataServicestobediscontinued.">
+  LexEVS Data Services to be discontinued.
+</h2>
+The caCORE type REST queries will be discontinued with the LexEVS 6.5 release.  The
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=176325119" rel="nofollow">
+  CTS2
+</a>
+will replace the previous REST services.  Please replace your old queries with the listed examples.
+<h3 id="LexEVSRESTCodeMigrationGuide-GetCodingSchemedetails">
+  Get CodingScheme details
+</h3>
+NoteIf a version is not included then LexEVS will look for a version tagged as &#34;PRODUCTION&#34;. If no such coding scheme exists then an error will be returned.Coding Scheme Details 6.4
+https://lexevsapi6.nci.nih.gov/lexevsapi64/GetXML?query=org.LexGrid.codingSchemes.CodingScheme&amp;org.LexGrid.codingSchemes.CodingScheme&amp;codingSchemeName=Zebrafish
+Coding Scheme Details CTS2
+https://lexevscts2.nci.nih.gov/lexevscts2/codesystemversions?matchvalue=Zebrafish&amp;format=xml
+  Note that you could also add a version to a URL targeting a specific load in LexEVS. The following example shows the form to target the November_24_2016 version of the Zebrafish terminology.Versioned Coding Scheme Details 6.4
+https://lexevsapi6.nci.nih.gov/lexevsapi64/GetXML?query=org.LexGrid.codingSchemes.CodingScheme&amp;org.LexGrid.codingSchemes.CodingScheme&amp;codingSchemeName=Zebrafish&amp;codingSchemeVersion=November_24_2016
+Versioned Coding Scheme Details CTS2
+https://lexevscts2.nci.nih.gov/lexevscts2/codesystem/Zebrafish/version/November_24_2016?format=xml
+ The information can also be returned as JSON.Versioned Coding Scheme Details as JSON
+https://lexevscts2.nci.nih.gov/lexevscts2/codesystem/NCI_Thesaurus/version/17.01e?format=json
+The GetHTML function is not supported in CTS2Coding Scheme Details 6.4 GetHTML
+https://lexevsapi6.nci.nih.gov/lexevsapi64/GetHTML?query=org.LexGrid.codingSchemes.CodingScheme&amp;org.LexGrid.codingSchemes.CodingScheme&amp;codingSchemeName=Zebrafish
+
+<h3 id="LexEVSRESTCodeMigrationGuide-GetConceptbyCode">
+  Get Concept by Code
+</h3>
+Get Concept by Code 6.4
+http://lexevsapi6.nci.nih.gov/lexevsapi64/GetXML?query=org.LexGrid.concepts.Entity&amp;org.LexGrid.concepts.Entity[@_entityCode=C33999]&amp;codingSchemeName=NCI_Thesaurus
+Get Concept by Code CTS2
+https://lexevscts2.nci.nih.gov/lexevscts2/codesystem/NCI_Thesaurus/entity/C33999
+<h3 id="LexEVSRESTCodeMigrationGuide-GetConceptbyCodewithwildcard-Notsupported">
+  Get Concept by Code with wildcard  -  Not supported
+</h3>
+Searching by code with wildcard is not supported in CTS2
+http://lexevsapi6.nci.nih.gov/lexevsapi64/GetXML?query=org.LexGrid.concepts.Entity&amp;org.LexGrid.concepts.Entity[@_entityCode=ZFA:000123*]&amp;codingSchemeName=Zebrafish
+
+<h3 id="LexEVSRESTCodeMigrationGuide-SearchforConceptbyEntityDescription-Notfullysupported">
+  Search for Concept by EntityDescription - Not fully supported
+</h3>
+The old DataServices performed a strict exact match.  This query will return only one result.  It also specifies to only search the EntityDescription.Search for Concept by Entity Description 6.4
+http://lexevsapi6.nci.nih.gov/lexevsapi64/GetXML?query=org.LexGrid.concepts.Entity,org.LexGrid.commonTypes.EntityDescription&amp;org.LexGrid.commonTypes.EntityDescription[@_content=Heart]&amp;codingSchemeName=NCI_Thesaurus
+CTS2 does a tokenized exact match.  A concept where any one token is an exact match will be included in the result set.  As a result, this returns multiple concepts.  In addition, CTS2 does not support specifying what value to search, so looks at all presentation properties, not just the EntityDescription.Search for Concept CTS2
+http://lexevscts2.nci.nih.gov/lexevscts2/codesystem/NCI_Thesaurus/entities?matchvalue=Heart&amp;matchalgorithm=exactMatch?format=xml
+<h3 id="LexEVSRESTCodeMigrationGuide-SearchforConceptwithwildcard">
+  Search for Concept with wildcard
+</h3>
+https://lexevsapi6.nci.nih.gov/lexevsapi64/GetXML?query=org.LexGrid.concepts.Entity,org.LexGrid.commonTypes.EntityDescription&amp;org.LexGrid.commonTypes.EntityDescription[@_content=He*rt*]&amp;codingSchemeName=NCI_Thesaurus
+In CTS2 the match algorithm must be specified as luceneQuery in order to use wildcards.
+https://lexevscts2.nci.nih.gov/lexevscts2/codesystem/NCI_Thesaurus/entities?matchalgorithm=luceneQuery&amp;format=xml&amp;matchvalue=He*rt
+<h3 id="LexEVSRESTCodeMigrationGuide-SearchforConceptbyPresentation-Notfullysupported">
+  Search for Concept by Presentation - Not fully supported
+</h3>
+Search for Concept by Presentation - 6.4
+http://lexevsapi6.nci.nih.gov/lexevsapi64/GetHTML?query=Concept,Presentation,Text&amp;Text[@_content=heart]&amp;codingSchemeName=Zebrafish
+CTS2 by default searches all presentation properties, so this use case is coincidentally supported.  However CTS2 does not allow the user to specifically choose what is searched. Search for Concept CTS2
+http://lexevscts2.nci.nih.gov/lexevscts2/codesystem/NCI_Thesaurus/entities?matchvalue=Heart&amp;matchalgorithm=exactMatch?format=xml
+Search for Concept by Presentation with wildcard - Not fully supportedhttp://lexevsapi60.nci.nih.gov/lexevsapi60/GetHTML?query=Concept,Presentation,Text&amp;Text\[@_content=heart*\]&amp;codingSchemeName=Zebrafish
+http://lexevsapi6.nci.nih.gov/lexevsapi64/GetHTML?query=Concept,Presentation,Text&amp;Text[@_content=heart*]&amp;codingSchemeName=Zebrafish
+As above, the user cannot specify that only Presentation properties should be searched, but this is the default.
+https://lexevscts2.nci.nih.gov/lexevscts2/codesystem/NCI_Thesaurus/entities?matchalgorithm=luceneQuery&amp;format=xml&amp;matchvalue=He*rt
+Get Concept by Definition with wildcard - Not supported
+http://lexevsapi6.nci.nih.gov/lexevsapi64/GetXML?query=Concept,Definition,Text&amp;Text[@_content=Bilateral%20groups%20of%20cells*]&amp;codingSchemeName=Zebrafish
+<h3 id="LexEVSRESTCodeMigrationGuide-ShowPresentationsofaConcept-Notfullysupported">
+  Show Presentations of a Concept  - Not fully supported
+</h3>
+http://lexevsapi6.nci.nih.gov/lexevsapi64/GetXML?query=org.LexGrid.concepts.Presentation&amp;org.LexGrid.concepts.Entity[@_entityCode=ZFA:0001234]&amp;roleName=_presentationList&amp;codingSchemeName=Zebrafish
+CTS2 does not permit the user to specify what properties should be returned by a search. The Presentations will be returned within the body of results from an entity query.
+<h3 id="LexEVSRESTCodeMigrationGuide-ShowDefinitionsofaConcept-Notfullysupported">
+  Show Definitions of a Concept - Not fully supported
+</h3>
+http://lexevsapi6.nci.nih.gov/lexevsapi64/GetXML?query=org.LexGrid.concepts.Definition&amp;org.LexGrid.concepts.Entity[@_entityCode=ZFA:0001234]&amp;roleName=_definitionList&amp;codingSchemeName=Zebrafish
+CTS2 does not permit the user to specify what properties should be returned by a search.  The Definition will be returned within the body of results from an entity query.
+<h3 id="LexEVSRESTCodeMigrationGuide-ShowSupportedAssociationsforaCodingScheme-Notsupported">
+  Show Supported Associations for a CodingScheme - Not supported
+</h3>
+CTS2 does allow the retrieval of specific associations attached to a given concept or coding scheme but does not support the listing of all supported associations
+http://lexevsapi6.nci.nih.gov/lexevsapi64/GetXML?query=org.LexGrid.naming.SupportedAssociation&amp;org.LexGrid.naming.SupportedAssociation&amp;codingSchemeName=Zebrafish
+
+<h2 id="LexEVSRESTCodeMigrationGuide-caCOREtoLexEVSXMLMapping">
+  caCORE to LexEVS XML Mapping
+</h2>
+The results from CTS2 are formatted in the LexEVS model which varies somewhat from the caCORE model.
+<a href="https://wiki.nci.nih.gov/download/attachments/62427451/GetXML_Map.xlsx?version=1&amp;modificationDate=1528903586000&amp;api=v2" rel="nofollow">
+  This mapping
+</a>
+ spreadsheet was created to allow users to update their parsers to use the new format. 

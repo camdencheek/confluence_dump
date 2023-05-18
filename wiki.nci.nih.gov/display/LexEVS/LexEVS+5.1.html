@@ -1,0 +1,613 @@
+ Contents of this Page
+<ul>
+  <li>
+    <a href="#LexEVS5.1-Tooloverview" rel="nofollow">
+      Tool overview
+    </a>
+    <ul>
+      <li>
+        <a href="#LexEVS5.1-What&#39;snew" rel="nofollow">
+          What&#39;s new
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS5.1-At-a-glancespecifications" rel="nofollow">
+          At-a-glance specifications
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#LexEVS5.1-Installationanddownloads" rel="nofollow">
+      Installation and downloads
+    </a>
+    <ul>
+      <li>
+        <a href="#LexEVS5.1-Foreveryone" rel="nofollow">
+          For everyone
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS5.1-Beginners" rel="nofollow">
+          Beginners
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS5.1-Intermediate" rel="nofollow">
+          Intermediate
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS5.1-Experts" rel="nofollow">
+          Experts
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS5.1-FixReleases" rel="nofollow">
+          Fix Releases
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#LexEVS5.1-LexEVSLocalRuntimeRelease5.1.4" rel="nofollow">
+      LexEVS Local Runtime Release 5.1.4
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS5.1-Documentationforversion5.1" rel="nofollow">
+      Documentation for version 5.1
+    </a>
+    <ul>
+      <li>
+        <a href="#LexEVS5.1-Releasedocuments" rel="nofollow">
+          Release documents
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS5.1-GuidesforUsers" rel="nofollow">
+          Guides for Users
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS5.1-Programmingexamples" rel="nofollow">
+          Programming examples
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS5.1-DocumentationinPDF" rel="nofollow">
+          Documentation in PDF
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#LexEVS5.1-ServiceURLs" rel="nofollow">
+      Service URLs
+    </a>
+    <ul>
+      <li>
+        <a href="#LexEVS5.1-LexEVSAPIURLs" rel="nofollow">
+          LexEVS API URLs
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS5.1-LexEVSGridServiceURL" rel="nofollow">
+          LexEVS Grid Service URL
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#LexEVS5.1-Support" rel="nofollow">
+      Support
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS5.1-Contributions" rel="nofollow">
+      Contributions
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS5.1-Trainingmaterialsandbackgroundinformation" rel="nofollow">
+      Training materials and background information
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS5.1-Presentationsanddemos" rel="nofollow">
+      Presentations and demos
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS5.1-RelatedTools" rel="nofollow">
+      Related Tools
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS5.1-Additionalresources" rel="nofollow">
+      Additional resources
+    </a>
+  </li>
+</ul>
+<h2 id="LexEVS5.1-Tooloverview">
+  Tool overview
+</h2>
+LexEVS v5.1 is an enhancement version, based on the new architecture introduced in LexEVS v5.0. (See
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427415" rel="nofollow">
+  LexEVS 5.0
+</a>
+(Tool Overview).LexEVS v5.1 focuses on providing features that support the NCI Metathesaurus Browser: improved query performance and full loading of RRF data. Also, this version offers Value Domain and Pick List Services integrated into the LexEVS API, and an improved loader framework.LexEVS v5.1 Architecture
+<img alt="LexEVS 5.1 architecture diagram" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%205.1/LexEVS_5.1_architecture.png?api=v2">
+<h3 id="LexEVS5.1-What&#39;snew">
+  What&#39;s new
+</h3>
+Highlights
+<ul>
+  <li>
+    Released on January 5, 2010
+  </li>
+  <li>
+    Enhanced query performance and behavior:
+    <ul>
+      <li>
+        Lucene 2.4 fast search engine with lazy document loading
+      </li>
+      <li>
+        Plug-in search framework that allows a text query string input and generates a Lucene query output
+      </li>
+      <li>
+        Plug-in sort framework that allows rapid creation of new sort algorithms and techniques
+      </li>
+      <li>
+        SQL query optimaizations that increase database performance
+      </li>
+    </ul>
+  </li>
+  <li>
+    LexEVS Value Domain Service - provides programmatic access to load value domain definitions using the domain objects that are available via the LexGrid logical model
+  </li>
+  <li>
+    LexEVS Pick List Service - provides programmatic access to pick list definitions using the pick list that are available via the LexGrid logical model
+  </li>
+  <li>
+    Loader framework enhancements - improved loading capability; allows loaders to be modular and easily extendable; ability to load custom data
+  </li>
+  <li>
+    RRF loader enhancements - ability to fully load RRF data; support the NCI Metathesaurus Browser
+  </li>
+  <li>
+    BDA (Build and Deployment Automation) support - build and deployment of LexEVS project artifacts to remote servers
+  </li>
+</ul>
+<h3 id="LexEVS5.1-At-a-glancespecifications">
+  At-a-glance specifications
+</h3>
+<ul>
+  <li>
+    Grid Enabled: uses caGrid 1.3
+  </li>
+  <li>
+    Compatibility Level: submitted for Silver
+  </li>
+  <li>
+    Installation Level: Intermediate - technical assistance may be required, download may require supporting infrastructure or software
+  </li>
+  <li>
+    Technology Stack: No new dependencies since LexEVS 5.0 except for additional storage to accommodate larger content loads.
+    <ul>
+      <li>
+        Operating System - Linux or Windows (although no operating system dependencies exist)
+      </li>
+      <li>
+        Web Application Server - Apache or JBoss
+      </li>
+      <li>
+        Database Server - MySQL, Oracle, PostgreSQL, HSQLDB, or DB2
+      </li>
+      <li>
+        Other software components - caGrid 1.3 / Globus 4.0.3
+      </li>
+      <li>
+        Server Hardware - NCI standard hardware
+      </li>
+      <li>
+        Minimum processor speed - Minimum required by Web Application Server
+      </li>
+      <li>
+        Minimum memory - Minimum required by Web Application Server
+      </li>
+      <li>
+        Expected file server disk storage (in MB)- 200GB
+      </li>
+      <li>
+        Expected database storage (in MB)- 100GB
+      </li>
+      <li>
+        Networking - Standard port required by JBoss to externalize LexEVS grid service. May be assigned any suitably available port # For specific versions required please see
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427531" rel="nofollow">
+          2 - LexEVS 5.x Prerequisite Software and Supported Platforms
+        </a>
+        .
+      </li>
+    </ul>
+  </li>
+</ul>
+<h2 id="LexEVS5.1-Installationanddownloads">
+  Installation and downloads
+</h2>
+<h3 id="LexEVS5.1-Foreveryone">
+  For everyone
+</h3>
+Prior to using LexEVS we recommend reviewing our model and schema as this will aid in understanding and using LexEVS.
+<ul>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427414" rel="nofollow">
+      LexGrid Model and Schema
+    </a>
+    Information about the current and previous LexGrid models and schema.
+  </li>
+</ul>
+<h3 id="LexEVS5.1-Beginners">
+  Beginners
+</h3>
+For anyone new to LexEVS we recommend reviewing the
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427540" rel="nofollow">
+  LexEVS 5.x Quick Start
+</a>
+page before downloading and installing LexEVS. The
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427540" rel="nofollow">
+  LexEVS 5.x Quick Start
+</a>
+provides recommended links to additional information for users who are new to LexEVS. Once you have reviewed some of the information in the Quick Start, come back here to install LexEVS.
+<ul>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427405" rel="nofollow">
+      LexEVS 5.x Installation Guide
+    </a>
+    This document provides step-by-step, technical, installation instructions for LexGrid Enterprise Vocabulary Services v5.x for caBIG®.
+  </li>
+</ul>
+<h3 id="LexEVS5.1-Intermediate">
+  Intermediate
+</h3>
+<ul>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427514" rel="nofollow">
+      LexEVS 5.1 Installation Outline
+    </a>
+    This page is for those users who are somewhat familiar with LexEVS and would like some guidance for installation. It lays out which files you may need to download to utilize LexEVS 5.1 based on what type of installation you require. There are even links to download the appropriate jars/zip files.
+  </li>
+</ul>
+<ul>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427357" rel="nofollow">
+      LexEVS Widget Library
+    </a>
+    This page lists many widgets that have been developed for use by particular customers. These widgets have been found to be potentially useful to a wider audience. Each widget has a description for you to use in deciding if you&#39;d like to dig deeper and find out the usefulness of the widget in your application.
+  </li>
+</ul>
+<h3 id="LexEVS5.1-Experts">
+  Experts
+</h3>
+<ul>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427421" rel="nofollow">
+      LexEVS 5.1 Components
+    </a>
+    (Download files) If you are already very familiar with LexEVS, refer to this table for links to download the files/jars released with LexEVS 5.1, along with short descriptions of each. If you need further installation guidance please see the installation section below or review the
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427515" rel="nofollow">
+      LexEVS 5.1 Documentation
+    </a>
+    .
+  </li>
+</ul>
+<h3 id="LexEVS5.1-FixReleases">
+  Fix Releases
+</h3>
+<h2 id="LexEVS5.1-LexEVSLocalRuntimeRelease5.1.4">
+  LexEVS Local Runtime Release 5.1.4
+</h2>
+<a href="https://cbiit-download.nci.nih.gov/evs/LexEVS/v5.1/Release/LexEVS514Readme.doc" rel="nofollow">
+  LexEVS_5.1.4 ReadMe.doc
+</a>
+Contains a list of the fixes and functions included in this release as well as installation instructions for upgrading an existing install.
+<a href="https://cbiit-download.nci.nih.gov/evs/LexEVS/v5.1/Release/LexEVS-install-5.1.4.jar" rel="nofollow">
+  LexEVS-install-5.1.4.jar
+</a>
+LexEVS GUI Installer for LexEVS Local Runtime used for a new install or during an upgrade.Unable to render {include} The included page could not be found.
+<h2 id="LexEVS5.1-Documentationforversion5.1">
+  Documentation for version 5.1
+</h2>
+<h3 id="LexEVS5.1-Releasedocuments">
+  Release documents
+</h3>
+<ul>
+  <li>
+    <a href="https://ncisvn.nci.nih.gov/svn/docs/trunk/lexevs/LexEVSProjectDocuments/v5.1/ReleaseDocumentationandFiles/lexevsapi51_notes.htm" rel="nofollow">
+      LexEVS 5.1 Release Notes
+    </a>
+    (
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=23400596" rel="nofollow">
+      wiki
+    </a>
+    ) A detailed description of the features, bug fixes, and known issues in this release; also a release history.
+  </li>
+</ul>
+<ul>
+  <li>
+    Javadoc
+    <ul>
+      <li>
+        <a href="http://lexevsapi51.nci.nih.gov/lexevsapi51/docs/" rel="nofollow">
+          View Javadoc as a web page
+        </a>
+        .
+      </li>
+      <li>
+        <a href="https://cbiit-download.nci.nih.gov/evs/LexEVS/v5.1/Release/LexEVS_51_javadocs.zip" rel="nofollow">
+          Download a copy of the Javadoc
+        </a>
+        .
+      </li>
+      <li>
+        <a href="http://java.sun.com/j2se/javadoc/" rel="nofollow">
+          Learn more about documentation produced as Javadoc
+        </a>
+        <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+          <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+        </a>
+        .
+      </li>
+    </ul>
+  </li>
+</ul>
+<ul>
+  <li>
+    <a href="https://cbiit-download.nci.nih.gov/evs/LexEVS/v5.1/Release/LexEVS_51_readme.txt" rel="nofollow">
+      LexEVS v5.1 Readme for Client
+    </a>
+    Lists contents of the caCORE LexEVS v5.1 client, required library files, demo programs, and an Ant build script. Outlines requirements for installation, describes how to run test examples, and provides licensing information.
+  </li>
+</ul>
+<ul>
+  <li>
+    <a href="https://cbiit-download.nci.nih.gov/evs/LexEVS/v5.1/Release/LexEVS_51_source_readme.txt" rel="nofollow">
+      LexEVS v5.1 Readme for API
+    </a>
+    Instructions for installing a local version of caCORE web-enabled LexEVS API v5.1 on a server machine. Outlines requirements for installation and provides licensing information.
+  </li>
+</ul>
+<h3 id="LexEVS5.1-GuidesforUsers">
+  Guides for Users
+</h3>
+Refer to
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427422" rel="nofollow">
+  LexEVS 5.1 Guides for Users to Include
+</a>
+, which includes a collection of guides for specific purposes and audiences, such as architecture, migration, and programming.
+<h3 id="LexEVS5.1-Programmingexamples">
+  Programming examples
+</h3>
+Feel free to browse through this compiled list of examples. You will also encounter them in context as they are used throughout the LexEVS documentation.
+<ul>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427524" rel="nofollow">
+      LexEVS API Code Examples
+    </a>
+  </li>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427523" rel="nofollow">
+      LexEVS Java RMI Code Examples
+    </a>
+  </li>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427525" rel="nofollow">
+      LexEVS caGrid Code Examples
+    </a>
+  </li>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427522" rel="nofollow">
+      LexEVS DataGrid Code Examples
+    </a>
+  </li>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427451" rel="nofollow">
+      LexEVS Rest Code Examples
+    </a>
+  </li>
+</ul>
+<h3 id="LexEVS5.1-DocumentationinPDF">
+  Documentation in PDF
+</h3>
+Refer to to
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427480" rel="nofollow">
+  LexEVS 5.x Documentation in PDF
+</a>
+to retrieve PDF files created from the wiki-based user guides.
+<h2 id="LexEVS5.1-ServiceURLs">
+  Service URLs
+</h2>
+<h3 id="LexEVS5.1-LexEVSAPIURLs">
+  LexEVS API URLs
+</h3>
+<ul>
+  <li>
+    EVS Home Page -
+    <a href="https://cabig.nci.nih.gov/concepts/EVS/" rel="nofollow">
+      https://cabig.nci.nih.gov/concepts/EVS/
+    </a>
+  </li>
+</ul>
+<ul>
+  <li>
+    LexEVS 5.1 Java API -
+    <a href="http://lexevsapi51.nci.nih.gov/lexevsapi51/Home.action" rel="nofollow">
+      http://lexevsapi51.nci.nih.gov/lexevsapi51/Home.action
+    </a>
+  </li>
+</ul>
+<ul>
+  <li>
+    XML-HTTP APIFor example:
+    http://lexevsapi51.nci.nih.gov/lexevsapi51/{servlet}?query={returnClass}&amp;{criteria}&amp;resultCounter={counter}&amp;startIndex={index}&amp;pageSize={pageSize}&amp;pageNumber={pageNumber}
+  </li>
+</ul>
+<ul>
+  <li>
+    Example with sample parameters:
+    http://lexevsapi51.nci.nih.gov/lexevsapi51/GetHTML?query=org.LexGrid.concepts.Entity&amp;org.LexGrid.concepts.Entity[@_entityCode=C12434]
+  </li>
+</ul>
+<h3 id="LexEVS5.1-LexEVSGridServiceURL">
+  LexEVS Grid Service URL
+</h3>
+<ul>
+  <li>
+    caGrid Portal -
+    <a href="http://cagrid-portal.nci.nih.gov" rel="nofollow">
+      http://cagrid-portal.nci.nih.gov
+    </a>
+  </li>
+</ul>
+<ul>
+  <li>
+    LexEVS 5.1 Analytical Grid Service (for programming contexts)
+    http://lexevsapi-analytical51.nci.nih.gov/wsrf/services/cagrid/LexEVSGridService
+  </li>
+</ul>
+<ul>
+  <li>
+    LexEVS 5.1 Data Grid Service (for programming contexts)
+    http://lexevsapi-data51.nci.nih.gov/wsrf/services/cagrid/LexEVSDataService
+  </li>
+</ul>
+<h2 id="LexEVS5.1-Support">
+  Support
+</h2>
+Unknown macro: {multi-excerpt-include}
+<h2 id="LexEVS5.1-Contributions">
+  Contributions
+</h2>
+In the spirit of open source caBIG® invites you to participate in our community. The contribution process is described in
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427529" rel="nofollow">
+  LexEVS Community Code Contribution
+</a>
+. LexEVS source code is in
+<a href="https://ncisvn.nci.nih.gov/svn/lexevs/" rel="nofollow">
+  NCI SVN
+</a>
+and the project is ready to accept your contributions to this tool.
+<h2 id="LexEVS5.1-Trainingmaterialsandbackgroundinformation">
+  Training materials and background information
+</h2>
+<ul>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427411" rel="nofollow">
+      Learning about LexEVS
+    </a>
+    Learn about LexEVS and its history.
+  </li>
+</ul>
+<ul>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427410" rel="nofollow">
+      LexGrid/LexBIG (LexEVS) Background information
+    </a>
+    Learn about the features, model, and components of the LexEVS repository.
+  </li>
+</ul>
+<ul>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427404" rel="nofollow">
+      Interacting with caCORE LexEVS
+    </a>
+    Learn about caCORE and how to use it with LexEVS.
+  </li>
+</ul>
+<h2 id="LexEVS5.1-Presentationsanddemos">
+  Presentations and demos
+</h2>
+Unknown macro: {multi-excerpt-include}
+<h2 id="LexEVS5.1-RelatedTools">
+  Related Tools
+</h2>
+All other
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427449" rel="nofollow">
+  versions of LexEVS
+</a>
+.
+<h2 id="LexEVS5.1-Additionalresources">
+  Additional resources
+</h2>
+<ul>
+  <li>
+    <a href="https://wiki.nci.nih.gov/x/bo9-AQ" rel="nofollow">
+      LexEVS 6.0 Design Document
+    </a>
+    If you would like to look through the information that gave rise to this release you can check out the design documents.
+  </li>
+</ul>
+<ul>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=63996154" rel="nofollow">
+      Common Terminology Services - Release 2 Information
+    </a>
+    LexEVS 6.0 was developed during the definition phase of CTS 2 and implements some of the early versions of that upcoming standard.
+  </li>
+</ul>
+<ul>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427414" rel="nofollow">
+      LexGrid Model and Schema
+    </a>
+    The LexGrid Model is the underlying informational model used to store terminological metadata. It is Mayo Clinic&#39;s proposal for standard storage of controlled vocabularies and ontologies. The model defines how vocabularies should be formatted and represented programmatically, and is intended to be flexible enough to accurately represent a wide variety of vocabularies and other lexically-based resources.
+  </li>
+</ul>
+<ul>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427418" rel="nofollow">
+      LexBig Model and Schema
+    </a>
+    These are the extensions used to support EVS API adapters. The LexBIG vocabulary model extends the LexGrid model to provide unique constructs or granularity required by caBIG® that are not present in the core model.
+  </li>
+</ul>
+<ul>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=63996224" rel="nofollow">
+      Tool Adopters LexEVS
+    </a>
+    A list of individuals and organizations using LexEVS
+  </li>
+</ul>
+<ul>
+  <li>
+    <a href="http://ncicb.nci.nih.gov/download/" rel="nofollow">
+      CBIIT Download Page
+    </a>
+    A list of all available CBIIT EVS software components and tools.
+  </li>
+</ul>
+<ul>
+  <li>
+    <a href="https://cabig.nci.nih.gov/concepts/EVS/" rel="nofollow">
+      Enterprise Vocabulary Services (EVS)
+    </a>
+    Home page for Enterprise Vocabulary Services (EVS)
+  </li>
+</ul>
+<ul>
+  <li>
+    <a href="http://ncit.nci.nih.gov/" rel="nofollow">
+      NCI Thesaurus
+    </a>
+    NCI Thesaurus (NCIt) provides reference terminology for many NCI and other systems. It covers vocabulary for clinical care, translational and basic research, and public information and administrative activities.
+  </li>
+</ul>
+<ul>
+  <li>
+    <a href="http://ncim.nci.nih.gov/ncimbrowser" rel="nofollow">
+      NCI Metathesaurus
+    </a>
+    NCI Metathesaurus (NCIm) is a wide-ranging biomedical terminology database that covers most terminologies used by NCI for clinical care, translational and basic research, and public information and administrative activities.
+  </li>
+</ul>

@@ -1,0 +1,89 @@
+Contents of this Page
+<ul>
+  <li>
+    <a href="#ContainsSearch-ContainsAlgorithmImplementationDetails" rel="nofollow">
+      Contains Algorithm Implementation Details
+    </a>
+    <ul>
+      <li>
+        <a href="#ContainsSearch-Algorithm:" rel="nofollow">
+          Algorithm:
+        </a>
+      </li>
+      <li>
+        <a href="#ContainsSearch-Exampleofuse:" rel="nofollow">
+          Example of use:
+        </a>
+      </li>
+      <li>
+        <a href="#ContainsSearch-AssociatedJUnits:" rel="nofollow">
+          Associated JUnits:
+        </a>
+      </li>
+    </ul>
+  </li>
+</ul>
+<h2 id="ContainsSearch-ContainsAlgorithmImplementationDetails">
+  Contains Algorithm Implementation Details
+</h2>
+Equivalent to &#39; term* &#39; - in other words - a trailing wildcard on a term (but no leading wild card) and the term can appear at any position.
+<h3 id="ContainsSearch-Algorithm:">
+  Algorithm:
+</h3>
+The contains search has the following characteristics:
+<ul>
+  <li>
+    This search is case in-sensitive.
+  </li>
+  <li>
+    It only searches on the property value and literal property value.
+  </li>
+  <li>
+    The literal property part of the query is boosted by 50.  This gives a literal match priority.
+  </li>
+  <li>
+    A trailing wild card is added to all tokens in the search text.
+  </li>
+  <li>
+    Lowercase and special characters removed during query parser parse.
+  </li>
+  <li>
+    Parsing is done with the following analyzers:
+    <ul>
+      <li>
+        propertyValue - Uses our custom standard analyzer that has no stop words.
+      </li>
+      <li>
+        literal_propertyValue - Uses our custom literal analyzer.  This literal analyzer uses Lucene&#39;s WhitespaceTokenizer with Lucene&#39;s LowerCaseFilter.
+      </li>
+    </ul>
+  </li>
+</ul>
+<h3 id="ContainsSearch-Exampleofuse:">
+  Example of use:
+</h3>
+The following examples are based on the Automobiles coding scheme.Example 1:Search string: automobLucene query: +propertyValue:automob* literal_propertyValue:automob^50.0Result: 1 result
+<ul>
+  <li>
+    entity code: A0001
+  </li>
+  <li>
+    entity description: Automobile
+  </li>
+</ul>
+Example 2:Search string: General MotorsLucene query: (+propertyValue:general* +propertyValue:motors*) ((+literal_propertyValue:general +literal_propertyValue:motors)^50.0)Result: 1 result
+<ul>
+  <li>
+    entity code: GM
+  </li>
+  <li>
+    entity description: General Motors
+  </li>
+</ul>
+<h3 id="ContainsSearch-AssociatedJUnits:">
+  Associated JUnits:
+</h3>
+Junits for contains tests can be found here:
+<a href="https://github.com/lexevs/lexevs/blob/master/lbTest/src/test/java/org/LexGrid/LexBIG/Impl/function/query/lucene/searchAlgorithms/TestContains.java" rel="nofollow">
+  https://github.com/lexevs/lexevs/blob/master/lbTest/src/test/java/org/LexGrid/LexBIG/Impl/function/query/lucene/searchAlgorithms/TestContains.java
+</a>

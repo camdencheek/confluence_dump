@@ -1,0 +1,51 @@
+Contents of this Page
+<ul>
+  <li>
+    <a href="#id-2.3.6LoaderCoreService-XMLLoader" rel="nofollow">
+      XML Loader
+    </a>
+  </li>
+  <li>
+    <a href="#id-2.3.6LoaderCoreService-StreamingXMLImplementation" rel="nofollow">
+      Streaming XML Implementation
+    </a>
+    <ul>
+      <li>
+        <a href="#id-2.3.6LoaderCoreService-LoaderPostProcessor" rel="nofollow">
+          Loader Post Processor
+        </a>
+      </li>
+    </ul>
+  </li>
+</ul>
+<h5 id="id-2.3.6LoaderCoreService-XMLLoader">
+  XML Loader
+</h5>
+Loads of LexGrid XML were formerly limited by the size of the Coding Scheme model element that could be constructed in memory. Loaded models had a single entry point at the CodingScheme element. With the intention of providing improved loading performance, access points to other levels of LexGrid Model elements, and a convenient format for authoring, the design of the LexEVS 5.1 XML Loader has been updated for LexEVS 6.0 and will be implemented with the following considerations:
+<ul>
+  <li>
+    A streaming implementation of the loading mechanism allowing larger loads in a smaller memory footprint.
+  </li>
+  <li>
+    A variety of entry points to facilitate loading of Revisions, System Releases, Value Sets, Pick Lists, and Coding Schemes.
+  </li>
+  <li>
+    A loading mechanism for Authoring-based manipulation of LexGrid-based XML files allowing entities and associations to be added to a given coding scheme in XML, then loaded into a LexGrid data repository.
+  </li>
+</ul>
+<h5 id="id-2.3.6LoaderCoreService-StreamingXMLImplementation">
+  Streaming XML Implementation
+</h5>
+The latest implementation of the LexGrid XML loader provides a partitioned load of a coding scheme or other potentially large elements. The 6.0 loader will read coding scheme metadata into memory, load it to the LexGrid database and then begin stepping through entities and associations
+persisting elements to the database and then removing them from the coding scheme object as the unmarshaller reads objects from XML and into the coding scheme object in memory. Streaming XML reads while controlling the build of the coding scheme (and potentially other objects) in memory allows the load of far larger terminologies constructed in LexGrid XML. This also allows users to eventually export larger coding schemes, revise them with authoring tools, and reload them as LexGrid Revision elements.  This and other authoring scenarios will be exercised upon LexGrid XML with subsequent loads to the LexGrid database possible. (See authoring design below.)
+
+LexGrid coding scheme metadata contains an number of required and optional elements as defined in the LexGrid schema. The last of these elements, before entity and associations are expressed, are the coding scheme mappings and the coding scheme properties. Mappings are required elements in the coding scheme and as such are a default stopping point of coding scheme reads. Coding scheme properties are not required and as such may not exist in a given rendering of LexGrid XML.
+Before persistence of metadata to the LexGrid database takes place, a high speed pass is made over the coding scheme meta data portion of the XML with the STAX parser API to determine the presence of coding scheme properties.
+<h6 id="id-2.3.6LoaderCoreService-LoaderPostProcessor">
+  Loader Post Processor
+</h6>
+In order to facilitate extra Processing at the end of an ontology load, LexEVS 6.0 will support Loader Post Processors.
+
+A Loader Post Processor is logic that will be executed when the actual content load to the database is complete, but before the Lucene Indexing occurs. It will be implemented as an Extension - meaning that users may place jars in the LexEVS class path and introduce Loader Post Processors without the need to recompile.
+
+A Loader Post Processor may apply any logic that is required -- there are not constraints as to the scope. A Loader Post Processor may perform processes including but not limited to the following: update database content, delete content, and reference other loaded ontologies. 

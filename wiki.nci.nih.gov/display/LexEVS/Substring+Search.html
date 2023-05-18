@@ -1,0 +1,98 @@
+Contents of this Page
+<ul>
+  <li>
+    <a href="#SubstringSearch-SubstringAlgorithmImplementationDetails" rel="nofollow">
+      Substring Algorithm Implementation Details
+    </a>
+    <ul>
+      <li>
+        <a href="#SubstringSearch-Algorithm:" rel="nofollow">
+          Algorithm:
+        </a>
+      </li>
+      <li>
+        <a href="#SubstringSearch-Exampleofuse:" rel="nofollow">
+          Example of use:
+        </a>
+      </li>
+      <li>
+        <a href="#SubstringSearch-AssociatedJUnits:" rel="nofollow">
+          Associated JUnits:
+        </a>
+      </li>
+    </ul>
+  </li>
+</ul>
+<h2 id="SubstringSearch-SubstringAlgorithmImplementationDetails">
+  Substring Algorithm Implementation Details
+</h2>
+Search based on a \&#34;*some sub-string here*\&#34;. Functions much like the Java String.indexOf method.  This requires two indexed fields to manage this without significant overhead.  One field is the tokenized property value which causes no extra indexing, the other is reversed which requires an extra indexed field.When multiple terms are being searched on, the first term is a spanWildcardQuery on the reverse property with a trailing wildcard.  The middle property values are searched for as property values.  The last term is a spanWildcardQuery on the propertyValue with a tailing wildcard.
+<h3 id="SubstringSearch-Algorithm:">
+  Algorithm:
+</h3>
+The Substring search has the following characteristics:
+<ul>
+  <li>
+    This search is case in-sensitive.
+  </li>
+  <li>
+    It searches on the property value and literal property value.
+  </li>
+  <li>
+    The literal property part of the query is boosted by 50.  This gives a literal match priority.
+  </li>
+  <li>
+    Performs a wildcardQuery
+  </li>
+  <li>
+    Lowercase and special characters removed during query parser parse.
+  </li>
+  <li>
+    Parsing is done with the following analyzers:
+    <ul>
+      <li>
+        propertyValue - Uses our custom standard analyzer that has no stop words.
+      </li>
+      <li>
+        literal_propertyValue - Uses our custom literal analyzer.  This literal analyzer uses Lucene&#39;s WhitespaceTokenizer with Lucene&#39;s LowerCaseFilter.
+      </li>
+    </ul>
+  </li>
+</ul>
+<h3 id="SubstringSearch-Exampleofuse:">
+  Example of use:
+</h3>
+The following examples are based on the Automobiles coding scheme.Example 1:Search string: graphLucene query: +propertyValue:*graph* literal_propertyValue:graph^50.0Result: 1 result
+<ul>
+  <li>
+    entity code: NoRelationsConcept
+  </li>
+  <li>
+    entity description: A concept for testing Graph Building on Concepts with no relations
+  </li>
+</ul>
+Example 2:Search string: graph building onLucene query: +spanNear([mask(spanWildcardQuery(reverse_propertyValue:hparg*)) as propertyValue, mask(propertyValue:building) as propertyValue, mask(spanWildcardQuery(propertyValue:on*)) as propertyValue], 0, true) ((+literal_propertyValue:graph +literal_propertyValue:building +literal_propertyValue:on)^50.0)Result: 1 result
+<ul>
+  <li>
+    entity code: NoRelationsConcept
+  </li>
+  <li>
+    entity description: A concept for testing Graph Building on Concepts with no relations
+  </li>
+</ul>
+Example 3:Search string: ncept for testing graphLucene query: +spanNear([mask(spanWildcardQuery(reverse_propertyValue:tpecn*)) as propertyValue, mask(propertyValue:for) as propertyValue, mask(propertyValue:testing) as propertyValue, mask(spanWildcardQuery(propertyValue:graph*)) as propertyValue], 0, true) ((+literal_propertyValue:ncept +literal_propertyValue:for +literal_propertyValue:testing +literal_propertyValue:graph)^50.0)Result: 1 result
+<ul>
+  <li>
+    entity code: NoRelationsConcept
+  </li>
+  <li>
+    entity description: A concept for testing Graph Building on Concepts with no relations
+  </li>
+</ul>
+<h3 id="SubstringSearch-AssociatedJUnits:">
+  Associated JUnits:
+</h3>
+Junit tests can be found here:
+<a href="https://github.com/lexevs/lexevs/blob/master/lbTest/src/test/java/org/LexGrid/LexBIG/Impl/function/query/lucene/searchAlgorithms/TestSubString.java" rel="nofollow">
+  https://github.com/lexevs/lexevs/blob/master/lbTest/src/test/java/org/LexGrid/LexBIG/Impl/function/query/lucene/searchAlgorithms/TestSubString.java
+</a>

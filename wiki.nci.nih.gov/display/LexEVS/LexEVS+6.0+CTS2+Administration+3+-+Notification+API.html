@@ -1,0 +1,242 @@
+Contents of this Page
+<ul>
+  <li>
+    <a href="#LexEVS6.0CTS2Administration3NotificationAPI-Introduction" rel="nofollow">
+      Introduction
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.0CTS2Administration3NotificationAPI-NotificationAPI" rel="nofollow">
+      Notification API
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.0CTS2Administration3NotificationAPI-ListeningForEvents" rel="nofollow">
+      Listening For Events
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.0CTS2Administration3NotificationAPI-ExampleUsecases" rel="nofollow">
+      Example Usecases
+    </a>
+  </li>
+</ul>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        CTS2 Links for LexEVS 6.0
+      </th>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427281" rel="nofollow">
+              CTS2 API Main Page
+            </a>
+          </li>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427334" rel="nofollow">
+              Programmer&#39;s Guide Main Page
+            </a>
+          </li>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=69730353" rel="nofollow">
+              LexEVS 6.0 Main Page
+            </a>
+          </li>
+          <li>
+            <a href="https://wiki.nci.nih.gov/display/LexEVS" rel="nofollow">
+              LexEVS Current Release
+            </a>
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="LexEVS6.0CTS2Administration3NotificationAPI-Introduction">
+  Introduction
+</h2>
+This document is intended for LexEVS developers, explaining how to use the CTS2 Notification API.
+<h2 id="LexEVS6.0CTS2Administration3NotificationAPI-NotificationAPI">
+  Notification API
+</h2>
+The Notification API is accessed via the interface: org.lexevs.cts2.admin.NotificationAdminOperation
+<a href="http://informatics.mayo.edu/LexGrid/downloads/LexEVS_60_JavaDocs/runtime_javadoc/org/lexevs/cts2/admin/NotificationAdminOperation.html" rel="nofollow">
+  JavaDoc
+</a>
+/*
+* Copyright: (c) 2004-2009 Mayo Foundation for Medical Education and Research
+* (MFMER). All rights reserved. MAYO, MAYO CLINIC, and the triple-shield Mayo
+* logo are trademarks and service marks of MFMER.
+*
+* Except as contained in the copyright notice above, or as used to identify
+* MFMER as the author of this software, the trade names, trademarks, service
+* marks, or product names of the copyright holder shall not be used in
+* advertising, promotion or otherwise in connection with this software without
+* prior written authorization of the copyright holder.
+*
+* Licensed under the Eclipse Public License, Version 1.0 (the &#34;License&#34;); you
+* may not use this file except in compliance with the License. You may obtain a
+* copy of the License at
+*
+* http://www.eclipse.org/legal/epl-v10.html
+*/
+package org.lexevs.cts2.admin;
+
+import org.lexevs.cts2.exception.admin.NotificationNotRegisteredException;
+import org.lexevs.dao.database.service.event.DatabaseServiceEventListener;
+
+/**
+* The Interface NotificationAdminOperation controls the registration and maintenence of Content
+* Notification Listeners.
+*/
+public interface NotificationAdminOperation {
+
+	/**
+* The Enum NotificationStatus.
+*
+* SUSPEND: Notifications will cease being processed until further notice.
+* REINSTATE: Notifications will resume processing.
+* REMOVE: The Notification will be removed, and cannot be REINSTATE&#39;d.
+*/
+	public enum NotificationStatus {
+			SUSPEND,
+			REINSTATE,
+			REMOVE}
+
+	/**
+* Register the given Notification Listener in the system.
+*
+* @param listener
+* 		The Notification Listener
+*
+* @return
+* 		The Notification Identifier: The unique identifier of the particular Notification
+* 		in the system.
+*/
+	public String registerForNotification(DatabaseServiceEventListener listener);
+
+	/**
+* Replaces a Notification Listener with an Updated Notification Listener
+*
+* @param notificationId
+* 		The Notification Identifier of the Notification to be updated.
+* @param listener the listener
+*/
+	public void updateNotificationRegistration(String notificationId, DatabaseServiceEventListener listener)
+		throws NotificationNotRegisteredException;
+
+	/**
+* Update the Notification Registration Status of a Notification Listener.
+*
+* @param status
+* 		The new Notification Registration Status
+* @param notificationId
+* 		The Notification Identifier of the Notification to be updated.
+*/
+	public void updateNotificationRegistrationStatus(String notificationId, NotificationStatus status)
+		throws NotificationNotRegisteredException;
+}
+<h2 id="LexEVS6.0CTS2Administration3NotificationAPI-ListeningForEvents">
+  Listening For Events
+</h2>
+A class implementing the interface org.lexevs.dao.database.service.event.DatabaseServiceEventListener may be used to listen for various content-related events.
+
+A default listener is provided in the class org.lexevs.dao.database.service.listener.DefaultServiceEventListener. The listener methods of this class are intended to be overridden by subclasses, enabling the subclass to choose which events to process.
+<h2 id="LexEVS6.0CTS2Administration3NotificationAPI-ExampleUsecases">
+  Example Usecases
+</h2>
+Various usecases exist for using Notifications, including:
+<ul>
+  <li>
+    Email notices
+  </li>
+  <li>
+    Custom security implementations
+  </li>
+  <li>
+    Additional change logs or auditing
+  </li>
+  <li>
+    etc...
+  </li>
+</ul>
+NoteLexEVS does not supply any of the above Notification implementations, it merely supplies the API to register/unregister the listeners, and the event API itself.
+<h1 id="LexEVS6.0CTS2Administration3NotificationAPI-Examples">
+  Examples
+</h1>
+<ul>
+  <li>
+    Email when a CodingScheme is updated.
+    Sends an email to a defined user when any CodingScheme is updated in the system.
+  </li>
+</ul>
+package org.lexevs.alert;
+
+import java.util.Properties;
+
+import javax.mail.Message;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+
+import org.LexGrid.LexBIG.Extensions.Generic.GenericExtension;
+import org.lexevs.dao.database.service.event.DatabaseServiceEventListener;
+import org.lexevs.dao.database.service.event.codingscheme.CodingSchemeUpdateEvent;
+import org.lexevs.dao.database.service.listener.DefaultServiceEventListener;
+
+public class MailAlertExtension extends DefaultServiceEventListener implements GenericExtension, DatabaseServiceEventListener{
+
+	private static final long serialVersionUID = 6752732957279346146L;
+
+	public static void main(String[] args) {
+		MailAlertExtension ext = new MailAlertExtension();
+		ext.onCodingSchemeUpdate(null);
+	}
+
+	public boolean onCodingSchemeUpdate(CodingSchemeUpdateEvent event) {
+		try {
+
+			Properties props = System.getProperties();
+			props.put(&#34;mail.smtp.host&#34;, &#34;your.host.org&#34;);
+			props.put(&#34;mail.smtp.port&#34;, &#34;25&#34;);
+
+			Session session = Session.getDefaultInstance(props,null);
+
+			Message msg = new MimeMessage(session);
+
+			msg.setFrom(new InternetAddress(&#34;user@your.host.org&#34;));
+
+			msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(&#34;NotifiedUser&#34;, false));
+
+			msg.setSubject(&#34;Coding Scheme Change&#34;);
+			msg.setText(&#34;Coding Scheme:&#34; + event.getOriginalCodingScheme().getCodingSchemeURI() + &#34; has changed.&#34;);
+
+			Transport.send(msg);
+		} catch(Exception e) {
+			throw new RuntimeException(e);
+		}
+
+		return true;
+	}
+
+	public String getDescription() {
+		return &#34;An Email alerting Extension&#34;;
+	}
+
+	public String getName() {
+		return &#34;MailAlertExtension&#34;;
+	}
+
+	public String getProvider() {
+		return &#34;LexEVS Team&#34;;
+	}
+
+	public String getVersion() {
+		return &#34;1.0&#34;;
+	}
+} 

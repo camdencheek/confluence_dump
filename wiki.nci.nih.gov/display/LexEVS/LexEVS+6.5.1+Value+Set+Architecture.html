@@ -1,0 +1,545 @@
+Contents of this Page
+<ul>
+  <li>
+    <a href="#LexEVS6.5.1ValueSetArchitecture-Observations" rel="nofollow">
+      Observations
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.5.1ValueSetArchitecture-MeetingMinutes" rel="nofollow">
+      Meeting Minutes
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.5.1ValueSetArchitecture-Requirements" rel="nofollow">
+      Requirements
+    </a>
+  </li>
+</ul>
+This page is for capturing the discussion around updating the workflow for value set definition creation.
+<h2 id="LexEVS6.5.1ValueSetArchitecture-Observations">
+  Observations
+</h2>
+<ul>
+  <li>
+    LexEVS model and implementation are more complex than requirements of most NCI value sets
+  </li>
+  <li>
+    NCI Thesaurus may have enough assertions to adequately describe value sets without external modeling
+  </li>
+</ul>
+<h2 id="LexEVS6.5.1ValueSetArchitecture-MeetingMinutes">
+  Meeting Minutes
+</h2>
+Value set requirements gathered through meetings with the NCI stakeholders.  Minutes from the meetings are here:
+<ul>
+  <li>
+    <a href="https://wiki.nci.nih.gov/display/LexEVS/LexEVS+Meeting+Minutes+-+Value+Set+Architecture+Planning+Session+-+2017.01.06" rel="nofollow">
+      LexEVS Meeting Minutes - Value Set Architecture Planning Session - 2017.01.06
+    </a>
+  </li>
+  <li>
+    <a href="https://wiki.nci.nih.gov/display/LexEVS/LexEVS+Meeting+Minutes+-+Value+Set+Architecture+Planning+Session+-+2017.01.09" rel="nofollow">
+      LexEVS Meeting Minutes - Value Set Architecture Planning Session - 2017.01.09
+    </a>
+  </li>
+  <li>
+    <a href="https://wiki.nci.nih.gov/display/LexEVS/LexEVS+Meeting+Minutes+-+Value+Set+Architecture+Planning+Session+-+2017.01.19" rel="nofollow">
+      LexEVS Meeting Minutes - Value Set Architecture Planning Session - 2017.01.19
+    </a>
+  </li>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=339382460" rel="nofollow">
+      LexEVS Meeting Minutes - Value Set Architecture Planning Session - 2017.02.21
+    </a>
+  </li>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=341183190" rel="nofollow">
+      LexEVS Meeting Minutes - Value Set Architecture Planning Session - 2017.03.02
+    </a>
+  </li>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=342591987" rel="nofollow">
+      LexEVS Meeting Minutes - Value Set Architecture Planning Session - 2017.03.27
+    </a>
+  </li>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=345670835" rel="nofollow">
+      LexEVS Meeting Minutes - Value Set Architecture Planning Session - 2017.04.24
+    </a>
+  </li>
+</ul>
+<h2 id="LexEVS6.5.1ValueSetArchitecture-Requirements">
+  Requirements
+</h2>
+Requirements for the new value set work flow architecture
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        Requirement
+      </th>
+      <th>
+        Priority
+      </th>
+      <th colspan="1">
+        Notes
+      </th>
+    </tr>
+    <tr>
+      <td>
+        Better logging to help determine if there were any failures for resolving the 760+ value sets.
+      </td>
+      <td></td>
+      <td colspan="1"></td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Resolving all 760+ value sets should be able to finish over night (Rob).
+      </td>
+      <td colspan="1"></td>
+      <td colspan="1"></td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        leafOnly=false
+        <ul>
+          <li>
+            We can write a value set loader that ignores these.
+          </li>
+          <li>
+            We can ignore targetToSource=false
+          </li>
+        </ul>
+      </td>
+      <td colspan="1"></td>
+      <td colspan="1">
+        2017.04.24 VS Arch. Meeting
+      </td>
+    </tr>
+  </tbody>
+</table>
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        Proposed or Possible Requirement
+      </th>
+      <th>
+        Priority
+      </th>
+      <th colspan="1">
+        Notes
+      </th>
+      <th colspan="1">
+        Is Requirement?(Yes/No)
+      </th>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Remove Dependency on value set definition files for NCIt defined Value Sets
+      </td>
+      <td colspan="1"></td>
+      <td colspan="1">
+        There are still some value sets that need to be approached with the old value set method.
+      </td>
+      <td colspan="1">
+        yes
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Generate All NCIt sourced value set coding schemes from NCIt source in LexEVS (DB)
+      </td>
+      <td colspan="1"></td>
+      <td colspan="1">
+        There are still some value sets that need to be approached with the old value set method.
+      </td>
+      <td colspan="1">
+        yes
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Generate value set URI from NCIt source based on source and hard coded structures.
+      </td>
+      <td colspan="1"></td>
+      <td colspan="1">
+        - There is information of the agency is in the annotation on that concept.  This information can be used to create the unique URI that represents the agency.
+      </td>
+      <td colspan="1">
+        yes
+      </td>
+    </tr>
+    <tr>
+      <td>
+        (Browser) Auto generate value set definitions from the NCIT source
+      </td>
+      <td></td>
+      <td>
+        <ul>
+          <li>
+            In browser, value set path, group by standards authority/ sourced terminology, click on collapse.
+          </li>
+          <li>
+            In order to create the top nodes, need to find that annotation.
+          </li>
+          <li>
+            Kim queries against these for Value Set metadata
+          </li>
+        </ul>
+      </td>
+      <td>
+        yes
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Resolve discrepancies between number of value set definition files and value sets defined in NCIt
+      </td>
+      <td colspan="1"></td>
+      <td colspan="1">
+        This is not necessary
+      </td>
+      <td colspan="1">
+        no
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Maintain value set functionality for those few value set definitions which define leafOnly as false
+      </td>
+      <td colspan="1"></td>
+      <td colspan="1"></td>
+      <td colspan="1">
+        yes
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Provide acceptable substitutions for value set URI&#39;s and other metadata that is defined in the source (List in other rows as necessary)
+      </td>
+      <td colspan="1"></td>
+      <td colspan="1"></td>
+      <td colspan="1">
+        yes
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Maintain Resolved Value Set Coding Scheme API as interface
+      </td>
+      <td colspan="1"></td>
+      <td colspan="1">
+        <ul>
+          <li>
+            There are several users.  We should keep this for 6.x
+          </li>
+          <li>
+            Re evaluate if needed after 6.x
+          </li>
+        </ul>
+      </td>
+      <td colspan="1">
+        yes
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Provide concurrent value set loading capability
+      </td>
+      <td colspan="1"></td>
+      <td colspan="1">
+        This was originally a suggestion on how to speed the load up.  This could still be a possibility that we should look at going forward,
+      </td>
+      <td colspan="1">
+        no
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Provide programmatic access to value set definition XML files
+      </td>
+      <td colspan="1"></td>
+      <td colspan="1">
+        We need efficient way to retrieve this day (Kim)
+      </td>
+      <td colspan="1">
+        no
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Do we need to define A8 as an association each time
+      </td>
+      <td colspan="1"></td>
+      <td colspan="1"></td>
+      <td colspan="1">
+        no
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        (Browser) Provide efficient way to retrieve label (URI) and version of all resolved value set coding schemes
+      </td>
+      <td colspan="1"></td>
+      <td colspan="1">
+        <ul>
+          <li>
+            Return time should be in seconds
+          </li>
+        </ul>
+      </td>
+      <td colspan="1">
+        yes
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        (Browser) Efficient resolution of VS graphs as it pertains to hierarchies
+      </td>
+      <td colspan="1"></td>
+      <td colspan="1">
+        Seconds
+      </td>
+      <td colspan="1">
+        yes
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        (Browser) Efficient results to VS resolutions
+      </td>
+      <td colspan="1"></td>
+      <td colspan="1">
+        sub second for most
+      </td>
+      <td colspan="1">
+        yes
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        (Browser) Efficient retrieval VS definition metadata resolution calls. Faster queries against the definitions themselves.
+      </td>
+      <td colspan="1"></td>
+      <td colspan="1">
+        1 second or less
+      </td>
+      <td colspan="1">
+        yes
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        (Browser) Efficient search by code or name - query for value set that this concept matches
+      </td>
+      <td colspan="1"></td>
+      <td colspan="1">
+        This needs further definition/discussion with Kim. Kim&#39;s notes:Search value sets by code or name that matches with any member (concept) of a value set using a user-specified (exactMatch, startsWith, or contains) algorithm.
+      </td>
+      <td colspan="1">
+        yes
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        (Browser) Source specific information - need to call LexEVS API for each vsIterator without having to further query
+      </td>
+      <td colspan="1"></td>
+      <td colspan="1">
+        Kim mentioned this when you click the value set button.  Needs further definition and investigation. Kim&#39;s notes:Provide source specific value set resolution data through an iterator.    Formats:    (Case 1) Value sets with a non-NCIt default coding scheme (e.g., NDF-RT).        Code        Preferred Name        Coding Scheme Name,        Namespace           (Case 2) Value sets with a NCIt default coding scheme and has no non-NCI supportedSource,               NCIt Concept Code               NCIt Preferred Term               NCIt Synonyms               NCIt Definition                  (Case 3) Value sets with a NCIt default coding scheme and has at least one non-NCI supportedSource (e.g., FDA),               NCIt Concept Code               Source Name (e.g., FDA Name)               NCIt Preferred Term               NCIt Synonyms               Source Definition (e.g., FDA Definition)               NCIt Definition                             (Note: If there are multiple supportedSource, then use the first supportedSource.)
+      </td>
+      <td colspan="1">
+        yes
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Build source (i.e., standards authority) view and terminology view of value set hierarchy efficiently from the NCIt Source, the NDFRT source and value set definitions as they exist the database.
+      </td>
+      <td colspan="1"></td>
+      <td colspan="1">
+        We need to understand the values and procedures needed to support this betterFirst, a terminology Termonilogy_Value_set.owl is constructed for supporting thecreation of value set hierarchies.Each concept in the Termonilogy_Value_set terminology is assigned a unique TVS code, for example, TVS_FDA (see below).The hierarchical relationship among concepts in the Termonilogy_Value_set is uniquely defined bythe subClassOf relationship. One can view this hierarchical structure as agraph with each node representing a bin which holds value sets.Value sets are placed into these bins in accordance withthe value of the source tag as appearing in its corresponding value set definition xml file.For example, the value set, FDA CDRH GUDID Terminology, will be placed into the bin with an id or tag called TVS_CDRH_GUID_Componentbecause in the XML file, there is a source tag with value TVS_CDRH_GUID_Component:    &lt;source&gt;TVS_CDRH_GUID_Component&lt;/source&gt;Note that a value set can be placed into multiple bins.  (A) A sample class in the terminology Termonilogy_Value_set.owl:  &lt;owl:Class rdf:ID=&#34;TVS_CDRH_GUDID&#34;&gt;     &lt;rdfs:subClassOf&gt;       &lt;owl:Class rdf:ID=&#34;TVS_FDA&#34;/&gt;     &lt;/rdfs:subClassOf&gt;     &lt;Source rdf:datatype=&#34;
+        <a href="http://www.w3.org/2001/XMLSchema#string" rel="nofollow">
+          http://www.w3.org/2001/XMLSchema#string
+        </a>
+        &#34;     &gt;FDA_CDRH_GUDID&lt;/Source&gt;     &lt;Display rdf:datatype=&#34;
+        <a href="http://www.w3.org/2001/XMLSchema#boolean" rel="nofollow">
+          http://www.w3.org/2001/XMLSchema#boolean
+        </a>
+        &#34;     &gt;false&lt;/Display&gt;     &lt;rdfs:label rdf:datatype=&#34;
+        <a href="http://www.w3.org/2001/XMLSchema#string" rel="nofollow">
+          http://www.w3.org/2001/XMLSchema#string
+        </a>
+        &#34;     &gt;FDA CDRH GUDID Terminology&lt;/rdfs:label&gt;     &lt;Description rdf:datatype=&#34;
+        <a href="http://www.w3.org/2001/XMLSchema#string" rel="nofollow">
+          http://www.w3.org/2001/XMLSchema#string
+        </a>
+        &#34;     &gt;A set of terminology created to support the efforts of the FDA CDRH Global Unique Device Identification Database project.&lt;/Description&gt;     &lt;Preferred_Name rdf:datatype=&#34;
+        <a href="http://www.w3.org/2001/XMLSchema#string" rel="nofollow">
+          http://www.w3.org/2001/XMLSchema#string
+        </a>
+        &#34;     &gt;FDA CDRH GUDID Terminology&lt;/Preferred_Name&gt;   &lt;/owl:Class&gt;   (B) A sample Value set definition XML file, FDA CDRH GUDID Terminology: &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;&lt;valueSetDefinition xmlns=&#34;
+        <a href="http://lexgrid.org/schema/2010/01/LexGrid/valueSets" rel="nofollow">
+          http://LexGrid.org/schema/2010/01/LexGrid/valueSets
+        </a>
+        &#34; isActive=&#34;true&#34;     status=&#34;1&#34; valueSetDefinitionURI=&#34;
+        <a href="http://evs.nci.nih.gov/valueset/C106039" rel="nofollow">
+          http://evs.nci.nih.gov/valueset/C106039
+        </a>
+        &#34;     valueSetDefinitionName=&#34;FDA CDRH GUDID Terminology&#34;     defaultCodingScheme=&#34;NCI_Thesaurus&#34;     conceptDomain=&#34;Intellectual Product&#34;&gt;         &lt;ns1:owner xmlns:ns1=&#34;
+        <a href="http://lexgrid.org/schema/2010/01/LexGrid/commonTypes%22%3ENCI%3C/ns1:owner" rel="nofollow">
+          http://LexGrid.org/schema/2010/01/LexGrid/commonTypes&#34;&gt;NCI&lt;/ns1:owner
+        </a>
+        &gt;     &lt;ns2:entityDescription xmlns:ns2=&#34;
+        <a href="http://lexgrid.org/schema/2010/01/LexGrid/commonTypes%22" rel="nofollow">
+          http://LexGrid.org/schema/2010/01/LexGrid/commonTypes&#34;
+        </a>
+        &gt;         A set of terminology created to support the efforts of the FDA CDRH Global Unique Device Identification         Database project.&lt;/ns2:entityDescription&gt;     &lt;mappings&gt;         &lt;ns3:supportedCodingScheme xmlns:ns3=&#34;
+        <a href="http://lexgrid.org/schema/2010/01/LexGrid/naming" rel="nofollow">
+          http://LexGrid.org/schema/2010/01/LexGrid/naming
+        </a>
+        &#34;              localId=&#34;NCI_Thesaurus&#34;              uri=&#34;
+        <a href="http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl" rel="nofollow">
+          http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#
+        </a>
+        &#34;              isImported=&#34;true&#34;&gt;NCI_Thesaurus         &lt;/ns3:supportedCodingScheme&gt;                      &lt;ns4:supportedConceptDomain xmlns:ns4=&#34;
+        <a href="http://lexgrid.org/schema/2010/01/LexGrid/naming" rel="nofollow">
+          http://LexGrid.org/schema/2010/01/LexGrid/naming
+        </a>
+        &#34; localId=&#34;Intellectual Product&#34;&gt;Intellectual Product         &lt;/ns4:supportedConceptDomain&gt;                &lt;ns5:supportedNamespace xmlns:ns5=&#34;
+        <a href="http://lexgrid.org/schema/2010/01/LexGrid/naming" rel="nofollow">
+          http://LexGrid.org/schema/2010/01/LexGrid/naming
+        </a>
+        &#34; localId=&#34;NCI_Thesaurus&#34; uri=&#34;
+        <a href="http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl" rel="nofollow">
+          http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#
+        </a>
+        &#34; equivalentCodingScheme=&#34;NCI_Thesaurus&#34;&gt;NCI_Thesaurus         &lt;/ns5:supportedNamespace&gt;         &lt;ns6:supportedSource xmlns:ns6=&#34;
+        <a href="http://lexgrid.org/schema/2010/01/LexGrid/naming" rel="nofollow">
+          http://LexGrid.org/schema/2010/01/LexGrid/naming
+        </a>
+        &#34; localId=&#34;CDRH&#34;&gt;             CDRH         &lt;/ns6:supportedSource&gt;         &lt;ns7:supportedSource xmlns:ns7=&#34;
+        <a href="http://lexgrid.org/schema/2010/01/LexGrid/naming" rel="nofollow">
+          http://LexGrid.org/schema/2010/01/LexGrid/naming
+        </a>
+        &#34; localId=&#34;FDA&#34;&gt;             FDA         &lt;/ns7:supportedSource&gt;     &lt;/mappings&gt;     &lt;source&gt;TVS_CDRH_GUID_Component&lt;/source&gt;     &lt;properties/&gt;     &lt;definitionEntry ruleOrder=&#34;0&#34; operator=&#34;OR&#34;&gt;         &lt;entityReference entityCode=&#34;C106039&#34; entityCodeNamespace=&#34;NCI_Thesaurus&#34; referenceAssociation=&#34;Concept_In_Subset&#34; transitiveClosure=&#34;true&#34; leafOnly=&#34;true&#34; targetToSource=&#34;true&#34;/&gt;     &lt;/definitionEntry&gt;&lt;/valueSetDefinition&gt; There are two views of value set hierarchies in the NCI term browser.(See
+        <a href="https://nciterms.nci.nih.gov/ncitbrowser/ajax?action=create_src_vs_tree&amp;nav_type=valuesets&amp;mode=0" rel="nofollow">
+          https://nciterms.nci.nih.gov/ncitbrowser/ajax?action=create_src_vs_tree&amp;nav_type=valuesets&amp;mode=0
+        </a>
+        )(1) Value sets grouped by Standards Authority.(2) Value sets by Source Terminology. At term browser initialization, value set metadata containing the data in all value set definition XML files areretrieved from the database through the LexEVSAPI and used for constructing the above two value set hierarchies.The first hierarchy (Value sets grouped by Standards Authority) is constructed by the value of the source, such as TVS_CDRH_GUID_Component above.The second hierarchy is constructed using the same method with an additional step that bins are partitioned in according tothe value of the value of defaultCodingScheme as shown in the value set definition XML files.
+      </td>
+      <td colspan="1">
+        This informs our value set meta data resolution performance requirement, but is not currently a requirement on it&#39;s own.
+      </td>
+    </tr>
+  </tbody>
+</table>
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th colspan="1">
+        Discussion Points
+      </th>
+      <th colspan="1">
+        Notes
+      </th>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Who are the stakeholders and end users of value sets
+      </td>
+      <td colspan="1">
+        FDA, CDISC, and others is only through files.  Otherwise this is through the editors who write value sets into the NCIt.  They are browser users, and users of the ReportWriter. (LexEVS supports these) caDSR, CTRP, Cancer.gov site developers.
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Define what work flow end user interface is (Shell script, Rest Service, Browser based GUI)
+      </td>
+      <td colspan="1">
+        Shell script is acceptable
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Define performance or other considerations require a move to triple store or OWL API (For Example: Do value sets need full OWL expressivity)In particular do we need reification for end users so that we can understand whether queries or API&#39;s need triple store or OWL API support.
+      </td>
+      <td colspan="1">
+        2017.04.24 VS Arch. Meeting - Gilberto and Larry would have to answer this question. This remains an open question following last Wednesday&#39;s meeting.
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Will non NCIt sourced value sets continue to use legacy value set definitions? (more a scope statement question) Yes.
+      </td>
+      <td colspan="1">
+        Resolved and see notes above. At this point yes.
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        What considerations/requirements drive the development of an architecture that encompasses hierarchical value sets and new resolution mechanisms?
+      </td>
+      <td colspan="1">
+        Should be able to see these as hierarchies in the browser.  We need an extension for hierarchical value sets.  Loading and expressing through an API.  Some value sets will be in the hundreds of concepts.  At least one is 8000 members large. Flavors of Hierarchical Value Sets:Source to Target Association Value SetsNICHD parent values sets.  Association is read out and generates an external file. CDRH parent value sets. Association is read out to an external file.SubClassOf Based Value SetNeoplasm.  Also subClassOf, is now a flat list. Should be hierarchical.Alternative Value Sets:Source to Target that are transitive restrictions found inside the thesaurus.  Anatomical_Structure_is_Physical_part of is an example. LexEVS will provide an extension that loads  these value set use cases as value set coding schemes with their own relational assertions.  Whether this is a coding scheme or coding schemes is an open question. (Requirement)
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Create OWL source for some/all values sets from LexEVS api or other source? (OWL export of value sets)
+      </td>
+      <td colspan="1">
+        Performance based consideration, but not a requirement.
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        What user needs around the report writer generate requirements for LexEVS or the LexEVS team
+      </td>
+      <td colspan="1">
+        No requirements for this – moving to sparql
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Does Excel spread sheet generation fall into the scope of LexEVS value set resolution or otherwise generate requirements for the LexEVS team
+      </td>
+      <td colspan="1">
+        Not our concern
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Do the users/stakeholders in the value set API have any new requirements beyond those already stated
+      </td>
+      <td colspan="1">
+        Better, more tailored result sets from CTS2 Rest.  Not a value set  requirement.
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        What does it mean, in terms of requirements, to provide support for Neoplasm like value sets (Hierarchical)
+      </td>
+      <td colspan="1">
+        See above
+      </td>
+    </tr>
+  </tbody>
+</table>

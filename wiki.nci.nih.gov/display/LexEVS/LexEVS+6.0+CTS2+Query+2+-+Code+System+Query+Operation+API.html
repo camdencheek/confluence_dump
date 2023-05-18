@@ -1,0 +1,575 @@
+Contents of this Page
+<ul>
+  <li>
+    <a href="#LexEVS6.0CTS2Query2CodeSystemQueryOperationAPI-Introduction" rel="nofollow">
+      Introduction
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.0CTS2Query2CodeSystemQueryOperationAPI-Interface" rel="nofollow">
+      Interface
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.0CTS2Query2CodeSystemQueryOperationAPI-QueryFunctions" rel="nofollow">
+      Query Functions
+    </a>
+    <ul>
+      <li>
+        <a href="#LexEVS6.0CTS2Query2CodeSystemQueryOperationAPI-listCodeSystems" rel="nofollow">
+          listCodeSystems
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.0CTS2Query2CodeSystemQueryOperationAPI-getCodeSystemDetails" rel="nofollow">
+          getCodeSystemDetails
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.0CTS2Query2CodeSystemQueryOperationAPI-listCodeSystemConcepts" rel="nofollow">
+          listCodeSystemConcepts
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.0CTS2Query2CodeSystemQueryOperationAPI-getConceptDetails" rel="nofollow">
+          getConceptDetails
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.0CTS2Query2CodeSystemQueryOperationAPI-listAssociationTypes" rel="nofollow">
+          listAssociationTypes
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.0CTS2Query2CodeSystemQueryOperationAPI-getAssociationTypeDetails" rel="nofollow">
+          getAssociationTypeDetails
+        </a>
+      </li>
+    </ul>
+  </li>
+</ul>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        CTS2 Links for LexEVS 6.0
+      </th>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427281" rel="nofollow">
+              CTS2 API Main Page
+            </a>
+          </li>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427334" rel="nofollow">
+              Programmer&#39;s Guide Main Page
+            </a>
+          </li>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=69730353" rel="nofollow">
+              LexEVS 6.0 Main Page
+            </a>
+          </li>
+          <li>
+            <a href="https://wiki.nci.nih.gov/display/LexEVS" rel="nofollow">
+              LexEVS Current Release
+            </a>
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="LexEVS6.0CTS2Query2CodeSystemQueryOperationAPI-Introduction">
+  Introduction
+</h2>
+LexEVS CTS2 Code System Query API provides capability to query contents of Code System that are available in the system.
+<h2 id="LexEVS6.0CTS2Query2CodeSystemQueryOperationAPI-Interface">
+  Interface
+</h2>
+org.lexevs.cts2.query.CodeSystemQueryOperation is the main interface for all the queries against Code System. This interface can be accessed using main LexEVSCTS2 interface, like:
+
+
+
+org.lexevs.cts2.query.CodeSystemQueryOperation csQueryOp = new org.lexevs.cts2.LexEvsCTS2Impl().getQueryOperation().getCodeSystemQueryOperation();
+<h2 id="LexEVS6.0CTS2Query2CodeSystemQueryOperationAPI-QueryFunctions">
+  Query Functions
+</h2>
+Here are the major query functions available using CodeSystemQueryOperation interface:
+<h3 id="LexEVS6.0CTS2Query2CodeSystemQueryOperationAPI-listCodeSystems">
+  listCodeSystems
+</h3>
+This function lists the coding systems that are available in cts 2 system. Optionally, return list can be restricted to Code System URI, version, local name, formal name or entity description.
+
+listCodeSystems(CodingSchemeSummary queryByExample)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        List the coding systems that are available in cts 2 system.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.DataModel.Core.CodingSchemeSummary queryByExample - (Optional) Restrict the return list only to those that matches the supplied data. return list can be restricted to Code System URI, version, local name, formal name or entity description. If empty, all the code systems available in the system will be returned.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.DataModel.Collections.CodingSchemeRenderingList - List of Code Systems
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Sample Call:
+      </th>
+      <td>
+        <ul>
+          <li>
+            Step 1: Instantiate CodeSystemQueryOperation if it is not done yet:
+
+
+            org.lexevs.cts2.query.CodeSystemQueryOperation csQueryOp = new org.lexevs.cts2.LexEvsCTS2Impl().getQueryOperation().getCodeSystemQueryOperation();
+          </li>
+          <li>
+            Step 2a: To get all the code systems:
+
+
+            org.LexGrid.LexBIG.DataModel.Collections.CodingSchemeRenderingList csrList = csQuery..listCodeSystems(new CodingSchemeSummary());
+          </li>
+          <li>
+            Step 2b: To restrict to code system URI:
+
+
+            CodingSchemeSummary() queryByExample = new CodingSchemeSummary();
+            queryByExample.setCodingSchemeURI(&#34;urn:oid:cts:1.1.1&#34;);
+            org.LexGrid.LexBIG.DataModel.Collections.CodingSchemeRenderingList csrList= query.listCodeSystems(queryByExample);
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h3 id="LexEVS6.0CTS2Query2CodeSystemQueryOperationAPI-getCodeSystemDetails">
+  getCodeSystemDetails
+</h3>
+This function provides the ability to retrieve detailed code system.
+
+getCodeSystemDetails(String codingSchemeName, CodingSchemeVersionOrTag versionOrTag)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Return a detailed codingScheme according to provided codingName and versionOrTag
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        <ul>
+          <li>
+            java.lang.String codingSchemeName - (Mandatory) Name of the code system.
+          </li>
+          <li>
+            org.LexGrid.LexBIG.DataModel.Core.CodingSchemeVersionOrTag versionOrTag - (Optional) Version or tag (like &#39;dev&#39;, &#39;production&#39; etc) of the code system.
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        org.LexGrid.codingSchemes.CodingScheme - detailed Code System
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Sample Call:
+      </th>
+      <td>
+        <ul>
+          <li>
+            Step 1: Instantiate CodeSystemQueryOperation if it is not done yet:
+
+
+            org.lexevs.cts2.query.CodeSystemQueryOperation csQueryOp = new org.lexevs.cts2.LexEvsCTS2Impl().getQueryOperation().getCodeSystemQueryOperation();
+          </li>
+          <li>
+            Step 2: Populate CodeSystemVersionOrTag object:
+
+
+            CodingSchemeVersionOrTag versionOrTag = new CodingSchemeVersionOrTag();
+
+            versionOrTag.setVersion(&#34;1.0&#34;);
+          </li>
+          <li>
+            Step 3: Call getCodeSystemDetails method to get detailed code system:
+
+
+            CodingScheme result = query.getCodeSystemDetails(&#34;Automobiles&#34;, versionOrTag);
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h3 id="LexEVS6.0CTS2Query2CodeSystemQueryOperationAPI-listCodeSystemConcepts">
+  listCodeSystemConcepts
+</h3>
+This function provides the ability to list concepts in specific code system.
+
+listCodeSystemConcepts(String codingSchemeName, CodingSchemeVersionOrTag versionOrTag, LocalNameList entityTypes, SortOptionList sortOptionList)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        List the concepts in a specific codingSystem
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        <ul>
+          <li>
+            java.lang.String codingSchemeName - (Mandatory) Name of the code system.
+          </li>
+          <li>
+            org.LexGrid.LexBIG.DataModel.Core.CodingSchemeVersionOrTag versionOrTag - (Optional) Version or tag (like &#39;dev&#39;, &#39;production&#39; etc) of the code system.
+          </li>
+          <li>
+            org.LexGrid.LexBIG.DataModel.Collections.LocalNameList entityTypes - (Optional) List of entity types to restrict. Ex. &#39;concept&#39;, instance&#39; etc.
+          </li>
+          <li>
+            org.LexGrid.LexBIG.DataModel.Collections.SortOptionList sortOptionList - (Optional) Sort option to apply on the returned list.
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Utility.Iterators.ResolvedConceptReferencesIterator - An iterator for resolved concepts list
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Sample Call:
+      </th>
+      <td>
+        <ul>
+          <li>
+            Step 1: Instantiate CodeSystemQueryOperation if it is not done yet:
+
+
+            org.lexevs.cts2.query.CodeSystemQueryOperation csQueryOp = new org.lexevs.cts2.LexEvsCTS2Impl().getQueryOperation().getCodeSystemQueryOperation();
+          </li>
+          <li>
+            Step 2: Populate CodeSystemVersionOrTag object:
+
+
+            CodingSchemeVersionOrTag versionOrTag = new CodingSchemeVersionOrTag();
+            versionOrTag.setVersion(&#34;1.0&#34;);
+          </li>
+          <li>
+            Step 3a: Without SortOptions, call listCodeSystemConcepts method to get code system concepts:
+
+
+            ResolvedConceptReferencesIterator conceptIterator = csQueryOp.listCodeSystemConcepts(&#34;Automobiles&#34;, versionOrTag,
+            org.LexGrid.LexBIG.Utility.Constructors.createLocalNameList(org.LexGrid.commonTypes.types.EntityTypes.CONCEPT.toString()), null);
+          </li>
+          <li>
+            Step 3a: With SortOptions, call listCodeSystemConcepts method to get code system concepts:
+
+
+            ResolvedConceptReferencesIterator conceptIterator = csQueryOp.listCodeSystemConcepts(&#34;Automobiles&#34;, versionOrTag,
+            org.LexGrid.LexBIG.Utility.Constructors.createLocalNameList(org.LexGrid.commonTypes.types.EntityTypes.CONCEPT.toString()), Constructors.createSortOptionList(new String[VKC:) ( &#34;code&#34; ), new Boolean(] { new Boolean(true) }));
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h3 id="LexEVS6.0CTS2Query2CodeSystemQueryOperationAPI-getConceptDetails">
+  getConceptDetails
+</h3>
+This function returns details of an entity specified.
+
+getConceptDetails(String codingSchemeName, CodingSchemeVersionOrTag versionOrTag, String code, String namespace)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Return an instance of Entity according the requests.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        <ul>
+          <li>
+            java.lang.String codingSchemeName - (Mandatory) Name of the code system.
+          </li>
+          <li>
+            org.LexGrid.LexBIG.DataModel.Core.CodingSchemeVersionOrTag versionOrTag - (Optional) Version or tag (like &#39;dev&#39;, &#39;production&#39; etc) of the code system.
+          </li>
+          <li>
+            java.lang.String code - (Mandatory) Entity code.
+          </li>
+          <li>
+            java.lang.String namespace - (Optional) Namespace of an entity code.
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        org.LexGrid.concepts.Entity - Detailed Entity object
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Sample Call:
+      </th>
+      <td>
+        <ul>
+          <li>
+            Step 1: Instantiate CodeSystemQueryOperation if it is not done yet:
+
+
+            org.lexevs.cts2.query.CodeSystemQueryOperation csQueryOp = new org.lexevs.cts2.LexEvsCTS2Impl().getQueryOperation().getCodeSystemQueryOperation();
+          </li>
+          <li>
+            Step 2: Populate CodeSystemVersionOrTag object:
+
+
+            CodingSchemeVersionOrTag versionOrTag = new CodingSchemeVersionOrTag();
+            versionOrTag.setVersion(&#34;1.0&#34;);
+          </li>
+          <li>
+            Step 3: Call getConceptDetails method by providing code system version and entity code:
+
+
+            Entity entity = csQueryOp.getConceptDetails(&#34;Automobiles&#34;, versionOrTag, &#34;C0001&#34;, &#34;Automobiles&#34;);
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h3 id="LexEVS6.0CTS2Query2CodeSystemQueryOperationAPI-listAssociationTypes">
+  listAssociationTypes
+</h3>
+This function returns all the supported association types with in the specified code system version.
+
+listAssociationTypes(String codingSchemeName, CodingSchemeVersionOrTag versionOrTag)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        List all the associationTypes in a specific code system.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        java.lang.String codingSchemeName - (Mandatory) Name of the code system.
+        org.LexGrid.LexBIG.DataModel.Core.CodingSchemeVersionOrTag versionOrTag - (Optional) Version or tag (like &#39;dev&#39;, &#39;production&#39; etc) of the code system.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        java.util.List&lt;org.LexGrid.naming.SupportedAssociation&gt; - List of all supported association types in supplied code system version
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Sample Call:
+      </th>
+      <td>
+        <ul>
+          <li>
+            Step 1: Instantiate CodeSystemQueryOperation if it is not done yet:
+
+
+            org.lexevs.cts2.query.CodeSystemQueryOperation csQueryOp = new org.lexevs.cts2.LexEvsCTS2Impl().getQueryOperation().getCodeSystemQueryOperation();
+          </li>
+          <li>
+            Step 2: Populate CodeSystemVersionOrTag object:
+
+
+            CodingSchemeVersionOrTag versionOrTag = new CodingSchemeVersionOrTag();
+            versionOrTag.setVersion(&#34;1.0&#34;);
+          </li>
+          <li>
+            Step 3: Call listAssociationTypes method by providing code system version and entity code:
+
+
+            List&lt;SupportedAssociation&gt; associationList = csQueryOp.listAssociationTypes(&#34;Automobiles&#34;, versionOrTag);
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h3 id="LexEVS6.0CTS2Query2CodeSystemQueryOperationAPI-getAssociationTypeDetails">
+  getAssociationTypeDetails
+</h3>
+This function returns detailed information for a certain association type with in the specified code system version.
+
+getAssociationTypeDetails(String codingSchemeName, CodingSchemeVersionOrTag versionOrTag, String associationName)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Return detailed information for a certain associationType in a specific code system.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        <ul>
+          <li>
+            java.lang.String codingSchemeName - (Mandatory) Name of the code system.
+          </li>
+          <li>
+            org.LexGrid.LexBIG.DataModel.Core.CodingSchemeVersionOrTag versionOrTag - (Optional) Version or tag (like &#39;dev&#39;, &#39;production&#39; etc) of the code system.
+          </li>
+          <li>
+            java.lang.String associationName - (Mandatory) Name of an association
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        org.LexGrid.relations.AssociationEntity - Association type details
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Sample Call:
+      </th>
+      <td>
+        <ul>
+          <li>
+            Step 1: Instantiate CodeSystemQueryOperation if it is not done yet:
+
+
+            org.lexevs.cts2.query.CodeSystemQueryOperation csQueryOp = new org.lexevs.cts2.LexEvsCTS2Impl().getQueryOperation().getCodeSystemQueryOperation();
+          </li>
+          <li>
+            Step 2: Populate CodeSystemVersionOrTag object:
+
+
+            CodingSchemeVersionOrTag versionOrTag = new CodingSchemeVersionOrTag();
+            versionOrTag.setVersion(&#34;1.0&#34;);
+          </li>
+          <li>
+            Step 3: Call getAssociationTypeDetailsmethod by providing code system version and entity code:
+
+
+            AssociationEntity associationEntity = csQueryOp.getAssociationTypeDetails(&#34;Automobiles&#34;, versionOrTag, &#34;uses&#34;);
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>

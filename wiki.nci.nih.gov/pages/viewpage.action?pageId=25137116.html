@@ -1,0 +1,1039 @@
+Contents of this Page
+<ul>
+  <li>
+    <a href="#LexEVS6.0DesignDocumentDetailedDesignAssociations(Mapping)-Requirements" rel="nofollow">
+      Requirements
+    </a>
+    <ul>
+      <li>
+        <a href="#LexEVS6.0DesignDocumentDetailedDesignAssociations(Mapping)-LevelsofMappingImplementationimpliedbycurrentrequirementsfromvariousstakeholders" rel="nofollow">
+          Levels of Mapping Implementation implied by current requirements from various stakeholders
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.0DesignDocumentDetailedDesignAssociations(Mapping)-EvaluationofLevelsofMappingImplementationforCTS2" rel="nofollow">
+          Evaluation of Levels of Mapping Implementation for CTS 2
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#LexEVS6.0DesignDocumentDetailedDesignAssociations(Mapping)-ImplicationsforCTS2MappingImplementation" rel="nofollow">
+      Implications for CTS 2 Mapping Implementation
+    </a>
+    <ul>
+      <li>
+        <a href="#LexEVS6.0DesignDocumentDetailedDesignAssociations(Mapping)-ProposedSolution-ModelChanges" rel="nofollow">
+          Proposed Solution - Model Changes
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.0DesignDocumentDetailedDesignAssociations(Mapping)-ContentRepresentation" rel="nofollow">
+          Content Representation
+        </a>
+        <ul>
+          <li>
+            <a href="#LexEVS6.0DesignDocumentDetailedDesignAssociations(Mapping)-MRSATMappings" rel="nofollow">
+              MRSAT Mappings
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS6.0DesignDocumentDetailedDesignAssociations(Mapping)-MRMAPMappings" rel="nofollow">
+              MRMAP Mappings
+            </a>
+            <ul>
+              <li>
+                <a href="#LexEVS6.0DesignDocumentDetailedDesignAssociations(Mapping)-MRMAPFlattenedOption" rel="nofollow">
+                  MRMAP Flattened Option
+                </a>
+              </li>
+              <li>
+                <a href="#LexEVS6.0DesignDocumentDetailedDesignAssociations(Mapping)-MRMAPExpandedOption" rel="nofollow">
+                  MRMAP Expanded Option
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#LexEVS6.0DesignDocumentDetailedDesignAssociations(Mapping)-ExpressionIssues" rel="nofollow">
+              Expression Issues
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS6.0DesignDocumentDetailedDesignAssociations(Mapping)-SampleMappingXML" rel="nofollow">
+              Sample Mapping XML
+            </a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#LexEVS6.0DesignDocumentDetailedDesignAssociations(Mapping)-AUMLSExample" rel="nofollow">
+      A UMLS Example
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.0DesignDocumentDetailedDesignAssociations(Mapping)-SummaryofMappingImplementationforLexEVS6.0andCTS2" rel="nofollow">
+      Summary of Mapping Implementation for LexEVS 6.0 and CTS 2
+    </a>
+  </li>
+</ul>
+Document Information
+Author: Craig Stancl, Harold Solbrig, Scott Bauer
+Email: stancl.craig@mayo.edu, solbrig.harold@mayo.edu, bauer.scott@mayo.edu
+Team: LexEVS
+Contract: CBITT BOA Subcontract# 29XS223
+Client: NCI CBIIT
+National Institutes of Heath
+US Department of Health and Human Services
+
+
+Revision History
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Version
+      </th>
+      <th>
+        Date
+      </th>
+      <th>
+        Description of Changes
+      </th>
+      <th>
+        Author
+      </th>
+    </tr>
+    <tr>
+      <td>
+        1.0
+      </td>
+      <td>
+        5/14/10
+      </td>
+      <td>
+        Initial Version Approved via Design Review
+      </td>
+      <td>
+        Team
+      </td>
+    </tr>
+  </tbody>
+</table>
+Associations and Mapping
+<img alt="diagram of associations and mapping" height="767" width="799" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%206.0%20Design%20Document%20-%20Detailed%20Design%20-%20Associations%20(Mapping)/Arch_sol_Association_mapping.png?api=v2">
+<h2 id="LexEVS6.0DesignDocumentDetailedDesignAssociations(Mapping)-Requirements">
+  Requirements
+</h2>
+<h3 id="LexEVS6.0DesignDocumentDetailedDesignAssociations(Mapping)-LevelsofMappingImplementationimpliedbycurrentrequirementsfromvariousstakeholders">
+  Levels of Mapping Implementation implied by current requirements from various stakeholders
+</h3>
+There are multiple levels at which mapping, as evaluated here, could be considered to be &#34;supported&#34;:
+<ol>
+  <li>
+    The ability to store map sets, look up map sets by id, from, to and other attributes and to look up entries by source, target and/or relationship. We would have to store all of the additional information such as options, rules, categories, advice, etc, but it would be up to external software to interpret and evaluate the contents.
+  </li>
+  <li>
+    Everything in option 1) above plus the ability to query additional fields - give me an ordered, structured list of a mapping entry in a way that someone could write a standard interpreter to evaluate it - this would basically require the addition of a model and would most likely cause us to split from the existing relations model, as it gets into the domain of table driven rule sets.
+  </li>
+</ol>
+<ol>
+  <li>
+    Everything in 1) and, possibly 2) with the added ability to actually interpret the rules - an API that answers questions such as &#34;What information is needed to map 231754000 (poisoning by sodium valproate) correctly?&#34; (answer - whether barbituates, sulfonamides were present, whether combined with various substances, etc). &#34;What does 231754000 in the presence of ... map to?
+  </li>
+</ol>
+<h3 id="LexEVS6.0DesignDocumentDetailedDesignAssociations(Mapping)-EvaluationofLevelsofMappingImplementationforCTS2">
+  Evaluation of Levels of Mapping Implementation for CTS 2
+</h3>
+For LexEVS 6.0 (CTS 2), (3) is out of scope. This is the function of a rules engine and the complexities of even the supplied examples are overwhelming. An examination of the DSS RFP may be in order to see whether there is anything there that applies. It appears that (2) is out of scope as well, as, whether the semantics of the rules are interpreted or not, the structure required to represent the rules still lies well within the rule base and DSS space. The question is, then, whether item (1) adds sufficient value to be worth doing. Our proposal is that it is not.
+
+Since trying to fit all of the various aspects of the mapping rules that have been seen to date into the nooks and crannies of the LexGrid mapping model seems to be an exercise with little return. What is needed is to return to the set of use cases, if any, that LexEVS could reasonably resolve. As there are simpler use cases, such as those presented by various stakeholders, these use cases will need to be resolved, and if it would be useful, answer the same questions for complex mappings. Once consideration of these issues gets to the point of determining what participates in a particular map the implementation appears to be getting out of our scope - the best that might be done is supply the associationId that could be used as an index into another table.
+<h2 id="LexEVS6.0DesignDocumentDetailedDesignAssociations(Mapping)-ImplicationsforCTS2MappingImplementation">
+  Implications for CTS 2 Mapping Implementation
+</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        CTS 2 Function
+      </th>
+      <th>
+        Description
+      </th>
+      <th>
+        Scope
+      </th>
+    </tr>
+    <tr>
+      <td>
+        Update Association Status
+      </td>
+      <td>
+        Update the status of a association (active, inactive, canceled etc).  This allows the ability to activate or inactivate a given association,  thus changing its availability for access by other terminology service  functions
+      </td>
+      <td>
+        In scope for authoring API
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Create Association
+      </td>
+      <td>
+        Relates a single specific coded concept within a specified code system  (source) to a corresponding single specific coded concept (target)  within the same or another code system, including identification of a  specified Association type.
+      </td>
+      <td>
+        In scope for authoring. Querying already supported
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Create Lexical Association between Coded Concepts
+      </td>
+      <td>
+        Relates a set of one or more coded concepts within a specified code  system (source)to a corresponding set of one or more coded concepts  (target) within that system or another code system using a set of  lexical rules (matching algorithms) to generate the Association. The  &#34;Source Search Criteria&#34; allows for identification of a subset of the  Source Code System to apply the matching algorithm to, if required (this  may include limiting the version of the code system).
+      </td>
+      <td>
+        Not in scope for CTS 2
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Create Rules Based Association between Coded Concepts
+      </td>
+      <td>
+        Relates a set of zero or more coded concepts within a specified code  system (source)to a corresponding set of zero or more coded concepts  (target) within that system or another code system using a set of  description logic or inference rules that either assert or infer  Associations. The &#34;Source Search Criteria&#34; allows for identification of a  subset of the Source Code System to apply the matching algorithm too,  if required (this may include limiting the version of the code system).
+      </td>
+      <td>
+        Not in scope for CTS 2
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h3 id="LexEVS6.0DesignDocumentDetailedDesignAssociations(Mapping)-ProposedSolution-ModelChanges">
+  Proposed Solution - Model Changes
+</h3>
+<img alt="diagram of model changes" height="588" width="987" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%206.0%20Design%20Document%20-%20Detailed%20Design%20-%20Associations%20(Mapping)/Model_changes_mapping_1.PNG?api=v2">
+The relations attribute in the model will have the following elements and attributes added:
+<ul>
+  <li>
+    representsVersion - if present, the source asserted version of the collection of relations or mappings
+  </li>
+  <li>
+    isMapping - if true, this collection of relations represents a mapping and will be evaluated for &#34;mapping&#34; related queries.
+  </li>
+  <li>
+    sourceCodingScheme - if present, the local identifier of the namespace that the sourcEntityCodes are derived from.
+  </li>
+  <li>
+     sourceCodingSchemeVersion - the source asserted version identifier of the source coding scheme.  If present, this becomes the default for sourceEntityCodeNamespace.
+  </li>
+  <li>
+    targetCodingScheme - if present, the local identifier of the namespace that the targetEntityCodes are derived from. If present, this becomes the default for targetEntityCodeNamespace.
+  </li>
+  <li>
+    targetCodingSchemeVersion - the source asserted version identifier of the target coding scheme
+  </li>
+  <li>
+    properties - all other properties on the &#34;relations bucket&#34; level that don&#39;t fit one of the items in the Relations container
+  </li>
+</ul>
+<img alt="diagram of model changes mapping" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%206.0%20Design%20Document%20-%20Detailed%20Design%20-%20Associations%20(Mapping)/Model_changes_mapping_2.PNG?api=v2">
+There are no additional changes for the second part of the model, shown above.
+<h3 id="LexEVS6.0DesignDocumentDetailedDesignAssociations(Mapping)-ContentRepresentation">
+  Content Representation
+</h3>
+<h4 id="LexEVS6.0DesignDocumentDetailedDesignAssociations(Mapping)-MRSATMappings">
+  MRSAT Mappings
+</h4>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        MRSAT Column
+      </th>
+      <th>
+        Function
+      </th>
+      <th>
+        LexGrid Equivalent
+      </th>
+    </tr>
+    <tr>
+      <td>
+        MAPSETVERSION
+      </td>
+      <td></td>
+      <td>
+        Relations.representsVersion
+      </td>
+    </tr>
+    <tr>
+      <td>
+        FROMVSAB
+      </td>
+      <td>
+        The from code system version
+      </td>
+      <td>
+        Relations.fromCodingSchemeVersion
+      </td>
+    </tr>
+    <tr>
+      <td>
+        FROMRSAB
+      </td>
+      <td>
+        The from code system
+      </td>
+      <td>
+        Relations.FromCodingScheme
+      </td>
+    </tr>
+    <tr>
+      <td>
+        TOVSAB
+      </td>
+      <td>
+        The to code system version
+      </td>
+      <td>
+        Relations.toCodingSchemeVersion
+      </td>
+    </tr>
+    <tr>
+      <td>
+        TORSAB
+      </td>
+      <td>
+        The to code system
+      </td>
+      <td>
+        Relations.toCodingScheme
+      </td>
+    </tr>
+    <tr>
+      <td>
+        MAPSETRSAB
+      </td>
+      <td>
+        Source of the value set
+      </td>
+      <td>
+        Relations.owner
+      </td>
+    </tr>
+    <tr>
+      <td>
+        (anything else)
+      </td>
+      <td></td>
+      <td>
+        Relations.property[EVS:key]
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h4 id="LexEVS6.0DesignDocumentDetailedDesignAssociations(Mapping)-MRMAPMappings">
+  MRMAP Mappings
+</h4>
+There are at least two possibilities for the MRMAP transformations into LexGrid. The first, the &#34;flattened transformation&#34; puts the entire MRMAP row into the table.
+<h5 id="LexEVS6.0DesignDocumentDetailedDesignAssociations(Mapping)-MRMAPFlattenedOption">
+  MRMAP Flattened Option
+</h5>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        MRMAP Column
+      </th>
+      <th>
+        Function
+      </th>
+      <th>
+        LexGrid Equivalent
+      </th>
+    </tr>
+    <tr>
+      <td>
+        MAPSETCUI
+      </td>
+      <td></td>
+      <td>
+        Relations.containerName
+      </td>
+    </tr>
+    <tr>
+      <td>
+        MAPID
+      </td>
+      <td>
+        Row identifier
+      </td>
+      <td>
+        Target.associationInstanceId
+      </td>
+    </tr>
+    <tr>
+      <td>
+        FROMEXPR
+      </td>
+      <td>
+        Source code or expression
+      </td>
+      <td>
+        Source.sourceEntityCode
+      </td>
+    </tr>
+    <tr>
+      <td>
+        REL
+      </td>
+      <td>
+        UMLS asserted relationship
+      </td>
+      <td>
+        associationPredicate (if RELA absent)
+      </td>
+    </tr>
+    <tr>
+      <td>
+        RELA
+      </td>
+      <td>
+        Source asserted relationship
+      </td>
+      <td>
+        associationPredicate(if not blank)
+      </td>
+    </tr>
+    <tr>
+      <td>
+        TOEXPR
+      </td>
+      <td>
+        Target code or expression
+      </td>
+      <td>
+        Target.targetEntityCode (if code)  TargetData.associationDataText (else)
+      </td>
+    </tr>
+    <tr>
+      <td>
+        TOTYPE
+      </td>
+      <td>
+        Type of the data
+      </td>
+      <td>
+        targetData.associationDataText.dataType (if target is not code)
+      </td>
+    </tr>
+    <tr>
+      <td>
+        (entire MRMAP row
+      </td>
+      <td></td>
+      <td>
+        Target(Data).associationQualification[EVS:MRMAP entry]
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h5 id="LexEVS6.0DesignDocumentDetailedDesignAssociations(Mapping)-MRMAPExpandedOption">
+  MRMAP Expanded Option
+</h5>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        MRMAP Column
+      </th>
+      <th>
+        Function
+      </th>
+      <th>
+        LexGrid Equivalent
+      </th>
+    </tr>
+    <tr>
+      <td>
+        MAPSETCUI
+      </td>
+      <td></td>
+      <td>
+        Relations.containerName
+      </td>
+    </tr>
+    <tr>
+      <td>
+        MAPID
+      </td>
+      <td>
+        Row identifier
+      </td>
+      <td>
+        Target.associationInstanceId
+      </td>
+    </tr>
+    <tr>
+      <td>
+        FROMEXPR
+      </td>
+      <td>
+        Source code or expression
+      </td>
+      <td>
+        Source.sourceEntityCode
+      </td>
+    </tr>
+    <tr>
+      <td>
+        REL
+      </td>
+      <td>
+        UMLS asserted relationship
+      </td>
+      <td>
+        associationPredicate (if RELA absent)
+      </td>
+    </tr>
+    <tr>
+      <td>
+        RELA
+      </td>
+      <td>
+        Source asserted relationship
+      </td>
+      <td>
+        associationPredicate(if not blank)
+      </td>
+    </tr>
+    <tr>
+      <td>
+        TOEXPR
+      </td>
+      <td>
+        Target code or expression
+      </td>
+      <td>
+        Target.targetEntityCode (if code)  TargetData.associationDataText (else)
+      </td>
+    </tr>
+    <tr>
+      <td>
+        TOTYPE
+      </td>
+      <td>
+        Type of the data
+      </td>
+      <td>
+        targetData.associationDataText.dataType (if target is not code)
+      </td>
+    </tr>
+    <tr>
+      <td>
+        (anything else)
+      </td>
+      <td></td>
+      <td>
+        Target(Data).associationQualification[EVS:associationQualifier]
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h4 id="LexEVS6.0DesignDocumentDetailedDesignAssociations(Mapping)-ExpressionIssues">
+  Expression Issues
+</h4>
+One of the requirements for mapping has been the ability to discover what maps a given entity (may) participate in. This will not be completely answerable in situations where the codes are carried in text expressions. One alternativ would be to parse the target expression when possible and to create multiple rows, one for each target. Besides the parsing complexity, however, the other issue is that it is not possible to record the expression operators (AND, OR, ...) in the expansion. This, however, would arguably be the best use of the mappings for this level of complexity.
+<h4 id="LexEVS6.0DesignDocumentDetailedDesignAssociations(Mapping)-SampleMappingXML">
+  Sample Mapping XML
+</h4>
+&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34; ?&gt;
+- &lt;codingScheme xmlns:xsi=&#34;http://www.w3.org/2001/XMLSchema-instance&#34; xsi:schemaLocation=&#34;http://LexGrid.org/schema/2010/01/LexGrid/codingSchemes file:/C:/devel/v6/lexgrid_model/lgModel/master/relations.xsd&#34; xmlns=&#34;http://LexGrid.org/schema/2010/01/LexGrid/codingSchemes&#34; xmlns:lgBuiltin=&#34;http://LexGrid.org/schema/2010/01/LexGrid/builtins&#34; xmlns:lgCS=&#34;http://LexGrid.org/schema/2010/01/LexGrid/codingSchemes&#34; xmlns:lgCon=&#34;http://LexGrid.org/schema/2010/01/LexGrid/concepts&#34; xmlns:lgCommon=&#34;http://LexGrid.org/schema/2010/01/LexGrid/commonTypes&#34; codingSchemeName=&#34;UMLS&#34; codingSchemeURI=&#34;urn:oid:2.16.840.1.113883.6.2&#34; representsVersion=&#34;http://SharedNames.org/ontology/umls/2009AB&#34;&gt;
+&lt;mappings /&gt;
+- &lt;!--  MRSAT entry
+C1306694|L8923988|S11111536|A17029750|CODE|1000|AT115321814||MAPSETVERSION|MTH|2010_2009_08_17|N||
+C1306694|L8923988|S11111536|A17029750|CODE|1000|AT115321815||TOVSAB|MTH|MSH2010_2009_08_17|N||
+C1306694|L8923988|S11111536|A17029750|CODE|1000|AT37361323||FROMRSAB|MTH|MTH|N||
+C1306694|L8923988|S11111536|A17029750|CODE|1000|AT37361327||FROMVSAB|MTH|MTH|N||
+C1306694|L8923988|S11111536|A17029750|CODE|1000|AT37361343||MAPSETGRAMMAR|MTH|ATX ::= expr; expr ::= disj; disj ::= conj , conj &#34;OR&#34; conj; conj ::= unary , unary &#34;AND&#34; unary; unary ::= neg , pos; neg ::= &#34;NOT&#34; pos; pos ::= &#34;(&#34; expr &#34;)&#34; , slash , atom; slash ::= atom , atom &#34;/&#34; atom; atom ::= &#34;&lt;&#34; (any non &#34;&gt;&#34; character) &#34;&gt;&#34;;|N||
+C1306694|L8923988|S11111536|A17029750|CODE|1000|AT37361355||MAPSETRSAB|MTH|MTH|N||
+C1306694|L8923988|S11111536|A17029750|CODE|1000|AT37361364||MAPSETTYPE|MTH|ATX|N||
+C1306694|L8923988|S11111536|A17029750|CODE|1000|AT37361368||MAPSETVSAB|MTH|MTH|N||
+C1306694|L8923988|S11111536|A17029750|CODE|1000|AT37408395||TORSAB|MTH|MSH|N||
+C1306694|L8923988|S11111536|A17029750|CODE|1000|AT37424062||SOS|MTH|This map set contains mappings from Metathesaurus CUIs to MSH associated expressions.|N||
+C1306694|L8923988|S11111536|A17029750|CODE|1000|AT56870375||MTH_MAPFROMEXHAUSTIVE|MTH|N|N||
+C1306694|L8923988|S11111536|A17029750|CODE|1000|AT56870378||MTH_MAPSETCOMPLEXITY|MTH|ONE_TO_ONE|N||
+C1306694|L8923988|S11111536|A17029750|CODE|1000|AT56870384||MTH_MAPTOEXHAUSTIVE|MTH|N|N||
+C1306694|L8923988|S11111536|A17029750|CODE|1000|AT65576316||MTH_MAPFROMCOMPLEXITY|MTH|SINGLE CUI|N||
+C1306694|L8923988|S11111536|A17029750|CODE|1000|AT65576317||MTH_MAPTOCOMPLEXITY|MTH|BOOLEAN_EXPRESSION STR|N||
+C1306694|L8923988|S11111536|A17029750|CODE|1000|AT67813929||MAPSETSID|MTH|1000|N||
+C1306694||||CUI||AT116199817||MR|MTH|20090921|N||
+C1306694||||CUI||AT31823722||DA|MTH|20040415|N||
+C1306694||||CUI||AT31952620||ST|MTH|R|N||
+--&gt;
+- &lt;!--  OPTION 1: Everything flattened
+--&gt;
+- &lt;lgCS:relations containerName=&#34;C1306694&#34; isMapping=&#34;true&#34; sourceCodingScheme=&#34;MTH&#34; sourceCodingSchemeVersion=&#34;MTH&#34; targetCodingScheme=&#34;MSH&#34; targetCodingSchemeVersion=&#34;MSH2010_2009_08_17&#34; representsVersion=&#34;2010_2009_08_17&#34; xmlns=&#34;http://LexGrid.org/schema/2010/01/LexGrid/relations&#34;&gt;
+- &lt;!--  This should be MAPSETNAME but, curiously, it is missing from the MRSAT list. We are assuming that &#34;SOS&#34; is the equivalent
+--&gt;
+&lt;lgCommon:entityDescription&gt;This map set contains mappings from Metathesaurus CUIs to MSH associated expressions.&lt;/lgCommon:entityDescription&gt;
+- &lt;properties&gt;
+- &lt;lgCommon:property propertyName=&#34;MAPSETGRAMMER&#34;&gt;
+&lt;lgCommon:value&gt;ATX ::= expr; expr ::= disj; disj ::= conj , conj &#34;OR&#34; conj; conj ::= unary , unary &#34;AND&#34; unary; unary ::= neg , pos; neg ::= &#34;NOT&#34; pos; pos ::= &#34;(&#34; expr &#34;)&#34; , slash , atom; slash ::= atom , atom &#34;/&#34; atom; atom ::= &#34;&gt;&#34; (any non &#34;&gt;&#34; character) &#34;&gt;&#34;;&lt;/lgCommon:value&gt;
+&lt;/lgCommon:property&gt;
+- &lt;lgCommon:property propertyName=&#34;MAPSETRSAB&#34;&gt;
+&lt;lgCommon:value&gt;MTH&lt;/lgCommon:value&gt;
+&lt;/lgCommon:property&gt;
+- &lt;lgCommon:property propertyName=&#34;MAPSETTYPE&#34;&gt;
+&lt;lgCommon:value&gt;ATX&lt;/lgCommon:value&gt;
+&lt;/lgCommon:property&gt;
+- &lt;lgCommon:property propertyName=&#34;MAPSETVSAB&#34;&gt;
+&lt;lgCommon:value&gt;MTH&lt;/lgCommon:value&gt;
+&lt;/lgCommon:property&gt;
+- &lt;lgCommon:property propertyName=&#34;MTH_MAPFROMEXHAUSTIVE&#34;&gt;
+&lt;lgCommon:value&gt;MTH&lt;/lgCommon:value&gt;
+&lt;/lgCommon:property&gt;
+- &lt;lgCommon:property propertyName=&#34;MTH_MAPSETCOMPLEXITY&#34;&gt;
+&lt;lgCommon:value&gt;MTH&lt;/lgCommon:value&gt;
+&lt;/lgCommon:property&gt;
+- &lt;lgCommon:property propertyName=&#34;MTH_MAPTOEXHAUSTIVE&#34;&gt;
+&lt;lgCommon:value&gt;MTH&lt;/lgCommon:value&gt;
+&lt;/lgCommon:property&gt;
+- &lt;lgCommon:property propertyName=&#34;MTH_MAPFROMCOMPLEXITY&#34;&gt;
+&lt;lgCommon:value&gt;MTH&lt;/lgCommon:value&gt;
+&lt;/lgCommon:property&gt;
+- &lt;lgCommon:property propertyName=&#34;MTH_MAPTOCOMPLEXITY&#34;&gt;
+&lt;lgCommon:value&gt;MTH&lt;/lgCommon:value&gt;
+&lt;/lgCommon:property&gt;
+- &lt;lgCommon:property propertyName=&#34;MR&#34;&gt;
+&lt;lgCommon:value&gt;20090921&lt;/lgCommon:value&gt;
+&lt;/lgCommon:property&gt;
+- &lt;lgCommon:property propertyName=&#34;DA&#34;&gt;
+&lt;lgCommon:value&gt;20040415&lt;/lgCommon:value&gt;
+&lt;/lgCommon:property&gt;
+- &lt;lgCommon:property propertyName=&#34;ST&#34;&gt;
+&lt;lgCommon:value&gt;R&lt;/lgCommon:value&gt;
+&lt;/lgCommon:property&gt;
+&lt;/properties&gt;
+- &lt;!--  MAPSETCUI|MAPSAB|MAPSUBSETID|MAPRANK|MAPID      |MAPSID|FROMID  |FROMSID|FROMEXPR|FROMTYPE|FROMRULE|FROMRES|REL|RELA
+C1306694 |MTH   |           |       |AT102971857|      |C0264643|       |C0264643|CUI     |        |       |SY |
+|TOID|TOSID|TOEXPR                                                    |TOTYPE                |TORULE|TORES|MAPRULE|MAPRES|MAPTYPE|MAPATN|MAPATV
+|3026|     |&lt;Hypertension, Renovascular&gt; AND &lt;Hypertension, Malignant&gt;|BOOLEAN_EXPRESSION_STR|      |     |       |      |ATX    |      |      ||
+--&gt;
+- &lt;associationPredicate associationName=&#34;SY&#34;&gt;
+- &lt;!--  MRMAP Option 1 - Expand each non-semantic MRMAP entry
+--&gt;
+- &lt;source sourceEntityCode=&#34;C0264643&#34;&gt;
+- &lt;targetData associationInstanceId=&#34;AT102971857&#34;&gt;
+- &lt;associationQualification associationQualifier=&#34;FROMTYPE&#34;&gt;
+&lt;qualifierText&gt;CUI&lt;/qualifierText&gt;
+&lt;/associationQualification&gt;
+- &lt;associationQualification associationQualifier=&#34;FROMID&#34;&gt;
+&lt;qualifierText&gt;C0264643&lt;/qualifierText&gt;
+&lt;/associationQualification&gt;
+- &lt;associationQualification associationQualifier=&#34;TOTYPE&#34;&gt;
+&lt;qualifierText&gt;BOOLEAN_EXPRESSION_STR&lt;/qualifierText&gt;
+&lt;/associationQualification&gt;
+- &lt;associationQualification associationQualifier=&#34;TOID&#34;&gt;
+&lt;qualifierText&gt;3026&lt;/qualifierText&gt;
+&lt;/associationQualification&gt;
+- &lt;associationQualification associationQualifier=&#34;MAPTYPE&#34;&gt;
+&lt;qualifierText&gt;ATX&lt;/qualifierText&gt;
+&lt;/associationQualification&gt;
+&lt;associationDataText dataType=&#34;BOOLEAN_EXPRESSION_STR&#34;&gt;&gt;Hypertension, Renovascular&gt; AND &gt;Hypertension, Malignant&gt;&lt;/associationDataText&gt;
+&lt;/targetData&gt;
+&lt;/source&gt;
+- &lt;!--  MRMAP Option 2 - Keep MRMAP entry as it is
+--&gt;
+- &lt;source sourceEntityCode=&#34;C0264643&#34;&gt;
+- &lt;targetData associationInstanceId=&#34;AT102971857&#34;&gt;
+- &lt;associationQualification associationQualifier=&#34;MRMAP Entry&#34;&gt;
+&lt;qualifierText&gt;C1306694|MTH|||AT102971857||C0264643||C0264643|CUI|||SY||3026||&gt;Hypertension, Renovascular&gt; AND &gt;Hypertension, Malignant&gt;|BOOLEAN_EXPRESSION_STR|||||ATX||||&lt;/qualifierText&gt;
+&lt;/associationQualification&gt;
+&lt;associationDataText dataType=&#34;BOOLEAN_EXPRESSION_STR&#34;&gt;&gt;Hypertension, Renovascular&gt; AND &gt;Hypertension, Malignant&gt;&lt;/associationDataText&gt;
+&lt;/targetData&gt;
+&lt;/source&gt;
+- &lt;!--  TARGET Option 2 - Semantic interpretation of the target entry
+--&gt;
+- &lt;!--  NOTE That this loses the operators, but (assuming that the target entries were codes), would maintain the participation
+--&gt;
+- &lt;source sourceEntityCode=&#34;C0264643&#34;&gt;
+- &lt;target targetEntityCode=&#34;Hyptertension, Renovascular&#34; associationInstanceId=&#34;AT102971857.1&#34;&gt;
+- &lt;associationQualification associationQualifier=&#34;MRMAP Entry&#34;&gt;
+&lt;qualifierText&gt;C1306694|MTH|||AT102971857||C0264643||C0264643|CUI|||SY||3026||&gt;Hypertension, Renovascular&gt; AND &gt;Hypertension, Malignant&gt;|BOOLEAN_EXPRESSION_STR|||||ATX||||&lt;/qualifierText&gt;
+&lt;/associationQualification&gt;
+&lt;/target&gt;
+- &lt;target targetEntityCode=&#34;Hypertension, Malignant&#34; associationInstanceId=&#34;AT102971857.2&#34;&gt;
+- &lt;associationQualification associationQualifier=&#34;MRMAP Entry&#34;&gt;
+&lt;qualifierText&gt;C1306694|MTH|||AT102971857||C0264643||C0264643|CUI|||SY||3026||&gt;Hypertension, Renovascular&gt; AND &gt;Hypertension, Malignant&gt;|BOOLEAN_EXPRESSION_STR|||||ATX||||&lt;/qualifierText&gt;
+&lt;/associationQualification&gt;
+&lt;/target&gt;
+&lt;/source&gt;
+&lt;/associationPredicate&gt;
+&lt;/lgCS:relations&gt;
+- &lt;!--
+C2242749|L8609359|S10707041|A16492852|CODE|MTHU000002|AT110721471||FROMVSAB|MDR|MDR12_0|N||
+C2242749|L8609359|S10707041|A16492852|CODE|MTHU000002|AT110721473||MAPSETVERSION|MDR|200903|N||
+C2242749|L8609359|S10707041|A16492852|CODE|MTHU000002|AT110721475||MAPSETVSAB|MDR|MDR12_0|N||
+C2242749|L8609359|S10707041|A16492852|CODE|MTHU000002|AT90562335||FROMRSAB|MDR|MDR|N||
+C2242749|L8609359|S10707041|A16492852|CODE|MTHU000002|AT90562339||MAPSETRSAB|MDR|MDR|N||
+C2242749|L8609359|S10707041|A16492852|CODE|MTHU000002|AT90562341||MAPSETTYPE|MDR|MedDRA to ICD9CM Mappings|N||
+C2242749|L8609359|S10707041|A16492852|CODE|MTHU000002|AT90580448||MTH_MAPFROMCOMPLEXITY|MDR|SINGLE CODE|N||
+C2242749|L8609359|S10707041|A16492852|CODE|MTHU000002|AT90580450||MTH_MAPFROMEXHAUSTIVE|MDR|N|N||
+C2242749|L8609359|S10707041|A16492852|CODE|MTHU000002|AT90580452||MTH_MAPSETCOMPLEXITY|MDR|ONE_TO_ONE|N||
+C2242749|L8609359|S10707041|A16492852|CODE|MTHU000002|AT90580454||MTH_MAPTOCOMPLEXITY|MDR|SINGLE CODE|N||
+C2242749|L8609359|S10707041|A16492852|CODE|MTHU000002|AT90580456||MTH_MAPTOEXHAUSTIVE|MDR|N|N||
+C2242749|L8609359|S10707041|A16492852|CODE|MTHU000002|AT91157709||TORSAB|MDR|ICD9CM|N||
+C2242749|L8609359|S10707041|A16492852|CODE|MTHU000002|AT91157711||TOVSAB|MDR|ICD9CM_1998|N||
+C2242749||||CUI||AT101551784||DA|MTH|20081103|N||
+C2242749||||CUI||AT102850765||ST|MTH|R|N||
+C2242749||||CUI||AT116202416||MR|MTH|20090926|N||
+
+--&gt;
+- &lt;!--  Should this be the code or &#34;MTHU000002&#34;?
+--&gt;
+- &lt;lgCS:relations containerName=&#34;C2242749&#34; sourceCodingScheme=&#34;MDR&#34; sourceCodingSchemeVersion=&#34;MDR12_0&#34; targetCodingScheme=&#34;ICD9CM&#34; targetCodingSchemeVersion=&#34;ICD9CM_1998&#34; representsVersion=&#34;200903&#34; xmlns=&#34;http://LexGrid.org/schema/2010/01/LexGrid/relations&#34;&gt;
+&lt;lgCommon:owner&gt;MDR&lt;/lgCommon:owner&gt;
+- &lt;!--  This should be MAPSETNAME but, curiously, it is missing from the MRSAT list
+--&gt;
+&lt;lgCommon:entityDescription&gt;This map set contains mappings from Metathesaurus CUIs to MSH associated expressions.&lt;/lgCommon:entityDescription&gt;
+- &lt;properties&gt;
+- &lt;lgCommon:property propertyName=&#34;MAPSETTYPE&#34;&gt;
+&lt;lgCommon:value&gt;MedDRA to ICD9CM Mappings&lt;/lgCommon:value&gt;
+&lt;/lgCommon:property&gt;
+- &lt;lgCommon:property propertyName=&#34;MTH_MAPFROMCOMPLEXITY&#34;&gt;
+&lt;lgCommon:value&gt;SINGLE CODE&lt;/lgCommon:value&gt;
+&lt;/lgCommon:property&gt;
+- &lt;lgCommon:property propertyName=&#34;MTH_MAPFROMEXHAUSTIVE&#34;&gt;
+&lt;lgCommon:value&gt;N&lt;/lgCommon:value&gt;
+&lt;/lgCommon:property&gt;
+- &lt;lgCommon:property propertyName=&#34;MTH_MAPSETCOMPLEXITY&#34;&gt;
+&lt;lgCommon:value&gt;ONE_TO_ONE&lt;/lgCommon:value&gt;
+&lt;/lgCommon:property&gt;
+- &lt;lgCommon:property propertyName=&#34;MTH_MAPTOCOMPLEXITY&#34;&gt;
+&lt;lgCommon:value&gt;SINGLE CODE&lt;/lgCommon:value&gt;
+&lt;/lgCommon:property&gt;
+- &lt;lgCommon:property propertyName=&#34;MTH_MAPTOEXHAUSTIVE&#34;&gt;
+&lt;lgCommon:value&gt;MedDRA to ICD9CM Mappings&lt;/lgCommon:value&gt;
+&lt;/lgCommon:property&gt;
+- &lt;lgCommon:property propertyName=&#34;MAPSETTYPE&#34;&gt;
+&lt;lgCommon:value&gt;N&lt;/lgCommon:value&gt;
+&lt;/lgCommon:property&gt;
+- &lt;lgCommon:property propertyName=&#34;DA&#34;&gt;
+&lt;lgCommon:value&gt;20081103&lt;/lgCommon:value&gt;
+&lt;/lgCommon:property&gt;
+- &lt;lgCommon:property propertyName=&#34;ST&#34;&gt;
+&lt;lgCommon:value&gt;R&lt;/lgCommon:value&gt;
+&lt;/lgCommon:property&gt;
+- &lt;lgCommon:property propertyName=&#34;MR&#34;&gt;
+&lt;lgCommon:value&gt;20090926&lt;/lgCommon:value&gt;
+&lt;/lgCommon:property&gt;
+&lt;/properties&gt;
+- &lt;!--  MAPSETCUI|MAPSAB|MAPSUBSETID|MAPRANK|MAPID      |MAPSID|FROMID  |FROMSID|FROMEXPR|FROMTYPE|FROMRULE|FROMRES|REL|RELA
+C2242749 |MDR   |           |       |AT91157713 |      |10032725|       |10032725|CODE    |        |       |RQ |mapped_to
+|TOID |TOSID|TOEXPR |TOTYPE                |TORULE|TORES|MAPRULE|MAPRES|MAPTYPE|MAPATN|MAPATV
+|728.7|     |728.7  |CODE                  |||||||||
+--&gt;
+- &lt;associationPredicate associationName=&#34;mapped_to&#34;&gt;
+- &lt;!--  Note that &#34;RQ&#34; gets lost in this approach...
+--&gt;
+- &lt;source sourceEntityCode=&#34;10032725&#34;&gt;
+- &lt;target targetEntityCode=&#34;728.7&#34; associationInstanceId=&#34;AT91157713&#34;&gt;
+- &lt;associationQualification associationQualifier=&#34;FROMTYPE&#34;&gt;
+&lt;qualifierText&gt;CODE&lt;/qualifierText&gt;
+&lt;/associationQualification&gt;
+- &lt;associationQualification associationQualifier=&#34;FROMID&#34;&gt;
+&lt;qualifierText&gt;10032725&lt;/qualifierText&gt;
+&lt;/associationQualification&gt;
+- &lt;associationQualification associationQualifier=&#34;TOID&#34;&gt;
+&lt;qualifierText&gt;728.7&lt;/qualifierText&gt;
+&lt;/associationQualification&gt;
+&lt;/target&gt;
+&lt;/source&gt;
+&lt;/associationPredicate&gt;
+&lt;/lgCS:relations&gt;
+- &lt;!--  C2603385|L8770856|S10872372|A16736317|CODE|MTHU000001|AT106958256||MAPSETRSAB|ICD10PCS|ICD10PCS|N||
+C2603385|L8770856|S10872372|A16736317|CODE|MTHU000001|AT106958265||MTH_MAPFROMCOMPLEXITY|ICD10PCS|SINGLE SDUI|N||
+C2603385|L8770856|S10872372|A16736317|CODE|MTHU000001|AT106958266||MTH_MAPFROMEXHAUSTIVE|ICD10PCS|N|N||
+C2603385|L8770856|S10872372|A16736317|CODE|MTHU000001|AT106958268||MTH_MAPSETCOMPLEXITY|ICD10PCS|N_TO_N|N||
+C2603385|L8770856|S10872372|A16736317|CODE|MTHU000001|AT106958270||MTH_MAPTOEXHAUSTIVE|ICD10PCS|N|N||
+C2603385|L8770856|S10872372|A16736317|CODE|MTHU000001|AT106958273||TORSAB|ICD10PCS|ICD10PCS|N||
+C2603385|L8770856|S10872372|A16736317|CODE|MTHU000001|AT112240306||FROMRSAB|ICD10PCS|ICD9CM|N||
+C2603385|L8770856|S10872372|A16736317|CODE|MTHU000001|AT112240309||FROMVSAB|ICD10PCS|ICD9CM_2009|N||
+C2603385|L8770856|S10872372|A16736317|CODE|MTHU000001|AT112240314||MAPSETTYPE|ICD10PCS|ICD-9-CM to ICD-10-PCS Mappings (GEMs)|N||
+C2603385|L8770856|S10872372|A16736317|CODE|MTHU000001|AT112240316||MAPSETVERSION|ICD10PCS|2009|N||
+C2603385|L8770856|S10872372|A16736317|CODE|MTHU000001|AT112240319||MAPSETVSAB|ICD10PCS|ICD10PCS_2009|N||
+C2603385|L8770856|S10872372|A16736317|CODE|MTHU000001|AT112240322||MAPSETXRTARGETID|ICD10PCS|NoPCS|N||
+C2603385|L8770856|S10872372|A16736317|CODE|MTHU000001|AT112240327||MTH_MAPTOCOMPLEXITY|ICD10PCS|SINGLE SCUI|N||
+C2603385|L8770856|S10872372|A16736317|CODE|MTHU000001|AT112240330||SOS|ICD10PCS|This set maps ICD-9-CM codes to ICD-10-PCS. These are &#34;General Equivalence Mappings&#34; (GEMs) and are rule-based.|N||
+C2603385|L8770856|S10872372|A16736317|CODE|MTHU000001|AT112240336||TOVSAB|ICD10PCS|ICD10PCS_2009|N||
+C2603385||||CUI||AT109499260||DA|MTH|20090401|N||
+C2603385||||CUI||AT110315629||ST|MTH|R|N||
+C2603385||||CUI||AT116202419||MR|MTH|20090926|N||
+--&gt;
+- &lt;lgCS:relations containerName=&#34;C2603385&#34; sourceCodingScheme=&#34;ICD9CM&#34; sourceCodingSchemeVersion=&#34;ICD9CM_2009&#34; targetCodingScheme=&#34;ICD10PCS&#34; targetCodingSchemeVersion=&#34;ICD10PCS_2009&#34; representsVersion=&#34;ICD10PCS_2009&#34; xmlns=&#34;http://LexGrid.org/schema/2010/01/LexGrid/relations&#34;&gt;
+&lt;lgCommon:owner&gt;ICD10PCS&lt;/lgCommon:owner&gt;
+&lt;lgCommon:entityDescription&gt;This set maps ICD-9-CM codes to ICD-10-PCS. These are &#34;General Equivalence Mappings&#34; (GEMs) and are rule-based.&lt;/lgCommon:entityDescription&gt;
+- &lt;properties&gt;
+- &lt;lgCommon:property propertyName=&#34;MTH_MAPFROMCOMPLEXITY&#34;&gt;
+&lt;lgCommon:value&gt;SINGLE SDUI&lt;/lgCommon:value&gt;
+&lt;/lgCommon:property&gt;
+- &lt;lgCommon:property propertyName=&#34;MTH_MAPFROMEXHAUSTIVE&#34;&gt;
+&lt;lgCommon:value&gt;N&lt;/lgCommon:value&gt;
+&lt;/lgCommon:property&gt;
+- &lt;lgCommon:property propertyName=&#34;MTH_MAPSETCOMPLEXITY&#34;&gt;
+&lt;lgCommon:value&gt;N_TO_N&lt;/lgCommon:value&gt;
+&lt;/lgCommon:property&gt;
+- &lt;lgCommon:property propertyName=&#34;MTH_MAPTOEXHAUSTIVE&#34;&gt;
+&lt;lgCommon:value&gt;N&lt;/lgCommon:value&gt;
+&lt;/lgCommon:property&gt;
+- &lt;lgCommon:property propertyName=&#34;MAPSETVERSION&#34;&gt;
+&lt;lgCommon:value&gt;2009&lt;/lgCommon:value&gt;
+&lt;/lgCommon:property&gt;
+- &lt;lgCommon:property propertyName=&#34;MAPSETXRTARGETID&#34;&gt;
+&lt;lgCommon:value&gt;NoPCS&lt;/lgCommon:value&gt;
+&lt;/lgCommon:property&gt;
+- &lt;lgCommon:property propertyName=&#34;MTH_MAPTOCOMPLEXITY&#34;&gt;
+&lt;lgCommon:value&gt;SINGLE SCUI&lt;/lgCommon:value&gt;
+&lt;/lgCommon:property&gt;
+- &lt;lgCommon:property propertyName=&#34;DA&#34;&gt;
+&lt;lgCommon:value&gt;20090401&lt;/lgCommon:value&gt;
+&lt;/lgCommon:property&gt;
+- &lt;lgCommon:property propertyName=&#34;ST&#34;&gt;
+&lt;lgCommon:value&gt;R&lt;/lgCommon:value&gt;
+&lt;/lgCommon:property&gt;
+- &lt;lgCommon:property propertyName=&#34;MR&#34;&gt;
+&lt;lgCommon:value&gt;20090926&lt;/lgCommon:value&gt;
+&lt;/lgCommon:property&gt;
+&lt;/properties&gt;
+- &lt;!--  MAPSETCUI|MAPSAB  |MAPSUBSETID|MAPRANK|MAPID      |MAPSID|FROMID  |FROMSID|FROMEXPR|FROMTYPE|FROMRULE|FROMRES|REL|RELA
+C2603385 |ICD10PCS|0:0        |       |AT106958276|      |86.63   |       |86.63   |SDUI    |        |       |RO |approximately_mapped_to
+|TOID   |TOSID|TOEXPR |TOTYPE |TORULE|TORES|MAPRULE|MAPRES|MAPTYPE|MAPATN|MAPATV
+|0HR6X73|     |0HR6X73|SCUI   |||||||||
+--&gt;
+- &lt;associationPredicate associationName=&#34;approximately_mapped_to&#34;&gt;
+- &lt;!--  Note that &#34;RO&#34; gets lost in this approach...
+--&gt;
+- &lt;source sourceEntityCode=&#34;86.63&#34;&gt;
+- &lt;target targetEntityCode=&#34;0HR6X73&#34; associationInstanceId=&#34;AT106958276&#34;&gt;
+- &lt;!--  NOTE: This does NOT imply any ordering in the way that map entries are returned !
+--&gt;
+- &lt;associationQualification associationQualifier=&#34;MAPSUBSETID&#34;&gt;
+&lt;qualifierText&gt;0:0&lt;/qualifierText&gt;
+&lt;/associationQualification&gt;
+- &lt;associationQualification associationQualifier=&#34;FROMTYPE&#34;&gt;
+&lt;qualifierText&gt;SDUI&lt;/qualifierText&gt;
+&lt;/associationQualification&gt;
+- &lt;associationQualification associationQualifier=&#34;FROMID&#34;&gt;
+&lt;qualifierText&gt;86.63&lt;/qualifierText&gt;
+&lt;/associationQualification&gt;
+- &lt;associationQualification associationQualifier=&#34;TOTYPE&#34;&gt;
+&lt;qualifierText&gt;SCUI&lt;/qualifierText&gt;
+&lt;/associationQualification&gt;
+- &lt;associationQualification associationQualifier=&#34;TOID&#34;&gt;
+&lt;qualifierText&gt;0HR6X73&lt;/qualifierText&gt;
+&lt;/associationQualification&gt;
+&lt;/target&gt;
+&lt;/source&gt;
+&lt;/associationPredicate&gt;
+- &lt;associationPredicate associationName=&#34;XR&#34;&gt;
+- &lt;!--  Note that approximately_mapped_to goes away.  This may not be what we want?
+--&gt;
+- &lt;!--  MAPSETCUI|MAPSAB  |MAPSUBSETID|MAPRANK|MAPID      |MAPSID|FROMID  |FROMSID|FROMEXPR|FROMTYPE|FROMRULE|FROMRES|REL|RELA
+C2603385 |ICD10PCS|0:0        |       |AT112240364|      |89.03   |       |89.03   |SDUI    |        |       |XR ||||||||||||||
+|TOID   |TOSID|TOEXPR |TOTYPE |TORULE|TORES|MAPRULE|MAPRES|MAPTYPE|MAPATN|MAPATV
+|||||||||||||
+--&gt;
+- &lt;source sourceEntityCode=&#34;89.03&#34;&gt;
+- &lt;target targetEntityCode=&#34;NoPCS&#34; associationInstanceId=&#34;AT112240364&#34;&gt;
+- &lt;associationQualification associationQualifier=&#34;MAPSUBSETID&#34;&gt;
+&lt;qualifierText&gt;0:0&lt;/qualifierText&gt;
+&lt;/associationQualification&gt;
+- &lt;associationQualification associationQualifier=&#34;FROMTYPE&#34;&gt;
+&lt;qualifierText&gt;SDUI&lt;/qualifierText&gt;
+&lt;/associationQualification&gt;
+- &lt;associationQualification associationQualifier=&#34;FROMID&#34;&gt;
+&lt;qualifierText&gt;86.63&lt;/qualifierText&gt;
+&lt;/associationQualification&gt;
+- &lt;associationQualification associationQualifier=&#34;TOID&#34;&gt;
+&lt;qualifierText&gt;NoPCS&lt;/qualifierText&gt;
+- &lt;!--  This is derived from the MAPSETXRTARGETID property in MRSAT
+--&gt;
+&lt;/associationQualification&gt;
+&lt;/target&gt;
+&lt;/source&gt;
+&lt;/associationPredicate&gt;
+&lt;/lgCS:relations&gt;
+&lt;/codingScheme&gt;
+<h2 id="LexEVS6.0DesignDocumentDetailedDesignAssociations(Mapping)-AUMLSExample">
+  A UMLS Example
+</h2>
+Taking the first row in the MRMAP.RRF table (UMLS 2009AB) as an example, we have:
+
+
+
+C1306694|MTH|||AT102971857||C0264643||C0264643|CUI|||SY||3026||&lt;Hypertension, Renovascular&gt; AND &lt;Hypertension, Malignant&gt;|BOOLEAN_EXPRESSION_STR|||||ATX||||
+
+
+And the corresponding MRSAT rows for this mapping are:
+
+
+CUI      LUI      SUI       METAUI    STYPE CODE  ATUI           ATN     SAB        ATV        SUPPRESS CVF
+C1306694|L8923988|S11111536|A17029750|CODE|1000|AT115321814||MAPSETVERSION|MTH|2010_2009_08_17|N||
+C1306694|L8923988|S11111536|A17029750|CODE|1000|AT115321815||TOVSAB|MTH|MSH2010_2009_08_17|N||
+C1306694|L8923988|S11111536|A17029750|CODE|1000|AT37361323 ||FROMRSAB|MTH|MTH|N||
+C1306694|L8923988|S11111536|A17029750|CODE|1000|AT37361327 ||FROMVSAB|MTH|MTH|N||
+C1306694|L8923988|S11111536|A17029750|CODE|1000|AT37361343 ||MAPSETGRAMMAR|MTH|ATX ::= expr; expr ::= disj; disj ::= conj , conj &#34;OR&#34; conj; conj ::= unary , unary &#34;AND&#34; unary; unary ::= neg , pos; neg ::= &#34;NOT&#34; pos; pos ::= &#34;(&#34; expr &#34;)&#34; , slash , atom; slash ::= atom , atom &#34;/&#34; atom; atom ::= &#34;&lt;&#34; (any non &#34;&gt;&#34; character) &#34;&gt;&#34;;|N||
+C1306694|L8923988|S11111536|A17029750|CODE|1000|AT37361355 ||MAPSETRSAB|MTH|MTH|N||
+C1306694|L8923988|S11111536|A17029750|CODE|1000|AT37361364 ||MAPSETTYPE|MTH|ATX|N||
+C1306694|L8923988|S11111536|A17029750|CODE|1000|AT37361368 ||MAPSETVSAB|MTH|MTH|N||
+C1306694|L8923988|S11111536|A17029750|CODE|1000|AT37408395 ||TORSAB|MTH|MSH|N||
+C1306694|L8923988|S11111536|A17029750|CODE|1000|AT37424062 ||SOS|MTH|This map set contains mappings from Metathesaurus CUIs to MSH associated expressions.|N||
+C1306694|L8923988|S11111536|A17029750|CODE|1000|AT56870375 ||MTH_MAPFROMEXHAUSTIVE|MTH|N|N||
+C1306694|L8923988|S11111536|A17029750|CODE|1000|AT56870378 ||MTH_MAPSETCOMPLEXITY|MTH|ONE_TO_ONE|N||
+C1306694|L8923988|S11111536|A17029750|CODE|1000|AT56870384 ||MTH_MAPTOEXHAUSTIVE|MTH|N|N||
+C1306694|L8923988|S11111536|A17029750|CODE|1000|AT65576316 ||MTH_MAPFROMCOMPLEXITY|MTH|SINGLE CUI|N||
+C1306694|L8923988|S11111536|A17029750|CODE|1000|AT65576317 ||MTH_MAPTOCOMPLEXITY|MTH|BOOLEAN_EXPRESSION STR|N||
+C1306694|L8923988|S11111536|A17029750|CODE|1000|AT67813929 ||MAPSETSID|MTH|1000|N||
+C1306694|        |         |         |CUI |    |AT116199817||MR|MTH|20090921|N||
+C1306694|        |         |         |CUI |    |AT31823722 ||DA|MTH|20040415|N||
+C1306694|        |         |         |CUI |    |AT31952620 ||ST|MTH|R|N||
+
+
+The corresponding Relations container would have the following characteristics
+
+
+containerName:						(TBD)
+entityDescription:        This map set contains mappings from Metathesaurus CUIs to MSH associated expressions.
+representsVersion:				2010_2009_07_17
+isMapping:								true
+sourceCodingScheme:				MTH
+sourceCodingSchemeVersion: MTH  (or nothing?)
+targetCodingScheme:				MSH
+targetCodingSchemeVersion: MSH2010_2009_08_17
+
+property:	MAPSETGRAMMAR
+value:    ATX ::= expr; expr ::= disj; disj ::= conj , conj &#34;OR&#34; conj; conj ::= unary , unary &#34;AND&#34; unary; unary ::= neg , pos; neg ::= &#34;NOT&#34; pos; pos ::= &#34;(&#34; expr &#34;)&#34; , slash , atom; slash ::= atom , atom &#34;/&#34; atom; atom ::= &#34;&lt;&#34; (any non &#34;&gt;&#34; character) &#34;&gt;&#34;;
+	Note - it might be handy to use the dataType field here to encode the grammer (BNF?))
+property: MAPSETRSAB
+value:    MTH
+property: MAPSETTYPE
+value:    ATX
+property: MAPSETVSAB
+value:    MSH
+property: MTH_MAPFROMEXHAUSTIVE
+value:    N
+property: MTH_MAPSETCOMPLEXITY
+value:    N
+property: MTH_MAPTOEXHAUSTIVE
+value:    N
+property: MTH_MAPTOCOMPLEXITY
+value:    BOOLEAN_EXPRESSION_STRING
+property: MR
+value:    20090921
+property: DA
+value:    20040415
+property: ST
+value:    R
+Note: it may be that the last couple of fields may map into the versionable characteristics of the relations container
+value:    20090921
+
+
+The MRMAP entry below is an example of a mapping that is complex enough that it can&#39;t be completely interpreted by the existing API
+
+
+MAPSETCUI|MAPSETSAB| |MAPSID     ||FROMEXPR||FROMRULE|     RELA TOSID|TOEXPR                                                    |TOTYPE
+C1306694 |MTH      |||AT102971857||C0264643||C0264643|CUI|||SY||3026||&lt;Hypertension, Renovascular&gt; AND &lt;Hypertension, Malignant&gt;|BOOLEAN_EXPRESSION_STR|||||ATX||||
+
+associationPredicate.associationName:        SY
+associationSource.sourceEntityCode:          C0264643
+
+associationTarget.targetEntityCode: Hypertension, Renovascular
+	associationQualification.qualifierName: MAPSID
+	associationQualification.qualifierText: AT10297857
+	associationQualification.qualifierName: FROMRULE
+	associationQualification.qualifierText: C026463
+associationQualification.qualifierName: FROMEXPR
+	associationQualification.qualifierText: C0264643
+	associationQualification.qualifierName: FROMRULE
+	associationQualification.qualifierText: C0264643
+	associationQualification.qualifierName: FROMTYPE
+	associationQualification.qualifierText: CUI
+	associationQualification.qualifierName: TOSID
+	associationQualification.qualifierText: 3026
+	associationQualification.qualifierName: TOEXPR
+	associationQualification.qualifierText: &lt;Hypertension, Renovascular&gt; AND &lt;Hypertension, Malignant&gt;
+	associationQualification.qualifierName: TOTYPE
+	associationQualification.qualifierText: BOOLEAN_EXPRESSION
+
+associationTarget.targetEntityCode: Hypertension, Malignant
+	associationQualification.qualifierName: MAPSID
+	associationQualification.qualifierText: AT10297857
+	associationQualification.qualifierName: FROMRULE
+	associationQualification.qualifierText: C026463
+associationQualification.qualifierName: FROMEXPR
+	associationQualification.qualifierText: C0264643
+	associationQualification.qualifierName: FROMRULE
+	associationQualification.qualifierText: C0264643
+	associationQualification.qualifierName: FROMTYPE
+	associationQualification.qualifierText: CUI
+	associationQualification.qualifierName: TOSID
+	associationQualification.qualifierText: 3026
+	associationQualification.qualifierName: TOEXPR
+	associationQualification.qualifierText: &lt;Hypertension, Renovascular&gt; AND &lt;Hypertension, Malignant&gt;
+	associationQualification.qualifierName: TOTYPE
+	associationQualification.qualifierText: BOOLEAN_EXPRESSION
+
+
+An alternative representation would be:
+
+
+associationTarget.targetEntityCode: Hypertension, Malignant
+associationQualification.qualifierName:  MRMAP_ENTRY
+associationQualification.qualifierText:  C1306694 |MTH      |||AT102971857||C0264643||C0264643|CUI|||SY||3026||&lt;Hypertension, Renovascular&gt; AND &lt;Hypertension, Malignant&gt;|BOOLEAN_EXPRESSION_STR|||||ATX||||
+associationTarget.targetEntityCode: Hypertension, Renovascular
+associationQualification.qualifierName:  MRMAP_ENTRY
+associationQualification.qualifierText:  C1306694 |MTH      |||AT102971857||C0264643||C0264643|CUI|||SY||3026||&lt;Hypertension, Renovascular&gt; AND &lt;Hypertension, Malignant&gt;|BOOLEAN_EXPRESSION_STR|||||ATX||||
+<h2 id="LexEVS6.0DesignDocumentDetailedDesignAssociations(Mapping)-SummaryofMappingImplementationforLexEVS6.0andCTS2">
+  Summary of Mapping Implementation for LexEVS 6.0 and CTS 2
+</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        CTS 2 Function
+      </th>
+      <th>
+        Description
+      </th>
+    </tr>
+    <tr>
+      <td>
+        Update Association Status
+      </td>
+      <td>
+        Update the status of a association (active, inactive, canceled etc).  This allows the ability to activate or inactivate a given association,  thus changing its availability for access by other terminology service  functions
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Create Association
+      </td>
+      <td>
+        Relates a single specific coded concept within a specified code system  (source) to a corresponding single specific coded concept (target)  within the same or another code system, including identification of a  specified Association type.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Persist MRMAP data
+      </td>
+      <td>
+        Creates association and qualifier for the given concept as target  establishing a &#34;map entry&#34; with unprocessed text string from MRMAP row  as qualifier value. Other values for association predicate and source  pulled from MRMAP as required.
+      </td>
+    </tr>
+  </tbody>
+</table>

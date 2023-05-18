@@ -1,0 +1,900 @@
+Contents of this Page
+<ul>
+  <li>
+    <a href="#LexEVS6.1HL7MIFVocabularyMapping-GeneralComments" rel="nofollow">
+      General Comments
+    </a>
+    <ul>
+      <li>
+        <a href="#LexEVS6.1HL7MIFVocabularyMapping-HL7MIFVocabularytoLexGridCodingScheme" rel="nofollow">
+          HL7 MIF Vocabulary to LexGrid Coding Scheme
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.1HL7MIFVocabularyMapping-HL7MIFVocabularyloadsourcefile" rel="nofollow">
+          HL7 MIF Vocabulary load source file
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.1HL7MIFVocabularyMapping-Overview" rel="nofollow">
+          Overview
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.1HL7MIFVocabularyMapping-ConceptsContainingMultipleCodes" rel="nofollow">
+          Concepts Containing Multiple Codes
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#LexEVS6.1HL7MIFVocabularyMapping-MappingInformation" rel="nofollow">
+      Mapping Information
+    </a>
+    <ul>
+      <li>
+        <a href="#LexEVS6.1HL7MIFVocabularyMapping-MIFVocabulary-VocabularyModelMappingtoLexGridCodingScheme" rel="nofollow">
+          MIF Vocabulary - VocabularyModel Mapping to LexGrid Coding Scheme
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.1HL7MIFVocabularyMapping-MIFVocabulary-CodeSystemMappingtoLexGridEntity(usedastopnodeentitiesinhierarchyunder%E2%80%9C@%E2%80%9Dentity)" rel="nofollow">
+          MIF Vocabulary - CodeSystem Mapping to LexGrid Entity (used as top node entities in hierarchy under “@” entity)
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.1HL7MIFVocabularyMapping-MIFVocabulary-ConceptMappingtoLexGridEntity" rel="nofollow">
+          MIF Vocabulary - Concept Mapping to LexGrid Entity
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.1HL7MIFVocabularyMapping-MIFVocabulary-ConceptMappingtoLexGridEntity.Presentation" rel="nofollow">
+          MIF Vocabulary - Concept Mapping to LexGrid Entity.Presentation
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.1HL7MIFVocabularyMapping-MIFVocabulary-ConceptMappingtoLexGridEntity.Definition" rel="nofollow">
+          MIF Vocabulary - Concept Mapping to LexGrid Entity.Definition
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.1HL7MIFVocabularyMapping-MIFVocabulary-ConceptPropertyMappingtoLexGridEntity" rel="nofollow">
+          MIF Vocabulary - Concept Property Mapping to LexGrid Entity
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.1HL7MIFVocabularyMapping-MIFVocabulary-ConceptRelationshipMappingtoLexGrid" rel="nofollow">
+          MIF Vocabulary - Concept Relationship Mapping to LexGrid
+        </a>
+      </li>
+    </ul>
+  </li>
+</ul>
+<h2 id="LexEVS6.1HL7MIFVocabularyMapping-GeneralComments">
+  General Comments
+</h2>
+<h3 id="LexEVS6.1HL7MIFVocabularyMapping-HL7MIFVocabularytoLexGridCodingScheme">
+  HL7 MIF Vocabulary to LexGrid Coding Scheme
+</h3>
+The design and implementation of the LexEVS 6.1 HL7 MIF Vocabulary Loader assumes there is only one &lt;vocabularyModel&gt; XML element contained within the XML load source file being loaded.  A single LexGrid Coding Scheme will get created.  Refer to the mapping table labeled MIF Vocabulary - VocabularyModel Mapping to LexGrid Coding Scheme in the Mapping Information section for more information on what data is used to create the LexGrid Coding Scheme.
+<h3 id="LexEVS6.1HL7MIFVocabularyMapping-HL7MIFVocabularyloadsourcefile">
+  HL7 MIF Vocabulary load source file
+</h3>
+As of the date this document was authored, the current version of the HL7 MIF Vocabulary that can be used as the load source is contained in the file named “DEFN=UV=VO=1189-20121121.coremif”.  To obtain a copy of this file, go to the HL7 web site
+<a href="http://www.hl7.org/implement/standards/rim.cfm" rel="nofollow">
+  http://www.hl7.org/implement/standards/rim.cfm
+</a>
+.  From the HL7 web site, down load the latest version of the RIM (i.e. Version 2.41).  The down load will be a zip file containing other zip files.  Open the down loaded zip file and navigate to “d” zip file (i.e. rim0241d.zip).  The file containing the HL7 MIF Vocabulary (i.e. “DEFN=UV=VO=1189-20121121.coremif”) is contained in the “d” zip file.
+<h3 id="LexEVS6.1HL7MIFVocabularyMapping-Overview">
+  Overview
+</h3>
+The current implementation of the LexEVS 6.1 HL7 MIF Vocabulary Loader will load all codeSystems and concept related information contained within the XML load source.  Concept related information includes the concept and the properties, relationships and codes the concept has.  Concept domain, value set and code system supplement related information will NOT be loaded.Consider the following image of a small set of HL7 MIF Vocabulary loaded data:
+<img alt="small set of HL7 MIF Vocabulary loaded data" height="430" width="1410" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%206.1%20HL7%20MIF%20Vocabulary%20Mapping/MifVocabSampleHierarchySnapshot.JPG?api=v2">
+As depicted under A1 in the above image, the LexEVS loader will create a default root node LexGrid Entity named &#34;@&#34;.  For each codeSystem XML element in the load source, the LexEVS loader will create a LexGrid Entity (A3) and a &#34;hasSubtype&#34; association (A2) with the &#34;@&#34; root node where the &#34;@&#34; root node entity is the source entity and the codeSystem entity (A3) is the target entity.  The LexGrid Entity representing a codeSystem XML element will have its entityCode value comprised of the codeSystem&#39;s name attribute value and the codeSystem&#39;s codeSystemId attribute value concatenated with the colon (&#34;:&#34;) character as depicted by the value &#34;ConceptStatus:2.16.840.1.113883.5.1086&#34; under A3. For each concept XML element contained by a codeSystem XML element, the LexEVS loader will create a LexGrid Entity (A5) and a &#34;hasSubtype&#34; association (A4) with the respective LexGrid Entity (A3) representing the codeSystem where the codeSystem entity (A3) is the source entity and the concept entity (A5) is the target entity.  The LexGrid Entity representing a concept XML element will have its entityCode value comprised of the code attribute value of the code XML element contained by the concept XML element and the value of the conceptProperty XML element contained by the concept XML element where the conceptProperty element has a type attribute value defined as the concept&#39;s internal identifier type (&#34;internalId&#34;).  These two values are concatenated with the colon (&#34;:&#34;) character to create the entityCode value of the LexGrid Entity as depicted by the value &#34;A:19960&#34; under A5.Concepts having concept relationships with other concepts will be created by the LexEVS loader such the association&#39;s name (or association predicate) will be the relationshipName attribute value of the conceptRelationship XML element in the load source file.  NOTE:  these associations between concepts are not depicted in the above image.
+<h3 id="LexEVS6.1HL7MIFVocabularyMapping-ConceptsContainingMultipleCodes">
+  Concepts Containing Multiple Codes
+</h3>
+The HL7 model design for the MIF Vocabulary allows concepts to have more than one code.  The load source file “DEFN=UV=VO=1189-20121121.coremif” has 100 concepts that contain multiple codes. The LexEVS loader handles the multiple code scenarios for a concept by creating a LexGrid Entity for each of the codes contained within the concept.  The entityCode value for the LexGrid Entity, as described in the previous Overview section, uses the code value along with concept’s internal identifier type property to distinguish the LexGrid Entities from each other and still have a mechanism via the concept’s internal identifier value to tie them to the same load source concept.  The LexEVS loader will apply any concept properties and concept relationships the concept has to each of the LexGrid Entities.  For example, if a concept having internal identifier value &#34;12345&#34; has codes ABC and DEF defined and has one concept relationship to the target code XYZ with a relationshipName attribute value of “Specializes” defined, the LexEVS loader will create the “Specializes” LexGrid AssociationPredicate and Associations to the target entity XZY for both source entities ABC and DEF as shown in the following diagram.
+<img alt="LexEVS loader diagram as explained in the text" height="241" width="769" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%206.1%20HL7%20MIF%20Vocabulary%20Mapping/LexEVSAssocDrawing.jpg?api=v2">
+<h2 id="LexEVS6.1HL7MIFVocabularyMapping-MappingInformation">
+  Mapping Information
+</h2>
+<h3 id="LexEVS6.1HL7MIFVocabularyMapping-MIFVocabulary-VocabularyModelMappingtoLexGridCodingScheme">
+  MIF Vocabulary - VocabularyModel Mapping to LexGrid Coding Scheme
+</h3>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        MIF Vocabulary - XML element
+      </th>
+      <th>
+        XML attribute
+      </th>
+      <th>
+        LexGrid Model Element
+      </th>
+      <th>
+        Notes
+      </th>
+    </tr>
+    <tr>
+      <td>
+        vocabularyModel
+      </td>
+      <td>
+        name
+      </td>
+      <td>
+        CodingScheme.codingSchemeName
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        vocabularyModel
+      </td>
+      <td></td>
+      <td>
+        CodingScheme.codingSchemeURI
+      </td>
+      <td>
+        Hard coded to value &#34;urn:hl7-org:v3/mif2&#34;
+      </td>
+    </tr>
+    <tr>
+      <td>
+        vocabularyModel
+      </td>
+      <td>
+        title
+      </td>
+      <td>
+        CodingScheme.formalName
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        vocabularyModel
+      </td>
+      <td>
+        title
+      </td>
+      <td>
+        CodingScheme.entityDescription.content
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td>
+        CodingScheme.defaultLanguage
+      </td>
+      <td>
+        Hard coded to value &#34;en&#34;
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td>
+        CodingScheme.copyRight
+      </td>
+      <td>
+        Hard coded to value &#34;THIS DATA IS COVERED BY A COPYRIGHT&#34;
+      </td>
+    </tr>
+    <tr>
+      <td>
+        packageLocation
+      </td>
+      <td>
+        combinedId
+      </td>
+      <td>
+        CodingScheme.representsVersion
+      </td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+<h3 id="LexEVS6.1HL7MIFVocabularyMapping-MIFVocabulary-CodeSystemMappingtoLexGridEntity(usedastopnodeentitiesinhierarchyunder“@”entity)">
+  MIF Vocabulary - CodeSystem Mapping to LexGrid Entity (used as top node entities in hierarchy under “@” entity)
+</h3>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        MIF Vocabulary - XML element
+      </th>
+      <th>
+        XML attribute
+      </th>
+      <th>
+        LexGrid Model Element
+      </th>
+      <th>
+        Notes
+      </th>
+    </tr>
+    <tr>
+      <td>
+         codeSystem
+      </td>
+      <td>
+         name + “:” + codeSystemId
+      </td>
+      <td>
+         Entity.entityCode
+      </td>
+      <td>
+        Formed value using two attributes
+      </td>
+    </tr>
+    <tr>
+      <td>
+         codeSystem
+      </td>
+      <td>
+         title
+      </td>
+      <td>
+         Entity.entityDescription.content
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+         vocabularyModel
+      </td>
+      <td>
+         name
+      </td>
+      <td>
+         Entity.entityCodeNamespace
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td>
+         Entity.entityType
+      </td>
+      <td>
+        Hard coded to value “concept”
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td>
+         Entity.isActive
+      </td>
+      <td>
+        Hard coded to boolean value true
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+         codeSystem
+      </td>
+      <td>
+         title
+      </td>
+      <td>
+         Entity.Presentation.value.Text.context
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td>
+         Entity.Presentation.isPreferred
+      </td>
+      <td>
+        Hard coded to boolean value true
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td>
+         Entity.Presentation.propertyName
+      </td>
+      <td>
+        Hard coded to value “print_name”
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td>
+         Entity.Presentation.propertyId
+      </td>
+      <td>
+        Hard coded to value “T1”
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td>
+         Entity.Presentation.language
+      </td>
+      <td>
+        Hard coded to value “en”
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+         codeSystem:annotations:documentation:description:text
+      </td>
+      <td>
+         Element’s enclosed data
+      </td>
+      <td>
+         Entity.Definition.value.Text.content
+      </td>
+      <td>
+        Used if it exists. All HTML styling tags contained within the enclosed data of the text XML element are removed by the loader.
+      </td>
+    </tr>
+    <tr>
+      <td>
+         codeSystem
+      </td>
+      <td>
+         title
+      </td>
+      <td>
+         Entity.Definition.value.Text.content
+      </td>
+      <td>
+        Used if above entry does not exist
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td>
+         Entity.Definition.propertyName
+      </td>
+      <td>
+        Hard coded to value “definition”
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td>
+         Entity.Definition.propertyId
+      </td>
+      <td>
+        Hard coded to value “D1”
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td>
+         Entity.Definition.language
+      </td>
+      <td>
+        Hard coded to value “en”
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td>
+         Entity.Definition.isActive
+      </td>
+      <td>
+        Hard coded to boolean value true
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h3 id="LexEVS6.1HL7MIFVocabularyMapping-MIFVocabulary-ConceptMappingtoLexGridEntity">
+  MIF Vocabulary - Concept Mapping to LexGrid Entity
+</h3>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        MIF Vocabulary - XML element
+      </th>
+      <th>
+        XML attribute
+      </th>
+      <th>
+        LexGrid Model Element
+      </th>
+      <th>
+        Notes
+      </th>
+    </tr>
+    <tr>
+      <td>
+         concept:code  concept:conceptProperty:value
+      </td>
+      <td>
+         code + “:” + internalId
+      </td>
+      <td>
+         Entity.entityCode
+      </td>
+      <td>
+        Formed value using two attributes.  The internal identifier (internalId) value represent’s the value for the conceptProperty with name attribute = “internalId”.
+      </td>
+    </tr>
+    <tr>
+      <td>
+         concept:printName
+      </td>
+      <td>
+         text
+      </td>
+      <td>
+         Entity.entityDescription.content
+      </td>
+      <td>
+        Used if it exists
+      </td>
+    </tr>
+    <tr>
+      <td>
+         concept:code
+      </td>
+      <td>
+         code
+      </td>
+      <td>
+         Entity.entityDescription.content
+      </td>
+      <td>
+        Used if above entry does not exist
+      </td>
+    </tr>
+    <tr>
+      <td>
+         vocabularyModel
+      </td>
+      <td>
+         name
+      </td>
+      <td>
+         Entity.entityCodeNamespace
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td>
+         Entity.entityType
+      </td>
+      <td>
+        Hard coded to value “concept”
+      </td>
+    </tr>
+    <tr>
+      <td>
+         concept:code
+      </td>
+      <td>
+         status
+      </td>
+      <td>
+         Entity.status
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td>
+         Entity.isActive
+      </td>
+      <td>
+        Set to boolean value true if Entity.status = “active” else set to boolean value false
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h3 id="LexEVS6.1HL7MIFVocabularyMapping-MIFVocabulary-ConceptMappingtoLexGridEntity.Presentation">
+  MIF Vocabulary - Concept Mapping to LexGrid Entity.Presentation
+</h3>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        MIF Vocabulary - XML element
+      </th>
+      <th>
+        XML attribute
+      </th>
+      <th>
+        LexGrid Model Element
+      </th>
+      <th>
+        Notes
+      </th>
+    </tr>
+    <tr>
+      <td>
+         concept:annotations:documentation:definition:text
+      </td>
+      <td>
+        Element’s enclosed data
+      </td>
+      <td>
+         Entity.Presentation.value.Text.content
+      </td>
+      <td>
+        Used if it exists
+      </td>
+    </tr>
+    <tr>
+      <td>
+         concept:code
+      </td>
+      <td>
+        code
+      </td>
+      <td>
+         Entity.Presentation.value.Text.content
+      </td>
+      <td>
+        Used if above entry does not exist
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td>
+         Entity.Presentation.isPreferred
+      </td>
+      <td>
+        Hard coded to boolean value true
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td>
+         Entity.Presentation.propertyName
+      </td>
+      <td>
+        Hard coded to value “print_name”
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td>
+         Entity.Presentation.propertyId
+      </td>
+      <td>
+        Hard coded to value “T1”
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td>
+         Entity.Presentation.language
+      </td>
+      <td>
+        Hard coded to value “en”
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td>
+         Entity.Presentation.PropertyQualifier.propertyQualifierName
+      </td>
+      <td>
+        Hard coded to “source-code”
+      </td>
+    </tr>
+    <tr>
+      <td>
+         concept:code  concept:conceptProperty:value
+      </td>
+      <td>
+        code + “:” + internalId
+      </td>
+      <td>
+         Entity.Presentation.PropertyQualifier.value.Text.content
+      </td>
+      <td>
+        Formed value using two attributes.  The internal identifier (internalId) value represent’s the value for the conceptProperty with name attribute = “internalId”.
+      </td>
+    </tr>
+    <tr>
+      <td>
+         codeSystem
+      </td>
+      <td>
+        name
+      </td>
+      <td>
+         Entity.Presentation.Source.content
+      </td>
+      <td>
+        The codeSystem the concept is contained within
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h3 id="LexEVS6.1HL7MIFVocabularyMapping-MIFVocabulary-ConceptMappingtoLexGridEntity.Definition">
+  MIF Vocabulary - Concept Mapping to LexGrid Entity.Definition
+</h3>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        MIF Vocabulary - XML element
+      </th>
+      <th>
+        XML attribute
+      </th>
+      <th>
+        LexGrid Model Element
+      </th>
+      <th>
+        Notes
+      </th>
+    </tr>
+    <tr>
+      <td>
+        concept:annotations:documentation:definition:text
+      </td>
+      <td>
+        Element&#39;s enclosed data
+      </td>
+      <td>
+         Entity.Definition.value.Text.content
+      </td>
+      <td>
+        Used if it exists.  All HTML styling tags contained within the enclosed data of the text XML element are removed by the loader.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        concept:code
+      </td>
+      <td>
+        code
+      </td>
+      <td>
+         Entity.Definition.value.Text.content
+      </td>
+      <td>
+        Used if above entry does not exist
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td>
+         Entity.Definition.propertyName
+      </td>
+      <td>
+        Hard coded to value “definition”
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td>
+         Entity.Definition.propertyId
+      </td>
+      <td>
+        Hard coded to value “D1”
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td>
+         Entity.Definition.language
+      </td>
+      <td>
+        Hard coded to value “en”
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td>
+         Entity.Definition.isActive
+      </td>
+      <td>
+        Hard coded to boolean value true
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h3 id="LexEVS6.1HL7MIFVocabularyMapping-MIFVocabulary-ConceptPropertyMappingtoLexGridEntity">
+  MIF Vocabulary - Concept Property Mapping to LexGrid Entity
+</h3>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        MIF Vocabulary - XML element
+      </th>
+      <th>
+        XML attribute
+      </th>
+      <th>
+        LexGrid Model Element
+      </th>
+      <th>
+        Notes
+      </th>
+    </tr>
+    <tr>
+      <td>
+        concept:conceptProperty
+      </td>
+      <td>
+         name
+      </td>
+      <td>
+         Property.propertyName
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        concept:conceptProperty
+      </td>
+      <td>
+         value
+      </td>
+      <td>
+         Property.value.Text.content
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td>
+         Property.propertyId
+      </td>
+      <td>
+         Hard coded to value “P” + count where count is the current length of a collection holding the Property objects.
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td>
+         Property.language
+      </td>
+      <td>
+         Hard coded to value “en”
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h3 id="LexEVS6.1HL7MIFVocabularyMapping-MIFVocabulary-ConceptRelationshipMappingtoLexGrid">
+  MIF Vocabulary - Concept Relationship Mapping to LexGrid
+</h3>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        MIF Vocabulary - XML element
+      </th>
+      <th>
+        XML attribute
+      </th>
+      <th>
+        LexGrid Model Element
+      </th>
+      <th>
+        Notes
+      </th>
+    </tr>
+    <tr>
+      <td>
+         concept:conceptRelationship
+      </td>
+      <td>
+         relationshipName
+      </td>
+      <td>
+         AssociationPredicate
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+         concept:conceptRelationship:targetConcept
+      </td>
+      <td>
+         code
+      </td>
+      <td>
+         AssociationTarget.targetEntityCode
+      </td>
+      <td>
+        Used to determine the Entity from the known list of Entities in the CodingScheme.  The determined Entity’s entityCode is then used.
+      </td>
+    </tr>
+    <tr>
+      <td>
+         concept:conceptRelationship:targetConcept
+      </td>
+      <td>
+         codeSystem
+      </td>
+      <td>
+         AssociationTarget.targetEntityCode
+      </td>
+      <td>
+        If it exists, it is used to along with the code above to determine the Entity from the known list of Entities in the defined codeSystem. The determined Entity’s entityCode is then used. If this attribute does not exist it is assumed the target Entity is in the same codeSystem as the source Entity.
+      </td>
+    </tr>
+    <tr>
+      <td>
+         vocabularyModel
+      </td>
+      <td>
+         name
+      </td>
+      <td>
+         AssociationTarget.targetEntityCodeNamespace
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+         concept:code
+      </td>
+      <td>
+         code
+      </td>
+      <td>
+         AssociationSource.sourceEntityCode
+      </td>
+      <td>
+        Used to determine the Entity from the known list of Entities in the specific concept of the codeSystem.  The determined Entity’s entityCode is then used.
+      </td>
+    </tr>
+    <tr>
+      <td>
+         vocabularyModel
+      </td>
+      <td>
+         name
+      </td>
+      <td>
+         AssociationSource.sourceEntityCodeNamespace
+      </td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>

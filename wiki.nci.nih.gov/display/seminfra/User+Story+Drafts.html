@@ -1,0 +1,611 @@
+Contents of this Page
+<ul>
+  <li>
+    <a href="#UserStoryDrafts-A.DomainUserStories" rel="nofollow">
+      A. Domain User Stories
+    </a>
+  </li>
+  <li>
+    <a href="#UserStoryDrafts-B.FormsStories" rel="nofollow">
+      B. Forms Stories
+    </a>
+  </li>
+  <li>
+    <a href="#UserStoryDrafts-C.MetadataSpecialistStories" rel="nofollow">
+      C. Metadata Specialist Stories
+    </a>
+  </li>
+  <li>
+    <a href="#UserStoryDrafts-D.DeveloperStories" rel="nofollow">
+      D. Developer Stories
+    </a>
+  </li>
+</ul>
+<h2 id="UserStoryDrafts-A.DomainUserStories">
+  A. Domain User Stories
+</h2>
+Search  for all &#34;pre-cancerous&#34; biospecimens that are available for sharing at Washington University, Thomas Jefferson University, and Fox Chase Cancer Center.Domain Description: A cancer researcher sits down to his console with the intention of ordering some biospecimens for use at his organization. He opens the caTissue website at his lab and begins performing the search. Unfortunately, there is currently a shortage at his hospital of suitable pre-cancerous tissue. Therefore, he expands his search to Washington University, Thomas Jefferson, and Fox Chase, all of which are in driving distance so he could send a post doc to pick them up. He hits the search button, and the result from all three cancer centers are displayed on his web page. He selects suitable biospecimens, hits the print button, and sends his trusty post doc on his way.Technical Description: Biospecimen repositories are deployed locally, as well as Washington University, Thomas Jefferson University, and Fox Chase Cancer Center. Each has their information models registered in a metadata repository, as well as has standardized APIs exposed. The local instance of caTissue discovers services with compatible metadata and APIs, and performs the query. The data returned is aggregated based on standardized metadata, and presented to the user. caTissue uses CDE names, descriptions, and standard value sets to display data, help the user build the query, and issue the query.Cross Reference:
+<ul>
+  <li>
+    Support caB2B Services to integrate data on grid
+    <ul>
+      <li>
+        Forum posting:
+        <a href="https://cabig-kc.nci.nih.gov/Vocab/forums/viewtopic.php?f=50&amp;t=247&amp;p=801" rel="nofollow">
+          https://cabig-kc.nci.nih.gov/Vocab/forums/viewtopic.php?f=50&amp;t=247&amp;p=801
+        </a>
+      </li>
+      <li>
+        Requirements statement:
+        <a href="https://wiki.nci.nih.gov/x/UAhyAQ" rel="nofollow">
+          https://wiki.nci.nih.gov/x/UAhyAQ
+        </a>
+      </li>
+      <li>
+        [Use Case:
+        <a href="https://wiki.nci.nih.gov/x/Y2RyAQ" rel="nofollow">
+          https://wiki.nci.nih.gov/x/Y2RyAQ
+        </a>
+      </li>
+    </ul>
+  </li>
+</ul>
+Identify samples obtained for glioblastoma multiforme (GBM) and the corresponding CT image information.Domain Description: a cancer researcher has developed a new image detection algorithm for identifying glioblastoma multiforme, which is the most common and most aggressive type of primary brain tumor in humans, involving glial cells and accounting for 52% of all parenchymal brain tumor cases and 20% of all intracranial tumors. When viewed with MRI, glioblastomas often appear as ring-enhancing lesions. The appearance is not specific, however, as other lesions such as abscess, metastasis, tumefactive multiple sclerosis, and other entities may have a similar appearance. The cancer researcher&#39;s algorithm should be able to differentiate between cancerous lesions and other lesions, but he needs additional tissues and images to make his testing statistically significant. The cancer researcher sits down to his laptop and loads Cancer Bench-to-Bedside (caB2B). He builds a search on all known tissues that have been identified as globlastoma multiforme via stereotactic biopsy and have corresponding CT images. He hits the search button, gets a cup of coffee, and a returns to a list of 74 tissues with 465 images.  He hits the export button, which downloads all the images with associated pathology results.Technical Description: a number of organizations have exposed pathology and image services with standardized metadata.  caB2B uses CDE names, descriptions, and value sets to allow the user to construct a query across all of these services.  The user selects the CDEs to filter on, which includes a join across information models (caTissue annotations to imaging annotations).  A semantic relationship between the two models based on biospecimen identifier has previously been established.  A distributed query is formulated and executed.  The resulting data is aggregated based on semantic relationships and presented to the user using CDE names and descriptions.Cross Reference:
+<ul>
+  <li>
+    Support caB2B Services to integrate data on grid
+    <ul>
+      <li>
+        Forum posting:
+        <a href="https://cabig-kc.nci.nih.gov/Vocab/forums/viewtopic.php" rel="nofollow">
+          https://cabig-kc.nci.nih.gov/Vocab/forums/viewtopic.php
+        </a>
+      </li>
+      <li>
+        Requirements statement:
+        <a href="https://wiki.nci.nih.gov/x/UAhyAQ" rel="nofollow">
+          https://wiki.nci.nih.gov/x/UAhyAQ
+        </a>
+      </li>
+      <li>
+        Use Case:
+        <a href="https://wiki.nci.nih.gov/x/Y2RyAQ" rel="nofollow">
+          https://wiki.nci.nih.gov/x/Y2RyAQ
+        </a>
+      </li>
+    </ul>
+  </li>
+</ul>
+Determine if each sample used in an expression profiling experiment is available for a SNP analysis experiment.Is this a repeat of &#34;Identify samples obtained for glioblastoma multiforme (GBM) and the corresponding CT image information&#34;?Search for a particular gene based on the Entrez Gene ID and its related information, for example, messenger RNA and protein information from GeneConnect.Is this a repeat of &#34;Search  for all &#39;pre-cancerous&#39; biospecimens that are available for sharing at Washington University, Thomas Jefferson University, and Fox Chase Cancer Center&#34;?Automatically discover analytical steps for Illumina bead array analysis using inference based on the semantic metadata of the parameters.Domain Description: The Illumina BeadChip is proprietary method of performing multiplex gene expression and genotyping analysis. The essential element of BeadChip technology is the attachment of oligonucleotides to silica beads An informaticist is working with a cancer researcher to study expression profiles related to proto-oncogenes in T-cell leukemias. It is the first time either has worked with this technology, and the inforaticist is in the process of developing an analytical pipeline. He performs a search for such an analytical pipeline, and a number of steps that can be linked together are presented to him based on the Illumina bead output data type and his end goal of identifying gene annotations. The pipeline that was inferred using semantic metadata is: BeadArray-specific variance stabilization and gene annotation at the probe level. The informaticist knows he needs a quality control step at the beginning to determine whether an experiment run was successful or produced bad data. He searches &#34;quality control&#34; and &#34;expression data&#34; for analytical services, and finds an option specific to Illumina bead arrays. He also knows that the control and experimental runs will need to be normalized. The results from his search apply to gene expression matrices, so he will need a translation step. He enters the bead array format as the input and the gene expression matrix as the output and finds what he needs. Fortunately, the analytical step fits right in before probe annotation, which can also work on a gene expression matrix provided the bead identifiers are included. He saves the workflow, types in some notes about it, and shares it with his cancer researcher colleague.Technical Description: the discovery of analytical steps utilizes inference over semantic annotations of input and output parameters. The researcher selects the metadata types that will be input to the pipeline and those that will be output from the pipeline. The inference engine performs discovery steps, chaining inputs to outputs in an expanding set until all options are exhausted or the resulting type matches.  Furthermore, when specific analytical steps are queries for, full-text and concept-based metadata searches are performed in conjunction with output/input matching to provide the bet possible results. Workflows are saved as a set of steps or as a set of constrains upon which workflows are dynamically generated to meet scientific goals.Cross Reference:
+<ul>
+  <li>
+    Support caB2B Services to integrate data on grid
+    <ul>
+      <li>
+        Forum posting:
+        <a href="https://cabig-kc.nci.nih.gov/Vocab/forums/viewtopic.php" rel="nofollow">
+          https://cabig-kc.nci.nih.gov/Vocab/forums/viewtopic.php
+        </a>
+      </li>
+      <li>
+        Requirements statement:
+        <a href="https://wiki.nci.nih.gov/x/UAhyAQ" rel="nofollow">
+          https://wiki.nci.nih.gov/x/UAhyAQ
+        </a>
+      </li>
+      <li>
+        Use Case:
+        <a href="https://wiki.nci.nih.gov/x/Y2RyAQ" rel="nofollow">
+          https://wiki.nci.nih.gov/x/Y2RyAQ
+        </a>
+      </li>
+    </ul>
+  </li>
+</ul>
+<ul>
+  <li>
+    Brain Tumor in silico study - Pathology and Radiology data models
+    <ul>
+      <li>
+        Forum posting:
+        <a href="https://cabig-kc.nci.nih.gov/Vocab/forums/viewtopic.php?f=38&amp;t=129" rel="nofollow">
+          https://cabig-kc.nci.nih.gov/Vocab/forums/viewtopic.php?f=38&amp;t=129
+        </a>
+      </li>
+      <li>
+        Requirements statement:
+        <a href="https://wiki.nci.nih.gov/x/ZwZyAQ" rel="nofollow">
+          https://wiki.nci.nih.gov/x/ZwZyAQ
+        </a>
+      </li>
+      <li>
+        Use Case:
+        <a href="https://wiki.nci.nih.gov/x/3wpyAQ" rel="nofollow">
+          https://wiki.nci.nih.gov/x/3wpyAQ
+        </a>
+      </li>
+    </ul>
+  </li>
+</ul>
+<ul>
+  <li>
+    ICR IRWG Requirements
+    <ul>
+      <li>
+        Forum posting:
+        <a href="https://cabig-kc.nci.nih.gov/Vocab/forums/viewtopic.php?f=43&amp;t=146" rel="nofollow">
+          https://cabig-kc.nci.nih.gov/Vocab/forums/viewtopic.php?f=43&amp;t=146
+        </a>
+      </li>
+      <li>
+        Requirements statement:
+        <a href="https://wiki.nci.nih.gov/x/OARyAQ" rel="nofollow">
+          https://wiki.nci.nih.gov/x/OARyAQ
+        </a>
+      </li>
+      <li>
+        Use Case:
+        <a href="https://wiki.nci.nih.gov/x/qxJyAQ" rel="nofollow">
+          https://wiki.nci.nih.gov/x/qxJyAQ
+        </a>
+      </li>
+    </ul>
+  </li>
+</ul>
+Support patient to trial matching through the use of computable eligibility criteriaDomain Description: a metadata specialist works with the principle investigator of a trial to define the eligibility criteria for a study in enough detail so that eligibility can be computed from patient data. The metadata specialist defines each eligibility question as a common data element (CDE) with a description, an mathematical operator, and a data operand (what the data gets compared to). For example, the principle investigator tells the metadata specialist that all patients must be at least 21 years old. The metadata specialist defines a CDE annotated with the concept &#34;age&#34;, the operator &#34;greater-than or equal&#34;, and the operand &#34;21&#34;. These steps are performed for each of the 32 eligibility criteria. The principle investigator now works with a clinical informaticist to perform a search using these computable eligibility criteria on patient data at the cancer center to see if anyone is eligible. Furthermore, prospective patients themselves can type their data into the trial matching system to compute eligibility for all known trials to determine if there are any trials for their cancer.Technical Description: the metadata specialist defines CDEs with operator and operand annotations. These are stored in the local metadata repository, which is used by the trial matching software. When computing eligibility, data for semantically equivalent data element are computed against the eligibility metadata to determine eligibility. &#34;Fuzzy&#34; eligibility can be computed when data is missing or does not match.Support the addition of data elements to an existing information model and automatically capture and publish the information about the extensions.Domain Description: A teratoma is an encapsulated tumor with tissue or organ components resembling normal derivatives of all three germ layers.  Regardless of location in the body, a teratoma is classified according to a cancer staging system: 0 or mature (benign); 1 or immature, probably benign; 2 or immature, possibly malignant (cancerous); and 3 or frankly malignant Teratomas are also classified by their content: a solid teratoma contains only tissues (perhaps including more complex structures); a cystic teratoma contain only pockets of fluid or semi-fluid such as cerebrospinal fluid, sebum, or fat; a mixed teratoma contains both solid and cystic parts. A cancer researcher would like to extend the pathology annotations associated with tissues in the center&#39;s tissue bank by adding Teratoma Content as an additional nonseminomatous germ cell tumor (NSGCT) annotation. The researcher communicates this to the director of the tissue repository, who promptly opens the administrative interface to caTissue and adds the additional pathology annotation. The system is now able to capture this, and the data and data descriptions are shareable with other organizations.Technical Description: the cancer center is running caTissue with a local metadata repository.  When a new annotation is added to caTissue, the dynamic extensions module is invoked.  The caTissue information model is extended to include necessary additional classes and attributes, which in turn are propagated as new data elements in the metadata repository.  These data elements represent well formed metadata that is automatically discoverable and shareable through the public interfaces.  When another organization wishes to extend their caTissue model to include this type of data, they will be able to discover the metadata already created and instantiate a reference to it rather than creating it afresh.Cross Reference:
+<ul>
+  <li>
+    Reuse or create new data elements at runtime (caTissue)
+    <ul>
+      <li>
+        Forum posting:
+        <a href="https://cabig-kc.nci.nih.gov/Vocab/forums/viewtopic.php?f=44&amp;t=151" rel="nofollow">
+          https://cabig-kc.nci.nih.gov/Vocab/forums/viewtopic.php?f=44&amp;t=151
+        </a>
+      </li>
+      <li>
+        Requirements statement:
+        <a href="https://wiki.nci.nih.gov/x/QRFlAQ" rel="nofollow">
+          https://wiki.nci.nih.gov/x/QRFlAQ
+        </a>
+      </li>
+      <li>
+        Use Case:
+        <a href="https://wiki.nci.nih.gov/x/t2NyAQ" rel="nofollow">
+          https://wiki.nci.nih.gov/x/t2NyAQ
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    ICR-caIntegrator2
+    <ul>
+      <li>
+        Forum posting:
+        <a href="https://wiki.nci.nih.gov/x/bpJ8&amp;nbsp" rel="nofollow">
+          https://wiki.nci.nih.gov/x/bpJ8&amp;nbsp
+        </a>
+        ;
+      </li>
+      <li>
+        Requirements statement:
+        <a href="https://wiki.nci.nih.gov/x/vn9yAQ" rel="nofollow">
+          https://wiki.nci.nih.gov/x/vn9yAQ
+        </a>
+      </li>
+      <li>
+        Use Case:
+        <a href="https://wiki.nci.nih.gov/x/wH9yAQ" rel="nofollow">
+          https://wiki.nci.nih.gov/x/wH9yAQ
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    Brain Tumor in silico study - Pathology and Radiology data models
+    <ul>
+      <li>
+        Forum posting:
+        <a href="https://cabig-kc.nci.nih.gov/Vocab/forums/viewtopic.php?f=38&amp;t=129" rel="nofollow">
+          https://cabig-kc.nci.nih.gov/Vocab/forums/viewtopic.php?f=38&amp;t=129
+        </a>
+      </li>
+      <li>
+        Requirements statement:
+        <a href="https://wiki.nci.nih.gov/x/ZwZyAQ" rel="nofollow">
+          https://wiki.nci.nih.gov/x/ZwZyAQ
+        </a>
+      </li>
+      <li>
+        Use Case:
+        <a href="https://wiki.nci.nih.gov/x/3wpyAQ" rel="nofollow">
+          https://wiki.nci.nih.gov/x/3wpyAQ
+        </a>
+      </li>
+    </ul>
+  </li>
+</ul>
+When defining new datasets for caIntegrator&#39;s data-warehouse for biomedical data collection and analysis, automatically record these new datatypes in a well-defined and federated manner so that data can be shared.Is this a repeat of &#34;Support the addition of data elements to an existing information model and automatically capture and publish the information about the extensions.&#34;?Discover and orchestrate services to achieve LS research goals; e.g. start with a hypothesis, identify relevant services that provides the necessary analysis and data, create the worklow/pipeline, report findings.[Baris] This is use case is overlapping with &#34;Search for all &#34;pre-cancerous&#34; biospecimens..&#34; and &#34;Automatically discover analytical steps for Illumina..&#34; examples aboveDomain Description [Revised From ICRi Use Cases]: A scientist is trying to identify a new genetic biomarker for HER2/neu negative stage I breast cancer patients. The scientist queries for HER2/neu negative tissue specimens of Stage I breast cancer patients using services at his/her cancer center that also have corresponding microarray experiments. Analysis of the microarray experiments identify genes that are significantly over-expressed and under-expressed in a number of cases. The scientist decides that these results are significant, and related literature suggest a hypothesis that gene A may serve as a biomarker in HER2/neu negative Stage I breast cancer. To validate this hypothesis in a significant number of cases the scientist needs a larger data set, so he queries for all the HER2/neu negative specimens of Stage I breast cancer patients with corresponding microarray data and also for appropriate control data from other cancer centers. After retrieving the microarray experiments the scientist analyzes the data for over-expression of genes A.Technical Description: The scientist in this case is trying to develop a workflow that will assist biomarker discovery research. S/he first needs to discover the services that provide biospecimen information with the phenotype s/he is looking for (for example, HER2/neu negative stage I breast cancer) and then the microarray experiment information. Then he needs to create a workflow (orchestrate services) where the input is a phenotype for biospecimens and output is a set of gene of interest. These steps require the support for standard terminologies (and services) and syntaxes to best describe the services&#39; behavior and static data. Furthermore they require inference engines that relates the semantic and syntactic metadata for the inputs/outputs of the services to &#34;assist&#34; scientist to identify what service can be part of the workflow.Cross References:
+<ul>
+  <li>
+    Support development of workflows:
+    <ul>
+      <li>
+        <a href="https://cabig-kc.nci.nih.gov/Vocab/forums/viewtopic.php?f=43&amp;t=146" rel="nofollow">
+          Forum posting
+        </a>
+      </li>
+      <li>
+        <a href="https://wiki.nci.nih.gov/x/VAhyAQ" rel="nofollow">
+          Requirements statement
+        </a>
+      </li>
+      <li>
+        <a href="https://wiki.nci.nih.gov/x/FxRlAQ" rel="nofollow">
+          Use Case
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="https://cabig-kc.nci.nih.gov/Vocab/forums/viewtopic.php?f=43&amp;t=146" rel="nofollow">
+      ICR IRWG Requirements
+    </a>
+  </li>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=208404966" rel="nofollow">
+      ICR ICRi Use Cases
+    </a>
+  </li>
+</ul>
+Statistical computing environment and sharable metadata for statistical practice.Domain description:  A team of biostatistician tries to analyze the massive amount of clinical research data generated during the various phases of clinical trials. The statisticians generate various artifacts from the highly normalized data during this process such as programs for data manipulation and statistical analysis, the analysis data sets, the results of the analysis. In addition, according to the various guiding principal for a clinical trial, the data also needs to comply with various FDA Regulations and Data Standards. Therefore the real dilemma facing the team of biostatistician is how they should carry out the statistical analysis according to good statistical practices that will maintain the credibility of results and assure data integrity.Technical description: A Statistical Computing Environment (SCE) provides a foundation for documenting rigor in the analysis and reporting of clinical trial results while increasing productivity and quality.  To ensure credibility, reliability and data integrity assurance the best way is to work in an environment that tracks all of the objects. By developing a table of contents of the objects to be created one can track the objects. The table of contents itself becomes a part of the study metadata. The environment would typically include standard programs and algorithms for producing common reports of trial data. Above all, the statistical computing environment develops electronic documentation of the entire process.Cross reference
+<ul>
+  <li>
+    Requirement statements:
+    <a href="https://wiki.nci.nih.gov/x/KDxyAQ" rel="nofollow">
+      https://wiki.nci.nih.gov/x/KDxyAQ
+    </a>
+  </li>
+  <li>
+    Use cases:
+    <a href="https://wiki.nci.nih.gov/display/seminfra/Init1SD60-Metadata+for+statistical+practice" rel="nofollow">
+      https://wiki.nci.nih.gov/display/seminfra/Init1SD60-Metadata+for+statistical+practice
+    </a>
+  </li>
+</ul>
+Patrick: This is a very interesting one that is different from the rest. However, I am not sure the last sentence in the domain description adequately captures it. To me, the issue is how a statistician finds the appropriate standards and then integrates them into their own statistical computing environment. All of the other use cases we have focus on the metadata specialist or cancer researcher - this one focuses on the statistician who is performing the analysis and generating the data. We need to drive home his issues and how they are to be resolved. Also, I am not sure I understand the table of contents of objects.caGRID should support interoperability from non grid platforms.Domain description: A cancer researcher who is not familiar with the grid wants to collaborate with his peers from the cancer research community to identify tissue specimens, microarray, clinical trials and images of his interest. Being a total stranger to the grid he does not know the data standards and the models he needs to invoke to support his search.Technical description: One persons object is another person&#39;s attribute&#34;. Depending on one&#39;s world view, a real life entity can be modeled in UML as Object, Attribute or value set. In caBIG models now, some model Race (and Ethnicity) as an Object while others model Race (and Ethnicity) as an attribute. This is problematic, because Race data that is modeled differently cannot be &#34;seamlessly integrated&#34; on caGrid (there needs to be a transform). One can start to use the SAIF language in terms of Conceptual, Platform Independent (logical) and Platform Specific (Implemented).  Given that the grid has CIMs, PIMs and PSMs for applications, and BAM and a DAM and other institutions, may have their own DAMs, BAMs, CIMs, PIMs and PSMs.  These elements need to be mapped to each other at whatever level needed, to get to some semantic interoperability.Cross reference
+<ul>
+  <li>
+    Requirement statement:
+    <a href="https://wiki.nci.nih.gov/x/hAVyAQ" rel="nofollow">
+      https://wiki.nci.nih.gov/x/hAVyAQ
+    </a>
+  </li>
+  <li>
+    Forum post:
+    <a href="https://cabig-kc.nci.nih.gov/Vocab/forums/viewtopic.php?f=39&amp;t=167" rel="nofollow">
+      https://cabig-kc.nci.nih.gov/Vocab/forums/viewtopic.php?f=39&amp;t=167
+    </a>
+  </li>
+  <li>
+    Usecases:
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=25135246" rel="nofollow">
+      Init6SD12SD12-UML modelling in different layer
+    </a>
+  </li>
+</ul>
+Patrick: This one is very specific to a technology (caGrid). It needs to be generalized. I am not sure how the title matches the descriptions (since non-grid platforms are not mentioned). Also, I am not sure how the domain description matches the technical description. The technical description seems to focus on semantic relationships and transforms, whereas the domain description seems to focus on accessibility to non-technical users.Semantic search on the cancer grid.Domain description: A cancer researcher is looking for lung cancer specimens with a histologic picture of a &#39;oats cell carcinoma&#39; in males aged between 45-55 years and who have a history of smoking for at least 10 years. He invokes a data service and queries caTissue instances in DFCI, TJU, LLU for specimens and rather than using a advance query, uses a semantic query like show me all specimens of lung cancer in  males aged 45-55 years who are smokers for at least 10 years and whose histologic picture is that of a oat cell carcinoma.  The query runs on various instances of caTissue and comes back with the identified specimens that matched the criteria. Being able to facilitate a semantic search on the grid would facilitate greater cohesiveness of the research cancer research community.Technical description: The Lexical Grid, coordinated by the Mayo Clinic Division of Biomedical Statistics and Informatics, provides a semantic foundation upon which multiple APIs can be developed that support consistent searching, navigation and cross terminology traversal. These open-source tools are used in a variety of projects such as the NCI Cancer Biomedical Informatics Grid, the National Center for Biomedical Ontology, the Biomedical Grid Terminology project, and the World Health Organization International Classification of Diseases (ICD-11) development process. LexGrid hosts a wide variety of terminologies and ontologies including ICD-9-CM, the Gene Ontology, the HL7 Version 3 vocabulary, and SNOMED-CT. LexGrid can also represent complete NLM Unifed Medical Language System, which currently includes over 100 source terminologies. The Lex-RDF model, maps the LexGrid model elements to corresponding constructs in W3C specifications such as RDF, OWL, and SKOS. With LexRDF, the terminological information represent in LexGrid can be translated to RDF triples, and therefore allowing LexGrid to leverage standard tools and technologies such as SPARQL and RDF triple stores.Cross reference
+<ul>
+  <li>
+    Use case
+    <a href="https://wiki.nci.nih.gov/display/seminfra/Init4hm1.SD210-Triple+store+backend+for+LexEVS" rel="nofollow">
+      https://wiki.nci.nih.gov/display/seminfra/Init4hm1.SD210-Triple+store+backend+for+LexEVS
+    </a>
+  </li>
+  <li>
+    Requirement statement:
+    <a href="https://wiki.nci.nih.gov/x/3AJyAQ" rel="nofollow">
+      https://wiki.nci.nih.gov/x/3AJyAQ
+    </a>
+  </li>
+  <li>
+    Forum post:
+    <a href="https://cabig-kc.nci.nih.gov/Vocab/forums/viewtopic.php?f=37&amp;t=127" rel="nofollow">
+      https://cabig-kc.nci.nih.gov/Vocab/forums/viewtopic.php?f=37&amp;t=127
+    </a>
+  </li>
+</ul>
+Patrick: I think this one is very similar to some of the search use cases earlier.  Also, the technical description seems to focus on terminologies, whereas they are not really mentioned in the domain description.Integration of radiology, pathology, molecular and genomic data to better predict patient outcome and support clinical decision.Domain Description: A patient reports to a hospital with a clinical condition of Glioblastoma multiforme. The treating oncologist wants to find out the likely outcome for this patient. He initiates a search based on patient presenting criteria in Imaging, histopathology and genomic data to look for cohort with matching criteria and survival rate to better predict outcome for his patients.Technical description: A service is needed that can collate data from the national cancer imaging archive, caArray, cancer central clinical database to pull out information for a patient on staging, grading,  and other prognostic aspects of cancer. This service can run on multiple instances of various tools and pull out corresponding data the patient. This service can also be extended to support clinical decision like if a particular cohort reports better outcome and survival rates with treatment A, then it can be used as a standard line of treatment for patients with similar picture.
+<ul>
+  <li>
+    Requirement statement:
+    <a href="https://wiki.nci.nih.gov/x/HpN-AQ" rel="nofollow">
+      https://wiki.nci.nih.gov/x/HpN-AQ
+    </a>
+  </li>
+  <li>
+    Forum post:
+    <a href="https://wiki.nci.nih.gov/display/Imaging/TCGA+Enterprise+Use+Case" rel="nofollow">
+      https://wiki.nci.nih.gov/display/Imaging/TCGA+Enterprise+Use+Case
+    </a>
+  </li>
+  <li>
+    Use cases:
+    <a href="https://wiki.nci.nih.gov/x/foCIAQ" rel="nofollow">
+      https://wiki.nci.nih.gov/x/foCIAQ
+    </a>
+  </li>
+</ul>
+Patrick: I am not sure which requirements in this are not captured in the other use cases.
+<h2 id="UserStoryDrafts-B.FormsStories">
+  B. Forms Stories
+</h2>
+Create and reuse formsDomain Description: Forms provide a convenient paper-like electronic mechanism to capture data in a structured way. For example, when a patient is placed on a clinical trial, data about the patient&#39;s demographics and eligibility for the trial need to be captured. The trial investigator sits with the forms curator to generate this case report form. The forms curator searches for existing demographics forms and form modules, and the investigator reviews them. They identify an appropriate set of questions, and include them in the case report form. They then move onto the eligibility checklist. The investigator drafted the checklist, and it has been approved by the IRB. The forms curator begins keying in the questions, some of which are identified as existing questions and reused, others of which are created completely new. The form is marked complete and is available by the clinical research staff for gathering and enrolling new patients.Technical Description: Forms are a collection of data elements annotated and grouped within the metadata repository. The forms curator can search for existing forms and form modules (portions of a form) by question text, annotations, etc. These can be reused by reference, or imported and modified. When new data elements are being curated, the form curator can search the federated set of all metadata repositories to identify data elements for reuse. This can happen automatically within the curation tooling or explicitly through the metadata web interface.  The final CRF is saved and annotated within the local metadata repository.Cross Reference:
+<ul>
+  <li>
+    CDEs from Man. curation, UML models and CRFs
+    <ul>
+      <li>
+        Forum posting:
+        <a href="https://cabig-kc.nci.nih.gov/Vocab/forums/viewtopic.php?f=43&amp;t=122" rel="nofollow">
+          https://cabig-kc.nci.nih.gov/Vocab/forums/viewtopic.php?f=43&amp;t=122
+        </a>
+      </li>
+      <li>
+        Requirements statement:
+        <a href="https://wiki.nci.nih.gov/x/JgpyAQ" rel="nofollow">
+          https://wiki.nci.nih.gov/x/JgpyAQ
+        </a>
+      </li>
+      <li>
+        Use Case:
+        <a href="https://wiki.nci.nih.gov/x/SGxyAQ" rel="nofollow">
+          https://wiki.nci.nih.gov/x/SGxyAQ
+        </a>
+      </li>
+    </ul>
+  </li>
+</ul>
+Support of form annotations to enable form behavior  Domain Description: a forms curator is sitting down to create the case report forms for a new trial titled &#34;Study of Ad.p53 DC Vaccine and 1-MTin Metastatic Invasive Breast Cancer.&#34; Her goal it to make the forms intuitive, reduce human error when collecting data, and as precise as possible. When building the demographics form, she decides to make the age data element derived from the date of birth data element. Entering data that can simply be calculated from other data can only introduce errors, especially since date of birth is also captured in the hospital system so can easily be validated. When building the medical history CRF, she realizes that fifteen of the questions only relate to women that have previously been pregnant. She promptly enters a skip pattern based on the gender question, as well as the pregnancy question. That should significantly save time. Now that all the questions are entered, she goes back to edit them so have minimum lengths for required text questions, maximum lengths for numeric questions, pick-lists for those questions with a particular set of possible answers, and a data mask for the social security number question. Now, the clinical data management system can render the forms via PDF using all of this handy information.Technical Description: Forms provide a convenient paper-like electronic mechanism to capture data in a structured way. For example, when a patient is placed on a clinical trial, data about the patient&#39;s demographics and eligibility for the trial need to be captured. However, forms can also exhibit specific behavior that may or may not be reusable. These include skip patterns (if the answer to question 10 is &#34;Yes&#34; then skip to question 15), derived values (&#34;what is your age&#34; and &#34;is your age less than, greater than, or equal to 65), and composite answers (&#34;check all&#34; or &#34;more than one of the above&#34;). Furthermore, specific requirements about how a form is rendered can exist. For example, the question description, help text, valid values, maximum and minimum answer length, the format of a data mask (such as SSN), etc. It is important to be able to allow for forms to be annotated with this behavior such that tools can appropriately render and act upon them. Furthermore, if appropriate, web- and paper-based collection instruments can be automatically generated from this metadata.Extend allowable answers with additional permitted valuesDomain Description: In many cases, data elements can be reused but the allowable values need to be extended or restricted. For example, one researcher may want to capture diseases of the nervous system while another may want to capture diseases of the cirulatory system. These both can be captured in the same data element (disease) using the same controlled terminology (ICD-9). However, the list of allowable values is quite different. Furthermore, yet another researcher may want to focus only on certain circulatory diseases, such as those of the heart. A metadata specialist can sit with a domain specialist to identify the appropriate ontologies and constrain or expand them as needed.Technical Description: the metadata repository allows for data element to have a value domain referencing an external terminology. Furthermore, those terminologies can be constrained or expanded as needed in the local repository.
+<h2 id="UserStoryDrafts-C.MetadataSpecialistStories">
+  C. Metadata Specialist Stories
+</h2>
+Creation of metadata and management of information models through modeling and web toolsDomain Description: the imaging center at a cancer center has just purchased a magnetic resonance spectroscopy (MRS) machine to add to their numerous magnetic resonance imaging (MRI) machines. MRS is used to measure the levels of different metabolites in body tissues. The MR signal produces a spectrum of resonances that correspond to different molecular arrangements of the isotope being &#34;excited&#34;. Magnetic resonance spectroscopic imaging (MRSI) combines both spectroscopic and imaging methods to produce spatially localized spectra from within the sample or patient.  A metadata specialist has been assigned to enhance their imaging repository to handle this new type data He opens his modeling tool, and begins to add additional classes related to metabolic signatures. As the metadata specialist types the class name &#34;Metabolite&#34; into the modeling tool, a number of existing classes and concepts are suggested to him automatically. One of these peak&#39;s his interest, and he clicks on the link for more information. His web browser pops up showing him the data element from a system focused on drug discovery and pharmokenetics. This is the perfect term to reuse, and this type of linkage should provide for a convenient way to easily match potential drugs with MRS results. He imports the class into his modeling tool, bringing with it an number of associated classes and attributes that may be of use.Technical Description: all data elements and referenced concepts in the metadata repository are indexed and easily accessible by type-ahead and other integrated tooling solutions. The model browser is a convenient interface for exploring the metadata in a UML or data element centric way. Furthermore, the repository supports the import and export of modeling standards, such as XMI, which facilitates direct reuse.Managing semantic relationships in order to link and share dataDomain Descriptions: a metadata specialist has been tasked with cross-linking the hospital system and the clinical systems in her organization. Fortunately, both systems have been modeled with well defined metadata, which has been registered in a metadata repository. Unfortunately, the information models used by the systems are not harmonized, so data cannot easily be integrated. Therefore, the metadata specialist defines semantic relationships between the elements that she knows are related, though they do not share the exact same common data elements. For example, she semantically links Patient Last Name in the hospital system to Subject Surname in the clinical system. Once all of the appropriate relationships are made, clinicians are able to navigate between the system seamlessly. Furthermore, the antiquated data warehouse where all of this information is painstakingly transformed and poorly linked can be retired, and quality of care queries can now be carried out using semantic relationships.Technical Description: semantic relationship and rules between data elements can be formed, stored, and shared in the metadata repository. Furthermore, these relationships can be reasoned on using a inference engines and query systems.Cross Reference:
+<ul>
+  <li>
+    ICR IRWG Requirements
+    <ul>
+      <li>
+        Forum posting:
+        <a href="https://cabig-kc.nci.nih.gov/Vocab/forums/viewtopic.php?f=43&amp;t=146" rel="nofollow">
+          https://cabig-kc.nci.nih.gov/Vocab/forums/viewtopic.php?f=43&amp;t=146
+        </a>
+      </li>
+      <li>
+        Requirements statement:
+        <a href="https://wiki.nci.nih.gov/x/OARyAQ" rel="nofollow">
+          https://wiki.nci.nih.gov/x/OARyAQ
+        </a>
+      </li>
+      <li>
+        Use Case:
+        <a href="https://wiki.nci.nih.gov/x/qxJyAQ" rel="nofollow">
+          https://wiki.nci.nih.gov/x/qxJyAQ
+        </a>
+      </li>
+    </ul>
+  </li>
+</ul>
+Supporting interoperability standards (for example, Healthcare Datatypes)  Domain Description: ISO 21090, otherwise known as HL7 Healthcare Datatypes, provide a basic representation of common chunks of data exchanged in the healthcare community, such as Address, Document, and Coded List. A metadata specialist has been tasked to expose some clinical research data in a standards-based approach. She sits down to her modeling tool, and, as a first step, imports the healthcare data types from the caBIG metadata repository. She begins replacing what were complex sets of classes and attributes in her existing model with these standard datatypes. The resulting system is not only simplified, but is also interoperable by virtue of using ISO 21090.Technical Description: the metadata repository allows for the representation of any standard as long as it can be encoded in UML.  ISO 21090 is such as standard, and can easily be exported into XMI and imported into a modeling tool. In UML, these classes can be represented as complex types and applied to attributes rather than associations.Cross Reference:
+<ul>
+  <li>
+    Mapping/transformation support for ISO21090 data types
+    <ul>
+      <li>
+        Requirements statement:
+        <a href="https://wiki.nci.nih.gov/x/2gpyAQ" rel="nofollow">
+          https://wiki.nci.nih.gov/x/2gpyAQ
+        </a>
+      </li>
+      <li>
+        Use Case:
+        <a href="https://wiki.nci.nih.gov/x/IQhyAQ" rel="nofollow">
+          https://wiki.nci.nih.gov/x/IQhyAQ
+        </a>
+      </li>
+    </ul>
+  </li>
+</ul>
+Capturing data in a standard way using data element reuseIs this one redundant with &#34;Creation of metadata and management of information models through modeling and web tools&#34; and &#34;Finding touch points with other systems when building a population science application&#34;?Description: Core to interoperability is capturing data in a standard way using the same or similar data elements. Data elements individually can be reused, for example allowing for patient data to be joined across systems using the Patient Medical Record Number. Forms in their entirety can be reused, such as eligibility forms for multi-site clinical trials. Data formats for encoding biomedical data can be shared, such as MAGE-ML for gene expression data. This allows for data to be captured in a standard way, shared across platforms and systems, for users to search based on the data that is encoded using type-ahead Google-like functionality, and for users to build new systems based on the standards that are already in use.Cross Reference:
+<ul>
+  <li>
+    ICR IRWG Requirements
+    <ul>
+      <li>
+        Forum posting:
+        <a href="https://cabig-kc.nci.nih.gov/Vocab/forums/viewtopic.php?f=43&amp;t=146" rel="nofollow">
+          https://cabig-kc.nci.nih.gov/Vocab/forums/viewtopic.php?f=43&amp;t=146
+        </a>
+      </li>
+      <li>
+        Requirements statement:
+        <a href="https://wiki.nci.nih.gov/x/OARyAQ" rel="nofollow">
+          https://wiki.nci.nih.gov/x/OARyAQ
+        </a>
+      </li>
+      <li>
+        Use Case:
+        <a href="https://wiki.nci.nih.gov/x/qxJyAQ" rel="nofollow">
+          https://wiki.nci.nih.gov/x/qxJyAQ
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    CDEs from Man. curation, UML models and CRFs
+    <ul>
+      <li>
+        Forum posting:
+        <a href="https://cabig-kc.nci.nih.gov/Vocab/forums/viewtopic.php?f=43&amp;t=122" rel="nofollow">
+          https://cabig-kc.nci.nih.gov/Vocab/forums/viewtopic.php?f=43&amp;t=122
+        </a>
+      </li>
+      <li>
+        Requirements statement:
+        <a href="https://wiki.nci.nih.gov/x/JgpyAQ" rel="nofollow">
+          https://wiki.nci.nih.gov/x/JgpyAQ
+        </a>
+      </li>
+      <li>
+        Use Case:
+        <a href="https://wiki.nci.nih.gov/x/SGxyAQ" rel="nofollow">
+          https://wiki.nci.nih.gov/x/SGxyAQ
+        </a>
+      </li>
+    </ul>
+  </li>
+</ul>
+Finding touch points with other systems when building a population science applicationDomain Description: The mission of population science is to reduce the risk, incidence, and deaths from cancer as well as enhance the quality of life for cancer survivors. Genetic, epidemiologic, behavioral, applied, and surveillance cancer research are typical activities of population science researchers, which combines clinical, basic, and population scientists to further individual and population health. Patients are often followed for months or years after diagnosis and/or treatment. A cancer population sciences researcher is studying chemotherapy use in young and elderly patients with advanced lung cancer. For this type of cancer, physicians and patients often have to choose between platinum-based chemotherapy or non-platinum-based chemotherapy. Platinum-based treatment is generally considered to be more aggressive and effective, but it is also more toxic. It is unclear whether physicians are avoiding platinum-based treatments in the elderly because of concerns about frailty and toxicity. The cancer researcher consults with a metadata specialist for designing the information model that will include patient, clinical, pathology, tissue, and imaging data. The metadata specialist selects a number of information models that are currently being used by other researchers, and overlays them to determine the data elements that are important for linking and capturing such diverse data. These are exported from the metadata repositories and imported into his modeling tool to be enhanced with the new fields for the population science research.Technical Description: each information model has well defined metadata available in distributed metadata repositories. The nature of the metadata is such that simple queries can determine overlapping data elements. This can be visualized side-by-side in a tabular format, or graphically in a UML class model. The metadata repository can output data using UML standards, such as XMI, which can easily be aggregated and imported into a modeling tool.Support data transformations in order to allow different flow cytrometry tools to work togetherDomain Description: Flow cytometry (FCM) is a technique for counting and examining microscopic particles, which is routinely used in the diagnosis of health disorders, especially blood cancers, but has many other applications in both research and clinical practice. Automated identification systems could potentially help findings of rare and hidden populations. An informatics specialist is working on objectively comparing many of the FCM analytical methods available in the community for use in automated population identification using computational methods. The primary barrier to this evaluation is the wide variety of data standards used by the tooling, which includes MIFlowCyt, ACS, NetCDF, Gating-ML, FuGEFlow, and OBI. The informaticist decides to take an approach of defining semantic relationships and transformation services.  The result is a system in which FCM analytical workflows are able to discover and perform translations as needed during analytical comparisons.Technical Description: semantic relationship and rules between data elements can be formed, stored, and shared in the metadata repository. Furthermore, these relationships can be reasoned on using a inference engines and workflow engines. Translation services can be defined and identified as such, which would allow for them to be discovered and applied as needed.Content Driven browser  An informatics scientist modeling a new tool is browsing the CDE browsers to find the CDEs of his interest.The CDE browser in its current shape has some usability issues. Non-regular users using the browser find the terminology used very technical and it requires training to understand. For curators whose job it is to work with these tools that may be acceptable. However, if these tools are to be usable by outside researchers, the terminology should be a better fit with less-technical terms, those researchers are likely to use. The visual presentation of controls/action is problematic and the relationship between the browse tree and the search forms (Search for CDEs, Search for Forms) is not intuitive.Given the numerous usability issues with the CDE browser the need is to come up with an alternative and a more efficient search workflow.Cross reference
+<ul>
+  <li>
+    New CDE browser workflow:
+    <a href="https://wiki.nci.nih.gov/pages/viewpageattachments.action?pageId=24259415" rel="nofollow">
+      https://wiki.nci.nih.gov/pages/viewpageattachments.action?pageId=24259415
+    </a>
+  </li>
+  <li>
+    Requirement statement:
+    <a href="https://wiki.nci.nih.gov/x/agRyAQ" rel="nofollow">
+      https://wiki.nci.nih.gov/x/agRyAQ
+    </a>
+  </li>
+  <li>
+    Forum post:
+    <a href="https://cabig-kc.nci.nih.gov/Vocab/forums/viewtopic.php?f=43&amp;t=109" rel="nofollow">
+      https://cabig-kc.nci.nih.gov/Vocab/forums/viewtopic.php?f=43&amp;t=109
+    </a>
+    Patrick: I think the domain description needs to be worked up a bit to be believable.
+  </li>
+</ul>
+<h2 id="UserStoryDrafts-D.DeveloperStories">
+  D. Developer Stories
+</h2>
+Iterative development and management of information modelsDomain Description: Iterative and Incremental development is a cyclic software development process developed in response to the weaknesses of the waterfall model. It starts with an initial planning and ends with deployment with the cyclic interaction in between. The basic idea behind iterative enhancement is to develop a software system incrementally, allowing the developer to take advantage of what was being learned during the development of earlier, incremental, deliverable versions of the system. Learning comes from both the development and use of the system, where possible key steps in the process are to start with a simple implementation of a subset of the software requirements and iteratively enhance the evolving sequence of versions until the full system is implemented. At each iteration, design modifications are made and new functional capabilities are added. In order to support an iterative development process, it is necessary that the metadata itself be iteratively developed. The information model is enhanced, semantics added and removed, on a monthly basis.Technical Description: The metadata repository supports software engineers and metadata specialists to create modThe metadata repository itself must support the developer to create, modify, and remove metadata on an ongoing basis.Cross Reference:
+<ul>
+  <li>
+    Automate Loading process
+    <ul>
+      <li>
+        Forum posting:
+        <a href="https://cabig-kc.nci.nih.gov/Vocab/forums/viewtopic.php?f=44&amp;t=163" rel="nofollow">
+          https://cabig-kc.nci.nih.gov/Vocab/forums/viewtopic.php?f=44&amp;t=163
+        </a>
+      </li>
+      <li>
+        Requirements statement:
+        <a href="https://wiki.nci.nih.gov/x/qwRyAQ" rel="nofollow">
+          https://wiki.nci.nih.gov/x/qwRyAQ
+        </a>
+      </li>
+      <li>
+        Use Case:
+        <a href="https://wiki.nci.nih.gov/x/MyNyAQ" rel="nofollow">
+          https://wiki.nci.nih.gov/x/MyNyAQ
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    Automate &amp; Streamline caDSR Model Submission Process
+    <ul>
+      <li>
+        Forum posting:
+        <a href="https://cabig-kc.nci.nih.gov/Vocab/forums/viewtopic.php?f=44&amp;t=108" rel="nofollow">
+          https://cabig-kc.nci.nih.gov/Vocab/forums/viewtopic.php?f=44&amp;t=108
+        </a>
+      </li>
+      <li>
+        Requirements statement:
+        <a href="https://wiki.nci.nih.gov/x/tQRyAQ" rel="nofollow">
+          https://wiki.nci.nih.gov/x/tQRyAQ
+        </a>
+      </li>
+      <li>
+        Use Case:
+        <a href="https://wiki.nci.nih.gov/x/WStyAQ" rel="nofollow">
+          https://wiki.nci.nih.gov/x/WStyAQ
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    Simplify and streamline recording data semantics
+    <ul>
+      <li>
+        Forum posting:
+        <a href="https://cabig-kc.nci.nih.gov/Vocab/forums/viewtopic.php?f=44&amp;t=98" rel="nofollow">
+          https://cabig-kc.nci.nih.gov/Vocab/forums/viewtopic.php?f=44&amp;t=98
+        </a>
+      </li>
+      <li>
+        Use Case:
+        <a href="https://wiki.nci.nih.gov/x/uQRyAQ" rel="nofollow">
+          https://wiki.nci.nih.gov/x/uQRyAQ
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    Automate
+    <ul>
+      <li>
+        Forum posting:
+        <a href="https://cabig-kc.nci.nih.gov/Vocab/forums/viewtopic.php?f=44&amp;t=143" rel="nofollow">
+          https://cabig-kc.nci.nih.gov/Vocab/forums/viewtopic.php?f=44&amp;t=143
+        </a>
+      </li>
+      <li>
+        Requirements statement:
+        <a href="https://wiki.nci.nih.gov/x/vgRyAQ" rel="nofollow">
+          https://wiki.nci.nih.gov/x/vgRyAQ
+        </a>
+      </li>
+      <li>
+        Use Case:
+        <a href="https://wiki.nci.nih.gov/x/C4B9AQ" rel="nofollow">
+          https://wiki.nci.nih.gov/x/C4B9AQ
+        </a>
+      </li>
+      <li>
+        Use Case:
+        <a href="https://wiki.nci.nih.gov/x/WStyAQ" rel="nofollow">
+          https://wiki.nci.nih.gov/x/WStyAQ
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    ICR IRWG Requirements
+    <ul>
+      <li>
+        Forum posting:
+        <a href="https://cabig-kc.nci.nih.gov/Vocab/forums/viewtopic.php?f=43&amp;t=146" rel="nofollow">
+          https://cabig-kc.nci.nih.gov/Vocab/forums/viewtopic.php?f=43&amp;t=146
+        </a>
+      </li>
+      <li>
+        Requirements statement:
+        <a href="https://wiki.nci.nih.gov/x/OARyAQ" rel="nofollow">
+          https://wiki.nci.nih.gov/x/OARyAQ
+        </a>
+      </li>
+      <li>
+        Use Case:
+        <a href="https://wiki.nci.nih.gov/x/qxJyAQ" rel="nofollow">
+          https://wiki.nci.nih.gov/x/qxJyAQ
+        </a>
+      </li>
+    </ul>
+  </li>
+</ul>
+Support standardized processes for software development and conformanceDomain Description: caEHR is the flagship project that is applying the ECCF process, which, when applied effectively, should produce specifications that can be used to evaluate how and at what levels various information systems are interoperable. This is important to enabling coordination of IT resources across the community of NCI stakeholders. The caEHR project is currently creating and managing various artifacts (CFSS, PIM, PSM) manually. Significant challenges include: 1) managing traceability and change; 2) formulating conformance assertions so that they can be evaluated; 3) collaborating on model elements (i.e. distributed model authoring). The application of the ECCF process is facilitated by providing a formal model of ECCF artifacts. As an example, this supports traceability among artifacts, the ability to generate artifacts, and the synchronization of artifacts.Technical Description: ECCF artifacts can be defined fully within UML, which can be stored in the metadata repository.  This would allow the artifacts to be queried, manipulated, compared, and exported.

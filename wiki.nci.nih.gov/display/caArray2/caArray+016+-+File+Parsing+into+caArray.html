@@ -1,0 +1,170 @@
+<h1 id="caArray016FileParsingintocaArray-Question:WhichfilecanbeparsedintocaArray?Whatisthebenefitoffileparsing?">
+  Question: Which file can be parsed into caArray? What is the benefit of file parsing?
+</h1>
+Topic: caArray UsageRelease: caArray 2.2.0 and aboveDate entered: 03/30/2009
+<h2 id="caArray016FileParsingintocaArray-Answer">
+  Answer
+</h2>
+<h3 id="caArray016FileParsingintocaArray-FilesRecognizedbycaArray">
+  Files Recognized by caArray
+</h3>
+caArray has the ability to upload the array design file or experiment data from many array providers, even if it doesn&#39;t have a parser available yet. Those files will be imported into caArray without being validated or parsed. Even if a file is not parsed, the user will still be able to download the file (through the user interface as well as through the programmatic API), and will be able to associate the file to samples, extracts, and hybridizations. This feature allows data to be shared and help the system identify which new parsers are need developed in the future. For more information on how files are processed by caArray, review
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=42832155" rel="nofollow">
+  caArray 017 - Meaning of the caArray Status of Importing - Imported versus Imported Not Parsed
+</a>
+.The following table, File types from caArray, (from Chapter 7 in the
+<a href="https://wiki.nci.nih.gov/x/Oxo9Ag#7-SubmittingDatatoanExperiment-AboutFileTypesincaArray" rel="nofollow">
+  caArray User Guide
+</a>
+) summarizes the file types that caArray currently supports with full validation and parsing as well as those that can be imported without validation and parsing. The user&#39;s guide also summarizes the
+<a href="https://wiki.nci.nih.gov/x/Nxo9Ag#6-CurationTools-ArrayDesignFormatFilesincaArray" rel="nofollow">
+  array design file types
+</a>
+.Files That Can Be Imported into caArray
+<table>
+  <tbody>
+    <tr>
+      <th>
+        File Types
+      </th>
+      <th>
+        Imported after validation and parsing
+      </th>
+      <th>
+        Imported without validation and parsing
+      </th>
+    </tr>
+    <tr>
+      <td>
+        Raw/processed data files;provide numerical values of array data
+      </td>
+      <td>
+        <ul>
+          <li>
+            Affymetrix CEL, CHP, CNCHP
+          </li>
+          <li>
+            GenePix GPR*
+          </li>
+          <li>
+            Illumina CSV, Sample Probe Profile TXT, Genotyping processed data matrix TXT, Raw TXT
+          </li>
+          <li>
+            Agilent Raw TXT
+          </li>
+          <li>
+            Nimblegen Normalized Pair Report TXT   *For more information about GenePix GPR and Illumina CSV files, see MAGE-TAB SDRF Validation Rules, items 1 and 2.
+          </li>
+        </ul>
+      </td>
+      <td>
+        <ul>
+          <li>
+            Affymetrix DAT, RPT, TXT, and EXP
+          </li>
+          <li>
+            Agilent TSV, derived TXT
+          </li>
+          <li>
+            Illumina IDAT, TXT
+          </li>
+          <li>
+            ImaGene TIF, TXT
+          </li>
+          <li>
+            Nimblegen GFF, Raw or Derived TXT
+          </li>
+          <li>
+            ScanArray CSV
+          </li>
+          <li>
+            GEO SOFT, GSM  Note: caArray may have new parsers available for data files in the system that are already imported but not parsed. To learn about retrofitting those files, see
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=42832149" rel="nofollow">
+              #Retrofitting Data Files
+            </a>
+            .
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Array Design files;provide the design of an array.
+      </td>
+      <td>
+        For information about array design file types, see the table in
+        <a href="https://wiki.nci.nih.gov/x/Nxo9Ag#6-CurationTools-ManagingArrayDesigns" rel="nofollow">
+          Managing Array Designs
+        </a>
+        .
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        MAGE-TAB files;used to annotate experiments automatically
+      </td>
+      <td>
+        <ul>
+          <li>
+            MAGE-TAB SDRF (Sample and Data Relationship Format)
+          </li>
+          <li>
+            MAGE-TAB IDF (Investigation Description Format) only, no referenced SDRFs
+          </li>
+          <li>
+            MAGE-TAB Copy Number Data Matrix  Note: Only one IDF is allowed per import, since the import is in the context of a single experiment.
+          </li>
+        </ul>
+      </td>
+      <td>
+        <ul>
+          <li>
+            MAGE-TAB ADF
+          </li>
+          <li>
+            MAGE-TAB Data Matrix (not copy number)
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Supplemental Files
+      </td>
+      <td>
+        These cannot be validated nor imported. Files of unknown file type or simply reference files fall under this category. For more information, see
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=42832149" rel="nofollow">
+          #Supplemental Files
+        </a>
+        .
+      </td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+NoteImage files cannot be validated or imported successfully into caArray 2.4. For more information, see Image File Importing Issues in caArray as well as
+<a href="https://wiki.nci.nih.gov/x/SBo9Ag" rel="nofollow">
+  Appendix B - Importing Data Files
+</a>
+.
+<h3 id="caArray016FileParsingintocaArray-BenefitofFileParsing">
+  Benefit of File Parsing
+</h3>
+For the data that are parsed into caArray, an analytical service (like
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=42832191" rel="nofollow">
+  geWorkbench
+</a>
+) can pull the data out using the programmatic API and perform analysis on it or plot graphs from it etc. Another example is
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=204374285" rel="nofollow">
+  web Genome
+</a>
+, a caArray client, which pulls parsed data from caArray experiments and plots log ratio values against the chromosome location. With parsed data, a client can ask for quantitative types (columns) of data of interest, instead of having to retrieve the entire contents of the data file.
+<h2 id="caArray016FileParsingintocaArray-Haveacomment?">
+  Have a comment?
+</h2>
+Please leave your comment in the
+<a href="https://cabig-kc.nci.nih.gov/Molecular/forums/viewtopic.php?f=6&amp;t=577" rel="nofollow">
+  caArray End User Forum
+</a>
+.

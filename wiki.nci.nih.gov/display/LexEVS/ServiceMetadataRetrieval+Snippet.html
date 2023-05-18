@@ -1,0 +1,27 @@
+Java Code Snippet
+
+// We can get a CodingSchemeRenderingList object directly from LexBigService
+LexBIGService lbs = LexBIGServiceImpl.defaultInstance();
+CodingSchemeRenderingList schemeList = lbs.getSupportedCodingSchemes();
+
+for (CodingSchemeRendering csr : schemeList.getCodingSchemeRendering())
+{
+CodingSchemeSummary css = csr.getCodingSchemeSummary();
+
+// Print separator then details from the CodingSchemeSummary
+System.out.println(&#34;==========================&#34;);
+System.out.println(ObjectToString.toString(css));
+
+// Set up a coding scheme reference to resolve Copyright
+String urn = css.getCodingSchemeURI();
+String version = css.getRepresentsVersion();
+CodingSchemeVersionOrTag csVorT =
+Constructors.createCodingSchemeVersionOrTagFromVersion(version);
+CodingScheme cs = lbs.resolveCodingScheme(urn, csVorT);
+System.out.println(&#34;Copyright: &#34; +cs.getCopyright().getContent());
+
+// Get the final details from the RenderingDetail
+RenderingDetail rd = csr.getRenderingDetail();
+System.out.println(ObjectToString.toString(rd));
+System.out.println();
+} 

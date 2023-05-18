@@ -1,0 +1,206 @@
+Current Working Draft
+
+
+This section will address prototypes and demos and includes the following:
+<ul>
+  <li>
+    <a href="#id-10.3FormsRegistry-Scope,ObjectivesandApproach" rel="nofollow">
+      Scope, Objectives and Approach
+    </a>
+  </li>
+  <li>
+    <a href="#id-10.3FormsRegistry-CapabilityDescription" rel="nofollow">
+      Capability Description
+    </a>
+  </li>
+  <li>
+    <a href="#id-10.3FormsRegistry-Requirements" rel="nofollow">
+      Requirements
+    </a>
+  </li>
+  <li>
+    <a href="#id-10.3FormsRegistry-CommunityFeedbackandComments" rel="nofollow">
+      Community Feedback and Comments
+    </a>
+  </li>
+  <li>
+    <a href="#id-10.3FormsRegistry-LessonsLearned" rel="nofollow">
+      Lessons Learned
+    </a>
+  </li>
+</ul>
+<h4 id="id-10.3FormsRegistry-Scope,ObjectivesandApproach">
+  Scope, Objectives and Approach
+</h4>
+The caBIG® Clinical Information Suite Clinical Forms prototype has two primary goals. The first goal involves a form designer and the construction of a clinical data entry form for use in the graphical user interface of the caBIG® Clinical Information Suite application that is semantically consistent and based on HL7 RIM objects, HL7 structural vocabulary, and ONC required code systems for meaningful use. The second goal involves the data entry person (a physician, nurse or other health care provider) who defines the value set requirements for the form elements, identifies the rules for skip patterns and form element arrangement, and eventually enters and persists clinical data.
+<h4 id="id-10.3FormsRegistry-CapabilityDescription">
+  Capability Description
+</h4>
+The prototype will support the following core capabilities:
+<ul>
+  <li>
+    Create Form Definitions
+  </li>
+  <li>
+    Retrieve form Objects
+  </li>
+  <li>
+    Persist CDA Document
+  </li>
+</ul>
+<h4 id="id-10.3FormsRegistry-Requirements">
+  Requirements
+</h4>
+The following is a description of the use case that will be realized by the prototype:
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Element
+      </th>
+      <th>
+        Description
+      </th>
+    </tr>
+    <tr>
+      <td>
+        Use Case Name
+      </td>
+      <td>
+        caBIG® Clinical Information Suite Form Development
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Use Case Unique ID
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        caBIG® Clinical Information Suite Enterprise Use Case Ref. ID
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        Brief Description
+      </td>
+      <td>
+        A qualified form builder designs a form for use in caBIG® Clinical Information Suite
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Actors
+      </td>
+      <td>
+        Data Entry Form builder, Data Entry Form end user
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Trigger
+      </td>
+      <td>
+        Data Entry Form end user requests a new form
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Preconditions
+      </td>
+      <td>
+        <ul>
+          <li>
+            caBIG® Clinical Information Suite is capable of importing forms
+          </li>
+          <li>
+            The ECCF Registry is accessible
+          </li>
+          <li>
+            The Forms Application Server is available
+          </li>
+          <li>
+            Terminology services is accessible
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Main Flow
+      </td>
+      <td>
+        <ol>
+          <li>
+            A Data Entry Form builder is notified of a new study or need for a new clinical data capture form by an end user.
+          </li>
+          <li>
+            The Data Entry Form builder actor begins with the requirements from the end user and opens a form editor.
+          </li>
+          <li>
+            The Data Entry Form builder selects the form type to build and selects a template for that type from the ECCF registry.
+          </li>
+          <li>
+            If the template is found, the user gets a pre-populated menu of Common Message Elements (CMETs) or templates that go with that parent document template.
+          </li>
+          <li>
+            If the Data Entry Form builder is unable to locate a desired form template in the ECCF registry, the Form Builder may search for existing Common Message Elements (CMETs) to populate the menu of form sections identified by the requirements and downloads these to the Form Builder Tool.
+          </li>
+          <li>
+            The Data Entry Form builder drags a CMET to the build palette to start the form project. This is repeated for each section identified by the requirements. When a template is present, the CMETs self organize according to the template. If a template does not exist, the user connects the CMETs together with the guidance of the system on allowable relations or entry points for the CMET.
+          </li>
+          <li>
+            The selection of a CMET on the palette exposes the attributes of the CMET in a window where the Data Entry Form builder may then select a value set to bind to the attribute.
+          </li>
+          <li>
+            Selection of the value set is done by passing the attribute name to the ECCF to identify available value sets for that attribute. If no value set exists the user is passed to the CTS service to construct a value set.
+          </li>
+          <li>
+            The Data Entry Form builder user adds metadata to the form package and the system adds identifiers to the form and its components requiring new identifiers.
+          </li>
+          <li>
+            The Data Entry Form builder user next defines the rules for skip patterns and form flow logic that is stored with the form. The form is then submitted to the Forms Application Server and the form identifier and metadata passed to the ECCF registry.
+          </li>
+          <li>
+            The ECCF registry notifies subscribers of the availability of a new form type.
+          </li>
+          <li>
+            The caBIG® Clinical Information Suite Data entry user pulls the completed form from the Forms Application Server and imports the form into the caBIG® Clinical Information Suite Forms workspace where form arrangement, customization and data backend bindings occur.
+          </li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Alternate Flow
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        Postconditions
+      </td>
+      <td>
+        A Semantically Aware Form is available for use in the caBIG® Clinical Information Suite
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Notes
+      </td>
+      <td>
+        The use case assumes that the caBIG® Clinical Information Suite applications have the responsibility for binding of the form to system middleware components
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h4 id="id-10.3FormsRegistry-CommunityFeedbackandComments">
+  Community Feedback and Comments
+</h4>
+TBD
+<h4 id="id-10.3FormsRegistry-LessonsLearned">
+  Lessons Learned
+</h4>
+TBD 

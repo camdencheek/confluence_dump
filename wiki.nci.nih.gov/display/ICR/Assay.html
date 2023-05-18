@@ -1,0 +1,216 @@
+Contents of this Page
+<ul>
+  <li>
+    <a href="#Assay-Description" rel="nofollow">
+      Description
+    </a>
+  </li>
+  <li>
+    <a href="#Assay-FileFormat" rel="nofollow">
+      File Format
+    </a>
+  </li>
+  <li>
+    <a href="#Assay-Fields" rel="nofollow">
+      Fields
+    </a>
+    <ul>
+      <li>
+        <a href="#Assay-Nodes" rel="nofollow">
+          Nodes
+        </a>
+      </li>
+      <li>
+        <a href="#Assay-AttributesofAssayNodes" rel="nofollow">
+          Attributes of Assay Nodes
+        </a>
+      </li>
+      <li>
+        <a href="#Assay-AttributesofProcessingEventsforAssayNodes" rel="nofollow">
+          Attributes of Processing Events for Assay Nodes
+        </a>
+      </li>
+      <li>
+        <a href="#Assay-AttributeofAssayName" rel="nofollow">
+          Attribute of Assay Name
+        </a>
+      </li>
+      <li>
+        <a href="#Assay-QualifiersforAssayNodes%E2%80%99Attributes" rel="nofollow">
+          Qualifiers for Assay Nodes’ Attributes
+        </a>
+      </li>
+      <li>
+        <a href="#Assay-OtherAssayFields" rel="nofollow">
+          Other Assay Fields
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#Assay-Files" rel="nofollow">
+      Files
+    </a>
+  </li>
+</ul>
+Additional Information
+<ul>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=60001317" rel="nofollow">
+      Assay File Examples
+    </a>
+  </li>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=253887739" rel="nofollow">
+      Assay File Template
+    </a>
+  </li>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=253887751" rel="nofollow">
+      Assay File Glossary
+    </a>
+  </li>
+</ul>
+<h2 id="Assay-Description">
+  Description
+</h2>
+The Assay File provides references to assay results including measurements, images, raw data files, derived data files, and other file types. There can be multiple Assay Files per study.
+<h2 id="Assay-FileFormat">
+  File Format
+</h2>
+The ISA-TAB-Nano Assay File leverages the ISA-TAB file format, which is a horizontal-based spreadsheet format with column headers and row values. The following table provides an example subset of this format. Concepts specified within the bracket “[ ]” are variables depending on the type of assay.Example Subset of the Assay File Format
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        A
+      </th>
+      <th>
+        B
+      </th>
+      <th>
+        C
+      </th>
+      <th>
+        E
+      </th>
+    </tr>
+    <tr>
+      <td>
+        Sample Name
+      </td>
+      <td>
+        Assay Name
+      </td>
+      <td>
+        Measurement Value[z-average(hydrodynamic diameter)]
+      </td>
+      <td>
+        Unit
+      </td>
+    </tr>
+    <tr>
+      <td>
+        NCL-20-1
+      </td>
+      <td>
+        size by DLS assay
+      </td>
+      <td>
+        5.2
+      </td>
+      <td>
+        nm
+      </td>
+    </tr>
+    <tr>
+      <td>
+        NCL-20-2
+      </td>
+      <td>
+        size by DLS assay
+      </td>
+      <td>
+        8.6
+      </td>
+      <td>
+        nm
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="Assay-Fields">
+  Fields
+</h2>
+According to the ISA-TAB specification, the Assay File has different types of fields called nodes, attributes of nodes, qualifiers of nodes’ attributes, and other valid fields.  In support of ISA-TAB-Nano, extensions were applied to the Assay File to record the endpoint value of an assay measurement (Measurement Value) as an attribute of the assay name.The Assay File supports the following types of information:
+<ul>
+  <li>
+    Sample name
+  </li>
+  <li>
+    Assay protocol reference, protocol parameter values, performer, and date the protocol was performed
+  </li>
+  <li>
+    Assay factor values including units, if applicable
+  </li>
+  <li>
+    Assay name
+  </li>
+  <li>
+    Assay measurement values including units and qualitifed by statistics, if applicable
+  </li>
+  <li>
+    Image files, raw data files, derived data files or other files, if applicable
+  </li>
+</ul>
+<h3 id="Assay-Nodes">
+  Nodes
+</h3>
+Sample Name--- The unique identification name of the sample, which is referred to from within the study file. The sample is obtained after the application of a protocol. Sample names can be qualified with Material Types, Characteristics and/or Comments.Assay Name---The name of the assay performed. This name is an identifier within the assay file.Image File---The name or URI of an image file generated from an assay.Raw Data File---The name or URI of the raw data files.D erived Data File---The name or URI of the file resulting from data transformation or processing.
+<h3 id="Assay-AttributesofAssayNodes">
+  Attributes of Assay Nodes
+</h3>
+One or more attributes can be used to provide more information about a assay node. The assay node attributes are described below:Material Type---An attribute for the Sample Name (for example, biospecimen, nanoparticle sample, small molecule etc.) if the same attribute is not given in the Study file. The term can be a free-text description or taken from an ontology or a controlled vocabulary. If it is the latter, then the following qualifiers are used: term accession number and term source REF.Characteristics [ ]---An attribute for Sample Name if the same attribute is not given in the study file.
+<h3 id="Assay-AttributesofProcessingEventsforAssayNodes">
+  Attributes of Processing Events for Assay Nodes
+</h3>
+One or more attributes can be used to describe a step in the assay of a sample.Protocol REF--- The name of the protocol used to perform the experiment. This name should be obtained from a value for the field study protocol name in the investigation file. Protocol REF can be further described using the following fields:Parameter Value [ ]--- Value of a parameter, which is an intrinsic experimental condition that may be varied or constant, when applying a protocol. The parameter term is written within brackets and must match the term used as value for the study protocol parameter name in the investigation file.Performer---The name of the person who carried out the protocol.Date---The calendar day on which the protocol was carried out. The date format should be in YYYY-MM-DD.
+<h3 id="Assay-AttributeofAssayName">
+  Attribute of Assay Name
+</h3>
+One or more attributes can be used to record the assay endpoints.Factor Value [ ]---The value of an independent variable manipulated by the experimentalist with the intention to affect the subject of study (that is, stressor). Factor terms are given in brackets, and must be defined in the ISA-TAB-Nano investigation file in the STUDY FACTORS section. Factor Value [] in the Assay file should reference technical variations (such as software, instrument or protocol variations).Measurement Value [statistic(measurement name)]---The endpoint of the assay. Measurement value names are described in brackets or parenthesis if a statistics (such as mean, standard deviation) is applied to the measurement (Syntax:  Measurement Value[statistic(&lt;measurement name&gt;)]). A statistic is only required for statistical measures.
+<h3 id="Assay-QualifiersforAssayNodes’Attributes">
+  Qualifiers for Assay Nodes’ Attributes
+</h3>
+Each node attribute may be qualified using the following concepts, if applicable.Unit---The standard of measurement used if the values for characteristic [ ], parameter value [ ], factor value [ ], or measurement value [ ] columns are quantitative and dimensional. If the term for unit is from an ontology/controlled vocabulary, then its term accession number and the term source REF should be defined in the ISA-TAB-Nano Assay File.Term Accession Number---Identification number of a term selected from an ontology or a controlled vocabulary, if the term is entered as a value in material type, characteristics [ ], parameter value [ ], measurement value [], unit or factor value [ ] columns.Term Source REF---The name which identifies the source from where a term is selected and entered in ISA-TAB-Nano study files. This name should match one of the names entered in the term source name field in the ISA-TAB-Nano Investigation File.
+<h3 id="Assay-OtherAssayFields">
+  Other Assay Fields
+</h3>
+Comment [ ]---Any comment that provides additional information, which is added only when no other appropriate field exists. Comment fields should be attached to the closest node or the field.
+<h2 id="Assay-Files">
+  Files
+</h2>
+The following pages provide the assay file examples, template, and glossary:
+<ul>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=60001317" rel="nofollow">
+      Assay File Examples
+    </a>
+  </li>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=253887739" rel="nofollow">
+      Assay File Template
+    </a>
+  </li>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=253887751" rel="nofollow">
+      Assay File Glossary
+    </a>
+  </li>
+</ul>

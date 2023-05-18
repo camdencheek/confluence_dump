@@ -1,0 +1,59 @@
+<h1 id="OWLFCAViewProtegeTabPluginManual-OWLFCAViewProtégéeTabplug-inManual">
+  OWLFCAView Protégée Tab plug-in Manual
+</h1>
+Contents of this Page
+<ul>
+  <li>
+    <a href="#OWLFCAViewProtegeTabPluginManual-Specification1:Foroneproperty" rel="nofollow">
+      Specification 1: For one property
+    </a>
+  </li>
+  <li>
+    <a href="#OWLFCAViewProtegeTabPluginManual-Forallassertedrestrictions" rel="nofollow">
+      For all asserted restrictions
+    </a>
+  </li>
+  <li>
+    <a href="#OWLFCAViewProtegeTabPluginManual-Specification3:Forallsuperclasses" rel="nofollow">
+      Specification 3: For all superclasses
+    </a>
+  </li>
+</ul>
+This manual explains how to use OWLFCAView Tab plug-in For Protégé OWL Ontology.The OWLFCAView Tab plug-in provides Protégé-2000 users a novel way to visualize their OWL ontologies using the formal concept analysis (FCA) technique. In current specifications, we developed a property-oriented way for the visualization of OWL ontology in Protégé-2000.  First of all, please make sure that you are using Protégé-3.1 version. We assume that you are familiar with how to configure a tab plug-in in Protégé platform.We use an OWL ontology, gpizza.owl, that is also example project used in the Protégé OWL plug-in to demonstrate how to use OWLFCAView Tab plug-in. After opening the example project and configuring the OWLFCAView Tab, you would see the following.
+<img alt="Protégé OWLFCAView tab." height="571" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/Protege/OWLFCAView%20Protege%20Tab%20Plug-in%20Manual/worddav08a88d9417cf5298e5d4ace1518a3efb.png?api=v2">
+There are three basic specifications implemented in the current version of our tool. The first one is for one property, the second one for all asserted restrictions and the third one for all superclasses.
+<h3 id="OWLFCAViewProtegeTabPluginManual-Specification1:Foroneproperty">
+  Specification 1: For one property
+</h3>
+In left panel, there are three radio buttons for specification selection, a Start button, and a text area for processing guidance. To start processing, please select the first radio button For one property, then click the button Start and then you see the following.
+<img alt="Protégé OWLFCAView tab and Select a Property dialog box." height="571" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/Protege/OWLFCAView%20Protege%20Tab%20Plug-in%20Manual/worddav42b24f7818bd87c3241340022bd15f6b.png?api=v2">
+A list of the properties of the Pizza ontology is displayed in a panel for selection. Assume that we are interested in the property hasTopping, and select it. After clicking the OK button you see the following.
+<img alt="Protégé OWLFCAView tab and Select a Class dialog box for a property." height="571" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/Protege/OWLFCAView%20Protege%20Tab%20Plug-in%20Manual/worddav691601f26e7bf5e8965b01806d5a3b20.png?api=v2">
+A list of the domain classes of property hasTopping is displayed in a panel for selection. Assume that we are interested in the class NamedPizza, and select it. Then after clicking OK button, you would see the following.
+<img alt="Protégé OWLFCAView tab and Type Selection dialog box." height="571" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/Protege/OWLFCAView%20Protege%20Tab%20Plug-in%20Manual/worddav8dc8e9194dd429e4397fc96d46e2346c.png?api=v2">
+A panel for restriction type selection is displayed. In the textarea in the left panel, you could also see some message about all subclasses of the class NamedPizza that is used as the formal objects. You could select one of three types including AllValuesFrom, SomeValuesFrom and Others. Assume that we are interested in the type SomeValuesFrom and select it. Then after clicking the OK button, you see a formal context was formed in a cross table as follows.
+<img alt="Protégé OWLFCAView tab with cross table for a property." height="571" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/Protege/OWLFCAView%20Protege%20Tab%20Plug-in%20Manual/worddav748009e2ba5afca0269940153631042a.png?api=v2">
+In this formal context, all subclasses of selected domain class NamedPizza are used as formal objects and all fillers of the restriction SomeValuesFrom of the property hasTopping are used as formal attributes. The cross markers in the table show the binary relations between objects and attributes.By clicking the fifth button above the cross table (Build Lattice), you see a lattice diagram of the formal context as follows.
+<img alt="Protégé OWLFCAView tab with lattice diagram for a property." height="571" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/Protege/OWLFCAView%20Protege%20Tab%20Plug-in%20Manual/worddav6212a452596b52e735be4ead2eb7fffd.png?api=v2">
+For selection of the domain class, the users should select a class that has subclasses because we use the subclasses of a selected class as the formal objects. When a class without the subclasses is selected, a warning panel is displayed to warn the users to select another class.
+<img alt="Warning message Please select a class that has subclasses." height="99" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/Protege/OWLFCAView%20Protege%20Tab%20Plug-in%20Manual/worddav4f3f3b8d5e42391c2ca082c44f768e20.png?api=v2">
+For the restriction type AllValuesFrom selection, the unionRangeClasses of the selected property are used as the formal attributes.For the restriction type Others selection, the fillers of the restrictions that are not AllValuesFrom type and SomeValuesFrom type of the selected property are used as the formal attributes.
+<h3 id="OWLFCAViewProtegeTabPluginManual-Forallassertedrestrictions">
+  For all asserted restrictions
+</h3>
+After selecting the radio button for all asserted restrictions and clicking the button Start, you see a screen like the following.
+<img alt="Protégé OWLFCAView tab and Select a Class dialog box for all asserted restrictions." height="571" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/Protege/OWLFCAView%20Protege%20Tab%20Plug-in%20Manual/worddav6679c8ca46ac41748e7c1ad9b60e0b75.png?api=v2">
+After selecting a class, e.g. Pizza here, and clicking the OK button, you see a screen like the following. The figure displays a cross table representing a formal context. The formal context is formed by all subclasses of Pizza class as the formal objects and the fillers of all asserted restrictions defined for the classes as the formal attributes.
+<img alt="Protégé OWLFCAView tab with cross table for all asserted restrictions." height="571" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/Protege/OWLFCAView%20Protege%20Tab%20Plug-in%20Manual/worddav25edf14305c5b87225c31fdca724c08a.png?api=v2">
+After clicking the Build Lattice button, you could see a lattice diagram, based on the formal context shown in the cross table.
+<img alt="Protégé OWLFCAView tab with lattice diagram for all asserted restrictions." height="571" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/Protege/OWLFCAView%20Protege%20Tab%20Plug-in%20Manual/worddavee8a76e16e2e91c78f635d2d1cee2604.png?api=v2">
+<h3 id="OWLFCAViewProtegeTabPluginManual-Specification3:Forallsuperclasses">
+  Specification 3: For all superclasses
+</h3>
+After selecting the radio button For all superclasses and clicking the button Start, you see a screen like the following.
+<img alt="Protégé OWLFCAView tab and Select a Class dialog box for all superclasses." height="571" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/Protege/OWLFCAView%20Protege%20Tab%20Plug-in%20Manual/worddav9fe2f8960fe99ccf59c4e56728fd584a.png?api=v2">
+After selecting a class, e.g. Pizza here, and clicking the OK button, you see a screen like the following. The illustration shows a cross table representing a formal context. The formal context is formed by all subclasses of Pizza class as the formal objects and all superclasses of each selected class as the formal attributes.
+<img alt="Protégé OWLFCAView tab with cross table for all superclasses." height="571" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/Protege/OWLFCAView%20Protege%20Tab%20Plug-in%20Manual/worddave3cd3cd6d8c7f541768032ef0a0f3b15.png?api=v2">
+After clicking the Build Lattice button, you could see a lattice diagram is displayed based on the formal context shown in the cross table.
+<img alt="Protégé OWLFCAView tab with lattice diagram for all superclasses." height="571" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/Protege/OWLFCAView%20Protege%20Tab%20Plug-in%20Manual/worddav03575141f332383c9226c95f99af565f.png?api=v2">
+In current step, we think we only developed a basic model. Several advanced models are under active development.  Any questions, please contact Guoqian Jiang (Jiang.Guoqian@mayo.edu ) or Harold R. Solbrig (Solbrig.Harold@mayo.edu ).  May 12, 2006

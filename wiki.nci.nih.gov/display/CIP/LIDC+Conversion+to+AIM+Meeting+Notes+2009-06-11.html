@@ -1,0 +1,18 @@
+Qinyan Progress Report
+I am making good progress on generating p-maps and annotation of annotation for LIDC annotation files. I completed a program which computes minimum image slice for a series, a required parameter for using Max to generate p-maps.  Great!
+I also upgraded the Max to latest version (Peyton informed me today about the new version) and generated again all p-maps for every series in LIDC collection with my pre-Max program.
+
+Pre-Max calculates the minimum slice thickness for each series, then grabs the pixel value from the database.  The outcome is a script file that runs MAX and provides MAX with the input file and parameters with that input file.  This is how we mass-generate all the pmaps. Max outputs two files:  matching.xml and pmap.xml
+Then I just completed a xslt file  following Pat&#39;s example. This xslt file can be used to convert matching.xml, which is generated with Max, to an annotation of annotation of AIM model.
+
+Use XMLspy point at source and xslt, and it will generate the annotation of annotation.  Cool!
+I am wondering if you are interested with those p-maps (matching.xml)  for doing further research.  Currently I kept all those files in Dev box.  All annotations of annotation will be loaded into AIM data service, but I do not know if we should keep those intermediate products.We should include Mike Mcnitt-Grey and Peyton and perhaps others on this topic - will schedule a meeting with them. Two meetings needed:1) Is the LIDC data be captured correctly and sufficiently in AIM ?  Is LIDC info that is important now missing.  LIDC group.2) How to handle the more complex scenariow in LIDC with AIM?   Channin/Pat/Rubin   I also like to have experts to take a look of the generated annotation of annotation.   Though I strictly followed Pat&#39;s example, I feel the example that Pat provided to us is too simple to cover all cases that matching.xml could have.  For example, there is a case that there are non-nodules matched with nodules and I do not think the Pat&#39;s example covers that.
+I am also wondering if we could use Radlex in annotation of annotation files but rest of LIDC AIM annotation files uses caDSR vocabulary. We can also take look of user elements and equipment elements in annotation of annotation.
+
+
+Qinyan provide one specific example....
+
+
+Since the annotation of annotation only captures a small portion of information in matching.xml, we might want to discuss if there is any change needed for AIM to be able to contain whatever information LIDC folks think it should be kept.LIDC Meeting
+I uploaded matchingSchema.xsd (Peyton provided), LIDCAnnotationOfAnnotationMap.xslt, a sample source file and a sample output file to wiki and you can try to do conversion with xslt if you have xmlspy.
+Thanks,

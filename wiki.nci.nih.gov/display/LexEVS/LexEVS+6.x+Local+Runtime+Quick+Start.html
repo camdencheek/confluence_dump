@@ -1,0 +1,184 @@
+For the fastest start you can use a
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=63996032" rel="nofollow">
+  VKC Amazon Machine Instance in the cloud
+</a>
+. This quick start, however, is a single path of installation steps that should allow you to quickly get an instance of LexEVS Local Runtime up and running. The sample commands are from a Windows install. You can cut and paste them to a command line in order to run them. Fro Linux you will need to extrapolate from these or go to the full
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427361" rel="nofollow">
+  LexEVS 6.x Installation Guide
+</a>
+.
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        Step
+      </th>
+      <th>
+        Windows Commands
+      </th>
+    </tr>
+    <tr>
+      <td>
+        1. Install the MySQL version listed as acceptable on the
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427336" rel="nofollow">
+          prerequisite software listing
+        </a>
+        accepting all default settings.  If you will copy/paste the commands below then use a password of lexevs.
+      </td>
+      <td>
+        None
+      </td>
+    </tr>
+    <tr>
+      <td>
+        2. If this is a windows install, after the install is complete, add a line or change the value in my.ini or my.cnf for innodb_flush_log_at_trx_commit to 0.
+      </td>
+      <td>
+        cd &#34;\Program Files\MySQL\MySQL Server 5.6&#34;
+        write my.ini
+        innodb_flush_log_at_trx_commit=0
+      </td>
+    </tr>
+    <tr>
+      <td>
+        3. Check to see if the MySQL service is running on Windows or a process is running on Linux for MySQL
+      </td>
+      <td>
+        None
+      </td>
+    </tr>
+    <tr>
+      <td>
+        4. Log into MySQL as that user and create a database named lexevs65 with UTF-8 character encoding
+      </td>
+      <td>
+        mysql -u root -plexevs CREATE DATABASE lexevs65 CHARACTER SET utf8 COLLATE utf8_general_ci;quit
+      </td>
+    </tr>
+    <tr>
+      <td>
+        5. Create a user with permissions to create, update and delete tables and databases or use the root user created during install.
+      </td>
+      <td>
+        None
+      </td>
+    </tr>
+    <tr>
+      <td>
+        6. Download the
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427328" rel="nofollow">
+          GUI Installer for LexEVS Local Runtime
+        </a>
+        to your desktop. Our local directory example is C:\scratch.
+      </td>
+      <td>
+        None
+      </td>
+    </tr>
+    <tr>
+      <td>
+        7. Execute the jar file (double-click or by command) and click through pages until you get to &#34;Select The Installation Path&#34;.
+      </td>
+      <td>
+        java -jar c:\scratch\LexEVS-install-6.5.0.6.jar
+      </td>
+    </tr>
+    <tr>
+      <td>
+        8. Change the install path to C:\LexEVS\6.5 or /home/{your user}/LexEVS/6.5 and press next. This is
+        {LEXEVS_HOME}
+      </td>
+      <td>
+        C:\LexEVS\6.5
+      </td>
+    </tr>
+    <tr>
+      <td>
+        9. Accept the remaining default install options.
+      </td>
+      <td>
+        None
+      </td>
+    </tr>
+    <tr>
+      <td>
+        10. Click next and exit when complete.
+      </td>
+      <td>
+        None
+      </td>
+    </tr>
+    <tr>
+      <td>
+        11. Navigate to the install directory {LEXEVS_HOME} and go to folder resources/config and open the lbconfig.props file for editing.
+        <ol>
+          <li>
+            Scroll down to the section marked Database Configuration and change the following:
+          </li>
+          <li>
+            Uncomment DB_URL starting with jdbc:mysql and replace with jdbc:mysql://localhost/lexevs65
+          </li>
+          <li>
+            Make sure the driver designate for MySQL is uncommented.
+          </li>
+          <li>
+            Replace values for DB_USER and DB_PASSWORD with those for the MySQL user created above.
+          </li>
+          <li>
+            Save the file.
+          </li>
+        </ol>
+      </td>
+      <td>
+        cd c:\LexEVS\6.5\resources\config
+        write lbconfig.props
+        DB_URL=jdbc:mysql://localhost/lexevs65
+        DB_DRIVER=com.mysql.jdbc.Driver
+        DB_USER=root
+        DB_PASSWORD=lexevs
+      </td>
+    </tr>
+    <tr>
+      <td>
+        12. Navigate to the runtime/sqlDrivers folder and download to it the MySQL driver located here:
+        <a href="http://mirrors.ibiblio.org/pub/mirrors/maven2/mysql/mysql-connector-java/5.1.6/mysql-connector-java-5.1.6.jar" rel="nofollow">
+          Mysql driver mysql-connector 5.1.6
+        </a>
+        .
+      </td>
+      <td>
+        c:\LexEVS\6.5\runtime\sqlDrivers
+      </td>
+    </tr>
+    <tr>
+      <td>
+        13. You can now test your configuration by either navigating to the test directory and running TestRunner, or by using LoadSampleData in the examples directory.
+      </td>
+      <td>
+        cd c:\LexEVS\6.5\test
+        TestRunner.bat -v
+      </td>
+    </tr>
+    <tr>
+      <td>
+        14. Install fixes.  Check the
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427368" rel="nofollow">
+          download files page
+        </a>
+        for any fixes that might update this install.
+      </td>
+      <td>
+        None
+      </td>
+    </tr>
+  </tbody>
+</table>
+If you have any errors, you should check values in the configuration file to make sure they are correct or return to the install guide for full instructions.If you want full performance and the ability to load and access larger terminologies, read the full
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427361" rel="nofollow">
+  LexEVS 6.x Installation Guide
+</a>
+and make adjustments to configurations and hardware as necessary.

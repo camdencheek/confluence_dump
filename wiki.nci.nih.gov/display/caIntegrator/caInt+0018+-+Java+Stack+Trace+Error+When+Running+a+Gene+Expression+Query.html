@@ -1,0 +1,33 @@
+<h1 id="caInt0018JavaStackTraceErrorWhenRunningaGeneExpressionQuery-Problem:WhenIrunageneexpressionquery,IgetaJavastacktraceerrorregardlessofwhetherthequeryorstudyisneworpreviouslysavedordeployed.">
+  Problem: When I run a gene expression query, I get a Java stack trace error regardless of whether the query or study is new or previously saved or deployed.
+</h1>
+Topic: caIntegrator Usage
+
+Release: caIntegrator 1.2 and above
+
+Date entered: 03/30/2012
+<h2 id="caInt0018JavaStackTraceErrorWhenRunningaGeneExpressionQuery-Solution">
+  Solution
+</h2>
+This error occurs in Linux when caIntegrator can not access study data, which by default is stored in the system temporary directory (/tmp). Every time the application is restarted, the contents of this /tmp directory are flushed, so when the user attempts to run a query after the restart, the query will not be able to access the study data it needs, regardless of whether the query is new or if it was saved before the restart.
+
+An example of the Java stack trace error is attached below as a plain text file:
+<a href="https://wiki.nci.nih.gov/download/attachments/75009238/JavaStackTrace.txt?version=1&amp;modificationDate=1333143448000&amp;api=v2" rel="nofollow">
+  JavaStackTrace.txt
+</a>
+The exact error message you get may vary slightly from the contents of the attached text file. Note that this error is not recorded in the server log; it is only displayed in the caIntegrator browser window after the query attempt fails.
+
+
+The best solution to this problem is to change the study data storage location from the default /tmp directory to a permanent location. For instructions on how to change the study storage location, please refer to the KB article at
+<a href="https://wiki.nci.nih.gov/x/oZKNAg" rel="nofollow">
+  https://wiki.nci.nih.gov/x/oZKNAg
+</a>
+.
+<h2 id="caInt0018JavaStackTraceErrorWhenRunningaGeneExpressionQuery-Haveacomment?">
+  Have a comment?
+</h2>
+Please leave your comment in the
+<a href="https://cabig-kc.nci.nih.gov/Molecular/forums/viewforum.php?f=23&amp;sid=5d0023efa82739d1127556a15b85311c" rel="nofollow">
+  caIntegrator End User Forum
+</a>
+. 

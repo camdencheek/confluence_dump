@@ -1,0 +1,1120 @@
+Contents of this Page
+<ul>
+  <li>
+    <a href="#Init1dbw6.pm8.U0SupportcaB2BtointegrateservicesoncaGrid-Exposeserviceworkflowmetadata" rel="nofollow">
+      Expose service workflow metadata
+    </a>
+  </li>
+  <li>
+    <a href="#Init1dbw6.pm8.U0SupportcaB2BtointegrateservicesoncaGrid-Discoveryofanalyticalsteps" rel="nofollow">
+      Discovery of analytical steps
+    </a>
+  </li>
+  <li>
+    <a href="#Init1dbw6.pm8.U0SupportcaB2BtointegrateservicesoncaGrid-Storageandaccessofintermediatedata" rel="nofollow">
+      Storage and access of intermediate data
+    </a>
+  </li>
+  <li>
+    <a href="#Init1dbw6.pm8.U0SupportcaB2BtointegrateservicesoncaGrid-Workflowsharing" rel="nofollow">
+      Workflow sharing
+    </a>
+  </li>
+  <li>
+    <a href="#Init1dbw6.pm8.U0SupportcaB2BtointegrateservicesoncaGrid-Defineametadatacategory" rel="nofollow">
+      Define a metadata category
+    </a>
+  </li>
+  <li>
+    <a href="#Init1dbw6.pm8.U0SupportcaB2BtointegrateservicesoncaGrid-Discoverservicesbymetadatacategory" rel="nofollow">
+      Discover services by metadata category
+    </a>
+  </li>
+  <li>
+    <a href="#Init1dbw6.pm8.U0SupportcaB2BtointegrateservicesoncaGrid-Performoperationsbasedonmetadatacategory" rel="nofollow">
+      Perform operations based on metadata category
+    </a>
+  </li>
+  <li>
+    <a href="#Init1dbw6.pm8.U0SupportcaB2BtointegrateservicesoncaGrid-DiscoverRelatedDatabasedonmetadata" rel="nofollow">
+      Discover Related Data based on metadata
+    </a>
+  </li>
+  <li>
+    <a href="#Init1dbw6.pm8.U0SupportcaB2BtointegrateservicesoncaGrid-QueryforDatabasedonpermittedvalidvalues" rel="nofollow">
+      Query for Data based on permitted valid values
+    </a>
+  </li>
+</ul>
+<h2 id="Init1dbw6.pm8.U0SupportcaB2BtointegrateservicesoncaGrid-Exposeserviceworkflowmetadata">
+  Expose service workflow metadata
+</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Use Case Number
+      </th>
+      <td>
+        Init1dbw6.pm8.U1
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Brief Description
+      </th>
+      <td>
+        It is commonplace in bioinformatics to string together a number of data and analytical operations in order to produce the desired output.  In order for Cancer Researchers to discover which services can be piped together, it is necessary that the designers of the services expose the appropriate metadata.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Actor(s) for this particular use case
+      </th>
+      <td>
+        Information Modeler
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Pre-condition
+        The state of the system before the user interacts with it
+      </th>
+      <td>
+        A service exists that needs to be annotated.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Post condition
+        The state of the system after the user interacts with it
+      </th>
+      <td>
+        The service is annotated sufficiently to be discovered and integrated into an analytical pipeline.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Steps to take
+        The step-by-step description of how users will interact
+        with the system to achieve a specific business goal or function
+      </th>
+      <td>
+        <ol>
+          <li>
+            The Information Modeler defines the metadata (inputs, outputs, service functionality, etc.) for the service.
+          </li>
+          <li>
+            The service is deployed and accessible to its users
+          </li>
+          <li>
+            The metadata is published in a way that can be queried upon and consumed by users of the service
+          </li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Alternate Flow
+        Things which would prevent the normal flow of the use case
+      </th>
+      <td>
+        None.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Priority
+        The priority of implementing the use case:
+        High, Medium or Low
+      </th>
+      <td>
+        High.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Associated Links
+        The brief user stories, each describing the user interacts with the system for the one function only of the use case. There would potentially be a number of user stories that make up the use case.
+      </th>
+      <td>
+        <ul>
+          <li>
+            <a href="https://wiki.nci.nih.gov/display/VCDE/Init1dbw6+-+Support+caB2B+to+integrate+services+on+caGrid" rel="nofollow">
+              Init1dbw6 - Support caB2B to integrate services on caGrid
+            </a>
+          </li>
+          <li>
+            <a href="https://cabig-kc.nci.nih.gov/Vocab/forums/viewtopic.php?f=50&amp;t=247&amp;p=801" rel="nofollow">
+              Support caB2B Services to integrate data on grid
+            </a>
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Fit criterion/Acceptance Criterion
+        How would actor describe the acceptable usage scenarios for the software or service that meets the actor&#39;s requirement?
+      </th>
+      <td>
+        Sufficient metadata needs to be defined so that the service can be discovered and linked into a workflow.
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="Init1dbw6.pm8.U0SupportcaB2BtointegrateservicesoncaGrid-Discoveryofanalyticalsteps">
+  Discovery of analytical steps
+</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Use Case Number
+      </th>
+      <td>
+        Init1dbw6.pm8.U2
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Brief Description
+      </th>
+      <td>
+        Once metadata about a service is defined and exposed, it must be queriable by users of the service.  They must, through consuming of the metadata alone, be able to determine which services can act as consumers of the data the service produces, as well as produces of the data the service consumes.  Furthermore, the user must be able to determine that the service is appropriately placed within the workflow.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Actor(s) for this particular use case
+      </th>
+      <td>
+        Cancer Researcher
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Pre-condition
+        The state of the system before the user interacts with it
+      </th>
+      <td>
+        Service-level metadata is exposed for a number of services that can be linked via a workflow.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Post condition
+        The state of the system after the user interacts with it
+      </th>
+      <td>
+        The Cancer Researcher knows which services can act as inputs to which other services.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Steps to take
+        The step-by-step description of how users will interact with the system to achieve a specific business goal or function
+      </th>
+      <td>
+        <ol>
+          <li>
+            The Cancer Researcher identifies an analytical service that he would like to use.
+          </li>
+          <li>
+            The Cancer Researcher performs a query to identify which services can produce data that can be fed into the analytical service.
+          </li>
+          <li>
+            The Cancer Researcher performs a query to identify which services can accept the data from the selected analytical service.
+          </li>
+          <li>
+            Through the service metadata, the Cancer Researcher can identify which services make sense to pipe data through, and identify any services that are needed for data transformations.
+          </li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Alternate Flow
+        Things which would prevent the normal flow of the use case
+      </th>
+      <td>
+        The query could begin with a dataset or data service, and the Cancer Researcher would be identifying all downstream data and analytical services.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Priority
+        The priority of implementing the use case: High, Medium or Low
+      </th>
+      <td>
+        High.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Associated Links
+        The brief user stories, each describing the user interacts with the system for the one function only of the use case. There would potentially be a number of user stories that make up the use case.
+      </th>
+      <td>
+        <ul>
+          <li>
+            <a href="https://wiki.nci.nih.gov/display/VCDE/Init1dbw6+-+Support+caB2B+to+integrate+services+on+caGrid" rel="nofollow">
+              Init1dbw6 - Support caB2B to integrate services on caGrid
+            </a>
+          </li>
+          <li>
+            <a href="https://cabig-kc.nci.nih.gov/Vocab/forums/viewtopic.php?f=50&amp;t=247&amp;p=801" rel="nofollow">
+              Support caB2B Services to integrate data on grid
+            </a>
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Fit criterion/Acceptance Criterion
+        How would actor describe the acceptable usage scenarios for the software or service that meets the actor&#39;s requirement?
+      </th>
+      <td>
+        The user must be able to identify services based on input/output types, as well as find the appropriate translation services if needed.
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="Init1dbw6.pm8.U0SupportcaB2BtointegrateservicesoncaGrid-Storageandaccessofintermediatedata">
+  Storage and access of intermediate data
+</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Use Case Number
+      </th>
+      <td>
+        Init1dbw6.pm8.U3
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Brief Description
+      </th>
+      <td>
+        When services are chained together into bioinformatic pipelines, it is often desirable to be able to store and then later access intermediate results of queries and analytics.  These can be used to modify the pipeline as needed, or to share intermediate results with other investigators.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Actor(s) for this particular use case
+      </th>
+      <td>
+        Cancer Researcher
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Pre-condition
+        The state of the system before the user interacts with it
+      </th>
+      <td>
+        A service that produces data has been identified and is accessible, as well as the mechanism by which intermediate data will be stored.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Post condition
+        The state of the system after the user interacts with it
+      </th>
+      <td>
+        The results of the service are available via the intermediate data service.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Steps to take
+        The step-by-step description of how users will interact with the system to achieve a specific business goal or function
+      </th>
+      <td>
+        <ol>
+          <li>
+            The Cancer Researcher discovers and selects a service for storing the intermediate data.
+          </li>
+          <li>
+            The Cancer Researcher instructs the tool or service to store the results in the intermediate data.
+          </li>
+          <li>
+            The Cancer Researcher invokes the service
+          </li>
+          <li>
+            The results are stored in the intermediate data service and are accessible via service calls
+          </li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Alternate Flow
+        Things which would prevent the normal flow of the use case
+      </th>
+      <td>
+        None.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Priority
+        The priority of implementing the use case: High, Medium or Low
+      </th>
+      <td>
+        Low.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Associated Links
+        The brief user stories, each describing the user interacts with the system for the one function only of the use case. There would potentially be a number of user stories that make up the use case.
+      </th>
+      <td>
+        <ul>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=24250448" rel="nofollow">
+              Init1dbw6 - Support caB2B to integrate services on caGrid
+            </a>
+          </li>
+          <li>
+            <a href="https://cabig-kc.nci.nih.gov/Vocab/forums/viewtopic.php?f=50&amp;t=247&amp;p=801" rel="nofollow">
+              Support caB2B Services to integrate data on grid
+            </a>
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Fit criterion/Acceptance Criterion
+        How would actor describe the acceptable usage scenarios for the software or service that meets the actor&#39;s requirement?
+      </th>
+      <td>
+        Access to the intermediate data must be as seamless as access to any other service, and the data should be secured based on rules that the Cancer Researcher identifies.
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="Init1dbw6.pm8.U0SupportcaB2BtointegrateservicesoncaGrid-Workflowsharing">
+  Workflow sharing
+</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Use Case Number
+      </th>
+      <td>
+        Init1dbw6.pm8.U4
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Brief Description
+      </th>
+      <td>
+        Once a user identifies a service workflow of interest, he should be able to share that workflow in a way that makes it easy to encode, share with colleagues, reuse/rerun, modify, and extend.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Actor(s) for this particular use case
+      </th>
+      <td>
+        Cancer Researcher
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Pre-condition
+        The state of the system before the user interacts with it
+      </th>
+      <td>
+        A set of services of interest has been identified.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Post condition
+        The state of the system after the user interacts with it
+      </th>
+      <td>
+        The service workflow is stored and shared.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Steps to take
+        The step-by-step description of how users will interact with the system to achieve a specific business goal or function
+      </th>
+      <td>
+        <ol>
+          <li>
+            The Cancer Researcher encodes and saves the workflow
+          </li>
+          <li>
+            The Cancer Researcher identifies the other uses that can access the workflow
+          </li>
+          <li>
+            The Cancer Researcher reruns the workflow at a later date
+          </li>
+          <li>
+            The Cancer Researcher modifies the workflow at a later date
+          </li>
+          <li>
+            The Cancer Researcher copies and extends the workflow with additional steps
+          </li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Alternate Flow
+        Things which would prevent the normal flow of the use case
+      </th>
+      <td>
+        The steps listed above can be performed in any order any number of times with the exception that the workflow must be encoded and saved first.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Priority
+        The priority of implementing the use case: High, Medium or Low
+      </th>
+      <td>
+        Low.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Associated Links
+        The brief user stories, each describing the user interacts with the system for the one function only of the use case. There would potentially be a number of user stories that make up the use case.
+      </th>
+      <td>
+        <ul>
+          <li>
+            <a href="https://wiki.nci.nih.gov/display/VCDE/Init1dbw6+-+Support+caB2B+to+integrate+services+on+caGrid" rel="nofollow">
+              Init1dbw6 - Support caB2B to integrate services on caGrid
+            </a>
+          </li>
+          <li>
+            <a href="https://cabig-kc.nci.nih.gov/Vocab/forums/viewtopic.php?f=50&amp;t=247&amp;p=801" rel="nofollow">
+              Support caB2B Services to integrate data on grid
+            </a>
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Fit criterion/Acceptance Criterion
+        How would actor describe the acceptable usage scenarios for the software or service that meets the actor&#39;s requirement?
+      </th>
+      <td>
+        The workflow must be accessible in much the same way as any other service.
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="Init1dbw6.pm8.U0SupportcaB2BtointegrateservicesoncaGrid-Defineametadatacategory">
+  Define a metadata category
+</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Use Case Number
+      </th>
+      <td>
+        Init1dbw6.pm8.U5
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Brief Description
+      </th>
+      <td>
+        The Metadata Category is the ability to save a particular view of classes and their associations in order to find services that match.  For example, a Cancer Researcher may be interested in A-&gt;B-&gt;C and wants to be able to query services that support those classes and associations.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Actor(s) for this particular use case
+      </th>
+      <td>
+        Cancer Researcher
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Pre-condition
+        The state of the system before the user interacts with it
+      </th>
+      <td>
+        None.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Post condition
+        The state of the system after the user interacts with it
+      </th>
+      <td>
+        A Metadata Category has been defined.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Steps to take
+        The step-by-step description of how users will interact with the system to achieve a specific business goal or function
+      </th>
+      <td>
+        <ol>
+          <li>
+            The Cancer Researcher discovers a set of classes, attributes, and associations that he is interested in
+          </li>
+          <li>
+            The Cancer Researcher saves these as a Metadata Category in a repository
+          </li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Alternate Flow
+        Things which would prevent the normal flow of the use case
+      </th>
+      <td>
+        The Cancer Researcher may want to load, update, delete, or share an existing Metadata Category.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Priority
+        The priority of implementing the use case: High, Medium or Low
+      </th>
+      <td>
+        Low.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Associated Links
+        The brief user stories, each describing the user interacts with the system for the one function only of the use case. There would potentially be a number of user stories that make up the use case.
+      </th>
+      <td>
+        <ul>
+          <li>
+            <a href="https://wiki.nci.nih.gov/display/VCDE/Init1dbw6+-+Support+caB2B+to+integrate+services+on+caGrid" rel="nofollow">
+              Init1dbw6 - Support caB2B to integrate services on caGrid
+            </a>
+          </li>
+          <li>
+            <a href="https://cabig-kc.nci.nih.gov/Vocab/forums/viewtopic.php?f=50&amp;t=247&amp;p=801" rel="nofollow">
+              Support caB2B Services to integrate data on grid
+            </a>
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Fit criterion/Acceptance Criterion
+        How would actor describe the acceptable usage scenarios for the software or service that meets the actor&#39;s requirement?
+      </th>
+      <td>
+        None.
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="Init1dbw6.pm8.U0SupportcaB2BtointegrateservicesoncaGrid-Discoverservicesbymetadatacategory">
+  Discover services by metadata category
+</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Use Case Number
+      </th>
+      <td>
+        Init1dbw6.pm8.U6
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Brief Description
+      </th>
+      <td>
+        Once a Metadata Category is created, a Cancer Researcher can use it to discover services that support the underlying classes, attributes, and associations.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Actor(s) for this particular use case
+      </th>
+      <td>
+        Cancer Researcher
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Pre-condition
+        The state of the system before the user interacts with it
+      </th>
+      <td>
+        A Metadata Category has been identified.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Post condition
+        The state of the system after the user interacts with it
+      </th>
+      <td>
+        A set of services of interest have been identified.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Steps to take
+        The step-by-step description of how users will interact with the system to achieve a specific business goal or function
+      </th>
+      <td>
+        <ol>
+          <li>
+            The Cancer Researcher loads the Metadata Category
+          </li>
+          <li>
+            The Cancer Researcher invokes the appropriate function to discover services that support the underlying parts of the Metadata Category
+          </li>
+          <li>
+            The Cancer Researcher selects a subset of the services of interest
+          </li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Alternate Flow
+        Things which would prevent the normal flow of the use case
+      </th>
+      <td>
+        None.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Priority
+        The priority of implementing the use case: High, Medium or Low
+      </th>
+      <td>
+        Low.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Associated Links
+        The brief user stories, each describing the user interacts with the system for the one function only of the use case. There would potentially be a number of user stories that make up the use case.
+      </th>
+      <td>
+        <ul>
+          <li>
+            <a href="https://wiki.nci.nih.gov/display/VCDE/Init1dbw6+-+Support+caB2B+to+integrate+services+on+caGrid" rel="nofollow">
+              Init1dbw6 - Support caB2B to integrate services on caGrid
+            </a>
+          </li>
+          <li>
+            <a href="https://cabig-kc.nci.nih.gov/Vocab/forums/viewtopic.php?f=50&amp;t=247&amp;p=801" rel="nofollow">
+              Support caB2B Services to integrate data on grid
+            </a>
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Fit criterion/Acceptance Criterion
+        How would actor describe the acceptable usage scenarios for the software or service that meets the actor&#39;s requirement?
+      </th>
+      <td>
+        None.
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="Init1dbw6.pm8.U0SupportcaB2BtointegrateservicesoncaGrid-Performoperationsbasedonmetadatacategory">
+  Perform operations based on metadata category
+</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Use Case Number
+      </th>
+      <td>
+        Init1dbw6.pm8.U7
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Brief Description
+      </th>
+      <td>
+        Once a user has identified a set of services that support a Metadata Category, he can invoke operations across those services and aggregate the results based upon the classes, attributes, and associations within the Metadata Category.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Actor(s) for this particular use case
+      </th>
+      <td>
+        Cancer Researcher
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Pre-condition
+        The state of the system before the user interacts with it
+      </th>
+      <td>
+        A set of services of interest has been identified via the Metadata Category.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Post condition
+        The state of the system after the user interacts with it
+      </th>
+      <td>
+        The results from the cross-service operation are aggregated and presented to the user.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Steps to take
+        The step-by-step description of how users will interact with the system to achieve a specific business goal or function
+      </th>
+      <td>
+        <ol>
+          <li>
+            The Cancer Researcher selects the operation (such as &#34;query&#34;) he would like to invoke on the selected services
+          </li>
+          <li>
+            The services are invoked and results are returned
+          </li>
+          <li>
+            The results are aggregated based upon the Metadata Category
+          </li>
+          <li>
+            The aggregated results are returned to the user
+          </li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Alternate Flow
+        Things which would prevent the normal flow of the use case
+      </th>
+      <td>
+        None.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Priority
+        The priority of implementing the use case: High, Medium or Low
+      </th>
+      <td>
+        Low.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Associated Links
+        The brief user stories, each describing the user interacts with the system for the one function only of the use case. There would potentially be a number of user stories that make up the use case.
+      </th>
+      <td>
+        <ul>
+          <li>
+            <a href="https://wiki.nci.nih.gov/display/VCDE/Init1dbw6+-+Support+caB2B+to+integrate+services+on+caGrid" rel="nofollow">
+              Init1dbw6 - Support caB2B to integrate services on caGrid
+            </a>
+          </li>
+          <li>
+            <a href="https://cabig-kc.nci.nih.gov/Vocab/forums/viewtopic.php?f=50&amp;t=247&amp;p=801" rel="nofollow">
+              Support caB2B Services to integrate data on grid
+            </a>
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Fit criterion/Acceptance Criterion
+        How would actor describe the acceptable usage scenarios for the software or service that meets the actor&#39;s requirement?
+      </th>
+      <td>
+        None.
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="Init1dbw6.pm8.U0SupportcaB2BtointegrateservicesoncaGrid-DiscoverRelatedDatabasedonmetadata">
+  Discover Related Data based on metadata
+</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Use Case Number
+      </th>
+      <td>
+        Init1dbw6.U8
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Brief Description
+      </th>
+      <td>
+        caB2B relies on establishing/identifiying relationships between concepts (entities) and/or properties (attributes) exposed through a service&#39;s implementation models (currently registered in caDSR/advertised on caGrid). For instance, we need to be
+        able to identify (or compute) Gene (entity from Model A) and MyFavoriteGene
+        (entity from Model B) are representing identical concepts, even when the entities are not named the same. Furthermore that Gene.entrezGeneId property (attribute from model A) and MyGene.geneEntereId (attribute from model B) are representing the same property/attribute for the given concept.
+
+        Currently NCIt concept mappings stored in the caDSR for the Object Classes and CDEs are leveraged to identify such relationships.  CDE mappings are the simplest to map across models because the CDE means that the physical database representation (syntax) is the same in the two models and can be directly aggregated.
+
+        The new SI should continue to provide services and processes for us to be able to identify such relationships. In accordance with ECCF, the services/processes should at the minimum leverage the traceability (computable) among different levels of models (CIM-&gt;PSM) and compliance
+        among model representations (PSM&lt;-&gt;PSM), caB2B should be able to easily discover this equivalence.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Actor(s) for this particular use case
+      </th>
+      <td>
+        Cancer Researcher
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Pre-condition
+        The state of the system before the user interacts with it
+      </th>
+      <td>
+        A particular concept of interest has been identified via the terminology browser or metadata browser.
+        Class/entities in models have been associated with common concepts.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Post condition
+        The state of the system after the user interacts with it
+      </th>
+      <td>
+        The results from the cross-model discovery operation are aggregated and presented to the user.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Steps to take
+        The step-by-step description of how users will interact with the system to achieve a specific business goal or function
+      </th>
+      <td>
+        <ol>
+          <li>
+            The Cancer Researcher selects the concept of interest and the operation (such as  &#34;discover related models&#34;)
+          </li>
+          <li>
+            The SI services are invoked and results are returned
+          </li>
+          <li>
+            The results are aggregated based upon the matching entities and levels of entities in the models. For example, models or portions of models that are conformant at the CIM level are evident, at the PIM level, and at the PSM level and are self-evident in the results.
+          </li>
+          <li>
+            The aggregated results are returned to the user
+          </li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Alternate Flow
+        Things which would prevent the normal flow of the use case
+      </th>
+      <td>
+        None.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Priority
+        The priority of implementing the use case: High, Medium or Low
+      </th>
+      <td>
+        High.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Associated Links
+        The brief user stories, each describing the user interacts with the system for the one function only of the use case. There would potentially be a number of user stories that make up the use case.
+      </th>
+      <td>
+        <ul>
+          <li>
+            <a href="https://wiki.nci.nih.gov/display/VCDE/Init1dbw6+-+Support+caB2B+to+integrate+services+on+caGrid" rel="nofollow">
+              Init1dbw6 - Support caB2B to integrate services on caGrid
+            </a>
+          </li>
+          <li>
+            <a href="https://cabig-kc.nci.nih.gov/Vocab/forums/viewtopic.php?f=50&amp;t=247&amp;p=801" rel="nofollow">
+              Support caB2B Services to integrate data on grid
+            </a>
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Fit criterion/Acceptance Criterion
+        How would actor describe the acceptable usage scenarios for the software or service that meets the actor&#39;s requirement?
+      </th>
+      <td>
+        Only Models where matching classes, attributes and associations are returned by the operation.
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="Init1dbw6.pm8.U0SupportcaB2BtointegrateservicesoncaGrid-QueryforDatabasedonpermittedvalidvalues">
+  Query for Data based on permitted valid values
+</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Use Case Number
+      </th>
+      <td>
+        Init1dbw6.U9
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Brief Description
+      </th>
+      <td>
+        caB2B uses value sets (that bind to concepts) to filter/constrain
+        certain data elements in formation of queries to datasets. This requires runtime
+        access (or metadata download prior to runtime) to possible values for
+        specific data elements. Currently value domains that are associated with data elements stored in metadata repository (MDR/caDSR) are fetched and provided in query builders. The
+        enumerated values are provided in pull down menus/lists to ensure the queries are formulated with correct allowable values. Similarly, although not supported by caB2B now,, the allowable ranges (e.g. 0 &lt;= Age &lt;= 130) and units of measure can also be provided to support correct query formulation.
+
+        The new SI should continue to provide services and processes for us to be able to identify and compute the value set or allowable ranges or units of measure for querying data elements.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Actor(s) for this particular use case
+      </th>
+      <td>
+        Cancer Researcher
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Pre-condition
+        The state of the system before the user interacts with it
+      </th>
+      <td>
+        The enumerations (value sets) or allowable ranges or units of measures for attributes/data elements/variables in a particular database are available to help form queries of the database.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Post condition
+        The state of the system after the user interacts with it
+      </th>
+      <td>
+        Data matching the selected enumerations (values) or ranges is retrieved via an SI operation.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Steps to take
+        The step-by-step description of how users will interact with the system to achieve a specific business goal or function
+      </th>
+      <td>
+        <ol>
+          <li>
+            The Cancer Researcher selects the entity/class of interest and an operation to retrieve the possible attributes/properties. (such as selecting &#34;Array&#34; and asking getAttributes)
+          </li>
+          <li>
+            The SI service returns the results (such as all the property/attributes associated with Assay in the models/data service).
+          </li>
+          <li>
+            The Cancer Researcher discovers that there is an attribute in the data source that is called Array.type and that the possible values are &#34;Gene Expression&#34; &#34;SNP&#34; and &#34;Exon&#34;, and issues a query (such as  &#34;query array.type=&#34;Gene Expression&#34;)
+          </li>
+          <li>
+            The SI services are invoked and results are returned
+          </li>
+          <li>
+            The results are returned to the user
+          </li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Alternate Flow
+        Things which would prevent the normal flow of the use case
+      </th>
+      <td>
+        None.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Priority
+        The priority of implementing the use case: High, Medium or Low
+      </th>
+      <td>
+        High.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Associated Links
+        The brief user stories, each describing the user interacts with the system for the one function only of the use case. There would potentially be a number of user stories that make up the use case.
+      </th>
+      <td>
+        <ul>
+          <li>
+            <a href="https://wiki.nci.nih.gov/display/VCDE/Init1dbw6+-+Support+caB2B+to+integrate+services+on+caGrid" rel="nofollow">
+              Init1dbw6 - Support caB2B to integrate services on caGrid
+            </a>
+          </li>
+          <li>
+            <a href="https://cabig-kc.nci.nih.gov/Vocab/forums/viewtopic.php?f=50&amp;t=247&amp;p=801" rel="nofollow">
+              Support caB2B Services to integrate data on grid
+            </a>
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Fit criterion/Acceptance Criterion
+        How would actor describe the acceptable usage scenarios for the software or service that meets the actor&#39;s requirement?
+      </th>
+      <td>
+        The researcher is able to discover what the possible or allowable values are for a data field and select/enter  more values of interest, results are returned that match only the entered values.
+      </td>
+    </tr>
+  </tbody>
+</table>

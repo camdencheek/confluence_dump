@@ -1,0 +1,337 @@
+Contents of this Page
+<ul>
+  <li>
+    <a href="#id-4InstallingLexEVS5.xRemoteAPI-Introduction" rel="nofollow">
+      Introduction
+    </a>
+  </li>
+  <li>
+    <a href="#id-4InstallingLexEVS5.xRemoteAPI-PreliminaryConsiderations" rel="nofollow">
+      Preliminary Considerations
+    </a>
+  </li>
+  <li>
+    <a href="#id-4InstallingLexEVS5.xRemoteAPI-DownloadingandInstallingtheLexEVSRemoteAPI" rel="nofollow">
+      Downloading and Installing the LexEVS Remote API
+    </a>
+  </li>
+  <li>
+    <a href="#id-4InstallingLexEVS5.xRemoteAPI-TestingtheLexEVSRemoteAPI" rel="nofollow">
+      Testing the LexEVS Remote API
+    </a>
+  </li>
+  <li>
+    <a href="#id-4InstallingLexEVS5.xRemoteAPI-Troubleshooting" rel="nofollow">
+      Troubleshooting
+    </a>
+  </li>
+</ul>
+<h2 id="id-4InstallingLexEVS5.xRemoteAPI-Introduction">
+  Introduction
+</h2>
+This document is a section of the
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427405" rel="nofollow">
+  LexEVS 5.x Installation Guide
+</a>
+.
+
+This section provides requirements, instructions, and troubleshooting information for installing the LexEVS Remote API environment.
+<h2 id="id-4InstallingLexEVS5.xRemoteAPI-PreliminaryConsiderations">
+  Preliminary Considerations
+</h2>
+<ul>
+  <li>
+    The
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427530" rel="nofollow">
+      LexEVS 5.x Supported Platforms
+    </a>
+    are the same for this environment as they are for the Local Runtime.
+  </li>
+  <li>
+    Before installing the LexEVS Remote API environment you must have a
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427488" rel="nofollow">
+      LexEVS Local Runtime
+    </a>
+    installed and working.
+  </li>
+  <li>
+    It is not required that you load a terminology into the Local Runtime in order to complete the installation of the Remote API environment.  However, using the Remote API requires that a terminology be loaded into the Local Runtime.
+  </li>
+  <li>
+    The Remote API environment has additional
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427532" rel="nofollow">
+      LexEVS 5.x Prerequisite Software Supported
+    </a>
+    beyond the Local Runtime.  The additional web application server does not have install steps given in this guide.  The web application server can be on the same server or a different server from the Local Runtime.
+  </li>
+  <li>
+    Complete the
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427486" rel="nofollow">
+      #Downloading and Installing the LexEVS Remote API
+    </a>
+    steps below.
+  </li>
+</ul>
+Once you have completed the additional prerequisite software install, the Remote API environment install steps, and the verification test as described in this guide then you should be ready to start using the Remote API features to meet the needs of your application.  Not counting prerequisite software products the installation and verification should not take more than 30 minutes.
+<h2 id="id-4InstallingLexEVS5.xRemoteAPI-DownloadingandInstallingtheLexEVSRemoteAPI">
+  Downloading and Installing the LexEVS Remote API
+</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Step
+      </th>
+      <th>
+        Action
+      </th>
+    </tr>
+    <tr>
+      <td>
+        1. Download the latest version of the LexEVS Remote API WAR file from the right.  You have a choice between WAR files tailored for JBoss or Apache Tomcat installations.  The location you have chosen to save this on your computer will be referred to as the SAVE_DIRECTORY.  Our command examples will use  scratch as this directory.
+        NoteAccess to the downloads does not require an account.  If you are having trouble downloading files then you may need to disable pop-up blockers or check any firewall settings at your site.
+      </td>
+      <td>
+        LexEVS Remote API   Includes the Java runtime and dependencies, the Java distributed API, and the caCORE SDK-generated services. This can be deployed to an Apache Tomcat or JBoss container.
+        <a href="https://cbiit-download.nci.nih.gov/evs/LexEVS/v5.1/Release/lexevsapi51.tomcat.war" rel="nofollow">
+          lexevsapi51.tomcat.war
+        </a>
+        <a href="https://cbiit-download.nci.nih.gov/evs/LexEVS/v5.1/Release/lexevsapi51.jboss.war" rel="nofollow">
+          lexevsapi51.jboss.war
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        2. Shut down your application or servlet container.  This presumes that you have already installed a web server as outlined in
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427532" rel="nofollow">
+          LexEVS 5.x Prerequisite Software Supported
+        </a>
+        .  The command to do the shut down will be web server specific.  See the documentation for your web server for information on how to do this.  There may be many alternatives.
+        JBoss example:
+        <ul>
+          <li>
+            Windows:
+            shutdown.bat -S
+          </li>
+          <li>
+            Unix:
+            ./shutdown.sh -S
+            If you experience Java errors then the server may already be down.
+          </li>
+        </ul>
+      </td>
+      <td>
+        <img alt="Shutting down the Jboss server." src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/4%20-%20Installing%20LexEVS%205.x%20Remote%20API/jboss_shutdown.PNG?api=v2">
+      </td>
+    </tr>
+    <tr>
+      <td>
+        3. Rename the WAR file. These files are distributed with an application server designation in their name for clarity while downloading them.  Change to the SAVE_DIRECTORY and rename the file, like this:
+
+
+        rename {SAVE_DIRECTORY}/lexevsapi51.{WEB_SERVER}.war {SAVE_DIRECTORY}/lexevsapi51.war}
+
+
+        JBoss example:
+        <ul>
+          <li>
+            Windows:
+            rename c:\scratch\lexevsapi51.jboss.war lexevsapi51.war
+          </li>
+          <li>
+            Unix:
+            move /scratch/lexevsapi51.jboss.war lexevsapi51.war
+            NoteConsider other names as well.  Many application servers use the deployed name as part of the URL, so if you would rather it be a different name then you should rename the WAR file to that.
+          </li>
+        </ul>
+      </td>
+      <td>
+        <img alt="Command prompt showing rename of the WAR file." src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/4%20-%20Installing%20LexEVS%205.x%20Remote%20API/jboss_rename.PNG?api=v2">
+      </td>
+    </tr>
+    <tr>
+      <td>
+        4. Copy the WAR file to the appropriate web application server directory, like this:
+
+
+        copy {SAVE_DIRECTORY}\lexevsapi51.war {WEB_SERVER_HOME}\{DEPLOYMENT_HOME}
+
+
+        ...where:
+        SAVE_DIRECTORY is the location of the downloaded file.
+        WEB_SERVER is the brand of the web server.
+        WEB_SERVER_HOME is your application server home directory.
+        DEPLOYMENT_HOME is the Web Archive deployment directory for your application server.
+        JBoss example:
+        <ul>
+          <li>
+            Windows:
+            copy c:\scratch\lexevsapi51.war c:\jboss-4.0.5.GA\server\default\deploy
+          </li>
+          <li>
+            Unix:
+            copy /scratch/lexevsapi51.war /jboss-4.0.5.GA/server/default/deploy
+          </li>
+        </ul>
+      </td>
+      <td>
+        <img alt="Copy the WAR file to the JBoss deploy directory." src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/4%20-%20Installing%20LexEVS%205.x%20Remote%20API/copy_evs_war.PNG?api=v2">
+      </td>
+    </tr>
+    <tr>
+      <td>
+        5. Create a text file named lexevs.properties in the WEB_SERVER_CLASSPATH to set the location of the LexEVS configuration.  The WEB_SERVER_CLASSPATH is a location along the class path for your web application server.  This whole path including the file name will be called LEXEVS_PROPERTIES_HOME for the rest of these instructions.
+        JBoss example:
+        <ul>
+          <li>
+            Windows:
+            c:\jboss-4.0.5.GA\server\default\conf\lexevs.properties
+          </li>
+          <li>
+            Unix:
+            /jboss-4.0.5.GA/server/default/conf/lexevs.properties
+            Set LG_CONFIG_FILE to the path of the lbconfig.props file of your LexEVS installation like this:
+
+
+            LG_CONFIG_FILE={LEXEVS_HOME}\resources\config\lbconfig.props
+
+
+            ... where LexEVS_HOME is the install directory of LexVES.
+            Copy/paste the examples below as a starting point for this file:
+          </li>
+          <li>
+            Windows:
+            LG_CONFIG_FILE=c:\\LexEVS\\5.1\\resources\\configlbconfig.props
+            NoteNotice the back slash escape character required for a Windows, Java environment
+          </li>
+          <li>
+            Unix:
+            LG_CONFIG_FILE=/LexEVS/5.1/resources/config/lbconfig.props
+          </li>
+        </ul>
+      </td>
+      <td>
+        <img alt="Editing the LexEVS properties file." src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/4%20-%20Installing%20LexEVS%205.x%20Remote%20API/create_lexevs_properties.PNG?api=v2">
+      </td>
+    </tr>
+    <tr>
+      <td>
+        6. (OPTIONAL) The lexevs.properties file is also used to add security for any coding scheme.  This is not a highly used function.  For each coding scheme a security implementation class name can be set to enable security like this:
+
+
+        {CODING_SCHEME_NAME}={SECURITY_IMPLENTATION}
+
+
+        ...where CODING_SCHEME_NAME is the name or URI of the terminology.
+        SECURITY_IMPLENTATION is a class that implements the interface gov.nih.nci.system.dao.security.DAOSecurity.
+        For all ways of accessing the coding scheme, security must be set up.  The example at the right shows access by Name, URI, and Formal Name, but others are possible too.
+        NoteCoding schemes can be added or changed later after a coding scheme or terminology is loaded into LexEVS.
+      </td>
+      <td>
+        MedDRA=gov.nih.nci.system.dao.security.MedDRASecurity
+        urn\:oid\:2\.16\.840\.1\.113883\.6\.163=gov.nih.nci.system.dao.security.MedDRASecurity
+        Medical\ Dictionary\ for\ Regulatory\ Activities\ Terminology\ \(MedDRA\)=gov.nih.nci.system.dao.security.MedDRASecurity
+      </td>
+    </tr>
+    <tr>
+      <td>
+        7. Adjust the properties-service.xml file.
+        This file is likely to be found in the following directory but may be different for some servers:
+
+
+        {WEB_SERVER_HOME}\{DEPLOYMENT_HOME}
+
+
+        JBoss example:
+        <ul>
+          <li>
+            Windows:
+            c:\jboss-4.0.5.GA\server\default\deploy\properties-service.xml
+          </li>
+          <li>
+            Unix:
+            /jboss-4.0.5.GA/server/default/deploy/properties-service.xml
+            Add a line to the file in the same part of the XML where other properties are set like this:
+
+
+            &lt;attribute name=&#34;Properties&#34;&gt;org.LexGrid.LexBIG.caCore.Properties={LEXEVS_PROPERTIES_HOME}&lt;/attribute&gt;
+
+
+            ...where LEXEVS_PROPERTIES_HOME is the location and file name of lexevs.properties established in a previous step.
+            In Tomcat placing the file in the conf dir or the /webapps/lexevsapi5x/WEB-INF/classes directory should suffice.
+            JBoss example:
+            &lt;attribute name=&#34;Properties&#34;&gt;org.LexGrid.LexBIG.caCore.Properties=C:\jboss-4.0.5.GA\server\default\conf\lexevs.properties&lt;/attribute&gt;
+            is added to this file between the &lt;mbean&gt; tags.
+            NoteIn some server installations you may not have authority to modify this file.  In that case you can simply move the lexevs.properties file somewhere on the web application servers class path.
+          </li>
+        </ul>
+      </td>
+      <td>
+        <img alt="Wordpad editing the JBoss properties service file." src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/4%20-%20Installing%20LexEVS%205.x%20Remote%20API/jboss_properties_service.PNG?api=v2">
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="id-4InstallingLexEVS5.xRemoteAPI-TestingtheLexEVSRemoteAPI">
+  Testing the LexEVS Remote API
+</h2>
+<table>
+  <tbody>
+    <tr>
+      <td>
+        1. Start your application or servlet container if it is not already started.  The start command will be web server specific.  See the documentation for your web server for information on how to do this.
+        JBoss example:
+        <ul>
+          <li>
+            Windows:
+            Run.bat -c default
+          </li>
+          <li>
+            Unix:
+            ./Run.sh -c default
+          </li>
+        </ul>
+      </td>
+      <td>
+        <img alt="Starting the JBoss server." src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/4%20-%20Installing%20LexEVS%205.x%20Remote%20API/jboss_start.PNG?api=v2">
+      </td>
+    </tr>
+    <tr>
+      <td>
+        2. Verify the installation by opening a browser to
+
+
+        http://{SERVER_ADDRESS}/{WAR_FILE_DEPLOYED}
+
+
+        ...where SERVER_ADDRESS is the address of your server (domain and optionally the port number)
+        WAR_FILE_DEPLOYED is the name of the WAR file you placed in the server directories for deployment.
+        For example:
+
+
+        http://localhost:8080/lexevsapi51
+
+
+        If you are using localhost then your browser must be running on the same server as LexEVS.
+      </td>
+      <td>
+        <img src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/4%20-%20Installing%20LexEVS%205.x%20Remote%20API/EVS_Home.PNG?api=v2">
+      </td>
+    </tr>
+  </tbody>
+</table>
+If you see the Enterprise Vocabulary Services &#34;Welcome to LexEVS&#34; web page then you have successfully installed the LexEVS Remote API.
+Congratulations!
+<h2 id="id-4InstallingLexEVS5.xRemoteAPI-Troubleshooting">
+  Troubleshooting
+</h2>
+<ul>
+  <li>
+    If the Local Runtime environment is properly installed and tested then the Remote API environment should have few problems.
+  </li>
+  <li>
+    If you receive deployment errors in JBoss and are unable to see the EVS home page then you may not have configured the properties attribute in JBoss&#39;s properties-service.xml.
+    *You may also need to adjust the path in lexevs.properties where lbconfig.props location is defined.
+  </li>
+</ul>

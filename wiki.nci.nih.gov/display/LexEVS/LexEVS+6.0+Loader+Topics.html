@@ -1,0 +1,190 @@
+Contents
+<ul>
+  <li>
+    <a href="#LexEVS6.0LoaderTopics-ControlthesettingofisActiveviaLoaderpreferences" rel="nofollow">
+      Control the setting of isActive via Loader preferences
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.0LoaderTopics-Discussion:ControlthesettingofisActiveviaLoaderpreferences" rel="nofollow">
+      Discussion: Control the setting of isActive via Loader preferences
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.0LoaderTopics-ExamineuseofLexBIGentitystatus" rel="nofollow">
+      Examine use of LexBIG entity status
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.0LoaderTopics-Discussion:ExamineuseofLexBIGentitystatus" rel="nofollow">
+      Discussion: Examine use of LexBIG entity status
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.0LoaderTopics-TheisDefinedcolumnintheentitytableshouldaccuratelyreflectthesourcedata" rel="nofollow">
+      The isDefined column in the entity table should accurately reflect the source data
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.0LoaderTopics-Discussion:TheisDefinedcolumnintheentitytableshouldaccuratelyreflectthesourcedata" rel="nofollow">
+      Discussion: The isDefined column in the entity table should accurately reflect the source data
+    </a>
+  </li>
+</ul>
+Document Information
+Author: LexEVS Team/Craig Stancl
+Email: stancl.craig@mayo.edu
+Team: LexEVS
+Contract: N/A
+Client: NCI CBIIT
+National Institutes of Heath
+US Department of Health and Human Services
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Sign off
+      </th>
+      <th>
+        Date
+      </th>
+      <th>
+        Role
+      </th>
+      <th>
+        CBIIT or Stakeholder Organization
+      </th>
+      <th>
+        Reviewer&#39;s Comments (If disapproved indicate specific areas for improvement.)
+      </th>
+    </tr>
+    <tr>
+      <td>
+        —
+      </td>
+      <td>
+        —
+      </td>
+      <td>
+        —
+      </td>
+      <td>
+        —
+      </td>
+      <td>
+        —
+      </td>
+    </tr>
+  </tbody>
+</table>
+The purpose of this document is to collect loader topic discussion and resolution for LexEVS. The focus is on the processing of source content as loaded into the LexEVS terminology server, proposed by the stakeholders and target users to make a better product.
+<h2 id="LexEVS6.0LoaderTopics-ControlthesettingofisActiveviaLoaderpreferences">
+  Control the setting of isActive via Loader preferences
+</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        GForge
+      </th>
+      <th>
+        Issue
+      </th>
+      <th>
+        Resolution
+      </th>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://gforge.nci.nih.gov/tracker/?func=detail&amp;group_id=491&amp;aid=26329&amp;atid=1853" rel="nofollow">
+          26329
+        </a>
+      </td>
+      <td>
+        Different vocabs have their own way of determining whether a concept is active or not.  For OWL we can use Deprecated status.  For OBO or RRF we don&#39;t have that.  We would like to be able to specify what method a vocab is using to indicate deprecated concepts in the loader preferences.  Example:
+        For this vocabulary if the property X has the value Y then the isActive should be set to false.   Or, more complicated: Any concepts treed underneath concept Z should be considered inactive.
+      </td>
+      <td>
+        TBD
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="LexEVS6.0LoaderTopics-Discussion:ControlthesettingofisActiveviaLoaderpreferences">
+  Discussion: Control the setting of isActive via Loader preferences
+</h2>
+Capture discussion here.
+<h2 id="LexEVS6.0LoaderTopics-ExamineuseofLexBIGentitystatus">
+  Examine use of LexBIG entity status
+</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        GForge
+      </th>
+      <th>
+        Issue
+      </th>
+      <th>
+        Resolution
+      </th>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://gforge.nci.nih.gov/tracker/?group_id=491&amp;atid=1853&amp;func=detail&amp;aid=26709" rel="nofollow">
+          26709
+        </a>
+      </td>
+      <td>
+        The entity status for concepts should use a designated set of statuses that are mappable across vocabularies.  For example:
+        Mayo and collaborators determine that there will be 4 available statuses; &#34;Active_Concept&#34;,
+        &#34;Provisional_Concept&#34;, &#34;Antiquated_Concept&#34;, &#34;Retired_Concept&#34;.  The loader will be programmed
+        to use a preferences file that will allow users to specify how these statuses will be assigned to the various concepts
+        for the various vocabularies.
+      </td>
+      <td>
+        TBD
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="LexEVS6.0LoaderTopics-Discussion:ExamineuseofLexBIGentitystatus">
+  Discussion: Examine use of LexBIG entity status
+</h2>
+Capture discussion here.
+<h2 id="LexEVS6.0LoaderTopics-TheisDefinedcolumnintheentitytableshouldaccuratelyreflectthesourcedata">
+  The isDefined column in the entity table should accurately reflect the source data
+</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        GForge
+      </th>
+      <th>
+        Issue
+      </th>
+      <th>
+        Resolution
+      </th>
+    </tr>
+    <tr>
+      <td>
+        <a href="http://gforge.nci.nih.gov/tracker/?func=detail&amp;group_id=491&amp;aid=25325&amp;atid=1850" rel="nofollow">
+          25325
+        </a>
+      </td>
+      <td>
+        All concepts loaded from RRF show as defined, which is unlikely to be true.  We need to examine the various sources and see what changes need to be made to the loader to correctly represent the defined/primitive status of concepts in the source data.  Pasted below is the email discussion that led to this item. Your definitions sounds exactly like what we want.  I suppose we should do a bit of a QA effort to determine if definedand primitive concepts in the original terminology are being properly represented as such in LexBIG.My brief perusals of the NCI Thesaurus, BiomedGT, NPO  and OBI OWL loads indicate that these are correctly represented with some defined and some primitive concepts.  ICD9, RadLex, Zebrafish, NDFRT, CTCAE and MGED OWL loads are false for all entities, which might actually be correct.  HL7 RIM, UMLS Semnet and GO OWL loads all have null for isDefined on all entities.    MedDRA, LOINC, Snomed, and NCI Metathesaurus are true for all entities, which is unlikely.  These are all loaded from RRF.
+      </td>
+      <td>
+        TBD
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="LexEVS6.0LoaderTopics-Discussion:TheisDefinedcolumnintheentitytableshouldaccuratelyreflectthesourcedata">
+  Discussion: The isDefined column in the entity table should accurately reflect the source data
+</h2>
+Capture discussion here. 

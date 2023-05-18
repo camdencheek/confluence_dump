@@ -1,0 +1,50 @@
+Java Code Snippet
+	public void testFullSynBySource(){
+		try {
+						String searchTerm = &#34;gene&#34;;
+			CodedNodeSet nodeSet = lbSvc.getNodeSet(&#34;HUBt&#34;, null, null);
+
+			//Tell the api that you want to search only the PRESENTATION type properties
+			CodedNodeSet.PropertyType[] types = new CodedNodeSet.PropertyType[1];
+			types[0] = CodedNodeSet.PropertyType.PRESENTATION;
+
+//Only want to search properties with a source entry of &#34;CAHUB&#34;
+			LocalNameList sourceLnL = new LocalNameList();
+			sourceLnL.addEntry(&#34;CAHUB&#34;);
+
+//Only want to search properties with the property name of &#34;FULL_SYN&#34;
+			LocalNameList propLnL = new LocalNameList();
+			propLnL.addEntry(&#34;FULL_SYN&#34;);
+
+			nodeSet = nodeSet.restrictToMatchingProperties(propLnL,types,sourceLnL,null, null,searchTerm,LBConstants.MatchAlgorithms.contains.name(),null);
+
+			ResolvedConceptReferenceList rcl = nodeSet.resolveToList(null, null, null, 100);
+			int count = rcl.getResolvedConceptReferenceCount();
+
+//Now iterate through the returned entities and display the FULL_SYN PT property with source=CAHUB
+			for (int i=0; i&lt;rcl.getResolvedConceptReferenceCount();i++){
+				ResolvedConceptReference rcr = rcl.getResolvedConceptReference(i);
+				Entity entity = rcr.getReferencedEntry();
+				Presentation[] presProps = entity.getPresentation();
+				for(int y=0;y&lt;presProps.length;y++){
+					Presentation pres = presProps[y];
+					if(pres.getPropertyName().equals(&#34;FULL_SYN&#34;)&amp;&amp; pres.getRepresentationalForm().equals(&#34;PT&#34;) &amp;&amp; pres.getSource(0).getContent().equals(&#34;CAHUB&#34;)){
+					System.out.println(pres.getValue().getContent());
+					}
+				}
+			}
+
+		} catch (IndexOutOfBoundsException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (LBInvocationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (LBParameterException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (LBException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	} 

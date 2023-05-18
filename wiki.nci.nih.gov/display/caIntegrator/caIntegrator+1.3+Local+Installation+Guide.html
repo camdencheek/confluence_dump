@@ -1,0 +1,1093 @@
+The information and links on this page are no longer being updated and are provided for reference purposes only.Welcome to the caIntegrator 1.3 Local Installation Guide.To Get SupportFor any general information about the application, application support, or to report a bug, contact
+<a href="http://ncicb.nci.nih.gov/NCICB/support" rel="nofollow">
+  Application Support
+</a>
+.   To Print the Guide  You can create a PDF of the guide. For instructions refer to the tip
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=8168758" rel="nofollow">
+  Exporting Multiple Pages to PDF
+</a>
+. If you want to print a single page, refer to
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=8164401" rel="nofollow">
+  Printing a Page
+</a>
+.Topics in this document include:
+<ul>
+  <li>
+    <a href="#caIntegrator1.3LocalInstallationGuide-Introduction" rel="nofollow">
+      Introduction
+    </a>
+  </li>
+  <li>
+    <a href="#caIntegrator1.3LocalInstallationGuide-OverviewofcaIntegratorInstallation" rel="nofollow">
+      Overview of caIntegrator Installation
+    </a>
+  </li>
+  <li>
+    <a href="#caIntegrator1.3LocalInstallationGuide-caIntegratorv.1.3SoftwareandTechnologyRequirements" rel="nofollow">
+      caIntegrator v.1.3 Software and Technology Requirements
+    </a>
+    <ul>
+      <li>
+        <a href="#caIntegrator1.3LocalInstallationGuide-OperatingSystem" rel="nofollow">
+          Operating System
+        </a>
+      </li>
+      <li>
+        <a href="#caIntegrator1.3LocalInstallationGuide-RequiredSoftware%E2%80%94NotIncludedincaIntegrator" rel="nofollow">
+          Required Software—Not Included in caIntegrator
+        </a>
+      </li>
+      <li>
+        <a href="#caIntegrator1.3LocalInstallationGuide-JavaSDKInstallation" rel="nofollow">
+          Java SDK Installation
+        </a>
+      </li>
+      <li>
+        <a href="#caIntegrator1.3LocalInstallationGuide-ApacheAntInstallation" rel="nofollow">
+          Apache Ant Installation
+        </a>
+        <ul>
+          <li>
+            <a href="#caIntegrator1.3LocalInstallationGuide-ApacheAntEnvironmentVariables" rel="nofollow">
+              Apache Ant Environment Variables
+            </a>
+            <ul>
+              <li>
+                <a href="#caIntegrator1.3LocalInstallationGuide-Linux" rel="nofollow">
+                  Linux
+                </a>
+              </li>
+              <li>
+                <a href="#caIntegrator1.3LocalInstallationGuide-VerifyingtheEnvironmentVariablesinLinux" rel="nofollow">
+                  Verifying the Environment Variables in Linux
+                </a>
+              </li>
+              <li>
+                <a href="#caIntegrator1.3LocalInstallationGuide-Windows" rel="nofollow">
+                  Windows
+                </a>
+              </li>
+              <li>
+                <a href="#caIntegrator1.3LocalInstallationGuide-VerifyingtheEnvironmentVariablesinWindows" rel="nofollow">
+                  Verifying the Environment Variables in Windows
+                </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#caIntegrator1.3LocalInstallationGuide-MySQLInstallationandConfiguration" rel="nofollow">
+      MySQL Installation and Configuration
+    </a>
+  </li>
+  <li>
+    <a href="#caIntegrator1.3LocalInstallationGuide-WorkingwithPropertiesFiles" rel="nofollow">
+      Working with Properties Files
+    </a>
+    <ul>
+      <li>
+        <a href="#caIntegrator1.3LocalInstallationGuide-PathsinPropertiesFiles" rel="nofollow">
+          Paths in Properties Files
+        </a>
+      </li>
+      <li>
+        <a href="#caIntegrator1.3LocalInstallationGuide-SpacesinPathPropertyValues" rel="nofollow">
+          Spaces in Path Property Values
+        </a>
+      </li>
+      <li>
+        <a href="#caIntegrator1.3LocalInstallationGuide-MoreAboutPropertyValues" rel="nofollow">
+          More About Property Values
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#caIntegrator1.3LocalInstallationGuide-DownloadingandInstallingUPT(Optional)" rel="nofollow">
+      Downloading and Installing UPT (Optional)
+    </a>
+    <ul>
+      <li>
+        <a href="#caIntegrator1.3LocalInstallationGuide-OverviewofUPT" rel="nofollow">
+          Overview of UPT
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#caIntegrator1.3LocalInstallationGuide-InstallingcaIntegratorv.1.3ApplicationandServices" rel="nofollow">
+      Installing caIntegrator v.1.3 Application and Services
+    </a>
+    <ul>
+      <li>
+        <a href="#caIntegrator1.3LocalInstallationGuide-DownloadingcaIntegratorv.1.3Files" rel="nofollow">
+          Downloading caIntegrator v.1.3 Files
+        </a>
+      </li>
+      <li>
+        <a href="#caIntegrator1.3LocalInstallationGuide-InstallingaNewcaIntegratorv.1.3" rel="nofollow">
+          Installing a New caIntegrator v.1.3
+        </a>
+        <ul>
+          <li>
+            <a href="#caIntegrator1.3LocalInstallationGuide-GUIInstallerMethodofInstallation" rel="nofollow">
+              GUI Installer Method of Installation
+            </a>
+          </li>
+          <li>
+            <a href="#caIntegrator1.3LocalInstallationGuide-Command-LineMethodofInstallation" rel="nofollow">
+              Command-Line Method of Installation
+            </a>
+            <ul>
+              <li>
+                <a href="#caIntegrator1.3LocalInstallationGuide-OverviewofcaIntegratorCommand-LineInstallerPropertiesFiles" rel="nofollow">
+                  Overview of caIntegrator Command-Line Installer Properties Files
+                </a>
+              </li>
+              <li>
+                <a href="#caIntegrator1.3LocalInstallationGuide-caIntegratorPortUsage" rel="nofollow">
+                  caIntegrator Port Usage
+                </a>
+              </li>
+              <li>
+                <a href="#caIntegrator1.3LocalInstallationGuide-JBossErrorsDuringInstallation" rel="nofollow">
+                  JBoss Errors During Installation
+                </a>
+              </li>
+              <li>
+                <a href="#caIntegrator1.3LocalInstallationGuide-Command-lineInstallationSteps" rel="nofollow">
+                  Command-line Installation Steps
+                </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#caIntegrator1.3LocalInstallationGuide-UpgradingcaIntegrator1.2to1.3" rel="nofollow">
+          Upgrading caIntegrator 1.2 to 1.3
+        </a>
+        <ul>
+          <li>
+            <a href="#caIntegrator1.3LocalInstallationGuide-caIntegrator1.2UsersUpgradingtocaIntegrator1.3" rel="nofollow">
+              caIntegrator 1.2 Users Upgrading to caIntegrator 1.3
+            </a>
+          </li>
+          <li>
+            <a href="#caIntegrator1.3LocalInstallationGuide-OverviewofPropertiesFiles" rel="nofollow">
+              Overview of Properties Files
+            </a>
+          </li>
+          <li>
+            <a href="#caIntegrator1.3LocalInstallationGuide-UpgradeUsingtheGUIInstaller" rel="nofollow">
+              Upgrade Using the GUI Installer
+            </a>
+          </li>
+          <li>
+            <a href="#caIntegrator1.3LocalInstallationGuide-UpgradeUsingCommand-LineInstaller" rel="nofollow">
+              Upgrade Using Command-Line Installer
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#caIntegrator1.3LocalInstallationGuide-ConfiguringJBoss" rel="nofollow">
+          Configuring JBoss
+        </a>
+        <ul>
+          <li>
+            <a href="#caIntegrator1.3LocalInstallationGuide-ConfiguringJBossServersandMySQLServertoRunasServices" rel="nofollow">
+              Configuring JBoss Servers and MySQL Server to Run as Services
+            </a>
+          </li>
+          <li>
+            <a href="#caIntegrator1.3LocalInstallationGuide-RunningJBossasaService" rel="nofollow">
+              Running JBoss as a Service
+            </a>
+            <ul>
+              <li>
+                <a href="#caIntegrator1.3LocalInstallationGuide-Linux.1" rel="nofollow">
+                  Linux
+                </a>
+              </li>
+              <li>
+                <a href="#caIntegrator1.3LocalInstallationGuide-Windows.1" rel="nofollow">
+                  Windows
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#caIntegrator1.3LocalInstallationGuide-RunningMySQLasaService" rel="nofollow">
+              Running MySQL as a Service
+            </a>
+            <ul>
+              <li>
+                <a href="#caIntegrator1.3LocalInstallationGuide-Linux.2" rel="nofollow">
+                  Linux
+                </a>
+              </li>
+              <li>
+                <a href="#caIntegrator1.3LocalInstallationGuide-Windows.2" rel="nofollow">
+                  Windows
+                </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#caIntegrator1.3LocalInstallationGuide-Post-InstallationTasks" rel="nofollow">
+      Post-Installation Tasks
+    </a>
+    <ul>
+      <li>
+        <a href="#caIntegrator1.3LocalInstallationGuide-UsingUPTtoAdministercaIntegratorUsers" rel="nofollow">
+          Using UPT to Administer caIntegrator Users
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#caIntegrator1.3LocalInstallationGuide-DefaultUsers" rel="nofollow">
+      Default Users
+    </a>
+  </li>
+  <li>
+    <a href="#caIntegrator1.3LocalInstallationGuide-ContactingApplicationSupport" rel="nofollow">
+      Contacting Application Support
+    </a>
+  </li>
+</ul>
+<h2 id="caIntegrator1.3LocalInstallationGuide-Introduction">
+  Introduction
+</h2>
+This caIntegrator v.1.3 Installation Guide provides you with the instructions to install and configure a fresh caIntegrator v.1.3 application. The caIntegrator installation installs and configures a JBoss application server and creates a caIntegrator-specific schema within a pre-existing database on a preinstalled MySQL server.Directions are given in this document for both Linux and Windows operating systems.caIntegrator documentationPublished caIntegrator v.1.3 development documentation can be found on the
+<a href="https://wiki.nci.nih.gov/x/9YMOAQ" rel="nofollow">
+  caIntegrator page of the NCI wiki
+</a>
+<h2 id="caIntegrator1.3LocalInstallationGuide-OverviewofcaIntegratorInstallation">
+  Overview of caIntegrator Installation
+</h2>
+The process for installing caIntegrator v.1.3 includes the following tasks described in this document:
+<ol>
+  <li>
+    Downloading and installing required software
+  </li>
+  <li>
+    Setting environment variables
+  </li>
+  <li>
+    Downloading caIntegrator v.1.3 distribution files
+  </li>
+  <li>
+    Installing
+    <ol>
+      <li>
+        GUI Installer Method
+      </li>
+      <li>
+        Command-Line Method
+      </li>
+    </ol>
+  </li>
+  <li>
+    Configuring JBoss servers and MySQLserver to run as a service
+  </li>
+  <li>
+    Post-Installation Tasks
+    <ol>
+      <li>
+        Using UPT to Add caIntegrator Users
+      </li>
+    </ol>
+  </li>
+</ol>
+<h2 id="caIntegrator1.3LocalInstallationGuide-caIntegratorv.1.3SoftwareandTechnologyRequirements">
+  caIntegrator v.1.3 Software and Technology Requirements
+</h2>
+<h3 id="caIntegrator1.3LocalInstallationGuide-OperatingSystem">
+  Operating System
+</h3>
+The caIntegrator v.1.3 installation has been tested on Linux Red Hat Enterprise Linux AS 4 64/32-bit (for AMD chipset) and the Windows XP/2003 environments. While the installation may work in other Linux and Windows environments, it has only been tested in these environments.File descriptorsFor the system userid which will be used to start the caIntegrator application, you should specify permission to open at least 2048 file descriptors.
+<h3 id="caIntegrator1.3LocalInstallationGuide-RequiredSoftware—NotIncludedincaIntegrator">
+  Required Software—Not Included in caIntegrator
+</h3>
+Many of the servers and services that make up caIntegrator are automatically installed as part of this caIntegrator v.1.3 installation. However, prior to the installation, you must download and install the following required tools and recommended versions in the order they are listed in the table. The software name, version, description, and URL hyperlinks (for download) are indicated in the table. Complete the directions for installing each, as directed on the corresponding website.
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Required Software Name and Version
+      </th>
+      <th>
+        Description
+      </th>
+    </tr>
+    <tr>
+      <td>
+        <a href="http://java.sun.com/products/archive/j2se/6u18/index.html" rel="nofollow">
+          Java 2 Platform Standard Edition 6.0 Update 18 (J2SE 6.0)
+        </a>
+        . Be sure to download the correct Java SDK for your operating environment. For example, for Linux AMD 64, you would download jdk for Linux, linux-amd64-rpm.bin. For Windows, you might download jdk for Windows,windows-i586-p.exe.
+      </td>
+      <td>
+        The J2SE Development Kit (JDK) supports creating J2SE applications.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://ncisvn.nci.nih.gov/svn/lsd/trunk/tools/apache-ant-1.7.0-bin.zip" rel="nofollow">
+          Apache Ant, 1.7.0
+        </a>
+      </td>
+      <td>
+        Apache Ant is a Java-based build tool.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="http://downloads.mysql.com/archives.php?p=mysql-5.0&amp;v=5.0." rel="nofollow">
+          MySQL, 5.0.45
+        </a>
+      </td>
+      <td>
+        MySQL is an open-source database software application.
+      </td>
+    </tr>
+  </tbody>
+</table>
+ImportantAs you install each application, record the installation directory path, and the hostname of your MySQL DB server, and the DB admin username/password, if you are going to install UPT.
+<h3 id="caIntegrator1.3LocalInstallationGuide-JavaSDKInstallation">
+  Java SDK Installation
+</h3>
+When you install the Java SDK, you will be prompted to select the installation directory. Record the path, as this directory will be used when you set the environment variables.
+<h3 id="caIntegrator1.3LocalInstallationGuide-ApacheAntInstallation">
+  Apache Ant Installation
+</h3>
+<ul>
+  <li>
+    Unzip the Apache Ant distribution files using a command line unzip tool or a zip utility, such as WinZip.
+  </li>
+</ul>
+<ul>
+  <li>
+    After extracting the zip, you must set the environment variables, described in the following section, so that Ant is available in the system PATH.
+  </li>
+</ul>
+<h4 id="caIntegrator1.3LocalInstallationGuide-ApacheAntEnvironmentVariables">
+  Apache Ant Environment Variables
+</h4>
+Reason for setting variablesThe purpose of setting operating system environment variables is so that the Java SDK and Ant build tool are available to run from anywhere in the system.
+<h5 id="caIntegrator1.3LocalInstallationGuide-Linux">
+  Linux
+</h5>
+Variables in LinuxThe JAVA_HOME, ANT_HOME and PATH environment variables are set in /etc/profile. You may need to create the variables, or modify them if they already exist.To set the environmental variables in Linux, follow these steps:
+<ol>
+  <li>
+    As the root user, enter the following in the /etc/profile file. A PATH variable should already be created in this file, so be sure to define the JAVA_HOME and ANT_HOME export before the PATH export. Replace &lt;some_path&gt; with the correct path fragment for Java and Ant installations.    export JAVA_HOME=&lt;some_path&gt;/jdk1.6.0_18      export ANT_HOME=&lt;some_path&gt;/apache-ant-1.7.0      export PATH=$JAVA_HOME/bin:$ANT_HOME/bin:$PATH
+  </li>
+  <li>
+    Log out and log back in so that the system recognizes your changes.
+  </li>
+</ol>
+<h5 id="caIntegrator1.3LocalInstallationGuide-VerifyingtheEnvironmentVariablesinLinux">
+  Verifying the Environment Variables in Linux
+</h5>
+To verify that environment variables have been set correctly, follow these steps:
+<ol>
+  <li>
+    From the command line, enter:  * echo $JAVA_HOME     echo $ANT_HOME    Both of these commands should return the location where you installed these tools.
+  </li>
+  <li>
+    To verify your Ja*va SDK installation, enter   java –version   from a command prompt. You should see java version &#34;1.6.0_18&#34;.
+  </li>
+  <li>
+    To verify your Ant installation, enter:   ant –version   from a command prompt. You should see: Apache Ant version 1.7.0 compiled on December 13 2006.
+  </li>
+</ol>
+<h5 id="caIntegrator1.3LocalInstallationGuide-Windows">
+  Windows
+</h5>
+To set the environmental variables in Windows, follow these steps:Variables in WindowsThe JAVA_HOME, ANT_HOME and PATH environment variables are set in the system properties.
+<ol>
+  <li>
+    In Windows, select Control Panel, then select the System application. In the System Properties window, select the Advanced tab.
+  </li>
+  <li>
+    On the Advanced tab, click the Environment Variables button. To add a new system variable, select the New button.
+    <ol>
+      <li>
+        In the Variable name text box, enter   JAVA_HOME  .
+      </li>
+      <li>
+        In the Variable value text box, enter the location of your Java installation.
+      </li>
+    </ol>
+  </li>
+  <li>
+    Click the New button again.
+    <ol>
+      <li>
+        In the Variable name text box, enter   ANT_HOME  .
+      </li>
+      <li>
+        In the Variable value text box, enter the location of your Ant installation.
+      </li>
+    </ol>
+  </li>
+  <li>
+    Select the PATH system environment variable, and select the Edit button. This opens the Edit System Variable dialog box.
+  </li>
+  <li>
+    In the Variable value text box, prepend the following text in front of the text that already exists in the Variable Value field.   %JAVA_HOME%\bin;%ANT_HOME%\bin;
+  </li>
+  <li>
+    Click OK.
+  </li>
+</ol>
+<h5 id="caIntegrator1.3LocalInstallationGuide-VerifyingtheEnvironmentVariablesinWindows">
+  Verifying the Environment Variables in Windows
+</h5>
+To verify the environment variables have been set correctly, follow these steps:
+<ol>
+  <li>
+    From the command line, enter:    echo %JAVA_HOME%  *   echo %ANT_HOME%  * Both of these commands should return the location where you installed these tools.
+  </li>
+  <li>
+    To verify your Java SDK installation, enter   java –version   from a command prompt. You should see java version &#34;1.6.0_18&#34;.
+  </li>
+  <li>
+    To verify your Ant installation, enter   ant –version  Other environment variablesEnvironment variables for caIntegrator and, optionally, UPT are modified and set in those sections of this document:
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=20285195" rel="nofollow">
+      #Installing a New caIntegrator v.1.3
+    </a>
+    and
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=20285195" rel="nofollow">
+      #Downloading and Installing UPT (Optional)
+    </a>
+    .
+  </li>
+</ol>
+<h2 id="caIntegrator1.3LocalInstallationGuide-MySQLInstallationandConfiguration">
+  MySQL Installation and Configuration
+</h2>
+A MySQL 5.0.45 server must be downloaded, installed and running in order for the caIntegrator installation to work successfully.To download and install MySQL, follow the steps outlined on the
+<a href="http://downloads.mysql.com/archives.php?p=mysql-5.0&amp;v=5.0.45" rel="nofollow">
+  MySQL website
+</a>
+.TipYou should consult the following three links to successfully set up secure and well-performing MySQL servers, in preparation for installing caIntegrator:
+<ul>
+  <li>
+    <a href="http://dev.mysql.com/doc/refman/5.0/en/security-guidelines.html" rel="nofollow">
+      MySQL Security Guide
+    </a>
+  </li>
+  <li>
+    Performance
+    <ul>
+      <li>
+        <a href="http://dev.mysql.com/books/hpmysql-excerpts/ch06.html" rel="nofollow">
+          General performance tuning
+        </a>
+      </li>
+      <li>
+        <a href="http://dev.mysql.com/doc/refman/5.0/en/innodb-tuning.html" rel="nofollow">
+          InnoDB engine performance tuning
+        </a>
+      </li>
+    </ul>
+  </li>
+</ul>
+More Tips
+<ul>
+  <li>
+    Record the MySQL root username/password chosen during the MySQL installation process, as you will need to use this as your database.system.user/ database.system.password later in the UPT installation process, should you choose to install UPT.
+  </li>
+  <li>
+    Note the MySQL port chosen during the MySQL installation process, as you will need to use this as your database.port later in both the caIntegrator and UPT (if installing UPT) installation processes.
+  </li>
+</ul>
+<h2 id="caIntegrator1.3LocalInstallationGuide-WorkingwithPropertiesFiles">
+  Working with Properties Files
+</h2>
+An important component of command-line installation of either caIntegrator or UPT is configuring properties files. Prior to initiating a command-line installation, property variables must be modified. Note the following points about changing or entering variables.
+<h4 id="caIntegrator1.3LocalInstallationGuide-PathsinPropertiesFiles">
+  Paths in Properties Files
+</h4>
+The paths in the *.properties files should use forward slashes. For example, you would use application.base.path=C:/apps/caIntegrator-app, not application.base.path=C:\apps\caIntegrator-app. If you use backslashes, you will experience undesirable results.
+<h4 id="caIntegrator1.3LocalInstallationGuide-SpacesinPathPropertyValues">
+  Spaces in Path Property Values
+</h4>
+You should not specify paths with spaces included as property values. In Windows, note that the C:\Documents and Settings&lt;username&gt;  path contains spaces and should not be used, or anything similar. If you are using Windows, use a path such as C:/apps/caIntegrator. Spaces are fine for property values which do not represent a path.
+<h4 id="caIntegrator1.3LocalInstallationGuide-MoreAboutPropertyValues">
+  More About Property Values
+</h4>
+In each *.properties file, any property value marked with uppercase REPLACE_* must be manually updated with the appropriate value.
+<ul>
+  <li>
+    In each *.properties file, any property value marked with lowercase replace_* may be optionally updated with the appropriate value.
+  </li>
+  <li>
+    If there is reference to a database.system.user for your MySQL server, you can determine which users have full privileges to create and manage other databases, by executing  show grants  from a MySQL prompt to determine the correct level of privileges.
+  </li>
+</ul>
+<h2 id="caIntegrator1.3LocalInstallationGuide-DownloadingandInstallingUPT(Optional)">
+  Downloading and Installing UPT (Optional)
+</h2>
+If you do not already have a User Provisioning Tool (UPT) installed, and you wish to manage user accounts for your caIntegrator application, you must install UPT.
+<h3 id="caIntegrator1.3LocalInstallationGuide-OverviewofUPT">
+  Overview of UPT
+</h3>
+UPT is used to provision users in the caIntegrator application. Each CBIIT application installs with its own Common Security Module (CSM) schema that has sample/default users and a role/permissions structure. To add additional users you must provision the caIntegrator application in the UPT. Then you can assign users to caIntegrator.You can download
+<a href="https://ncisvn.nci.nih.gov/svn/files/trunk/security/CSMv4.2/CSMUPTv4.2/CSM_UPT_42_Release.zip" rel="nofollow">
+  UPT 4.2
+</a>
+For instructions on how to install UPT 4.2, refer to the chapter, UPT Installation and Deployment, in the
+<a href="https://ncisvn.nci.nih.gov/svn/docs/trunk/security/CSM4.2ProjectDocuments/4.2UserGuides/caCORE_CSM_v42_ProgrammersGuide.pdf" rel="nofollow">
+  caCORE_CSM_v42_ProgrammersGuide
+</a>
+.UPT and CSMUPT 4.2 is backwards compatible to previous versions of CSM. When you provision the application in UPT 4.2, you will be asked to specify the CSM version caIntegrator is using. You should enter version   4.2  .
+<h2 id="caIntegrator1.3LocalInstallationGuide-InstallingcaIntegratorv.1.3ApplicationandServices">
+  Installing caIntegrator v.1.3 Application and Services
+</h2>
+To newly install the caIntegrator v.1.3 application and services, follow the steps in these sections:
+<ul>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=20285195" rel="nofollow">
+      #Downloading caIntegrator v.1.3 Files
+    </a>
+  </li>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=20285195" rel="nofollow">
+      #Installing a New caIntegrator v.1.3
+    </a>
+    <ul>
+      <li>
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=20285195" rel="nofollow">
+          #GUI Installer Method of Installation
+        </a>
+      </li>
+      <li>
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=20285195" rel="nofollow">
+          #Command-Line Method of Installation
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=20285195" rel="nofollow">
+      #Configuring JBoss
+    </a>
+    <ul>
+      <li>
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=20285195" rel="nofollow">
+          #Configuring JBoss Servers and MySQL Server to Run as Services
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=20285195" rel="nofollow">
+      #Post-Installation Tasks
+    </a>
+    <ul>
+      <li>
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=20285195" rel="nofollow">
+          #Using UPT to Administer caIntegrator Users
+        </a>
+      </li>
+    </ul>
+  </li>
+</ul>
+BEFORE YOU BEGINThere must already be a pre-existing MySQL DB and connection username/password for caIntegrator to install into; caIntegrator does not create its own DB.
+<h3 id="caIntegrator1.3LocalInstallationGuide-DownloadingcaIntegratorv.1.3Files">
+  Downloading caIntegrator v.1.3 Files
+</h3>
+To download the caIntegrator v.1.3 files, follow this step:The various installation files for caIntegrator v.1.3 are between 150-250MB in size. All of the files can be downloaded from the
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=198574243" rel="nofollow">
+  caIntegrator GForge files archive
+</a>
+.
+<ul>
+  <li>
+    For a new command-line installer, download the caIntegrator_install_1_3.zip file (around 175MB).
+  </li>
+  <li>
+    For a command-line upgrade installer, download the caIntegrator_upgrade_1_3.zip file (about 175 MB).
+  </li>
+  <li>
+    For a GUI installer that you can use to do a fresh caIntegrator installation, download the caIntegrator_gui_distribution_1_3.jar file (about 207 MB).
+  </li>
+</ul>
+Remember the download location, as you will be using this file to run the installation in the steps that follow.Server components in caIntegrator v.1.3These server components are installed and configured as part of the caIntegrator v.1.3 installation. You do not need to do anything further to download or install these components.
+<ul>
+  <li>
+    JBoss 4.0.5 (hosts the caIntegrator application)
+  </li>
+</ul>
+<h3 id="caIntegrator1.3LocalInstallationGuide-InstallingaNewcaIntegratorv.1.3">
+  Installing a New caIntegrator v.1.3
+</h3>
+You can perform a new installation of caIntegrator v.1.3 using either of these two methods:
+<ul>
+  <li>
+    A GUI Installation wizard. Instructions for this method start in the following section.
+  </li>
+  <li>
+    A command-line installation. For instructions, see
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=20285195" rel="nofollow">
+      #Command-Line Method of Installation
+    </a>
+    .
+  </li>
+</ul>
+<h4 id="caIntegrator1.3LocalInstallationGuide-GUIInstallerMethodofInstallation">
+  GUI Installer Method of Installation
+</h4>
+For detailed information on all of the GUI installer fields, refer to the
+<a href="https://wiki.nci.nih.gov/x/NAUuAQ" rel="nofollow">
+  BDA Properties page
+</a>
+.For performing an installation using the GUI Installer, follow these steps:
+<ol>
+  <li>
+    Open a command prompt in the directory where you downloaded the caIntegrator_gui_distribution_1_3.jar. Enter this command to invoke the GUI installer:   java –jar caIntegrator_gui_distribution_1_3.jar  .
+  </li>
+  <li>
+    The Installation Wizard opens to facilitate the installation process. Click Next to proceed through the pages of the wizard, beginning with progressing past the Welcome page.
+  </li>
+  <li>
+    Review the release notes.
+  </li>
+  <li>
+    You must accept the license agreement.
+  </li>
+  <li>
+    Select the Install installation type. For a new installation, select Install.
+  </li>
+  <li>
+    Select Browse to navigate to the directory where you would like to install caIntegrator. The directory then displays in the text box. If the folder does not yet exist, click OK in the dialog box to indicate that you want the folder to be created.
+  </li>
+  <li>
+    Select the type of installation you would like to do. You can install everything, or just specific components (JBoss or Database only). The remaining sections in this guide assumes you chose to install everything.
+  </li>
+  <li>
+    Continue walking through the pages of the installer. Configure the caIntegrator JBoss server on the next two pages of the installation wizard. The screen shots show example values. The port values which are specified are the defaults and can be used unless you want to reconfigure the values because of values already in use.
+    <img alt="example values, described in text" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/caIntegrator%201.3%20Local%20Installation%20Guide/jboss%20config1.png?api=v2">
+  </li>
+  <li>
+    JBoss Installation Options
+    <img alt="example JBoss installation options, described in text" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/caIntegrator%201.3%20Local%20Installation%20Guide/jboss%20config2.png?api=v2">
+  </li>
+  <li>
+    JBoss SSL requires that you have requested and retrieved certificates already. If this does not apply to your installation, leave the values as false and continue.
+    <img alt="illustration of process, described in text" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/caIntegrator%201.3%20Local%20Installation%20Guide/jboss%20config3.png?api=v2">
+  </li>
+  <li>
+    If your JBoss is externally accessible then fill out the JBoss External Hostname Configuration page. Otherwise, leave it blank and continue.
+  </li>
+  <li>
+    Specify the authentication type that caIntegrator should use. Database is the most likely choice if you aren&#39;t sure what to select here.
+  </li>
+  <li>
+    If you selected LDAP in the previous step (authentication type), enter the appropriate configuration information for LDAP: the LDAP URL and the LDAP Search Back DN.
+  </li>
+  <li>
+    If the authentication type is database, specify the following data base configuration information:
+    <ul>
+      <li>
+        The Database Host Name
+      </li>
+      <li>
+        The Database Port Example: 3306
+      </li>
+      <li>
+        Database name of the pre-existing database where the caIntegrator schema will be installed
+      </li>
+      <li>
+        The pre-existing Database Application User to be used by caIntegrator to connect to its database. Error messages inform you if the following occurs:
+        <ul>
+          <li>
+            If the specified database host cannot be reached, or the field is blank.
+          </li>
+          <li>
+            If the specified database does not already exist, or the caIntegrator DB user&#39;s credentials are wrong.
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    Specify SMTP mail server connection information so that caIntegrator can send emails from users with new account requests. You must provide the following
+    <ul>
+      <li>
+        Mail Server Host Example: localhost
+      </li>
+      <li>
+        Mail Server Port Number Example: 25
+      </li>
+      <li>
+        Mail Server Authentication: default is false.
+      </li>
+      <li>
+        Mail Server starttls: default is false.
+      </li>
+    </ul>
+  </li>
+  <li>
+    If jar signing is necessary for the installation, then enable it on the Jar Signing Configuration page. This step is optional and can be skipped.
+  </li>
+  <li>
+    Review the summary of the information you entered.
+  </li>
+  <li>
+    Review the selected installation type and the installation destination.  After you click Next from reviewing the installation destination, the installer runs. The installation wizard displays the installation progress and completion.
+  </li>
+  <li>
+    When you are informed that the process is finished, click Done in the lower right corner of the wizard to close the installer.
+  </li>
+  <li>
+    To verify caIntegrator installation:
+    <ol>
+      <li>
+        Open your web browser to installed instance. The URL follows this format: http://&lt;jboss.server.hostname&gt;:&lt;jboss.server.port&gt;/caintegrator/workspace.action.
+      </li>
+      <li>
+        Enter  ncimanager  as the user and  changeme  as the password. Refer to the &lt;user home&gt;/.installer-caintegrator/caintegrator_installer/install.properties file for the correct values.
+      </li>
+    </ol>
+  </li>
+  <li>
+    After successfully installing caIntegrator, make a backup of the &lt;user home&gt;/.installer-caintegrator/caintegrator_installer/install.properties file in a different directory for future reference.
+  </li>
+</ol>
+<h4 id="caIntegrator1.3LocalInstallationGuide-Command-LineMethodofInstallation">
+  Command-Line Method of Installation
+</h4>
+<h5 id="caIntegrator1.3LocalInstallationGuide-OverviewofcaIntegratorCommand-LineInstallerPropertiesFiles">
+  Overview of caIntegrator Command-Line Installer Properties Files
+</h5>
+*When you do a command-line installation of caIntegrator for the first time, you will work with install.properties file included in the caIntegrator_distribution_1_3.zip.  *If you are upgrading by command-line from a previous version of caIntegrator, you will work with the upgrade.properties file included in the caIntegrator_upgrade_1_3.zip.
+<h5 id="caIntegrator1.3LocalInstallationGuide-caIntegratorPortUsage">
+  caIntegrator Port Usage
+</h5>
+Verify that default port values defined in install.properties files are not in use on your system by running  netstat –a  from the command line. If the ports are in use prior to installation, you will likely experience problems with your installation.
+<h5 id="caIntegrator1.3LocalInstallationGuide-JBossErrorsDuringInstallation">
+  JBoss Errors During Installation
+</h5>
+You may receive an error such as Exception in thread &#34;main&#34; java.lang.NoClassDefFoundError: org/jboss/Shutdown. This should not be a problem, as the installer attempts to stop previously installed servers to prevent problems during the installation. If this is your first time installing caIntegrator, you may receive and disregard this error message.
+<h5 id="caIntegrator1.3LocalInstallationGuide-Command-lineInstallationSteps">
+  Command-line Installation Steps
+</h5>
+To install a new instance of caIntegrator using the command-line, follow these steps:
+<ol>
+  <li>
+    From the directory where you downloaded the caIntegrator_distribution_1_3.zip described in
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=20285195" rel="nofollow">
+      Downloading caIntegrator v.1.3 files
+    </a>
+    , unzip the Files, using one of these two methods:
+    <ol>
+      <li>
+        Open a command prompt and use it to extract this file to a temporary location. For example, you may enter a command such as   unzip -q caIntegrator_distribution_1_3.zip  . You must have a ZIP tool installed. This location will be referred to as the &lt;installer_directory&gt; henceforth.
+      </li>
+      <li>
+        Use WinZip or a similar utility to unzip the files to a temporary location. This location will be referred to as the &lt;installer_directory&gt; henceforth.  Example: &lt;installer directory&gt; = C:\caIntegrator_installerAbout setting property valuesSetting the property values is an important step in the installation process. Before you complete steps 2 &amp; 3, review
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=20285195" rel="nofollow">
+          #Working with Properties Files
+        </a>
+        .
+      </li>
+    </ol>
+  </li>
+  <li>
+    Open the &lt;installer_directory&gt;/install.properties file, modify the values for your environment and save the file. For the latest details about configuring the properties for your environment, refer to the
+    <a href="https://wiki.nci.nih.gov/x/NAUuAQ" rel="nofollow">
+      BDA Properties wiki page
+    </a>
+    .
+  </li>
+  <li>
+    Record the property values you have set.Other default valuesYou should not need to modify the other default values as we have chosen unique ports to reduce the risk of other applications using the same values. However, be sure to verify that the ports in this file are not being used by other applications.
+  </li>
+  <li>
+    From the command line, navigate to &lt;installer_directory&gt;/(Example:cd C:\caIntegrator_2_0_installer), and type   ant  . This initiates the installation process. The anticipated duration is anywhere from 1-15 minutes, depending on your system&#39;s speed, power and memory.  The installer installs the caIntegrator schema in the specified pre-existing database on your MySQL server, and installs, configures, and starts the JBoss server for the caIntegrator application.
+  </li>
+  <li>
+    To verify caIntegrator installation, open your web browser to the installed instance. The URL follows this format: http://&lt;jboss.server.hostname&gt;:&lt;jboss.server.port&gt;/caintegrator/workspace.action.  Refer to the &lt;installer_directory&gt;/install.properties file for the correct values. Enter  manager  as the user and  manager  as the password.
+  </li>
+  <li>
+    After successfully installing caIntegrator, make a backup of the &lt;installer_directory&gt;/install.properties file in a different directory for future reference.
+  </li>
+</ol>
+<h3 id="caIntegrator1.3LocalInstallationGuide-UpgradingcaIntegrator1.2to1.3">
+  Upgrading caIntegrator 1.2 to 1.3
+</h3>
+This section describes how to upgrade your product from caIntegrator 1.2 to caIntegrator 1.3. The instructions in this section apply only if you have already installed a caIntegrator version 1.2.You can perform an upgrade installation of caIntegrator v.1.3 using either of these two methods:
+<ul>
+  <li>
+    A GUI Installation wizard. Instructions for this method are found in
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=20285195" rel="nofollow">
+      #Upgrade Using the GUI Installer
+    </a>
+    .
+  </li>
+  <li>
+    A command-line installation. Instructions for this method are found in
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=20285195" rel="nofollow">
+      #Upgrade Using Command-Line Installer
+    </a>
+    .
+  </li>
+</ul>
+BEFORE YOU BEGIN
+<ul>
+  <li>
+    Important: Backup the 1.2 database. You need to create a reliable copy of your entire caIntegrator database.
+  </li>
+  <li>
+    Important: Backup the current installation of caIntegrator and artifacts from the original installation, such as properties files.
+  </li>
+</ul>
+If you are performing a new installation, go directly to
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=20285195" rel="nofollow">
+  #Installing caIntegrator v.1.3 Application and Services
+</a>
+.
+<h4 id="caIntegrator1.3LocalInstallationGuide-caIntegrator1.2UsersUpgradingtocaIntegrator1.3">
+  caIntegrator 1.2 Users Upgrading to caIntegrator 1.3
+</h4>
+The directions in this section presume that you have a valid and functioning caIntegrator 1.2. It also assumes that Java SDK, Apache Ant and MySQL have all been successfully uploaded and installed, as described on pages
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=20285195" rel="nofollow">
+  #Required Software--Not Included in caIntegrator
+</a>
+.
+<h4 id="caIntegrator1.3LocalInstallationGuide-OverviewofPropertiesFiles">
+  Overview of Properties Files
+</h4>
+When you installed the previous version of caIntegrator 1.2, you configured the install.properties file. To complete the upgrade to caIntegrator 1.3, you must use some of the values from the original install.properties to configure values in the upgrade installer wizard GUI, or the upgrade.properties file if you are doing a command-line method of upgrade.See steps 3 &amp; 4 in
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=20285195" rel="nofollow">
+  #Upgrade Using Command Line Installer
+</a>
+for more information.
+<h4 id="caIntegrator1.3LocalInstallationGuide-UpgradeUsingtheGUIInstaller">
+  Upgrade Using the GUI Installer
+</h4>
+For detailed information on all of the GUI installer fields, refer to the
+<a href="https://wiki.nci.nih.gov/x/NAUuAQ" rel="nofollow">
+  BDA Properties page
+</a>
+.To perform an upgrade to caIntegrator 1.3 using the GUI Installation Wizard, follow these steps:
+<ol>
+  <li>
+    Because of the application name change in v.1.3, in the JBOSS home directory, locate the war file containing the previous release of caIntegrator2 and delete it. For example, find this file: JBOSS_HOME/server/default/deploy/caintegrator2.war and delete the file named caintegrator2.war.Watch .war file nameIn this same directory, there may be a different file named caintegrator.war (without the number 2 in the name) which you should not delete.
+  </li>
+  <li>
+    Open a command prompt in the directory where you downloaded the caIntegrator_gui_distribution_1_3.jar and invoke the GUI installer using this: java –jar caIntegrator_gui_distribution_1_3.jar.
+  </li>
+  <li>
+    The Installation Wizard opens to facilitate the installation process. Click Next to proceed through the pages of the wizard, beginning with progressing past the Welcome page.
+  </li>
+  <li>
+    Review the release notes.
+  </li>
+  <li>
+    You must accept the license agreement to continue.
+  </li>
+  <li>
+    Select the Upgrade installation type.
+  </li>
+  <li>
+    Configure the JBoss Server-related upgrade settings.  If the path pointing to the caIntegrator installation to be upgraded is incorrect, an error message appears.
+  </li>
+  <li>
+    Specify the authentication type that caIntegrator is using. If you choose LDAP, configure the LDAP information: the LDAP Host Name, the LDAP Search Base, and the LDAP Search Prefix. An example of the Host Name is ldaps://myldaphost.mydomain.com:636.
+  </li>
+  <li>
+    Review the summary of gathered information.
+  </li>
+  <li>
+    Click Next to proceed through the next two pages. Review the selected upgrade installation type and the upgrade destination.
+  </li>
+  <li>
+    After you click Next from reviewing the installation destination, the installer runs. The installation wizard displays the installation progress and completion.
+  </li>
+  <li>
+    When you are informed that the process is finished, click Done in the lower right corner to close the installation wizard.
+  </li>
+  <li>
+    To verify the caIntegrator installation, open your web browser to the installed instance. The URL follows this format: http://&lt;jboss.server.hostname&gt;:&lt;jboss.server.port&gt;/caintegrator. Example:
+    <a href="http://hostname:47210/caintegrator" rel="nofollow">
+      http://hostname:47210/caintegrator
+    </a>
+    and enter  ncimanager  as the user and  changeme  as the password. Refer to the original install.properties for the correct jboss.server.hostname and jboss.server.port values.
+  </li>
+</ol>
+<h4 id="caIntegrator1.3LocalInstallationGuide-UpgradeUsingCommand-LineInstaller">
+  Upgrade Using Command-Line Installer
+</h4>
+To perform an upgrade to caIntegrator 1.3 using the command-line, follow these steps:
+<ol>
+  <li>
+    Because of the application name change in v.1.3, in the JBOSS home directory, locate the war file containing the previous release of caIntegrator2 and delete it. For example, find this file: JBOSS_HOME/server/default/deploy/caintegrator2.war and delete the file named caintegrator2.war.Watch .war file nameIn this same directory, there may be a different file named caintegrator.war (without the number 2 in the name) which you should not delete.
+  </li>
+  <li>
+    From the directory where you downloaded the upgrade zip file, extract the files, using one of these two methods:
+    <ol>
+      <li>
+        Open a command prompt and use it to extract this file to a temporary location. For example, you may enter a command such as   unzip -q caIntegrator_upgrade_1_3.zip  . You must have a ZIP tool installed.Directory for unzipped filesIt is recommended that you use a new directory for the unzipped files, rather than the one you used to unzip the installer for the previous version(s) of caIntegrator. This location will be referred to as the &lt;upgrade_installer_directory&gt; henceforth.
+      </li>
+      <li>
+        Use WinZip or a similar utility to unzip the files to a temporary location. This location will be referred to as the &lt;upgrade_installer directory&gt; henceforth  Example: &lt;upgrade_installer directory&gt; = C:\caintegrator2_1_2_upgrade_installer
+      </li>
+    </ol>
+  </li>
+  <li>
+    Edit the default properties in the &lt;upgrade_installer_directory&gt;/upgrade.properties file. Before doing so, review
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=20285195" rel="nofollow">
+      #Working with Properties Files
+    </a>
+    . To do so, open both properties files, the one you configured originally when you installed the previous version of caIntegrator. (&lt;install. properties file&gt;)and the &lt;upgrade_installer_directory&gt;/upgrade.properties file.  For the latest details about configuring the properties for your updated environment, refer to the
+    <a href="https://wiki.nci.nih.gov/x/MBKy" rel="nofollow">
+      BDA Properties page
+    </a>
+    .NoteThe upgrade.properties file does not have as many attributes, so you will not need to transfer all values you set in the previous installation file.
+  </li>
+  <li>
+    Record these property values.Modifying property valuesYou shouldn&#39;t need to modify the other default values as we have chosen unique ports to reduce the risk of other applications using the same values. However, be sure to check the *.properties file to verify that the ports in this file are not being used by other applications.
+  </li>
+  <li>
+    From the command line, navigate to &lt;upgrade_installer_directory&gt;/ (Example:cd C:\caIntegrator_upgrade_installer), and type  ant . This initiates the upgrade process. The anticipated duration is anywhere 1-15 minutes depending on your system&#39;s speed, power and memory.  The installer upgrades your existing caIntegrator database on your MySQL server, and starts your existing JBoss server.
+  </li>
+  <li>
+    When the installer detects that a database exists, it warns you to back it up, which you were instructed to do earlier in this process. Press Y to proceed.
+  </li>
+  <li>
+    To verify caIntegrator installation, open your web browser to the installed instance. The URL follows this format: http://&lt;jboss.server.hostname&gt;:&lt;jboss.server.port&gt;/caintegrator /workspace.action. Example:
+    <a href="http://hostname:47210/caintegrator/workspace.action" rel="nofollow">
+      http://hostname:47210/caintegrator/workspace.action
+    </a>
+    and enter  ncimanager  as the user and  changeme  as the password. Refer to the original install.properties for the correct jboss.server.hostname and jboss.server.port values.
+  </li>
+</ol>
+<h3 id="caIntegrator1.3LocalInstallationGuide-ConfiguringJBoss">
+  Configuring JBoss
+</h3>
+For Optimal PerformanceYou must modify your JBoss 4.0.5 configuration to increase the amount of available memory for the caIntegrator application. Directions for doing this in Windows are in the following step 1.To configure JBoss in Windows, follow these steps.
+<ol>
+  <li>
+    Modify the following entry to the JBoss run.bat file which is located at &lt;application_root_directory&gt;/jboss-4.0.5.GA/bin/run.bat. Find the line that begins with set JAVA_OPTS= -Dbda=bda -Dprogram.name=%PROGNAME% -server and modify the &#34;-Xms256m -Xmx512m&#34; to read  &#34;-Xms4096m -Xmx4096m&#34; .Physical memoryIf 4096m is higher than the physical memory on the machine, then performance could be severely impacted with performance degradation and errors. 4096m of physical memory is recommended.WarningBe careful when copying and pasting from this installation guide. No spaces must come before and after the columns. A safe way to ensure that the text has no unwanted space and unwanted characters is to copy the text into a blank text editor such as NotePad first. Then you can correct the spacing and copy-paste back into the run.bat file.
+  </li>
+  <li>
+    Restart your JBoss 4.0.5 server for the changes to take effect. The method of doing this may depend on the start/stop/restart scripts you created after the installation. Most commonly, you can execute shutdown.bat and then run.bat under $JBOSS_HOME/bin. Refer to the publicly available
+    <a href="http://www.jboss.org" rel="nofollow">
+      JBoss user&#39;s guide
+    </a>
+    for more information.
+  </li>
+</ol>
+<h4 id="caIntegrator1.3LocalInstallationGuide-ConfiguringJBossServersandMySQLServertoRunasServices">
+  Configuring JBoss Servers and MySQL Server to Run as Services
+</h4>
+JBoss &amp; MySQL as servicesMySQL and the JBoss server that make up caIntegrator, and the JBoss server optionally installed for UPT, must run continually as services. The instructions in this section cover all of these scenarios. For a caIntegrator deployment, there are at least three servers, and if UPT is installed, four servers:
+<ul>
+  <li>
+    JBoss 4.0.4 for UPT (optional)
+  </li>
+  <li>
+    JBoss 4.0.5 (for caIntegratorapplication)
+  </li>
+  <li>
+    MySQL 5.0.45
+  </li>
+</ul>
+<h4 id="caIntegrator1.3LocalInstallationGuide-RunningJBossasaService">
+  Running JBoss as a Service
+</h4>
+BEFORE YOU BEGINThe default caIntegrator installation runs JBoss as a command line process using the user currently logged on. Therefore, when you log out as this user, JBoss will no longer be available for caIntegrator. For that reason, it is recommended that you configure your JBoss servers to run as a Linux or Windows service. The instructions are contained in this section.Before starting the caIntegrator JBOSS server, change the default location for user data. User data consists of various files that are saved by caIntegrator during the deployment and querying of studies. The default location for user data should be changed via the Djava.io.tmpdir jvm parameter in the Jboss run.conf file.   Example jvm parameter: -Djava.io.tmpdir=/local/content/caintegrator/jvmtmpTo run JBoss as a service, follow these steps:
+<h5 id="caIntegrator1.3LocalInstallationGuide-Linux.1">
+  Linux
+</h5>
+See
+<a href="http://wiki.jboss.org/wiki/Wiki.jsp?page=StartJBossOnBootWithLinux" rel="nofollow">
+  http://wiki.jboss.org/wiki/Wiki.jsp?page=StartJBossOnBootWithLinux
+</a>
+.
+<h5 id="caIntegrator1.3LocalInstallationGuide-Windows.1">
+  Windows
+</h5>
+To run an existing JBoss command line installation as a service, follow the directions for creating a user-defined service at
+<a href="http://support.microsoft.com/kb/137890/EN-US/" rel="nofollow">
+  http://support.microsoft.com/kb/137890/EN-US/
+</a>
+. You need to have access to the Windows Resource Kit.
+<h4 id="caIntegrator1.3LocalInstallationGuide-RunningMySQLasaService">
+  Running MySQL as a Service
+</h4>
+Server installed?It is assumed that your MySQL server was installed as a service. If it was not, follow these recommendations for installing this server as a service.To run MySQL as a service, follow these steps:
+<h5 id="caIntegrator1.3LocalInstallationGuide-Linux.2">
+  Linux
+</h5>
+See
+<a href="http://www.redhat.com/docs/manuals/enterprise/RHEL-AS-2.1-Manual/cluster-manager/s1-service-mysql.html" rel="nofollow">
+  http://www.redhat.com/docs/manuals/enterprise/RHEL-AS-2.1-Manual/cluster-manager/s1-service-mysql.html
+</a>
+.
+<h5 id="caIntegrator1.3LocalInstallationGuide-Windows.2">
+  Windows
+</h5>
+When installing MySQL server on Windows, choose the option to run MySQL as a Windows service.
+<h2 id="caIntegrator1.3LocalInstallationGuide-Post-InstallationTasks">
+  Post-Installation Tasks
+</h2>
+<h3 id="caIntegrator1.3LocalInstallationGuide-UsingUPTtoAdministercaIntegratorUsers">
+  Using UPT to Administer caIntegrator Users
+</h3>
+To add and administer caIntegrator users in the UPT, refer to the
+<a href="https://wiki.nci.nih.gov/x/EIDnAg" rel="nofollow">
+  caIntegrator 1.3 User&#39;s Guide
+</a>
+<h2 id="caIntegrator1.3LocalInstallationGuide-DefaultUsers">
+  Default Users
+</h2>
+The following users are provided by default by the caIntegrator installer.
+<ul>
+  <li>
+    ncimanager / changeme
+  </li>
+  <li>
+    nciinvestigator / changeme
+  </li>
+  <li>
+    cai2admin / changeme - This is the UPT user who will have access to provision caIntegrator users.
+  </li>
+</ul>
+<h2 id="caIntegrator1.3LocalInstallationGuide-ContactingApplicationSupport">
+  Contacting Application Support
+</h2>
+<table>
+  <tbody>
+    <tr>
+      <td>
+        CBIIT Application Support
+      </td>
+      <td>
+        <a href="https://cbiit.nci.nih.gov/ncip/application-support" rel="nofollow">
+          Application Support
+        </a>
+        Telephone: 240-276-5541  Toll free: 888-478-4423
+      </td>
+    </tr>
+  </tbody>
+</table>
+Help Downloading FilesFor help accessing PDF, audio, video, and compressed files on this wiki, go to
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=328991650" rel="nofollow">
+  Help Downloading Files
+</a>
+.

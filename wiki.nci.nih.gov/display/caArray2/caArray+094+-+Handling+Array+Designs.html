@@ -1,0 +1,28 @@
+<h1 id="caArray094HandlingArrayDesigns-Question:HowDoIAssociateAnImportedArrayDesignWithAnExperiment?">
+  Question: How Do I Associate An Imported Array Design With An Experiment?
+</h1>
+Topic: Working With Array Design FilesRelease: v2.0 and aboveDate entered: April 24, 2012
+<h2 id="caArray094HandlingArrayDesigns-Answer">
+  Answer
+</h2>
+In caArray, before an experiment can be successfully created, the array design(s) for platforms used in that experiment have to be imported first. Afterwards, the corresponding array designs must be associated with the experiment when the experiment is created, as shown in Figure 1 below.
+<img alt="The corresponding array designs for your experiment must be selected on the &#39;New Experiment&#39; page in caArray" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caArray2/caArray%20094%20-%20Handling%20Array%20Designs/Figure1.jpg?api=v2">
+Figure 1. On the caArray &#39;New Experiment&#39; page, the &#39;Array Designs&#39; box lists all the array designs that have been imported into the experiment. Any designs you select from this list will become associated with the experiment and all the data files uploaded to it.By selecting the corresponding array design(s) on the &#39;New Experiment&#39; page, you are telling caArray that the selected array design(s) correspond to the data files to be uploaded. If only one array design is selected, caArray will associate all uploaded data files with that array design and will parse the data accordingly.If more than one array design is selected, and if the data and sample annotations are in the MAGE-TAB format, additional information needs to be provided in the form of a SDRF metadata file, which is in the CSV file format. In the SDRF file, which lists all the experiment&#39;s samples, a column named “Array Design REF” shows the array design reference for each sample, as shown in Figure 2 below. This allows caArray to associate the correct array design with its corresponding array data files.
+<img alt="An SDRF metadata file can be used to specify the respective array designs for multiple samples in an experiment by listing the array design reference IDs for each sample under the &#39;Array Design REF&#39; column" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caArray2/caArray%20094%20-%20Handling%20Array%20Designs/Figure2.jpg?api=v2">
+Figure 2. The &#39;Array Design REF&#39; column in the SDRF metadata file shows the array design LSID references for each listed sample from the experiment.When entering the array design information into the SDRF file, be sure to pay attention to the syntax of the LSID reference. The correct reference syntax for most array designs supported by caArray can be found on the NCI instance of caArray at
+<a href="https://array.nci.nih.gov/caarray/home.action" rel="nofollow">
+  https://array.nci.nih.gov/caarray/home.action
+</a>
+. Once you log in, click “Manage Array Designs”, then click on the array design that your data files use, and capture the value for “Array Design LSID”, as shown in Figures 3 and 4 below.
+<img alt="The array design reference ID for your data files can be found on the &#39;Manage Array Designs&#39; page in caArray by clicking on the array design that your files use" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caArray2/caArray%20094%20-%20Handling%20Array%20Designs/Figure3.jpg?api=v2">
+Figure 3. To find the LSID reference for an array design, first log in to the NCI caArray instance, then click on &#39;Manage Array Designs&#39; (highlighted in red) in the left-hand navigation pane and click on the desired array design.
+<img alt="screenshot illustrating text" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caArray2/caArray%20094%20-%20Handling%20Array%20Designs/Figure4.jpg?api=v2">
+Figure 4. For the array design you selected from the &#39;Manage Array Designs&#39; page, the &#39;Array Design Details&#39; heading lists several attributes of the array design, including the LSID reference (highlighted in red). This reference can be captured and entered into your SDRF file.Remember to remove the “URN:LSID:” prefix before you add the array design reference to the SDRF file column. For example, if the original LSID is:URN:LSID:Agilent.com:PhysicalArrayDesign:012391_D_F_20120130then the corresponding value to be entered into the SDRF file is:Agilent.com:PhysicalArrayDesign:012391_D_F_20120130
+<h2 id="caArray094HandlingArrayDesigns-Haveacomment?">
+  Have a comment?
+</h2>
+Please leave your comment in the
+<a href="https://cabig-kc.nci.nih.gov/Molecular/forums/viewtopic.php?f=6&amp;t=577" rel="nofollow">
+  caArray End User Forum
+</a>
+.

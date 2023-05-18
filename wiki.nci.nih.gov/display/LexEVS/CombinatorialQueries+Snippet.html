@@ -1,0 +1,49 @@
+Java Code Snippet
+
+System.out.println(&#34;Example double restriction query with additional &#34;
++&#34;application of sort criteria and restricted return values.&#34;);
+// Declare the service...
+LexBIGServiceImpl lbs = LexBIGServiceImpl.defaultInstance();
+
+// Start with an unconstrained set of all codes for the vocabulary
+CodingSchemeVersionOrTag csvt = new CodingSchemeVersionOrTag();
+csvt.setVersion(VERSION2);
+CodedNodeSet cns = lbs.getCodingSchemeConcepts(SAMPLE_SCHEME2, csvt);
+
+// Constrain to concepts with designations (assigned text presentations
+// that contain text that sounds like &#39;Short Saphenous Vein&#39;
+cns = cns.restrictToMatchingDesignations(
+&#34;Short Safinus Vane&#34;,
+SearchDesignationOption.ALL,
+MatchAlgorithms.DoubleMetaphoneLuceneQuery.toString(),
+null);
+
+// Further restrict the results to concepts with a semantic type of
+// &#39;Anatomical Structure&#39;
+cns = cns.restrictToMatchingProperties(
+Constructors.createLocalNameList(&#34;Semantic_Type&#34;),
+null, &#34;Anatomical Structure&#34;,
+&#34;exactMatch&#34;,
+null);
+
+// Indicate that the resulting list should be sorted with the best
+// results first and then sorted by code if there is a tie.
+SortOptionList sortCriteria = Constructors.createSortOptionList(
+new String[] {&#34;matchToQuery&#34;, &#34;code&#34;});
+
+// Indicate to return only the assigned UMLS_CUI and
+// textualPresentation properties.
+LocalNameList restrictTo =ConvenienceMethods.createLocalNameList(
+new String[] {&#34;UMLS_CUI&#34;, &#34;textualPresentation&#34;} );
+
+// Still nothing computed yet.
+// Perform the query &amp;&amp; resolve the sorted/filtered list with a
+// maximum of 6 items returned.
+ResolvedConceptReferenceList list = cns.resolveToList(
+sortCriteria, restrictTo, null, 6);
+// Print the results
+ResolvedConceptReference[] rcr = list.getResolvedConceptReference();
+for (ResolvedConceptReference rc : rcr)
+{
+System.out.println(&#34;Resolved Concept: &#34; + rc.getConceptCode());
+} 

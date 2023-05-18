@@ -1,0 +1,97 @@
+Java Code
+
+/*
+* Copyright: (c) 2004-2009 Mayo Foundation for Medical Education and
+* Research (MFMER). All rights reserved. MAYO, MAYO CLINIC, and the
+* triple-shield Mayo logo are trademarks and service marks of MFMER.
+*
+* Except as contained in the copyright notice above, or as used to identify
+* MFMER as the author of this software, the trade names, trademarks, service
+* marks, or product names of the copyright holder shall not be used in
+* advertising, promotion or otherwise in connection with this software without
+* prior written authorization of the copyright holder.
+*
+* Licensed under the Eclipse Public License, Version 1.0 (the &#34;License&#34;);
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+* 		http://www.eclipse.org/legal/epl-v10.html
+*
+*/
+package org.LexGrid.LexBIG.example;
+
+import java.util.Iterator;
+
+import org.LexGrid.LexBIG.DataModel.Collections.ResolvedConceptReferenceList;
+import org.LexGrid.LexBIG.DataModel.Core.CodingSchemeSummary;
+import org.LexGrid.LexBIG.DataModel.Core.CodingSchemeVersionOrTag;
+import org.LexGrid.LexBIG.DataModel.Core.ResolvedConceptReference;
+import org.LexGrid.LexBIG.Exceptions.LBException;
+import org.LexGrid.LexBIG.Impl.LexBIGServiceImpl;
+import org.LexGrid.LexBIG.LexBIGService.CodedNodeSet;
+import org.LexGrid.LexBIG.LexBIGService.LexBIGService;
+import org.LexGrid.LexBIG.Utility.Constructors;
+
+/**
+* Example showing how to find the entity description assigned to a specific
+* code. The program accepts one parameter, the entity code.
+*
+* Example: FindDescriptionForCode &#34;C43652&#34;
+*/
+public class FindDescriptionForCode {
+public FindDescriptionForCode() {
+super();
+}
+
+/**
+* Entry point for processing.
+*
+* @param args
+*/
+public static void main(String[] args) {
+if (args.length &lt; 1) {
+System.out.println(&#34;Example: FindDescriptionForCode \&#34;C12933\&#34;&#34;);
+return;
+}
+
+try {
+String code = args[0];
+new FindDescriptionForCode().run(code);
+} catch (Exception e) {
+Util.displayAndLogError(&#34;REQUEST FAILED !!!&#34;, e);
+}
+}
+
+public void run(String code) throws LBException {
+CodingSchemeSummary css = Util.promptForCodeSystem();
+if (css != null) {
+CodingSchemeVersionOrTag csvt = new CodingSchemeVersionOrTag();
+csvt.setVersion(css.getRepresentsVersion());
+
+// Get a new node set and restrict to the provided code ...
+LexBIGService lbs = LexBIGServiceImpl.defaultInstance();
+CodedNodeSet cns = lbs.getNodeSet(css.getLocalName(), csvt, null);
+cns.restrictToCodes(Constructors.createConceptReferenceList(code));
+
+// Retrieve the concept reference, if available ...
+ResolvedConceptReferenceList rcrl = cns.resolveToList(null, null, null, null, true, 1);
+if (rcrl.getResolvedConceptReferenceCount() &lt; 1)
+Util.displayMessage(&#34;No match found for code: &#34; + code);
+else {
+ResolvedConceptReference rcr = rcrl.getResolvedConceptReference(0);
+Util.displayMessage(&#34;Match Found for Code...: &#34; + rcr.getConceptCode());
+Util.displayMessage(&#34;\tCoding Scheme Name...: &#34; + rcr.getCodingSchemeName());
+Util.displayMessage(&#34;\tCoding Scheme URI....: &#34; + rcr.getCodingSchemeURI());
+Util.displayMessage(&#34;\tCoding Scheme Version: &#34; + rcr.getCodingSchemeVersion());
+Util.displayMessage(&#34;\tCode Namespace...... : &#34;
++ (rcr.getCodeNamespace() != null ? rcr.getCodeNamespace() : &#34;&lt;default&gt;&#34;));
+Util.displayMessage(&#34;\tCode Description.... : &#34;
++ (rcr.getEntityDescription() != null ? rcr.getEntityDescription().getContent() : &#34;&#34;));
+String typeString = &#34;&#34;;
+for (Iterator&lt;String&gt; types = rcr.iterateEntityType(); types.hasNext();)
+typeString += (types.next() + (types.hasNext() ? &#34;,&#34; : &#34;&#34;));
+Util.displayMessage(&#34;\tCode Entity Types... : &#34; + typeString);
+}
+}
+}
+} 

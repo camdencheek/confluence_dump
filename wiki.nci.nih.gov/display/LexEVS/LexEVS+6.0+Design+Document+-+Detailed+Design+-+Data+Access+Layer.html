@@ -1,0 +1,658 @@
+Contents
+<ul>
+  <li>
+    <a href="#LexEVS6.0DesignDocumentDetailedDesignDataAccessLayer-DataAccessLayer" rel="nofollow">
+      Data Access Layer
+    </a>
+    <ul>
+      <li>
+        <a href="#LexEVS6.0DesignDocumentDetailedDesignDataAccessLayer-SolutionArchitecture" rel="nofollow">
+          Solution Architecture
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.0DesignDocumentDetailedDesignDataAccessLayer-Structure" rel="nofollow">
+          Structure
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#LexEVS6.0DesignDocumentDetailedDesignDataAccessLayer-DomainDrivenDesign" rel="nofollow">
+      Domain Driven Design
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.0DesignDocumentDetailedDesignDataAccessLayer-Service-BasedCRUDandComponentInteraction" rel="nofollow">
+      Service-Based CRUD and Component Interaction
+    </a>
+    <ul>
+      <li>
+        <a href="#LexEVS6.0DesignDocumentDetailedDesignDataAccessLayer-ExternalCallingService" rel="nofollow">
+          External Calling Service
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.0DesignDocumentDetailedDesignDataAccessLayer-;ServiceManager" rel="nofollow">
+          ;Service Manager
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.0DesignDocumentDetailedDesignDataAccessLayer-IndividualService" rel="nofollow">
+          Individual Service
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.0DesignDocumentDetailedDesignDataAccessLayer-;DAOManager" rel="nofollow">
+          ;DAO Manager
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.0DesignDocumentDetailedDesignDataAccessLayer-IndividualDAOs" rel="nofollow">
+          Individual DAOs
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#LexEVS6.0DesignDocumentDetailedDesignDataAccessLayer-EventFramework" rel="nofollow">
+      Event Framework
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.0DesignDocumentDetailedDesignDataAccessLayer-Implementation-Database" rel="nofollow">
+      Implementation - Database
+    </a>
+    <ul>
+      <li>
+        <a href="#LexEVS6.0DesignDocumentDetailedDesignDataAccessLayer-Ibatis" rel="nofollow">
+          Ibatis
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.0DesignDocumentDetailedDesignDataAccessLayer-Caching" rel="nofollow">
+          Caching
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.0DesignDocumentDetailedDesignDataAccessLayer-Annotations" rel="nofollow">
+          Annotations
+        </a>
+      </li>
+    </ul>
+  </li>
+</ul>
+Document Information
+Author: Craig Stancl, Kevin Peterson
+Email: Stancl.craig@mayo.edu, peterson.kevin@mayo.edu
+Team: LexEVS
+Contract: CBITT BOA Subcontract# 29XS223
+Client: NCI CBIIT
+National Institutes of Heath
+US Department of Health and Human Services
+
+
+Revision History
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Version
+      </th>
+      <th>
+        Date
+      </th>
+      <th>
+        Description of Changes
+      </th>
+      <th>
+        Author
+      </th>
+    </tr>
+    <tr>
+      <td>
+        1.0
+      </td>
+      <td>
+        5/14/10
+      </td>
+      <td>
+        Initial Version Approved via Design Review
+      </td>
+      <td>
+        Team
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="LexEVS6.0DesignDocumentDetailedDesignDataAccessLayer-DataAccessLayer">
+  Data Access Layer
+</h2>
+<h3 id="LexEVS6.0DesignDocumentDetailedDesignDataAccessLayer-SolutionArchitecture">
+  Solution Architecture
+</h3>
+LexEVS lacks a generalized Read/Write interface that can support Authoring and incremental Coding Scheme changes. Also, database access is not isolated. Database-specific code is intermixed with the Service Layer, as well as Extensions. To make LexEVS more able to handle Authoring, while at the same time providing a clean, centralized Database Access Layer, these are the requirements:
+<ul>
+  <li>
+    Service Layer code should not call any JDBC code other than a Data Access Interface
+  </li>
+  <li>
+    The Data Access Layer should allow connection pooling
+  </li>
+  <li>
+    The Data Access Layer should expose &#39;Service&#39; or &#39;Repository&#39; Interfaces to the Service Layer.
+  </li>
+  <li>
+    Transactions should be well defined
+  </li>
+  <li>
+    Allow for Backwards Compatibility
+  </li>
+  <li>
+    Inserts, Updates, Selects, and Deletes should cascade the Object hierarchy if desired
+  </li>
+  <li>
+    Service-Exposed Interfaces should use the Castor-generated beans.
+  </li>
+  <li>
+    Batch inserts should be supported
+  </li>
+  <li>
+    Lucene access should be included in the Data Access Layer
+  </li>
+  <li>
+    Registry accesss should be included in the Data Access Layer.
+  </li>
+  <li>
+    Expose an Event-Driven framework to allow users to insert business rules to control access to the database
+  </li>
+  <li>
+    In terms of System Resource responsibilities, the Data Access Layer should be responsible for:
+    <ul>
+      <li>
+        Detecting the LexGrid Schema version
+      </li>
+      <li>
+        Detecting the Database Type (MySQL, Oracle... etc)
+      </li>
+      <li>
+        Producing appropriate implementations of the Database Access code given the above
+      </li>
+      <li>
+        Loading and initializing all schemas on install
+      </li>
+      <li>
+        Tracking loaded Coding Schemes and other resources
+      </li>
+      <li>
+        All database admin functions (remove Coding Scheme, index, compute transitivity, etc)
+      </li>
+    </ul>
+  </li>
+</ul>
+<h3 id="LexEVS6.0DesignDocumentDetailedDesignDataAccessLayer-Structure">
+  Structure
+</h3>
+Main Components:
+<ul>
+  <li>
+    Database
+    <ul>
+      <li>
+        An access point for CRUD (Create, Read, Update, Delete) operations
+      </li>
+      <li>
+        Will contain a ServiceManager Interface, which will expose Service Layer consumable CRUD services.
+      </li>
+      <li>
+        Contains logic for LexGrid Schema Version detection and Database Type detection.
+      </li>
+      <li>
+        Serves as the Transaction Demarcation Layer
+      </li>
+    </ul>
+  </li>
+  <li>
+    System Resources
+    <ul>
+      <li>
+        Provides various system-level services
+      </li>
+    </ul>
+  </li>
+  <li>
+    Registry
+    <ul>
+      <li>
+        Maintains a list of available Resources (loaded Coding Schemes, Histories, etc)
+      </li>
+    </ul>
+  </li>
+  <li>
+    Index
+    <ul>
+      <li>
+        Provides a Lucene-based indexing service
+      </li>
+    </ul>
+  </li>
+</ul>
+Sub Components:
+<ul>
+  <li>
+    (Data Access Object) DAO Manager
+    <ul>
+      <li>
+        Provides fine-grained CRUD access to the Database
+      </li>
+      <li>
+        Is NOT Transaction aware -- all transactions must be defined by the calling services
+      </li>
+      <li>
+        Does NOT cascade
+        <ul>
+          <li>
+            This is done to allow the the Service to define exact transaction granularity
+          </li>
+        </ul>
+      </li>
+      <li>
+        Event framework is implemented in the individual DAOs, not the Services
+      </li>
+    </ul>
+  </li>
+</ul>
+<img alt="diagram of components" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%206.0%20Design%20Document%20-%20Detailed%20Design%20-%20Data%20Access%20Layer/Components.jpg?api=v2">
+<h2 id="LexEVS6.0DesignDocumentDetailedDesignDataAccessLayer-DomainDrivenDesign">
+  Domain Driven Design
+</h2>
+The LexEVS Data Access Layer loosely follows the Domain Driven Design (DDD) Principals.
+
+DDD Principals and the LexEVS Data Access Layer equivalent:
+<ul>
+  <li>
+    DDD Entities
+    <ul>
+      <li>
+        In DDD, an &#39;Entity&#39; is an Object that has Identity and may have &#39;Versions&#39;. In other words, if some part of an Entity changes, the identity of the Entity does not change, but it can be considered a different &#39;Version&#39;
+      </li>
+    </ul>
+  </li>
+  <li>
+    LexEVS Data Access Layer Entities
+    <ul>
+      <li>
+        In LexEVS, the idea of &#34;having identity&#34; and &#34;having a version&#34; are generally encompassed by Model Objects that implement the &#39;Versionable&#39; Interface.
+      </li>
+    </ul>
+  </li>
+</ul>
+<ul>
+  <li>
+    DDD Value Objects
+    <ul>
+      <li>
+        A Value Object does not maintain an identity, therefore, if its state changes, the Object itself is now something different.
+      </li>
+      <li>
+        Entities contain Value Objects
+      </li>
+    </ul>
+  </li>
+  <li>
+    LexEVS Data Access Layer Value Objects
+    <ul>
+      <li>
+        All Model Objects in LexEVS that do NOT implement the &#39;Versionable&#39; interface are considered Value Objects.
+      </li>
+      <li>
+        Considerations for LexEVS Value Objects:
+        <ul>
+          <li>
+            Value Objects are NOT directly Updatable
+          </li>
+          <li>
+            Value Objects may only be Updated via a Update of the Containing Entity
+          </li>
+          <li>
+            Value Objects may only be Deleted via a Delete of the Containing Entity
+          </li>
+          <li>
+            Value Objects may be inserted independently given the ID of the Containing Entity
+          </li>
+          <li>
+            If a Value Object changes, its Containing Entity&#39;s Version will change
+          </li>
+          <li>
+            Examples: AssociationQualifiers, PropertyQualifiers, Sources, etc...
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+<ul>
+  <li>
+    DDD Aggregate Roots
+    <ul>
+      <li>
+        A DDD Aggregate Root is a collection of Entities that share a common lifecycle.
+      </li>
+      <li>
+        All children are accessed through the top-level Object, or Root.
+      </li>
+      <li>
+        All CRUD operations are cascaded within the Aggregate Root boundary
+      </li>
+    </ul>
+  </li>
+</ul>
+<ul>
+  <li>
+    LexEVS Data Access Layer Aggregate Roots
+    <ul>
+      <li>
+        LexEVS has a very heirarchical Object Model, meaning that most Entities are dependent upon the lifecycle of a parent. For instance, if a Coding Scheme is removed, all containing Concepts are removed. A Concept cannot exist in LexEVS without a Coding Scheme.
+      </li>
+      <li>
+        So how to define Aggregate Root boundaries? In LexEVS, almost everything that is an Entity can also be considered an Aggregate Root.
+      </li>
+    </ul>
+  </li>
+</ul>
+<ul>
+  <li>
+    DDD Repository
+    <ul>
+      <li>
+        Repositories are for persisting Aggregate Roots. The aim is to apply Collection Semantics to Domain Objects. For instance, add(...), get(...), and so on.
+      </li>
+    </ul>
+  </li>
+  <li>
+    LexEVS Repository
+    <ul>
+      <li>
+        LexEVS deviates from the idea of a &#39;Repository&#39; for several reasons:
+        <ul>
+          <li>
+            Finer grained inserts are needed by the loaders. For example, in some instances we may need to insert something independently that is not an Aggregate Root, like a PropertyQualifier.
+          </li>
+          <li>
+            Because we could in theory consider all of our Entities Aggregate Roots, we would have a proliferation of Repositories.
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+<h2 id="LexEVS6.0DesignDocumentDetailedDesignDataAccessLayer-Service-BasedCRUDandComponentInteraction">
+  Service-Based CRUD and Component Interaction
+</h2>
+General Component Flow:
+<img src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%206.0%20Design%20Document%20-%20Detailed%20Design%20-%20Data%20Access%20Layer/daoFlow.jpg?api=v2">
+<h3 id="LexEVS6.0DesignDocumentDetailedDesignDataAccessLayer-ExternalCallingService">
+  External Calling Service
+</h3>
+The Component, API, or Application that requires access to the database. The reference to the Service Manger is obtained through a Service Locator pattern, or by other means outside the scope of the Data Access Layer. The External calling service does not (and should not) use any JDBC specific code, including Transactional Demarcation.
+<h3 id="LexEVS6.0DesignDocumentDetailedDesignDataAccessLayer-;ServiceManager">
+  ;Service Manager
+</h3>
+The Service Manager is the main entry point to all of the Data Access Services. The Service Manager provides a centralized reference for all of the available Database Access Services, allowing clients to select the Service or Services that they require.
+<h3 id="LexEVS6.0DesignDocumentDetailedDesignDataAccessLayer-IndividualService">
+  Individual Service
+</h3>
+Database Access is broken into groups of &#39;Services&#39;. Each Service will be a logical grouping of functions loosely based on packages of the Object Model. A service serves these rols:
+<ul>
+  <li>
+    Provides transaction boundaries
+  </li>
+  <li>
+    Serves as a facade for the fine-grained DAO API.
+  </li>
+  <li>
+    Is always implementation independent.
+  </li>
+</ul>
+<h3 id="LexEVS6.0DesignDocumentDetailedDesignDataAccessLayer-;DAOManager">
+  ;DAO Manager
+</h3>
+The DAO Manager serves the same purpose as the Service Manager -- to provide a central lookup point for all available DAOs in the system.
+
+The DAO Manager is implementation independent, so it must follow certain rules:
+<ul>
+  <li>
+    The DAO Manager will obtain references to individual DAOs through a factory, never directly. This decouples them from the actual implementation of the DAO, and allows underlying Database Type and LexGrid Schema Version checking mechanisms to be put in place
+  </li>
+  <li>
+    There will be no implementation specific code in the DAO Manager.
+  </li>
+</ul>
+<h3 id="LexEVS6.0DesignDocumentDetailedDesignDataAccessLayer-IndividualDAOs">
+  Individual DAOs
+</h3>
+Each individual DAO will be responsible for a logical set of CRUD database operations. DAOs themselves are expected to be implementation specific, MAY be LexGrid Schema Version specific and MAY be Database Type specific. So, for example, there may be one DAO for Oracle, one for DB2, and so on. The DAO is expected to provide enough information about itself for factories to be able to select the appropriate DAO for the DAO Manager.
+
+DAOs may be implemented in any framework, as long as the adhere to the Interface contract of the DAO.
+
+DAOs may NOT define Transaction boundaries within themselvs.
+
+DAOs MUST fire the appropriate events as content is updated, inserted, or deleted.
+<h2 id="LexEVS6.0DesignDocumentDetailedDesignDataAccessLayer-EventFramework">
+  Event Framework
+</h2>
+The Data Access layer will support an Event-Based framework to allow External Calling Services an access point to monitor the changing state of the Database The Data Access Layer Event Framework will follow these guidelines:
+<ul>
+  <li>
+    Any CRUD operation on a Versionable Entity will fire an Event
+  </li>
+  <li>
+    External Services will be able to register an arbitrary number of listeners
+  </li>
+  <li>
+    An Insert Operation will fire an event of this type:
+  </li>
+</ul>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Insert Event
+      </th>
+      <th>
+        —
+      </th>
+    </tr>
+    <tr>
+      <th>
+        Parameter
+      </th>
+      <th>
+        Output
+      </th>
+    </tr>
+    <tr>
+      <td>
+        Item to be inserted
+      </td>
+      <td>
+        A boolean indicating whether or not the insert should take place
+      </td>
+    </tr>
+  </tbody>
+</table>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Delete Event
+      </th>
+      <th>
+        —
+      </th>
+    </tr>
+    <tr>
+      <th>
+        Parameter
+      </th>
+      <th>
+        Output
+      </th>
+    </tr>
+    <tr>
+      <td>
+        Item to be deleted
+      </td>
+      <td>
+        A boolean indicating whether or not the delete should take place
+      </td>
+    </tr>
+  </tbody>
+</table>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Update Event
+      </th>
+      <th>
+        —
+      </th>
+    </tr>
+    <tr>
+      <th>
+        Parameter
+      </th>
+      <th>
+        Output
+      </th>
+    </tr>
+    <tr>
+      <td>
+        Item to be updated (before changes)
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        Item to be updated (after changes)
+      </td>
+      <td>
+        A boolean indicating whether or not the update should take place
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="LexEVS6.0DesignDocumentDetailedDesignDataAccessLayer-Implementation-Database">
+  Implementation - Database
+</h2>
+<h3 id="LexEVS6.0DesignDocumentDetailedDesignDataAccessLayer-Ibatis">
+  Ibatis
+</h3>
+<a href="http://ibatis.apache.org/" rel="nofollow">
+  Apache Ibatis
+</a>
+is a framework for decoupling SQL code from Java code. All SQL code is defined in XML files as opposed to in the Java classes themselves, making updates and edits to the SQL. Also, SQL code can be modified without recompiling the system.
+
+Reasons for Ibatis:
+<ul>
+  <li>
+    Allows direct access to the SQL code, allowing for complex, optimized queries
+  </li>
+  <li>
+    Enables a clear distinction between Java code and SQL code
+  </li>
+  <li>
+    Pre-mapped result sets and Row Mappers to convert from Database Row -&gt; Domain Object
+  </li>
+</ul>
+An example Ibatis XML document is shown below. Note that the SQL code, as well as the logic for assembling the results, is decoupled from the Java implementation:
+<img src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%206.0%20Design%20Document%20-%20Detailed%20Design%20-%20Data%20Access%20Layer/ibatis.JPG?api=v2">
+Ibatis vs. Hibernate
+
+Hibernate is an Object Relational Mapping tool, Ibatis is not. Hibernate aims to abstract the developer from building SQL code, as all SQL is generated by the framework. Ibatis does not build or generate SQL code, but gives the user direct control of the SQL.
+
+Hibernate assumes a certain database structure, as well as a specific Object Model structure to be able to function properly. There are several problems with using Hibernate with LexEVS.
+<ul>
+  <li>
+    The LexEVS Object Model does not track the Id of an Object (&#39;Id&#39; meaning the unique database key)
+  </li>
+  <li>
+    Associations in the Object Model are Uni-directional ONLY - even if they are Bi-directional in the database. This means that even though a certain Object may be dependent on the lifecycle of a parent Object, there is no direct refrence from Child -&gt; Parent
+  </li>
+  <li>
+    LexEVS must support Horizontal Partitioning of the Database based on Coding Scheme, so every Coding Scheme in LexEVS must be able to be partitioned into its own set of schema tables. This requires dynamically changing the table name at query-time to account for the different sets of tables. Hibernate does not handle this efficiently.
+  </li>
+</ul>
+Ibatis vs. Spring JDBC
+
+Spring JDBC is a JDBC framework that abstracts the developer from boilerplate JDBC code, such as managing connections, error handling, mapping rows to Objects, etc. It uses Template Patterns to provide commonly used JDBC functionality. Spring JDBC is powerful, flexible, and fast -- but it does not decouple the SQL code from the Java Code. Ibatis accomplishes much of the same thing as Spring JDBC -- they both allow dynamic SQL building and direct control of the SQL code.
+<h3 id="LexEVS6.0DesignDocumentDetailedDesignDataAccessLayer-Caching">
+  Caching
+</h3>
+Caching commonly accessed data is critical for performance, and the DAO Layer will have a built-in caching framework to accommodate this. The framework is annotation-based and could be generalized to other use-cases, not just the DAO layer.
+<h3 id="LexEVS6.0DesignDocumentDetailedDesignDataAccessLayer-Annotations">
+  Annotations
+</h3>
+@Cacheable
+
+The @Cacheable annotation marks a class as being eligible for method caching. Classes without this annotation will not considered by the Caching framework
+
+This annotation accepts 2 parameters:
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Parameter Name
+      </th>
+      <th>
+        Description
+      </th>
+      <th>
+        Required
+      </th>
+    </tr>
+    <tr>
+      <td>
+        cacheName
+      </td>
+      <td>
+        The unique name of the cache. This cache may be shared between classes, or each class may have its own unique cache.
+      </td>
+      <td>
+        YES
+      </td>
+    </tr>
+    <tr>
+      <td>
+         cacheSize
+      </td>
+      <td>
+        The number of cached elements to be held in memory. Once the limit is reached, the element that has be accessed
+         will be removed
+      </td>
+      <td>
+        NO
+        (Default = 50)
+      </td>
+    </tr>
+  </tbody>
+</table>
+@CacheMethod
+
+The @CacheMethod annotation is placed on an individual method to be cached. Method caching follows the following guidelines:
+<ul>
+  <li>
+     The String representation of all parameters are combined to form the &#39;Key&#39;. On subsequent calls to the method, the framework will compare the parameters to determine if the result can be resolved from the cache.
+  </li>
+</ul>
+@CacheMethod
+public CodingScheme getCodingSchemeById(String codingSchemeId)
+
+
+In the example above, the String &#39;codingSchemeId&#39; is evaluated as the cache &#39;key&#39;. If future calls to the method have the some &#39;codingSchemeId&#39; parameter - the method will not execute, and the result will be resolved from the cache.
+Determining Cache Keys
+NOTE: The cache key is determined by the &#39;toString()&#39; representation of every parameter passed to the method.
+@ClearCache
+
+If a call to a method in a Cacheable class will invalidate the cache, the @ClearCache annotation may be used to reset the cache. An example use-case if this would be an &#39;update&#39; method. The &#39;update&#39; will change the underlying data in the data store, but the cache will still contain the old data. A @ClearCache annotation may be added to any &#39;update&#39; method to reset the cache whenever the underlying data may have changed. 

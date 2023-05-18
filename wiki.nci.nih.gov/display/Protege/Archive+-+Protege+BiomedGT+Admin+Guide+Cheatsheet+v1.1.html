@@ -1,0 +1,551 @@
+<h1 id="ArchiveProtegeBiomedGTAdminGuideCheatsheetv1.1-Archive-ProtégéBiomedGTAdminGuideCheatsheetv1.1">
+  Archive - Protégé BiomedGT Admin Guide Cheatsheet v1.1
+</h1>
+Contents of this Page
+<ul>
+  <li>
+    <a href="#ArchiveProtegeBiomedGTAdminGuideCheatsheetv1.1-Servers" rel="nofollow">
+      Servers
+    </a>
+  </li>
+  <li>
+    <a href="#ArchiveProtegeBiomedGTAdminGuideCheatsheetv1.1-RelatedPrograms/Services" rel="nofollow">
+      Related Programs/Services
+    </a>
+  </li>
+  <li>
+    <a href="#ArchiveProtegeBiomedGTAdminGuideCheatsheetv1.1-RelevantDirectoryStructureinthevariousboxes/VMs" rel="nofollow">
+      Relevant Directory Structure in the various boxes/VMs
+    </a>
+    <ul>
+      <li>
+        <a href="#ArchiveProtegeBiomedGTAdminGuideCheatsheetv1.1-Production" rel="nofollow">
+          Production
+        </a>
+      </li>
+      <li>
+        <a href="#ArchiveProtegeBiomedGTAdminGuideCheatsheetv1.1-Dev,QA,Stage" rel="nofollow">
+          Dev, QA, Stage
+        </a>
+      </li>
+      <li>
+        <a href="#ArchiveProtegeBiomedGTAdminGuideCheatsheetv1.1-Dev,QA,StageSVNfilesforbuilds" rel="nofollow">
+          Dev, QA, Stage SVN files for builds
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#ArchiveProtegeBiomedGTAdminGuideCheatsheetv1.1-Productionloginandbasicserveroperations" rel="nofollow">
+      Production login and basic server operations
+    </a>
+  </li>
+  <li>
+    <a href="#ArchiveProtegeBiomedGTAdminGuideCheatsheetv1.1-PromptAccept/Rejectcycle" rel="nofollow">
+      Prompt Accept/Reject cycle
+    </a>
+  </li>
+  <li>
+    <a href="#ArchiveProtegeBiomedGTAdminGuideCheatsheetv1.1-DatabaseLoadfromFile" rel="nofollow">
+      Database Load from File
+    </a>
+  </li>
+  <li>
+    <a href="#ArchiveProtegeBiomedGTAdminGuideCheatsheetv1.1-Configuringnewproject" rel="nofollow">
+      Configuring new project
+    </a>
+  </li>
+  <li>
+    <a href="#ArchiveProtegeBiomedGTAdminGuideCheatsheetv1.1-Configureprotegeserverforaproject" rel="nofollow">
+      Configure protege server for a project
+    </a>
+  </li>
+  <li>
+    <a href="#ArchiveProtegeBiomedGTAdminGuideCheatsheetv1.1-Classification(Standalonemode)" rel="nofollow">
+      Classification (Standalone mode)
+    </a>
+  </li>
+  <li>
+    <a href="#ArchiveProtegeBiomedGTAdminGuideCheatsheetv1.1-Classification(client/servermode)" rel="nofollow">
+      Classification (client/server mode)
+    </a>
+  </li>
+</ul>
+<h2 id="ArchiveProtegeBiomedGTAdminGuideCheatsheetv1.1-Servers">
+  Servers
+</h2>
+cbiows501 - production
+cbapp-q1001 - qa
+cbvapp-d1012 - dev (VM)
+cbvapp-s1005 - stage (VM)
+<h2 id="ArchiveProtegeBiomedGTAdminGuideCheatsheetv1.1-RelatedPrograms/Services">
+  Related Programs/Services
+</h2>
+Reflection X (using &#34;Direct&#34; or xterm over SSH connection)
+F-Secure SSH Client
+F-Secure SSH File Transfer
+
+Username and password advertised separately.
+<h2 id="ArchiveProtegeBiomedGTAdminGuideCheatsheetv1.1-RelevantDirectoryStructureinthevariousboxes/VMs">
+  Relevant Directory Structure in the various boxes/VMs
+</h2>
+<h3 id="ArchiveProtegeBiomedGTAdminGuideCheatsheetv1.1-Production">
+  Production
+</h3>
+/usr/local/protege/Protege.Server-x.y.z
+/usr/local/protege/Protege.Client-x.y.z
+/usr/local/protege/Explanation.Server-x.y.z
+/app/protégé/data
+<h3 id="ArchiveProtegeBiomedGTAdminGuideCheatsheetv1.1-Dev,QA,Stage">
+  Dev, QA, Stage
+</h3>
+/usr/local/protege/Protégé_x.x.x/[EVS:PROTÉGÉ INSTANCE]/Protege.Server-x.y.z
+/usr/local/protege/Protégé_x.x.x/[EVS:PROTÉGÉ INSTANCE]/Protege.Client-x.y.z
+/usr/local/protege/Protégé_x.x.x/[EVS:PROTÉGÉ INSTANCE]/Explanation.Server-x.y.z
+<h3 id="ArchiveProtegeBiomedGTAdminGuideCheatsheetv1.1-Dev,QA,StageSVNfilesforbuilds">
+  Dev, QA, Stage SVN files for builds
+</h3>
+/app/protege/repo/&lt;protégé release folder&gt;
+<h2 id="ArchiveProtegeBiomedGTAdminGuideCheatsheetv1.1-Productionloginandbasicserveroperations">
+  Production login and basic server operations
+</h2>
+If the protege server is brought down for maintenance, classification, Prompt analysis, and so on, the RMI can continue running. When all the services need to be started (e.g. after a reboot), follow this order (see bullets below for details):
+<ul>
+  <li>
+    start rmi
+  </li>
+  <li>
+    start Explanation server
+  </li>
+  <li>
+    start Protege server
+  </li>
+</ul>
+Remote login
+<ul>
+  <li>
+    Use reflection X (or SSH client if running the Protege client is not required)
+  </li>
+</ul>
+Start rmiregistry (configure script to use port 2633 in PROD)
+<ul>
+  <li>
+    From &#39;/usr/local/protege/Protege.Server-x.y.z&#39;
+  </li>
+  <li>
+    Run &#39;./run_rmiregistry.sh&#39;
+  </li>
+</ul>
+Shutdown rmiregistry
+<ul>
+  <li>
+    Kill from OS (identify with ps -ef | grep rmiregistry)
+  </li>
+</ul>
+Start Explanation server
+<ul>
+  <li>
+    From /usr/local/protege/Explanation.Server-x.y.z
+  </li>
+  <li>
+    Run with option to periodically save the reasoner state at a desired time frame: ./start_explanation_server.sh --port 8090 --protege-standalone /path/to/database/project/ --persistance &lt;numeric time value&gt;
+  </li>
+  <li>
+    Run w/out checking for any changes in ontology: ./start_explanation_server.sh --port 8090 --protege-standalone /path/to/database/project/ --no-ontology-sync
+  </li>
+</ul>
+Re start Explanation server
+<ul>
+  <li>
+    From /usr/local/protege/Explanation.Server-x.y.z
+  </li>
+  <li>
+    Run with option to restore to previous saved state of reasoner, as well as to check for any recent changes in the ontology from the previous saved state: ./restart_explanation_server.sh --restore --persistance
+  </li>
+</ul>
+Verifying Explanation servers is starting up correctly
+<ul>
+  <li>
+    From /usr/local/protege/Explanation.Server-x.y.z
+  </li>
+  <li>
+    Run tail -f nohup.out
+  </li>
+</ul>
+Shutdown Explanation server
+<ul>
+  <li>
+    From /usr/local/protege/Explanation.Server-x.y.z
+  </li>
+  <li>
+    Run ./stop_explanation_server.sh
+  </li>
+  <li>
+    Note, after a shutdown, the server can&#39;t be &#34;restarted&#34;, it must be &#34;started&#34; instead.
+  </li>
+</ul>
+Start Protege server
+<ul>
+  <li>
+    From /usr/local/protege/Protege.Server-x.y.z
+  </li>
+  <li>
+    Run ./run_protege_server_nci.sh
+  </li>
+</ul>
+Shutdown Protege server
+<ul>
+  <li>
+    From /usr/local/protege/Protege.Server-x.y.z
+  </li>
+  <li>
+    Run ./shutdown_protege_server.sh localhost: 2633
+  </li>
+</ul>
+Verifying Protege servers is starting up correctly
+<ul>
+  <li>
+    From /usr/local/protege/Protege.Server-x.y.z
+  </li>
+  <li>
+    Run tail -f console.txt
+  </li>
+</ul>
+Start Protege client
+<ul>
+  <li>
+    From /usr/local/protege/Protege.Client-x.y.z
+  </li>
+  <li>
+    Run ./run_protege_BGT.sh
+  </li>
+</ul>
+<h2 id="ArchiveProtegeBiomedGTAdminGuideCheatsheetv1.1-PromptAccept/Rejectcycle">
+  Prompt Accept/Reject cycle
+</h2>
+<ul>
+  <li>
+    Advertise (email/chat) the server is going to be shut down
+  </li>
+  <li>
+    Clean up Pre-Merged, and Pre-Reitred concepts.
+  </li>
+  <li>
+    Remote login to the host computer using Reflection X
+  </li>
+  <li>
+    Shut down Protege server
+  </li>
+  <li>
+    Shut down Explanation server.
+  </li>
+  <li>
+    Start Protege client.
+  </li>
+  <li>
+    Connect to database project by following the path: /app/protege/data/BiomedGT.pprj.
+  </li>
+  <li>
+    Enable PromptTab in menu (in Project-&gt;Configuration dialog).
+  </li>
+  <li>
+    Compare against previous baseline file/database project (pprj file).
+  </li>
+  <li>
+    Accept/reject changes.
+  </li>
+  <li>
+    Save concept_history (in &#34;save&#34; icon in Table View).
+  </li>
+  <li>
+    Disable PromptTab (in Configuration dialog).
+  </li>
+  <li>
+    Adjust baseline version in Metadata tab.
+  </li>
+  <li>
+    In the Protégé GUI menu, click &#39;Change&#39; , &#39;Clean up Changes Ontology&#39;. Ensure that &#39;Delete Changes&#39; and &#39;Archive Changes&#39; remain checked. Click &#39;OK&#39;. After the process has been completed, click &#39;Change&#39; , &#39;Save Changes Ontology&#39;
+  </li>
+  <li>
+    Export file for next Prompt comparison or publication.
+    <ul>
+      <li>
+        Convert Project to Format -&gt; OWL / RDF Files.
+        <ul>
+          <li>
+            This creates a new project .pprj and associated OWL file, give it a name with a date suffix, example BiomedGTFile-071128.pprj.
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    Close project without saving, and exit the client.
+  </li>
+  <li>
+    In the Reflection X console, navigate to /app/protege/data/ and look for any BiomedGT accept files: (BiomedGT-accept.pprj, .pjrn, .rdf, .rdfs) and remove them from the directory by typing &#39;rm BiomedGT-accept.pprj&#39; and so on for the other files.
+  </li>
+  <li>
+    Start Explanation server (always restart explanation server first before the Protégé Server).
+  </li>
+  <li>
+    For Production tier at the end of the month:
+    i) Reopen Protégé client.
+    ii) Click &#39;Project&#39;, &#39;Configure&#39;, enable &#39;OWLClasses Tab&#39;.
+    iii) Click &#39;Reasoning&#39;, &#39;Classify Taxonomy&#39;.
+    iv) Save the Inferred Ontolgoy using the save button in the Inferred Hierarchy section. Give the naming convention &#39;BiomedGT-Inferred-YYMMDD.owl&#39;* Startup Protege server.
+  </li>
+  <li>
+    Verify Protege server is up.
+  </li>
+  <li>
+    Verify Explanation tab communicates with Explanation server.
+  </li>
+  <li>
+    Exit remote program.
+  </li>
+  <li>
+    Advertise that the server is back up.
+  </li>
+  <li>
+    For end-of-the-month publications, after performing a prompt, notify Tracy, John, or Rob of the availability of the new baseline.
+  </li>
+  <li>
+    In the notification include: i) the filename of the baseline and (ii) the length of time for the Prompt/export to file to complete.
+  </li>
+  <li>
+    The raw exports (OWL files only) will be archived in the private FTP site, and the processed exports in the anonymous FTP site. This will help keep the Protégé server clean and organized.
+  </li>
+</ul>
+<h2 id="ArchiveProtegeBiomedGTAdminGuideCheatsheetv1.1-DatabaseLoadfromFile">
+  Database Load from File
+</h2>
+<ul>
+  <li>
+    Remote login to the host computer using Reflection X.
+  </li>
+  <li>
+    cd to /usr/local/protege/Protege.Client-x.y.z.
+  </li>
+  <li>
+    Start protege (&#34;./run_protege_BGT.sh&#34;).
+  </li>
+  <li>
+    Load file from /app/protege/data/(new project).
+  </li>
+  <li>
+    Convert project to format (Clark &amp; Parsia owl / rdf database).
+    <ul>
+      <li>
+        initial project BiomedGT.pprj (as opposed to baselines).
+      </li>
+    </ul>
+  </li>
+  <li>
+    Configure project (see below, include Save but don&#39;t Exit).
+  </li>
+  <li>
+    Convert project to format (owl / rdf file) for a file baseline, with date.
+  </li>
+  <li>
+    Exit Protege without saving (the Save gets done automatically during the conversion).
+  </li>
+</ul>
+<h2 id="ArchiveProtegeBiomedGTAdminGuideCheatsheetv1.1-Configuringnewproject">
+  Configuring new project
+</h2>
+<ul>
+  <li>
+    (already logged in in the server box).
+  </li>
+  <li>
+    Enable tabs:
+    <ul>
+      <li>
+        nciedittab
+      </li>
+      <li>
+        advanced query
+      </li>
+      <li>
+        properties
+      </li>
+      <li>
+        metadata
+      </li>
+      <li>
+        changes
+      </li>
+      <li>
+        explanation tab
+      </li>
+    </ul>
+  </li>
+  <li>
+    Disable extra tabs (OWLClasses, OWLInstances, OWLForms).
+  </li>
+  <li>
+    Enable journaling.
+  </li>
+  <li>
+    Disable redo/undo.
+  </li>
+  <li>
+    Set OWL Preferences items:
+  </li>
+  <li>
+    Configure URL to the correct explanation server.
+  </li>
+  <li>
+    Set preferences to read Manchester Syntax.
+  </li>
+  <li>
+    Disable drag and drop in owl preferences.
+  </li>
+  <li>
+    Disable test of deprecated classes/properties.
+  </li>
+  <li>
+    Set Visibility to uncheck all MetaData Items.
+  </li>
+  <li>
+    Set Reasoning menu items:
+  </li>
+  <li>
+    Click on Reasoning menu, and ensure that Clark &amp; Parsia Custom Protégé 3.x Reasoner is selected on the menu list.
+  </li>
+  <li>
+    Click on Reasoning menu, C &amp; P Custom Protégé 3.x Reasoner Details, and ensure the &#39;Synchronize Changes with Reasoner&#39; box is checked, and click OK.
+  </li>
+  <li>
+    Set transitivity.
+  </li>
+  <li>
+    Set display slots to read rdfs:label for NCI Edit tab as well as Property Tag.
+  </li>
+  <li>
+    Generate Lucene indices from Lucene menu. Ensure both Phonetic and Standard boxes are checked prior to indexing.
+  </li>
+  <li>
+    Start explanation server, point to the newly created project. Once the server&#39;s up and running, save the project.
+  </li>
+  <li>
+    Exit protege.
+  </li>
+</ul>
+<h2 id="ArchiveProtegeBiomedGTAdminGuideCheatsheetv1.1-Configureprotegeserverforaproject">
+  Configure protege server for a project
+</h2>
+<ul>
+  <li>
+    Edit run_protege_server_nci.sh.
+  </li>
+</ul>
+a) to include the proper directory path for the nci_metaproject file - /app/protege/data/metaproject/.
+b) to use the correct rmi port (use 2633).
+<h2 id="ArchiveProtegeBiomedGTAdminGuideCheatsheetv1.1-Classification(Standalonemode)">
+  Classification (Standalone mode)
+</h2>
+<ul>
+  <li>
+    Advertise the protege server is going to be shutdown.
+  </li>
+  <li>
+    Remote login to the host computer using Reflection X.
+    <ul>
+      <li>
+        Username and password are advertised separately.
+      </li>
+    </ul>
+  </li>
+  <li>
+    Shutdown Protege server.
+  </li>
+  <li>
+    Restart Explanation server.
+  </li>
+  <li>
+    Start protege client.
+  </li>
+  <li>
+    Connect to database project.
+    <ul>
+      <li>
+        in /app/protege/data/.
+      </li>
+      <li>
+        file - BiomedGT.pprj.
+      </li>
+    </ul>
+  </li>
+  <li>
+    Enable OWLClassesTab (results are shown there).
+  </li>
+  <li>
+    From the OWL menu, select &#34;Classify taxonomy&#34;, it takes about 20 minutes.
+  </li>
+  <li>
+    Once classification is complete, an inferred hierarchy panel and a list panel are displayed.
+  </li>
+  <li>
+    Accept retreeing suggestions in the list panel as per guideline.
+  </li>
+  <li>
+    Generate table to pass around to editors and mail it.
+  </li>
+  <li>
+    Process table from previous classification (accept/reject).
+  </li>
+  <li>
+    Close project without saving.
+  </li>
+  <li>
+    Start protege server.
+  </li>
+  <li>
+    Verify protege server is running.
+    <ul>
+      <li>
+        connect to the server from the client.
+      </li>
+      <li>
+        exit the client.
+      </li>
+    </ul>
+  </li>
+  <li>
+    Exit terminal.
+  </li>
+  <li>
+    Exit reflection X.
+  </li>
+</ul>
+<h2 id="ArchiveProtegeBiomedGTAdminGuideCheatsheetv1.1-Classification(client/servermode)">
+  Classification (client/server mode)
+</h2>
+<ul>
+  <li>
+    From the GUI, enable OWLClassesTab (results are shown there).
+  </li>
+  <li>
+    From the OWL menu, select &#34;Classify taxonomy&#34;, it takes about 20 minutes.
+  </li>
+  <li>
+    Once classifications is complete, an inferred hierarchy panel and a list panel are displayed.
+  </li>
+  <li>
+    Accept retreeing suggestions in the list panel as per guideline.
+  </li>
+  <li>
+    Generate table to pass around to editors and mail it.
+  </li>
+  <li>
+    Process table from previous classification (accept/reject).
+  </li>
+  <li>
+    Close project without saving.
+  </li>
+  <li>
+    Exit the client.
+  </li>
+</ul>

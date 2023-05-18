@@ -1,0 +1,75 @@
+Document Information
+Author: Craig Stancl, Scott Bauer, Cory EndleEmail: Stancl.craig@mayo.edu,
+<a href="mailto:bauer.scott@mayo.edu" rel="nofollow">
+  bauer.scott@mayo.edu
+</a>
+,
+<a href="mailto:endle.cory@mayo.edu" rel="nofollow">
+  endle.cory@mayo.edu
+</a>
+Team: LexEVSContract: S13-500 MOD4Client: NCI CBIITNational Institutes of HeathUS Department of Health and Human Services
+
+<h1 id="LexEVSPersegmentSearchImplementation-LucenePer-segmentsearch">
+  Lucene Per-segment search
+</h1>
+Per-segment searching is largely kept under the covers but since LexEVS employs a number of customizations of parameters, particularly filter customizations, many queries may break and need refactoring.  At the same time a number of objects have new names, apis and other changes that will require refactoring and updating to an as yet undetermined amount.  Some needed changes are documented in recent migration guides and deprecation lists:
+<ul>
+  <li>
+    <a href="http://lucene.apache.org/core/2_9_4/api/core/deprecated-list.html" rel="nofollow">
+      http://lucene.apache.org/core/2_9_4/api/core/deprecated-list.html
+    </a>
+  </li>
+  <li>
+    <a href="https://lucene.apache.org/core/4_0_0/MIGRATE.html" rel="nofollow">
+      https://lucene.apache.org/core/4_0_0/MIGRATE.html
+    </a>
+  </li>
+  <li>
+    <a href="https://lucene.apache.org/core/5_0_0/MIGRATE.html" rel="nofollow">
+      https://lucene.apache.org/core/5_0_0/MIGRATE.html
+    </a>
+  </li>
+</ul>
+ The use of IndexReader in particular will not change, but filters and queries passed into this may break or otherwise be unusable.  Read this article for more information:
+<a href="http://blog.thetaphi.de/2012/02/is-your-indexreader-atomic-major.html" rel="nofollow">
+  http://blog.thetaphi.de/2012/02/is-your-indexreader-atomic-major.html
+</a>
+Updated Objects will include
+<ul>
+  <li>
+    ChainedFilter replaced with BooleanFilter
+  </li>
+  <li>
+    HitCollector is replaced by Collector or SimpleCollector
+  </li>
+  <li>
+    MultiSearcher will likely be replaced by something like IndexSearcher(MultiReader)
+  </li>
+  <li>
+    The interface Searchable has gone away and it&#39;s former child classes such as IndexSearcher will have to take it&#39;s place.
+  </li>
+  <li>
+    Searcher is also gone.
+  </li>
+  <li>
+    TermEnum is replaced by TermsEnum
+  </li>
+  <li>
+    FieldSelector is replaced by FieldVisitor, which has a very different API.
+  </li>
+</ul>
+Updated Objects that have new API&#39;s include:
+<ul>
+  <li>
+    DocIdSetIterator
+  </li>
+  <li>
+    IndexWriter
+  </li>
+  <li>
+    IndexReader (optimizing methods can no longer be called on this.)
+  </li>
+  <li>
+    TermsFilter (addTerm() method has gone away and terms are added in the constructor.)
+  </li>
+</ul>

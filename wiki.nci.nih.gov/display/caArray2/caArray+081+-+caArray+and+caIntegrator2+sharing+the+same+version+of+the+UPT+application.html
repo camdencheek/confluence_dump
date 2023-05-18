@@ -1,0 +1,102 @@
+<h1 id="caArray081caArrayandcaIntegrator2sharingthesameversionoftheUPTapplication-Question:CancaArrayandcaIntegrator2sharethesameversionoftheUPTapplication?">
+  Question: Can caArray and caIntegrator2 share the same version of the UPT application?
+</h1>
+Topic: caArray Installation and UpgradeRelease: caArray 2.4.0Date entered: 04/20/2011
+<h2 id="caArray081caArrayandcaIntegrator2sharingthesameversionoftheUPTapplication-DetailsabouttheQuestion">
+  Details about the Question
+</h2>
+We had previously installed caArray - v2.2.1, and UPT - v3.2.0. Recently, we added caIntegrator2 - v1.0 on Redhat 5. They are all on one machine using the same mysql instance. However, we couldn&#39;t provision additional caIntegrator2 users.
+<h2 id="caArray081caArrayandcaIntegrator2sharingthesameversionoftheUPTapplication-Answer">
+  Answer
+</h2>
+Both caArray, caIntegrator2 are using UPT and CSM as their provision tools. Since the applications were developed independently, they might be requiring a different versions of UPT and CSM. In order to share the same UPT application, it is important to have the UPT installation to be the highest version required by the applications. UPT is backward compatible to the previous version used by the other applications.
+<h3 id="caArray081caArrayandcaIntegrator2sharingthesameversionoftheUPTapplication-ComparisonofUPTrequirement">
+  Comparison of UPT requirement
+</h3>
+The table below compares the available versions of each application, and their corresponding UPT version used. If the caArray and caIntegrator applications are installed on the same server, the highest version of UPT and CSM should be installed.UPT Compatibility
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Application
+      </th>
+      <th>
+        CSM Version
+      </th>
+      <th>
+        UPT Version
+      </th>
+      <th>
+        UPT Upgradable?
+      </th>
+    </tr>
+    <tr>
+      <td>
+        caArray 2.2.X
+      </td>
+      <td>
+        CSM 4.0
+      </td>
+      <td>
+        UPT 3.2
+      </td>
+      <td>
+        Yeshttps://wiki.nci.nih.gov/pages/editpage.action?pageId=42832484#
+      </td>
+    </tr>
+    <tr>
+      <td>
+        caArray 2.3.X
+      </td>
+      <td>
+        CSM 4.0
+      </td>
+      <td>
+        UPT 3.2
+      </td>
+      <td>
+        Yes
+      </td>
+    </tr>
+    <tr>
+      <td>
+        caIntegrator2 1.0
+      </td>
+      <td>
+        CSM 4.2
+      </td>
+      <td>
+        UPT 4.2
+      </td>
+      <td>
+        N/A
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h3 id="caArray081caArrayandcaIntegrator2sharingthesameversionoftheUPTapplication-FindthehighestUPTversion">
+  Find the highest UPT version
+</h3>
+The pictures below illustrate the UPT version requirement by caArray and caIntegrator2. The pictures are the courtesy of Vijay Parmar of the UPT/CSM Team. UPT 3.2 will not work; UPT 4.2 will work.
+<img alt="diagram illustrating text" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caArray2/caArray%20081%20-%20caArray%20and%20caIntegrator2%20sharing%20the%20same%20version%20of%20the%20UPT%20application/UPT-Version-1.jpg?api=v2">
+<img alt="diagram illustrating text" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caArray2/caArray%20081%20-%20caArray%20and%20caIntegrator2%20sharing%20the%20same%20version%20of%20the%20UPT%20application/UPT-Version-2.jpg?api=v2">
+<h3 id="caArray081caArrayandcaIntegrator2sharingthesameversionoftheUPTapplication-UpgradeUPTwithoutupgradingcaArray">
+  Upgrade UPT without upgrading caArray
+</h3>
+Upgrading an existing UPT 3.2 to UPT 4.2 can be done via the automated UPT installer (GUI or command line). You can download the
+<a href="https://ncisvn.nci.nih.gov/svn/files/trunk/security/CSMv4.2/CSMUPTv4.2/CSM_UPT_42_Release.zip" rel="nofollow">
+  UPT installers
+</a>
+.The UPT installation and deployment section in the CSM Guide outlines the steps to successfully upgrade an existing UPT 3.2 to UPT 4.2.After UPT is upgraded from 3.2 to 4.2, it is also necessary to change the caArray Install.Properties file to reflect the new CSM version:Previous CSM version: Application CSM Version=3.2 Change to: Application CSM Version=4.2For detailed information on how to configure caArray, read
+<a href="https://wiki.nci.nih.gov/x/nQdCAQ" rel="nofollow">
+  Post Installation Tasks
+</a>
+.
+<h2 id="caArray081caArrayandcaIntegrator2sharingthesameversionoftheUPTapplication-Haveacomment?">
+  Have a comment?
+</h2>
+Please leave your comment in the
+<a href="https://cabig-kc.nci.nih.gov/Molecular/forums/viewtopic.php?f=6&amp;t=577" rel="nofollow">
+  caArray End User Forum
+</a>
+.

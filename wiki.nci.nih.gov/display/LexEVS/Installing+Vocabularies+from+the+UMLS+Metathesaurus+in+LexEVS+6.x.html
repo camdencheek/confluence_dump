@@ -1,0 +1,186 @@
+<h2 id="InstallingVocabulariesfromtheUMLSMetathesaurusinLexEVS6.x-LoadingfromUMLSRRF(RichResourceFormat)files">
+  Loading from UMLS RRF (Rich Resource Format) files
+</h2>
+The National Library of Medicine (NLM) regularly releases the Unified Medical Language System (UMLS) as a set of terminologies in a large set of files referred to as the UMLS Metathesaurus.  LexEVS can load the entire set or individual files from this file set using the LexEVS UMLS Batch loader.The UMLS Metathesaurus tools are briefly discussed on this page. Since all documentation for these are maintained at the website linked to below, only provide brief pointers are provided. Also, LexEVS has a special purpose RRF loader which loads an NCI version of an entire MetaThesaurus. This is explained in
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=56798522" rel="nofollow">
+  Installing NCI Vocabularies in LexEVS 6.x
+</a>
+for the NCI loaders.
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Step
+      </th>
+      <th>
+        Action
+      </th>
+    </tr>
+    <tr>
+      <td>
+        1
+      </td>
+      <td>
+        The UML Metathesaurus is controlled by a license from the NLM. You may obtain a free license of the UMLS Metathesaurus on the
+        <a href="https://uts.nlm.nih.gov//license.html" rel="nofollow">
+          NLM license site
+        </a>
+        .
+      </td>
+    </tr>
+    <tr>
+      <td>
+        2
+      </td>
+      <td>
+        Download and install the UMLS Metathesaurus:  Loading to LexEVS from these source files requires that they reside locally so it can be accessed quickly from LexEVS. This is not just a download. The UMLS Metathesaurus also has install steps that are documented by NLM on the
+        <a href="http://www.nlm.nih.gov/research/umls/" rel="nofollow">
+          UMLS website
+        </a>
+        . MetamorphoSys is used to install the UMLS Metathesaurus and to subset terminologies as explained in the subsequent instructions.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        3
+      </td>
+      <td>
+        Subset the desired terminology (recommended):  Once the UMLS Metathesaurus is installed, users can either load the entire set of files to LexEVS by pointing to the containing file directory or they can use the UMLS MetamorphoSys tool to subset part of the whole. Subsetting the terminology is the same as creating a smaller set with only your desired concepts. A very common practice is to subset out one of the source terminologies that make up the UMLS. This provides improved performance during loads and is typical when you want only one of the original source coding schemes. Again, the documentation to use MetamorphoSys to subset out a terminology is on the
+        <a href="http://www.nlm.nih.gov/research/umls/" rel="nofollow">
+          UMLS website
+        </a>
+        but here are a few pointers:
+        <ul>
+          <li>
+            After the install the Welcome to MetamorphoSys screen has a &#34;Browse my subset&#34; button. If you use it right away you will see the entire UMLS.
+          </li>
+          <li>
+            Do not browse anything yet or exit back to the Welcome screen.
+          </li>
+          <li>
+            Under the Advanced menu select Customize My Subset.
+          </li>
+          <li>
+            Select either of the 2 default subsets as a starting point. Does not matter as you can change it later.
+          </li>
+          <li>
+            On the Input tab make sure you select just the terminology you want.
+          </li>
+          <li>
+            On the Output tab select a location for the resultant RRF files.
+          </li>
+          <li>
+            Under the Done menu select Begin Subset.  Once this process is complete you will have a directory with the RRF files required for the LexEVS UMLS Batch loader.
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        4
+      </td>
+      <td>
+        Set command line options in the loading script:  If you are loading a subset you may or may not need to change the memory options. If you load the entire UMLS Metathesaurus, we usually recommend use of the command line options. This will allow manipulation of the memory allocated for loads of larger terminologies such as SNOMED. Scripting options can be added to the scripts contained at &lt;LEXEVS_HOME&gt;/admin. If a user is working on a Linux environment with a 64 bit architecture, then they can use the LoadUmlsBatch.sh file. On a server class computer with say 16 gigabytes of memory and 8 four core processors users can access fairly substantial resources to load content. Open the .sh file with a text editor and edit the values for -Xmx and -XX:MaxPermSize as follows &#34;-Xmx6000M -XX:MaxPermSize=256M&#34; or more if you have adequate resources available.   If you have not set the DB_PRIMARY_KEY value to SEQUENTIAL_INTEGER as described under best practices it could take 33 hours to load a terminology as large as SNOMED which otherwise could complete in 4 hours.Memory HandlingThe batch loader is not memory dependent, but at the end of the load the resource is indexed and indexing does require at least 3 GB of memory. Increasing memory can provide faster indexing time.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        5
+      </td>
+      <td>
+        Find the SAB (RSAB) in the MRSAB.RRF file:  Both the LexEVS Administrative GUI and the LexEVS Administrative commands require the user to enter a SAB or source abbreviation when loading RRF files. This requires that you either know this source abbreviation, or find it in the MRSAB.RRF file contained in the folder of the UMLS installation or the subset you made for the terminology you wish to load. We recommend you open this file in a text editor and search on the terminology name, for instance SNOMED and you should find a line with that name in a row of text separated by a “pipe” character or “ | ”.
+        <img alt="illustration of line described" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/Installing%20Vocabularies%20from%20the%20UMLS%20Metathesaurus%20in%20LexEVS%206.x/Screen%20Shot%202011-11-16%20at%204.57.34%20PM.png?api=v2">
+        The current format of UMLS has the RSAB in column four, which in the case of SNOMED is &#34;SNOMEDCT&#34;. Notice that this is a licensed terminology and all use must be in accordance with the licensing agreements.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        6
+      </td>
+      <td>
+        Load the Terminology from the command line referencing the SAB.
+        ./LoadUmlsBatch.sh -in &#34;file:///data/phont/ontologies/2011AA&#34; -s &#34;SNOMEDCT&#34;
+
+        The file path is pointing to the directory that contains all of the UMLS RRF files. For UMLS there is not a single source format file.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        7
+      </td>
+      <td>
+        Monitor output (optional):  The output from the UMLS batch loader indicates steps of the batch load and can be monitored from the logs at &lt;LEXEVS_HOME&gt;/logs/LexBIG_load_log.text.  If you are on Linux this can be done using:
+        watch -n .1 -d tail LexBIG_load_log.text.
+
+        Sample output of an early load step is as follows:
+        <img alt="Sample output of an early load step" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/Installing%20Vocabularies%20from%20the%20UMLS%20Metathesaurus%20in%20LexEVS%206.x/Screen%20Shot%202011-11-11%20at%2012.28.46%20PM.png?api=v2">
+        Sample output of a final load step:
+        <img alt="Sample output of a final load step" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/Installing%20Vocabularies%20from%20the%20UMLS%20Metathesaurus%20in%20LexEVS%206.x/Screen%20Shot%202011-11-11%20at%2012.24.44%20PM.png?api=v2">
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="InstallingVocabulariesfromtheUMLSMetathesaurusinLexEVS6.x-RestartinganRRFLoad">
+  Restarting an RRF Load
+</h2>
+RememberKilled processes cannot be restarted. The load can recover from an application error, but not from any outside activity that stops the process.
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Step
+      </th>
+      <th>
+        Action
+      </th>
+    </tr>
+    <tr>
+      <td>
+        1
+      </td>
+      <td>
+        Open the LexEVS Administrative GUI.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        2
+      </td>
+      <td>
+        If a terminology was temporarily stopped or broke it should have a status of pending. For example,
+        <img alt="image showing pending status" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/Installing%20Vocabularies%20from%20the%20UMLS%20Metathesaurus%20in%20LexEVS%206.x/Screen%20Shot%202011-11-17%20at%2011.53.10%20AM.png?api=v2">
+      </td>
+    </tr>
+    <tr>
+      <td>
+        3
+      </td>
+      <td>
+        Double click the terminology row in the table.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        4
+      </td>
+      <td>
+        On the resulting window note for the following command line execution:  The URI and the version.
+        <img alt="illustration of URI and version" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/Installing%20Vocabularies%20from%20the%20UMLS%20Metathesaurus%20in%20LexEVS%206.x/Screen%20Shot%202011-11-17%20at%2011.28.55%20AM.png?api=v2">
+      </td>
+    </tr>
+    <tr>
+      <td>
+        5
+      </td>
+      <td>
+        Using the LexEVS utilities restart the load of the RRF source and pass in the location, the SAB, the URI, and the version:
+        &lt;LEXEVS_HOME&gt;/admin
+
+        For Windows installation use the following command:
+        ResumeUmlsBatch.bat -in [file:///home/LargeStorage/ontologies/rrf/RXNORM/2011AA/] \-s RXNORM \-uri &#34;urn:oid:2.16.840.1.113883.6.88&#34; \-version &#34;10AB_110307F&#34;
+        For Linux installation use the following command:
+        ./ResumeUmlsBatch.sh \-in [file:///home/LargeStorage/ontologies/rrf/RXNORM/2011AA/] \-s RXNORM \-uri &#34;urn:oid:2.16.840.1.113883.6.88&#34; \-version &#34;10AB_110307F&#34;
+      </td>
+    </tr>
+  </tbody>
+</table>

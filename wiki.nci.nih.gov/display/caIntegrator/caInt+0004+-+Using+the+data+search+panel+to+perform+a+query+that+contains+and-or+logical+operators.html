@@ -1,0 +1,57 @@
+<h1 id="caInt0004Usingthedatasearchpaneltoperformaquerythatcontainsandorlogicaloperators-Question:HowdoIusethedatasearchpaneltoperformaquerythatcontainsboth&#34;and&#34;and&#34;or&#34;logicaloperators?">
+  Question: How do I use the data search panel to perform a query that contains both &#34;and&#34; and &#34;or&#34; logical operators?
+</h1>
+Topic: caIntegrator Usage
+
+Release: caIntegrator 1.2 and above
+
+
+Date entered: 03/23/2011
+<a href="https://cabig-kc.nci.nih.gov/Molecular/forums/viewtopic.php?f=23&amp;amp;t=599&amp;amp;sid=6e90adec9bc50cb40d9dc35bf22f1d2f" rel="nofollow">
+  Related Forum Posting
+</a>
+<h2 id="caInt0004Usingthedatasearchpaneltoperformaquerythatcontainsandorlogicaloperators-DetailsabouttheQuestion">
+  Details about the Question
+</h2>
+I want to run a query containing both &#34;and&#34; and &#34;or&#34; operators (see an example query below). However, I could not find the selection buttons to construct such a query. Is there any way around it?
+
+
+
+Select:
+all patients who are male AND their tumor subtypes = &#34;Classical&#34;
+OR
+all patients who are female
+<h2 id="caInt0004Usingthedatasearchpaneltoperformaquerythatcontainsandorlogicaloperators-Answer">
+  Answer
+</h2>
+In the current design, the radio buttons for logical operators are at the end of the entire query, Therefore, users can only choose either &#34;OR&#34; or &#34;AND&#34; for the whole query. A more complex query as stated in the question requires the flexibility to select the logical operator at the end of each SQL predicate. This feature was not present in the current version.
+
+One way to get around this in current version of caIntegrator is to execute the query in multiple steps. Refer to the steps that follow.
+<h3 id="caInt0004Usingthedatasearchpaneltoperformaquerythatcontainsandorlogicaloperators-Step1:ExecuteaquerytoselectallpatientswhoaremaleANDhavetumorsubtypes=&#34;Classical.&#34;">
+  Step 1: Execute a query to select all patients who are male AND have tumor subtypes = &#34;Classical.&#34;
+</h3>
+(1) On the criteria tab, from the first drop down list, select Patient. (2) Click the Add button to add a new predicate. (3) From the Patient drop down lists, select GENDER equals MALE. (4) Click Add to add a new predicate. (5) From the Patient drop down lists, select Subtype equals Classical. (6) Select the logical operator &#34;and&#34;. (7) Click the Run Query button.
+<img alt="screenshot representing the steps" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/caInt%200004%20-%20Using%20the%20data%20search%20panel%20to%20perform%20a%20query%20that%20contains%20and-or%20logical%20operators/Step1a.png?api=v2">
+<h3 id="caInt0004Usingthedatasearchpaneltoperformaquerythatcontainsandorlogicaloperators-Step2:Savethequeryresultsasasubjectlist.">
+  Step 2: Save the query results as a subject list.
+</h3>
+(1) On the Query Results tab, click the Save Subject List button. (2) In the Save Subject List dialog, enter the name for the subject list, &#34;male and classical&#34; in the example. (3) Click the Save button in the dialog.
+<img alt="screenshot representing the steps" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/caInt%200004%20-%20Using%20the%20data%20search%20panel%20to%20perform%20a%20query%20that%20contains%20and-or%20logical%20operators/800px-Step2a.png?api=v2">
+<h3 id="caInt0004Usingthedatasearchpaneltoperformaquerythatcontainsandorlogicaloperators-Step3:Createanewqueryusingthesubjectlistasthefirstpredicate.">
+  Step 3: Create a new query using the subject list as the first predicate.
+</h3>
+(1) On the Criteria tab, Click the saved subject list, &#34;male and classical&#34; in the example. (2) Note that the first drop down list field and the saved list fields are populated.
+<img alt="screenshot representing the steps" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/caInt%200004%20-%20Using%20the%20data%20search%20panel%20to%20perform%20a%20query%20that%20contains%20and-or%20logical%20operators/800px-Step3a.png?api=v2">
+<h3 id="caInt0004Usingthedatasearchpaneltoperformaquerythatcontainsandorlogicaloperators-Step4:Add&#34;patient&#39;sGENDER=female&#34;asthefinalpredicate.Runthequery.">
+  Step 4: Add &#34;patient&#39;s GENDER = female&#34; as the final predicate. Run the query.
+</h3>
+(1) On the Criteria tab, from the first drop down list, select Patient. (2) Click the Add button to add a new predicate.(4,5,6) Select Patient GENDER equals FEMALE. (7) Select the logical operator &#34;or&#34;. (8) Click the Run Query button.
+<img alt="screenshot representing the steps" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/caInt%200004%20-%20Using%20the%20data%20search%20panel%20to%20perform%20a%20query%20that%20contains%20and-or%20logical%20operators/800px-Step4a.png?api=v2">
+<h2 id="caInt0004Usingthedatasearchpaneltoperformaquerythatcontainsandorlogicaloperators-Haveacomment?">
+  Have a comment?
+</h2>
+Please leave your comment in the
+<a href="https://cabig-kc.nci.nih.gov/Molecular/forums/viewtopic.php?f=23&amp;t=461" rel="nofollow">
+  caIntegrator End User Forum
+</a>
+. 

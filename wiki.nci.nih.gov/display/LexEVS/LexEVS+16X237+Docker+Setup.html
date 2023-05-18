@@ -1,0 +1,258 @@
+Contents of this Page
+<ul>
+  <li>
+    <a href="#LexEVS16X237DockerSetup-Overview" rel="nofollow">
+      Overview
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS16X237DockerSetup-LexEVSSystemTest" rel="nofollow">
+      LexEVS System Test
+    </a>
+    <ul>
+      <li>
+        <a href="#LexEVS16X237DockerSetup-Jenkins" rel="nofollow">
+          Jenkins
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS16X237DockerSetup-Docker" rel="nofollow">
+          Docker
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#LexEVS16X237DockerSetup-NCIDockerLocations" rel="nofollow">
+      NCI Docker Locations
+    </a>
+    <ul>
+      <li>
+        <a href="#LexEVS16X237DockerSetup-DockerHub" rel="nofollow">
+          Docker Hub
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS16X237DockerSetup-DockerHub-LexEVSrepository" rel="nofollow">
+          Docker Hub - LexEVS repository
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS16X237DockerSetup-NCINexusDockerRepository" rel="nofollow">
+          NCI Nexus Docker Repository
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#LexEVS16X237DockerSetup-NextSteps" rel="nofollow">
+      Next Steps
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS16X237DockerSetup-NCIConfiguration" rel="nofollow">
+      NCI Configuration
+    </a>
+    <ul>
+      <li>
+        <a href="#LexEVS16X237DockerSetup-Pullstandardimagesfromhub.dockerandpushtoNCINexusserver" rel="nofollow">
+          Pull standard images from hub.docker and push to NCI Nexus server
+        </a>
+      </li>
+    </ul>
+  </li>
+</ul>
+The purpose of this document is to document the current Docker setup at NCI which provides extended testing and reporting. In the future, we will set up LexEVS to be deployed via Docker containers.
+<h2 id="LexEVS16X237DockerSetup-Overview">
+  Overview
+</h2>
+The Mayo development team currently has Docker and Jenkins setup locally to build and test all of the LexEVS components.  It is our intent to move this setup to NCI for a more permanent and stable location.  Additionally, we intend on working with the systems team to prototype deploying LexEVS in as Docker containers.
+<h2 id="LexEVS16X237DockerSetup-LexEVSSystemTest">
+  LexEVS System Test
+</h2>
+The lexevs-system-test is a Docker script that builds and tests all of the LexEVS components.  Jenkins is used to kick off the Docker script.
+<h3 id="LexEVS16X237DockerSetup-Jenkins">
+  Jenkins
+</h3>
+Currently the lexevs-system-test is configured and running nightly at NCI.When the Jenkins build is started, it simply calls a Docker script, passing in parameters that define the LexEVS component branches.When the Docker script completes, the Jenkin build captures the test reports (XML) files.
+<ul>
+  <li>
+    <a href="https://nci-jenkins.nci.nih.gov/jenkins/job/_lexevs/job/_lower/job/lexevs-system-test/" rel="nofollow">
+      https://nci-jenkins.nci.nih.gov/jenkins/job/_lexevs/job/_lower/job/lexevs-system-test/
+    </a>
+  </li>
+</ul>
+<h3 id="LexEVS16X237DockerSetup-Docker">
+  Docker
+</h3>
+The Docker script is where all of the work is done.  The Git Docker project is located here:
+<ul>
+  <li>
+    <a href="https://github.com/lexevs/lexevs-system-test" rel="nofollow">
+      https://github.com/lexevs/lexevs-system-test
+    </a>
+  </li>
+</ul>
+Below is a high level view of what the script does.
+<ul>
+  <li>
+     Builds MySQL containers
+  </li>
+  <li>
+    Clones LexEVS and LexEVS Remote projects from Git and builds each component
+  </li>
+  <li>
+    Creates a container for the URI Resolver
+  </li>
+  <li>
+    Builds and runs Junit tests for CTS2
+  </li>
+  <li>
+    Runs Junit tests against LexEVS
+  </li>
+  <li>
+    Loads terminologies into LexEVS
+  </li>
+  <li>
+    Creates a container for LexEVS Remote
+  </li>
+  <li>
+    Creates a container for CTS2
+  </li>
+  <li>
+    Runs Junit tests against LexEVS Remote
+  </li>
+  <li>
+    Stops and remove all containers.
+  </li>
+</ul>
+<h2 id="LexEVS16X237DockerSetup-NCIDockerLocations">
+  NCI Docker Locations
+</h2>
+There are several different repositories from which Docker images can be pulled from.  Below is the strategy that is followed for determining where to pull images from.
+<h3 id="LexEVS16X237DockerSetup-DockerHub">
+  Docker Hub
+</h3>
+When ever possible, images will be pulled from the main Docker hub. This would include images for technology such as an OS, Tomcat, and MySQL.  This assumes that Docker hub has the correct version of the software that is approved by the NCI technology stack.
+<h3 id="LexEVS16X237DockerSetup-DockerHub-LexEVSrepository">
+  Docker Hub - LexEVS repository
+</h3>
+When Docker hub doesn&#39;t have an image needed for our specific needs, we will build that image and push it out to our Docker hub public repository.   This repository is located here:
+<a href="https://hub.docker.com/r/lexevs/lexevs/" rel="nofollow">
+  https://hub.docker.com/r/lexevs/lexevs/
+</a>
+<h3 id="LexEVS16X237DockerSetup-NCINexusDockerRepository">
+  NCI Nexus Docker Repository
+</h3>
+If any of our images are specific and proprietary to NCI and their environment, the image will be built and pushed out to the internal NCI Nexus Docker Repository.  A possible instance for this may be that the CentOS 7 image has NCI specific security or other settings that are not appropriate for external users.  In this case the image would be stored internally on the NCI Nexus Docker repository.Note:  If there is an image that is stored internally on the NCI Nexus Docker repository, it will only be available to users/builds internal to NCI&#39;s VPN.  We will need to fork our build scripts to pull &#34;generic&#34; images that are stored in the public LexEVS repository on Docker hub.  This will require dual maintenance.
+<h2 id="LexEVS16X237DockerSetup-NextSteps">
+  Next Steps
+</h2>
+Our next step is to work with the Systems team to develop LexEVS Docker container(s) that could be deployed to an NCI DEV Docker environment that could be used for testing.
+<h2 id="LexEVS16X237DockerSetup-NCIConfiguration">
+  NCI Configuration
+</h2>
+These are the links to the systems at NCI that have been set up for migrating our lexevs-system-test script to NCI.Jenkins - Jenkins server to run the lexevs-system-test.
+<ul>
+  <li>
+    <a href="https://nci-jenkins.nci.nih.gov/jenkins/job/_lexevs/job/_lower/job/lexevs-system-test/" rel="nofollow">
+      https://nci-jenkins.nci.nih.gov/jenkins/job/_lexevs/job/_lower/job/lexevs-system-test/
+    </a>
+  </li>
+</ul>
+Nexus - Nexus server to push specific versions of NCI technology stack software to.  This will be used by the Docker script to pull versions of software that are approved by NCI.
+<ul>
+  <li>
+    <a href="https://ncidockerhub.nci.nih.gov/nexus/#browse/welcome" rel="nofollow">
+      https://ncidockerhub.nci.nih.gov/nexus/#browse/welcome
+    </a>
+    <ul>
+      <li>
+        This can be accessed with the user: NCI_lexevs_nexus
+      </li>
+    </ul>
+  </li>
+</ul>
+Docker interface:
+<a href="http://ncidockerhub.nci.nih.gov" rel="nofollow">
+  ncidockerhub.nci.nih.gov
+</a>
+<ul>
+  <li>
+    The path for pushes is
+    <a href="http://ncidockerhub.nci.nih.gov/lexevs" rel="nofollow">
+      ncidockerhub.nci.nih.gov/lexevs
+    </a>
+  </li>
+  <li>
+    To push to NCI docker hub, re-tag the image and push:
+    <ul>
+      <li>
+        <a href="http://ncidockerhub.nci.nih.gov/lexevs/%E2%80%9Dthe" rel="nofollow">
+          ncidockerhub.nci.nih.gov/lexevs/”image_name
+        </a>
+        : tag”
+      </li>
+    </ul>
+  </li>
+</ul>
+<h3 id="LexEVS16X237DockerSetup-Pullstandardimagesfromhub.dockerandpushtoNCINexusserver">
+  Pull standard images from hub.docker and push to NCI Nexus server
+</h3>
+Need to log into NCI Docker hub first
+<ul>
+  <li>
+    docker login -u &lt;user&gt; -p &lt;pw&gt;
+    <a href="http://ncidockerhub.nci.nih.gov" rel="nofollow">
+      ncidockerhub.nci.nih.gov
+    </a>
+  </li>
+</ul>
+MySQL 5.6.33Pull from docker hub
+<ul>
+  <li>
+    docker pull mysql:5.6.33
+  </li>
+</ul>
+Tag the mysql container
+<ul>
+  <li>
+    docker tag mysql:5.6.33
+    <a href="http://ncidockerhub.nci.nih.gov/lexevs/nci-mysql:5.6.33" rel="nofollow">
+      ncidockerhub.nci.nih.gov/lexevs/nci-mysql:5.6.33
+    </a>
+  </li>
+</ul>
+Push to NCI Nexus
+<ul>
+  <li>
+    docker push
+    <a href="http://ncidockerhub.nci.nih.gov/lexevs/nci-mysql" rel="nofollow">
+      ncidockerhub.nci.nih.gov/lexevs/nci-mysql
+    </a>
+  </li>
+</ul>
+Tomcat 8.0.43-jre8Pull from docker hub
+<ul>
+  <li>
+    docker pull tomcat:8.0.43-jre8
+  </li>
+</ul>
+Tag the tomcat container
+<ul>
+  <li>
+    docker tag tomcat:8.0.43-jre8
+    <a href="http://ncidockerhub.nci.nih.gov/lexevs/nci-tomcat:8.0.43-jre8" rel="nofollow">
+      ncidockerhub.nci.nih.gov/lexevs/nci-tomcat:8.0.43-jre8
+    </a>
+  </li>
+</ul>
+Push to NCI Nexus
+<ul>
+  <li>
+    docker push
+    <a href="http://ncidockerhub.nci.nih.gov/lexevs/nci-tomcat" rel="nofollow">
+      ncidockerhub.nci.nih.gov/lexevs/nci-tomcat
+    </a>
+  </li>
+</ul>

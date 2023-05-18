@@ -1,0 +1,453 @@
+<h1 id="SemanticInfrastructureConceptofOperationsExistingcaBIGSemanticsImplementation-SemanticInfrastructureConceptofOperations-ExistingcaBIG®SemanticsImplementation">
+  Semantic Infrastructure Concept of Operations - Existing caBIG® Semantics Implementation
+</h1>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Semantic Infrastructure Concept of Operations Links
+      </th>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=63996173" rel="nofollow">
+              Semantic Infrastructure
+            </a>
+          </li>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=63996174" rel="nofollow">
+              Vision
+            </a>
+          </li>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=63996178" rel="nofollow">
+              Background
+            </a>
+          </li>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=63996179" rel="nofollow">
+              Mission
+            </a>
+          </li>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=63996176" rel="nofollow">
+              Objectives
+            </a>
+          </li>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=63996267" rel="nofollow">
+              Overview
+            </a>
+          </li>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=63996258" rel="nofollow">
+              Initiatives
+            </a>
+          </li>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=63996268" rel="nofollow">
+              Stakeholders
+            </a>
+          </li>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=63996265" rel="nofollow">
+              Alternatives
+            </a>
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Today&#39;s caBIG® Semantic Infrastructure forms the basis of the semantic interoperability capabilities embodied in the implementation of Data Services on the caGrid.The existing caBIG® semantics implementation supports only the recording of data semantics. It does not embody all various properties of the three viewpoints shown in the
+<a href="https://wiki.nci.nih.gov/download/attachments/63996556/LogicalComponents.JPG?version=1&amp;modificationDate=1324506121000&amp;api=v2" rel="nofollow">
+  VKC:logical components diagram
+</a>
+, the
+<a href="https://wiki.nci.nih.gov/download/attachments/63996556/ContractDesign.JPG?version=1&amp;modificationDate=1324507889000&amp;api=v2" rel="nofollow">
+  VKC:contract design diagram
+</a>
+and the
+<a href="https://wiki.nci.nih.gov/download/attachments/63996556/DeploymentRuntime.JPG?version=1&amp;modificationDate=1324506121000&amp;api=v2" rel="nofollow">
+  VKC:deployment runtime diagram
+</a>
+(explained in discussion of architectural infrastructure in these pages) and required to support services discovery and reuse.Specifically:
+<ul>
+  <li>
+    The role played by each system is implicit. In a services paradigm, this is sufficient for the client, but not for the service implementation. The role should be characterized by standards in accordance with RM-ODP viewpoints and describe the policies including permissions, obligations, and prohibitions.
+  </li>
+  <li>
+    The data service has a single operation: Query. This service has a contract that dictates the terms by which it may interact with other systems, &#34;Query by Example&#34; (QBE), and is intended for use with any information type. It may not have rules associated with the information is passes through the service.Additional InformationThe pre-condition behavior of a contract is issue a request to the index service for an end point reference. The behavior is the fulfillment of the query. The contract is between the client (initiator of the query) and the system (the responder to the query). The contractual context exists for the period of the behavior.
+  </li>
+  <li>
+    In contrast, the information that is exchanged through analytic services may be built from an analytical process – it may be necessary for the rules to be modeled with the information.
+  </li>
+</ul>
+The compatibility guidelines serve to insure that the behavior can be performed and, separately, that the objects exposed are sufficiently annotated semantically. However, since these semantics are at least partially derived from rules about the information, depending on how the information was modeled, there is a potential disjoint between in the details, available through a general query interface, and the requirements needed for usage of the information.The disjoint between the specified role, the interface, the information objects, and the environmental contract of the deployed service implementations seems not to be a problem in areas of high trust where business rules are not associated with information objects or where their application is unimportant. This is true in many of the research applications.Where this same pattern is intended to apply to more business-oriented implementations (clinical data), this pattern is difficult to implement because of the disjoint between the rules and the exposed information. In other words, when a developer wants to simply expose data through a Data Service, this pattern may be sufficient and powerful, but when it is intended to be repurposed for other uses, problems may arise. For example, it is typical for a research data service to expose the data points that resulted from an analysis &#34;Smoking Indicator,&#34; but not to expose the set of raw data that was analyzed in order to make this assessment. This limits the usefulness of the data point &#34;Smoking Indicator&#34; since the consumer of the data wouldn&#39;t know what criteria were used to make establish this indicator&#39;s value.caBIG® already provides a vast framework for tools, tooling, and other pieces of infrastructure. Using the architectural infrastructure noted above, the existing caCORE tools and some of the caGrid infrastructure may be categorized by the component of the new Semantic Infrastructure to which they relate. Re-use and adaption of the existing semantics is preferred over replacement whenever that is the cost effective solution to semantic requirements.Below is an initial list (perhaps partial) of existing tools categorized by the project or package in which they are currently developed and managed. This list will serve as a starting point for the comprehensive mapping and assessment of the gaps between current infrastructure and the architectural infrastructure noted above, which are intended to support a caBIG® enterprise SOA. While existing tools may only partially meet the functionality of the proposed architecture infrastructure, the rationale for using, adapting or replacing them will be contained in the project documents generated for each of the initiatives proposed by this Concept of Operations.Initial Allocation of Existing Tool Packages to Components of the new Semantic Infrastructure Packages Component
+<table id="TBL1683165902346">
+  <tbody>
+    <tr>
+      <th>
+        Packages
+      </th>
+      <th>
+        Component
+      </th>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://cabig.nci.nih.gov/tools/caAdapter" rel="nofollow">
+          caAdapter
+        </a>
+      </td>
+      <td>
+        Provides model mapping services in support of building caCORE-like applications and facilitates data mapping and transformation among different kinds of data sources including:
+        <ul>
+          <li>
+            HL7 v2 messages
+          </li>
+          <li>
+            HL7 v3 messages
+          </li>
+          <li>
+            SDTM (Study Data Tabulation Model) data sets
+          </li>
+          <li>
+            MMS (model mapping service, object to relational mapping)
+          </li>
+          <li>
+            GME Mapping (create mappings between schemas) Mapping Tool Core Engine
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://cabig.nci.nih.gov/concepts/caDSR/" rel="nofollow">
+          caDSR
+        </a>
+      </td>
+      <td>
+        A collection of tools and services that support 11179 metadata development, registration and access. See individual tools for product descriptions.
+        <ul>
+          <li>
+            UML Loader
+          </li>
+          <li>
+            CDE Browser
+          </li>
+          <li>
+            Admin Tool
+          </li>
+          <li>
+            Curation Tool
+          </li>
+          <li>
+            Form Builder
+          </li>
+          <li>
+            Sentinel Tool
+          </li>
+          <li>
+            Freestyle API
+          </li>
+          <li>
+            caDSR Services
+          </li>
+          <li>
+            Bulk Loader
+          </li>
+          <li>
+            Semantic Integration Workbench
+          </li>
+          <li>
+            UML Model Browser
+          </li>
+          <li>
+            XMI Handler
+          </li>
+          <li>
+            Object Cart
+          </li>
+          <li>
+            Domain Class Browser
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="http://cagrid.org/display/cagridhome/Home" rel="nofollow">
+          caGrid
+        </a>
+      </td>
+      <td>
+        <ul>
+          <li>
+            Global Model Exchange (GME)
+          </li>
+          <li>
+            Index Service
+          </li>
+          <li>
+            Metadata Model Service
+          </li>
+          <li>
+            Grid Trust Service
+          </li>
+          <li>
+            Grid Grouper
+          </li>
+          <li>
+            Dorian
+          </li>
+          <li>
+            Credential Delegation Service
+          </li>
+          <li>
+            Authentication Service
+          </li>
+          <li>
+            Federated Query Processor
+          </li>
+          <li>
+            Taverna Workflow
+          </li>
+          <li>
+            BPEL Workflow
+          </li>
+          <li>
+            Introduce
+          </li>
+          <li>
+            Data Services
+          </li>
+          <li>
+            Web Single Sign On (Web SSO)
+          </li>
+          <li>
+            Transfer Service
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://cdebrowser.nci.nih.gov/CDEBrowser/" rel="nofollow">
+          CDE Browser
+        </a>
+      </td>
+      <td>
+        &#34;Data Element Centric&#34; Browser – view of caDSR content from perspective of individual data elements – organized by owning Context and classifications within each context, including folders containing the CDEs that are associated with data collection forms that have been registered in caDSR.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://wiki.nci.nih.gov/x/O4EI" rel="nofollow">
+          CDE Curation Tool
+        </a>
+      </td>
+      <td>
+        A 11179 content development tool that aids in the development and maintenance of caDSR metadata.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://cabig.nci.nih.gov/tools/CSM" rel="nofollow">
+          Common Security Module (CSM)
+        </a>
+      </td>
+      <td>
+        A solution to allow application developers to integrate security into their services with minimal coding effort. It is integrated with caGrid security framework and helps eliminate the need for development teams to create their own security methodology.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://cabig.nci.nih.gov/concepts/EVS/" rel="nofollow">
+          Enterprise Vocabulary Service
+        </a>
+      </td>
+      <td>
+        A collection of tools and services that support terminology development, maintenance and access. See individual tools for product descriptions.
+        <ul>
+          <li>
+            LexEVS
+          </li>
+          <li>
+            Bioportal (retired June 2010)
+          </li>
+          <li>
+            NCI Term Browser
+          </li>
+          <li>
+            NCI Report Writer
+          </li>
+          <li>
+            NCI Protégé
+          </li>
+          <li>
+            Semantic Media Wiki
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://wiki.nci.nih.gov/x/-QOM" rel="nofollow">
+          Form Builder
+        </a>
+      </td>
+      <td>
+        A caDSR tool for developing, maintaining and accessing metadata descriptions of CDEs grouped into modules as a series of question/answer sequences that together create the metadata representation of a &#34;form&#34;.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://wiki.nci.nih.gov/x/QYEI" rel="nofollow">
+          Semantic Integration Workbench
+        </a>
+      </td>
+      <td>
+        A caDSR tool for annotating UML Domain Model classes, attributes, associations and enumerations with NCIt controlled terminology.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://wiki.nci.nih.gov/x/PoEI" rel="nofollow">
+          UML Model Browser
+        </a>
+      </td>
+      <td>
+        A caDSR tool for viewing the caDSR 11179 content that have been recorded in caDSR from an XMI representation of a UML Domain Model. The UML Model Browser provides a view of this content using the model owners names and definitions, and as a collection of UML classes and attributes.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://wiki.nci.nih.gov/x/QoEI" rel="nofollow">
+          UML Model Loader
+        </a>
+      </td>
+      <td>
+        A tool that parses the classes, attributes, associations and enumerations contained in an XMI file representing a UML Model Domain Model. The loader transform and records these UML elements into 11179 items in caDSR. The content can be viewed using the UML Model Browser, the CDE Browser or accessed via any of the caDSR tools and services.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://wiki.nci.nih.gov/x/PIEI" rel="nofollow">
+          caDSR Sentinel Tool
+        </a>
+      </td>
+      <td>
+        A tool that allows users to subscribe to receive reports about specific categories/collections of changes in caDSR metadata. For example, creating a subscription to receive a report when any part of a CDE that has been used in a particular UML Model, or Form, is changed/edited. A formatted report is sent to an email account or to a server containing the before and after changes to caDSR metadata and related items.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        caXchange Software Development Kit
+      </td>
+      <td>
+        Generates a set of web and grid service artifacts from a semantically annotated XMI file, including an XML Schema representing the service data, a WSDL, and the deployable client/server files.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://cabig.nci.nih.gov/tools/CLM" rel="nofollow">
+          Common Logging Module (CLM)
+        </a>
+      </td>
+      <td>
+        A set of tools that provides a flexible and comprehensive solution for auditing and logging. This tool is used with UML models represented as XMI to provide object oriented event logging and log query/view capabilities.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://wiki.nci.nih.gov/x/E5V8" rel="nofollow">
+          CGMM (CSM to grid migration module)
+        </a>
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://wiki.nci.nih.gov/x/-bWl" rel="nofollow">
+          cgMDR
+        </a>
+      </td>
+      <td>
+        A 11179 registry and MS Excel and EA add-ins. The cgMDR includes UIs for creating instances of 11179 registry objects, MS Excel and EA for accessing cgMDR, caDSR, EVS or local terminology concepts to create and use 11179 content from within MS Excel and EA.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=220201330" rel="nofollow">
+          XMI Handler Archive
+        </a>
+      </td>
+      <td>
+        A tool for reading and writing to an XMI file. This tool is used by SDK, caAdapter, UML Loader, SIW and Bulk Loader.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=138739739" rel="nofollow">
+          Admin Tool Archive
+        </a>
+      </td>
+      <td>
+        A tool for creating caDSR content, lookup tables and user accounts.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=138739745" rel="nofollow">
+          Bulk Loader Archive
+        </a>
+      </td>
+      <td>
+        A tool that reuses the UML Loader to transform and record caDSR content from annotated MS Excel spreadsheets.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://wiki.nci.nih.gov/x/Y5yl" rel="nofollow">
+          caDSR Services
+        </a>
+      </td>
+      <td>
+        A set of web, html, java, perl and grid services for accessing caDSR content.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://wiki.nci.nih.gov/display/caDSR/caDSR+Freestyle+Search+FAQs" rel="nofollow">
+          Freestyle API
+        </a>
+      </td>
+      <td>
+        A UI and API that supports query and weighting of results based on 11179 metamodel, across multiple caDSR objects and attributes simultaneously, regardless of type. For example, using an identifier, find the caDSR item (regardless of whether it&#39;s a CDE, VD, OC, etc), weight/order search results based on the type of content. This api is used by the SIW.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://wiki.nci.nih.gov/x/FYBr" rel="nofollow">
+          Object Cart
+        </a>
+      </td>
+      <td>
+        An interface that provides a &#39;shopping cart&#39; feature for use with caDSR or other products that have a need to store objects for later processing, for example, in the CDE Browser and Form Builder to pass items from CDE Browser search results to Form Builder for use in describing forms.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://cabig.nci.nih.gov/concepts/caDSR/" rel="nofollow">
+          Domain Class Browser
+        </a>
+      </td>
+      <td>
+        An SDK generated interface for browsing caDSR content via the caDSR and UML Project Domain Models. It supports the same QBE query style as the SDK generated services and returns results in either HTML or XML format.
+      </td>
+    </tr>
+  </tbody>
+</table>

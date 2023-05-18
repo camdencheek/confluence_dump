@@ -1,0 +1,150 @@
+Document Information
+Author: Craig Stancl
+Email: Stancl.craig@mayo.edu
+Team: LexEVS
+Contract: CBITT BOA Subcontract# 29XS223
+Client: NCI CBIIT
+National Institutes of Heath
+US Department of Health and Human Services
+
+
+Revision History
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Version
+      </th>
+      <th>
+        Date
+      </th>
+      <th>
+        Description of Changes
+      </th>
+      <th>
+        Author
+      </th>
+    </tr>
+    <tr>
+      <td>
+        1.0
+      </td>
+      <td>
+        5/14/10
+      </td>
+      <td>
+        Initial Version Approved via Design Review
+      </td>
+      <td>
+        Team
+      </td>
+    </tr>
+  </tbody>
+</table>
+The following describes the Logical Model Changes.
+
+Changes Made to LexGrid Logical Model for 2010/01:
+<ul>
+  <li>
+    Package ValueSets :
+    <ul>
+      <li>
+        Renamed element ValueDomainDefinition to ValueSetDefinition and container ValueDomains to ValueSets. GForge # 27021.
+      </li>
+      <li>
+        Added attribute &#39;conceptDomain&#39; of type &#39;conceptDomain&#39; to class &#39;valueSetDefinition&#39; to support CTS 2 SFM.
+      </li>
+      <li>
+        Added class &#39;propertyReference&#39; and &#39;propertyMatchValue&#39; to support CTS 2 SFM.
+        <ul>
+          <li>
+            propetyReference contains : &#39;codingScheme&#39;(Required), &#39;propertyName&#39;, &#39;propertyMatchValue&#39;
+          </li>
+          <li>
+            propertyMatchValue extends from &#39;text&#39; and contains attribute &#39;matchAlgorithm&#39;
+          </li>
+        </ul>
+      </li>
+      <li>
+        Made &#39;definitionEntry&#39; versionable to support CTS 2 SFM.
+      </li>
+      <li>
+        Made class &#39;valueSetDefinition&#39; and &#39;pickListDefinition&#39; as entry point. This change allows to load and export Value Set Definition and Pick List Definition individually.
+      </li>
+    </ul>
+  </li>
+</ul>
+<ul>
+  <li>
+    Package Naming:
+    <ul>
+      <li>
+        Added &#39;supportedConceptDomain&#39; to support CTS 2 SFM.
+      </li>
+      <li>
+        Added attributes &#39;codingScheme&#39;, &#39;entityCodeNamespace&#39; and &#39;entityCode&#39; to &#39;SupportedAssociation&#39;. This was added to make it earier to get an AssociationEntity instance for a given associationPredicate.
+      </li>
+      <li>
+        Added attribute &#39;propertyType&#39; to &#39;SupportedProperty&#39;. This provides an easy way to find all supportedProperties information by propertyType which are &#39;presentation&#39;,&#39;definition&#39;,&#39;comment&#39; and &#39;property&#39;. NCI requirement Gforge # 24699.
+      </li>
+    </ul>
+  </li>
+</ul>
+<ul>
+  <li>
+    Package CommonTypes:
+    <ul>
+      <li>
+        Added &#39;conceptDomain&#39; in localIds. Since ConceptDomain has been added to the model, we will need to maintain all the ConceptDomain used in the system in our SupportedAttributes mappings.
+      </li>
+      <li>
+        Changed &#39;owner&#39; in &#39;versionable&#39; from &#39;source&#39; to &#39;tsCaseIgnoreIA5String&#39;. This was changed since other attributes of Source were never used.
+      </li>
+    </ul>
+  </li>
+</ul>
+<ul>
+  <li>
+    Package Concept:
+    <ul>
+      <li>
+        Removed elements &#39;Concept&#39; and &#39;Instance&#39;. These first class elements are not required anymore as an &#39;Entity&#39; can represent either &#39;concept&#39; or &#39;instance&#39; or any other type by specifying it in its EntityType.
+      </li>
+    </ul>
+  </li>
+</ul>
+<ul>
+  <li>
+    Package Relations:
+    <ul>
+      <li>
+        Made class &#39;relation&#39; versionable to Support CTS 2 SFM.
+      </li>
+      <li>
+        Added &#39;isMapping&#39;, &#39;sourceCodingScheme&#39;, &#39;sourceCodingSchemeVersion&#39;, &#39;targetCodingScheme&#39;, &#39;targetCodingSchemeVersion&#39; to class &#39;relation&#39; to support loading of MRMAP RRF file.
+      </li>
+      <li>
+        Added &#39;properties&#39; container to &#39;relation&#39; container to supported loading of MRMAP RRF file.
+      </li>
+      <li>
+        Removed &#39;isNative&#39; and &#39;source&#39; from &#39;relation&#39; as they were never used.
+      </li>
+      <li>
+        Added new class &#39;associationPredicate&#39; with required attribute &#39;associationName&#39; to supported loading of MRMAP RRF file.
+      </li>
+      <li>
+        Renamed class &#39;association&#39; to &#39;associationEntity&#39;. Removed all Booleans except &#39;isTransitive&#39;, and &#39;isNavigable. And made &#39;associationEntity&#39; subclass of &#39;Entity&#39;. This change was also made to supported loading of MRMAP RRF file.
+      </li>
+    </ul>
+  </li>
+</ul>
+<ul>
+  <li>
+    Package Versions:
+    <ul>
+      <li>
+        Changed &#39;changeAgent&#39; in class &#39;revision&#39; from &#39;source&#39; to &#39;tsCaseIgnoreIA5String&#39; as none of the &#39;Source&#39; attributes were used.
+      </li>
+    </ul>
+  </li>
+</ul>

@@ -1,0 +1,120 @@
+Search and Access Services defines profiles supporting the discovery and visualization of services.
+
+Complex search offers a natural and user-friendly way to find services by progressively refining search results using a variety of criteria including attributes, artifacts, classification, usage scenarios, and dependencies. This includes runtime contract discovery, a powerful query mechanism that allows either the service orchestrator or a program to find the services that best fit the requirements of a given process. This increases both runtime and design time flexibility by enabling selection of services based on computable metadata.
+
+Note on Search CategorizationFor the purpose of requirements categorization, the search functional profiles were interpreted as follows:
+<ul>
+  <li>
+    Discover: search by example, implemented as an interface that takes an existing item and discovers similar items within the knowledge repository
+  </li>
+  <li>
+    Find: search by query, implemented as an interface which accepts criteria and finds responsive items in an index of some nature
+  </li>
+  <li>
+    Visualize: search by navigation, implemented as a graphical interface to follow linked data relationships through models and terminologies
+  </li>
+</ul>
+Service generation is the ability to generate services from user defined service metadata. The semantic infrastructure provides this metadata and the platform leverages this metadata for service generation. The constraints and policies specified in the semantic infrastructure are inherited by the platform and are enforced as runtime policies.
+
+Additional platform specific and runtime information is provided by the developer at the time of service generation.
+
+The Search and Access profiles are derived from one or more of the following architecture implications:
+
+Artifact Descriptions make use of defined semantics, where the semantics may be used for categorization or providing other property and value information for description classes. Architectural implications of semantics on the Semantic Infrastructure are reflected in the following capabilities:
+<ul>
+  <li>
+    semantic models that provide normative descriptions of the utilized terms, where the models may range from a simple dictionary of terms to an ontology showing complex relationships and capable of supporting enhanced reasoning. This is a refinement of the Artifact metadata capability.
+  </li>
+  <li>
+    mechanisms to support the storage, referencing, and access to these semantic models. This is a refinement of the Artifact store capability.
+  </li>
+  <li>
+    configuration management mechanisms to capture the normative description of each semantic model and to apply a unique identifier in a manner consistent with an identified versioning scheme. This is a refinement of the Change configurationManagement capability.
+  </li>
+  <li>
+    one or more mechanisms to support the storage, referencing, and access to conversion relationships between semantic models, and the mechanisms to carry out such conversions.
+  </li>
+</ul>
+A well-defined service Behavior Model with the following capabilities:
+<ul>
+  <li>
+    characterizes the knowledge of the actions invokes against the service and events that report real world effects as a result of those actions;
+  </li>
+  <li>
+    characterizes the temporal relationships and temporal properties of actions and events associated in a service interaction;
+  </li>
+  <li>
+    describe activities involved in a workflow activity that represents a unit of work;
+  </li>
+  <li>
+    describes the role(s) that a role player performs in a service-oriented business process or service-oriented business collaboration;
+  </li>
+  <li>
+    is both human readable and machine processable;
+  </li>
+  <li>
+    is referenceable from the Service Description artifact.
+  </li>
+</ul>
+A well-defined service Information Model with the following capabilities:
+<ul>
+  <li>
+    describes the syntax and semantics of the messages used to denote actions and events;
+  </li>
+  <li>
+    describes the syntax and semantics of the data payload(s) contained within messages;
+  </li>
+  <li>
+    documents exception conditions in the event of faults due to conditions including network outages and improper message and data formats;
+  </li>
+  <li>
+    is both human readable and machine processable;
+  </li>
+  <li>
+    is referenceable from the Service Description artifact.
+  </li>
+</ul>
+A discovery mechanism which enables searching for artifacts that best meet the search criteria specified by the service participant and includes the following capabilities:
+<ul>
+  <li>
+    Search for services, policies, and other artifact descriptions accessible via some repository mechanism
+  </li>
+  <li>
+    Search for operational characteristics of artifacts, which are metrics defined in artifact descriptions. The information is accessible via infrastructure monitoring capabilities or directly from services.
+  </li>
+  <li>
+    Tracking and notification mechanisms related to artifact usage, service availability, operational conformance
+  </li>
+</ul>
+Functional Profile
+<ul>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=32769446" rel="nofollow">
+      5.3.1 - Discover
+    </a>
+    A key function desired by virtually all stakeholders is the ability to query by example using an item from a model or vocabulary (e.g., data element, property, data type, constraint, relation, concept, etc.) to find equivalent and related elements defined anywhere in the knowledge repository. The response should provide an easily understood description of the degree and nature of the semantic convergence between the example item and responsive items.
+  </li>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=32769448" rel="nofollow">
+      5.3.2 - Find
+    </a>
+  </li>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=32769450" rel="nofollow">
+      5.3.3 - Runtime Contract Discovery
+    </a>
+    A powerful query mechanism that allows either the service orchestrator or a program to find the services that best fit the requirements of a given process. This increases both runtime and design time flexibility by enabling selection of services based on computable metadata.
+  </li>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=32769453" rel="nofollow">
+      5.3.4 - Service Generation
+    </a>
+    The execution context of a service interaction is the set of infrastructure elements, process entities, policy assertions and agreements that are identified as part of an instantiated service interaction, and thus forms a path between those with needs and those with capabilities. Service generation is the ability to provision an execution context from the service descriptions, and associated artifacts, managed by the Semantic Infrastructure.
+  </li>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=32769455" rel="nofollow">
+      5.3.5 - Visualize
+    </a>
+    Given the complexity of the models in use, and the large number, users are constantly confronted with the problem of trying to gain an understanding of new domains not familiar to them. Visualizations of models and vocabularies are perceived as essential to this task. The requirement is to provide visualizations that are easy to navigate, that identify the contact points between models and between vocabularies and that allow users to seamlessly move from model constructs to data.
+  </li>
+</ul>

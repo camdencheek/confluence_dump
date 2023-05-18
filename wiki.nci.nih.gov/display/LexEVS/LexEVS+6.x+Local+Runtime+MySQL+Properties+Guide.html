@@ -1,0 +1,106 @@
+Contents of this Page
+<ul>
+  <li>
+    <a href="#LexEVS6.xLocalRuntimeMySQLPropertiesGuide-MySQLPropertiesSettings" rel="nofollow">
+      MySQL Properties Settings
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.xLocalRuntimeMySQLPropertiesGuide-MySQLPropertiesGuide" rel="nofollow">
+      MySQL Properties Guide
+    </a>
+  </li>
+</ul>
+<h2 id="LexEVS6.xLocalRuntimeMySQLPropertiesGuide-MySQLPropertiesSettings">
+  MySQL Properties Settings
+</h2>
+These properties are usually located in the file {MYSQL_HOME}/my.ini.
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Property Name
+      </th>
+      <th>
+        Description
+      </th>
+    </tr>
+    <tr>
+      <td>
+        innodb_flush_log_at_trx_commit
+      </td>
+      <td>
+        Flush the transaction logs at each commit. Value: It is highly recommended that this option be set to &#39;0&#39; in Windows installations to improve load performance.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        innodb_additional_mem_pool_size
+      </td>
+      <td>
+        Additional memory pool that is used by InnoDB to store metadata information. Value: 16M
+      </td>
+    </tr>
+    <tr>
+      <td>
+        innodb_buffer_pool_size
+      </td>
+      <td>
+        Buffer pool used to cache both indexes and row data. Value: 1G (consider going higher based on physical RAM available and full terminology sets might benefit from as high as 14G)
+      </td>
+    </tr>
+    <tr>
+      <td>
+        tmp_table_size
+      </td>
+      <td>
+        Maximum size for internal (in-memory) temporary tables. Value: 256M
+      </td>
+    </tr>
+    <tr>
+      <td>
+        query_cache_size
+      </td>
+      <td>
+        Query cache is used to cache SELECT results and later return them without actually executing the same query once again. Value: 64M
+      </td>
+    </tr>
+    <tr>
+      <td>
+        sort_buffer_size
+      </td>
+      <td>
+        This buffer is allocated when MySQL needs to rebuild the index in REPAIR, OPTIMZE, ALTER table statements as well as in LOAD DATA INFILE into an empty table. Value: 16M
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="LexEVS6.xLocalRuntimeMySQLPropertiesGuide-MySQLPropertiesGuide">
+  MySQL Properties Guide
+</h2>
+There are some commands that we have found useful in the MySQL environment. You can investigate this database software more at the
+<a href="http://dev.mysql.com/doc/" rel="nofollow">
+  MySQL web site
+</a>
+.Creating a database within the software can be done via the command line. The target database should be created with a default character set encoding of UTF-8. First log in as the MySQL user with create, write, update and delete permissions. This could be &#34;root&#34; that you created during the install of MySQL or another user you have created since then.
+<ul>
+  <li>
+    mysql -u {username} -p{password} Then create a new target database that uses UTF-8 as the default character set.
+  </li>
+  <li>
+    mysql&gt; CREATE DATABASE {DBNAME} CHARACTER SET utf8 COLLATE utf8_general_ci; ...where DBNAME is the name of your database needed for LexEVS to store data in.
+  </li>
+</ul>
+To see that you have indeed created a database you can see them listed with this command:
+<ul>
+  <li>
+    mysql&gt; show databases
+  </li>
+</ul>
+If you have root or administrator access to your server you can change the password for the root user ID if you have forgotten or lost it.
+<ul>
+  <li>
+    mysqladmin -u root password {mypassword} ...where mypasswordis your new passwordNoteMySQL can be passed a JDBC option for the Windows local environment that may improve perfomance 30 to 50%.
+  </li>
+</ul>
+Try the following values in the lbconfig.props file for the DB_URL:DB_URL=jdbc:mysql:///{DBNAME}?socketFactory=com.mysql.jdbc.NamedPipeSocketFactoryThis uses Windows Named Pipe function and avoids use of the TCP/IP protocol. It only works when connecting with a local iteration of the MySQL database on Windows.

@@ -1,0 +1,110 @@
+<h2 id="Init1dbw13FormsServices-InitialAnalysis:">
+  Initial Analysis:
+</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Item
+      </th>
+      <th>
+        Information/Response
+      </th>
+    </tr>
+    <tr>
+      <td>
+        Date:
+      </td>
+      <td>
+        03/10/2010
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Requirement # unique id &lt;SemConOps Initiative&gt;.&lt;analysts initials&gt;&lt;requirement number&gt;
+        e.g. Init1dbw1
+        (eventually linked to Use Cases)
+      </td>
+      <td>
+        Init1dbw13
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Originator/Customer&#39;s Name:
+      </td>
+      <td>
+        Bob Friemuth for AGNIS Metadata Tool
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Originator/Customer&#39;s Company:
+      </td>
+      <td>
+        Mayo
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Summary of requirement initial analysis, by Reviewer: (as unambiguously as possible, describe who (
+        <a href="https://wiki.nci.nih.gov/x/ewtyAQ" rel="nofollow">
+          List of Actors
+        </a>
+        ) is interacting with the system, what the business goal is and how the system might support the actor&#39;s ability to acheive their goal)
+      </td>
+      <td>
+        In the course of retrieving the metadata for a CRF from the caDSR, the
+        metadata curator using the generates a request to retireve a Form from caDSR.  The AGNIS Metadata Tool sends a large number of web service requests to the cadsrapi40Service web service.  This can take a long time, due to the large number of round trips to the server.  One possible way to improve performance would be to implement a caDSR API that, instead of returning only one object at a time, could return a graph of objects in response to a single web service request.  This would move processing to the server side, where it can be done more efficiently, and also improve performance by reducing the number of round trips to the server.
+        For example, a caDSR client tool such as the AGNIS Metadata Tool might benefit from an API capable of returning a graph of objects such as the following in response to a single query.
+        The RULES (skip to/from instructions, default values or repeating group information) around the question might also be useful, such as the order of the question in the form.
+
+
+        &gt; Question
+        &gt;   |-- definitionCollection
+        &gt;   |-- designationCollection
+        &gt;   |-- instruction
+        &gt;   |-- dataElement
+        &gt;   |     |-- dataElementConcept
+        &gt;   |     |    |-- definitionCollection
+        &gt;   |     |    |-- designationCollection
+        &gt;   |     |    +-- referenceDocumentCollection
+        &gt;   |     |          +-- attachments
+        &gt;   |     |-- definitionCollection
+        &gt;   |     |-- designationCollection
+        &gt;   |     |-- referenceDocumentCollection
+        &gt;   |     |    +-- attachments
+        &gt;   |     +-- valueDomain
+        &gt;   |           |-- definitionCollection
+        &gt;   |           |-- designationCollection
+        &gt;   |           +-- referenceDocumentCollection
+        &gt;   |                 +-- attachments
+        &gt;   |-- referenceDocumentCollection
+        &gt;   |     +-- attachments
+        &gt;   +-- validValueCollection
+        &gt;         |-- definitionCollection
+        &gt;         |-- designationCollection
+        &gt;         |-- instruction
+        &gt;         |-- referenceDocumentCollection
+        &gt;         |     +-- attachments
+        &gt;         +-- valueDomainPermissibleValue
+        &gt;              +-- permissibleValue
+        &gt;                    +-- valueMeaning
+        &gt;                           |-- definitionCollection
+        &gt;                           |-- designationCollection
+        &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;|-- conceptCollection
+        &gt;                           +-- referenceDocumentCollection
+        &gt;                                 +-- attachments
+        &gt;
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Recommended Next Step Enter one: Follow-up interview, Observe, Use Case Template (text), Use Case Model (formalized/UML diagram), Group Discussion, Prototype, Waiting Room
+      </td>
+      <td>
+        Use Case Template to describe the &#39;graph&#39; in more detail
+      </td>
+    </tr>
+  </tbody>
+</table>

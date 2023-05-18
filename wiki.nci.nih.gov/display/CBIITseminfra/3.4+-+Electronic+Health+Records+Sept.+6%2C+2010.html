@@ -1,0 +1,142 @@
+This section includes the following:
+<ul>
+  <li>
+    <a href="#id-3.4ElectronicHealthRecordsSept.6,2010-IntroductiontoElectronicHealthRecordsUseCase" rel="nofollow">
+      Introduction to Electronic Health Records Use Case
+    </a>
+  </li>
+  <li>
+    <a href="#id-3.4ElectronicHealthRecordsSept.6,2010-EHRClinicalForms:Requirements" rel="nofollow">
+      EHR Clinical Forms: Requirements
+    </a>
+  </li>
+  <li>
+    <a href="#id-3.4ElectronicHealthRecordsSept.6,2010-EHRClinicalForms:UseCaseDescription" rel="nofollow">
+      EHR Clinical Forms: Use Case Description
+    </a>
+  </li>
+  <li>
+    <a href="#id-3.4ElectronicHealthRecordsSept.6,2010-EHR:TerminologyRequirements" rel="nofollow">
+      EHR: Terminology Requirements
+    </a>
+  </li>
+  <li>
+    <a href="#id-3.4ElectronicHealthRecordsSept.6,2010-EHR:TerminologyUseCase" rel="nofollow">
+      EHR: Terminology Use Case
+    </a>
+  </li>
+  <li>
+    <a href="#id-3.4ElectronicHealthRecordsSept.6,2010-EHR:DecisionSupportRequirements" rel="nofollow">
+      EHR: Decision Support Requirements
+    </a>
+  </li>
+  <li>
+    <a href="#id-3.4ElectronicHealthRecordsSept.6,2010-EHR:DecisionSupportUseCases" rel="nofollow">
+      EHR: Decision Support Use Cases
+    </a>
+    <ul>
+      <li>
+        <a href="#id-3.4ElectronicHealthRecordsSept.6,2010-Drug-DrugInteractionUseCase" rel="nofollow">
+          Drug-Drug Interaction Use Case
+        </a>
+      </li>
+      <li>
+        <a href="#id-3.4ElectronicHealthRecordsSept.6,2010-AJCCCancerClassificationUseCase" rel="nofollow">
+          AJCC Cancer Classification Use Case
+        </a>
+      </li>
+    </ul>
+  </li>
+</ul>
+<h4 id="id-3.4ElectronicHealthRecordsSept.6,2010-IntroductiontoElectronicHealthRecordsUseCase">
+  Introduction to Electronic Health Records Use Case
+</h4>
+The ambulatory oncology electronic health record (EHR) is defined as a set of services and a semantic software platform to compose a &#34;virtual&#34; medical record. This EHR (caBIG® Clinical Information Suite) is being developed by the National Cancer Institute in collaboration with the community cancer centers and will demonstrate the value of computable semantics that enable interoperability and runtime clinical decision support. The caBIG® Clinical Information Suite has several semantic infrastructure requirements and these are highlighted below using a set of high level use cases.
+<h4 id="id-3.4ElectronicHealthRecordsSept.6,2010-EHRClinicalForms:Requirements">
+  EHR Clinical Forms: Requirements
+</h4>
+The caBIG® Clinical Information Suite is a form driven system for data entry by physicians, nursing staff, and ancillary providers. Data captured through forms may be re-purposed for business analysis at the institutional level and personal physician level. The data may also be used for adverse event reporting, public health reporting of communicable diseases, and automated reporting to cancer registries. The data may be released for insurance and claims payment and may also be provided to the patient for a longitudinal medical history. Data is exchanged between healthcare providers at the time of referral of the patient for additional care. The caBIG® Clinical Information Suite should also provide data for aggregated and de-identified repositories to support better understanding of healthcare outcomes and best practices.
+
+To serve these many uses, the context and semantics of data entry must be captured and persisted to a backend data store without loss of meaning. To enable this goal of robust data capture, the forms used to capture the data elements must be semantically structured and linked in context using standards-based information models and explicit terminology with traceability through value set identifiers and coded concept identifiers, allowing aggregation and disambiguation of the captured data.
+<h4 id="id-3.4ElectronicHealthRecordsSept.6,2010-EHRClinicalForms:UseCaseDescription">
+  EHR Clinical Forms: Use Case Description
+</h4>
+The EHR Clinical Forms use case has two primary goals. The first goal involves a form designer and construction of a clinical data entry form for use in the graphical user interface of the caBIG® Clinical Information Suite. This form must be semantically consistent and based on HL7 RIM objects, HL7 structural vocabulary, and ONC required code systems for meaningful use. The second goal involves the data entry person (a physician, nurse or other health care provider) who defines the value set requirements for the form elements, identifies the rules for skip patterns and form element arrangement, and eventually enters and persists clinical data.
+
+The form design scenario aims to enable construction of a form model based on semantic HL7 RIM objects. This allows binding of appropriate code systems and value sets to the form controls of the object, and adding rules for skip patterns and data entry flow. This will allow data capture at the point of care. The forms, their construction objects, and the bound value sets must be persisted for reuse, and the forms must be made available to a user for data entry.
+<ul>
+  <li>
+    A Data Entry Form builder gathers requirements for forms from end users who enter data into the system.
+  </li>
+  <li>
+    This person builds a form by retrieving form components and value set identifiers from either a repository or the terminology services or from both. The end result of the build process is a semantically aware form and its schema and terminology requirements.
+  </li>
+  <li>
+    The form definition is eventually stored on a server. The form metadata is stored in a repository.
+  </li>
+  <li>
+    The form definition schema and metamodel are retrieved and a user invokes these to create a data capture form.
+  </li>
+  <li>
+    Terminology from the terminology (CTS) server is bound at form load time to each control requiring standard terminology.
+  </li>
+  <li>
+    The user populates the form with data partially based on retrieved value sets and submits the form and data which is dynamically transformed to a valid CDA document.
+  </li>
+  <li>
+    The document is either persisted in a database or exchanged with an external system through a service.
+  </li>
+</ul>
+<h4 id="id-3.4ElectronicHealthRecordsSept.6,2010-EHR:TerminologyRequirements">
+  EHR: Terminology Requirements
+</h4>
+The EHR Terminology use case has two primary goals. The first goal involves a data entry form used in the graphical user interface of the caBIG® Clinical Information Suite that requires runtime population of HL7 structural vocabulary, and domain value sets for each coded form control. The second goal involves system requirements for building new value sets when an existing value set is not available for a form control or where large value sets must be subdivided into smaller, nested value sets. Examples of these requirements are the case of localization of geographic value sets or disease specific value sets for new form elements.
+<h4 id="id-3.4ElectronicHealthRecordsSept.6,2010-EHR:TerminologyUseCase">
+  EHR: Terminology Use Case
+</h4>
+In the graphical user interface form control terminology binding scenario the aim is to enable the query of a repository for a form control bound to a form template or HL7 RIM object using a value set identifier, and subsequently to allow the return of an enumerated CTS value set bound as a pick list to the form control. In cases where the form control has not yet been bound to a value set, the system should be able to query by text strings or metadata of the control and return candidate value sets, or when none are returned in this manner, allow direct query of the CTS API for code system concepts to build a new value set     (links to the caBIG® Clinical Information Suite Form Design Scenario).
+<ul>
+  <li>
+    When a form is loaded in the caBIG® Clinical Information Suite graphical user interface for the first time, the caBIG® Clinical Information Suite system passes the form identifiers to the repository.
+  </li>
+  <li>
+    The repository evaluates the identifiers against known templates or HL7 form objects and passes the identifiers to the CTS service to return all identified enumerated value sets.
+  </li>
+  <li>
+    The enumerated value sets are returned and bound to the form controls as pick lists and cached by the caBIG® Clinical Information Suite system for future use.
+  </li>
+  <li>
+    Subsequent form loading refreshes the cache by value set versions.
+  </li>
+</ul>
+Naïve form submissions from the ECCF registry perspective are routed to the Form Design scenario for value set construction invoking the caBIG® Clinical Information Suite Clinical Form Design use case for control binding to terminology.
+<h4 id="id-3.4ElectronicHealthRecordsSept.6,2010-EHR:DecisionSupportRequirements">
+  EHR: Decision Support Requirements
+</h4>
+caBIG® Clinical Information Suite provides services that cover a wide range of clinical and administrative functionality and that depend on a rapidly changing set of data standards and representations. The system has a set of requirements that include:
+<ul>
+  <li>
+    The need to maintain the accuracy and currency of decision support data sources that are dynamic
+  </li>
+  <li>
+    The need to provide runtime clinical decision support
+  </li>
+  <li>
+    The need to provide just in time software updates that allow interoperability across systems
+  </li>
+  <li>
+    The need to interact with systems that can match for clinical trials
+  </li>
+</ul>
+Examples of the use cases tied to these requirements is found below.
+<h4 id="id-3.4ElectronicHealthRecordsSept.6,2010-EHR:DecisionSupportUseCases">
+  EHR: Decision Support Use Cases
+</h4>
+<h5 id="id-3.4ElectronicHealthRecordsSept.6,2010-Drug-DrugInteractionUseCase">
+  Drug-Drug Interaction Use Case
+</h5>
+A user of the caBIG® Clinical Information Suite starts a patient on a new antiemetic drug. The patient is already on multiple medications, both for treatment of their cancer as well as several co-morbid conditions. The user is unfamiliar with a few of the medications the patient is on and the installed EHR has no drug interaction model built in. The user submits the list of medications for the patient to a Semantic Infrastructure decision support service that provides access to runtime drug interaction and contraindication checking.
+<h5 id="id-3.4ElectronicHealthRecordsSept.6,2010-AJCCCancerClassificationUseCase">
+  AJCC Cancer Classification Use Case
+</h5>
+A user of the caBIG® Clinical Information Suite uses the 7th Edition of the AJCC Cancer Classification system to stage cancer patients. The 8th Edition has now come out and they would like to upgrade the system to meet the requirements of the state cancer registry. The investment for re-coding the infrastructure for all cancer types in Java is expected to be quite expensive and time conusming. They query the ECCF registry for &#34;AJCC Cancer Classification&#34; and find a plugin reasoner service that implements an OWL version of the AJCC 8th Edition classification system capable of inferring an anatomic stage based on data directly from pathology, imaging and clinical exam input through a service. Their system is now able to move with the speed of the Cancer Registry requirements rather than the pace of the software vendor. 

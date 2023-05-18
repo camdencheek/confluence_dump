@@ -1,0 +1,263 @@
+<h2 id="LexEVSMeetingMinutesDockerPlanningSession2017.06.12-Attendees">
+   Attendees
+</h2>
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        Name
+      </th>
+      <th>
+        Role
+      </th>
+      <th colspan="1">
+        Present
+      </th>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Mensah, Jacob
+      </td>
+      <td colspan="1">
+        NIH/NCI [C]
+      </td>
+      <td colspan="1">
+        x
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Hartman, Phil
+      </td>
+      <td>
+        NIH/NCI [C]
+      </td>
+      <td>
+        x
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Wei, Lu
+      </td>
+      <td colspan="1">
+        NIH/NCI [C]
+      </td>
+      <td colspan="1">
+        x
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Bauer, Scott
+      </td>
+      <td colspan="1">
+        Mayo
+      </td>
+      <td colspan="1">
+        x
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Stancl, Craig
+      </td>
+      <td colspan="1">
+        Mayo
+      </td>
+      <td colspan="1">
+        x
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Endle,  Cory
+      </td>
+      <td colspan="1">
+        Mayo
+      </td>
+      <td colspan="1">
+        x
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="LexEVSMeetingMinutesDockerPlanningSession2017.06.12-Links">
+  Links
+</h2>
+<ul>
+  <li>
+    LexEVS Docker Overview
+  </li>
+  <li>
+    <ul>
+      <li>
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=341185929" rel="nofollow">
+          LexEVS 16X237 Docker Setup
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    Docker scripts: lexevs-system-test git repository
+    <ul>
+      <li>
+        <a href="https://github.com/lexevs/lexevs-system-test/tree/v6.5.0" rel="nofollow">
+          https://github.com/lexevs/lexevs-system-test/tree/v6.5.0
+        </a>
+      </li>
+    </ul>
+  </li>
+</ul>
+<h2 id="LexEVSMeetingMinutesDockerPlanningSession2017.06.12-Agenda">
+  Agenda
+</h2>
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <td colspan="1">
+        Status Update
+        <ul>
+          <li>
+            Mayo team
+            <ul>
+              <li>
+                Access to
+                <a href="http://ncidockerhub.nci.nih.gov/lexevs" rel="nofollow">
+                  ncidockerhub.nci.nih.gov/lexevs
+                </a>
+                <ul>
+                  <li>
+                    Access is down?
+                  </li>
+                  <li>
+                    Do we need to be logged in to the NCI Docker hub to pull an image?
+                  </li>
+                </ul>
+              </li>
+              <li>
+                Storing images on NCI Nexus
+                <ul>
+                  <li>
+                    MySQL 5.6.33 - Done
+                  </li>
+                  <li>
+                    Tomcat 8.0.43-jre8 - Done
+                  </li>
+                  <li>
+                    CentOs 7 - is there a specific NCI image for this?
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </td>
+      <td colspan="1">
+        Discussion Points:
+        <ul>
+          <li>
+            Mayo was granted access to the NCI hosted Docker Hub
+          </li>
+          <li>
+            Stored images (Generic from Docker Hub)
+            <ul>
+              <li>
+                Tomcat
+              </li>
+              <li>
+                MySQL
+              </li>
+            </ul>
+          </li>
+          <li>
+            NCI had password changes applied and Mayo should now be able to log onto Docker once again.
+          </li>
+          <li>
+            NCI has goal to build NCI specific components. For now, there is minimal CentOS7 container as part of pilot. The Mayo team can use this as it is on the public DockerHub (
+            <a href="https://hub.docker.com/r/cbiit/centos7_base/" rel="nofollow">
+              https://hub.docker.com/r/cbiit/centos7_base/
+            </a>
+            )
+            <ul>
+              <li>
+                Timeline is in months (estimate 3 months)
+              </li>
+            </ul>
+          </li>
+          <li>
+            Tomcat to be updated to 8.5 (as per Jacob)
+          </li>
+          <li>
+            From internal Nexus Docker, read access for anonymous is Disabled. A service account can be created on the Jenkins side. (existing account can be used)
+          </li>
+          <li>
+            NCI and Mayo teams trying to accomplish the same goal of providing and using a common software environment.
+          </li>
+        </ul>
+        Decision Points:
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Deployable Docker Containers
+        <ul>
+          <li>
+            Goal: To build a LexEVS container with LexEVS components that match NCI&#39;s hardware and configuration that would be deployable on an NCI Docker dev system.
+          </li>
+          <li>
+            Are there NCI Docker Images for:
+          </li>
+          <li>
+            <ul>
+              <li>
+                CentOs 7
+              </li>
+              <li>
+                Tomcat 8.0.x
+              </li>
+              <li>
+                 MySql 5.6.x
+              </li>
+            </ul>
+          </li>
+          <li>
+            Discuss the steps necessary to build LexEVS deployable containers to run on the NCI Dev environment.
+          </li>
+        </ul>
+      </td>
+      <td colspan="1">
+        Discussion Points:
+        <ul>
+          <li>
+            Docker Prototype (proof of concept) on a Dev tier - need to look at what is needed.
+            <ul>
+              <li>
+                Time frame to be decided about what needs to be done.
+              </li>
+              <li>
+                Determine which containers are needed and how best to configure.
+              </li>
+            </ul>
+          </li>
+          <li>
+            Will plan on weekly touch points to move the effort forward.
+          </li>
+          <li>
+            Jenkins testing - NCI would like to use Docker Cluster to increase performance.
+          </li>
+        </ul>
+        Decision Points:
+      </td>
+    </tr>
+  </tbody>
+</table>

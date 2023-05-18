@@ -1,0 +1,47 @@
+import org.LexGrid.LexBIG.LexBIGService.LexBIGService;
+import org.LexGrid.LexBIG.Utility.Constructors;
+import org.LexGrid.LexBIG.caCore.interfaces.LexEVSApplicationService;
+import org.LexGrid.codingSchemes.CodingScheme;
+
+import gov.nih.nci.system.client.ApplicationServiceProvider;
+
+public class Test {
+
+LexBIGService lbSvc;
+
+public void run(String codingScheme, String version) {
+// Set the LexEVS URL (for remote access)
+String evsUrl = &#34;https://lexevsapi65.nci.nih.gov/lexevsapi65&#34;;
+
+// Get the LexBIG service reference from LexEVS Application Service
+try {
+lbSvc = (LexEVSApplicationService) ApplicationServiceProvider.getApplicationServiceFromUrl(evsUrl,
+&#34;EvsServiceInfo&#34;);
+} catch (Exception e1) {
+e1.printStackTrace();
+}
+// Resolve Scheme
+try {
+CodingScheme scheme = lbSvc.resolveCodingScheme(codingScheme,
+Constructors.createCodingSchemeVersionOrTagFromVersion(version));
+if(scheme != null) {
+System.out.println(&#34;Found scheme: &#34; + scheme.getCodingSchemeName());
+}else {
+System.out.println(&#34;Scheme not found: &#34; + codingScheme);
+}
+} catch (Exception e) {
+e.printStackTrace();
+}
+
+}
+
+/**
+* Main
+*/
+public static void main(String[] args) {
+String name = &#34;NCI Thesaurus&#34;;
+String version = &#34;18.03d&#34;;
+
+new Test().run(name, version);
+}
+} 

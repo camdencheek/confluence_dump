@@ -1,0 +1,249 @@
+<h1 id="ProtegeServerBuildProcedures-ProtégéServerBuildProcedures">
+  Protégé Server Build Procedures
+</h1>
+Contents of this Page
+<ul>
+  <li>
+    <a href="#ProtegeServerBuildProcedures-Objective" rel="nofollow">
+      Objective
+    </a>
+  </li>
+  <li>
+    <a href="#ProtegeServerBuildProcedures-Background" rel="nofollow">
+      Background
+    </a>
+  </li>
+  <li>
+    <a href="#ProtegeServerBuildProcedures-ComponentOverview" rel="nofollow">
+      Component Overview
+    </a>
+  </li>
+  <li>
+    <a href="#ProtegeServerBuildProcedures-StepsforJenkinsbuild" rel="nofollow">
+      Steps for Jenkins build
+    </a>
+  </li>
+  <li>
+    <a href="#ProtegeServerBuildProcedures-StepstocompleteaManualProt%C3%A9g%C3%A9ServerBuildProcessforDev,QA,andStageTiers" rel="nofollow">
+      Steps to complete a Manual Protégé Server Build Process for Dev, QA, and Stage Tiers
+    </a>
+    <ul>
+      <li>
+        <a href="#ProtegeServerBuildProcedures-BackupCurrentDatabaseProject" rel="nofollow">
+          Backup Current Database Project
+        </a>
+      </li>
+      <li>
+        <a href="#ProtegeServerBuildProcedures-Prot%C3%A9g%C3%A9UpdatedFileCheckoutandBuild" rel="nofollow">
+          Protégé Updated File Checkout and Build
+        </a>
+      </li>
+      <li>
+        <a href="#ProtegeServerBuildProcedures-ProtegeServerBuildAntCommands" rel="nofollow">
+          Protege Server Build Ant Commands
+        </a>
+      </li>
+      <li>
+        <a href="#ProtegeServerBuildProcedures-ConfiguringNewProtegeBuild" rel="nofollow">
+          Configuring New Protege Build
+        </a>
+      </li>
+    </ul>
+  </li>
+</ul>
+<h2 id="ProtegeServerBuildProcedures-Objective">
+  Objective
+</h2>
+This procedural guide is meant for use in performing a new Protégé server build for both the NCI Thesaurus and BiomedGT instances. Protégé server builds can be performed either manually, or via
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=15796896" rel="nofollow">
+  automated run scripts
+</a>
+. Generally, using the automated scripts would be less time-consuming. However, it is recommended that going through the manual process (at least once) be performed to understand the concepts and the workflow of a Protege build. Doing so will facilitate troubleshooting any future problems during a build.Server builds can include items such as bug fixes, software updates, and updates to the database schema. Build procedures will differ depending upon the aforementioned scenarios.
+<h2 id="ProtegeServerBuildProcedures-Background">
+  Background
+</h2>
+Protégé is a free, open-source editor, specific for working with ontologies.
+<h2 id="ProtegeServerBuildProcedures-ComponentOverview">
+  Component Overview
+</h2>
+<ul>
+  <li>
+    MySQL - All Protégé data resides in a MySQL database.
+  </li>
+</ul>
+<ul>
+  <li>
+    Protégé Server - The Protégé Server itself is an open-source application developed by Stanford University. It pulls data from a MySQL database and serves it up through RMI. The Protégé Server is compiled and run with Java 5.0. We currently have it running on a Linux OS.
+  </li>
+</ul>
+<ul>
+  <li>
+    Explanation Server - The Explanation server is also an open-source application developed by the Clark &amp; Parsia group in the Washington D.C. area. The server makes a connection to a specified Protege database, and classifies all concepts. The server will then allow users to pull up and view any concept&#39;s super-concepts as well as sub-concepts.
+  </li>
+</ul>
+<ul>
+  <li>
+    Protégé Client (Editor) - The Protégé Client is the editing tool which the editors utilize to create, update, or view the various concept and concept property data. Data can be accessed from the database via the Protégé Server. The editors have the client running on their Windows workstations.
+  </li>
+</ul>
+<h2 id="ProtegeServerBuildProcedures-StepsforJenkinsbuild">
+  Steps for Jenkins build
+</h2>
+There are 2 parts to the Jenkins build, the compilation and the deployment.  Navigate to
+<a href="https://evs-jenkins.nci.nih.gov" rel="nofollow">
+  https://evs-jenkins.nci.nih.gov
+</a>
+ and find &#34;default &gt;&gt; lower &gt;&gt; protege&#34;.  Select &#34;protege-build&#34; and select the tag given to you by the developers.  The build will take 10-15 minutes.  At the conclusion, go to &#34;protege_deploy_dev&#34; and deploy the tag you just built.
+<a href="/display/Protege/Protege+Server+Build+Procedures?preview=%2F12687328%2F413762817%2FProtege_Jenkins_Build.mp4" rel="nofollow">
+  Protege_Jenkins_Build.mp4
+</a>
+<h2 id="ProtegeServerBuildProcedures-StepstocompleteaManualProtégéServerBuildProcessforDev,QA,andStageTiers">
+  Steps to complete a Manual Protégé Server Build Process for Dev, QA, and Stage Tiers
+</h2>
+You will need
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=15796898" rel="nofollow">
+  tier-specific info for Dev, QA, Stage
+</a>
+before commencing the build.
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=12688289" rel="nofollow">
+  Production-tier information
+</a>
+is separated, since the information is a bit different than the other tiers.
+<h3 id="ProtegeServerBuildProcedures-BackupCurrentDatabaseProject">
+  Backup Current Database Project
+</h3>
+If there is an existing database project file which the Protege server is referencing, it would be a good idea to save a backup copy, in case the project ever needs to be rolled back to due to new build complications. Please follow the steps below to export a copy of the database to a file. If this is the very first build from scratch, scroll down to the &#39;Protege Updated File Checkout and Build&#39; section.
+<ul>
+  <li>
+    Open Reflection X to connect to your server instance (obtain username and password info from the system administrator).
+  </li>
+</ul>
+<ul>
+  <li>
+    Before shutting down the server, we will need to create a backup of the project before updating. From the terminal, go to /usr/local/protégé/Protégé_x.x/&lt;PROTÉGÉ INSTANCE&gt;/Protégé.Client-x.x.x and run sh run_protege.bat. Protege_x.x represents the current Protégé release version number. PROTÉGÉ INSTANCE represents either BiomedGT or NCIThesaurus ontology. Protégé.Client-x.x.x represents the current build version number.
+  </li>
+</ul>
+<ul>
+  <li>
+    Connect with the database project on the server. The database project should have the following naming convention: &lt;PROTEGE INSTANCE&gt;-YYMMDD-DB.pprj.
+  </li>
+</ul>
+<ul>
+  <li>
+    Click File, Convert Project to Format, Select OWL / RDF File, Enter location and name of new file (Use &#39;&lt;PROTÉGÉ INSTANCE&gt;-YYMMDD-File.owl&#39; as the filename convention), Click OK. This file can be saved at app/protégé/data/Protégé_x.x/&lt;PROTÉGÉ INSTANCE&gt;. Depending on the size of the database, conversion can usually take up to 30 minutes.
+  </li>
+</ul>
+<ul>
+  <li>
+    Exit the Protégé client WITHOUT saving.
+  </li>
+</ul>
+<h3 id="ProtegeServerBuildProcedures-ProtégéUpdatedFileCheckoutandBuild">
+  Protégé Updated File Checkout and Build
+</h3>
+<ul>
+  <li>
+    Checkout can be performed from a Windows GUI (if the Tortoise SVN client tool is installed) or, if via command prompt on the Linux server.
+  </li>
+</ul>
+<ul>
+  <li>
+    To run from the Windows GUI: Create the following folder structure: nciscn&lt;YYMMDD&gt;&lt;VERSION&gt;/protegegui/. From this location, right click, select &#39;SVN Checkout&#39;. A window will appear asking for the source and target of files. Protégé files are located in NCI SVN, and can be checked out from:
+    <a href="https://ncisvn.nci.nih.gov/svn/protegegui" rel="nofollow">
+      https://ncisvn.nci.nih.gov/svn/protegegui
+    </a>
+  </li>
+  <li>
+    To run from command prompt on the server, navigate to /app/protégé/repo, and create the following directory ncisvn&lt;YYMMDD&gt;&lt;VERSION&gt;/protegegui/ and run the svn checkout:
+  </li>
+</ul>
+NoteTo checkout the Protege source code, you can use the following target:
+svn co https://ncisvn.nci.nih.gov/svn/protegegui/collaborativedevterminologytools/scripts/trunk/
+<ul>
+  <li>
+    There may be instances where you will need to modify a few targets within the branches tag to reflect changes in other projects. In this case, you must verify that the proper &#39;svn-url.properties file is being referenced in the build.xml file. Each build will hold 2 separate svn-url.properties files. One is usually the default, which builds from the trunk folder. There is also a customized file that will build from the branches folders. Example code snippets are below for each file:
+    svn-url-trunk.properties (default)
+
+    &#39;ncitab.url=$nci.base.url/protegegui/*trunk*&#39;
+    ncitab.project=$projects/ncitab
+
+    nciconcepthistory.url=$nci.base.url/protegehistory/NCIConceptHistory/*trunk*
+    nciconcepthistory.project=$projects/nciprojecthistory
+
+    ncievshistory.url=$nci.base.url/protegehistory/NCIEVSHistory/*trunk*
+    ncievshistory.project=$projects/ncievshistory
+
+    classification.url=$nci.base.url/classification/*trunk*
+    classification.project=$projects/classification
+
+    *svn-url-1.4.properties (customized)*
+
+    ncitab.url=$nci.base.url/*nci-branches/1.4*/protegegui
+    ncitab.project=$projects/ncitab
+
+    nciconcepthistory.url=$nci.base.url/*nci-branches/1.4*/NCIConceptHistory
+    nciconcepthistory.project=$projects/nciconcepthistory
+
+    ncievshistory.url=$nci.base.url*/nci-branches/1.4*/NCIEVSHistory
+    ncievshistory.project=$projects/ncievshistory
+
+    classification.url=$nci.base.url/*nci-branches/1.4*/classification
+    classification.project=$projects/classification
+  </li>
+</ul>
+<ul>
+  <li>
+    You can either keep the newly created build folder in your local directory and build from there (assuming ant is installed locally), or transfer it to the server machine under app/protégé/repo. Utilize secure ssh client to transfer the svn checkout files over to the server.
+  </li>
+</ul>
+<ul>
+  <li>
+    Navigate to &lt;PATH&gt;/trunk and open the &#39;build.properties&#39; file and modify the &#39;PromptNCIPlugins.properties settings&#39; section within the file. This info represents the
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=15796898" rel="nofollow">
+      tier&#39;s database connection information
+    </a>
+    , and will need to be set before running the ant build commands. To edit the file using a Unix VI editor within the server console, type &#39;vi local.properties&#39;. The file should now be displayed in the console. ype &#39;Shift + I (eye)&#39; to enable editing, and utilize the arrow keys to navigate to the PromptNCIPlugins.properties section, and fill in the default database connection values with tier-specific values. Upon completion, type &#39;esc&#39; to move out of editing mode, and type &#39;:wq&#39; to overwrite, save changes, and exit the file back to the console prompt.
+  </li>
+</ul>
+<ul>
+  <li>
+    Within the same directory, open the &#39;version.info&#39; file and modify the current version to the latest version (if necessary) following the same steps as above. By default, the version number will display as 1.1.0. Save changes following the instructions above.
+  </li>
+</ul>
+<h3 id="ProtegeServerBuildProcedures-ProtegeServerBuildAntCommands">
+  Protege Server Build Ant Commands
+</h3>
+Run the following ant commands within the same directory as the build.xml file. The build.xml is usually stored in the same directory as the &#39;local.properties&#39; and &#39;version.info&#39; file. Once the build.xml file is found, the ant build targets are now ready to be run:
+<ul>
+  <li>
+    Run &#39;ant checkout&#39;. This command will check out all files from Stanford University that were not included, but are essential to the Protégé Build.
+  </li>
+</ul>
+<ul>
+  <li>
+    Upon successful checkout, run &#39;ant install.&#39; This process will compile all checked out files and will create a build/dist and build/archive subdirectory. The build/dist folder will contains updated Protégé client, server, admin, and explanation folders.
+  </li>
+</ul>
+<ul>
+  <li>
+    Run &#39;ant archive&#39; to create zip files for each of the Protégé packages. The process will also create an ncibuilder.zip file. This file contains all files for the entire project. The file will be created at &lt;PATH&gt; /trunk/build/archive.
+  </li>
+</ul>
+<ul>
+  <li>
+    Transfer the folders to usr/local/protégé/Protégé_x.x/&lt;PROTÉGÉ INSTANCE&gt; on the server machine. A copy of the client folder should also be saved on your local machine, to test a successful connection to the server after the build.
+  </li>
+</ul>
+NoteWhen copying the client to any server tier from Windows, DO NOT copy the JRE folder. A copy of the JRE should already installed on the server box, and copying over an existing JRE will take too long.
+<h3 id="ProtegeServerBuildProcedures-ConfiguringNewProtegeBuild">
+  Configuring New Protege Build
+</h3>
+If the build involves software updates that include any database code or schema changes, skip to the &#39;
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=12688287" rel="nofollow">
+  Protege Software Updates &amp; Configuring New Database Project
+</a>
+&#39; section. For builds that will only require software updates connecting to an existing database project, please follow the &#39;
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=12688279" rel="nofollow">
+  Protege Software Updates
+</a>
+&#39; section.

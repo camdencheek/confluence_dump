@@ -1,0 +1,531 @@
+Welcome to the caNanoLab 2.3 Installation Guide.Get SupportFor any general information about the application, support, or to report a bug, contact
+<a href="mailto:caNanoLab-Support@ISB-CGC.org" rel="nofollow">
+  caNanoLab-Support@ISB-CGC.org
+</a>
+. Print the Guide If you want to print a single page, refer to
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=8164401" rel="nofollow">
+  Printing a Page
+</a>
+.Topics in this document include:
+<ul>
+  <li>
+    <a href="#caNanoLab2.3InstallationGuide-IntroductiontocaNanoLab" rel="nofollow">
+      Introduction to caNanoLab
+    </a>
+  </li>
+  <li>
+    <a href="#caNanoLab2.3InstallationGuide-OpenSourceTechnologies" rel="nofollow">
+      Open Source Technologies
+    </a>
+    <ul>
+      <li>
+        <a href="#caNanoLab2.3InstallationGuide-ObtainingthecaNanoLabSourceCode" rel="nofollow">
+          Obtaining the caNanoLab Source Code
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#caNanoLab2.3InstallationGuide-AntBuildProperties" rel="nofollow">
+      Ant Build Properties
+    </a>
+    <ul>
+      <li>
+        <a href="#caNanoLab2.3InstallationGuide-SettingProperties" rel="nofollow">
+          Setting Properties
+        </a>
+      </li>
+      <li>
+        <a href="#caNanoLab2.3InstallationGuide-InstallationandDeployment" rel="nofollow">
+          Installation and Deployment
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#caNanoLab2.3InstallationGuide-Verification" rel="nofollow">
+      Verification
+    </a>
+  </li>
+</ul>
+<h2 id="caNanoLab2.3InstallationGuide-IntroductiontocaNanoLab">
+  Introduction to caNanoLab
+</h2>
+For more information about the 2.3 updates, refer to the
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=338237712" rel="nofollow">
+  caNanoLab 2.3 Release Notes
+</a>
+.
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=339380917" rel="nofollow">
+  Return to top
+</a>
+<h2 id="caNanoLab2.3InstallationGuide-OpenSourceTechnologies">
+  Open Source Technologies
+</h2>
+Download each of the following tools and follow the installation instructions provided with each respective product for your environment. Assistance from a MySQL database administrator is expected to properly configure the MySQL database. For MySQL database configuration and maintenance, it is also helpful to download the MySQL workbench (suite of GUI tools) at
+<a href="http://www.mysql.com/downloads/workbench/" rel="nofollow">
+  http://www.mysql.com/downloads/workbench/
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        Product
+      </th>
+      <th>
+        Link
+      </th>
+    </tr>
+    <tr>
+      <td>
+        Java Software Development Kit (JDK) version 8.0 and set JAVA_HOME
+      </td>
+      <td>
+        <a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html" rel="nofollow">
+          http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
+        </a>
+        <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+          <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+        </a>
+        <a href="http://www.mysql.com/downloads/workbench/" rel="nofollow"></a>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Wildfly version 8.2.0.Final
+      </td>
+      <td>
+        <a href="http://wildfly.org/downloads/" rel="nofollow">
+          http://wildfly.org/downloads/
+        </a>
+        <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+          <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+        </a>
+        <a href="http://www.mysql.com/downloads/workbench/" rel="nofollow"></a>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Jakarta Ant version 1.9.x and set ANT_HOME environment variable
+      </td>
+      <td>
+        <a href="http://archive.apache.org/dist/ant/binaries/" rel="nofollow">
+          http://archive.apache.org/dist/ant/binaries/
+        </a>
+        <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+          <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+        </a>
+        <a href="http://www.mysql.com/downloads/workbench/" rel="nofollow"></a>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        MySQL version 5.1.x
+      </td>
+      <td>
+        <a href="http://dev.mysql.com/downloads/mysql/5.1.html+" rel="nofollow">
+          http://dev.mysql.com/downloads/mysql/5.1.html
+        </a>
+        <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+          <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+        </a>
+        <a href="http://www.mysql.com/downloads/workbench/" rel="nofollow"></a>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Apache Maven 3.3.x or higher
+      </td>
+      <td>
+        <a href="https://archive.apache.org/dist/maven/maven-3" rel="nofollow">
+          https://archive.apache.org/dist/maven/maven-3
+          <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+            <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+          </a>
+        </a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=339380917" rel="nofollow">
+  Return to top
+</a>
+<h3 id="caNanoLab2.3InstallationGuide-ObtainingthecaNanoLabSourceCode">
+  Obtaining the caNanoLab Source Code
+</h3>
+Downloads for caNanoLab are available at
+<a href="https://github.com/CBIIT/cananolab/tree/cananolab-2.2-it-11" rel="nofollow">
+  caNanoLab GitHub Repository
+</a>
+.The
+<a href="https://wiki.nci.nih.gov/display/caNanoLab/caNanoLab+Software+License" rel="nofollow">
+  caNanoLab Software License
+</a>
+applies.
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=339380917" rel="nofollow">
+  Return to top
+</a>
+<h2 id="caNanoLab2.3InstallationGuide-AntBuildProperties">
+  Ant Build Properties
+</h2>
+<h3 id="caNanoLab2.3InstallationGuide-SettingProperties">
+  Setting Properties
+</h3>
+Follow these steps to set the build and deploy properties required for building and deploying caNanoLab.
+<h4 id="caNanoLab2.3InstallationGuide-Step1.ExtractcaNanoLab">
+  Step 1. Extract caNanoLab
+</h4>
+Extract the
+<a href="https://github.com/CBIIT/cananolab/archive/cananolab-2.3.1-it-07.zip" rel="nofollow">
+  GitHub location
+</a>
+ to a location on your local system, for example, C:\caNanoLab_2.3. and navigate into the “software” directory to reach the source. (This location is referred as &lt;CANANOLAB_SOURCE&gt; throughout the document). Verify that the following five folders exist in the directory &lt;CANANOLAB_SOURCE&gt;:
+<ul>
+  <li>
+    build
+  </li>
+  <li>
+    cananolab-db
+  </li>
+  <li>
+    cananolab-grid
+  </li>
+  <li>
+    cananolab-webapp
+  </li>
+  <li>
+    common
+  </li>
+</ul>
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=339380917" rel="nofollow">
+  Return to top
+</a>
+<h4 id="caNanoLab2.3InstallationGuide-Step2.EditAntProperties">
+  Step 2. Edit Ant Properties
+</h4>
+Edit the Ant properties file, build.properties, at &lt;CANANOLAB_SOURCE&gt;/build by specifying values for the following properties.
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        Property
+      </th>
+      <th>
+        Description
+      </th>
+    </tr>
+    <tr>
+      <td>
+        file.repository.dir
+      </td>
+      <td>
+        A directory on the system that hosts the Wildfly application server for storing uploaded files, for example, C:/apps/caNanoLab. Writable DirectoryCreate this directory prior to starting the application, and ensure that the user who starts the Wildfly server has Write access. If working on Windows platform, use either double back slashes \\ or a single forward slash / as the file separator.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        admin.email
+      </td>
+      <td>
+        The email address that receives requests for new user accounts, for example, the NCI CBIIT application support email for the NCI CBIIT installation, for example,
+        <a href="mailto:ncicbiit@mail.nih.gov" rel="nofollow">
+          ncicbiit@mail.nih.gov
+        </a>
+        .
+      </td>
+    </tr>
+    <tr>
+      <td>
+        ldap.authentication.enabled
+      </td>
+      <td>
+        A Boolean flag to indicate whether or not to use LDAP for user authentication. caNanoLab 2.1.1 and beyond does not support LDAP authentication. Set this to false.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        database.server
+      </td>
+      <td>
+        The name of the server hosting the database, for example, localhost.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        database.port
+      </td>
+      <td>
+        The database port number, for example, 3306.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        database.user
+      </td>
+      <td>
+        The database user name used in the caNanoLab application, for example, cananolab_app.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        database.password
+      </td>
+      <td>
+        The password for the database that the user specified above, for example, go!234.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        database.system.user
+      </td>
+      <td>
+        The system database user name with privileges to create a database, create tables, and grant user accesses to a database, for example, root.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        database.system.password
+      </td>
+      <td>
+        The password for the system database that the user specified above, for example, rootpass.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        jboss.server.dir
+      </td>
+      <td>
+        The Wildfly server directory, for example:C:/apps/wildfly-8.2.0.Final/standalone
+      </td>
+    </tr>
+  </tbody>
+</table>
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=339380917" rel="nofollow">
+  Return to top
+</a>
+<h3 id="caNanoLab2.3InstallationGuide-InstallationandDeployment">
+  Installation and Deployment
+</h3>
+<h4 id="caNanoLab2.3InstallationGuide-Step1.DBchangestobedeployedtomigratetocaNanoLab2.3fromcaNanoLab2.1">
+  Step 1. DB changes to be deployed to migrate to caNanoLab 2.3 from caNanoLab 2.1
+</h4>
+<h4 id="caNanoLab2.3InstallationGuide-aExecutethefollowingscriptsintheorderspecifiedbelow:">
+  a Execute the following scripts in the order specified below:
+</h4>
+<ul>
+  <li>
+    <a href="https://github.com/CBIIT/cananolab/blob/cananolab-2.2-it-11/software/cananolab-webapp/db-scripts/2.2/caNanoLab22.sql" rel="nofollow">
+      https://github.com/CBIIT/cananolab/blob/cananolab-2.3-it-11/software/cananolab-webapp/db-scripts/2.3/caNanoLab22.sql
+    </a>
+  </li>
+</ul>
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=339380917" rel="nofollow">
+  Return to top
+</a>
+<h4 id="caNanoLab2.3InstallationGuide-Step2.caNanoLabinstallationinstructionstoupgradeto2.3">
+  Step 2. caNanoLab installation instructions to upgrade to 2.3
+</h4>
+<h4 id="caNanoLab2.3InstallationGuide-aFollowthesestepstodeploythecaNanoLabapplication.">
+  a Follow these steps to deploy the caNanoLab application.
+</h4>
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        #
+      </th>
+      <th>
+        Action
+      </th>
+    </tr>
+    <tr>
+      <td>
+        1
+      </td>
+      <td>
+        Set up an environment variable JBOSS_HOME to point to the Wildfly installation directory.Windows PlatformIf working on the Windows platform, use either double back slashes // or a single forward slash / as the file separator, for example, JBOSS_HOME=C:/wildfly-8.2.0.Final (C:\wildfly-8.2.0.Final would fail).
+      </td>
+    </tr>
+    <tr>
+      <td>
+        2
+      </td>
+      <td>
+        Execute the Ant build script build.xml located at &lt;CANANOLAB_SOURCE&gt;/software/cananolab-webapp/build.xml with the target dist.Example: Issue the following commands to execute the Ant script:C:\&gt;cd C:\caNanoLab_2.3\software\cananolab-webapp C:\caNanoLab_2.3\software\cananolab-webapp&gt;ant dist Successful execution of the Ant script generates the following artifacts that include two deployable web archive war files, configuration files and libraries for running the web application in the Wildfly environment, and also places these artifacts in the appropriate directories under &lt;JBOSS_HOME&gt;. Artifacts generated are also available in the following folder under &lt;CANANOLAB_SOURCE&gt;: target/dist/cananolab-webapp/caNanoLab.war  target/dist/common/ApplicationSecurityConfig.xml target/dist/common/mysql-connector-java-5.1.26.jar  target/dist/common/properties-service.xml target/dist/common/bcprov-jdk15on-1.47.jar  target/dist/common/caNanoLab_modules.cli  target/dist/common/caNanoLab_setup.cli  target/dist/common/caNanoLab_deploy.clitarget/dist/common/wikihelp.properties
+      </td>
+    </tr>
+    <tr>
+      <td>
+        3
+      </td>
+      <td>
+        We recommend increasing the JBoss JVM heap size to 2G bytes and permanent generation (permgen) memory space to 256M bytes by updating the file &lt;JBOSS_HOME&gt;/bin/standalone.conf with the following JAVA_OPTS:JAVA_OPTS=&#34;-Xms512m -Xmx2048m -XX:PermSize=128m  -XX:MaxPermSize=256m -Dsun.rmi.dgc.client.gcInterval=3600000   -Dsun.rmi.dgc.server.gcInterval=3600000&#34;This configuration file is read when Wildfly server starts.For a standalone server, pass in the JVM settings either as command line arguments when executing the $JBOSS_HOME/bin/standalone.sh script, or by declaring them in $JBOSS_HOME/bin/standalone.conf.(For Windows users, the script to execute is %JBOSS_HOME%/bin/standalone.bat while the JVM settings can be declared in %JBOSS_HOME%/bin/standalone.conf.bat.)
+      </td>
+    </tr>
+    <tr>
+      <td>
+        4
+      </td>
+      <td>
+        Create a new directory structure C:/local/content/caNanoLab/artifacts and move the following artifacts.
+        <ul>
+          <li>
+            caNanoLab.war
+          </li>
+          <li>
+            bcprov-jdk15on-1.47.jar
+          </li>
+          <li>
+            mysql-connector-java-5.1.26.jar
+          </li>
+          <li>
+            caNanoLab_modules.cli
+          </li>
+          <li>
+            caNanoLab_setup.cli
+          </li>
+          <li>
+            caNanoLab_deploy.cli
+          </li>
+        </ul>
+        Create a new directory structure C:/local/content/caNanoLab/config and move the following artifacts.
+        <ul>
+          <li>
+            ApplicationSecurityConfig.xml
+          </li>
+          <li>
+            wikihelp.properties
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        5
+      </td>
+      <td>
+        Start JBoss application server in Standalone mode.From &lt;install-dir&gt;/bin:
+        ./standalone.sh --server-config=standalone-full.xml  The cli scripts assumes the CLI port is running at 19990. If it is different, update the port number at the second line in the script. For Windows environment:jboss-cli.bat --file=C:/local/content/caNanoLab/artifacts/caNanoLab_modules.cli and press &lt;ENTER&gt;. For Linux environment:jboss-cli.sh --file= /local/content/caNanoLab/artifacts/caNanoLab_modules.cli and press &lt;ENTER&gt;.Run the remaining caNanoLab_setup.cli and caNanoLab_deploy.cli that deploys the caNanoLab.After successful completion, the following output appears in the window.{&#34;outcome&#34;=&gt; &#34;success&#34;} {&#34;outcome&#34;=&gt; &#34;success&#34;} {&#34;outcome&#34;=&gt; &#34;success&#34;} {&#34;outcome&#34;=&gt; &#34;success&#34;} { &#34;outcome&#34;=&gt; &#34;success&#34;, &#34;result&#34;=&gt; undefined }
+      </td>
+    </tr>
+  </tbody>
+</table>
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=339380917" rel="nofollow">
+  Return to top
+</a>
+<h4 id="caNanoLab2.3InstallationGuide-bMigrateaccesscontroldatafromCSM5.2toSpringSecurity.">
+  b Migrate access control data from CSM 5.2 to Spring Security.
+</h4>
+The migration of access control data has been implemented as a series of ReST services. These services must be invoked in the following order for all access data to be migrated from CSM to Spring Security.
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        #
+      </th>
+      <th>
+        Action
+      </th>
+    </tr>
+    <tr>
+      <td>
+        1
+      </td>
+      <td>
+        Migrates all user accounts and grants them all the default Public role and Curator role to curators in CSM.
+        <a href="http://localhost:8080/caNanoLab/rest/datamigration/migrateuseraccounts" rel="nofollow">
+          http://localhost:8080/caNanoLab/rest/datamigration/migrateuseraccounts
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        2
+      </td>
+      <td>
+        Migrates all access for samples - RWD access for owner and curator, R access for researcher, RWD and R access for specific users.
+        <a href="http://localhost:8080/caNanoLab/rest/datamigration/migratesampleaccess" rel="nofollow">
+          http://localhost:8080/caNanoLab/rest/datamigration/migratesampleaccess
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        3
+      </td>
+      <td>
+        Migrates all access for protocols - RWD access for owner and curator, R access for researcher, RWD and R access for specific users.
+        <a href="http://localhost:8080/caNanoLab/rest/datamigration/migrateprotocolaccess" rel="nofollow">
+          http://localhost:8080/caNanoLab/rest/datamigration/migrateprotocolaccess
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        4
+      </td>
+      <td>
+        Migrates all access for publications - RWD access for owner and curator, R access for researcher, RWD and R access for specific users.
+        <a href="http://localhost:8080/caNanoLab/rest/datamigration/migratepublicationaccess" rel="nofollow">
+          http://localhost:8080/caNanoLab/rest/datamigration/migratepublicationaccess
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        5
+      </td>
+      <td>
+        Adds all charaterizations to the ACL tables and sets them up with the corresponding sample as parent objects. This sets up the characterizations to inherit the access of their sample.
+        <a href="http://localhost:8080/caNanoLab/rest/datamigration/migratecharaccess" rel="nofollow">
+          http://localhost:8080/caNanoLab/rest/datamigration/migratecharaccess
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        6
+      </td>
+      <td>
+        Migrates all organizations to ACL tables and grant public access. Also, sets up inheritance of access for POCs of organizations.
+        <a href="http://localhost:8080/caNanoLab/rest/datamigration/migratesamplesourceaccess" rel="nofollow">
+          http://localhost:8080/caNanoLab/rest/datamigration/migratesamplesourceaccess
+        </a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Return to top
+<h4 id="caNanoLab2.3InstallationGuide-cRestarttheapplicationserveraftertheabovesteptomigratedataiscompleted.">
+  c Restart the application server after the above step to migrate data is completed.
+</h4>
+<h2 id="caNanoLab2.3InstallationGuide-Verification">
+  Verification
+</h2>
+Once the deployment artifacts are deployed and the Wildfly application server is correctly configured, shutdown and restart the Wildfly application server, which in turn starts the caNanoLab application.Open the URL, http://&lt;APP_SERVER_URL&gt;/caNanoLab/, for example,
+<a href="http://localhost:8080/caNanoLab" rel="nofollow">
+  http://localhost:8080/caNanoLab
+</a>
+. The Welcome/Login page displays.
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=339380917" rel="nofollow">
+  Return to top
+</a>

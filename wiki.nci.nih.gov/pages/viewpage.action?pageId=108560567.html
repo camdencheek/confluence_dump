@@ -1,0 +1,79 @@
+ Contents of This Page
+<ul>
+  <li>
+    <a href="#LexEVS6.1DesignDocumentDetailedDesignPerformanceValueSetResolution(Persistence)-Overview" rel="nofollow">
+      Overview
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.1DesignDocumentDetailedDesignPerformanceValueSetResolution(Persistence)-CurationStrategy" rel="nofollow">
+      Curation Strategy
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.1DesignDocumentDetailedDesignPerformanceValueSetResolution(Persistence)-ResolvedValueSetLoader" rel="nofollow">
+      Resolved Value Set Loader
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.1DesignDocumentDetailedDesignPerformanceValueSetResolution(Persistence)-ResolvedValueSetClientAPI" rel="nofollow">
+      Resolved Value Set Client API
+    </a>
+  </li>
+</ul>
+Document Information
+Author: Bauer, Scott Email:
+<a href="mailto:Bauer.Scott@mayo.edu" rel="nofollow">
+  Bauer.Scott@mayo.edu
+</a>
+Team: LexEVS Contract: ST12-1106  Client: NCI CBIIT National Institutes of Heath US Department of Health and Human Services
+Revision History
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Version
+      </th>
+      <th>
+        Date
+      </th>
+      <th>
+        Description of Changes
+      </th>
+      <th>
+        Author
+      </th>
+    </tr>
+    <tr>
+      <td>
+        1.0
+      </td>
+      <td>
+        2013/03/05
+      </td>
+      <td>
+        Initial Version
+      </td>
+      <td>
+        Bauer, Scott
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="LexEVS6.1DesignDocumentDetailedDesignPerformanceValueSetResolution(Persistence)-Overview">
+  Overview
+</h2>
+Resolving rule based value sets against a large set of terminologies has proven to have poor performance. Given that a large number of value sets may normally be dynamically resolved over a wide variety of code systems the problem can be compounded. Resolving value sets and persisting them can provide a static value set that does not have to be constructed by a potentially complex algorithm against a set of elements in some terminology service code system or systems.
+<h2 id="LexEVS6.1DesignDocumentDetailedDesignPerformanceValueSetResolution(Persistence)-CurationStrategy">
+  Curation Strategy
+</h2>
+Value sets will have to be chosen for resolution by the terminology service administrator based on user demand before loaded via a LexEVS Value Set Definition resolution loader to a persistence strategy.
+<h2 id="LexEVS6.1DesignDocumentDetailedDesignPerformanceValueSetResolution(Persistence)-ResolvedValueSetLoader">
+  Resolved Value Set Loader
+</h2>
+Currently LexEVS can load a value set definition to the underlying database, but does not persist the resolution of that definition. Additional persistence functionality will be added to the LexEVSValueSetDefinition API to provide the needed loader for resolved value sets. Since value sets are comprised of LexEVS entities, the resolution of these value sets can be persisted to a coding scheme created specifically as a container for that value set. Since terminology services will want to distinguish between value set coding schemes and actual coding schemes a coding scheme property named codingschemetype with value valueset will allow internal APIs for coding schemes to distinguish between the two types, preventing external users from seeing value set coding schemes in the terminology service list of terminologies. The effect will be that the coding scheme API will never &#34;see&#34; the coding scheme value sets and the resolved value set API will only see the value set type coding schemes.
+<img alt="LexEVS Value Coding Scheme Set API and LexEVS Coding Scheme API" width="500" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%206.1%20Design%20Document%20-%20Detailed%20Design%20-%20Performance%20-%20Value%20Set%20Resolution%20(Persistence)/valuesetarch.png?api=v2">
+<h2 id="LexEVS6.1DesignDocumentDetailedDesignPerformanceValueSetResolution(Persistence)-ResolvedValueSetClientAPI">
+  Resolved Value Set Client API
+</h2>
+A new client API will need to be developed for LexEVS to provide Value Set Definition like access to the persisted value sets.

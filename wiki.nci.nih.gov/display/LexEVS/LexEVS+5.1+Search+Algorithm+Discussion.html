@@ -1,0 +1,222 @@
+Archived from the GForge wiki of the LexEVS project. Last edited August 14, 2009.
+<ul>
+  <li>
+    LexEVS 5.1 Search Algorithms Feedback
+  </li>
+</ul>
+NOTE: For all questions regarding special characters, see GForge
+<a href="http://gforge.nci.nih.gov/tracker/index.php?func=detail&amp;aid=22565&amp;group_id=491&amp;atid=1853" rel="nofollow">
+  http://gforge.nci.nih.gov/tracker/index.php?func=detail&amp;aid=22565&amp;group_id=491&amp;atid=1853
+</a>
+Many of the characters referred to below are dropped during our indexing process. We may choose to not drop some of these, but we will need to decide which ones, as denomalizing our indexes by leaving in special characters will impact search precision.
+<ul>
+  <li>
+    Lucene Query
+  </li>
+  <li>
+    phrase (&#34;phrase in string&#34; matches &#34;there is a phrase in string sometimes&#34;)
+    <ul>
+      <li>
+        The algorithm seems to have difficulty finding terms containing &#39;*&#39; or &#39;^&#39; character.
+      </li>
+    </ul>
+  </li>
+  <li>
+    contains (* term* *)
+    <ul>
+      <li>
+        The method may throw exception if the search string contains special characters; for example, (R*,S*)4,4&#39;(1,2-Diethyl-1,2-ethanediyl)bis[phenol].
+      </li>
+    </ul>
+  </li>
+  <li>
+    Leading And Trailing Wild Card (term)
+    <ul>
+      <li>
+        Question: If I search against NCI MetaThesaurus using ell aggregation factoras a search string, do I expect the algorithm to return the concept Cell Aggregation (C0007580)? And, how does this algorithm differ from the substring algorithm?
+        <ul>
+          <li>
+            The idea is for the user to not have to insert any wildcard characters at all. The algorithms will do that automatically. So, Leading and Trailing Wild Card algorithm inserts a wildcard at the beginning and end of each term. So, if the user inputs &#39;ell aggregation factor&#39;, the algorithm will turn that into &#39;ell aggregation factor&#39;. If the user wants to be in control of where the wilcards are placed, they should use &#39;Lucene Query&#39; and place the wildcards where necessary. But getting to the question, if the user inputs &#39;ell aggregation factor&#39; in &#39;Leading And Trailing Wild Card&#39; - it WILL return &#34;Cell Aggregation&#34; because the term matches are currently OR&#39;ed. So the query looks like (ell OR aggregation OR factor). The more terms that match the higher the score will be. This can be an &#39;AND&#39; if that is preferred – (ell AND aggregation AND factor), this will NOT match Cell Aggregation because it won&#39;t contain the &#39;factor&#39; term.
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    This differs from substring because substring does not place a leading wildcard (this is for performance reasons – leading wildcards are very expensive searches). If a user inputs &#39;hear ttack&#39; – two things will happen:
+    <ul>
+      <li>
+        First, the indexes will be searched for &#39;hear*&#39; and &#39;ttack*&#39;
+      </li>
+      <li>
+        Next, the indexes will be searched for &#39;raeh* and kcatt*&#39;. We index every property value in reverse, so this step will be compared to the reverse index. This way we can eliminate the leading wildcard.
+      </li>
+      <li>
+        Implementation aside, what we end up with is ((hear OR hear) OR (ttack OR ttack))
+      </li>
+      <li>
+        NOTICE for this search, you cannot input &#39;ear&#39; and expect to match &#39;heart&#39; because even searching against the reverse index, this would require a leading wildcard to match.
+      </li>
+    </ul>
+  </li>
+  <li>
+    exactMatch
+    <ul>
+      <li>
+        The algorithm seems to have difficulty finding terms containing &#39;*&#39;, &#39;^&#39;, and posssibly &#39;?&#39; character.
+        <ul>
+          <li>
+            test
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    subString (term or term but NOT term) NOTE: Not functional yet in NCI Meta Browser Prototype – pending re-indexing
+    <ul>
+      <li>
+        Problem iterating through a large search result:
+        <ul>
+          <li>
+            A RemoteAccessException can be thrown when iterating through a large search result on a client machine with not enough memory. This occurs while calling the following statement multiple times:
+            <ul>
+              <li>
+                iterator.next(maxReturn).getResolvedConceptReference();
+              </li>
+            </ul>
+          </li>
+          <li>
+            It fails non-deterministically. For example, the following search fails on a machine with 2GB of RAM:
+            <ul>
+              <li>
+                searchText = &#34;protein&#34;, algorithm = &#34;subString&#34;, maxReturn = 100
+              </li>
+              <li>
+                Note: Should find close to 70,000 references.
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    Stemmed Lucene Query
+  </li>
+  <li>
+    startsWith (term*)
+    <ul>
+      <li>
+        The algorithm seems to have difficulty finding terms containing &#39;?&#39; or &#39;^&#39; character.
+      </li>
+    </ul>
+  </li>
+  <li>
+    Double Metaphone Lucene Query (spelling-error tolerant)
+    <ul>
+      <li>
+        The ranking part of the algorithm may need to be improved. For example, searching for &#34;brest kancer&#34; would return NCI MetaThesaurus concepts in the following order:
+        <ul>
+          <li>
+            (1) C0006142:Malignant neoplasm of breast
+          </li>
+          <li>
+            (2) C0376358:Malignant neoplasm of prostate
+          </li>
+          <li>
+            (3) C0600139:Prostate carcinoma
+          </li>
+          <li>
+            (4) C0678222:Breast Carcinoma
+          </li>
+          <li>
+            (5) CL324486:Prostate Cancer
+          </li>
+          <li>
+            (6) C1863600:PROSTATE CANCER/BRAIN CANCER SUSCEPTIBILITY
+          </li>
+          <li>
+            (7) CL008190:Breast Cancer Surveillance Consortium
+          </li>
+          <li>
+            (8) C0007104:Female Breast Carcinoma
+          </li>
+          <li>
+            ...
+          </li>
+        </ul>
+      </li>
+      <li>
+        The search may fail if the target string contains a special character like &#39;*&#39;.
+      </li>
+    </ul>
+  </li>
+  <li>
+    Weighted Double Metaphone Lucene Query (spelling-error tolerant, but exact entered search string is also considered)
+    <ul>
+      <li>
+        The ranking part of the algorithm may need to be improved. For example, searching for &#34;brest kancer&#34; would return NCI MetaThesaurus concepts in the following order:
+        <ul>
+          <li>
+            (1) C0006142:Malignant neoplasm of breast
+          </li>
+          <li>
+            (2) C0313407:hemoglobin Brest
+          </li>
+          <li>
+            (3) C0376358:Malignant neoplasm of prostate
+          </li>
+          <li>
+            (4) C0600139:Prostate carcinoma
+          </li>
+          <li>
+            (5) C0678222:Breast Carcinoma
+          </li>
+          <li>
+            (6) CL324486:Prostate Cancer
+          </li>
+          <li>
+            (7) C1863600:PROSTATE CANCER/BRAIN CANCER SUSCEPTIBILITY
+          </li>
+          <li>
+            (8) CL008190:Breast Cancer Surveillance Consortium
+          </li>
+          <li>
+            (9) C0007104:Female Breast Carcinoma
+          </li>
+          <li>
+            (10) C0007112:Prostate Adenocarcinoma
+          </li>
+          <li>
+            ...
+          </li>
+        </ul>
+      </li>
+      <li>
+        The search may fail if the target string contains a special character like &#39;*&#39;.
+      </li>
+    </ul>
+  </li>
+  <li>
+    Reg Exp
+    <ul>
+      <li>
+        The algorithm fails on &#34;.ene.&#34; (Refer to GF#21849).
+        <ul>
+          <li>
+            Lucene builds RegExp queries by constructing a query with multiple Boolean Query Clauses. Because of this, it does not scale well to large ontologies. For we now (as of Aug 3rd) will throw a parameter exception if the user inputs a RegExp query that is too general. Basically, we are catching the &#39;exceeded maxClause error&#39; of Lucene. Leading And Trailing Wild Card will handle this much more gracefully – that algorithm will accept &#39;ene&#39;, turn it into &#39;ene&#39;, and return results.
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    literal (escapes all special characters)
+    <ul>
+      <li>
+        searches on ALL characters, even ones that are Lucene special characters. Everything the user inputs is taken literally – if they input a special character is it escaped by the algorithm automatically.
+      </li>
+    </ul>
+  </li>
+</ul>

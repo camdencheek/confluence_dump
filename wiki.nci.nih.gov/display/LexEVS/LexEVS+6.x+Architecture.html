@@ -1,0 +1,485 @@
+Contents of this Page
+<ul>
+  <li>
+    <a href="#LexEVS6.xArchitecture-LexEVSArchitectureOverview" rel="nofollow">
+      LexEVS Architecture Overview
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.xArchitecture-HistoryandDefinition" rel="nofollow">
+      History and Definition
+    </a>
+    <ul>
+      <li>
+        <a href="#LexEVS6.xArchitecture-WhatisLexGrid?" rel="nofollow">
+          What is LexGrid?
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.xArchitecture-WhatisLexBIG?" rel="nofollow">
+          What is LexBIG?
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.xArchitecture-WhatisLexEVS?" rel="nofollow">
+          What is LexEVS?
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#LexEVS6.xArchitecture-LexEVS6.xArchitectureOverview" rel="nofollow">
+      LexEVS 6.x Architecture Overview
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.xArchitecture-LexEVS6.xHigh-levelDesignDiagram" rel="nofollow">
+      LexEVS 6.x High-level Design Diagram
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.xArchitecture-LexBIGArchitecture" rel="nofollow">
+      LexBIG Architecture
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.xArchitecture-LexBIGServices" rel="nofollow">
+      LexBIG Services
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.xArchitecture-ServiceManagementSubsystem" rel="nofollow">
+      Service Management Subsystem
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.xArchitecture-MetadataandDiscoverySubsystem" rel="nofollow">
+      Metadata and Discovery Subsystem
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.xArchitecture-QuerySubsystem" rel="nofollow">
+      Query Subsystem
+    </a>
+    <ul>
+      <li>
+        <a href="#LexEVS6.xArchitecture-LexicalSetOperations" rel="nofollow">
+          Lexical Set Operations
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.xArchitecture-GraphSetOperations" rel="nofollow">
+          Graph Set Operations
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.xArchitecture-MetadataOperations" rel="nofollow">
+          Metadata Operations
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.xArchitecture-HistoryOperations" rel="nofollow">
+          History Operations
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#LexEVS6.xArchitecture-LexEVSCTS2Services" rel="nofollow">
+      LexEVS CTS 2 Services
+    </a>
+    <ul>
+      <li>
+        <a href="#LexEVS6.xArchitecture-Overview" rel="nofollow">
+          Overview
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.xArchitecture-Standards" rel="nofollow">
+          Standards
+        </a>
+        <ul>
+          <li>
+            <a href="#LexEVS6.xArchitecture-XMLSchema" rel="nofollow">
+              XML Schema
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS6.xArchitecture-Functions" rel="nofollow">
+              Functions
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS6.xArchitecture-ComponentStandards" rel="nofollow">
+              Component Standards
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#LexEVS6.xArchitecture-AssemblyRules" rel="nofollow">
+          Assembly Rules
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.xArchitecture-LexEVSCTS2Documentation" rel="nofollow">
+          LexEVS CTS2 Documentation
+        </a>
+      </li>
+    </ul>
+  </li>
+</ul>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        LexEVS 6.x Design Links to Include
+      </th>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427373" rel="nofollow">
+              Design Guide Main Page
+            </a>
+            <ul>
+              <li>
+                <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427359" rel="nofollow">
+                  LexEVS Information Models
+                </a>
+              </li>
+              <li>
+                <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427360" rel="nofollow">
+                  LexEVS Architecture
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=69730353" rel="nofollow">
+              LexEVS 6.0 Main Page
+            </a>
+          </li>
+          <li>
+            <a href="http://LexEVS" rel="nofollow">
+              LexEVS Current Release
+            </a>
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="LexEVS6.xArchitecture-LexEVSArchitectureOverview">
+  LexEVS Architecture Overview
+</h2>
+LexEVS software architecture and implementation is designed to facilitate flexibility and future expansion in the research community. The purpose of LexEVS is to enable individual Cancer Centers and others to use the provided EVS services and if desired, install local instances of vocabularies.
+<h2 id="LexEVS6.xArchitecture-HistoryandDefinition">
+  History and Definition
+</h2>
+<h3 id="LexEVS6.xArchitecture-WhatisLexGrid?">
+  What is LexGrid?
+</h3>
+LexGrid is the model used to store terminologies. The LexGrid Model is Mayo Clinic&#39;s proposal for standard storage of controlled vocabularies and ontologies. The LexGrid Model defines how vocabularies should be formatted and represented programmatically, and is intended to be flexible enough to accurately represent a wide variety of vocabularies and other lexically-based resources. The model also defines several different server storage mechanisms (e.g., relational database, LDAP) and an XML format. This model provides the core representation for all data managed and retrieved through the LexBIG system, and is now rich enough to represent vocabularies provided in numerous source formats including:
+<ul>
+  <li>
+    Open Biomedical Ontologies (OBO)
+  </li>
+  <li>
+    Web Ontology Language (OWL), e.g., NCI Thesaurus
+  </li>
+  <li>
+    Unified Medical Language System (UMLS) Rich Release Format (RRF), e.g., NCI Metathesaurus
+  </li>
+</ul>
+This common model is a critical component of the LexGrid project. Once disparate vocabulary information can be represented in a standardized model, it becomes possible to build common repositories to store vocabulary content and common programming interfaces and tools to access and manipulate that content. The HL7/OMG
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=63995984" rel="nofollow">
+  Common Terminology Services
+</a>
+(CTS2) and LexBIG API are two examples of APIs able to query information stored in the LexGrid Model.
+<h3 id="LexEVS6.xArchitecture-WhatisLexBIG?">
+  What is LexBIG?
+</h3>
+LexBIG is the set of services that EVS adapters use to store/retrieve terminology metadata. LexBIG is a more specific project that applied LexGrid vision and technologies to requirements of the research community. The goal of the project is to build a vocabulary server accessed through a well-structured application programming interface (API) capable of accessing and distributing vocabularies as commodity resources. The server is to be built using standards-based and commodity technologies. Primary objectives for the project include:
+<ul>
+  <li>
+    Provide a robust and scalable open source implementation of EVS-compliant vocabulary services. The API specification will be based on but not limited to fulfillment of the caCORE EVS API. The specification will be further refined to accommodate changes and requirements based on prioritized needs of the NCI community.
+  </li>
+  <li>
+    Provide a flexible implementation for vocabulary storage and persistence, allowing for alternative mechanisms without impacting client applications or end users. Initial development will focus on delivery of open source freely available solutions, though this does not preclude the ability to introduce commercial solutions (e.g. Oracle).
+  </li>
+  <li>
+    Provide standard tooling for load and distribution of vocabulary content. This includes but is not limited to support of standardized representations such as UMLS Rich Release Format (RRF), the OWL web ontology language, and Open Biomedical Ontologies (OBO).
+  </li>
+</ul>
+<h3 id="LexEVS6.xArchitecture-WhatisLexEVS?">
+  What is LexEVS?
+</h3>
+LexEVS combines LexBIG and the EVS adapters into one set of services. LexEVS is a collection of programmable interfaces that provides developers with the ability to access any installation of the LexEVS terminology server. The controlled terminologies hosted by the NCI EVS Project are published via the Open-Source LexEVS Terminology Server. It is a caCORE Software Development Kit (SDK) generated system. The caCORE SDK is a set of tools that can be used by an intermediate Java developer to create a caCORE-like system.Such systems are constructed using certain design principles:
+<ul>
+  <li>
+    UML Modeling
+  </li>
+  <li>
+    N-tier architecture with open API&#39;s
+  </li>
+  <li>
+    Controlled vocabularies
+  </li>
+  <li>
+    Registered metadata
+  </li>
+</ul>
+LexEVS has a number of API mechanisms for use with various technologies. In addition, LexEVS provides developers GUIs for administration and testing of the terminology server. These GUIs are intended only for developers.
+<h2 id="LexEVS6.xArchitecture-LexEVS6.xArchitectureOverview">
+  LexEVS 6.x Architecture Overview
+</h2>
+The LexEVS 6.x infrastructure exhibits an n-tiered architecture with client interfaces, server components, domain objects, data sources, and back-end systems. This n-tiered system divides tasks or requests among different servers and data stores. This isolates the client from the details of where and how data is retrieved from different data stores.The system also performs common tasks such as logging and provides a level of security for protected content. Clients (browsers, applications) receive information through designated application programming interfaces (APIs). Java applications communicate with back-end objects via domain objects packaged within the client.jar. Non-Java applications can communicate via SOAP (Simple Object Access Protocol) or REST (Representational State Transfer) services.Most of the LexEVS API infrastructure is written in the Java programming language and leverages reusable, third-party components. The service infrastructure is composed of the following layers:
+<ul>
+  <li>
+    Application Service Layer - accepts incoming requests from all public interfaces and translates them, as required, to Java calls in terms of the native LexEVS API. Queries are invoked against the Distributed LexEVS API, which acts as proxy to invoke the equivalent function against the LexEVS core Java API.
+  </li>
+  <li>
+    Core API Layer - Local Java API implementation that underpins all LexEVS API requests. Search of pre-populated Lucene index files is used to evaluate query results before incurring cost of database access. Access to the LexGrid database is performed as required to populate returned objects using pooled connections.
+  </li>
+  <li>
+    Data Source Layer - is responsible for storage and access to all data required to represent the objects returned through API invocation.
+  </li>
+</ul>
+<h2 id="LexEVS6.xArchitecture-LexEVS6.xHigh-levelDesignDiagram">
+  LexEVS 6.x High-level Design Diagram
+</h2>
+The figure that follows shows the following components of the Architecture Diagram:
+<ul>
+  <li>
+    Clients: Local, Distributed, and caGrid clients, and SOAP, REST, QBE Clients.
+  </li>
+  <li>
+    Application Service: CTS2 (LexEVS Local Runtime), Distributed LesEVS, LexEVS caCORE API&#39;s.
+  </li>
+  <li>
+    Core API: LesEVS Model Objects Extended for CTS 2 = &gt; DAO
+  </li>
+  <li>
+    Indexes and Data Source: Lucene Index Files and LexGrid DB
+  </li>
+  <li>
+    Optional Arangodb support for high speed graph resolution of terminology hierarchy and relationship graphs
+  </li>
+</ul>
+<h2 id="LexEVS6.xArchitecture-LexBIGArchitecture">
+  LexBIG Architecture
+</h2>
+<img height="400" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%206.x%20Architecture/LexEVSArch.png?api=v2">
+<h2 id="LexEVS6.xArchitecture-LexBIGServices">
+  LexBIG Services
+</h2>
+This section describes architectural detail for services provided by the LexBIG system. These services are geared toward the administration, management, and serving of vocabularies defined to the LexGrid/LexBIG information model. A system overview is provided, followed by a description of key subsystems and components. Each subsystem is described in terms of its overall structure, formal model, and specification of key public interfaces.The following figure shows the LexBIG Services diagram.
+<img alt="This graphic lists the LexBIG service components as described below." src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%206.x%20Architecture/LexBIG_Service_Components.jpg?api=v2">
+The LexBIG Service is designed to run standalone or as part of a larger network of services. It is comprised of four primary subsystems: Service Management, Service Metadata, Query Operations, and Extensions.
+<ul>
+  <li>
+    The Service Manager provides administration control for loading a vocabulary and activating a service. The Service Manager comprises the Indexers and Loaders.
+  </li>
+  <li>
+    The Service Metadata provides external clients with information about the vocabulary content (e.g. NCI Thesaurus) and appropriate licensing information. The Service Metadata comprises the Coding Scheme Metadata and Licensing.
+  </li>
+  <li>
+    The Query Operations provide numerous functions for querying and traversing vocabulary content. The Query Service comprises the LexicalSet Operations, Graph Operations, and History.
+  </li>
+  <li>
+    Finally, the Extensions component provides a mechanism to extend the specific service functions, such as Loaders, or re-wrap specific query operations into convenience methods. The Extensions comprises of Plug-ins. Primary points of interaction for programming include the following classes:
+  </li>
+</ul>
+LexBIGService - This interface provides centralized access to all LexBIG services.LexBIGServiceManager - The service manager provides a centralized access point for administrative functions, including write and update access for a service&#39;s content. For example, the service manager allows new coding schemes to be validated and loaded, existing coding schemes to be retired and removed, and the status of various coding schemes to be updated and changed.
+<h2 id="LexEVS6.xArchitecture-ServiceManagementSubsystem">
+  Service Management Subsystem
+</h2>
+The following figure shows a diagram Service Management Subsystem.
+<img alt="This graphic shows the Service Management Subsystem as described below." src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%206.x%20Architecture/Service_Management_Subsystem.jpg?api=v2">
+This subsystem provides administrative access to functions related to management and publication of LexBIG vocabularies. These functions are generally considered to be reserved for LexBIG administrators, with detailed instructions on how to secure and carry out related tasks described by the LexBIG Administrator&#39;s Guide.This subsystem is further broken down into the following components:
+<ul>
+  <li>
+    IndexersVocabularies may be indexed to provide enhanced performance or query capabilities. Types of indexes incorporated into the LexBIG system include but are not limited to the following:
+    <ul>
+      <li>
+        Lexical Match - for example, &#34;begins-with&#34; and &#34;contains&#34;
+      </li>
+      <li>
+        Phonetic - allows for the ability to query based on &#34;sounds-like&#34; entry of search criteria.
+      </li>
+      <li>
+        Stemming - allows for the ability to find lexical variations of search terms.Index creation is typically bundled into the load process. Architecturally speaking, however, this capability is decoupled and extensible.
+      </li>
+      <li>
+        Asserted Value Set Indexing – Indexes value sets separately from the source terminology
+      </li>
+    </ul>
+  </li>
+  <li>
+    Loaders Vocabularies may be imported to the system from a variety of accepted formats, including but not limited to:
+    <ul>
+      <li>
+        LexGrid XML (LexBIG canonical format)
+      </li>
+      <li>
+        NCI Thesaurus, provided in Web Ontology Language format (OWL)
+      </li>
+      <li>
+        UMLS Rich Release format (RRF)
+      </li>
+      <li>
+        Open Biomedical Ontologies format (OBO)As with indexers, the load mechanism is designed to be extensible from an architectural standpoint. Additional loaders can be supported by the introduction of pluggable modules. Each module is implemented in the Java programming language according to a LexBIG-provided interface, and registered to the loader runtime environment.
+      </li>
+      <li>
+        Asserted Value Set Definition Loads – References a database load of an Asserted Value Set Source terminology to interpret and load value set definitions to the data model based LexGrid schema.
+      </li>
+    </ul>
+  </li>
+</ul>
+<h2 id="LexEVS6.xArchitecture-MetadataandDiscoverySubsystem">
+  Metadata and Discovery Subsystem
+</h2>
+The following figure shows the Metadata and Discovery Subsystem diagram.
+<img alt="This graphic shows the Metadata and Discovery Subsystem diagram as described below." src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%206.x%20Architecture/Metadata_Service.jpg?api=v2">
+This subsystem provides information about accessible vocabularies, related licensing/copyright information, and registration/discovery of LexBIG services.The ability to locate and resolve vocabulary metadata is fulfilled through the LexBIGService class. Metadata defined by the LexGrid information model is resolved with each CodingScheme instance. Available metadata on each resolved scheme includes, but is not necessarily limited to, the following:
+<ul>
+  <li>
+    License or copyright information
+  </li>
+  <li>
+    Supported values (e.g. supported concept status, language, property names, etc)
+  </li>
+  <li>
+    Mappings from names used locally to globally unique URNs
+  </li>
+</ul>
+In addition, each LexBIGService provides a centralized metadata index that allows registration and query of code system metadata without requiring resolution of individual CodingSchemes. This metadata index is optionally populated, typically during the vocabulary load process. The metadata index allows for the metadata of multiple code systems to be cross-indexed and searched as part of the query subsystem.
+<h2 id="LexEVS6.xArchitecture-QuerySubsystem">
+  Query Subsystem
+</h2>
+The following figure shows the Query Subsystem.
+<img alt="This graph shows the Query Subsystem as described below." src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%206.x%20Architecture/Query_Subsystem.jpg?api=v2">
+This subsystem provides the functionality required to fulfill caCORE/EVS and other vocabulary requests. The Query Service is comprised of Lexical Operations, Graph Operations, Metadata, and History Operations.
+<h3 id="LexEVS6.xArchitecture-LexicalSetOperations">
+  Lexical Set Operations
+</h3>
+Lexical Set Operations provides methods to return lists or iterators of coded entries. Supported query criteria include the application of match/filter algorithms, sorting algorithms, and property restrictions. Support is also provided to resolve the union, intersection or difference of two node sets.
+<h3 id="LexEVS6.xArchitecture-GraphSetOperations">
+  Graph Set Operations
+</h3>
+Graph Operations support the subsetting of concepts according to relationship and distance, identification of related source and target concepts, and graph traversal. Additional operations include enumeration and traversal of concepts by relation, walking of directed acyclic graphs (DAGs), enumeration of source and target concepts for a relation, and enumeration of relations for a concept.
+<h3 id="LexEVS6.xArchitecture-MetadataOperations">
+  Metadata Operations
+</h3>
+Metadata Operations allows for the query and resolution of registered code system metadata according to specified coding scheme references, property names, or values.
+<h3 id="LexEVS6.xArchitecture-HistoryOperations">
+  History Operations
+</h3>
+History provides vocabulary-specific information about concept insertions, modifications, splits, merges, and retirements when supplied by the content provider.
+<h2 id="LexEVS6.xArchitecture-LexEVSCTS2Services">
+  LexEVS CTS 2 Services
+</h2>
+<h3 id="LexEVS6.xArchitecture-Overview">
+  Overview
+</h3>
+The CTS2 standard is actually a collection of relatively small standards and a set of assembly rules.The goal of the CTS2 standard is distribution and federation:-Distribution means that different organizations can publish different aspects-Federation means that organizations can shareKey is that implementations can be shared – No one organization has to offer all services
+<h3 id="LexEVS6.xArchitecture-Standards">
+  Standards
+</h3>
+<h5 id="LexEVS6.xArchitecture-XMLSchema">
+  XML Schema
+</h5>
+<ul>
+  <li>
+    used for REST, SOAP and JSON formatting
+  </li>
+  <li>
+    Includes item / directory / list
+  </li>
+</ul>
+<h5 id="LexEVS6.xArchitecture-Functions">
+  Functions
+</h5>
+<ul>
+  <li>
+    Read
+  </li>
+  <li>
+    Query
+  </li>
+  <li>
+    Update
+  </li>
+  <li>
+    Import and Export content
+  </li>
+</ul>
+<h5 id="LexEVS6.xArchitecture-ComponentStandards">
+  Component Standards
+</h5>
+<ul>
+  <li>
+    Code System
+  </li>
+  <li>
+    Code System Version
+  </li>
+  <li>
+    Entity Description
+  </li>
+  <li>
+    Association
+  </li>
+  <li>
+    Value Set
+  </li>
+  <li>
+    Value Set Definition
+  </li>
+  <li>
+    Resolved Value Set
+  </li>
+  <li>
+    Map
+  </li>
+  <li>
+    Map Version
+  </li>
+  <li>
+    Map Entry
+  </li>
+  <li>
+    Concept Domain
+  </li>
+  <li>
+    Concept Domain Binding
+  </li>
+  <li>
+    Statement
+  </li>
+</ul>
+<h3 id="LexEVS6.xArchitecture-AssemblyRules">
+  Assembly Rules
+</h3>
+<ul>
+  <li>
+    Each component can be implemented by itself or in conjunction with other components
+  </li>
+  <li>
+    Components reference other components via:
+  </li>
+  <li>
+    URI’s – if the referenced component is not known to the service
+  </li>
+  <li>
+    HREF’s (optional) – if the referenced component IS known to the service
+  </li>
+</ul>
+<h3 id="LexEVS6.xArchitecture-LexEVSCTS2Documentation">
+  LexEVS CTS2 Documentation
+</h3>
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=176325119" rel="nofollow">
+  LexEVS 6.x REST CTS2 Service
+</a>

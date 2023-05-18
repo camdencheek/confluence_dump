@@ -1,0 +1,1352 @@
+Information on this page is based on install.properties. All releases are on the
+<a href="https://wiki.nci.nih.gov/display/NBIA/National+Biomedical+Imaging+Archive+-+NBIA#NationalBiomedicalImagingArchive-NBIA-InstallationandDownloads" rel="nofollow">
+  Installation and Downloads
+</a>
+page.
+<h2 id="NBIA6.2Properties-ApplicationSettings">
+  Application Settings
+</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Property Name
+      </th>
+      <th>
+        Description
+      </th>
+      <th>
+        example
+      </th>
+    </tr>
+    <tr>
+      <td>
+        application.base.path.linux
+      </td>
+      <td>
+        Location where user is installing software on Linux
+      </td>
+      <td>
+        ${user.home}/apps/nbia
+      </td>
+    </tr>
+    <tr>
+      <td>
+        application.base.path.windows
+      </td>
+      <td>
+        Location where user is installing software on Window
+      </td>
+      <td>
+        c:/apps/nbia
+      </td>
+    </tr>
+    <tr>
+      <td>
+        authentication.type
+      </td>
+      <td>
+        CSM authentication type, the value should be &#34;db&#34; or &#34;ldap&#34;
+      </td>
+      <td>
+        db
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="NBIA6.2Properties-DatabaseSettings">
+  Database Settings
+</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Property Name
+      </th>
+      <th>
+        Description
+      </th>
+      <th>
+        example
+      </th>
+    </tr>
+    <tr>
+      <td>
+        database.type
+      </td>
+      <td>
+        This value specifies whether a MySQL or an Oracle database is being used.
+      </td>
+      <td>
+        oracle, mysql
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        database.re-createdatabase.drop-schema
+      </td>
+      <td colspan="1">
+        One of these properties must be set to true. If re-create is true then the
+        <a href="http://installdatabase" rel="nofollow">
+          install:database
+        </a>
+        target will wipe out the database instance completely and start from scratch.    If drop-schema is true, then all the schema and data will be wiped out but the database itself will not be removed.
+      </td>
+      <td colspan="1">
+        true or false
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        database.system.user
+      </td>
+      <td colspan="1">
+        The username for an administrator of this database.     This value should correspond to a MySQL username that has full system privileges.   This must correspond to the administrator account defined when MySQL was configured.  For Oracle, this value will be ignored, but the value must be different than the value of database.user.   Depending on how the install is done, or the value of database.re-create this may not be necessary.   If re-create=true, then this is necessary, otherwise it isn&#39;t.
+      </td>
+      <td colspan="1">
+        root
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        database.system.password
+      </td>
+      <td colspan="1">
+        The password for an administrator of this database that correlates with the value in database.system.user.    For Oracle, this value will be ignored.   Depending on how the install is done, or the value of database.re-create this may not be necessary.   If re-create=true, then this is necessary, otherwise it isn&#39;t.
+      </td>
+      <td colspan="1">
+        Someth!ngSecure
+      </td>
+    </tr>
+    <tr>
+      <td>
+        database.server
+      </td>
+      <td>
+        This value must correspond to the domain name of machine that hosts the Oracle/MySQL database server.   Talk to your database administrator to learn the server name and port.
+      </td>
+      <td>
+        remotehost.org
+      </td>
+    </tr>
+    <tr>
+      <td>
+        database.port
+      </td>
+      <td>
+        This value must correspond to the port for the database.server.   3306 is the default port, but check with your database administrator to be certain.
+      </td>
+      <td>
+        3306
+      </td>
+    </tr>
+    <tr>
+      <td>
+        database.name
+      </td>
+      <td>
+        Choose a name for the NCIA MySQL database. This must be different than the UPT database name
+      </td>
+      <td>
+        nciadb
+      </td>
+    </tr>
+    <tr>
+      <td>
+        database.user
+      </td>
+      <td>
+        Give the username to access database.name.
+      </td>
+      <td>
+        nciaop
+      </td>
+    </tr>
+    <tr>
+      <td>
+        database.password
+      </td>
+      <td>
+        Use a password to access database.name for the username identified in database.user
+      </td>
+      <td>
+        Someth!ngSecure
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        database.url
+      </td>
+      <td colspan="1">
+        Url for connection to a database. This is the standard implementation style. This if fixed. No Change Required
+      </td>
+      <td colspan="1">
+        jdbc:mysql://${database.server}:${database.port}/${database.name}
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        database.system.url
+      </td>
+      <td colspan="1">
+        Url for connection to a database. This is the standard implementation style.This if fixed. No Change Required
+      </td>
+      <td colspan="1">
+        jdbc:mysql://${database.server}:${database.port}/
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        database.schema
+      </td>
+      <td colspan="1">
+        Database Schema for Oracle
+      </td>
+      <td colspan="1">
+        nciadev
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="NBIA6.2Properties-LDAPSettings">
+  LDAP Settings
+</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Property Name
+      </th>
+      <th>
+        Description
+      </th>
+      <th>
+        Example
+      </th>
+    </tr>
+    <tr>
+      <td>
+        ldap.url
+      </td>
+      <td>
+        Universal Resource Locator address for LightWeight Directory Access Protocol server.
+      </td>
+      <td>
+        ldaps://university.edu:636
+      </td>
+    </tr>
+    <tr>
+      <td>
+        ldap.basedn
+      </td>
+      <td>
+        LDAP server holding referrals to other server holding a given distinguished name (DN).
+      </td>
+      <td>
+        u=nci,o=nih
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="NBIA6.2Properties-CTPSettings">
+  CTP Settings
+</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Property Name
+      </th>
+      <th>
+        Description
+      </th>
+      <th>
+        Example
+      </th>
+    </tr>
+    <tr>
+      <td>
+        ctp.server.port
+      </td>
+      <td>
+        The port that the CTP administration console will run on.
+      </td>
+      <td>
+        23080
+      </td>
+    </tr>
+    <tr>
+      <td>
+        ctp.server.http_import_service.port
+      </td>
+      <td>
+        The port that CTP will accept submissions on.  This port should be configured as the port to export to in the CTP client configuration.
+      </td>
+      <td>
+        23104
+      </td>
+    </tr>
+    <tr>
+      <td>
+        ctp.server.admin.password
+      </td>
+      <td>
+        The password for the CTP server administrator.
+      </td>
+      <td>
+        S0meth!ngSecurE
+      </td>
+    </tr>
+    <tr>
+      <td>
+        ctp.server.king.password
+      </td>
+      <td>
+        The password for the CTP server super administrator who has privilege to shutdown the server
+      </td>
+      <td>
+        S0meth!ngSecurE
+      </td>
+    </tr>
+    <tr>
+      <td>
+        ctp.server.storage_service.root
+      </td>
+      <td>
+        The directory where the CTP will store submitted files.
+      </td>
+      <td>
+        storage/root
+      </td>
+    </tr>
+    <tr>
+      <td>
+        ctp.server.storage_service.index
+      </td>
+      <td>
+        The directory where the CTP will store the index for submitted files.  This directory must be the direct parent of ctp.storage_service.root.
+      </td>
+      <td>
+        storage
+      </td>
+    </tr>
+    <tr>
+      <td>
+        ctp.server.require_authentication
+      </td>
+      <td>
+        Whether or not the authentication is required for data submission (HttpImportService)
+      </td>
+      <td>
+        yes
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        ctp.server.verifier.port
+      </td>
+      <td colspan="1">
+        The port that CTP will listen for verification requests on.    Verification requests are queries to the (NBIA) database adapter to confirm that a given image was submitted successfully.
+      </td>
+      <td colspan="1">
+         23304
+      </td>
+    </tr>
+    <tr>
+      <td>
+        ctp.client.port
+      </td>
+      <td>
+        The port that the CTP administration console will run on (for the client).
+      </td>
+      <td>
+        24080
+      </td>
+    </tr>
+    <tr>
+      <td>
+        ctp.client.http_import_service.port
+      </td>
+      <td>
+        The port that CTP will accept submissions on.  This port should be configured as the port to send to in the FileSender.
+      </td>
+      <td>
+        24104
+      </td>
+    </tr>
+    <tr>
+      <td>
+        ctp.client.dicom_import_service.port
+      </td>
+      <td>
+        The port that CTP will accept submissions on.  This port should be configured as the port to send to in the FileSender.
+      </td>
+      <td>
+        24304
+      </td>
+    </tr>
+    <tr>
+      <td>
+        ctp.client.export_service.port
+      </td>
+      <td>
+        The port that CTP will export submissions to (to the server).  This should match up with the import service port on the server side.
+      </td>
+      <td>
+        24204
+      </td>
+    </tr>
+    <tr>
+      <td>
+        ctp.client.admin.password
+      </td>
+      <td>
+        The password for the CTP client administrator.
+      </td>
+      <td>
+        S0meth!ngSecurE
+      </td>
+    </tr>
+    <tr>
+      <td>
+        ctp.client.king.password
+      </td>
+      <td>
+        The password for the CTP client super administrator who has privilege to shutdown the server
+      </td>
+      <td>
+        S0meth!ngSecurE
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        ctp.client.exportService.username
+      </td>
+      <td colspan="1">
+        Specifies the user name    at the submitting site to ensure that all transmitted data made it into the NBIA database
+      </td>
+      <td colspan="1">
+        S0meth!ngSecurE
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        ctp.client.exportService.password
+      </td>
+      <td colspan="1">
+        Specifies the password    at the submitting site to ensure that all transmitted data made it into the NBIA database
+      </td>
+      <td colspan="1">
+        S0meth!ngSecurE
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="NBIA6.2Properties-NBIAApplicationProperties">
+  NBIA Application Properties
+</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Property Name
+      </th>
+      <th>
+        Description
+      </th>
+      <th>
+        Example
+      </th>
+    </tr>
+    <tr>
+      <td>
+        gov.nih.nci.ncia.imaging.server.url
+      </td>
+      <td>
+        Publicly visible URL for the JBoss container hosting NBIA.   This URL should contain the proxy name instead of the host name if there is a proxy.   If this property is not configured properly, then thumbnails images may not appear in the web application search results.
+      </td>
+      <td>
+        <a href="http://locahost:45210" rel="nofollow">
+          http://locahost:45210
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        gov.nih.nci.ncia.mapped.image.path.head
+      </td>
+      <td colspan="1"></td>
+      <td colspan="1">
+        \\\\\\\\cbiofs502.nci.nih.gov\\\\nciaimages\\\\,\\\\\\\\cbiofs502.nci.nih.gov\\\\nciaproddataset\\\\dataset_p01\\\\,\\\\\\\\nfs-ncia-d.nci.nih.gov\\\\nciadevdataset\\\\dataset_d01\\\\
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        gov.nih.nci.ncia.image.path.pattern
+      </td>
+      <td colspan="1"></td>
+      <td colspan="1">
+        NCICBIMAGE/documents/,data/dataset_p01/,data/dataset_d01/
+      </td>
+    </tr>
+    <tr>
+      <td>
+        gov.nih.nci.ncia.zip.location
+      </td>
+      <td>
+        Location to place zipped files created by the NBIA web application for download.
+      </td>
+      <td>
+        /data/ncia_data/ncia_ftp
+      </td>
+    </tr>
+    <tr>
+      <td>
+        gov.nih.nci.ncia.ftp.location
+      </td>
+      <td>
+        Location to place files for download through an external FTP server.
+      </td>
+      <td>
+        /data/ncia_data/ncia_ftp
+      </td>
+    </tr>
+    <tr>
+      <td>
+        gov.nih.nci.ncia.grid.local.node.name
+      </td>
+      <td>
+        If remote search is enabled, this is the name that will be used in the search form to search THIS node.   There is a separate property that governs the name of this node but as  viewed from other instances of NBIA.    It is likely that these two properties should agree, but it isn&#39;t mandatory.   See: grid.poc.tech.researchCenter.displayname
+      </td>
+      <td>
+        NCI-1
+      </td>
+    </tr>
+    <tr>
+      <td>
+        gov.nih.nci.ncia.ui.uid.display.length
+      </td>
+      <td>
+        Determines the max character length of data representation in the UI tier
+      </td>
+      <td>
+        100
+      </td>
+    </tr>
+    <tr>
+      <td>
+        gov.nih.nci.ncia.ftp.url
+      </td>
+      <td>
+        FTP server URL used for informing users about where to download the larger size files
+      </td>
+      <td>
+        localhost
+      </td>
+    </tr>
+    <tr>
+      <td>
+        gov.nih.nci.ncia.jboss.mq.url
+      </td>
+      <td>
+        The value of this property should ALWAYS be “localhost:&lt;port&gt;” where &lt;port&gt; have the exact same value as ${jboss.server.jndi.port}.  If this is not configured properly the zipping of DICOM image files for download will not work properly.
+      </td>
+      <td>
+        localhost:45200 (port is the JBoss JNDI port)
+      </td>
+    </tr>
+    <tr>
+      <td>
+        gov.nih.nci.ncia.installationSite
+      </td>
+      <td>
+        This property determines whether the installation is at ncicb or somewhere else (other).    This governs certain aspects of the UI such as where the link to reset a password will point to.
+      </td>
+      <td>
+        ncicb, other
+      </td>
+    </tr>
+    <tr>
+      <td>
+        gov.nih.nci.ncia.admin.email
+      </td>
+      <td>
+        The email address of the user administrator
+      </td>
+      <td>
+        <a href="mailto:ncicbmb@mail.nih.gov" rel="nofollow">
+          ncicbmb@mail.nih.gov
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        gov.nih.nci.ncia.jboss.public.url
+      </td>
+      <td colspan="1">
+        NBIA&#39;s URL for the portal
+      </td>
+      <td colspan="1">
+        <a href="http://localhost:45210/ncia/" rel="nofollow">
+          http://localhost:45210/ncia/
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        gov.nih.nci.ncia.download.server.url
+      </td>
+      <td colspan="1">
+        This is the URL that the Download Manager will use to retrieve DICOM images from.    This should typically be the same host and port of the JBoss server.    The webapp context and file path should always be the same unless deployment has been customized.
+      </td>
+      <td colspan="1">
+        <a href="http://localhost:45210/nbia-download/servlet/DownloadServlet" rel="nofollow">
+          http://localhost:45210/nbia-download/servlet/DownloadServlet
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        enabled_guest_account
+      </td>
+      <td>
+        Whether or not public search will be enabled for this instance.
+      </td>
+      <td>
+        yes or no
+      </td>
+    </tr>
+    <tr>
+      <td>
+        guest_username
+      </td>
+      <td>
+        If enabled_guest_account=yes then this is the name of the CSM user that will blessed as the user for all public searches.    This user should likely only be provisioned to be associated with PUBLIC protection elements.
+      </td>
+      <td>
+        nbia_guest
+      </td>
+    </tr>
+    <tr>
+      <td>
+        enable_classic_download
+      </td>
+      <td>
+        If this is set to no, then only the WebStart based Download Manager will be available to all userse.    If this is set to yes, then the &#34;classic&#34; download feature will still be available that allows downloading zip   files of DICOM images through HTTP and/or HTTP
+      </td>
+      <td>
+        yes or no
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        registration.email.subject
+      </td>
+      <td colspan="1">
+        Subject for the Email sent to CBIIT
+      </td>
+      <td colspan="1">
+        User registration to LDAP to access the National Biomedical Imaging Archive (NBIA)
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        show.collection.search.criteria
+      </td>
+      <td colspan="1">
+        If User wants to see Collections such as MR, CT, US etc in the Simple Search Page. By default it&#39;s set to false.
+      </td>
+      <td colspan="1">
+        true or false
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        discover.remote.nodes
+      </td>
+      <td colspan="1">
+        What remote nodes the user want to see i.e Dev, Stage, Prod etc. Deprecated after NBIA 5.2 Version.
+      </td>
+      <td colspan="1">
+        true or false
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        show.anatomical.search.criteria
+      </td>
+      <td colspan="1">
+        Various body parts the User wants to Search for such as Abdomen, Brain, Chest etc.
+      </td>
+      <td colspan="1">
+        true or false
+      </td>
+    </tr>
+    <tr>
+      <td>
+        local.grid.uri
+      </td>
+      <td>
+        For a given installation, this is the URL to the grid service FOR THAT INSTALLATION itself.     If this is not set properly, and remote search is enabled, then the local node will appear twice in the   list of searchable nodes.    Once for the &#34;local&#34; search, and additionally for its grid interface (if it is registered with the index service).
+      </td>
+      <td>
+        <a href="http://imaging.company.com:45210/wsrf/services/cagrid/NBIAService" rel="nofollow">
+          http://imaging.company.com:45210/wsrf/services/cagrid/NBIAService
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        show.collection.search.criteria
+      </td>
+      <td>
+        If set to false, the collection criteria selection control will not appear in the classic search UI.    This should only be set to false if a given instance of NBIA has, and only will ever have,   only one collection/project to search through.
+      </td>
+      <td>
+        true or false
+      </td>
+    </tr>
+    <tr>
+      <td>
+        discover.remote.nodes
+      </td>
+      <td>
+        If set to false, the NBIA web application will not attempt to discover other instances of NBIA to search   through the caGrid Index Service.   In other words, no remote nodes will appear at the top of the classic search page if this is set to false.
+      </td>
+      <td>
+        true or false
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        gov.nih.nci.ncia.download.no.retry
+      </td>
+      <td colspan="1">
+        Maximum Number of retry to download images for Download Manager
+      </td>
+      <td colspan="1">
+        4
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="NBIA6.2Properties-Log4JSettings">
+  Log4J Settings
+</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Property Name
+      </th>
+      <th>
+        Description
+      </th>
+      <th>
+        Example
+      </th>
+    </tr>
+    <tr>
+      <td>
+        log4j.maxFileSize
+      </td>
+      <td></td>
+      <td>
+        100MB
+      </td>
+    </tr>
+    <tr>
+      <td>
+        log4j.maxDays
+      </td>
+      <td></td>
+      <td>
+        7
+      </td>
+    </tr>
+    <tr>
+      <td>
+        log4j.level
+      </td>
+      <td></td>
+      <td>
+        WARN
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="NBIA6.2Properties-MailSettings">
+  Mail Settings
+</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Property Name
+      </th>
+      <th>
+        Description
+      </th>
+      <th>
+        Example
+      </th>
+    </tr>
+    <tr>
+      <td>
+        mail.smtp.server
+      </td>
+      <td>
+        Location of mail server to send emails for application to forward emails to users, notify users of the location of the download files
+      </td>
+      <td>
+        mail.university.edu
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="NBIA6.2Properties-DownloadManagerDigitalSignatureSettings">
+  Download Manager Digital Signature Settings
+</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Property Name
+      </th>
+      <th>
+        Description
+      </th>
+      <th>
+        Example
+      </th>
+    </tr>
+    <tr>
+      <td>
+        jar-signing.keystore.location
+      </td>
+      <td>
+        The location of the keystore to find a key to sign the download manager jars with.    If (file://\\If) generate-selfsigned is set to true, then this location will be where the installation process CREATES the keystore.    Otherwise (file://\\Otherwise), the keystore should already exist at this location.
+      </td>
+      <td>
+        c:/keystores/nbia_keystore
+      </td>
+    </tr>
+    <tr>
+      <td>
+        jar-signing.keystore.password
+      </td>
+      <td>
+        The password for the keystore pointed to by keystore.location.   If (file://\\If) generate-selfsigned is set to true, then this password will be set when the installation process CREATES the keystore.  \ (file://\\Otherwise)  Otherwise, the password should apply to the existing keystore.
+      </td>
+      <td>
+        something_secure
+      </td>
+    </tr>
+    <tr>
+      <td>
+        jar-signing.keystore.alias
+      </td>
+      <td>
+        The alias for the key to use when signing the download manager jars.   If (file://\\If) generate-selfsigned is set to true, then this alias will be set when the installation process CREATES the key and keystore.    Otherwise (file://\\Otherwise), the alias should exist in the existing keystore.
+      </td>
+      <td>
+        alias1
+      </td>
+    </tr>
+    <tr>
+      <td>
+        jar-signing.execution.time
+      </td>
+      <td>
+        Whether to sign the jars at build time or install time.  If not at NCICB, this value should always be install.
+      </td>
+      <td>
+        build or install
+      </td>
+    </tr>
+    <tr>
+      <td>
+        jar-signing.generate-selfsigned
+      </td>
+      <td>
+        If set to true, the install process will generate a self-signed certificate to sign the jars with.    If (file://\\If) false, there must be an existing certificate to use when signing.
+      </td>
+      <td>
+        true or false
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        gov.nih.nci.ncia.encrypt.key
+      </td>
+      <td colspan="1">
+        Alphanumeric key for password encryption
+      </td>
+      <td colspan="1">
+        ABCD12346598AYE2
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="NBIA6.2Properties-Exclusions">
+  Exclusions
+</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Property Name
+      </th>
+      <th>
+        Description
+      </th>
+      <th>
+        Example
+      </th>
+    </tr>
+    <tr>
+      <td>
+        exclude.start.servers
+      </td>
+      <td>
+        If you want to exclude starting server after the completion of installation. Default is false.
+      </td>
+      <td>
+        true or false
+      </td>
+    </tr>
+    <tr>
+      <td>
+        exclude.ctp
+      </td>
+      <td>
+        If you want to exclude CTP. Default is set to false.
+      </td>
+      <td>
+        true or false
+      </td>
+    </tr>
+    <tr>
+      <td>
+        exclude.ctp-client
+      </td>
+      <td>
+        If ctp-client should be excluded or not. Default is set to false.
+      </td>
+      <td>
+        true or false
+      </td>
+    </tr>
+    <tr>
+      <td>
+        exclude.database
+      </td>
+      <td>
+        If you want to exclude database or not. Default is set to false.  For the first time installation, please leave this property commented out so that database schema can be created.
+      </td>
+      <td>
+        true or false
+      </td>
+    </tr>
+    <tr>
+      <td>
+        exclude.jboss.backup
+      </td>
+      <td>
+        If JBoss Backup should be excluded. Default is set to false.
+      </td>
+      <td>
+        true or false
+      </td>
+    </tr>
+    <tr>
+      <td>
+        exclude.ctp.client.backup
+      </td>
+      <td>
+        If CTP Client backup is excluded. Default is set to false.
+      </td>
+      <td>
+        true or false
+      </td>
+    </tr>
+    <tr>
+      <td>
+        exclude.ctp.server.backup
+      </td>
+      <td>
+        If CTP server backup should be excluded. Default is set to false.
+      </td>
+      <td>
+        true or false
+      </td>
+    </tr>
+    <tr>
+      <td>
+        exclude.jboss.config
+      </td>
+      <td>
+        Configure the JBoss for running NBIA should be excluded or not. Default is set to false.For the initial installation of NBIA, configure JBoss is necessary.  So just leave this property to be commented out.
+      </td>
+      <td>
+        true or false
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        exclude.nbia-api
+      </td>
+      <td colspan="1">
+        Exclude NBIA API or not. Default is false.
+      </td>
+      <td colspan="1">
+        true or false
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="NBIA6.2Properties-UserGuideSettings">
+  UserGuide Settings
+</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Property Name
+      </th>
+      <th>
+        Description
+      </th>
+      <th>
+        Example
+      </th>
+    </tr>
+    <tr>
+      <td>
+        gov.nih.nci.ncia.wiki.context.sensitive.help.url
+      </td>
+      <td>
+        wiki tiny URL for context sensitive help
+      </td>
+      <td>
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=271515731" rel="nofollow">
+          https://wiki.nci.nih.gov/display/NBIA/NBIA+Help+Topics#NBIAHelpTopics
+        </a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="NBIA6.2Properties-SOLRSettings">
+  SOLR Settings
+</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Property Name
+      </th>
+      <th>
+        Description
+      </th>
+      <th>
+        Example
+      </th>
+    </tr>
+    <tr>
+      <td>
+        gov.nih.nci.ncia.solr.home
+      </td>
+      <td>
+        Location to keep solr indexes
+      </td>
+      <td>
+        c:/apps/nbia/solr-home/
+      </td>
+    </tr>
+    <tr>
+      <td>
+        gov.nih.nci.ncia.solr.updateinterval
+      </td>
+      <td>
+        This will defines how often in minutes Solr will update indexes
+      </td>
+      <td>
+        60
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="NBIA6.2Properties-WorkflowSettings">
+  Workflow Settings
+</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Property Name
+      </th>
+      <th>
+        Description
+      </th>
+      <th>
+        Example
+      </th>
+    </tr>
+    <tr>
+      <td>
+        gov.nih.nci.ncia.workflow.updateinterval
+      </td>
+      <td>
+        This will defines how often in minutes Workflow will be updated
+      </td>
+      <td>
+        60
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="NBIA6.2Properties-RESTAPISettings">
+  REST API Settings
+</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Property Name
+      </th>
+      <th>
+        Description
+      </th>
+      <th>
+        Example
+      </th>
+    </tr>
+    <tr>
+      <td>
+        nbia.api.oauth2.client.id
+      </td>
+      <td>
+        Unique ID given by authorization server during registration to the client application
+      </td>
+      <td>
+        nbiaRestAPIClient
+      </td>
+    </tr>
+    <tr>
+      <td>
+        nbia.api.oauth2.client.secret
+      </td>
+      <td>
+        The password supplied to identify the client.
+      </td>
+      <td>
+        ItsBetweenUAndMe
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        nbia.api.oauth2.token.validity.in.seconds
+      </td>
+      <td colspan="1">
+        The expiration time in seconds before which the transaction has to be performed.
+      </td>
+      <td colspan="1">
+        7200
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="NBIA6.2Properties-JBossEAP6.2ConfigurationProperties">
+  JBoss EAP 6.2 Configuration Properties
+</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Property Name
+      </th>
+      <th>
+        Description
+      </th>
+      <th>
+        example
+      </th>
+    </tr>
+    <tr>
+      <td colspan="1">
+        jboss.modules.lib
+      </td>
+      <td colspan="1">
+        The directory keeping the libraries which will be used to added to JBoss container as modules.  This properties is specifically used by AHP3 build.  Ignore this properties if the command line installer is used to install the NBIA 6.2.
+      </td>
+      <td colspan="1">
+        /local/content/jboss/deployTemp
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        database.driver
+      </td>
+      <td colspan="1">
+        The database driver.  Please do not change the value of the property.  If the database used is MySQL, just comment out the same property for Oracle and un-comment out the property for MySQL.  Vise versa for Oracle database.
+      </td>
+      <td colspan="1">
+        For MySQL database:com.mysql.jdbc.DriverFor Oracle database:oracle.jdbc.driver.OracleDriver
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        database.driver.jar
+      </td>
+      <td colspan="1">
+        The jar name of database driver.  Please do not change the value of the property.  If the database used is MySQL, just comment out the same property for Oracle and un-comment out the property for MySQL.  Vise versa for Oracle database.
+      </td>
+      <td colspan="1">
+        For MySQL database:${mysql.driver.jar}For Oracle database:${oracle.driver.jar}
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        database.driver.jar.src.url
+      </td>
+      <td colspan="1">
+        The url for downloading database driver library. Please do not change the value of the property.  If the database used is MySQL, just comment out the same property for Oracle and un-comment out the property for MySQL.  Vise versa for Oracle database.
+      </td>
+      <td colspan="1">
+        For MySQL database:${mysql.driver.jar.src.url}For Oracle database:${oracle.driver.jar.src.url}
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        JBOSS_HOME
+      </td>
+      <td colspan="1">
+        The JBoss home directory. If it is also set as a system environment variable, make sure it has same value here as the value defined for system environment variable.
+      </td>
+      <td colspan="1">
+        C:\\apps\\nbia_eap6\\jboss-eap-6.2
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        JBOSS_BASE_DIR
+      </td>
+      <td colspan="1">
+        The base directory of JBoss. It is needed because of the concept of JBoss profile, in which the standalone directory is not always under JBOSS_HOME.
+      </td>
+      <td colspan="1">
+        C:\\apps\\nbia_eap6\\jboss-eap-6.2\\standalone
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        csm.api.jar
+      </td>
+      <td colspan="1">
+        The name of CSM API jar. Do not change the value of the property.
+      </td>
+      <td colspan="1">
+        csmapi-5.2.jar
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        csm.api.jar.src.url
+      </td>
+      <td colspan="1">
+        The source url for CSM API jar. Do not change the value of the property.
+      </td>
+      <td colspan="1">
+        https://ncimvn.nci.nih.gov/nexus/service/local/repositories/thirdparty/content/gov/nih/nci/csm/csmapi/5.2/${csm.api.jar}
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        bouncy.castle.jar
+      </td>
+      <td colspan="1">
+        The name of bouncy castle jar. Do not change the value of the property.
+      </td>
+      <td colspan="1">
+        bcprov-jdk15on-1.51.jar
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        bouncy.castle.jar.src.url
+      </td>
+      <td colspan="1">
+        The source url for bouncy.castle.jar. Do not change the value of the property.
+      </td>
+      <td colspan="1">
+        https://ncimvn.nci.nih.gov/nexus/service/local/repositories/central/content/org/bouncycastle/bcprov-jdk15on/1.51/${bouncy.castle.jar}
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        jbossall.client.jar
+      </td>
+      <td colspan="1">
+        The name of jbossall client jar. Do not change the value of the property.
+      </td>
+      <td colspan="1">
+        jbossall-client-5.1.0.GAnci.jar
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        jbossall.client.jar.src.url
+      </td>
+      <td colspan="1">
+        The source url for jbossall client jar. Do not change the value of the property.
+      </td>
+      <td colspan="1">
+        https://ncimvn.nci.nih.gov/nexus/service/local/repositories/thirdparty/content/org/jboss/client/jbossall-client/5.1.0.GAnci/${jbossall.client.jar}
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        mysql.driver.jar
+      </td>
+      <td colspan="1">
+        The jar name of MySQL Driver. Do not change the value of the property.
+      </td>
+      <td colspan="1">
+        mysql-connector-java-5.1.34.jar
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        mysql.driver.jar.src.url
+      </td>
+      <td colspan="1">
+        The source url for MySQL driver.  Do not change the value of the property.
+      </td>
+      <td colspan="1">
+        https://ncimvn.nci.nih.gov/nexus/service/local/repositories/central/content/mysql/mysql-connector-java/5.1.34/${mysql.driver.jar}
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        oracle.driver.jar
+      </td>
+      <td colspan="1">
+        The jar name of Orcle driver. Do not change the value of the property.
+      </td>
+      <td colspan="1">
+        ojdbc14-10.2.0.3.0.jar
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        oracle.driver.jar.src.url
+      </td>
+      <td colspan="1">
+        The source url for Oracle driver. Do not change the value of the property.
+      </td>
+      <td colspan="1">
+        https://ncimvn.nci.nih.gov/nexus/service/local/repositories/thirdparty/content/oracle/ojdbc14/10.2.0.3.0/${oracle.driver.jar}
+      </td>
+    </tr>
+  </tbody>
+</table>

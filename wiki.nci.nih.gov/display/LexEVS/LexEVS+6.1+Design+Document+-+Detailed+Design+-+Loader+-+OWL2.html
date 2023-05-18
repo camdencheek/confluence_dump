@@ -1,0 +1,382 @@
+Contents of this Page
+<ul>
+  <li>
+    <a href="#LexEVS6.1DesignDocumentDetailedDesignLoaderOWL2-OWL2Support(Loader)Oeverview" rel="nofollow">
+      OWL 2 Support (Loader) Oeverview
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.1DesignDocumentDetailedDesignLoaderOWL2-OWL2Support(Loader)DesignConsiderations:" rel="nofollow">
+      OWL 2 Support (Loader) Design Considerations:
+    </a>
+  </li>
+</ul>
+Document Information
+Author: Pradip Kanjamala Email: kanjamala.pradip@mayo.edu Team: LexEVS Contract: ST12-1106  Client: NCI CBIIT National Institutes of Heath US Department of Health and Human Services
+Revision History
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Version
+      </th>
+      <th>
+        Date
+      </th>
+      <th>
+        Description of Changes
+      </th>
+      <th>
+        Author
+      </th>
+    </tr>
+    <tr>
+      <td>
+        1.0
+      </td>
+      <td>
+        2013/03/05
+      </td>
+      <td>
+        Initial Version
+      </td>
+      <td>
+        Kanjamala, Pradip
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="LexEVS6.1DesignDocumentDetailedDesignLoaderOWL2-OWL2Support(Loader)Oeverview">
+  OWL 2 Support (Loader) Oeverview
+</h2>
+The current LexEVS owl loader loads OWL 1.1 content into LexEVS. With the release of OWL 2.0 and the availability of authoring tools for OWL 2.0 ontologies, there is a need to be able to load OWL content authored using OWL 2.0 syntax. NCI is also exploring the possibility of authoring the NCI Thesaurus using OWL 2.0.
+<h2 id="LexEVS6.1DesignDocumentDetailedDesignLoaderOWL2-OWL2Support(Loader)DesignConsiderations:">
+  OWL 2 Support (Loader) Design Considerations:
+</h2>
+The current LexEVS OWL loader that supports loading of OWL 1.1 content makes use of the Protege 3.1 API to parse the OWL content and create a Protege Knowledge base which is then used to transform the named classes to concepts within LexEVS. Unfortunately Protege 3.1 doesn&#39;t support OWL 2.0 and so LexEVS implementation of the OWL loader would need to be rewritten using a different API for parsing the OWL 2.0 content.Fortunately, Protege 4.0 which uses the Machester OWL API, supports OWL 2.0. The new OWL loader for LexEVS would make use of the Manchester OWL API to parse the OWL file. It would then leverage the Manchester OWL API to  convert the Named classes to LexEVS concepts.
+<img alt="LexEVS OWL 2.0 Loader diagram as described" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%206.1%20Design%20Document%20-%20Detailed%20Design%20-%20Loader%20-%20OWL2/owl2_loader.jpg?api=v2">
+In the table that follows, find the broad mapping from OWL to LexEVS:
+<table>
+  <tbody>
+    <tr>
+      <th>
+        OWL
+      </th>
+      <th>
+        LexGrid
+      </th>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        Class
+      </td>
+      <td>
+        concept
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Thing
+      </td>
+      <td>
+        concept - @@
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Nothing
+      </td>
+      <td>
+        concept - @@
+      </td>
+    </tr>
+    <tr>
+      <td>
+        equivalentClass
+      </td>
+      <td>
+        association
+      </td>
+    </tr>
+    <tr>
+      <td>
+        disjointWith
+      </td>
+      <td>
+        association
+      </td>
+    </tr>
+    <tr>
+      <td>
+        sameAs
+      </td>
+      <td>
+        association
+      </td>
+    </tr>
+    <tr>
+      <td>
+        differentFrom
+      </td>
+      <td>
+        association
+      </td>
+    </tr>
+    <tr>
+      <td>
+        AllDifferent
+      </td>
+      <td>
+        anonymous concept
+      </td>
+    </tr>
+    <tr>
+      <td>
+        distinctMembers
+      </td>
+      <td>
+        anonymous concept
+      </td>
+    </tr>
+    <tr>
+      <td>
+        unionOf
+      </td>
+      <td>
+        anonymous concept
+      </td>
+    </tr>
+    <tr>
+      <td>
+        intersectionOf
+      </td>
+      <td>
+        anonymous concept
+      </td>
+    </tr>
+    <tr>
+      <td>
+        complementOf
+      </td>
+      <td>
+        anonymous concept
+      </td>
+    </tr>
+    <tr>
+      <td>
+        oneOf
+      </td>
+      <td>
+        anonymous concept
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Restriction
+      </td>
+      <td>
+        association qualifier
+      </td>
+    </tr>
+    <tr>
+      <td>
+        onProperty
+      </td>
+      <td>
+        anonymous concept
+      </td>
+    </tr>
+    <tr>
+      <td>
+        allValuesFrom
+      </td>
+      <td>
+        anonymous concept
+      </td>
+    </tr>
+    <tr>
+      <td>
+        hasValue
+      </td>
+      <td>
+        anonymous concept
+      </td>
+    </tr>
+    <tr>
+      <td>
+        someValuesFrom
+      </td>
+      <td>
+        anonymous concept
+      </td>
+    </tr>
+    <tr>
+      <td>
+        minCardinality
+      </td>
+      <td>
+        association
+      </td>
+    </tr>
+    <tr>
+      <td>
+        maxCardinality
+      </td>
+      <td>
+        association
+      </td>
+    </tr>
+    <tr>
+      <td>
+        cardinality
+      </td>
+      <td>
+        association
+      </td>
+    </tr>
+    <tr>
+      <td>
+        ObjectProperty
+      </td>
+      <td>
+        Association
+      </td>
+    </tr>
+    <tr>
+      <td>
+        DatatypeProperty
+      </td>
+      <td>
+        AssociationData
+      </td>
+    </tr>
+    <tr>
+      <td>
+        inverseOf
+      </td>
+      <td>
+        Association- inverse
+      </td>
+    </tr>
+    <tr>
+      <td>
+        TransitiveProperty
+      </td>
+      <td>
+        association.isTransitive
+      </td>
+    </tr>
+    <tr>
+      <td>
+        SymmetricProperty
+      </td>
+      <td>
+        association.isSymmetric
+      </td>
+    </tr>
+    <tr>
+      <td>
+        FunctionalProperty
+      </td>
+      <td>
+        association.isFunctional
+      </td>
+    </tr>
+    <tr>
+      <td>
+        InverseFunctionalProperty
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        AnnotationProperty
+      </td>
+      <td>
+        Presentation/Property
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Ontology
+      </td>
+      <td>
+        codingscheme
+      </td>
+    </tr>
+    <tr>
+      <td>
+        OntologyProperty
+      </td>
+      <td>
+        codingscheme.property
+      </td>
+    </tr>
+    <tr>
+      <td>
+        imports
+      </td>
+      <td>
+        supported coding scheme flag (isImported)
+      </td>
+    </tr>
+    <tr>
+      <td>
+        versionInfo
+      </td>
+      <td>
+        codingscheme.representsVersion
+      </td>
+    </tr>
+    <tr>
+      <td>
+        priorVersion
+      </td>
+      <td>
+        codingscheme.property?
+      </td>
+    </tr>
+    <tr>
+      <td>
+        backwardCompatibleWith
+      </td>
+      <td>
+        codingscheme.property?
+      </td>
+    </tr>
+    <tr>
+      <td>
+        incompatibleWith
+      </td>
+      <td>
+        ?
+      </td>
+    </tr>
+    <tr>
+      <td>
+        DeprecatedClass
+      </td>
+      <td>
+        concept.isActive=false
+      </td>
+    </tr>
+    <tr>
+      <td>
+        DeprecatedProperty
+      </td>
+      <td>
+        ?
+      </td>
+    </tr>
+    <tr>
+      <td>
+        DataRange
+      </td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>

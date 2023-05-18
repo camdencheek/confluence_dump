@@ -1,0 +1,64 @@
+Participants:  Freymann, Kirby, QPan, JZeng, Tony Pan, Stuart Turner
+
+
+Discussed Query Formulation Project issues as they relate to LIDC-AIM project
+
+Action:
+<ul>
+  <li>
+    Stuart will inquire if others are using the  Federated Query Processor in caGRID
+  </li>
+  <li>
+    Tony will work on developing a federated query processor that can retrieve aim and dicom at the same time in the next few weeks.
+  </li>
+  <li>
+    Qinyan will  continue to assess BerkelyDB and alternatives with a view toward database administration issues for AIM.  (Tony noted there would be considerable work to use a relational db instead of xpath for AIM)
+  </li>
+  <li>
+    Qinyan will continue to look at MAX issues - particularly run scripts to get more information on the slice spacing issue.
+  </li>
+  <li>
+    Qinyan and Jennifer will read the DCQL information at cagrid.org
+  </li>
+</ul>
+Notes:
+
+
+1.  Query AIM, Query NCIA, wait for it to come back on the client side
+2. DCQL provides a standardized way of doing that.
+3. &#34;Federated Query processor Engine.&#34;
+Or employ employ a FQP service - that becomes a service the queries a data service on your behalf.
+
+Challenges:
+Must specify target class= foreign target class coming from a different data model
+Different object hierarchy
+When you create a dcql statement you ask fo r an instance of a clase, from a different model.
+
+The use case we have - we want to retrieve both aim objects as well as dicom images
+Shortcoming_
+Tony would like to provide a modified version of federated processor engine so could get aim and images.
+
+QF - currently AIM data service binds to Berkeley DB.
+caCore SDK is relatively quicker that XML data service
+To use mySQL you would have to create a new data service, for caCore SDK api.  You wouldn&#39;t have bulk data transport of large xml objects.  May have to do repeated queries on the client side.  Image annotation, then geometric shape, etc.
+The ability to retrieve associated object is planned for
+
+Stuart - it was assumed that if someone was going to retrieve an annotation it should be bound to an image..
+&#39;bound &#39; means - 1) there exists an image association 2) I always get the image back.
+
+1) formulate one query with AIM as a target, then formulate the flip query as dicom meta data, then do a query to get the images themselves.
+2) Tony plans to just to get things to work:  there is a cql 2.0 in community incubator, but not dcql 2.0 .  For QF project may have to do something new - plan a modified version of DCQL that allows retrieval of tuple of objects ()AIM plus DICOM object (how to do that?)..  Need to talk with Dan Rubin...
+One brings meta data, one operation brings bulk)
+
+Tony - MR acquisition attributes are not there in NCIA image model yet
+
+
+Challenge of mYSQL - you will need to go through caCORE SDK.  AIM data service suppports other xml.  The cql gets tranlated into xpath.  So you would have to translate to SQL, or do the caCORE SDK translation to HQL (hibernate)
+Limited Berkely DB command shell - looking into EXIST and DB2XML
+
+XML data service repository being moved over to data service.
+QP - must assess berkelydb from a database administration perspective -
+
+In a few weeks -a federated query processor that can retrieve aim and dicom at the same time.  - documentation on cql.org...
+Is anyone else using the Federated Query Processor?? Stuart will find out - will ask about other
+QP is going to find out about if there is a DCQL projcessor avalilable. 

@@ -1,0 +1,546 @@
+Contents of this Page
+<ul>
+  <li>
+    <a href="#LexEVS6.0CTS2Query4UsageContextQueryOperationAPI-Introduction" rel="nofollow">
+      Introduction
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.0CTS2Query4UsageContextQueryOperationAPI-Interface" rel="nofollow">
+      Interface
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.0CTS2Query4UsageContextQueryOperationAPI-QueryFunctions" rel="nofollow">
+      Query Functions
+    </a>
+    <ul>
+      <li>
+        <a href="#LexEVS6.0CTS2Query4UsageContextQueryOperationAPI-getUsageContextCodingScheme" rel="nofollow">
+          getUsageContextCodingScheme
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.0CTS2Query4UsageContextQueryOperationAPI-getUsageContextEntity" rel="nofollow">
+          getUsageContextEntity
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.0CTS2Query4UsageContextQueryOperationAPI-getUsageContextEntitisWithName" rel="nofollow">
+          getUsageContextEntitisWithName
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.0CTS2Query4UsageContextQueryOperationAPI-getUsageContextCodedNodeSet" rel="nofollow">
+          getUsageContextCodedNodeSet
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.0CTS2Query4UsageContextQueryOperationAPI-listAllUsageContextEntities" rel="nofollow">
+          listAllUsageContextEntities
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.0CTS2Query4UsageContextQueryOperationAPI-listAllUsageContextIds" rel="nofollow">
+          listAllUsageContextIds
+        </a>
+      </li>
+    </ul>
+  </li>
+</ul>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        CTS2 Links for LexEVS 6.0
+      </th>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427281" rel="nofollow">
+              CTS2 API Main Page
+            </a>
+          </li>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427334" rel="nofollow">
+              Programmer&#39;s Guide Main Page
+            </a>
+          </li>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=69730353" rel="nofollow">
+              LexEVS 6.0 Main Page
+            </a>
+          </li>
+          <li>
+            <a href="https://wiki.nci.nih.gov/display/LexEVS" rel="nofollow">
+              LexEVS Current Release
+            </a>
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="LexEVS6.0CTS2Query4UsageContextQueryOperationAPI-Introduction">
+  Introduction
+</h2>
+LexEVS CTS2 Usage Context Query API provides capability to query Usage Context available in the system and also to query the binding between Value Set and Concept Domain in conjunction with Usage Context. In LexEVS, the Usage Context is essentially an entity of type &#39;usageContext&#39; in a code system version. Using LexEVS CTS 2 Authoring or Loader interfaces, you could create a Code System specially for Usage Context entities, but this is not necessary, but will be convenient to have Usage Context entries in specific code system(s).
+<h2 id="LexEVS6.0CTS2Query4UsageContextQueryOperationAPI-Interface">
+  Interface
+</h2>
+org.lexevs.cts2.query.UsageContextQueryOperation is the main interface for all the queries against Usage Context. This interface can be accessed using main LexEVSCTS2 interface, like:
+
+
+
+org.lexevs.cts2.query.UsageContextQueryOperation cdQueryOp = new org.lexevs.cts2.LexEvsCTS2Impl().getQueryOperation().getUsageContextQueryOperation();
+<h2 id="LexEVS6.0CTS2Query4UsageContextQueryOperationAPI-QueryFunctions">
+  Query Functions
+</h2>
+Here are the major query functions available using UsageContextQueryOperation interface:
+<h3 id="LexEVS6.0CTS2Query4UsageContextQueryOperationAPI-getUsageContextCodingScheme">
+  getUsageContextCodingScheme
+</h3>
+This function returns detailed usage context code system.
+
+getUsageContextCodingScheme(String codeSystemNameOrURI, String codeSystemVersion)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Gets the usage context code system.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        <ul>
+          <li>
+            java.lang.String codeSystemNameOrURI - (Mandatory) Name or URI of the code system that contains usage context entities.
+          </li>
+          <li>
+            java.lang.String codeSystemVersion - (Optional) Version of of the code system that contains usage context entities.
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        org.LexGrid.codingSchemes.CodingScheme - Detailed usage context Code System
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Sample Call:
+      </th>
+      <td>
+        <ul>
+          <li>
+            Step 1: Instantiate UsageContextQueryOperation if it is not done yet:
+
+
+            org.lexevs.cts2.query.UsageContextQueryOperation ucQueryOp = new org.lexevs.cts2.LexEvsCTS2Impl().getQueryOperation().getUsageContextQueryOperation();
+          </li>
+          <li>
+            Step 2: Call getUsageContextCodingScheme method to get detailed Usage Context code system:
+
+
+            org.LexGrid.codingSchemes.CodingScheme usageContextCS = ucQuery.getUsageContextCodingScheme(&#34;usageContextCodingScheme&#34;, &#34;1.0&#34;);
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h3 id="LexEVS6.0CTS2Query4UsageContextQueryOperationAPI-getUsageContextEntity">
+  getUsageContextEntity
+</h3>
+This function returns detailed Usage Context entity.
+
+getUsageContextEntity(String usageContextId, String namespace, String codeSystemNameOrURI, String codeSystemVersion)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Returns Usage Context entity object.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        <ul>
+          <li>
+            java.lang.String usageContextId - (Mandatory) ID of a Usage Context.
+          </li>
+          <li>
+            java.lang.String namespace - (Optional) Namespace of a Usage Context.
+          </li>
+          <li>
+            java.lang.String codeSystemNameOrURI - (Mandatory) Name or URI of code system that contains the Usage Context.
+          </li>
+          <li>
+            java.lang.String codeSystemVersion - (Optional) Version of code system that contains the Usage Context.
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        org.LexGrid.concepts.Entity - Detailed Usage Context Entity
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Sample Call:
+      </th>
+      <td>
+        <ul>
+          <li>
+            Step 1: Instantiate UsageContextQueryOperation if it is not done yet:
+
+
+            org.lexevs.cts2.query.UsageContextQueryOperation ucQueryOp = new org.lexevs.cts2.LexEvsCTS2Impl().getQueryOperation().getUsageContextQueryOperation();
+          </li>
+          <li>
+            Step 2: Call getUsageContextEntity method to get detailed Usage Context Entity:
+
+
+            org.LexGrid.concepts.Entity usageContextEntity = ucQuery.getUsageContextEntity(&#34;ActAdjudicationInformationCode&#34;, null, &#34;usageContextCodingScheme&#34;, &#34;1.0&#34;); |
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h3 id="LexEVS6.0CTS2Query4UsageContextQueryOperationAPI-getUsageContextEntitisWithName">
+  getUsageContextEntitisWithName
+</h3>
+This function returns all the Usage Context entities that matches the name supplied.
+
+getUsageContextEntitisWithName(String usageContextName, String codeSystemNameOrURI, String codeSystemVersion, SearchDesignationOption option, String matchAlgorithm, String language)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Returns list of Usage Context entities matching the name provided.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        <ul>
+          <li>
+            java.lang.String usageContextName - (Mandatory) Name of a Usage Context to match.
+          </li>
+          <li>
+            java.lang.String codeSystemNameOrURI - (Mandatory) Name or URI of code system that contains the Usage Context.
+          </li>
+          <li>
+            java.lang.String codeSystemVersion - (Optional) Version of code system that contains the Usage Context.
+          </li>
+          <li>
+            org.LexGrid.LexBIG.LexBIGService.CodedNodeSet.SearchDesignationOption option - (Optional) Indicates the designations to search (one of the enumerated type SearchDesignationOption).
+          </li>
+          <li>
+            java.lang.String matchAlgorithm - (Mandatory) Local name of the match algorithm - possible algorithms are returned in LexEVSCTS2.getSupportedSearchAlgorithmNames().
+          </li>
+          <li>
+            java.lang.String language - (Optional) Language of search string. If missing, uses the default language specified in the context.
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        java.util.List&lt;org.LexGrid.concepts.Entity&gt; - List of detailed Usage Context entities that match supplied name.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Sample Call:
+      </th>
+      <td>
+        <ul>
+          <li>
+            Step 1: Instantiate UsageContextQueryOperation if it is not done yet:
+
+
+            org.lexevs.cts2.query.UsageContextQueryOperation ucQueryOp = new org.lexevs.cts2.LexEvsCTS2Impl().getQueryOperation().getUsageContextQueryOperation();
+          </li>
+          <li>
+            Step 2: Call getUsageContextEntitisWithName method by passing the name to search:
+
+
+            java.util.List&lt;org.LexGrid.concepts.Entity&gt; usageContextEntities = ucQuery.getUsageContextEntitisWithName(&#34;code&#34;, &#34;usageContextCodingScheme&#34;, null, null, &#34;subString&#34;, null); |
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h3 id="LexEVS6.0CTS2Query4UsageContextQueryOperationAPI-getUsageContextCodedNodeSet">
+  getUsageContextCodedNodeSet
+</h3>
+This is a helper function that returns Coded Node Set(CNS) for Usage Context entities. Further restrictions like, matchingDesignation, Status, Properties, etc., can be applied on this CNS and than resolved.
+
+getUsageContextCodedNodeSet(String codeSystemNameOrURI, String codeSystemVersion)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Returns coded node set for UsageContext entities.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        <ul>
+          <li>
+            java.lang.String codeSystemNameOrURI - (Mandatory) Name or URI of code system that contains the Usage Context.
+          </li>
+          <li>
+            java.lang.String codeSystemVersion - (Optional) Version of code system that contains the Usage Context.
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.LexBIGService.CodedNodeSet - Unresolved Usage Context coded node set.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Sample Call:
+      </th>
+      <td>
+        <ul>
+          <li>
+            Step 1: Instantiate UsageContextQueryOperation if it is not done yet:
+
+
+            org.lexevs.cts2.query.UsageContextQueryOperation ucQueryOp = new org.lexevs.cts2.LexEvsCTS2Impl().getQueryOperation().getUsageContextQueryOperation();
+          </li>
+          <li>
+            Step 2: Call getUsageContextCodedNodeSet to get Usage Context Coded node Set:
+
+
+            CodedNodeSet usageContextCNS = ucQuery.getUsageContextCodedNodeSet(&#34;usageContextCodingScheme&#34;, null);
+          </li>
+          <li>
+            Step 3: Apply restrictions to the CNS and resolve:
+
+
+            usageContextCNS.restrictToMatchingProperties(null, new PropertyType[] { PropertyType.PRESENTATION }, &#34;Auto&#34;, &#34;startsWith&#34;, null);
+            org.LexGrid.LexBIG.DataModel.Core.ResolvedConceptReference[] rcr = usageContextCNS.resolveToList(null, null, null, 1).getResolvedConceptReference();
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h3 id="LexEVS6.0CTS2Query4UsageContextQueryOperationAPI-listAllUsageContextEntities">
+  listAllUsageContextEntities
+</h3>
+This function returns all the Usage Context entities found in supplied code system version.
+
+listAllUsageContextEntities(String codeSystemNameOrURI, String codeSystemVersion)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Returns all the Usage Context entities found in supplied code system version.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        <ul>
+          <li>
+            java.lang.String codeSystemNameOrURI - (Mandatory) Name or URI of code system that contains the Usage Context.
+          </li>
+          <li>
+            java.lang.String codeSystemVersion - (Optional) Version of code system that contains the Usage Context.
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        java.util.List&lt;org.LexGrid.concepts.Entity&gt; - List of Usage Context entities found in supplied code system version.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Sample Call:
+      </th>
+      <td>
+        <ul>
+          <li>
+            Step 1: Instantiate UsageContextQueryOperation if it is not done yet:
+
+
+            org.lexevs.cts2.query.UsageContextQueryOperation ucQueryOp = new org.lexevs.cts2.LexEvsCTS2Impl().getQueryOperation().getUsageContextQueryOperation();
+          </li>
+          <li>
+            Step 2: Call listAllUsageContextEntities to get all Usage Context entities:
+
+
+            java.util.List&lt;org.LexGrid.concepts.Entity&gt; usageContexts = ucQuery.listAllUsageContextEntities(&#34;usageContextCodingScheme&#34;, &#34;1.0&#34;);
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h3 id="LexEVS6.0CTS2Query4UsageContextQueryOperationAPI-listAllUsageContextIds">
+  listAllUsageContextIds
+</h3>
+This function is similar to previous one, but instead of returning detailed Usage Context entities, it just returns identifiers of the Usage Context.
+
+listAllUsageContextIds(String codeSystemNameOrURI, String codeSystemVersion)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Returns all the Usage Context identifiers found in supplied code system version.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        <ul>
+          <li>
+            java.lang.String codeSystemNameOrURI - (Mandatory) Name or URI of code system that contains the Usage Context.
+          </li>
+          <li>
+            java.lang.String codeSystemVersion - (Optional) Version of code system that contains the Usage Context.
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        java.util.List&lt;String&gt; - List of Usage Context identifiers found in supplied code system version.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Sample Call:
+      </th>
+      <td>
+        <ul>
+          <li>
+            Step 1: Instantiate UsageContextQueryOperation if it is not done yet:
+
+
+            org.lexevs.cts2.query.UsageContextQueryOperation ucQueryOp = new org.lexevs.cts2.LexEvsCTS2Impl().getQueryOperation().getUsageContextQueryOperation();
+          </li>
+          <li>
+            Step 2: Call listAllUsageContextIds to get all Usage Context identifiers:
+
+
+            java.util.List&lt;java.lang.String&gt; usageContextIds = ucQuery.listAllUsageContextIds(&#34;usageContextCodingScheme&#34;, &#34;1.0&#34;);
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>

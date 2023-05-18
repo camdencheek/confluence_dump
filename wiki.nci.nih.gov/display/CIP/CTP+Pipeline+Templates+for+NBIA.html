@@ -1,0 +1,183 @@
+This document is geared towards providing common templates for using CTP to submit data to NBIA.  For more information about configuring CTP pipelines please refer to the RSNA&#39;s CTP pipeline wiki section at:
+<a href="http://mircwiki.rsna.org/index.php?title=CTP-The_RSNA_Clinical_Trial_Processor#Pipelines" rel="nofollow">
+  http://mircwiki.rsna.org/index.php?title=CTP-The_RSNA_Clinical_Trial_Processor#Pipelines
+</a>
+.
+<h4 id="CTPPipelineTemplatesforNBIA-Overview">
+  Overview
+</h4>
+CTP functions both as a client and server for transmitting data to NBIA.  In a typical installation of NBIA you will configure CTP clients for each submitting site that is sending data to your NBIA server.  At your server location you will have a CTP server to receive the data sent by the CTP clients.  In general you should not need to make any changes to the CTP server component as that is configured during the installation of NBIA.  However there are some scenarios where you will need to make changes to the CTP clients in order to meet the needs of the submitters providing you with data.
+
+Below are some common scenarios along with configuration file templates that will help you easily setup CTP clients for each situation.  Please keep in mind that you will need to update the HTTP Export information appropriately with the server and port of your NBIA server.
+<h5 id="CTPPipelineTemplatesforNBIA-SinglecollectionofimagesstoredinPACS">
+   Single collection of images stored in PACS
+</h5>
+In the scenario where the submitter&#39;s image data is all stored on their PACS you would leverage CTP&#39;s ability to import data directly via a DICOM send from the PACS.  Your configuration pipeline would be setup to process objects in the following manner: DICOM Import --&gt; IDMap --&gt; Anonymization --&gt; HTTP Export.
+<ul>
+  <li>
+    Here is an example config.xml which you can use to achieve this.  In this case CTP will listen for your PACS to send data on port 1104 and send the processed data to a CTP server listening at
+    <a href="https://university.edu:1443:" rel="nofollow">
+      https://university.edu:1443:
+    </a>
+  </li>
+</ul>
+&lt;Configuration&gt;
+&lt;Server port=&#34;80&#34; /&gt;
+&lt;Pipeline name=&#34;Main Pipeline&#34;&gt;
+&lt;ImportService
+name=&#34;DICOM Import&#34;
+class=&#34;org.rsna.ctp.stdstages.DicomImportService&#34;
+root=&#34;roots/dicom-import&#34;
+port=&#34;1104&#34; /&gt;
+&lt;Processor
+name=&#34;ID Map&#34;
+class=&#34;org.rsna.ctp.stdstages.IDMap&#34;
+root=&#34;roots/idmap&#34; /&gt;
+&lt;Anonymizer
+name=&#34;Anonymizer&#34;
+class=&#34;org.rsna.ctp.stdstages.DicomAnonymizer&#34;
+root=&#34;roots/anonymizer&#34;
+script=&#34;roots/anonymizer/scripts/da.script&#34;
+quarantine=&#34;quarantines/anonymizer&#34; /&gt;
+&lt;ExportService
+name=&#34;HTTP Export&#34;
+class=&#34;org.rsna.ctp.stdstages.HttpExportService&#34;
+root=&#34;roots/http-export&#34;
+url=&#34;https://university.edu:1443&#34; /&gt;
+&lt;/Pipeline&gt;
+&lt;/Configuration&gt;
+<h4 id="CTPPipelineTemplatesforNBIA-SinglecollectionofimagesstoredonHDD/CD">
+   Single collection of images stored on HDD/CD
+</h4>
+In a scenario where the submitter&#39;s data is stored on a hard drive or CD you will need an additional tool called FileSender.  Once you have downloaded and extracted FileSender you will use it to select the files from your computer to send them to the CTP client.
+<ul>
+  <li>
+    You can download File Sender here:
+    <a href="http://mircwiki.rsna.org/index.php?title=FileSender" rel="nofollow">
+      http://mircwiki.rsna.org/index.php?title=FileSender
+    </a>
+  </li>
+  <li>
+    If your data is on CD it is highly recommended that you copy everything on to your hard drive prior to sending it with FileSender.
+  </li>
+</ul>
+In this situation your configuration pipeline would be setup to process objects in the following manner: HTTP Import --&gt; IDMap --&gt; Anonymization --&gt; Export.
+<ul>
+  <li>
+    Here is an example config.xml which you can use to achieve this.  In this case CTP will listen only for DICOM Objects transmitted from your FileSender on port 7777 and send the processed data to a CTP server listening at
+    <a href="https://university.edu:1443:" rel="nofollow">
+      https://university.edu:1443:
+    </a>
+  </li>
+</ul>
+&lt;Configuration&gt;
+&lt;Server port=&#34;80&#34; /&gt;
+&lt;Pipeline name=&#34;Main Pipeline&#34;&gt;
+&lt;ImportService
+name=&#34;HTTP Import&#34;
+id=&#34;HTTP Import&#34;
+class=&#34;org.rsna.ctp.stdstages.HttpImportService&#34;
+root=&#34;roots/http-import&#34;
+port=&#34;7777&#34;
+ssl=&#34;yes&#34;
+zip=&#34;no&#34;
+acceptDicomObjects=&#34;yes&#34;
+acceptXmlObjects=&#34;no&#34;
+acceptZipObjects=&#34;no&#34;
+acceptFileObjects=&#34;no&#34;
+quarantine=&#34;quarantines/http-import&#34; /&gt;
+&lt;Processor
+name=&#34;ID Map&#34;
+class=&#34;org.rsna.ctp.stdstages.IDMap&#34;
+root=&#34;roots/idmap&#34; /&gt;
+&lt;Anonymizer
+name=&#34;Anonymizer&#34;
+class=&#34;org.rsna.ctp.stdstages.DicomAnonymizer&#34;
+root=&#34;roots/anonymizer&#34;
+script=&#34;roots/anonymizer/scripts/da.script&#34;
+quarantine=&#34;quarantines/anonymizer&#34; /&gt;
+&lt;ExportService
+name=&#34;HTTP Export&#34;
+class=&#34;org.rsna.ctp.stdstages.HttpExportService&#34;
+root=&#34;roots/http-export&#34;
+url=&#34;https://university.edu:1443&#34; /&gt;
+&lt;/Pipeline&gt;
+&lt;/Configuration&gt;
+<h4 id="CTPPipelineTemplatesforNBIA-MultipleimagecollectionsusingasingleCTPclient">
+   Multiple image collections using a single CTP client
+</h4>
+In a scenario where the submitter intends to send more than one collection of images to NBIA via CTP you will need to setup new pipelines for each collection.  For this situation let&#39;s assume the submitter has two collections of images.  The first is a CT Lung study which they have stored on DICOM CDs and the second is an MR Brain study which is stored on their PACS.
+<ul>
+  <li>
+    Before beginning the transmission the submitter should first copy the CT Lung Study data to their hard drive and download FileSender (
+    <a href="http://mircwiki.rsna.org/index.php?title=FileSender" rel="nofollow">
+      http://mircwiki.rsna.org/index.php?title=FileSender
+    </a>
+    ).
+  </li>
+  <li>
+    Note that each pipeline is using a different anonymization script so that you can fill in parameters for each data set separately
+  </li>
+  <li>
+    Here is an example config.xml which you can use to submit the data to NBIA.  In this case CTP will listen for the CT Lung study DICOM Objects transmitted from your FileSender on port 7777.  It will listen for your PACS to send MR Brain study data on port 1104. It will send the processed data for both pipelines to a CTP server listening at
+    <a href="https://university.edu:1443:" rel="nofollow">
+      https://university.edu:1443:
+    </a>
+  </li>
+</ul>
+&lt;Configuration&gt;
+&lt;Server port=&#34;80&#34; /&gt;
+&lt;Pipeline name=&#34;CT Lung Pipeline&#34;&gt;
+&lt;ImportService
+name=&#34;CT Lung HTTP Import&#34;
+id=&#34;CT Lung HTTP Import&#34;
+class=&#34;org.rsna.ctp.stdstages.HttpImportService&#34;
+root=&#34;roots/http-import/CT-Lung&#34;
+port=&#34;7777&#34;
+ssl=&#34;yes&#34;
+zip=&#34;no&#34;
+acceptDicomObjects=&#34;yes&#34;
+acceptXmlObjects=&#34;no&#34;
+acceptZipObjects=&#34;no&#34;
+acceptFileObjects=&#34;no&#34;
+quarantine=&#34;quarantines/http-import/CT-Lung&#34; /&gt;
+&lt;Processor
+name=&#34;CT Lung ID Map&#34;
+class=&#34;org.rsna.ctp.stdstages.IDMap&#34;
+root=&#34;roots/idmap/CT-Lung&#34; /&gt;
+&lt;Anonymizer
+name=&#34;CT Lung Anonymizer&#34;
+class=&#34;org.rsna.ctp.stdstages.DicomAnonymizer&#34;
+root=&#34;roots/anonymizer/CT-Lung&#34;
+script=&#34;roots/anonymizer/scripts/CT-Lung-da.script&#34;
+quarantine=&#34;quarantines/anonymizer/CT-Lung&#34; /&gt;
+&lt;ExportService
+name=&#34;CT Lung HTTP Export&#34;
+class=&#34;org.rsna.ctp.stdstages.HttpExportService&#34;
+root=&#34;roots/http-export/CT-Lung&#34;
+url=&#34;https://university.edu:1443&#34; /&gt;
+&lt;/Pipeline&gt;
+
+&lt;Pipeline name=&#34;MR Brain Pipeline&#34;&gt;
+&lt;ImportService
+name=&#34;MR Brain DICOM Import&#34;
+class=&#34;org.rsna.ctp.stdstages.DicomImportService&#34;
+root=&#34;roots/dicom-import/MR-Brain&#34;
+port=&#34;1104&#34; /&gt;
+&lt;Processor
+name=&#34;ID Map&#34;
+class=&#34;org.rsna.ctp.stdstages.IDMap&#34;
+root=&#34;roots/idmap/MR-Brain&#34; /&gt;
+&lt;Anonymizer
+name=&#34;MR Brain Anonymizer&#34;
+class=&#34;org.rsna.ctp.stdstages.DicomAnonymizer&#34;
+root=&#34;roots/anonymizer/MR-Brain&#34;
+script=&#34;roots/anonymizer/scripts/MR-Brain-da.script&#34;
+quarantine=&#34;quarantines/anonymizer/MR-Brain&#34; /&gt;
+&lt;ExportService
+name=&#34;MR Brain HTTP Export&#34;
+class=&#34;org.rsna.ctp.stdstages.HttpExportService&#34;
+root=&#34;roots/http-export/MR-Brain&#34;
+url=&#34;https://university.edu:1443&#34; /&gt;
+&lt;/Pipeline&gt;
+&lt;/Configuration&gt; 

@@ -1,0 +1,356 @@
+<h2 id="LexEVSMeetingMinutesDockerPlanningSession2017.03.30-Attendees">
+   Attendees
+</h2>
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        Name
+      </th>
+      <th>
+        Role
+      </th>
+      <th colspan="1">
+        Present
+      </th>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Mensah, Jacob
+      </td>
+      <td colspan="1">
+        NIH/NCI [C]
+      </td>
+      <td colspan="1">
+        x
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Hartman, Phil
+      </td>
+      <td>
+        NIH/NCI [C]
+      </td>
+      <td>
+        x
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Wei, Lu
+      </td>
+      <td colspan="1">
+        NIH/NCI [C]
+      </td>
+      <td colspan="1">
+        x
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Pan, Sue
+      </td>
+      <td colspan="1">
+        NIH/NCI [C]
+      </td>
+      <td colspan="1"></td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Stockwell, Michael
+      </td>
+      <td colspan="1">
+        NIH/NCI [C]
+      </td>
+      <td colspan="1"></td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Bauer, Scott
+      </td>
+      <td colspan="1">
+        Mayo
+      </td>
+      <td colspan="1">
+        x
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Stancl, Craig
+      </td>
+      <td colspan="1">
+        Mayo
+      </td>
+      <td colspan="1">
+        x
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Endle,  Cory
+      </td>
+      <td colspan="1">
+        Mayo
+      </td>
+      <td colspan="1">
+        x
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="LexEVSMeetingMinutesDockerPlanningSession2017.03.30-Links">
+  Links
+</h2>
+<ul>
+  <li>
+    LexEVS Docker Overview
+  </li>
+  <li>
+    <ul>
+      <li>
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=341185929" rel="nofollow">
+          LexEVS 16X237 Docker Setup
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    Docker scripts: lexevs-system-test git repository
+    <ul>
+      <li>
+        <a href="https://github.com/lexevs/lexevs-system-test/tree/v6.5.0" rel="nofollow">
+          https://github.com/lexevs/lexevs-system-test/tree/v6.5.0
+        </a>
+      </li>
+    </ul>
+  </li>
+</ul>
+<h2 id="LexEVSMeetingMinutesDockerPlanningSession2017.03.30-Agenda">
+  Agenda
+</h2>
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <td colspan="1">
+        Discuss Mayo’s current use of Docker and determine if/how this can be supported at NCI.
+      </td>
+      <td colspan="1">
+        Discussion Points:
+        <ul>
+          <li>
+            Overview of what LeEVS team currently has running locally.
+            <ul>
+              <li>
+                LexEVS has multiple components (separate GIT repositories)
+              </li>
+              <li>
+                Current Docker environment configured to build and run tests.
+                <ul>
+                  <li>
+                    Containers communicate with each other for testing purposes
+                  </li>
+                </ul>
+              </li>
+              <li>
+                Jenkins configures the containers.
+              </li>
+              <li>
+                Test results are collated for review.
+              </li>
+            </ul>
+          </li>
+          <li>
+            Discussion of Goals
+            <ul>
+              <li>
+                CI on NIH server (same thing that we do locally)
+                <ul>
+                  <li>
+                    NIH has Jenkins already, so not a problem.
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Hardware Requirements for Docker
+            <ul>
+              <li>
+                Minimally, a larger VM
+                <ul>
+                  <li>
+                    Memory, CPU Cores
+                  </li>
+                </ul>
+              </li>
+              <li>
+                Currently running on one physical server.
+              </li>
+            </ul>
+          </li>
+          <li>
+            NIH is looking into Docker Swarm/Cluster.
+          </li>
+        </ul>
+        Decision Points:
+        <ul>
+          <li>
+            Configure one physical server
+            <ul>
+              <li>
+                Blade Server
+              </li>
+            </ul>
+          </li>
+          <li>
+            Will need to work with team to determine configuration and set up of environment.
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Discuss the possibility of creating reusable Docker containers based on NCI’s technology stack and placing them on NCI’s Nexus server where we can pull into our project.
+      </td>
+      <td colspan="1">
+        Discussion Points:
+        <ul>
+          <li>
+            NIH reusable containers to be on Nexus.
+          </li>
+          <li>
+            NIH base image built
+            <ul>
+              <li>
+                This is an ongoing project to test the base line.
+              </li>
+            </ul>
+          </li>
+          <li>
+            Repository is ready for pilot (NOT production)
+            <ul>
+              <li>
+                LexEVS usecase is very good for pilot.
+              </li>
+              <li>
+                May want to look at getting LexEVS into a docker cluster.
+              </li>
+            </ul>
+          </li>
+          <li>
+            Users will be able to manage own projects
+            <ul>
+              <li>
+                This will still allow the LexEVS team to have access.
+              </li>
+            </ul>
+          </li>
+        </ul>
+        Decision Points:
+        <ul>
+          <li>
+            NCI team is ready to take us on as a pilot.
+          </li>
+          <li>
+            As part of this, use evaluate and determine needs for docker cluster.
+          </li>
+          <li>
+            Provide Jenkins configuration details to Phil. May be able to push docker container to NCI docker hub. Optionally, we can provide screen share and share configuration.
+          </li>
+          <li>
+            NCI will need to potentially get the publish results plugin.
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Discuss the possibility of deploying our application to the different NCI tiers as Docker containers.
+      </td>
+      <td colspan="1">
+        Discussion Points:
+        <ul>
+          <li>
+            This is NCI goal.
+          </li>
+          <li>
+            Currently working with other projects with goal of getting to production.
+          </li>
+        </ul>
+        Decision Points:
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        The use of Jenkin’s for running LexEVS builds and tests
+      </td>
+      <td colspan="1">
+        Discussion Points:
+        <ul>
+          <li>
+            Toky and LexEVS team worked together to get Jenkins configuration set up on NCI server.
+            <ul>
+              <li>
+                Partially configured, but not completed before she left.
+              </li>
+            </ul>
+          </li>
+          <li>
+            Phil said they can preserve what Toky completed.
+          </li>
+          <li>
+            Phil can import our configuration and replace what Toky did.
+          </li>
+          <li>
+            This is a separate Jenkins.
+          </li>
+        </ul>
+        Decision Points:
+        <ul>
+          <li>
+            LexEVS team to export the Jenkins configuration for Phil.
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Next Steps
+      </td>
+      <td colspan="1">
+        Next Steps:
+        <ul>
+          <li>
+            Jacob main touchpoint
+          </li>
+          <li>
+            Configuration details via email with Wei and Phil.
+          </li>
+          <li>
+            Continue to provide updates during the Wednesday systems call.
+          </li>
+          <li>
+            Additional meetings as needed.
+          </li>
+          <li>
+            Respond to TODos listed above.
+          </li>
+          <li>
+            Create a ticket for Jacob: Setup Docker and Jenkins for LexEVS.
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>

@@ -1,0 +1,437 @@
+Contents of this Page
+<ul>
+  <li>
+    <a href="#id-1LexEVS5.xMigrationLexEVSModel-Introduction" rel="nofollow">
+      Introduction
+    </a>
+  </li>
+  <li>
+    <a href="#id-1LexEVS5.xMigrationLexEVSModel-LexEVSModelOverview" rel="nofollow">
+      LexEVS Model Overview
+    </a>
+  </li>
+  <li>
+    <a href="#id-1LexEVS5.xMigrationLexEVSModel-ModelChanges:Highlights" rel="nofollow">
+      Model Changes: Highlights
+    </a>
+  </li>
+  <li>
+    <a href="#id-1LexEVS5.xMigrationLexEVSModel-ModelChanges:Details" rel="nofollow">
+      Model Changes: Details
+    </a>
+  </li>
+</ul>
+<h2 id="id-1LexEVS5.xMigrationLexEVSModel-Introduction">
+  Introduction
+</h2>
+This document is a section of the
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427409" rel="nofollow">
+  Migration Guide
+</a>
+.
+<h2 id="id-1LexEVS5.xMigrationLexEVSModel-LexEVSModelOverview">
+  LexEVS Model Overview
+</h2>
+The transition from the 2008/02 model to the 2009/01 model has introduced numerous enhancements.  Information regarding the LexEVS model can be found in the
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427406" rel="nofollow">
+  LexEVS 5.0 Design and Architecture Guide
+</a>
+or the
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427452" rel="nofollow">
+  LexEVS 5.x Design and Architecture Guide 1 - Introduction
+</a>
+.
+
+The 2009/01 EA representation of the model can be found at the
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427414" rel="nofollow">
+  model and scheme page
+</a>
+.
+<h2 id="id-1LexEVS5.xMigrationLexEVSModel-ModelChanges:Highlights">
+  Model Changes: Highlights
+</h2>
+<ul>
+  <li>
+    Accommodate entities other than concept/instance/association
+  </li>
+  <li>
+    Converge attributes (e.g. associated properties) to &#39;Entity&#39; superclass
+  </li>
+  <li>
+    Single resource can be defined as multiple types
+  </li>
+  <li>
+    Allow more granular version tracking (e.g. per concept or per property)
+  </li>
+  <li>
+    Extensive updates to value domain and pick list representation
+  </li>
+  <li>
+    Remove antiquated packages &amp; classes (e.g. LDAP)
+  </li>
+  <li>
+    Accuracy and alignment of internal lexicon (URNMap -&gt; URIMap)
+  </li>
+  <li>
+    Influenced by CTS2, OWL, XMDR, GE/IHC
+  </li>
+  <li>
+    Formalized (EA model available)
+  </li>
+</ul>
+<h2 id="id-1LexEVS5.xMigrationLexEVSModel-ModelChanges:Details">
+  Model Changes: Details
+</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Model Change
+      </th>
+      <th>
+        Type
+      </th>
+      <th>
+        Description
+      </th>
+      <th>
+        How Implemented
+      </th>
+    </tr>
+    <tr>
+      <td>
+        Remove LDAP Implementation
+      </td>
+      <td>
+        Feature Request
+      </td>
+      <td>
+        The LDAP implementation of the LexGrid model is no longer being used.  The LDAP specific elements in the LexGrid model should be removed, as they add a degree of complexity and confusion that is no longer justified.
+      </td>
+      <td>
+        <ul>
+          <li>
+            Removed LDAP Package
+          </li>
+          <li>
+            Removed NumericOID type
+          </li>
+          <li>
+            Removed all LDAP annotation on the individual entities
+          </li>
+          <li>
+            Removed the &#34;dc&#34; type on aggregation columns
+          </li>
+          <li>
+            Removed the constraint that all nodes had to have a single identifier that was unique in the context of the parent
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Model Clarification
+      </td>
+      <td>
+        Enhancement Request
+      </td>
+      <td>
+        There are several issues that have made the model difficult to explain, implement, and use.  These issues include:
+        <ul>
+          <li>
+            The inconsistent use of names - some core data types begin with &#34;ts&#34; and others don&#39;t.
+          </li>
+          <li>
+            Naming confusion - &#34;URN&#34; is used in several places where the data type should be a URI, labels say &#34;id&#34; when they mean &#34;code&#34;, etc.
+          </li>
+          <li>
+            Inconsistent typing - localId is used as a type throughout much of the model instead of specifying the particular domain (e.g. source, language, namespace name, etc)
+          </li>
+          <li>
+            Inconsistent use of the &#34;any&#34; type - it has a misleading label in the builtins section (tsCaseSensitiveDirectoryString), and then isn&#39;t used consistently through the model.
+          </li>
+          <li>
+            While we aren&#39;t yet resorting to relaxNG, we would like the XML validation to catch more obvious errors.  Weak typing prevents some of this validation, but setting minLength to &#34;1&#34; on fields that are expected to have content will reduce the number of XML documents that validate but don&#39;t load correctly
+          </li>
+        </ul>
+      </td>
+      <td>
+        ---
+      </td>
+    </tr>
+    <tr>
+      <td>
+        All text type fields need data types
+      </td>
+      <td>
+        Enhancement Request
+      </td>
+      <td>
+        We need the ability to add a data type (format) to the target of associations as well as the target of any property.  Right now, it only applies to property
+      </td>
+      <td>
+        Changed builtins name to &#34;tsAnType&#34;.  Added an optional dataType attribute to the field.  Changed the types of &#34;text&#34; and &#34;entityDescription to &#34;tsAnyType&#34;.  Changed property and associationData to have a reference to an entity of type &#34;text&#34; rather than being a kind of &#34;text&#34;
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Flexible Entity types
+      </td>
+      <td>
+        Enhancement Request
+      </td>
+      <td>
+        The 2008/01 model supports a fixed set of entity types - concept, relation and instance.  While this aligns with OWL/DL, it doesn&#39;t account for (a) terminologies that haven&#39;t differentiated classes from individuals, (b) OWL Full, where an entity can be both a class and an individual and (c) other type systems, such as that supported by KTMI
+      </td>
+      <td>
+        Made &#34;entity&#34; a first class class, that included all properties and characteristics.  Added an optional, repeating entityType field which allowed the entity to be classified, added supportedEntityType in the mappings to allow types to be customized, removed the fixed enumeration of types and added constraints that define &#34;concept&#34;, &#34;instance&#34; and &#34;relation&#34; by the entityType field
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Incremental Revisions
+      </td>
+      <td>
+        Enhancement Request
+      </td>
+      <td>
+        LexGrid updates need to be communicated as sets of changes rather than complete sets of contents.  The history mechanism needs to be extended so that a collection of changes can be communicated that will allow an existing system to be updated incrementally
+      </td>
+      <td>
+        Changed the definition of versionable, added entityState and revision model elements and changed the definition of systemRelease to carry a collection of revisions.
+        NoteThis change is closely coupled with the Refined History Model change request.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Refined History Model
+      </td>
+      <td>
+        Enhancement Request
+      </td>
+      <td>
+        LexGrid needs the ability to version and activate changes on the property, entity, association instance, pick list, pick list entry level in addition to the concept level.  Each of these entities need to support a status, state (active or inactive) the date/time when the change is to become active, the data/time when it is to become inactive, and additional metadata about who, how and why the change should be applied.
+      </td>
+      <td>
+        <ul>
+          <li>
+            Revised versionable to support the activation state, status, effective and expiration dates
+          </li>
+          <li>
+            Provided an optional link from versionable to an entryState record that carried the type of change and the revision that this change was included in.  Created a model of state changes (changeType), and created machanisms for traversing revisions to determine what changed, when, where, etc.
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Namespaces Aren&#39;t CodingSchemes
+      </td>
+      <td>
+        Bug Fix
+      </td>
+      <td>
+        The namespace used to qualify the URI of a coded entity isn&#39;t necessarily the namespace of the coding scheme making an assertion about the entity.  These two elements are convoluted in the current LexGrid model.
+      </td>
+      <td>
+        Added a new localId type, &#34;NamespaceName&#34; and a new mapping, &#34;supportedNamespace&#34;.  Changed the codingSchemeId attribute of &#34;entity&#34; to entityCodeNamespace, which references a supportedNamespace. If entityCodeNamespace is present, it references a supportedNamespace, which, in turn, has an attribute, &#34;equivalentCodingScheme&#34;, which has the local name of the codingScheme that corresponds to the entityCodeNamespace
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Revise Value Domains / Pick Lists
+      </td>
+      <td>
+        Enhancement Request
+      </td>
+      <td>
+        The value domain model needs to be extended to support the definitions represented in the IHC model.  In addition, the model needs to support (a) HL7&#39;s value domain definition model and the sort of definitions that can be created through the DTS editor.  The model of pick lists need to be extended accordingly to meet multiple GE/IHC requirements
+      </td>
+      <td>
+        Completely replaced the ValueDomains package to carry the new model.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Dual Type Properties
+      </td>
+      <td>
+        Enhancement Request
+      </td>
+      <td>
+        RDF based loaders transform triples into a combination of (a) first class attributes (e.g. entityDescription, copyRight, presentation, definition, ...) (b) generic lexical properties or (c) relations.  Properties and relations preserve the original RDF type, but the first class attributes lose the information about where the resource was derived from.  In addition, there is no way to assign status and provenance information to the first class attributes (see: Refined History Model)
+      </td>
+      <td>
+        Model philosophy was changed to have first class attributes represented in two forms: as an attribute and as a property that is identified as being an attribute.  To do this, we added new attributes to property and propertyQualifier that, if non-blank, stated the first class entity that this property (or propertyQualifier) represented.  As an example, the copyRight entity would also be represented as a property with a propertyType of &#34;copyRight&#34;
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Backwards Compatibility
+      </td>
+      <td>
+        Feature Request
+      </td>
+      <td>
+        The LexBIG API history API goes directly against the NCI Cumulative History content and renders its output in terms of codingSchemeVersion, version and entity version.  These elements need to be preserved in the new LexGrid model as deprecated elements that exist for backwards compatibility with the LexBIG API.
+      </td>
+      <td>
+        Preserved Version, Version Reference, representsVersion, entityVersion and codingSchemeVersion, but marked them as &#34;deprecated&#34;
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Common Mappings Type
+      </td>
+      <td>
+        Feature Request
+      </td>
+      <td>
+        The 2008/01 model has two different &#34;mappings&#34; entities, one for codingScheme and one for valueDomain.  Each has a different collection of supported, and the order of the entries are confusing and arbitrary. With the addition of another &#34;mappings&#34; entry for pick list, we suggest that the three mappings be consolidated into one type, and the contents be alphabetized.  This will make code management and authoring easier. (second entry) It should be possible to enter a codingScheme, valueDomain or pickList without having any mappings entries and have the loader fill out the information of all of the localId&#39;s and, where possible, the URI&#39;s that they map to.  This should not be the function of an editor or type transformation package
+      </td>
+      <td>
+        Created a new &#34;mappings&#34; entry in Naming package, removed the existing entries from codingScheme and valueDomain and pointed them at the new entry.  Alphabetized the entries and made them all optional.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Agent Role on supportedSource
+      </td>
+      <td>
+        Bug Fix
+      </td>
+      <td>
+        supportedSource has an agentRole field, but role is a property of the association of the source with the entity (e.g. the source may be author on one field, editor on another).
+      </td>
+      <td>
+        Removed agentRole from supportedSource
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Assertions can be inferred, entities cannot
+      </td>
+      <td>
+        Bug Fix
+      </td>
+      <td>
+        isInferred is listed as a property of a concept.  DL can infer additional axioms about a concept, but they cannot infer the existence of a concept that isn&#39;t already specified.
+      </td>
+      <td>
+        Moved isInferred from concept to associatiableElement
+      </td>
+    </tr>
+    <tr>
+      <td>
+        PropertyLink.propertyLink is confusing
+      </td>
+      <td>
+        Bug Fix
+      </td>
+      <td>
+        the link attribute in the propertyLink element was renamed to &#34;propertyLink&#34;.  This is confusing
+      </td>
+      <td>
+        (not fixed yet)
+      </td>
+    </tr>
+    <tr>
+      <td>
+        isTranslationAssociation is not a property of the association, but how it is used.
+      </td>
+      <td>
+        Bug Fix
+      </td>
+      <td>
+        Association was made a first class entity in the 2008/01 model, meaning that all of the characteristics had to be properties of the association itself, not how it used in a particular relations collection.  isTranslationAssociation is a property of use, yet is listed as a property of the association itself
+      </td>
+      <td>
+        Removed isTranslationAssociation from the model.  No alternative available at the moment
+      </td>
+    </tr>
+    <tr>
+      <td>
+        targetCodingScheme is not a property of an association, but how it is used.
+      </td>
+      <td>
+        Bug Fix
+      </td>
+      <td>
+        Association was made a first class entity in the 2008/01 model, meaning that all of the characteristics had to be properties of the association itself, not how it used in a particular relations collection.  targetCodingScheme is a function of how it is used, not the association itself
+      </td>
+      <td>
+        Removed targetCodingScheme from the model, meaning that mappings across coding schemes will always have to provide the namespace id for the target element.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        associationName is a localId, not an entityCode
+      </td>
+      <td>
+        Bug Fix
+      </td>
+      <td>
+        Association was made a first class entity in the 2008/01 model, and associationName was removed anticipating that the entityCode and associationName would always be the same thing.  This may not be the case, however, as an ontology may use, say &#34;isA&#34; as the name of an association, but define it as being the same as an entirely different concept in a different namespace.
+      </td>
+      <td>
+        Reintroduced associationName as a localId with the supportedAssociation mapping entries
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Type is an attribute of entity, not usage.  An entity can have multiple types
+      </td>
+      <td>
+        Bug Fix
+      </td>
+      <td>
+        sourceEntityType and targetEntityType are incorrect in the associations package, as they assume that the type is part of an entity&#39;s identity (i.e. you can have two entities with the same URI, one of which is a class and one an individual).
+      </td>
+      <td>
+        sourceEntityType and targetEntityType were removed from the model
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Need to select associations by context
+      </td>
+      <td>
+        Enhancement
+      </td>
+      <td>
+        IHC needs to be able to select associations based on a passed context
+      </td>
+      <td>
+        added usageContext attribute to associatableElement
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Need instance identifiers on associations
+      </td>
+      <td>
+        Bug Fix
+      </td>
+      <td>
+        You can assign an identifier to a DataProperty type association, but not to ObjectProperty type association. Both IHC and SNOMED-CT maintain unique identifiers on associations
+      </td>
+      <td>
+        Removed dataId from the associationData and created associationInstanceId in the associatableElement class.  This field is optional, as dataId originally existed for LDAP compatibility.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Need to know whether an association participates in the definition of a concept
+      </td>
+      <td>
+        Enhancement
+      </td>
+      <td>
+        While OWL doesn&#39;t currently support this, it is useful to understand whether a assertion is considered to be part of the definition of an entity or simply an additional fact that is known about that entity.
+      </td>
+      <td>
+        Added isDefining attribute to the associatableElement class
+      </td>
+    </tr>
+  </tbody>
+</table>

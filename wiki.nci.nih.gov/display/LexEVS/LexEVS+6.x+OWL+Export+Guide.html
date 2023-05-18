@@ -1,0 +1,215 @@
+Contents of this Page
+<ul>
+  <li>
+    <a href="#LexEVS6.xOWLExportGuide-PreliminaryConsiderations" rel="nofollow">
+      Preliminary Considerations
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.xOWLExportGuide-RunninganOWL/RDFExportwiththeAdministrationGUI" rel="nofollow">
+      Running an OWL/RDF Export with the Administration GUI
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.xOWLExportGuide-RunninganOWL/RDFExportScriptfromtheCommandLine" rel="nofollow">
+      Running an OWL/RDF Export Script from the Command Line
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.xOWLExportGuide-AdministrationGUIexportwalk-throughexample" rel="nofollow">
+      Administration GUI export walk-through example
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.xOWLExportGuide-CommandLineScriptExportingExample" rel="nofollow">
+      Command Line Script Exporting Example
+    </a>
+  </li>
+</ul>
+LexEVS 6.x provides two methods to export loaded ontologies to an OWL/RDF format. One is to use the LexEVS administration GUI; and the other is to use an export script on the command line.
+<h2 id="LexEVS6.xOWLExportGuide-PreliminaryConsiderations">
+  Preliminary Considerations
+</h2>
+<ul>
+  <li>
+    The OWL/RDF exporter is based on Jena 2.6.3. While it exports an OWL file, it also builds up a triple store. The triple store tables stored in the same same database that LexEVS uses.
+  </li>
+  <li>
+    The LexEVS 6.0 retrieval API has the limitation of retrieving the association that is from an entity to a data/value. Thus, the OWL/RDF exporter, based on LexEVS retrieval API, has the limitation of handling the owl:hasValue, owl:maxCardinality, owl:minCardinality, owl:cardinality constraints as well.
+  </li>
+  <li>
+    The OWL/RDF exporter now can convert OWL, RDF, OBO, and UML formats to OWL/RDF. If the terminology format is not on this list, the exported OWL ontology may be incorrect.Note that OWL2 is not currently supported, nor is an export to the OWL2 format.  Much of what is loaded to LexEVS is currently OWL2, and cannot be exported.  See JIRA Item
+    <a href="https://tracker.nci.nih.gov/browse/LEXEVS-3661" rel="nofollow">
+      LEXEVS-3661
+    </a>
+  </li>
+</ul>
+<h2 id="LexEVS6.xOWLExportGuide-RunninganOWL/RDFExportwiththeAdministrationGUI">
+  Running an OWL/RDF Export with the Administration GUI
+</h2>
+If you chose to install the LexEVS GUI when you installed LexEVS, you will have a &#39;gui&#39; folder inside of your LexEVS home directory. Assuming you installed the GUI for all operating systems, you will have the following programs under the &#39;gui&#39; folder:
+<ul>
+  <li>
+    Linux_64-lbGUI.sh
+  </li>
+  <li>
+    Linux-lbGUI.sh
+  </li>
+  <li>
+    OSX-lbGUI.command
+  </li>
+  <li>
+    Windows-lbGUI.bat
+  </li>
+</ul>
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        Step
+      </th>
+      <th>
+        Action
+      </th>
+    </tr>
+    <tr>
+      <td>
+        1. Launch the GUI by executing the appropriate executable for your platform. You will be presented with an application that looks like this. If the Available Code System table is empty, you will need to load at least one ontology.
+      </td>
+      <td>
+        <img alt="Screenshot of available code systems." src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%206.x%20OWL%20Export%20Guide/GUI_Launch.jpg?api=v2">
+      </td>
+    </tr>
+    <tr>
+      <td>
+        2. Selecting &#39;Enable Admin Options&#39; provides administrative access to all commands.
+      </td>
+      <td>
+        <img alt="Screenshot of enabled menu item for administrative functions." src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%206.x%20OWL%20Export%20Guide/LexEVS_GUI_Command_Menu_Enabled.JPG?api=v2">
+      </td>
+    </tr>
+    <tr>
+      <td>
+        3. Select an active terminology (if the code system status is &#39;inactive&#39;, you can use the Activate button to activate it). Click on &#39;Export as OWL/RDF&#39; button on the &#39;Export Terminology&#39; menu, the exporter window will pop up. Fill in the parameters. See the export parameter descriptions in the Administration Guide. Click the &#39;Export&#39; button, the exporter will generate the OWL file to the specified path.
+      </td>
+      <td>
+        <img alt="Screenshot of LexGrid Export." src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%206.x%20OWL%20Export%20Guide/Standard_Exporter_Interface.JPG?api=v2">
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="LexEVS6.xOWLExportGuide-RunninganOWL/RDFExportScriptfromtheCommandLine">
+  Running an OWL/RDF Export Script from the Command Line
+</h2>
+After installing LexEVS, you will have an &#39;admin&#39; folder inside of your LexEVS base installation. The OWL/RDF exporter shell script is in the following folder (for Linux or Windows):
+ExportOwlRdf.[sh|bat]
+
+This command will export OWL/RDF without a GUI. For detailed information please refer to the
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427295" rel="nofollow">
+  command line parameters for this command
+</a>
+in the Administration Guide.Examples:
+ExportOwlRdf -out &#34;file:///path/to/dir&#34; -f
+ExportOwlRdf -out &#34;file:///path/to/dir&#34; -u &#34;sample&#34; -v &#34;1.0&#34; -f
+<h2 id="LexEVS6.xOWLExportGuide-AdministrationGUIexportwalk-throughexample">
+  Administration GUI export walk-through example
+</h2>
+This walk through will show you how to load a terminology and then export it in OWL/RDF format.
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Step
+      </th>
+      <th>
+        Action
+      </th>
+    </tr>
+    <tr>
+      <td>
+        1. Launch the administration GUI.
+      </td>
+      <td>
+        <img alt="Screenshot for launching the adminstrative GUI for LexEVS." src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%206.x%20OWL%20Export%20Guide/LexEVS_Launch_GUI_Admin.png?api=v2">
+      </td>
+    </tr>
+    <tr>
+      <td>
+        2. Enable the administration option.
+      </td>
+      <td>
+        <img alt="Screenshot of LexEVS Guide and how to enable Administrative functions." src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%206.x%20OWL%20Export%20Guide/LexEVS_GUI_Enable_Adimin.png?api=v2">
+      </td>
+    </tr>
+    <tr>
+      <td>
+        3. In this example, we use the cell.obo ontology as the example ontology, so we choose OBOloader.
+      </td>
+      <td>
+        <img alt="Screenshot of selection of OBOloader" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%206.x%20OWL%20Export%20Guide/LexEVS_GUI_OBO_Loader.png?api=v2">
+      </td>
+    </tr>
+    <tr>
+      <td>
+        4. Provide cell.obo file&#39;s path. If you don&#39;t have a manifest file or preferences file then leave these fields blank. Click on the &#39;Load&#39; button. After a few minutes, the loading process is done. You can find &#39;End State: complete&#39; in the Output message box. Close this window, and return to the administration GUI, a &#39;cell&#39; record should show up on the Available Code Systems list.
+      </td>
+      <td>
+        <img alt="Screen shot of OBO loader" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%206.x%20OWL%20Export%20Guide/LexEVS_GUI_OBO_Loading.png?api=v2">
+      </td>
+    </tr>
+    <tr>
+      <td>
+        5. Select the cell ontology row and click the &#39;Activate&#39; button. The status column of &#39;cell&#39; should change to active.
+      </td>
+      <td>
+        <img alt="Screen shot of a an active terminology." src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%206.x%20OWL%20Export%20Guide/LexEVS_GUI_OBO_Activate.png?api=v2">
+      </td>
+    </tr>
+    <tr>
+      <td>
+        6. Make sure the cell ontology is still selected. Go to the &#39;Export Terminology&#39; menu, click on &#39;Export as OWL/RDF&#39; in the drop down menu.
+      </td>
+      <td>
+        <img alt="Screen shot of menu to use for Export Terminology." src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%206.x%20OWL%20Export%20Guide/LexEVS_GUI_OWL_Export_Select.png?api=v2">
+      </td>
+    </tr>
+    <tr>
+      <td>
+        7. Provide a path in the &#39;URI&#39; text box. The exported file name is automatically generated by the system, so we don&#39;t need to specify the file name. Click on the &#39;Export&#39; button.
+      </td>
+      <td>
+        <img alt="Screen shot of the export dialog." src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%206.x%20OWL%20Export%20Guide/LexEVS_GUI_OWL_Exporting.png?api=v2">
+      </td>
+    </tr>
+    <tr>
+      <td>
+        8. A set of status messages will show up in the Output text box. When the &#39;End State: completed&#39; statement pops up, the exporting process is complete.
+      </td>
+      <td>
+        <img alt="Screen shot of the export dialog when the export process is complete." src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%206.x%20OWL%20Export%20Guide/LexEVS_GUI_OWL_Exported.png?api=v2">
+      </td>
+    </tr>
+    <tr>
+      <td>
+        9. The convention of the exported file name is: &lt;coding system name&gt;_&lt;version&gt;.owl. In this example, cell ontology has no version information, so &#39;UNASSIGNED&#39; is used as the version. The name of the OWL file in this case will be cell_UNASSIGNED.owl and it is in the C drive&#39;s root directory. You can check the exported OWL file with a text editor. Yours may not show highlighting for the XML syntax.
+      </td>
+      <td>
+        <img alt="Screen shot of the exported OWL file being viewed in a text editor." src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%206.x%20OWL%20Export%20Guide/LexEVS_GUI_OWL_Exported_File.png?api=v2">
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="LexEVS6.xOWLExportGuide-CommandLineScriptExportingExample">
+  Command Line Script Exporting Example
+</h2>
+We still use the cell.obo as our example ontology and assume that it has been loaded already. It is straightforward to run a command like this instead of using the GUI:
+ExportOwlRdf -out &#34;file:///home/MyHome&#34; -u &#34;cell&#34; -v &#34;1.0&#34; -f
+
+A set of statements will show up, like the following, if it runs successfully:
+Output from command line execution...
+
+A file named &#34;cell_UNASSIGNED.owl&#34; will be generated and saved under the specified path. The content of this file is the same as the file generated by the administration GUI.

@@ -1,0 +1,817 @@
+Contents of this Page
+<ul>
+  <li>
+    <a href="#InstallingMedICI-CreateaWindowsAzureUbuntuVirtualMachine" rel="nofollow">
+      Create a Windows Azure Ubuntu Virtual Machine
+    </a>
+    <ul>
+      <li>
+        <a href="#InstallingMedICI-CreateStorageContainers" rel="nofollow">
+          Create Storage Containers
+        </a>
+      </li>
+      <li>
+        <a href="#InstallingMedICI-AddaServiceBusNamespace" rel="nofollow">
+          Add a Service Bus Namespace
+        </a>
+      </li>
+      <li>
+        <a href="#InstallingMedICI-InstallCodaLab-CLI" rel="nofollow">
+          Install CodaLab-CLI
+        </a>
+      </li>
+      <li>
+        <a href="#InstallingMedICI-InstallCodaLab" rel="nofollow">
+          Install CodaLab
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#InstallingMedICI-ConfigureYourLocalEnvironment" rel="nofollow">
+      Configure Your Local Environment
+    </a>
+    <ul>
+      <li>
+        <a href="#InstallingMedICI-InstallAppSchemaandDefaultData" rel="nofollow">
+          Install App Schema and Default Data
+        </a>
+      </li>
+      <li>
+        <a href="#InstallingMedICI-SetUpDatabases" rel="nofollow">
+          Set Up Databases
+        </a>
+        <ul>
+          <li>
+            <a href="#InstallingMedICI-InstallMySQLPython" rel="nofollow">
+              Install MySQL Python
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#InstallingMedICI-CreateaLocalConfigurationFile" rel="nofollow">
+          Create a Local Configuration File
+        </a>
+      </li>
+      <li>
+        <a href="#InstallingMedICI-CreateaLocalComputeConfigurationFile" rel="nofollow">
+          Create a Local Compute Configuration File
+        </a>
+      </li>
+      <li>
+        <a href="#InstallingMedICI-EnableCORS(Cross-OriginResourceSharing)onBlobStorage" rel="nofollow">
+          Enable CORS (Cross-Origin Resource Sharing) on Blob Storage
+        </a>
+      </li>
+      <li>
+        <a href="#InstallingMedICI-InitializetheDatabase" rel="nofollow">
+          Initialize the Database
+        </a>
+      </li>
+      <li>
+        <a href="#InstallingMedICI-ConfiguretheBundleServicetoRunLocally" rel="nofollow">
+          Configure the Bundle Service to Run Locally
+        </a>
+      </li>
+      <li>
+        <a href="#InstallingMedICI-StarttheWebServer" rel="nofollow">
+          Start the Web Server
+        </a>
+      </li>
+      <li>
+        <a href="#InstallingMedICI-StarttheWorkerRoles" rel="nofollow">
+          Start the Worker Roles
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#InstallingMedICI-ExecutionUsingDocker" rel="nofollow">
+      Execution Using Docker
+    </a>
+  </li>
+</ul>
+<h2 id="InstallingMedICI-CreateaWindowsAzureUbuntuVirtualMachine">
+  Create a Windows Azure Ubuntu Virtual Machine
+</h2>
+<ol>
+  <li>
+    Log in to the Microsoft
+    <a href="https://login.microsoftonline.com/common/oauth2/authorize?response_type=code+id_token&amp;redirect_uri=https%3a%2f%2fmanage.windowsazure.com%2f&amp;client_id=00000013-0000-0000-c000-000000000000&amp;resource=https%3a%2f%2fmanagement.core.windows.net%2f&amp;scope=user_impersonation+openid&amp;nonce=42f14507-5697-4939-bbaf-4c6f39437bda&amp;domain_hint=&amp;site_id=500879&amp;response_mode=form_post" rel="nofollow">
+      Azure Portal
+    </a>
+    <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+      <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+    </a>
+    <a href="http://manage.windowsazure.com/" rel="nofollow">
+      .
+    </a>
+  </li>
+  <li>
+    Go to VM Screen, select &#34;+ NEW&#34; from the lower left corner of the screen.
+  </li>
+  <li>
+    On the pane that appears select, Compute &gt; Virtual Machine &gt; Quick Create.
+    DNS Name: pick something unique and memorable
+    Image: Ubuntu Server 13.04
+    New Password/Confirm: provide a good password for the azureuser
+    Region/Affinity Group: West US
+  </li>
+  <li>
+    Click Create a virtual machine.
+  </li>
+  <li>
+    Once your virtual machine is created, select it from the VM screen.
+  </li>
+  <li>
+    Go to the Endpoints menu.(+ Add) an Endpoint at the bottom of the screen.
+     Provide the following information
+    Name: HTTP
+    Public Port: 80
+    Private Port: 8000
+  </li>
+  <li>
+    Restart the VM from the management console.Troubleshooting note: You may get a message that Endpoint was successfully created but restart failed. In this case, go back to Dashboard (Management Console) and click Restart. In some cases, multiple attempts may be required.At this point, it appears that a restart is not mandatory to continue with configuration.
+  </li>
+  <li>
+    Now you can login to it and start configuring things.
+  </li>
+  <li>
+    Login to your VM via ssh as: azureuser &lt;password provided at vm build - Step 3)
+  </li>
+  <li>
+    Things to do once you&#39;re in Ubuntu.
+    <ol>
+      <li>
+        sudo apt-get update
+        <ol>
+          <li>
+            enter password (azureuser password from Step 3)
+          </li>
+        </ol>
+      </li>
+      <li>
+        sudo apt-get upgrade -y
+      </li>
+      <li>
+        sudo apt-get install git python-pip -y
+      </li>
+      <li>
+        sudo pip install virtualenv
+      </li>
+    </ol>
+  </li>
+</ol>
+<h3 id="InstallingMedICI-CreateStorageContainers">
+  Create Storage Containers
+</h3>
+In order to test uploading and running bundles in CodaLab, you will need to have a
+<a title="Windows Azure storage account" href="http://www.windowsazure.com/en-us/pricing/details/storage/" rel="nofollow">
+  Windows Azure storage account
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+. Once you have set up your Azure account, log on to the
+<a href="https://manage.windowsazure.com/" rel="nofollow">
+  Azure Portal
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+and follow the steps in this section.
+<ol>
+  <li>
+    Log on to the
+    <a href="https://manage.windowsazure.com/" rel="nofollow">
+      Azure Portal
+    </a>
+    <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+      <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+    </a>
+    .
+  </li>
+  <li>
+    In the left pane, click Storage.
+  </li>
+  <li>
+    Select your storage account.
+  </li>
+  <li>
+    At the bottom of the dashboard, click Manage Access Keys. Copy your access keys. You&#39;ll need them later.
+  </li>
+  <li>
+    At the top of the dashboard page, click Containers.
+  </li>
+  <li>
+    At the bottom of the Containers page click Add.
+  </li>
+  <li>
+    Create a new container named &#34;bundles&#34;. Set the Access to &#34;Private&#34;.
+  </li>
+  <li>
+    Add another container named &#34;public&#34;. Set the Access to &#34;Public Blob&#34;.
+  </li>
+</ol>
+<h3 id="InstallingMedICI-AddaServiceBusNamespace">
+  Add a Service Bus Namespace
+</h3>
+<ol>
+  <li>
+    Install
+    <a href="https://azure.microsoft.com/en-us/documentation/articles/xplat-cli/" rel="nofollow">
+      azure-cli
+    </a>
+    <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+      <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+    </a>
+    .In Ubuntu it can be installed using the following command:
+     sudo apt-get install nodejs-legacy
+    sudo apt-get install npm
+    sudo npm install -g azure-cli
+    To login run the following command:
+    azure login
+    Copy the code offered to you, above, and open a browser to
+    <a href="http://aka.ms/devicelogin" rel="nofollow">
+      http://aka.ms/devicelogin
+    </a>
+    <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+      <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+    </a>
+    . Enter the code, and then you are prompted to enter the username and password for the identity you want to use. When that process completes, the command shell completes the log in process.
+  </li>
+  <li>
+    From command line azure sb namespace create &lt;name&gt; &lt;location&gt; where &lt;location&gt; can be &#34;East US&#34;
+  </li>
+  <li>
+    Log on to the
+    <a href="https://manage.windowsazure.com/" rel="nofollow">
+      Azure Portal
+    </a>
+    <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+      <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+    </a>
+    .
+  </li>
+  <li>
+    In the left pane, click Service Bus.
+  </li>
+  <li>
+    Select the service bus you just created.
+  </li>
+  <li>
+    At the top of the screen click Queues.
+  </li>
+  <li>
+    Click Create a new queue.
+  </li>
+  <li>
+    Click Quick Create and create a new queue named &#34;compute&#34;.
+  </li>
+  <li>
+    Click Create A New Queue.
+  </li>
+  <li>
+    At the bottom of the screen, click New, and create another queue named &#34;response&#34;.
+  </li>
+  <li>
+    In the left pane, click Service Bus.
+  </li>
+  <li>
+    At the bottom of the page, click Connection Information.
+  </li>
+  <li>
+    Copy the following connection information:
+    <ul>
+      <li>
+        Namespace name
+      </li>
+      <li>
+        Default issuer
+      </li>
+      <li>
+        Default key
+      </li>
+    </ul>
+  </li>
+</ol>
+<h3 id="InstallingMedICI-InstallCodaLab-CLI">
+  Install CodaLab-CLI
+</h3>
+<ol>
+  <li>
+    Make sure you have the dependencies (Python 2.7 and virtualenv). If you&#39;re running Ubuntu:
+    sudo apt-get install python2.7 python2.7-dev python-virtualenv
+  </li>
+  <li>
+    Clone the CodaLab repository:
+    git clone https://github.com/codalab/codalab-cli
+    cd codalab-cli
+  </li>
+  <li>
+    Run the setup script (will install things into a Python virtual environment):
+    ./setup.sh
+  </li>
+  <li>
+    Set your path to include CodaLab (add this line to your .bashrc):
+    export PATH=$PATH:&lt;path to codalab-cli&gt;/codalab/bin
+  </li>
+</ol>
+Optional: include some handy macros (add this line to your .bashrc):
+. &lt;path to codalab-cli&gt;/rc
+<h3 id="InstallingMedICI-InstallCodaLab">
+  Install CodaLab
+</h3>
+<ol>
+  <li>
+    <a href="https://help.github.com/articles/fork-a-repo" rel="nofollow">
+      Fork
+    </a>
+    <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+      <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+    </a>
+    the
+    <a href="https://github.com/codalab/codalab" rel="nofollow">
+      CodaLab repo
+    </a>
+    <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+      <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+    </a>
+    from GitHub.
+  </li>
+  <li>
+    Clone your fork:
+  </li>
+</ol>
+git clone https://github.com/&lt;username&gt;/codalab.git
+For more details and recommended practices, see
+<a href="https://github.com/codalab/codalab/wiki/Dev_Developer-Guidelines" rel="nofollow">
+  Developer Guidelines
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+.
+<h2 id="InstallingMedICI-ConfigureYourLocalEnvironment">
+  Configure Your Local Environment
+</h2>
+In this segment, you will run the dev_setup script. This will install all dependencies and create a new virtual environment (venv) for CodaLab.
+<ol>
+  <li>
+    Run the dev_setup script.Windows
+    cd codalab
+    .\dev_setup.bat
+    If you are going to use SQL Server as a database, you will need to install the
+    <a href="http://code.google.com/p/pyodbc/" rel="nofollow">
+      Python PyODBC library
+    </a>
+    <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+      <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+    </a>
+    . Before running dev_setup, you can download the installer, then run the setup script as follows (assuming the installer was downloaded at the root of a D drive):
+    cd codalab
+    dev_setup.bat D:\pyodbc-3.0.7.win-amd64-py2.7.exe
+    Linux
+    cd codalab
+    source ./dev_setup.sh
+  </li>
+  <li>
+    Activate the virtual environment.
+  </li>
+</ol>
+Windows
+venv\Scripts\activate
+Linux
+source venv/bin/activate
+<h3 id="InstallingMedICI-InstallAppSchemaandDefaultData">
+  Install App Schema and Default Data
+</h3>
+Now you are ready to install the application schema and default data into the database.
+<h3 id="InstallingMedICI-SetUpDatabases">
+  Set Up Databases
+</h3>
+You can configure CodaLab to use either SQL Server or MySQL. Both of these require you to explicitly create a database.
+<h4 id="InstallingMedICI-InstallMySQLPython">
+  Install MySQL Python
+</h4>
+Follow these steps to install MySQL Python.Windows
+<ol>
+  <li>
+    Open a Windows command prompt.
+  </li>
+  <li>
+    Navigate to the virtual environment (venv) for CodaLab and use the following command to install MySql-Python.easy_install mysql-python
+  </li>
+  <li>
+    Launch the MySQL Command Line Client.
+  </li>
+  <li>
+    Use the following command to create a new database:
+    create database if not exists MySQL_DevDB;
+  </li>
+</ol>
+Linux
+<ol>
+  <li>
+    Open a terminal window.
+  </li>
+  <li>
+    Run the following command to install MySQL:
+     sudo apt-get install mysql-server
+  </li>
+  <li>
+    Login to MySQL as root by typing the following command:mysql -u root -p Enter your root password when prompted.
+  </li>
+  <li>
+    Use the following command to create a new database:
+     create database if not exists MySQL_DevDB;
+  </li>
+  <li>
+    Type exit to return to the terminal prompt.
+  </li>
+</ol>
+Mac
+<ol>
+  <li>
+    Open a terminal window.
+  </li>
+  <li>
+    Login to MySQL as root by typing the following command:mysql -u root -p Enter your root password when prompted.
+  </li>
+  <li>
+    Use the following command to create a new database:
+    create database if not exists MySQL_DevDB;
+  </li>
+  <li>
+    Type exit to return to the terminal prompt.
+  </li>
+  <li>
+    Finish up installation for Django
+    export DYLD_LIBRARY_PATH=/usr/local/mysql/lib:$DYLD_LIBRARY_PATH
+  </li>
+</ol>
+<h3 id="InstallingMedICI-CreateaLocalConfigurationFile">
+  Create a Local Configuration File
+</h3>
+<ol>
+  <li>
+    Open your local configuration file (local.py). If there is no local.py, save a copy of local_sample.py named local.py in the same directory.
+  </li>
+  <li>
+    In the Azure storage section, enter your Azure account details:
+    DEFAULT_FILE_STORAGE = &#39;codalab.azure_storage.AzureStorage&#39;
+    AZURE_ACCOUNT_NAME = &#34;&lt;enter name&gt;&#34;
+    AZURE_ACCOUNT_KEY = &#39;&lt;enter key&gt;&#39;
+    AZURE_CONTAINER = &#39;&lt;enter container name&gt;&#39;
+
+    PRIVATE_FILE_STORAGE = &#39;codalab.azure_storage.AzureStorage&#39;
+    PRIVATE_AZURE_ACCOUNT_NAME = &#34;&lt;enter name&gt;&#34;
+    PRIVATE_AZURE_ACCOUNT_KEY = &#34;&lt;enter key&gt;&#34;
+    PRIVATE_AZURE_CONTAINER = &#34;&lt;enter container name&gt;&#34;
+
+    BUNDLE_AZURE_CONTAINER = &#34;&lt;enter the name of your bundle container&gt;&#34;
+    BUNDLE_AZURE_ACCOUNT_NAME = PRIVATE_AZURE_ACCOUNT_NAME
+    BUNDLE_AZURE_ACCOUNT_KEY = PRIVATE_AZURE_ACCOUNT_KEY
+  </li>
+  <li>
+    In the Service Bus section, enter your service bus connection information:
+    SBS_NAMESPACE = &#39;&lt;enter the name of your service bus&gt;&#39;
+    SBS_ISSUER = &#39;owner&#39;
+    SBS_ACCOUNT_KEY = &#39;&lt;enter value for &#39;default key&#39;&gt;&#39;
+    ImportantDo not change the values for DEFAULT_FILE_STORAGE and PRIVATE_FILE_STORAGE, as these parameters contain the name of the Python class which implements the Azure storage back-end for Django.
+  </li>
+  <li>
+    In the DATABASES section, enter the configuration settings for the database you want to use.SQL Server*
+    DATABASES = {
+    &#39;default&#39;: {
+    &#39;ENGINE&#39;: &#39;sql_server.pyodbc&#39;,
+    &#39;NAME&#39;: &#39;somename&#39;,
+    # Leaver user and password blank to use integrated security
+    &#39;USER&#39;: &#39;&#39;,
+    &#39;PASSWORD&#39;: &#39;&#39;,
+    &#39;HOST&#39;: &#39;(localdb)\\v11.0&#39;,
+    &#39;PORT&#39;: &#39;&#39;,
+    &#39;OPTIONS&#39;: {
+    &#39;driver&#39;: &#39;SQL Server Native Client 11.0&#39;,
+    }
+    }
+    MySQL
+    DATABASES = {
+    &#39;default&#39;: {
+    &#39;ENGINE&#39;:  &#39;django.db.backends.mysql&#39;,
+    &#39;NAME&#39;: &#39;MySQL_DevDB&#39;,
+    &#39;USER&#39;: &#39;someuser&#39;,
+    &#39;PASSWORD&#39;: &#39;somepassword&#39;,
+    &#39;HOST&#39;: &#39;someserver&#39;, # Empty for localhost through domain sockets or &#39;127.0.0.1&#39; for localhost through TCP.
+    &#39;PORT&#39;: &#39;&#39;,           # Set to empty string for default.
+    }
+  </li>
+</ol>
+If you want to use
+<a href="http://www.mysql.com/" rel="nofollow">
+  MySQL
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+you&#39;ll need to
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=312588396" rel="nofollow">
+  manually install
+</a>
+it and create a database before proceeding. CodaLab setup does not install MySQL.
+<h3 id="InstallingMedICI-CreateaLocalComputeConfigurationFile">
+  Create a Local Compute Configuration File
+</h3>
+<ol>
+  <li>
+    Open codalab/codalab/codalabtools/compute/sample.config.
+  </li>
+  <li>
+    Save a copy of sample.config named .codalabconfig in the same directory.
+  </li>
+  <li>
+    Open .codalabconfig.
+  </li>
+</ol>
+In the compute-worker section, enter the configuration settings for the storage account and the compute queue.
+ compute-worker:
+azure-storage:
+account-name: &#34;your account name&#34;
+account-key: &#34;your account key&#34;
+azure-service-bus:
+namespace: &#34;your namespace&#34;
+key: &#34;your secret key&#34;
+issuer: &#34;owner&#34;
+listen-to: &#34;name of queue&#34;
+local-root: &#34;D:\\Temp&#34;
+<h3 id="InstallingMedICI-EnableCORS(Cross-OriginResourceSharing)onBlobStorage">
+  Enable CORS (Cross-Origin Resource Sharing) on Blob Storage
+</h3>
+In order to work with competitions and bundles in your local development environment, you will need to manually enable Cross-origin resource sharing (CORS). CORS is a mechanism that allows many resources on a web page to be requested from another domain outside the domain the resource originated from. Web Browsers commonly apply same origin restriction policy to network requests. CORS relaxes these restrictions allowing domains to give each other permissions for accessing each other&#39;s resources. CORS is supported for Blob, Table and Queue services and can be enabled for each service using
+<a href="http://azure.microsoft.com/en-us/documentation/articles/python-how-to-install/" rel="nofollow">
+  Azure SDK for python
+</a>
+.
+<ol>
+  <li>
+    Make sure you have a valid management certificate to connect to the Service Management endpoint. This
+    <a href="http://azure.microsoft.com/en-us/documentation/articles/cloud-services-python-how-to-use-service-management/" rel="nofollow">
+      tutorial
+      <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+        <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+      </a>
+    </a>
+    explains how to create a certificate and upload it to the Azure management portal.Open codalab/codalabtools/compute/enableCORS.py in a text editor, and update account_name and account_key with the account name and key for your blob storage account:
+    import sys
+    import yaml
+    from os.path import dirname, abspath
+    # Add codalabtools to the module search path
+    sys.path.append(dirname(dirname(abspath(__file__))))
+
+    from codalabtools.azure_extensions import (Cors,CorsRule,set_storage_service_cors_properties)
+
+    account_name = &#34;&lt;your blob storage account name&gt;&#34;
+    account_key = &#34;&lt;your blob storage account key&gt;&#34;
+    cors_rule = CorsRule()
+    cors_rule.allowed_origins = &#39;*&#39; # this is fine for dev setup
+    cors_rule.allowed_methods = &#39;PUT&#39;
+    cors_rule.exposed_headers = &#39;*&#39;
+    cors_rule.allowed_headers = &#39;*&#39;
+    cors_rule.max_age_in_seconds = 1800
+    cors_rules = Cors()
+    cors_rules.cors_rule.append(cors_rule)
+    set_storage_service_cors_properties(account_name, account_key, cors_rules)
+  </li>
+  <li>
+    Save your changes, activate your virtual environment and run the script:
+  </li>
+</ol>
+Windows
+ python scripts\cors-enable.py
+Linux
+ python scripts/cors-enable.py
+<h3 id="InstallingMedICI-InitializetheDatabase">
+  Initialize the Database
+</h3>
+To initialize the database, you will need to run a few standard
+<a href="https://docs.djangoproject.com/en/dev/ref/django-admin/" rel="nofollow">
+  Django commands
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+, and the CodaLab database initialization script.
+<ul>
+  <li>
+    validate: Validates all installed models (according to the INSTALLED_APPS setting) and prints validation errors to standard output.
+  </li>
+  <li>
+    syncdb: Synchronizes the database state with the current set of models and migrations (note that the migrate option is used).
+  </li>
+  <li>
+    initialize.py: Inserts initial data into the database.
+  </li>
+</ul>
+<ol>
+  <li>
+    Run the following commands to initialize the database.Windows
+    cd codalab
+    python manage.py validate
+    python manage.py syncdb --migrate
+    python scripts\initialize.py
+    Linux
+    cd codalab
+    python manage.py validate
+    python manage.py syncdb --migrate
+    python scripts/initialize.py
+  </li>
+  <li>
+    Run tests to verify that everything is working.python manage.py test
+  </li>
+</ol>
+Optional: Populate the site with some sample data.Windows
+python scripts\users.py
+python scripts\competitions.py
+Linux
+python scripts/users.py
+python scripts/competitions.py
+<h3 id="InstallingMedICI-ConfiguretheBundleServicetoRunLocally">
+  Configure the Bundle Service to Run Locally
+</h3>
+This note will explain how to run the CodaLab Django web site and the CodaLab bundle service (cl server) side-by-side on a single machine. This setup is useful for people doing development, especially when working at the interface between the two systems.As pre-requisite, we assume that:
+<ul>
+  <li>
+    You can already run the Django web site on your local machine as described
+    <a href="https://github.com/codalab/codalab/wiki/Dev_Configure-Codalab-For-Development" rel="nofollow">
+      on this page
+    </a>
+    <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+      <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+    </a>
+    .
+  </li>
+  <li>
+    You have also forked the
+    <a href="https://github.com/codalab/codalab-cli" rel="nofollow">
+      codalab-cli
+    </a>
+    <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+      <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+    </a>
+    project and have gone through the steps listed in the
+    <a href="https://github.com/codalab/codalab-cli/blob/master/README.md" rel="nofollow">
+      Readme
+      <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+        <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+      </a>
+    </a>
+    .
+  </li>
+</ul>
+With those assumptions in place:
+<ol>
+  <li>
+    Begin by enabling the Worksheet feature in your web site. In your Django settings (local.py), add:
+    PREVIEW_WORKSHEETS = True
+    BUNDLE_SERVICE_URL = &#34;http://localhost:2800&#34;
+    # CODE_PATH points to local source code for bundles repo. Path is relative to this file.
+    BUNDLE_SERVICE_CODE_PATH = &#34;..\\..\\..\\..\\codalab-cli&#34;
+    if len(BUNDLE_SERVICE_CODE_PATH) &gt; 0:
+    sys.path.append(join(dirname(abspath(__file__)), BUNDLE_SERVICE_CODE_PATH))
+    codalab.__path__ = extend_path(codalab.__path__, codalab.__name__)
+    These additional elements say to enable Worksheets using the bundle service running at the given URL (in the next steps we&#39;ll cover how to start the bundle service with the cl server command). Finally, the code in apps\web\bundles.py will need to import modules from the codalab-cli project. Therefore, we extend the Python path by pointing to the CLI code on your machine. If you have repos codalab and codalab-cli checked in folders which are siblings, the relative BUNDLE_SERVICE_CODE_PATH given above should work for your setup. The Django web site is a client of the bundle service. For example, to get a list of worksheets, the Django web site makes a call to the list_worksheets API exposed by the bundle service. However, to handle authorization, the bundle service must be able to make calls back to the web site, which hosts the OAuth server. As a result, the bundle service is a trusted OAuth client of the web site. To set up this trusted relationship:
+  </li>
+  <li>
+    Create a user on the web site. Typically, we call this user codalab. Treat it as an admin user even though the CodaLab site doesn&#39;t really have admin roles today.
+  </li>
+  <li>
+    Activate your virtual environment and run the script: codalab\codalab\scripts\sample_cl_server_config.py. The script will generate an output of the form:
+  </li>
+</ol>
+Checking that confidential client exists for user codalab
+
+Client already exists.
+
+Add the following server block to your CLI config:
+
+&#34;server&#34;: {
+&#34;auth&#34;: {
+&#34;address&#34;: &#34;http://localhost:8000&#34;,
+&#34;app_id&#34;: &#34;5m &lt;snip&gt; Le&#34;,
+&#34;app_key&#34;: &#34;_b &lt;snip&gt; !_&#34;,
+&#34;class&#34;: &#34;OAuthHandler&#34;
+},
+&#34;class&#34;: &#34;SQLiteModel&#34;,
+&#34;host&#34;: &#34;localhost&#34;,
+&#34;port&#34;: 2800
+}
+<ol>
+  <li>
+    <ol>
+      <li>
+        Take the &#34;server&#34; block in the output and insert it into your CLI config file (.codalab\config.json in your home directory). Since the values for app_id and app_key can be long, make sure to remove any line breaks that resulted from copying from the command prompt.
+      </li>
+      <li>
+        Run the Django web site. Make sure it uses port 8000. Note for Visual Studio users: with the latest Python Tools for Visual Studio, you can set the port number in the Debug tab of the project properties.
+      </li>
+      <li>
+        Activate your virtual environment and then run the bundle service: cl server.
+      </li>
+    </ol>
+  </li>
+</ol>
+<h3 id="InstallingMedICI-StarttheWebServer">
+  Start the Web Server
+</h3>
+<ol>
+  <li>
+    Use the following command to start the CodaLab server locally.python manage.py runserver
+  </li>
+  <li>
+    Open a browser and navigate to
+    <a href="http://127.0.0.1:8000" rel="nofollow">
+      http://127.0.0.1:8000
+    </a>
+    <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+      <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+    </a>
+    to preview the site.
+  </li>
+</ol>
+When your next coding session comes along, remember to work in the virtual environment you created:Windows
+ venv\Scripts\activate
+Linux
+source venv/bin/activate
+If you experience database errors try deleting the database file (\codalab\codalab\dev_db.*) and run syncdb again. After creating a new database be sure to run initialize.py in the scripts folder in order to insert initial data required by the app.
+<h3 id="InstallingMedICI-StarttheWorkerRoles">
+  Start the Worker Roles
+</h3>
+In order to test competitions and bundles locally, you&#39;ll need to run the compute worker roles. There are two worker.py scripts that you will need to run.
+<ol>
+  <li>
+    Open a command prompt and activate your CodaLab virtual environment.
+  </li>
+  <li>
+    Start the first compute worker as shown here:
+    cd codalab
+    python worker.py
+  </li>
+  <li>
+    Open a second command prompt and activate your CodaLab virtual environment.
+  </li>
+  <li>
+    Start the second compute worker as shown here:
+    cd codalabtools\compute
+    python worker.py
+  </li>
+  <li>
+    If you plan to test competitions locally, open a third command prompt and activate the virtual environment for the CodaLab CLI, then start the bundle server:
+    cl server
+  </li>
+</ol>
+<h2 id="InstallingMedICI-ExecutionUsingDocker">
+  Execution Using Docker
+</h2>
+Every execution on CodaLab (should ideally) happen in a
+<a href="https://www.docker.com/" rel="nofollow">
+  docker
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+container, which provides a standardized Linux environment that is lighter-weight than a full virtual machine.The current official docker image is codalab/ubuntu, which consists of Ubuntu 14.04 plus some standard packages. See the
+<a href="https://registry.hub.docker.com/u/codalab/ubuntu/" rel="nofollow">
+  CodaLab docker registry
+</a>
+.To install docker on your local machine (either if you want see what&#39;s actually in the environment or to run your own local CodaLab instance), follow these
+<a href="http://docs.docker.com/installation/ubuntulinux/" rel="nofollow">
+  instructions
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+:
+sudo sh -c &#34;echo deb https://get.docker.io/ubuntu docker main &gt; /etc/apt/sources.list.d/docker.list&#34;
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 36A1D7869245C8950F966E92D8576A8BA88D21E9
+sudo apt-get update
+sudo apt-get install lxc-docker
+sudo useradd $USER docker
+Then, to test out your environment, open a shell (the first time you do this, it will take some time to download the image):
+ docker run -t -i codalab/ubuntu:1.8
+Now, let us integrate docker into CodaLab. First, we need to setup a job scheduling system (that manages the deployment of runs on machines). Note that CodaLab itself doesn&#39;t do this, so that it can be easily integrated into different systems. An easy way to set this up is to use q from Percy Liang&#39;s fig package:
+git clone https://github.com/percyliang/fig
+# Add fig/bin/q to your $PATH
+q -mode master   # Run in a different terminal
+q -mode worker   # Run in a different terminal
+Now, let us tell CodaLab to use q and run things in docker (these two things are orthogonal choices). Edit the .codalab/config.json as follows:
+ &#34;workers&#34;: {
+&#34;q&#34;: {
+&#34;verbose&#34;: 1,
+&#34;docker_image&#34;: &#34;codalab/ubuntu:1.8&#34;
+&#34;dispatch_command&#34;: &#34;python $CODALAB_CLI/scripts/dispatch-q.py&#34;
+}
+}
+To test it out:
+cl work-manager -t q                 # Run in a different terminal
+cl run &#39;cat /proc/self/cgroup&#39; -t    # Should eventually print out lines containing the string `docker` 

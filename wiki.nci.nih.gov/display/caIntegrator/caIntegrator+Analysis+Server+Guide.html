@@ -1,0 +1,288 @@
+<h1 id="caIntegratorAnalysisServerGuide-Analysis-ServerInstallationGuide">
+  Analysis-Server Installation Guide
+</h1>
+This page provides an introduction to Analysis Server, with installation and troubleshooting information.Contents
+<ul>
+  <li>
+    <a href="#caIntegratorAnalysisServerGuide-Introduction" rel="nofollow">
+      Introduction
+    </a>
+  </li>
+  <li>
+    <a href="#caIntegratorAnalysisServerGuide-Requirements" rel="nofollow">
+      Requirements
+    </a>
+  </li>
+  <li>
+    <a href="#caIntegratorAnalysisServerGuide-SettingtheEnvironmentVariables:" rel="nofollow">
+      Setting the Environment Variables:
+    </a>
+  </li>
+  <li>
+    <a href="#caIntegratorAnalysisServerGuide-ConnectiontoCVSRepository" rel="nofollow">
+      Connection to CVS Repository
+    </a>
+  </li>
+  <li>
+    <a href="#caIntegratorAnalysisServerGuide-DownloadingandDeployingtheCodebase" rel="nofollow">
+      Downloading and Deploying the Codebase
+    </a>
+  </li>
+  <li>
+    <a href="#caIntegratorAnalysisServerGuide-Additionalpost-deploymenttestcaseinstructions" rel="nofollow">
+      Additional post-deployment test case instructions
+    </a>
+  </li>
+  <li>
+    <a href="#caIntegratorAnalysisServerGuide-StepstoaddaDataFile" rel="nofollow">
+      Steps to add a Data File
+    </a>
+  </li>
+</ul>
+<h2 id="caIntegratorAnalysisServerGuide-Introduction">
+  Introduction
+</h2>
+The Analysis Server performs on-the-fly statistical calculations for the caIntegartor application. It can be hosted on the same machine that runs the any application (ex. Rembrandt or ISPY) or it can be run on any number of remote compute machines. In the remote configuration, each compute machine communicates with the appropriate application via the JBossMQ Java Messaging Service (JMS) provided by JBoss. It is important to note that each compute machine does not require its own JBoss instance. The Analysis Server relies on the JMS queues defined in the JBoss instance running the caIntegator application, such as Rembrandt.Analysis-commons is a module which defines classes for communicating with the analysis server. caIntegrator Applications like Rembrandt , I-SPY etc use the request and response classes defined in the analysis commons module for communication with the analysis server.
+<h2 id="caIntegratorAnalysisServerGuide-Requirements">
+  Requirements
+</h2>
+The following assumptions are in place:You have Java and Ant installed, as listed below
+<table id="TBL1683165902329">
+  <tbody>
+    <tr>
+      <th>
+        Required Software Name  Version  URL to Download
+      </th>
+      <th>
+        Description
+      </th>
+    </tr>
+    <tr>
+      <td>
+        JDK 1.5.X (currently using 1.5.14)
+        <a href="http://java.sun.com/javase/downloads/index_jdk5.jsp" rel="nofollow">
+          http://java.sun.com/javase/downloads/index_jdk5.jsp
+        </a>
+        <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+          <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+        </a>
+      </td>
+      <td>
+        The J2SE Develop¬ment Kit (JDK) supports creat¬ing J2SE applications.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        JBOSS Application Server (4.0.X)
+        <a href="http://labs.jboss.com/jbossas/downloads/" rel="nofollow">
+          http://labs.jboss.com/jbossas/downloads/
+        </a>
+        <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+          <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+        </a>
+      </td>
+      <td>
+        JBoss Application server is the Java application Server
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Apache Ant, 1.7.0
+        <a href="http://ant.apache.org/bindownload.cgi" rel="nofollow">
+          http://ant.apache.org/bindownload.cgi
+        </a>
+        <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+          <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+        </a>
+      </td>
+      <td>
+        Apache Ant is a Java-based build tool.
+      </td>
+    </tr>
+  </tbody>
+</table>
+R and Rserve have been installed. Please see the Rserve homepage at:
+<a href="http://stats.math.uni-augsburg.de/Rserve/" rel="nofollow">
+  http://stats.math.uni-augsburg.de/Rserve/
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+And the Rserve installation instructions:
+<a href="http://stats.math.uni-augsburg.de/Rserve/doc.shtml" rel="nofollow">
+  http://stats.math.uni-augsburg.de/Rserve/doc.shtml
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+It is recommended that you read the Rserve installation instructions before installing R. Specifically, the Rserve instructions recommend building the R distribution from source using the (color:red)--enable-R-shlib flag(color).The R source distribution can be obtained from R project site:
+<a href="http://www.r-project.org/" rel="nofollow">
+  http://www.r-project.org/
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+(click the link under download)
+<h2 id="caIntegratorAnalysisServerGuide-SettingtheEnvironmentVariables:">
+  Setting the Environment Variables:
+</h2>
+The purpose of setting operating system environment variables is so that the Java SDK and Ant build tool are available to run from anywhere in the system.
+<h3 id="caIntegratorAnalysisServerGuide-Linux">
+  Linux
+</h3>
+To set the environment variables in Linux, follow these steps:
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Step
+      </th>
+      <th>
+        Action
+      </th>
+    </tr>
+    <tr>
+      <td>
+        1
+      </td>
+      <td>
+        As the root user, enter the following in the /etc/profile file.  A PATH variable should already be created in this file, so be sure to define the JAVA_HOME and ANT_HOME export before the PATH export.  Replace &lt;installation_directory&gt; with the directory where you have installed the Java SDK and Ant.  (The location example in the Apache Ant installation (p. 5) is /usr/java.)  export JAVA_HOME={  )&lt;installation_directory&gt;(  )/jdk1.5.0_10  export ANT_HOME=(  )&lt;installation_directory&gt;(  )/apache-ant-1.7.0  export PATH=$JAVA_HOME/bin:$ANT_HOME/bin:$PATH
+      </td>
+    </tr>
+    <tr>
+      <td>
+        2
+      </td>
+      <td>
+        Log out and log back in so that the system recognizes your changes.
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h3 id="caIntegratorAnalysisServerGuide-VerifyingtheEnvironmentVariablesinLinux">
+  Verifying the Environment Variables in Linux
+</h3>
+To verify that environment variables have been set correctly, follow these steps:
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Step
+      </th>
+      <th>
+        Action
+      </th>
+    </tr>
+    <tr>
+      <td>
+        1
+      </td>
+      <td>
+        From the command line, enter:   echo $JAVA_HOME    echo $ANT_HOME   Both of these commands should return the location where you installed these tools.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        2
+      </td>
+      <td>
+        To verify your Java SDK installation, enter  java -version  from a command prompt.  You should see  java version &#34;1.5.0_10&#34; .
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="caIntegratorAnalysisServerGuide-ConnectiontoCVSRepository">
+  Connection to CVS Repository
+</h2>
+1) Connect to CVS repository 2) Here are the parameters a) Host: cbiocvs2.nci.nih.gov b) Repository path: /share/content/cvsroot c) User: anonymous d) Password: anonymous e) Connection type: pserver
+<h2 id="caIntegratorAnalysisServerGuide-DownloadingandDeployingtheCodebase">
+  Downloading and Deploying the Codebase
+</h2>
+<h3 id="caIntegratorAnalysisServerGuide-Step1">
+  Step 1
+</h3>
+Check out  caintergrator-analysis commons  from HEAD or provided CVS tag. Built it using ant script. (Please follow the steps)a) Open a COMMAND prompt. cd into caintergrator-analysis commons folder. b) then type  ant build_dependency  . It will start the build and get the message BUILD SUCCESSFUL. c) Do a CVS check out of the  caintegrator-analysis-server
+<h3 id="caIntegratorAnalysisServerGuide-Step:2">
+  Step:2
+</h3>
+Download the latest client jar file (use the exceptions version) from:
+<a href="http://stats.math.uni-augsburg.de/Rserve/down.shtml" rel="nofollow">
+  http://stats.math.uni-augsburg.de/Rserve/down.shtml
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+after agreeing to their licensing terms and conditions. Copy the downloaded file into the lib directory under the analysis server install directory and rename it to Rserve.jar .
+<h3 id="caIntegratorAnalysisServerGuide-Step:3">
+  Step :3
+</h3>
+1) Build it using ant script from command prompt. a) cd into caintergrator-analysis commons folder. b) then type  ant build_tar  . It will start the build and you will get the message BUILD SUCCESSFUL.
+<h3 id="caIntegratorAnalysisServerGuide-Step4">
+  Step 4
+</h3>
+Setup JMS Configuration Files: 1) Copy the file  &#34;caintegrator-jbossmq-destinations-service.xml&#34;  from \artifacts to the directory where you installed JBoss.  /jboss-4.0.4.GA/server/default/deploy/jms  folder 2) Copy the application specific file for example  &#34;rembrandt-jbossmq-destinations-service.xml&#34;  (for REMBRANDT) from \artifacts to the directory where you installed JBoss.  /jboss-4.0.4.GA/server/default/deploy/jms  folder
+<h3 id="caIntegratorAnalysisServerGuide-Step5">
+  Step 5
+</h3>
+Deploy the Analysis Server.The purpose of setting operating system environment variables is so that the Java SDK and Ant build tool are available to run from anywhere in the system.
+<h4 id="caIntegratorAnalysisServerGuide-Step5.1">
+  Step 5.1
+</h4>
+Copy the caintegrator-analysis-server.tar file created to the directory /local/content/caintegrator.
+<h4 id="caIntegratorAnalysisServerGuide-Step5.2">
+  Step 5.2
+</h4>
+Type the command:   tar -xvf caintegrator-analysis-server.tar
+<h3 id="caIntegratorAnalysisServerGuide-Step6">
+  Step 6
+</h3>
+Go to the newly created directory /local/content/caintegrator/bin. Type the commands:   chmod u+x *.sh      dos2unix *.sh
+<h3 id="caIntegratorAnalysisServerGuide-Step7">
+  Step 7
+</h3>
+Start Rserve by typing:  ./startRserve.sh    Rserve should now be running. The last line printed on the console should be:&#34;Rserv started in daemon mode.&#34;
+<h3 id="caIntegratorAnalysisServerGuide-Step8">
+  Step 8
+</h3>
+Go to the directory /home/caintegrator (you can do this by just typing cd). Start the analysis server by executing the command:  ./S92Rserver start
+<h2 id="caIntegratorAnalysisServerGuide-Additionalpost-deploymenttestcaseinstructions">
+  Additional post-deployment test case instructions
+</h2>
+1) Open the file/local/content/caintegrator/log/analysisServer.log and you should see something similar to:a) [translationalResearch:main] INFO gov.nih.nci.caintegrator.analysis.server.RThread - Done initializing Rserver connection elapsedTime=5100 b) [translationalResearch:main] INFO gov.nih.nci.caintegrator.analysis.server.RThread - RThread name=Thread-0 successfully initialized R connection. 50462) There may be a warning: a) [translationalResearch:main] WARN gov.nih.nci.caintegrator.analysis.server.AnalysisServer - could not establish connection with...But this is of no concern. It is because there will be no JMS MQs available until JMS message Queues have been established, running and listed in the JNDI lookup found at the location specified in the property:3) After you deploy the application you should return to this log file and see the following: a) [translationalResearch:main] INFO gov.nih.nci.caintegrator.analysis.server.AnalysisServer - Now listening for requests... Troubleshooting :
+<ul>
+  <li>
+    &#34;could not establish connection with provider..&#34; when starting the Analysis Server.
+  </li>
+</ul>
+This error can occur when the Java Messaging Service (JMS) provider is not running or has not fully initialized. Make sure that the JMS provider that is configured in the analysis server build file is running. If it is running but has not fully initialized the analysis server will automatically connect when it is fully initialized.
+<ul>
+  <li>
+    Analysis Server appears to be running but no results are returned.
+  </li>
+</ul>
+Using the jmx-console (see the JBoss documentation) application go to the jboss.mq.destination section and inspect the AnalysisResponseQueue. Make sure that the receivers count equals 1. If it is greater than 1 then there is another listener on the queue which is stealing the results from application. Next inspect the AnalysisRequestQueue. Make sure that the receivers count is equal to the number of analysis server machines. For example if you have configured four analysis server machines then the receivers count should equal four. If the receiver counts are not as expected then the problem may stem from network/firewall issues or from a conflicting instance of the application.
+<ul>
+  <li>
+    If you are using a version of JBoss other than 4.0.2, you should replace the following jar files:
+  </li>
+</ul>
+concurrent.jar jbossmq-client.jar jboss-common-client.jar jboss-system-client.jar jnp-client.jarin the lib directory under the analysis server install directory, with the corresponding jar files from the JBoss distribution.
+<h2 id="caIntegratorAnalysisServerGuide-StepstoaddaDataFile">
+  Steps to add a Data File
+</h2>
+<h3 id="caIntegratorAnalysisServerGuide-Step1.1">
+  Step 1
+</h3>
+The
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=198574249" rel="nofollow">
+  caIntegrator-ODI GForge project files page
+</a>
+has data files for particular application For example: Rembrandt: Rembrandt_mas5.dataMatrix_275_10-15-07.Rda Rembrandt_UnifiedGene.dataMatrix_275_10-15-07.Rda Ispy: newDataFile.zip
+<h3 id="caIntegratorAnalysisServerGuide-Step2">
+  Step 2
+</h3>
+Copy the data file to the directory local/content/caintegrator/Rdatafiles/
+<h3 id="caIntegratorAnalysisServerGuide-Step3">
+  Step 3
+</h3>
+Restart the analysis server Log in to the analysis machineStop the analysis server by executing the command:   ./S92Rserver stop  Start the analysis server by executing the command:   ./S92Rserver start  Using the Analysis Server for Development Purposes:On caIntegrator project, for development, the developers share a common analysis server and have a dedicate JMS node for their local Jboss.This allows us to independently develop and test queries against the analysis server.You can setup something similar for development using our files1) Copy StartStopNodes_develop to /home/caIntegrator and started and stopped similar to S92Rserver  ./StartStopNodes_develop stop  And  ./StartStopNodes_develop start  2) Copy runDeveloperNodes.sh to /local/content/caintegrator/bin/And modify it by adding a new line for each developer using this file as an example3) Copy and rename analysisServerDeveloper1.properties to local/content/caintegrator/bin/And modify the ip address of the developer in this file plus the file name should match the setting in the runDeveloperNodes.sh fileNext use localhost:1099 on your server to connect to the analysis server. You do not need to start and stop the analysis server for each developer unless your going to upload a new R-binary file.You can substitute actual developer name to identify each node.

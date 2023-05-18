@@ -1,0 +1,214 @@
+Contents of this Page
+<ul>
+  <li>
+    <a href="#RemoteClientHTTPSRequirements-LexEVSServiceClientstobeAbletoConsumeHTTPSEnabledServices" rel="nofollow">
+      LexEVS Service Clients to be Able to Consume HTTPS Enabled Services
+    </a>
+  </li>
+  <li>
+    <a href="#RemoteClientHTTPSRequirements-ServicesAffected:" rel="nofollow">
+      Services Affected:
+    </a>
+  </li>
+  <li>
+    <a href="#RemoteClientHTTPSRequirements-Impact:" rel="nofollow">
+      Impact:
+    </a>
+    <ul>
+      <li>
+        <a href="#RemoteClientHTTPSRequirements-General" rel="nofollow">
+          General
+        </a>
+      </li>
+      <li>
+        <a href="#RemoteClientHTTPSRequirements-LexEVSRemoteAPI" rel="nofollow">
+          LexEVS Remote API
+        </a>
+      </li>
+      <li>
+        <a href="#RemoteClientHTTPSRequirements-CTS2Service" rel="nofollow">
+          CTS2 Service
+        </a>
+      </li>
+      <li>
+        <a href="#RemoteClientHTTPSRequirements-Other" rel="nofollow">
+          Other
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#RemoteClientHTTPSRequirements-ServiceRelatedIssues:" rel="nofollow">
+      Service Related Issues:
+    </a>
+  </li>
+</ul>
+<table>
+  <colgroup>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        LexEVS 6.x Installation Links
+      </th>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427361" rel="nofollow">
+              Install Guide Main Page
+            </a>
+            <ul>
+              <li>
+                <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427338" rel="nofollow">
+                  Overview
+                </a>
+              </li>
+              <li>
+                <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427336" rel="nofollow">
+                  Prerequisites and Platforms
+                </a>
+              </li>
+              <li>
+                <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427547" rel="nofollow">
+                  Local Runtime
+                </a>
+              </li>
+              <li>
+                <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427333" rel="nofollow">
+                  Local Runtime Command Line
+                </a>
+              </li>
+              <li>
+                <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427330" rel="nofollow">
+                  Distributed
+                </a>
+              </li>
+              <li>
+                <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=159778666" rel="nofollow">
+                  CTS2 Services
+                </a>
+              </li>
+              <li>
+                <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=159778668" rel="nofollow">
+                  URI Resolver Service
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=69730353" rel="nofollow">
+              LexEVS 6.0 Main Page
+            </a>
+          </li>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427448" rel="nofollow">
+              LexEVS Current Release
+            </a>
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h3 id="RemoteClientHTTPSRequirements-LexEVSServiceClientstobeAbletoConsumeHTTPSEnabledServices">
+  LexEVS Service Clients to be Able to Consume HTTPS Enabled Services
+</h3>
+<ul>
+  <li>
+    All LexEVS 6.4.1 Services will only be available via HTTPS protocols.
+    <ul>
+      <li>
+        LexEVS 6.4.1 services will run under SSL protocol level TLSv1.
+      </li>
+    </ul>
+  </li>
+  <li>
+    These services will feature third party approved certificates.
+  </li>
+  <li>
+    RMI clients accessing the LexEVS services will need to be updated.
+  </li>
+</ul>
+<h3 id="RemoteClientHTTPSRequirements-ServicesAffected:">
+  Services Affected:
+</h3>
+<ul>
+  <li>
+    LexEVS Remote API
+  </li>
+  <li>
+    LexEVS CTS2 Services
+  </li>
+  <li>
+    URI Resolver
+  </li>
+</ul>
+<h3 id="RemoteClientHTTPSRequirements-Impact:">
+  Impact:
+</h3>
+<h4 id="RemoteClientHTTPSRequirements-General">
+  General
+</h4>
+All Client references to HTTP URL&#39;s should be updated to HTTPS versions
+<h4 id="RemoteClientHTTPSRequirements-LexEVSRemoteAPI">
+  LexEVS Remote API
+</h4>
+<ul>
+  <li>
+    LexEVS Remote (Also known as distributed) RMI clients will need to add or replace the following jars to the class path to to support HTTPS updates for 6.4.1
+    <ul>
+      <li>
+        <a href="http://informatics.mayo.edu/maven/content/repositories/releases//lexevs/lexevs-remote-client/6.4/lexevs-remote-client-6.4.jar" rel="nofollow">
+          lexevs-remote.client.6.4.1.jar
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    Combined with updating service URLs to any HTTPS services this should allow processing of valid certificates and failure on self-signed or otherwise invalid certificates by RMI Clients.
+  </li>
+</ul>
+<h4 id="RemoteClientHTTPSRequirements-CTS2Service">
+  CTS2 Service
+</h4>
+<ul>
+  <li>
+    Any REST Clients will need to adjust for the HTTPS service as needed.
+  </li>
+  <li>
+    Support for REST Clients accessing HTTPS CTS2 services can be had here:
+    <a href="https://github.com/cts2/lexevs-service/issues" rel="nofollow">
+      https://github.com/cts2/lexevs-service/issues
+    </a>
+  </li>
+  <li>
+    REST Clients using the CTS2 Framework client API should already be able to use the SSL services of an HTTPS service.
+  </li>
+  <li>
+    Any internal REST Service requests can be forwarded to
+    <a href="https://wiki.nci.nih.gov/display/~bauerhs" rel="nofollow">
+      Bauer, Scott (NIH/NCI) [C]
+    </a>
+    or
+    <a href="https://wiki.nci.nih.gov/display/~endlecm" rel="nofollow">
+      Unknown User (endlecm)
+    </a>
+  </li>
+</ul>
+<h4 id="RemoteClientHTTPSRequirements-Other">
+  Other
+</h4>
+<ul>
+  <li>
+    The URI Resolver is not considered a public REST API, but it will be switching to HTTPS as well.
+  </li>
+</ul>
+<h3 id="RemoteClientHTTPSRequirements-ServiceRelatedIssues:">
+  Service Related Issues:
+</h3>
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=326176072" rel="nofollow">
+  LexEVS HTTPS Setup
+</a>

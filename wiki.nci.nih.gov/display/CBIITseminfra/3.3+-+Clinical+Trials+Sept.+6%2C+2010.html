@@ -1,0 +1,132 @@
+From the beginning, NCI CBIIT has played an instrumental role in supporting the clinical trial process within NCI, with other agencies and groups in NIH and with other collaborating organizations and companies.
+
+A significant part of this role is providing a foundational basis for these stakeholders to leverage standard terminologies and metadata, and a standards-based framework, in defining semantic entities related to clinical trials such as forms, protocols, and eligibility criteria.
+
+The Semantic Infrastructure 2.0 will expand on these use cases, in order to both facilitate data collection within clinical trials, and enable the information collected to interoperate with other modalities in caBIG® such as the life sciences domain in support of advancing knowledge in disease processes and treatments. NCI CBIIT also plays a leading role in the BRIDG project, which will form a significant basis for the layered approach to metadata and terminology we will adopt in the Semantic Infrastructure 2.0.
+
+This section includes the following:
+<ul>
+  <li>
+    <a href="#id-3.3ClinicalTrialsSept.6,2010-KeyUseCasesandRequirements" rel="nofollow">
+      Key Use Cases and Requirements
+    </a>
+  </li>
+  <li>
+    <a href="#id-3.3ClinicalTrialsSept.6,2010-StructuredEligibilityCriteria" rel="nofollow">
+      Structured Eligibility Criteria
+    </a>
+  </li>
+  <li>
+    <a href="#id-3.3ClinicalTrialsSept.6,2010-UseCaseDecompositions" rel="nofollow">
+      Use Case Decompositions
+    </a>
+  </li>
+  <li>
+    <a href="#id-3.3ClinicalTrialsSept.6,2010-ClinicalDecisionSupportandClinicalTrialExtension" rel="nofollow">
+      Clinical Decision Support and Clinical Trial Extension
+    </a>
+  </li>
+  <li>
+    <a href="#id-3.3ClinicalTrialsSept.6,2010-UseCaseDecompositions.1" rel="nofollow">
+      Use Case Decompositions
+    </a>
+  </li>
+</ul>
+<h4 id="id-3.3ClinicalTrialsSept.6,2010-KeyUseCasesandRequirements">
+  Key Use Cases and Requirements
+</h4>
+As a starting point, requirements specific to the clinical trials domain will be collected from the recent Semantic Infrastructure Requirements Elicitation effort, from the NCI CBIIT in-house terminology and metadata curation teams, and from related projects at NCI CBIIT such as the CTRP, caBIG® Clinical Information Suite, caBIG® Clinical Trial Suite, Janus, and other projects. Requirements are also being collected from external stakeholders including government agencies, standard development organizations (SDOs), organizations and companies such as CDISC (especially the SHARE project), and HL7. Community input based on this roadmap document, and the forms and modeling workgroup in the Semantic Infrastructure 2.0 Inception effort, will form another significant source of requirements from the clinical trials domain.
+
+This section highlights some key use cases that depend on data semantics. These use-cases are used as a representative set to capture the requirements of the clinical trials domain. A
+<a href="https://cabig-kc.nci.nih.gov/CTMS/KC/index.php/CTMS/CCTS_Interoperability_Scenarios_-_Draft" rel="nofollow">
+  comprehensive set of all clinical trials use cases
+</a>
+may be found on the CTMS Knowledge Center site.
+<h4 id="id-3.3ClinicalTrialsSept.6,2010-StructuredEligibilityCriteria">
+  Structured Eligibility Criteria
+</h4>
+When a clinical trial is designed it is done so with a target population in mind. The desired characteristics of the target population are specified during the study design phase and are referred to as the eligibility criteria for the trial. Eligibility criteria for a trial are specified in terms of inclusion and exclusion criteria. If a potential subject meets all of the inclusion criteria and has none of the exclusion criteria then the subject is an eligible candidate for enrollment. Examples of inclusion and exclusion criteria used in eligibility determination follow:
+<ul>
+  <li>
+    Hemoglobin ? 8.5 g/dl
+  </li>
+  <li>
+    ECOG performance status (PS) 0, 1, or 2
+  </li>
+</ul>
+The following is summary of the of the steps:
+<ul>
+  <li>
+    PI provides the approved Study Protocol to the Study Registrar.
+  </li>
+  <li>
+    Study Registrar selects the study from the list of studies.
+  </li>
+  <li>
+    Study Registrar specifies the inclusion criteria as written in the protocol.
+  </li>
+  <li>
+    Observations of the subject are made by a healthcare provider, including but not limited to Life expectancy, Karnofsky score, and statements made by the subject in response to questionnaires. These observations are captured in the provider in a clinical form or an EHR system.
+  </li>
+  <li>
+    The study registrar leverages the data semantics to identify eligible subjects.
+  </li>
+  <li>
+    A PI wants to identify which trials incorporate a test for Alkaline phosphatase.
+  </li>
+  <li>
+    The PI wants to correlate this information and derive insights based on the correlation.
+  </li>
+</ul>
+<h4 id="id-3.3ClinicalTrialsSept.6,2010-UseCaseDecompositions">
+  Use Case Decompositions
+</h4>
+The following is a more refined decomposition of the above use-case:
+<ul>
+  <li>
+    Create Eligibility Inclusion and Exclusion Criteria
+  </li>
+  <li>
+    Query Eligibility Inclusion and Exclusion Criteria
+  </li>
+</ul>
+<h4 id="id-3.3ClinicalTrialsSept.6,2010-ClinicalDecisionSupportandClinicalTrialExtension">
+  Clinical Decision Support and Clinical Trial Extension
+</h4>
+Clinical trial discovery in the context of the oncology patient undergoing treatment for the primary tumor is time-consuming for the clinician and not often done in the community cancer care realm due to lack of automated access to knowledge of specific ongoing clinical trials. In this scenario, the patient is referred by the primary care physician to an oncologist for an elevated CA 125 tumor marker. The 38-year-old female patient has a past history of breast cancer six years ago with no evidence of recurrence. The patient recently had some abdominal distention which prompted a visit to her primary care physician. An ultrasound had been ordered showing some moderate fluid in the abdomen and pelvis and a solid and cystic mass in the right adnexa measuring 6.8 cm in maximal diameter. Surgical evaluation yields the finding of a stage IIIC epithelial ovarian mucinous cystadenocarcinoma.
+
+The following is a summary of the steps:
+<ul>
+  <li>
+    At the time of the referral, the primary care physician used the referral service and attached a CCD summary document of the patient&#39;s findings including her imaging study and tumor marker values.
+  </li>
+  <li>
+    This was incorporated into the electronic health record along with the assessment of the oncologist and the ongologist&#39;s clinical staging.
+  </li>
+  <li>
+    The patient&#39;s consents were also registered in the electronic health record which included a consent for using the patient&#39;s clinical de-identified data to query for a clinical trial match.
+  </li>
+  <li>
+    The record is transferred from the EHR to a an ECCF knowledge service that evaluates the data against available clinical trials and returns matching trials for the individual patient.
+  </li>
+</ul>
+<h4 id="id-3.3ClinicalTrialsSept.6,2010-UseCaseDecompositions.1">
+  Use Case Decompositions
+</h4>
+<ul>
+  <li>
+    An ECCF service continually queries the clinical trials.gov site for up-to-date actively recruiting studies.
+  </li>
+  <li>
+    A second ECCF service performs natural language processing and extracts the inclusion and exclusion criteria from the posted active clinical trials
+  </li>
+  <li>
+    The caBIG® Clinical Information Suite abstracts a CCD summary that includes diagnoses, age, sex, and types of imaging studies as well as laboratory findings and submits the de-identified CCD to the knowledge management service within the ECCF.
+  </li>
+  <li>
+    The knowledge management service develops a profile using the CCD to compare against known active clinical trials and publishes potential trials to the caBIG® Clinical Information Suite.
+  </li>
+  <li>
+    The caBIG® Clinical Information Suite links the discovered clinical trials to the patient record based on a unique key and displays this information to the clinician when he accesses that patient&#39;s record.
+  </li>
+</ul>

@@ -1,0 +1,484 @@
+Contents of this Page
+<ul>
+  <li>
+    <a href="#CommonTerminologyServicesRelease2(CTS2)InAction-Videos" rel="nofollow">
+      Videos
+    </a>
+    <ul>
+      <li>
+        <a href="#CommonTerminologyServicesRelease2(CTS2)InAction-CTS2InActionVideo" rel="nofollow">
+          CTS2 In Action Video
+        </a>
+      </li>
+      <li>
+        <a href="#CommonTerminologyServicesRelease2(CTS2)InAction-CTS2OverBioPortalVideo" rel="nofollow">
+          CTS2 Over BioPortal Video
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#CommonTerminologyServicesRelease2(CTS2)InAction-NCBOImplementation" rel="nofollow">
+      NCBO Implementation
+    </a>
+    <ul>
+      <li>
+        <a href="#CommonTerminologyServicesRelease2(CTS2)InAction-Introduction" rel="nofollow">
+          Introduction
+        </a>
+      </li>
+      <li>
+        <a href="#CommonTerminologyServicesRelease2(CTS2)InAction-ProjectGoals" rel="nofollow">
+          Project Goals
+        </a>
+      </li>
+      <li>
+        <a href="#CommonTerminologyServicesRelease2(CTS2)InAction-Approach" rel="nofollow">
+          Approach
+        </a>
+      </li>
+      <li>
+        <a href="#CommonTerminologyServicesRelease2(CTS2)InAction-Results" rel="nofollow">
+          Results
+        </a>
+      </li>
+      <li>
+        <a href="#CommonTerminologyServicesRelease2(CTS2)InAction-Architecture" rel="nofollow">
+          Architecture
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#CommonTerminologyServicesRelease2(CTS2)InAction-CTS2ImplementationGuides" rel="nofollow">
+      CTS2 Implementation Guides
+    </a>
+    <ul>
+      <li>
+        <a href="#CommonTerminologyServicesRelease2(CTS2)InAction-HL7CTS2ImplementationGuide" rel="nofollow">
+          HL7 CTS2 Implementation Guide
+        </a>
+      </li>
+      <li>
+        <a href="#CommonTerminologyServicesRelease2(CTS2)InAction-IHTSDOCTS2ImplementationGuide" rel="nofollow">
+          IHTSDO CTS2 Implementation Guide
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#CommonTerminologyServicesRelease2(CTS2)InAction-CTS2Prototypes" rel="nofollow">
+      CTS2 Prototypes
+    </a>
+    <ul>
+      <li>
+        <a href="#CommonTerminologyServicesRelease2(CTS2)InAction-BioportalWidgets" rel="nofollow">
+          Bioportal Widgets
+        </a>
+      </li>
+      <li>
+        <a href="#CommonTerminologyServicesRelease2(CTS2)InAction-MappingBrowser" rel="nofollow">
+          Mapping Browser
+        </a>
+      </li>
+      <li>
+        <a href="#CommonTerminologyServicesRelease2(CTS2)InAction-SearchTool" rel="nofollow">
+          Search Tool
+        </a>
+      </li>
+    </ul>
+  </li>
+</ul>
+The sections on this page provide an overview of the current implementations that demonstrate CTS2 REST examples. These examples demonstrate browsing, searching, forms completion, mapping and incremental versioning and updates. We also have a video presentation of these implementations.
+<h2 id="CommonTerminologyServicesRelease2(CTS2)InAction-Videos">
+  Videos
+</h2>
+<h3 id="CommonTerminologyServicesRelease2(CTS2)InAction-CTS2InActionVideo">
+  CTS2 In Action Video
+</h3>
+Error rendering macro &#39;multimedia&#39;com.atlassian.renderer.v2.macro.MacroException: Cannot find attachment &#39;CTS2 In Action.swf&#39;
+Kevin Peterson February 2012 Demonstration of various applications using CTS2 services.
+<h3 id="CommonTerminologyServicesRelease2(CTS2)InAction-CTS2OverBioPortalVideo">
+  CTS2 Over BioPortal Video
+</h3>
+Error rendering macro &#39;multimedia&#39;com.atlassian.renderer.v2.macro.MacroException: Cannot find attachment &#39;CTS2 Over BioPortal.swf&#39;
+Kevin Peterson January 2012 Demonstration of a CTS2 compliant wrapper built over NCBO&#39;s BioPortal.
+<h2 id="CommonTerminologyServicesRelease2(CTS2)InAction-NCBOImplementation">
+  NCBO Implementation
+</h2>
+<h3 id="CommonTerminologyServicesRelease2(CTS2)InAction-Introduction">
+  Introduction
+</h3>
+This page contains a summary of the current state of the CTS2/BioPortal wrapper. It covers the goals of the project, the approach and methodology that was used and finishes with a summary of the current state of the project, a discussion of some of the issues that were encountered and a list of what remains to be resolved.
+<h3 id="CommonTerminologyServicesRelease2(CTS2)InAction-ProjectGoals">
+  Project Goals
+</h3>
+The
+<a href="http://bioportal.bioontology.org/" rel="nofollow">
+  NCBO BioPortal
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+was created &#34;to access and share ontologies that are actively used in biomedical communities.&#34; To meet this goal, BioPortal has developed the
+<a href="http://www.bioontology.org/wiki/index.php/BioPortal_REST_services" rel="nofollow">
+  BioPortal REST API
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+, which can be used to access BioPortal using http. One of the primary applications of this API are web browsers that can use Ajax widgets to browse and access ontology content for a variety of uses. Samples of some of these widgets can be found here.The Common Terminology Services 2 (CTS2) specification was created in response to a set of requirements published by Health Level Seven (HL7) and an RFP that was issued by the Object Management Group. This Platform Independent Model (PIM) was designed to be fully compatible with Fielding&#39;s notion of the RESTful Architectural Style and one of the key Platform Specific Models (PSMs) is based on http/REST. The model, documentation, schema and WADL can be found on the home page of this guide.The NCBO community believes that it will be advantageous to be able to access the BioPortal content through both the existing BioPortal REST API and, where appropriate, the nascent CTS2 REST API. The BioPortal API was used as an one of the inputs to the CTS2 specification. The CTS2 specification was heavily influenced by the LexGrid terminology model and the LexEVS service specification and LexEVS is one of the back end components of the BioPortal implementation. There were, however, decisions made in the CTS2 specification that weren&#39;t fully compatible with the existing BioPortal model.The purpose of this project was to create a mapping between the existing BioPortal API and the corresponding components of the CTS2 REST specification to determine where potential issues and incompatibilities may lie and to use the results of this evaluation to determine (a) the best approach would be to creating a complete, robust CTS2 REST wrapper (b) uncover errors and omissions in the CTS2 specification and (c) to come up with recommendations about how the BioPortal REST API might be enhanced or improved.
+<h3 id="CommonTerminologyServicesRelease2(CTS2)InAction-Approach">
+  Approach
+</h3>
+We began by gathering a list of the key BioPortal resources - Ontology, AbstractConcept, Class, Property and Instance along with various lists. Lacking a formal XML Schema for these resources, we used a combination of sample content from the REST service and the java bean classes for each of the resources to assemble lists of the properties for each of these resources, their types and, where it could be determined their cardinality. We went through these lists, gathering sample input from the REST API - both in form of lists of elements and individual elements. We soon discovered that the content of a resource that appeared in list of resources (e.g.
+<a href="http://rest.bioontology.org/bioportal/ontologies?apikey=682d797a-2523-409a-850e-64e706ec2897" rel="nofollow">
+  ontologies
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+and an individual resource instance
+<a href="http://rest.bioontology.org/bioportal/ontologies/39002?apikey=682d797a-2523-409a-850e-64e706ec2897" rel="nofollow">
+  bpr:ontologies/39002
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+were not the same. Some attributes appeared in both places, some just in the resource instance and some did not appear at all.We took these lists and created a first shot at the CTS2 equivalents - the results of which can be found in
+<a href="http://informatics.mayo.edu/cts2/index.php/BioPortal_ontologies" rel="nofollow">
+  Bioportal ontologies on the Mayo informatics service
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+for the ontology resource and
+<a href="http://informatics.mayo.edu/cts2/index.php/BioPortal_terms" rel="nofollow">
+  BioPortal terms on the Mayo informatics service
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+for the &#34;terms&#34; (aka. Concept). There were a number of conceptual issues that were uncovered in this process, including:
+<ul>
+  <li>
+    CTS2 has a notions of Code System and Code System Version. While BioPortal has similar concepts - &#34;virtual ontology&#34; and &#34;ontology&#34; in the ontology interface and &#34;ontology&#34; and &#34;ontology version&#34; in the search interface, the &#34;virtual ontology&#34; has no attributes besides its identifier.
+  </li>
+  <li>
+    BioPortal treats both full ontologies and subsets derived from full ontologies as instances of &#34;ontology&#34;. Lists and queries apply to both types of resource -
+    <a href="http://rest.bioontology.org/bioportal/ontologies?apikey=682d797a-2523-409a-850e-64e706ec2897" rel="nofollow">
+      <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+        <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+      </a>
+      - a list of the latest version of ontologies on bioontology.org
+    </a>
+    returns both the ontologies themselves as well as all subsets. Similarly, term queries return both the ontology in which the term is defined and any subsets that include that term. CTS2 treats Code Systems (ontologies) and Value Sets (subsets) as separate resources. Lists and queries go against one or the other resource but not both.
+  </li>
+  <li>
+    BioPortal assumes that all terms are instances of exactly one of &#34;class&#34;, &#34;property&#34; or &#34;instance&#34;. CTS2 allows entity (the equivalent of &#34;term&#34;) to exist without making this distinction. In addition, while the CTS2 REST model does not clearly show how this could be done, the intent of the CTS2 model is to allow an entity to simultaneously be a Class and Instance, Class and Property, etc.
+  </li>
+</ul>
+We then created a
+<a href="http://informatics.mayo.edu/cts2/index.php/BioPortal" rel="nofollow">
+  map
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+from each of the
+<a href="http://www.bioontology.org/wiki/index.php/BioPortal_REST_services" rel="nofollow">
+  BioPortal REST signatures
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+and the equivalent
+<a href="http://informatics.mayo.edu/cts2/index.php/Rest_Signatures" rel="nofollow">
+  CTS2 REST signature(s)
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+, wherever possible.These documents were then used to construct a CTS2 REST Server that used the BioPortal REST services as the back end implementation. In addition, we took a number of the interesting BioPortal Ajax widgets and modified them to use the CTS2 REST api instead. A synopsis of the REST services that were implemented can be found
+<a href="http://informatics.mayo.edu/cts2/index.php/BioPortal_wrapper_summary" rel="nofollow">
+  on the BioPortal Wrapper Summary page
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+and a list of the translated Ajax Widgets can be found
+<a href="http://informatics.mayo.edu/cts2/index.php/BioPortal_Ajax" rel="nofollow">
+  on the BioPortal Ajax page
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+.
+<h3 id="CommonTerminologyServicesRelease2(CTS2)InAction-Results">
+  Results
+</h3>
+As expected, a number of issues were encountered in this process including:
+<ul>
+  <li>
+    Resource/Resource Version mismatch - discussed earlier
+  </li>
+  <li>
+    MetaOntology and MetaOntology mapping - BioPortal has several enumerations (Category, Group, Status) that aren&#39;t first class ontologies and, even if they were, might be better served were they drawn from OMV or a similar resource
+  </li>
+  <li>
+    URI&#39;s - BioPortal has its own URI&#39;s but many of these ontologies have one or more &#34;official&#34; URI&#39;s drawn from outside sources.
+  </li>
+  <li>
+    REST hyperlinks - one of the key aspects of the REST architectural style is to provide the ability to navigate the web of resources without having to know how to construct URI&#39;s. As an example, an entity reference in CTS2 carries in it a link to both the code system and the code system version in which it is described. Similarly, the descriptionType, language and any other attribute that references an ontology component has the potential for containing a hyperlink. Constructing some of these hyperlinks from the BioPortal REST service can be non-trivial.
+  </li>
+</ul>
+The proposed next steps would be to review the mapping and determine whether to: (a) Complete the remaining tasks using the current wrapper paradigm (b) Re-implement the interfaces against the lower level BioPortal interfaces and databases (c) Produce a hybrid for the time being and focus on an RDF based implementation.
+<h3 id="CommonTerminologyServicesRelease2(CTS2)InAction-Architecture">
+  Architecture
+</h3>
+The Bioportal to CTS2 Wrapper is broken into five Core components and one Bioportal-specific implementation component.The components are:Webapp -- A Spring 3 MVC REST Binding.Webapp responsibilities include:
+<ul>
+  <li>
+    Accepting and routing HTTP requests
+  </li>
+  <li>
+    Marshaling/unmarshalling content
+  </li>
+  <li>
+    Defining REST signatures (url paths)
+  </li>
+  <li>
+    Interpreting error messages into HTTP codes
+  </li>
+</ul>
+There are two views available: XML and JSON/JSONP. With JSONP, any JSON request with a &#39;callback&#39; query parameter will be automatically wrapped in a callback. This is to avoid cross-site-scripting problems as well as integrate into javascript libraries such as YUI and JQuery. As stated, a Spring 3 MVC framework was used as the REST binding framework.Filter -- A generic CTS2 Directory (result) filtering framework. This is to allow different filtering mechanisms related to CTS2 Filters and Restrictions to be generalized. It also supplies various match algorithms.Service -- An API definition that allows an abstract data source (such as Bioportal) to plug into the CTS2 REST framework.Util -- Generic helper classes/constants common to all componentsRest-Model -- The CTS2 XML Schema represented by Java Beans built by Castor.Bioportal-service -- The bioportal-specific implemtation of the &#39;service&#39; API.The bioportal-service flow is as follows:
+<ol>
+  <li>
+    Accept a service request from the &#39;webapp&#39;
+  </li>
+  <li>
+    Translates the request into a Bioportal REST call
+  </li>
+  <li>
+    Transform the result of the Bioportal REST call into CTS2 objects
+  </li>
+  <li>
+    Send the CTS2 objects back to the &#39;webapp&#39; for marshaling and return to client.
+  </li>
+</ol>
+The Bioportal REST xml is traversed via the DOM API and converted to CTS2 objects. XPath for Java was also tried, but direct DOM traversals proved much faster. Transform occurs in the edu.mayo.cts2.rest.service.bioportal.transform package. Bioportal calls are cached as needed. For example, any XML that is needed on a regular basis will be persistently cached (such as current versions of ontologyId&#39;s, etc). All other Bioportal calls are cached in a Least-Recently-Used basis. For example, a term search Bioportal REST call may be cached for future use, but will be evicted from the cache when the cache reaches a certain size. This is an attempt to limit calls to Bioportal for data that is not expected to change often. Changes to Bioportal are listened for via Bioportal&#39;s RSS feed, and caches are evicted accordingly when a change is noticed. There are no persisted artifacts other than a cache file, and these will be stored in the $USER_HOME/.cts2 directory.
+<h2 id="CommonTerminologyServicesRelease2(CTS2)InAction-CTS2ImplementationGuides">
+  CTS2 Implementation Guides
+</h2>
+Why do we need implementation guides?To address what the CTS2 Specification does not do:
+<ul>
+  <li>
+    Specify how CTS2 content will be represented in a backing store
+  </li>
+  <li>
+    Specify how various terminology models and formats are imported and exported
+  </li>
+  <li>
+    Specify how specific terminology workflow and business rules are realized in a CTS2 service
+  </li>
+</ul>
+What does an implementation guide provide?
+<ul>
+  <li>
+    States how content and structure of a terminological resource maps to the CTS2 information model
+    <ul>
+      <li>
+        Could be for import/export
+      </li>
+      <li>
+        Could also apply to backing store
+      </li>
+    </ul>
+  </li>
+  <li>
+    Identifies terminology specific business rules that services must enforce
+  </li>
+  <li>
+    Aligns CTS2 w/ organization workflow
+  </li>
+  <li>
+    Identifies any extensions to CTS2 specific to the given terminology
+  </li>
+</ul>
+<h3 id="CommonTerminologyServicesRelease2(CTS2)InAction-HL7CTS2ImplementationGuide">
+  HL7 CTS2 Implementation Guide
+</h3>
+As part of the CTS2 development effort in the OMG community, it is necessary to ensure that HL7 content can be accurately represented in CTS2.To be successful, the following need to be addressed:
+<ul>
+  <li>
+    Unambiguous transformation between HL7 representation and CTS2 core.
+  </li>
+  <li>
+    Consistent representation of any HL7 extensions deemed appropriate.
+  </li>
+  <li>
+    Specification of specific HL7 terminology business rules and workflow that need to be provided by HL7 CTS2 service providers.
+  </li>
+</ul>
+This will ensure that HL7 content, even though exposed through different implementations of the CTS2 specification, will be consistent and interoperable.The goal of the implementation guide is to:
+<ul>
+  <li>
+    Specify how the HL7 MIF syntax and semantics map to the CTS2 Model, optionally identifying any HL7 specific extensions
+  </li>
+  <li>
+    Specify how the HL7 terminology related business rules and workflow would be represented in CTS2 Service Implementations.
+  </li>
+</ul>
+Target Dates:
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Task
+      </th>
+      <th>
+        Target Date
+      </th>
+    </tr>
+    <tr>
+      <td>
+        Project Team Inception
+      </td>
+      <td>
+        2011 December
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Complete Draft Implementation Guide
+      </td>
+      <td>
+        2012 March
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Submit for DSTU Ballot
+      </td>
+      <td>
+        2012 May Ballot
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Consider Comments from the DSTU Ballot
+      </td>
+      <td>
+        2012 June
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Submit to TSC for DSTU Approval
+      </td>
+      <td>
+        2012 July
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Close Project (project end date)
+      </td>
+      <td>
+        2012 September WGM
+      </td>
+    </tr>
+  </tbody>
+</table>
+Project Wiki and Documentation can be found at
+<a href="http://wiki.hl7.org/index.php?title=Common_Terminology_Services_-_Release_2_%28Implementation_Guide%29" rel="nofollow">
+  HL7 Wiki - CTS2 Implementation Guide Project
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+.
+<h3 id="CommonTerminologyServicesRelease2(CTS2)InAction-IHTSDOCTS2ImplementationGuide">
+  IHTSDO CTS2 Implementation Guide
+</h3>
+IHTSDO (SNOMED-CT) has formed a group to develop the SNOMED-CT CTS2 Implementation Guide.  A draft document is planned for March 2012. More information will be posted as it becomes available.
+<h2 id="CommonTerminologyServicesRelease2(CTS2)InAction-CTS2Prototypes">
+  CTS2 Prototypes
+</h2>
+<h3 id="CommonTerminologyServicesRelease2(CTS2)InAction-BioportalWidgets">
+  Bioportal Widgets
+</h3>
+Various NCBO Bioportal Widgets have be adapted for use with a CTS2 compliant service, available
+<a href="http://informatics.mayo.edu/cts2widgets/widgets.html" rel="nofollow">
+  on the Mayo informatics service
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+.Included are:
+<ul>
+  <li>
+    A form auto-complete field with a link to the Bioportal rendering
+  </li>
+  <li>
+    Three form auto-complete fields consisting of:
+    <ul>
+      <li>
+        URI resolution
+      </li>
+      <li>
+        Term ID resolution
+      </li>
+      <li>
+        Preferred Name resolution
+      </li>
+    </ul>
+  </li>
+</ul>
+<h3 id="CommonTerminologyServicesRelease2(CTS2)InAction-MappingBrowser">
+  Mapping Browser
+</h3>
+A terminology mapping browser that allows users to
+<a href="http://informatics.mayo.edu/cts2/rest/widgets/viewmap.html" rel="nofollow">
+  search and browse mappings from SNOMEDCT to ICD10
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+Features include:
+<ul>
+  <li>
+    Selectable match algorithms (&#39;startsWith&#39; and &#39;contains&#39;)
+  </li>
+  <li>
+    Search based on source or target ontology
+  </li>
+  <li>
+    Search based on description text or code
+  </li>
+</ul>
+<h3 id="CommonTerminologyServicesRelease2(CTS2)InAction-SearchTool">
+  Search Tool
+</h3>
+A tool to
+<a href="http://informatics.mayo.edu/cts2widgets/search.html" rel="nofollow">
+  search for text-based matches of vocabulary content
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+Features include:
+<ul>
+  <li>
+    Autocomplete ontology selection
+  </li>
+  <li>
+    Search based on a single terminology or all terminologies
+  </li>
+  <li>
+    Search results shown in summary and detailed view
+  </li>
+  <li>
+    Logging console panel to show actual REST queries being sent to the CTS2 service
+  </li>
+</ul>

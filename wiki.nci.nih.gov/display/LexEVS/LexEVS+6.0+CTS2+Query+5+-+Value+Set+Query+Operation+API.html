@@ -1,0 +1,687 @@
+Contents of this Page
+<ul>
+  <li>
+    <a href="#LexEVS6.0CTS2Query5ValueSetQueryOperationAPI-Introduction" rel="nofollow">
+      Introduction
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.0CTS2Query5ValueSetQueryOperationAPI-Interface" rel="nofollow">
+      Interface
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.0CTS2Query5ValueSetQueryOperationAPI-QueryFunctions" rel="nofollow">
+      Query Functions
+    </a>
+    <ul>
+      <li>
+        <a href="#LexEVS6.0CTS2Query5ValueSetQueryOperationAPI-listValueSets" rel="nofollow">
+          listValueSets
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.0CTS2Query5ValueSetQueryOperationAPI-listAllValueSets" rel="nofollow">
+          listAllValueSets
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.0CTS2Query5ValueSetQueryOperationAPI-getValueSetDetails" rel="nofollow">
+          getValueSetDetails
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.0CTS2Query5ValueSetQueryOperationAPI-listValueSetContents" rel="nofollow">
+          listValueSetContents
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.0CTS2Query5ValueSetQueryOperationAPI-checkValueSetSubsumption" rel="nofollow">
+          checkValueSetSubsumption
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.0CTS2Query5ValueSetQueryOperationAPI-checkConceptValueSetMembership" rel="nofollow">
+          checkConceptValueSetMembership
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.0CTS2Query5ValueSetQueryOperationAPI-listValueSetsWithConceptCode" rel="nofollow">
+          listValueSetsWithConceptCode
+        </a>
+      </li>
+    </ul>
+  </li>
+</ul>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        CTS2 Links for LexEVS 6.0
+      </th>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427281" rel="nofollow">
+              CTS2 API Main Page
+            </a>
+          </li>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427334" rel="nofollow">
+              Programmer&#39;s Guide Main Page
+            </a>
+          </li>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=69730353" rel="nofollow">
+              LexEVS 6.0 Main Page
+            </a>
+          </li>
+          <li>
+            <a href="https://wiki.nci.nih.gov/display/LexEVS" rel="nofollow">
+              LexEVS Current Release
+            </a>
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="LexEVS6.0CTS2Query5ValueSetQueryOperationAPI-Introduction">
+  Introduction
+</h2>
+LexEVS CTS2 Value Set Query API provides capability to query Value Sets available in the system and also to query the binding between Value Set and Concept Domain.
+<h2 id="LexEVS6.0CTS2Query5ValueSetQueryOperationAPI-Interface">
+  Interface
+</h2>
+org.lexevs.cts2.query.ValueSetQueryOperation is the main interface for all the queries against Value Set. This interface can be accessed using main LexEVSCTS2 interface, like:
+
+
+
+org.lexevs.cts2.query.ValueSetQueryOperation vsQueryOp = new org.lexevs.cts2.LexEvsCTS2Impl().getQueryOperation().getValueSetQueryOperation();
+<h2 id="LexEVS6.0CTS2Query5ValueSetQueryOperationAPI-QueryFunctions">
+  Query Functions
+</h2>
+Here are the major query functions available using ValueSetQueryOperation interface:
+<h3 id="LexEVS6.0CTS2Query5ValueSetQueryOperationAPI-listValueSets">
+  listValueSets
+</h3>
+This function returns value sets that are available in the system. Optionally, the list can be filtered by providing the criteria as input parameters.
+
+listValueSets(String codeSystemId, String conceptDomainId, String usageContextId, String codeSystemURI, SortOption sortOption)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Lists the value sets that are available to the CTS 2 service.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        <ul>
+          <li>
+            java.lang.String codeSystemId - (Optional) code system id the value set should reference.
+          </li>
+          <li>
+            java.lang.String conceptDomainId - (Optional) conceptDomain the value set should be bound to.
+          </li>
+          <li>
+            java.lang.String usageContextId - (Optional) usage context in which the value set can be used.
+          </li>
+          <li>
+            java.lang.String codeSystemURI - (Optional) URI of code system the codeSystemId or conceptDomainId or usageContextId belongs to.
+            org.LexGrid.LexBIG.DataModel.InterfaceElements.SortOption sortOption - (Optional) to sort the return list of value set identifiers in Ascending or Descending.
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        java.util.List&lt;java.lang.String&gt; - List of value set identifiers
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Sample Call:
+      </th>
+      <td>
+        <ul>
+          <li>
+            Step 1: Instantiate ValueSetQueryOperation if it is not done yet:
+
+
+            org.lexevs.cts2.query.ValueSetQueryOperation vsQueryOp = new org.lexevs.cts2.LexEvsCTS2Impl().getQueryOperation().getValueSetQueryOperation();
+          </li>
+          <li>
+            Step 2: Set SortOption to sort the list in ascending order:
+
+
+            SortOption sortOption = new SortOption();
+            sortOption.setAscending(true);
+          </li>
+          <li>
+            Step 3: Call listValueSets method by passing any filter criteria:
+
+
+            java.util.List&lt;java.lang.String&gt; valueSetList = vsQuery.listValueSets(&#34;Automobiles&#34;, &#34;Autos&#34;, null, null, sortOption);
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h3 id="LexEVS6.0CTS2Query5ValueSetQueryOperationAPI-listAllValueSets">
+  listAllValueSets
+</h3>
+This function returns all the value sets that are available in the system.
+
+listAllValueSets(SortOption sortOption)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Lists all the value sets that are available to the CTS 2 service.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.DataModel.InterfaceElements.SortOption sortOption - (Optional) to sort the return list of value set identifiers in Ascending or Descending.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        java.util.List&lt;java.lang.String&gt; - List of value set identifiers
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Sample Call:
+      </th>
+      <td>
+        <ul>
+          <li>
+            Step 1: Instantiate ValueSetQueryOperation if it is not done yet:
+
+
+            org.lexevs.cts2.query.ValueSetQueryOperation vsQueryOp = new org.lexevs.cts2.LexEvsCTS2Impl().getQueryOperation().getValueSetQueryOperation();
+          </li>
+          <li>
+            Step 2: Set SortOption to sort the list in ascending order:
+
+
+            SortOption sortOption = new SortOption();
+            sortOption.setAscending(true);
+          </li>
+          <li>
+            Step 3: Call listAllValueSets method to get all the value sets loaded in the system:
+
+
+            java.util.List&lt;java.lang.String&gt; valueSetList = vsQuery.listAllValueSets(sortOption);
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h3 id="LexEVS6.0CTS2Query5ValueSetQueryOperationAPI-getValueSetDetails">
+  getValueSetDetails
+</h3>
+This function returns detailed information about the value set.
+
+getValueSetDetails(String valueSetId, String valueSetVersion)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Returns detailed information about the value set.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        <ul>
+          <li>
+            java.lang.String valueSetId - (Mandatory) Id of an value set.
+          </li>
+          <li>
+            java.lang.String valueSetVersion - (Optional) Version of an value set.
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        org.LexGrid.valueSets.ValueSetDefinition - Value Set Definition object with the details of value set
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Sample Call:
+      </th>
+      <td>
+        <ul>
+          <li>
+            Step 1: Instantiate ValueSetQueryOperation if it is not done yet:
+
+
+            org.lexevs.cts2.query.ValueSetQueryOperation vsQueryOp = new org.lexevs.cts2.LexEvsCTS2Impl().getQueryOperation().getValueSetQueryOperation();
+          </li>
+          <li>
+            Step 2: Call getValueSetDetails method by providing value set id:
+
+
+            org.LexGrid.valueSets.ValueSetDefinition vsd = vsQuery.getValueSetDetails(&#34;SRITEST:AUTO:AllDomesticButGM&#34;, null);
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h3 id="LexEVS6.0CTS2Query5ValueSetQueryOperationAPI-listValueSetContents">
+  listValueSetContents
+</h3>
+This function returns the contents of value set (expanded value set).
+
+listValueSetContents(String valueSetId, String valueSetVersion, AbsoluteCodingSchemeVersionReferenceList csVersionList, String versionTag, SortOption sortOption)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Returns the contents of value set (expanded value set).
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        <ul>
+          <li>
+            java.lang.String valueSetId - (Mandatory) Id of an value set.
+          </li>
+          <li>
+            java.lang.String valueSetVersion - (Optional) Version of an value set.
+          </li>
+          <li>
+            jorg.LexGrid.LexBIG.DataModel.Collections.AbsoluteCodingSchemeVersionReferenceList csVersionList - (Optional) Code System Version reference list to be used to resolve value set.
+          </li>
+          <li>
+            java.lang.String versionTag - (Optional) The tag (e.g. &#34;devel&#34;, &#34;production&#34;, ...) to be used to determine which code system to be used.
+          </li>
+          <li>
+            org.LexGrid.LexBIG.DataModel.InterfaceElements.SortOption sortOption - (Optional) to sort the contents of value set in Ascending or Descending.
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        org.lexgrid.valuesets.dto.ResolvedValueSetDefinition - A resolved Value Set definition containing the code system version reference list that was used to resolve the value set and an iterator for resolved concepts.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Sample Call:
+      </th>
+      <td>
+        <ul>
+          <li>
+            Step 1: Instantiate ValueSetQueryOperation if it is not done yet:
+
+
+            org.lexevs.cts2.query.ValueSetQueryOperation vsQueryOp = new org.lexevs.cts2.LexEvsCTS2Impl().getQueryOperation().getValueSetQueryOperation();
+          </li>
+          <li>
+            Step 2: Populate the Code System Version reference list to be used for resolving the value set definition:
+
+
+            AbsoluteCodingSchemeVersionReference acsvr = new AbsoluteCodingSchemeVersionReference();
+            acsvr.setCodingSchemeURN(&#34;urn:oid:11.11.0.1&#34;);
+            acsvr.setCodingSchemeVersion(&#34;1.0&#34;);
+            AbsoluteCodingSchemeVersionReferenceList csList = new AbsoluteCodingSchemeVersionReferenceList();
+            csList.addAbsoluteCodingSchemeVersionReference(acsvr);
+          </li>
+          <li>
+            Step 3: Call listValueSetContents method by providing value set id and code system version list:
+
+
+            ResolvedValueSetDefinition vsdResolved = vsQueryop.listValueSetContents(&#34;SRITEST:AUTO:DomasticLeafOnly&#34;, null, csList, null, null); |
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h3 id="LexEVS6.0CTS2Query5ValueSetQueryOperationAPI-checkValueSetSubsumption">
+  checkValueSetSubsumption
+</h3>
+This function determines whether one of the two supplied value sets subsumes the other.
+
+checkValueSetSubsumption(String childValueSetId, String childValueSetVersion, String parentValueSetId, String parentValueSetVersion, AbsoluteCodingSchemeVersionReferenceList csVersionList, String versionTag)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Determine whether one of the two supplied value sets subsumes the other.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        <ul>
+          <li>
+            java.lang.String childValueSetId - (Mandatory) Id of a child value set.
+          </li>
+          <li>
+            java.lang.String childValueSetVersion - (Optional) Version of a child value set.
+          </li>
+          <li>
+            java.lang.String parentValueSetId - (Mandatory) Id of a parent value set.
+          </li>
+          <li>
+            java.lang.String parentValueSetVersion - (Optional) Version of a parent value set.
+          </li>
+          <li>
+            jorg.LexGrid.LexBIG.DataModel.Collections.AbsoluteCodingSchemeVersionReferenceList csVersionList - (Optional) Code System Version reference list to be used to resolve both value sets.
+          </li>
+          <li>
+            java.lang.String versionTag - (Optional) The tag (e.g. &#34;devel&#34;, &#34;production&#34;, ...) to be used to determine which code system to be used.
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        boolean - True; if childValueSet subsumes parentValueSet. False; otherwise.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Sample Call:
+      </th>
+      <td>
+        <ul>
+          <li>
+            Step 1: Instantiate ValueSetQueryOperation if it is not done yet:
+
+
+            org.lexevs.cts2.query.ValueSetQueryOperation vsQueryOp = new org.lexevs.cts2.LexEvsCTS2Impl().getQueryOperation().getValueSetQueryOperation();
+          </li>
+          <li>
+            Step 2: Populate the Code System Version reference list to be used for resolving the value set definitions:
+
+
+            AbsoluteCodingSchemeVersionReference acsvr = new AbsoluteCodingSchemeVersionReference();
+            acsvr.setCodingSchemeURN(&#34;urn:oid:11.11.0.1&#34;);
+            acsvr.setCodingSchemeVersion(&#34;1.0&#34;);
+            AbsoluteCodingSchemeVersionReferenceList csList = new AbsoluteCodingSchemeVersionReferenceList();
+            csList.addAbsoluteCodingSchemeVersionReference(acsvr);
+          </li>
+          <li>
+            Step 3: Call checkValueSetSubsumption method by providing child and parent value set id and code system version list:
+
+
+            boolean subsume = vsQueryop.checkValueSetSubsumption(&#34;SRITEST:AUTO:DomasticLeafOnly&#34;, null, &#34;SRITEST:AUTO:EveryThing&#34;, null, csList, null); |
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h3 id="LexEVS6.0CTS2Query5ValueSetQueryOperationAPI-checkConceptValueSetMembership">
+  checkConceptValueSetMembership
+</h3>
+This function determines whether the supplied coded concept exists in the supplied value set.
+
+checkConceptValueSetMembership(String conceptCode, URI entityCodeNamespace, AbsoluteCodingSchemeVersionReference codeSystemAndVersion, String valueSetId, String valueSetVersion, String versionTag)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Determine whether the supplied coded concept exists in the supplied value set.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        <ul>
+          <li>
+            java.lang.String conceptCode - (Mandatory) Coded concept to check membership.
+          </li>
+          <li>
+            java.net.URI entityCodeNamespace - (Optional) Namespace of coded concept.
+          </li>
+          <li>
+            jorg.LexGrid.LexBIG.DataModel.Collections.AbsoluteCodingSchemeVersionReference codeSystemAndVersion - (Optional) Code System Version that contains the coded concept and to be used to resolve value set.
+          </li>
+          <li>
+            java.lang.String valueSetId - (Mandatory) Id of a value set.
+          </li>
+          <li>
+            java.lang.String valueSetVersion - (Optional) Version of a value set.
+          </li>
+          <li>
+            java.lang.String versionTag - (Optional) The tag (e.g. &#34;devel&#34;, &#34;production&#34;, ...) to be used to determine which code system to be used.
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        boolean - True; if coded concept exists in value set. False; otherwise.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Sample Call:
+      </th>
+      <td>
+        <ul>
+          <li>
+            Step 1: Instantiate ValueSetQueryOperation if it is not done yet:
+
+
+            org.lexevs.cts2.query.ValueSetQueryOperation vsQueryOp = new org.lexevs.cts2.LexEvsCTS2Impl().getQueryOperation().getValueSetQueryOperation();
+          </li>
+          <li>
+            Step 2: Populate the Code System Version reference that contains the coded concept and to be used for resolving the value set definition:
+
+
+            AbsoluteCodingSchemeVersionReference acsvr = new AbsoluteCodingSchemeVersionReference();
+            acsvr.setCodingSchemeURN(&#34;urn:oid:11.11.0.1&#34;);
+            acsvr.setCodingSchemeVersion(&#34;1.0&#34;);
+          </li>
+          <li>
+            Step 3: Call checkConceptValueSetMembership method by providing coded concept, code system version and value set id:
+
+
+            boolean member = vsQueryop.checkConceptValueSetMembership(&#34;GMC&#34;, new URI(&#34;Automobiles&#34;), acsvr, &#34;SRITEST:AUTO:GM&#34;, null, null); |
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h3 id="LexEVS6.0CTS2Query5ValueSetQueryOperationAPI-listValueSetsWithConceptCode">
+  listValueSetsWithConceptCode
+</h3>
+This function returns all the value set identifiers that contains supplied concept code.
+
+listValueSetsWithConceptCode(String conceptCode, URI entityCodeNamespace, AbsoluteCodingSchemeVersionReferenceList csVersionList, String versionTag)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Returns all the value set identifiers that contains supplied concept code.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        <ul>
+          <li>
+            java.lang.String conceptCode - (Mandatory) Coded concept to check membership.
+          </li>
+          <li>
+            java.net.URI entityCodeNamespace - (Optional) Namespace of coded concept.
+          </li>
+          <li>
+            jorg.LexGrid.LexBIG.DataModel.Collections.AbsoluteCodingSchemeVersionReferenceList csVersionList - (Optional) Code System Version List that contains the coded concept and to be used to resolve value set.
+          </li>
+          <li>
+            java.lang.String versionTag - (Optional) The tag (e.g. &#34;devel&#34;, &#34;production&#34;, ...) to be used to determine which code system to be used.
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        java.util.List&lt;java.lang.String&gt; - List of value set identifiers that contains the supplied concept code.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Sample Call:
+      </th>
+      <td>
+        <ul>
+          <li>
+            Step 1: Instantiate ValueSetQueryOperation if it is not done yet:
+
+
+            org.lexevs.cts2.query.ValueSetQueryOperation vsQueryOp = new org.lexevs.cts2.LexEvsCTS2Impl().getQueryOperation().getValueSetQueryOperation();
+          </li>
+          <li>
+            Step 2: Populate the Code System Version reference list to be used for resolving the value sets:
+
+
+            AbsoluteCodingSchemeVersionReference acsvr = new AbsoluteCodingSchemeVersionReference();
+            acsvr.setCodingSchemeURN(&#34;urn:oid:11.11.0.1&#34;);
+            acsvr.setCodingSchemeVersion(&#34;1.0&#34;);
+            AbsoluteCodingSchemeVersionReferenceList csList = new AbsoluteCodingSchemeVersionReferenceList();
+            csList.addAbsoluteCodingSchemeVersionReference(acsvr);
+          </li>
+          <li>
+            Step 3: Call listValueSetsWithConceptCode method by providing coded concept and code system version list:
+
+
+            List&lt;String&gt; valueSetIdList = vsQueryop.listValueSetsWithConceptCode(&#34;GMC&#34;, new URI(&#34;Automobiles&#34;), csList, null);
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>

@@ -1,0 +1,570 @@
+Java Code
+
+/*
+* Copyright: (c) 2004-2009 Mayo Foundation for Medical Education and
+* Research (MFMER). All rights reserved. MAYO, MAYO CLINIC, and the
+* triple-shield Mayo logo are trademarks and service marks of MFMER.
+*
+* Except as contained in the copyright notice above, or as used to identify
+* MFMER as the author of this software, the trade names, trademarks, service
+* marks, or product names of the copyright holder shall not be used in
+* advertising, promotion or otherwise in connection with this software without
+* prior written authorization of the copyright holder.
+*
+* Licensed under the Eclipse Public License, Version 1.0 (the &#34;License&#34;);
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+* 		http://www.eclipse.org/legal/epl-v10.html
+*
+*/
+package org.LexGrid.LexBIG.example;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
+
+import org.LexGrid.LexBIG.DataModel.Collections.ResolvedConceptReferenceList;
+import org.LexGrid.LexBIG.DataModel.Collections.SortOptionList;
+import org.LexGrid.LexBIG.DataModel.Core.CodingSchemeSummary;
+import org.LexGrid.LexBIG.DataModel.Core.CodingSchemeVersionOrTag;
+import org.LexGrid.LexBIG.DataModel.Core.ResolvedConceptReference;
+import org.LexGrid.LexBIG.Exceptions.LBException;
+import org.LexGrid.LexBIG.Impl.LexBIGServiceImpl;
+import org.LexGrid.LexBIG.LexBIGService.CodedNodeSet;
+import org.LexGrid.LexBIG.LexBIGService.LexBIGService;
+import org.LexGrid.LexBIG.LexBIGService.CodedNodeSet.PropertyType;
+import org.LexGrid.LexBIG.LexBIGService.CodedNodeSet.SearchDesignationOption;
+import org.LexGrid.LexBIG.Utility.Constructors;
+import org.LexGrid.LexBIG.Utility.LBConstants.MatchAlgorithms;
+import org.LexGrid.concepts.Entity;
+
+/**
+* Example attempting to approximate some characteristics of the Metaphrase
+* search algorithm. However, full Metaphrase compatibility is not anticipated.
+*/
+public class MetaMatch {
+
+// Identify common stop words (words to be ignored in most match
+// circumstances).
+// This list extends from the LVG stop words ...
+static final List&lt;String&gt; STOP_WORDS = Arrays.asList(new String[] { &#34;a&#34;, &#34;an&#34;, &#34;and&#34;, &#34;by&#34;, &#34;for&#34;, &#34;of&#34;, &#34;on&#34;,
+&#34;in&#34;, &#34;nos&#34;, &#34;the&#34;, &#34;to&#34;, &#34;with&#34; });
+
+/**
+* Default constructor.
+*/
+public MetaMatch() {
+super();
+}
+
+/**
+* Entry point for processing.
+*
+* @param args
+*/
+public static void main(String[] args) {
+if (args.length &lt; 1) {
+System.out.println(&#34;Example: MetaMatch \&#34;test string\&#34;&#34;);
+return;
+}
+;
+
+try {
+String s = args[0];
+new MetaMatch().run(s);
+} catch (Exception e) {
+Util.displayAndLogError(&#34;REQUEST FAILED !!!&#34;, e);
+}
+}
+
+public void run(String s) throws LBException {
+CodingSchemeSummary css = Util.promptForCodeSystem();
+if (css != null) {
+LexBIGService lbSvc = LexBIGServiceImpl.defaultInstance();
+String scheme = css.getCodingSchemeURI();
+CodingSchemeVersionOrTag csvt = new CodingSchemeVersionOrTag();
+csvt.setVersion(css.getRepresentsVersion());
+
+matchSynonyms(s, lbSvc, scheme, csvt);
+matchSpell(s, lbSvc, scheme, csvt);
+matchTermCompletion(s, lbSvc, scheme, csvt);
+matchWordCompletion(s, lbSvc, scheme, csvt);
+matchSubquery(s, lbSvc, scheme, csvt);
+}
+}
+
+/**
+* Display concepts and related text strings matching the given string.
+*
+* @param s
+*            The test string.
+* @param lbSvc
+* @param scheme
+* @param csvt
+* @throws LBException
+*/
+protected void matchSynonyms(String s, LexBIGService lbSvc, String scheme, CodingSchemeVersionOrTag csvt)
+throws LBException {
+Util.displayMessage(&#34;\n*** Matching synonyms (incorporates partial normalization/stemming).&#34;);
+
+// An attempt is made to use a partial normalized form on search by
+// removing stop words and utilizing a stemmed query algorithm.
+// Query is performed over all text representations (preferred and
+// non-preferred) that contain every non-stop word in the given
+// string.
+//
+// On resolve, we sort by lucene score (&#39;matchToQuery&#39; sort algorithm).
+
+StringBuffer searchPhrase = new StringBuffer();
+String[] words = toWords(s, true);
+for (int i = 0; i &lt; words.length; i++) {
+if (i &gt; 0)
+searchPhrase.append(&#34; AND &#34;);
+searchPhrase.append(words[i]);
+}
+
+// Define the code set and add restrictions ...
+CodedNodeSet nodes = lbSvc.getNodeSet(scheme, csvt, null);
+nodes.restrictToMatchingDesignations(searchPhrase.toString(), SearchDesignationOption.ALL,
+&#34;StemmedLuceneQuery&#34;, null);
+SortOptionList sortCriteria = Constructors.createSortOptionList(new String[] { &#34;matchToQuery&#34; });
+PropertyType[] fetchTypes = new PropertyType[] { PropertyType.PRESENTATION };
+
+// Resolve and analyze the result ...
+ResolvedConceptReferenceList matches = nodes.resolveToList(sortCriteria, null, fetchTypes, -1);
+
+// Found a match? If so, sort according to relevance.
+if (matches.getResolvedConceptReferenceCount() &gt; 0) {
+// NOTE that a match so far only indicates that all of the words in
+// the
+// passed in string also exist in a term assigned to the resolved
+// concepts. It does not, however, exclude results where the terms
+// also have additional words. This code currently processes only
+// full matches by calling getReferenceWeight and taking only those
+// values with weight &#39;1&#39;.
+
+// List concept references with exact correlation of at least one
+// concept term to the compare string.
+final List&lt;String&gt; matchWords = Arrays.asList(words);
+for (int i = 0; i &lt; matches.getResolvedConceptReferenceCount(); i++) {
+ResolvedConceptReference ref = matches.getResolvedConceptReference(i);
+if (getReferenceWeight(ref, matchWords) == 1)
+printText(ref);
+}
+} else {
+Util.displayMessage(&#34;\tNo match found.&#34;);
+}
+}
+
+/**
+* Attempt to approximate spelling suggestions.
+*
+* @param s
+*            The test string.
+* @param lbSvc
+* @param scheme
+* @param csvt
+* @throws LBException
+*/
+protected void matchSpell(String s, LexBIGService lbSvc, String scheme, CodingSchemeVersionOrTag csvt)
+throws LBException {
+Util.displayMessage(&#34;\n*** Matching spell suggestions ...&#34;);
+
+// Note: Metaphrase contained an integrated spell check module;
+// LexBIG does not as of the 2.0 release. Instead, spell
+// suggestion is based off entire phrase in comparison
+// to content stored in the ontology; no external dictionary
+// is utilized. While a dedicated speller has advantages,
+// there are also advantages to this approach (e.g. automatic
+// tuning of the search to the ontology content).
+//
+// Two different algorithms are highlighted in this code
+// for consideration. The first utilizes the lucene-based
+// Levenshtein distance algorithm. The second utilizes the
+// DoubleMetaphoneLuceneQuery (sounds-like) algorithm.
+//
+// Queries are currently made against all text representations
+// and not just the primary text representation for ,
+// but this could be narrowed.
+//
+// On resolve, we sort by lucene score (&#39;matchToQuery&#39; sort algorithm).
+
+// Levenshtein &#39;edit distance&#39; processing ...
+String[] words = toWords(s, true);
+String prefix = words[0].substring(0, 1);
+
+CodedNodeSet nodes = lbSvc.getNodeSet(scheme, csvt, null);
+StringBuffer searchPhrase = new StringBuffer(s).append(&#39;~&#39;);
+nodes.restrictToMatchingDesignations(searchPhrase.toString(), SearchDesignationOption.ALL,
+MatchAlgorithms.LuceneQuery.toString(), null);
+
+SortOptionList sortCriteria = Constructors.createSortOptionList(new String[] { &#34;matchToQuery&#34; });
+
+// Resolve and analyze the result ...
+ResolvedConceptReferenceList matches = nodes.resolveToList(sortCriteria, null, new PropertyType[] {}, 5);
+
+// Found a match?
+Util.displayMessage(&#34;\tLevenshtein distance (limited to 5 hits): &#34;);
+if (matches.getResolvedConceptReferenceCount() &gt; 0) {
+for (int i = 0; i &lt; matches.getResolvedConceptReferenceCount(); i++) {
+// OK, so we have it narrowed to a concept at this point but not
+// a
+// specific term. Narrow the choices to those that include the
+// same
+// starting letter and number of words as our test phrase.
+ResolvedConceptReference ref = matches.getResolvedConceptReference(i);
+printText(ref, true, prefix, words.length);
+}
+} else {
+Util.displayMessage(&#34;\tNo match found.&#34;);
+}
+
+// Sounds-like processing ...
+nodes = lbSvc.getNodeSet(scheme, csvt, null);
+nodes.restrictToMatchingDesignations(s, SearchDesignationOption.ALL, MatchAlgorithms.DoubleMetaphoneLuceneQuery
+.toString(), null);
+
+// Resolve and analyze the result ...
+matches = nodes.resolveToList(sortCriteria, null, new PropertyType[] {}, 5);
+
+// Found a match?
+Util.displayMessage(&#34;\n\tSounds-like/DoubleMetaphone (limited to 5 hits): &#34;);
+if (matches.getResolvedConceptReferenceCount() &gt; 0) {
+for (int i = 0; i &lt; matches.getResolvedConceptReferenceCount(); i++) {
+// Once again we have it narrowed to an entry at this point but
+// not a specific term. Narrow the choices to those that include
+// the
+// same starting letter and number of words as our test phrase.
+ResolvedConceptReference ref = matches.getResolvedConceptReference(i);
+printText(ref, true, prefix, words.length);
+}
+} else {
+Util.displayMessage(&#34;\tNo match found.&#34;);
+}
+
+}
+
+/**
+* Attempt to approximate term completion.
+*
+* @param s
+*            The test string.
+* @param lbSvc
+* @param scheme
+* @param csvt
+* @throws LBException
+*/
+@SuppressWarnings(&#34;unchecked&#34;)
+protected void matchTermCompletion(String s, LexBIGService lbSvc, String scheme, CodingSchemeVersionOrTag csvt)
+throws LBException {
+Util.displayMessage(&#34;\n*** Term completion ...&#34;);
+
+// Term completion is basically &#39;startsWith&#39;. Two different
+// queries are tried to match. The first utilizes the standard
+// startsWith match algorithm. The second utilizes regular
+// expressions to try and accomplish short-circuiting more
+// efficiently.
+//
+// Queries are currently made against all text representations,
+// but this could be narrowed.
+//
+// On resolve, we sort by lucene score (&#39;matchToQuery&#39; sort algorithm).
+
+String prefix = s.toLowerCase();
+String[] words = toWords(s, false);
+CodedNodeSet nodes = lbSvc.getNodeSet(scheme, csvt, null);
+nodes.restrictToMatchingDesignations(prefix, SearchDesignationOption.ALL, &#34;startsWith&#34;, null);
+SortOptionList sortCriteria = Constructors.createSortOptionList(new String[] { &#34;matchToQuery&#34; });
+
+// Resolve and analyze the result ...
+ResolvedConceptReferenceList matches = nodes.resolveToList(sortCriteria, null, new PropertyType[] {}, 5);
+
+// Found a match?
+Util.displayMessage(&#34;\tstartsWith (limited to 5 hits); short circuit after query...&#34;);
+if (matches.getResolvedConceptReferenceCount() &gt; 0) {
+for (int i = 0; i &lt; matches.getResolvedConceptReferenceCount(); i++) {
+ResolvedConceptReference ref = matches.getResolvedConceptReference(i);
+printText(ref, false, prefix, words.length + 1);
+}
+} else {
+Util.displayMessage(&#34;\tNo match found.&#34;);
+}
+
+// Try again with regular expression.
+nodes = lbSvc.getNodeSet(scheme, csvt, null);
+String regex = &#39;^&#39; + prefix + &#34;\\W*\\w*\\Z&#34;;
+nodes.restrictToMatchingDesignations(regex, SearchDesignationOption.ALL, &#34;RegExp&#34;, null);
+
+// Resolve and analyze the result ...
+matches = nodes.resolveToList(sortCriteria, null, new PropertyType[] {}, 5);
+
+// Found a match?
+Util.displayMessage(&#34;\n\tRegExp match (limited to 5 hits); short circuit on query...&#34;);
+if (matches.getResolvedConceptReferenceCount() &gt; 0) {
+for (int i = 0; i &lt; matches.getResolvedConceptReferenceCount(); i++) {
+ResolvedConceptReference ref = matches.getResolvedConceptReference(i);
+printText(ref, false, prefix, words.length + 1);
+}
+} else {
+Util.displayMessage(&#34;\tNo match found.&#34;);
+}
+}
+
+/**
+* Attempt to approximate word completion.
+*
+* @param s
+*            The test string.
+* @param lbSvc
+* @param scheme
+* @param csvt
+* @throws LBException
+*/
+@SuppressWarnings(&#34;unchecked&#34;)
+protected void matchWordCompletion(String s, LexBIGService lbSvc, String scheme, CodingSchemeVersionOrTag csvt)
+throws LBException {
+Util.displayMessage(&#34;\n*** Word completion (based on &#39;.&#39;) ...&#34;);
+
+// For word completion, we just use a regular expression and
+// substitute any alpha-numeric character for the substitution
+// character (&#39;.&#39;).
+// Queries are currently made against all text representations,
+// but this could be narrowed.
+//
+// On resolve, we sort by lucene score (&#39;matchToQuery&#39; sort algorithm).
+
+String prefix = s.toLowerCase();
+String[] words = toWords(prefix, false);
+StringBuffer regex = new StringBuffer();
+regex.append(&#39;^&#39;);
+for (int i = 0; i &lt; words.length; i++) {
+boolean lastWord = i == words.length - 1;
+String word = words[i];
+regex.append(&#39;(&#39;);
+if (word.charAt(word.length() - 1) == &#39;.&#39;) {
+regex.append(word.substring(0, word.length()));
+regex.append(&#34;\\w*&#34;);
+} else
+regex.append(word);
+regex.append(&#34;\\s&#34;).append(lastWord ? &#39;*&#39; : &#39;+&#39;);
+regex.append(&#39;)&#39;);
+}
+regex.append(&#34;\\Z&#34;);
+
+CodedNodeSet nodes = lbSvc.getNodeSet(scheme, csvt, null);
+nodes.restrictToMatchingDesignations(regex.toString(), SearchDesignationOption.ALL, &#34;RegExp&#34;, null);
+SortOptionList sortCriteria = Constructors.createSortOptionList(new String[] { &#34;matchToQuery&#34; });
+
+// Resolve and analyze the result ...
+ResolvedConceptReferenceList matches = nodes.resolveToList(sortCriteria, null, new PropertyType[] {}, 5);
+
+// Found a match?
+Util.displayMessage(&#34;\tFound via RegExp match (limited to 5 hits)...&#34;);
+if (matches.getResolvedConceptReferenceCount() &gt; 0) {
+int dotIndex = prefix.indexOf(&#39;.&#39;);
+if (dotIndex &lt; 0)
+dotIndex = prefix.length();
+for (int i = 0; i &lt; matches.getResolvedConceptReferenceCount(); i++) {
+ResolvedConceptReference ref = matches.getResolvedConceptReference(i);
+printText(ref, false, prefix.substring(0, dotIndex), -1);
+}
+} else {
+Util.displayMessage(&#34;\tNo match found.&#34;);
+}
+
+}
+
+/**
+* Attempt to approximate compositional or sub-query match (e.g.,
+* &#34;peptic ulcer&#34; will match the two separate entries for &#34;peptic&#34; and
+* &#34;ulcer&#34;, in case the ontology does not contain any entry matching the
+* full text &#34;peptic ulcer&#34;).
+*
+* @param s
+*            The test string.
+* @param lbSvc
+* @param scheme
+* @param csvt
+* @throws LBException
+*/
+protected void matchSubquery(String s, LexBIGService lbSvc, String scheme, CodingSchemeVersionOrTag csvt)
+throws LBException {
+Util.displayMessage(&#34;\n*** Subquery match (incorporates partial normalization/stemming).&#34;);
+
+// Similar to synonym match, only allow match on any single non-stop
+// word
+// and only print presentations matching the query.
+//
+// On resolve, we sort by lucene score (&#39;matchToQuery&#39; sort algorithm).
+
+StringBuffer searchPhrase = new StringBuffer();
+String[] words = toWords(s, true);
+for (int i = 0; i &lt; words.length; i++) {
+if (i &gt; 0)
+searchPhrase.append(&#34; OR &#34;);
+searchPhrase.append(words[i]);
+}
+
+// Define the code set and add restrictions ...
+CodedNodeSet nodes = lbSvc.getNodeSet(scheme, csvt, null);
+nodes.restrictToMatchingDesignations(searchPhrase.toString(), SearchDesignationOption.ALL,
+&#34;StemmedLuceneQuery&#34;, null);
+SortOptionList sortCriteria = Constructors.createSortOptionList(new String[] { &#34;matchToQuery&#34; });
+PropertyType[] fetchTypes = new PropertyType[] { PropertyType.PRESENTATION };
+
+// Resolve and analyze the result ...
+ResolvedConceptReferenceList matches = nodes.resolveToList(sortCriteria, null, fetchTypes, -1);
+
+// Found a match? If so, print each associated presentation containing
+// at least
+// one word from the query expression (exclude non-matching synonyms).
+if (matches.getResolvedConceptReferenceCount() &gt; 0) {
+for (int i = 0; i &lt; matches.getResolvedConceptReferenceCount(); i++) {
+ResolvedConceptReference ref = matches.getResolvedConceptReference(i);
+printText(ref, words, 1);
+}
+} else {
+Util.displayMessage(&#34;\tNo match found.&#34;);
+}
+}
+
+/**
+* Return a relative weight between 0 and 1 that indicates how well the
+* given reference maps to a set of words.
+*
+* @param ref
+* @param matchWords
+* @return
+*/
+protected float getReferenceWeight(ResolvedConceptReference ref, List&lt;String&gt; matchWords) {
+float weight = 0;
+Entity ce = ref.getEntity();
+int presCount = ce.getPresentationCount();
+for (int i = 0; i &lt; presCount; i++) {
+weight = Math.max(weight, getTextWeight(ce.getPresentation(i).getValue().getContent(), matchWords));
+}
+return weight;
+}
+
+/**
+* Return a relative weight between 0 and 1 that indicates how well the
+* given string maps to a set of words.
+*
+* @param ref
+* @param matchWords
+* @return
+*/
+protected float getTextWeight(String text, List&lt;String&gt; matchWords) {
+int matchedInTextWords = 0;
+int matchedInCompareWords = 0;
+String[] textWords = toWords(text, true);
+Set&lt;String&gt; textWordSet = new HashSet&lt;String&gt;();
+for (int i = 0; i &lt; textWords.length; i++) {
+String word = textWords[i];
+textWordSet.add(word);
+if (matchWords.contains(word))
+matchedInCompareWords++;
+}
+for (Iterator&lt;String&gt; compareWords = matchWords.iterator(); compareWords.hasNext();) {
+String word = compareWords.next();
+if (textWordSet.contains(word))
+matchedInTextWords++;
+}
+float textToCompareRatio = matchedInCompareWords / textWordSet.size();
+float compareToTextRatio = matchedInTextWords / matchWords.size();
+return (textToCompareRatio + compareToTextRatio) / 2;
+}
+
+/**
+* Print code and text for all text presentations associated with the given
+* node reference.
+*
+* @param ref
+*/
+protected void printText(ResolvedConceptReference ref) {
+printText(ref, true, (String) null, -1);
+}
+
+/**
+* Print code and text for all text presentations associated with the given
+* concept reference. If specified, any printed terms will have stop words
+* removed prior to comparison, must include the given prefix, and can be
+* constrained to those with a set number of words.
+*
+* @param ref
+* @param removeStopWords
+* @param prefix
+* @param wordCount
+*/
+protected void printText(ResolvedConceptReference ref, boolean removeStopWords, String prefix, int wordCount) {
+// Identify the unique set of text presentations;
+// avoid duplicate registration by multiple sources, etc ...
+Entity node = ref.getEntity();
+Set&lt;String&gt; presentations = new HashSet&lt;String&gt;();
+for (int j = 0; j &lt; node.getPresentationCount(); j++)
+presentations.add(node.getPresentation(j).getValue().getContent());
+
+// Print the result
+String code = &#34;\t[&#34; + ref.getConceptCode() + &#39;]&#39;;
+for (Iterator&lt;String&gt; strings = presentations.iterator(); strings.hasNext();) {
+String term = strings.next();
+if ((prefix == null || term.toLowerCase().startsWith(prefix))
+&amp;&amp; (wordCount &lt; 0 || toWords(term, removeStopWords).length == wordCount))
+Util.displayMessage(code + term);
+}
+}
+
+/**
+* Print code and text for all text presentations associated with the given
+* concept reference. If specified, the given words are compared against
+* each printed presentation according to the chosen match option. Match
+* option of 1 indicates to match at least one word; match option of 2
+* indicates a presentation must match all words.
+*
+* @param ref
+* @param matchWords
+* @param matchOption
+*/
+protected void printText(ResolvedConceptReference ref, String[] matchWords, int matchOption) {
+// Identify the unique set of text presentations;
+// avoid duplicate registration by multiple sources, etc ...
+Entity node = ref.getEntity();
+Set&lt;String&gt; presentations = new HashSet&lt;String&gt;();
+for (int j = 0; j &lt; node.getPresentationCount(); j++)
+presentations.add(node.getPresentation(j).getValue().getContent());
+
+// Print matching results
+String code = &#34;\t[&#34; + ref.getConceptCode() + &#39;]&#39;;
+for (Iterator&lt;String&gt; strings = presentations.iterator(); strings.hasNext();) {
+String term = strings.next();
+final List&lt;String&gt; words = Arrays.asList(matchWords);
+float weight = getTextWeight(term, words);
+if (matchOption == 1 &amp;&amp; weight &gt; 0 || matchOption == 2 &amp;&amp; weight == 1)
+Util.displayMessage(code + term);
+}
+}
+
+/**
+* Returns an array containing the individual white-space delimited words
+* contained by the given string, normalizing to lowercase and optionally
+* removing stop words.
+*
+* @param s
+* @param removeStopWords
+* @return
+*/
+protected String[] toWords(String s, boolean removeStopWords) {
+String[] words = s.split(&#34;\\s&#34;);
+List&lt;String&gt; adjusted = new ArrayList&lt;String&gt;();
+for (int i = 0; i &lt; words.length; i++) {
+if (!removeStopWords || !STOP_WORDS.contains(words[i]))
+adjusted.add(words[i].toLowerCase());
+}
+return adjusted.toArray(new String[adjusted.size()]);
+}
+
+} 

@@ -1,0 +1,227 @@
+This section provides general background information about batch file structure. Subsequent sections provide specific details about the Accrual batch file structure.Each line of text in a batch file corresponds to one record that consists of various required or optional data elements. Each data element is separated by a comma.Traditional Table Structure
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        Column 1
+      </th>
+      <th>
+        Column 2
+      </th>
+      <th>
+        Column 3
+      </th>
+      <th colspan="1">
+        Column 4
+      </th>
+    </tr>
+    <tr>
+      <td>
+        Row 1-Field 1
+      </td>
+      <td>
+        Row 1-Field 2
+      </td>
+      <td>
+        Row 1-Field 3
+      </td>
+      <td colspan="1">
+        Row 1-Field 4
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Row 2-Field 1
+      </td>
+      <td>
+        Row 2-Field 2
+      </td>
+      <td>
+        Row 2-Field 3
+      </td>
+      <td colspan="1">
+        Row 2-Field 4
+      </td>
+    </tr>
+  </tbody>
+</table>
+Corresponding Comma-Delimited StructureComma-Delimited Structure
+Field 1,Field 2,Field 3,Field 4
+Field 1,Field 2,Field 3,Field 4
+The number of fields in a row is dictated by the number of fields required in a CTRP or CDUS record. The
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=357698105" rel="nofollow">
+  Complete Trial Table
+</a>
+and
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=357698123" rel="nofollow">
+  Abbreviated Trial Table
+</a>
+indicate how many fields are required in each CDUS record, and how many are required in a CTRP record. The batch file must contain values or place holders (commas) equal to the number of required fields corresponding to the CDUS format. Leave fields that are not required by CTRP blank, but keep the commas to indicate the &#34;missing&#34; field values.For example, if a CDUS record requires six fields, as shown below, and the CTRP record requires only three, use commas to indicate the &#34;missing&#34; values.Fields Required for CDUS Records
+CDUS Field 1,CDUS Field 2,CDUS Field 3,CDUS Field 4,CDUS Field 5,CDUS Field 6
+
+Fields Required for CTRP Batch File
+CTRP Field 1,CTRP Field 2,,,,CTRP Field 6
+
+In a traditional table grid structure, the column headings indicate the order in which the field values occur. In CTRP batch files, the column heading is implicit, and the field order is sequential from left to right, beginning at Field 1.Traditional Table Structure
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        Column 1
+      </th>
+      <th>
+        Column 2
+      </th>
+      <th>
+        Column 3
+      </th>
+      <th colspan="1">
+        Column 4
+      </th>
+    </tr>
+    <tr>
+      <td>
+        Row 1-Field 1
+      </td>
+      <td>
+        Row 1-Field 2
+      </td>
+      <td>
+        Row 1-Field 3
+      </td>
+      <td colspan="1">
+        Row 1-Field 4
+      </td>
+    </tr>
+  </tbody>
+</table>
+Comma-Delimited Structure
+Field #1,Field #2,Field #3,Field #4
+
+The first field in each record is reserved for the table name, which is always in CAPITAL letters. The exact field number for each data element is provided in the
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=355080515" rel="nofollow">
+  Complete Trial Record Data Field Requirements
+</a>
+and
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=355080515" rel="nofollow">
+  Abbreviated Trial Record Data Field Requirements
+</a>
+tables.Example - Using Automobiles Instead of Patients Suppose CDUS stores information about cars (rather than accrued patients) in its database in a table called AUTOMOBILES.In this example, CDUS records each of the following six data elements:
+<ul>
+  <li>
+    Table Name
+  </li>
+  <li>
+    VIN (Vehicle Identification Number)
+  </li>
+  <li>
+    Make
+  </li>
+  <li>
+    Model
+  </li>
+  <li>
+    Color
+  </li>
+  <li>
+    Year
+  </li>
+</ul>
+These data elements are arranged in the following sequence:
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Table Name
+      </th>
+      <th>
+        VIN
+      </th>
+      <th colspan="1">
+        Make
+      </th>
+      <th colspan="1">
+        Model
+      </th>
+      <th colspan="1">
+        Color
+      </th>
+      <th colspan="1">
+        Year
+      </th>
+    </tr>
+  </tbody>
+</table>
+The corresponding comma-delimited sequence is as follows:Comma-Delimited Data Elements
+&lt;AUTOMOBILE&gt;,&lt;vin&gt;,&lt;make&gt;,&lt;model&gt;,&lt;color&gt;,&lt;year&gt;
+
+A traditional table structure for these CDUS data elements and their values are shown below.
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+    <col/>
+    <col/>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        Table Name
+      </th>
+      <th>
+        VIN
+      </th>
+      <th colspan="1">
+        Make
+      </th>
+      <th colspan="1">
+        Model
+      </th>
+      <th colspan="1">
+        Color
+      </th>
+      <th colspan="1">
+        Year
+      </th>
+    </tr>
+    <tr>
+      <td colspan="1">
+        AUTOMOBILE
+      </td>
+      <td colspan="1">
+        ABC-123456
+      </td>
+      <td colspan="1">
+        Ford
+      </td>
+      <td colspan="1">
+        Mustang
+      </td>
+      <td colspan="1">
+        Black
+      </td>
+      <td colspan="1">
+        1965
+      </td>
+    </tr>
+  </tbody>
+</table>
+The corresponding comma-delimited structure is as follows:Comma-Delimited Data Values
+AUTOMOBILE,ABC-123456,Ford,Mustang,Black,1965
+
+And, to extend this example, suppose that CTRP does not capture the Model nor Color of the car. In this case, the final record in the CTRP batch file would be as follows:Comma-Delimited CTRP Data Values
+AUTOMOBILE,ABC-123456,Ford,,,1965 

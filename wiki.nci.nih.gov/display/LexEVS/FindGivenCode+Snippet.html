@@ -1,0 +1,12 @@
+Java Code Snippet
+
+//first obtain a &#39;CodedNodeSet&#39; from the &#39;NCI Thesaurus&#39; ontology:
+ResolvedConceptReferenceList cns = lbSvc.getCodingSchemeConcepts(&#34;NCI Thesaurus&#34;, null);
+
+//Next, restrict that to the desired Code (&#39;C1234&#39; in this example):
+ConceptReferenceList crefs = ConvenienceMethods.
+createConceptReferenceList(new String[]{&#34;C1234&#34;}, &#34;NCI Thesaurus&#34;);
+cns.restrictToCodes(crefs);
+
+//Lastly, resolve the match.
+ResolvedConceptReferenceList matches = cns.resolveToList(null, null, null, 1); 

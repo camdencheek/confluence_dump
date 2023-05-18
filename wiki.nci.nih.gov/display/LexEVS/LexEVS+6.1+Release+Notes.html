@@ -1,0 +1,598 @@
+LexEVS 6.1 release highlights include the addition of new content loaders that target both new standards and better sources for content. LexEVS 6.0 featured comprehensive implementation of the CTS2 draft standard for trial use, LexEVS 6.1 features a set of interfaces built on the final OMG CTS2 API specification.  Note that 6.1 does not include updates to the the Grid Services currently running on 6.0 which will be retired within 6 months of the final 6.1 release date. No 6.1 deployment of the grid services will take place.
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Defects fixed
+      </th>
+      <th>
+        Issue
+      </th>
+      <th>
+        Description
+      </th>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-577" rel="nofollow">
+          LEXEVS-577
+        </a>
+      </td>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-577" rel="nofollow">
+          MedDRA_history_english.asc data are not loaded by the MedDRA (ASCII file) loader
+        </a>
+      </td>
+      <td>
+        An addition to the new MedDRA loader that supplies history data as a property with qualifiers
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-578" rel="nofollow">
+          LEXEVS-578
+        </a>
+      </td>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-578" rel="nofollow">
+          Contains search using &#34;non-small occult&#34; as the search string against NCIt returns nothing.
+        </a>
+      </td>
+      <td>
+        Accuracy boosting of lucene special characters implemented here
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-571" rel="nofollow">
+          LEXEVS-571
+        </a>
+      </td>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-571" rel="nofollow">
+          Ability to drop or load multiple resolved value sets
+        </a>
+      </td>
+      <td>
+        Support of mass dropping and loading of value sets
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-569" rel="nofollow">
+          LEXEVS-569
+        </a>
+      </td>
+      <td>
+        Load times for LoadOWL take significantly longer in 6.0
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-527" rel="nofollow">
+          LEXEVS-527
+        </a>
+      </td>
+      <td colspan="1">
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-527" rel="nofollow">
+          LoadMetaBatch throws illegal character error
+        </a>
+      </td>
+      <td colspan="1">
+        Accuracy boosting around special characters implementation
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-444" rel="nofollow">
+          LEXEVS-444
+        </a>
+      </td>
+      <td colspan="1">
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-444" rel="nofollow">
+          Trying to load NCIt to ICD9 MRMAP file, get error
+        </a>
+      </td>
+      <td colspan="1">
+        Support for missing or null elements in the MRMAP file
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-495" rel="nofollow">
+          LEXEVS-495
+        </a>
+      </td>
+      <td colspan="1">
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-495" rel="nofollow">
+          ICD9 GEMS map throws java.lang.NullPointerException
+        </a>
+      </td>
+      <td colspan="1">
+        Support for missing or null elements in the MRMAP file
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-506" rel="nofollow">
+          LEXEVS-506
+        </a>
+      </td>
+      <td colspan="1">
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-506" rel="nofollow">
+          Missing database index for Metathesaurus
+        </a>
+      </td>
+      <td colspan="1">
+        Integration of the Metathesaurus index load to loader.
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-514" rel="nofollow">
+          LEXEVS-514
+        </a>
+      </td>
+      <td colspan="1">
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-514" rel="nofollow">
+          OWL loader puts property comments on every property value
+        </a>
+      </td>
+      <td colspan="1">
+        Correcting and separating content for improved readability and accuracy in the OWL loader
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-533" rel="nofollow">
+          LEXEVS-533
+        </a>
+      </td>
+      <td colspan="1">
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-533" rel="nofollow">
+          SNOMED Loader does not build Transitivity Table
+        </a>
+      </td>
+      <td colspan="1"></td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-526" rel="nofollow">
+          LEXEVS-526
+        </a>
+      </td>
+      <td colspan="1">
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-526" rel="nofollow">
+          Metathesaurus unable to load or Resume
+        </a>
+      </td>
+      <td colspan="1">
+        Correcting data base constraints against content changes
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-492" rel="nofollow">
+          LEXEVS-492
+        </a>
+      </td>
+      <td colspan="1">
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-492" rel="nofollow">
+          Unable to export NCI Thesaurus 11.10e
+        </a>
+      </td>
+      <td colspan="1"></td>
+    </tr>
+  </tbody>
+</table>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Features implemented
+      </th>
+      <th>
+        Issue
+      </th>
+      <th>
+        Description
+      </th>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-552" rel="nofollow">
+          LEXEVS-552
+        </a>
+      </td>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-552" rel="nofollow">
+          LexEVS Loader Enhancement - OWL2 Loader
+        </a>
+      </td>
+      <td>
+        LexEVS now loads content based on the latest OWL standard
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-551" rel="nofollow">
+          LEXEVS-551
+        </a>
+      </td>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-551" rel="nofollow">
+          LexEVS Loader Enhancement - MedDRA Loader
+        </a>
+      </td>
+      <td>
+        MedDRA content can now be loaded from native MedDRA ASCII files
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-550" rel="nofollow">
+          LEXEVS-550
+        </a>
+      </td>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-550" rel="nofollow">
+          LexEVS Performance Enhancement - Search Performance (Contains)
+        </a>
+      </td>
+      <td>
+        HIgh efficiency search is implemented for a &#34;contains&#34; type search
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-547" rel="nofollow">
+          LEXEVS-547
+        </a>
+      </td>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-547" rel="nofollow">
+          LexEVS Enhancement for CTS2 - Entity Query Across Code System
+        </a>
+      </td>
+      <td>
+        Cross content search with reasonable performance is implemented
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-546" rel="nofollow">
+          LEXEVS-546
+        </a>
+      </td>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-546" rel="nofollow">
+          CTS2 REST MapEntry
+        </a>
+      </td>
+      <td>
+        MapEntry Read and query with restrictions to code system (name of map) and either source or target code system
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-544" rel="nofollow">
+          LEXEVS-544
+        </a>
+      </td>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-544" rel="nofollow">
+          CTS2 REST MapCatalogEntry
+        </a>
+      </td>
+      <td>
+        MapCatalog Read and query with restrictions to code system (name of map) and either source or target code system
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-541" rel="nofollow">
+          LEXEVS-541
+        </a>
+      </td>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-541" rel="nofollow">
+          CTS2 REST Association
+        </a>
+      </td>
+      <td>
+        Association Query with restrictions on the following:
+        <ul>
+          <li>
+            Parents
+          </li>
+          <li>
+            Children
+          </li>
+          <li>
+            Restrict a source
+          </li>
+          <li>
+            Restrict a target
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-540" rel="nofollow">
+          LEXEVS-540
+        </a>
+      </td>
+      <td>
+        CTS2 REST EntityDescription
+      </td>
+      <td>
+        Entity Description Read and Query and features text matching with wild card, exact match, starts with and word starts with.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-539" rel="nofollow">
+          LEXEVS-539
+        </a>
+      </td>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-539" rel="nofollow">
+          CTS2 REST CodeSystemVersionCatalogEntry
+        </a>
+      </td>
+      <td>
+        Code System Version Read and Query with text matching on exact match, starts with, and contains.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-545" rel="nofollow">
+          LEXEVS-545
+        </a>
+      </td>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-545" rel="nofollow">
+          CTS2 REST MapVersionCatalogEntry
+        </a>
+      </td>
+      <td>
+        Features Map Version Catalog Entry Read and Query with restrictions to/from code system and entity code system to/from
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-543" rel="nofollow">
+          LEXEVS-543
+        </a>
+      </td>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-543" rel="nofollow">
+          CTS2 REST ResolvedValueSet
+        </a>
+      </td>
+      <td>
+        Resolved Value Set Read and Query with restrictions on code system version and contained entity
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-553" rel="nofollow">
+          LEXEVS-553
+        </a>
+      </td>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-553" rel="nofollow">
+          LexEVS Loader Enhancement - HL7 MIF Loader
+        </a>
+      </td>
+      <td>
+        LexEVS now loads HL7 vocabularies into one coding scheme directly from the MIF files generated by each HL7 release, giving users access to more a more complete HL7 representation
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-542" rel="nofollow">
+          LEXEVS-542
+        </a>
+      </td>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-542" rel="nofollow">
+          CTS2 REST ValueSetDefinition
+        </a>
+      </td>
+      <td>
+        Value Set Definition Query, Read, and Resolve with restrictions on code system version and contained entity
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-548" rel="nofollow">
+          LEXEVS-548
+        </a>
+      </td>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-548" rel="nofollow">
+          LexEVS Performance Enhancement - Implement a persistance mechanism for resolved Value Sets
+        </a>
+      </td>
+      <td>
+        This implementation ameliorates the issue of resolving and returning large value sets by persisting value set resolutions locally
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-549" rel="nofollow">
+          LEXEVS-549
+        </a>
+      </td>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-549" rel="nofollow">
+          LexEVS Performance Enhancement - Performace Improvement of Hierarchy Traversal
+        </a>
+      </td>
+      <td>
+        Hierarchy convenience methods allow quick resolution of large shallow depth relationships.
+      </td>
+    </tr>
+  </tbody>
+</table>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Known Issues
+      </th>
+      <th>
+        Issue
+      </th>
+      <th>
+        Description
+      </th>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-584" rel="nofollow">
+          LEXEVS-584
+        </a>
+      </td>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-584" rel="nofollow">
+          LexEVS Loader Update HL7 MIF Loader
+        </a>
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-583" rel="nofollow">
+          LEXEVS-583
+        </a>
+      </td>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-583" rel="nofollow">
+          OWL2 data: restrictions on a class using datatype properties
+        </a>
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-581" rel="nofollow">
+          LEXEVS-581
+        </a>
+      </td>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-581" rel="nofollow">
+          LexEVSValueSetDefinitionServicesImpl exportValueSetResolution method could fail.
+        </a>
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-580" rel="nofollow">
+          LEXEVS-580
+        </a>
+      </td>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-580" rel="nofollow">
+          Update to MSSOValidator.jar
+        </a>
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-579" rel="nofollow">
+          LEXEVS-579
+        </a>
+      </td>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-579" rel="nofollow">
+          OBO loader gets confused when Synonym has both source and type
+        </a>
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-576" rel="nofollow">
+          LEXEVS-576
+        </a>
+      </td>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-576" rel="nofollow">
+          Definition.isIsPreferred can return a null
+        </a>
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-574" rel="nofollow">
+          LEXEVS-574
+        </a>
+      </td>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-574" rel="nofollow">
+          Update lucene to recent version
+        </a>
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-573" rel="nofollow">
+          LEXEVS-573
+        </a>
+      </td>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-573" rel="nofollow">
+          LoadMetadata parameters not working
+        </a>
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-572" rel="nofollow">
+          LEXEVS-572
+        </a>
+      </td>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-572" rel="nofollow">
+          The exactMatch algorithm can fail.
+        </a>
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-570" rel="nofollow">
+          LEXEVS-570
+        </a>
+      </td>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-570" rel="nofollow">
+          Loader messaging is poor and unhelpful
+        </a>
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-492" rel="nofollow">
+          LEXEVS-492
+        </a>
+      </td>
+      <td colspan="1">
+        <a href="https://tracker.nci.nih.gov/browse/LEXEVS-492" rel="nofollow">
+          Unable to export NCI Thesaurus 11.10e
+        </a>
+      </td>
+      <td colspan="1"></td>
+    </tr>
+  </tbody>
+</table>

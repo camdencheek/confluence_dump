@@ -1,0 +1,667 @@
+Contents of this Page
+<ul>
+  <li>
+    <a href="#LexEVSinSpringSourceMVCMavenProject-Overview" rel="nofollow">
+      Overview
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVSinSpringSourceMVCMavenProject-Prerequisites" rel="nofollow">
+      Prerequisites
+    </a>
+    <ul>
+      <li>
+        <a href="#LexEVSinSpringSourceMVCMavenProject-LexEVSLocalRuntimeInstall" rel="nofollow">
+          LexEVS Local Runtime Install
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVSinSpringSourceMVCMavenProject-InstallingTomcat6" rel="nofollow">
+          Installing Tomcat 6
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVSinSpringSourceMVCMavenProject-InstallingSpringSourceToolSuite(TestedwithVersion2.7.1)" rel="nofollow">
+          Installing SpringSource Tool Suite (Tested with Version 2.7.1)
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVSinSpringSourceMVCMavenProject-SettingupTomcat6inSTS" rel="nofollow">
+          Setting up Tomcat 6 in STS
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#LexEVSinSpringSourceMVCMavenProject-CreatingaNewSpringMVC3Project" rel="nofollow">
+      Creating a New Spring MVC 3 Project
+    </a>
+    <ul>
+      <li>
+        <a href="#LexEVSinSpringSourceMVCMavenProject-SmallSTSWarningThatCanbeFixed" rel="nofollow">
+          Small STS Warning That Can be Fixed
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVSinSpringSourceMVCMavenProject-Verification" rel="nofollow">
+          Verification
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#LexEVSinSpringSourceMVCMavenProject-AddingLexEVSasaMavenDependency" rel="nofollow">
+      Adding LexEVS as a Maven Dependency
+    </a>
+    <ul>
+      <li>
+        <a href="#LexEVSinSpringSourceMVCMavenProject-DownloadingtheRequiredFiles" rel="nofollow">
+          Downloading the Required Files
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVSinSpringSourceMVCMavenProject-InstallingaLexEVSDependency" rel="nofollow">
+          Installing a LexEVS Dependency
+        </a>
+        <ul>
+          <li>
+            <a href="#LexEVSinSpringSourceMVCMavenProject-JAVA_HOMEEnvironmentVariableMissing" rel="nofollow">
+              JAVA_HOME Environment Variable Missing
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVSinSpringSourceMVCMavenProject-MVNCommands" rel="nofollow">
+              MVN Commands
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVSinSpringSourceMVCMavenProject-AdjustingScopeofJUnit" rel="nofollow">
+              Adjusting Scope of JUnit
+            </a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#LexEVSinSpringSourceMVCMavenProject-IncludingLexEVSintheMVCProject" rel="nofollow">
+      Including LexEVS in the MVC Project
+    </a>
+    <ul>
+      <li>
+        <a href="#LexEVSinSpringSourceMVCMavenProject-CreatingaTestFile" rel="nofollow">
+          Creating a Test File
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVSinSpringSourceMVCMavenProject-AddingaJVMParametertoLocatethelbconfig.props" rel="nofollow">
+          Adding a JVM Parameter to Locate the lbconfig.props
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#LexEVSinSpringSourceMVCMavenProject-IntegratingLexEVSinaWebPage" rel="nofollow">
+      Integrating LexEVS in a Web Page
+    </a>
+    <ul>
+      <li>
+        <a href="#LexEVSinSpringSourceMVCMavenProject-AddingaJVMParametertoLocatethelbconfig.props.1" rel="nofollow">
+          Adding a JVM Parameter to Locate the lbconfig.props
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVSinSpringSourceMVCMavenProject-AdjustingtheController" rel="nofollow">
+          Adjusting the Controller
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVSinSpringSourceMVCMavenProject-AdjustingtheJSPPage" rel="nofollow">
+          Adjusting the JSP Page
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVSinSpringSourceMVCMavenProject-RunningtheProject" rel="nofollow">
+          Running the Project
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#LexEVSinSpringSourceMVCMavenProject-Acknowledgement" rel="nofollow">
+      Acknowledgement
+    </a>
+  </li>
+</ul>
+<h2 id="LexEVSinSpringSourceMVCMavenProject-Overview">
+  Overview
+</h2>
+The spring framework has emerged over the last few years as a versatile and efficient support structure for multiple types of Java applications. The MVC component facilitates the development of rich web-driven applications. The SpringSource tool suite(STS) is an Eclipse derivative software package bundling the necessary tools to develop efficiently with the Spring framework. The Spring 3 MVC project is a Maven compliant project and the guide will make use of it to include a LexEVS dependency.This guide will illustrate how to use a local instance of LexEVS in a Spring 3.0.x MVC project and how to deploy it to a Tomcat 6 server from within STS. It was tested using LexEVS 6.0 and Windows 7. This should be applicable to other environments and future versions of LexEVS, but some parameters, especially paths, might need to be formatted differently.This guide will NOT explore how to leverage LexEVS programatically or how to best develop with the Spring framework. The reader is invited to explore the multiple resources on the web that can help in this endeavor.
+<h2 id="LexEVSinSpringSourceMVCMavenProject-Prerequisites">
+  Prerequisites
+</h2>
+You will need internet access to complete this guide.
+<h3 id="LexEVSinSpringSourceMVCMavenProject-LexEVSLocalRuntimeInstall">
+  LexEVS Local Runtime Install
+</h3>
+Please follow carefully the steps provided in
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427547" rel="nofollow">
+  the guide for installing LexEVS 6.0 Local Runtime
+</a>
+.Once all the steps have been followed successfully you should have a functional LexEVS Local Runtime instance.In order to facilitate subsequent testing,
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427271" rel="nofollow">
+  load and activate
+</a>
+the test terminology Automobiles.xml located in the folder {LEXEVS_HOME}\test\resources\testData\Automobiles.xml.Make note of your installation folder.
+<h3 id="LexEVSinSpringSourceMVCMavenProject-InstallingTomcat6">
+  Installing Tomcat 6
+</h3>
+<ol>
+  <li>
+    Navigate to the
+    <a href="http://tomcat.apache.org/download-60.cgi" rel="nofollow">
+      Tomcat 6 download page
+    </a>
+    <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+      <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+    </a>
+    and download the appropriate package for your system. The binary core distribution (zip) is the most usual one.
+  </li>
+  <li>
+    Unzip the content of the file in the desired folder and make note of it.
+  </li>
+</ol>
+<h3 id="LexEVSinSpringSourceMVCMavenProject-InstallingSpringSourceToolSuite(TestedwithVersion2.7.1)">
+  Installing SpringSource Tool Suite (Tested with Version 2.7.1)
+</h3>
+<ol>
+  <li>
+    Navigate to the
+    <a href="http://www.springsource.com/products/springsource-tool-suite-download" rel="nofollow">
+      STS download page
+    </a>
+    <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+      <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+    </a>
+    to download the software. Please note that you don&#39;t have to fill out the form. If you do not wish to fill it all, just check the checkbox to accept the license terms and click on the link &#34;Download Page&#34; bellow the &#34;Download Now&#34; button.
+  </li>
+  <li>
+    Choose the appropriate version for your environment and install it. Make sure that you have the Java JDK 1.6 (or less ideally 1.5) installed.
+  </li>
+  <li>
+    During setup, make sure to make a note of where you installed the program. During step 4, make sure &#34;Apache Maven 2...&#34; in selected.
+  </li>
+  <li>
+    You can launch STS and select the location of your workspace. You will then be presented with the Welcome page. You can close it with the &#34;x&#34; next to the tab on top left. This will bring a Spring perspective.
+  </li>
+</ol>
+<h3 id="LexEVSinSpringSourceMVCMavenProject-SettingupTomcat6inSTS">
+  Setting up Tomcat 6 in STS
+</h3>
+<ol>
+  <li>
+    Open STS. It should be enabled by default but make sure you&#39;re in the Spring perspective. In the left lower corner should be the server view.
+  </li>
+  <li>
+    Right-click in the view and choose &#34;New -&gt; Server&#34; in the context menu.
+  </li>
+  <li>
+    Type &#34;Tomcat&#34; in the &#34;Select the server type:&#34; textbox. Then scroll down in the selectbox bellow and choose Tomcat v6.0 Server. Click &#34;Next&#34;.
+  </li>
+  <li>
+    On the next screen, browse to your tomcat install folder and select it.
+  </li>
+  <li>
+    Click on &#34;Finish&#34; You should now see an entry named &#34;Tomcat v6.0 Server at localhost&#34; in the server view.
+  </li>
+</ol>
+<h2 id="LexEVSinSpringSourceMVCMavenProject-CreatingaNewSpringMVC3Project">
+  Creating a New Spring MVC 3 Project
+</h2>
+<ol>
+  <li>
+    Click on the menu File -&gt; New - &gt; Spring Template Project.
+  </li>
+  <li>
+    Select Spring MVC Project from the list and click Next.
+    <ol>
+      <li>
+        It will ask you if you want to download file: click Proceed.
+      </li>
+    </ol>
+  </li>
+  <li>
+    Enter a project name. For this guide we will name it &#34;testlex&#34;.
+  </li>
+  <li>
+    Enter the top level package (x.x.x). We will name it &#34;org.test.test&#34;.
+  </li>
+  <li>
+    Click on Finish. It might take some time before your back to a responsive Spring perspective. STS will need to download some dependencies for the project. You should then see your project [testlex] in the package explorer view on top left part of the windows.
+  </li>
+</ol>
+<h3 id="LexEVSinSpringSourceMVCMavenProject-SmallSTSWarningThatCanbeFixed">
+  Small STS Warning That Can be Fixed
+</h3>
+There is a little bug that is annoying in STS regarding missing XML definition. You should see a tiny warning icon on your project and if you drill down, it relates to the file &#34;log4j.xml&#34;.The issue has been described in a Spring forum
+<a href="http://forum.springsource.org/showthread.php?77269-STS-3.5-MVC-template-problem-log4j.dtd-not-found&amp;p=269036#post269036" rel="nofollow">
+  post
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+but the &#34;Key&#34; that needs to be entered is:
+-//APACHE//DTD LOG4J 1.2//EN
+and NOT -//LOGGER - this changed from the previous STS version.The solution is:
+<ol>
+  <li>
+    Menu Windows -&gt; Preferences -&gt; XML -&gt; XML Catalog
+  </li>
+  <li>
+    Click on add
+  </li>
+  <li>
+    Click on File System and select the jar. It should be something similar to: {SpringSource install folder}\sts-2.7.1.RELEASE\plugins\org.apache.log4j_1.2.15.v201012070815.jar
+  </li>
+  <li>
+    Add &#34;jar:file:&#34; in front of the path and !/org/apache/log4j/xml/log4j.dtd at the end of the path (without the &#34;)
+  </li>
+  <li>
+    In the key textbox, enter -//APACHE//DTD LOG4J 1.2//EN (without the &#34;)
+  </li>
+  <li>
+    Click Ok to close this window, then ok again to close the preference window.
+  </li>
+  <li>
+    Once you follow the instructions, you need to add and remove a space to trigger a modification then save the file. The warning should be gone. Do this for both log4j.xmlfiles:
+    <ul>
+      <li>
+        one in src/main/resources
+      </li>
+      <li>
+        one in src/test/resources
+      </li>
+    </ul>
+  </li>
+</ol>
+<h3 id="LexEVSinSpringSourceMVCMavenProject-Verification">
+  Verification
+</h3>
+<ol>
+  <li>
+    Select the [textlex] folder project in the package explorer window then click on play button or click on the menu &#34;Run&#34; -&gt; Run The next window will ask you how you want to run the project. Select &#34;Run on server&#34;.
+  </li>
+  <li>
+    In the list on the next window, you should see the &#34;Tomcat v6.0 Server at localhost&#34; entry that you created earlier. Select it and check the box &#34;Always use this server...&#34;
+  </li>
+  <li>
+    Click Next, then click Finish. You should then see the &#34;Hello world!&#34; page with the current time on it. You now have a functioning Spring 3 MVC project.
+  </li>
+</ol>
+<h2 id="LexEVSinSpringSourceMVCMavenProject-AddingLexEVSasaMavenDependency">
+  Adding LexEVS as a Maven Dependency
+</h2>
+The Spring 3 MVC project being a Maven compliant project, we will add LexEVS as dependency. It is not available in a public repository so we will need to install in our local repository first.
+<h3 id="LexEVSinSpringSourceMVCMavenProject-DownloadingtheRequiredFiles">
+  Downloading the Required Files
+</h3>
+You will need four files to successfully add LexEVS as a dependency.
+<ol>
+  <li>
+    LexEVS jar: Can be found in your local LexEVS install: {LEXEVS_HOME}\runtime-components\lexbig.jar
+    <ul>
+      <li>
+        For easier access, copy it to a short location. We will use E:\
+      </li>
+    </ul>
+  </li>
+  <li>
+    LexEVS POM file: This includes the information on the dependencies LexEVS will rely on. You can download it
+    <a href="https://wiki.nci.nih.gov/download/attachments/62427398/Lexevs-6.0.0.pom.zip?version=1&amp;modificationDate=1320411705000&amp;api=v2" rel="nofollow">
+      Lexevs-6.0.0.pom.zip
+    </a>
+    <ul>
+      <li>
+        Unzip it to the same location [E:]
+      </li>
+    </ul>
+  </li>
+  <li>
+    LexEVS uses a patched version of the dependency ddlutils. You need to
+    <a href="https://lexevs.svn.sourceforge.net/svnroot/lexevs/base/v6/trunk/lexevs_api/lgSharedLibraries/apache/ddlUtils/1.0-PATCHED/ddlUtils-1.0-PATCHED.jar" rel="nofollow">
+      download it
+    </a>
+    <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+      <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+    </a>
+    <ul>
+      <li>
+        Place it in the same directory [E:]
+      </li>
+    </ul>
+  </li>
+  <li>
+    This dependency also has a POM file which you can download
+    <a href="https://wiki.nci.nih.gov/download/attachments/62427398/Ddlutils-1.0-PATCHED.pom.zip?version=1&amp;modificationDate=1320411705000&amp;api=v2" rel="nofollow">
+      Ddlutils-1.0-PATCHED.pom.zip
+    </a>
+    <ul>
+      <li>
+        Unzip it to the same location [E:]
+      </li>
+    </ul>
+  </li>
+</ol>
+<h3 id="LexEVSinSpringSourceMVCMavenProject-InstallingaLexEVSDependency">
+  Installing a LexEVS Dependency
+</h3>
+As these Maven dependencies are not available in a public repository, you will need to add them to our local repository.Open a command window and navigate to the {SpringSource install folder}\maven-2.2.1.RELEASE\bin folder. On Windows 7, you can use the file explorer to navigate to this folder and then &#34;Shift+right click&#34; in the folder and select &#34;Open command window here&#34;.
+<h4 id="LexEVSinSpringSourceMVCMavenProject-JAVA_HOMEEnvironmentVariableMissing">
+  JAVA_HOME Environment Variable Missing
+</h4>
+Should you have an error message stating the need for a JAVA_HOME system variable when you execute the MVN commands, please follow the appropriate steps for your system to add it (steps provided bellow for Windows 7).
+<ol>
+  <li>
+    On Windows 7, click on the start button, then right-click on computer and select properties.
+  </li>
+  <li>
+    Select Advanced system settings in the left pane and select the advanced tab in the window that opens up. Click on Environment Variables button.
+  </li>
+  <li>
+    Click on the button New in the lower half of the window and add JAVA_HOME as a name and the path to your JRE installation as a value. Click OK 3 times to close the windows. Close and reopen your commmand window and it should now work.
+  </li>
+</ol>
+<h4 id="LexEVSinSpringSourceMVCMavenProject-MVNCommands">
+  MVN Commands
+</h4>
+For all the following commands, please change *E:* to the path of the folder chosen to place the four files above.
+<ol>
+  <li>
+    Then enter this command at the command prompt:
+    mvn install:install-file -Dfile=&#34;E:\ddlUtils-1.0-PATCHED.jar&#34; -DpomFile=&#34;E:\ddlutils-1.0-PATCHED.pom&#34;
+    You should then see a build successful message. The ddlUtils dependency is now available in your local repository.
+  </li>
+  <li>
+    Now enter this command at the command prompt:
+    mvn install:install-file -Dfile=&#34;E:\lexbig.jar&#34; -DpomFile=&#34;E:\lexevs-6.0.0.pom&#34;
+    You should also see a build successful message. The LexEVS dependency is now available in your local repository.
+  </li>
+  <li>
+    Open STS and select the menu Window -&gt; Show View -&gt; Other
+  </li>
+  <li>
+    Scroll down to the folder Maven and select Maven Repositories. Click OK. You should now have a Maven Repositories view in the lower part of the window.
+  </li>
+  <li>
+    Select and unfold Local Repositories.
+  </li>
+  <li>
+    Right-click Local Repository and select Rebuild Index from the context menu. Click Ok when asked if you&#39;re sure you want to rebuild it.
+  </li>
+</ol>
+<h4 id="LexEVSinSpringSourceMVCMavenProject-AdjustingScopeofJUnit">
+  Adjusting Scope of JUnit
+</h4>
+LexEVS currently uses JUnit during runtime. This is a bit unusual and might change in a future release but for now, it needs to be adjusted.
+<ol>
+  <li>
+    Select the project folder [testlex] in the Package Explorer view and unfold it.
+  </li>
+  <li>
+    Double click on the pom.xml file to open it.
+  </li>
+  <li>
+    Select the Dependencies tab at the bottom of the window.
+  </li>
+  <li>
+    In the Dependencies pane, scroll down in the dependencies selectbox and click once on junit. On the right side, the Dependency Details area should present a scope which is &#34;test&#34; in the combobox.
+  </li>
+  <li>
+    Change it to compile.
+  </li>
+  <li>
+    Click on menu File -&gt; Save or press Ctrl-s.
+  </li>
+</ol>
+<h2 id="LexEVSinSpringSourceMVCMavenProject-IncludingLexEVSintheMVCProject">
+  Including LexEVS in the MVC Project
+</h2>
+<ol>
+  <li>
+    Select the [textlex] project. Right-click on it and select Maven -&gt; Add Dependency from the context menu.
+  </li>
+  <li>
+    Enter lexevs in the first textbox. The search results should show: lexevs lexevs
+  </li>
+  <li>
+    Select it and click ok.
+  </li>
+  <li>
+    STS will now download all the dependencies needed to work with LexEVS. You can follow the progress in the progress view (tab).
+  </li>
+</ol>
+<h3 id="LexEVSinSpringSourceMVCMavenProject-CreatingaTestFile">
+  Creating a Test File
+</h3>
+<ol>
+  <li>
+    Select and unfold the project folder [textlex] in the package explorer.
+  </li>
+  <li>
+    Navigate to src/test/java. You should see an empty package [org.test.test]
+  </li>
+  <li>
+    Right-click on it and select New -&gt; JUnit Test Case
+  </li>
+  <li>
+    Put the name of your test in the name textbox. We will name it LexBigConnect. Click on Finish.
+  </li>
+  <li>
+    Copy this in the file (including the last bracket):
+    package org.test.test;
+
+    import static org.junit.Assert.*;
+
+    import org.LexGrid.LexBIG.Exceptions.LBInvocationException;
+    import org.LexGrid.LexBIG.Impl.LexBIGServiceImpl;
+    import org.LexGrid.LexBIG.LexBIGService.LexBIGService;
+    import org.LexGrid.LexBIG.DataModel.InterfaceElements.CodingSchemeRendering;
+
+    import org.junit.Test;
+
+    public class LexBigConnect {
+
+    @Test
+    public void test() throws LBInvocationException {
+
+    LexBIGService lbSvc = LexBIGServiceImpl.defaultInstance();
+    System.out.println(&#34;The currently active terminologies are:&#34;);
+    for(CodingSchemeRendering csr : lbSvc.getSupportedCodingSchemes().getCodingSchemeRendering())
+    System.out.println(csr.getCodingSchemeSummary().getFormalName());
+
+    assertTrue(true);
+    }
+    }
+  </li>
+  <li>
+    Make sure to change the package name if you didn&#39;t use org.test.test initially. Save the file.
+  </li>
+</ol>
+<h3 id="LexEVSinSpringSourceMVCMavenProject-AddingaJVMParametertoLocatethelbconfig.props">
+  Adding a JVM Parameter to Locate the lbconfig.props
+</h3>
+<ol>
+  <li>
+    In STS, select the menu Run -&gt; Run Configurations...
+  </li>
+  <li>
+    Select JUnit in the left list.
+  </li>
+  <li>
+    Select the new button (white rectangle with a little yellow +) The name of the profile will be defaulted to the name of your class [LexBigConnect]
+  </li>
+  <li>
+    Click on the tab Arguments and add this parameter to the VM textbox:
+    -DLG_CONFIG_FILE=&#34;\{LEXEVS_HOME\}\resources\config\lbconfig.props&#34;
+  </li>
+  <li>
+    Replace {LEXEVS_HOME} by the absolute path to the LexEVS local install done earlier in the process.
+  </li>
+  <li>
+    Then click Apply followed by Run. You should then see a successful completion of a JUnit test. The console log will also show &#34;The currently active terminologies are:&#34; followed by the name of the terminologies [Automobiles] if you loaded it.
+  </li>
+</ol>
+<h2 id="LexEVSinSpringSourceMVCMavenProject-IntegratingLexEVSinaWebPage">
+  Integrating LexEVS in a Web Page
+</h2>
+<h3 id="LexEVSinSpringSourceMVCMavenProject-AddingaJVMParametertoLocatethelbconfig.props.1">
+  Adding a JVM Parameter to Locate the lbconfig.props
+</h3>
+I# n STS, double-click on the &#34;Tomcat v6.0...&#34; entry in the server view (left lower corner).
+<ol>
+  <li>
+    This will open the server Overview. Click on the &#34;Open launch configuration&#34; link in the General Information section.
+  </li>
+  <li>
+    Select the Arguments tab and in the VM arguments textbox, at the bottom, after the existing arguments add this:
+    -DLG_CONFIG_FILE=&#34;\{LEXEVS_HOME\}\resources\config\lbconfig.props&#34;
+  </li>
+  <li>
+    Replace {LEXEVS_HOME} by the absolute path to the LexEVS local install done earlier in the process. Make sure there&#39;s a space between the end of the last existing argument and the dash of this one.
+  </li>
+  <li>
+    Click Apply then click OK.
+  </li>
+</ol>
+<h3 id="LexEVSinSpringSourceMVCMavenProject-AdjustingtheController">
+  Adjusting the Controller
+</h3>
+Although this is unlikely the way in which you will integrate LexEVS in a MVC project, it will confirm that using the project with Tomcat works. This assumes that you have at least one loaded and active terminology in your local LexEVS Server.
+<ol>
+  <li>
+    Navigate the project tree to src/main/java and double-click on HomeController.java to open it.
+  </li>
+  <li>
+    Copy this in the file (including the last bracket):
+    package org.test.test;
+
+    import java.text.DateFormat;
+    import java.util.Date;
+    import java.util.Locale;
+
+    import org.LexGrid.LexBIG.DataModel.InterfaceElements.CodingSchemeRendering;
+    import org.LexGrid.LexBIG.Exceptions.LBInvocationException;
+    import org.LexGrid.LexBIG.Impl.LexBIGServiceImpl;
+    import org.LexGrid.LexBIG.LexBIGService.LexBIGService;
+    import org.slf4j.Logger;
+    import org.slf4j.LoggerFactory;
+    import org.springframework.stereotype.Controller;
+    import org.springframework.ui.Model;
+    import org.springframework.web.bind.annotation.RequestMapping;
+    import org.springframework.web.bind.annotation.RequestMethod;
+
+
+    /**
+    * Handles requests for the application home page.
+    */
+    @Controller
+    public class HomeController {
+
+    private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+
+    /**
+    * Simply selects the home view to render by returning its name.
+    * @throws LBInvocationException
+    */
+    @RequestMapping(value = &#34;/&#34;, method = RequestMethod.GET)
+    public String home(Locale locale, Model model) throws LBInvocationException {
+    logger.info(&#34;Welcome home! the client locale is &#34;+ locale.toString());
+
+    Date date = new Date();
+    DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+
+    String formattedDate = dateFormat.format(date);
+
+    model.addAttribute(&#34;serverTime&#34;, formattedDate );
+
+    Integer n = 1;
+
+    LexBIGService lbSvc = LexBIGServiceImpl.defaultInstance();
+    for(CodingSchemeRendering csr : lbSvc.getSupportedCodingSchemes().getCodingSchemeRendering()){
+    System.out.println(csr.getCodingSchemeSummary().getFormalName());
+    model.addAttribute(&#34;term&#34;+n.toString(), csr.getCodingSchemeSummary().getFormalName());
+    n++;
+    }
+
+    return &#34;home&#34;;
+    }
+
+    }
+  </li>
+  <li>
+    Make sure to change the package name if you didn&#39;t use org.test.test initially. Save the file.
+  </li>
+</ol>
+<h3 id="LexEVSinSpringSourceMVCMavenProject-AdjustingtheJSPPage">
+  Adjusting the JSP Page
+</h3>
+<ol>
+  <li>
+    In the Package Explorer, nagivate to src/main/webapp/WEB-INF/views and open home.jsp by double-clicking.
+  </li>
+  <li>
+    Replace the text in the file with this one:
+    &lt;%@ taglib uri=&#34;http://java.sun.com/jsp/jstl/core&#34; prefix=&#34;c&#34; %&gt;
+    &lt;%@ page session=&#34;false&#34; %&gt;
+    &lt;html&gt;
+    &lt;head&gt;
+    &lt;title&gt;Home&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+    &lt;h1&gt;
+    Hello world!
+    &lt;/h1&gt;
+
+    &lt;p&gt;The time on the server is ${serverTime}.&lt;/p&gt;
+    &lt;p&gt;One of the active terminologies on the LexEVS server is: ${term1}&lt;/p&gt;
+    &lt;/body&gt;
+    &lt;/html&gt;
+  </li>
+  <li>
+    Save the file and close it.
+  </li>
+</ol>
+<h3 id="LexEVSinSpringSourceMVCMavenProject-RunningtheProject">
+  Running the Project
+</h3>
+<ol>
+  <li>
+    Select the project [textlex] in the Package Explorer.
+  </li>
+  <li>
+    Select the menu Run -&gt; Run. Select &#34;Run on Server&#34; then click OK.
+  </li>
+  <li>
+    You should see the home page displayed with the date/time and, on the last line, the name of one of your active terminology in LexEVS.
+  </li>
+  <li>
+    You now have a functional Spring 3 MVC project interacting successfully with a local instance of LexEVS.
+  </li>
+</ol>
+<h2 id="LexEVSinSpringSourceMVCMavenProject-Acknowledgement">
+  Acknowledgement
+</h2>
+This guide was contributed by the
+<a href="http://transformproject.eu/Home.html" rel="nofollow">
+  TRANSFoRM group
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+/
+<a href="http://www.u936.univ-rennes1.fr" rel="nofollow">
+  INSERM U936
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>

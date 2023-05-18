@@ -1,0 +1,316 @@
+Current Working Draft
+
+
+The section provides an assessment of the gap between the roadmap and existing tools and platform. The following topics are included:
+<ul>
+  <li>
+    <a href="#id-7GapAssessmentforSemanticInfrastructure-ExistingNCISemanticInfrastructure" rel="nofollow">
+      Existing NCI Semantic Infrastructure
+    </a>
+  </li>
+  <li>
+    <a href="#id-7GapAssessmentforSemanticInfrastructure-ProposedFeaturesinSemanticInfrastructure2.0" rel="nofollow">
+      Proposed Features in Semantic Infrastructure 2.0
+    </a>
+  </li>
+</ul>
+<h3 id="id-7GapAssessmentforSemanticInfrastructure-ExistingNCISemanticInfrastructure">
+  Existing NCI Semantic Infrastructure
+</h3>
+The NCI semantic infrastructure currently consists of a suite of tools aimed at terminology curation of models submitted as UML XMI files for semi-automated annotation; terminology services for concept lookup and codesystem browsing; and basic terminology and ontological relationships in the NCI Thesaurus and Metathesuarus. This bundle of infrastructure applications together with model-driven software engineering tools are termed caCORE (Cancer Common Ontologic Representation Environment).
+
+caCORE tools and APIs are developed by the National Cancer Institute Center for Bioinformatics and Information Technology (NCI CBIIT) to provide the building blocks for development of interoperable information management systems. This suite of tools has helped to enable interoperability and data sharing from the scientific bench to the clinical bedside and back with the current semantic infrastructure.
+
+caCORE includes the following key components:
+<ul>
+  <li>
+    <a href="https://cabig.nci.nih.gov/concepts/EVS/" rel="nofollow">
+      EVS
+    </a>
+    (Enterprise Vocabulary Services) for hosting and managing vocabulary
+  </li>
+  <li>
+    <a href="https://cabig.nci.nih.gov/concepts/caDSR/" rel="nofollow">
+      caDSR
+    </a>
+    (Cancer Data Standards Registry and Repository) for hosting and managing metadata
+  </li>
+  <li>
+    <a href="https://cabig.nci.nih.gov/tools/caCORE_SDK" rel="nofollow">
+      caCORE SDK
+    </a>
+    , the GUI-based
+    <a href="https://cabig.nci.nih.gov/tools/caCOREWorkbench" rel="nofollow">
+      caCORE Workbench
+    </a>
+    , and associated tools for model-driven software engineering of systems which can be easily integrated with
+    <a href="https://cabig.nci.nih.gov/index_html/sharable/cagrid_overview" rel="nofollow">
+      caGrid
+    </a>
+    .
+  </li>
+</ul>
+<a href="https://cabig.nci.nih.gov/concepts/EVS/" rel="nofollow">
+  EVS
+</a>
+and the
+<a href="https://cabig.nci.nih.gov/concepts/caDSR/" rel="nofollow">
+  caDSR database and tools
+</a>
+are the current basis of the semantic foundation for interoperable data and analytical services at NCI. caDSR is based on the ISO 11179 Part 3 metadata standard.
+
+Developers use caCORE components to create &#34;caCORE-like&#34; systems. By definition these systems have object-oriented information models registered in caDSR whose meaning is linked to EVS vocabularies, and have open, public APIs and web services to provide access to the data. The
+<a href="https://wiki.nci.nih.gov/x/4Q9y" rel="nofollow">
+  caBIO data service
+</a>
+is an example of a caCORE-like system developed using caCORE components.
+
+Using caCORE tools, developers adapt and build applications that are
+<a href="https://cabig.nci.nih.gov/sharable/compatible" rel="nofollow">
+  caBIG® compatible
+</a>
+, that is, interoperable with other caBIG® tools.
+
+caCORE tools include the following:
+<ul>
+  <li>
+    <a href="http://ncicb.nci.nih.gov/download/downloadcadsrapi.jsp" rel="nofollow">
+      caDSR APIs Download
+    </a>
+  </li>
+  <li>
+    <a href="https://cdebrowser.nci.nih.gov/CDEBrowser/" rel="nofollow">
+      CDE Browser
+    </a>
+    ;
+    <a href="http://ncicb.nci.nih.gov/xml/dtds/cadsr" rel="nofollow">
+      DTDs
+    </a>
+  </li>
+  <li>
+    <a href="https://formbuilder.nci.nih.gov/FormBuilder/" rel="nofollow">
+      Form Builder
+    </a>
+  </li>
+  <li>
+    <a href="http://cdecurate.nci.nih.gov/cdecurate/" rel="nofollow">
+      CDE Curation Tool
+    </a>
+  </li>
+  <li>
+    <a href="http://cadsradmin.nci.nih.gov/" rel="nofollow">
+      caDSR Administration Tool
+    </a>
+  </li>
+  <li>
+    <a href="http://umlmodelbrowser.nci.nih.gov/" rel="nofollow">
+      UML Model Browser
+    </a>
+  </li>
+  <li>
+    <a href="http://cadsrsiw.nci.nih.gov/" rel="nofollow">
+      Semantic Integration Workbench
+    </a>
+  </li>
+  <li>
+    <a href="http://cadsrsentinel.nci.nih.gov/" rel="nofollow">
+      caDSR Sentinel Tool
+    </a>
+  </li>
+  <li>
+    <a href="http://ncit.nci.nih.gov/" rel="nofollow">
+      NCIThesaurus
+    </a>
+  </li>
+  <li>
+    <a href="http://ncim.nci.nih.gov/" rel="nofollow">
+      NCIMetathesaurus
+    </a>
+  </li>
+</ul>
+Additionally caCORE includes the
+<a href="https://cabig.nci.nih.gov/tools/caCOREWorkbench" rel="nofollow">
+  caCORE workbench
+</a>
+, a tool with a graphical user interface (GUI) to facilitate the creation of a caBIG® silver or gold compliant system. The caCORE Workbench acts as a process guide and an integrated platform, enabling the user to more readily create a Data or Analytical service on the Grid. The following caBIG® process workflows are supported:
+<ul>
+  <li>
+    Creation of a UML Model (ArgoUML, Enterprise Architect)
+  </li>
+  <li>
+    Semantic integration (SIW, CDE Browser, UML Model Browser, Curation Tool)
+  </li>
+  <li>
+    Model mapping (caAdapter)
+  </li>
+  <li>
+    Application creation and deployment (SDK)
+  </li>
+  <li>
+    Creation of a grid service (Introduce)
+  </li>
+</ul>
+<h3 id="id-7GapAssessmentforSemanticInfrastructure-ProposedFeaturesinSemanticInfrastructure2.0">
+  Proposed Features in Semantic Infrastructure 2.0
+</h3>
+Semantic Infrastructure 2.0 is meant to provide a means of fully supporting the existing NCI semantic infrastructure, while providing a means for ongoing transformation of the existing artifacts and creation of equivalent tooling to support all current functionality of the semantic infrastructure.
+
+Semantic Infrastructure 2.0 extends the current functionality of the semantic infrastructure by adding the following functionality:
+<ul>
+  <li>
+    A new means of assessing conformance of artifacts and applications to improve software development and semantic consistency
+  </li>
+  <li>
+    A semantically linked artifact repository for easy discovery of the registry contents
+  </li>
+  <li>
+    A metadata repository that links to the artifact repository
+  </li>
+  <li>
+    A cross-artifacts editing dashboard that allows model artifacts to be linked to other artifacts such as terminology value sets
+  </li>
+  <li>
+    A rules engine for operating on the artifact repository and metadata repository to enable dynamic annotation and the comparison of artifacts
+  </li>
+  <li>
+    A reasoning platform that executes inferencing and links to rule engines enabling the discovery of implicit information rather than explicit information only
+  </li>
+  <li>
+    Introduction of additional semantic modeling standards (ISO 21090, HL7 Reference Information Model (RIM), Semantic Web Languages (Web Ontology Language (OWL), Resource Description Framework (RDF)) in order to handle the broad requirements of enabling simpler query functions and enriched data discovery
+  </li>
+  <li>
+    A more automated artifact governance platform that includes the ability for community input to governance decisions
+  </li>
+  <li>
+    Multiple model transformation tools and APIs
+  </li>
+  <li>
+    Tools for authoring standards-compliant artifacts including schemas, models, and terminology value sets
+  </li>
+  <li>
+    Tools for authoring forms using the new semantic models in order to meet the demands of customers who require these so that they can meet meaningful use requirements, and who want full semantics for data aggregation and discovery
+  </li>
+  <li>
+    Broad use of Model Driven Architecture technologies
+  </li>
+  <li>
+    Close integration with caGRID 2.0
+  </li>
+</ul>
+The table below shows a high level view of the gaps between what the current semantic infrastructure provides and what Semantic Infrastructure 2.0 will provide for several use case-driven functionalities.
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Requirement
+      </th>
+      <th>
+        Current Semantic Infrastructure
+      </th>
+      <th>
+        Semantic Infrastructure 2.0
+      </th>
+      <th>
+        Gap closed
+      </th>
+    </tr>
+    <tr>
+      <td>
+        Retrieve any artifact
+      </td>
+      <td>
+        CDE
+      </td>
+      <td>
+        Domain models, Logical models, terminology, documents, forms, behavioral models an specifications
+      </td>
+      <td>
+        Ability to retrieve any artifact in context
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Manage artifacts
+      </td>
+      <td>
+        CDE Curator only
+      </td>
+      <td>
+        Open to all
+      </td>
+      <td>
+        Ability for anyone to annotate an artifact and submit to governance
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Service discovery
+      </td>
+      <td>
+        Constrained to service discovery on caGrid
+      </td>
+      <td>
+        Service discovery tied to artifacts that can link to data provision
+      </td>
+      <td>
+        Ability to discover a service, its links to other services, the service contract, the artifacts that are behind the service
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Bench to Bedside Form creation
+      </td>
+      <td>
+        Clinical research form creation
+      </td>
+      <td>
+        Form creation of any healthcare, clinical research, or life science form
+      </td>
+      <td>
+        Supports all form users and conforms to Office of the National Coordinator (ONC) requirements for meaningful use forms
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Decision support across artifacts
+      </td>
+      <td>
+        None
+      </td>
+      <td>
+        Semantic linkage across multiple artifacts, inference of implicit knowledge about the artifacts and their relations
+      </td>
+      <td>
+        Provides enhanced search and retrieval of artifacts and extends the metadata for any artifact through inference of relations
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Conformance Testing
+      </td>
+      <td>
+        None
+      </td>
+      <td>
+        Semantic reasoning and inference with automated classification, relations, and traceability of artifacts
+      </td>
+      <td>
+        Provides the full traceability and conformance testing for artifacts in a standard framework (Enterprise Conformance and Compliance Framework (ECCF))
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Data discovery
+      </td>
+      <td>
+        Able to query caDSR for a model attribute and return an attribute identifier and reuse that identifier in a query for data
+      </td>
+      <td>
+        Semantic inference, semantic to relational adapters and scalable relation graphs relate services to artifacts, artifacts to terminology, and terminology to data allowing queries of models, classes, concepts or any other artifact and its data
+      </td>
+      <td>
+        Provides the ability to link services to each other and to the explicit definitions of the data they provide
+      </td>
+    </tr>
+  </tbody>
+</table>

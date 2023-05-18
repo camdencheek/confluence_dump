@@ -1,0 +1,660 @@
+This section describes user interactions with the Semantic Infrastructure tools and services. Specifically it addresses &#34;a day in the life&#34; of an developer, analyst, architect, clinician and bioinformatician as they use the tools. It provides an overview of the interactions, workflow and dependencies with external tools and platform. The following topics are included:
+<ul>
+  <li>
+    <a href="#id-5.4UserWorkflowsinSemanticInfrastructure2.0Sept.6,2010-RuleAuthoring" rel="nofollow">
+      Rule Authoring
+    </a>
+  </li>
+  <li>
+    <a href="#id-5.4UserWorkflowsinSemanticInfrastructure2.0Sept.6,2010-SearchandAccess" rel="nofollow">
+      Search and Access
+    </a>
+  </li>
+  <li>
+    <a href="#id-5.4UserWorkflowsinSemanticInfrastructure2.0Sept.6,2010-Author" rel="nofollow">
+      Author
+    </a>
+  </li>
+  <li>
+    <a href="#id-5.4UserWorkflowsinSemanticInfrastructure2.0Sept.6,2010-AdminsterServicesandSpecifications" rel="nofollow">
+      Adminster Services and Specifications
+    </a>
+  </li>
+</ul>
+<h4 id="id-5.4UserWorkflowsinSemanticInfrastructure2.0Sept.6,2010-RuleAuthoring">
+  Rule Authoring
+</h4>
+<ol>
+  <li>
+    A Clinical Decision Support (CDS) Rule Author receives notification of a new clinical decision support requirement.
+  </li>
+  <li>
+    The Rule Author identifies the clinical logic required in order to implement the rule.
+  </li>
+  <li>
+    The Rule Author identifies the required data elements from the metadata registry (ECCF). The data element identification is done at a level of abstraction consistent with the clinical logic contained in the rule, and is not dependent on the specific codings or formats contained in the actual patient data messages or document instances that are received and stored.
+  </li>
+  <li>
+    The Rule Author codes the rule logic using Arden Syntax, and the data access expressions using GELLO, either through the use of an authoring tool or by hand.
+  </li>
+  <li>
+    The newly created decision support rule is added to the rule base for subsequent evaluation (execution) by the rules engine when an associated rule trigger is activated.
+  </li>
+  <li>
+    New or updated patient data is received which triggers the evaluation (execution) of the decision support rule. During the rule evaluation an attempt is made to retrieve all of the data that matches the data elements previously specified in the rule. The set of matching patient data instances for each specified rule data element is determined using the Semantic Infrastructure, based on the HL7 RIM objects and associated ontologies. This allows data that is encoded at lower levels of abstraction or more specific granularity to be linked and applied to the appropriate data elements specified in the rule, and for matching data instances to satisfy one or more of the rule criteria.
+  </li>
+</ol>
+<h4 id="id-5.4UserWorkflowsinSemanticInfrastructure2.0Sept.6,2010-SearchandAccess">
+  Search and Access
+</h4>
+If sufficient rule criteria are satisfied, then one or more specified clinical decision support actions are performed or scheduled. These actions may include, but are not limited to, sending an alert to a health care provider, creating a reminder for future action to be taken, adding an interpretation to the patient record, returning a result to a calling MLM, and evoking other MLMs.
+<ol>
+  <li>
+    Develop service requirements.
+  </li>
+  <li>
+    Construct search of registry using metadata.
+  </li>
+  <li>
+    Identify potential service definition.
+  </li>
+  <li>
+    Retrieve service specification objects.
+  </li>
+  <li>
+    Analyze quality of requirements fit to service specification
+  </li>
+  <li>
+    Retrieve known end points and Directories for Service.
+  </li>
+</ol>
+<h4 id="id-5.4UserWorkflowsinSemanticInfrastructure2.0Sept.6,2010-Author">
+  Author
+</h4>
+<ol>
+  <li>
+    Import WSDL and Schemas for service definitions
+  </li>
+  <li>
+    Link Service Definition to model artifacts
+  </li>
+  <li>
+    Identify Endpoints and Directories
+  </li>
+  <li>
+    Automate Discovery of Services on Bus
+  </li>
+</ol>
+<h4 id="id-5.4UserWorkflowsinSemanticInfrastructure2.0Sept.6,2010-AdminsterServicesandSpecifications">
+  Adminster Services and Specifications
+</h4>
+<ol>
+  <li>
+    Submit Service Specification for governance
+  </li>
+  <li>
+    Construct conformance statements
+  </li>
+  <li>
+    Run validations on specification and supporting artifacts
+  </li>
+  <li>
+    Apply constraints, rules, and policies
+  </li>
+</ol>
+The image below shows a high level workflow for an end user.
+<img alt="High level workflow for an end user as described in the text that follows" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/CBIITseminfra/5.4%20-%20User%20Workflows%20in%20Semantic%20Infrastructure%202.0%20Sept.%206,%202010/54_metadataFlow.jpg?api=v2">
+The following table describes the nodes in the above diagram:
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Node
+      </th>
+      <th>
+        Definition
+      </th>
+    </tr>
+    <tr>
+      <td>
+        User
+      </td>
+      <td>
+        This is a human user of the universal authoring layer.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Browse
+      </td>
+      <td>
+        This is an operation by which a user explores the registry without a targeted object.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Search
+      </td>
+      <td>
+        This is an operation by which a user explicitly searches for an object within the registry.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Subscription manager
+      </td>
+      <td>
+        The subscription manager allows a user to register for notifications about changes to the registry.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Role
+      </td>
+      <td>
+        This is the role the user plays as the user interacts with the registry.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Authorization
+      </td>
+      <td>
+        This is the process of authorization of the user in a specific role and determines the access to specific objects within the registry.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Create
+      </td>
+      <td>
+        This is an operation by which a user develops a new artifact for entry in the registry.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Edit
+      </td>
+      <td>
+        This is an operation by which a user is allowed to modify an existing artifact.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Cart
+      </td>
+      <td>
+        This is the symbolic shopping cart in which artifacts intended to be downloaded are placed temporarily.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Check out
+      </td>
+      <td>
+        This is the operation by which the contents of the cart are returned to the user.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Validator
+      </td>
+      <td>
+        This is an application component which validates new models or edited models in the registry.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Domain context
+      </td>
+      <td>
+        This is the context that a particular artifact in the registry is used in.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Suspend
+      </td>
+      <td>
+        This allows the suspension of use of an artifact for some period of time.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Retire
+      </td>
+      <td>
+        This is the operation by which an artifact is retired permanently from use within the registry, but is not removed to allow traceability and substitution.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Save change event
+      </td>
+      <td>
+        This is the operation that saves changes for operations on artifacts including change in status, creation, or editing.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Reject
+      </td>
+      <td>
+        This is the operation by which an edit or a new entry in the artifact registry does not meet conformance or compliance with registry governance.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Provenance
+      </td>
+      <td>
+        This is operation to record the metadata to provide traceability for the creation, editing, or status change of a particular artifact.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Governance
+      </td>
+      <td>
+        This is the process by which an artifact is submitted for the governance process.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Status
+      </td>
+      <td>
+        This is the operation by which an artifact acquires a status such as active, retired, or suspended.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Active
+      </td>
+      <td>
+        This is the status describing an artifact that is in current use without limitation.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Retired
+      </td>
+      <td>
+        This is a status assigned to an artifact when that artifact is no longer to be used.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Rejected
+      </td>
+      <td>
+        This is a status assigned toward artifact which is failed conformance or compliance for entry into the registry.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Manager
+      </td>
+      <td>
+        This is a human or system authority which manages the registry, referral patterns for status change, governance pathways, and subscription notifications.
+      </td>
+    </tr>
+  </tbody>
+</table>
+The following table describes the relationships between nodes:
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Source Node
+      </th>
+      <th>
+        Relation
+      </th>
+      <th>
+        Target Node
+      </th>
+    </tr>
+    <tr>
+      <td>
+        User
+      </td>
+      <td>
+        Performs
+      </td>
+      <td>
+        Browse
+      </td>
+    </tr>
+    <tr>
+      <td>
+        User
+      </td>
+      <td>
+        Performs
+      </td>
+      <td>
+        Search
+      </td>
+    </tr>
+    <tr>
+      <td>
+        User
+      </td>
+      <td>
+        Enrolls for
+      </td>
+      <td>
+        Subscription Manager
+      </td>
+    </tr>
+    <tr>
+      <td>
+        User
+      </td>
+      <td>
+        Has
+      </td>
+      <td>
+        Role
+      </td>
+    </tr>
+    <tr>
+      <td>
+        User
+      </td>
+      <td>
+        Gets
+      </td>
+      <td>
+        Authorization
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Browse
+      </td>
+      <td>
+        Not found
+      </td>
+      <td>
+        Create
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Browse
+      </td>
+      <td>
+        Found
+      </td>
+      <td>
+        Edit
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Browse
+      </td>
+      <td>
+        Move To
+      </td>
+      <td>
+        Cart
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Search
+      </td>
+      <td>
+        Not found
+      </td>
+      <td>
+        Create
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Search
+      </td>
+      <td>
+        Found
+      </td>
+      <td>
+        Edit
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Search
+      </td>
+      <td>
+        Move To
+      </td>
+      <td>
+        Cart
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Create
+      </td>
+      <td>
+        Submit to
+      </td>
+      <td>
+        Validator
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Create
+      </td>
+      <td>
+        Set
+      </td>
+      <td>
+        Domain Context
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Edit
+      </td>
+      <td>
+        Submit to
+      </td>
+      <td>
+        Validator
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Edit
+      </td>
+      <td>
+        Set
+      </td>
+      <td>
+        Domain context
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Edit
+      </td>
+      <td>
+        Set status
+      </td>
+      <td>
+        Suspend
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Edit
+      </td>
+      <td>
+        Set status
+      </td>
+      <td>
+        Retire
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Validator
+      </td>
+      <td>
+        Fails
+      </td>
+      <td>
+        Reject
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Validator
+      </td>
+      <td>
+        Succeeds
+      </td>
+      <td>
+        Save Change Event
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Domain context
+      </td>
+      <td>
+        Perform
+      </td>
+      <td>
+        Save Change Event
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Suspend
+      </td>
+      <td>
+        Perform
+      </td>
+      <td>
+        Save Change Event
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Retire
+      </td>
+      <td>
+        Perform
+      </td>
+      <td>
+        Save Change Event
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Save Change Event
+      </td>
+      <td>
+        Add
+      </td>
+      <td>
+        Provenance
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Reject
+      </td>
+      <td>
+        Reviewed by
+      </td>
+      <td>
+        Governance
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Provenance
+      </td>
+      <td>
+        Send To
+      </td>
+      <td>
+        Governance
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Governance
+      </td>
+      <td>
+        Set
+      </td>
+      <td>
+        Status
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Status
+      </td>
+      <td>
+        Set Status
+      </td>
+      <td>
+        Active
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Status
+      </td>
+      <td>
+        Set Status
+      </td>
+      <td>
+        Retired
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Status
+      </td>
+      <td>
+        Set Status
+      </td>
+      <td>
+        Rejected
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Status
+      </td>
+      <td>
+        Alert
+      </td>
+      <td>
+        Manager
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Manager
+      </td>
+      <td>
+        Updates
+      </td>
+      <td>
+        Subscription Manager
+      </td>
+    </tr>
+  </tbody>
+</table>

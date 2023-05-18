@@ -1,0 +1,405 @@
+<h1 id="NCIProtege1.2.3ReleaseNotes-NCIProtégé1.2.3ReleaseNotes">
+  NCI Protégé 1.2.3 Release Notes
+</h1>
+Contents of this Page
+<ul>
+  <li>
+    <a href="#NCIProtege1.2.3ReleaseNotes-1.0ReleaseHistory" rel="nofollow">
+      1.0 Release History
+    </a>
+  </li>
+  <li>
+    <a href="#NCIProtege1.2.3ReleaseNotes-2.0NewFeaturesandUpdates" rel="nofollow">
+      2.0 New Features and Updates
+    </a>
+    <ul>
+      <li>
+        <a href="#NCIProtege1.2.3ReleaseNotes-RunTimeClassification" rel="nofollow">
+          Run Time Classification
+        </a>
+      </li>
+      <li>
+        <a href="#NCIProtege1.2.3ReleaseNotes-ReportingfunctionalityaddedtotheAdvancedQueryPlugin" rel="nofollow">
+          Reporting functionality added to the Advanced Query Plugin
+        </a>
+      </li>
+      <li>
+        <a href="#NCIProtege1.2.3ReleaseNotes-IncreasedConfigurability" rel="nofollow">
+          Increased Configurability
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#NCIProtege1.2.3ReleaseNotes-3.0EnhancementsandBugFixesSinceLastRelease" rel="nofollow">
+      3.0 Enhancements and Bug Fixes Since Last Release
+    </a>
+    <ul>
+      <li>
+        <a href="#NCIProtege1.2.3ReleaseNotes-Enhancements" rel="nofollow">
+          Enhancements
+        </a>
+      </li>
+      <li>
+        <a href="#NCIProtege1.2.3ReleaseNotes-Bugs" rel="nofollow">
+          Bugs
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#NCIProtege1.2.3ReleaseNotes-4.0KnownIssues" rel="nofollow">
+      4.0 Known Issues
+    </a>
+  </li>
+</ul>
+May 27, 2008 National Cancer Institute Center for Bioinformatics and Information Technology
+<h2 id="NCIProtege1.2.3ReleaseNotes-1.0ReleaseHistory">
+  1.0 Release History
+</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Release
+      </th>
+      <th>
+        Date
+      </th>
+    </tr>
+    <tr>
+      <td>
+        1.0
+      </td>
+      <td>
+        June 2007
+      </td>
+    </tr>
+    <tr>
+      <td>
+        1.1
+      </td>
+      <td>
+        Sept 2007
+      </td>
+    </tr>
+    <tr>
+      <td>
+        1.2.0.
+      </td>
+      <td>
+        December 2007
+      </td>
+    </tr>
+    <tr>
+      <td>
+        1.2.1.
+      </td>
+      <td>
+        February 2008
+      </td>
+    </tr>
+    <tr>
+      <td>
+        1.2.2
+      </td>
+      <td>
+        May 2008
+      </td>
+    </tr>
+    <tr>
+      <td>
+        1.2.3
+      </td>
+      <td>
+        July 2008
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="NCIProtege1.2.3ReleaseNotes-2.0NewFeaturesandUpdates">
+  2.0 New Features and Updates
+</h2>
+This release contains 3 new features - (1) Run time classification; (2) Advanced Query Plugin reporting capability; (3) additional configurability
+<h3 id="NCIProtege1.2.3ReleaseNotes-RunTimeClassification">
+  Run Time Classification
+</h3>
+This new functionality allows editors to classify BiomedGT, or NCIT, in the Protege client-server environment used by the EVS. It depends on an explanation server running independently of the Protege server.  The explanation server is initialized with the same data served by the Protege server, and is maintained synchronized with the database as editing occurs by the Protege client. Because of initialization activities, the first classification action by a client will take a number of minutes; subsequent classifications will be faster.
+
+Salient points:
+<ul>
+  <li>
+    Enhanced detection of exceptional conditions allowing better error handling and explanation services
+  </li>
+  <li>
+    Parallel improvements on the Explanation Tab GUI to make explanations easier to interpret
+  </li>
+  <li>
+    Performance increase due to improved memory management and optimizations in the classification and extraction algorithms
+  </li>
+</ul>
+Known issues:
+<ul>
+  <li>
+    A side effect of the requirement for synchronization with the explanation server is that batch loads and edits can take longer and throw exceptions.  Batch loads and edits need to be conducted under controlled conditions:  the recommendation is for the workflow manager to conduct these batch actions in standalone database mode and with the explanation server shut down.
+  </li>
+  <li>
+    Limited concurrency.  On a classification action by the RTC, there will be a period of time in which the DB is locked for writing.  The suggested workaround is for one editor, perhaps the workflow manager, to conduct the classification action and advertise to the editors to cease editing while classification is ongoing.  This would still allow browsing of the database by other editors.
+  </li>
+  <li>
+    High network communications overhead.  The classification time will be significantly increased on classifications by remote editors.
+  </li>
+</ul>
+The last two issues will be addressed in a future patch.  However, a &#34;remote access&#34; server is being set up that will alleviate communications overhead.
+<h3 id="NCIProtege1.2.3ReleaseNotes-ReportingfunctionalityaddedtotheAdvancedQueryPlugin">
+  Reporting functionality added to the Advanced Query Plugin
+</h3>
+An export function (leveraged from an existing plugin in Protege) has been added to the AQP which allows very detailed reports to be produced in a tabular format. This function doesn&#39;t replace the Report Writer.
+<h3 id="NCIProtege1.2.3ReleaseNotes-IncreasedConfigurability">
+  Increased Configurability
+</h3>
+Although written to support editing activities in the EVS, the NCIEditTab plugin has introduced various user interfaces and behaviors that make it an attractive plugin to other editing groups.  Hence configurability has been a background refactoring activity as development progressed.  This is noted here because with the EVS now editing BiomedGT and NCIT, this aspect becomes very important as the internal format of annotations in BGT is expected to start deviating significantly from NCIT&#39;s in the near future.  Some features related to display labels remain to be implemented.
+
+Salient points:
+<ul>
+  <li>
+    Specifies what properties are qualified and hence need to be edited in one of the complex panels of the NCIEditTab, where qualified properties are properties with multiple xml-delimited subfields as their value.
+  </li>
+  <li>
+    Maps xml elements of qualified annotation properties to fields in editing panels.
+  </li>
+  <li>
+    Specifies properties and concepts required by the business logic of the various functions in the NCIEditTab (e.g. properties supporting retirement actions).
+  </li>
+  <li>
+    Specifies external sources requiring restricted editing privileges.
+  </li>
+  <li>
+    Specifies external Semantic Media Wiki servers supporting collaborative development
+  </li>
+</ul>
+<h2 id="NCIProtege1.2.3ReleaseNotes-3.0EnhancementsandBugFixesSinceLastRelease">
+  3.0 Enhancements and Bug Fixes Since Last Release
+</h2>
+NoteThe addition of copy-and-paste to the collaborative panel, GUI and behavior enhancements to the workflow plugin, increased support for semantic types.
+<h3 id="NCIProtege1.2.3ReleaseNotes-Enhancements">
+  Enhancements
+</h3>
+<ul>
+  <li>
+    2604	Real Time Classification
+  </li>
+  <li>
+    11962	Chat window in Protege 1.2.0.12 - cosmetic change request
+  </li>
+  <li>
+    12735	Extra start scripts now showing up in Protege.Server directory
+  </li>
+  <li>
+    12809	Improve readability of &#34;Modeler&#39;s Note&#34;
+  </li>
+  <li>
+    12810	Word wrap the tooltip text for &#34;Modeler&#39;s Note&#34;
+  </li>
+  <li>
+    12811	Do not allow user to mark &#34;Completed&#34; without having done any work
+  </li>
+  <li>
+    12816	Provide user a visual indication when new workflow assignments are available
+  </li>
+  <li>
+    12823	Error if Filler value is not numeric
+  </li>
+  <li>
+    13270	Unable to pull up concepts within an association  (Documentation)
+  </li>
+  <li>
+    13430	Workflow assignment on the fly
+  </li>
+  <li>
+    13518	Prompt for missing Semantic_Type
+  </li>
+  <li>
+    13806	UnRetire button has no functionality in Preretire tab - needs removing
+  </li>
+  <li>
+    14053	Export function added to AQP
+  </li>
+  <li>
+    14108	Typo in error message of Batch Editor
+  </li>
+  <li>
+    14426	Need a different Review icon on Split/Pre-Merge/Copy/Workflow tabs
+  </li>
+</ul>
+<h3 id="NCIProtege1.2.3ReleaseNotes-Bugs">
+  Bugs
+</h3>
+<ul>
+  <li>
+    8376	Need Review button in Copy tab
+  </li>
+  <li>
+    8634	Error when input an ampersand or less than character
+  </li>
+  <li>
+    11414	Batch load creates duplicates if parent has no children
+  </li>
+  <li>
+    12069	Not adding prefix of Proposed_ in tree
+  </li>
+  <li>
+    12081	Duplication of the Concept_Type property not always recognized by the batch editor
+  </li>
+  <li>
+    12321	Save does not update status to Updated
+  </li>
+  <li>
+    12322	Closing and reopening project results in blank NCI Edit Tab
+  </li>
+  <li>
+    12473	Workflow - Last Updated date does not retain seconds
+  </li>
+  <li>
+    12560	archive not working correctly
+  </li>
+  <li>
+    12818	Column formatting for assignment table
+  </li>
+  <li>
+    13220	Cannot save some modifications made to concepts
+  </li>
+  <li>
+    13257	Error message following &#39;save&#39; of concept duplicated of 13220
+  </li>
+  <li>
+    13337	RE: Frozen interface after Batch Loader action
+  </li>
+  <li>
+    13389	Drops downs in dialogs should be controlled by ncitab.xml
+  </li>
+  <li>
+    13424	Weird behavior during split
+  </li>
+  <li>
+    13493	C-NOCODE on creation of a new class
+  </li>
+  <li>
+    13518	Prompt for missing Semantic_Type
+  </li>
+  <li>
+    13520	Right click on an Association in the Copy Tab does not allow Delete
+  </li>
+  <li>
+    13716	association persists after being deleted
+  </li>
+  <li>
+    13723	Edit Concept loads incorrect concept when using suggested assignment
+  </li>
+  <li>
+    13810	NCIWorkflow  - Manager can not  Delete SUGGESTED item
+  </li>
+  <li>
+    13819	(duplicate of 14414) Problem with Split function in NCIt instance
+  </li>
+  <li>
+    13823	No warning when leaving Copy pane
+  </li>
+  <li>
+    13831	NCIWorkflow - Modeler can not delete SUGGESTED items
+  </li>
+  <li>
+    13834	NCIWorkflow - Adding a note at the same workflow item at the same time
+  </li>
+  <li>
+    13849	Entire batch fails to load if contains one error
+  </li>
+  <li>
+    13862	Changing superclass to owl:Thing results in missing framework
+  </li>
+  <li>
+    13950	code C_NOCODE
+  </li>
+  <li>
+    14002	exceptions when creating new users in workflow
+  </li>
+  <li>
+    14056	NullPointer exception thrown when editing NCI Drug Dictionary definition
+  </li>
+  <li>
+    14057	no copy-and-paste capability in collaboration panel
+  </li>
+  <li>
+    14103	RTC fails
+  </li>
+  <li>
+    14290	Problem tracking changes of defining relations if more than one restriction is present
+  </li>
+  <li>
+    14331	Lower pane review button disabled if do Copy or Split
+  </li>
+  <li>
+    14343	Unable to add definitions of various kinds
+  </li>
+  <li>
+    14404	If character in slot matches delimiter then export misaligns values
+  </li>
+  <li>
+    14405	Change default delimiters of AQP export
+  </li>
+  <li>
+    14406	AQP search results display properties
+  </li>
+  <li>
+    14414	Lower Split pane not visible after Clone in Copy tab
+  </li>
+  <li>
+    14481	Invalid Concept Successfully Created from a Batch Load
+  </li>
+  <li>
+    14486	Advanced Query report output shows display slot rather than slot name
+  </li>
+  <li>
+    14829	Edit Concept loads incorrect concept for the manager
+  </li>
+  <li>
+    14926	5 to 10 minutes to start client
+  </li>
+  <li>
+    15001	After UnMerge the concept remains a child of Premerged_Concepts
+  </li>
+  <li>
+    15002	PreRetired concept doesn&#39;t appear under Preretired_Concepts
+  </li>
+</ul>
+<h2 id="NCIProtege1.2.3ReleaseNotes-4.0KnownIssues">
+  4.0 Known Issues
+</h2>
+<ul>
+  <li>
+    Re: GForge #14533 - Batch load in client server mode -- Please give batch loads of over 200 concepts to workflow manager to load in standalone mode -- known issues with large batch loads in client server mode. The loads are quick, about 10 minutes for 250.
+  </li>
+  <li>
+    Special Review User needs to be created for NCI Thesaurus, and config file modified to give this user privilege to edit those definitions. (Batch load may still work for loading these definitions.)
+  </li>
+  <li>
+    Export from AQP -- When exporting concepts that contain properties that have values that contain commas (such as definition) the data will display incorrectly.
+  </li>
+  <li>
+    Exporting from AQP -- HINT - When you export to Excel, if you are using the new Excel 7.0, you need to import the file first.
+  </li>
+  <li>
+    Export from AQP -- HINT - When you export to Excel, if you don&#39;t like the file and want to make a change, get out of Excel before creating a new export, or save the new file with a different name because Excel will lock the file.
+  </li>
+</ul>
+<ul>
+  <li>
+    GForge #14507- Prompt reports all concepts changed - concepts get new properties added
+  </li>
+  <li>
+    Gforge #13614 - Missing frame node in tree
+  </li>
+  <li>
+    GForge #14406 - AQP search results display properties
+  </li>
+</ul>

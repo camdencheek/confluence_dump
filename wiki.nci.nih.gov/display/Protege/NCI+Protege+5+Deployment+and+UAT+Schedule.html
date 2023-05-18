@@ -1,0 +1,289 @@
+ This is the UAT and deployment schedule as of 1/12/2017
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        Activity
+      </th>
+      <th>
+        Start Date
+      </th>
+      <th>
+        End Date
+      </th>
+    </tr>
+    <tr>
+      <td>
+        Development on RC1 based on accumulated feedback and bug reports
+      </td>
+      <td>
+        Jan 9
+      </td>
+      <td>
+        Feb 17
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Editor training sessions
+      </td>
+      <td>
+        Feb 23
+      </td>
+      <td>
+        Feb 24
+      </td>
+    </tr>
+    <tr>
+      <td>
+        UAT
+      </td>
+      <td>
+        Feb 27
+      </td>
+      <td>
+        Mar 3
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Bug fixes based on UAT
+      </td>
+      <td colspan="1"></td>
+      <td colspan="1">
+        Mar 17
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        QA
+      </td>
+      <td colspan="1"></td>
+      <td colspan="1">
+        Mar 31
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Go/No go
+      </td>
+      <td colspan="1"></td>
+      <td colspan="1">
+        Mar 31
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Protege 3.x Prompt and OWL baseline export
+        <ul>
+          <li>
+            Protege 3 server shut down for the duration of the conversion, and back up for dual editing
+          </li>
+        </ul>
+      </td>
+      <td colspan="1"></td>
+      <td colspan="1">
+        Apr 3
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Conversion of OWL1 to OWL2
+      </td>
+      <td colspan="1">
+        Apr 3
+      </td>
+      <td colspan="1">
+        Apr 5
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Dual editing
+      </td>
+      <td colspan="1">
+        Apr 6
+      </td>
+      <td colspan="1">
+        May 4
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h3 id="NCIProtege5DeploymentandUATSchedule-Deploymentactivities">
+  Deployment activities
+</h3>
+<ul>
+  <li>
+    Prompt and Export from P3 (P3 editing will cease at this point)
+  </li>
+  <li>
+    Conversion to OWL2 (rob)
+  </li>
+</ul>
+<ul>
+  <li>
+    Generate history -&gt; from P3, evs_history, concept_history (tracy) and copy to archive directories (created by gilberto)
+  </li>
+</ul>
+Editing diffs
+<ul>
+  <li>
+    a. Content
+    <ul>
+      <li>
+        Owl1 i-&gt;f diff  (tracy)
+      </li>
+      <li>
+        Owl2 i-&gt;f diff
+      </li>
+      <li>
+        Result:  some items were edited in P3 and not P5; some items were edited in both but were retreed in P5; quite a few items were done in P3 and not P5
+      </li>
+    </ul>
+  </li>
+  <li>
+    b. P3 history analysis and P5 history analysis (gilber)
+    <ul>
+      <li>
+        number of concepts edited
+      </li>
+      <li>
+        number of concept mods
+      </li>
+      <li>
+        number of concept rets
+      </li>
+      <li>
+        number of concepts split
+      </li>
+      <li>
+        number of concepts merge
+      </li>
+      <li>
+        number of concepts created
+      </li>
+      <li>
+        Result:  match content diffs, except w TQ, batch jobs history recording bug (fixed), and EHD, excluding MERGE dual edit bug (fixed)
+      </li>
+    </ul>
+  </li>
+</ul>
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        Metric
+      </th>
+      <th>
+        P3
+      </th>
+      <th>
+        P5
+      </th>
+    </tr>
+    <tr>
+      <td>
+        Concepts
+      </td>
+      <td>
+        121549
+      </td>
+      <td>
+        121547
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Roles
+      </td>
+      <td>
+        94
+      </td>
+      <td>
+        97
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Properties
+      </td>
+      <td>
+        79
+      </td>
+      <td>
+        120
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Associations
+      </td>
+      <td colspan="1">
+        12
+      </td>
+      <td colspan="1">
+        0
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1"></td>
+      <td colspan="1"></td>
+      <td colspan="1"></td>
+    </tr>
+  </tbody>
+</table>
+ Setup environment
+<ol>
+  <li>
+    <ul>
+      <li>
+        property ranges
+      </li>
+      <li>
+        reset P3 codegenerator if necessary
+      </li>
+      <li>
+        create archive locations
+      </li>
+    </ul>
+    <ul>
+      <li>
+        edit metaproject for archive locations
+      </li>
+    </ul>
+    <ul>
+      <li>
+        copy evs_history from P3 to P5 runtime &amp; archive location
+      </li>
+    </ul>
+    <ul>
+      <li>
+        copy concept_history from P3 to P5 archive location
+      </li>
+    </ul>
+    <ul>
+      <li>
+        deploy 1.005
+      </li>
+    </ul>
+    <ul>
+      <li>
+        update client in ftp site to 1.005 (ready to go)
+      </li>
+      <li>
+        (bob) push two plugins from dev to prod
+      </li>
+    </ul>
+  </li>
+</ol>

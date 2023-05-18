@@ -1,0 +1,396 @@
+Contents of this Page
+<ul>
+  <li>
+    <a href="#LexEVS6.xICD10Mappings-SourceData,GeneralComments" rel="nofollow">
+      Source Data, General Comments
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.xICD10Mappings-SourceData,CodeFormat" rel="nofollow">
+      Source Data, Code Format
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.xICD10Mappings-Mappings" rel="nofollow">
+      Mappings
+    </a>
+    <ul>
+      <li>
+        <a href="#LexEVS6.xICD10Mappings-GeneralComments" rel="nofollow">
+          General Comments
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.xICD10Mappings-CM" rel="nofollow">
+          CM
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.xICD10Mappings-PCS" rel="nofollow">
+          PCS
+        </a>
+      </li>
+    </ul>
+  </li>
+</ul>
+<h2 id="LexEVS6.xICD10Mappings-SourceData,GeneralComments">
+  Source Data, General Comments
+</h2>
+Like the ICD-9, the data is provided in a text file, formatted in two columns separated by white space. The first column is the ICD code, the second is a definition. Unlike the ICD-9 source, ICD-10 CM (diagnosis codes) and ICD-10 PCS (procedure codes) are not bundled together. They can be found at:
+<ul>
+  <li>
+    CM -
+    <a href="http://www.cms.gov/ICD10/14_2009_ICD_10_CM.asp" rel="nofollow">
+      ICD-10-CM
+    </a>
+    , then click on 2009 Diagnosis Code Set General Equivalence Mappings and download the zip file. The data file is named: I10cm_desc.txt
+  </li>
+  <li>
+    PCS -
+    <a href="http://www.cms.gov/ICD10/13_2010_ICD10PCS.asp" rel="nofollow">
+      ICD-10-PCS
+    </a>
+    , then click on 2010 Code Descriptions - Long Format, Table Format and README files (ZIP, 1MB)
+  </li>
+</ul>
+CM and PCS each placed their own coding scheme. They are not combined into one coding scheme like ICD-9.
+<h2 id="LexEVS6.xICD10Mappings-SourceData,CodeFormat">
+  Source Data, Code Format
+</h2>
+In the case of diagnosis codes, the concept code is comprised of three to seven alpha numeric digits. There will always be three leading digits, then possibly a decimal point followed by 1 to 4 digits. With procedure codes, no decimal system is used. The codes are used as is from the source file.Source Data, ExampleCM
+<ul>
+  <li>
+    A000 Cholera due to Vibrio cholerae 01, biovar cholerae
+  </li>
+  <li>
+    A001 Cholera due to Vibrio cholerae 01, biovar eltor
+  </li>
+  <li>
+    A009 Cholera, unspecified
+  </li>
+</ul>
+PCS
+<ul>
+  <li>
+    00Q00ZZ Repair Brain, Open Approach
+  </li>
+  <li>
+    00Q03ZZ Repair Brain, Percutaneous Approach
+  </li>
+  <li>
+    00Q04ZZ Repair Brain, Percutaneous Endoscopic Approach
+  </li>
+</ul>
+<h2 id="LexEVS6.xICD10Mappings-Mappings">
+  Mappings
+</h2>
+<h3 id="LexEVS6.xICD10Mappings-GeneralComments">
+  General Comments
+</h3>
+As with ICD-9, the description data about the code system is not provided in the date file; so the loader provides defaults. Also the type of data contained in the files is exactly the same as with ICD-9; that is, concept codes and descriptions. Thus the ICD-10 loader behaves the same as the ICD-9 loader with respect to what tables are populated. Because there is no hierarchy, again like the ICD-9 data, the ICD-10 loader behaves the same way as the ICD-9 loader with respect to associations.For details on how the data from the ICD files is processed into LexGrid please refer to the
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427389" rel="nofollow">
+  ICD-9 page
+</a>
+.What follows are the specific default data values unique to ICD-10 CM and ICD-10 PCS.
+<h3 id="LexEVS6.xICD10Mappings-CM">
+  CM
+</h3>
+Table: codingScheme(abbreviated)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Field Name
+      </th>
+      <th>
+        Value
+      </th>
+    </tr>
+    <tr>
+      <td>
+        codingSchemeName
+      </td>
+      <td>
+        ICD-10-CM
+      </td>
+    </tr>
+    <tr>
+      <td>
+        codingSchemeUri
+      </td>
+      <td>
+        urn:oid:2.16.840.1.113883.6.3
+      </td>
+    </tr>
+    <tr>
+      <td>
+        representsVersion
+      </td>
+      <td>
+        &lt;provided by user&gt;
+      </td>
+    </tr>
+    <tr>
+      <td>
+        formalName
+      </td>
+      <td>
+        ICD-10 CM
+      </td>
+    </tr>
+    <tr>
+      <td>
+        defaultLanguage
+      </td>
+      <td>
+        ENG
+      </td>
+    </tr>
+    <tr>
+      <td>
+        description
+      </td>
+      <td>
+        International Classification of Diseases, Tenth Revision, Clinical Modification (ICD-10-CM)
+      </td>
+    </tr>
+    <tr>
+      <td>
+        copyRight
+      </td>
+      <td>
+        Centers for Medicare &amp; Medicaid Services (CMS)
+      </td>
+    </tr>
+    <tr>
+      <td>
+        codingSchemeSource
+      </td>
+      <td>
+        <a href="http://www.cms.hhs.gov" rel="nofollow">
+          http://www.cms.hhs.gov
+        </a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Table: relation(abbreviated)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Field Name
+      </th>
+      <th>
+        Value
+      </th>
+    </tr>
+    <tr>
+      <td>
+        containerName
+      </td>
+      <td>
+        icd10CmCmsRelations
+      </td>
+    </tr>
+    <tr>
+      <td>
+        isMapping
+      </td>
+      <td>
+        0
+      </td>
+    </tr>
+    <tr>
+      <td>
+        sourceCodingScheme
+      </td>
+      <td>
+        Null
+      </td>
+    </tr>
+    <tr>
+      <td>
+        sourceCodingSchemeVersion
+      </td>
+      <td>
+        Null
+      </td>
+    </tr>
+    <tr>
+      <td>
+        targetCodingScheme
+      </td>
+      <td>
+        urn:oid:2.16.840.1.113883.6.3
+      </td>
+    </tr>
+    <tr>
+      <td>
+        targetCodingSchemeVersion
+      </td>
+      <td>
+        &lt; provided by user &gt;
+      </td>
+    </tr>
+    <tr>
+      <td>
+        description
+      </td>
+      <td>
+        ICD-10-CM CMS relations container
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h3 id="LexEVS6.xICD10Mappings-PCS">
+  PCS
+</h3>
+Table: codingScheme(abbreviated)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Field Name
+      </th>
+      <th>
+        Value
+      </th>
+    </tr>
+    <tr>
+      <td>
+        codingSchemeName
+      </td>
+      <td>
+        ICD-10-PCS
+      </td>
+    </tr>
+    <tr>
+      <td>
+        codingSchemeUri
+      </td>
+      <td>
+        urn:oid:2.16.840.1.113883.6.4
+      </td>
+    </tr>
+    <tr>
+      <td>
+        representsVersion
+      </td>
+      <td>
+        &lt;provided by user&gt;
+      </td>
+    </tr>
+    <tr>
+      <td>
+        formalName
+      </td>
+      <td>
+        ICD-10 PCS
+      </td>
+    </tr>
+    <tr>
+      <td>
+        defaultLanguage
+      </td>
+      <td>
+        ENG
+      </td>
+    </tr>
+    <tr>
+      <td>
+        description
+      </td>
+      <td>
+        International Classification of Diseases, Tenth Revision, Clinical Modification (ICD-10-PCS)
+      </td>
+    </tr>
+    <tr>
+      <td>
+        copyRight
+      </td>
+      <td>
+        Centers for Medicare &amp; Medicaid Services (CMS)
+      </td>
+    </tr>
+    <tr>
+      <td>
+        codingSchemeSource
+      </td>
+      <td>
+        <a href="http://www.cms.hhs.gov" rel="nofollow">
+          http://www.cms.hhs.gov
+        </a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Table: relation(abbreviated)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Field Name
+      </th>
+      <th>
+        Value
+      </th>
+    </tr>
+    <tr>
+      <td>
+        containerName
+      </td>
+      <td>
+        icd10PcsCmsRelations
+      </td>
+    </tr>
+    <tr>
+      <td>
+        isMapping
+      </td>
+      <td>
+        0
+      </td>
+    </tr>
+    <tr>
+      <td>
+        sourceCodingScheme
+      </td>
+      <td>
+        Null
+      </td>
+    </tr>
+    <tr>
+      <td>
+        sourceCodingSchemeVersion
+      </td>
+      <td>
+        Null
+      </td>
+    </tr>
+    <tr>
+      <td>
+        targetCodingScheme
+      </td>
+      <td>
+        urn:oid:2.16.840.1.113883.6.4
+      </td>
+    </tr>
+    <tr>
+      <td>
+        targetCodingSchemeVersion
+      </td>
+      <td>
+        &lt; provided by user &gt;
+      </td>
+    </tr>
+    <tr>
+      <td>
+        description
+      </td>
+      <td>
+        ICD-10-PCS CMS relations container
+      </td>
+    </tr>
+  </tbody>
+</table>

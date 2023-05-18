@@ -1,0 +1,13 @@
+Java Code Snippet
+
+// Find the registered extension handling this type of load
+LexBIGService lbs = new LexBIGServiceImpl();
+LexBIGServiceManager lbsm = lbs.getServiceManager(null);
+HL7_Loader loader = (HL7_Loader)lbsm.getLoader (org.LexGrid.LexBIG.Impl.loaders .HL7LoaderImpl.name);
+
+// updated to include manifest
+loader.setCodingSchemeManifestURI(manifest);
+
+// updated to include loader preferences
+loader.setLoaderPreferences(loaderPrefs);
+loader.load(dbPath, stopOnErrors, true); 

@@ -1,0 +1,258 @@
+The NBIA Web Access to DICOM Objects (WADO) API is an extension of the REST API that allows image retrieval. For more information about formatting requests and security, see the
+<a href="https://wiki.cancerimagingarchive.net/display/Public/National+Biomedical+Imaging+Archive+%28NBIA%29+Programmatic+Interface+REST+API+Guides" rel="nofollow">
+  NBIA REST API Guides
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+. For details on each parameter and how to use WADO, see the
+<a href="http://medical.nema.org/Dicom/2011/11_18pu.pdf" rel="nofollow">
+  WADO Specification
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+. The following table lists the attributes that the NBIA WADO API supports.
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        Parameter
+      </th>
+      <th>
+        Required
+      </th>
+    </tr>
+    <tr>
+      <td>
+        requestType
+      </td>
+      <td>
+        Yes
+      </td>
+    </tr>
+    <tr>
+      <td>
+        studyUID
+      </td>
+      <td>
+        Yes
+      </td>
+    </tr>
+    <tr>
+      <td>
+        seriesUID
+      </td>
+      <td>
+        Yes
+      </td>
+    </tr>
+    <tr>
+      <td>
+        objectUID
+      </td>
+      <td>
+        Yes
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        contentType
+      </td>
+      <td colspan="1">
+        No
+      </td>
+    </tr>
+    <tr>
+      <td>
+        rows
+      </td>
+      <td>
+        No
+      </td>
+    </tr>
+    <tr>
+      <td>
+        columns
+      </td>
+      <td>
+        No
+      </td>
+    </tr>
+    <tr>
+      <td>
+        region
+      </td>
+      <td>
+        No
+      </td>
+    </tr>
+    <tr>
+      <td>
+        windowCenter
+      </td>
+      <td>
+        No
+      </td>
+    </tr>
+    <tr>
+      <td>
+        windowWidth
+      </td>
+      <td>
+        No
+      </td>
+    </tr>
+    <tr>
+      <td>
+        frameNumber
+      </td>
+      <td>
+        No
+      </td>
+    </tr>
+    <tr>
+      <td>
+        imageQuality
+      </td>
+      <td>
+        No
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h3 id="NBIAWADOAPIUserGuide-ExampleWADOCall">
+  Example WADO Call
+</h3>
+curl -H &#34;Authorization:Bearer 5fb31a78-60d5-4645-b415-9633fd7a77ff&#34; -k &#34;https://public-dev.cancerimagingarchive.net/nbia-api/services/getWado&#34; -d &#34;seriesUID=1.3.6.1.4.1.14519.5.2.1.3023.4024.536949365601910993926257264114&amp;objectUID=1.3.6.1.4.1.14519.5.2.1.3023.4024.822829852603295162591249163632&amp;studyUID=1.3.6.1.4.1.14519.5.2.1.3023.4024.215308722288168917637555384485&amp;requestType=WADO&#34;
+<h1 id="NBIAWADOAPIUserGuide-WADOv1API">
+  WADO v1 API
+</h1>
+This API allows the retrieval of an image without a token.For information about parameters and how to use WADO, see the
+<a href="http://medical.nema.org/Dicom/2011/11_18pu.pdf" rel="nofollow">
+  WADO Specification
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+. The following table lists the attributes that the NBIA WADO API supports.
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        Parameter
+      </th>
+      <th>
+        Required
+      </th>
+    </tr>
+    <tr>
+      <td>
+        requestType
+      </td>
+      <td>
+        Yes
+      </td>
+    </tr>
+    <tr>
+      <td>
+        studyUID
+      </td>
+      <td>
+        Yes
+      </td>
+    </tr>
+    <tr>
+      <td>
+        seriesUID
+      </td>
+      <td>
+        Yes
+      </td>
+    </tr>
+    <tr>
+      <td>
+        objectUID
+      </td>
+      <td>
+        Yes
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        contentType
+      </td>
+      <td colspan="1">
+        No
+      </td>
+    </tr>
+    <tr>
+      <td>
+        rows
+      </td>
+      <td>
+        No
+      </td>
+    </tr>
+    <tr>
+      <td>
+        columns
+      </td>
+      <td>
+        No
+      </td>
+    </tr>
+    <tr>
+      <td>
+        region
+      </td>
+      <td>
+        No
+      </td>
+    </tr>
+    <tr>
+      <td>
+        windowCenter
+      </td>
+      <td>
+        No
+      </td>
+    </tr>
+    <tr>
+      <td>
+        windowWidth
+      </td>
+      <td>
+        No
+      </td>
+    </tr>
+    <tr>
+      <td>
+        frameNumber
+      </td>
+      <td>
+        No
+      </td>
+    </tr>
+    <tr>
+      <td>
+        imageQuality
+      </td>
+      <td>
+        No
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="NBIAWADOAPIUserGuide-ExampleWADOCall.1">
+  Example WADO Call
+</h2>
+http://localhost:8080/nbia-api/services/v1/wado?requestType=WADO&amp;studyUID=9999.240485997311278841349744799381613841880&amp;seriesUID=9999.286604908682648966415774572891837946&amp;objectUID=9999.303597443592981901792680796557741974250&amp;contentType=application/dicom 

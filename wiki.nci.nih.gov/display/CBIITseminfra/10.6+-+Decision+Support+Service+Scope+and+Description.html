@@ -1,0 +1,237 @@
+Current Working Draft
+
+
+The initial wiki page is Version 0.0.1, October 27, 2010, the initial draft for a separate service.
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Role
+      </th>
+      <th>
+        Responsible
+      </th>
+    </tr>
+    <tr>
+      <td>
+        Enterprise Architecture Specification Team Lead
+      </td>
+      <td>
+        Christo Andonyadis, NCI CBIIT
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Editor
+      </td>
+      <td>
+        Ann Wiley
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Authors
+      </td>
+      <td>
+        Dave Hau
+        Raghu Chintalapati
+      </td>
+    </tr>
+  </tbody>
+</table>
+This document includes the following:
+<ul>
+  <li>
+    <a href="#id-10.6DecisionSupportServiceScopeandDescription-Introduction" rel="nofollow">
+      Introduction
+    </a>
+  </li>
+  <li>
+    <a href="#id-10.6DecisionSupportServiceScopeandDescription-Stakeholders" rel="nofollow">
+      Stakeholders
+    </a>
+  </li>
+  <li>
+    <a href="#id-10.6DecisionSupportServiceScopeandDescription-BusinessArea" rel="nofollow">
+      Business Area
+    </a>
+  </li>
+  <li>
+    <a href="#id-10.6DecisionSupportServiceScopeandDescription-ServiceDescription" rel="nofollow">
+      Service Description
+    </a>
+  </li>
+  <li>
+    <a href="#id-10.6DecisionSupportServiceScopeandDescription-ServiceScope" rel="nofollow">
+      Service Scope
+    </a>
+  </li>
+  <li>
+    <a href="#id-10.6DecisionSupportServiceScopeandDescription-ServiceInteractions" rel="nofollow">
+      Service Interactions
+    </a>
+  </li>
+  <li>
+    <a href="#id-10.6DecisionSupportServiceScopeandDescription-AssumptionsandRisks" rel="nofollow">
+      Assumptions and Risks
+    </a>
+  </li>
+  <li>
+    <a href="#id-10.6DecisionSupportServiceScopeandDescription-DecisionSupportServiceTerminology" rel="nofollow">
+      Decision Support Service Terminology
+    </a>
+  </li>
+</ul>
+<h4 id="id-10.6DecisionSupportServiceScopeandDescription-Introduction">
+  Introduction
+</h4>
+The Decision Support Service provides a discovery mechanism that allows either the service orchestrator or a program to find the services that best fit the requirements of a given process.
+
+This increases both runtime and design time flexibility by enabling selection of services based on computable metadata. Included are support for runtime contract discovery and negotiation, which supports the key requirement of the semantic infrastructure to support semantic workflow composition.
+
+Runtime contract discovery and negotiation capabilities provided by the Decision Support Service will allow the service orchestration tool to specify expressions processed by the Decision Support Service, to deliver service orchestration and compatibility recommendations.
+
+The Decision Support Service also provides a set of interfaces for generating reports based on specific user-defined criteria to better identify, for example, services with specific profiles. The Governance Service uses the Decision Support Service for generating compliance reporting based on specific input criteria.
+
+The Decision Support Service allows users to construct queries including but not limited to:
+<ul>
+  <li>
+    User friendly and ad hoc queries using natural language expressions
+  </li>
+  <li>
+    User friendly semantic web queries
+  </li>
+  <li>
+    Visual queries
+  </li>
+</ul>
+The results of these queries can be structured in multiple formats. This is the primary interface between the caGrid 2.0 service registry and the Semantic Infrastructure 2.0.
+
+The Decision Support Service provides capabilities to:
+<ul>
+  <li>
+    Construct and execute semantically rich queries
+  </li>
+  <li>
+    Develop custom analysis reports to support decision making
+  </li>
+  <li>
+    Export information in multiple formats, allowing the application of custom algorithms and rules to the metadata for additional analysis
+  </li>
+  <li>
+    Ability to run reasoners (like Web Ontology Language (OWL) reasoners) and view results in a user friendly format
+  </li>
+  <li>
+    Ability to perform impact analysis to identify dependencies and constraints
+  </li>
+  <li>
+    Support both design time and runtime contract discovery and negotiation
+  </li>
+</ul>
+<h4 id="id-10.6DecisionSupportServiceScopeandDescription-Stakeholders">
+  Stakeholders
+</h4>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Stakeholder
+      </th>
+      <th>
+        Name of Individuals or Team
+      </th>
+      <th>
+        Responsibility
+      </th>
+    </tr>
+    <tr>
+      <td>
+        C-Team
+      </td>
+      <td>
+        C-Team
+      </td>
+      <td>
+        Approve the scope
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h4 id="id-10.6DecisionSupportServiceScopeandDescription-BusinessArea">
+  Business Area
+</h4>
+This service supports the semantic infrastructure, and will be used by all NCI project teams and external adopters to discover services and artifacts. The Decision Support Service will be the primary interface of the Semantic Infrastructure 2.0 to the caGrid 2.0 service registry.
+<h4 id="id-10.6DecisionSupportServiceScopeandDescription-ServiceDescription">
+  Service Description
+</h4>
+The Decision Support Service will provide the following functionality:
+<ul>
+  <li>
+    Provide multiple mechanisms to construct semantic queries
+  </li>
+  <li>
+    Support natural language queries
+  </li>
+  <li>
+    Specify the format of reports generated as a result of the queries
+  </li>
+  <li>
+    Search the registry for items including but not limited to a model, existing value sets, and Object Identifiers (OIDs) in an OID registry
+  </li>
+  <li>
+    Retrieve an existing model from the Knowledge Management Service, and retrieve schemas and form definitions
+  </li>
+  <li>
+    Download and export information in user defined formats, applying the appropriate transforms
+  </li>
+  <li>
+    Support executing reasoners and display of information in a user friendly format
+  </li>
+  <li>
+    Provide interfaces for service discovery and runtime contract negotiation.
+  </li>
+  <li>
+    Identify dependencies
+  </li>
+</ul>
+<h4 id="id-10.6DecisionSupportServiceScopeandDescription-ServiceScope">
+  Service Scope
+</h4>
+The scope of the Decision Support Service is limited to providing interfaces for querying and analysis of information.
+<h4 id="id-10.6DecisionSupportServiceScopeandDescription-ServiceInteractions">
+  Service Interactions
+</h4>
+The Decision Support Service will interact with the following systems and services:
+<ul>
+  <li>
+    Governance Service: The governance service uses the Decision Support Service to query for key metadata about the artifacts. This information is then used to define policies.
+  </li>
+  <li>
+    Knowledge Management Service: The Decision Support Service provides a mechanism to construct semantic queries that can then be executed against the underlying artifacts. The Decision Support Service also provides interfaces for functions including but not limted to generating reports. The Decision Support Service uses the Knowledge Management Service to access the metadata
+  </li>
+</ul>
+<h4 id="id-10.6DecisionSupportServiceScopeandDescription-AssumptionsandRisks">
+  Assumptions and Risks
+</h4>
+None
+<h4 id="id-10.6DecisionSupportServiceScopeandDescription-DecisionSupportServiceTerminology">
+  Decision Support Service Terminology
+</h4>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Acronym
+      </th>
+      <th>
+        Definition
+      </th>
+    </tr>
+    <tr>
+      <td>
+        No specific acronyms
+      </td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>

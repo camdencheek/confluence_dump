@@ -1,0 +1,602 @@
+Contents of this Page
+<ul>
+  <li>
+    <a href="#LexEVS6.xInformationModels-InformationModelsOverview" rel="nofollow">
+      Information Models Overview
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.xInformationModels-LexGridModel" rel="nofollow">
+      LexGrid Model
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.xInformationModels-CodingSchemes" rel="nofollow">
+      CodingSchemes
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.xInformationModels-Entities" rel="nofollow">
+      Entities
+    </a>
+    <ul>
+      <li>
+        <a href="#LexEVS6.xInformationModels-Entity" rel="nofollow">
+          Entity
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.xInformationModels-Relations" rel="nofollow">
+          Relations
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.xInformationModels-AssociationEntity" rel="nofollow">
+          AssociationEntity
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#LexEVS6.xInformationModels-ValueSetDefinition" rel="nofollow">
+      Value Set Definition
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.xInformationModels-PickListDefinition" rel="nofollow">
+      Pick List Definition
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.xInformationModels-Naming" rel="nofollow">
+      Naming
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.xInformationModels-Versions" rel="nofollow">
+      Versions
+    </a>
+    <ul>
+      <li>
+        <a href="#LexEVS6.xInformationModels-SystemRelease" rel="nofollow">
+          SystemRelease
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.xInformationModels-VersionableEntities" rel="nofollow">
+          VersionableEntities
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.xInformationModels-Versioning" rel="nofollow">
+          Versioning
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#LexEVS6.xInformationModels-LexBIGmodel" rel="nofollow">
+      LexBIG model
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.xInformationModels-Collection" rel="nofollow">
+      Collection
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.xInformationModels-Core" rel="nofollow">
+      Core
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.xInformationModels-Enums" rel="nofollow">
+      Enums
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.xInformationModels-InterfaceElements" rel="nofollow">
+      InterfaceElements
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.xInformationModels-NCIHistory" rel="nofollow">
+      NCIHistory
+    </a>
+  </li>
+</ul>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        LexEVS 6.x Design Links to Include
+      </th>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427373" rel="nofollow">
+              Design Guide Main Page
+            </a>
+            <ul>
+              <li>
+                <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427359" rel="nofollow">
+                  LexEVS Information Models
+                </a>
+              </li>
+              <li>
+                <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427360" rel="nofollow">
+                  LexEVS Architecture
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=69730353" rel="nofollow">
+              LexEVS 6.0 Main Page
+            </a>
+          </li>
+          <li>
+            <a href="http://LexEVS" rel="nofollow">
+              LexEVS Current Release
+            </a>
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="LexEVS6.xInformationModels-InformationModelsOverview">
+  Information Models Overview
+</h2>
+The information below is provided for introductory purposes. A full description of all available model components is also available in the javadoc distributed with the LexEVS installation package (see file breakdown in the
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427361" rel="nofollow">
+  LexEVS 6.x Installation Guide
+</a>
+). Since the javadoc is automatically generated and synchronized during the build process, it is recommended as the primary reference for use by LexEVS developers.
+<h2 id="LexEVS6.xInformationModels-LexGridModel">
+  LexGrid Model
+</h2>
+The LexGrid Model is Mayo Clinic&#39;s proposal for standard storage of controlled vocabularies and ontologies. The LexGrid Model defines how vocabularies should be formatted and represented programmatically, and is intended to be flexible enough to accurately represent a wide variety of vocabularies and other lexically-based resources. The model also defines several different server storage mechanisms and an XML format. This model provides the core representation for all data managed and retrieved through the LexEVS system, and is now rich enough to represent vocabularies provided in numerous source formats such as OWL (NCI Thesaurus) and RRF (NCI MetaThesaurus).Once the vocabulary information is represented in a standardized format, it becomes possible to build common repositories to store vocabulary content and common programming interfaces and tools to access and manipulate that content. The LexBIG API developed for caBIG® is one such interface, and is described in additional detail in LexEVS APIs.The LexGrid model is mastered in XML schema. The LexEVS project currently builds on the 2010 version of the LexGrid schema. A complete list of XML schemas, XSLT converters, model in Enterprise Architect (EA) format are available at
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427414" rel="nofollow">
+  LexGrid Model and Schema
+</a>
+.Following are some of the higher-level objects incorporated into the model definition:
+<h2 id="LexEVS6.xInformationModels-CodingSchemes">
+  CodingSchemes
+</h2>
+Each service defined to the LexGrid model can encapsulate the definition of one or more vocabularies. Each vocabulary is modeled as an individual code system, known as a codingScheme. Each scheme tracks information used to uniquely identify the code system, along with relevant metadata and is a high level container for entities and relations. Each CodingScheme represents a unique code system or version in the LexEVS service. The collection of all code systems defined to a service is encapsulated by a single codingSchemes container.
+<ul>
+  <li>
+    Schema:
+    <a href="http://informatics.mayo.edu/schema/2010/01/LexGrid/codingSchemes.xsd" rel="nofollow">
+      CodingSchemes.xsd
+    </a>
+    <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+      <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+    </a>
+  </li>
+  <li>
+    Enterprise Architect (EA) format:
+    <a href="http://lexgrid.org/LexGrid/downloads/LexGrid%20Model/schemas/2010/01/EA/EARoot/EA2/EA30.htm" rel="nofollow">
+      CodingScheme model
+    </a>
+    <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+      <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+    </a>
+    . Click on any
+    <a href="http://lexgrid.org/LexGrid/downloads/LexGrid%20Model/schemas/2010/01/EA/EARoot/EA2/EA32.htm" rel="nofollow">
+      attributes
+    </a>
+    <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+      <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+    </a>
+    to view more details.
+  </li>
+</ul>
+<h2 id="LexEVS6.xInformationModels-Entities">
+  Entities
+</h2>
+A code system may define zero or more coded entities, encapsulated within a single container. An entity represents a coded entity (identified in the model as a entity) within a particular domain of discourse. Each entity could be of type &#39;concept&#39;, &#39;instance&#39;, &#39;association&#39; etc., and is unique within the code system that defines it. To be valid, an entity must be qualified by at least one designation, represented in the model as a property. Each property is an attribute, facet, or some other characteristic that may represent or help define the intended meaning of the encapsulating entity. An entity may be the source for and/or the target of zero or more relationships. Relationships are described in more detail in a following section. The collection of all coded entities defined with in a coding scheme is encapsulated by a single entities container.
+<ul>
+  <li>
+    Schema:
+    <a href="http://informatics.mayo.edu/schema/2010/01/LexGrid/concepts.xsd" rel="nofollow">
+      Entities.xsd
+    </a>
+    <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+      <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+    </a>
+  </li>
+  <li>
+    Enterprise Architect (EA) format:
+    <a href="http://lexgrid.org/LexGrid/downloads/LexGrid%20Model/schemas/2010/01/EA/EARoot/EA4/EA82.htm" rel="nofollow">
+      Entities model
+    </a>
+    <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+      <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+    </a>
+    . Click on any attributes to view more details.
+  </li>
+</ul>
+<h3 id="LexEVS6.xInformationModels-Entity">
+  Entity
+</h3>
+Entity is a set of lexical assertions about the intended meaning of a particular entity code. Each entity represents a unique entity within the code system, it could be of type &#39;concept&#39;, &#39;instance&#39;, &#39;association&#39; etc., and can be further described by properties and its relation to other entities through relations. The collection of all coded entities defined with in a coding scheme is encapsulated by a single entities container.
+<ul>
+  <li>
+    Schema:
+    <a href="http://informatics.mayo.edu/schema/2010/01/LexGrid/concepts.xsd" rel="nofollow">
+      Entities.xsd
+    </a>
+    <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+      <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+    </a>
+  </li>
+  <li>
+    Enterprise Architect (EA) format:
+    <a href="http://lexgrid.org/LexGrid/downloads/LexGrid%20Model/schemas/2010/01/EA/EARoot/EA4/EA84.htm" rel="nofollow">
+      Entity model
+    </a>
+    <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+      <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+    </a>
+    . Click on any attributes to view more details.
+  </li>
+</ul>
+<h3 id="LexEVS6.xInformationModels-Relations">
+  Relations
+</h3>
+Relations are used to define and qualify associations between entities. Each code system may define one or more containers to encapsulate relationships between entities. Each named relationship (e.g. &#34;hasSubtype&#34; or &#34;hasPart&#34;) is represented as an association within the LexGrid model. Each relations container must define one or more association. The association definition may also further define the nature of the relationship in terms of transitivity, navigable, forward and inverse names, etc. Multiple instances of each association can be defined, each of which provide a directed relationship between one source and one or more target entities.Source and target entities may be contained in the same code system as the association or another if explicitly identified. By default, all source and target entities are resolved from the code system defining the association. The code system can be overridden by each specific association, relation source (associationInstance), or relation target (associationTarget).
+<ul>
+  <li>
+    Schema:
+    <a href="http://informatics.mayo.edu/schema/2010/01/LexGrid/relations.xsd" rel="nofollow">
+      Relations.xsd
+    </a>
+    <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+      <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+    </a>
+  </li>
+  <li>
+    Enterprise Architect (EA) format:
+    <a href="http://lexgrid.org/LexGrid/downloads/LexGrid%20Model/schemas/2010/01/EA/EARoot/EA7/EA129.htm" rel="nofollow">
+      Relations model
+    </a>
+    <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+      <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+    </a>
+    . Click on any attributes to view more details.
+  </li>
+</ul>
+<h3 id="LexEVS6.xInformationModels-AssociationEntity">
+  AssociationEntity
+</h3>
+AssociationEntity is a subclass of an Entity with type as &#39;association&#39;. AssociationEntity basically defines the nature of the relationship in terms of transitivity, navigable, forward and reverse names.
+<ul>
+  <li>
+    Schema:
+    <a href="http://informatics.mayo.edu/schema/2010/01/LexGrid/relations.xsd" rel="nofollow">
+      Relations.xsd
+    </a>
+    <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+      <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+    </a>
+  </li>
+  <li>
+    Enterprise Architect (EA) format:
+    <a href="http://lexgrid.org/LexGrid/downloads/LexGrid%20Model/schemas/2010/01/EA/EARoot/EA4/EA82.htm" rel="nofollow">
+      AssociationEntity model
+    </a>
+    <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+      <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+    </a>
+    . Click on any attributes to view more details.
+  </li>
+</ul>
+<h2 id="LexEVS6.xInformationModels-ValueSetDefinition">
+  Value Set Definition
+</h2>
+Value Set Definition with in the LexGrid logical model defines the contents of a Value Set. The contents are coded entities defined in referencing Code System. Value Set can contain coded entities from one or more Code Systems.Visit
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427292" rel="nofollow">
+  LexEVS 6.x Value Set Detailed Design
+</a>
+for detailed information about Value Set Definition.
+<ul>
+  <li>
+    Schema:
+    <a href="http://informatics.mayo.edu/schema/2010/01/LexGrid/valueSets.xsd" rel="nofollow">
+      ValueSets.xsd
+    </a>
+    <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+      <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+    </a>
+  </li>
+  <li>
+    Enterprise Architect (EA) format:
+    <a href="http://lexgrid.org/LexGrid/downloads/LexGrid%20Model/schemas/2010/01/EA/EARoot/EA8/EA142.htm" rel="nofollow">
+      Value Set Definition model
+    </a>
+    <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+      <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+    </a>
+    . Click on any attributes to view more details.
+  </li>
+</ul>
+<h2 id="LexEVS6.xInformationModels-PickListDefinition">
+  Pick List Definition
+</h2>
+Pick List Definition with in the LexGrid logical model defines an ordered list of entity codes and corresponding presentations drawn from a resolved value set definition.Visit
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427291" rel="nofollow">
+  LexEVS 6.x Pick List Detailed Design
+</a>
+for detailed information about Pick List Definition.
+<ul>
+  <li>
+    Schema:
+    <a href="http://informatics.mayo.edu/schema/2010/01/LexGrid/valueSets.xsd" rel="nofollow">
+      ValueSets.xsd
+    </a>
+    <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+      <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+    </a>
+  </li>
+  <li>
+    Enterprise Architect (EA) format:
+    <a href="http://lexgrid.org/LexGrid/downloads/LexGrid%20Model/schemas/2010/01/EA/EARoot/EA8/EA140.htm" rel="nofollow">
+      Pick List Definition model
+    </a>
+    <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+      <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+    </a>
+    . Click on any attributes to view more details.
+  </li>
+</ul>
+<h2 id="LexEVS6.xInformationModels-Naming">
+  Naming
+</h2>
+These are the elements primarily used to define metadata for a coding scheme, value set and pick list definition, mapping locally used names to global references. Each naming elements are represented as SupportedXXX where XXX could be language, property name, source, context etc., that are locally used in coding scheme, value set definition or pick list definition. It also has an optional URI that can be used to find the exact definition and meaning of the local id. Note: the string portion of this entry can be used to provide additional documentation or information, especially when a URI is not supplied.
+<ul>
+  <li>
+    Schema:
+    <a href="http://informatics.mayo.edu/schema/2010/01/LexGrid/naming.xsd" rel="nofollow">
+      Naming.xsd
+    </a>
+    <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+      <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+    </a>
+  </li>
+  <li>
+    Enterprise Architect (EA) format:
+    <a href="http://lexgrid.org/LexGrid/downloads/LexGrid%20Model/schemas/2010/01/EA/EARoot/EA5/EA94.htm" rel="nofollow">
+      Naming model
+    </a>
+    <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+      <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+    </a>
+    . Click on any attributes to view more details.
+  </li>
+</ul>
+<h2 id="LexEVS6.xInformationModels-Versions">
+  Versions
+</h2>
+These are the elements primarily used to author terminology elements.
+<h3 id="LexEVS6.xInformationModels-SystemRelease">
+  SystemRelease
+</h3>
+System Release is a collection of coding schemes, value set definitions, pick list definitions and/or revision records that are distributed as a unit.
+<ul>
+  <li>
+    Schema:
+    <a href="http://informatics.mayo.edu/schema/2010/01/LexGrid/versions.xsd" rel="nofollow">
+      Versions.xsd
+    </a>
+    <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+      <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+    </a>
+  </li>
+  <li>
+    Enterprise Architect (EA) format:
+    <a href="http://lexgrid.org/LexGrid/downloads/LexGrid%20Model/schemas/2010/01/EA/EARoot/EA9/EA160.htm" rel="nofollow">
+      System Release model
+    </a>
+    <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+      <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+    </a>
+    . Click on any attributes to view more details.
+  </li>
+</ul>
+<h3 id="LexEVS6.xInformationModels-VersionableEntities">
+  VersionableEntities
+</h3>
+Versionable Entities are the resources that can undergo change over time while maintaining its identity. All the LexGrid elements that can undergo changes (like Entity, CodingScheme, ValueSetDefinition, property etc) are Versionable Entities.
+<ul>
+  <li>
+    Schema:
+    <a href="http://informatics.mayo.edu/schema/2010/01/LexGrid/versions.xsd" rel="nofollow">
+      Versions.xsd
+    </a>
+    <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+      <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+    </a>
+  </li>
+  <li>
+    Enterprise Architect (EA) format:
+    <a href="http://lexgrid.org/LexGrid/downloads/LexGrid%20Model/schemas/2010/01/EA/EARoot/EA9/EA162.htm" rel="nofollow">
+      Versionable Entities model
+    </a>
+    <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+      <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+    </a>
+    . Click on any attributes to view more details.
+  </li>
+</ul>
+<h3 id="LexEVS6.xInformationModels-Versioning">
+  Versioning
+</h3>
+Versioning are an ordered collection of state changes that define the transformation of a set of resources from one consistent state to another.
+<ul>
+  <li>
+    Schema:
+    <a href="http://informatics.mayo.edu/schema/2010/01/LexGrid/versions.xsd" rel="nofollow">
+      Versions.xsd
+    </a>
+    <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+      <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+    </a>
+  </li>
+  <li>
+    Enterprise Architect (EA) format:
+    <a href="http://lexgrid.org/LexGrid/downloads/LexGrid%20Model/schemas/2010/01/EA/EARoot/EA9/EA164.htm" rel="nofollow">
+      Versioning model
+    </a>
+    <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+      <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+    </a>
+    . Click on any attributes to view more details.
+  </li>
+</ul>
+<h2 id="LexEVS6.xInformationModels-LexBIGmodel">
+  LexBIG model
+</h2>
+The following extensions to the LexGrid model were introduced in support of caBIG® requirements. As with the LexGrid model, this document provides a summary of the most significant elements for consideration by LexBIG programmers. The complete and current version of the model is
+<a href="http://lexgrid.org/LexGrid/downloads/LexBIG/schemas/2010/01/EA/index.htm" rel="nofollow">
+  available online
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+.The LexBIG logical model consists of following five XML schemas:
+<ul>
+  <li>
+    Collection: Contains named sets of things.
+  </li>
+  <li>
+    Core: Contains the core elements of LexBIG model.
+  </li>
+  <li>
+    *Enums: Enums for various LexBIG model elements.
+  </li>
+  <li>
+    Interface Elements: Defines metadata related to model objects required by the runtime.
+  </li>
+  <li>
+    NCI History: Version change definition for NCI change model.
+  </li>
+</ul>
+<h2 id="LexEVS6.xInformationModels-Collection">
+  Collection
+</h2>
+LexBIG Collection contains named sets of things.
+<ul>
+  <li>
+    Schema: Collection.xsd:
+    http://lexgrid.org/LexGrid/downloads/LexBIG/schemas/2010/01/Collection.xsd
+  </li>
+  <li>
+    Enterprise Architect (EA) format:
+    <a href="http://lexgrid.org/LexGrid/downloads/LexBIG/schemas/2010/01/EA/EARoot/EA1/EA6.htm" rel="nofollow">
+      Collection model
+    </a>
+    <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+      <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+    </a>
+    . Click on any attributes to view more details.
+  </li>
+</ul>
+<h2 id="LexEVS6.xInformationModels-Core">
+  Core
+</h2>
+LexBIG core elements provide enhanced referencing and controlled resolution of LexGrid model objects.
+<ul>
+  <li>
+    Schema:
+    <a href="http://lexgrid.org/LexGrid/downloads/LexBIG/schemas/2010/01/Core.xsd" rel="nofollow">
+      Core.xsd
+    </a>
+    <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+      <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+    </a>
+  </li>
+  <li>
+    Enterprise Architect (EA) format:
+    <a href="http://lexgrid.org/LexGrid/downloads/LexBIG/schemas/2010/01/EA/EARoot/EA2/EA30.htm" rel="nofollow">
+      Core model
+    </a>
+    <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+      <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+    </a>
+    . Click on any attributes to view more details.
+  </li>
+</ul>
+<h2 id="LexEVS6.xInformationModels-Enums">
+  Enums
+</h2>
+LexBIG Enums contains various enums available in LexBIG model.
+<ul>
+  <li>
+    Schema: Enums.xsd:
+    http://lexgrid.org/LexGrid/downloads/LexBIG/schemas/2010/01/Enums.xsd
+  </li>
+  <li>
+    Enterprise Architect (EA) format:
+    <a href="http://lexgrid.org/LexGrid/downloads/LexBIG/schemas/2010/01/EA/EARoot/EA3/EA54.htm" rel="nofollow">
+      Enums model
+    </a>
+    <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+      <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+    </a>
+    . Click on any attributes to view more details.
+  </li>
+</ul>
+<h2 id="LexEVS6.xInformationModels-InterfaceElements">
+  InterfaceElements
+</h2>
+Defines metadata related to model objects required by the runtime.
+<ul>
+  <li>
+    Schema:
+    <a href="http://lexgrid.org/LexGrid/downloads/LexBIG/schemas/2010/01/InterfaceElements.xsd" rel="nofollow">
+      InterfaceElements.xsd
+    </a>
+    <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+      <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+    </a>
+  </li>
+  <li>
+    Enterprise Architect (EA) format:
+    <a href="http://lexgrid.org/LexGrid/downloads/LexBIG/schemas/2010/01/EA/EARoot/EA4/EA60.htm" rel="nofollow">
+      Interface Elements model
+    </a>
+    <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+      <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+    </a>
+    . Click on any attributes to view more details.
+  </li>
+</ul>
+<h2 id="LexEVS6.xInformationModels-NCIHistory">
+  NCIHistory
+</h2>
+Maintains a record of modifications made to a code system.
+<ul>
+  <li>
+    Schema:
+    <a href="http://lexgrid.org/LexGrid/downloads/LexBIG/schemas/2010/01/NCIHistory.xsd" rel="nofollow">
+      NCIHistroy.xsd
+    </a>
+    <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+      <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+    </a>
+  </li>
+  <li>
+    Enterprise Architect (EA) format:
+    <a href="http://lexgrid.org/LexGrid/downloads/LexBIG/schemas/2010/01/EA/EARoot/EA5/EA74.htm" rel="nofollow">
+      NCI History model
+    </a>
+    <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+      <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+    </a>
+    . Click on any attributes to view more details.
+  </li>
+</ul>

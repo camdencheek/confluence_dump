@@ -1,0 +1,32 @@
+<h1 id="caArray083DeletingthelegacyfilesduringcaArrayupgrade-Question:CanwedeletethelegacyfilesduringcaArrayupgrade?">
+  Question: Can we delete the legacy files during caArray upgrade?
+</h1>
+Topic: caArray Installation and Upgrade
+
+Release: caArray 2.4.0
+
+Date entered: 04/20/2011
+<h2 id="caArray083DeletingthelegacyfilesduringcaArrayupgrade-DetailsabouttheQuestion">
+  Details about the Question
+</h2>
+We are in the process of making a back up of our current installation of 2.1 for an impending upgrade to 2.3.1. There are some very large files in /jboss-4.0.4.GA/server/default/deploy/wsrf.war/WEB-INF/etc/cagrid_TransferService/transferCache
+
+Are these log files? Can we delete these files?
+<h2 id="caArray083DeletingthelegacyfilesduringcaArrayupgrade-Answer">
+  Answer
+</h2>
+The files in the directory are the related files related to the Transfer Service deployment. The service.properties file contains properties that can configure the Transfer Service in certain ways. If you change any of these properties you will need to redeploy the Transfer Service as described above and restart the container.
+
+The property of defaultTransferServiceContextTerminationTimeInMinutes controls the default termination time that gets set on a transfer resource when it is created. The files can be removed if they are older than what is set for the defaultTransferServiceContextTerminationTimeInMinutes value. For more information on the service.properties file, please refer to
+<a href="http://cagrid.org/display/transfer13/Administrators+Guide#AdministratorsGuide-ConfiguringtheTransferService" rel="nofollow">
+  caGrid Transfer 1.3 Administrators Guide
+</a>
+.
+<h2 id="caArray083DeletingthelegacyfilesduringcaArrayupgrade-Haveacomment?">
+  Have a comment?
+</h2>
+Please leave your comment in the
+<a href="https://cabig-kc.nci.nih.gov/Molecular/forums/viewtopic.php?f=6&amp;t=577" rel="nofollow">
+  caArray End User Forum
+</a>
+. 

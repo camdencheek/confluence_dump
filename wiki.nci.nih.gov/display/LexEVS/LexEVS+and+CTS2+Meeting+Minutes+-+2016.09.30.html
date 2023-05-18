@@ -1,0 +1,461 @@
+<h2 id="LexEVSandCTS2MeetingMinutes2016.09.30-Attendees">
+   Attendees
+</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Name
+      </th>
+      <th>
+        Role
+      </th>
+      <th colspan="1">
+        Present
+      </th>
+    </tr>
+    <tr>
+      <td>
+        Wright, Larry
+      </td>
+      <td>
+        NIH/NCI
+      </td>
+      <td colspan="1">
+        x
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Fragoso, Gilberto
+      </td>
+      <td>
+        NIH/NCI
+      </td>
+      <td colspan="1">
+        x
+      </td>
+    </tr>
+    <tr>
+      <td>
+        De Coronado, Sherri
+      </td>
+      <td>
+        NIH/NCI
+      </td>
+      <td colspan="1">
+        x
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Safran, Tracy
+      </td>
+      <td colspan="1">
+        NIH/NCI [C]
+      </td>
+      <td colspan="1">
+        x
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Ong, Kim L
+      </td>
+      <td colspan="1">
+        IS
+      </td>
+      <td colspan="1">
+        x
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Lucas, Jason R
+      </td>
+      <td colspan="1">
+        IS
+      </td>
+      <td colspan="1">
+        x
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Bauer, Scott
+      </td>
+      <td colspan="1">
+        Mayo
+      </td>
+      <td colspan="1">
+        x
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Stancl, Craig
+      </td>
+      <td colspan="1">
+        Mayo
+      </td>
+      <td colspan="1">
+        x
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Endle,  Cory
+      </td>
+      <td colspan="1">
+        Mayo
+      </td>
+      <td colspan="1">
+        x
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Solbrig, Harold
+      </td>
+      <td colspan="1">
+        Mayo
+      </td>
+      <td colspan="1">
+        x
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Jiang, Guoqian
+      </td>
+      <td colspan="1">
+        Mayo
+      </td>
+      <td colspan="1">
+        x
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Wynne, Robert
+      </td>
+      <td colspan="1">
+        NIH/NCI [C]
+      </td>
+      <td colspan="1"></td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Tran, Tin
+      </td>
+      <td colspan="1">
+        NIH/NCI [C]
+      </td>
+      <td colspan="1"></td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Carlsen, Brian
+      </td>
+      <td colspan="1">
+        NIH/NCI [C]
+      </td>
+      <td colspan="1"></td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Wong, Joanne
+      </td>
+      <td colspan="1">
+        NIH/NCI [C]
+      </td>
+      <td colspan="1"></td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Kuntipuram, Kumar
+      </td>
+      <td colspan="1">
+        NIH/NCI [C]
+      </td>
+      <td colspan="1"></td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Haber, Margaret
+      </td>
+      <td colspan="1">
+        NIH/NCI
+      </td>
+      <td colspan="1">
+        x
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Campbell, John
+      </td>
+      <td colspan="1">
+        NIH/NCI
+      </td>
+      <td colspan="1">
+        x
+      </td>
+    </tr>
+  </tbody>
+</table>
+Goals We need to broaden the scope of and participation in this series, and at the same time sharpen the focus.
+<ol>
+  <li>
+    LexEVS and CTS2 are planned to continue as key components of NCI terminology services, but NCI also plans to extend beyond them, notably with RDF triple store SPARQL and REST components.  This raises important design and coordination issues.
+  </li>
+  <li>
+    REST services need substantial extensions, within and beyond CTS2.  NCI plans to offer REST APIs that can support the requirements of its own and others’ applications, and expects a significant component to be REST services from the RDF triple store.  An obvious test case is ability to support EVS browser functionality (even while these browsers will likely use the Java API for some time to come).
+  </li>
+  <li>
+    We face some immediate needs from other users, notably CTRP and GDC, so need to clarify design approaches and produce new services based on them in the relatively near term.
+  </li>
+</ol>
+Agenda
+<table>
+  <tbody>
+    <tr>
+      <td colspan="1">
+        Review and discuss (Kim&#39;s/Jason&#39;s) concerns
+        <ul>
+          <li>
+            Each of these are to support the browser (via java API)
+          </li>
+        </ul>
+      </td>
+      <td colspan="1">
+        <ol>
+          <li>
+            Handling of metadata
+            <ol>
+              <li>
+                Metadata to be stored as RDF
+              </li>
+            </ol>
+          </li>
+          <li>
+            Supported search algorithms (currently, only exactMatch, startsWith, and contains are available)
+            <ol>
+              <li>
+                CTS2 service - would like to have CTS2 support the full LexEVS Search Extension
+              </li>
+              <li>
+                Need to confirm that the Lucene algorithm is available.
+              </li>
+            </ol>
+          </li>
+          <li>
+            CTS2 Handling of namespace in read service. Could namespace be included as a parameter in a REST call?
+            <ol>
+              <li>
+                entity read service is able to include namespace.
+              </li>
+              <li>
+                Need to confirm the responses to determine both namespaces are supported for single concept code
+              </li>
+              <li>
+                Need to provide ability to return concept with different namespaces.
+              </li>
+            </ol>
+          </li>
+          <li>
+            Search against multiple coding schemes (count, ranking, iterator, pagination)
+            <ol>
+              <li>
+                Required for browser
+              </li>
+              <li>
+                Currently allows search against all, but not a designated set of coding schemes.
+              </li>
+            </ol>
+          </li>
+          <li>
+            Search against multiple mappings and value sets (count, ranking, iterator, pagination)
+            <ol>
+              <li>
+                Required for browser
+              </li>
+              <li>
+                Currently allows search against all, but not a designated set of coding schemes, mapping and value set API may require additional public methods
+              </li>
+            </ol>
+          </li>
+          <li>
+            Mapping search (count, ranking, iterator, pagination) - currently iterator and pagination are broken in remote LexEVSAPI)
+            <ol>
+              <li>
+                CTS2 will no longer be running against remote (only local)
+              </li>
+              <li>
+                Broken iterator no longer issue if running local.
+              </li>
+            </ol>
+          </li>
+          <li>
+            Support for property and relationship search?
+            <ol>
+              <li>
+                Need further notes on this.  Graph implementation should cover relationship search.  Properties are currently restricted to presentations, it may mean an extension to supply better coverage to generic property types.
+              </li>
+            </ol>
+          </li>
+          <li>
+            Constrained/restricted search (e.g., restrictToCode on CNS; search only on a particular branch of tree, for instance, Gene, Gene Product -- CTRP like use cases).
+            <ol>
+              <li>
+                Not readily available in CTS2 (as in LexEVS)
+              </li>
+              <li>
+                Some searching on properties (designations)
+              </li>
+            </ol>
+          </li>
+          <li>
+            Tree construction (expandable status, distance-2 child node count)
+            <ol>
+              <li>
+                Need to have ability to know if a node is expandable or not.
+              </li>
+              <li>
+                Can be provided by leaf from graph api
+              </li>
+            </ol>
+          </li>
+          <li>
+            Resolving of a graph (transitive closure).
+            <ol>
+              <li>
+                Graph API can provide this - but not implemented today.
+              </li>
+            </ol>
+          </li>
+          <li>
+            Current use of CRC (cyclic redundancy code) in the response, would like to understand better the use?
+            <ol>
+              <li>
+                This is provided in CTS2 response.
+              </li>
+              <li>
+                This an identifier applied to a definition (IE)
+                <ol>
+                  <li>
+                    A name for the definition.
+                  </li>
+                  <li>
+                    In this case, it can be anything to identify the version.
+                  </li>
+                  <li>
+                    The request is to resolve this identifier on the server rather than passing it back and forth between client and server. This would require an API change.
+                  </li>
+                </ol>
+              </li>
+            </ol>
+          </li>
+          <li>
+            Issues we face for Triplestore extension: Various OWL formats (e.g., in NCIt the unique idenfier is code, but in GO, it&#39;s oboInOWL:id)
+            <ol>
+              <li>
+                CTS2 allows for many identifiers
+              </li>
+              <li>
+                Gilberto to document and share the concerns for consideration
+              </li>
+              <li>
+                Similar parallels to URI resolver?
+              </li>
+            </ol>
+          </li>
+          <li>
+            Handling of NCIm and other non-OWL or RDF coding schemes.
+          </li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        CTRP and GDC Issues (Larry, others)
+      </td>
+      <td colspan="1">
+        <ul>
+          <li>
+            Nothing immediate to address
+          </li>
+          <li>
+            Ability to collect a &#34;structured neighborhood of concepts related to a user query&#34;
+            <ul>
+              <li>
+                For example, Investigator of a clinical trials protocol will search for a gene, protein, etc. but not specific - and then present a neighborhood in a structured way for the investigator to review.
+              </li>
+              <li>
+                Provide ability to efficiently traverse a set of relationships
+              </li>
+            </ul>
+          </li>
+          <li>
+            Both groups will looking at using REST APIs to get terminology content
+          </li>
+          <li>
+            Nothing additional today, but possible future requirements.
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Additional Considerations
+      </td>
+      <td colspan="1">
+        <ul>
+          <li>
+            Modeling of cancer concepts
+            <ul>
+              <li>
+                Need to identify the notes/requirements. Possibly notes from previous F2F.
+              </li>
+            </ul>
+          </li>
+          <li>
+            Partonomy
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Next Steps
+      </td>
+      <td colspan="1">
+        <ul>
+          <li>
+            Review notes from previous F2F.
+          </li>
+          <li>
+            Determine priority for browser support
+          </li>
+          <li>
+            determine requirements that fit into CTS2
+          </li>
+          <li>
+            Determine an architecture to support requirements that do not fit into CTS2
+          </li>
+          <li>
+            Determine integration of LexEVS, CTS2, Triple Store
+            <ul>
+              <li>
+                separate rest services?
+              </li>
+              <li>
+                discussion necessary
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>

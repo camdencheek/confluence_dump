@@ -1,0 +1,1337 @@
+Do NOTdelete this page. This page is referred to in installation guides linked from
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=115671213" rel="nofollow">
+  GForge NBIA files archive page
+</a>
+and
+<a href="https://ncisvn.nci.nih.gov/svn/files/trunk/nbia/ncia/" rel="nofollow">
+  https://ncisvn.nci.nih.gov/svn/files/trunk/nbia/ncia/
+</a>
+Information on this page is based on
+<a href="https://ncisvn.nci.nih.gov/WebSVN/filedetails.php?repname=nbia&amp;path=%2Ftags%2FNBIA-MASTER-5_0_2-20110321-1%2Fbuild%2Finstall.properties" rel="nofollow">
+  install.properties
+</a>
+<h2 id="NBIA5.0.2Properties-ApplicationSettings">
+  Application Settings
+</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Property Name
+      </th>
+      <th>
+        Description
+      </th>
+      <th>
+        example
+      </th>
+    </tr>
+    <tr>
+      <td>
+        application.base.path.linux
+      </td>
+      <td>
+        Location where user is installing software on Linux
+      </td>
+      <td>
+        ${user.home}/apps/nbia
+      </td>
+    </tr>
+    <tr>
+      <td>
+        application.base.path.window
+      </td>
+      <td>
+        Location where user is installing software on Window
+      </td>
+      <td>
+        c:/apps/nbia
+      </td>
+    </tr>
+    <tr>
+      <td>
+        authentication.type
+      </td>
+      <td>
+        CSM authentication type, the value should be &#34;db&#34; or &#34;ldap&#34;
+      </td>
+      <td>
+        db
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="NBIA5.0.2Properties-WebApplicationJBosscontainerProperties">
+  Web Application JBoss container Properties
+</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Property Name
+      </th>
+      <th>
+        Description
+      </th>
+      <th>
+        example
+      </th>
+    </tr>
+    <tr>
+      <td>
+        jboss.web.password
+      </td>
+      <td>
+        Set to a secure password to be used to secure the NBIA JBoss server’s administrative functions  (e.g, admin console, JMX console, command-line shutdown of JBoss server, etc.)
+      </td>
+      <td>
+        S0meth!ngSecurE
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="NBIA5.0.2Properties-NBIAApplicationProperties">
+  NBIA Application Properties
+</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Property Name
+      </th>
+      <th>
+        Description
+      </th>
+      <th>
+        Example
+      </th>
+    </tr>
+    <tr>
+      <td>
+        gov.nih.nci.ncia.imaging.server.url
+      </td>
+      <td>
+        Publicly visible URL for the JBoss container hosting NBIA.   This URL should contain the proxy name instead of the host name if there is a proxy.   If this property is not configured properly, then thumbnails images may not appear in the web application search results.
+      </td>
+      <td>
+        <a href="http://locahost:45210" rel="nofollow">
+          http://locahost:45210
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        gov.nih.nci.ncia.zip.location
+      </td>
+      <td>
+        Location to place zipped files created by the NBIA web application for download.
+      </td>
+      <td>
+        /data/ncia_data/ncia_ftp
+      </td>
+    </tr>
+    <tr>
+      <td>
+        gov.nih.nci.ncia.ftp.location
+      </td>
+      <td>
+        Location to place files for download through an external FTP server.
+      </td>
+      <td>
+        /data/ncia_data/ncia_ftp
+      </td>
+    </tr>
+    <tr>
+      <td>
+        gov.nih.nci.ncia.grid.local.node.name
+      </td>
+      <td>
+        If remote search is enabled, this is the name that will be used in the search form to search THIS node.   There is a separate property that governs the name of this node but as  viewed from other instances of NBIA.    It is likely that these two properties should agree, but it isn&#39;t mandatory.   See: grid.poc.tech.researchCenter.displayname
+      </td>
+      <td>
+        NCI-1
+      </td>
+    </tr>
+    <tr>
+      <td>
+        gov.nih.nci.ncia.ui.uid.display.length
+      </td>
+      <td>
+        Determines the max character length of data representation in the UI tier
+      </td>
+      <td>
+        100
+      </td>
+    </tr>
+    <tr>
+      <td>
+        gov.nih.nci.ncia.ftp.url
+      </td>
+      <td>
+        FTP server URL used for informing users about where to download the larger size files
+      </td>
+      <td>
+        localhost
+      </td>
+    </tr>
+    <tr>
+      <td>
+        gov.nih.nci.ncia.jboss.mq.url
+      </td>
+      <td>
+        The value of this property should ALWAYS be “localhost:&lt;port&gt;” where &lt;port&gt; have the exact same value as ${jboss.server.jndi.port}.  If this is not configured properly the zipping of DICOM image files for download will not work properly.
+      </td>
+      <td>
+        localhost:45200 (port is the JBoss JNDI port)
+      </td>
+    </tr>
+    <tr>
+      <td>
+        gov.nih.nci.ncia.installationSite
+      </td>
+      <td>
+        This property determines whether the installation is at ncicb or somewhere else (other).    This governs certain aspects of the UI such as where the link to reset a password will point to.
+      </td>
+      <td>
+        ncicb, other
+      </td>
+    </tr>
+    <tr>
+      <td>
+        gov.nih.nci.ncia.admin.email
+      </td>
+      <td>
+        The email address of the user administrator
+      </td>
+      <td>
+        admin@university.edu
+      </td>
+    </tr>
+    <tr>
+      <td>
+        enabled_guest_account
+      </td>
+      <td>
+        Whether or not public search will be enabled for this instance.
+      </td>
+      <td>
+        yes or no
+      </td>
+    </tr>
+    <tr>
+      <td>
+        guest_username
+      </td>
+      <td>
+        If enabled_guest_account=yes then this is the name of the CSM user that will blessed as the user for all public searches.    This user should likely only be provisioned to be associated with PUBLIC protection elements.
+      </td>
+      <td>
+        nbia_guest
+      </td>
+    </tr>
+    <tr>
+      <td>
+        gov.nih.nci.ncia.download.server.url
+      </td>
+      <td>
+        This is the URL that the Download Manager will use to retrieve DICOM images from.    This should typically be the same host and port of the JBoss server.    The webapp context and file path should always be the same unless deployment has been customized.
+      </td>
+      <td>
+        [http://localhost:45210/nbia-download/servlet/DownloadServlet  ]
+      </td>
+    </tr>
+    <tr>
+      <td>
+        enable_classic_download
+      </td>
+      <td>
+        If this is set to no, then only the WebStart based Download Manager will be available to all userse.    If this is set to yes, then the &#34;classic&#34; download feature will still be available that allows downloading zip   files of DICOM images through HTTP and/or HTTP
+      </td>
+      <td>
+        yes or no
+      </td>
+    </tr>
+    <tr>
+      <td>
+        local.grid.uri
+      </td>
+      <td>
+        For a given installation, this is the URL to the grid service FOR THAT INSTALLATION itself.     If this is not set properly, and remote search is enabled, then the local node will appear twice in the   list of searchable nodes.    Once for the &#34;local&#34; search, and additionally for its grid interface (if it is registered with the index service).
+      </td>
+      <td>
+        <a href="http://imaging.company.com:45210/wsrf/services/cagrid/NBIAService" rel="nofollow">
+          http://imaging.company.com:45210/wsrf/services/cagrid/NBIAService
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        show.collection.search.criteria
+      </td>
+      <td>
+        If set to false, the collection criteria selection control will not appear in the classic search UI.    This should only be set to false if a given instance of NBIA has, and only will ever have,   only one collection/project to search through.
+      </td>
+      <td>
+        true or false
+      </td>
+    </tr>
+    <tr>
+      <td>
+        discover.remote.nodes
+      </td>
+      <td>
+        If set to false, the NBIA web application will not attempt to discover other instances of NBIA to search   through the caGrid Index Service.   In other words, no remote nodes will appear at the top of the classic search page if this is set to false.
+      </td>
+      <td>
+        true or false
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="NBIA5.0.2Properties-DatabaseSettings">
+  Database Settings
+</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Property Name
+      </th>
+      <th>
+        Description
+      </th>
+      <th></th>
+    </tr>
+    <tr>
+      <td>
+        database.type
+      </td>
+      <td>
+        This value specifies whether a MySQL or an Oracle database is being used.
+      </td>
+      <td>
+        oracle, mysql
+      </td>
+    </tr>
+    <tr>
+      <td>
+        database.server
+      </td>
+      <td>
+        This value must correspond to the domain name of machine that hosts the Oracle/MySQL database server.   Talk to your database administrator to learn the server name and port.
+      </td>
+      <td>
+        remotehost.org
+      </td>
+    </tr>
+    <tr>
+      <td>
+        database.port
+      </td>
+      <td>
+        This value must correspond to the port for the database.server.   3306 is the default port, but check with your database administrator to be certain.
+      </td>
+      <td>
+        3306
+      </td>
+    </tr>
+    <tr>
+      <td>
+        database.name
+      </td>
+      <td>
+        Choose a name for the NCIA MySQL database. This must be different than the UPT database name
+      </td>
+      <td>
+        nciadb
+      </td>
+    </tr>
+    <tr>
+      <td>
+        database.user
+      </td>
+      <td>
+        Give the username to access database.name.
+      </td>
+      <td>
+        nciaop
+      </td>
+    </tr>
+    <tr>
+      <td>
+        database.password
+      </td>
+      <td>
+        Use a password to access database.name for the username identified in database.user
+      </td>
+      <td>
+        S0meth!ngSecurE
+      </td>
+    </tr>
+    <tr>
+      <td>
+        database.system.user
+      </td>
+      <td>
+        The username for an administrator of this database.     This value should correspond to a MySQL username that has full system privileges.   This must correspond to the administrator account defined when MySQL was configured.  For Oracle, this value will be ignored, but the value must be different than the value of database.user.   Depending on how the install is done, or the value of database.re-create this may not be necessary.   If re-create=true, then this is necessary, otherwise it isn&#39;t.
+      </td>
+      <td>
+        root
+      </td>
+    </tr>
+    <tr>
+      <td>
+        database.system.password
+      </td>
+      <td>
+        The password for an administrator of this database that correlates with the value in database.system.user.    For Oracle, this value will be ignored.   Depending on how the install is done, or the value of database.re-create this may not be necessary.   If re-create=true, then this is necessary, otherwise it isn&#39;t.
+      </td>
+      <td>
+        S0meth!ngSecurE
+      </td>
+    </tr>
+    <tr>
+      <td>
+        database.re-create  database.drop-schema
+      </td>
+      <td>
+        One of these properties must be set to true.    If re-create is true then the install:database target will wipe out the database instance completely and start from scratch.    If drop-schema is true, then all the schema and data will be wiped out but the database itself will not be removed.
+      </td>
+      <td>
+        true or false
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="NBIA5.0.2Properties-GlobalSettings">
+  Global Settings
+</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Property Name
+      </th>
+      <th>
+        Description
+      </th>
+      <th>
+        Example
+      </th>
+    </tr>
+    <tr>
+      <td>
+        mail.smtp.server
+      </td>
+      <td>
+        Location of mail server to send emails for application to forward emails to users, notify users of the location of the download files
+      </td>
+      <td>
+        mail.university.edu
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="NBIA5.0.2Properties-LDAPSettings">
+  LDAP Settings
+</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Property Name
+      </th>
+      <th>
+        Description
+      </th>
+      <th>
+        Example
+      </th>
+    </tr>
+    <tr>
+      <td>
+        ldap.url
+      </td>
+      <td>
+        URL for LDAP server
+      </td>
+      <td>
+        ldaps://university.edu:636
+      </td>
+    </tr>
+    <tr>
+      <td>
+        ldap.basedn
+      </td>
+      <td></td>
+      <td>
+        u=nci,o=nih
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="NBIA5.0.2Properties-GridServiceContactInformation">
+  Grid Service Contact Information
+</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Property Name
+      </th>
+      <th>
+        Description
+      </th>
+      <th>
+        Example
+      </th>
+    </tr>
+    <tr>
+      <td>
+        grid.poc.tech.researchCenter.displayname
+      </td>
+      <td>
+        Name of the Research Center   This name is used by remote search.    This name will be show in the list of searchable NBIA nodes on the search form.
+      </td>
+      <td>
+        Cancer Research Center
+      </td>
+    </tr>
+    <tr>
+      <td>
+        grid.poc.tech.researchCenter.shortname
+      </td>
+      <td>
+        Shortened Name of Research center
+      </td>
+      <td>
+        CRC
+      </td>
+    </tr>
+    <tr>
+      <td>
+        grid.poc.tech.addr.street1
+      </td>
+      <td>
+        Street Address
+      </td>
+      <td>
+        1234 Main Street
+      </td>
+    </tr>
+    <tr>
+      <td>
+        grid.poc.tech.addr.street2
+      </td>
+      <td>
+        Additional Street Address Information
+      </td>
+      <td>
+        Suite 2000
+      </td>
+    </tr>
+    <tr>
+      <td>
+        grid.poc.tech.addr.locality
+      </td>
+      <td>
+        TBD
+      </td>
+      <td>
+        Fairfax
+      </td>
+    </tr>
+    <tr>
+      <td>
+        grid.poc.tech.addr.stateProvince
+      </td>
+      <td>
+        State or Province
+      </td>
+      <td>
+        VA
+      </td>
+    </tr>
+    <tr>
+      <td>
+        grid.poc.tech.addr.postalCode
+      </td>
+      <td>
+        Zip/Postal Code
+      </td>
+      <td>
+        22033
+      </td>
+    </tr>
+    <tr>
+      <td>
+        grid.poc.tech.addr.country
+      </td>
+      <td>
+        Country where Research Center is located
+      </td>
+      <td>
+        USA
+      </td>
+    </tr>
+    <tr>
+      <td>
+        grid.poc.tech.affiliation
+      </td>
+      <td>
+        TBD
+      </td>
+      <td>
+        Mr.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        grid.poc.tech.name.last
+      </td>
+      <td>
+        Last Name of Technical POC
+      </td>
+      <td>
+        Henry
+      </td>
+    </tr>
+    <tr>
+      <td>
+        grid.poc.tech.name.first
+      </td>
+      <td>
+        First Name of Technical POC
+      </td>
+      <td>
+        Patrick
+      </td>
+    </tr>
+    <tr>
+      <td>
+        grid.poc.tech.phone
+      </td>
+      <td>
+        Phone Number of Technical POC
+      </td>
+      <td>
+        703-555-1212
+      </td>
+    </tr>
+    <tr>
+      <td>
+        grid.poc.tech.email
+      </td>
+      <td>
+        Email for Technical POC
+      </td>
+      <td>
+        user@email.com
+      </td>
+    </tr>
+    <tr>
+      <td>
+        grid.poc.tech.role
+      </td>
+      <td>
+        Role of Technical POC
+      </td>
+      <td>
+        Network Administrator
+      </td>
+    </tr>
+    <tr>
+      <td>
+        grid.poc.science.affiliation
+      </td>
+      <td>
+        TBD
+      </td>
+      <td>
+        Mr.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        grid.poc.science.name.last
+      </td>
+      <td>
+        Last Name of Science POC
+      </td>
+      <td>
+        Jefferson
+      </td>
+    </tr>
+    <tr>
+      <td>
+        grid.poc.science.name.first
+      </td>
+      <td>
+        First Name of Science POC
+      </td>
+      <td>
+        Thomas
+      </td>
+    </tr>
+    <tr>
+      <td>
+        grid.poc.science.phone
+      </td>
+      <td>
+        Phone Number of Science POC
+      </td>
+      <td>
+        703-555-1212
+      </td>
+    </tr>
+    <tr>
+      <td>
+        grid.poc.science.email
+      </td>
+      <td>
+        Email for Science POC
+      </td>
+      <td>
+        user@email.com
+      </td>
+    </tr>
+    <tr>
+      <td>
+        grid.poc.science.role
+      </td>
+      <td>
+        Role of Science POC
+      </td>
+      <td>
+        Biologist
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="NBIA5.0.2Properties-GridServer/ContainerSettings">
+  Grid Server/Container Settings
+</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Property
+      </th>
+      <th>
+        Description
+      </th>
+      <th>
+        Example
+      </th>
+    </tr>
+    <tr>
+      <td>
+        grid.index.url
+      </td>
+      <td>
+        This is the URL to the index service that the NBIA grid service will register itself with.   Additionally, the remote search feature will look for other instances of NBIA at this index service.   If NBIA being setup for experimental purpose, it is more appropriate to register with the  staging index service (cagrind-index-stage).
+      </td>
+      <td>
+        <a href="http://cagrid-index.nci.nih.gov:8080/wsrf/services/DefaultIndexService" rel="nofollow">
+          http://cagrid-index.nci.nih.gov:8080/wsrf/services/DefaultIndexService
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        grid.target
+      </td>
+      <td>
+        The target grid for the grid service.  This will affect which servers SyncGTS will run against.
+      </td>
+      <td>
+        nci_stage-1.3 or nci_prod-1.3
+      </td>
+    </tr>
+    <tr>
+      <td>
+        ncia-core-grid.jboss.*
+      </td>
+      <td>
+        All of these properties mirror jboss.* except that they apply to a different JBoss container.    This JBoss container houses the NBIA grid service.
+      </td>
+      <td>
+        server.edu
+      </td>
+    </tr>
+    <tr>
+      <td>
+        ncia-core-grid.tempZipLocation
+      </td>
+      <td>
+        This should be a directory with enough disk space such that the grid service can write sizeable zip files temporarily.
+      </td>
+      <td>
+        c:/temp
+      </td>
+    </tr>
+    <tr>
+      <td>
+        ncia-core-grid.jboss.external.http.host
+      </td>
+      <td>
+        If installing the grid service in a proxy configuration, then this is the hostname of the proxy.
+      </td>
+      <td>
+        imaging.nci.nih.gov
+      </td>
+    </tr>
+    <tr>
+      <td>
+        ncia-core-grid.jboss.external.http.port
+      </td>
+      <td>
+        If installing the grid service in a proxy configuration, then this is the port that the connection goes through on the proxy.    For example, if Apache is acting as a proxy, then a typical proxy port would be 80.
+      </td>
+      <td>
+        80
+      </td>
+    </tr>
+    <tr>
+      <td>
+        ncia-core-grid.jboss.thumbnailUrl
+      </td>
+      <td>
+        This is the URL to the servlet whereby the thumbnails for images available through remote search can be obtained.   The host and port of this URL must match the JBoss public URL for the web application (gov.nih.nci.ncia.jboss.public.url)   The context and servlet name should likely stay as ncia/publicThumbnails unless the deployment has been customized.
+      </td>
+      <td>
+        <a href="http://localhost:45210/ncia/publicThumbnails" rel="nofollow">
+          http://localhost:45210/ncia/publicThumbnails
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        ncia-core-grid.jboss.http-connector.remove
+      </td>
+      <td>
+        Whether or not to remove the HTTP connector in the server.xml for JBoss/Tomcat.
+      </td>
+      <td>
+        true/false
+      </td>
+    </tr>
+    <tr>
+      <td>
+        ncia-core-grid.jboss.grid.secure.port
+      </td>
+      <td>
+        The actual port the secure HTTPS connector will run on for the grid service.
+      </td>
+      <td>
+        21443
+      </td>
+    </tr>
+    <tr>
+      <td>
+        ncia-core-grid.jboss.grid.secure.cert.location
+      </td>
+      <td>
+        The absolute path to the host public certifcate.
+      </td>
+      <td>
+        ~username/.cagrid/certificates/HOSTNAME-cert.pem
+      </td>
+    </tr>
+    <tr>
+      <td>
+        ncia-core-grid.jboss.grid.secure.enable
+      </td>
+      <td>
+        Whether or not to secure the grid container.
+      </td>
+      <td>
+        true/false
+      </td>
+    </tr>
+    <tr>
+      <td>
+        ncia-core-grid.jboss.grid.secure.key.location
+      </td>
+      <td>
+        The absolute path to the host private key.
+      </td>
+      <td>
+        ~username/.cagrid/certificates/HOSTNAME-key.pem
+      </td>
+    </tr>
+    <tr>
+      <td>
+        ncia-core-grid.anonymous.permitted
+      </td>
+      <td>
+        Whether or not to allow anonymous access to secure methods of the service.    This will allow the public data filter to still be used.
+      </td>
+      <td>
+        true/false
+      </td>
+    </tr>
+    <tr>
+      <td>
+        ncia-core-grid.jboss.external.grid.secure.host
+      </td>
+      <td>
+        In a proxy situation, this allows setting the external host name for the service.
+      </td>
+      <td>
+        imaging.nci.nih.gov
+      </td>
+    </tr>
+    <tr>
+      <td>
+        ncia-core-grid.jboss.external.grid.secure.port
+      </td>
+      <td>
+        In a proxy situation, this allows setting the external portf or the service.
+      </td>
+      <td>
+        443
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="NBIA5.0.2Properties-CTPSettings">
+  CTP Settings
+</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Property Name
+      </th>
+      <th>
+        Description
+      </th>
+      <th>
+        Example
+      </th>
+    </tr>
+    <tr>
+      <td>
+        ctp.server.port
+      </td>
+      <td>
+        The port that the CTP administration console will run on.
+      </td>
+      <td>
+        23080
+      </td>
+    </tr>
+    <tr>
+      <td>
+        ctp.server.http_import_service.port
+      </td>
+      <td>
+        The port that CTP will accept submissions on.  This port should be configured as the port to export to in the CTP client configuration.
+      </td>
+      <td>
+        23104
+      </td>
+    </tr>
+    <tr>
+      <td>
+        ctp.server.storage_service.port
+      </td>
+      <td>
+        The port that CTP storage service administration console wil run on.
+      </td>
+      <td>
+        23204
+      </td>
+    </tr>
+    <tr>
+      <td>
+        ctp.server.admin.password
+      </td>
+      <td>
+        The password for the CTP server administrator.
+      </td>
+      <td>
+        S0meth!ngSecurE
+      </td>
+    </tr>
+    <tr>
+      <td>
+        ctp.server.king.password
+      </td>
+      <td>
+        The password for the CTP server super administrator who has privilege to shutdown the server
+      </td>
+      <td>
+        S0meth!ngSecurE
+      </td>
+    </tr>
+    <tr>
+      <td>
+        ctp.server.storage_service.root
+      </td>
+      <td>
+        The directory where the CTP will store submitted files.
+      </td>
+      <td>
+        storage/root
+      </td>
+    </tr>
+    <tr>
+      <td>
+        ctp.server.storage_service.index
+      </td>
+      <td>
+        The directory where the CTP will store the index for submitted files.  This directory must be the direct parent of ctp.storage_service.root.
+      </td>
+      <td>
+        storage
+      </td>
+    </tr>
+    <tr>
+      <td>
+        ctp.server.require_authentication
+      </td>
+      <td>
+        Whether or not the authentication is required for data submission (HttpImportService)
+      </td>
+      <td>
+        yes or no
+      </td>
+    </tr>
+    <tr>
+      <td>
+        ctp.client.port
+      </td>
+      <td>
+        The port that the CTP administration console will run on (for the client).
+      </td>
+      <td>
+        password
+      </td>
+    </tr>
+    <tr>
+      <td>
+        ctp.client.http_import_service.port
+      </td>
+      <td>
+        The port that CTP will accept submissions on.  This port should be configured as the port to send to in the FileSender.
+      </td>
+      <td>
+        24104
+      </td>
+    </tr>
+    <tr>
+      <td>
+        ctp.client.dicom_import_service.port
+      </td>
+      <td>
+        The port that CTP will accept submissions on.  This port should be configured as the port to send to in the FileSender.
+      </td>
+      <td>
+        24304
+      </td>
+    </tr>
+    <tr>
+      <td>
+        ctp.client.export_service.port
+      </td>
+      <td>
+        The port that CTP will export submissions to (to the server).  This should match up with the import service port on the server side.
+      </td>
+      <td>
+        23080
+      </td>
+    </tr>
+    <tr>
+      <td>
+        ctp.client.admin.password
+      </td>
+      <td>
+        The password for the CTP client administrator.
+      </td>
+      <td>
+        S0meth!ngSecurE
+      </td>
+    </tr>
+    <tr>
+      <td>
+        ctp.server.admin.password
+      </td>
+      <td>
+        The password for the CTP client super administrator who has privilege to shutdown the server
+      </td>
+      <td>
+        S0meth!ngSecurE
+      </td>
+    </tr>
+    <tr>
+      <td>
+        ctp.server.verifier.port
+      </td>
+      <td>
+        The port that CTP will listen for verification requests on.    Verification requests are queries to the (NBIA) database adapter to confirm that a given image was submitted successfully.
+      </td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="NBIA5.0.2Properties-BrandingSettings">
+  Branding Settings
+</h2>
+ Note: for an explanation on constructing the XHTML that is referenced by these properties, see
+<a href="https://wiki.nci.nih.gov/x/SoZXAg" rel="nofollow">
+  https://wiki.nci.nih.gov/x/SoZXAg
+</a>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Property Name
+      </th>
+      <th>
+        Description
+      </th>
+      <th>
+        Example
+      </th>
+    </tr>
+    <tr>
+      <td>
+        cancer.center.logo
+      </td>
+      <td>
+        The file path and name for branding logo. (Suggest logo size: 300x20)
+      </td>
+      <td>
+        c:/temp/logo.jpg
+      </td>
+    </tr>
+    <tr>
+      <td>
+        cancer.center.background
+      </td>
+      <td>
+        The file path and name for branding logo background.
+      </td>
+      <td>
+        c:/temp/logo_background.jpg
+      </td>
+    </tr>
+    <tr>
+      <td>
+        branding.welcome.title.path
+      </td>
+      <td>
+        The file path and name for XHTML file to use for welcome title in center  of welcome and home pages.   If not set or if the value is blank, the default welcome title will be used.
+      </td>
+      <td>
+        c:/temp/welcome_title.xhtml
+      </td>
+    </tr>
+    <tr>
+      <td>
+        branding.welcome.text.path
+      </td>
+      <td>
+        The file path and name for XHTML file to use for welcome text in centerof welcome page.   If not set or if the value is blank, the default welcome text will be used.
+      </td>
+      <td>
+        c:/temp/welcome_text.xhtml
+      </td>
+    </tr>
+    <tr>
+      <td>
+        branding.welcome.image.path
+      </td>
+      <td>
+        The file path and name for an image file to be used as the banner image  on the welcome page.  This image can be a JPG, GIF or PNG and  should be roughly 600x140.   If not set or if the value is blank, the default welcome banner will be used.
+      </td>
+      <td>
+        c:/temp/some_image.png
+      </td>
+    </tr>
+    <tr>
+      <td>
+        branding.left.submenu.quicklinks.path
+      </td>
+      <td>
+        The file path and name for XHTML file to use for Quick Links in the left   submenu.    If not set or if the value is blank, the default Quick Links will be used.
+      </td>
+      <td>
+        c:/temp/quick_links.xhtml
+      </td>
+    </tr>
+    <tr>
+      <td>
+        branding.applogo.visible
+      </td>
+      <td>
+        This controls whether the an application logo will be displayed on every page under  institution logo.   If not set, the default NBIA app logo will be used.
+      </td>
+      <td>
+        yes or no
+      </td>
+    </tr>
+    <tr>
+      <td>
+        branding.applogo.path
+      </td>
+      <td>
+        If branding.applogo.visible=yes, this property becomes relevant.   This is the file path and name for an image file to be used as the application logo image at the top of all pages.   This image can be a JPG, GIF or PNG and should be roughly 500x20.   If not set or if the value is blank, the default NBIA app logo will be used.
+      </td>
+      <td>
+        c:/temp/some_image.png
+      </td>
+    </tr>
+    <tr>
+      <td>
+        branding.footer.path
+      </td>
+      <td>
+        The file path and name for XHTML file to use for the footer on every page.    If not set or if the value is blank, the default footer will be used.
+      </td>
+      <td>
+        c:/temp/footer.xhtml
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="NBIA5.0.2Properties-DownloadManagerDigitalSignatureSettings">
+  Download Manager Digital Signature Settings
+</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Property Name
+      </th>
+      <th>
+        Description
+      </th>
+      <th>
+        Example
+      </th>
+    </tr>
+    <tr>
+      <td>
+        jar-signing.keystore.location
+      </td>
+      <td>
+        The location of the keystore to find a key to sign the download manager jars with.    If (file://\\If) generate-selfsigned is set to true, then this location will be where the installation process CREATES the keystore.    Otherwise (file://\\Otherwise), the keystore should already exist at this location.
+      </td>
+      <td>
+        c:/keystores/nbia_keystore
+      </td>
+    </tr>
+    <tr>
+      <td>
+        jar-signing.keystore.password
+      </td>
+      <td>
+        The password for the keystore pointed to by keystore.location.   If (file://\\If) generate-selfsigned is set to true, then this password will be set when the installation process CREATES the keystore.  \ (file://\\Otherwise)  Otherwise, the password should apply to the existing keystore.
+      </td>
+      <td>
+        something_secure
+      </td>
+    </tr>
+    <tr>
+      <td>
+        jar-signing.keystore.alias
+      </td>
+      <td>
+        The alias for the key to use when signing the download manager jars.   If (file://\\If) generate-selfsigned is set to true, then this alias will be set when the installation process CREATES the key and keystore.    Otherwise (file://\\Otherwise), the alias should exist in the existing keystore.
+      </td>
+      <td>
+        alias1
+      </td>
+    </tr>
+    <tr>
+      <td>
+        jar-signing.execution.time
+      </td>
+      <td>
+        Whether to sign the jars at build time or install time.  If not at NCICB, this value should always be install.
+      </td>
+      <td>
+        build or install
+      </td>
+    </tr>
+    <tr>
+      <td>
+        jar-signing.generate-selfsigned
+      </td>
+      <td>
+        If set to true, the install process will generate a self-signed certificate to sign the jars with.    If (file://\\If) false, there must be an existing certificate to use when signing.
+      </td>
+      <td>
+        true or false
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="NBIA5.0.2Properties-CedaraSettings">
+  Cedara Settings
+</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Property Name
+      </th>
+      <th>
+        Description
+      </th>
+      <th>
+        Example
+      </th>
+    </tr>
+    <tr>
+      <td>
+        gov.nih.nci.ncia.jboss.public.url
+      </td>
+      <td>
+        The URL for the NBIA web application.  This URL should contain the proxy name instead of the host name if there is a proxy. (Only relevant to Cedara). \\\\Note: this must end in a forward slash.
+      </td>
+      <td>
+        <a href="http://localhost:45210/ncia" rel="nofollow">
+          http://localhost:45210/ncia
+        </a>
+        /
+      </td>
+    </tr>
+    <tr>
+      <td>
+        gov.nih.nci.ncia.mapped.image.path.head
+      </td>
+      <td>
+        Mapped image file path in IGS machine. (Only relevant to Cedara).
+      </td>
+      <td>
+        \\\\fs592  nciaimages
+      </td>
+    </tr>
+    <tr>
+      <td>
+        gov.nih.nci.ncia.image.path.pattern
+      </td>
+      <td>
+        Pattern of the image file path.  (Only relevant to Cedara).
+      </td>
+      <td>
+        NCICBIMAGE/documents/
+      </td>
+    </tr>
+    <tr>
+      <td>
+        gov.nih.nci.ncia.frontier.http.address
+      </td>
+      <td>
+        Cedara ISG server address (Only relevant to Cedara)
+      </td>
+      <td>
+        localhost
+      </td>
+    </tr>
+  </tbody>
+</table>

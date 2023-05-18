@@ -1,0 +1,43 @@
+<h1 id="caArray032RecoveringamistakenlydeletedexperimentfromacaArraydatabasebackup-Question:CanIrecoveramistakenlydeletedexperimentfromacaArraydatabasebackup?">
+  Question: Can I recover a mistakenly deleted experiment from a caArray database backup?
+</h1>
+Topic: caArray Usage
+
+Release: Up to caArray 2.x
+
+Date entered: September 23, 2009
+<h2 id="caArray032RecoveringamistakenlydeletedexperimentfromacaArraydatabasebackup-DetailsabouttheQuestion">
+  Details about the Question
+</h2>
+A user deleted an experiment that was in &#34;draft&#34; or &#34;in progress&#34; status. His database administrator has the backup for the entire MySQL database. Is it possible to recover only that experiment instead of the whole MySQL database (recently entered data will be lost if a full roll-back is performed)?
+<h2 id="caArray032RecoveringamistakenlydeletedexperimentfromacaArraydatabasebackup-Answer">
+  Answer
+</h2>
+Since information and data on an experiment are physically stored in many tables in caArray&#39;s MySQL database, currently there is no back end script available to recover a particular experiment. Instead, the database administrator would need to first restore the entire database backup and then take advantage of the caArray web interface to recover an experiment.
+
+To selectively retrieve an experiment from the backed up database, please follow steps below:
+<ol>
+  <li>
+    Restore the backed-up MySQL database to another database instance or rename the restored database schema to a different name so that the original database can co-exist with the restored database.
+  </li>
+  <li>
+    Install a new caArray instance on another server or VM instance and point this caArray instance to the retored database.
+  </li>
+  <li>
+    Add the new caArray application to UPT and assign necessary user privileges to get this new caArray up and running.
+  </li>
+  <li>
+    Export the experiment that you wanted to recover from the new caArray instance.
+  </li>
+  <li>
+    Upload the experiment into the current caArray application.
+  </li>
+</ol>
+<h2 id="caArray032RecoveringamistakenlydeletedexperimentfromacaArraydatabasebackup-Haveacomment?">
+  Have a comment?
+</h2>
+Please leave your comment in the
+<a href="https://cabig-kc.nci.nih.gov/Molecular/forums/viewtopic.php?f=6&amp;t=577" rel="nofollow">
+  caArray End User Forum
+</a>
+. 

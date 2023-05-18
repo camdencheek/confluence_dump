@@ -1,0 +1,73 @@
+<h2 id="HackAThon2011NCIBlueLexEVSRESTAPI-Health2.0Hack-a-Thon">
+  Health 2.0 Hack-a-Thon
+</h2>
+Sponsored by HHS and NIH, the Health 2.0 Hack-a-Thon challenged developers to create interesting demos of what can be done with the diverse government health related data-sets. Developers were only given eight hours for the challenge. Larry Brem had an idea to combine the Veteran&#39;s Administration&#39;s Blue Button initiative with the LexEVS REST API to annotate text files with the medication descriptions from the NCI terminologies.If you would like to know more about what this demonstrates and how to do it, please use our forums link and refer to LexEVS Developer or the contact us link to ask questions. A
+<a href="http://cabigtrainingdocs.nci.nih.gov/NCIBlue/NCIBlue.html" rel="nofollow">
+  video
+</a>
+has been released by Larry Brem demonstrating how this function works.
+<h2 id="HackAThon2011NCIBlueLexEVSRESTAPI-Script">
+  Script
+</h2>
+The final script uses
+<a href="http://en.wikipedia.org/wiki/Greasemonkey" rel="nofollow">
+  Greasemonkey
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+to modify the
+<a href="http://www.va.gov/BLUEBUTTON/docs/VA_My_HealtheVet_Blue_Button_Sample_Version_11_2_All_Data.txt" rel="nofollow">
+  sample text file
+</a>
+after it has been loaded by the browser. Annotations were added to the listed medications. The original Blue Button text contains data from a sample My HealtheVet Personal Health Record and is just plain text with no metadata.
+<img alt="screenshot of data with no annotations" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/Hack-A-Thon%202011%20NCI%20Blue%20-%20LexEVS%20REST%20API/VA_no_annotations.png?api=v2">
+After the script parses and adds the medication annotations a more detailed description of the medication can be seen by hovering over it.
+<img alt="screenshot of data with annotations" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/Hack-A-Thon%202011%20NCI%20Blue%20-%20LexEVS%20REST%20API/VA_annotations.png?api=v2">
+<h2 id="HackAThon2011NCIBlueLexEVSRESTAPI-Implementation">
+  Implementation
+</h2>
+The Greasemonkey script uses a simple regular expression to find each line containing medication. The extracted line is then parsed and the resulting medication name is passed to the LexEVS REST service by using the following URL (where medicineName is replaced with the parsed medication name):
+http://lexevsapi.nci.nih.gov/lexevsapi50/GetXML?query=org.LexGrid.concepts.Concept,org.LexGrid.commonTypes.EntityDescription&amp;org.LexGrid.commonTypes.EntityDescription[@_content=*&#34;+medicineName+&#34;*]&amp;codingSchemeName=NCI_Thesaurus
+The LexEVS REST service returns an XML document containing all the information for the desired entity. XPath was used to parse the returned XML document for the desired medication description.
+<h2 id="HackAThon2011NCIBlueLexEVSRESTAPI-ObtainingtheScript">
+  Obtaining the Script
+</h2>
+The script requires the
+<a href="http://en.wikipedia.org/wiki/Greasemonkey" rel="nofollow">
+  Greasemonkey
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+extension to be installed in your
+<a href="http://en.wikipedia.org/wiki/Firefox" rel="nofollow">
+  Firefox
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+browser. Then just click on the
+<a href="https://wiki.nci.nih.gov/download/attachments/42831226/nci-blue.user.js" rel="nofollow">
+  nci-blue.user.js file
+</a>
+on the
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=42831226" rel="nofollow">
+  Scripts
+</a>
+page (login required) and Greasemonkey will prompt you to install the user script. Go to the
+<a href="http://www.va.gov/BLUEBUTTON/docs/VA_My_HealtheVet_Blue_Button_Sample_Version_11_2_All_Data.txt" rel="nofollow">
+  sample Blue Button page
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+to see the result.A full plugin to Firefox was also created and can be found on
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=42831226" rel="nofollow">
+  Scripts
+</a>
+wiki page (login required). Greasemonkey is not required for the full plugin. Just click on the
+<a href="https://wiki.nci.nih.gov/download/attachments/42831226/nciblue.xpi" rel="nofollow">
+  nciblue.xpi
+</a>
+file and Firefox will prompt you to install the extension.

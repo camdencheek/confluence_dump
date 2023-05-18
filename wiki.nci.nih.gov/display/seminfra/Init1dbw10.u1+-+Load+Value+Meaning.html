@@ -1,0 +1,466 @@
+Contents of this Page
+<ul>
+  <li>
+    <a href="#Init1dbw10.u1LoadValueMeaning-Init1dbw10.u1.0-LoadValueMeaning" rel="nofollow">
+      Init1dbw10.u1.0 - Load Value Meaning
+    </a>
+  </li>
+  <li>
+    <a href="#Init1dbw10.u1LoadValueMeaning-Init1dbw10.u1.1-CreateNewValueMeaning" rel="nofollow">
+      Init1dbw10.u1.1 - Create New Value Meaning
+    </a>
+  </li>
+  <li>
+    <a href="#Init1dbw10.u1LoadValueMeaning-Init1dbw10.u1.2-CreateValueMeaningwithoutConceptcode" rel="nofollow">
+      Init1dbw10.u1.2 - Create Value Meaning without Concept code
+    </a>
+  </li>
+  <li>
+    <a href="#Init1dbw10.u1LoadValueMeaning-Init1dbw10.u1.3-MorethanoneVMisfoundbasedonthematchingconceptcode" rel="nofollow">
+      Init1dbw10.u1.3 - More than one VM is found based on the matching concept code
+    </a>
+  </li>
+  <li>
+    <a href="#Init1dbw10.u1LoadValueMeaning-Init1dbw10.u1.6-MorethanoneVMwithoutaconceptcodeisfoundwithmatchinglongname" rel="nofollow">
+      Init1dbw10.u1.6 - More than one VM without a concept code is found with matching long name
+    </a>
+  </li>
+</ul>
+<h2 id="Init1dbw10.u1LoadValueMeaning-Init1dbw10.u1.0-LoadValueMeaning">
+  Init1dbw10.u1.0 - Load Value Meaning
+</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Use Case Number  The author-assigned number to refer to each specific use case. The format of this number is &lt;SemCon Ops Initiative&gt;&lt;analyst&#39;s initiatls&gt;&lt;requirement number&gt;.&lt; &lt;use case number&gt;, for example Init1dbw1.1, Init1dbw1.2, Init2dbw2.1, 2.2, etc.
+      </th>
+      <td>
+        Init1dbw10.u1.0- Load value Meaning
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Brief Description
+      </th>
+      <td>
+        a model is being loaded into caDSR containing enumerations for an attribute in the model.  The Uml loader needs to create a new value domain in caDSR, or reuse a Value Domain, with the correct Permissible Value Set associated with it.   The concepts associated with a UML Attribute are referred to as the &#34;mapped concepts&#34;, the concepts associated with caDSR items are called &#34;concept derivation rule&#34;
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Actor(s) for this particular use case
+      </th>
+      <td>
+        UML Loader
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Pre-condition  The state of the system before the user interacts with it
+      </th>
+      <td>
+        UML Model serialized in XMI containing a Class stereotyped as Local Value Domain, with enumerations - the UML Attribute is mapped to EVS concepts (mapped concepts).  The Concepts exist in caDSR .
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Post condition  The state of the system after the user interacts with it
+      </th>
+      <td>
+        a new value domain and an enumeration is created or an existing value domain is reused
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Steps to take  The step-by-step description of how users will interact with the system to achieve a specific business goal or function
+      </th>
+      <td>
+        1. Using the UML attribute Primary mapped concept  search caDSR for matching Concept = PreferredName  2. Using Matching Concept, get Concept.ComponentConceptCollection   3. for the conceptCollection with Primary Flag = &#34;Yes&#34; get its Derivation Rule.  This indicates that the concept in the collection is the one where the matching concept is the &#34;primary&#34; concept for its associated components   4. for the Derivation Rule, get its ValueMeaningCollection   5. for each valueMeaning get the conceptDerivationrule and check to see if the mapped concepts match the concept derivation rule for the valueMeaning (checking qualifiers and their order). this is accomplished by getting the ConceptDerivationRule.componentConceptCollection and checking &#34;display Order&#34; against the order of the UML attribute mapped concepts.   6. if the concept derivation rule and mapped concepts match, then the UML Attribute and the ValueMeaning are semantically equivalent.    7. Get the ValueMeaning--&gt;PermissibleValueCollection  8. Get the PermissibleValue--&gt;ValueDomainPermissibleValueCollection.  9. Get the ValueDomainPermissibleValue --&gt; EnumeratedValueDomain  10. Get the enumeratedValueDomain --&gt; ValueDomainPermissibleValueCollection  you will now have the set of PermissibleValues that are associated with this particular ValueDomain containing the Matching ValueMeaning.  11. For each instance of the EnumeratedValueDomain. ValueDomainPermissibleValue get the PermissibleValue and compare the PermissibleValue.value with the UML Attribute name  9. If the UML Attribute Name matches the PermissibleValue.Value, then loader can potentially reuse the existing value meaning in caDSR as the semantic basis for the UML attribute in the model.    8. the loader continues this process for each UML Attribute in the Local Value Domain class using the EnumeratedValueDomain.  Only if the entire et of UML Attributes&#39; mapped concepts match the PermissibleValue Set, and to those PermissibleValue.Value names, then can the associated Enumerated VD we reused.   9. if the set does not match the first EnumeratedValueDomain, Repeat this process for all EnumeratedValueDomains found to be associated with this ValueManing.  10. Otherwise, Loader should reuse the individual ValueMeanings that matched, and create a New VD based on the full set in the Local Value Domain Class.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Alternate Flow  Things which would prevent the normal flow of the use case
+      </th>
+      <td>
+        - No matching Value Meaning based on the concept code is found - Create New Value Meaning - See Init1dbw10.u1.1   - No concept is associated with the Value Meaning (uml attribute) in the model.  Create Value Meaning without Concept code. See use case Init1dbw10.u1.2 for details.   - Matching VM is found based on the concept code, but the name of the VM is not the same as the name of the PV in the model.  Reuse the VM.  The concept name and the PV name do not have to match.  - More than one concept is associated with the UML Attribute. See Init1DW10.u10  - More than one VM is found based on the concept code. See Init1dbw10.u1.3
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Priority  The priority of implementing the use case: High, Medium or Low
+      </th>
+      <td>
+        High
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Associated Links  The brief user stories, each describing the user interacts with the system for the one function only of the use case. There would potentially be a number of user stories that make up the use case.
+      </th>
+      <td>
+        Related
+        <a href="https://tracker.nci.nih.gov/browse/SIW-324" rel="nofollow">
+          GForge Tracker in Semantic Integration Tools Project (migrated)
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Fit criterion/Acceptance Criterion   How would actor describe the acceptable usage scenarios for the software or service that meets the actor&#39;s requirement?
+      </th>
+      <td>
+        1. There are 2 concepts in EVS and caDSR, both have concept name &#34;Short&#34;.  C25249:Short  C73939:Short  User has a model 1 with one LVD, one of the PV has name &#34;Short&#34;, mapped to C25249:Short.  UML Loader should create new Local Value domian (LVD)  If no Value Meaning exists mapped to C25249, a new VM is created. The new VM long name is the EVS preferred Name, its definition is the EVS preferred definition.  The VM is associated with the PV &#34;Short&#34; in the new Value Domain.    2. Create model 2 with one LVD, one of the PV has name &#34;Short&#34;, mapped to C73939:Short.  UML loader should create a new LVD if not LVD exists with one PV mapped Value = &#34;Short&#34; mapped to concept C73939.  If no Value Meaning exists mapped to C73939, new VM should be created and used in the new local value domain.  The VM name = EVS preferred name, concept =C73939, definition = EVS preferred Definition.
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="Init1dbw10.u1LoadValueMeaning-Init1dbw10.u1.1-CreateNewValueMeaning">
+  Init1dbw10.u1.1 - Create New Value Meaning
+</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Use Case Number  The author-assigned number to refer to each specific use case. The format of this number is &lt;SemCon Ops Initiative&gt;&lt;analyst&#39;s initiatls&gt;&lt;requirement number&gt;.&lt; &lt;use case number&gt;, for example Init1dbw1.1, Init1dbw1.2, Init2dbw2.1, 2.2, etc.
+      </th>
+      <td>
+        Init1dbw10.u1.1
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Brief Description
+      </th>
+      <td>
+        No existing matching Value Meaning based on UML Attribute Mapped Concepts is found in caDSR.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Actor(s) for this particular use case
+      </th>
+      <td>
+        UML Loader
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Pre-condition  The state of the system before the user interacts with it
+      </th>
+      <td>
+        Model is being loaded into caDSR with an enumerated value domain. No matching Value Meaning is found to exist for the mapped concepts associated with a permissible value
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Post condition  The state of the system after the user interacts with it
+      </th>
+      <td>
+        New Value Meaning is created based on the concept code and associated with the PV for the new value domain.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Steps to take  The step-by-step description of how users will interact with the system to achieve a specific business goal or function
+      </th>
+      <td>
+        1. UML Loader searches for a concept matching the mapped concept code  2. UML Loader finds a concept code in caDSR that matches  3. UML Loader looks for a Value Meaning object associated with the Concept code but does not find one  4. UML Loader creates a new Value Meaning object in caDSR based on the concept code   Value Meaning long name = EVS preferred name  Value Meanign preferred name = Value Meaning public id and versioon  Value meaning preferred definition = EVS preferrred definition  5. UML Loader associated the value meaning with the permissible value in the newly created Value domain
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Alternate Flow  Things which would prevent the normal flow of the use case
+      </th>
+      <td>
+        u1.1.1 - no concept code is found in caDSR
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Priority  The priority of implementing the use case: High, Medium or Low
+      </th>
+      <td>
+        High
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Associated Links  The brief user stories, each describing the user interacts with the system for the one function only of the use case. There would potentially be a number of user stories that make up the use case.
+      </th>
+      <td>
+        ---
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Fit criterion/Acceptance Criterion   How would actor describe the acceptable usage scenarios for the software or service that meets the actor&#39;s requirement?
+      </th>
+      <td>
+        1. a new value meaning is created in caDSR based on the EVS concept and used in the local value domain
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="Init1dbw10.u1LoadValueMeaning-Init1dbw10.u1.2-CreateValueMeaningwithoutConceptcode">
+  Init1dbw10.u1.2 - Create Value Meaning without Concept code
+</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Use Case Number  The author-assigned number to refer to each specific use case. The format of this number is &lt;SemCon Ops Initiative&gt;&lt;analyst&#39;s initiatls&gt;&lt;requirement number&gt;.&lt; &lt;use case number&gt;, for example Init1dbw1.1, Init1dbw1.2, Init2dbw2.1, 2.2, etc.
+      </th>
+      <td>
+        Init1dbw10.u1.2
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Brief Description
+      </th>
+      <td>
+        Create a Value Meaning that is not associated with a Concept code
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Actor(s) for this particular use case
+      </th>
+      <td>
+        UML Loader
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Pre-condition  The state of the system before the user interacts with it
+      </th>
+      <td>
+        No concept is associated with the attribute
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Post condition  The state of the system after the user interacts with it
+      </th>
+      <td>
+        Value Meaning without a concept is associated to the attribute
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Steps to take  The step-by-step description of how users will interact with the system to achieve a specific business goal or function
+      </th>
+      <td>
+        1. Loader detects that there is no concept associated with the attribute  2. Loader searches and finds no Value Meanings with a long name that matches the attribute name  3.  Loader creates a new VM based on the attribute name.  Value Meaning Long Name = attribute name, Permissible Value = attribute name, Value Meaning preferred definition = &#39;CaDSR_Description&#39; tagged value on the XMI file
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Alternate Flow  Things which would prevent the normal flow of the use case
+      </th>
+      <td>
+        One VM with a matching long name is found. Create VM based on exisitng VM.  u1.6 More than one VM with a matching long name is found.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Priority  The priority of implementing the use case: High, Medium or Low
+      </th>
+      <td>
+        High
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Associated Links  The brief user stories, each describing the user interacts with the system for the one function only of the use case. There would potentially be a number of user stories that make up the use case.
+      </th>
+      <td>
+        —
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Fit criterion/Acceptance Criterion   How would actor describe the acceptable usage scenarios for the software or service that meets the actor&#39;s requirement?
+      </th>
+      <td>
+        1. A value meaning is created or resused that is = to the attribute name, the attribute is used to create a permissible value set where the value and value and value meaning are equal
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="Init1dbw10.u1LoadValueMeaning-Init1dbw10.u1.3-MorethanoneVMisfoundbasedonthematchingconceptcode">
+  Init1dbw10.u1.3 - More than one VM is found based on the matching concept code
+</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Use Case Number  The author-assigned number to refer to each specific use case.
+      </th>
+      <td>
+        Init1dbw10.u1.3
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Brief Description
+      </th>
+      <td>
+        Due to duplicate VMs in caDSR at current time, it is possible that more than one matching Value Meaning object is found in caDSR based on the concept code(s) associated with the attribute. The VM duplication will be cleaned up/merged in with a caDSR cleanup script and the items associated with each VM will be merged.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Actor(s) for this particular use case
+      </th>
+      <td>
+        UML Loader
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Pre-condition  The state of the system before the user interacts with it
+      </th>
+      <td>
+        Model is being loaded into caDSR with an enumerated value domain. More than one matching Value Meaning is found to exist for the concept associated with a permissible value.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Post condition  The state of the system after the user interacts with it
+      </th>
+      <td>
+        Value Meaning is reused with the PV for the new value domain.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Steps to take  The step-by-step description of how users will interact with the system to achieve a specific business goal or function
+      </th>
+      <td>
+        1. UML Loader searches for a concept matching the mapped concept code  2. UML Loader finds a concept code in caDSR that matches  3. UML Loader looks for a Value Meaning object associated with the Concept code and finds more than one  4. UML loader reuses the first Value Meaning object in caDSR it finds.  5. UML loader associates the value meaning with the permissible value in the newly created Value domain  6. UML Loader prints a message in the log that more than one VM was found that matched, the public Id and version of the reused VM is printed in the log with a message that it was used.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Alternate Flow  Things which would prevent the normal flow of the use case
+      </th>
+      <td>
+        ---
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Priority  The priority of implementing the use case: High, Medium or Low
+      </th>
+      <td>
+        High
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Associated Links  The brief user stories, each describing the user interacts with the system for the one function only of the use case. There would potentially be a number of user stories that make up the use case.
+      </th>
+      <td>
+        ---
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Fit criterion/Acceptance Criterion   How would actor describe the acceptable usage scenarios for the software or service that meets the actor&#39;s requirement?
+      </th>
+      <td>
+        1. a new value meaning is created in caDSR based on the EVS concept and used in the local value domain
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="Init1dbw10.u1LoadValueMeaning-Init1dbw10.u1.6-MorethanoneVMwithoutaconceptcodeisfoundwithmatchinglongname">
+  Init1dbw10.u1.6 - More than one VM without a concept code is found with matching long name
+</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Use Case Number  The author-assigned number to refer to each specific use case.
+      </th>
+      <td>
+        Init1dbw10.u1.6
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Brief Description
+      </th>
+      <td>
+        Create a Value Meaning from an existing VM that is not associated with a concept code - more than one matching VM is found based on the VM long name
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Actor(s) for this particular use case
+      </th>
+      <td>
+        UML Loader
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Pre-condition  The state of the system before the user interacts with it
+      </th>
+      <td>
+        No concept is associated with the attribute, more than one VM is found in caDSR where the long name and the attribute name match - and no concept is associated with the concept.  The test for a match is case insensitive.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Post condition  The state of the system after the user interacts with it
+      </th>
+      <td>
+        Value Meaning without a concept is associated to the first matching VM where the attribute name and VM long name match, the public id of the matching VM is listed in teh log report with a message that more than one matching VM existed.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Steps to take  The step-by-step description of how users will interact with the system to achieve a specific business goal or function
+      </th>
+      <td>
+        1. Loader detects that there is more than one VM where long name matches attribute name (case insensitive)  2. No concept code is associated with the VM  3. Loader associates the VM with attribute to create a PV  4. Message is printed in the log that more than one matching VM was found, the public id and version of the VM that was reused listed
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Alternate Flow  Things which would prevent the normal flow of the use case
+      </th>
+      <td>
+        ---
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Priority  The priority of implementing the use case: High, Medium or Low
+      </th>
+      <td>
+        High
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Associated Links  The brief user stories, each describing the user interacts with the system for the one function only of the use case. There would potentially be a number of user stories that make up the use case.
+      </th>
+      <td>
+        —
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Fit criterion/Acceptance Criterion   How would actor describe the acceptable usage scenarios for the software or service that meets the actor&#39;s requirement?
+      </th>
+      <td>
+        1. A value meaning is resused that is = to the attribute name, the attribute is used to create a permissible value set where the permissible value and value and value meaning are equal to the attribute name
+      </td>
+    </tr>
+  </tbody>
+</table>

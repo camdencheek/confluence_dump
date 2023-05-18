@@ -1,0 +1,314 @@
+Contents of this Page
+<ul>
+  <li>
+    <a href="#NBIA6.0releaseannouncement-SimpleSearch" rel="nofollow">
+      Simple Search
+    </a>
+  </li>
+  <li>
+    <a href="#NBIA6.0releaseannouncement-AdvancedSearch" rel="nofollow">
+      Advanced Search
+    </a>
+  </li>
+  <li>
+    <a href="#NBIA6.0releaseannouncement-TextSearch" rel="nofollow">
+      Text Search
+    </a>
+  </li>
+  <li>
+    <a href="#NBIA6.0releaseannouncement-SharedList" rel="nofollow">
+      Shared List
+    </a>
+  </li>
+  <li>
+    <a href="#NBIA6.0releaseannouncement-AnnotationExport" rel="nofollow">
+      Annotation Export
+    </a>
+  </li>
+  <li>
+    <a href="#NBIA6.0releaseannouncement-RESTAPI" rel="nofollow">
+      REST API
+    </a>
+  </li>
+  <li>
+    <a href="#NBIA6.0releaseannouncement-Section508Compliance" rel="nofollow">
+      Section 508 Compliance
+    </a>
+  </li>
+  <li>
+    <a href="#NBIA6.0releaseannouncement-DocumentationandSupport" rel="nofollow">
+      Documentation and Support
+    </a>
+  </li>
+</ul>
+The NBIA team is pleased to announce the release of version 6.0 of the
+<a href="http://imaging.nci.nih.gov" rel="nofollow">
+  National Biomedical Imaging Archive (NBIA)
+</a>
+. This release significantly improves the user interface and simple and advanced search, and adds text search capability, shared list improvements, annotation exports, a new REST API, as well as bug fixes to the QC Tool.
+<h2 id="NBIA6.0releaseannouncement-SimpleSearch">
+  Simple Search
+</h2>
+The NBIA Simple Search interface has been redesigned to provide rapid access to the most used criteria and functionality such as &#34;add to basket.&#34; The search now provides instant access to search results.
+<img alt="Simple Search in NBIA 6.0" width="900" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/NBIA/NBIA%206.0%20release%20announcement/image2014-4-4%206:16:54.png?api=v2">
+<h2 id="NBIA6.0releaseannouncement-AdvancedSearch">
+  Advanced Search
+</h2>
+The Advanced Search now makes it easier to quickly add, modify, and delete criteria. It provides instant results.
+<img alt="Advanced Search in NBIA 6.0" width="900" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/NBIA/NBIA%206.0%20release%20announcement/image2014-4-4%206:25:36.png?api=v2">
+<h2 id="NBIA6.0releaseannouncement-TextSearch">
+  Text Search
+</h2>
+Powered by the addition of Apache Solr to NBIA, the user interface now allows complete searching across the database fields, DICOM files, and annotation files from a single Google-like interface.
+<img alt="Text search interface in NBIA 6.0" width="900" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/NBIA/NBIA%206.0%20release%20announcement/image2014-4-4%206:31:16.png?api=v2">
+<h2 id="NBIA6.0releaseannouncement-SharedList">
+  Shared List
+</h2>
+The Administrator can delete the shared list that any users creates and send a notification email to the list creator. Non-administrator users can now delete shared lists that they create.
+<img alt="Shared list interface in NBIA 6.0" width="900" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/NBIA/NBIA%206.0%20release%20announcement/image2014-4-4%206:41:6.png?api=v2">
+<h2 id="NBIA6.0releaseannouncement-AnnotationExport">
+  Annotation Export
+</h2>
+Added new Export Image Metadata button to the My Data Basket page. Clicking this button exports the descriptions into a CSV file that is ordered by Collection, patient ID, Study Date, Series Description, and Series UID. The CSV file includes all of the following fields in the output: Collection, Patient ID Study Date, Study Description, Modality, Series Description, Manufacturer, Manufacturer Model, Software Version, and Series UID.
+<img alt="Annotation Export interface in NBIA 6.0" width="900" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/NBIA/NBIA%206.0%20release%20announcement/image2014-4-4%206:44:45.png?api=v2">
+<h2 id="NBIA6.0releaseannouncement-RESTAPI">
+  REST API
+</h2>
+NBIA now has a REST API that is based on the one that
+<a href="http://www.cancerimagingarchive.net" rel="nofollow">
+  TCIA
+</a>
+uses.
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Query Name
+      </th>
+      <th>
+        Return Values
+      </th>
+      <th>
+        Output Format
+      </th>
+      <th>
+        Query Key 1
+      </th>
+      <th>
+        Query Key 2
+      </th>
+      <th>
+        Query Key 3
+      </th>
+      <th>
+        Query Key 4
+      </th>
+      <th>
+        Query Key 5
+      </th>
+      <th>
+        Query Key 6
+      </th>
+    </tr>
+    <tr>
+      <td>
+        getSeries
+      </td>
+      <td>
+        Set of series objects filtered by query keys
+      </td>
+      <td>
+        CSV
+      </td>
+      <td>
+        collection (O)
+      </td>
+      <td>
+        modality (O)
+      </td>
+      <td>
+        body_part (O)
+      </td>
+      <td>
+        manufacturer (O)
+      </td>
+      <td>
+        patient_id (O)
+      </td>
+      <td>
+        study_instance_uid (O)
+      </td>
+    </tr>
+    <tr>
+      <td>
+        getPatientStudy
+      </td>
+      <td>
+        Set of patient/study objects filtered by query keys
+      </td>
+      <td>
+        CSV
+      </td>
+      <td>
+        collection (O)
+      </td>
+      <td>
+        modality (O)
+      </td>
+      <td>
+        body_part (O)
+      </td>
+      <td>
+        manufacturer (O)
+      </td>
+      <td>
+        patient_id (O)
+      </td>
+      <td>
+        study_instance_uid (O)
+      </td>
+    </tr>
+    <tr>
+      <td>
+        getModalityValues
+      </td>
+      <td>
+        Set of all modality values (CT, MR, etc.) filtered by query keys
+      </td>
+      <td>
+        CSV
+      </td>
+      <td>
+        collection (O)
+      </td>
+      <td>
+        modality (O)
+      </td>
+      <td>
+        body_part (O)
+      </td>
+      <td>
+        manufacturer (O)
+      </td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        getManufacturerValues
+      </td>
+      <td>
+        Set of all manufacturer names filtered by query keys
+      </td>
+      <td>
+        CSV
+      </td>
+      <td>
+        collection (O)
+      </td>
+      <td>
+        modality (O)
+      </td>
+      <td>
+        body_party (O)
+      </td>
+      <td>
+        manufacturer (O)
+      </td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        getImages
+      </td>
+      <td>
+        Set of images in a zip file
+      </td>
+      <td>
+        ZIP
+      </td>
+      <td>
+        series_instance_uid (R)
+      </td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        getCollectionValues
+      </td>
+      <td>
+        Set of all collection names
+      </td>
+      <td>
+        CSV
+      </td>
+      <td>
+        collection (O)
+      </td>
+      <td>
+        modality (O)
+      </td>
+      <td>
+        body_part (O)
+      </td>
+      <td>
+        manufacturer (O)
+      </td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        getBodyPartValues
+      </td>
+      <td>
+        Set of all body party names filtered by query keys
+      </td>
+      <td>
+        CSV
+      </td>
+      <td>
+        collection (O)
+      </td>
+      <td>
+        modality (O)
+      </td>
+      <td>
+        body_part (O)
+      </td>
+      <td>
+        manufacturer (O)
+      </td>
+      <td></td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="NBIA6.0releaseannouncement-Section508Compliance">
+  Section 508 Compliance
+</h2>
+NBIA has improved its compliance with Section 508, increasing accessibility to the application for people with disabilities.
+<h2 id="NBIA6.0releaseannouncement-DocumentationandSupport">
+  Documentation and Support
+</h2>
+Detailed
+<a href="https://wiki.nci.nih.gov/download/attachments/195626502/release_notes.txt?version=1&amp;modificationDate=1396888166000&amp;api=v2" rel="nofollow">
+  release notes
+</a>
+and a user&#39;s guide are available.For groups interested in installing NBIA 6.0 locally, consult the NBIA 6.0 Installation Guide.Getting Support
+<ul>
+  <li>
+    Email:
+    <a href="mailto:NCICBIITAppsSupport@mail.nih.gov" rel="nofollow">
+      NCIAppSupport@nih.gov
+    </a>
+  </li>
+  <li>
+    Call: 240-276-5541
+  </li>
+</ul>

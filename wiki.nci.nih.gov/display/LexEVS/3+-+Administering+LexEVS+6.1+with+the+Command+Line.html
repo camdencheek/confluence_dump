@@ -1,0 +1,175 @@
+Contents of this Page
+<ul>
+  <li>
+    <a href="#id-3AdministeringLexEVS6.1withtheCommandLine-LexEVS6.1LoaderScripts" rel="nofollow">
+      LexEVS 6.1 Loader Scripts
+    </a>
+  </li>
+</ul>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        LexEVS Administration Links
+      </th>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427370" rel="nofollow">
+              Admin Guide Main Page
+            </a>
+            <ul>
+              <li>
+                <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427271" rel="nofollow">
+                  Admin with LexEVS GUI
+                </a>
+              </li>
+              <li>
+                <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427295" rel="nofollow">
+                  Admin with Command Line
+                </a>
+              </li>
+              <li>
+                <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427294" rel="nofollow">
+                  Management and Admin API
+                </a>
+              </li>
+              <li>
+                <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427272" rel="nofollow">
+                  Advanced Vocab Admin
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=69730353" rel="nofollow">
+              LexEVS 6.0 Main Page
+            </a>
+          </li>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427448" rel="nofollow">
+              LexEVS Current Release
+            </a>
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+LexEVS 6.1 has all the administrative capabilities of LexEVS 6.0 as well as the following loader functions:
+<h2 id="id-3AdministeringLexEVS6.1withtheCommandLine-LexEVS6.1LoaderScripts">
+  LexEVS 6.1 Loader Scripts
+</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Shell Script
+      </th>
+      <th>
+        Use and Function
+      </th>
+    </tr>
+    <tr>
+      <td>
+        LoadMedDRA
+      </td>
+      <td>
+         Loads a file specified in the Medical Dictionary for Regulatory Activities (MedDRA) format. Options:
+        <ul>
+          <li>
+            -in,--input &lt;uri&gt; URI or path specifying location of the source file
+          </li>
+          <li>
+            -mf,--manifest &lt;uri&gt; URI or path specifying location of the manifest file
+          </li>
+          <li>
+            -v, --validate &lt;int&gt; Perform validation of the candidate  resource without loading data.  If specified, the &#39;-a&#39; and &#39;-t&#39; options are ignored.  Supported levels of validation include:0 = Verify document is valid
+          </li>
+          <li>
+            -a, --activate ActivateScheme on successful load; if unspecified the vocabulary is loaded but not activated.
+          </li>
+          <li>
+            -t, --tag &lt;id&gt; An optional tag ID (e.g. &#39;PRODUCTION&#39; or &#39;TEST&#39;) to assign.
+          </li>
+        </ul>
+        Load Example:
+        LoadMedDRA -in &#34;file:///path/to/file.asc&#34; -a
+        Validation Example:
+        LoadMedDRA -in &#34;file:///path/to/file.asc&#34; -v 0
+      </td>
+    </tr>
+    <tr>
+      <td>
+        LoadMIFVocabulary
+      </td>
+      <td>
+         Loads from an the HL7 Vocabulary mif file.  Options:
+        <ul>
+          <li>
+            -in,--input &lt;uri&gt; URI or path specifying location of the source file.
+          </li>
+          <li>
+            -a, --activate ActivateScheme on successful load; if unspecified the vocabulary is loaded but not activated.
+          </li>
+          <li>
+            -t, --tag &lt;id&gt; An optional tag ID (e.g. &#39;PRODUCTION&#39; or &#39;TEST&#39;) to assign.
+          </li>
+        </ul>
+        Load Example:
+        LoadMIFVocabulary -in &#34;file:///path/to/file.xml&#34; -a
+        NoteThis replaces the LoadHL7RIM script and function
+      </td>
+    </tr>
+    <tr>
+      <td>
+        LoadOWL2
+      </td>
+      <td>
+         Loads an OWL file. You can provide a manifest file to configure coding scheme# meta data.  Options:
+        <ul>
+          <li>
+            -in,--input &lt;uri&gt; URI or path specifying location of the source file
+          </li>
+          <li>
+            -mf,--manifest &lt;uri&gt; URI or path specifying location of the manifest file
+          </li>
+          <li>
+            -lp,--loaderPrefs&lt;uri&gt; URI or path specifying location of the loader preference file
+          </li>
+          <li>
+            -v, --validate &lt;int&gt; Perform validation of the candidate resource without loading data.  If specified, the &#39;-a&#39; and &#39;-t&#39; options are ignored.  Supported levels of validation include:
+          </li>
+          <li>
+            0 = Verify document is well-formed
+          </li>
+          <li>
+            1 = Verify document is valid
+          </li>
+          <li>
+            -a, --activate ActivateScheme on successful load; if unspecified the vocabulary is loaded but not activated.
+          </li>
+          <li>
+            -t, --tag &lt;id&gt; An optional tag ID (e.g. &#39;PRODUCTION&#39; or &#39;TEST&#39;) to assign.
+          </li>
+        </ul>
+         Load Example:
+        LoadOWL2 -in &#34;file:///path/to/somefile.owl&#34; -a
+
+        LoadOWL2 -in &#34;file:///path/to/somefile.owl&#34; -v 0
+      </td>
+    </tr>
+    <tr>
+      <td>
+        LoadResolvedValueSetDefinition
+      </td>
+      <td>
+        Loads Value Set Definition content, provided in LexGrid canonical xml format. Options:   -u, The valueset definition URI to use    -l, The list of coding schemes to revolve against. The format is codingschemeName::version   -csVersionTag    The tag to use for resolving coding scheme         Load Example:
+        LoadResolvedValueSetDefinition -u \&#34;Automobiles:valuesetDefinitionURI\&#34; -l \&#34;Automobiles::version1, GM::version2\&#34; -csVersionTag \&#34;production\&#34; &#34;&#34;
+      </td>
+    </tr>
+  </tbody>
+</table>
+:

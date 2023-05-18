@@ -1,0 +1,737 @@
+Contents of this Page
+<ul>
+  <li>
+    <a href="#LexEVS6.0DesignDocumentDetailedDesignAuthoring-LexGridversioningmodel" rel="nofollow">
+      LexGrid versioning model
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.0DesignDocumentDetailedDesignAuthoring-LexGridversioningmodeldescription" rel="nofollow">
+      LexGrid versioning model description
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.0DesignDocumentDetailedDesignAuthoring-LexGridversionableentries" rel="nofollow">
+      LexGrid versionable entries
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.0DesignDocumentDetailedDesignAuthoring-LexGridversionableentriesdescription" rel="nofollow">
+      LexGrid versionable entries description
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.0DesignDocumentDetailedDesignAuthoring-AuthoringLexGridnon-versonableentries" rel="nofollow">
+      Authoring LexGrid non-versonable entries
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.0DesignDocumentDetailedDesignAuthoring-LexEVSAuthoringArchitecture" rel="nofollow">
+      LexEVS Authoring Architecture
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.0DesignDocumentDetailedDesignAuthoring-LexEVSAuthoringprocess" rel="nofollow">
+      LexEVS Authoring process
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.0DesignDocumentDetailedDesignAuthoring-Queryingdatabasedonversioninformation" rel="nofollow">
+      Querying data based on version information
+    </a>
+    <ul>
+      <li>
+        <a href="#LexEVS6.0DesignDocumentDetailedDesignAuthoring-Querydatabasedonrevisionidentifier" rel="nofollow">
+          Query data based on revision identifier
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS6.0DesignDocumentDetailedDesignAuthoring-Querydatabasedonspecificdateandtime" rel="nofollow">
+          Query data based on specific date and time
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#LexEVS6.0DesignDocumentDetailedDesignAuthoring-CTS2Authoringprofile:" rel="nofollow">
+      CTS 2 Authoring profile:
+    </a>
+  </li>
+</ul>
+Document Information
+Author: Craig Stancl
+Email: Stancl.craig@mayo.edu
+Team: LexEVS
+Contract: CBITT BOA Subcontract# 29XS223
+Client: NCI CBIIT
+National Institutes of Heath
+US Department of Health and Human Services
+
+
+Revision History
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Version
+      </th>
+      <th>
+        Date
+      </th>
+      <th>
+        Description of Changes
+      </th>
+      <th>
+        Author
+      </th>
+    </tr>
+    <tr>
+      <td>
+        1.0
+      </td>
+      <td>
+        5/14/10
+      </td>
+      <td>
+        Initial Version Approved via Design Review
+      </td>
+      <td>
+        Team
+      </td>
+    </tr>
+  </tbody>
+</table>
+LexEVS API and the LexGrid model have been designed to provide capabilities to make changes to the terminology elements such as code system or value sets. However, the current LexGrid architecture and model is based on the premise that the information being provided is valid and consistent and is not designed to support partially formed artifacts such as concepts without associated codes, associations that have a source but no target, etc.
+The LexEVS authoring tasks assumes that there is an external authoring tool that persists partially formed content and performs the necessary validation and reasoning tasks prior to their being incrementally loaded into the LexEVS services. We see this as being a necessary separation, as the potential combination of editors, reasoners, terminology models, etc. is almost limitless, and each of these will have its own requirements when it comes to completeness and validity.
+<h2 id="LexEVS6.0DesignDocumentDetailedDesignAuthoring-LexGridversioningmodel">
+  LexGrid versioning model
+</h2>
+<img alt="versioning model diagram" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%206.0%20Design%20Document%20-%20Detailed%20Design%20-%20Authoring/LGVersioning.jpg?api=v2">
+<h2 id="LexEVS6.0DesignDocumentDetailedDesignAuthoring-LexGridversioningmodeldescription">
+  LexGrid versioning model description
+</h2>
+<ul>
+  <li>
+    systemRelease - A collection of coding schemes, value set definition, pick list definitions and/or revision records that are distributed as a unit.
+  </li>
+  <li>
+    editHistory - An ordered collection of revisions.
+  </li>
+  <li>
+    revision - An ordered collection of state changes that define the transformation of a set of resources from one consistent state to another.
+    <ul>
+      <li>
+        changeAgent* - The local identifiers of the source that participated in this particular change. changeAgent must match a local id of a supportedSource in the corresponding mappings section.
+      </li>
+      <li>
+        changeInstructions - A human or machine readable set of instructions on how to apply this change.
+      </li>
+      <li>
+        revisionId - The unique identifier of this revision.
+      </li>
+      <li>
+        editOrder - The relative order that this revision is to be applied if in a systemRelease.
+      </li>
+      <li>
+        revisionDate - The end date for which this version is operative (considered committed).
+      </li>
+    </ul>
+  </li>
+  <li>
+    Versionable - A resource that can undergo change over time while maintaining its identity.
+    <ul>
+      <li>
+        Owner - The owner of the resource. The specific semantics of owner is defined by the business rules of the implementer, including the rules of the owner field is absent.
+      </li>
+      <li>
+        isActive - True means that this resource is searchable and browsable if the temporal context of the operation falls between effectiveDate and expirationDate. False means that this resource is only accessible if requested by id or by a search that specifies that inactive retrievals are allowed. Default: True
+      </li>
+      <li>
+        status - The status code associated with the particular resource. The semantics and business rules of entryStatus are defined by the containing system, but there needs to be a mapping into isActive above.
+      </li>
+      <li>
+        effectiveDate - The date and time that this resource is considered to be active. To be considered active, isActive must be true, and the temporal context of the operation must be greater than effectiveDate. If omitted, all temporal contexts are considered to be valid.
+      </li>
+      <li>
+        expirationDate - The date and time that this resource is considered to become inActive. To be considered active, isActive must be true, and the temporal context of the operation must be less than expirationDate. If omitted, all temporal contexts are considered to be valid.
+      </li>
+    </ul>
+  </li>
+  <li>
+    entryState - Represents a change that occurred between the current state of the versionable entry and an immediately preceding state of the same entry.
+    <ul>
+      <li>
+        containingRevision - The revision that contains this particular entry state change.
+      </li>
+      <li>
+        relativeOrder - The relative order that this state change should be applied within the context of the containing revision.
+      </li>
+      <li>
+        changeType - The type of change that occurred between this state and the previous.
+        <ul>
+          <li>
+            NEW - Versionable entry is new in this revision. No previous state is available.
+          </li>
+          <li>
+            MODIFY - Entry has been modified between this state and the previous.
+          </li>
+          <li>
+            VERSIONABLE - Versionable attribute has changed since prior version. Versionable attributes include: isActive, status, owner, effectiveDate or expirationDate.
+          </li>
+          <li>
+            DEPENDENT - The status of a dependent entry has changed since the last version. Dependent entities include properties, codedEntries for codingSchemes, associationInstances, etc.
+          </li>
+          <li>
+            REMOVE - Versionable entry was removed as of this version. This is not the same as deprecated, as the entity ceases to exist in future versions.
+          </li>
+        </ul>
+      </li>
+      <li>
+        prevRevision - The unique identifier of the state of this entry was at prior to this change.
+      </li>
+    </ul>
+  </li>
+  <li>
+    changedEntry - A top level versionable entry. Each changedEntry bucket can contain changedCodingSchemeEntry or changedValueSetDefinitionEntry or changedPickListDefinitionEntry.
+  </li>
+  <li>
+    changedCodingSchemeEntry - this element is of type codingScheme and can contain changes to terminology entities.
+  </li>
+  <li>
+    changedValueSetDefinitionEntry - this element is of type valueSetDefinition and can contain changes to the definition of a given value set.
+  </li>
+  <li>
+    changedPickListDefinitionEntry - this element is of type pickListDefinition and can contain changes to the definition or the pickListEntrys.
+  </li>
+</ul>
+<h2 id="LexEVS6.0DesignDocumentDetailedDesignAuthoring-LexGridversionableentries">
+  LexGrid versionable entries
+</h2>
+Authoring can be performed on all the versionable entries in LexGrid logical model.
+
+LexGrid model showing all the versionable entries
+<img alt="diagram of LexGrid model showing all the versionable entries" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%206.0%20Design%20Document%20-%20Detailed%20Design%20-%20Authoring/LGVersionableEntities.jpg?api=v2">
+<h2 id="LexEVS6.0DesignDocumentDetailedDesignAuthoring-LexGridversionableentriesdescription">
+  LexGrid versionable entries description
+</h2>
+<ul>
+  <li>
+    codingScheme - A resource that makes assertions about a collection of terminological entities.
+  </li>
+  <li>
+    entity - A set of lexical assertions about the intended meaning of a particular entity code.
+  </li>
+  <li>
+    relations - A collection of relations that represent a particular point of view or community.
+  </li>
+  <li>
+    associatableElement - Information common to both the entity and data form of the &#34;to&#34; (or right hand) side of an association.
+  </li>
+  <li>
+    pickListDefinition - An ordered list of entity codes and corresponding presentations drawn from a value set resolution
+  </li>
+  <li>
+    pickListEntryNode - An inclusion (pickListEntry) or exclusion (pickListEntryExclusion) in a pick list definition.
+  </li>
+  <li>
+    valueSetDefinition - A definition of a given value set. A value set definition can be a simple description with no associated value set entries, or it can consist of one or more definitionEntries that resolve to an enumerated list of entityCodes when applied to one or more codingScheme versions.
+  </li>
+  <li>
+    definitionEntry - A reference to an entry code, a coding scheme or another value set definition along with the instructions about how the reference is applied. DefinitionEntrys are applied in entryOrder, with each successive entry either adding to or subtracting from the final set of entity codes.
+  </li>
+  <li>
+    property - A description, definition, annotation or other attribute that serves to further define or identify a resource.
+  </li>
+</ul>
+<h2 id="LexEVS6.0DesignDocumentDetailedDesignAuthoring-AuthoringLexGridnon-versonableentries">
+  Authoring LexGrid non-versonable entries
+</h2>
+LexGrid model entries like &#39;source&#39;, &#39;usageContext&#39;, etc which are not versionable, can also be modified but only in context with its parent entry. And also, any values to these attributes will be totally replacing the existing values.
+
+For example, if a coded concept &#39;abc&#39; has a source &#39;company A, company B&#39; and if the source &#39;company B&#39; needs to be replaced by &#39;company C&#39; but keep &#39;company A&#39; as it is, we will need to pass in both source &#39;company A, company C&#39; within concept &#39;abc&#39; and have the changeType as &#39;MODIFY&#39; for this concept.
+<h2 id="LexEVS6.0DesignDocumentDetailedDesignAuthoring-LexEVSAuthoringArchitecture">
+  LexEVS Authoring Architecture
+</h2>
+LexEVS Authoring API can accept changes to the terminology contents only in the form of:
+<ul>
+  <li>
+    LexGrid java objects, OR
+  </li>
+  <li>
+    XML file in LexGrid format.
+  </li>
+</ul>
+Diagram showing the architecture of LexEVS authoring environment
+<img alt="diagram showing the architecture of the LexEVS authoring environemnt" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%206.0%20Design%20Document%20-%20Detailed%20Design%20-%20Authoring/AuthoringDesignDiagram.jpg?api=v2">
+<h2 id="LexEVS6.0DesignDocumentDetailedDesignAuthoring-LexEVSAuthoringprocess">
+  LexEVS Authoring process
+</h2>
+Important: Before the changed terminology content is sent to LexEVS Authoring API to process, the client application should make sure that the contents are valid.
+<ul>
+  <li>
+    The contents should either be in LexGrid XML format or a LexGrid java object.
+  </li>
+  <li>
+    The entry level for the changed contents should be at either systemRelease or revision level.
+  </li>
+  <li>
+    The input format will be validated against LexGrid schema for compliance. If validation fails, exception will be thrown.
+  </li>
+  <li>
+    Each change request in the revision package is validated sequentially. Each individual request validation will be performed based on the premise that all requests that precede it have been applied (e.g. if there are two change requests, one to create a new coding scheme and the second to create a new entity for the coding scheme, the new entity request is validated on the assumption that the coding scheme has been created. The service may validate the entire revision or it may cease validation at any point after an error is detected - this is up to the service provider.
+  </li>
+  <li>
+    If no errors are detected in previous step, the change package is submitted to the business rules &#34;hook&#34;, which can apply additional validation, logging and error checking. If the business rules hook returns an error, no further processing is done and the result is returned to the submitter.
+  </li>
+  <li>
+    If the submission passed step two, the complete set of changes will be applied to the service. If, for any reason, an error occurs, such as a network failure, a database failure, etc., the entire revision will be rolled back. Otherwise, the set of changes will be committed.
+  </li>
+</ul>
+The intent of the change requests are as follows:
+<ul>
+  <li>
+    NEW - to create a new versionable element
+  </li>
+  <li>
+    MODIFY - to change the attributes of an existing versionable element
+  </li>
+  <li>
+    VERSIONABLE - to change (or schedule a change of) the status of a versionable element within the context of the containing service.
+  </li>
+  <li>
+    REMOVE - to remove a versionable element from the service. (Note that VERSIONABLE Retire should be used if the element and its history should remain)
+  </li>
+  <li>
+    DEPENDENT - no changes are to be made to the named element itself, but a versionable element whose identity is dependent upon this element is to undergo a change.
+  </li>
+</ul>
+#xample xml file containing changed coding scheme
+<img alt="illustration of XML file containing changed coding scheme" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%206.0%20Design%20Document%20-%20Detailed%20Design%20-%20Authoring/changeCodingSchemeXMLExample.jpg?api=v2">
+<h2 id="LexEVS6.0DesignDocumentDetailedDesignAuthoring-Queryingdatabasedonversioninformation">
+  Querying data based on version information
+</h2>
+LexEVS Authoring API provides ability to query terminology content based on:
+<ul>
+  <li>
+    revision identifier
+  </li>
+  <li>
+    specific date and time
+  </li>
+</ul>
+<h3 id="LexEVS6.0DesignDocumentDetailedDesignAuthoring-Querydatabasedonrevisionidentifier">
+  Query data based on revision identifier
+</h3>
+This allows users to get the state of an entity like concept code, coding scheme, pick list, etc, at the given revision.
+Exception will be thrown if the revision identifier was not found in the system.
+And if that entity (ex concept code) had no changes for that particular revision, the API will return the state of that entity when that revision was applied to the system.
+
+Example of query based on revision identifier
+<img alt="illustration of query based on revision identifier" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%206.0%20Design%20Document%20-%20Detailed%20Design%20-%20Authoring/revisionRevisionIdBasedExample.jpg?api=v2">
+In the above example, coding scheme &#39;CS1&#39; is revised in 4 different instances R1, R2, R3 and R4 at respective dates. The query API will be able to provide the states of the versionable elements at different revisions. Example, API will be able to return the state of concept &#39;C1&#39; at revision R2.
+<h3 id="LexEVS6.0DesignDocumentDetailedDesignAuthoring-Querydatabasedonspecificdateandtime">
+  Query data based on specific date and time
+</h3>
+This allows users to get the state of an entity like concept code, coding scheme, pick list etc, at the give date and time.
+Exception will be thrown if no data was found for given date and time.
+
+Example of query based on specific date and time
+<img alt="example of query based on specific date and time" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexEVS%206.0%20Design%20Document%20-%20Detailed%20Design%20-%20Authoring/revisionDateBasedExample.jpg?api=v2">
+<h2 id="LexEVS6.0DesignDocumentDetailedDesignAuthoring-CTS2Authoringprofile:">
+  CTS 2 Authoring profile:
+</h2>
+The CTS2 SFM calls for the ability to create, maintain and update code systems, concepts, and associations as separate entities. The LexGrid and LexEVS model views all three of them as aspects of code systems, and its incremental revision approach allows any or all of them to be changed as a single unit. The LexEVS model also subsumes the notion of a &#34;code system supplement&#34;, as a collection of one or more revisions to a code system can be packaged as a &#34;system release&#34;, with its own provenance, activation dates, etc., and can be applied to external code systems independently.
+
+The Terminology Authoring Profile is intended to provide the capability to robustly query and access terminology content, as well as directly modify the terminology content. This includes the ability to modify code system content, value set content, as well as the metadata pertaining to each. This profile includes the functions necessary to administer and search terminology content as outlined in the CTS2 Query Profile as well as the Terminology Administration Profile.
+
+List of Authoring profiles as in CTS2 SFM
+<table>
+  <tbody>
+    <tr>
+      <th>
+        CTS2 Function
+      </th>
+      <th>
+        CTS2 Function Description
+      </th>
+      <th>
+        LexEVS Implementation
+      </th>
+    </tr>
+    <tr>
+      <td>
+        Create Code System
+      </td>
+      <td>
+        Create a new Code System to contain a
+        set of new coded concepts. The Code System
+        is created by defining the set of meta-data
+        properties that describe it.
+      </td>
+      <td>
+        LexEVS provides ability to load Code System
+        from various source format.
+        Here are the loaders available:
+        <ul>
+          <li>
+            HL7 RIM DB
+          </li>
+          <li>
+            LexGrid Text file
+          </li>
+          <li>
+            LexGrid XML file
+          </li>
+          <li>
+            NCI MetaThesaurus
+          </li>
+          <li>
+            OBO
+          </li>
+          <li>
+            OWL
+          </li>
+          <li>
+            RedLex Protégé Frames
+          </li>
+          <li>
+            UMLS Semantic Net
+          </li>
+          <li>
+            UMLS Source From RRF files
+          </li>
+          <li>
+            UMLS Source From SQL
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Maintain Code System Version
+      </td>
+      <td>
+        Update Code System meta-data properties.
+      </td>
+      <td>
+        The LexEVS Authoring services will provide
+        ability to update meta-data of a
+        Code System as well as all its entities.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Update Code System Version Status
+      </td>
+      <td>
+        Changes the status of a code system version
+        (suspended, reinstated, canceled, removed).
+      </td>
+      <td>
+        The LexEVS Authoring services will provide
+        ability to modify the status of a Code System version.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Create Code System Supplement
+      </td>
+      <td>
+        Create a new Code System Supplement as a
+        container of a set of concepts and concept properties
+        to be appended to a target code system.
+        Does not add the concepts and properties.
+      </td>
+      <td>
+        LexEVS treats Code System Supplement as any
+        other Code System. The URI of target Code System will be
+        included in SupportedCodingScheme and imported flag will be set
+        to &#39;true&#39;. All the contents of target/base Code System will
+        be imported into this Supplement Code System.
+        The rest of the function will be similar to &#39;Create Code System&#39;
+        described above
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Maintain Code System Supplement
+      </td>
+      <td>
+        Update Code System Supplement meta-data properties
+        and add concepts and properties to code system.
+      </td>
+      <td>
+        The LexEVS, Code System Supplement is treated
+        like any other Code System, thus provides an
+        ability to update its meta-data properties,
+        add or modify concepts and its properties.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Create Concept
+      </td>
+      <td>
+        Create concept to be included in a Code System.
+        The new concept is defined by the set of
+        meta-data properties that describe it,
+        which may include its proper placement via association
+        binding within the hierarchy of the Code System.
+      </td>
+      <td>
+        The LexEVS Authoring services will provide
+        ability to add and update entities in a Code System.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Maintain Concept
+      </td>
+      <td>
+        Update Concept meta-data properties.
+      </td>
+      <td>
+        The LexEVS Authoring services will provide
+        ability to add and update entities in a Code System.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Update Concept Status
+      </td>
+      <td>
+        Changes the status of a code system concept
+        (suspend, reinstate, cancel, remove).
+      </td>
+      <td>
+        The LexEVS Authoring services will provide
+        ability to add and update entities in a Code System.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Create Association Type
+      </td>
+      <td>
+        Create a new relationship type
+        (as intended by the association type class of the conceptual model),
+        an instance of which may be used to link two concepts.
+        A list of code system IDs can be supplied if the intent
+        is to restrict use to specific code systems. The default is
+        availability to all code systems present on the server.
+      </td>
+      <td>
+        The LexEVS Authoring services will provide
+        ability to create and maintain entities of type
+        Association in a Code System.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Maintain Association Type
+      </td>
+      <td>
+        Update or deprecate an Association type that may
+        be used to link two concepts.
+      </td>
+      <td>
+        The LexEVS Authoring services will provide
+        ability to create and maintain entities of type
+        Association in a Code System.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Create Value Set
+      </td>
+      <td>
+        Create a Value Set (extensional or intensional)
+        that is defined by a computable expression
+        that can be resolved to an exact list of
+        coded concepts at any given point in time.
+      </td>
+      <td>
+        The LexEVS Authoring services will provide
+        ability to create and maintain value set definitions.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Maintain Value Set
+      </td>
+      <td>
+        Update properties or expression of a value set definition
+        (extensional and intensional value sets).
+      </td>
+      <td>
+        The LexEVS Authoring services will provide
+        ability to create and maintain value set definitions.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Update Value Set Status
+      </td>
+      <td>
+        Changes the status of a value set version
+        (suspend, reinstate, cancel, remove).
+      </td>
+      <td>
+        The LexEVS Authoring services will provide
+        ability to create and maintain value set definitions.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Create Concept Domain
+      </td>
+      <td>
+        Create a Concept Domain.
+      </td>
+      <td>
+        In LexEVS, a coding scheme can contain entities
+        of type &#39;Concept Domain&#39;. So similar to
+        function &#39;Create Concept&#39;, an entity of type
+        &#39;concept domain&#39; can be added and maintained
+        in a coding scheme. And similar to an entity
+        of type &#39;concept&#39;, concept domain can have
+        properties, participate in associations etc.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Maintain Concept Domain
+      </td>
+      <td>
+        Update properties of a Concept Domain, including
+        bindings to value sets within usage contexts
+      </td>
+      <td>
+        Similar to &#39;maintain concept&#39; function described
+        above, in LexEVS, a coding scheme can contain
+        entities of type &#39;Concept Domain&#39; and it can
+        be added or modified (including its properties)
+        in a coding scheme. Any changes to the value set
+        binding should be performed separately using
+        &#39;maintain value set&#39; function.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Create Usage Context
+      </td>
+      <td>
+        Create a Usage Context.
+      </td>
+      <td>
+        Similar to &#39;create concept domain&#39; function
+        described above, in LexEVS, a coding scheme
+        can contain entities of type &#39;Usage Context&#39;
+        and it can be added or modified in a coding scheme.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Maintain Usage Context
+      </td>
+      <td>
+        Update properties of a Usage Context
+      </td>
+      <td>
+        Similar to &#39;maintain concept&#39; function
+        described above, in LexEVS, a coding scheme
+        can contain entities of type &#39;Usage Context&#39;
+        and it can be added or modified
+        (include its properties) in a coding scheme.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Update Association Status
+      </td>
+      <td>
+        Update the status of an association
+        (active, inactive, cancelled etc). This allows
+        a Terminology User to activate or inactivate
+        a given association, thus changing its availability
+        for access by other terminology service functions
+      </td>
+      <td>
+        LexEVS Authoring API provides
+        ability to change the status of an association
+        (a triple).
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Create Association
+      </td>
+      <td>
+        Relates a single specific coded concept
+        within a specified code system (source) to a
+        corresponding single specific coded concept
+        (target) within the same or another code
+        system, including identification of a
+        specified Association type.
+      </td>
+      <td>
+        LexEVS Authoring API provides ability
+        to create and maintain association
+        between coded concepts from one
+        or more code system.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        *Create Lexical Association
+        between Coded Concept*
+      </td>
+      <td>
+        Relates a set of one or more coded concepts
+        within a specified code system
+        (source)to a corresponding set of
+        one or more coded concepts (target)
+        within that system or another code
+        system using a set of lexical rules
+        (matching algorithms) to generate
+        the Association. The
+        &#34;Source Search Criteria&#34; allows
+        for identification of a subset
+        of the Source Code System to apply
+        the matching algorithm to, if
+        required (this may include
+        limiting the version of the
+        code system).
+      </td>
+      <td>
+        This functionality is out of scope for this release.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        *Create Rule Based Association
+        between Coded Concept*
+      </td>
+      <td>
+        Relates a set of zero or more coded concepts
+        within a specified code system
+        (source)to a corresponding set of
+        zero or more coded concepts (target)
+        within that system or another code
+        system using a set of description
+        logic or inference rules that either
+        assert or infer Associations.
+        The &#34;Source Search Criteria&#34;
+        allows for identification of a
+        subset of the Source Code System
+        to apply the matching algorithm too,
+        if required (this may include
+        limiting the version of the code
+        system).
+      </td>
+      <td>
+        This functionality is out of scope for this release.
+      </td>
+    </tr>
+  </tbody>
+</table>

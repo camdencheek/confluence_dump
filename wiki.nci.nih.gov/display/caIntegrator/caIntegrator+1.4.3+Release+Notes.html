@@ -1,0 +1,154 @@
+Product: caIntegrator  Version: 1.4.3 Date: May 30, 2014 Contents of this Page
+<ul>
+  <li>
+    <a href="#caIntegrator1.4.3ReleaseNotes-Introduction" rel="nofollow">
+      Introduction
+    </a>
+  </li>
+  <li>
+    <a href="#caIntegrator1.4.3ReleaseNotes-ReleaseHistory" rel="nofollow">
+      Release History
+    </a>
+  </li>
+  <li>
+    <a href="#caIntegrator1.4.3ReleaseNotes-HighlightsofcaIntegratorv1.4.3" rel="nofollow">
+      Highlights of caIntegrator v1.4.3
+    </a>
+  </li>
+  <li>
+    <a href="#caIntegrator1.4.3ReleaseNotes-KnownIssues/Defects" rel="nofollow">
+      Known Issues/Defects
+    </a>
+  </li>
+  <li>
+    <a href="#caIntegrator1.4.3ReleaseNotes-BugReports,FeatureRequests,AndSupport" rel="nofollow">
+      Bug Reports, Feature Requests, And Support
+    </a>
+  </li>
+  <li>
+    <a href="#caIntegrator1.4.3ReleaseNotes-DocumentationandFiles" rel="nofollow">
+      Documentation and Files
+    </a>
+  </li>
+</ul>
+<h2 id="caIntegrator1.4.3ReleaseNotes-Introduction">
+  Introduction
+</h2>
+<a href="https://caintegrator.nci.nih.gov/" rel="nofollow">
+  caIntegrator
+</a>
+is a web-based software package that allows researchers to set up custom, caBIG-compatible web portals to conduct integrative research, without requiring programming experience. These portals bring together heterogeneous clinical, microarray and medical imaging data to enrich multidisciplinary research.Using caIntegrator, researchers can execute and save queries to identify and collect many types of data, combining clinical information with genetic and genomic data to enable multidimensional analysis. caintegrator uses caGrid analytical services such as GenePattern and BioConductor to perform analysis on the integrated study data, including clinical survival data.
+<h2 id="caIntegrator1.4.3ReleaseNotes-ReleaseHistory">
+  Release History
+</h2>
+<ul>
+  <li>
+    caIntegrator2 v1.0.0 -- Oct 2009
+  </li>
+  <li>
+    caIntegrator2 v1.0.1 -- Jan 2010
+  </li>
+  <li>
+    caIntegrator2 v1.1.0 -- Jun 2010
+  </li>
+  <li>
+    caIntegrator v1.2.0 -- Sep 2010
+  </li>
+  <li>
+    caIntegrator v1.3.0 -- Jun 2011
+  </li>
+  <li>
+    caIntegrator v1.3.1 – Nov 2011
+  </li>
+  <li>
+    caIntegrator v1.4 -- July 2012
+  </li>
+  <li>
+    caIntegrator v1.4.1 – Oct 2013
+  </li>
+  <li>
+    caIntegrator v1.4.2 – Feb 2014
+  </li>
+  <li>
+    caIntegrator v1.4.3 – May 2014
+  </li>
+</ul>
+<h2 id="caIntegrator1.4.3ReleaseNotes-HighlightsofcaIntegratorv1.4.3">
+  Highlights of caIntegrator v1.4.3
+</h2>
+This release includes upgrades to third-party components to improve maintainability and reduce technical risk.Component upgrades
+<ul>
+  <li>
+    [
+    <a href="https://tracker.nci.nih.gov/browse/CAINT-1370" rel="nofollow">
+      CAINT-1370
+    </a>
+    ] - Upgraded to latest version of Struts 2 (2.3.16.3)
+  </li>
+</ul>
+<h2 id="caIntegrator1.4.3ReleaseNotes-KnownIssues/Defects">
+  Known Issues/Defects
+</h2>
+<ol>
+  <li>
+    caIntegrator 1.4.3 can only pull array data from caArray v 2.5.1 and newer.
+  </li>
+  <li>
+    Attempting to Add New Genomic Data Source in IE8 produces a Restricted Area errorNoteThere is a workaround for this issue. After encountering the error, go to Manage Studies -&gt; Edit Study page, and re-add the Genomic Data Source. See
+    <a href="https://tracker.nci.nih.gov/browse/CAINT-1070" rel="nofollow">
+      CAINT-1070
+    </a>
+    .
+  </li>
+  <li>
+    A user may encounter an issue if a user attempts to install an older version of caIntegrator after installing caIntegrator 1.4.3 using the Windows GUI installer. Older versions of caIntegrator use JBoss 4 in the installation, whereas caIntegrator 1.4.3 uses JBoss 5. To avoid the issue, the user must delete the.installer-caintegrator2 file before beginning the second installation. The .installer-caintegrator2 file can usually be found in a default directory, such as C:\Documents and Settings\username. If this file is not removed, JBoss 5 is installed instead of JBoss 4, and the installation will fail.
+  </li>
+  <li>
+    Account Administrators may encounter an issue within the UPT when adding new users. The UPT may erroneously indicate that the user was already created and is a duplicate. When this happens and the user is not a duplicate, the new user will be created as expected and the administrator can ignore the error message. New user can be created in CSM 4.2.3 successfully, but the message displayed in the browser is wrong. See
+    <a href="https://tracker.nci.nih.gov/browse/CSM-716" rel="nofollow">
+      CSM-716
+    </a>
+    .
+  </li>
+  <li>
+    The AIM Data Service at Emory has deprecated their caGrid service and replaced it with a newer REST-based API.  Newer versions of caIntegrator will utilize this new API.  See
+    <a href="https://tracker.nci.nih.gov/browse/CAINT-1357" rel="nofollow">
+      CAINT-1357
+    </a>
+    .
+  </li>
+  <li>
+    Large Clinical Data files take too long between annotation definition assignment.  See
+    <a href="https://tracker.nci.nih.gov/browse/CAINT-73" rel="nofollow">
+      CAINT-73
+    </a>
+    .
+  </li>
+</ol>
+See the JIRA tracker for existing open defects, community requests,resolutions and feature requests:
+<a href="https://tracker.nci.nih.gov/browse/CAINT" rel="nofollow">
+  https://tracker.nci.nih.gov/browse/CAINT
+</a>
+<h2 id="caIntegrator1.4.3ReleaseNotes-BugReports,FeatureRequests,AndSupport">
+  Bug Reports, Feature Requests, And Support
+</h2>
+Send email to
+<a href="mailto:ncicb@pop.nci.nih.gov" rel="nofollow">
+  Application Support
+</a>
+to request technical support.To report a bug or request a new feature, refer to
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=42832223" rel="nofollow">
+  Report a defect or make a feature request for caIntegrator
+</a>
+.See the JIRA tracker for existing open defects, community requests,resolutions and feature requests:
+<a href="https://tracker.nci.nih.gov/browse/CAINT" rel="nofollow">
+  https://tracker.nci.nih.gov/browse/CAINT
+</a>
+<h2 id="caIntegrator1.4.3ReleaseNotes-DocumentationandFiles">
+  Documentation and Files
+</h2>
+Links to all documentation and files can be found on the
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=19793190" rel="nofollow">
+  caIntegrator Documentation
+</a>
+wiki page.

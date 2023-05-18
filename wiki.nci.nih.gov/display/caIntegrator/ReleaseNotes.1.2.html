@@ -1,0 +1,47 @@
+Draft release notes for caIntegrator v 1.2:
+<ul>
+  <li>
+    caIntegrator2 name is changed to caIntegrator.
+  </li>
+</ul>
+<ul>
+  <li>
+    When installing/upgrading via the GUI installer, if you enable SSL be sure to put in a password, otherwise it might fail at the end (no error message is given if there is no password at the time).  Furthermore, if you did your install using SSL, then when you upgrade and you want to keep SSL, be sure to enter a password.  If you didnt do your original install using SSL, then during upgrade you can either select SSL or not, but if you select SSL, you need to enter a password.
+  </li>
+</ul>
+<ul>
+  <li>
+    To load the Affymetrix SNP 6 platform, you will need to increase the jboss max heap setting to -Xmx4096m .
+  </li>
+</ul>
+<ul>
+  <li>
+    Noticed that when study manager is deleting studies on Stage, several other Study Managers incur errors while trying to log into the same study group. GForge track #29610
+  </li>
+</ul>
+<ul>
+  <li>
+    Y chromosome segmentation results for copy number queries of the Affymetrix Mapping50K_Hind240, Mapping50K_Xba240 array platform are not properly displayed.  GForge track #29553
+  </li>
+</ul>
+<ul>
+  <li>
+    In a study with gene expression data and image annotation data from AIM, the Gene Expression Plot cannot be used with saved queries containing image annotation criteria.  GForge track #29632
+  </li>
+</ul>
+<ul>
+  <li>
+    When a study manager is logged in, the My Studies drop-down menu may show duplicate study names under the public studies section.  GForge track #29625
+  </li>
+</ul>
+<ul>
+  <li>
+    When loading the subject annotation source for a large subject annotation file, the browser may time out after 5 minutes and generates an HTTP 500 error.  GForge track #29559
+  </li>
+</ul>
+<ul>
+  <li>
+    Before starting the caIntegrator server, please change the default location for user data.  The default location for user data should be changed via the Djava.io.tmpdir jvm parameter in the jboss run.conf file.
+    Here is an example: -Djava.io.tmpdir=/local/content/caintegrator/jvmtmp
+  </li>
+</ul>

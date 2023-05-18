@@ -1,0 +1,350 @@
+<h2 id="LexEVSMeetingMinutesValueSetArchitecturePlanningSession2017.09.18-Attendees">
+   Attendees
+</h2>
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        Name
+      </th>
+      <th>
+        Role
+      </th>
+      <th colspan="1">
+        Present
+      </th>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Safran, Tracy
+      </td>
+      <td colspan="1">
+        NIH/NCI [C]
+      </td>
+      <td colspan="1">
+        x
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Wynne, Robert
+      </td>
+      <td>
+        NIH/NCI [C]
+      </td>
+      <td>
+        x
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Ong, Kim L
+      </td>
+      <td colspan="1">
+        IS
+      </td>
+      <td colspan="1">
+        x
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Lucas, Jason R
+      </td>
+      <td colspan="1">
+        IS
+      </td>
+      <td colspan="1">
+        x
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Bauer, Scott
+      </td>
+      <td colspan="1">
+        Mayo
+      </td>
+      <td colspan="1">
+        x
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Stancl, Craig
+      </td>
+      <td colspan="1">
+        Mayo
+      </td>
+      <td colspan="1">
+        x
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Endle,  Cory
+      </td>
+      <td colspan="1">
+        Mayo
+      </td>
+      <td colspan="1">
+        x
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="LexEVSMeetingMinutesValueSetArchitecturePlanningSession2017.09.18-Agenda">
+  Agenda
+</h2>
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <td colspan="1">
+        Discussion of latest VS work
+      </td>
+      <td colspan="1">
+        Discussion Points:
+        <ul>
+          <li>
+            Published value set property will be published all the way up to prod.
+          </li>
+          <li>
+            VS hierarchy - Added other hierarchies (besides the source asserted value sets).
+            <ul>
+              <li>
+                NCIt and NDRFT
+              </li>
+            </ul>
+          </li>
+          <li>
+            VS updates - how to determine if one has been updated.
+            <ul>
+              <li>
+                We are investigating looking at the history to determine if the VS has changed.
+              </li>
+            </ul>
+          </li>
+        </ul>
+        Decision Points:
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Discuss usage of new mass value set load feature
+      </td>
+      <td colspan="1">
+        Discussion Points:
+        <ul>
+          <li>
+            Rob indicated that they are using the mass value set load for loading value sets and resolved value sets.
+          </li>
+        </ul>
+        Decision Points:
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Review and prioritize remaining VS issues in the backlog
+      </td>
+      <td colspan="1">
+        Discussion Points:
+        <ul>
+          <li>
+            <a href="https://tracker.nci.nih.gov/browse/LEXEVS-1732?src=confmacro" rel="nofollow">
+              <img src="$iconUrl"/>
+              LEXEVS-1732
+            </a>
+            -
+
+
+            (
+            <img src="$statusIcon"/>
+            )
+            <ul>
+              <li>
+                VS updates - how to determine if one has been updated.
+                <ul>
+                  <li>
+                    We are investigating looking at the history to determine if the VS has changed.
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="https://tracker.nci.nih.gov/browse/LEXEVS-2965?src=confmacro" rel="nofollow">
+              <img src="$iconUrl"/>
+              LEXEVS-2965
+            </a>
+            -
+
+
+            (
+            <img src="$statusIcon"/>
+            )
+            <ul>
+              <li>
+                Need to determine how to resolve these hierarchies quickly/efficiently
+                <ul>
+                  <li>
+                    Possibly use the triple store
+                  </li>
+                  <li>
+                    Or Within LexEVS, use the entities association to entities table
+                  </li>
+                </ul>
+              </li>
+              <li>
+                What are the requirements?
+                <ul>
+                  <li>
+                    Given Identifier and namespace, we can get these for the end user quickly.
+                  </li>
+                  <li>
+                    For resolved VS, Kim wants an iterator
+                  </li>
+                  <li>
+                    For a hierarchy/graph, for every value set,  Kim needs the parent code, child code and namespace. (we would need to resolve this with the 1 to many relationship in mind - for at least the children.)
+                    <ul>
+                      <li>
+                        Scott suggested we would use the entities association to entities table to store this relationship.
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul>
+          <li>
+            <a href="https://tracker.nci.nih.gov/browse/LEXEVS-2969?src=confmacro" rel="nofollow">
+              <img src="$iconUrl"/>
+              LEXEVS-2969
+            </a>
+            -
+
+
+            (
+            <img src="$statusIcon"/>
+            )
+            <ul>
+              <li>
+                The main user that is looking at a hierarchical value sets within CTRP is using EVS API
+                <ul>
+                  <li>
+                    caDSR - would prefer REST to retrieve hierarchical value sets.
+                  </li>
+                </ul>
+              </li>
+              <li>
+                Neoplasm hierarchy - everything needed for this VS is inside the NCIt.
+                <ul>
+                  <li>
+                    We should discuss priority regarding this item with Larry.
+                  </li>
+                  <li>
+                    Requirements:
+                  </li>
+                  <li>
+                    Subclass of relationships
+                  </li>
+                </ul>
+              </li>
+              <li>
+                NICHD and CDRH value sets
+                <ul>
+                  <li>
+                    Tracy suggested has NICHD parent and CDRH parent would be good to load as a relationship.
+                  </li>
+                  <li>
+                    Rob suggested it would be nice if the source asserted hierarchy is loaded in LexEVS to be displayed in the browser.
+                  </li>
+                  <li>
+                    Load as a monolithic VS (for performance reasons).
+                  </li>
+                  <li>
+                    Currently loaded with the terminology value set.
+                  </li>
+                  <li>
+                    Scott suggested to load as hierarchies, individually and link them.
+                  </li>
+                </ul>
+              </li>
+              <li>
+                Browser hierarchy - Kim looks at &#34;is-a relationship&#34; to determine hierarchy.
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="https://tracker.nci.nih.gov/browse/LEXEVS-2968?src=confmacro" rel="nofollow">
+              <img src="$iconUrl"/>
+              LEXEVS-2968
+            </a>
+            -
+
+
+            (
+            <img src="$statusIcon"/>
+            )
+          </li>
+          <li>
+            <a href="https://tracker.nci.nih.gov/browse/LEXEVS-3194?src=confmacro" rel="nofollow">
+              <img src="$iconUrl"/>
+              LEXEVS-3194
+            </a>
+            -
+
+
+            (
+            <img src="$statusIcon"/>
+            )
+          </li>
+          <li>
+            <a href="https://tracker.nci.nih.gov/browse/LEXEVS-3195?src=confmacro" rel="nofollow">
+              <img src="$iconUrl"/>
+              LEXEVS-3195
+            </a>
+            -
+
+
+            (
+            <img src="$statusIcon"/>
+            )
+          </li>
+          <li>
+            <a href="https://tracker.nci.nih.gov/browse/LEXEVS-3195?src=confmacro" rel="nofollow">
+              <img src="$iconUrl"/>
+              LEXEVS-3195
+            </a>
+            -
+
+
+            (
+            <img src="$statusIcon"/>
+            )
+          </li>
+        </ul>
+        Decision Points:
+        <ul>
+          <li>
+            Scott will create a JIRA item to improve the transitive table performance during the load.
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1"></td>
+      <td colspan="1"></td>
+    </tr>
+  </tbody>
+</table>

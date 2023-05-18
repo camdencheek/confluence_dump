@@ -1,0 +1,108 @@
+<h1 id="caArray021ConfiguringcaArrayforLDAPauthentication-Question:HowtoIconfigurecaArrayforLDAPauthentication?">
+  Question: How to I configure caArray for LDAP authentication?
+</h1>
+Topic: caArray and UPT Integration
+
+Release: Up to caArray 2.x
+
+Date entered: 03/27/2009
+<h2 id="caArray021ConfiguringcaArrayforLDAPauthentication-DetailsabouttheQuestion">
+  Details about the Question
+</h2>
+I wanted to integrate caArray and LDAP authentication with my university&#39;s login account. In the same way, my colleagues should also be able to log into caArray using their accounts. What do I need to do to achieve this?
+<h2 id="caArray021ConfiguringcaArrayforLDAPauthentication-Answer">
+  Answer
+</h2>
+To use LDAP authentication, you need to configure the installation property, and make sure all the users are being created in UPT.
+<h3 id="caArray021ConfiguringcaArrayforLDAPauthentication-Step1.ConfigureInstallationProperty">
+  Step 1. Configure Installation Property
+</h3>
+You can use either the GUI installer or Command Line installation to modify the configuration file. The following information is necessary:
+<h4 id="caArray021ConfiguringcaArrayforLDAPauthentication-GUIInstallerText:PropertyName">
+  GUI Installer Text : Property Name
+</h4>
+&#34;LDAP Host Name&#34; : ldap.host (E.g., ldap_host.mydomain.com)
+&#34;LDAP Search Base&#34; : ldap.searchbase (The subdirectory in LDAP where users/roles should be searched for. E.g., ou=users, o=mydomain.com)
+&#34;LDAP Search Prefix&#34; : ldap.searchprefix (The user ID prefix which is used by your LDAP server. uid=)
+<h4 id="caArray021ConfiguringcaArrayforLDAPauthentication-CommendLineinstallation(install.properties)">
+  Commend Line installation (install.properties)
+</h4>
+ldap.host=  ldap.host (E.g., ldap_host.mydomain.com)
+ldap.searchbase= ldap.searchbase
+ldap.searchprefix=: ldap.searchprefix (The user ID prefix which is used by your LDAP server. uid=)
+<h3 id="caArray021ConfiguringcaArrayforLDAPauthentication-Step2.CreateUserinUPT">
+  Step 2. Create User in UPT
+</h3>
+In order for someone with an LDAP account to log in to caArray, they need to be added to the UPT. (For details, see caArrat003, How to create caArray user with UPT?
+
+
+
+Log into the UPT for the caarray application
+Click on the User Tab
+Click on &#34;Create a New User&#34;
+Enter the user&#39;s LDAP account into the &#34;User Login Name&#34; Field
+Enter user&#39;s first name
+Enter user&#39;s last name
+Enter user&#39;s email address
+(You can add other information you would like about the user, but *DO NOT enter* a password)
+Click on the &#34;Add&#34; button
+On the next screen, click on the &#34;Associated Groups&#34; button
+Add the proper group (i.e. Principal Investigator, Lab Scientist, etc.)
+Click on the &#34;Update Associations&#34; button
+
+
+
+The user should now be able to login using their LDAP account credentials. The UPT is designed to first check for a password provided in the UPT. If the password field is blank, it will then try to look for an LDAP connection and authentication.
+<h3 id="caArray021ConfiguringcaArrayforLDAPauthentication-Step3:LDAPconfigurationincaArray2.2.1andunder">
+  Step 3: LDAP configuration in caArray 2.2.1 and under
+</h3>
+Several bugs were identified in the caArray installer (release 2.2.1 &amp; under) with regard to the proper LDAP configuration. The bugs have been fixed in the caArray 2.3.0 release. In order to make sure the LDAP is working properly with any caArray instance prior to caArray version 2.3.0, however, the user needs to manually configure the web.xml inside the caarray.war file, which is inside the caarray.ear file, following the steps below:
+<ul>
+  <li>
+    Back up your &lt;caArray installation home&gt;/jboss-4.0.5.GA/server/default/deploy/caarray.ear file
+  </li>
+  <li>
+    Extract the caarray.war file from the caarray.ear file using a zip utility
+  </li>
+  <li>
+    Extract the web.xml file from the caarray.war file using zip utility
+  </li>
+  <li>
+    Manually configure these two context-param elements with param-values set for your unique environment:
+  </li>
+</ul>
+&lt;context-param&gt;
+&lt;param-name&gt;ldapHost&lt;/param-name&gt;
+&lt;param-value&gt;ldaps://nci6116-ds2.nci.nih.gov:636&lt;/param-value&gt;
+&lt;/context-param&gt;
+&lt;context-param&gt;
+&lt;param-name&gt;ldapSearchableBase&lt;/param-name&gt;
+&lt;param-value&gt;ou=nci,o=nih&lt;/param-value&gt;
+&lt;/context-param&gt;
+<ul>
+  <li>
+    Save the modified web.xml and reinsert it into the proper location inside the caarray.war file using a zip utility (goes to &lt;war root&gt;/WEB-INF/web.xml)
+  </li>
+  <li>
+    Reinsert the caarray.war file back into the root of the caarray.ear file using a zip utility (goes to &lt;ear root&gt;/caarray.war)
+  </li>
+  <li>
+    Restart JBoss
+  </li>
+</ul>
+<h3 id="caArray021ConfiguringcaArrayforLDAPauthentication-Troubleshooting">
+  Troubleshooting
+</h3>
+<ul>
+  <li>
+    Application name is case sensitive.
+  </li>
+</ul>
+<h2 id="caArray021ConfiguringcaArrayforLDAPauthentication-Haveacomment?">
+  Have a comment?
+</h2>
+Please leave your comment in the
+<a href="https://cabig-kc.nci.nih.gov/Molecular/forums/viewtopic.php?f=6&amp;t=577" rel="nofollow">
+  caArray End User Forum
+</a>
+. 

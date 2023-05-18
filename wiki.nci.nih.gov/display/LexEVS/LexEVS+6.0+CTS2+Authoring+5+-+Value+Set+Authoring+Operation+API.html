@@ -1,0 +1,1434 @@
+Contents of this Page
+<ul>
+  <li>
+    <a href="#LexEVS6.0CTS2Authoring5ValueSetAuthoringOperationAPI-Introduction" rel="nofollow">
+      Introduction
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.0CTS2Authoring5ValueSetAuthoringOperationAPI-Interface" rel="nofollow">
+      Interface
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.0CTS2Authoring5ValueSetAuthoringOperationAPI-RevisionInformation" rel="nofollow">
+      Revision Information
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS6.0CTS2Authoring5ValueSetAuthoringOperationAPI-AuthoringFunctions" rel="nofollow">
+      Authoring Functions
+    </a>
+    <ul>
+      <li>
+        <a href="#LexEVS6.0CTS2Authoring5ValueSetAuthoringOperationAPI-CreateOperations" rel="nofollow">
+          Create Operations
+        </a>
+        <ul>
+          <li>
+            <a href="#LexEVS6.0CTS2Authoring5ValueSetAuthoringOperationAPI-createValueSet" rel="nofollow">
+              createValueSet
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS6.0CTS2Authoring5ValueSetAuthoringOperationAPI-createValueSetusingValueSetDefinitionobject" rel="nofollow">
+              createValueSet using ValueSetDefinition object
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS6.0CTS2Authoring5ValueSetAuthoringOperationAPI-addDefinitionEntry" rel="nofollow">
+              addDefinitionEntry
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS6.0CTS2Authoring5ValueSetAuthoringOperationAPI-addValueSetProperty" rel="nofollow">
+              addValueSetProperty
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#LexEVS6.0CTS2Authoring5ValueSetAuthoringOperationAPI-EditOperations" rel="nofollow">
+          Edit Operations
+        </a>
+        <ul>
+          <li>
+            <a href="#LexEVS6.0CTS2Authoring5ValueSetAuthoringOperationAPI-updateValueSetMetaData" rel="nofollow">
+              updateValueSetMetaData
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS6.0CTS2Authoring5ValueSetAuthoringOperationAPI-updateDefinitionEntry" rel="nofollow">
+              updateDefinitionEntry
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS6.0CTS2Authoring5ValueSetAuthoringOperationAPI-updateValueSetProperty" rel="nofollow">
+              updateValueSetProperty
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#LexEVS6.0CTS2Authoring5ValueSetAuthoringOperationAPI-RemoveOperations" rel="nofollow">
+          Remove Operations
+        </a>
+        <ul>
+          <li>
+            <a href="#LexEVS6.0CTS2Authoring5ValueSetAuthoringOperationAPI-removeValueSet" rel="nofollow">
+              removeValueSet
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS6.0CTS2Authoring5ValueSetAuthoringOperationAPI-removeDefinitionEntry" rel="nofollow">
+              removeDefinitionEntry
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS6.0CTS2Authoring5ValueSetAuthoringOperationAPI-removeValueSetProperty" rel="nofollow">
+              removeValueSetProperty
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#LexEVS6.0CTS2Authoring5ValueSetAuthoringOperationAPI-VersionableChangeOperations" rel="nofollow">
+          Versionable Change Operations
+        </a>
+        <ul>
+          <li>
+            <a href="#LexEVS6.0CTS2Authoring5ValueSetAuthoringOperationAPI-updateValueSetStatus" rel="nofollow">
+              updateValueSetStatus
+            </a>
+          </li>
+          <li>
+            <a href="#LexEVS6.0CTS2Authoring5ValueSetAuthoringOperationAPI-updateValueSetVersionable" rel="nofollow">
+              updateValueSetVersionable
+            </a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        CTS2 Links for LexEVS 6.0
+      </th>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427281" rel="nofollow">
+              CTS2 API Main Page
+            </a>
+          </li>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427334" rel="nofollow">
+              Programmer&#39;s Guide Main Page
+            </a>
+          </li>
+          <li>
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=69730353" rel="nofollow">
+              LexEVS 6.0 Main Page
+            </a>
+          </li>
+          <li>
+            <a href="https://wiki.nci.nih.gov/display/LexEVS" rel="nofollow">
+              LexEVS Current Release
+            </a>
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="LexEVS6.0CTS2Authoring5ValueSetAuthoringOperationAPI-Introduction">
+  Introduction
+</h2>
+LexEVS CTS2 Value Set Authoring API provides capability to author Value Set Definition, its Properties, Definition Entries (rule set) and its Versionable attributes.
+
+Here are the authoring functions that can be performed on Value Set:
+<ul>
+  <li>
+    Create - This function provides capability to create:
+    <ul>
+      <li>
+        New Value Set
+      </li>
+      <li>
+        Add new Definition Entry (Rule Set) to Value Set
+      </li>
+      <li>
+        Add new property to Value Set
+      </li>
+    </ul>
+  </li>
+  <li>
+    Edit - This function provides capability to update:
+    <ul>
+      <li>
+        Value Set meta-data
+      </li>
+      <li>
+        Definition Entry of a Value Set
+      </li>
+      <li>
+        Property of a Value Set
+      </li>
+    </ul>
+  </li>
+  <li>
+    Remove - This function provides capability to remove:
+    <ul>
+      <li>
+        Value Set
+      </li>
+      <li>
+        Definition Entry of a Value Set
+      </li>
+      <li>
+        Property of a Value Set
+      </li>
+    </ul>
+  </li>
+  <li>
+    Versionable Change - This function provides capability to modify versionable attributes of Usage Context like Status, Effective Date, Expiration Date, isActive and Owner:
+    <ul>
+      <li>
+        Value Set Status
+      </li>
+      <li>
+        Value Set Versionable attributes
+      </li>
+    </ul>
+  </li>
+</ul>
+<h2 id="LexEVS6.0CTS2Authoring5ValueSetAuthoringOperationAPI-Interface">
+  Interface
+</h2>
+org.lexevs.cts2.author.ValueSetAuthoringOperation is the main interface for all the authoring operations against Value Set. This interface can be accessed using main LexEVSCTS2 interface, like:
+
+
+
+org.lexevs.cts2.author.ValueSetAuthoringOperation vsAuthOp = new org.lexevs.cts2.LexEvsCTS2Impl().getAuthoringOperation().getValueSetAuthoringOperation();
+<h2 id="LexEVS6.0CTS2Authoring5ValueSetAuthoringOperationAPI-RevisionInformation">
+  Revision Information
+</h2>
+All the authoring functions described here requires information about the author and revision/version id to be assigned to entities for each of these operations. These is done passing object org.lexevs.cts2.core.update.RevisionInfo. RevisionInfo object has following attributes:
+<ul>
+  <li>
+    java.lang.String changeAgent - (Optional) The source that participated in this particular change.
+  </li>
+  <li>
+    java.lang.String changeInstruction - (Optional) A human or machine readable set of instructions on how to apply this change.
+  </li>
+  <li>
+    java.lang.String revisionId - (Mandatory) The unique identifier of this revision.
+  </li>
+  <li>
+    java.lang.Long editOrder - (Optional) The relative order that this revision is to be applied if in a systemRelease.
+  </li>
+  <li>
+    java.util.Date revisionDate - (Optional) The end date for which this version is operative (considered commited).
+  </li>
+  <li>
+    java.lang.String description -  (Optional) The description of the resource/change.
+  </li>
+  <li>
+    java.lang.String systemReleaseURI - (Optional) The official URI of this release
+  </li>
+</ul>
+<h2 id="LexEVS6.0CTS2Authoring5ValueSetAuthoringOperationAPI-AuthoringFunctions">
+  Authoring Functions
+</h2>
+Following sections contains detailed functions provided by ValueSetAuthoringOperation interface.
+<h3 id="LexEVS6.0CTS2Authoring5ValueSetAuthoringOperationAPI-CreateOperations">
+  Create Operations
+</h3>
+Create Operation provides capability to create Value Set, Definition Entry and Properties. For every entry that gets created, a unique revision(version) identifier will be assigned to that entry. This helps in retrieving snapshots of an entry based on its revision(version) identifier. This unique id can be passed in using the RevisionInfo object described above.
+<h4 id="LexEVS6.0CTS2Authoring5ValueSetAuthoringOperationAPI-createValueSet">
+  createValueSet
+</h4>
+This function creates a new Value Set. The new Value Set is defined by the set of meta-data properties that describe it.
+
+createValueSet(URI valueSetURI, String valueSetName, String defaultCodeSystem, String conceptDomainId, List&lt;org.LexGrid.commonTypes.Source&gt; sourceList, List&lt;String&gt; usageContextList, Properties properties, List&lt;DefinitionEntry&gt; ruleSetList, Versionable versionable, RevisionInfo revision)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Creates a new value set definition and loads into repository.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        <ul>
+          <li>
+            java.net.URI valueSetURI - (Mandatory) URI of value set definition.
+          </li>
+          <li>
+            java.lang.String valueSetName - (Mandatory) Name of value set definition.
+          </li>
+          <li>
+            java.lang.String defaultCodeSystem - (Optional) local name of default code system.
+          </li>
+          <li>
+            java.lang.String conceptDomainId - (Optional) local name of concept domain this value set is binded to.
+          </li>
+          <li>
+            java.util.List&lt;org.LexGrid.commonTypes.Source&gt; sourceList - (Optional)Source list for this value set.
+          </li>
+          <li>
+            java.util.List&lt;java.lang.String&gt; usageContextList - (Optional) list of local name of usage context of this value set.
+          </li>
+          <li>
+            org.LexGrid.commonTypes.Properties properties - (Optional) list of value set properties.
+          </li>
+          <li>
+            java.util.List&lt;org.LexGrid.valuesets.DefinitionEntry&gt; ruleSetList - (Optional) list of definition entries (rule sets).
+          </li>
+          <li>
+            org.LexGrid.commonTypes.Versionable versionable - (Optional) Versionable entries of a value set(status, isActive, effective date etc).
+          </li>
+          <li>
+            org.lexevs.cts2.core.update.RevisionInfo revision - (Mandatory) Contains revision information like unique RevisionId, change description, author information etc.
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        java.net.URI - value set definition URI if created successfully
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Sample Call:
+      </th>
+      <td>
+        <ul>
+          <li>
+            Step 1: Instantiate ValueSetAuthoringOperation if it is not done yet:
+
+            org.lexevs.cts2.author.ValueSetAuthoringOperation vsAuthorOp = LexEvsCTS2Impl.defaultInstance().getAuthoringOperation().getValueSetAuthoringOperation();
+          </li>
+          <li>
+            Step 2: Populate RevisionInfo object:
+
+
+            RevisionInfo revInfo = new RevisionInfo();
+            revInfo.setChangeAgent(&#34;change Agent Name&#34;);
+            revInfo.setChangeInstruction(&#34;here goes the change Instructions&#34;);
+            revInfo.setDescription(&#34;description of the resource&#34;);
+            revInfo.setEditOrder(1L);
+            revInfo.setRevisionDate(new Date());
+            revInfo.setRevisionId(UUID.randomUUID().toString());
+          </li>
+          <li>
+            Step 3: Populate a properties to be added:
+
+
+            Property prop = new Property();
+            prop.setPropertyId(&#34;propertyId1&#34;);
+            prop.setPropertyName(&#34;propertyName&#34;);
+            prop.setIsActive(false);
+            prop.setLanguage(&#34;en&#34;);
+            prop.setOwner(&#34;owner&#34;);
+            prop.setPropertyType(PropertyTypes.PROPERTY.name());
+            Text text = new Text();
+            text.setContent(&#34;content&#34;);
+            text.setDataType(&#34;Text datatype&#34;);
+            prop.setValue(text);
+
+            Properties props = new Properties();
+
+            props.addProperty(prop);
+          </li>
+          <li>
+            Step 4: call create Value Set method:
+
+
+            &#39;&#39;URI vsdURI = vsAuthOp.createValueSet(new URI(&#34;VSD:AUTHORING:JUNIT:TEST1&#34;),
+
+            				&#34;Authoring create vsd junit test1&#34;,
+            				&#34;Automobiles&#34;, &#34;Autos&#34;, null, null,
+            				props, null, null, revInfo);&#39;&#39;
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h4 id="LexEVS6.0CTS2Authoring5ValueSetAuthoringOperationAPI-createValueSetusingValueSetDefinitionobject">
+  createValueSet using ValueSetDefinition object
+</h4>
+This function is similar to above except this allows users to create Value Set by passing well defined value set definition object. The new Value Set is defined by the set of meta-data properties that describe it.
+
+createValueSet(ValueSetDefinition valueSetDefininition, RevisionInfo revision)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Creates a new value set definition and loads into repository.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        <ul>
+          <li>
+            org.LexGrid.valuesets.ValueSetDefinition valueSetDefininition - (Mandatory) Value Set Definition object to be loaded into repository.
+          </li>
+          <li>
+            org.lexevs.cts2.core.update.RevisionInfo revision - (Mandatory) Contains revision information like unique RevisionId, change description, author information etc.
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        java.net.URI - value set definition URI if created successfully
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Sample Call:
+      </th>
+      <td>
+        <ul>
+          <li>
+            Step 1: Instantiate ValueSetAuthoringOperation if it is not done yet:
+
+
+            org.lexevs.cts2.author.ValueSetAuthoringOperation vsAuthorOp = LexEvsCTS2Impl.defaultInstance().getAuthoringOperation().getValueSetAuthoringOperation();
+          </li>
+          <li>
+            Step 2: Populate RevisionInfo object:
+
+
+            RevisionInfo revInfo = new RevisionInfo();
+            revInfo.setChangeAgent(&#34;change Agent Name&#34;);
+            revInfo.setChangeInstruction(&#34;here goes the change Instructions&#34;);
+            revInfo.setDescription(&#34;description of the resource&#34;);
+            revInfo.setEditOrder(1L);
+            revInfo.setRevisionDate(new Date());
+            revInfo.setRevisionId(UUID.randomUUID().toString());
+          </li>
+          <li>
+            Step 3: Populate a Value Set Definition to be added:
+
+
+            ValueSetDefinition vsd = new ValueSetDefinition();
+            vsd.setValueSetDefinitionURI(&#34;VSD:AUTHORING:JUNIT:TEST2&#34;);
+            vsd.setValueSetDefinitionName(&#34;Authoring create vsd junit test2&#34;);
+            vsd.setConceptDomain(&#34;Autos CD&#34;);
+            vsd.setDefaultCodingScheme(&#34;Automobiles&#34;);
+          </li>
+          <li>
+            Step 4: call create Value Set method:
+
+
+            URI vsdURI = vsAuthOp.createValueSet(vsd, revInfo); |
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h4 id="LexEVS6.0CTS2Authoring5ValueSetAuthoringOperationAPI-addDefinitionEntry">
+  addDefinitionEntry
+</h4>
+This function provides capability to add new Definition Entry (Rule Set) to Value Set Definition.
+
+addDefinitionEntry(URI valueSetURI, DefinitionEntry newDefinitionEntry, RevisionInfo revision)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Add new definition entry (rule set) to a value set definition.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        <ul>
+          <li>
+            java.net.URI valueSetURI - (Mandatory) URI of value set definition.
+          </li>
+          <li>
+            org.LexGrid.valuesets.DefinitionEntry newDefinitionEntry - (Mandatory) Definition Entry object to be added.
+          </li>
+          <li>
+            org.lexevs.cts2.core.update.RevisionInfo revision - (Mandatory) Contains revision information like unique RevisionId, change description, author information etc.
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        boolean - True if update was successful
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Sample Call:
+      </th>
+      <td>
+        <ul>
+          <li>
+            Step 1: Instantiate ValueSetAuthoringOperation if it is not done yet:
+
+
+            org.lexevs.cts2.author.ValueSetAuthoringOperation vsAuthorOp = LexEvsCTS2Impl.defaultInstance().getAuthoringOperation().getValueSetAuthoringOperation();
+          </li>
+          <li>
+            Step 2: Populate RevisionInfo object:
+
+
+            RevisionInfo revInfo = new RevisionInfo();
+            revInfo.setChangeAgent(&#34;change Agent Name&#34;);
+            revInfo.setChangeInstruction(&#34;here goes the change Instructions&#34;);
+            revInfo.setDescription(&#34;description of the resource&#34;);
+            revInfo.setEditOrder(1L);
+            revInfo.setRevisionDate(new Date());
+            revInfo.setRevisionId(UUID.randomUUID().toString());
+          </li>
+          <li>
+            Step 3: Populate a Definition Entry object to be added:
+
+
+            DefinitionEntry newDefEntry = new DefinitionEntry();
+            newDefEntry.setOperator(org.LexGrid.valuesets.types.DefinitionOperator.OR);
+            newDefEntry.setRuleOrder(0L);
+
+            org.LexGrid.valuesets.EntityReference er = new org.LexGrid.valuesets.EntityReference();
+            er.setEntityCode(&#34;GM&#34;);
+            er.setEntityCodeNamespace(&#34;Automobiles&#34;);
+            er.setLeafOnly(false);
+            er.setReferenceAssociation(&#34;hasSubtype&#34;);
+            er.setTargetToSource(false);
+            er.setTransitiveClosure(true);
+
+            newDefEntry.setEntityReference(er);
+          </li>
+          <li>
+            Step 4: call create definition entry method by passing Value Set URI and Definition Entry object:
+
+
+            boolean created = vsAuthOp.addDefinitionEntry(new URI(&#34;VSD:AUTHORING:JUNIT:TEST2&#34;), newDefEntry, revInfo);
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h4 id="LexEVS6.0CTS2Authoring5ValueSetAuthoringOperationAPI-addValueSetProperty">
+  addValueSetProperty
+</h4>
+This function provides capability to add a new property to a Value Set.
+
+addValueSetProperty(URI valueSetURI, Property newProperty, RevisionInfo revision)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Add new Property to existing value set definition.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        <ul>
+          <li>
+            java.net.URI valueSetURI - (Mandatory) URI of value set definition this new property will be added.
+          </li>
+          <li>
+            org.LexGrid.commonTypes.Property newProperty - (Mandatory) New property that will be added to Value Set Definition.
+          </li>
+          <li>
+            org.lexevs.cts2.core.update.RevisionInfo revision - (Mandatory) Contains revision information like unique RevisionId, change description, author information etc.
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        boolean - True; if addition of new property was success
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Sample Call:
+      </th>
+      <td>
+        <ul>
+          <li>
+            Step 1: Instantiate ValueSetAuthoringOperation if it is not done yet:
+
+
+            org.lexevs.cts2.author.ValueSetAuthoringOperation vsAuthorOp = LexEvsCTS2Impl.defaultInstance().getAuthoringOperation().getValueSetAuthoringOperation();
+          </li>
+          <li>
+            Step 2: Populate RevisionInfo object:
+
+
+            RevisionInfo revInfo = new RevisionInfo();
+            revInfo.setChangeAgent(&#34;change Agent Name&#34;);
+            revInfo.setChangeInstruction(&#34;here goes the change Instructions&#34;);
+            revInfo.setDescription(&#34;description of the resource&#34;);
+            revInfo.setEditOrder(1L);
+            revInfo.setRevisionDate(new Date());
+            revInfo.setRevisionId(UUID.randomUUID().toString());
+          </li>
+          <li>
+            Step 3: Populate a property to be added:
+
+
+            Property prop = new Property();
+            prop.setPropertyId(&#34;propertyId1&#34;);
+            prop.setPropertyName(&#34;propertyName&#34;);
+            prop.setIsActive(false);
+            prop.setLanguage(&#34;en&#34;);
+            prop.setOwner(&#34;owner&#34;);
+            prop.setPropertyType(PropertyTypes.PROPERTY.name());
+            Text text = new Text();
+            text.setContent(&#34;content&#34;);
+            text.setDataType(&#34;Text datatype&#34;);
+            prop.setValue(text);
+          </li>
+          <li>
+            Step 4: call add property method by passing the Value Set information and a new property:
+
+
+            &#39;&#39;boolean added = vsAuthOp.addValueSetProperty(new URI(&#34;VSD:AUTHORING:JUNIT:TEST1&#34;),
+
+            					prop, revInfo));&#39;&#39;
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h3 id="LexEVS6.0CTS2Authoring5ValueSetAuthoringOperationAPI-EditOperations">
+  Edit Operations
+</h3>
+The edit operation provides the capability to modify Value Set meta-data, it&#39;s definition entires (rule sets) and its properties. For every entry that gets modified, a unique revision(version) identifier will be assigned to that entry. This helps in retrieving snapshots of an entry based on its revision(version) identifier. This unique id can be passed in using the RevisionInfo object described above.
+<h4 id="LexEVS6.0CTS2Authoring5ValueSetAuthoringOperationAPI-updateValueSetMetaData">
+  updateValueSetMetaData
+</h4>
+This function provides capability to modify existing meta-data of a value set definition.
+
+updateValueSetMetaData(URI valueSetURI, String valueSetName, String defaultCodeSystem, String conceptDomainId, List&lt;org.LexGrid.commonTypes.Source&gt; sourceList, List&lt;String&gt; usageContext, RevisionInfo revision)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Updates value set definition meta data.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        <ul>
+          <li>
+            java.net.URI valueSetURI - (Mandatory) URI of value set definition that will be modified.
+          </li>
+          <li>
+            java.lang.String valueSetName - (Optional) modified value set definition name. Pass &#39;null&#39; for no change for this attribute.
+          </li>
+          <li>
+            java.lang.String defaultCodeSystem - (Optional) modified default code system name.  Pass &#39;null&#39; for no change for this attribute.
+          </li>
+          <li>
+            java.lang.String conceptDomainId - (Optional) modified concept domain id.  Pass &#39;null&#39; for no change for this attribute.
+          </li>
+          <li>
+            java.util.List&lt;org.LexGrid.commonTypes.Source&gt;  sourceList - (Optional) modified complete list of source.  Pass &#39;null&#39; for no change for this attribute.
+          </li>
+          <li>
+            java.util.List&lt;java.lang.String&gt;  usageContext - (Optional) modified complete list of context.  Pass &#39;null&#39; for no change for this attribute.
+          </li>
+          <li>
+            org.lexevs.cts2.core.update.RevisionInfo revision - (Mandatory) Contains revision information like unique RevisionId, change description, author information etc.
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        boolean - True; if update was success
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Sample Call:
+      </th>
+      <td>
+        <ul>
+          <li>
+            Step 1: Instantiate ValueSetAuthoringOperation if it is not done yet:
+
+
+            org.lexevs.cts2.author.ValueSetAuthoringOperation vsAuthorOp = LexEvsCTS2Impl.defaultInstance().getAuthoringOperation().getValueSetAuthoringOperation();
+          </li>
+          <li>
+            Step 2: Populate RevisionInfo object:
+
+
+            RevisionInfo revInfo = new RevisionInfo();
+            revInfo.setChangeAgent(&#34;change Agent Name&#34;);
+            revInfo.setChangeInstruction(&#34;here goes the change Instructions&#34;);
+            revInfo.setDescription(&#34;description of the resource&#34;);
+            revInfo.setEditOrder(1L);
+            revInfo.setRevisionDate(new Date());
+            revInfo.setRevisionId(UUID.randomUUID().toString());
+          </li>
+          <li>
+            Step 3: Populate a modified meta-data. Here, just modifying source and usage context:
+
+
+            List&lt;org.LexGrid.commonTypes.Source&gt; srcList = new ArrayList&lt;org.LexGrid.commonTypes.Source&gt;();
+            org.LexGrid.commonTypes.Source src = new org.LexGrid.commonTypes.Source();
+            src.setContent(&#34;LexEVS as src&#34;);
+            srcList.add(src);
+            src = new Source();
+            src.setContent(&#34;Mayo as src&#34;);
+            srcList.add(src);
+
+            List&lt;String&gt; contextList = new ArrayList&lt;String&gt;();
+            contextList.add(&#34;Autos as context&#34;);
+            contextList.add(&#34;lexevs as context&#34;);
+          </li>
+          <li>
+            Step 4: call update meta-data method by passing the value set information and the modified meta-data:
+
+
+            &#39;&#39;boolean updated = vsAuthOp.updateValueSetMetaData(new URI(&#34;VSD:AUTHORING:JUNIT:TEST2&#34;),
+
+            				&#34;VSD after metatdate update vsdR250&#34;,
+            				null, &#34;Autos CD update vsdR250&#34;, srcList, contextList,
+            				revInfo);&#39;&#39;
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h4 id="LexEVS6.0CTS2Authoring5ValueSetAuthoringOperationAPI-updateDefinitionEntry">
+  updateDefinitionEntry
+</h4>
+This function provides capability to modify existing Definition Entry of a Value Set Definition.
+
+updateDefinitionEntry(URI valueSetURI, DefinitionEntry changedDefinitionEntry, RevisionInfo revision)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Update existing definition entry (rule set) of a value set definition.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        <ul>
+          <li>
+            java.net.URI valueSetURI - (Mandatory) URI of value set definition that contains the definition entry.
+          </li>
+          <li>
+            org.LexGrid.valueSetDefinitionEntry changedDefinitionEntry - (Mandatory) modified definition entry object.
+          </li>
+          <li>
+            org.lexevs.cts2.core.update.RevisionInfo revision - (Mandatory) Contains revision information like unique RevisionId, change description, author information etc.
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        boolean - True; if update was success
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Sample Call:
+      </th>
+      <td>
+        <ul>
+          <li>
+            Step 1: Instantiate ValueSetAuthoringOperation if it is not done yet:
+
+
+            org.lexevs.cts2.author.ValueSetAuthoringOperation vsAuthorOp = LexEvsCTS2Impl.defaultInstance().getAuthoringOperation().getValueSetAuthoringOperation();
+          </li>
+          <li>
+            Step 2: Populate RevisionInfo object:
+
+
+            RevisionInfo revInfo = new RevisionInfo();
+            revInfo.setChangeAgent(&#34;change Agent Name&#34;);
+            revInfo.setChangeInstruction(&#34;here goes the change Instructions&#34;);
+            revInfo.setDescription(&#34;description of the resource&#34;);
+            revInfo.setEditOrder(1L);
+            revInfo.setRevisionDate(new Date());
+            revInfo.setRevisionId(UUID.randomUUID().toString());
+          </li>
+          <li>
+            Step 3: Populate a modified Definition Entry object:
+
+
+            DefinitionEntry changedDefinitionEntry = new DefinitionEntry();
+            changedDefinitionEntry.setRuleOrder(0L);
+            changedDefinitionEntry.setOperator(DefinitionOperator.OR);
+            EntityReference er = new EntityReference();
+            er.setEntityCode(&#34;GM&#34;);
+            er.setEntityCodeNamespace(&#34;Automobiles&#34;);
+            // change leafOnly to true and association type to &#34;CHD&#34;_
+            er.setLeafOnly(true);
+            er.setReferenceAssociation(&#34;CHD&#34;);
+          </li>
+          <li>
+            Step 4: call update definition entry method by passing the value set information and the modified definition entry object:
+
+
+            boolean updated = vsAuthOp.updateDefinitionEntry(new URI(&#34;VSD:AUTHORING:JUNIT:TEST2&#34;), changedDefinitionEntry, revInfo);
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h4 id="LexEVS6.0CTS2Authoring5ValueSetAuthoringOperationAPI-updateValueSetProperty">
+  updateValueSetProperty
+</h4>
+This function provides capability to modify existing property of a Value Set Definition.
+
+updateValueSetProperty(URI valueSetURI, Property changedProperty, RevisionInfo revision)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Updates existing property of a value set definition.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        <ul>
+          <li>
+            java.net.URI valueSetURI - (Mandatory) URI of value set definition that contains the property.
+          </li>
+          <li>
+            org.LexGrid.commonTypes.Property property - (Mandatory) Modified property.
+          </li>
+          <li>
+            org.lexevs.cts2.core.update.RevisionInfo revision - (Mandatory) Contains revision information like unique RevisionId, change description, author information etc.
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        boolean - True; if update was success
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Sample Call:
+      </th>
+      <td>
+        <ul>
+          <li>
+            Step 1: Instantiate ValueSetAuthoringOperation if it is not done yet:
+
+
+            org.lexevs.cts2.author.ValueSetAuthoringOperation vsAuthorOp = LexEvsCTS2Impl.defaultInstance().getAuthoringOperation().getValueSetAuthoringOperation();
+          </li>
+          <li>
+            Step 2: Populate RevisionInfo object:
+
+
+            RevisionInfo revInfo = new RevisionInfo();
+            revInfo.setChangeAgent(&#34;change Agent Name&#34;);
+            revInfo.setChangeInstruction(&#34;here goes the change Instructions&#34;);
+            revInfo.setDescription(&#34;description of the resource&#34;);
+            revInfo.setEditOrder(1L);
+            revInfo.setRevisionDate(new Date());
+            revInfo.setRevisionId(UUID.randomUUID().toString());
+          </li>
+          <li>
+            Step 3: Populate a modified property. Just modified isActive to &#39;true&#39; and language to &#39;eng&#39; in property &#39;propertyId1&#39;:
+
+
+            Property prop = new Property();
+            prop.setPropertyId(&#34;propertyId1&#34;);
+            prop.setPropertyName(&#34;propertyName&#34;);
+            prop.setIsActive(true);
+            prop.setLanguage(&#34;eng&#34;);
+          </li>
+          <li>
+            Step 4: call update property method by passing the value set information and the modified property:
+
+
+            boolean updated = vsAuthOp.updateValueSetProperty(new URI(&#34;VSD:AUTHORING:JUNIT:TEST1&#34;), prop, revInfo);
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h3 id="LexEVS6.0CTS2Authoring5ValueSetAuthoringOperationAPI-RemoveOperations">
+  Remove Operations
+</h3>
+Remove operation provides capability to remove Value Set, its definition entry and its property.
+<h4 id="LexEVS6.0CTS2Authoring5ValueSetAuthoringOperationAPI-removeValueSet">
+  removeValueSet
+</h4>
+This function provides capability to remove a Value Set. This operation is permanent removal of value set definition.
+
+removeValueSet(URI valueSetURI, RevisionInfo revision)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Removes value set definition from the system. This operation is permanent removal of value set definition.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        <ul>
+          <li>
+            java.net.URI valueSetURI - (Mandatory) URI of value set definition to be removed.
+          </li>
+          <li>
+            org.lexevs.cts2.core.update.RevisionInfo revision - (Mandatory) Contains revision information like unique RevisionId, change description, author information etc.
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        boolean - True; if remove was success
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Sample Call:
+      </th>
+      <td>
+        <ul>
+          <li>
+            Step 1: Instantiate ValueSetAuthoringOperation if it is not done yet:
+
+
+            org.lexevs.cts2.author.ValueSetAuthoringOperation vsAuthorOp = LexEvsCTS2Impl.defaultInstance().getAuthoringOperation().getValueSetAuthoringOperation();
+          </li>
+          <li>
+            Step 2: Populate RevisionInfo object:
+
+
+            RevisionInfo revInfo = new RevisionInfo();
+            revInfo.setChangeAgent(&#34;change Agent Name&#34;);
+            revInfo.setChangeInstruction(&#34;here goes the change Instructions&#34;);
+            revInfo.setDescription(&#34;description of the resource&#34;);
+            revInfo.setEditOrder(1L);
+            revInfo.setRevisionDate(new Date());
+            revInfo.setRevisionId(UUID.randomUUID().toString());
+          </li>
+          <li>
+            Step 3: call remove Value Set method by passing the value set information:
+
+
+            boolean removed = vsAuthOp.removeValueSet(new URI(&#34;VSD:AUTHORING:JUNIT:TEST1&#34;), revInfo); |
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h4 id="LexEVS6.0CTS2Authoring5ValueSetAuthoringOperationAPI-removeDefinitionEntry">
+  removeDefinitionEntry
+</h4>
+This function provides capability to remove Definition Entry (rule set) of a Value Set.
+
+removeDefinitionEntry(URI valueSetURI, Long ruleOrder, RevisionInfo revision)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Removes definition entry (rule set) of a value set definition.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        <ul>
+          <li>
+            java.net.URI valueSetURI - (Mandatory) URI of value set definition that contains the definition entry to be removed.
+          </li>
+          <li>
+            java.lang.Long ruleOrder - (Mandatory) Rule set order id of a definition entry to be removed.
+          </li>
+          <li>
+            org.lexevs.cts2.core.update.RevisionInfo revision - (Mandatory) Contains revision information like unique RevisionId, change description, author information etc.
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        boolean - True; if remove was success
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Sample Call:
+      </th>
+      <td>
+        <ul>
+          <li>
+            Step 1: Instantiate ValueSetAuthoringOperation if it is not done yet:
+
+
+            org.lexevs.cts2.author.ValueSetAuthoringOperation vsAuthorOp = LexEvsCTS2Impl.defaultInstance().getAuthoringOperation().getValueSetAuthoringOperation();
+          </li>
+          <li>
+            Step 2: Populate RevisionInfo object:
+
+
+            RevisionInfo revInfo = new RevisionInfo();
+            revInfo.setChangeAgent(&#34;change Agent Name&#34;);
+            revInfo.setChangeInstruction(&#34;here goes the change Instructions&#34;);
+            revInfo.setDescription(&#34;description of the resource&#34;);
+            revInfo.setEditOrder(1L);
+            revInfo.setRevisionDate(new Date());
+            revInfo.setRevisionId(UUID.randomUUID().toString());
+          </li>
+          <li>
+            Step 3: call remove definition entry method by passing the value set and rule order id information:
+
+
+            boolean removed = vsAuthOp.removeDefinitionEntry(new URI(&#34;VSD:AUTHORING:JUNIT:TEST2&#34;), 1L, revInfo);
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h4 id="LexEVS6.0CTS2Authoring5ValueSetAuthoringOperationAPI-removeValueSetProperty">
+  removeValueSetProperty
+</h4>
+This function provides capability to remove property of a Value Set.
+
+removeValueSetProperty(URI valueSetURI, String propertyId, RevisionInfo revision)&#39;
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Removes a property of a Value Set Definition.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        <ul>
+          <li>
+            java.net.URI valueSetURI - (Mandatory) URI of value set definition that contains the property to be removed.
+          </li>
+          <li>
+            java.lang.String propertyId - (Mandatory) id of a property that needs to be removed.
+          </li>
+          <li>
+            org.lexevs.cts2.core.update.RevisionInfo revision - (Mandatory) Contains revision information like unique RevisionId, change description, author information etc.
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        boolean - True; if remove was success
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Sample Call:
+      </th>
+      <td>
+        <ul>
+          <li>
+            Step 1: Instantiate ValueSetAuthoringOperation if it is not done yet:
+
+
+            org.lexevs.cts2.author.ValueSetAuthoringOperation vsAuthorOp = LexEvsCTS2Impl.defaultInstance().getAuthoringOperation().getValueSetAuthoringOperation();
+          </li>
+          <li>
+            Step 2: Populate RevisionInfo object:
+
+
+            RevisionInfo revInfo = new RevisionInfo();
+            revInfo.setChangeAgent(&#34;change Agent Name&#34;);
+            revInfo.setChangeInstruction(&#34;here goes the change Instructions&#34;);
+            revInfo.setDescription(&#34;description of the resource&#34;);
+            revInfo.setEditOrder(1L);
+            revInfo.setRevisionDate(new Date());
+            revInfo.setRevisionId(UUID.randomUUID().toString());
+          </li>
+          <li>
+            Step 3: Call remove property method by passing the value set and property information:
+
+
+            boolean removed = vsAuthOp.removeValueSetProperty(new URI(&#34;VSD:AUTHORING:JUNIT:TEST1&#34;), &#34;propertyId1&#34;, revInfo)); |
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h3 id="LexEVS6.0CTS2Authoring5ValueSetAuthoringOperationAPI-VersionableChangeOperations">
+  Versionable Change Operations
+</h3>
+Versionable Change operation provides capability to modify versionable attributes of Value Set like Status, Effective Date, Expiration Date, isActive and Owner.
+<h4 id="LexEVS6.0CTS2Authoring5ValueSetAuthoringOperationAPI-updateValueSetStatus">
+  updateValueSetStatus
+</h4>
+This function modifies the status of a Value Set.
+
+updateValueSetStatus(URI valueSetURI, String status, RevisionInfo revision)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Modifies the status of a Value Set.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        <ul>
+          <li>
+            java.net.URI valueSetURI - (Mandatory) URI of value set definition.
+          </li>
+          <li>
+            java.lang.String status - (Mandatory) Modified status value.
+          </li>
+          <li>
+            org.lexevs.cts2.core.update.RevisionInfo revision - (Mandatory) Contains revision information like unique RevisionId, change description, author information etc.
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        boolean - True; if update was success
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception:
+      </th>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Sample Call:
+      </th>
+      <td>
+        <ul>
+          <li>
+            Step 1: Instantiate ValueSetAuthoringOperation if it is not done yet:
+
+
+            org.lexevs.cts2.author.ValueSetAuthoringOperation vsAuthorOp = LexEvsCTS2Impl.defaultInstance().getAuthoringOperation().getValueSetAuthoringOperation();
+          </li>
+          <li>
+            Step 2: Populate RevisionInfo object:
+
+
+            RevisionInfo revInfo = new RevisionInfo();
+            revInfo.setChangeAgent(&#34;change Agent Name&#34;);
+            revInfo.setChangeInstruction(&#34;here goes the change Instructions&#34;);
+            revInfo.setDescription(&#34;description of the resource&#34;);
+            revInfo.setEditOrder(1L);
+            revInfo.setRevisionDate(new Date());
+            revInfo.setRevisionId(UUID.randomUUID().toString());
+          </li>
+          <li>
+            Step 3: Call status change method by passing the value set and status information:
+
+
+            boolean changed = vsAuthOp.updateValueSetStatus(new URI(&#34;VSD:AUTHORING:JUNIT:TEST2&#34;), &#34;pending&#34;, revInfo));;
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h4 id="LexEVS6.0CTS2Authoring5ValueSetAuthoringOperationAPI-updateValueSetVersionable">
+  updateValueSetVersionable
+</h4>
+This function provides capability to modify Value Set versionable attributes like effective date, expiration date, owner, status etc.
+
+updateValueSetVersionable(URI valueSetURI, Versionable changedVersionable, RevisionInfo revision)
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Description:
+      </th>
+      <td>
+        Update Value Set versionable attributes like effective date, expiration date, owner, status etc.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Input:
+      </th>
+      <td>
+        <ul>
+          <li>
+            java.net.URI valueSetURI - (Mandatory) URI of value set definition.
+          </li>
+          <li>
+            org.LexGrid.commonTypes.Versionable changedVersionable - (Mandatory) Modified versionable attributes (like:owner, effectiveDate, expirationDate, status etc).
+          </li>
+          <li>
+            org.lexevs.cts2.core.update.RevisionInfo revision - (Mandatory) Contains revision information like unique RevisionId, change description, author information etc.
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Output:
+      </th>
+      <td>
+        boolean - True; if update was success
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Exception:
+      </td>
+      <td>
+        org.LexGrid.LexBIG.Exceptions.LBException
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Sample Call:
+      </th>
+      <td>
+        <ul>
+          <li>
+            Step 1: Instantiate ValueSetAuthoringOperation if it is not done yet:
+
+
+            org.lexevs.cts2.author.ValueSetAuthoringOperation vsAuthorOp = LexEvsCTS2Impl.defaultInstance().getAuthoringOperation().getValueSetAuthoringOperation();
+          </li>
+          <li>
+            Step 2: Populate RevisionInfo object:
+
+
+            RevisionInfo revInfo = new RevisionInfo();
+            revInfo.setChangeAgent(&#34;change Agent Name&#34;);
+            revInfo.setChangeInstruction(&#34;here goes the change Instructions&#34;);
+            revInfo.setDescription(&#34;description of the resource&#34;);
+            revInfo.setEditOrder(1L);
+            revInfo.setRevisionDate(new Date());
+            revInfo.setRevisionId(UUID.randomUUID().toString());
+          </li>
+          <li>
+            Step 3: Populate versionable changes:
+
+
+            Versionable changedVersionable = new Versionable();
+            changedVersionable.setEffectiveDate(new Date());
+            changedVersionable.setIsActive(true);
+            changedVersionable.setOwner(&#34;new Owner&#34;);
+            changedVersionable.setStatus(&#34;new status&#34;);
+          </li>
+          <li>
+            Step 4: Call change versionable method by passing the value set and changed versionable information:
+
+
+            boolean changed = vsAuthOp.updateValueSetVersionable(new URI(&#34;VSD:AUTHORING:JUNIT:TEST2&#34;), changedVersionable, revInfo);
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>

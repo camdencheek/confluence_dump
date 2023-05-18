@@ -1,0 +1,416 @@
+Contents of this Page
+<ul>
+  <li>
+    <a href="#LexEVS5.xLocalRuntimeAdministration-Introduction" rel="nofollow">
+      Introduction
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS5.xLocalRuntimeAdministration-LexEVSConfigurationOptions" rel="nofollow">
+      LexEVS Configuration Options
+    </a>
+    <ul>
+      <li>
+        <a href="#LexEVS5.xLocalRuntimeAdministration-WhatIsaCodingSchemeManifest?" rel="nofollow">
+          What Is a Coding Scheme Manifest?
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS5.xLocalRuntimeAdministration-WhatIsaCodingScheme?" rel="nofollow">
+          What Is a Coding Scheme?
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS5.xLocalRuntimeAdministration-WhyDoWeNeedaCodingSchemeManifest?" rel="nofollow">
+          Why Do We Need a Coding Scheme Manifest?
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS5.xLocalRuntimeAdministration-HowDoWeCreateaCodingSchemeManifestFile?" rel="nofollow">
+          How Do We Create a Coding Scheme Manifest File?
+        </a>
+      </li>
+      <li>
+        <a href="#LexEVS5.xLocalRuntimeAdministration-WhatCodeChangesMayBeRequiredToUseaManifestFile?" rel="nofollow">
+          What Code Changes May Be Required To Use a Manifest File?
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#LexEVS5.xLocalRuntimeAdministration-DatabaseConfiguration" rel="nofollow">
+      Database Configuration
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS5.xLocalRuntimeAdministration-MySQLConfiguration" rel="nofollow">
+      MySQL Configuration
+    </a>
+  </li>
+  <li>
+    <a href="#LexEVS5.xLocalRuntimeAdministration-PostGreSQLConfiguration" rel="nofollow">
+      PostGreSQL Configuration
+    </a>
+  </li>
+</ul>
+<h2 id="LexEVS5.xLocalRuntimeAdministration-Introduction">
+  Introduction
+</h2>
+This document is a section of the
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427408" rel="nofollow">
+  Administration Guide
+</a>
+.
+<h2 id="LexEVS5.xLocalRuntimeAdministration-LexEVSConfigurationOptions">
+  LexEVS Configuration Options
+</h2>
+The LexEVS software, documentation, indexes, and system logs are located in the {LEXBIG_DIRECTORY} (e.g., /usr/local/packages/LexBIG or c:\lexbig). These files may be part of the local file system and may require backup procedures to meet servicability and recovery requirements for your organization.
+
+LexEVS uses basic database indexes, but also includes a separate indexing facility using Apache Lucene.  Lucene Index files are stored in a directory as specified in the lbconfig.props file index_location variable.
+<h3 id="LexEVS5.xLocalRuntimeAdministration-WhatIsaCodingSchemeManifest?">
+  What Is a Coding Scheme Manifest?
+</h3>
+A &#34;Coding Scheme Manifest&#34; (or simply &#34;manifest&#34; as used interchangeably in this document) allows the user to set values for a coding scheme while loading or converting a LexGrid &#34;XML&#34;, &#34;NCI MetaThesaurus&#34;, &#34;NCI OWL&#34;,&#34;OWL&#34;, &#34;OBO&#34;, &#34;UMLS RRF File&#34;, or&#34;HL7 RIM Database&#34; source to LexGrid format.
+<h3 id="LexEVS5.xLocalRuntimeAdministration-WhatIsaCodingScheme?">
+  What Is a Coding Scheme?
+</h3>
+Coding Scheme is the term that is used to represent an ontology/terminology being loaded or converted. In the LexGrid data model a terminology is represented as a coding scheme and it can reference other coding schemes. An example of coding scheme is &#34;Amino Acid&#34; which is described in the &#34;amino acid.owl&#34; file.
+
+A Coding Scheme has some meta information about it; values like &#39;formal name&#39;, &#39;local names&#39;, &#39;default language&#39;, &#39;version&#39;, &#39;copyright&#39;, &#39;sources&#39; to name some.
+<h3 id="LexEVS5.xLocalRuntimeAdministration-WhyDoWeNeedaCodingSchemeManifest?">
+  Why Do We Need a Coding Scheme Manifest?
+</h3>
+When a terminology is being converted to the LexGrid data model from its native format (in this case OWL), Coding Scheme information is read from the source file. Sometimes values may be missing (not provided or invalid) or the author/user of the terminology wants to override or set default values despite (or in addition to) what is provided in the source file. This can be accomplished using &#34;manifest&#34; files along with the source file.
+<h3 id="LexEVS5.xLocalRuntimeAdministration-HowDoWeCreateaCodingSchemeManifestFile?">
+  How Do We Create a Coding Scheme Manifest File?
+</h3>
+A coding scheme manifest file is a valid XML file, conforming to the schema defined by:
+<a href="http://LexGrid.org/schema/LexBIG/2007/01/CodingSchemeManifestList.xsd" rel="nofollow">
+  http://LexGrid.org/schema/LexBIG/2007/01/CodingSchemeManifestList.xsd
+</a>
+This XML file can define values for one or more coding schemes you are dealing with. Some coding scheme meta-information may not easily map to information in the source file. In this case a manifest file is of great help to bridge the gap and control the information flow while mapping to the LexGrid model. A detailed model of the LexGrid Coding Scheme and its fields can be found online. Structure of the schema for the manifest file is explained in the following table (manifest components refer to the original LexGrid model schema namespaces and types):
+<ul>
+  <li>
+    Coding Scheme Manifest entry field: id
+    <ul>
+      <li>
+        Type: lgCommon:registeredName
+      </li>
+      <li>
+        Required: Yes
+      </li>
+      <li>
+        Override flag set: Not applicable
+      </li>
+      <li>
+        Description:
+        The registered name is the key used to find a coding scheme (for example a unique URL or namespace by which other people access same coding scheme). This String value will be used to identify the manifest entry in the manifest file for the coding scheme too. For example the registered name for coding scheme &#34;Amino-acid&#34; is
+        <a href="http://www.co-ode.org/ontologies/amino-acid/2006/05/18/amino-acid.owl" rel="nofollow">
+          http://www.co-ode.org/ontologies/amino-acid/2006/05/18/amino-acid.owl#
+        </a>
+        . This string is also set as the coding scheme&#39;s registered name field in the LexGrid model.
+      </li>
+    </ul>
+  </li>
+</ul>
+<ul>
+  <li>
+    Coding Scheme Manifest entry field: codingScheme
+    <ul>
+      <li>
+        Type: lgBuiltin:localId
+      </li>
+      <li>
+        Required: No
+      </li>
+      <li>
+        Override flag set: Yes
+      </li>
+      <li>
+        Description:
+        This value will be set for &#39;coding scheme name&#39; in the LexGrid format counterpart. If the override flag is set to &#39;true&#39;, the value provided in the source file will be replaced with this one. Otherwise, this value is treated as a default value and used only if the value is not provided in the source file.
+      </li>
+    </ul>
+  </li>
+</ul>
+<ul>
+  <li>
+    Coding Scheme Manifest entry field: entityDescription
+    <ul>
+      <li>
+        Type: lgCommon:entityDescription
+      </li>
+      <li>
+        Required: No
+      </li>
+      <li>
+        Override flag set: Yes
+      </li>
+      <li>
+        Description:
+        This value will be set for &#39;coding scheme description&#39; in the LexGrid format counterpart. If the override flag is set to &#39;true&#39;, the value provided in the source file will be replaced with this one. Otherwise, this value is  treated as a default value and used only if the value is not provided in the source file.
+      </li>
+    </ul>
+  </li>
+</ul>
+<ul>
+  <li>
+    Coding Scheme Manifest entry field: formalName
+    <ul>
+      <li>
+        Type: lgBuiltin:tsCaseIgnoreIA5String
+      </li>
+      <li>
+        Required: No
+      </li>
+      <li>
+        Override flag set: Yes
+      </li>
+      <li>
+        Description:
+        This value will be set for &#39;coding scheme formal name&#39; in the LexGrid format counterpart. If the override flag is set to &#39;true&#39;, the value provided in the source file will be replaced with this one. Otherwise, this value is treated as a default value and used only if the value is not provided in the source file.
+      </li>
+    </ul>
+  </li>
+</ul>
+<ul>
+  <li>
+    Coding Scheme Manifest entry field: registeredName
+    <ul>
+      <li>
+        Type: lgCommon:registeredName
+      </li>
+      <li>
+        Required: No
+      </li>
+      <li>
+        Override flag set: Yes
+      </li>
+      <li>
+        Description:
+        This value will be set for &#39;coding scheme registered name&#39; in the LexGrid format counterpart. If the override flag is set to &#39;true&#39;, the value provided in the source file will be replaced with this one. Otherwise, this value is treated as a default value and used only if the value is not provided in the source file.
+      </li>
+    </ul>
+  </li>
+</ul>
+<ul>
+  <li>
+    Coding Scheme Manifest entry field: defaultLanguage
+    <ul>
+      <li>
+        Type: lgCommon:defaultLanguage
+      </li>
+      <li>
+        Required: No
+      </li>
+      <li>
+        Override flag set: Yes
+      </li>
+      <li>
+        Description:
+        This value will be set for &#39;coding scheme default language&#39; in the LexGrid format counterpart. If the override flag is set to &#39;true&#39;, the value provided in the source file will be replaced with this one. Otherwise, this value is treated as a default value and used only if the value is not provided in the source file.
+      </li>
+    </ul>
+  </li>
+</ul>
+<ul>
+  <li>
+    Coding Scheme Manifest entry field: representsVersion
+    <ul>
+      <li>
+        Type: lgCommon:version
+      </li>
+      <li>
+        Required: No
+      </li>
+      <li>
+        Override flag set: Yes
+      </li>
+    </ul>
+  </li>
+  <li>
+    Description:
+    This value will be set for &#39;coding scheme version&#39; in the LexGrid format counterpart. If the override flag is
+    set to &#39;true&#39;, the value provided in the source file will be replaced with this one. Otherwise, this value is
+    treated as a default value and used only if the value is not provided in the source file.
+  </li>
+</ul>
+<ul>
+  <li>
+    Coding Scheme Manifest entry field: localName
+    <ul>
+      <li>
+        Type: lgBuiltin:tsCaseIgnoreIA5String
+      </li>
+      <li>
+        Required: No
+      </li>
+      <li>
+        &#34;To Add&#34; flag set: Yes
+      </li>
+      <li>
+        Description:
+        This value will be added for &#39;coding scheme local names&#39;. If the add flag is set to &#39;true&#39;, this value will
+        be added to the list of local names (if not there already). Otherwise, this value is treated as the default
+        value and used only if the value is not provided in the source file.
+      </li>
+    </ul>
+  </li>
+</ul>
+<ul>
+  <li>
+    Coding Scheme Manifest entry field: source
+    <ul>
+      <li>
+        Type: lgCommon:source
+      </li>
+      <li>
+        Required: No
+      </li>
+      <li>
+        &#34;To Add&#34; flag set: Yes
+      </li>
+      <li>
+        Description:
+        This value will be added for &#39;coding scheme sources&#39;. If the add flag is set to &#39;true&#39;, this value will be
+        added to the list of sources (if not there already). Otherwise, this value is treated as the default value
+        and used only if the value is not provided in the source file.
+      </li>
+    </ul>
+  </li>
+</ul>
+<ul>
+  <li>
+    Coding Scheme Manifest entry field: copyright
+    <ul>
+      <li>
+        Type: lgCommon:text
+      </li>
+      <li>
+        Required: No
+      </li>
+      <li>
+        Override flag set: Yes
+      </li>
+      <li>
+        Description:
+        This value will be set for &#39;coding scheme copyright&#39; in the LexGrid format counterpart. If the override flag
+        is set to &#39;true&#39;, the value provided in the source file will be replaced with this one. Otherwise, this value
+        is treated as a default value and used only if the value is not provided in the source file.
+      </li>
+    </ul>
+  </li>
+</ul>
+<ul>
+  <li>
+    Coding Scheme Manifest entry field: mappings
+    <ul>
+      <li>
+        Type: lgCS:mappings
+      </li>
+      <li>
+        Required: No
+      </li>
+      <li>
+        &#34;To Add&#34; flag set: Yes
+      </li>
+      <li>
+        Description:
+        This value will be added for &#39;coding scheme mappings&#39;. If the add flag is set to &#39;true&#39;, this value will be
+        added to the list of mappings (if not there already). Otherwise, this value is treated as the default value
+        and used only if the value is not provided in the source file.
+      </li>
+    </ul>
+  </li>
+</ul>
+<ul>
+  <li>
+    Coding Scheme Manifest entry field: associationDefinitions
+    <ul>
+      <li>
+        Type: lgRel:association
+      </li>
+      <li>
+        Required: No
+      </li>
+      <li>
+        &#34;To Add&#34; flag set: Yes
+      </li>
+      <li>
+        Description:
+        This value will be added for &#39;coding scheme associations&#39;. If the add flag is set to &#39;true&#39;, this value will
+        be added to the list of associations (if not there already). Otherwise, this value is treated as the default
+        value and used only if the value is not provided in the source file.
+      </li>
+    </ul>
+  </li>
+</ul>
+Note This option is used internally by the system to provide default recognition of some common associations.  It is typically not necessary to provide this value, however, since association definitions are automatically derived from the source.
+<h3 id="LexEVS5.xLocalRuntimeAdministration-WhatCodeChangesMayBeRequiredToUseaManifestFile?">
+  What Code Changes May Be Required To Use a Manifest File?
+</h3>
+If you want to use the manifest file, you can supply the manifest file URI to the following methods when Loading NCI OWL or generic OWL Loads:
+
+&#34;org.LexGrid.LexBIG.Extensions.Load.OWL_Loader.load()&#34;
+
+&#34;org.LexGrid.LexBIG.Extensions.Load.OWL_Loader.validate()&#34;
+
+An example code snipped:
+
+Java Code Snippet
+
+LexBIGService lbs = new LexBIGServiceImpl();
+LexBIGServiceManager lbsm = lbs.getServiceManager(null);
+OWL_Loader loader = (OWL_Loader) lbsm.getLoader(&#34;OWLLoader&#34;);
+
+if (toValidateOnly)
+{
+loader.validate(source, manifest, vl);
+System.out.println(&#34;VALIDATION SUCCESSFUL&#34;);
+}
+else
+{
+loader.load(new File(&#34;resources/testData/amino-acid.owl&#34;).toURI(),
+new File(&#34;resources/testData/aa-manifest.xml&#34;).toURI(),true,true);
+}
+
+
+
+For all other manifest loads the following methods are employed.
+
+{include:SupplyNonOwlFileUri Snippet}}
+<h2 id="LexEVS5.xLocalRuntimeAdministration-DatabaseConfiguration">
+  Database Configuration
+</h2>
+Before You BeginThis section provides an overview of the components as related to system adminstration, backup, and recovery.  Individual organizations may have their own backup and diaster recovery procedure.  In every case users created for use by the LexEVS application must have read, write and delete access to the dbms instance.
+
+Database systems as described in the section Required Software—Not Included in LexEVS provide the storage for vocabularies loaded into LexEVS.  For each vocabulary version loaded into LexEVS a new database is created.  As defined in the lbconfig.props files the db_prefix variable is used to create the database name.
+
+For example with db_prefix=lexbig, each new vocabulary version that is loaded a new database is created using an incremental counter.
+<ul>
+  <li>
+    lexbig1
+  </li>
+  <li>
+    lexbig2
+  </li>
+  <li>
+    lexbig3
+  </li>
+  <li>
+    lexbigN
+  </li>
+</ul>
+Depending on backup strategy, system administrators will need to be aware that multiple databases are being created and may need backup procedures to meet servicability and recovery requirements for your organization.
+<h2 id="LexEVS5.xLocalRuntimeAdministration-MySQLConfiguration">
+  MySQL Configuration
+</h2>
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427488" rel="nofollow">
+  MySQL properties
+</a>
+<h2 id="LexEVS5.xLocalRuntimeAdministration-PostGreSQLConfiguration">
+  PostGreSQL Configuration
+</h2>
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=62427488" rel="nofollow">
+  PostgreSQL properties
+</a>

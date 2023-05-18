@@ -1,0 +1,32 @@
+<h1 id="caArray087ErrorMessageWhenAttemptingtoValidateanIlluminaSNPDataFileincaArray-WhyDoIGetanErrorMessageWhenAttemptingtoValidateanIlluminaSNPDataFileincaArray?">
+  Why Do I Get an Error Message When Attempting to Validate an Illumina SNP Data File in caArray?
+</h1>
+Problem: When attempting to validate an Illumina Genotyping Processed Matrix SNP data TXT file based on the HumanHap550v3_A design in caArray, you may receive the following error message: &#34;1 data file(s) are in a format not currently supported for parsing. These files may only be included for validation when validating an SDRF   that refers to the files.&#34;
+
+
+Topic: caArray Usage
+
+Release: caArray 2.0 and above
+
+Date entered: 09/01/2011
+<h2 id="caArray087ErrorMessageWhenAttemptingtoValidateanIlluminaSNPDataFileincaArray-Solution">
+  Solution
+</h2>
+The Illumina SNP data file must be edited before it can be validated by caArray. Specifically, the data table header descriptions in the first row must be altered as follows:
+<ul>
+  <li>
+    Original (invalid): &#34;ID_REF VALUE GC_SCORE Theta R B_Allele_Freq Log_R_Ratio&#34;
+  </li>
+  <li>
+    Revised (valid): &#34;ID_REF GSM302898 GC_SCORE Theta R B_Allele_Freq Log_R_Ratio&#34;
+  </li>
+</ul>
+The revision can be done in any plain text editor such as Windows Notepad. If, after revising the TXT file and attempting to validate it again, you still receive the same error message, check the version of your caArray installation. If you are running v2.3, upgrade to v2.4, then repeat the validation procedure.
+<h2 id="caArray087ErrorMessageWhenAttemptingtoValidateanIlluminaSNPDataFileincaArray-Haveacomment?">
+  Have a comment?
+</h2>
+Please leave your comment in the
+<a href="https://cabig-kc.nci.nih.gov/Molecular/forums/viewforum.php?f=6&amp;sid=d297ed62850db647e795b9aa1d18cb7f" rel="nofollow">
+  caArray End User Forum
+</a>
+. 

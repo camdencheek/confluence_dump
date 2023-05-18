@@ -1,0 +1,997 @@
+Welcome to the caNanoLab 2.1 Installation Guide.To Get SupportFor any general information about the application, support, or to report a bug, contact
+<a href="mailto:caNanoLab-Support@ISB-CGC.org" rel="nofollow">
+  caNanoLab-Support@ISB-CGC.org
+</a>
+. To Print the Guide If you want to print a single page, refer to
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=8164401" rel="nofollow">
+  Printing a Page
+</a>
+.Topics in this document include:
+<ul>
+  <li>
+    <a href="#caNanoLab2.1InstallationGuide-IntroductiontocaNanoLab" rel="nofollow">
+      Introduction to caNanoLab
+    </a>
+    <ul>
+      <li>
+        <a href="#caNanoLab2.1InstallationGuide-TargetedDeveloper" rel="nofollow">
+          Targeted Developer
+        </a>
+      </li>
+      <li>
+        <a href="#caNanoLab2.1InstallationGuide-GeneralSystemRequirements" rel="nofollow">
+          General System Requirements
+        </a>
+        <ul>
+          <li>
+            <a href="#caNanoLab2.1InstallationGuide-WhatiscaNanoLabTestedAgainst?" rel="nofollow">
+              What is caNanoLab Tested Against?
+            </a>
+          </li>
+          <li>
+            <a href="#caNanoLab2.1InstallationGuide-OpenSourceTechnologies" rel="nofollow">
+              Open Source Technologies
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#caNanoLab2.1InstallationGuide-ObtainingthecaNanoLabSourceCode" rel="nofollow">
+          Obtaining the caNanoLab Source Code
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#caNanoLab2.1InstallationGuide-AntBuildProperties" rel="nofollow">
+      Ant Build Properties
+    </a>
+    <ul>
+      <li>
+        <a href="#caNanoLab2.1InstallationGuide-AssumptionsandRequirements" rel="nofollow">
+          Assumptions and Requirements
+        </a>
+      </li>
+      <li>
+        <a href="#caNanoLab2.1InstallationGuide-SettingProperties" rel="nofollow">
+          Setting Properties
+        </a>
+        <ul>
+          <li>
+            <a href="#caNanoLab2.1InstallationGuide-Step1.ExtractcaNanoLab" rel="nofollow">
+              Step 1. Extract caNanoLab
+            </a>
+          </li>
+          <li>
+            <a href="#caNanoLab2.1InstallationGuide-Step2.EditAntProperties" rel="nofollow">
+              Step 2. Edit Ant Properties
+            </a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#caNanoLab2.1InstallationGuide-DatabaseTechnology" rel="nofollow">
+      Database Technology
+    </a>
+    <ul>
+      <li>
+        <a href="#caNanoLab2.1InstallationGuide-AssumptionsandRequirements.1" rel="nofollow">
+          Assumptions and Requirements
+        </a>
+        <ul>
+          <li>
+            <a href="#caNanoLab2.1InstallationGuide-ForaPreviousInstallation" rel="nofollow">
+              For a Previous Installation
+            </a>
+          </li>
+          <li>
+            <a href="#caNanoLab2.1InstallationGuide-ForaNewInstallation" rel="nofollow">
+              For a New Installation
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#caNanoLab2.1InstallationGuide-InitializingtheMySQLDatabase" rel="nofollow">
+          Initializing the MySQL Database
+        </a>
+      </li>
+      <li>
+        <a href="#caNanoLab2.1InstallationGuide-Verification" rel="nofollow">
+          Verification
+        </a>
+      </li>
+      <li>
+        <a href="#caNanoLab2.1InstallationGuide-DataMigration" rel="nofollow">
+          Data Migration
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#caNanoLab2.1InstallationGuide-caNanoLabWebApplication" rel="nofollow">
+      caNanoLab Web Application
+    </a>
+    <ul>
+      <li>
+        <a href="#caNanoLab2.1InstallationGuide-AssumptionsandRequirements.2" rel="nofollow">
+          Assumptions and Requirements
+        </a>
+      </li>
+      <li>
+        <a href="#caNanoLab2.1InstallationGuide-InstallationandDeployment" rel="nofollow">
+          Installation and Deployment
+        </a>
+      </li>
+      <li>
+        <a href="#caNanoLab2.1InstallationGuide-Verification.1" rel="nofollow">
+          Verification
+        </a>
+      </li>
+      <li>
+        <a href="#caNanoLab2.1InstallationGuide-UserProvisioningTool(UPT)" rel="nofollow">
+          User Provisioning Tool (UPT)
+        </a>
+        <ul>
+          <li>
+            <a href="#caNanoLab2.1InstallationGuide-CreatingUserAccounts" rel="nofollow">
+              Creating User Accounts
+            </a>
+          </li>
+          <li>
+            <a href="#caNanoLab2.1InstallationGuide-UPTExample" rel="nofollow">
+              UPT Example
+            </a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#caNanoLab2.1InstallationGuide-ContactingApplicationSupport" rel="nofollow">
+      Contacting Application Support
+    </a>
+  </li>
+</ul>
+<h2 id="caNanoLab2.1InstallationGuide-IntroductiontocaNanoLab">
+  Introduction to caNanoLab
+</h2>
+Welcome to the cancer Nanotechnology Laboratory (
+<a href="https://cananolab.cancer.gov" rel="nofollow">
+  https://cananolab.cancer.gov
+</a>
+). caNanoLab is a data sharing portal that supports the international biomedical nanotechnology research community to expedite and validate the use of nanotechnology in biomedicine. caNanoLab provides support to annotate nanomaterials with characterizations resulting from physico-chemical, in vitro, and in vivo assays and share characterizations and associated nanotechnology protocols in a secure environment.For more information about the 2.1 updates, refer to the
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=287277493" rel="nofollow">
+  caNanoLab 2.1 Release Note
+</a>
+.
+<h3 id="caNanoLab2.1InstallationGuide-TargetedDeveloper">
+  Targeted Developer
+</h3>
+caNanoLab application development is best suited for an experienced Java developer who has some familiarity with the following J2EE and related technologies.Important Background KnowledgeUnix/Linux environment, Windows XP environment or Mac OS environment (Configuring environment variables; Installing Ant, JDK, Apache Tomcat and JBoss servers)
+<ul>
+  <li>
+    Ant build scripts
+  </li>
+  <li>
+    J2EEwebapplicationdevelopmentusingtheStrutsframework,Servlet/JSP&#39;s,JavaScript
+  </li>
+  <li>
+    J2EEmiddle-waretechnologiessuchasn-tierservice-orientedarchitectureandsoftwaredesignpatterns
+  </li>
+  <li>
+    HibernateJavapersistenceframwork
+  </li>
+</ul>
+<h3 id="caNanoLab2.1InstallationGuide-GeneralSystemRequirements">
+  General System Requirements
+</h3>
+<h4 id="caNanoLab2.1InstallationGuide-WhatiscaNanoLabTestedAgainst?">
+  What is caNanoLab Tested Against?
+</h4>
+The caNanoLab web application has been tested within NCI CBIIT against Wildfly servers (version 8.2.0) hosted on Windows XP and RedHat Linux systems, and against MySQL 5.1.x databases hosted on RedHat Linux systems and Windows XP systems.
+<h4 id="caNanoLab2.1InstallationGuide-OpenSourceTechnologies">
+  Open Source Technologies
+</h4>
+Download each of the following tools and follow the installation instructions provided with each respective product for your environment. Assistance from a MySQL database administrator is expected to properly configure the MySQL database. For MySQL database configuration and maintenance, it is also helpful to download the MySQL workbench (suite of GUI tools) at
+<a href="http://www.mysql.com/downloads/workbench/" rel="nofollow">
+  http://www.mysql.com/downloads/workbench/
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+<ul>
+  <li>
+    Java Software Development Kit (JDK) version 7.0:
+    <a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk6-downloads-1637591.html" rel="nofollow">
+      http://www.oracle.com/technetwork/java/javase/downloads/jdk6-downloads-1637591.html
+    </a>
+    <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+      <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+    </a>
+  </li>
+  <li>
+    Wildfly version 8.2.0:
+    <a href="http://sourceforge.net/projects/jboss/files/JBoss/JBoss-5.1.0.GA/" rel="nofollow">
+      http://sourceforge.net/projects/jboss/files/JBoss/JBoss-5.1.0.GA/
+    </a>
+    <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+      <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+    </a>
+  </li>
+  <li>
+    Jakarta Ant version 1.8.x:
+    <a href="http://archive.apache.org/dist/ant/binaries/" rel="nofollow">
+      http://archive.apache.org/dist/ant/binaries/
+    </a>
+    <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+      <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+    </a>
+  </li>
+  <li>
+    MySQL version 5.1.x:
+    <a href="http://dev.mysql.com/downloads/mysql/5.1.html" rel="nofollow">
+      http://dev.mysql.com/downloads/mysql/5.1.html
+    </a>
+    <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+      <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+    </a>
+  </li>
+</ul>
+<h3 id="caNanoLab2.1InstallationGuide-ObtainingthecaNanoLabSourceCode">
+  Obtaining the caNanoLab Source Code
+</h3>
+Downloads for caNanoLab are available at
+<a href="https://github.com/NCIP/cananolab" rel="nofollow">
+  caNanoLab GitHub Repository
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+</a>
+. The
+<a href="https://wiki.nci.nih.gov/display/caNanoLab/caNanoLab+Software+License" rel="nofollow">
+  caNanoLab Software License
+</a>
+applies.
+<h2 id="caNanoLab2.1InstallationGuide-AntBuildProperties">
+  Ant Build Properties
+</h2>
+<h3 id="caNanoLab2.1InstallationGuide-AssumptionsandRequirements">
+  Assumptions and Requirements
+</h3>
+The caNanoLab source distribution caNanoLab_2.1.zip is downloaded, and Ant is installed.NoteIn caNanoLab release 2.1, the Ant build script automatically installs the web application.
+<h3 id="caNanoLab2.1InstallationGuide-SettingProperties">
+  Setting Properties
+</h3>
+Follow these steps to set the build and deploy properties required for building and deploying caNanoLab.
+<h4 id="caNanoLab2.1InstallationGuide-Step1.ExtractcaNanoLab">
+  Step 1. Extract caNanoLab
+</h4>
+Extract the caNanoLab_2.1.zip to a location on your local system, for example, C:\caNanoLab_2.1. This location is referred as &lt;CANANOLAB_SOURCE&gt; throughout the document. Verify that the following five folders exist in the directory &lt;CANANOLAB_SOURCE&gt;:
+<ul>
+  <li>
+    build
+  </li>
+  <li>
+    cananolab-db
+  </li>
+  <li>
+    cananolab-grid
+  </li>
+  <li>
+    cananolab-webapp
+  </li>
+  <li>
+    common
+  </li>
+</ul>
+<h4 id="caNanoLab2.1InstallationGuide-Step2.EditAntProperties">
+  Step 2. Edit Ant Properties
+</h4>
+Edit the Ant properties file, build.properties, at &lt;CANANOLAB_SOURCE&gt;/build by specifying values for the following properties.
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        Property
+      </th>
+      <th>
+        Description
+      </th>
+    </tr>
+    <tr>
+      <td>
+        file.repository.dir
+      </td>
+      <td>
+        A directory on the system that hosts the Wildfly application server for storing uploaded files, for example, C:/apps/caNanoLab.Note This directory should be writable by the user that starts the Wildfly server, and this directory should be created prior to starting the application. Use either double-back slashes or a single forward slash / as the file separator if working on Windows platform.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        admin.email
+      </td>
+      <td>
+        The email address that receives requests for new user accounts, for example, the NCICBIIT application support email for the NCICBIIT installation.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        ldap.authentication.enabled
+      </td>
+      <td>
+        A Boolean flag to indicate whether or not to use LDAP for user authentication in caNanoLab, for example, true.NoteThe default value is true. If you are not using LDAP for user authentication, set this value to false and leave properties 4) through 9) blank.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        ldap.host.url
+      </td>
+      <td>
+        The URL of the LDAP server used for user authentication.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        ldap.searchable.base
+      </td>
+      <td>
+        The location in the directory from which the LDAP search begins.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        ldap.userId.label
+      </td>
+      <td>
+        The buid label for LDAP, for example, cn.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="http://superadmin.login.name" rel="nofollow">
+          superadmin.login.name
+        </a>
+      </td>
+      <td>
+        The LDAP login name for the user account who is the super admin of the UPT tool. Refer to
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=287277496" rel="nofollow">
+          User Provisioning Tool (UPT)
+        </a>
+        for details on setting up UPT.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="http://superadmin.first.name" rel="nofollow">
+          superadmin.first.name
+        </a>
+      </td>
+      <td>
+        The LDAP first name for the user account who is the super admin of the UPT tool.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="http://superadmin.last.name" rel="nofollow">
+          superadmin.last.name
+        </a>
+      </td>
+      <td>
+        The LDAP last name for the user account who is the super admin of the UPT tool.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        database.server
+      </td>
+      <td>
+        The name of the server hosting the database, for example, localhost.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        database.port
+      </td>
+      <td>
+        The database port number, for example, 3306.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        database.user
+      </td>
+      <td>
+        The database user name used in the caNanoLab application, for example, cananolab_app.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        database.password
+      </td>
+      <td>
+        The password for the database user specified above, for example, go!234.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        database.system.user
+      </td>
+      <td>
+        The system database user name with privileges to create a database, create tables, grant user accesses to a database, for example, root.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        database.system.password
+      </td>
+      <td>
+        The password for the system database user specified above, for example, rootpass.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        jboss.server.dir
+      </td>
+      <td>
+        The Wildfly server directory, for example, C:/apps/wildfly-8.2.0.Final/standalone.
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="caNanoLab2.1InstallationGuide-DatabaseTechnology">
+  Database Technology
+</h2>
+<h3 id="caNanoLab2.1InstallationGuide-AssumptionsandRequirements.1">
+  Assumptions and Requirements
+</h3>
+<ul>
+  <li>
+    The Ant build properties are set as described in section,
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=287277496" rel="nofollow">
+      Step 2. Edit Ant Properties
+    </a>
+    .
+  </li>
+  <li>
+    A MySQL database is set up on a system (local or remote) with a system (or root) account.
+  </li>
+  <li>
+    The system account matches properties
+    <a href="http://superadmin.last.name" rel="nofollow">
+      superadmin.last.name
+    </a>
+    and database.server in
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=287277496" rel="nofollow">
+      Step 2. Edit Ant Properties
+    </a>
+    .
+  </li>
+</ul>
+<h4 id="caNanoLab2.1InstallationGuide-ForaPreviousInstallation">
+  For a Previous Installation
+</h4>
+If you:
+<ol>
+  <li>
+    Installed caNanoLab prior to release 2.1 against an MySQL databaseORInstalled release 1.2, release 1.1.1, or release 1.1 against an Oracle database,
+  </li>
+  <li>
+    AND have associated production data in these schemasAND would like to continue to use the same data for caNanoLab release 2.1 in MySQL,
+  </li>
+  <li>
+    Review the following database initialization steps, and then go directly to section,
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=287277496" rel="nofollow">
+      Data Migration
+    </a>
+    .
+  </li>
+</ol>
+Wildfly ServerIf you have a previously installed caNanoLab running on a Wildfly server, stop the server before running the database scripts.
+<h4 id="caNanoLab2.1InstallationGuide-ForaNewInstallation">
+  For a New Installation
+</h4>
+If you are installing the caNanoLab application for the first time or want to install a new schema for release 2.1, follow the steps below to set up the required MySQL schema objects and the seed data for release 2.1.
+<h3 id="caNanoLab2.1InstallationGuide-InitializingtheMySQLDatabase">
+  Initializing the MySQL Database
+</h3>
+Follow these steps to initialize your MySQL database system.
+<table>
+  <tbody>
+    <tr>
+      <td>
+        Step
+      </td>
+      <td>
+        Action
+      </td>
+    </tr>
+    <tr>
+      <td>
+        1
+      </td>
+      <td>
+        Execute the Ant build script build.xml located at &lt;CANANOLAB_SOURCE&gt;/build with the target install:new:cananolab-db.Example: Issue the following commands to execute the Ant script:C:\&gt;cd C:\caNanoLab_2.1\build C:\caNanoLab_2.1\build&gt;ant install:new:cananolab-db Successful execution of the Ant script creates the database schema and seed data required the caNanoLab 2.1 release.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        2
+      </td>
+      <td>
+        If you are NOT using LDAP for user authentication, you can skip this step. If you are using LDAP for authentication, execute the Ant build script build.xml located at &lt;CANANOLAB_SOURCE&gt;/build with the target update:cananolab-db:ldap:upt:superadminExample: Issue the following commands to execute the Ant script:C:\&gt;cd C:\caNanoLab_2.1\build C:\caNanoLab_2.1\build&gt;ant update:cananolab-db:ldap:upt:superadminSuccessful execution of the Ant script updates the default UPT super admin with the user name entered in the build properties file.
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h3 id="caNanoLab2.1InstallationGuide-Verification">
+  Verification
+</h3>
+Once the MySQL database is created, either through a new setup or through data migration (described in the next section), verify that the following numbers of database objects are created:Tables 72Example: Issue the following query at the MySQL prompt, logging in as root:
+mysql&gt; select count(*) from information_schema.tables where table_schema=&#39;canano&#39; and table_type=&#39;BASE TABLE&#39;;
+<h3 id="caNanoLab2.1InstallationGuide-DataMigration">
+  Data Migration
+</h3>
+NoteIf you are installing caNanoLab 2.1 for the first time or installing a new caNanoLab release 2.1 schema, you can skip this section.This installation guide only discusses the steps for migrating from release 1.5.3, 1.5.4, or 1.5.5. in MySQL to release 2.1 in MySQL. If you have previously installed caNanoLab in MySQL prior to release 1.5.1, you need to migrate to release 1.5.1 first, one release at a time. The 1.5.5 installation guide is available at
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=184910233" rel="nofollow">
+  caNano Lab Release Notes
+</a>
+, but previous installation guides are available at the
+<a href="https://wiki.nci.nih.gov/x/M4EFCw" rel="nofollow">
+  caNanoLab Archive page
+</a>
+.Follow these steps to complete the required data migration from release 1.5.3, 1.5.4, or 1.5.5. in MySQL to release 2.1 in MySQL.
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <td>
+        Step
+      </td>
+      <td>
+        Action
+      </td>
+    </tr>
+    <tr>
+      <td>
+        1
+      </td>
+      <td>
+        Execute the Ant build script build.xml located at &lt;CANANOLAB_SOURCE&gt;/build with the target update:cananolab-db.Example: Issue the following commands to execute the Ant script:C:\&gt;cd C:\caNanoLab_2.1\build C:\caNanoLab_2.1\build&gt;ant update:cananolab-dbSuccessful execution of the Ant script updates the database schema and seed data required the caNanoLab 2.1 release.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        2
+      </td>
+      <td>
+        If you are NOT using LDAP for user authentication, you can skip this step. If you are using LDAP for authentication, execute the Ant build script build.xml located at &lt;CANANOLAB_SOURCE&gt;/build with the target update:cananolab-db:ldap:upt:superadminExample: Issue the following commands to execute the Ant script:C:\&gt;cd C:\caNanoLab_2.1\build C:\caNanoLab_2.1\build&gt;ant update:cananolab- db:ldap:upt:superadminSuccessful execution of the Ant script updates the default UPT super admin with the user name entered in the build properties file.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        3
+      </td>
+      <td>
+        If you are NOT using LDAP for user authentication, you can skip this step. If you are using LDAP for authentication, and you already have user accounts in the system and you have data created by these users whose login names are not their LDAP login IDs, you need to perform the following update:
+        <ol>
+          <li>
+            Update the login_name column of the csm_user table with the LDAP login name for each user in the table:  Example: Issue the following query at the MySQL prompt for each user, logging in as root:mysql&gt; update csm_user set login_name=&#39;&#39; where login_name=&#39;&#39;; ...Where the token is replaced by the real LDAP login name that corresponds to the old login name. Replace the token with the old login name.
+          </li>
+          <li>
+            Update the created_by column of tables containing the column with the LDAP login name: Example: Issue the following query at the MySQL prompt for each table containing the created_by column, logging in as root:  mysql&gt; update sample set created_by=&#39;&#39; where created_by =&#39;&#39;;  ...Where the token is replaced by the real LDAP login name that corresponds to the old login name. Replace the token with old login name.NoteIf the created_by field contains the word &#34;COPY&#34; in it, update it with a prefix : (colon), where the token is replaced by the real LDAP login name that corresponds to the old login name who created the data. If you do not know the original login who created the data, use the LDAP login of a curator. If you need assistance on completing the data updates for this step, contact the caNanoLab technical team.
+          </li>
+        </ol>
+      </td>
+    </tr>
+  </tbody>
+</table>
+After data migration, refer to the
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=287277496" rel="nofollow">
+  Verification
+</a>
+section to verify that the migration is successful.
+<h2 id="caNanoLab2.1InstallationGuide-caNanoLabWebApplication">
+  caNanoLab Web Application
+</h2>
+<h3 id="caNanoLab2.1InstallationGuide-AssumptionsandRequirements.2">
+  Assumptions and Requirements
+</h3>
+<ul>
+  <li>
+    Ant is installed, and the Ant build properties are set up.
+  </li>
+  <li>
+    The database is installed and verified.
+  </li>
+  <li>
+    The Wildfly application server is installed on a system (local or remote) and can be started at a designated port. Wildfly install directory is referred to as &lt;JBOSS_HOME&gt; in the document. The Wildfly application server host URL is referred as &lt;APP_SERVER_URL&gt;, for example,
+    <a href="http://cananolab-dev.nci.nih.gov" rel="nofollow">
+      cananolab-dev.nci.nih.gov
+    </a>
+    :19080 .
+  </li>
+  <li>
+    The default configuration is used for deploying caNanoLab web archive files. For example, in wildfly-8.2.0.Final, the default configuration is located at the directory &lt;JBOSS_HOME&gt;/standalone. The caNanoLab web archive file will be deployed at the directory &lt;JBOSS_HOME&gt;standalone/deployments.
+  </li>
+  <li>
+    It is possible to configure Apache server to interface with the Wildfly server and set up a virtual host for the caNanoLab application. If you need assistance, contact
+    <a href="mailto:caNanoLab-Support@ISB-CGC.org" rel="nofollow">
+      caNanoLab-Support@ISB-CGC.org
+    </a>
+    .
+  </li>
+</ul>
+<h3 id="caNanoLab2.1InstallationGuide-InstallationandDeployment">
+  Installation and Deployment
+</h3>
+Follow these steps to install and deploy caNanoLab.
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <td>
+        Step
+      </td>
+      <td>
+        Action
+      </td>
+    </tr>
+    <tr>
+      <td>
+        1
+      </td>
+      <td>
+        Set up an environment variable JBOSS_HOME to point to the Wildfly installation directory.NoteUse either double back slashes // or a single forward slash / as the file separator if working on Windows platform, for example, JBOSS_HOME=C:/wildfly-8.2.0.Final (C:\wildfly-8.2.0.Final would fail).
+      </td>
+    </tr>
+    <tr>
+      <td>
+        2
+      </td>
+      <td>
+        Execute the Ant build script build.xml located at &lt;CANANOLAB_SOURCE&gt;/build with the target deploy:cananolab-webpp.Example: Issue the following commands to execute the Ant script:C:\&gt;cd C:\caNanoLab_2.1\build C:\caNanoLab_2.1\build&gt;ant deploy:cananolab-webappSuccessful execution of the Ant script generates the following artifacts that include two deployable web archive war files, configuration files and libraries for running the web application in the Wildfly environment, and also places these artifacts in the appropriate directories under &lt;JBOSS_HOME&gt;:Artifacts
+        &lt;CANANOLAB_SOURCE&gt;/target/dist/exploded/cananolab- webapp/caNanoLab.war
+        &lt;CANANOLAB_SOURCE&gt;/target/dist/exploded/common/ApplicationSecurityConfig.xml
+        &lt;CANANOLAB_SOURCE&gt;/target/dist/exploded/common/csmupt.csm.new.hibernate.cfg.xml
+        &lt;CANANOLAB_SOURCE&gt;/target/dist/exploded/common/csmupt423.csm.new.hibernate.cfg.xml
+        &lt;CANANOLAB_SOURCE&gt;/target/dist/exploded/common/login-config.xml
+        &lt;CANANOLAB_SOURCE&gt;/target/dist/exploaded/common/mysql-connector-java-5.1.26.jar
+        &lt;CANANOLAB_SOURCE&gt;/target/dist/exploded/common/upt-ds.xml
+        &lt;CANANOLAB_SOURCE&gt;/target/dist/exploded/common/properties-service.xml
+        &lt;CANANOLAB_SOURCE&gt;/target/dist/exploded/common/upt-ds.xml
+        &lt;CANANOLAB_SOURCE&gt;/target/dist/exploded/common/uptEAR.ear
+        &lt;CANANOLAB_SOURCE&gt;/target/dist/exploded/common/bcprov-jdk15on-1.47.jar
+        &lt;CANANOLAB_SOURCE&gt;/target/dist/exploded/common/caNanoLab_modules.cli
+        &lt;CANANOLAB_SOURCE&gt;/target/dist/exploded/common/caNanoLab_setup.cli
+        &lt;CANANOLAB_SOURCE&gt;/target/dist/exploded/common/caNanoLab_deploy.cli
+        &lt;CANANOLAB_SOURCE&gt;/target/dist/exploded/common/csmapi-5.2.jar
+      </td>
+    </tr>
+    <tr>
+      <td>
+        3
+      </td>
+      <td>
+        We recommend increasing the JBoss JVM heap size to 2G bytes and permanent generation (permgen) memory space to 256M bytes by updating the file &lt;JBOSS_HOME&gt;/bin/standalone.conf with the following JAVA_OPTS:JAVA_OPTS
+        JAVA_OPTS=&#34;-Xms512m -Xmx2048m -XX:PermSize=128m - XX:MaxPermSize=256m -Dsun.rmi.dgc.client.gcInterval=3600000 - Dsun.rmi.dgc.server.gcInterval=3600000&#34;
+        This configuration file is read when Wildfly server starts.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        4
+      </td>
+      <td>
+        <ol>
+          <li>
+            Create a new directory structure C:/local/content/caNanoLab/artifacts and move the following artifacts.
+            <ul>
+              <li>
+                csmapi-5.2.jar
+              </li>
+              <li>
+                caNanoLab.war
+              </li>
+              <li>
+                uptEAR.ear
+              </li>
+              <li>
+                bcprov-jdk15on-1.47.jar
+              </li>
+              <li>
+                mysql-connector-java-5.1.26.jar
+              </li>
+              <li>
+                caNanoLab_modules.cli
+              </li>
+              <li>
+                caNanoLab_setup.cli
+              </li>
+              <li>
+                caNanoLab_deploy.cli
+              </li>
+            </ul>
+          </li>
+          <li>
+            Create a new directory structure C:/local/content/caNanoLab/config and move the following artifacts.
+            <ul>
+              <li>
+                ApplicationSecurityConfig.xml
+              </li>
+              <li>
+                csmupt.csm.new.hibernate.cfg.xml
+              </li>
+              <li>
+                wikihelp.properties
+              </li>
+            </ul>
+          </li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        5.
+      </td>
+      <td>
+        Start JBoss application server in Standalone mode.This script assumes the CLI port is running at 19990. If it is different, you need to update port number at the second line in the script.
+        <ol>
+          <li>
+            Type the following:
+            <ul>
+              <li>
+                For Windows environment: jboss-cli.bat --file=C:/local/content/caNanoLab/artifacts/caNanoLab_modules.cli and press &lt;ENTER&gt;.
+              </li>
+              <li>
+                For Linux environment: jboss-cli.sh --file=C:/local/content/caNanoLab/artifacts/caNanoLab_modules.cli
+                and press &lt;ENTER&gt;.
+              </li>
+            </ul>
+          </li>
+          <li>
+            Run the remaining caNanoLab_setup.cli and caNanoLab_deploy.cli that deploys the caNanoLab and csmUPT.After successful completion, the following output appears in the window.Output
+             {&#34;outcome&#34;=&gt; &#34;success&#34;}
+            {&#34;outcome&#34;=&gt; &#34;success&#34;}
+            {&#34;outcome&#34;=&gt; &#34;success&#34;}
+            {&#34;outcome&#34;=&gt; &#34;success&#34;}
+            {
+            &#34;outcome&#34;=&gt; &#34;success&#34;,
+            &#34;result&#34;=&gt; undefined
+            }
+          </li>
+          <li>
+            Press any key to continue.
+          </li>
+        </ol>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h3 id="caNanoLab2.1InstallationGuide-Verification.1">
+  Verification
+</h3>
+Once the deployment artifacts are deployed and the Wildfly application server is correctly configured, you can start the Wildfly application server, which in turn starts the caNanoLab application. Open the URL http://&lt;APP_SERVER_URL&gt;/caNanoLab/, for example,
+<a href="http://localhost:8080/caNanoLab" rel="nofollow">
+  http://localhost:8080/caNanoLab
+</a>
+. The Welcome/Login page displays.
+<h3 id="caNanoLab2.1InstallationGuide-UserProvisioningTool(UPT)">
+  User Provisioning Tool (UPT)
+</h3>
+<h4 id="caNanoLab2.1InstallationGuide-CreatingUserAccounts">
+  Creating User Accounts
+</h4>
+Before a user can log in to the caNanoLab application to submit and search data, you must first create a user account through the UPT web interface. The caNanoLab application makes use of the NCI CBIIT&#39;s User Provisioning Tool (UPT), a separate web application, for user account management. The concepts of users, groups, roles, protection groups are defined according the CSM/UPT principles. Refer to the
+<a href="https://wiki.nci.nih.gov/x/J5V8" rel="nofollow">
+  CSM documentation
+</a>
+for details on these concepts and the use of the UPT tool.There are three default user groups:
+<ul>
+  <li>
+    Group Public is assigned role R (read-only) public protocols, samples and publications.
+  </li>
+  <li>
+    Group Researcher is assigned Role R (read-only) for all protocols, samples, and publications in the system.
+  </li>
+  <li>
+    Group Curator is assigned role CURD (create, update, read and delete) to all protocols, samples and publications in the system.
+  </li>
+</ul>
+When a user first logs into caNanoLab, the user is automatically added to the Public group and can view all public data. The user needs to be added to the Researcher or Curator group in order to have access.NoteSince release 1.5.2, a user must be assigned as a caNanoLab administrator to see the Administration menu in the application to log into the UPT tool or update site preferences, such as the site logo. A user must be assigned as a caNanoLab administrator AND assigned to the Curator group to be able to execute the transfer ownership function.
+<h4 id="caNanoLab2.1InstallationGuide-UPTExample">
+  UPT Example
+</h4>
+The following steps illustrate an example use of the UPT tool to create a new user, assign the user to be a caNanoLab administrator, and assign the user to the Curator group.
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <td>
+        Step
+      </td>
+      <td>
+        Action
+      </td>
+    </tr>
+    <tr>
+      <td>
+        1
+      </td>
+      <td>
+        <ol>
+          <li>
+            Launch the UPT tool at http://&lt;APP_SERVER_URL&gt;/upt52/Home.action and login as the super admin. If you are NOT using LDAP for user authentication, the default user account/password for super admin is superadmin/superadmin.
+          </li>
+          <li>
+            Enter csmupt as the application name when prompted at the UPT log in. If you are using LDAP for user authentication, use the LDAP login name and password of the user assigned as the super admin as specified in the
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=287277496" rel="nofollow">
+              Ant build properties file
+            </a>
+            .NoteThe user superadmin with the password superadmin was created as a part of the database setup. Only a superadmin user can assign users to be caNanoLab administrators.
+          </li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        2
+      </td>
+      <td>
+        If you are using LDAP for user authentication, skip this step. If you are not using LDAP for authentication, follow this step to reset the password for superadmin:
+        <ol>
+          <li>
+            Select User &gt; Select an Existing User.
+          </li>
+          <li>
+            Click on Search and select superadmin,  and click on View Details.
+          </li>
+          <li>
+            Update the User Password field and Confirm Password field.
+          </li>
+          <li>
+            Click on Update to commit the change.
+          </li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        3
+      </td>
+      <td>
+        Log in as the super admin, and follow these steps to create a new user and assign the user to be a caNanoLab administrator:
+        <ol>
+          <li>
+            Select User &gt; Create a New User.
+          </li>
+          <li>
+            Create a new user account named admin with an initial password.
+          </li>
+          <li>
+            Select Application &gt; Select an Existing Application, and click Search. Select caNanoLab from the application list.
+          </li>
+          <li>
+            Click View Details, then Associated Admins.
+          </li>
+          <li>
+            Assign this user to be an administrator for the caNanoLab application.
+          </li>
+          <li>
+            Click Update Association to commit the change.NoteIf you are using LDAP for user authentication, any user login names created in the UPT tool must be a valid LDAP log in name.
+          </li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        4
+      </td>
+      <td>
+        Before the newly-created user can log into the UPT application, logged in as the super admin, follow these steps to update the required database connection information for the csmupt and caNanoLab applications under the Application tab:
+        <ol>
+          <li>
+            Select Application &gt; Select an Existing Application, and click Search. Select csmupt from the application list.
+          </li>
+          <li>
+            Click View Details, then update the following fields:
+            <ul>
+              <li>
+                Application Database URL, for example,
+                jdbc://mysql://localhost:3306/canano
+              </li>
+              <li>
+                Application Database User Name, for example, cananolab_app
+              </li>
+              <li>
+                Application Database Password, for example, go!234
+              </li>
+              <li>
+                Application Database Confirm Password, for example, go!234
+              </li>
+              <li>
+                Application Database Dialect, for example, org.hibernate.dialect.MySQLDialect
+              </li>
+              <li>
+                Application Database Driver, for example, com.mysql.jdbc.Driver
+                NoteRefer to
+                <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=287277496" rel="nofollow">
+                  Edit Ant Properties
+                </a>
+                for the appropriate values for these fields. Values for Application Database Dialect and Application Database Driver must be exactly entered as shown above.
+              </li>
+            </ul>
+          </li>
+          <li>
+            Repeat the steps to update the database connection information for the caNanoLab application.
+          </li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        5
+      </td>
+      <td>
+        Log out of the UPT tool and log back in as admin. Use caNanoLab as the application name when prompted at the UPT log in.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        6
+      </td>
+      <td>
+        <ol>
+          <li>
+            Select User &gt; Select an Existing User, and click Search. Select admin from the User list.
+          </li>
+          <li>
+            Click View Details, then Associated Groups.
+          </li>
+          <li>
+            Select Curator from the pre-defined group list and assign it to the user. Click Update Associations to commit the change.
+          </li>
+        </ol>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Follow similar steps to create other application user accounts as appropriate.NotesSince release 1.5.2, if you are not using LDAP for user authentication, superadmin or caNanoLab administrators maintain the passwords for user accounts. The UPT tool does not allow users to manage their own passwords.
+<ul>
+  <li>
+    Publicly-available data can be browsed through Browse caNanoLab links on the home page without logins.
+  </li>
+  <li>
+    At each new data submission, the user who creates the data and the Curator group are automatically assigned role CURD to the newly-created data.
+  </li>
+  <li>
+    For more information about how to use the UPT tool for managing user accounts, contact
+    <a href="mailto:caNanoLab-Support@ISB-CGC.org" rel="nofollow">
+      caNanoLab-Support@ISB-CGC.org
+    </a>
+     and request that the caNanoLab technical team give you a demonstration of the UPT tool in the context of the caNanoLab application.
+  </li>
+</ul>
+<h2 id="caNanoLab2.1InstallationGuide-ContactingApplicationSupport">
+  Contacting Application Support
+</h2>
+For any general information about the application, support, or to report a bug, contact
+<a href="mailto:caNanoLab-Support@ISB-CGC.org" rel="nofollow">
+  caNanoLab-Support@ISB-CGC.org
+</a>
+.

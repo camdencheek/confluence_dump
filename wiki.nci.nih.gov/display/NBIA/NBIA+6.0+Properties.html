@@ -1,0 +1,2812 @@
+Information on this page is based on install.properties. All releases are on the
+<a href="https://wiki.nci.nih.gov/display/NBIA/National+Biomedical+Imaging+Archive+-+NBIA#NationalBiomedicalImagingArchive-NBIA-InstallationandDownloads" rel="nofollow">
+  Installation and Downloads
+</a>
+page.
+<h2 id="NBIA6.0Properties-ApplicationSettings">
+  Application Settings
+</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Property Name
+      </th>
+      <th>
+        Description
+      </th>
+      <th>
+        example
+      </th>
+    </tr>
+    <tr>
+      <td>
+        application.base.path.linux
+      </td>
+      <td>
+        Location where user is installing software on Linux
+      </td>
+      <td>
+        ${user.home}/apps/nbia
+      </td>
+    </tr>
+    <tr>
+      <td>
+        application.base.path.windows
+      </td>
+      <td>
+        Location where user is installing software on Window
+      </td>
+      <td>
+        c:/apps/nbia
+      </td>
+    </tr>
+    <tr>
+      <td>
+        authentication.type
+      </td>
+      <td>
+        CSM authentication type, the value should be &#34;db&#34; or &#34;ldap&#34;
+      </td>
+      <td>
+        db
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="NBIA6.0Properties-DatabaseSettings">
+  Database Settings
+</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Property Name
+      </th>
+      <th>
+        Description
+      </th>
+      <th>
+        example
+      </th>
+    </tr>
+    <tr>
+      <td>
+        database.type
+      </td>
+      <td>
+        This value specifies whether a MySQL or an Oracle database is being used.
+      </td>
+      <td>
+        oracle, mysql
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        database.re-createdatabase.drop-schema
+      </td>
+      <td colspan="1">
+        One of these properties must be set to true. If re-create is true then the
+        <a href="http://installdatabase" rel="nofollow">
+          install:database
+        </a>
+        target will wipe out the database instance completely and start from scratch.    If drop-schema is true, then all the schema and data will be wiped out but the database itself will not be removed.
+      </td>
+      <td colspan="1">
+        true or false
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        database.system.user
+      </td>
+      <td colspan="1">
+        The username for an administrator of this database.     This value should correspond to a MySQL username that has full system privileges.   This must correspond to the administrator account defined when MySQL was configured.  For Oracle, this value will be ignored, but the value must be different than the value of database.user.   Depending on how the install is done, or the value of database.re-create this may not be necessary.   If re-create=true, then this is necessary, otherwise it isn&#39;t.
+      </td>
+      <td colspan="1">
+        root
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        database.system.password
+      </td>
+      <td colspan="1">
+        The password for an administrator of this database that correlates with the value in database.system.user.    For Oracle, this value will be ignored.   Depending on how the install is done, or the value of database.re-create this may not be necessary.   If re-create=true, then this is necessary, otherwise it isn&#39;t.
+      </td>
+      <td colspan="1">
+        Someth!ngSecure
+      </td>
+    </tr>
+    <tr>
+      <td>
+        database.server
+      </td>
+      <td>
+        This value must correspond to the domain name of machine that hosts the Oracle/MySQL database server.   Talk to your database administrator to learn the server name and port.
+      </td>
+      <td>
+        remotehost.org
+      </td>
+    </tr>
+    <tr>
+      <td>
+        database.port
+      </td>
+      <td>
+        This value must correspond to the port for the database.server.   3306 is the default port, but check with your database administrator to be certain.
+      </td>
+      <td>
+        3306
+      </td>
+    </tr>
+    <tr>
+      <td>
+        database.name
+      </td>
+      <td>
+        Choose a name for the NCIA MySQL database. This must be different than the UPT database name
+      </td>
+      <td>
+        nciadb
+      </td>
+    </tr>
+    <tr>
+      <td>
+        database.user
+      </td>
+      <td>
+        Give the username to access database.name.
+      </td>
+      <td>
+        nciaop
+      </td>
+    </tr>
+    <tr>
+      <td>
+        database.password
+      </td>
+      <td>
+        Use a password to access database.name for the username identified in database.user
+      </td>
+      <td>
+        Someth!ngSecure
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        database.url
+      </td>
+      <td colspan="1">
+        Url for connection to a database. This is the standard implementation style. This if fixed. No Change Required
+      </td>
+      <td colspan="1">
+        jdbc:mysql://${database.server}:${database.port}/${database.name}
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        database.system.url
+      </td>
+      <td colspan="1">
+        Url for connection to a database. This is the standard implementation style.This if fixed. No Change Required
+      </td>
+      <td colspan="1">
+        jdbc:mysql://${database.server}:${database.port}/
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        database.resource.file.ds-xml
+      </td>
+      <td colspan="1">
+        Data Base Resource File.
+      </td>
+      <td colspan="1">
+        ncia-ds.xml
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        database.schema
+      </td>
+      <td colspan="1">
+        Database Schema for Oracle
+      </td>
+      <td colspan="1">
+        nciadev
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="NBIA6.0Properties-WebApplicationJBosscontainerProperties">
+  Web Application JBoss container Properties
+</h2>
+Properties that are below double horizontal line needs not to be set.
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Property Name
+      </th>
+      <th>
+        Description
+      </th>
+      <th>
+        example
+      </th>
+    </tr>
+    <tr>
+      <td>
+        jboss.web.password
+      </td>
+      <td>
+        Set to a secure password to be used to secure the NBIA JBoss server’s administrative functions  (e.g, admin console, JMX console, command-line shutdown of JBoss server, etc.)
+      </td>
+      <td>
+        S0meth!ngSecurE
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1"></td>
+      <td colspan="1"></td>
+      <td colspan="1"></td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        jboss.server.hostname
+      </td>
+      <td colspan="1">
+        Name of the host. localhost if locally installed
+      </td>
+      <td colspan="1">
+        localhost
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        jboss.server.name
+      </td>
+      <td colspan="1">
+        Name of JBoss Server
+      </td>
+      <td colspan="1">
+        default
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        jboss.web.user
+      </td>
+      <td colspan="1">
+        UserName for JBoss Server
+      </td>
+      <td colspan="1">
+        admin
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        jboss.server.ports.name
+      </td>
+      <td colspan="1">
+        Ports Name of JBoss
+      </td>
+      <td colspan="1">
+        nbia-ports
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        jboss.ejbinvoker.port
+      </td>
+      <td colspan="1">
+        JBoss Port Number for EJB Invoking
+      </td>
+      <td colspan="1">
+        45150
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        jboss.hajndi.port
+      </td>
+      <td colspan="1">
+        High Availability JNDI port number in JBoss that allows Java software clients to discover and look up data and objects via a name.
+      </td>
+      <td colspan="1">
+        45160
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        jboss.jms.port
+      </td>
+      <td colspan="1">
+        Port Number for messaging standard that allows application components based on the Java Enterprise Edition (Java EE) to create, send, receive, and read messages.
+      </td>
+      <td colspan="1">
+        45170
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        jboss.server.bind.port
+      </td>
+      <td colspan="1"></td>
+      <td colspan="1">
+        45190
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        jboss.server.jndi.port
+      </td>
+      <td colspan="1">
+        JNDI port number in JBoss that allows Java software clients to discover and look up data and objects via a name.
+      </td>
+      <td colspan="1">
+        45200
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        jboss.server.port
+      </td>
+      <td colspan="1">
+        JBoss Application Server instance listens in this port.
+      </td>
+      <td colspan="1">
+        45210
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        jboss.server.redirect.port
+      </td>
+      <td colspan="1">
+        Non-SSL requests will be redirected to this port when a request for content secured under a transport confidentiality or integrity constraint is received
+      </td>
+      <td colspan="1">
+        45220
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        jboss.server.rmi.port
+      </td>
+      <td colspan="1">
+        RMI (Remote Method Invocation) is a way that a programmer, using the Java programming language and development environment, can write object-oriented programming in which objects on different computers can interact in a distributed network
+      </td>
+      <td colspan="1">
+        45230
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        jboss.service.rmiobject.port
+      </td>
+      <td colspan="1">
+        Remote Method Invocation port number so that Objects can interact in a distributed network
+      </td>
+      <td colspan="1">
+        45240
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        jboss.web.service.port
+      </td>
+      <td colspan="1">
+        WebService Port Number for JBoss
+      </td>
+      <td colspan="1">
+        45250
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        jboss.hajrmi.port
+      </td>
+      <td colspan="1">
+        High Availability Remote Method Invocation port number in JBoss.
+      </td>
+      <td colspan="1">
+        45260
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        jboss.pooledha.port
+      </td>
+      <td colspan="1">
+        High Availability Pooled Port in JBoss
+      </td>
+      <td colspan="1">
+        45270
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        jboss.cobraorb.port
+      </td>
+      <td colspan="1">
+        Cobra port for JBoss
+      </td>
+      <td colspan="1">
+        45280
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        jboss.jmx-rmi.port
+      </td>
+      <td colspan="1">
+        Java Management Extensions, Remote Method Invocation Port in JBoss
+      </td>
+      <td colspan="1">
+        45290
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        jboss.snmp-trapd.port
+      </td>
+      <td colspan="1">
+        JBoss port for that receives and logs SNMP TRAP and INFORM messages.
+      </td>
+      <td colspan="1">
+        45300
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        jboss.snmp.port
+      </td>
+      <td colspan="1">
+        JBoss port for Simple Network Management Protocol which is a standard TCP/IP protocol for network management
+      </td>
+      <td colspan="1">
+        45310
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        jboss.remoting.port
+      </td>
+      <td colspan="1">
+        JBoss Port for most network based invocations and related service that uses pluggable transports and data marshallers.
+      </td>
+      <td colspan="1">
+        45320
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        jboss.messaging.port
+      </td>
+      <td colspan="1">
+        Messaging Port for JBoss to interact with orther applications.
+      </td>
+      <td colspan="1">
+        45330
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        For JBOSS 5.1.0.GA
+      </td>
+      <td colspan="1"></td>
+      <td colspan="1"></td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        jboss.unifiedinvoker.port
+      </td>
+      <td colspan="1">
+        Instead of having a different implementation for each transport, there is one Unified Invoker in JBoss.
+      </td>
+      <td colspan="1">
+        49360
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        jboss.hajndi.auto.port
+      </td>
+      <td colspan="1">
+        Automatic Port for High Availability for Java Naming and Directory Invocation.
+      </td>
+      <td colspan="1">
+        49370
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        jboss.ssl.port
+      </td>
+      <td colspan="1">
+        Port for Secured Socket Layer which is a technology which allows web browsers and web servers to communicate over a secured connection
+      </td>
+      <td colspan="1">
+        49380
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        jboss.jms2.netty.port
+      </td>
+      <td colspan="1">
+        Port for simple unencrypted TCP sockets based transport.
+      </td>
+      <td colspan="1">
+        49390
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        jboss.jms2.netty-ssl.port
+      </td>
+      <td colspan="1">
+        Similar to Netty TCP transport but it provides additional security by encrypting TCP connections using the Secure Sockets Layer
+      </td>
+      <td colspan="1">
+        49400
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        jboss.transaction.recovery.port
+      </td>
+      <td colspan="1">
+        Transaction Management Recovery Port for JBoss
+      </td>
+      <td colspan="1">
+        49410
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        jboss.transaction.status.port
+      </td>
+      <td colspan="1">
+        Status of the transaction port in JBoss
+      </td>
+      <td colspan="1">
+        49420
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        jboss.transaction.processid.port
+      </td>
+      <td colspan="1">
+        JBoss&#39;s Transaction Process ID port number.
+      </td>
+      <td colspan="1">
+        49430
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        jboss.java.opts
+      </td>
+      <td colspan="1">
+        Settings for the minimum and maximum heap memory required.
+      </td>
+      <td colspan="1">
+        -server -Xms256m -Xmx1024m -XX:ThreadStackSize=128 -XX:SurvivorRatio=10 -XX:PermSize=128m -XX:MaxPermSize=512m -Dsun.rmi.dgc.client.gcInterval=3600000 -Dsun.rmi.dgc.server.gcInterval=3600000 -Djava.awt.headless=true
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        jboss.ssl.enable
+      </td>
+      <td colspan="1">
+        Whether to enable Secure Sockets Layer or not.
+      </td>
+      <td colspan="1">
+        true or false
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        jboss.ssl.keystore.location
+      </td>
+      <td colspan="1">
+        The pathname of the keystore file where you have stored the SSL server certificate to be loaded.
+      </td>
+      <td colspan="1">
+        ${security.dist.relative.dir}/ncicb-test-ssl.keystore
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        jboss.ssl.keystore.pass
+      </td>
+      <td colspan="1">
+        The password used to access the server certificate from the specified keystore file.
+      </td>
+      <td colspan="1">
+        ncicb1!
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        jboss.ssl.keystore.alias
+      </td>
+      <td colspan="1">
+        The other name of SSL keystore.
+      </td>
+      <td colspan="1">
+        ncicb-test-ssl-key
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        jboss.ssl.fullyqualified.hostname
+      </td>
+      <td colspan="1">
+        Full hostname where SSL will be hosted.
+      </td>
+      <td colspan="1">
+        localhost.nci.nih.gov
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        jboss.external.http.host
+      </td>
+      <td colspan="1">
+        If installing the JBoss in a proxy configuration, then this is the hostname of the proxy.
+      </td>
+      <td colspan="1"></td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        jboss.external.http.port
+      </td>
+      <td colspan="1">
+        If installing the JBoss in a proxy configuration, then this is the port that the connection goes through on the proxy.
+      </td>
+      <td colspan="1"></td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        jboss.external.ssl.host
+      </td>
+      <td colspan="1">
+        Portname for External SSL. Currently leave it blank.
+      </td>
+      <td colspan="1"></td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        jboss.external.ssl.port
+      </td>
+      <td colspan="1">
+        Port Number for external SSL. Currently leave it blank.
+      </td>
+      <td colspan="1"></td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="NBIA6.0Properties-LDAPSettings">
+  LDAP Settings
+</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Property Name
+      </th>
+      <th>
+        Description
+      </th>
+      <th>
+        Example
+      </th>
+    </tr>
+    <tr>
+      <td>
+        ldap.url
+      </td>
+      <td>
+        Universal Resource Locator address for LightWeight Directory Access Protocol server.
+      </td>
+      <td>
+        ldaps://university.edu:636
+      </td>
+    </tr>
+    <tr>
+      <td>
+        ldap.basedn
+      </td>
+      <td>
+        LDAP server holding referrals to other server holding a given distinguished name (DN).
+      </td>
+      <td>
+        u=nci,o=nih
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="NBIA6.0Properties-NCIA-CORE-GridServer/ContainerSettings-GridServiceregistrationURL">
+  NCIA-CORE-Grid Server/Container Settings - Grid Service registration URL
+</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Property
+      </th>
+      <th>
+        Description
+      </th>
+      <th>
+        Example
+      </th>
+    </tr>
+    <tr>
+      <td colspan="1">
+        ncia-core-grid.jboss.server.hostname
+      </td>
+      <td colspan="1">
+        Hostname for NCIA Core Grid
+      </td>
+      <td colspan="1">
+        localhost
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        ncia-core-grid.jboss.server.name
+      </td>
+      <td colspan="1">
+        Server Name for NCIA Core Grid
+      </td>
+      <td colspan="1">
+        default
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        ncia-core-grid.jboss.web.user
+      </td>
+      <td colspan="1">
+        Username for NCIA Core Grid
+      </td>
+      <td colspan="1">
+        admin
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        ncia-core-grid.jboss.web.password
+      </td>
+      <td colspan="1">
+        Password for NCIA Core Grid
+      </td>
+      <td colspan="1">
+        ncia1234!
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        ncia-core-grid.jboss.server.ports.name
+      </td>
+      <td colspan="1">
+         Ports Name of JBoss
+      </td>
+      <td colspan="1">
+        nbia-ports
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        ncia-core-grid.jboss.ejbinvoker.port
+      </td>
+      <td colspan="1">
+        JBoss Port Number for EJB Invoking
+      </td>
+      <td colspan="1">
+        21150
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        ncia-core-grid.jboss.hajndi.port
+      </td>
+      <td colspan="1">
+        High Availability JNDI port number in JBoss that allows Java software clients to discover and look up data and objects via a name.
+      </td>
+      <td colspan="1">
+        21160
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        ncia-core-grid.jboss.jms.port
+      </td>
+      <td colspan="1">
+        Port Number for messaging standard that allows application components based on the Java Enterprise Edition (Java EE) to create, send, receive, and read messages.
+      </td>
+      <td colspan="1">
+        21170
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        ncia-core-grid.jboss.server.bind.port
+      </td>
+      <td colspan="1"></td>
+      <td colspan="1">
+        21190
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        ncia-core-grid.jboss.server.jndi.port
+      </td>
+      <td colspan="1">
+        JNDI port number in JBoss that allows Java software clients to discover and look up data and objects via a name.
+      </td>
+      <td colspan="1">
+        21200
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        ncia-core-grid.jboss.server.port
+      </td>
+      <td colspan="1">
+        JBoss Application Server instance listens in this port.
+      </td>
+      <td colspan="1">
+        21080
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        ncia-core-grid.jboss.server.redirect.port
+      </td>
+      <td colspan="1">
+        Non-SSL requests will be redirected to this port when a request for content secured under a transport confidentiality or integrity constraint is received
+      </td>
+      <td colspan="1">
+        21220
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        ncia-core-grid.jboss.server.rmi.port
+      </td>
+      <td colspan="1">
+        RMI (Remote Method Invocation) is a way that a programmer, using the Java programming language and development environment, can write object-oriented programming in which objects on different computers can interact in a distributed network
+      </td>
+      <td colspan="1">
+        21230
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        ncia-core-grid.jboss.service.rmiobject.port
+      </td>
+      <td colspan="1">
+        Remote Method Invocation port number so that Objects can interact in a distributed network
+      </td>
+      <td colspan="1">
+        21240
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        ncia-core-grid.jboss.web.service.port
+      </td>
+      <td colspan="1">
+        WebService Port Number for JBoss
+      </td>
+      <td colspan="1">
+        21250
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        ncia-core-grid.jboss.hajrmi.port
+      </td>
+      <td colspan="1">
+        High Availability Remote Method Invocation port number in JBoss.
+      </td>
+      <td colspan="1">
+        21260
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        ncia-core-grid.jboss.pooledha.port
+      </td>
+      <td colspan="1">
+        High Availability Pooled Port in JBoss
+      </td>
+      <td colspan="1">
+        21270
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        ncia-core-grid.jboss.cobraorb.port
+      </td>
+      <td colspan="1">
+        Cobra port for JBoss
+      </td>
+      <td colspan="1">
+        21280
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        ncia-core-grid.jboss.jmx-rmi.port
+      </td>
+      <td colspan="1">
+        Java Management Extensions, Remote Method Invocation Port in JBoss
+      </td>
+      <td colspan="1">
+        21290
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        ncia-core-grid.jboss.snmp-trapd.port
+      </td>
+      <td colspan="1">
+        JBoss port for that receives and logs SNMP TRAP and INFORM messages.
+      </td>
+      <td colspan="1">
+        21300
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        ncia-core-grid.jboss.snmp.port
+      </td>
+      <td colspan="1">
+        JBoss port for Simple Network Management Protocol which is a standard TCP/IP protocol for network management
+      </td>
+      <td colspan="1">
+        21310
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        ncia-core-grid.jboss.remoting.port
+      </td>
+      <td colspan="1">
+        JBoss Port for most network based invocations and related service that uses pluggable transports and data marshallers.
+      </td>
+      <td colspan="1">
+        21320
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        ncia-core-grid.jboss.messaging.port
+      </td>
+      <td colspan="1">
+        Messaging Port for JBoss to interact with orther applications.
+      </td>
+      <td colspan="1">
+        21330
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        ncia-core-grid.jboss.java.opts
+      </td>
+      <td colspan="1">
+        Settings for the minimum and maximum heap memory required.
+      </td>
+      <td colspan="1">
+        -server -Xms256m -Xmx1024m -XX:ThreadStackSize=128 -XX:SurvivorRatio=10 -XX:PermSize=128m -XX:MaxPermSize=128m -Dsun.rmi.dgc.client.gcInterval=3600000 -Dsun.rmi.dgc.server.gcInterval=3600000 -Djava.awt.headless=true
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        ncia-core-grid.jboss.ssl.enable
+      </td>
+      <td colspan="1">
+        Whether to enable Secure Sockets Layer or not.
+      </td>
+      <td colspan="1">
+        false
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        ncia-core-grid.jboss.ssl.keystore.location
+      </td>
+      <td colspan="1">
+        The pathname of the keystore file where you have stored the SSL server certificate to be loaded.
+      </td>
+      <td colspan="1">
+        ${security.dist.relative.dir}/ncicb-test-ssl.keystore
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        ncia-core-grid.jboss.ssl.keystore.pass
+      </td>
+      <td colspan="1">
+        The password used to access the server certificate from the specified keystore file.
+      </td>
+      <td colspan="1">
+        ncicb1!
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        ncia-core-grid.jboss.ssl.keystore.alias
+      </td>
+      <td colspan="1">
+        The other name of SSL keystore.
+      </td>
+      <td colspan="1">
+        ncicb-test-ssl-key
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        ncia-core-grid.jboss.ssl.fullyqualified.hostname
+      </td>
+      <td colspan="1">
+        Full hostname where SSL will be hosted.
+      </td>
+      <td colspan="1">
+        localhost
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        ncia-core-grid.jboss.external.http.host
+      </td>
+      <td colspan="1">
+        If installing the grid service in a proxy configuration, then this is the hostname of the proxy.
+      </td>
+      <td colspan="1">
+        imaging.nci.nih.gov
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        ncia-core-grid.jboss.external.http.port
+      </td>
+      <td colspan="1">
+        If installing the grid service in a proxy configuration, then this is the port that the connection goes through on the proxy.    For example, if Apache is acting as a proxy, then a typical proxy port would be 80.
+      </td>
+      <td colspan="1">
+        80
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        ncia-core-grid.jboss.external.ssl.host
+      </td>
+      <td colspan="1">
+        If installing the grid service in proxy configuration, then this is the hostname of the proxy for SSL configuration.
+      </td>
+      <td colspan="1"></td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        ncia-core-grid.jboss.external.ssl.port
+      </td>
+      <td colspan="1">
+        Port Number for external SSL. Currently leave it blank.
+      </td>
+      <td colspan="1"></td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        ncia-core-grid.tempZipLocation
+      </td>
+      <td colspan="1">
+        This should be a directory with enough disk space such that the grid service can write sizeable zip files temporarily.
+      </td>
+      <td colspan="1">
+        c:/temp
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        ncia-core-grid.jboss.thumbnailUrl
+      </td>
+      <td colspan="1">
+        This is the URL to the servlet whereby the thumbnails for images available through remote search can be obtained.   The host and port of this URL must match the JBoss public URL for the web application (gov.nih.nci.ncia.jboss.public.url)   The context and servlet name should likely stay as ncia/publicThumbnails unless the deployment has been customized.
+      </td>
+      <td colspan="1">
+        <a href="http://localhost:45210/ncia/publicThumbnails" rel="nofollow">
+          http://localhost:45210/ncia/publicThumbnails
+        </a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="NBIA6.0Properties-CTPSettings">
+  CTP Settings
+</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Property Name
+      </th>
+      <th>
+        Description
+      </th>
+      <th>
+        Example
+      </th>
+    </tr>
+    <tr>
+      <td>
+        ctp.server.port
+      </td>
+      <td>
+        The port that the CTP administration console will run on.
+      </td>
+      <td>
+        23080
+      </td>
+    </tr>
+    <tr>
+      <td>
+        ctp.server.http_import_service.port
+      </td>
+      <td>
+        The port that CTP will accept submissions on.  This port should be configured as the port to export to in the CTP client configuration.
+      </td>
+      <td>
+        23104
+      </td>
+    </tr>
+    <tr>
+      <td>
+        ctp.server.admin.password
+      </td>
+      <td>
+        The password for the CTP server administrator.
+      </td>
+      <td>
+        S0meth!ngSecurE
+      </td>
+    </tr>
+    <tr>
+      <td>
+        ctp.server.king.password
+      </td>
+      <td>
+        The password for the CTP server super administrator who has privilege to shutdown the server
+      </td>
+      <td>
+        S0meth!ngSecurE
+      </td>
+    </tr>
+    <tr>
+      <td>
+        ctp.server.storage_service.root
+      </td>
+      <td>
+        The directory where the CTP will store submitted files.
+      </td>
+      <td>
+        storage/root
+      </td>
+    </tr>
+    <tr>
+      <td>
+        ctp.server.storage_service.index
+      </td>
+      <td>
+        The directory where the CTP will store the index for submitted files.  This directory must be the direct parent of ctp.storage_service.root.
+      </td>
+      <td>
+        storage
+      </td>
+    </tr>
+    <tr>
+      <td>
+        ctp.server.require_authentication
+      </td>
+      <td>
+        Whether or not the authentication is required for data submission (HttpImportService)
+      </td>
+      <td>
+        yes
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        ctp.server.verifier.port
+      </td>
+      <td colspan="1">
+        The port that CTP will listen for verification requests on.    Verification requests are queries to the (NBIA) database adapter to confirm that a given image was submitted successfully.
+      </td>
+      <td colspan="1">
+         23304
+      </td>
+    </tr>
+    <tr>
+      <td>
+        ctp.client.port
+      </td>
+      <td>
+        The port that the CTP administration console will run on (for the client).
+      </td>
+      <td>
+        24080
+      </td>
+    </tr>
+    <tr>
+      <td>
+        ctp.client.http_import_service.port
+      </td>
+      <td>
+        The port that CTP will accept submissions on.  This port should be configured as the port to send to in the FileSender.
+      </td>
+      <td>
+        24104
+      </td>
+    </tr>
+    <tr>
+      <td>
+        ctp.client.dicom_import_service.port
+      </td>
+      <td>
+        The port that CTP will accept submissions on.  This port should be configured as the port to send to in the FileSender.
+      </td>
+      <td>
+        24304
+      </td>
+    </tr>
+    <tr>
+      <td>
+        ctp.client.export_service.port
+      </td>
+      <td>
+        The port that CTP will export submissions to (to the server).  This should match up with the import service port on the server side.
+      </td>
+      <td>
+        24204
+      </td>
+    </tr>
+    <tr>
+      <td>
+        ctp.client.admin.password
+      </td>
+      <td>
+        The password for the CTP client administrator.
+      </td>
+      <td>
+        S0meth!ngSecurE
+      </td>
+    </tr>
+    <tr>
+      <td>
+        ctp.client.admin.password
+      </td>
+      <td>
+        The password for the CTP client super administrator who has privilege to shutdown the server
+      </td>
+      <td>
+        S0meth!ngSecurE
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        ctp.client.exportService.username
+      </td>
+      <td colspan="1">
+        Specifies the user name    at the submitting site to ensure that all transmitted data made it into the NBIA database
+      </td>
+      <td colspan="1">
+        S0meth!ngSecurE
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        ctp.client.exportService.password
+      </td>
+      <td colspan="1">
+        Specifies the password    at the submitting site to ensure that all transmitted data made it into the NBIA database
+      </td>
+      <td colspan="1">
+        S0meth!ngSecurE
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="NBIA6.0Properties-NBIAApplicationProperties">
+  NBIA Application Properties
+</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Property Name
+      </th>
+      <th>
+        Description
+      </th>
+      <th>
+        Example
+      </th>
+    </tr>
+    <tr>
+      <td>
+        gov.nih.nci.ncia.imaging.server.url
+      </td>
+      <td>
+        Publicly visible URL for the JBoss container hosting NBIA.   This URL should contain the proxy name instead of the host name if there is a proxy.   If this property is not configured properly, then thumbnails images may not appear in the web application search results.
+      </td>
+      <td>
+        <a href="http://locahost:45210" rel="nofollow">
+          http://locahost:45210
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        gov.nih.nci.ncia.mapped.image.path.head
+      </td>
+      <td colspan="1"></td>
+      <td colspan="1">
+        \\\\\\\\cbiofs502.nci.nih.gov\\\\nciaimages\\\\,\\\\\\\\cbiofs502.nci.nih.gov\\\\nciaproddataset\\\\dataset_p01\\\\,\\\\\\\\nfs-ncia-d.nci.nih.gov\\\\nciadevdataset\\\\dataset_d01\\\\
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        gov.nih.nci.ncia.image.path.pattern
+      </td>
+      <td colspan="1"></td>
+      <td colspan="1">
+        NCICBIMAGE/documents/,data/dataset_p01/,data/dataset_d01/
+      </td>
+    </tr>
+    <tr>
+      <td>
+        gov.nih.nci.ncia.zip.location
+      </td>
+      <td>
+        Location to place zipped files created by the NBIA web application for download.
+      </td>
+      <td>
+        /data/ncia_data/ncia_ftp
+      </td>
+    </tr>
+    <tr>
+      <td>
+        gov.nih.nci.ncia.ftp.location
+      </td>
+      <td>
+        Location to place files for download through an external FTP server.
+      </td>
+      <td>
+        /data/ncia_data/ncia_ftp
+      </td>
+    </tr>
+    <tr>
+      <td>
+        gov.nih.nci.ncia.grid.local.node.name
+      </td>
+      <td>
+        If remote search is enabled, this is the name that will be used in the search form to search THIS node.   There is a separate property that governs the name of this node but as  viewed from other instances of NBIA.    It is likely that these two properties should agree, but it isn&#39;t mandatory.   See: grid.poc.tech.researchCenter.displayname
+      </td>
+      <td>
+        NCI-1
+      </td>
+    </tr>
+    <tr>
+      <td>
+        gov.nih.nci.ncia.ui.uid.display.length
+      </td>
+      <td>
+        Determines the max character length of data representation in the UI tier
+      </td>
+      <td>
+        100
+      </td>
+    </tr>
+    <tr>
+      <td>
+        gov.nih.nci.ncia.ftp.url
+      </td>
+      <td>
+        FTP server URL used for informing users about where to download the larger size files
+      </td>
+      <td>
+        localhost
+      </td>
+    </tr>
+    <tr>
+      <td>
+        gov.nih.nci.ncia.jboss.mq.url
+      </td>
+      <td>
+        The value of this property should ALWAYS be “localhost:&lt;port&gt;” where &lt;port&gt; have the exact same value as ${jboss.server.jndi.port}.  If this is not configured properly the zipping of DICOM image files for download will not work properly.
+      </td>
+      <td>
+        localhost:45200 (port is the JBoss JNDI port)
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        gov.nih.nci.ncia.frontier.http.address
+      </td>
+      <td colspan="1"></td>
+      <td colspan="1"></td>
+    </tr>
+    <tr>
+      <td>
+        gov.nih.nci.ncia.installationSite
+      </td>
+      <td>
+        This property determines whether the installation is at ncicb or somewhere else (other).    This governs certain aspects of the UI such as where the link to reset a password will point to.
+      </td>
+      <td>
+        ncicb, other
+      </td>
+    </tr>
+    <tr>
+      <td>
+        gov.nih.nci.ncia.admin.email
+      </td>
+      <td>
+        The email address of the user administrator
+      </td>
+      <td>
+        <a href="mailto:ncicbmb@mail.nih.gov" rel="nofollow">
+          ncicbmb@mail.nih.gov
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        gov.nih.nci.ncia.jboss.public.url
+      </td>
+      <td colspan="1">
+        NBIA&#39;s URL for the portal
+      </td>
+      <td colspan="1">
+        <a href="http://localhost:45210/ncia/" rel="nofollow">
+          http://localhost:45210/ncia/
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        gov.nih.nci.ncia.download.server.url
+      </td>
+      <td colspan="1">
+        This is the URL that the Download Manager will use to retrieve DICOM images from.    This should typically be the same host and port of the JBoss server.    The webapp context and file path should always be the same unless deployment has been customized.
+      </td>
+      <td colspan="1">
+        <a href="http://localhost:45210/nbia-download/servlet/DownloadServlet" rel="nofollow">
+          http://localhost:45210/nbia-download/servlet/DownloadServlet
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        enabled_guest_account
+      </td>
+      <td>
+        Whether or not public search will be enabled for this instance.
+      </td>
+      <td>
+        yes or no
+      </td>
+    </tr>
+    <tr>
+      <td>
+        guest_username
+      </td>
+      <td>
+        If enabled_guest_account=yes then this is the name of the CSM user that will blessed as the user for all public searches.    This user should likely only be provisioned to be associated with PUBLIC protection elements.
+      </td>
+      <td>
+        nbia_guest
+      </td>
+    </tr>
+    <tr>
+      <td>
+        enable_classic_download
+      </td>
+      <td>
+        If this is set to no, then only the WebStart based Download Manager will be available to all userse.    If this is set to yes, then the &#34;classic&#34; download feature will still be available that allows downloading zip   files of DICOM images through HTTP and/or HTTP
+      </td>
+      <td>
+        yes or no
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        registration.email.subject
+      </td>
+      <td colspan="1">
+        Subject for the Email sent to CBIIT
+      </td>
+      <td colspan="1">
+        User registration to LDAP to access the National Biomedical Imaging Archive (NBIA)
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        show.collection.search.criteria
+      </td>
+      <td colspan="1">
+        If User wants to see Collections such as MR, CT, US etc in the Simple Search Page. By default it&#39;s set to false.
+      </td>
+      <td colspan="1">
+        true or false
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        discover.remote.nodes
+      </td>
+      <td colspan="1">
+        What remote nodes the user want to see i.e Dev, Stage, Prod etc. Deprecated after NBIA 5.2 Version.
+      </td>
+      <td colspan="1">
+        true or false
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        show.anatomical.search.criteria
+      </td>
+      <td colspan="1">
+        Various body parts the User wants to Search for such as Abdomen, Brain, Chest etc.
+      </td>
+      <td colspan="1">
+        true or false
+      </td>
+    </tr>
+    <tr>
+      <td>
+        local.grid.uri
+      </td>
+      <td>
+        For a given installation, this is the URL to the grid service FOR THAT INSTALLATION itself.     If this is not set properly, and remote search is enabled, then the local node will appear twice in the   list of searchable nodes.    Once for the &#34;local&#34; search, and additionally for its grid interface (if it is registered with the index service).
+      </td>
+      <td>
+        <a href="http://imaging.company.com:45210/wsrf/services/cagrid/NBIAService" rel="nofollow">
+          http://imaging.company.com:45210/wsrf/services/cagrid/NBIAService
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        show.collection.search.criteria
+      </td>
+      <td>
+        If set to false, the collection criteria selection control will not appear in the classic search UI.    This should only be set to false if a given instance of NBIA has, and only will ever have,   only one collection/project to search through.
+      </td>
+      <td>
+        true or false
+      </td>
+    </tr>
+    <tr>
+      <td>
+        discover.remote.nodes
+      </td>
+      <td>
+        If set to false, the NBIA web application will not attempt to discover other instances of NBIA to search   through the caGrid Index Service.   In other words, no remote nodes will appear at the top of the classic search page if this is set to false.
+      </td>
+      <td>
+        true or false
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        gov.nih.nci.ncia.download.no.retry
+      </td>
+      <td colspan="1">
+        Maximum Number of retry to download images for Download Manager
+      </td>
+      <td colspan="1">
+        4
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="NBIA6.0Properties-GridServiceContactInformation">
+  Grid Service Contact Information
+</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Property Name
+      </th>
+      <th>
+        Description
+      </th>
+      <th>
+        Example
+      </th>
+    </tr>
+    <tr>
+      <td colspan="1">
+        grid.index.url
+      </td>
+      <td colspan="1">
+        This is the URL to the index service that the NBIA grid service will register itself with.   Additionally, the remote search feature will look for other instances of NBIA at this index service.   If NBIA being setup for experimental purpose, it is more appropriate to register with the  staging index service (cagrind-index-stage).
+      </td>
+      <td colspan="1">
+        <a href="http://cagrid-index-stage.nci.nih.gov:8080/wsrf/services/DefaultIndexService" rel="nofollow">
+          http://cagrid-index-stage.nci.nih.gov:8080/wsrf/services/DefaultIndexService
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        grid.poc.tech.researchCenter.displayname
+      </td>
+      <td>
+        Name of the Research Center   This name is used by remote search.    This name will be show in the list of searchable NBIA nodes on the search form.
+      </td>
+      <td>
+        Cancer Research Center
+      </td>
+    </tr>
+    <tr>
+      <td>
+        grid.poc.tech.researchCenter.shortname
+      </td>
+      <td>
+        Shortened Name of Research center
+      </td>
+      <td>
+        CRC
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        grid.poc.tech.addr.country
+      </td>
+      <td colspan="1">
+        Country where Research Center is located
+      </td>
+      <td colspan="1">
+        USA
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        grid.poc.tech.addr.locality
+      </td>
+      <td colspan="1">
+        TBD
+      </td>
+      <td colspan="1">
+        Fairfax
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        grid.poc.tech.addr.postalCode
+      </td>
+      <td colspan="1">
+        Zip/Postal Code
+      </td>
+      <td colspan="1">
+        22033
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        grid.poc.tech.addr.stateProvince
+      </td>
+      <td colspan="1">
+        State or Province
+      </td>
+      <td colspan="1">
+        VA
+      </td>
+    </tr>
+    <tr>
+      <td>
+        grid.poc.tech.addr.street1
+      </td>
+      <td>
+        Street Address
+      </td>
+      <td>
+        1234 Main Street
+      </td>
+    </tr>
+    <tr>
+      <td>
+        grid.poc.tech.addr.street2
+      </td>
+      <td>
+        Additional Street Address Information
+      </td>
+      <td>
+        Suite 2000
+      </td>
+    </tr>
+    <tr>
+      <td>
+        grid.poc.tech.affiliation
+      </td>
+      <td>
+        TBD
+      </td>
+      <td>
+        Mr.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        grid.poc.tech.name.last
+      </td>
+      <td>
+        Last Name of Technical POC
+      </td>
+      <td>
+        Henry
+      </td>
+    </tr>
+    <tr>
+      <td>
+        grid.poc.tech.name.first
+      </td>
+      <td>
+        First Name of Technical POC
+      </td>
+      <td>
+        Patrick
+      </td>
+    </tr>
+    <tr>
+      <td>
+        grid.poc.tech.phone
+      </td>
+      <td>
+        Phone Number of Technical POC
+      </td>
+      <td>
+        703-555-1212
+      </td>
+    </tr>
+    <tr>
+      <td>
+        grid.poc.tech.email
+      </td>
+      <td>
+        Email for Technical POC
+      </td>
+      <td>
+        user@email.com
+      </td>
+    </tr>
+    <tr>
+      <td>
+        grid.poc.tech.role
+      </td>
+      <td>
+        Role of Technical POC
+      </td>
+      <td>
+        Network Administrator
+      </td>
+    </tr>
+    <tr>
+      <td>
+        grid.poc.science.affiliation
+      </td>
+      <td>
+        TBD
+      </td>
+      <td>
+        Mr.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        grid.poc.science.name.last
+      </td>
+      <td>
+        Last Name of Science POC
+      </td>
+      <td>
+        Jefferson
+      </td>
+    </tr>
+    <tr>
+      <td>
+        grid.poc.science.name.first
+      </td>
+      <td>
+        First Name of Science POC
+      </td>
+      <td>
+        Thomas
+      </td>
+    </tr>
+    <tr>
+      <td>
+        grid.poc.science.phone
+      </td>
+      <td>
+        Phone Number of Science POC
+      </td>
+      <td>
+        703-555-1212
+      </td>
+    </tr>
+    <tr>
+      <td>
+        grid.poc.science.email
+      </td>
+      <td>
+        Email for Science POC
+      </td>
+      <td>
+        user@email.com
+      </td>
+    </tr>
+    <tr>
+      <td>
+        grid.poc.science.role
+      </td>
+      <td>
+        Role of Science POC
+      </td>
+      <td>
+        Biologist
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="NBIA6.0Properties-Log4JSettings">
+  Log4J Settings
+</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Property Name
+      </th>
+      <th>
+        Description
+      </th>
+      <th>
+        Example
+      </th>
+    </tr>
+    <tr>
+      <td>
+        log4j.maxFileSize
+      </td>
+      <td></td>
+      <td>
+        100MB
+      </td>
+    </tr>
+    <tr>
+      <td>
+        log4j.maxDays
+      </td>
+      <td></td>
+      <td>
+        7
+      </td>
+    </tr>
+    <tr>
+      <td>
+        log4j.level
+      </td>
+      <td></td>
+      <td>
+        WARN
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="NBIA6.0Properties-MailSettings">
+  Mail Settings
+</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Property Name
+      </th>
+      <th>
+        Description
+      </th>
+      <th>
+        Example
+      </th>
+    </tr>
+    <tr>
+      <td>
+        mail.smtp.server
+      </td>
+      <td>
+        Location of mail server to send emails for application to forward emails to users, notify users of the location of the download files
+      </td>
+      <td>
+        mail.university.edu
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="NBIA6.0Properties-DownloadManagerDigitalSignatureSettings">
+  Download Manager Digital Signature Settings
+</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Property Name
+      </th>
+      <th>
+        Description
+      </th>
+      <th>
+        Example
+      </th>
+    </tr>
+    <tr>
+      <td>
+        jar-signing.keystore.location
+      </td>
+      <td>
+        The location of the keystore to find a key to sign the download manager jars with.    If (file://\\If) generate-selfsigned is set to true, then this location will be where the installation process CREATES the keystore.    Otherwise (file://\\Otherwise), the keystore should already exist at this location.
+      </td>
+      <td>
+        c:/keystores/nbia_keystore
+      </td>
+    </tr>
+    <tr>
+      <td>
+        jar-signing.keystore.password
+      </td>
+      <td>
+        The password for the keystore pointed to by keystore.location.   If (file://\\If) generate-selfsigned is set to true, then this password will be set when the installation process CREATES the keystore.  \ (file://\\Otherwise)  Otherwise, the password should apply to the existing keystore.
+      </td>
+      <td>
+        something_secure
+      </td>
+    </tr>
+    <tr>
+      <td>
+        jar-signing.keystore.alias
+      </td>
+      <td>
+        The alias for the key to use when signing the download manager jars.   If (file://\\If) generate-selfsigned is set to true, then this alias will be set when the installation process CREATES the key and keystore.    Otherwise (file://\\Otherwise), the alias should exist in the existing keystore.
+      </td>
+      <td>
+        alias1
+      </td>
+    </tr>
+    <tr>
+      <td>
+        jar-signing.execution.time
+      </td>
+      <td>
+        Whether to sign the jars at build time or install time.  If not at NCICB, this value should always be install.
+      </td>
+      <td>
+        build or install
+      </td>
+    </tr>
+    <tr>
+      <td>
+        jar-signing.generate-selfsigned
+      </td>
+      <td>
+        If set to true, the install process will generate a self-signed certificate to sign the jars with.    If (file://\\If) false, there must be an existing certificate to use when signing.
+      </td>
+      <td>
+        true or false
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        gov.nih.nci.ncia.encrypt.key
+      </td>
+      <td colspan="1">
+        Alphanumeric key for password encryption
+      </td>
+      <td colspan="1">
+        ABCD12346598AYE2
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="NBIA6.0Properties-GridSecurity">
+  Grid Security
+</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Property Name
+      </th>
+      <th>
+        Description
+      </th>
+      <th>
+        Example
+      </th>
+    </tr>
+    <tr>
+      <td>
+        grid.target
+      </td>
+      <td>
+        The target grid for the grid service.  This will affect which servers SyncGTS will run against.
+      </td>
+      <td>
+        nci_stage-1.3 or nci_prod-1.3
+      </td>
+    </tr>
+    <tr>
+      <td>
+        ncia-core-grid.jboss.http-connector.remove
+      </td>
+      <td>
+        Whether or not to remove the HTTP connector in the server.xml for JBoss/Tomcat.
+      </td>
+      <td>
+        true/false
+      </td>
+    </tr>
+    <tr>
+      <td>
+        ncia-core-grid.jboss.grid.secure.enable
+      </td>
+      <td>
+        Whether or not to secure the grid container.
+      </td>
+      <td>
+        true/false
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        ncia-core-grid.jboss.grid.secure.port
+      </td>
+      <td colspan="1">
+        The actual port the secure HTTPS connector will run on for the grid service.
+      </td>
+      <td colspan="1">
+        21443
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        ncia-core-grid.jboss.grid.secure.cert.location
+      </td>
+      <td colspan="1">
+        The absolute path to the host public certifcate.
+      </td>
+      <td colspan="1">
+        ~username/.cagrid/certificates/HOSTNAME-cert.pem
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        ncia-core-grid.jboss.grid.secure.key.location
+      </td>
+      <td colspan="1">
+        The absolute path to the host private key.
+      </td>
+      <td colspan="1">
+        ~username/.cagrid/certificates/HOSTNAME-key.pem
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        ncia-core-grid.jboss.external.grid.secure.host
+      </td>
+      <td colspan="1">
+        In a proxy situation, this allows setting the external host name for the service.
+      </td>
+      <td colspan="1">
+        imaging.nci.nih.gov
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        ncia-core-grid.jboss.external.grid.secure.port
+      </td>
+      <td colspan="1">
+        In a proxy situation, this allows setting the external portf or the service.
+      </td>
+      <td colspan="1">
+        443
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        ncia-core-grid.anonymous.permitted
+      </td>
+      <td colspan="1">
+        Whether or not to allow anonymous access to secure methods of the service.  This will allow the public data filter to still be used.
+      </td>
+      <td colspan="1">
+        true/false
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="NBIA6.0Properties-CedaraSettings">
+  Cedara Settings
+</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Property Name
+      </th>
+      <th>
+        Description
+      </th>
+      <th>
+        Example
+      </th>
+    </tr>
+    <tr>
+      <td>
+        gov.nih.nci.ncia.jboss.public.url
+      </td>
+      <td>
+        The URL for the NBIA web application.  This URL should contain the proxy name instead of the host name if there is a proxy. (Only relevant to Cedara). \\\\Note: this must end in a forward slash.
+      </td>
+      <td>
+        <a href="http://localhost:45210/ncia" rel="nofollow">
+          http://localhost:45210/ncia
+        </a>
+        /
+      </td>
+    </tr>
+    <tr>
+      <td>
+        gov.nih.nci.ncia.mapped.image.path.head
+      </td>
+      <td>
+        Mapped image file path in IGS machine. (Only relevant to Cedara).
+      </td>
+      <td>
+        \\\\fs592  nciaimages
+      </td>
+    </tr>
+    <tr>
+      <td>
+        gov.nih.nci.ncia.image.path.pattern
+      </td>
+      <td>
+        Pattern of the image file path.  (Only relevant to Cedara).
+      </td>
+      <td>
+        NCICBIMAGE/documents/
+      </td>
+    </tr>
+    <tr>
+      <td>
+        gov.nih.nci.ncia.frontier.http.address
+      </td>
+      <td>
+        Cedara ISG server address (Only relevant to Cedara)
+      </td>
+      <td>
+        localhost
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="NBIA6.0Properties-CQL2GRIDSERVICEJBOSS">
+  CQL2 GRID SERVICE JBOSS
+</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Property Name
+      </th>
+      <th>
+        Description
+      </th>
+      <th>
+        Example
+      </th>
+    </tr>
+    <tr>
+      <td>
+        nbia-grid.jboss.server.hostname
+      </td>
+      <td>
+        Name of the host. localhost if locally installed
+      </td>
+      <td>
+        localhost
+      </td>
+    </tr>
+    <tr>
+      <td>
+        nbia-grid.jboss.server.name
+      </td>
+      <td>
+        Name of JBoss Server
+      </td>
+      <td>
+        default
+      </td>
+    </tr>
+    <tr>
+      <td>
+        nbia-grid.jboss.web.user
+      </td>
+      <td>
+        UserName for JBoss Server
+      </td>
+      <td>
+        admin
+      </td>
+    </tr>
+    <tr>
+      <td>
+        nbia-grid.jboss.web.password
+      </td>
+      <td>
+        Set to a secure password to be used to secure the NBIA JBoss server’s administrative functions (e.g, admin console, JMX console, command-line shutdown of JBoss server, etc.)
+      </td>
+      <td>
+        nbia1234!
+      </td>
+    </tr>
+    <tr>
+      <td>
+        nbia-grid.jboss.server.jndi.port
+      </td>
+      <td>
+        High Availability JNDI port number in JBoss that allows Java software clients to discover and look up data and objects via a name.
+      </td>
+      <td>
+        31399
+      </td>
+    </tr>
+    <tr>
+      <td>
+        nbia-grid.jboss.server.port
+      </td>
+      <td>
+        JBoss Application Server instance listens in this port.
+      </td>
+      <td>
+        39380
+      </td>
+    </tr>
+    <tr>
+      <td>
+        nbia-grid.jboss.ncicb-standard.port-config
+      </td>
+      <td></td>
+      <td>
+        true or false
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        nbia-grid.jboss.server.ports.name
+      </td>
+      <td colspan="1">
+        Ports Name of JBoss
+      </td>
+      <td colspan="1">
+        config39380
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        nbia-grid.jboss.java.opts
+      </td>
+      <td colspan="1">
+        Settings for the minimum and maximum heap memory required.
+      </td>
+      <td colspan="1">
+        -server -Xms256m -Xmx1024m -XX:ThreadStackSize=128 -XX:SurvivorRatio=10 -XX:PermSize=128m -XX:MaxPermSize=128m -Dsun.rmi.dgc.client.gcInterval=3600000 -Dsun.rmi.dgc.server.gcInterval=3600000 -Djava.awt.headless=true
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        nbia-grid.jboss.ssl.enable
+      </td>
+      <td colspan="1">
+        Whether to enable Secure Sockets Layer or not.
+      </td>
+      <td colspan="1">
+        true or false
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        nbia-grid.jboss.ssl.keystore.location
+      </td>
+      <td colspan="1">
+        The pathname of the keystore file where you have stored the SSL server certificate to be loaded.
+      </td>
+      <td colspan="1">
+        ${security.dist.relative.dir}/ncicb-test-ssl.keystore
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        nbia-grid.jboss.ssl.keystore.pass
+      </td>
+      <td colspan="1">
+        The password used to access the server certificate from the specified keystore file.
+      </td>
+      <td colspan="1">
+        ncicb1!
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        nbia-grid.jboss.ssl.keystore.alias
+      </td>
+      <td colspan="1">
+        The other name of SSL keystore.
+      </td>
+      <td colspan="1">
+        ncicb-test-ssl-key
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        nbia-grid.jboss.ssl.fullyqualified.hostname
+      </td>
+      <td colspan="1">
+        Full hostname where SSL will be hosted.
+      </td>
+      <td colspan="1">
+        localhost
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        nbia-grid.jboss.external.http.host
+      </td>
+      <td colspan="1">
+        External hostname for NBIA grid JBoss
+      </td>
+      <td colspan="1"></td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        nbia-grid.jboss.external.http.port
+      </td>
+      <td colspan="1">
+        External port number for NBIA grid JBoss
+      </td>
+      <td colspan="1"></td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        nbia-grid.jboss.external.ssl.host
+      </td>
+      <td colspan="1">
+        External SSL hostname for NBIA grid JBoss
+      </td>
+      <td colspan="1"></td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        nbia-grid.jboss.external.ssl.port
+      </td>
+      <td colspan="1">
+        External port number for NBIA grid JBoss
+      </td>
+      <td colspan="1"></td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="NBIA6.0Properties-BrandingSettings">
+  Branding Settings
+</h2>
+ Note: for an explanation on constructing the XHTML that is referenced by these properties, see
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=39290442" rel="nofollow">
+  NBIA Branding Guide
+</a>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Property Name
+      </th>
+      <th>
+        Description
+      </th>
+      <th>
+        Example
+      </th>
+    </tr>
+    <tr>
+      <td colspan="1">
+        branding.left.submenu.quicklinks.path
+      </td>
+      <td colspan="1">
+        The file path and name for XHTML file to use for Quick Links in the left   submenu.    If not set or if the value is blank, the default Quick Links will be used.
+      </td>
+      <td colspan="1">
+        c:/temp/quick_links.xhtml
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        branding.welcome.image.path
+      </td>
+      <td colspan="1">
+        The file path and name for an image file to be used as the banner image  on the welcome page.  This image can be a JPG, GIF or PNG and  should be roughly 600x140.   If not set or if the value is blank, the default welcome banner will be used.
+      </td>
+      <td colspan="1">
+        c:/temp/some_image.png
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        branding.welcome.text.path
+      </td>
+      <td colspan="1">
+        The file path and name for XHTML file to use for welcome text in centerof welcome page.   If not set or if the value is blank, the default welcome text will be used.
+      </td>
+      <td colspan="1">
+        c:/temp/welcome_text.xhtml
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        branding.welcome.title.path
+      </td>
+      <td colspan="1">
+        The file path and name for XHTML file to use for welcome title in center  of welcome and home pages.   If not set or if the value is blank, the default welcome title will be used.
+      </td>
+      <td colspan="1">
+        c:/temp/welcome_title.xhtml
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1"></td>
+      <td colspan="1"></td>
+      <td colspan="1"></td>
+    </tr>
+    <tr>
+      <td>
+        cancer.center.logo
+      </td>
+      <td>
+        The file path and name for branding logo. (Suggest logo size: 300x20)
+      </td>
+      <td>
+        c:/temp/logo.jpg
+      </td>
+    </tr>
+    <tr>
+      <td>
+        cancer.center.background
+      </td>
+      <td>
+        The file path and name for branding logo background.
+      </td>
+      <td>
+        c:/temp/logo_background.jpg
+      </td>
+    </tr>
+    <tr>
+      <td>
+        branding.applogo.visible
+      </td>
+      <td>
+        This controls whether the an application logo will be displayed on every page under  institution logo.   If not set, the default NBIA app logo will be used.
+      </td>
+      <td>
+        yes or no
+      </td>
+    </tr>
+    <tr>
+      <td>
+        branding.applogo.path
+      </td>
+      <td>
+        If branding.applogo.visible=yes, this property becomes relevant.   This is the file path and name for an image file to be used as the application logo image at the top of all pages.   This image can be a JPG, GIF or PNG and should be roughly 500x20.   If not set or if the value is blank, the default NBIA app logo will be used.
+      </td>
+      <td>
+        c:/temp/some_image.png
+      </td>
+    </tr>
+    <tr>
+      <td>
+        branding.footer.path
+      </td>
+      <td>
+        The file path and name for XHTML file to use for the footer on every page.    If not set or if the value is blank, the default footer will be used.
+      </td>
+      <td>
+        c:/temp/footer.xhtml
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="NBIA6.0Properties-Exclusions">
+  Exclusions
+</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Property Name
+      </th>
+      <th>
+        Description
+      </th>
+      <th>
+        Example
+      </th>
+    </tr>
+    <tr>
+      <td>
+        exclude.nbia-grid
+      </td>
+      <td>
+        If User want to exclude nbia-grid or not. Default is set to true.
+      </td>
+      <td>
+        true or false
+      </td>
+    </tr>
+    <tr>
+      <td>
+        exclude.ncia-core-grid-unsecured
+      </td>
+      <td>
+        If User wants to exclude ncia-core-grid-unsecured. Default is set to true.
+      </td>
+      <td>
+        true or false
+      </td>
+    </tr>
+    <tr>
+      <td>
+        exclude.start.servers
+      </td>
+      <td>
+        If you want to exclude starting server after the completion of installation. Default is false.
+      </td>
+      <td>
+        true or false
+      </td>
+    </tr>
+    <tr>
+      <td>
+        exclude.ncia-core-grid
+      </td>
+      <td>
+        If you want to exclude ncia-core-grid after the completion of installation. Default is false.
+      </td>
+      <td>
+        true or false
+      </td>
+    </tr>
+    <tr>
+      <td>
+        exclude.ctp
+      </td>
+      <td>
+        If you want to exclude CTP. Default is set to false.
+      </td>
+      <td>
+        true or false
+      </td>
+    </tr>
+    <tr>
+      <td>
+        exclude.ctp-client
+      </td>
+      <td>
+        If ctp-client should be excluded or not. Default is set to false.
+      </td>
+      <td>
+        true or false
+      </td>
+    </tr>
+    <tr>
+      <td>
+        exclude.database
+      </td>
+      <td>
+        If you want to exclude database or not. Default is set to false.
+      </td>
+      <td>
+        true or false
+      </td>
+    </tr>
+    <tr>
+      <td>
+        exclude.jboss.backup
+      </td>
+      <td>
+        If JBoss Backup should be excluded. Default is set to false.
+      </td>
+      <td>
+        true or false
+      </td>
+    </tr>
+    <tr>
+      <td>
+        exclude.ncia-core-grid.jboss.backup
+      </td>
+      <td>
+        Exclude NCIA core grid JBoss backup. Default value is false.
+      </td>
+      <td>
+        true or false
+      </td>
+    </tr>
+    <tr>
+      <td>
+        exclude.ncia-core-grid-unsecured.jboss.backup
+      </td>
+      <td>
+        Exclude NCIA core grid unsecured JBoss backup or not. Default is false.
+      </td>
+      <td>
+        true or false
+      </td>
+    </tr>
+    <tr>
+      <td>
+        exclude.ctp.client.backup
+      </td>
+      <td>
+        If CTP Client backup is excluded. Default is false.
+      </td>
+      <td>
+        true or false
+      </td>
+    </tr>
+    <tr>
+      <td>
+        exclude.ctp.server.backup
+      </td>
+      <td>
+        If CTP server backup should be excluded. Set to False
+      </td>
+      <td>
+        true or false
+      </td>
+    </tr>
+    <tr>
+      <td>
+        exclude.jboss-bindings
+      </td>
+      <td>
+        JBoss-bindings should be excluded or not. Default is not.
+      </td>
+      <td>
+        true or false
+      </td>
+    </tr>
+    <tr>
+      <td>
+        exclude.ncia-core-grid.backup
+      </td>
+      <td>
+        If NCIA core grid backup should be excluded. Default is set to false.
+      </td>
+      <td>
+        true or false
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        exclude.nbia-api
+      </td>
+      <td colspan="1">
+        Exclude NBIA API or not. Default is false.
+      </td>
+      <td colspan="1">
+        true or false
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="NBIA6.0Properties-UserGuideSettings">
+  UserGuide Settings
+</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Property Name
+      </th>
+      <th>
+        Description
+      </th>
+      <th>
+        Example
+      </th>
+    </tr>
+    <tr>
+      <td>
+        nbia.wiki.user.guide.url
+      </td>
+      <td>
+        wiki tiny URL for user guide
+      </td>
+      <td>
+        <a href="https://wiki.link.edu/abc" rel="nofollow">
+          https://wiki.link.edu/abc
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        nbia.wiki.context.sensitive.help.url
+      </td>
+      <td>
+        wiki tiny URL for context sensitive help
+      </td>
+      <td>
+        <a href="https://wiki.link.edu/" rel="nofollow">
+          https://wiki.link.edu
+        </a>
+        #NBIA60HelpTopics
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="NBIA6.0Properties-SOLRSettings">
+  SOLR Settings
+</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Property Name
+      </th>
+      <th>
+        Description
+      </th>
+      <th>
+        Example
+      </th>
+    </tr>
+    <tr>
+      <td>
+        gov.nih.nci.ncia.solr.home
+      </td>
+      <td>
+        Location to keep solr indexes
+      </td>
+      <td>
+        c:/apps/nbia/solr-home/
+      </td>
+    </tr>
+    <tr>
+      <td>
+        gov.nih.nci.ncia.solr.updateinterval
+      </td>
+      <td>
+        This will defines how often in minutes Solr will update indexes
+      </td>
+      <td>
+        60
+      </td>
+    </tr>
+  </tbody>
+</table>

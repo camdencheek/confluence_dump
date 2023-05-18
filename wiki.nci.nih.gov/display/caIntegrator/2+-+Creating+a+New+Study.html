@@ -1,0 +1,1510 @@
+This chapter describes the processes for creating and managing studies in caIntegrator. Topics in this chapter include:
+<ul>
+  <li>
+    <a href="#id-2CreatingaNewStudy-CreatingaStudy%E2%80%93Overview" rel="nofollow">
+      Creating a Study – Overview
+    </a>
+  </li>
+  <li>
+    <a href="#id-2CreatingaNewStudy-ConfiguringandDeployingaStudy" rel="nofollow">
+      Configuring and Deploying a Study
+    </a>
+    <ul>
+      <li>
+        <a href="#id-2CreatingaNewStudy-CreatingorEditingaStudy" rel="nofollow">
+          Creating or Editing a Study
+        </a>
+      </li>
+      <li>
+        <a href="#id-2CreatingaNewStudy-ViewingorEditingaLog" rel="nofollow">
+          Viewing or Editing a Log
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#id-2CreatingaNewStudy-WorkingwithAnnotations" rel="nofollow">
+      Working with Annotations
+    </a>
+    <ul>
+      <li>
+        <a href="#id-2CreatingaNewStudy-AnnotationWorkflowSummary" rel="nofollow">
+          Annotation Workflow Summary
+        </a>
+      </li>
+      <li>
+        <a href="#id-2CreatingaNewStudy-AddinganAnnotationGroup" rel="nofollow">
+          Adding an Annotation Group
+        </a>
+      </li>
+      <li>
+        <a href="#id-2CreatingaNewStudy-EditinganAnnotationGroup" rel="nofollow">
+          Editing an Annotation Group
+        </a>
+      </li>
+      <li>
+        <a href="#id-2CreatingaNewStudy-AddingSubjectAnnotationData" rel="nofollow">
+          Adding Subject Annotation Data
+        </a>
+      </li>
+      <li>
+        <a href="#id-2CreatingaNewStudy-DefineFieldsPageforEditingAnnotations" rel="nofollow">
+          Define Fields Page for Editing Annotations
+        </a>
+        <ul>
+          <li>
+            <a href="#id-2CreatingaNewStudy-AssigninganIdentifierorAnnotation" rel="nofollow">
+              Assigning an Identifier or Annotation
+            </a>
+          </li>
+          <li>
+            <a href="#id-2CreatingaNewStudy-SearchingforAnnotationDefinitions" rel="nofollow">
+              Searching for Annotation Definitions
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#id-2CreatingaNewStudy-DefiningSurvivalValues" rel="nofollow">
+          Defining Survival Values
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#id-2CreatingaNewStudy-AddingorEditingGenomicData" rel="nofollow">
+      Adding or Editing Genomic Data
+    </a>
+    <ul>
+      <li>
+        <a href="#id-2CreatingaNewStudy-MappingGenomicDatatoSubjectAnnotationData" rel="nofollow">
+          Mapping Genomic Data to Subject Annotation Data
+        </a>
+        <ul>
+          <li>
+            <a href="#id-2CreatingaNewStudy-CreatingaMappingFile" rel="nofollow">
+              Creating a Mapping File
+            </a>
+          </li>
+          <li>
+            <a href="#id-2CreatingaNewStudy-StepsforMappingGenomicData" rel="nofollow">
+              Steps for Mapping Genomic Data
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#id-2CreatingaNewStudy-UploadingControlSamples" rel="nofollow">
+          Uploading Control Samples
+        </a>
+      </li>
+      <li>
+        <a href="#id-2CreatingaNewStudy-ConfiguringCopyNumberData" rel="nofollow">
+          Configuring Copy Number Data
+        </a>
+        <ul>
+          <li>
+            <a href="#id-2CreatingaNewStudy-RemappingCopyNumberDatainaDeployedStudy" rel="nofollow">
+              Remapping Copy Number Data in a Deployed Study
+            </a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#id-2CreatingaNewStudy-WorkingwithImagingData" rel="nofollow">
+      Working with Imaging Data
+    </a>
+    <ul>
+      <li>
+        <a href="#id-2CreatingaNewStudy-AddingorEditingImagingDataFilesfromNBIA" rel="nofollow">
+          Adding or Editing Imaging Data Files from NBIA
+        </a>
+      </li>
+      <li>
+        <a href="#id-2CreatingaNewStudy-AddingorEditingImageAnnotations" rel="nofollow">
+          Adding or Editing Image Annotations
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#id-2CreatingaNewStudy-AddingExternalLinks" rel="nofollow">
+      Adding External Links
+    </a>
+  </li>
+  <li>
+    <a href="#id-2CreatingaNewStudy-DeployingtheStudy" rel="nofollow">
+      Deploying the Study
+    </a>
+  </li>
+</ul>
+<h2 id="id-2CreatingaNewStudy-CreatingaStudy–Overview">
+  Creating a Study – Overview
+</h2>
+You can create a caIntegrator study by importing subject annotation study data, genomics data and imaging data You can incorporate a combination of spreadsheets/files and existing caGrid applications as source data. Each instance of caIntegrator can support multiple studies. As the manager creating a study, it is important that you understand the study well and that the data you wish to aggregate has been submitted to the applications whose data can be integrated in caIntegrator.
+<ul>
+  <li>
+    Subject Annotation – Subject annotation data refers to pre-subject annotation, phenotypic, subject annotation, pathology or any other annotations associated with a subject.The subject annotation data should be available in CSV files, with a unique subject identifier in one column, one subject per row. Note that if you are using human data, the subject will probably be a &#34;patient&#34;. Other relevant data can be supplied in other columns to be identified as annotations in the file from within caIntegrator. You, as the study creator, must have access to the subject annotation data file, as the file does not come from a caBIG^®^ repository.
+  </li>
+  <li>
+    Genomic – To use caIntegrator to integrate array data, the data should be imported into caArray, either locally or in the CBIIT installation, using that system&#39;s data file import functionality. You must also have a mapping file in CSV format. This file indicates correlations between array files and the subjects in the subject annotation data files.
+  </li>
+  <li>
+    Imaging – Imaging data should have been submitted to the NBIA grid node as public data, either locally or as part of the CBIIT NBIA installation. Image annotations, which include information about images provided by radiologists or other researchers can include such information as tumor size, tumor location, etc. It must be in CSV format, with unique image series IDs in one column (required) and annotation IDs in the second column. caIntegrator can map the images automatically, or alternatively you can upload an image mapping file in CSV format. This file indicates correlations between subject annotation subjects or images in NBIA and subjects in the subject annotation data files.
+  </li>
+</ul>
+As you create the study, you define its structure, identifying the data sources and mapping the data between different source data. After the study has been created and deployed, you can perform analyses of the data in the study.
+<h2 id="id-2CreatingaNewStudy-ConfiguringandDeployingaStudy">
+  Configuring and Deploying a Study
+</h2>
+Role for creating a studyOnly a user with a Study Manager role can create a study. For more information, see
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=49119429" rel="nofollow">
+  caIntegrator Roles
+</a>
+.When you create a study, you must specify different data-types (subject annotation, array, image, etc), data sources (caGrid applications – caArray and NBIA) and map the data, (patient to sample, image series, etc.).To create a new study, follow these steps:
+<ol>
+  <li>
+    In the Study Management section of the left sidebar, click Create New Study.
+  </li>
+  <li>
+    In the Create New Study dialog box that opens, provide a name and description for the study you are creating.
+  </li>
+  <li>
+    Select the checkbox to specify if you want to allow public access to the study.
+  </li>
+  <li>
+    Click Save. Click Cancel to close the dialog without creating the study. When you save the study, an Edit Study page opens where you can add identify data files for your study. See
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726024" rel="nofollow">
+      Creating or Editing a Study
+    </a>
+    .
+  </li>
+</ol>
+<h3 id="id-2CreatingaNewStudy-CreatingorEditingaStudy">
+  Creating or Editing a Study
+</h3>
+The Edit Study page, as shown in the following figure, displays the Name and Description that you entered for a new study, or for an existing study that you are editing.
+<img alt="Edit Study page" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/2%20-%20Creating%20a%20New%20Study/edit%20studynewer80.png?api=v2">
+To continue creating a study or to modify a study, complete these steps:
+<ol>
+  <li>
+    Enter or change (if editing) the name and/or description.
+  </li>
+  <li>
+    Select or verify the checkbox to specify if you want to allow public access to the study.
+  </li>
+  <li>
+    For the study log feature, click View Log or Edit Log. See
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=47383454" rel="nofollow">
+      Study Log
+    </a>
+    for details about the log.
+  </li>
+  <li>
+    Click Save.TipYou can save the study at any point in the process of creating it. You can resume the definition and deployment process later.
+  </li>
+  <li>
+    If you choose to add a logo for the study, click the Browse button corresponding to Logo File in the upper right of the Edit Study page. Navigate for the file, and click Browse. The file type displays above the Upload Now button.
+    <img alt="The dialog box for adding a logo to the caIntegrator browser on the Edit Study page. Refer to text." src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/2%20-%20Creating%20a%20New%20Study/study%20logo3.png?api=v2">
+  </li>
+  <li>
+    Click the button to upload the logo. Once you save the study (or its edit), the logo displays in the center of the page. On the home page for the study, the logo displays in the upper left, above the sidebar.
+  </li>
+</ol>
+To continue creating the study, you can add subject annotation data sources, genomic data sources or imaging data sources.
+<h3 id="id-2CreatingaNewStudy-ViewingorEditingaLog">
+  Viewing or Editing a Log
+</h3>
+On the Edit Study page, as a study manager you can open a detailed log for the study.
+<ol>
+  <li>
+    Click View Log on the Edit Study page to simply review an existing log. The log records all steps comprising activity in the study, with the most recent displaying at the top of the log.
+  </li>
+  <li>
+    To edit a log, click Edit Log on the Edit Study page.
+  </li>
+  <li>
+    Add an appropriate description/annotations to the individual log entries.
+  </li>
+  <li>
+    Check the Update box next to the description, then click Save to save the edits. The descriptions will now be available when any user views the log.
+  </li>
+</ol>
+See also
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=47383454" rel="nofollow">
+  Study Log
+</a>
+.
+<h2 id="id-2CreatingaNewStudy-WorkingwithAnnotations">
+  Working with Annotations
+</h2>
+One of the most important tasks in creating a study in caIntegrator is in properly annotating the data. Each annotation has a definition you must identify. Because the process can be quite complex, you might want to review the following steps for working with annotations.
+<h3 id="id-2CreatingaNewStudy-AnnotationWorkflowSummary">
+  Annotation Workflow Summary
+</h3>
+<ol>
+  <li>
+    Add an annotation group. This optional step is for users who have a rigid data dictionary of all annotations relevant to the study. This step can also be helpful in cases where a study has many annotations. For more information, see
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726024" rel="nofollow">
+      Adding an Annotation Group
+    </a>
+    .
+  </li>
+  <li>
+    Add subject annotation data. This consists of multiple sub-steps.
+  </li>
+  <li>
+    Add a new subject annotation data sources file. This step uploads the file containing annotations and starts the workflow for assigning uploaded data definitions. See
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726024" rel="nofollow">
+      Editing an Annotation Group
+    </a>
+    , step 1.
+    <ol>
+      <li>
+        Edit the annotations. This step opens the Define Fields for Subject Data page. See
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726024" rel="nofollow">
+          Editing an Annotation Group
+        </a>
+        , step 2.
+      </li>
+      <li>
+        In the Define Fields for Subject Data page, review possible definitions in the annotation group associated with this study. See
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726024" rel="nofollow">
+          Define Fields Page
+        </a>
+        .
+      </li>
+      <li>
+        Assign the visibility of each annotation definition. See
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726024" rel="nofollow">
+          Editing an Annotation Group
+        </a>
+        , step 2.
+      </li>
+      <li>
+        In the authorization column, select the annotation or annotations to be used to restrict data by subject for authorized groups. If authorization groups are to be used to restrict study data, at least one annotation authorization must be selected. If authorization groups are not to be used to restrict study data, selecting an annotation authorization is not necessary. Annotations used to restrict data by subject must contain permissible values. See
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726024" rel="nofollow">
+          Assigning an Identifier or Annotation
+        </a>
+        for more information about permissible values.
+      </li>
+      <li>
+        Locate and verify the assignment as &#34;identifier&#34; for one annotation. See
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726024" rel="nofollow">
+          Assigning an Identifier or Annotation
+        </a>
+        .
+      </li>
+      <li>
+        Review, verify and assign definitions for each annotation. You can do this in one of four ways: --Accept existing default definitions as described in the associated annotation group. See
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726024" rel="nofollow">
+          Assigning an Identifier or Annotation
+        </a>
+        . --Create or manage definitions manually. See
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726024" rel="nofollow">
+          Assigning an Identifier or Annotation
+        </a>
+        . --Search for and use definitions existing in other caIntegrator studies. See
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726024" rel="nofollow">
+          Searching for Annotation Definitions
+        </a>
+        . --Search for and use definitions from caDSR. See
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726024" rel="nofollow">
+          Searching for Annotation Definitions
+        </a>
+        .
+      </li>
+    </ol>
+  </li>
+  <li>
+    Load the Subject Annotation Source. Up until this point, you can periodically save your work with the annotations, but before you can deploy the study, you must complete this step.
+  </li>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726024" rel="nofollow">
+      Deploy the study
+    </a>
+    .
+  </li>
+</ol>
+<h3 id="id-2CreatingaNewStudy-AddinganAnnotationGroup">
+  Adding an Annotation Group
+</h3>
+Why use this optional stepThis optional step is for users who have a rigid data dictionary of all annotations relevant to the study. This step can also be helpful in cases where a study has many annotations. This topic opens from both the Create Annotation Group page and the Edit Annotation Group page. If you plan to create a group, continue with this topic. If you plan to edit an existing annotation group, see
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726024" rel="nofollow">
+  Editing an Annotation Group
+</a>
+.An annotation group is a group of annotation definitions configured in a subject data source CSV file. This feature is primarily meant for the Study Manager who knows that they have tightly restricted vocabulary definitions that are relevant to a study. In this optional step, you can review the uploaded Group Definition Source file before assigning the appropriate definitions for your study.To add an annotation group, follow these steps:
+<ol>
+  <li>
+    On the Edit Study page for a study, Annotation Groups section, click the Add New button.
+  </li>
+  <li>
+    On the Edit Annotation Group page that opens, enter a name for the annotation group.
+  </li>
+  <li>
+    Enter a description (optional).
+  </li>
+  <li>
+    Browse for the Group Definition Source CSV file.The CSV file must include columns with these column headers in the first row: File Column Name, Field Type, Entity Type, CDE ID, CDE Version, Annotation Def Name, Data Type, Permissible, and Visible. Subsequent rows in the file define each subject annotation column in the subject annotation file.
+    <ol>
+      <li>
+        If a subject annotation is defined by a CDE Public ID, values for the following columns are required: File Column Name, Field Type, Entity Type, CDE ID, and Visible; a value for CDE Version is optional. OR
+      </li>
+      <li>
+        If a subject annotation definition is not defined by a CDE Public ID, values for the following columns are required: File Column Name, Field Type, Entity Type, Annotation Def Name, Data Type (String, Date, Numeric), Permissible (Yes or No), and Visible (Yes or No).
+      </li>
+    </ol>
+  </li>
+  <li>
+    Click Save. This uploads the file, whose name now displays on the Edit Study page under Annotation Groups
+  </li>
+</ol>
+When you open the
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726024" rel="nofollow">
+  Define Fields for Subject Data page
+</a>
+, the annotation definitions in the file you uploaded display on the page, available for assignment in the study. Additionally, you can view the definitions by viewing the annotation group listed in the first column of the matrix.Visibility of annotation definitionsAnnotation definitions by default are visible only to the Study Manager&#39;s group. They are not visible to all caIntegrator users, unless you change the visibility for each.
+<h3 id="id-2CreatingaNewStudy-EditinganAnnotationGroup">
+  Editing an Annotation Group
+</h3>
+This topic opens from the Edit Annotation Group page. You may want to refer to
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726024" rel="nofollow">
+  Adding an Annotation Group
+</a>
+if you are adding a group for the first time.To edit an annotation group, on the Edit Study page for a study with an existing annotation group, click the Edit Group button.
+<ol>
+  <li>
+    You can change the Name and Description for the group.
+  </li>
+  <li>
+    A list of annotation definitions applied to the original annotation group displays on the Edit Annotation Group page.
+    <ol>
+      <li>
+        In the drop-down list, you can select a different annotation group for the annotation definition.
+      </li>
+      <li>
+        You can change the visibility for the annotation definition.
+      </li>
+      <li>
+        You can change the authorization for the annotation definition. Authorized annotations can be used to restrict data by subject for authorized groups. Annotations used to restrict data by subject must contain permissible data. See
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726024" rel="nofollow">
+          Assigning an Identifier or Annotation
+        </a>
+        for more information about permissible values.
+      </li>
+      <li>
+        Click Change Assignment to modify the properties of the annotation definition.
+      </li>
+    </ol>
+  </li>
+  <li>
+    Click Update Annotations to confirm your edits for the group.
+  </li>
+</ol>
+<h3 id="id-2CreatingaNewStudy-AddingSubjectAnnotationData">
+  Adding Subject Annotation Data
+</h3>
+The Edit Study page, described in
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726024" rel="nofollow">
+  Creating or Editing a Study
+</a>
+, opens after you save a new study or click to edit an existing study.No manually-created annotation groups?When following the steps in this section, if you have not manually created Annotation Groups, you MUST check Create a new annotation definition if one is not found.To add subject annotation metadata on this page, follow these steps:
+<ol>
+  <li>
+    In the Subject Annotation Data Sources section of the page, click the Add New button. The page expands to reveal new fields for you to identify information about the annotation data sources.
+  </li>
+  <li>
+    Navigate to locate a subject annotation data file which is required for a study. Files must be in CSV file format.
+  </li>
+  <li>
+    Click the appropriate box if you want caIntegrator to Create an annotation definition if one is not found.
+  </li>
+  <li>
+    Click Upload Now to load the annotation source data.
+  </li>
+</ol>
+After the data file is uploaded to this study, it will be listed in the Subject Annotation Data Sources section of the
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726024" rel="nofollow">
+  Edit Study page
+</a>
+.From this page you can initiate editing the annotations. In the Subject Annotation Data Sources section, click Edit Annotations corresponding to the subject annotations that have been uploaded for the study. This open the
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726024" rel="nofollow">
+  Define Fields Page for Editing Annotations
+</a>
+.
+<h3 id="id-2CreatingaNewStudy-DefineFieldsPageforEditingAnnotations">
+  Define Fields Page for Editing Annotations
+</h3>
+The Define Fields for Subject Data page, shown in the following figure, opens when you click Edit Annotations in the Subject Annotation Data Sources or the Image Data Sources section of the Edit Study page. The exception to this is if you have not yet imported annotations for the imaging data for the study, In that case, when you click the Edit Annotations button in the Imaging Data Sources section, a page opens where you can identify and upload image annotation data. See
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726024" rel="nofollow">
+  Adding or Editing Image Annotations
+</a>
+.If this Define Fields page opens after clicking the Edit Annotations button, working with this page is identical for both subject and image annotations
+<img alt="Define Fields for Subject Data page. Refer to text for instructions on using this page." src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/2%20-%20Creating%20a%20New%20Study/DefineFieldsPageWithAuthorized.PNG?api=v2">
+The MOST important steps in creating annotation definitions on this page are these:
+<ul>
+  <li>
+    You MUST designate one column in the file as a unique &#34;identifier&#34; column type.
+  </li>
+  <li>
+    You MUST review and define column annotation definitions for each column header in the file. Note the following regarding the list of annotations on this Define Fields... page:
+  </li>
+  <li>
+    If caIntegrator &#34;recognizes&#34; the same column header in other files already in the system, a term, for example &#34;age&#34; or &#34;survival&#34;, which is the current definition, appears in the Annotation Definition column above the blue Change Assignment link on the page.
+  </li>
+  <li>
+    When the annotation definition has not been assigned, and the area above the blue Assign Annotation Definition link is blank on this page, no correlating term exists in the database. In this case, you must specify the field type, and then the term will populate the space. See
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726024" rel="nofollow">
+      Assigning an Identifier or Annotation
+    </a>
+    for more information.
+  </li>
+  <li>
+    A field name that displays in red indicates an error in the annotation. Click the Change Assignment button for more information about the error.
+  </li>
+</ul>
+The first column of the table on this page displays annotation groups that have been created for this study. For more information, see
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726024" rel="nofollow">
+  Adding an Annotation Group
+</a>
+.To add subject or image annotation metadata in this page, follow these steps:
+<ol>
+  <li>
+    You can specify visibility of specified annotation data in the Visiblecolumn.
+    <ul>
+      <li>
+        Select a checkbox for a row to make the corresponding data visible to all subscribers of the study or anonymous users if the study is made available to the public.
+      </li>
+      <li>
+        Clear a checkbox to hide the corresponding annotation from any subscriber or anonymous user of the study. Data continues to exist but does not show up in query fields nor in query results.
+      </li>
+    </ul>
+  </li>
+  <li>
+    The Annotation Header from File column on the Define Fields for Subject (or Image) Data page (the figure shown above) displays column headers taken from the source CSV file. The Define Fields... page also displays data values in the file you have designated. You must map each column name to an existing column name in the caIntegrator database or in caDSR. If it doesn&#39;t yet exist, you would be mapping in caIntegrator in the Define Fields page.
+    <img alt="Sample CSV file, described in text." src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/2%20-%20Creating%20a%20New%20Study/sample%20data%20file80.PNG?api=v2">
+  </li>
+  <li>
+    To indicate the unique identifier of choice, on the row showing the column header (PatientID in the figure, but other examples are subject identifier, sample identifier, etc), click Change Assignment in the Annotation Definition column.
+  </li>
+</ol>
+<h4 id="id-2CreatingaNewStudy-AssigninganIdentifierorAnnotation">
+  Assigning an Identifier or Annotation
+</h4>
+When you click Change Assignment on the
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726024" rel="nofollow">
+  Define Fields page
+</a>
+, the Assign Annotation Definition for Field Descriptor dialog box opens. On this page you can change the column type and the field definition for the specific data field you selected.NoteWhen you change an assignment, you must make sure the data types match--numeric, etc.
+<ol>
+  <li>
+    For the column that you choose to be the one and only Identifier column (in this case, PatientID), in the Column Type drop-down list, select Identifier. The following figure shows the dialog box rendering when &#34;identifier&#34; is selected in the Field Descriptor Type drop-down list.
+    <img alt="The Assign Annotation Definition dialog box showing Identifier selector as the Field Descriptor Type." src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/2%20-%20Creating%20a%20New%20Study/assign%20annotation%20definition80snagit.png?api=v2">
+  </li>
+  <li>
+    Click Save to save the identifier. This returns you to the Define Fields for Subject Data page where the Identifier is noted in the Annotation Definition column.
+  </li>
+  <li>
+    After you have defined which field is the Identifier, you must ensure that ALL other data fields also have an annotation definition assignment. For those fields without an annotation definition assignment or for those whose annotation definition you want to review, click Change Assignment.
+  </li>
+  <li>
+    In the Assign Annotation Definition for Field Descriptor dialog box, shown in the following figure, select Annotation in the drop-down list.
+    <img alt="Assign Annotation Definition for Field Descriptor dialog box, described in text." src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/2%20-%20Creating%20a%20New%20Study/current%20annotation%20def80.png?api=v2">
+    As you select the column type, you can work with column headers in one of four ways in this dialog box.
+    <ol>
+      <li>
+        You can accept existing default definitions (those that are inherent in the data file you selected). See Step 5.
+      </li>
+      <li>
+        You can create and/or manage your own definitions manually. See Step 6.
+      </li>
+      <li>
+        You can search for and use definitions in other caIntegrator studies. See
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726024" rel="nofollow">
+          Searching for Annotation Definitions
+        </a>
+        .
+      </li>
+      <li>
+        You can search for and use definitions found in caDSR. See
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726024" rel="nofollow">
+          Searching for Annotation Definitions
+        </a>
+        .
+      </li>
+    </ol>
+  </li>
+  <li>
+    Review the current annotation definition in the Assign Definition page, Current Annotation Definition section. Click Cancel to return to the Define Fields... page. You can still initiate a search for another annotation definition in the Search for an Annotation Definition section on the browser page if you choose to change the definition. See the bottom section of the preceding figure. See also
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726024" rel="nofollow">
+      Searching for Annotation Definitions
+    </a>
+    . Click Save to retain any changes.
+  </li>
+  <li>
+    To enter a new name annotation, or any other information about the annotation definition, click the New button and enter the information described in the following table.
+    <table>
+      <tbody>
+        <tr>
+          <th>
+            Annotation Field
+          </th>
+          <th>
+            Field Description
+          </th>
+        </tr>
+        <tr>
+          <td>
+            Name
+          </td>
+          <td>
+            Enter the name for the annotation.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Definition
+          </td>
+          <td>
+            Enter the term(s) that define the annotation.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Keywords
+          </td>
+          <td>
+            Insert keyword(s) that could be used to find the annotation in a search, separated by commas.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Data Type
+          </td>
+          <td>
+            Select a string (default), numeric, or date.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Apply Max Number Mask
+          </td>
+          <td>
+            This field is available only for numeric-type annotations, or when a new definition is created. This feature is unavailable when permissible values are present.  Select the box and enter a maximum number for the mask, such as &#34;80&#34; for age. When you query results above the value of the mask, then the system displays the mask and not the actual age.TipIf you enter masks of both &#34;max number&#34; and &#34;range&#34;, caIntegrator applies both masks at the same time. The
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=47383454" rel="nofollow">
+              Data Dictionary page
+            </a>
+            now has a Restrictions column that shows restrictions whenever a mask has been applied.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Apply Numeric Range Mask
+          </td>
+          <td>
+            This field is available only for numeric-type annotations, or when a new definition is created. This feature is unavailable when permissible values are present.  Select the box and enter a width of range for the mask, such as &#34;5&#34; representing blocks of 5 years. For example, if you enter a width of 5, the query only allows age blocks of 0-5, 6-10, 11-15, etc.  When you query results above the value of the mask, then the system displays the mask and not the actual age ranges.TipIf you enter masks of both &#34;max number&#34; and &#34;range&#34;, caIntegrator applies both masks at the same time. The Data Dictionary page now has a Restrictions column that shows restrictions whenever a mask has been applied.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Permissible/Non-permissible Values
+          </td>
+          <td>
+            TipThe first time you load a file, before you assign annotation definitions, step #3 in
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726024" rel="nofollow">
+              Assigning an Identifier or Annotation
+            </a>
+            , these panels may be blank. If the column header for the data is already &#34;recognizable&#34; by caIntegrator, the system makes a &#34;guess&#34; about the data type and assigns the values to the data type in the newly uploaded file. They will display in the Non-permissible values sections initially. Use the Add and Remove buttons to move the values shown from one list to the other, as appropriate.Required valuesNote that for all annotations you want to appear, you MUST select the Permissible values. To do this, select Change Assignment, as described in step 3 and click the New button on the page that opens. As you are describing each annotation, be sure to add the permissible valudes and move them as described in this table cell. Click Save.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+</ol>
+When you select or change annotation definitions by selecting matching definitions (described in
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726024" rel="nofollow">
+  Searching for Annotation Definitions
+</a>
+), this may add (or change) the list of non-permissible values in this section.If you leave all values for a field in the Non-permissible panel, then when you do a study search, you can enter free text in the query criteria for this field.If there are items in the Permissible values list, then the values for this annotation are restricted to only those values. When you perform a study search, you will select from a list of these values when querying this field. If there are no items in the permissible values list then the field is considered free to contain any value.  To edit a field&#39;s permissible values, you must change the annotation definition. You can do this even after a study has been deployed.Editing values in annotation definition?You cannot edit permissible values in an existing annotation definition. To change permissible values, you must create a new annotation.
+<h4 id="id-2CreatingaNewStudy-SearchingforAnnotationDefinitions">
+  Searching for Annotation Definitions
+</h4>
+An alternative to creating a new definition is to search for annotation definitions already present in caIntegrator studies or in caDSR.
+<ol>
+  <li>
+    Enter search keyword(s) in the Search text box on the Assign Annotation Definition page (the preceding figure). Click Search or click Enter to launch the search. After a few moments, the search results display on the same page. An example of search results is shown in the following figure.
+    <img alt="Example of search results, described in text." src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/2%20-%20Creating%20a%20New%20Study/annotation%20definition%20search%20results80.png?api=v2">
+  </li>
+  <li>
+    To view the definitions corresponding to any of the &#34;Matching Annotation Definitions&#34;, which are those currently found in other caIntegrator studies, click the [term], such as &#34;age&#34;, hypertext link. The definition then appears in the Current Annotation Definition segment of the page just above.In SummaryWhen you click the link for a definition, that assigns the definition to the Define Fields for Subject Data page, and it also closes the Annotation Definition page. You can modify any portion of the definition, as described in Step 6 in
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726024" rel="nofollow">
+      Assigning an Identifier or Annotation
+    </a>
+    .
+  </li>
+  <li>
+    The matches from caDSR display some of the details of the search results. To view more details of a match, such as permissible values, click View, which opens caDSR to the term. If you click Select, the caDSR definition automatically replaces the annotation definition for this field with which you are working.CautionTake care before you add a caDSR definition that it says exactly what you want. caDSR definitions can have minor nuances that require specific and limited applications of their use.
+  </li>
+  <li>
+    Once you have settled on an appropriate field definition for the annotation, click Save. This returns you to the
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726024" rel="nofollow">
+      Define Fields for Subject Data
+    </a>
+    page.NoteIf you have not clicked Select for alternate definitions in this dialog box, then click Save to return to the Define Field...dialog box without making any definition changes.
+  </li>
+  <li>
+    From the Define Fields for Subject Data page, be sure and designate the data types for each field in the file. Click Save on each page to save your entries or click New to clear the fields and start again. You will not be able to proceed until every field definition entry on the Fields for Subject Data screen has an entry, one as the unique Identifier and the remainder as annotations.The Data From File columns on the Define Fields... page display the column header values of the first three rows you designated as &#34;annotations&#34;.TipSaving your entries in this way saves the study by name and description, but does not deploy the study. See
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726024" rel="nofollow">
+      Deploying the Study
+    </a>
+    .The Edit Study page now displays a &#34;Not Loaded&#34; status for the file whose annotations (column headers) you have defined. An example of a file whose annotations have been defined but not yet loaded is shown in the following figure.
+    <img alt="Example file whose annotations have been defined but not yet loaded. See text." src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/2%20-%20Creating%20a%20New%20Study/load%20clinical%20is%20ready80.png?api=v2">
+    Status definitions:
+    <ul>
+      <li>
+        Definition Incomplete – An annotation definition or definitions must be modified on the Define Fields for Subject Data page. This status may be displayed because an identifier has not been selected. See
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726024" rel="nofollow">
+          Define Fields Page for Editing Annotations
+        </a>
+        .
+      </li>
+      <li>
+        Not Loaded – The annotation definitions must be loaded before a study can be deployed. If an error appears after attempting to load a subject annotation source, cick the Edit Annotations button which takes you to the Define Fields for Subject Data page where the problematic annotations will appear in red. See
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726024" rel="nofollow">
+          Define Fields Page for Editing Annotations
+        </a>
+        .
+      </li>
+      <li>
+        Loaded – The annotation definitions are properly loaded.
+      </li>
+    </ul>
+  </li>
+  <li>
+    Click the Load Subject Annotation Source button in the Action section to load the data file you have configured, The Deploy Studybutton, to this point has been unavailable, but this step activates the button.Adding FilesYou can add as many files as are necessary for a study. Patients 1-20 in first file, 21-40 in second file, or many patients in first file and annotations in second file, etc. As long as IDs are defined correctly, it works.
+  </li>
+  <li>
+    Click Deploy Study. caIntegrator now loads data from the file to the caIntegrator database, and the file status changes to &#34;Loaded&#34;.Changing AssignmentsYou can change assignments even after the study is deployed, using the Edit feature. For more information, see
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726024" rel="nofollow">
+      Creating or Editing a Study
+    </a>
+    .
+  </li>
+</ol>
+The Manage Studies page opens when the study is deployed. The Deployed status is indicated on the Manage Studies page as well as the Edit Study page. For more information, see
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=76683231" rel="nofollow">
+  Managing a Study
+</a>
+. You can continue to perform other tasks in caIntegrator while deployment is in process.See also
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726024" rel="nofollow">
+  Deploying the Study
+</a>
+.Uploading later?You can repeatedly upload additional or updated subject annotations, samples, image data, array data to the study at later intervals. These later imports do not remove any existing data; they instead insert any new subjects or update annotations for existing subjects.
+<h3 id="id-2CreatingaNewStudy-DefiningSurvivalValues">
+  Defining Survival Values
+</h3>
+Survival value is the length of time a patient lived. If you plan to analyze your caIntegrator data to create a Kaplan-Meier (K-M) Plot, then during the Annotation Definition process described above in
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726024" rel="nofollow">
+  Assigning an Identifier or Annotation
+</a>
+, you should do one of two things:
+<ol>
+  <li>
+    Make sure that you have defined at least three fields set to the &#34;date&#34; Data Type. These will be matched to the following three properties during Survival Value definition.
+    <ul>
+      <li>
+        Survival Start Date
+      </li>
+      <li>
+        Death Date
+      </li>
+      <li>
+        Last Followup Date
+      </li>
+    </ul>
+  </li>
+  <li>
+    It is also possible to generate KM plots if an Annotation Field Descriptor such as DAYSTODEATH has been set to Data Type &#39;numeric&#39;. See
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726024" rel="nofollow">
+      Assigning an Identifier or Annotation
+    </a>
+    .
+  </li>
+</ol>
+Survival values optionalSetting survival values is optional if you do not plan to use the K-M plot analysis feature or if you do not have this kind of data (survival values) in the file.In caIntegrator, survival values are not pre-defined in the databases when you load the data. However, you can review and define survival value ranges in a data set you are uploading to a study. To be able to do so, you need to understand the kind of data that can comprise the survival values.To set up survival values, follow these steps:
+<ol>
+  <li>
+    On the Edit Study page, click Edit Survival Values. This opens the Survival Value Definitions dialog box, shown in the following figure.
+    <img alt="Survival Value Definition dialog box showing existing definition the user can select. See text." src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/2%20-%20Creating%20a%20New%20Study/survival%20value%20definitions190.png?api=v2">
+  </li>
+  <li>
+    Click New to enter new survival value definitions. OR Click Edit to edit existing survival value definitions. The dialog box extends, now displaying radio buttons and three drop-down lists that show column headers for date metadata in the spreadsheet you have uploaded. If survival value ranges have already been added to a study, they display on the page. The dialog box is shown in the following figure.
+    <img alt="Survival Definitions example showing properties for &#39;last contact date&#39;." src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/2%20-%20Creating%20a%20New%20Study/survival%20value%20definitions80.png?api=v2">
+  </li>
+  <li>
+    Survival values can be defined by Date or by Length of time in the study. Select the radio button for the category that defines the data.
+  </li>
+  <li>
+    In the drop-down lists, select the appropriate survival value definitions for each field listed. You might want to refer to the column headers in the data file itself. Because dates covered by the definitions are already in the data set, you cannot enter specific dates.
+    <table>
+      <tbody>
+        <tr>
+          <th>
+            Field Type
+          </th>
+          <th>
+            Description
+          </th>
+        </tr>
+        <tr>
+          <td>
+            Survival Definition Type
+          </td>
+          <td>
+            Select whether the survival time is defined by dates or length of time subject was in the study.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Name
+          </td>
+          <td>
+            Enter a unique name that adequately describes the survival values you are defining here. Example: Survival from Enrollment Date or Survival from Treatment Start. The name you enter displays later when you are selecting survivals to create the K-M plot.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Survival Length Units
+          </td>
+          <td>
+            Select the appropriate units for this data.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Survival Start Date
+          </td>
+          <td>
+            Select the column header for this data.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Death Date
+          </td>
+          <td>
+            Select the column header for this data.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Last Followup Date
+          </td>
+          <td>
+            Select the column header for this data.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+</ol>
+For data analysis using survival values, see
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726029" rel="nofollow">
+  Creating Kaplan-Meier Plots
+</a>
+.
+<h2 id="id-2CreatingaNewStudy-AddingorEditingGenomicData">
+  Adding or Editing Genomic Data
+</h2>
+caArray dataGenomic data that is parsed and stored in caArray can be analyzed in caIntegrator. Additionally, supplemental files in caArray that have not been parsed can be uploaded and analyzed in caIntegrator. caIntegrator refreshes caArray data hourly and displays update status in the
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=76683231" rel="nofollow">
+  Manage Studies
+</a>
+page and the
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726024" rel="nofollow">
+  Edit Sample Mappings
+</a>
+page.Once you have loaded subject annotation data and identified subject IDs, you can add one or more sets of array genomic sample data from caArray to the study. caIntegrator maps the data by sample IDs to the subject IDs in the subject annotation data, covered in this section, or you can load imaging files from NBIA, also mapped by IDs to the subject data. This is discussed in
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726024" rel="nofollow">
+  Working with Imaging Data
+</a>
+. You can also edit genomic data information that you have already added to the study. Genomic sample data and imaging data are independent of each other, so neither is required before loading the other.It is essential that you are well acquainted with the data you are working with--the subject annotation data, and the corresponding array data in caArray.caIntegrator supports a limited number of array platforms. For more information, see
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=76683231" rel="nofollow">
+  Managing Platforms
+</a>
+.To add genomic data to your caIntegrator study, follow these steps:
+<ol>
+  <li>
+    On the Edit Study page where you have selected and added the subject annotation data, click the Add New button under Genomic Data Sources. You can upload genomic data only from caArray. This opens the Edit Genomic Data Source dialog box. Enter the appropriate information in the fields, shown in the following figure and described below.
+    <img alt="Edit Genomic Source dialog box showing fields for the data source. See text." src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/2%20-%20Creating%20a%20New%20Study/edit%20genomic%20data%20source80.PNG?api=v2">
+    <table>
+      <tbody>
+        <tr>
+          <th>
+            Field
+          </th>
+          <th>
+            Description
+          </th>
+        </tr>
+        <tr>
+          <td>
+            caArray Web URL
+          </td>
+          <td>
+            Enter the URL for the caArray instance to be used for the genomic data sources. This will enable a user to link to the referenced caArray experiment from the study summary page.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            caArray Host Name
+          </td>
+          <td>
+            Enter the hostname for your local installation or for the CBIIT installation of caArray. If you misspell it, you will receive an error message.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            caArray JNDI Port
+          </td>
+          <td>
+            Enter the appropriate server port. See your administrator for more information. Example: For the CBIIT installation of caArray, enter  8080 .
+          </td>
+        </tr>
+        <tr>
+          <td>
+            caArray Username and caArray Password
+          </td>
+          <td>
+            If the data is private, you must enter your caArray account user name and password; you must have permissions in caArray for the experiment. If the data is public, you can leave these fields blank.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            caArray Experiment ID
+          </td>
+          <td>
+            Enter the caArray Experiment ID which you know corresponds with the subject annotation data you uploaded. Example: Public experiment &#34;beer-00196&#34; on the CBIIT installation of caArray (array.nci.nih.gov). If you misspell your entry, you will receive an error message.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Vendor
+          </td>
+          <td>
+            Select either Agilent or Affymetrix.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Data Type
+          </td>
+          <td>
+            Select Expression or Copy Number.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Platform
+          </td>
+          <td>
+            If appropriate, select the Agilent or Affymetrix platform.Multiple platformsBecause you can add more than one set of genomic data to a study, a study can also have multiple platforms, one for each set of genomic data.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Central Tendency for Technical Replicates
+          </td>
+          <td>
+            If more than one hybridization is found for the reporter, the hybridizations will be represented by this method.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Indicate if technical replicates have high statistical variability
+          </td>
+          <td>
+            If more than one hybridization is found, checking this box will display a ** in the genomic search results when a reporter value has high statistical variability.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Standard Deviation Type
+          </td>
+          <td>
+            When the checkbox for indicating if technical replicates have high statistical variability is checked, this parameter becomes available. Select in the drop-down the calculation to be used to determine whether or not to display a ** (see previous bullet point).  --Relative calculates the Relative Standard Deviation in percentage value  --Normal calculates the Standard Deviation in numeric value
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Standard Deviation Threshold
+          </td>
+          <td>
+            When the checkbox for indicating if technical replicates have high statistical variability is checked, this parameter becomes available. This is the threshold at which the Standard Deviation Type is exceeded and the reporter is marked with a **.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    Click Save.
+  </li>
+</ol>
+caIntegrator goes to caArray, validates the information you have entered here, finds the experiment and retrieves all the sample IDs in the experiment. Once this finishes, the experiment information displays on the caIntegrator Edit Study page under the Genomic Data Sources section, as shown in the following figure. caIntegrator refreshes carray data on an hourly basis. The status of caArray data updates displays on the
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=76683231" rel="nofollow">
+  Manage Studies
+</a>
+page and on the
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726024" rel="nofollow">
+  Edit Sample Mappings
+</a>
+page.
+<img alt="example of genomic data located in caArray" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/2%20-%20Creating%20a%20New%20Study/genomic%20data%20found90.PNG?api=v2">
+Editing caArray experimentIf you want to redefine the caArray experiment information, you can edit it. Click the Edit link corresponding to the Experiment ID. The Edit Genomic Data Source dialog box reopens, allowing you to edit the information.
+<h3 id="id-2CreatingaNewStudy-MappingGenomicDatatoSubjectAnnotationData">
+  Mapping Genomic Data to Subject Annotation Data
+</h3>
+Because the goal of caIntegrator is to integrate data from subject annotation, genomic and imaging data sources, data from uploaded source files must be mapped to each other. Mapping files can map to caArray genomic data of two types: &#34;imported and parsed&#34; and that stored in supplemental files.
+<h4 id="id-2CreatingaNewStudy-CreatingaMappingFile">
+  Creating a Mapping File
+</h4>
+You, as the caIntegrator study manager, must create a Subject to Sample mapping file and then import it into caIntegrator before following the actual mapping steps. This file provides caIntegrator with the information for mapping patients to caArray samples.
+<ol>
+  <li>
+    If you are starting with parsed data, the mapping file will have 2 columns. If you are working with unparsed data, the mapping file will have 6-column columns. See step 3 below for more information. The six columns that may be part of your file are described as follows:
+    <ul>
+      <li>
+        All platforms – Raw (level 1) data cannot be mapped; only normalized, processed (level 2) data is acceptable.
+      </li>
+      <li>
+        The six-column file format uses the following columns:
+        <ul>
+          <li>
+            Subject ID
+          </li>
+          <li>
+            Sample ID
+          </li>
+          <li>
+            Name of supplemental file (if appropriate, as attached to the experiment in caArray)
+          </li>
+          <li>
+            Probe Header – Name of column header (in the supplemental file) which contains the probe IDs.
+          </li>
+          <li>
+            Value Header – Name of column header (in the supplemental file) which holds the level 2 data.
+          </li>
+          <li>
+            Sample Header– Name of column header (in the supplemental file) which holds the level 2 data.Last two columnsOnly one of the last 2 columns is used: a single sample per file uses the Value Header column; multiple samples per file used Sample Header column. Unused columns are blank.The following figure shows an example multiple sample mapping file in CSV format.
+            <img alt="example jultiple sample mapping file, described in text." src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/2%20-%20Creating%20a%20New%20Study/multiple%20sample%20mapping90.PNG?api=v2">
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    When you use the mapping file, make sure you use the subject ID for mapping. If the file is human data, the subject ID is the patient ID.
+  </li>
+  <li>
+    Determine whether your data from caArray is &#34;imported and parsed&#34; or &#34;supplemental&#34;. These are the &#39;Loading Types&#39; referred to in Step 3 of
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726024" rel="nofollow">
+      Steps for Mapping Genomic Data
+    </a>
+    . Fill in the 2-column or 6-column mapping file according to the following standard:
+    <ul>
+      <li>
+        Imported and parsed – This mapping file for parsed data has only two columns, Subject ID and Sample ID, without a header.
+      </li>
+      <li>
+        Supplemental– Supplemental files comes in two types: &#34;single sample per file&#34; and &#34;multiple samples per file&#34;. In either case, only one of the last two columns is used. If the supplemental data format is single sample per file, the column named &#34;Sample_Header&#34; can be left empty. If the supplemental data format is multiple samples per file, the column named &#34;Value_Header&#34; can be left empty.Configuring supplemental filesSupplemental files from caArray for mapping data must be configured appropriately. For information, see
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726039" rel="nofollow">
+          Supplemental Files Configuration
+        </a>
+        .The following steps use data of either type.
+      </li>
+    </ul>
+  </li>
+</ol>
+<h4 id="id-2CreatingaNewStudy-StepsforMappingGenomicData">
+  Steps for Mapping Genomic Data
+</h4>
+To map the samples from the caArray experiment to the subjects in the subject annotation data you uploaded, follow these steps:
+<ol>
+  <li>
+    On the Edit Study page, click the Map Samples button. This opens the Edit Sample Mappings page, shown in the following figure.
+    <img alt="Edit Sample Mappings page, described in text." src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/2%20-%20Creating%20a%20New%20Study/edit%20sample%20mappings375.png?api=v2">
+  </li>
+  <li>
+    The first two caArray fields may be populated with the information for the instance of caArray to which you have access. You can, however, enter the caArray information described in the following table, if you prefer.
+    <table>
+      <tbody>
+        <tr>
+          <th>
+            Field
+          </th>
+          <th>
+            Description
+          </th>
+        </tr>
+        <tr>
+          <td>
+            caArray Host Name
+          </td>
+          <td>
+            Enter the hostname for your local installation or for the CBIIT installation of caArray. If you misspell it, you will receive an error message.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            caArray JNDI Port
+          </td>
+          <td>
+            Enter the appropriate server port. See your administrator for more information. Example: For the CBIIT installation of caArray, enter  8080 .
+          </td>
+        </tr>
+        <tr>
+          <td>
+            caArray Username
+          </td>
+          <td>
+            Enter your caArray account user name and password; you must have permissions in caArray for the experiment if it is private. If the data is public, you can leave this field blank.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            caArray Experiment ID
+          </td>
+          <td>
+            Enter the caArray Experiment ID which you know corresponds with the subject annotation data you uploaded. Example: Public experiment &#34;beer-00196&#34; on the CBIIT installation of caArray (array.nci.nih.gov). If you misspell your entry, you will receive an error message.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    Enter the Loading Type of the data file you plan to map. (File types are described in
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726024" rel="nofollow">
+      Creating a Mapping File
+    </a>
+    ).
+  </li>
+  <li>
+    In the Subject to Sample Mapping File section, click Browse to navigate for the Sample Mapping CSV file that you created (described in
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726024" rel="nofollow">
+      Creating a Mapping File
+    </a>
+    ). This provides caIntegrator with the information for mapping patients to caArray samples.
+  </li>
+  <li>
+    Click the Map Samples button. If the caArray data you have identified is imported and parsed, when you click the Map Samples button, the mapping takes place as the data is uploaded into caIntegrator. If the caArray data is supplemental, the mapping does not occur until the study is deployed.
+  </li>
+  <li>
+    Mapped samples are listed in the Samples Mapped to Subjects section; scroll down the page to view them (see the following figure). caIntegrator refreshes caArray data hourly; once samples are mapped, a column on this page displays the status of the data in caArray (noted in the figure). Unmapped samples show at the top of the caIntegrator page. They were loaded from caArray, but they are not in the mapping file. These are not used for integration.
+    <img alt="Mapped samples example, described in text." src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/2%20-%20Creating%20a%20New%20Study/mapped%20samples285.png?api=v2">
+    Mapped or unmapped?If you have already mapped samples, when you first open this page they are listed in the Samples Mapped to Subjects section. If you have not already mapped samples, all of the samples in the caArray experiment you selected are listed as unmapped, because caIntegrator does not know how these sample names correlate to the patient data in the subject annotation file until you upload the subject to sample mapping file.
+  </li>
+</ol>
+<h3 id="id-2CreatingaNewStudy-UploadingControlSamples">
+  Uploading Control Samples
+</h3>
+A Control Samples file is used to calculate fold change data, which compares &#34;tumor&#34; sample gene expression in the caArray experiment to the control samples to identify those that exhibit up or down gene regulation. Control samples can be the &#34;normal&#34; samples, but that is not always the case.To upload the control samples, follow these steps:
+<ol>
+  <li>
+    On the Edit Sample Mappings page, shown above, click the Map Samples link.
+  </li>
+  <li>
+    Click Browse to navigate for the control samples file, and click the Upload Control Samples File button. The control sets display at the top of the page once they have been uploaded, as shown in the following example.
+    <img alt="Example list of control samples identified in the sample name column." src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/2%20-%20Creating%20a%20New%20Study/control%20samples85.png?api=v2">
+    The control samples now display toward the bottom of the page.
+  </li>
+</ol>
+This information will be used when performing other tasks in caIntegrator, to be described in other sections.Composition of control setIf a Control Set is to be used in Gene Expression For Annotation, or Gene Expression Plots for Annotation Query, then the control set should be composed of only samples which are mapped to subjects.
+<h3 id="id-2CreatingaNewStudy-ConfiguringCopyNumberData">
+  Configuring Copy Number Data
+</h3>
+You can add copy number data for a genomic data source by uploading the mapping file. This allows you to configure parameters to be used when segmentation data is being configured.The name specified in the third column of the mapping file is specific for each array manufacturer:
+<ul>
+  <li>
+    Affymetrix – The third column of the mapping file must contain filenames that end in .cnchp. The corresponding experiment in caArray must have these files and the extensions must match .cnchp.
+  </li>
+  <li>
+    Agilent – The third column must name a file which contains level 2 copy number data. Level one copy number will not work. This file name is repeated for each line in the mapping file.
+  </li>
+</ul>
+To add copy number data relating to the genomic data you are adding, follow these steps:
+<ol>
+  <li>
+    In the Genomic Data Sources section of the
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726024" rel="nofollow">
+      Edit Study page
+    </a>
+    , for the data you have already added, click Configure Copy Number Databutton.Uploaded copy number data?This link is available only if you have uploaded copy number data and you are configuring a Copy Number data type (as indicated by the Data Type column on the Edit Study page).The Edit Copy Number page, shown in the following figure, opens.
+    <img alt="Edit Copy Number page showing populated data source fields as an example. See text." src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/2%20-%20Creating%20a%20New%20Study/edit%20copy%20number%20data280.png?api=v2">
+  </li>
+  <li>
+    Browse for and enter appropriate information to identify and retrieve the copy number mapping file. The fields are described in the following table. An asterisk indicates a required field.
+    <table>
+      <tbody>
+        <tr>
+          <th>
+            Field
+          </th>
+          <th>
+            Description
+          </th>
+        </tr>
+        <tr>
+          <td>
+            caArray Service Host Name
+          </td>
+          <td>
+            Enter the hostname for your local installation or for the CBIIT installation of caArray. If you misspell it, you will receive an error message.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            caArray Experiment ID
+          </td>
+          <td>
+            Enter the caArray Experiment ID which you know corresponds with the copy number data.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Loading Type
+          </td>
+          <td>
+            Enter the Loading Type of the data file you plan to map.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Subject and Sample Mapping File
+          </td>
+          <td>
+            Browse for the appropriate CN mapping file. The file must be a CSV file with 3 column format for mapping data files (format: subject id, sample id, file name). Supplemental data uses 6 column-files.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Bioconductor Service Type
+          </td>
+          <td>
+            This is the type of bioconductor module that will be used for segmentation. Select between the two options: DNAcopy or CGHcall.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            caCGHcall Service URL
+          </td>
+          <td>
+            Enter the URL for the grid segmentation service used to access the caCGHcall service. For more information, see
+            <a href="http://www.bioconductor.org/packages/2.2/bioc/html/CGHcall.html" rel="nofollow">
+              CGHcall
+            </a>
+            <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+              <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+            </a>
+            .
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Call Level
+          </td>
+          <td>
+            An input parameter to CGHcall. This is the number of discrete values used to represent the copy number level. Select between two options: 3 (consisting of discrete values of -1, 0, 1) or 4 (consisting of discrete values -1, 0, 1, 2)
+          </td>
+        </tr>
+        <tr>
+          <td>
+            caDNACopy Service URL
+          </td>
+          <td>
+            Control for selecting the URL which hosts the caDNACopy grid service. For more information, see
+            <a href="http://www.bioconductor.org/packages/2.6/bioc/html/DNAcopy.html" rel="nofollow">
+              DNAcopy
+            </a>
+            <a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+              <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/wikicontent/Exit%20Disclaimer%20to%20Include/exit_small.png?api=v2">
+            </a>
+          </td>
+          <td>
+            .
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Change Point Significance Level
+          </td>
+          <td>
+            Significance levels for the test to accept change-points
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Early Stopping Criterion
+          </td>
+          <td>
+            The sequential boundary used to stop and declare a change
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Permutation Replicates
+          </td>
+          <td>
+            The number of permutations used for p-value computation
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Random Number Seed
+          </td>
+          <td>
+            The segmentation procedure uses a permutation reference distribution. This should be used if you plan to reproduce the results.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    Click Save Segmentation Data Calculation Configurationfor a genomic data source. On the screen upload a copy number mapping file and configure the parameters to be sent when computing segmentation data.Be CarefulAfter a study has been deployed and the genomic source has been loaded, you cannot change these copy number parameters without reloading the data from caArray first.
+  </li>
+</ol>
+<h4 id="id-2CreatingaNewStudy-RemappingCopyNumberDatainaDeployedStudy">
+  Remapping Copy Number Data in a Deployed Study
+</h4>
+Occasionally you may need to remap copy number data in a deployed study. To do so, follow these steps:
+<ol>
+  <li>
+    Select the Manage Studies button and select Edit for the study you wish to remap.
+  </li>
+  <li>
+    On the Edit Study page, select Edit under the Genomic Data Sources header.
+  </li>
+  <li>
+    Without altering any information, select Save. When the warning box appears, select OK.
+  </li>
+  <li>
+    Select ConfigureCopyNumberData.
+  </li>
+  <li>
+    Enter the new mapping file in the Subject and Sample Mapping File field.
+  </li>
+  <li>
+    Select Save Segmentation Data Calculation configuration.
+  </li>
+  <li>
+    Select Deploy Study.
+  </li>
+</ol>
+<h2 id="id-2CreatingaNewStudy-WorkingwithImagingData">
+  Working with Imaging Data
+</h2>
+Once you have loaded subject annotation data and identified patient IDs, you can add either array genomic sample data from caArray which caIntegrator maps by sample IDs to the patient IDs in the subject annotation data, or you can upload image data from NBIA, also mapped by IDs to the subject data. Once you have configured an NBIA image data source for adding images, then you can import image annotation data for the images. Genomic sample data and imaging data are independent of each other, so neither is required before loading the other.It is essential that you are well acquainted with the data you are working with--the subject annotation data, and the corresponding imaging data in NBIA.
+<h3 id="id-2CreatingaNewStudy-AddingorEditingImagingDataFilesfromNBIA">
+  Adding or Editing Imaging Data Files from NBIA
+</h3>
+To add images from NBIA to the study you are creating, follow these steps:
+<ol>
+  <li>
+    On the
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726024" rel="nofollow">
+      Edit Study page
+    </a>
+    under the Imaging Data Sources section, click the Add Newbutton.Imaging data sourceIf you have already provided an imaging data source, it is listed in this section of the Edit Study page. To edit the imaging data source, click the Edit button which opens the same dialog box described in the following steps.
+  </li>
+  <li>
+    In the Edit Imaging Data Source dialog box, configure the appropriate imaging data source information in the fields as shown in the selected area of the following figure and described below. Fields with an asterisk are required.
+    <img alt="Edit Image Data Source dialog box showing populated data source fields and a list of so-far unmapped image series. Fields are described in text." src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/2%20-%20Creating%20a%20New%20Study/edit%20image%20data%20source280.png?api=v2">
+    <table>
+      <tbody>
+        <tr>
+          <th>
+            Field
+          </th>
+          <th>
+            Description
+          </th>
+        </tr>
+        <tr>
+          <td>
+            NBIA Server Grid URL*
+          </td>
+          <td>
+            Enter the URL for the grid connection to NBIA.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            NBIA Web URL
+          </td>
+          <td>
+            Enter the URL of the web interface of the NBIA installation.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            NBIA Username and NBIA Password
+          </td>
+          <td>
+            This information is not required, as currently all data in the NBIA grid is Public data.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Collection Name
+          </td>
+          <td>
+            Enter the name/source for the collection you want to retrieve.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Current Mapping
+          </td>
+          <td>
+            If a mapping file has already been uploaded to the study to map imaging data, the file name displays here.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Select Mapping File Type
+          </td>
+          <td>
+            Click to select the file type:  --Auto – No file is required. Selecting this takes all subject annotation subject IDs and attempts to map them to the corresponding ID in the collection in NBIA. If the ID does not exist in NBIA, then no mapping is made for that ID.  --By Subject – Requires a mapping file to be uploaded. The &#34;subject annotation to imaging mapping file&#34; must be in CSV format with two columns that map the caIntegrator subject annotation subject ID to the NBIA subject ID.  --By Image Series – Requires a file to be uploaded. The subject annotation to imaging mapping file needs to be a two column mapping (CSV) from the caIntegrator subject annotation subject ID to the NBIA study instance UID.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Subject to Imaging Mapping File
+          </td>
+          <td>
+            Click Browse to navigate to the appropriate subject annotation to imaging mapping file. See the Select Mapping File Type* field description.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    Mapping files uploaded?If mapping files have already been uploaded for the data sources you are editing, the Image Mapping tables of the dialog box show the mapping from NBIA Image Series Identifier to caIntegrator Subject Identifier.
+  </li>
+  <li>
+    Click Save to upload the data from NBIA to caIntegrator. The imaging data displays on the Edit Study page under the Imaging Data Sources section, as shown in the following figure.
+    <img alt="Edit Study page showing imaging data, described in text." src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/2%20-%20Creating%20a%20New%20Study/imaging%20data%20section285.png?api=v2">
+  </li>
+  <li>
+    Once the data is uploaded, you can add image annotations. For more information, see
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726024" rel="nofollow">
+      Adding or Editing Image Annotations
+    </a>
+    .
+  </li>
+</ol>
+<h3 id="id-2CreatingaNewStudy-AddingorEditingImageAnnotations">
+  Adding or Editing Image Annotations
+</h3>
+After you have configured an image data source with an NBIA Grid service and uploaded the image data, described in
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726024" rel="nofollow">
+  Adding or Editing Imaging Data Files from NBIA
+</a>
+, you can load image annotations into caIntegrator from a file in CSV format or through an Annotations and Image Markup (AIM) service.TipThe image data shown in the Imaging Data Sources section indicate whether or not annotations have already been imported from a file for these sources. See the marked area in the following figure.
+<img alt="Imaging Data Sources section of the Edit Study page. The circled section in this screen shot indicates that annotations have been uploaded for this image collection." src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/2%20-%20Creating%20a%20New%20Study/imaging%20data%20section85.png?api=v2">
+To add image annotations from a file, follow these steps:
+<ol>
+  <li>
+    On the
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726024" rel="nofollow">
+      Edit Study page
+    </a>
+    , click the Edit Annotationsbutton under the Image Data Sources section.Options for this buttonIf you have not yet imported annotations, clicking this button opens the page from which you can import image annotations, shown in the following figure. Continue with the steps in this section. If you are editing annotations, clicking this button opens the Define Fields for Image Annotations dialog box where you can edit annotations; see
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726024" rel="nofollow">
+      Define Fields Page for Editing Annotations
+    </a>
+    .
+    <img alt="Page showing the fields for adding imaging data annotations. Refer to text for instructions on using this page." src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/2%20-%20Creating%20a%20New%20Study/add%20image%20annotations90.png?api=v2">
+  </li>
+  <li>
+    Select the radio button Upload Annotation File.
+  </li>
+  <li>
+    Click Browse to select an annotation CSV file for upload.{{tip:title=Tip} An image annotation CSV file must include an Image Series ID column. See the highlighted column in the following figure.
+    <img alt="Example image annotations file. The required image series column in the file is highlighted." src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/2%20-%20Creating%20a%20New%20Study/image%20series%20file90.png?api=v2">
+  </li>
+  <li>
+    Check the box for Create a new Annotation Definition if one is not found (if appropriate).
+  </li>
+  <li>
+    Click Add.
+  </li>
+</ol>
+To load image annotations through an AIM service, follow these steps:
+<ol>
+  <li>
+    On the
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726024" rel="nofollow">
+      Edit Study page
+    </a>
+    , click the Edit Annotations link under the Image Data Sources section.
+  </li>
+  <li>
+    Select the radio button Use AIM Data Service.
+  </li>
+  <li>
+    Select an AIM Server Grid URL.
+  </li>
+  <li>
+    Click Add.
+  </li>
+</ol>
+Using either method, the image annotations are uploaded to caIntegrator. After this occurs, when you click the Edit Annotations button, the system opens to the Define Fields for Imaging Data page where you can edit the annotations. This is the same page (with a customized title) as that described in
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726024" rel="nofollow">
+  Define Fields Page for Editing Annotations
+</a>
+. You must assign identifiers and annotations to the data in the same way you did with the subject annotation data. For more information, see
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726024" rel="nofollow">
+  Assigning an Identifier or Annotation
+</a>
+and
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726024" rel="nofollow">
+  Searching for Annotation Definitions
+</a>
+.
+<h2 id="id-2CreatingaNewStudy-AddingExternalLinks">
+  Adding External Links
+</h2>
+If you are a study manager, this feature on the Edit Study page allows you to configure a CSV file with URLs to be used as external links relevant to the study. This allows you to easily share or configure references.To add an external link, follow these steps:
+<ol>
+  <li>
+    On the
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726024" rel="nofollow">
+      Edit Study page
+    </a>
+    , click the Add button under External Links section. External links can be any URL(s) to resources that are hosted external to caIntegrator but are relevant to the study being deployed.
+  </li>
+  <li>
+    Assign a name to the external link.
+  </li>
+  <li>
+    Add a description for the link, if appropriate.
+  </li>
+  <li>
+    Browse for the CSV file containing URLs (HTTP linked) to resources outside of caIntegrator.
+  </li>
+  <li>
+    Click Upload Now. caIntegrator does not validate any links in the file being uploaded.
+  </li>
+</ol>
+Once you have created external links for a study, when the study is open, an External Links section on the left sidebar of the page shows the link(s). An example is identified in the following figure.
+<img alt="Left sidebar displaying external links with the CGWB Heatmap viewer option. See text about external links." src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/2%20-%20Creating%20a%20New%20Study/external%20link%20section90.png?api=v2">
+Click an external link to open a page that displays appropriately formatted web page links; an example is shown in the following figure.
+<img alt="Appropriately formatted web links, described in text." src="https://wiki.nci.nih.gov/download/attachments/embedded-page/caIntegrator/2%20-%20Creating%20a%20New%20Study/external%20links%20page90.png?api=v2">
+<h2 id="id-2CreatingaNewStudy-DeployingtheStudy">
+  Deploying the Study
+</h2>
+When you are ready to deploy the study, click the Deploy Study button on the
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=48726024" rel="nofollow">
+  Edit Study page
+</a>
+. caIntegrator retrieves the selected data from the data service(s) you defined and makes the study available to a study manager or to anyone else who may want to analyze the study&#39;s data. Using the Manage Studies feature, you can then configure and share data queries and data lists with all investigators who access the study.Note that you can continue to work in caIntegrator while the study is being deployed.

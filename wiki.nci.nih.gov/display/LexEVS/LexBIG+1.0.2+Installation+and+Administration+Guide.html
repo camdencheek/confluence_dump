@@ -1,0 +1,3318 @@
+Version 1.0.2Contents of this Page
+<ul>
+  <li>
+    <a href="#LexBIG1.0.2InstallationandAdministrationGuide-Introduction" rel="nofollow">
+      Introduction
+    </a>
+    <ul>
+      <li>
+        <a href="#LexBIG1.0.2InstallationandAdministrationGuide-OverviewofLexBIG" rel="nofollow">
+          Overview of LexBIG
+        </a>
+      </li>
+      <li>
+        <a href="#LexBIG1.0.2InstallationandAdministrationGuide-TargetAudience" rel="nofollow">
+          Target Audience
+        </a>
+      </li>
+      <li>
+        <a href="#LexBIG1.0.2InstallationandAdministrationGuide-LexBIGComponents" rel="nofollow">
+          LexBIG Components
+        </a>
+      </li>
+      <li>
+        <a href="#LexBIG1.0.2InstallationandAdministrationGuide-DocumentTextConventions" rel="nofollow">
+          Document Text Conventions
+        </a>
+      </li>
+      <li>
+        <a href="#LexBIG1.0.2InstallationandAdministrationGuide-LexBIGMinimalSystemRequirements" rel="nofollow">
+          LexBIG Minimal System Requirements
+        </a>
+      </li>
+      <li>
+        <a href="#LexBIG1.0.2InstallationandAdministrationGuide-LexBIGSoftwareandTechnologyRequirements" rel="nofollow">
+          LexBIG Software and Technology Requirements
+        </a>
+        <ul>
+          <li>
+            <a href="#LexBIG1.0.2InstallationandAdministrationGuide-RequiredSoftware-NotIncludedinLexBIG" rel="nofollow">
+              Required Software - Not Included in LexBIG
+            </a>
+          </li>
+          <li>
+            <a href="#LexBIG1.0.2InstallationandAdministrationGuide-OptionalSoftware" rel="nofollow">
+              Optional Software
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#LexBIG1.0.2InstallationandAdministrationGuide-LexBIGDocumentation" rel="nofollow">
+          LexBIG Documentation
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#LexBIG1.0.2InstallationandAdministrationGuide-InstallingLexBIG" rel="nofollow">
+      Installing LexBIG
+    </a>
+    <ul>
+      <li>
+        <a href="#LexBIG1.0.2InstallationandAdministrationGuide-PreliminaryConsiderations" rel="nofollow">
+          Preliminary Considerations
+        </a>
+      </li>
+      <li>
+        <a href="#LexBIG1.0.2InstallationandAdministrationGuide-LexBIGObjectModel" rel="nofollow">
+          LexBIG Object Model
+        </a>
+      </li>
+      <li>
+        <a href="#LexBIG1.0.2InstallationandAdministrationGuide-DownloadingandUsingtheLexBIGInstallWizard" rel="nofollow">
+          Downloading and Using the LexBIG Install Wizard
+        </a>
+      </li>
+      <li>
+        <a href="#LexBIG1.0.2InstallationandAdministrationGuide-DownloadingandInstallingLexBIGUsingCommandLine" rel="nofollow">
+          Downloading and Installing LexBIG Using Command Line
+        </a>
+      </li>
+      <li>
+        <a href="#LexBIG1.0.2InstallationandAdministrationGuide-ConfiguringtheLexBIGEnvironment" rel="nofollow">
+          Configuring the LexBIG Environment
+        </a>
+        <ul>
+          <li>
+            <a href="#LexBIG1.0.2InstallationandAdministrationGuide-Modifyingtheconfig.propsfileforLexBIG" rel="nofollow">
+              Modifying the config.props file for LexBIG
+            </a>
+          </li>
+          <li>
+            <a href="#LexBIG1.0.2InstallationandAdministrationGuide-VariablestoModifyforUsingyourDatabase" rel="nofollow">
+              Variables to Modify for Using your Database
+            </a>
+          </li>
+          <li>
+            <a href="#LexBIG1.0.2InstallationandAdministrationGuide-VariablestoModifyPriortoUsingLexBIG" rel="nofollow">
+              Variables to Modify Prior to Using LexBIG
+            </a>
+          </li>
+          <li>
+            <a href="#LexBIG1.0.2InstallationandAdministrationGuide-Modifyingthemy.inifileforMySQL" rel="nofollow">
+              Modifying the my.ini file for MySQL
+            </a>
+          </li>
+          <li>
+            <a href="#LexBIG1.0.2InstallationandAdministrationGuide-Modifyingtheposgresql.confFileforPostgreSQL" rel="nofollow">
+              Modifying the posgresql.conf File for PostgreSQL
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#LexBIG1.0.2InstallationandAdministrationGuide-TestingtheLexBIGConfiguration" rel="nofollow">
+          Testing the LexBIG Configuration
+        </a>
+      </li>
+      <li>
+        <a href="#LexBIG1.0.2InstallationandAdministrationGuide-TipsandPitfalls" rel="nofollow">
+          Tips and Pitfalls
+        </a>
+        <ul>
+          <li>
+            <a href="#LexBIG1.0.2InstallationandAdministrationGuide-UpgradingLexBIG" rel="nofollow">
+              Upgrading LexBIG
+            </a>
+          </li>
+          <li>
+            <a href="#LexBIG1.0.2InstallationandAdministrationGuide-SingleandMultipleDatabaseConfigurationChanges" rel="nofollow">
+              Single and Multiple Database Configuration Changes
+            </a>
+          </li>
+          <li>
+            <a href="#LexBIG1.0.2InstallationandAdministrationGuide-FailedandInterruptedLoads" rel="nofollow">
+              Failed and Interrupted Loads
+            </a>
+          </li>
+          <li>
+            <a href="#LexBIG1.0.2InstallationandAdministrationGuide-WhentoScaleaDbmsforaLargeNumberofConnections" rel="nofollow">
+              When to Scale a Dbms for a Large Number of Connections
+            </a>
+          </li>
+          <li>
+            <a href="#LexBIG1.0.2InstallationandAdministrationGuide-MySQLDriverIssues" rel="nofollow">
+              MySQL Driver Issues
+            </a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#LexBIG1.0.2InstallationandAdministrationGuide-InstallingLexBIGintoJBoss" rel="nofollow">
+      Installing LexBIG into JBoss
+    </a>
+    <ul>
+      <li>
+        <a href="#LexBIG1.0.2InstallationandAdministrationGuide-Introduction.1" rel="nofollow">
+          Introduction
+        </a>
+      </li>
+      <li>
+        <a href="#LexBIG1.0.2InstallationandAdministrationGuide-CreatingyourWARfile" rel="nofollow">
+          Creating your WAR file
+        </a>
+      </li>
+      <li>
+        <a href="#LexBIG1.0.2InstallationandAdministrationGuide-CreatingtheFileStorageLocationfortheLexBIGRuntime" rel="nofollow">
+          Creating the File Storage Location for the LexBIG Runtime
+        </a>
+      </li>
+      <li>
+        <a href="#LexBIG1.0.2InstallationandAdministrationGuide-Configuringconfig.propsforJBossDeployment" rel="nofollow">
+          Configuring config.props for JBoss Deployment
+        </a>
+      </li>
+      <li>
+        <a href="#LexBIG1.0.2InstallationandAdministrationGuide-LocatingtheFileStorageLocationfortheLexBIGRuntime" rel="nofollow">
+          Locating the File Storage Location for the LexBIG Runtime
+        </a>
+      </li>
+      <li>
+        <a href="#LexBIG1.0.2InstallationandAdministrationGuide-Locatingtheconfig.propsFilewhenJBossStarts" rel="nofollow">
+          Locating the config.props File when JBoss Starts
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#LexBIG1.0.2InstallationandAdministrationGuide-MovingaTerminologytoanotherSQLServer" rel="nofollow">
+      Moving a Terminology to another SQL Server
+    </a>
+  </li>
+  <li>
+    <a href="#LexBIG1.0.2InstallationandAdministrationGuide-LexBIGAdministration" rel="nofollow">
+      LexBIG Administration
+    </a>
+    <ul>
+      <li>
+        <a href="#LexBIG1.0.2InstallationandAdministrationGuide-LexBIGAdministrationPrograms" rel="nofollow">
+          LexBIG Administration Programs
+        </a>
+      </li>
+      <li>
+        <a href="#LexBIG1.0.2InstallationandAdministrationGuide-LoadingaSampleVocabulary" rel="nofollow">
+          Loading a Sample Vocabulary
+        </a>
+      </li>
+      <li>
+        <a href="#LexBIG1.0.2InstallationandAdministrationGuide-RunningtheSampleQueryPrograms" rel="nofollow">
+          Running the Sample Query Programs
+        </a>
+      </li>
+      <li>
+        <a href="#LexBIG1.0.2InstallationandAdministrationGuide-InstallingNCIThesaurusVocabulary" rel="nofollow">
+          Installing NCI Thesaurus Vocabulary
+        </a>
+      </li>
+      <li>
+        <a href="#LexBIG1.0.2InstallationandAdministrationGuide-InstallingNCIMetathesaurusVocabulary" rel="nofollow">
+          Installing NCI Metathesaurus Vocabulary
+        </a>
+      </li>
+      <li>
+        <a href="#LexBIG1.0.2InstallationandAdministrationGuide-InstallingNCIHistoryInformation" rel="nofollow">
+          Installing NCI History Information
+        </a>
+      </li>
+      <li>
+        <a href="#LexBIG1.0.2InstallationandAdministrationGuide-DeactivatingandRemovingVocabulary" rel="nofollow">
+          Deactivating and Removing Vocabulary
+        </a>
+      </li>
+      <li>
+        <a href="#LexBIG1.0.2InstallationandAdministrationGuide-Taggingavocabulary" rel="nofollow">
+          Tagging a vocabulary
+        </a>
+      </li>
+      <li>
+        <a href="#LexBIG1.0.2InstallationandAdministrationGuide-SystemMonitoringandDebug" rel="nofollow">
+          System Monitoring and Debug
+        </a>
+      </li>
+      <li>
+        <a href="#LexBIG1.0.2InstallationandAdministrationGuide-ConfiguringManifestFiles" rel="nofollow">
+          Configuring Manifest Files
+        </a>
+        <ul>
+          <li>
+            <a href="#LexBIG1.0.2InstallationandAdministrationGuide-WhatIsCodingSchemeManifest?" rel="nofollow">
+              What Is Coding Scheme Manifest?
+            </a>
+          </li>
+          <li>
+            <a href="#LexBIG1.0.2InstallationandAdministrationGuide-WhatIsCodingScheme?" rel="nofollow">
+              What Is Coding Scheme?
+            </a>
+          </li>
+          <li>
+            <a href="#LexBIG1.0.2InstallationandAdministrationGuide-WhyDoWeNeedaCodingSchemeManifest?" rel="nofollow">
+              Why Do We Need a Coding Scheme Manifest?
+            </a>
+          </li>
+          <li>
+            <a href="#LexBIG1.0.2InstallationandAdministrationGuide-HowdowecreateaCodingSchemeManifestfile?" rel="nofollow">
+              How do we create a Coding Scheme Manifest file?
+            </a>
+          </li>
+          <li>
+            <a href="#LexBIG1.0.2InstallationandAdministrationGuide-WhatCodeChangesMayBeRequiredToUseaManifestFile?" rel="nofollow">
+              What Code Changes May Be Required To Use a Manifest File?
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#LexBIG1.0.2InstallationandAdministrationGuide-LoaderPreferences" rel="nofollow">
+          Loader Preferences
+        </a>
+      </li>
+      <li>
+        <a href="#LexBIG1.0.2InstallationandAdministrationGuide-SystemAdministration" rel="nofollow">
+          System Administration
+        </a>
+        <ul>
+          <li>
+            <a href="#LexBIG1.0.2InstallationandAdministrationGuide-PreliminaryConsiderations.1" rel="nofollow">
+              Preliminary Considerations
+            </a>
+          </li>
+          <li>
+            <a href="#LexBIG1.0.2InstallationandAdministrationGuide-DatabaseInstallation" rel="nofollow">
+              Database Installation
+            </a>
+          </li>
+          <li>
+            <a href="#LexBIG1.0.2InstallationandAdministrationGuide-LexBIGInstallation" rel="nofollow">
+              LexBIG Installation
+            </a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#LexBIG1.0.2InstallationandAdministrationGuide-AppendixI:WhatIsInstalled" rel="nofollow">
+      Appendix I: What Is Installed
+    </a>
+    <ul>
+      <li>
+        <a href="#LexBIG1.0.2InstallationandAdministrationGuide-LexBIGComponents.1" rel="nofollow">
+          LexBIG Components
+        </a>
+      </li>
+      <li>
+        <a href="#LexBIG1.0.2InstallationandAdministrationGuide-What&#39;sInside" rel="nofollow">
+          What&#39;s Inside
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#LexBIG1.0.2InstallationandAdministrationGuide-AppendixII:LexBIGGUIAdminTool" rel="nofollow">
+      Appendix II: LexBIG GUI Admin Tool
+    </a>
+  </li>
+  <li>
+    <a href="#LexBIG1.0.2InstallationandAdministrationGuide-ContactingTechnicalSupport" rel="nofollow">
+      Contacting Technical Support
+    </a>
+  </li>
+</ul>
+<h2 id="LexBIG1.0.2InstallationandAdministrationGuide-Introduction">
+  Introduction
+</h2>
+This installation guide outlines the supported configurations and technical installation instructions for LexGrid Vocabulary Services for caBIG©, referred to as LexBIG for the remainder of the guide. Directions for configuring administrating the installation are also included in this document.All of the examples and screenshots included in this chapter are Windows specific. If you are using a different platform, then modify the information as appropriate for your system.
+<h3 id="LexBIG1.0.2InstallationandAdministrationGuide-OverviewofLexBIG">
+  Overview of LexBIG
+</h3>
+The LexBIG package represents a compressive set of software and services to load, publish, and access vocabulary. Cancer Centers can use the LexBIG package to install NCI Thesaurus and NCI Metathesaurus content queryable via a rich application programming interface (API). LexBIG services can be used in numerous applications wherever vocabulary content is needed.LexBIG is intended to address the needs of the following groups:
+<ul>
+  <li>
+    Vocabulary service providers - Describes organizations currently supporting externalized API-level interfaces to vocabulary content for the caBIG™ community.
+  </li>
+  <li>
+    Vocabulary integrators - Describes organizations within the caBIG™ community that desire to integrate new vocabulary content to be served to the caBIG™ community.
+  </li>
+  <li>
+    Vocabulary users - Describes the caBIG™ community interested in utilizing vocabulary services within the context of other caBIG projects.
+  </li>
+</ul>
+<h3 id="LexBIG1.0.2InstallationandAdministrationGuide-TargetAudience">
+  Target Audience
+</h3>
+The LexBIG Installation and Administrator guide is intended to provide detail instructions for installing and administrating LexBIG software. The details and configuration information contained are written for skill levels of a typical system or database administrator.
+<h3 id="LexBIG1.0.2InstallationandAdministrationGuide-LexBIGComponents">
+  LexBIG Components
+</h3>
+<ul>
+  <li>
+    Service Management consists of programs to load, index, publish, and manage vocabulary content for the vocabulary server.
+  </li>
+  <li>
+    Application Programming Interface (API) is comprised of methods to support Lexical Operations, Graph Operations, and History Operations.
+  </li>
+  <li>
+    Documentation consists of detailed JavaDocs and Programmers Guide.
+  </li>
+  <li>
+    Examples are provided as sample source code for common vocabulary queries.
+  </li>
+  <li>
+    Test Suite is provided to validate the LexBIG installation.
+  </li>
+</ul>
+<img alt="diagram showing the previously described LexBIG Service Components" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexBIG%201.0.2%20Installation%20and%20Administration%20Guide/LexBIG_Service_Components.jpg?api=v2">
+NoteAdditional information about the LexBIG API is provided in the LexBIG Programmers Guide located at: {LEXBIG_DIRECTORY}/docs/LexBIG_Programmer_Guide.pdf
+<h3 id="LexBIG1.0.2InstallationandAdministrationGuide-DocumentTextConventions">
+  Document Text Conventions
+</h3>
+The following table shows various typefaces to differentiate between regular text and menu commands, keyboard keys, and text that you type. This illustrates how conventions are represented in this guide.
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Convention
+      </th>
+      <th>
+        Description
+      </th>
+      <th>
+        Example
+      </th>
+    </tr>
+    <tr>
+      <td>
+        Bold and Capitalized Command
+      </td>
+      <td>
+        Indicates a Menu command
+      </td>
+      <td>
+        Click the Open command.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Capitalized command&gt;Capitalized command
+      </td>
+      <td>
+        Indicates Sequential Menu commands
+      </td>
+      <td>
+        Admin &gt; Refresh
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Special typestyle
+      </td>
+      <td>
+        Used for filenames, directory names, commands, file listings, source code examples and anything that would appear in a Java program, such as methods, variables, and classes.
+      </td>
+      <td>
+        URL_definition ::= url_string
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Boldface type
+      </td>
+      <td>
+        Options that you select in dialog boxes or drop-down menus. Buttons or icons that you click.
+      </td>
+      <td>
+        In the Open dialog box, select the file and click the Open button.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Italics
+      </td>
+      <td>
+        Used to reference other documents, sections, figures, and tables.
+      </td>
+      <td>
+        caCORE Software Development Kit 1.0 Programmer&#39;s Guide
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Italic boldface type
+      </td>
+      <td>
+        Text that you type
+      </td>
+      <td>
+        In the New Subset text box, enter  Proprietary Proteins.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Note
+      </td>
+      <td>
+        Highlights a concept of particular interest
+      </td>
+      <td>
+        This concept is used throughout the installation manual.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Warning
+      </td>
+      <td>
+        Highlights information of which you should be particularly aware.
+      </td>
+      <td>
+        WarningDeleting an object will permanently delete it from the database.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        {}
+      </td>
+      <td>
+        Curly brackets are used for replaceable items.
+      </td>
+      <td>
+        Replace {LEXBIG_DIRECTORY} with its proper value such as c:\lexbig
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h3 id="LexBIG1.0.2InstallationandAdministrationGuide-LexBIGMinimalSystemRequirements">
+  LexBIG Minimal System Requirements
+</h3>
+<ul>
+  <li>
+    Internet connection
+  </li>
+  <li>
+    2 GB RAM
+  </li>
+  <li>
+    Tested Platforms (Similar Hardware Specification for Operating System)
+  </li>
+</ul>
+LexBIG has been tested on the platforms shown in the following table.
+<table>
+  <tbody>
+    <tr>
+      <th></th>
+      <th>
+        Linux Server
+      </th>
+      <th>
+        Linux Server
+      </th>
+      <th>
+        Windows
+      </th>
+    </tr>
+    <tr>
+      <th>
+        Model
+      </th>
+      <td>
+        HP Proliant DL 380
+      </td>
+      <td>
+        Penguin
+      </td>
+      <td>
+        Dell Latitude
+      </td>
+    </tr>
+    <tr>
+      <th>
+        CPU
+      </th>
+      <td>
+        2 x Intel® Xeon™ Processor 2.80GHz
+      </td>
+      <td>
+        Dual AMD Opteron 248 processors (64 bit)
+      </td>
+      <td>
+        1 x Intel® Pentium™ Processor 2.00GHz
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Memory
+      </th>
+      <td>
+        4 GB
+      </td>
+      <td>
+        16Gb
+      </td>
+      <td>
+        1.5Gb
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Local Disk
+      </th>
+      <td>
+        System 2 x 36GB (RAID 1) Data = 2 x 146 (RAID 1)
+      </td>
+      <td>
+        250 GB Raid 1 disk drive(s) 250 GB stand along disk drive
+      </td>
+      <td>
+        System 1 x 80GB
+      </td>
+    </tr>
+    <tr>
+      <th>
+        OS
+      </th>
+      <td>
+        Red Hat Linux ES 3 (RPM 2.4.21-20.0.1)
+      </td>
+      <td>
+        Fedora Core 3 (64 bit) OS
+      </td>
+      <td>
+        Windows XP Professional
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h3 id="LexBIG1.0.2InstallationandAdministrationGuide-LexBIGSoftwareandTechnologyRequirements">
+  LexBIG Software and Technology Requirements
+</h3>
+<h4 id="LexBIG1.0.2InstallationandAdministrationGuide-RequiredSoftware-NotIncludedinLexBIG">
+  Required Software - Not Included in LexBIG
+</h4>
+You must download and install the required software that is not included with LexBIG (listed in the following table). The software name, version, description, and URL hyperlinks (for download) are indicated in the table.
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Software Name
+      </th>
+      <th>
+        Version
+      </th>
+      <th>
+        Description
+      </th>
+      <th>
+        URL
+      </th>
+    </tr>
+    <tr>
+      <td>
+        Java Software Development Kit (SDK):Java 2 Standard Edition (J2SE)
+      </td>
+      <td>
+        j2sdk1.5.0_04 or higher
+      </td>
+      <td>
+        The J2SE Software Development Kit (SDK) supports creating J2SE applications
+      </td>
+      <td>
+        <a href="http://java.sun.com/javaee/downloads/" rel="nofollow">
+          http://java.sun.com/javaee/downloads/
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        MySQL Database*
+      </td>
+      <td>
+        MySQL (4.1.16) or higher
+      </td>
+      <td>
+        MySQL 4.1 Community Edition
+      </td>
+      <td>
+        <a href="http://dev.mysql.com/downloads/mysql/4.1.html" rel="nofollow">
+          http://dev.mysql.com/downloads/mysql/4.1.html
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        PostgreSQL*
+      </td>
+      <td>
+        8.x or higher
+      </td>
+      <td>
+        Open source relational database management system
+      </td>
+      <td>
+        <a href="http://www.postgresql.org/" rel="nofollow">
+          http://www.postgresql.org/
+        </a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+* MySQL or PostgreSQL installation is required.NoteSoftware that is included with the LexBIG is listed in Appendix I.
+<h4 id="LexBIG1.0.2InstallationandAdministrationGuide-OptionalSoftware">
+  Optional Software
+</h4>
+Optional software to use with the LexBIG is listed in the following table. The included (Incl.) column indicates (with a Yes) if the software is packaged with the SDK. No indicates that you must supply the software. A hyperlink is included for your reference to appropriate sources.
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Software Name
+      </th>
+      <th>
+        Version
+      </th>
+      <th>
+        Description
+      </th>
+      <th>
+        URL
+      </th>
+      <th>
+        Incl.
+      </th>
+    </tr>
+    <tr>
+      <td>
+        Eclipse IDE
+      </td>
+      <td>
+        3.1.x
+      </td>
+      <td>
+        An open platform for tool integration which provides tool developers with flexibility and control over their software technology used for product development. This tool can be optionally used to review Java source code.
+      </td>
+      <td>
+        <a href="http://www.eclipse.org/downloads/index.php" rel="nofollow">
+          http://www.eclipse.org/downloads/index.php
+        </a>
+      </td>
+      <td>
+        No
+      </td>
+    </tr>
+  </tbody>
+</table>
+NoteDrivers for MySQL and PostgreSQL included with the LexBIG installer. These drivers are placed in the {LEXBIG_DIRECTORY}/runtime-components/extLib directory.
+<h3 id="LexBIG1.0.2InstallationandAdministrationGuide-LexBIGDocumentation">
+  LexBIG Documentation
+</h3>
+The following documentation is part of the LexBIG install package.
+<ul>
+  <li>
+    Javadoc - The full API is described using Javadocs. Your JavaDocs will be generated to the {LEXBIG_DIRECTORY}\doc\javadoc directory. Use a web browser to open the index.html file to start browsing documentation. For more information on Javadoc see
+    <a href="http://java.sun.com/j2se/javadoc/" rel="nofollow">
+      http://java.sun.com/j2se/javadoc/
+    </a>
+    .
+  </li>
+  <li>
+    LexBIG Programmer Guide - A guide describing LexBIG API and general approaches for common vocabulary uses.
+  </li>
+</ul>
+<img alt="screenshot of javadocs overview page showing LexBIG Vocabulary services" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexBIG%201.0.2%20Installation%20and%20Administration%20Guide/LexBIG_Overview.jpg?api=v2">
+NoteLexBIG Components are listed in Appendix I.
+<h2 id="LexBIG1.0.2InstallationandAdministrationGuide-InstallingLexBIG">
+  Installing LexBIG
+</h2>
+<h3 id="LexBIG1.0.2InstallationandAdministrationGuide-PreliminaryConsiderations">
+  Preliminary Considerations
+</h3>
+Before You BeginThe LexBIG has been tested with the operating systems and hardware specified on page 4 of this guide. While LexBIG is expected to run on many variations of hardware and software similar to the test platforms, results cannot be guaranteed.
+<h3 id="LexBIG1.0.2InstallationandAdministrationGuide-LexBIGObjectModel">
+  LexBIG Object Model
+</h3>
+To describe LexBIG, the LexBIG service, CodeNodeGraph and CodeNodeSet interfaces are included. The model, as shown in the following diagram, contains the core query service from the org.LexBIG.LexBIGService domain package. The full and most recent version of the object model is described and illustrated as part of the JavaDocs. This diagram is a UML class diagram. For more information about UML, see the LexBIG Programmer Guide, available with the LexBIG installation {LEXBIG_DIRECTORY}/docs/LexBIG_Programmer_Guide.
+<img alt="LexBIG Object Model as described in the preceding paragraph" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexBIG%201.0.2%20Installation%20and%20Administration%20Guide/LexBIGService_Model.jpg?api=v2">
+For more information on the LexBIG architecture see Architecture Specification at
+<a href="http://cabigcvs.nci.nih.gov/viewcvs/viewcvs.cgi/lexgrid/LexBIG_architecture_specification.pdf" rel="nofollow">
+  http://cabigcvs.nci.nih.gov/viewcvs/viewcvs.cgi/lexgrid/LexBIG_architecture_specification.pdf
+</a>
+HISTORICAL.After successfully installing LexBIG and running the verification test suite, as described in this guide, you should be ready to start programming using the API to meet the needs of application needs. If you have the required software installed on your system (see the previous section), then installing and running the test should not take more than 60 minutes.
+<h3 id="LexBIG1.0.2InstallationandAdministrationGuide-DownloadingandUsingtheLexBIGInstallWizard">
+  Downloading and Using the LexBIG Install Wizard
+</h3>
+AttentionTo best understand the installation and testing procedures for LexBIG, it is recommended that you follow the procedures described in this section with minimal deviation.Complete the following steps to download LexBIG:
+<ol>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=189825336" rel="nofollow">
+      Download
+    </a>
+    the LexBIG install package.
+  </li>
+  <li>
+    Select the most recent version of the LexBIG Software Package lexbig-install-X.X.X.jar (e.g., 1.0.1, lexbig-install-1.0.1.jar). Save this file to your computer. This location will be referred to as the SAVE_DIRECTORY. You may have to disable Pop-up blockers to allow save the install package to your local computer.
+  </li>
+  <li>
+    Using Microsoft Windows Environment Command Prompt change directory to the SAVE_DIRECTORY of the LexBIG software package you saved in step 2. At the command prompt enter the following command to begin the installation wizard.
+    java -jar lexbig-install-X.X.X.jar
+
+    <ol>
+      <li>
+        As an alternative to the command line instruction you can navigate to the SAVE_DIRECTORY with the File Explorer. Double Click on the lexbig-install-1.0.1.jar file. This will launch the install wizard with a typical java installation
+        <img alt="screenshot of the install wizard" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexBIG%201.0.2%20Installation%20and%20Administration%20Guide/Install_Wizard_Java_Installation.jpg?api=v2">
+        <img alt="screenshot of the install wizard where you select the language for the installation" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexBIG%201.0.2%20Installation%20and%20Administration%20Guide/Installation_Language_Selection.jpg?api=v2">
+      </li>
+      <li>
+        Select the language and click OK button to begin the installation. Note that the only language currently supported is English.
+      </li>
+    </ol>
+  </li>
+  <li>
+    After the initial welcome screen the release notes for the LexBIG distribution are displayed. Once you have read through the release notes click the Next button to continue.
+    <img alt="screenshot of the release notes that are displayed after the welcome screen" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexBIG%201.0.2%20Installation%20and%20Administration%20Guide/Installation_Release_Notes.jpg?api=v2">
+  </li>
+  <li>
+    The next step is to review the license agreement of the LexBIG software and accept the terms of the agreement. Click Next button to continue with installation.
+    <img alt="screenshot of the license agreement screen" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexBIG%201.0.2%20Installation%20and%20Administration%20Guide/Installation_License_Agreement.jpg?api=v2">
+  </li>
+  <li>
+    Enter the path where you would like the LexBIG software installed. Click the Next button to continue installation. This will be referred to as the LEXBIG_DIRECTORY throughout the remaining instructions.
+    <img alt="screenshot of the screen to select an installation directory" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexBIG%201.0.2%20Installation%20and%20Administration%20Guide/Installation_Path_Selection.jpg?api=v2">
+    NoteIf the directory does not exist, the program will prompt to proceed with creating the new directory. If the directory does exist, the program will prompt to overwrite the directory and files in the installation path.
+  </li>
+  <li>
+    Select the components to be installed for LexBIG. Two of the components LexBIG Runtime and Admin Toolkit and LexBIG Info are required and cannot be unchecked. The remaining components are optional. Once components have been decided click the Next button to continue with installation.
+    <img alt="screenshot for selecting the components to be installed" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexBIG%201.0.2%20Installation%20and%20Administration%20Guide/Installation_Component_Selection.jpg?api=v2">
+  </li>
+  <li>
+    Once all the components have been installed a Finished prompt will be displayed. Click the Next button to continue installation.
+    <img alt="screenshot showing the progress of the installation" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexBIG%201.0.2%20Installation%20and%20Administration%20Guide/Installation_Finish_Prompt.jpg?api=v2">
+  </li>
+  <li>
+    The last step of the installation wizard provides the ability to generate an automatic installation script that can be used on other machines. This installation script can be used to install LexBIG without graphic wizard. Click Done to complete the installation process.
+    <img alt="screenshot showing that the installation is complete" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexBIG%201.0.2%20Installation%20and%20Administration%20Guide/Installation_Complete_Window.jpg?api=v2">
+  </li>
+</ol>
+<h3 id="LexBIG1.0.2InstallationandAdministrationGuide-DownloadingandInstallingLexBIGUsingCommandLine">
+  Downloading and Installing LexBIG Using Command Line
+</h3>
+AttentionTo best understand the installation and testing procedures for LexBIG, it is recommended that you follow the procedures described in this section with minimal deviation.Complete the following steps to download and install LexBIG using command line option:
+<ol>
+  <li>
+    To download the LexBIG install package go to the
+    <a href="https://wiki.nci.nih.gov/x/eYBoCw" rel="nofollow">
+      NCI GForge files archive
+    </a>
+    .
+  </li>
+  <li>
+    Select the most recent version of the LexBIG Software Package lexbig-install-X.X.X.jar (e.g., 1.0.1, lexbig-install-1.0.1.jar). Save this file to your computer. This location will be referred to as the SAVE_DIRECTORY. You may have to disable Pop-up blockers to allow save the install package to your local computer.
+  </li>
+  <li>
+    Select the install-config.xml file. Save this file to your SAVE_DIRECTORY.
+  </li>
+  <li>
+    Edit the install-config.xml file to configure the components to be installed. The install path can be modified to the location of choice. Components LexBIG Runtime and Admin Toolkit and LexBIG Info are required. Remove lines in install-config.xml file that you do not want to be installed. By default, the file is configured to install all packages.
+    <img alt="screenshot of WordPad showing the contents of the install-config.xml file" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexBIG%201.0.2%20Installation%20and%20Administration%20Guide/Install_Config_XML_File.jpg?api=v2">
+  </li>
+  <li>
+    At command prompt in the SAVE_DIRECTORY enter the command:
+    java -jar lexbig-install-1.0.1.jar install-config.xml
+    <img alt="screenshot showing the command prompt" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexBIG%201.0.2%20Installation%20and%20Administration%20Guide/Command_Prompt.jpg?api=v2">
+  </li>
+</ol>
+<h3 id="LexBIG1.0.2InstallationandAdministrationGuide-ConfiguringtheLexBIGEnvironment">
+  Configuring the LexBIG Environment
+</h3>
+The LexBIG install provides a config.props file to configure options for the LexBIG service and database settings. The LexBIG Service can be configured to work with many different databases, but the recommended databases are MySQL 4.1.16 (or higher) or PostgreSQL 8.x. Following installation, the Administrator should examine the config.props file and make any changes required to match the target database and runtime environment.
+<h4 id="LexBIG1.0.2InstallationandAdministrationGuide-Modifyingtheconfig.propsfileforLexBIG">
+  Modifying the config.props file for LexBIG
+</h4>
+<ul>
+  <li>
+    The file {LEXBIG_DIRECTORY}/resources/config/config.props contains properties controlling the behavior of the LexBIG runtime.
+  </li>
+  <li>
+    This guide has an overview of the options in this file; however, the file also has documentation embedded inside of it. The documentation inside the config.props file should be considered authoritative if there is a conflict between the documentation.
+  </li>
+  <li>
+    The first table below contains the variables that you must modify so that LexBIG can properly use your database.
+  </li>
+  <li>
+    The second table below contains the variables that you can change for performance reasons or alternative deployment scenarios, but you probably don&#39;t need to change in a standard LexBIG installation.
+  </li>
+  <li>
+    When constructing file paths, you must use either &#39;/&#39; or &#39;&#39;. &#39;\&#39; is not valid within the config.props file for file paths (it is ok for JDBC connection strings).
+  </li>
+</ul>
+<h4 id="LexBIG1.0.2InstallationandAdministrationGuide-VariablestoModifyforUsingyourDatabase">
+  Variables to Modify for Using your Database
+</h4>
+The following table describes the variables that must be set prior to use of LexBIG.
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Property Name
+      </th>
+      <th>
+        Description
+      </th>
+    </tr>
+    <tr>
+      <td>
+        SINGLE_DB_MODE
+      </td>
+      <td>
+        LexBIG can be configured to run within a single database (and it will use a numbering scheme on its tables) - or it can be configured to use multiple databases on a single server (and it will use a numbering scheme on its databases). It is completely up to the administrator which way will work better in their database environment. The default value is &#39;false&#39; - which will cause it to use multiple databases on a server.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        DB_URL
+      </td>
+      <td>
+        The address of your database server. The value that you put here will be dependent on the SINGLE_DB_MODE variable. If SINGLE_DB_MODE is &#39;true&#39; then this value should be a complete path that includes the DB name. For example:
+        DB_URL=jdbc:mysql://hostname/LexBIGDB
+        If SINGLE_DB_MODE is &#39;false&#39; then this value should be a path that does NOT include the DB name. For example:
+        DB_URL=jdbc:mysql://hostname/
+      </td>
+    </tr>
+    <tr>
+      <td>
+        DB_PREFIX
+      </td>
+      <td>
+        The prefix to use on all tables or databases that LexBIG creates.  If SINGLE_DB_MODE is &#39;true&#39; then this prefix will be used on tables. If SINGLE_DB_MODE is &#39;false&#39; then this value will be used on databases.NotesIf you wish to run multiple LexBIG installations on the same database server, give them each a unique prefix. Also, do not use dashes &#39;-&#39; in the db_prefix value. Recommended characters are alphanumeric (a-z, 0-98) and underscore &#39;_&#39;.  If your database is Oracle, you may not use this feature. Leave the value blank.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        DB_PARAM
+      </td>
+      <td>
+        Optional variable for passing extra database parameters. These will be appended to the end of the database connection string.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        DB_DRIVER
+      </td>
+      <td>
+        The Java class name that represents the driver that you wish to use with your database.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        DB_USER  DB_PASSWORD
+      </td>
+      <td>
+        The database username and password. If SINGLE_DB_MODE is &#39;true&#39; this account must have permission to add and remove tables, indexes, etc inside of this database. If SINGLE_DB_MODE is &#39;false&#39; this account must have permission to create and drop new databases.
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h4 id="LexBIG1.0.2InstallationandAdministrationGuide-VariablestoModifyPriortoUsingLexBIG">
+  Variables to Modify Prior to Using LexBIG
+</h4>
+The following table describes the variables that must be set prior to use of LexBIG.
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Property Name
+      </th>
+      <th>
+        Description
+      </th>
+    </tr>
+    <tr>
+      <td>
+        LG_CONFIG_FILE
+      </td>
+      <td>
+        This is not actually a variable that you would set within this file. It is documented here for clarity of other variables that depend on this variable. Normally, this variable is automatically set (at runtime) to the location of the config.props file that is being used by the runtime. Alternatively, you can set the java system variable &#39;LG_CONFIG_FILE&#39;}}at system startup to point to the {{config.props file that you want LexBIG to use. Refer to additional documentation in the config.props file if you need to use this feature.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        LG_BASE_PATH
+      </td>
+      <td>
+        This variable is the path that will be used to resolve any other relative (or unqualified) paths in the config.props file. This variable is optional, and should usually be left blank.  If this variable is left blank, it will automatically be set (at runtime) to the location of the folder which contains the config.props file that the system was started with.  This variable can also be overridden by setting the java system variable &#39;LG_BASE_PATH&#39;.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        JAR_FILE_LOCATION
+      </td>
+      <td>
+        The path of the folder that contains your SQL drivers and LexBIG extensions (if you have any). This value can be relative to the &#39;LG_BASE_PATH&#39; or absolute.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        REGISTRY_FILE
+      </td>
+      <td>
+        The location of the file that will store information about all loaded terminologies. This value can be relative to the &#39;LG_BASE_PATH&#39; or absolute.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        INDEX_LOCATION
+      </td>
+      <td>
+        The folder where all LexBIG generated indexes will be stored. This folder can potentially be large (several GB) - depending on the terminologies loaded. This value can be relative to the &#39;LG_BASE_PATH&#39; or absolute.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        MAX_CONNECTIONS_PER_DB
+      </td>
+      <td>
+        LexBIG maintains a pool of connections to each database that it connects to. This sets the limit on the number of connections that will be opened. If SINGLE_DB_MODE is &#39;true&#39; you may want to set this to a higher value - 20 or so (depending on expected user load) If SINGLE_DB_MODE is &#39;false&#39; you should keep this value smaller - the default is 8.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        CACHE_SIZE
+      </td>
+      <td>
+        LexBIG maintains an internal cache of some information that it needs to query from the database to resolve queries. This controls the size of that cache. This cache does not hold entire user queries. The default size is 500.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        ITERATOR_IDLE_TIME
+      </td>
+      <td>
+        The length of time to allow an unused (and unclosed) iterator to stay valid before it is closed (and its resources freed) by the system.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        MAX_RESULT_SIZE
+      </td>
+      <td>
+        This controls the maximum number of results that a user can resolve at one time for the CodedNodeSets and CodedNodeGraphs.  Iterators are not limited by this value.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        LOG_FILE_LOCATION
+      </td>
+      <td>
+        The path where LexBIG log files will be written. This value can be relative to the &#39;LG_BASE_PATH&#39; or absolute.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        DEBUG_ENABLE
+      </td>
+      <td>
+        Setting debug to &#39;true&#39; will give you more verbose logging information to debug problems. The default setting is &#39;false&#39;. This should normally be set to &#39;false&#39; since debug logging causes a negative performance impact.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        LOG_CHANGE
+      </td>
+      <td>
+        Indicates when a new log file should be started. This can be set to &#39;monthly&#39;, &#39;weekly&#39; or &#39;daily&#39;. This can also be set to a number - which will cause it to start a new log file whenever it reaches X MB in size.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        ERASE_LOGS_AFTER
+      </td>
+      <td>
+        If &#39;LOG_CHANGE&#39; is set to &#39;daily&#39;, &#39;weekly&#39;, or &#39;monthly&#39;, this variable instructs the service to remove log files that have not been written to in X days.NoteThe unit is treated as days regardless of the LOG_CHANGE value. Cleanup will only occur on restart of the JVM.If &#39;LOG_CHANGE&#39; is set to a number, this is the number of old log files that will be kept.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        EMAIL_ERRORS
+      </td>
+      <td>
+        Used to enable or disable e-mail notification of system errors and warnings. Default is &#39;false&#39;. If you set this to &#39;true&#39;, you must set the next two variables.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        SMTP_SERVER
+      </td>
+      <td>
+        The SMTP server to use to send errors over e-mail. Only applicable when EMAIL_ERRORS is set to &#39;true&#39;.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        EMAIL_TO
+      </td>
+      <td>
+        A comma separated list of e-mail address to set failure and warning notifications to.  Only applicable when EMAIL_ERRORS is set to &#39;true&#39;.
+      </td>
+    </tr>
+  </tbody>
+</table>
+AttentionIt is considered beyond the scope of this manual to address database (e.g. MySQL or PostgreSQL) setup and administration. However, proper database configuration is critical to the performance and long-term health of the LexBIG environment. System administrators should consult the MySQL or PostgreSQL documentation to determine settings that are appropriate to the host machine and environment. Tuning should be performed prior to loading vocabularies.
+<h4 id="LexBIG1.0.2InstallationandAdministrationGuide-Modifyingthemy.inifileforMySQL">
+  Modifying the my.ini file for MySQL
+</h4>
+The following table provides settings that have been modified in MySQL database environments used during LexBIG development and adoption, and are provided for consideration by database administrators.The file {MYSQL_HOME_DIRECTORY}/my.ini contains properties controlling the behavior of the MySQL database server.
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Property Name
+      </th>
+      <th>
+        Description
+      </th>
+    </tr>
+    <tr>
+      <td>
+        innodb_flush_log_at_trx_commit
+      </td>
+      <td>
+        Flush the transaction logs at each commit. Value: It is highly recommended that this option be set to &#39;0&#39; in Windows installations to improve load performance.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        innodb_additional_mem_pool_size
+      </td>
+      <td>
+        Additional memory pool that is used by InnoDB to store metadata information. Value: 16M
+      </td>
+    </tr>
+    <tr>
+      <td>
+        innodb_buffer_pool_size
+      </td>
+      <td>
+        Buffer pool used to cache both indexes and row data. Value: 1G (consider going higher based on physical RAM available)
+      </td>
+    </tr>
+    <tr>
+      <td>
+        tmp_table_size
+      </td>
+      <td>
+        Maximum size for internal (in-memory) temporary tables. Value: 256M
+      </td>
+    </tr>
+    <tr>
+      <td>
+        query_cache_size
+      </td>
+      <td>
+        Query cache is used to cache SELECT results and later return the without actual executing the same query once again. Value: 64M
+      </td>
+    </tr>
+    <tr>
+      <td>
+        sort_buffer_size
+      </td>
+      <td>
+        This buffer is allocated when MySQL needs to rebuild the index in REPAIR, OPTIMIZE, ALTER table statements as well as in LOAD DATA INFILE into an empty table. Value: 16M
+      </td>
+    </tr>
+  </tbody>
+</table>
+NoteMySQL can be passed a jdbc option for the Windows local environment that may improve performance 30 to 50%.Try the following values in the config.props file for the DB_URL:
+SINGLE_DB_MODE=true
+DB_URL=jdbc:mysql:///&lt;dbname&gt;?socketFactory=com.mysql.jdbc.NamedPipeSocketFactory
+DB_DRIVER=org.gjt.mm.mysql.Driver
+DB_USER=root
+DB_PASSWORD=
+DB_PREFIX=lb
+DB_PARAM=
+This uses Windows Named Pipe function and avoids use of the TCP/IP protocol. It only works when connecting with a local iteration of the MySQL database on Windows.
+<h4 id="LexBIG1.0.2InstallationandAdministrationGuide-Modifyingtheposgresql.confFileforPostgreSQL">
+  Modifying the posgresql.conf File for PostgreSQL
+</h4>
+The file {PostgreSQL_HOME_DIRECTORY}/posgresql.conf contains properties controlling the behavior of the PostgreSQL database server. The following table provides settings that have been modified in PostgreSQL database environments used during LexBIG development and adoption, and are provided for consideration by database administrators.
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Property Name
+      </th>
+      <th>
+        Description
+      </th>
+    </tr>
+    <tr>
+      <td>
+        shared_buffers
+      </td>
+      <td>
+        Number of shared buffers.  Value: 1000.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        work_mem
+      </td>
+      <td>
+        The amount of memory in kilobytes allocated to working memory Value: 51200.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        maintenance_work_mem
+      </td>
+      <td>
+        The amount of memory in kilobytes allocated to maintenance working memory.  Value: 512000.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        enable_seqscan
+      </td>
+      <td>
+        We set the &#39;enable_seqscan&#39; to false to use always use an index versus a table scan.
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h3 id="LexBIG1.0.2InstallationandAdministrationGuide-TestingtheLexBIGConfiguration">
+  Testing the LexBIG Configuration
+</h3>
+This LexBIG installation provides a test suite to verify and test the environment.WarningThe LexBIG runtime and database environments must still be configured prior to invoking the test suite, as described above.
+<ol>
+  <li>
+    In a Command Promptwindow, enter the following command to go to the test directory:
+    cd {LEXBIG_DIRECTORY}/test
+  </li>
+  <li>
+    Run the TestRunner utility to start the test process.For Windows Environment enter:
+    TestRunner.bat
+    For Linux Environment enter:
+    TestRunner.sh -h
+  </li>
+  <li>
+    Use file explorer to navigate to the directory that contains the test report. The report is placed in the {LexBIG_DIRECTORY}/test.
+    <img alt="screenshot showing the location of the test report directory" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexBIG%201.0.2%20Installation%20and%20Administration%20Guide/Test_Report_Location.jpg?api=v2">
+    <ul>
+      <li>
+        Navigate to the report that represents the date and time you executed the test.
+        <img alt="screenshot showing the location of the report" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexBIG%201.0.2%20Installation%20and%20Administration%20Guide/Test_Execution_Report_Files.jpg?api=v2">
+      </li>
+    </ul>
+  </li>
+  <li>
+    Review the test results opening index.html file using a web browser.
+    <img alt="screenshot of the test results" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexBIG%201.0.2%20Installation%20and%20Administration%20Guide/Unit_Test_Results.jpg?api=v2">
+  </li>
+</ol>
+Congratulations! If the test passes all tests, you have successfully installed the LexBIG software.
+<h3 id="LexBIG1.0.2InstallationandAdministrationGuide-TipsandPitfalls">
+  Tips and Pitfalls
+</h3>
+<h4 id="LexBIG1.0.2InstallationandAdministrationGuide-UpgradingLexBIG">
+  Upgrading LexBIG
+</h4>
+Upgrading LexBIG may require reloading content. Be sure to read the release notes for each LexBIG release before installing the latest version. Preserve configuration files and indexes unless instructed to reload or do otherwise in the release notes. These files include config.props, registry.xml and the entire lbIndex directory in the resources directory. |
+<h4 id="LexBIG1.0.2InstallationandAdministrationGuide-SingleandMultipleDatabaseConfigurationChanges">
+  Single and Multiple Database Configuration Changes
+</h4>
+Do not attempt to change database configurations from single database mode to multi-database mode and vice versa after loading in one mode or the other. LexBIG does not support both configurations at once.
+<h4 id="LexBIG1.0.2InstallationandAdministrationGuide-FailedandInterruptedLoads">
+  Failed and Interrupted Loads
+</h4>
+LexBIG loads of content are generally handled in a robust manner and failed loads clean up after themselves relatively well when dbms&#39; are properly configured to allow database drop functions by LexBIG. However, exiting the application in the middle of a load may cause unpredictable consequences with databases, indexes and lock files left in a state that will cause subsequent loads of the same terminology to fail.
+<ul>
+  <li>
+    Often these can be remedied by deleting the lock.xml file followed by using the cleanup function.
+  </li>
+  <li>
+    Other steps may need to be taken if this doesn&#39;t work, including dropping databases as a dba, deleting the index file for the offending terminology, and editing the registry.xml and metadata.xml files by hand.
+  </li>
+  <li>
+    A quick, dirty solution is to drop all databases and delete all configuration files except config.props.
+  </li>
+</ul>
+<h4 id="LexBIG1.0.2InstallationandAdministrationGuide-WhentoScaleaDbmsforaLargeNumberofConnections">
+  When to Scale a Dbms for a Large Number of Connections
+</h4>
+LexBIG is configured for multi-database loads and has multiple users connecting to all terminologies, then the administrator will need to scale database configurations to adapt to this. If you have large number of terminologies loaded and a large user base connecting to the service using the lbGUI, then you will need the database configuration for number of connections scaled appropriately or users may not be able to connect.NoteLoading in single database mode can eliminate this problem.
+<h4 id="LexBIG1.0.2InstallationandAdministrationGuide-MySQLDriverIssues">
+  MySQL Driver Issues
+</h4>
+LexBIG is distributed with an older version of the Java MySQL driver due to licensing concerns. If LexBIG reports an error concerning establishing a connection to the MySQL server yet the MySQL CLI is able to connect, a new version of Connector/J may be required.The latest version of Connector/J is available from MySQL.org. The new jar should be placed in the LexGrid/LexBIG/2.0.0/runtime/sqlDrivers/ directory. Remove the existing mm.mysql-2.0.6.jar to ensure that the class loader does not incorrectly load the older driver file. |
+<h2 id="LexBIG1.0.2InstallationandAdministrationGuide-InstallingLexBIGintoJBoss">
+  Installing LexBIG into JBoss
+</h2>
+<h3 id="LexBIG1.0.2InstallationandAdministrationGuide-Introduction.1">
+  Introduction
+</h3>
+Since LexBIG is server oriented software, a common deployment scenario is to package LexBIG into a WAR file and deploy it into JBoss or another Application Server. The following are recommendations for packaging and configuring LexBIG for JBoss usage.If not deploying into an Application Server such as JBoss, this chapter can be skipped. While these instructions are tailored to JBoss, they should serve as a reasonable guide in packaging for other Application Servers.Complete a standalone installation of LexBIG before starting this section. These files will be copied to create your JBoss package.
+<h3 id="LexBIG1.0.2InstallationandAdministrationGuide-CreatingyourWARfile">
+  Creating your WAR file
+</h3>
+To add LexBIG functionality to a WAR file, add the lexbig.jar file to the lib folder of the WAR file. Adding the lbRuntime.jar file to the lib folder may result in the duplication of many common libraries that LexBIG and JBoss share. In particular errors will occur due to a collision between the log4j libraries that LexBIG and JBoss both use.The lexbig.jar can be found in the &#39;runtime-components&#39; folder of the LexBIG installation.The lexbig.jar file adds LexBIG runtime functionality to JBoss; however, 3rd party dependencies must be added to the WAR file lib folder as well. These jar files are located in the &#39;runtime-components/extLib&#39; subfolder as shown in the figure below.
+<img alt="screenshot of an explorer screen showing the location of the extLib subfolder" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexBIG%201.0.2%20Installation%20and%20Administration%20Guide/Jar_Files_Location.jpg?api=v2">
+Avoid duplicating jars already contained in the WAR package or jar files that JBoss already provides. For example, JBoss already provides a log4j x.x.x.jar&#39; - this file should NOT BE COPIED into the WAR package. This jar is singled out because it is known to cause errors in JBoss if you deploy a WAR file that contains a log4j library.Do not copy files from &#39;runtime-components/extLib/guiLibraries&#39; or any of the sql drivers in the &#39;sqlDrivers&#39; folder. The gui libraries are not needed and the sql drivers will be dealt with later.
+<h3 id="LexBIG1.0.2InstallationandAdministrationGuide-CreatingtheFileStorageLocationfortheLexBIGRuntime">
+  Creating the File Storage Location for the LexBIG Runtime
+</h3>
+LexBIG runtime needs to have the ability to read and write from a local file system in order to function properly. The files that it writes also need to persist through a stop and start of the JBoss server. These files cannot be placed inside of the WAR file, since JBoss extracts WAR files into a differently named temporary folder every time it starts up.
+<ol>
+  <li>
+    Create a single folder to store this information, and configure the LexBIG JBoss instance to use this folder while it is running for all of its file system access needs.
+  </li>
+  <li>
+    Create a top level folder named &#39;LexBIGData&#39;. Create sub-folders in this directory named &#39;config&#39;, &#39;lbIndex&#39;, &#39;libs&#39;, and &#39;logs&#39;. Below is a screenshot of this file structure:
+    <img alt="screenshot showing the file structure as described in the previous content" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexBIG%201.0.2%20Installation%20and%20Administration%20Guide/File_Structure_Screenshot.jpg?api=v2">
+  </li>
+  <li>
+    The folder &#39;config&#39; is used for storing the LexBIG configuration, storing the terminology registry, and storing lock files. Copy &#39;LexBIG &lt;version&gt;\resources\config\config.props&#39; into this folder now. This file will be customized later.
+  </li>
+  <li>
+    The folder &#39;lbIndex&#39; is where LexBIG will store the indexes that it creates. Leave this folder empty.
+  </li>
+  <li>
+    In the folder &#39;libs&#39; copy the SQL drivers. Keep in mind that the SQL driver that ships with LexBIG is not compatable with the latetest MySQL versions. Licensing restrictions prevent shipping the latest drivers and they must be downloaded by the user. Any LexBIG extensions can also be placed here. Copy the jar &#39;LexBIG 1.0.1\runtime-components\lexbig.jar&#39; into this folder. A duplicate of this jar file needs to be here to assist with some custom classloader work that bypasses the normal classpaths.
+  </li>
+  <li>
+    The folder &#39;logs&#39; is where LexBIG will write its log messages. Leave this folder empty.
+  </li>
+</ol>
+Your directory structure should now look like the screen shot above.
+<h3 id="LexBIG1.0.2InstallationandAdministrationGuide-Configuringconfig.propsforJBossDeployment">
+  Configuring config.props for JBoss Deployment
+</h3>
+There are a few variables in the config.props file in your LexBIGData folder that will need to be changed for the JBoss deployment. There are a number of ways that this file can be configured - but these instructions set up directories relative paths - allowing the WAR file to be easily moved from one server to another.The config.props file should already be configured for standalone mode at this point, as described earlier in the manual. This section will only describe the changes that should be made for JBoss deployment.There following five variables need to be set to the following values in the config.props file.
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Variable and Setting
+      </th>
+      <th>
+        Description
+      </th>
+    </tr>
+    <tr>
+      <td>
+        LG_BASE_PATH=
+      </td>
+      <td>
+        This variable is being left blank. This will cause LexBIG to automatically set this variable to the location of the config.props file when it starts up. All other paths in the config.props file can then be set relative to the folder that contains the config.props file that was found when the system started up - and it should use the config.props file in your LexBIGData folder.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        JAR_FILE_LOCATION=../libs/
+      </td>
+      <td>
+        This variable is being set to point to the &#39;libs&#39; folder that we created in the LexBIGData folder. The two periods tells it to go up one folder from the place where it started (the config folder) and then down into the libs folder.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        REGISTRY_FILE=registry.xml
+      </td>
+      <td>
+        By only putting a file name here, a file of that name will be created in the same folder where it started (the config folder in the LexBIGData folder).
+      </td>
+    </tr>
+    <tr>
+      <td>
+        INDEX_LOCATION=../lbIndex
+      </td>
+      <td>
+        Sets the index storage location to the lbIndex folder in the LexBIGData folder.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        LOG_FILE_LOCATION=../logs
+      </td>
+      <td>
+        Sets the log location to the logs folder in the LexBIGData folder.
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h3 id="LexBIG1.0.2InstallationandAdministrationGuide-LocatingtheFileStorageLocationfortheLexBIGRuntime">
+  Locating the File Storage Location for the LexBIG Runtime
+</h3>
+Now that you have created your LexBIGData folder, and configured the config.props file, you need to decide where to place it on the system where JBoss and your WAR file will be deployed. Location is up to the user - so long as it is permanent. A couple of possibilities include keeping it with JBoss – in the JBoss data folder, \...\jboss-4.0.4.GA\server\default\data\LexBIGData, or it could go into a typical Linux application folder such as /apps/LexBIG/LexBIGData/.
+<h3 id="LexBIG1.0.2InstallationandAdministrationGuide-Locatingtheconfig.propsFilewhenJBossStarts">
+  Locating the config.props File when JBoss Starts
+</h3>
+The only step remaining now is to help LexBIG find the proper config.props file when it initializes. There are a number of ways that this could be done - but the easiest way is to set the Java System Variable LG_CONFIG_FILE to the location of the config.props file.This can be done by modifying the script that launches JBoss - adding the following (modify as appropriate for the place that you picked for your LexBIGData folder)-DLG_CONFIG_FILE=C:\Program Files\jboss-4.0.4.GA\server\default\data\LexBIGData\config\config.propsAlternatively, you could programmatically set this system variable from your application when it starts up and before it makes its first LexBIG call.Read the documentation in the config.props file for other LG_CONFIG_FILE configuration possibilities.NoteJBoss tends to run out of memory while running with the default settings of JBoss. To fix the problem, modify the run.conf file under JBOSS_home/bin to change the memory setting and how frequently the rmi garbage collector runs, by editing the JAVA_OPTS line as follows:
+if [ &#34;x$JAVA_OPTS&#34; = &#34;x&#34; ]; then
+JAVA_OPTS=&#34;-server -XX:MaxPermSize=128m -Xms256m -Xmx2000m -Dsun.rmi.dgc.client.gcInterval=120000 -Dsun.rmi.dgc.server.gcInterval=120000&#34;
+fi
+<h2 id="LexBIG1.0.2InstallationandAdministrationGuide-MovingaTerminologytoanotherSQLServer">
+  Moving a Terminology to another SQL Server
+</h2>
+In some deployment scenarios, it may be necessary to move a very large terminology onto a different SQL server than the standard LexBIG server configured above for scalability reasons.This is supported, but there are some limitations and cautions as described in the bullets that follow:
+<ul>
+  <li>
+    Manually edit the registry.xml file (It may have an alternate name as denoted in the REGISTRY_FILE variable of config.props) with a text editor.
+  </li>
+  <li>
+    This terminology cannot be removed using the LexBIG API. To remove the terminology, edit the registry.xml file again, and manually drop the database from the server. This leaves an orphaned index – running the orphaned resources clean up tool wipes the index and associated entries.
+  </li>
+  <li>
+    This &#34;extra&#34; SQL server must use the same driver and same username and password as the default LexBIG server since the configuration file only supports a single password and username set.
+  </li>
+</ul>
+Steps to move a terminology to a new server:
+<ol>
+  <li>
+    Manually move the proper database (or proper subset of tables in SINGLE_DB_MODE) to the new server. The LexBIG TransferScheme tool (in the admin scripts folder) can help you determine the proper SQL databases, tables, and commands that you will need to use to accomplish this. Alternatively, you can look at the registry.xml file to determine what database and/or tables you need to move.
+  </li>
+  <li>
+    Manually edit the registry.xml file. You will need to change the value of the dbURL parameter on the proper line for this terminology that you are using.
+  </li>
+  <li>
+    Restart LexBIG, and ensure that the terminology is still available.
+  </li>
+</ol>
+<h2 id="LexBIG1.0.2InstallationandAdministrationGuide-LexBIGAdministration">
+  LexBIG Administration
+</h2>
+A set of administrative utilities are provided to manage the LexBIG Service. These utilities are provided for Windows (*.bat) and Linux (*.sh) operating systems. Each of the commands is located in the {LEXBIG_DIRECTORY}/admin and {LEXBIG_DIRECTORY}/test directory. A full description of the options with example is provided for each of the administration utilities.
+<h3 id="LexBIG1.0.2InstallationandAdministrationGuide-LexBIGAdministrationPrograms">
+  LexBIG Administration Programs
+</h3>
+The following table describes the available LexBIG Administration programs.
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Administrative Program
+      </th>
+      <th>
+        Description
+      </th>
+    </tr>
+    <tr>
+      <td>
+        ActivateScheme
+      </td>
+      <td>
+        Activates a coding scheme based on unique URN and version. Options:
+        <ul>
+          <li>
+            -u - urn &lt;urn&gt; URN uniquely identifying the code system.
+          </li>
+          <li>
+            -v - version &lt;versionId&gt; Version identifier.
+          </li>
+          <li>
+            -f - force Force activation (no confirmation).  Example:
+            ActivateScheme -u &#34;urn:oid:2.16.840.1.113883.3.26.1.1&#34; -v &#34;05.09e&#34;
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        ClearOrphanedResources
+      </td>
+      <td>
+        Clean up orphaned resources - databases and indexes. Options:
+        <ul>
+          <li>
+            -li - listIndexes List all unused indexes.
+          </li>
+          <li>
+            -ldb - listDatabases List all unused databases (with matching prefix).
+          </li>
+          <li>
+            -ri - removeIndex &lt;name&gt; Remove the (unused) index with the given name.
+          </li>
+          <li>
+            -rdb - removeDatabase &lt;name&gt; Remove the (unused) database with the given name.
+          </li>
+          <li>
+            -a - all Remove all unreferenced indexes and databases (with matching prefix).  Example:
+            ClearOrphanedResources -li
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        DeactivateScheme
+      </td>
+      <td>
+        Deactivates a coding scheme based on unique URN and version. Options:
+        <ul>
+          <li>
+            -u - urn &lt;urn&gt; URN uniquely identifying the code system.
+          </li>
+          <li>
+            -v - version &lt;versionId&gt; Version identifier.
+          </li>
+          <li>
+            -d - date &lt;yyyy-MM-dd,HH:mm:ss&gt; Date and time for deactivation to take effect; immediate if not specified.
+          </li>
+          <li>
+            -f - force Force deactivation (no confirmation).  Example:
+            DeactivateScheme -u &#34;urn:oid:2.16.840.1.113883.3.26.1.1&#34; -v &#34;05.09e&#34; -d &#34;01/31/2099,12:00:00&#34;
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        ExportLgXML
+      </td>
+      <td>
+        Exports content from the repository to a file in the LexGrid canonical XML format. Options:
+        <ul>
+          <li>
+            -out - output &lt;uri&gt; URI or path of the directory to contain the resulting XML file. The file name will be automatically derived from the coding scheme name.
+          </li>
+          <li>
+            -u - urn &lt;name&gt; URN or local name of the coding scheme to export.
+          </li>
+          <li>
+            -v - version &lt;id&gt; The assigned tag/label or absolute version identifier of the coding scheme.
+          </li>
+          <li>
+            -nf - noFail If specified, indicates that processing should not stop for recoverable errors
+          </li>
+          <li>
+            -f - force If specified, allows the destination file to be overwritten if present.NoteIf the coding scheme and version values are unspecified, a list of available coding schemes will be presented for user selection. Examples:
+            ExportLgXML -out &#34;file:///path/to/dir&#34; -nf -f
+
+            ExportLgXML -out &#34;file:///path/to/dir&#34; u &#34;NCI_Thesaurus&#34; -v &#34;PRODUCTION&#34; -nf -f
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        ExportOBO
+      </td>
+      <td>
+        Exports content from the repository to a file in the Open Biomedical Ontologies (OBO) format. Options:
+        <ul>
+          <li>
+            -out - output &lt;uri&gt; URI or path of the directory to contain the resulting OBO file. The file name will be automatically derived from the coding scheme name.
+          </li>
+          <li>
+            -u - urn &lt;name&gt; URN or local name of the coding scheme to export.
+          </li>
+          <li>
+            -v - version &lt;id&gt; The assigned tag/label or absolute version identifier of the coding scheme.
+          </li>
+          <li>
+            -nf - noFail If specified, indicates that processing should not stop for recoverable errors
+          </li>
+          <li>
+            -f - force If specified, allows the destination file to be overwritten if present.NoteIf the coding scheme and version values are unspecified, a list of available coding schemes will be presented for user selection. Examples:
+            ExportOBO -out &#34;file:///path/to/dir&#34; -nf -f
+
+            ExportOBO -out &#34;file:///path/to/dir&#34; -u &#34;FBbt&#34; -v &#34;PRODUCTION&#34; -nf -f
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        ExportOWL
+      </td>
+      <td>
+        Exports content from the repository to a file in OWL format. Options:
+        <ul>
+          <li>
+            -out - output &lt;uri&gt; URI or path of the directory to contain the resulting OWL file. The file name will be automatically derived from the coding scheme name.
+          </li>
+          <li>
+            -u - urn &lt;name&gt; URN or local name of the coding scheme to export.
+          </li>
+          <li>
+            -v - version &lt;id&gt; The assigned tag/label or absolute version identifier of the coding scheme.
+          </li>
+          <li>
+            -nf - noFail If specified, indicates that processing should not stop for recoverable errors
+          </li>
+          <li>
+            -f - force If specified, allows the destination file to be overwritten if present.NoteIf the URN and version values are unspecified, a list of available coding schemes will be presented for user selection. Examples:
+            ExportOWL -out &#34;file:///path/to/dir&#34; -nf -f
+
+            ExportOWL -out &#34;file:///path/to/dir&#34; -u &#34;sample&#34; -v &#34;1.0&#34; -nf -f
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        ListExtensions
+      </td>
+      <td>
+        List registered extensions to the LexBIG runtime environment. Options:
+        <ul>
+          <li>
+            -a - all List all extensions (default, override by specifying other options).
+          </li>
+          <li>
+            -i - index List index extensions.
+          </li>
+          <li>
+            -m - match List match algorithm extensions.
+          </li>
+          <li>
+            -s - sort List sort algorithm extensions.
+          </li>
+          <li>
+            -g - generic List generic extensions.  Example:
+            ListExtensions -a
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        ListSchemes
+      </td>
+      <td>
+        List all currently registered vocabularies. Options:
+        <ul>
+          <li>
+            -b - brief List only coding scheme name, version, urn, and tags (default).
+          </li>
+          <li>
+            -f - full List full detail for each scheme.   Example: ListSchemes
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        LoadLgXML
+      </td>
+      <td>
+        Loads a vocabulary file, provided in LexGrid canonical xml format. Options:
+        <ul>
+          <li>
+            -in - input &lt;uri&gt; URI specifying location of the source file.
+          </li>
+          <li>
+            -v - validate &lt;level&gt; Perform validation of the candidate resource without loading data. If specified, the &#39;-nf&#39;, -a&#39; and &#39;-t&#39; options are ignored. Supported levels of validation include:
+            <ul>
+              <li>
+                0 = Verify document is well-formed
+              </li>
+              <li>
+                1 = Verify document is valid
+              </li>
+            </ul>
+          </li>
+          <li>
+            -nf - noFail If specified, indicates that processing should not stop for recoverable errors.
+          </li>
+          <li>
+            -a - activate ActivateScheme on successful load; if unspecified the vocabulary is loaded but not activated.
+          </li>
+          <li>
+            -t - tag &lt;tagID&gt; An optional tag ID (e.g. &#39;PRODUCTION&#39; or &#39;TEST&#39;) to assign.  Load Example:
+            LoadLgXML -in &#34;file:///path/to/file.xml&#34; -nf -a
+            Validation Example:
+            LoadLgXML -in &#34;file:///path/to/file.xml&#34; -v 0
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        LoadNCIHistory
+      </td>
+      <td>
+        Imports NCI History data to the LexBIG repository. Options:
+        <ul>
+          <li>
+            -in - input &lt;uri&gt; URI specifying location of the history file
+          </li>
+          <li>
+            -vf - versionFile &lt;uri&gt; URI specifying location of the file containing version identifiers for the history to be loaded.
+          </li>
+          <li>
+            -v - validate &lt;level&gt; Perform validation of the candidate resource without loading data. If specified, the &#39;-nf&#39; and &#39;-r&#39; options are ignored. Supported levels of validation include:
+            <ul>
+              <li>
+                0 = Verify top 10 lines are correct format
+              </li>
+              <li>
+                1 = Verify correct format for the entire file
+              </li>
+            </ul>
+          </li>
+          <li>
+            -nf - noFail If specified, indicates that processing should not stop for recoverable errors
+          </li>
+          <li>
+            -r - replace If not specified, the provided history file will be added into the current history database; otherwise the current database will be replaced by the new content.  Load Example:
+            LoadNCIHistory -nf -in &#34;file:///path/to/history.file&#34; -vf &#34;file:///path/to/version.file&#34;
+            Validation Example:
+            LoadNCIHistory -in &#34;file:///path/to/history.file&#34; -v 0
+            Versions File format information:
+            releaseDate | isLatest | releaseAgency | releaseId | releaseOrder | entityDescription
+            Sample Record:
+            28-NOV-05 | false | http://nci.nih.gov/ | 05.10e | 26 | Editing of NCI Thesaurus 05.10e was completed on October 31, 2005.  Version 05.10e was October&#39;s fifth build in our development cycle.
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        LoadNCIMeta
+      </td>
+      <td>
+        Loads the NCI MetaThesaurus, provided as a collection of RRF files. Options:
+        <ul>
+          <li>
+            -in - input &lt;uri&gt; The directory containing the RRF files; in URI format.
+          </li>
+          <li>
+            -v - validate &lt;level&gt; Perform validation of the candidate resource without loading data. If specified, the &#39;-nf&#39;, -a&#39; and &#39;-t&#39; options are ignored. Supported levels of validation include: 0 = Verify first 1000 lines per required file
+          </li>
+          <li>
+            -nf - noFail If specified, indicates that processing should not stop for recoverable errors
+          </li>
+          <li>
+            -a - activate ActivateScheme on successful load; if unspecified the vocabulary is loaded but not activated
+          </li>
+          <li>
+            -t - tag &lt;tagID&gt; An optional tag ID (e.g. &#39;PRODUCTION&#39; or &#39;TEST&#39;) to assign.  Load Example:
+            LoadNCIMeta -in &#34;file:///path/to/directory&#34; -nf -a
+            Validation Example:
+            LoadNCIMeta -in &#34;file:///path/to/directory&#34; -v 0
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        LoadNCIThesOWL
+      </td>
+      <td>
+        Loads an OWL file containing a version of the NCI Thesaurus  Options:
+        <ul>
+          <li>
+            -in - input &lt;uri&gt; URI specifying location of the source file
+          </li>
+          <li>
+            -v - validate &lt;level&gt; Perform validation of the candidate resource without loading data. If specified, the &#39;-nf&#39;, -a&#39; and &#39;-t&#39; options are ignored. Supported levels of validation include:
+            <ul>
+              <li>
+                0 = Verify document is well-formed
+              </li>
+              <li>
+                1 = Verify document is valid
+              </li>
+            </ul>
+          </li>
+          <li>
+            -nf - noFail If specified, indicates that processing should not stop for recoverable errors.
+          </li>
+          <li>
+            -a - activate ActivateScheme on successful load; if unspecified the vocabulary is loaded but not activated.
+          </li>
+          <li>
+            -t - tag &lt;tagID&gt; An optional tag ID (e.g. &#39;PRODUCTION&#39; or &#39;TEST&#39;) to assign.  Load Example:
+            LoadNCIThesOWL -in &#34;file:///path/to/thesaurus.owl&#34; -nf -a
+            Validation Example:
+            LoadNCIThesOWL -in &#34;file:///path/to/thesaurus.owl&#34; -v 0
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        LoadOBO
+      </td>
+      <td>
+        Loads a file specified in the Open Biomedical Ontologies (OBO) format. Options:
+        <ul>
+          <li>
+            -in - input &lt;uri&gt; URI or path specifying location of the source file
+          </li>
+          <li>
+            -v - validate &lt;int&gt; Perform validation of the candidate resource without loading data. If specified, the &#39;-nf&#39;, -a&#39; and &#39;-t&#39; options are ignored. Supported levels of validation include: 0 = Verify document is valid
+          </li>
+          <li>
+            -nf - noFail If specified, indicates that processing should not stop for recoverable errors
+          </li>
+          <li>
+            -a - activate ActivateScheme on successful load; if unspecified the vocabulary is loaded but not activated
+          </li>
+          <li>
+            -t - tag &lt;id&gt; An optional tag ID (e.g. &#39;PRODUCTION&#39; or &#39;TEST&#39;) to assign.  Example:
+            LoadOBO -in &#34;file:///path/to/file.obo&#34; -nf -a
+            LoadOBO -in &#34;file:///path/to/file.obo&#34; -v 0
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        LoadOWL
+      </td>
+      <td>
+        Loads an OWL file.NoteLoad of the NCI Thesaurus should be performed via the LoadNCIThesOWL counterpart, since it will allow more precise handling of NCI semantics.Options:
+        <ul>
+          <li>
+            -in - input &lt;uri&gt; URI or path specifying location of the source file
+          </li>
+          <li>
+            -v - validate &lt;int&gt; Perform validation of the candidate resource without loading data. If specified, the &#39;-nf&#39;, -a&#39; and &#39;-t&#39; options are ignored. Supported levels of validation include:
+            <ul>
+              <li>
+                0 = Verify document is well-formed
+              </li>
+              <li>
+                1 = Verify document is valid
+              </li>
+            </ul>
+          </li>
+          <li>
+            -nf - noFail If specified, indicates that processing should not stop for recoverable errors
+          </li>
+          <li>
+            -a - activate ActivateScheme on successful load; if unspecified the vocabulary is loaded but not activated
+          </li>
+          <li>
+            -t - tag &lt;id&gt; An optional tag ID (e.g. &#39;PRODUCTION&#39; or &#39;TEST&#39;) to assign.  Example:
+            LoadOWL -in &#34;file:///path/to/somefile.owl&#34; -nf -a
+            LoadOWL -in &#34;file:///path/to/somefile.owl&#34; -v 0
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        LoadUMLSDatabase
+      </td>
+      <td>
+        Loads UMLS content, provided as a collection of RRF files in a single directory. Files may comprise the entire UMLS distribution or pruned via the MetamorphoSys tool. A complete list of source vocabularies is available online at
+        <a href="http://www.nlm.nih.gov/research/umls/metaa1.html" rel="nofollow">
+          http://www.nlm.nih.gov/research/umls/metaa1.html
+        </a>
+        . Options:
+        <ul>
+          <li>
+            -in - input &lt;uri&gt; Location of the source database. Typically this is specified in the form of a URL that indicates the database server, port, name, and optional properties.
+          </li>
+          <li>
+            -u - uid User ID for authenticated access, if required and not specified as part of the input URL.
+          </li>
+          <li>
+            -p - pwd Password for authenticated access, if required and not specified as part of the input URL.
+          </li>
+          <li>
+            -d - driver Name of the JDBC driver to use when accessing the database.
+          </li>
+          <li>
+            -s - sources Comma-delimited list of source vocabularies to load. If absent, all available vocabularies are loaded.
+          </li>
+          <li>
+            -v - validate &lt;int&gt; Perform validation of the candidate resource without loading data. If specified, the &#39;-nf&#39;, -a&#39; and &#39;-t&#39; options are ignored. Supported levels of validation include: 0 = Verify the existence of each required file
+          </li>
+          <li>
+            -nf - noFail If specified, indicates that processing should not stop for recoverable errors
+          </li>
+          <li>
+            -a - activate ActivateScheme on successful load; if unspecified the vocabulary is loaded but not activated.
+          </li>
+          <li>
+            -t - tag &lt;id&gt; An optional tag ID (e.g. &#39;PRODUCTION&#39; or &#39;TEST&#39;) to assign.  Example:
+            LoadUMLSDatabase -in &#34;jdbc:postgresql://localhost:5432/lexgrid&#34;
+            -d &#34;org.postgresql.Driver&#34; -u &#34;myDatabaseUser&#34; -p &#34;myPassword&#34;
+            -s &#34;ICD9CM_2005,ICD9CM_2006&#34; -nf -a
+            LoadUMLSDatabase -in &#34;jdbc:postgresql://localhost:5432/lexgrid&#34;
+            -d &#34;org.postgresql.Driver&#34; -u &#34;myDatabaseUser&#34; -p &#34;myPassword&#34;
+            -v 0
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        LoadUMLSFiles
+      </td>
+      <td>
+        Loads UMLS content, provided as a collection of RRF files in a single directory. Files may comprise the entire UMLS distribution or pruned via the MetamorphoSys tool. A complete list of source vocabularies is available online at
+        <a href="http://www.nlm.nih.gov/research/umls/metaa1.html" rel="nofollow">
+          http://www.nlm.nih.gov/research/umls/metaa1.html
+        </a>
+        . Options:
+        <ul>
+          <li>
+            -in - input &lt;uri&gt; URI or path of the directory containing the NLM files
+          </li>
+          <li>
+            -s - sources Comma-delimited list of source vocabularies to load. If absent, all available vocabularies are loaded.
+          </li>
+          <li>
+            -v - validate &lt;int&gt; Perform validation of the candidate resource without loading data. If specified, the &#39;-nf&#39;, -a&#39; and &#39;-t&#39; options are ignored. Supported levels of validation include: 0 = Verify the existence of each required file
+          </li>
+          <li>
+            -nf - noFail If specified, indicates that processing should not stop for recoverable errors
+          </li>
+          <li>
+            -a - activate ActivateScheme on successful load; if unspecified the vocabulary is loaded but not activated.
+          </li>
+          <li>
+            -t - tag &lt;id&gt; An optional tag ID (e.g. &#39;PRODUCTION&#39; or &#39;TEST&#39;) to assign.  Example:
+            LoadUMLSFiles -in &#34;file:///path/to/directory/&#34; -s &#34;ICD9CM_2005,ICD9CM_2006&#34; -nf -a
+            LoadUMLSFiles -in &#34;file:///path/to/directory/&#34; -v 0
+            NoteUMLS Metathesaurus RRF files are a very large fileset. Many users prefer to subset these files using the Metamorphosys tool included with the UMLS Metathesaurus in order to move a single terminology from a central location of these files. When generating source RRF files from the Metathesaurus, the Metamorphosys tool should be set to output versionless source abbreviations rather than versioned source abbreviations. Failing to do so before loading RRF files to LexBIG will cause an incomplete database to be created leaving the association and concept tables empty.
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        LoadUMLSSemnet
+      </td>
+      <td>
+        Loads the UMLS Semantic Network, provided as a collection of files in a single directory. The following files are expected to be provided from the National Library of Medicine (NLM) distribution. These files can be downloaded from the NLM web site at
+        <a href="http://semanticnetwork.nlm.nih.gov/Download/index.html" rel="nofollow">
+          http://semanticnetwork.nlm.nih.gov/Download/index.html
+        </a>
+        .
+        <ul>
+          <li>
+            LICENSE.txt (text from distribution terms and conditions)
+          </li>
+          <li>
+            SRFIL.txt (File Description)
+          </li>
+          <li>
+            SRFIL.txt (Field Description)
+          </li>
+          <li>
+            SRDEF.txt (Basic information about the Semantic Types and Relations)
+          </li>
+          <li>
+            SRSTR.txt (Structure of the Network)
+          </li>
+          <li>
+            SRSTRE1.txt (Fully inherited set of Relations (UIs))
+          </li>
+          <li>
+            SRSTRE2.txt (Fully inherited set of Relations (Names))
+          </li>
+          <li>
+            SU.txt (Unit Record)   Options:
+          </li>
+        </ul>
+        <ul>
+          <li>
+            -in - input &lt;uri&gt; URI or path of the directory containing the NLM files
+          </li>
+          <li>
+            -v - validate &lt;int&gt; Perform validation of the candidate resource without loading data. If specified, the &#39;-nf&#39;, -a&#39; and &#39;-t&#39; options are ignored. Supported levels of validation include: 0 = Verify the existence of each required file
+          </li>
+          <li>
+            -nf - noFail If specified, indicates that processing should not stop for recoverable errors
+          </li>
+          <li>
+            -a - activate ActivateScheme on successful load; if unspecified the vocabulary is loaded but not activated.
+          </li>
+          <li>
+            -t - tag &lt;id&gt; An optional tag ID (e.g. &#39;PRODUCTION&#39; or &#39;TEST&#39;) to assign.
+          </li>
+          <li>
+            -il - InheritanceLevel &lt;int&gt; If specified, indicates the extent of inherited relationships to import. 0 = none; 1 = all; 2 = all except is_a (default). All direct relationships are imported, regardless of option.  Example:
+            LoadUMLSSemnet -in &#34;file:///path/to/directory/&#34; -nf -a -il 1
+            LoadUMLSSemnet -in &#34;file:///path/to/directory/&#34; -v 0
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        LoadFMA
+      </td>
+      <td>
+        Imports from an FMA database to a LexBIG repository. Requires that the pprj file be configured with a database URN, username, password for an FMA MySQL based database. The FMA.pprj file and MySQL dump file are available at
+        <a href="http://sig.biostr.washington.edu/projects/fm/" rel="nofollow">
+          http://sig.biostr.washington.edu/projects/fm/
+        </a>
+        upon registration. Options:
+        <ul>
+          <li>
+            in - input &lt;uri&gt; URI or path specifying location of the source file
+          </li>
+          <li>
+            v - validate &lt;int&gt; Perform validation of the candidate resource without loading data. If specified, the &#39;-nf&#39;, -a&#39; and &#39;-t&#39; options are ignored. Supported levels of validation include:
+            <ul>
+              <li>
+                0 = Verify document is well-formed
+              </li>
+              <li>
+                1 = Verify document is valid
+              </li>
+            </ul>
+          </li>
+          <li>
+            -nf - noFail If specified, indicates that processing should not stop for recoverable errors
+          </li>
+          <li>
+            -a - activate ActivateScheme on successful load; if unspecified the vocabulary is loaded but not activated
+          </li>
+          <li>
+            -t - tag &lt;id&gt; An optional tag ID (e.g. &#39;PRODUCTION&#39; or &#39;TEST&#39;) to assign.  Examples:
+            LoadFMA -in &#34;file:///path/to/FMA.pprj&#34; -nf -a
+
+            LoadFMA -in &#34;file:///path/to/FMA.pprj&#34; -v 0
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        LoadHL7RIM
+      </td>
+      <td>
+        Converts an HL7 RIM MS Access database to a LexGrid database
+        <ul>
+          <li>
+            -in - input &lt;uri&gt; URI or path specifying location of the source file
+          </li>
+          <li>
+            -mf - manifest &lt;uri&gt; URI or path specifying location of the manifest file
+          </li>
+          <li>
+            -lp - load preferences &lt;uri&gt; URI or path specifying location of the load preferences file
+          </li>
+          <li>
+            -v - validate &lt;int&gt; Perform validation of the candidate resource without loading data. If specified, the &#39;-nf&#39;, -a&#39; and &#39;-t&#39; options are ignored. Supported levels of validation include: 0 = Verify document is valid
+          </li>
+          <li>
+            -nf - noFail If specified, indicates that processing should not stop for recoverable errors
+          </li>
+          <li>
+            -a - activate ActivateScheme on successful load; if unspecified the vocabulary is loaded but not activated
+          </li>
+          <li>
+            -t - tag &lt;id&gt; An optional tag ID (e.g. &#39;PRODUCTION&#39; or &#39;TEST&#39;) to assign.  Examples:
+            LoadHL7RIM -in &#34;file:///path/to/file.mdb&#34; -nf -a
+
+            LoadHL7RIM -in &#34;file:///path/to/file.mdb&#34; -v 0
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        LoadMetaData
+      </td>
+      <td>
+        Loads optional XML-based metadata to be associated with an existing coding scheme. Options:
+        <ul>
+          <li>
+            -u - urn &lt;name&gt; URN uniquely identifying the code system.
+          </li>
+          <li>
+            -v - version &lt;id&gt; Version identifier.
+          </li>
+          <li>
+            -in - input &lt;uri&gt; URI or path specifying location of the XML file.
+          </li>
+          <li>
+            -v - validate &lt;int&gt; Perform validation of the input file without loading data. If specified, the &#39;-nf&#39;, &#39;-f&#39;, and &#39;-o&#39; options are ignored. Supported levels of validation include: 0 = Verify document is valid
+          </li>
+          <li>
+            -o - overwrite If specified, existing metadata for the code system will be erased. Otherwise, new metadata will be appended to existing metadata (if present).
+          </li>
+          <li>
+            -f - force Force overwrite (no confirmation).
+          </li>
+          <li>
+            -nf - noFail If specified, indicates that processing should not stop for recoverable errorsNoteIf the URN and version values are unspecified, a list of available coding schemes will be presented for user selection. Examples:
+            LoadMetadata -in &#34;file:///path/to/file.xml&#34; -nf -o
+
+            LoadMetadata -in &#34;file:///path/to/file.xml&#34;
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        RebuildIndex
+      </td>
+      <td>
+        Rebuilds indexes associated with the specified coding scheme. Options:
+        <ul>
+          <li>
+            -u - urn &lt;urn&gt; URN uniquely identifying the code system.
+          </li>
+          <li>
+            -v - version &lt;versionId&gt; Version identifier.
+          </li>
+          <li>
+            -i - index &lt;name&gt; Name of the index extension to rebuild (if absent, rebuilds all built-in indices and named extensions).
+          </li>
+          <li>
+            -f - force Force clear (no confirmation).  Example:
+            RebuildIndex -u &#34;urn:oid:2.16.840.1.113883.3.26.1.1&#34; -v &#34;05.09e&#34; -i &#34;myindex&#34;
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        RemoveIndex
+      </td>
+      <td>
+        Clears an optional named index associated with the specified coding scheme. Note: built-in indices required by the LexBIG runtime cannot be removed. Options
+        <ul>
+          <li>
+            -u - urn &lt;urn&gt; URN uniquely identifying the code system.
+          </li>
+          <li>
+            -v - version &lt;versionId&gt; Version identifier.
+          </li>
+          <li>
+            -i - index &lt;name&gt; Name of the index extension to clear.
+          </li>
+          <li>
+            -f - force Force clear (no confirmation).  Example:
+            RemoveIndex -u &#34;urn:oid:2.16.840.1.113883.3.26.1.1&#34; -v &#34;05.09e&#34; -i &#34;myindex&#34;
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        RemoveScheme
+      </td>
+      <td>
+        Removes a coding scheme based on unique URN and version. Options:
+        <ul>
+          <li>
+            -u - urn &lt;urn&gt; URN uniquely identifying the code system.
+          </li>
+          <li>
+            -v - version &lt;versionId&gt; Version identifier.
+          </li>
+          <li>
+            -f - force Force deactivation and removal without confirmation.  Example:
+            RemoveScheme -u &#34;urn:oid:2.16.840.1.113883.3.26.1.1&#34; -v &#34;05.09e&#34;
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        TagScheme
+      </td>
+      <td>
+        Associates a tag ID (e.g. &#39;PRODUCTION&#39; or &#39;TEST&#39;) with a coding scheme URN and version. Options:
+        <ul>
+          <li>
+            -u - urn &lt;urn&gt; URN uniquely identifying the code system.
+          </li>
+          <li>
+            -v - version &lt;versionId&gt; Version identifier.
+          </li>
+          <li>
+            -t - tag The tag ID (e.g. &#39;PRODUCTION&#39; or &#39;TEST&#39;) to assign.  Example:
+            TagScheme -u &#34;urn:oid:2.16.840.1.113883.3.26.1.1&#34; -v 05.09e&#34; -t &#34;TEST&#34;
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        TestRunner
+      </td>
+      <td>
+        Located in {LEXBIG_DIRECTORY}/test. Executes a suite of tests for the LexBIG installation.NoteThe LexBIG runtime and database environments must still be configured prior to invoking the test suite.Options:
+        <ul>
+          <li>
+            -b - brief Runs the LexBIG test suite and produce a text report with overall statistics and details for failed tests only.
+          </li>
+          <li>
+            -f - full Runs the LexBIG test suite and produce an itemized list of all tests with indication of success/failure.
+          </li>
+          <li>
+            -h - html Runs the LexBIG test suite and produce a report suitable for view in a standard web browser.
+          </li>
+          <li>
+            -x - xml Runs the LexBIG test suite and produce a report with extensive information for each test case in xml format.  Example:
+            TestRunner -f -h
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        TransferScheme
+      </td>
+      <td>
+        Tool to help gather information necessary to transfer data from one SQL server to another. Options:
+        <ul>
+          <li>
+            -u - urn The Coding Scheme URN or local name to transfer.
+          </li>
+          <li>
+            -v - version The version of the coding scheme to transfer.  Example:
+            TransferScheme -u &#34;urn:oid:2.16.840.1.113883.3.26.1.1&#34; -v 05.09e&#34;
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h3 id="LexBIG1.0.2InstallationandAdministrationGuide-LoadingaSampleVocabulary">
+  Loading a Sample Vocabulary
+</h3>
+This LexBIG installation provides the UMLS Semantic Net and a sampling of the NCI Thesaurus content (sample.owl) that can be loaded into the database.
+<ol>
+  <li>
+    In a Command Promptwindow, enter the following command to go to the example programs.
+    cd {LEXBIG_DIRECTORY}/examples
+  </li>
+  <li>
+    To load the example vocabularies, run the appropriate LoadSampleData script (LoadSampleData.bat for Windows; LoadSampleData.sh for Linux).NoteVocabularies should not be loaded until configuration of the LexBIG runtime and database server are complete.
+    <img alt="screenshot that shows the successful load of the sample vocabulary file in a Windows command screen" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexBIG%201.0.2%20Installation%20and%20Administration%20Guide/Successful_Load_of_Sample_Vocabulary.jpg?api=v2">
+  </li>
+</ol>
+<h3 id="LexBIG1.0.2InstallationandAdministrationGuide-RunningtheSampleQueryPrograms">
+  Running the Sample Query Programs
+</h3>
+A set of sample programs are provided in the {LEXBIG_DIRECTORY}/examples directory. To run the sample query programs successfully a vocabulary must have been loaded.
+<ol>
+  <li>
+    Enter the following command:
+    cd {LEXBIG_DIRECTORY}/examples
+  </li>
+  <li>
+    Execute one of sample programs. (.bat for windows or .sh for Linux.)
+    FindConceptNameForCode.bat
+
+    FindPropsandAssocForCode.bat
+
+    FindRelatedCodes
+
+    FindTreeforCodeAndAssoc
+  </li>
+</ol>
+<img alt="Screenshot of sample program output for finding properties and associations for a given code" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexBIG%201.0.2%20Installation%20and%20Administration%20Guide/Sample_Program_Output.jpg?api=v2">
+<h3 id="LexBIG1.0.2InstallationandAdministrationGuide-InstallingNCIThesaurusVocabulary">
+  Installing NCI Thesaurus Vocabulary
+</h3>
+This section describes the steps to download and install a full version of the NCI Thesaurus for the LexBIG Service.
+<ol>
+  <li>
+    Using a web or ftp client go to URL: ftp://ftp1.nci.nih.gov/pub/cacore/EVS/
+    <img alt="screenshot showing the files in the EVS directory" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexBIG%201.0.2%20Installation%20and%20Administration%20Guide/Ftp_Directory.jpg?api=v2">
+  </li>
+  <li>
+    Select the version of NCI Thesaurus OWL you wish to download and save the file to a directory on your machine.
+  </li>
+  <li>
+    Extract the OWL file from the zip download and save in a directory on your machine. This directory will be referred to as NCI_THESAURUS_DIRECTORY
+  </li>
+  <li>
+    Using the LexBIG utilities load the NCI Thesaurus:
+    cd {LexBIG_DIRECTORY}/admin
+    <ul>
+      <li>
+        For Windows installation use the following command
+        LoadNCIThesOWL.bat -nf -in &#34;file:///{NCI_THESAURUS_DIRECTORY}/Thesaurus_05.12f.owl&#34;
+      </li>
+      <li>
+        For Linux installation use the following command
+        LoadNCIThesOWL.sh -nf -in &#34;file:///{NCI_THESAURUS_DIRECTORY}/Thesaurus_05.12f.owl&#34;
+      </li>
+    </ul>
+  </li>
+</ol>
+NoteThis step will require about three hours on a Pentium 3.0 Ghz machine. The total time to load NCI Thesaurus will vary depending on machine, memory, and disk speed.The following example shows output from load of NCI Thesaurus 05.12f.
+...
+[LexBIG] Processing TOP Node... Retired_Kind
+[LexBIG] Clearing target of NCI_Thesaurus...
+[LexBIG] Writing NCI_Thesaurus to target...
+[LexBIG] Finished loading DB - loading transitive expansion table
+[LexBIG] ComputeTransitive - Processing Anatomic_Structure_Has_Location
+[LexBIG] ComputeTransitive - Processing Anatomic_Structure_is_Physical_Part_of
+[LexBIG] ComputeTransitive - Processing Biological_Process_Has_Initiator_Process
+[LexBIG] ComputeTransitive - Processing Biological_Process_Has_Result_Biological_Process
+[LexBIG] ComputeTransitive - Processing Biological_Process_Is_Part_of_Process
+[LexBIG] ComputeTransitive - Processing Conceptual_Part_Of
+[LexBIG] ComputeTransitive - Processing Disease_Excludes_Finding
+[LexBIG] ComputeTransitive - Processing Disease_Has_Associated_Disease
+[LexBIG] ComputeTransitive - Processing Disease_Has_Finding
+[LexBIG] ComputeTransitive - Processing Disease_May_Have_Associated_Disease
+[LexBIG] ComputeTransitive - Processing Disease_May_Have_Finding
+[LexBIG] ComputeTransitive - Processing Gene_Product_Has_Biochemical_Function
+[LexBIG] ComputeTransitive - Processing Gene_Product_Has_Chemical_Classification
+[LexBIG] ComputeTransitive - Processing Gene_Product_is_Physical_Part_of
+[LexBIG] ComputeTransitive - Processing hasSubtype
+[LexBIG] Finished building transitive expansion - building index
+[LexBIG] Getting a results from sql (a page if using mysql)
+[LexBIG] Indexed 0 concepts.
+[LexBIG] Indexed 5000 concepts.
+[LexBIG] Indexed 10000 concepts.
+[LexBIG] Indexed 15000 concepts.
+[LexBIG] Indexed 20000 concepts.
+[LexBIG] Indexed 25000 concepts.
+[LexBIG] Indexed 30000 concepts.
+[LexBIG] Indexed 35000 concepts.
+[LexBIG] Indexed 40000 concepts.
+[LexBIG] Indexed 45000 concepts.
+[LexBIG] Indexed 46000 concepts.
+[LexBIG] Getting a results from sql (a page if using mysql)
+[LexBIG] Closing Indexes Mon, 27 Feb 2006 01:44:22
+[LexBIG] Finished indexing
+<h3 id="LexBIG1.0.2InstallationandAdministrationGuide-InstallingNCIMetathesaurusVocabulary">
+  Installing NCI Metathesaurus Vocabulary
+</h3>
+This section describes the steps to download and install a full version of the NCI Metathesaurus for the LexBIG Service.
+<ol>
+  <li>
+    Using a web or ftp client go to URL: ftp://ftp1.nci.nih.gov/pub/cacore/EVS/
+    <img alt="screenshot showing the contents of the EVS directory" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexBIG%201.0.2%20Installation%20and%20Administration%20Guide/Ftp_Client.jpg?api=v2">
+  </li>
+  <li>
+    Select the version of NCI Metathesaurus RRF you wish to download and save the file to a directory on your machine.
+  </li>
+  <li>
+    Extract the RRF files from the zip download and save in a directory on your machine. This directory will be referred to as NCI_METATHESAURUS_DIRECTORY.NoteRELASE_INFO.RRF is required to be present for the load utility to work.
+  </li>
+  <li>
+    Using the LexBIG utilities load the NCI Thesaurus
+    cd {LexBIG_DIRECTORY}/admin
+    <ul>
+      <li>
+        For Windows installation use the following command
+        LoadNCIMeta.bat -nf -in &#34;file:///{NCI_METATHESAURUS_DIRECTORY}/&#34;
+      </li>
+      <li>
+        For Linux installation use the following command
+        LoadNCIMeta.sh -nf -in &#34;file:///{NCI_THESAURUS_DIRECTORY}/&#34;
+      </li>
+    </ul>
+  </li>
+</ol>
+NoteNCI Metathesaurus contains many individual vocabularies and requires several hours to load and index. This step requires about 15 hours on a Pentium 3.0 Ghz machine with 7200rpm disk. The total time to load NCI MetaThesaurus will vary depending on machine, memory, and disk speed.
+<h3 id="LexBIG1.0.2InstallationandAdministrationGuide-InstallingNCIHistoryInformation">
+  Installing NCI History Information
+</h3>
+This section describes the steps to download and install a history file for NCI Thesaurus.
+<ol>
+  <li>
+    Using a web or ftp client go to URL: ftp://ftp1.nci.nih.gov/pub/cacore/EVS/  &lt;TO BE DETERMINED&gt;
+  </li>
+  <li>
+    Select the version of NCI History you wish to download. Save the file to a directory on your machine. Select the VersionFile download to the same directory as the history file.
+  </li>
+  <li>
+    Extract the History files from the zip download and save in a directory on your machine. This directory will be referred to as NCI_HISTORY_DIRECTORY
+  </li>
+  <li>
+    Using the LexBIG utilities load the NCI Thesaurus
+    cd {LexBIG_DIRECTORY}/admin
+    <ul>
+      <li>
+        For Windows installation use the following command
+        LoadNCIHistory.bat -nf -in &#34;file:///{NCI_HISTORY_DIRECTORY}&#34; -vf &#34;file:///NCI_HISTORY_DIRECTORY}/VersionFile&#34;
+      </li>
+      <li>
+        For Linux installation use the following command
+        LoadNCIHistory.sh -nf -in &#34;file:///{NCI_HISTORY_DIRECTORY}&#34; -vf &#34;file:///NCI_HISTORY_DIRECTORY}/VersionFile&#34;
+      </li>
+    </ul>
+  </li>
+</ol>
+NoteIf a &#39;releaseId&#39; occurs twice in the file, the last occurrence will be stored. If LexBIG already knows about a releaseId (from a previous history load), the information is updated to match what is provided in the file. This file has to be provided to the load API on every load because you will need to maintain it in the future as each new release is made. We have created this file that should be valid as of today from the information that we found in the archive folder on your ftp server. You can find this file in the &#39;resources&#39; directory of the LexBIG install.
+<h3 id="LexBIG1.0.2InstallationandAdministrationGuide-DeactivatingandRemovingVocabulary">
+  Deactivating and Removing Vocabulary
+</h3>
+This section describes the steps to deactivate a coding scheme and remove coding scheme from LexBIG Service.
+<ol>
+  <li>
+    Change directory to LexBIG administration directory. Enter:
+    cd {LEXBIG_DIRECTORY}/admin
+  </li>
+  <li>
+    Use the DeactiveScheme utility to prevent access to coding scheme. Once a coding scheme is deactivated, client programs will not be able to access the content for the specific coding scheme and version. Example:
+    DeactivateScheme -u &#34;urn:oid:2.16.840.1.113883.3.26.1.1&#34; -v &#34;05.12f&#34;
+  </li>
+  <li>
+    Use RemoveScheme utility to remove coding scheme from LexBIG service and database. Example:
+    RemoveScheme -u &#34;urn:oid:2.16.840.1.113883.3.26.1.1&#34; -v &#34;05.12f&#34;
+  </li>
+</ol>
+<h3 id="LexBIG1.0.2InstallationandAdministrationGuide-Taggingavocabulary">
+  Tagging a vocabulary
+</h3>
+This section describes the steps to tag a coding scheme to be used via LexBIG API.
+<ol>
+  <li>
+    Change directory to LexBIG administration directory. Enter:
+    cd {LEXBIG_DIRECTORY}/admin
+  </li>
+  <li>
+    Use the TagScheme to tag a coding system and version with a local tag name (e.g. PRODUCTION). This tag name can be used via LexBIG API for query restriction. Example:
+    TagScheme -u &#34;urn:oid:2.16.840.1.113883.3.26.1.1&#34; -v &#34;05.12f&#34;  -t &#34;PRODUCTION&#34;
+  </li>
+</ol>
+<h3 id="LexBIG1.0.2InstallationandAdministrationGuide-SystemMonitoringandDebug">
+  System Monitoring and Debug
+</h3>
+This section describes the configuration and use of LexBIG logs for system monitoring and debugging. The LexBIG service uses a set of log files. The log files are stored based on the LexBIG config.props file settings. Refer to Modifying the config.props file for LexBIG on page 23 for additional detail configuration parameters.To view the LexBIG service and load log files perform the following steps.
+<ol>
+  <li>
+    Change directory to LexBIG administration directory based on the settings of the config.props log_file_location setting.
+  </li>
+  <li>
+    Open the file LexBIG_full_log.txt using text editor to review details about LexBIG service.
+    <img alt="screenshot of text editor showing example service details contents of the LexBIG-full-log.txt file" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexBIG%201.0.2%20Installation%20and%20Administration%20Guide/LexBIG_Service_Details.jpg?api=v2">
+  </li>
+  <li>
+    Open LexBIG_load_log.txt using text editor to review details about vocabulary load utilities.
+    <img alt="screenshot of text editor showing example service details contents of the LexBIG-load-log.txt file" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexBIG%201.0.2%20Installation%20and%20Administration%20Guide/Vocabulary_Load_Utilities_Details.jpg?api=v2">
+  </li>
+</ol>
+In addition to the log information, system properties are included as part of the system verification test as html or xml format. A sample of the system properties in html is included in the following figure.
+<img alt="system properties in example html file" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexBIG%201.0.2%20Installation%20and%20Administration%20Guide/System_Verification_Test_System_Properties.jpg?api=v2">
+<h3 id="LexBIG1.0.2InstallationandAdministrationGuide-ConfiguringManifestFiles">
+  Configuring Manifest Files
+</h3>
+<h4 id="LexBIG1.0.2InstallationandAdministrationGuide-WhatIsCodingSchemeManifest?">
+  What Is Coding Scheme Manifest?
+</h4>
+A &#34;Coding Scheme Manifest&#34; (or simply &#34;manifest&#34; as used interchangeably in this document) allows the user to set values for a coding scheme while loading or converting a LexGrid &#34;XML&#34;, &#34;NCI MetaThesaurus&#34;, &#34;NCI OWL&#34;,&#34;OWL&#34;, &#34;OBO&#34;, &#34;UMLS RRF File&#34;, or&#34;HL7 RIM Database&#34; source to LexGrid format.
+<h4 id="LexBIG1.0.2InstallationandAdministrationGuide-WhatIsCodingScheme?">
+  What Is Coding Scheme?
+</h4>
+Coding Scheme is the term that is used to represent an ontology/terminology being loaded or converted. In the LexGrid data model a terminology is represented as a coding scheme and it can reference other coding schemes. An example of coding scheme is &#34;Amino Acid&#34; which is described in the &#34;amino acid.owl&#34; file.A Coding Scheme has some meta information about it; values like &#39;formal name&#39;, &#39;local names&#39;, &#39;default language&#39;, &#39;version&#39;, &#39;copyright&#39;, &#39;sources&#39; to name some.
+<h4 id="LexBIG1.0.2InstallationandAdministrationGuide-WhyDoWeNeedaCodingSchemeManifest?">
+  Why Do We Need a Coding Scheme Manifest?
+</h4>
+When a terminology is being converted to the LexGrid data model from its native format (in this case OWL), Coding Scheme information is read from the source file. Sometimes values may be missing (not provided or invalid) or the author/user of the terminology wants to override or set default values despite (or in addition to) what is provided in the source file. This can be accomplished using &#34;manifest&#34; files along with the source file.
+<h4 id="LexBIG1.0.2InstallationandAdministrationGuide-HowdowecreateaCodingSchemeManifestfile?">
+  How do we create a Coding Scheme Manifest file?
+</h4>
+A coding scheme manifest file is a valid XML file, conforming to the schema defined by
+<a href="http://LexGrid.org/schema/LexBIG/2007/01/CodingSchemeManifestList.xsd" rel="nofollow">
+  http://LexGrid.org/schema/LexBIG/2007/01/CodingSchemeManifestList.xsd
+</a>
+. This XML file can define values for one or more coding schemes you are dealing with. Some coding scheme meta-information may not easily map to information in the source file. In this case a manifest file is of great help to bridge the gap and control the information flow while mapping to the LexGrid model. A detailed model of the LexGrid Coding Scheme and its fields can be found online. Structure of the schema for the manifest file is explained in the following table (manifest components refer to the original LexGrid model schema namespaces and types):
+<ul>
+  <li>
+    Coding Scheme Manifest entry field: id
+    <ul>
+      <li>
+        Type: lgCommon:registeredName
+      </li>
+      <li>
+        Required: Yes
+      </li>
+      <li>
+        Override flag set: Not applicable
+      </li>
+      <li>
+        Description:
+      </li>
+    </ul>
+  </li>
+</ul>
+The registered name is the key used to find a coding scheme (for example a unique URL or namespace by which other people access same coding scheme). This String value will be used to identify the manifest entry in the manifest file for the coding scheme too. For example the registered name for coding scheme &#34;Amino-acid&#34; is
+<a href="http://www.co-ode.org/ontologies/amino-acid/2006/05/18/amino-acid.owl" rel="nofollow">
+  http://www.co-ode.org/ontologies/amino-acid/2006/05/18/amino-acid.owl#
+</a>
+. This string is also set as the coding scheme&#39;s registered name field in the LexGrid model.
+<ul>
+  <li>
+    Coding Scheme Manifest entry field: codingScheme
+    <ul>
+      <li>
+        Type: lgBuiltin:localId
+      </li>
+      <li>
+        Required: No
+      </li>
+      <li>
+        Override flag set: Yes
+      </li>
+      <li>
+        Description:
+      </li>
+    </ul>
+  </li>
+</ul>
+This value will be set for &#39;coding scheme name&#39; in the LexGrid format counterpart. If the override flag is set to &#39;true&#39;, the value provided in the source file will be replaced with this one. Otherwise, this value is treated as a default value and used only if the value is not provided in the source file.
+<ul>
+  <li>
+    Coding Scheme Manifest entry field: entityDescription
+    <ul>
+      <li>
+        Type: lgCommon:entityDescription
+      </li>
+      <li>
+        Required: No
+      </li>
+      <li>
+        Override flag set: Yes
+      </li>
+      <li>
+        Description:
+      </li>
+    </ul>
+  </li>
+</ul>
+This value will be set for &#39;coding scheme description&#39; in the LexGrid format counterpart. If the override flag is set to &#39;true&#39;, the value provided in the source file will be replaced with this one. Otherwise, this value is treated as a default value and used only if the value is not provided in the source file.
+<ul>
+  <li>
+    Coding Scheme Manifest entry field: formalName
+    <ul>
+      <li>
+        Type: lgBuiltin:tsCaseIgnoreIA5String
+      </li>
+      <li>
+        Required: No
+      </li>
+      <li>
+        Override flag set: Yes
+      </li>
+      <li>
+        Description:
+      </li>
+    </ul>
+  </li>
+</ul>
+This value will be set for &#39;coding scheme formal name&#39; in the LexGrid format counterpart. If the override flag is set to &#39;true&#39;, the value provided in the source file will be replaced with this one. Otherwise, this value is treated as a default value and used only if the value is not provided in the source file.
+<ul>
+  <li>
+    Coding Scheme Manifest entry field: registeredName
+    <ul>
+      <li>
+        Type: lgCommon:registeredName
+      </li>
+      <li>
+        Required: No
+      </li>
+      <li>
+        Override flag set: Yes
+      </li>
+      <li>
+        Description:
+      </li>
+    </ul>
+  </li>
+</ul>
+This value will be set for &#39;coding scheme registered name&#39; in the LexGrid format counterpart. If the override flag is set to &#39;true&#39;, the value provided in the source file will be replaced with this one. Otherwise, this value is treated as a default value and used only if the value is not provided in the source file.
+<ul>
+  <li>
+    Coding Scheme Manifest entry field: defaultLanguage
+    <ul>
+      <li>
+        Type: lgCommon:defaultLanguage
+      </li>
+      <li>
+        Required: No
+      </li>
+      <li>
+        Override flag set: Yes
+      </li>
+      <li>
+        Description:
+      </li>
+    </ul>
+  </li>
+</ul>
+This value will be set for &#39;coding scheme default language&#39; in the LexGrid format counterpart. If the override flag is set to &#39;true&#39;, the value provided in the source file will be replaced with this one. Otherwise, this value is treated as a default value and used only if the value is not provided in the source file.
+<ul>
+  <li>
+    Coding Scheme Manifest entry field: representsVersion
+    <ul>
+      <li>
+        Type: lgCommon:version
+      </li>
+      <li>
+        Required: No
+      </li>
+      <li>
+        Override flag set: Yes
+      </li>
+      <li>
+        Description:
+      </li>
+    </ul>
+  </li>
+</ul>
+This value will be set for &#39;coding scheme version&#39; in the LexGrid format counterpart. If the override flag is  set to &#39;true&#39;, the value provided in the source file will be replaced with this one. Otherwise, this value is  treated as a default value and used only if the value is not provided in the source file.
+<ul>
+  <li>
+    Coding Scheme Manifest entry field: localName
+    <ul>
+      <li>
+        Type: lgBuiltin:tsCaseIgnoreIA5String
+      </li>
+      <li>
+        Required: No
+      </li>
+      <li>
+        &#34;To Add&#34; flag set: Yes
+      </li>
+      <li>
+        Description:
+      </li>
+    </ul>
+  </li>
+</ul>
+This value will be added for &#39;coding scheme local names&#39;. If the add flag is set to &#39;true&#39;, this value will  be added to the list of local names (if not there already). Otherwise, this value is treated as the default  value and used only if the value is not provided in the source file.
+<ul>
+  <li>
+    Coding Scheme Manifest entry field: source
+    <ul>
+      <li>
+        Type: lgCommon:source
+      </li>
+      <li>
+        Required: No
+      </li>
+      <li>
+        &#34;To Add&#34; flag set: Yes
+      </li>
+      <li>
+        Description:
+      </li>
+    </ul>
+  </li>
+</ul>
+This value will be added for &#39;coding scheme sources&#39;. If the add flag is set to &#39;true&#39;, this value will be  added to the list of sources (if not there already). Otherwise, this value is treated as the default value  and used only if the value is not provided in the source file.
+<ul>
+  <li>
+    Coding Scheme Manifest entry field: copyright
+    <ul>
+      <li>
+        Type: lgCommon:text
+      </li>
+      <li>
+        Required: No
+      </li>
+      <li>
+        Override flag set: Yes
+      </li>
+      <li>
+        Description:
+      </li>
+    </ul>
+  </li>
+</ul>
+This value will be set for &#39;coding scheme copyright&#39; in the LexGrid format counterpart. If the override flag  is set to &#39;true&#39;, the value provided in the source file will be replaced with this one. Otherwise, this value  is treated as a default value and used only if the value is not provided in the source file.
+<ul>
+  <li>
+    Coding Scheme Manifest entry field: mappings
+    <ul>
+      <li>
+        Type: lgCS:mappings
+      </li>
+      <li>
+        Required: No
+      </li>
+      <li>
+        &#34;To Add&#34; flag set: Yes
+      </li>
+      <li>
+        Description:
+      </li>
+    </ul>
+  </li>
+</ul>
+This value will be added for &#39;coding scheme mappings&#39;. If the add flag is set to &#39;true&#39;, this value will be  added to the list of mappings (if not there already). Otherwise, this value is treated as the default value  and used only if the value is not provided in the source file.
+<ul>
+  <li>
+    Coding Scheme Manifest entry field: associationDefinitions
+    <ul>
+      <li>
+        Type: lgRel:association
+      </li>
+      <li>
+        Required: No
+      </li>
+      <li>
+        &#34;To Add&#34; flag set: Yes
+      </li>
+      <li>
+        Description:
+      </li>
+    </ul>
+  </li>
+</ul>
+This value will be added for &#39;coding scheme associations&#39;. If the add flag is set to &#39;true&#39;, this value will  be added to the list of associations (if not there already). Otherwise, this value is treated as the default  value and used only if the value is not provided in the source file.NoteThis option is used internally by the system to provide default recognition of some common associations. It is typically not necessary to provide this value, however, since association definitions are automatically derived from the source.
+<h4 id="LexBIG1.0.2InstallationandAdministrationGuide-WhatCodeChangesMayBeRequiredToUseaManifestFile?">
+  What Code Changes May Be Required To Use a Manifest File?
+</h4>
+If you want to use the manifest file, you can supply the manifest file URI to the following methods when Loading NCI OWL or generic OWL Loads:
+<ul>
+  <li>
+    org.LexGrid.LexBIG.Extensions.Load.OWL_Loader.load()
+  </li>
+  <li>
+    org.LexGrid.LexBIG.Extensions.Load.OWL_Loader.validate()
+  </li>
+</ul>
+An example code snippet:
+LexBIGService lbs = new LexBIGServiceImpl();
+LexBIGServiceManager lbsm = lbs.getServiceManager(null);
+OWL_Loader loader = (OWL_Loader) lbsm.getLoader(&#34;OWLLoader&#34;);
+
+if (toValidateOnly)
+\{
+loader.validate(source, manifest, vl);
+System.out.println(&#34;VALIDATION SUCCESSFUL&#34;);
+\}
+else
+\{
+loader.load(new File(&#34;resources/testData/amino-
+cid.owl&#34;).toURI(),
+new File(&#34;resources/testData/aa-manifest.xml&#34;).toURI(),true,
+true);
+\}
+
+For all other manifest loads the following methods are employed.
+// Find the registered extension handling this type of load
+
+LexBIGService lbs = new LexBIGServiceImpl();
+
+LexBIGServiceManager lbsm = lbs.getServiceManager(null);
+
+HL7_Loader loader = (HL7_Loader)lbsm.getLoader(org.LexGrid.LexBIG.Impl.loaders.HL7LoaderImpl.name);
+
+// updated to include manifest
+
+loader.setCodingSchemeManifestURI(manifest);
+
+// updated to include loader preferences
+
+loader.setLoaderPreferences(loaderPrefs);
+
+loader.load(dbPath, stopOnErrors, true);
+<h3 id="LexBIG1.0.2InstallationandAdministrationGuide-LoaderPreferences">
+  Loader Preferences
+</h3>
+LexBIG loaders allow custom configuration using a loader preferences file. Loader preferences are limited in functionality and scope at present. The loaders for HL7 RIM, NCI Metathesaurus, UMLS SEMNET and NCI OWL currently support some loader preferences.HL7 RIM and NCI MetaThesaurus both allow Metadata file location load preferences that provide customization of the location of the Metadata file generated by a loader by user option. The NCI OWL loader provides preferences for prioritizing comments, presentations and definitions within NCI OWL loads. Also provided is customization of a number of otherwise hardcoded values in the NCI OWL Loader. UMLS SEMNET preferences provides a range of inheritance values that determines whether inferred inheritance values are loaded or not. The range of customizable values are defined in the xsd schema files in the lbModel project available from the LexEVS project EVS on Gforge.MetaThesaurus and HL7 metadata file locations are defined in the LoaderPreferences.xsd file as follows:
+&lt;xs:schema xmlns=&#34;http://LexGrid.org/LexBIG/LoadPreferences&#34; targetNamespace=&#34;http://LexGrid.org/LexBIG/LoadPreferences&#34; elementFormDefault=&#34;qualified&#34; xmlns:xs=&#34;http://www.w3.org/2001/XMLSchema&#34;&gt;
+
+&lt;xs:complexType name=&#34;LoaderPreferences&#34;&gt;
+		&lt;xs:sequence&gt;
+
+&lt;xs:element name=&#34;XMLMetadataFilePath&#34; type=&#34;xs:string&#34; minOccurs=&#34;0&#34; nillable=&#34;true&#34;&gt;
+			&lt;/xs:element&gt;
+
+		&lt;/xs:sequence&gt;
+&lt;/xs:complexType&gt;
+&lt;/xs:schema&gt;
+
+NCI OWL preferences have the following values and ranges:
+&lt;xs:element name=&#34;OWLLoaderPreferences&#34;&gt;
+&lt;xs:complexType&gt;
+	&lt;xs:complexContent&gt;
+		&lt;xs:extension base=&#34;lbPreferences:LoaderPreferences&#34;&gt;
+			&lt;xs:sequence&gt;
+
+&lt;xs:element name=&#34;PropnamePres&#34; type=&#34;xs:string&#34; minOccurs=&#34;0&#34; /&gt;
+&lt;xs:element name=&#34;PropnamePrimitive&#34; type=&#34;xs:string&#34; minOccurs=&#34;0&#34; /&gt;
+&lt;xs:element name=&#34;PropnameType&#34; type=&#34;xs:string&#34; minOccurs=&#34;0&#34; /&gt;
+&lt;xs:element name=&#34;DatatypeBoolean&#34; type=&#34;xs:string&#34; minOccurs=&#34;0&#34; /&gt;
+&lt;xs:element name=&#34;AssocHastype&#34; type=&#34;xs:string&#34; minOccurs=&#34;0&#34; /&gt;
+&lt;xs:element name=&#34;AssocHastypeURN&#34; type=&#34;xs:string&#34; minOccurs=&#34;0&#34; /&gt;
+&lt;xs:element name=&#34;ConceptAltName&#34; type=&#34;xs:string&#34; minOccurs=&#34;0&#34; /&gt;
+&lt;xs:element name=&#34;MatchConceptCode&#34; type=&#34;xs:string&#34; minOccurs=&#34;0&#34; /&gt;
+&lt;xs:element name=&#34;MatchConceptStatus&#34; type=&#34;xs:string&#34; minOccurs=&#34;0&#34; /&gt;
+&lt;xs:element name=&#34;MatchNoopNamespaces&#34; type=&#34;xs:string&#34; minOccurs=&#34;0&#34; /&gt;
+&lt;xs:element name=&#34;MatchRootName&#34; type=&#34;xs:string&#34; minOccurs=&#34;0&#34; /&gt;
+&lt;xs:element name=&#34;MatchXMLRepformNames&#34; type=&#34;xs:string&#34; minOccurs=&#34;0&#34; /&gt;
+&lt;xs:element name=&#34;MatchXMLSourceNames&#34; type=&#34;xs:string&#34; minOccurs=&#34;0&#34; /&gt;
+&lt;xs:element name=&#34;MatchXMLTextNames&#34; type=&#34;xs:string&#34; minOccurs=&#34;0&#34; /&gt;
+&lt;xs:element name=&#34;IsDBXrefSource&#34; type=&#34;xs:boolean&#34; minOccurs=&#34;0&#34; /&gt;
+&lt;xs:element name=&#34;IsDBXrefRepform&#34; type=&#34;xs:boolean&#34; minOccurs=&#34;0&#34; /&gt;
+
+&lt;xs:element name=&#34;PrioritizedCommentNames&#34; minOccurs=&#34;0&#34; nillable=&#34;true&#34;&gt;
+					&lt;xs:complexType&gt;
+						&lt;xs:sequence&gt;
+&lt;xs:element name=&#34;name&#34; nillable=&#34;true&#34; maxOccurs=&#34;unbounded&#34; minOccurs=&#34;0&#34; type=&#34;xs:string&#34;/&gt;
+						&lt;/xs:sequence&gt;
+					&lt;/xs:complexType&gt;
+				&lt;/xs:element&gt;
+
+&lt;xs:element name=&#34;PrioritizedDefinitionNames&#34; minOccurs=&#34;0&#34; nillable=&#34;true&#34;&gt;
+					&lt;xs:complexType&gt;
+						&lt;xs:sequence&gt;
+&lt;xs:element name=&#34;name&#34; nillable=&#34;true&#34; maxOccurs=&#34;unbounded&#34; minOccurs=&#34;0&#34; type=&#34;xs:string&#34;/&gt;
+						&lt;/xs:sequence&gt;
+					&lt;/xs:complexType&gt;
+				&lt;/xs:element&gt;
+
+&lt;xs:element name=&#34;PrioritizedPresentationNames&#34; minOccurs=&#34;0&#34; nillable=&#34;true&#34;&gt;
+					&lt;xs:complexType&gt;
+						&lt;xs:sequence&gt;
+&lt;xs:element name=&#34;name&#34; nillable=&#34;true&#34; maxOccurs=&#34;unbounded&#34; minOccurs=&#34;0&#34; type=&#34;xs:string&#34;/&gt;
+					&lt;/xs:sequence&gt;
+					&lt;/xs:complexType&gt;
+				&lt;/xs:element&gt;
+
+			&lt;/xs:sequence&gt;
+		&lt;/xs:extension&gt;
+		&lt;/xs:complexContent&gt;
+	&lt;/xs:complexType&gt;
+&lt;/xs:element&gt;
+
+Loader preferences for a given loader can be loaded from a file in the following format example for the NCI OWL loader.
+&lt;OWLLoaderPreferences xmlns:basePreferences=&#34;http://LexGrid.org/LexBIG/LoadPreferences&#34;&gt;
+
+&lt;MatchConceptCode&gt;currency&lt;/MatchConceptCode&gt;
+
+&lt;PrioritizedCommentNames&gt;
+&lt;name&gt;units&lt;/name&gt;
+&lt;/PrioritizedCommentNames&gt;
+
+&lt;PrioritizedDefinitionNames&gt;
+&lt;name&gt;max&lt;/name&gt;
+&lt;/PrioritizedDefinitionNames&gt;
+
+&lt;PrioritizedPresentationNames&gt;
+&lt;name&gt;currency&lt;/name&gt;
+&lt;/PrioritizedPresentationNames&gt;
+
+&lt;/OWLLoaderPreferences&gt;
+
+Preferences are pulled into code used to wrap a loading process in the following manner:
+	// Find the registered extension handling this type of load ...
+			LexBIGService lbs = LexBIGServiceImpl.defaultInstance();
+			LexBIGServiceManager lbsm = lbs.getServiceManager(null);
+
+OWL_Loader loader = (OWL_Loader) lbsm.getLoader(org.LexGrid.
+LexBIG.Impl.loaders.OWLLoaderImpl.name);
+
+			// Perform the requested load or validate action ...
+			if (vl &gt;= 0) {
+				loader.validateNCI(source, manifest, vl);
+				Util.displayTaggedMessage(&#34;VALIDATION SUCCESSFUL&#34;);
+			} else {
+if (loaderPrefs != null)
+loader.setLoaderPreferences(loaderPrefs);
+loader.loadNCI(source, manifest, memorySafe, stopOnErrors, true);
+				Util.displayLoaderStatus(loader);
+			}
+Variable loaderPrefs is a path to a preferences file.
+<h3 id="LexBIG1.0.2InstallationandAdministrationGuide-SystemAdministration">
+  System Administration
+</h3>
+<h4 id="LexBIG1.0.2InstallationandAdministrationGuide-PreliminaryConsiderations.1">
+  Preliminary Considerations
+</h4>
+Before You BeginThis section provides an overview of the components as related to system adminstration, backup, and recovery. Individual organizations may have there own backup and diaster recovery procedure.
+<h4 id="LexBIG1.0.2InstallationandAdministrationGuide-DatabaseInstallation">
+  Database Installation
+</h4>
+Database systems as described in the section Required Software—Not Included in LexBIG provide the storage for vocabularies loaded into LexBIG. For each vocabulary version loaded into LexBIG a new database is created. As defined in the config.props files the db_prefix variable is used to create the database name.For example with db_prefix=lexbig, each new vocabulary version that is loaded a new database is created using an incremental counter.
+<ul>
+  <li>
+    lexbig1
+  </li>
+  <li>
+    lexbig2
+  </li>
+  <li>
+    lexbig3
+  </li>
+  <li>
+    lexbigN
+  </li>
+</ul>
+Depending on backup strategy, system administrators will need to be aware that multiple databases are being created and may need backup procedures to meet servicability and recovery requirements for your organization.
+<h4 id="LexBIG1.0.2InstallationandAdministrationGuide-LexBIGInstallation">
+  LexBIG Installation
+</h4>
+The LexBIG software, documentation, indexes, and system logs are located in the {LEXBIG_DIRECTORY} (e.g., /usr/local/packages/LexBIG or c:\lexbig). These files may be part of the local file system and may require backup procedures to meet servicability and recovery requirements for your organization.LexBIG uses basic database indexes, but also includes a separate indexing facility using Apache Lucene. Lucene Index files are stored in a directory as specified in the config.props file index_location variable.
+<h2 id="LexBIG1.0.2InstallationandAdministrationGuide-AppendixI:WhatIsInstalled">
+  Appendix I: What Is Installed
+</h2>
+<h3 id="LexBIG1.0.2InstallationandAdministrationGuide-LexBIGComponents.1">
+  LexBIG Components
+</h3>
+The LexBIG installation includes the following components:
+<ul>
+  <li>
+    Administrative Programs for managing LexBIG server
+    <ul>
+      <li>
+        ActivateScheme
+      </li>
+      <li>
+        ClearOrphanedResources
+      </li>
+      <li>
+        CodingSchemeSelectionMenu
+      </li>
+      <li>
+        DeactivateScheme
+      </li>
+      <li>
+        ExportLgXML
+      </li>
+      <li>
+        ExportOBO
+      </li>
+      <li>
+        ExportOWL
+      </li>
+      <li>
+        ListExtensions
+      </li>
+      <li>
+        ListSchemes
+      </li>
+      <li>
+        LoadFMA
+      </li>
+      <li>
+        LoadHL7RIM
+      </li>
+      <li>
+        LoadLgXML
+      </li>
+      <li>
+        LoadMetadata
+      </li>
+      <li>
+        LoadNCIHistory
+      </li>
+      <li>
+        LoadNCIMeta
+      </li>
+      <li>
+        LoadNCIThesOWL
+      </li>
+      <li>
+        LoadOBO
+      </li>
+      <li>
+        LoadOWL
+      </li>
+      <li>
+        LoadRadLex
+      </li>
+      <li>
+        LoadUMLSDatabase
+      </li>
+      <li>
+        LoadUMLSFiles
+      </li>
+      <li>
+        LoadUMLSHistory
+      </li>
+      <li>
+        LoadUMLSSemnet
+      </li>
+      <li>
+        RebuildIndex
+      </li>
+      <li>
+        RemoveIndex
+      </li>
+      <li>
+        RemoveMetadata
+      </li>
+      <li>
+        RemoveScheme
+      </li>
+      <li>
+        TagScheme
+      </li>
+      <li>
+        TransferScheme
+      </li>
+    </ul>
+  </li>
+  <li>
+    Documentation
+    <ul>
+      <li>
+        JavaDocs
+      </li>
+      <li>
+        LexBIG Programmer Guide
+      </li>
+      <li>
+        LexBIG Installation and Administration Guide
+      </li>
+    </ul>
+  </li>
+  <li>
+    Program Examples for common vocabulary functions using sample vocabulary
+    <ul>
+      <li>
+        FindConceptNameForCode
+      </li>
+      <li>
+        FindPropsAndAssocForCode
+      </li>
+      <li>
+        FindRelatedCodes
+      </li>
+      <li>
+        FindTreeForCodeAndAssoc
+      </li>
+    </ul>
+  </li>
+  <li>
+    LexBIG Automated Verification Test Suite
+  </li>
+  <li>
+    LexBIG Runtime jar (combined archive)
+  </li>
+  <li>
+    LexBIG Runtime components (combined archive with 3rd party jars outside of archive)
+  </li>
+  <li>
+    LexBIG Uninstaller
+  </li>
+  <li>
+    LexBIG License Terms and Conditions
+  </li>
+  <li>
+    Configuration files to enable you to customize your installation to meet your specific database, server, and other network needs
+    <ul>
+      <li>
+        config.props
+      </li>
+    </ul>
+  </li>
+</ul>
+<h3 id="LexBIG1.0.2InstallationandAdministrationGuide-What&#39;sInside">
+  What&#39;s Inside
+</h3>
+This section describes the location and organization of installed materials. Following installation, many of the following hierarchy of files and directories will be available (some features are optionally installable):The following table describes the contents of the LexBIG installation root directory.
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Directory
+      </th>
+      <th>
+        Description of Content
+      </th>
+    </tr>
+    <tr>
+      <td>
+        /admin
+      </td>
+      <td>
+        Installed by default. This directory provides a centralized point for command line scripts that can be executed to perform administrative functions such as the loading, activation/deactivation, and removal of vocabulary resources. Object code used to carry out these functions is included directly in the LexBIG runtime components. Source code is included in the /source directory in the lbAdmin-src.jar (described below).
+      </td>
+    </tr>
+    <tr>
+      <td>
+        /doc
+      </td>
+      <td>
+        Optionally installed. This directory provides documentation related to LexBIG services, configuration, and execution. This guide is distributed in the /doc top-level directory.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        /doc/javadoc
+      </td>
+      <td>
+        This directory provides documentation for model classes and public interfaces available to LexBIG programmers. Also included with each object representation is a UML-based model diagram that shows the object, its attributes and operations, and immediately linked objects. The diagrams work to provide clickable navigation through the javadoc materials.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        /examples
+      </td>
+      <td>
+        Optionally installed. This directory provides a small number of example programs. Refer to the README.txt file in this directory for instructions used to configure and run the example programs. The examples are intended to provide a limited interactive demonstration of LexBIG capabilities. Source and object code for the example programs is provided under the /examples/org subdirectory. Source materials are also centrally archived under the /source directory in the file lbExamples-src.jar.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        /examples  /resources
+      </td>
+      <td>
+        Contains sample vocabulary content for reference by the example programs; use the /examples/LoadSampleData command-line script to load.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        /gui
+      </td>
+      <td>
+        Optionally installed. This folder contains programs and supporting files to launch the LexBIG Graphical User Interface (GUI). The GUI provides convenient centralized access to administrative functions as well as support to test and exercise most of the LexBIG API. The GUI is launched using a platform-specific script file in the /gui directory. The name of the platform (e.g. Windows, OSX, etc) is included in the file name. Program source and related materials are centrally archived under the /source directory in the file lbGUI-src.jar.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        /logs
+      </td>
+      <td>
+        Default location for log files, which can be modified by the LOGFILELOCATION entry in the config.props file (see next section).
+      </td>
+    </tr>
+    <tr>
+      <td>
+        /resources
+      </td>
+      <td>
+        Installed by default. This directory contains resources referenced and written directly by the LexBIG runtime. It should, in general, be considered off-limits to modify or remove the content of this directory without specific guidance and reason to do so. Files typically stored to this location include the vocabulary registry (tracking certain metadata for installed content) and indexes used to facilitate query over the installed content.   One file of particular interest in this directory is the /resources/config/config.props file. This file controls access to the database repository and other settings used to tune the LexBIG runtime behavior. Contents of this file should be set according to instructions provided by the LexBIG Administrator&#39;s Guide.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        /runtime
+      </td>
+      <td>
+        Installed by default. This directory contains a Java archive (.jar) file containing the combined object code of the LexBIG runtime, LexBIG administrative interfaces, and any additional code they are dependent on. All required code for execution of LexBIG administrative and runtime services is installed to this directory.
+        <ul>
+          <li>
+            /runtime/lbPatch.jar  In the course of the product lifecycle, it is possible that smaller fixes will be introduced as a patch to the initially distributed runtime. Including this file in the classpath ensures automatic accessibility to the calling program without requiring adjustment. All patches are cumulative (there is at most one patch file introduced per release; all patch-level fixes are cumulative).
+          </li>
+          <li>
+            /runtime/lbRuntime.jar  This is the standard runtime file, including all LexBIG and dependency code required for program execution except for SQL drivers (see next).
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        /runtime  /sqldrivers
+      </td>
+      <td>
+        The JDBC drivers used to connect to database repositories are not included in the lbRuntime.jar. Instead, the runtime scans this directory for the drivers to include. This can be overridden by path settings in the config.props file.NoteWhile the LexBIG software package ships with JDBC drivers to certain open source databases such as mySQL and PostgreSQL, this folder provides a mechanism to introduce updated drivers or to add drivers for additional supported database systems. For example, the Oracle database is supported by the runtime environment. However, the drivers are not redistributed with the LexBIG software. To run against Oracle, an administrator would add a jar with the appropriate JDBC driver to this directory and then reference it in the config.props settings.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        /runtime-components
+      </td>
+      <td>
+        Optionally installed. Due to license considerations for additional materials (as described by the license.pdf and license.txt files in the install directory), the cumulative runtime provided in the lbRuntime.jar is not redistributable. This directory contains a finer grain breakdown of object code into logical components and 3rd party inclusions. All components are redistributable under their own license agreements, which are provided along with each archive. The top-level of the /runtime-components directory contains all code produced for the LexBIG project in the lexbig.jar.NoteThese files are included as an alternative to the lbRuntime.jar for code execution and redistribution. There is no need to include any of these files in the Java classpath if you are already including the lbPatch.jar and lbRuntime.jar described above.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        /runtime-components/extLib
+      </td>
+      <td>
+        This subdirectory includes all 3rd party code redistributed with the LexBIG runtime, along with respective license agreements.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        /source
+      </td>
+      <td>
+        Optionally installed. This directory provides central accessibility to Java source for all code developed for the LexBIG project.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        /test
+      </td>
+      <td>
+        Optionally installed. This directory provides an automated test bucket that can be used by System Administrators to verify node installation. Note that the /runtime/config/config.props file must still be configured for database access prior to invoking the test bucket. Testcases are launched via the TestRunner command-line script. Several reporting options are provided and are further described in the LexBIG Administrator&#39;s Guide.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        /uninstaller
+      </td>
+      <td>
+        Contains an executable jar that can be invoked by an administrator to uninstall files originally introduced by the LexBIG installation.
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="LexBIG1.0.2InstallationandAdministrationGuide-AppendixII:LexBIGGUIAdminTool">
+  Appendix II: LexBIG GUI Admin Tool
+</h2>
+If you choose to install the LexBIG GUI when you installed LexBIG - you will have a &#39;gui&#39; folder inside of your LexBIG base installation. If you installed the GUI for all operating systems, you should have the following programs
+<ul>
+  <li>
+    Linux_64-lbGUI.sh
+  </li>
+  <li>
+    Linux-lbGUI.sh
+  </li>
+  <li>
+    OSX-lbGUI.command
+  </li>
+  <li>
+    Windows-lbGUI.bat
+  </li>
+  <li>
+    Windows-lbGUI -browser.bat
+  </li>
+</ul>
+We provide two Windows shell script versions which allow a choice between the full fledged loading, managing and &#34;end use&#34; or &#34;end use&#34; only type interfaces.This shell script provides an example by which any shell script can pass an argument option &#34;-d&#34; into the java command launching the LexBIG GUI application, restricting the end user to browsing only and allowing no loading or management of terminologies.Launch the GUI by executing the appropriate script for your platform. You will be presented with an application that looks like the following figure:
+<img alt="example screenshot of the LexBIG GUI" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/LexBIG%201.0.2%20Installation%20and%20Administration%20Guide/LexBIG_GUI.jpg?api=v2">
+This application will let you perform most administrative functions that are available in the LexBIG API. To enable the administrative functions, first, go to the &#39;Commands&#39; menu, and then click on the &#39;Enable Admin Options&#39; submenu. This will enable all of the commands that can make changes to the LexBIG environment.This guide will only cover the administrative commands - please refer to the programmers guide for instructions on the rest of the LexBIG GUI.Each administrative command is described in turn in the following tables, starting with the menus.Commands Menu
+<table>
+  <tbody>
+    <tr>
+      <th>
+        SubmenuProperty Name
+      </th>
+      <th>
+        Menu Action
+      </th>
+    </tr>
+    <tr>
+      <td>
+        Configure
+      </td>
+      <td>
+        This menu option will bring up a dialog which will show you all of the options from the current config.props file. You can make changes to individual variable here - but these changes will only affect the GUI - they will not be written back out to the config.props file. You can also choose which config.props file that you want to use.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Enable Admin Options
+      </td>
+      <td>
+        This option enables or disables all of the GUI features which are considered administrative options.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Clean Up
+      </td>
+      <td>
+        This command will run the clean up orphaned resources tool. It will give you a listing of any resources that are orphaned in the LexBIG environment, and give you the option to remove them.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        View Log File
+      </td>
+      <td>
+        This will show you the all of the logs messages that have occurred during the LexBIG GUI session. The log file viewer also has choices to let you customize the types of messages that are logged.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Exit
+      </td>
+      <td>
+        Close the application.
+      </td>
+    </tr>
+  </tbody>
+</table>
+Export Terminology Menu
+<table>
+  <tbody>
+    <tr>
+      <th>
+        SubmenuProperty Name
+      </th>
+      <th>
+        Menu Action
+      </th>
+    </tr>
+    <tr>
+      <td>
+        Export as OBO
+      </td>
+      <td>
+        This menu option will launch an exporter that exports the selected terminology into an OBO 1.2 format.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Export as LexGrid XML
+      </td>
+      <td>
+        This menu option will launch an exporter that exports the selected terminology into the LexGrid XML format.
+      </td>
+    </tr>
+  </tbody>
+</table>
+Now that all of the menus have been covered, we will go over the administrative buttons in the LexBIG GUI. These can be found in the lower right area of the top half of the application.
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Button
+      </th>
+      <th>
+        Button Action
+      </th>
+    </tr>
+    <tr>
+      <td>
+        Change Tag
+      </td>
+      <td>
+        Brings up a dialog that allows you to set (or remove) the tag on the selected terminology.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Activate
+      </td>
+      <td>
+        Activates the selected terminology. Only available if the terminology is currently deactivated.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Deactivate
+      </td>
+      <td>
+        Deactivates the selected terminology. Only available if the terminology is currently activated.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Remove
+      </td>
+      <td>
+        Deletes the selected terminology.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Remove History
+      </td>
+      <td>
+        Removes the NCI History data for the selected terminology. Only applicable to NCI Thesaurus terminologies.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Rebuild Index
+      </td>
+      <td>
+        Rebuilds the internal indexes for the selected terminology. If no terminology is selected, rebuilds the indexes for all terminologies.
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="LexBIG1.0.2InstallationandAdministrationGuide-ContactingTechnicalSupport">
+  Contacting Technical Support
+</h2>
+LexBIG Application Support can be contacted at:  Division of Biomedical Statistics and Informatics  Mayo Clinic 200 1st ST SW Rochester, MN 55905informatics@mayo.edu

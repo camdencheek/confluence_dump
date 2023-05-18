@@ -1,0 +1,45 @@
+Contents of this Page
+<ul>
+  <li>
+    <a href="#CreatingtheGroundTruthforaCompetition-IntroductiontotheYAMLFile" rel="nofollow">
+      Introduction to the YAML File
+    </a>
+  </li>
+  <li>
+    <a href="#CreatingtheGroundTruthforaCompetition-GeneratingtheGroundTruth" rel="nofollow">
+      Generating the Ground Truth
+    </a>
+  </li>
+  <li>
+    <a href="#CreatingtheGroundTruthforaCompetition-SendingEmailtoAnnotators" rel="nofollow">
+      Sending Email to Annotators
+    </a>
+  </li>
+</ul>
+<h2 id="CreatingtheGroundTruthforaCompetition-IntroductiontotheYAMLFile">
+  Introduction to the YAML File
+</h2>
+Creating the ground truth for a competition starts with adding new fields to the competition configuration YAML file. The new fields are called tcia_shared_list and annotators.The tcia_shared_list field contains the name of the TCIA shared list. This list contains Series UIDs of images stored in the TCIA archive that will be used in a competition.The annotators field contains information about annotators who will be annotating the images. The annotator information contains three fields: their first name, last name and email. The email will be used to send a request to login to ePAD and annotate the images.After the competition bundle is uploaded to the website, these fields can be modified later on the competition Edit page.Here is an example of YAML file that contains the TCIA shared list and annotators information:
+tcia_shared_list: my_tcia_list
+annotators:
+1:
+first_name: John
+last_name: Doe
+email: john_doe@example.com
+
+2:
+first_name: Jane
+last_name: Doe
+email: jane_doe@example.com
+3:
+first_name: John
+last_name: Smith
+email: john_smith@example.com
+<h2 id="CreatingtheGroundTruthforaCompetition-GeneratingtheGroundTruth">
+  Generating the Ground Truth
+</h2>
+The next step is to upload the competition bundle to the MediCI website. After the competition bundle is uploaded, the organizer can navigate to the Edit page of the competition and modify the fields. The Edit page now has a separate section called &#34;Generating ground truth&#34;. This section contains all the fields related to creating the ground truth. The fields that can be modified include changing the name of TCIA shared list, changing the first, last name and email of an annotator, deleting the annotator and adding a new annotator.Under the TCIA shared list field, a new button appears that is called &#34;Upload to ePAD&#34;. Clicking on this button downloads and parses the TCIA shared list from the TCIA website and extracts Series UIDs of the images. The corresponding images are then uploaded to ePAD. After images are ready a new ePAD window is opened to visualize and check the images.
+<h2 id="CreatingtheGroundTruthforaCompetition-SendingEmailtoAnnotators">
+  Sending Email to Annotators
+</h2>
+In the Edit page of a competition under the Annotators field there is another button called &#34;Send email to all annotators&#34;. Clicking on this button sends an email to all annotators. The email contains a link to ePAD, ePAD credentials and a request to annotate the images by following the link. Annotators follow the link, log on to ePAD with provided credentials and make annotations.

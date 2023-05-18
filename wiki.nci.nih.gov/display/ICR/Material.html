@@ -1,0 +1,272 @@
+Contents of this Page
+<ul>
+  <li>
+    <a href="#Material-Description" rel="nofollow">
+      Description
+    </a>
+  </li>
+  <li>
+    <a href="#Material-FileFormat" rel="nofollow">
+      File Format
+    </a>
+  </li>
+  <li>
+    <a href="#Material-Fields" rel="nofollow">
+      Fields
+    </a>
+    <ul>
+      <li>
+        <a href="#Material-Nodes" rel="nofollow">
+          Nodes
+        </a>
+      </li>
+      <li>
+        <a href="#Material-AttributesofMaterialNodes" rel="nofollow">
+          Attributes of Material Nodes
+        </a>
+      </li>
+      <li>
+        <a href="#Material-QualifiersforMaterialNodes%E2%80%99Attributes" rel="nofollow">
+          Qualifiers for Material Nodes’ Attributes
+        </a>
+      </li>
+      <li>
+        <a href="#Material-OtherMaterialFields" rel="nofollow">
+          Other Material Fields
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#Material-Files" rel="nofollow">
+      Files
+    </a>
+  </li>
+</ul>
+Additional Information
+<ul>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=60001283" rel="nofollow">
+      Material File Examples
+    </a>
+  </li>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=253887739" rel="nofollow">
+      Material File Template
+    </a>
+  </li>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=253887751" rel="nofollow">
+      Material File Glossary
+    </a>
+  </li>
+</ul>
+<h2 id="Material-Description">
+  Description
+</h2>
+ISA-TAB-Nano introduced the Material file. The ISA-TAB specification does not include it.
+<ul>
+  <li>
+    The Material file describes the composition of the material formulation. The Material file is an important file that is designed to allow for nanomaterial comparison across nanotechnology resources.
+  </li>
+  <li>
+    An investigation typically involves the preparation of multiple materials that are tested.These materials could be of the same chemical composition (same type and amount of chemical components in the sample) or different chemical compositions. Materials of different chemical composition or physical characteristics should be described in separate Material files.
+  </li>
+</ul>
+<h2 id="Material-FileFormat">
+  File Format
+</h2>
+The Material file looks similar to the Study and Assay files. It is a horizontally oriented spreadsheet containing tab delimited row values representing multiple values. The Material file contains information on the material, the relationship between material constituents, and a description of the material file. The following table provides an example subset of this format.Example Subset of the Material File Format
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        A
+      </th>
+      <th>
+        B
+      </th>
+      <th>
+        C
+      </th>
+      <th>
+        D
+      </th>
+    </tr>
+    <tr>
+      <td>
+        Material Source Name
+      </td>
+      <td>
+        Material Name
+      </td>
+      <td>
+         Manufacturer Lot Identifier
+      </td>
+      <td>
+        Material Description
+      </td>
+    </tr>
+    <tr>
+      <td>
+        NCL-20-1
+      </td>
+      <td>
+        g4_tris_dendrimer
+      </td>
+      <td></td>
+      <td>
+        G4 tris(hydroxyl) terminated PAMAM dendrimer
+      </td>
+    </tr>
+    <tr>
+      <td>
+        NCL-20-1
+      </td>
+      <td>
+        g4_tris_core
+      </td>
+      <td></td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+For a detailed example leveraging data from the Nanotechnology Characterization Laboratory (NCL) NCL200612, refer to the
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=60001283" rel="nofollow">
+  Material File Examples
+</a>
+wiki page.
+<h2 id="Material-Fields">
+  Fields
+</h2>
+<h3 id="Material-Nodes">
+  Nodes
+</h3>
+Material source name--- The unique identification name of the source from which the material sample is derived. This value should match that used for source name in ISA-TAB-Nano study files, thereby linking the ISA-TAB-Nano Material file and the Study file.Material name---The unique identification name for the sample and its different components. This name identifies or references the different components across the ISA-TAB-Nano files. Manufacturer lot identifier---A distinctive numeric, alpha, or alpha-numeric identification code assigned by the manufacturer or distributor. It is assigned to a specific quantity of manufactured material or product that is produced in a manner that is expected to render it homogeneous.Material description---A textual description of the material sample.Material synthesis---A text or a single term description of how the material was made.Material design rationale---A text description for the underlying design rationale is the property, process or phenomenon taken into consideration when formulating a nanoparticle or other substance in order to achieve the intended use of the formulation.
+<h3 id="Material-AttributesofMaterialNodes">
+  Attributes of Material Nodes
+</h3>
+Material intended application---The application for which a drug, nanoparticle or other substance is formulated and tested (such as MRI).Material type---One or more terms used to classify the type of material sample. Multiple terms are entered as a semicolon-delimited list.Material chemical name---The chemical name of the material or its constituent material.Characteristics [ ]--- An attribute of the sample and its constituents. The term for each characteristics [ ] attribute is written within brackets (for example, Characteristics [wall type], etc.). Nominal particle characteristics (or vendor supplied) should be included in the Material File as characteristics. Experimentally determined characteristics should be included in the Assay File.Unit--- The standard of measurement used if the value for Material characteristic value is quantitative and dimensional.Material consitituent--- The material name for each of the components within a material. The names should be obtained from the entries for the “Material Name” field. If there is a &#34;Material Linkage Type&#34;, then only the two linked components should be specified.In the example below, Material M is comprised of A, B, and C and within Material M, A and B are linked and A and C are linked.
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Material Source Name
+      </th>
+      <th>
+        Material Name
+      </th>
+      <th>
+        Material Constituent
+      </th>
+      <th>
+        Material Linkage Type
+      </th>
+    </tr>
+    <tr>
+      <td>
+        M-lab-1
+      </td>
+      <td>
+        M
+      </td>
+      <td>
+        A;B;C
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        M-lab-1
+      </td>
+      <td>
+        M
+      </td>
+      <td>
+        A;B
+      </td>
+      <td>
+        covalent linkage
+      </td>
+    </tr>
+    <tr>
+      <td>
+        M-lab-1
+      </td>
+      <td>
+        M
+      </td>
+      <td>
+        A; C
+      </td>
+      <td>
+        covalent linkage
+      </td>
+    </tr>
+    <tr>
+      <td>
+        M-lab-1
+      </td>
+      <td>
+        A
+      </td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        M-lab-1
+      </td>
+      <td>
+        B
+      </td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        M-lab-1
+      </td>
+      <td>
+        C
+      </td>
+      <td></td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+Material linkage type---The type of linkage present in a nanoparticle sample (for example, attachment, encapsulation, entrapment etc.). If the linkage type is an entrapment or encapsulation, the material type column can specify whether the constituent is entrapped or encapsulated. Material data file --- The name of files (such as Image, Structures file) containing information about the material sample. There are a few ways to capture multiple files here. 1. Reference one file per row. 2. Create an archive (i.e. zip, tar.gz) file containing all the relevant files and reference the archive file name in one row. 3. Reference each file separated by a semi-colon in the Material Data File column (such as &#34;file 1; file 2&#34;) and replicate that format in the Material data file type and  Material data file description  fields.Material data file type--- The name that defines the type of the material file (such as image, graph).Material data file description--- A textual description providing additional information on the material file.
+<h3 id="Material-QualifiersforMaterialNodes’Attributes">
+  Qualifiers for Material Nodes’ Attributes
+</h3>
+Each node attribute may be qualified using the following concepts, if applicable.Unit---The standard of measurement used if the values for characteristic [ ] columns are quantitative and dimensional. If the term for unit is from an ontology/controlled vocabulary, then its term accession number and the term source REF should be defined in the ISA-TAB-Nano Material File.Term Accession Number---Identification number of a term selected from an ontology or a controlled vocabulary, if the term is entered as a value in material intended application, material type, material chemical name, characteristic [ ], material linkage type [ ], material data file type [ ], unit or factor value [ ] columns.Term Source REF---The name which identifies the source from where a term is selected and entered in ISA-TAB-Nano study files. This name should match one of the names entered in the term source name field in the ISA-TAB-Nano Investigation File.
+<h3 id="Material-OtherMaterialFields">
+  Other Material Fields
+</h3>
+Comment [ ]---Any comment that provides additional information, which is added only when no other appropriate field exists. This field can be added any where within the Material File.
+<h2 id="Material-Files">
+  Files
+</h2>
+<ul>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=60001283" rel="nofollow">
+      Material File Examples
+    </a>
+  </li>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=253887739" rel="nofollow">
+      Material File Template
+    </a>
+  </li>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=253887751" rel="nofollow">
+      Material File Glossary
+    </a>
+  </li>
+</ul>

@@ -1,0 +1,32 @@
+draft release note for v1.3
+
+– This release contains an upgrade to the jdbc driver. &#39;&#39;&#39;Before&#39;&#39;&#39; upgrading, please remove files starting with mysql-connector-java-*, in your JBOSS server library at the following path:
+jboss-4.0.5.GA\server\default\lib
+
+
+– When upgrading to v1.3 from a previous version of caIntegrator, the installation guide describes several critical steps for the upgrade.  Of particular importance is the following:
+
+Because of the application name changed in v.1.3, in the JBOSS home directory,
+locate the war file containing the previous release of caIntegrator2 and delete it.
+For example, find this file:
+JBOSS_HOME/server/default/deploy/caintegrator2.war and delete the file
+named caintegrator2.war.
+NOTE: In this same directory, there may be a different file named caintegrator.war
+(without the number 2 in the name) which you should not delete.
+
+
+– After loading a subject annotation data source, you may see a status of &#34;Not Mapped&#34; or you may see a status of &#34;Not Loaded&#34;.  For the subject annotation source, these mean the same thing and indicate that the source needs to be loaded.
+
+
+– Technical replicates of supplemental single-sample-per-file expression data are not calculated in caIntegrator. Technical replicates must each have a unique sample name as displayed in column two of the six-column mapping file to be mapped. If the sample names in column two are repeated for a given subject only the last sample in the mapping file will be mapped. See:
+<a href="https://tracker.nci.nih.gov/browse/CAINT-984" rel="nofollow">
+  https://tracker.nci.nih.gov/browse/CAINT-984
+</a>
+– When deploying a study with an image data source, caIntegrator may not be able to retrieve more than 1000 images per image series from NBIA.  See
+<a href="https://tracker.nci.nih.gov/browse/CAINT-1000" rel="nofollow">
+  https://tracker.nci.nih.gov/browse/CAINT-1000
+</a>
+– Deployment of large studies can cause java.lang.StackOverflowError errors.  After installation, in the JBOSS installation directory, make the following change:
+-XX:ThreadStackSize=512
+
+– Users deploying studies with hundreds of copy number samples should disregard the timeout error received at 48 hours. Copy number analysis continues after this error is displayed and studies with large numbers of copy number samples should remain unedited until deployment is complete.

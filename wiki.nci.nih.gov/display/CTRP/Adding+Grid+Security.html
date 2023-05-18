@@ -1,0 +1,926 @@
+The information and links on this page are no longer being updated and are provided for reference purposes only.Contents of this Page
+<ul>
+  <li>
+    <a href="#AddingGridSecurity-Purpose" rel="nofollow">
+      Purpose
+    </a>
+  </li>
+  <li>
+    <a href="#AddingGridSecurity-TechnicalDetails" rel="nofollow">
+      Technical Details
+    </a>
+    <ul>
+      <li>
+        <a href="#AddingGridSecurity-OverviewofGridSecurityWorkflow" rel="nofollow">
+          Overview of Grid Security Workflow
+        </a>
+      </li>
+      <li>
+        <a href="#AddingGridSecurity-Assumptions" rel="nofollow">
+          Assumptions
+        </a>
+      </li>
+      <li>
+        <a href="#AddingGridSecurity-ChangestoBusinessApplication" rel="nofollow">
+          Changes to Business Application
+        </a>
+      </li>
+      <li>
+        <a href="#AddingGridSecurity-ChangestoGridService(s)" rel="nofollow">
+          Changes to Grid Service(s)
+        </a>
+      </li>
+      <li>
+        <a href="#AddingGridSecurity-ChangestoBDAscripts" rel="nofollow">
+          Changes to BDA scripts
+        </a>
+      </li>
+      <li>
+        <a href="#AddingGridSecurity-ChangestoPromotionTiers(involvesSystemsTeam)" rel="nofollow">
+          Changes to Promotion Tiers (involves Systems Team)
+        </a>
+        <ul>
+          <li>
+            <a href="#AddingGridSecurity-BusinessApplicationUpdates" rel="nofollow">
+              Business Application Updates
+            </a>
+          </li>
+          <li>
+            <a href="#AddingGridSecurity-GridInstanceUpdates" rel="nofollow">
+              Grid Instance Updates
+            </a>
+            <ul>
+              <li>
+                <a href="#AddingGridSecurity-RequestHostCertificatesforeachgrid-relatedserverinstancethatistobecomesecured." rel="nofollow">
+                  Request Host Certificates for each grid-related server instance that is to become secured.
+                </a>
+              </li>
+              <li>
+                <a href="#AddingGridSecurity-Makeupdatestothevariousjboss-4.0.5.GA-jems-ejb3/server/%3Cserverinstance%3E/deploy/jbossweb-tomcat55.sar/server.xmlfilesfortheJBossserverinstancesrequiringasecuregridlistener." rel="nofollow">
+                  Make updates to the various jboss-4.0.5.GA-jems-ejb3/server/&lt;serverinstance&gt;/deploy/jbossweb-tomcat55.sar/server.xml files for the JBoss server instances requiring a secure grid listener.
+                </a>
+              </li>
+              <li>
+                <a href="#AddingGridSecurity-Makeupdatestoserverinstance&#39;sbindingsconfiguration(bindings.xml)" rel="nofollow">
+                  Make updates to server instance&#39;s bindings configuration (bindings.xml)
+                </a>
+              </li>
+              <li>
+                <a href="#AddingGridSecurity-EnsurethatOSuseraccounthasGlobusavailableonthefilesystemwithaenvironmentvariableexported(exportGLOBUS_LOCATION=%3Cpath%3E)" rel="nofollow">
+                  Ensure that OS user account has Globus available on the file system with a environment variable exported (export GLOBUS_LOCATION=&lt;path&gt;)
+                </a>
+              </li>
+              <li>
+                <a href="#AddingGridSecurity-EnsureGlobuslibsareinplace" rel="nofollow">
+                  Ensure Globus libs are in place
+                </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+<h2 id="AddingGridSecurity-Purpose">
+  Purpose
+</h2>
+To provide a lightweight guide for other CBIIT applications (eg, caArray) to secure their own grid services.  This implementation combines caGrid authentication and local CSM authorization.
+<h2 id="AddingGridSecurity-TechnicalDetails">
+  Technical Details
+</h2>
+<h3 id="AddingGridSecurity-OverviewofGridSecurityWorkflow">
+  Overview of Grid Security Workflow
+</h3>
+ Workflow Steps
+1. Client request sent
+2. Grid User&#39;s proxy is obtained from the default location on the file system and verified.
+3. PersonImpl getById is invoked, calling InvokePersonEJB
+4. InvokePersonEJB obtains the caller identity from the proxy and instantiates a GridJNDIServiceLocator
+5. GridJNDIServiceLocator obtains default Grid Service credentials from service.properties via CoreServicesConfiguration and creates the InitialContext.
+6. CoreServicesConfiguration reads the property file
+7. InvokePersonEJB calls the getPerson method via the po/PersonEntityServiceBean/remote.
+8. AuthorizationInterceptor is invoked
+9. LoginContext, configured by security-config.xml, starts authenticationa and authorization
+10. GridLoginModule is invoked. Details provided above.
+11. GridLoginModule obtains the expected principal/encrypted password from GridServiceAuth.properties
+12. DatabaseServerLoginModule verifies login success
+13. DatabaseServerLoginModule queries podb CSM tables to obtain the Roles associated with our Grid (&#34;gridClient&#34; is expected)
+14. Role is set in Login sharedState
+15. PersonEntityServiceBean verifies required &#34;client or gridClient&#34; role is present and queries the DB to obtain the person record.
+16-18. Person data is returned to the Grid User.
+<img alt="COPPA Security diagram" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/CTRP/Adding%20Grid%20Security/COPPASecurity.png?api=v2">
+<img src="https://wiki.nci.nih.gov/s/-y6pnqc/8804/nk8x3c/_/images/icons/emoticons/information.svg" alt="(info)"/>
+Download a PDF version of the diagram
+<a href="https://wiki.nci.nih.gov/download/attachments/21699916/COPPASecurity_508_compliant.pdf?version=1&amp;modificationDate=1350488420000&amp;api=v2" rel="nofollow">
+  COPPASecurity_508_compliant.pdf
+</a>
+<h3 id="AddingGridSecurity-Assumptions">
+  Assumptions
+</h3>
+<ul>
+  <li>
+    JBoss 4.0.5
+  </li>
+  <li>
+    JAAS
+  </li>
+  <li>
+    Remote EJBs for business application integration
+  </li>
+  <li>
+    caGrid 1.3
+  </li>
+  <li>
+    Using BDA for JBoss container configuration of secure services
+  </li>
+  <li>
+    Using Common Security Module (CSM)
+  </li>
+</ul>
+<h3 id="AddingGridSecurity-ChangestoBusinessApplication">
+  Changes to Business Application
+</h3>
+Assumptions
+<ul>
+  <li>
+    JBoss 4.0.5
+  </li>
+  <li>
+    JAAS
+  </li>
+  <li>
+    Existing Secured Remote EJBs
+  </li>
+  <li>
+    Using Common Security Module (CSM)
+  </li>
+</ul>
+<ol>
+  <li>
+    Add CommonsGridLoginModule to JAAS login module (security-config.xml)
+    <ul>
+      <li>
+        <img src="https://wiki.nci.nih.gov/s/-y6pnqc/8804/nk8x3c/_/images/icons/emoticons/warning.svg" alt="(warning)"/>
+        requires nci-commons-core version 1.2.4 or greater see
+        <a href="http://maven.5amsolutions.com/archiva/browse/com.fiveamsolutions/nci-commons-core" rel="nofollow">
+          http://maven.5amsolutions.com/archiva/browse/com.fiveamsolutions/nci-commons-core
+        </a>
+      </li>
+      <li>
+        <img src="https://wiki.nci.nih.gov/s/-y6pnqc/8804/nk8x3c/_/images/icons/emoticons/warning.svg" alt="(warning)"/>
+        requires jbosssx.jar as runtime dependency to handle decryption of encrypted pre-shared key within CommonsGridLoginModuleclass. Typically included with JBoss by default, please verify.Add to JAAS Login Module (security-config.xml)
+        &lt;login-module code=&#34;com.fiveamsolutions.nci.commons.authentication.CommonsGridLoginModule&#34; flag=&#34;optional&#34;&gt;
+        &lt;module-option name=&#34;gridServicePrincipal&#34;&gt;${gridServicePrincipal}&lt;/module-option&gt;
+        &lt;module-option name=&#34;gridServiceCredential&#34;&gt;${gridServiceCredential}&lt;/module-option&gt;
+        &lt;module-option name=&#34;gridServicePrincipalSeparator&#34;&gt;||&lt;/module-option&gt;
+        &lt;/login-module&gt;
+      </li>
+      <li>
+        Define gridServicePrincipal &amp; gridServiceCredential properties within appropriate properties file so that the login module configuration file is properly configured as a part of the build and deployment process for your applicationExample snippet to add Maven2 properties
+        &lt;gridServicePrincipal&gt;Gr1DU5er&lt;/gridServicePrincipal&gt;
+        &lt;gridServiceCredential&gt;ltHZmZ1rqYq8j2uyHEABIQ==&lt;/gridServiceCredential&gt;
+        <img src="https://wiki.nci.nih.gov/s/-y6pnqc/8804/nk8x3c/_/images/icons/emoticons/information.svg" alt="(info)"/>
+        The unencrypted value for ltHZmZ1rqYq8j2uyHEABIQ== is Pa44Wurd
+      </li>
+    </ul>
+  </li>
+  <li>
+    Introduce a new grid service instance CSM Group
+    <img src="https://wiki.nci.nih.gov/s/-y6pnqc/8804/nk8x3c/_/images/icons/emoticons/warning.svg" alt="(warning)"/>
+    Update the application name &#39;po&#39;to your application&#39;s nameSample SQL for Postgres to define a new CSM Group
+    INSERT INTO CSM_GROUP (GROUP_NAME, GROUP_DESC, APPLICATION_ID)
+    VALUES (&#39;gridClient&#39;, &#39;Grid Service Invocation Group&#39;, (select application_id from csm_application where application_name = &#39;po&#39;));
+  </li>
+  <li>
+    Update @Remote EJBs endpoints to allow the new CSM Group using the @RolesAllowed annotationExample with only grid access
+    @RolesAllowed(&#34;gridClient&#34;)
+    public void myRemoteEndpointMethod() { ... }
+
+    Example granting both grid and web clients access
+    @RolesAllowed({&#34;webClient&#34;,&#34;gridClient&#34;})
+    public void myRemoteEndpointMethod() { ... }
+  </li>
+</ol>
+<h3 id="AddingGridSecurity-ChangestoGridService(s)">
+  Changes to Grid Service(s)
+</h3>
+Assumptions
+<ul>
+  <li>
+    caGrid 1.3
+  </li>
+  <li>
+    JBoss 4.0.5 Grid Service Deployment
+  </li>
+  <li>
+    Using BDA for JBoss container configuration of secure services
+  </li>
+  <li>
+    Secured Remote EJBs for Business Application integration
+  </li>
+</ul>
+<ol>
+  <li>
+    Alter Service Context(s) within Introduce
+    <ul>
+      <li>
+        Modify each service context accordingly to add security
+        <ol>
+          <li>
+            Highlight Service Context, click Modify Service button
+          </li>
+          <li>
+            Under Information Page, User Resource Framework Options section, check  Secure
+          </li>
+          <li>
+            Under Security Page (tab/button at top of dialogue), choose Custom
+          </li>
+          <li>
+            Then under Secure Communication tab, check  Transport Layer Security , choose Privacy for Communication Method
+            <img src="https://wiki.nci.nih.gov/s/-y6pnqc/8804/nk8x3c/_/images/icons/emoticons/information.svg" alt="(info)"/>
+            Specifying Transport Layer Security (TLS) enables encryption
+          </li>
+          <li>
+            Then under Authorization tab, select No for Client should connect anonymously AND select Enforce Authentication for Authorization Mechanism
+            <img src="https://wiki.nci.nih.gov/s/-y6pnqc/8804/nk8x3c/_/images/icons/emoticons/information.svg" alt="(info)"/>
+            These settings force the user to authenticate with the Grid and provide a valid user credential when calling the grid data service
+          </li>
+          <li>
+            Then under Service Credentials tab, select System for Run As
+          </li>
+        </ol>
+      </li>
+      <li>
+        Add Service Property to your (Main Service)context within Introduce,
+        <ol>
+          <li>
+            Select Service Properties tab, input the following values:
+            <table>
+              <tbody>
+                <tr>
+                  <th>
+                    Key
+                  </th>
+                  <th>
+                    Default Value
+                  </th>
+                  <th>
+                    Description
+                  </th>
+                </tr>
+                <tr>
+                  <td>
+                    gridServicePrincipalSeparator
+                  </td>
+                  <td>
+                    ||
+                  </td>
+                  <td>
+                    The separator used to encord the gridServicePrincipal and grid user&#39;s identity when Using the com.fiveamsolutions.nci.commons.authentication.CommonsGridLoginModule
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </li>
+          <li>
+            Click Add button
+          </li>
+        </ol>
+      </li>
+      <li>
+        Ensure the appropriate Typesare included within your grid service, if not add the types (XSDs) by doing the following:
+        <ol>
+          <li>
+            Import Data Types -&gt; caDSR; Project: caGrid_Metadata_Models (version 1); Package gov.nih.nci.cagrid.metadata.security
+          </li>
+        </ol>
+      </li>
+      <li>
+        Save your changes within Introduce (must be successful)
+      </li>
+    </ul>
+  </li>
+  <li>
+    Ensure the Service Property is specified within service.properties
+    #service deployment properties
+    #Wed Nov 04 17:13:39 EST 2009
+    gridServicePrincipalSeparator=||
+  </li>
+  <li>
+    Alter how remote services (eg, EJBs) are authenticated and authorized for each grid service request.  As an example, create a GridSecurityJNDIServiceLocator class to authenticate using both the Grid User&#39;s Identity (eg, /O=caBIG/OU=caGrid/OU=Training/OU=Dorian/CN=coppagridtest instead of a typical remote service user. In short, you&#39;ll base your implementation off of your existing Locator (eg, JNDIServiceLocator) and replace existing occurrences with the new GridSecurityJNDIServiceLocator.
+    <img src="https://wiki.nci.nih.gov/s/-y6pnqc/8804/nk8x3c/_/images/icons/emoticons/warning.svg" alt="(warning)"/>
+    Don&#39;t forget to update the values for the java.naming.security.principal and java.naming.security.credentials when using the the new GridSecurityJNDIServiceLocator, see example below.
+    &lt;property name=&#34;java.naming.security.principal&#34; value=&#34;Gr1DU5er&#34; /&gt;
+    &lt;property name=&#34;java.naming.security.credentials&#34; value=&#34;Pa44Wurd&#34; /&gt;
+
+    See
+    <a href="https://ncisvn.nci.nih.gov/svn/coppa/trunk/code/po-grid/src/gov/nih/nci/coppa/po/grid/remote/GridSecurityJNDIServiceLocator.java" rel="nofollow">
+      https://ncisvn.nci.nih.gov/svn/coppa/trunk/code/po-grid/src/gov/nih/nci/coppa/po/grid/remote/GridSecurityJNDIServiceLocator.java
+    </a>
+    for full codeBelow is an example that demonstrates the essence of how to code it up your new GridSecurityJNDIServiceLocator class.About exampleCoreServicesConfiguration is the ServiceConfiguration for our (Main Service) context that you previously added a Service Property when updating your services using Introduce. GridSecurityJNDIServiceLocator  may not be a singleton (static) within your application as the contained InitialContext instance needs to reference the Grid Identity for the incoming request by using SecurityUtils.getCallerIdentity().While this is recognized as a performance hit, we&#39;ve yet to figure a better way. If anyone is able to determine a better way, please let the COPPA team know
+    <a href="mailto:team-po@5amsolutions.com" rel="nofollow">
+      team-po@5amsolutions.com
+    </a>
+    --thanksEssentials for a GridSecurityJNDIServiceLocator implementation
+    ...
+    private InitialContext context;
+    private static final String JNDI_PRINCIPAL = &#34;java.naming.security.principal&#34;;
+    private static final String JNDI_CREDENTIALS = &#34;java.naming.security.credentials&#34;;
+
+    /**
+    * @return a ServiceLocator with the caller&#39;s identity
+    * @throws Exception if a problem occurs
+    */
+    public static ServiceLocator newInstance() throws Exception {
+    return new GridSecurityJNDIServiceLocator(SecurityUtils.getCallerIdentity());
+    }
+
+    /**
+    * Get an instance of the service locator. specific to the grid user.
+    *
+    * @param userIdentity user identity of the grid user
+    */
+    public GridSecurityJNDIServiceLocator(String userIdentity) {
+    try {
+    Properties props = new Properties();
+    props.load(GridSecurityJNDIServiceLocator.class.getClassLoader().getResourceAsStream(&#34;jndi.properties&#34;));
+
+    // set grid service principal and grid identity as java.naming.security.principal
+    CoreServicesConfiguration coreConfiguration = CoreServicesConfiguration.getConfiguration();
+    String principal = props.getProperty(JNDI_PRINCIPAL)
+    + coreConfiguration.getGridServicePrincipalSeparator() + userIdentity;
+    props.setProperty(JNDI_PRINCIPAL, principal);
+
+    LOG.debug(&#34;Properties &#34; + props.toString());
+
+    context = new InitialContext(props);
+
+    } catch (Exception e) {
+    LOG.error(&#34;Unable to load jndi properties.&#34;, e);
+    throw new RuntimeException(&#34;Unable to load jndi properties.&#34;, e);
+    }
+    }
+
+
+    private Object lookup(String name) throws NamingException {
+    Object object = null;
+    int i = 0;
+    while (object == null &amp;&amp; i &lt; MAX_RETRIES) {
+    try {
+    LOG.debug(&#34;Performing JNDI Lookup of : &#34; + name);
+    object = context.lookup(name);
+    } catch (CommunicationException com) {
+    LOG.warn(&#34;Unable to lookup: &#34; + name);
+    }
+    i++;
+    }
+
+    return object;
+    }
+
+    /**
+    * {@inheritDoc}
+    */
+    public PersonEntityServiceRemote getPersonService() throws NamingException {
+    PersonEntityServiceRemote object = (PersonEntityServiceRemote) lookup(&#34;po/PersonEntityServiceBean/remote&#34;);
+    return object;
+    }
+    ...
+
+    Next, an example of demonstrating the use of the GridSecurityJNDIServiceLocator classUsing GridSecurityJNDIServiceLocator
+    /**
+    * {@inheritDoc}
+    */
+    public PersonDTO getPerson(Ii ii) throws NullifiedEntityException {
+
+    try {
+    PersonDTO person = GridSecurityJNDIServiceLocator.newInstance().getPersonService().getPerson(ii);
+    return person;
+    } catch (NullifiedEntityException e) {
+    throw e;
+    } catch (UndeclaredThrowableException e) {
+    throw (e);
+    } catch (Exception e) {
+    throw new InvokeCoppaServiceException(e.toString(), e);
+    }
+    }
+
+    Lastly, here are the JNDI Propertiesjndi.properties
+    java.naming.factory.initial=${java.naming.factory.initial}
+    java.naming.provider.url=${java.naming.provider.url}
+    java.naming.factory.url.pkgs=${java.naming.factory.url.pkgs}
+    java.naming.security.principal=${java.naming.security.principal}
+    java.naming.security.credentials=${java.naming.security.credentials}
+
+    Be sure to filter the values as a part of your build process
+    &lt;property name=&#34;java.naming.factory.initial&#34; value=&#34;org.jboss.security.jndi.JndiLoginInitialContextFactory&#34; /&gt;
+    &lt;property name=&#34;java.naming.provider.url.host&#34; value=&#34;localhost&#34; /&gt;
+    &lt;property name=&#34;java.naming.provider.url.port&#34; value=&#34;1099&#34; /&gt;
+    &lt;property name=&#34;java.naming.provider.url&#34; value=&#34;jnp://${java.naming.provider.url.host}:${java.naming.provider.url.port}&#34; /&gt;
+    &lt;property name=&#34;java.naming.factory.url.pkgs&#34; value=&#34;org.jboss.naming:org.jnp.interfaces&#34; /&gt;
+    &lt;property name=&#34;java.naming.security.principal&#34; value=&#34;Gr1DU5er&#34; /&gt;
+    &lt;property name=&#34;java.naming.security.credentials&#34; value=&#34;Pa44Wurd&#34; /&gt;
+  </li>
+</ol>
+<h3 id="AddingGridSecurity-ChangestoBDAscripts">
+  Changes to BDA scripts
+</h3>
+This section will likely vary based on many factors and more notably your specific version of BDA and existing deployment configuration steps.
+<ol>
+  <li>
+    Consult
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=11671024" rel="nofollow">
+      How to configure a Secure Grid Listener
+    </a>
+  </li>
+</ol>
+Below is a diff of the changes for COPPA-PO BDA Scripts:Diff of the changes to add grid security for COPPA-PO
+Index: install.properties
+===================================================================
+--- install.properties	(revision 7040)
++++ install.properties	(revision 7192)
+@@ -118,12 +118,20 @@
+po-grid.jboss.snmp-trapd.port=21362
+po-grid.jboss.web.service.port=28283
+#used to allow the po-grid to make EJB3 calls via jndi
+-pogrid.jndi.principal=ejbclient
+-pogrid.jndi.credentials=pass
++pogrid.jndi.principal=Gr1DU5er
++pogrid.jndi.credentials=Pa44Wurd
+
+-pogrid.jboss.external.http.host=localhost
+-pogrid.jboss.external.http.port=29280
++pogrid.jboss.external.http.host=${pogrid.grid.external.secure.host}
++pogrid.jboss.external.http.port=${pogrid.grid.secure.port}
+
++pogrid.grid.secure.enable=true
++pogrid.grid.secure.port=29443
++pogrid.grid.secure.cert.location=${user.home}/.cagrid/certificates/${pogrid.grid.external.secure.host}-cert.pem
++pogrid.grid.secure.key.location=${user.home}/.cagrid/certificates/${pogrid.grid.external.secure.host}-key.pem
++pogrid.grid.external.secure.host=${env.HOSTNAME}
++pogrid.grid.external.secure.port=29443
++
++
+po-grid-legacy.jboss.server.name=pogridlegacy
+po-grid-legacy.jboss.server.jndi.port=21099
+po-grid-legacy.jboss.server.port=29080
+@@ -178,7 +186,7 @@
+#grid.index.url=http://training03.cagrid.org:6080/wsrf/services/DefaultIndexService
+#grid.index.url=http://cagrid-index-stage.nci.nih.gov:8080/wsrf/services/DefaultIndexService
+# Development Grid
+-grid.index.url=http://cbiovdev5012.nci.nih.gov:8080/wsrf/services/DefaultIndexService
++grid.index.url=http://index.training.cagrid.org:8080/wsrf/services/DefaultIndexService
+grid.poc.tech.researchCenter.displayname=CBIIT
+grid.poc.tech.researchCenter.shortname=CBIIT
+grid.poc.tech.addr.country=USA
+@@ -205,8 +213,16 @@
+grid.secure.key.location=${security.dist.relative.dir}/165.112.132.171-key.pem
+grid.external.secure.host=
+grid.external.secure.port=
++# This is used to download the targets for the grid, it is used by the *.grid.secure functionality.  May get the grid.index.url from here in the future
++#grid.target=nci_prod-1.3
++#grid.target=nci_qa-1.3
++#grid.target=nci_stage-1.3
++#grid.target=training-1.3
++grid.target=training-1.3
+
++jboss.http-connector.remove=true
+
++
+###################################
+#  PRE-POST VALIDATION PROPERTIES #
+###################################
+Index: project.properties
+===================================================================
+--- project.properties	(revision 7040)
++++ project.properties	(revision 7192)
+@@ -14,7 +14,7 @@
+ignore.check.database=true
+require.build.wscore=true
+
+-bda.version=0.10.4
++bda.version=0.10.9
+
+# Must correspond to versions specified w/in ../po/services/pom.xml
+po-services.version=3.0-SNAPSHOT
+@@ -61,6 +61,12 @@
+ws-core.binaries.relative.dir=ws-core-4.0.3
+wscore.relative.dir=ws-core-4.0.3
+
++sync-gts.binaries.file=gaards-syncgts-1.3.0.1-bin.zip
++sync-gts.src.url=http://software.cagrid.org/gaards/1.3.0.1/${sync-gts.binaries.file}
++sync-gts.binaries.relative.dir=.
++#$SYNCGTS_LOCATION needs to be set in env to point to extracted location
++cagrid-target.src.url=https://ncisvn.nci.nih.gov/svn/cagrid/branches/caGrid-1_3_release/cagrid-1-0/caGrid/repository/caGrid/target_grid
++
+findbugs.binaries.file=findbugs-1.3.4.zip
+findbugs.src.url=http://gforge.nci.nih.gov/svnroot/commonlibrary/trunk/other/os-independent/${findbugs.binaries.file}
+findbugs.binaries.relative.dir=findbugs-1.3.4
+@@ -78,6 +84,7 @@
+db.dist.relative.dir=db
+db-install.dist.relative.dir=db/db-install
+db-upgrade.dist.relative.dir=db/db-upgrade
++sync-gts.dist.relative.dir=sync-gts
+
+#*******************************
+# Databases build/install properties
+Index: upgrade.properties
+===================================================================
+--- upgrade.properties	(revision 7040)
++++ upgrade.properties	(revision 7192)
+@@ -51,11 +51,18 @@
+po-grid.jboss.server.jndi.port=21299
+po-grid.jboss.server.port=29280
+#used to allow the po-grid to make EJB3 calls via jndi
+-pogrid.jndi.principal=ejbclient
+-pogrid.jndi.credentials=pass
+-pogrid.jboss.external.http.host=localhost
+-pogrid.jboss.external.http.port=29280
++pogrid.jndi.principal=Gr1DU5er
++pogrid.jndi.credentials=Pa44Wurd
++pogrid.jboss.external.http.host=${pogrid.grid.external.secure.host}
++pogrid.jboss.external.http.port=${pogrid.grid.secure.port}
+
++pogrid.grid.secure.enable=true
++pogrid.grid.secure.port=29443
++pogrid.grid.secure.cert.location=${user.home}/.cagrid/certificates/${pogrid.grid.external.secure.host}-cert.pem
++pogrid.grid.secure.key.location=${user.home}/.cagrid/certificates/${pogrid.grid.external.secure.host}-key.pem
++pogrid.grid.external.secure.host=${env.HOSTNAME}
++pogrid.grid.external.secure.port=29443
++
+po-grid-legacy.jboss.server.name=pogridlegacy
+po-grid-legacy.jboss.server.jndi.port=21099
+po-grid-legacy.jboss.server.port=29080
+@@ -76,7 +83,7 @@
+#grid.index.url=http://training03.cagrid.org:6080/wsrf/services/DefaultIndexService
+#grid.index.url=http://cagrid-index-stage.nci.nih.gov:8080/wsrf/services/DefaultIndexService
+# Development Grid
+-grid.index.url=http://cbiovdev5012.nci.nih.gov:8080/wsrf/services/DefaultIndexService
++grid.index.url=http://index.training.cagrid.org:8080/wsrf/services/DefaultIndexService
+grid.poc.tech.researchCenter.displayname=CBIIT
+grid.poc.tech.researchCenter.shortname=CBIIT
+grid.poc.tech.addr.country=USA
+@@ -103,7 +110,15 @@
+grid.secure.key.location=${security.dist.relative.dir}/165.112.132.171-key.pem
+grid.external.secure.host=
+grid.external.secure.port=
++# This is used to download the targets for the grid, it is used by the *.grid.secure functionality.  May get the grid.index.url from here in the future
++#grid.target=nci_prod-1.3
++#grid.target=nci_qa-1.3
++#grid.target=nci_stage-1.3
++#grid.target=training-1.3
++grid.target=training-1.3
+
++jboss.http-connector.remove=true
++
+##############
+###  LDAP  ###
+##############
+Index: install.xml
+===================================================================
+--- install.xml	(revision 7040)
++++ install.xml	(revision 7192)
+@@ -85,7 +85,13 @@
+&lt;!-- Jboss configurtion related properties --&gt;
+&lt;property name=&#34;jboss.binding.template.location&#34; value=&#34;${bda-utils.dir}/resource/${jboss.template.relative.dir}/bindings.xml&#34;/&gt;
+&lt;property name=&#34;jboss.service.template.location&#34; value=&#34;${bda-utils.dir}/resource/${jboss.template.relative.dir}/jboss-service.xml&#34;/&gt;
++  &lt;!-- added for updated secure grid ssaksa 090826 --&gt;
++   &lt;property name=&#34;sync-gts.dir&#34; location=&#34;${basedir}/${sync-gts.dist.relative.dir}&#34;/&gt;
++   &lt;property name=&#34;sync-gts.build.dir&#34; location=&#34;${sync-gts.dir}/syncgts&#34;/&gt;
++   &lt;property name=&#34;cagrid-target.dir&#34; location=&#34;${sync-gts.dir}/cagrid-target&#34;/&gt;
++   &lt;property name=&#34;grid.dir.dest.jboss&#34; value=&#34;wsrf.war&#34; /&gt;
+
++
+&lt;!-- *-ds.xml and WAR --&gt;
+&lt;property name=&#34;po-ear.dir.dist&#34; value=&#34;${basedir}/${po-ear.dist.relative.dir}&#34; /&gt;
+&lt;property name=&#34;po-ear.ds.file&#34; value=&#34;po-ds.xml&#34; /&gt;
+@@ -93,6 +99,7 @@
+&lt;property name=&#34;po-ear.hibernate.file&#34; value=&#34;hibernate.cfg.xml&#34; /&gt;
+&lt;property name=&#34;po-ear.ear.file&#34; value=&#34;po.ear&#34; /&gt;
+
++
+&lt;!-- Default to false, properties can override --&gt;
+&lt;property name=&#34;grid.secure.enable&#34; value=&#34;false&#34;/&gt;
+&lt;property name=&#34;jboss.ssl.enable&#34; value=&#34;false&#34;/&gt;
+@@ -203,7 +210,11 @@
+&lt;basename file=&#34;${grid.secure.cert.location}&#34; property=&#34;grid.secure.cert.file&#34;/&gt;
+&lt;dirname file=&#34;${grid.secure.cert.location}&#34; property=&#34;grid.secure.dir&#34;/&gt;
+&lt;basename file=&#34;${grid.secure.key.location}&#34; property=&#34;grid.secure.key.file&#34;/&gt;
+-
++
++  &lt;basename file=&#34;${pogrid.grid.secure.cert.location}&#34; property=&#34;pogrid.grid.secure.cert.file&#34;/&gt;
++  &lt;dirname file=&#34;${pogrid.grid.secure.cert.location}&#34; property=&#34;pogrid.grid.secure.dir&#34;/&gt;
++  &lt;basename file=&#34;${pogrid.grid.secure.key.location}&#34; property=&#34;pogrid.grid.secure.key.file&#34;/&gt;
++
+&lt;!-- There is any issue with copying files with a filtersfile, any properties with a value of
+another property do not get expanded (xx=${yy} @xx@ will be replaced with ${yy} not the
+value).  I have defined a filter set below for these properties, I then two two copies
+@@ -494,6 +505,8 @@
+&lt;!-- Configures installed po-grid application --&gt;
+&lt;target name=&#34;install:po-grid:configure&#34; description=&#34;Configure po-grid service based on properties&#34; unless=&#34;exclude.po-grid&#34;&gt;
+&lt;grid-appserver-configure
++	  appserver.home=&#34;${jboss.home}&#34;
++	  appserver.server.name=&#34;${po-grid.jboss.server.name}&#34;
+appserver.conf.dir=&#34;${jboss.home}/server/${po-grid.jboss.server.name}/conf&#34;
+appserver.webapp.dir=&#34;${jboss.home}/server/${po-grid.jboss.server.name}/deploy&#34;
+appserver.server-xml.file=&#34;${jboss.home}/server/${po-grid.jboss.server.name}/deploy/jbossweb-tomcat55.sar/server.xml&#34;
+@@ -505,7 +518,13 @@
+search.port=&#34;8080&#34;
+grid.application.name=&#34;${po-grid.introduce.skeleton.service.name}&#34;
+grid.application.relative.dir=&#34;${po-grid.dir.target}&#34;
+-          grid.secure.enable=&#34;false&#34;
++          grid.secure.dir=&#34;${pogrid.grid.secure.dir}&#34;
++          grid.secure.enable=&#34;${pogrid.grid.secure.enable}&#34;
++          grid.secure.port=&#34;${pogrid.grid.secure.port}&#34;
++          grid.secure.key.file=&#34;${pogrid.grid.secure.key.file}&#34;
++          grid.secure.cert.file=&#34;${pogrid.grid.secure.cert.file}&#34;
++          grid.external.secure.host=&#34;${pogrid.grid.external.secure.host}&#34;
++          grid.external.secure.port=&#34;${pogrid.grid.external.secure.port}&#34;
+appserver.external.http.host=&#34;${pogrid.jboss.external.http.host}&#34;
+/&gt;
+&lt;/target&gt;
+@@ -587,6 +606,7 @@
+grid.secure.key.file=&#34;${grid.secure.key.file}&#34;
+grid.secure.cert.file=&#34;${grid.secure.cert.file}&#34;
+jboss.java.opts=&#34;${jboss.java.opts}&#34;
++	    jboss.http-connector.remove=&#34;false&#34;
+/&gt;
+&lt;/target&gt;
+
+@@ -597,7 +617,7 @@
+filtering=&#34;true&#34;
+overwrite=&#34;true&#34;&gt;
+&lt;filterset begintoken=&#34;@&#34; endtoken=&#34;@&#34;&gt;
+-                      &lt;filter token=&#34;jboss.server.port&#34; value=&#34;@po-grid.jboss.server.port@&#34;/&gt;
++                      &lt;filter token=&#34;jboss.server.port&#34; value=&#34;@pogrid.grid.secure.port@&#34;/&gt;
+&lt;filter token=&#34;jboss.ejbinvoker.port&#34; value=&#34;@po-grid.jboss.ejbinvoker.port@&#34;/&gt;
+&lt;filter token=&#34;jboss.server.rmi.port&#34; value=&#34;@po-grid.jboss.server.rmi.port@&#34;/&gt;
+&lt;filter token=&#34;jboss.server.jndi.port&#34; value=&#34;@po-grid.jboss.server.jndi.port@&#34;/&gt;
+@@ -649,16 +669,17 @@
+jboss.external.http.host=&#34;${pogrid.jboss.external.http.host}&#34;
+jboss.external.http.port=&#34;${pogrid.jboss.external.http.port}&#34;
+proxy.update.connector.port.http=&#34;8080&#34;
+-                  grid.external.secure.host=&#34;${grid.external.secure.host}&#34;
+-                  grid.external.secure.port=&#34;${grid.external.secure.port}&#34;
++                  grid.external.secure.host=&#34;${pogrid.grid.external.secure.host}&#34;
++                  grid.external.secure.port=&#34;${pogrid.grid.external.secure.port}&#34;
+jboss.server.hostname=&#34;${jboss.server.hostname}&#34;
+-                  jboss.grid.configure=&#34;false&#34;
+-                  grid.secure.dir=&#34;${grid.secure.dir}&#34;
+-                  grid.secure.enable=&#34;${grid.secure.enable}&#34;
+-                  grid.secure.port=&#34;${grid.secure.port}&#34;
+-                  grid.secure.key.file=&#34;${grid.secure.key.file}&#34;
+-                  grid.secure.cert.file=&#34;${grid.secure.cert.file}&#34;
++                  jboss.grid.configure=&#34;true&#34;
++                  grid.secure.dir=&#34;${pogrid.grid.secure.dir}&#34;
++                  grid.secure.enable=&#34;${pogrid.grid.secure.enable}&#34;
++                  grid.secure.port=&#34;${pogrid.grid.secure.port}&#34;
++                  grid.secure.key.file=&#34;${pogrid.grid.secure.key.file}&#34;
++                  grid.secure.cert.file=&#34;${pogrid.grid.secure.cert.file}&#34;
+jboss.java.opts=&#34;${jboss.java.opts}&#34;
++                  jboss.http-connector.remove=&#34;true&#34;
+/&gt;
+&lt;/target&gt;
+
+@@ -731,6 +752,7 @@
+grid.secure.key.file=&#34;${grid.secure.key.file}&#34;
+grid.secure.cert.file=&#34;${grid.secure.cert.file}&#34;
+jboss.java.opts=&#34;${jboss.java.opts}&#34;
++                  jboss.http-connector.remove=&#34;false&#34;
+/&gt;
+&lt;/target&gt;
+
+Index: common/resources/grid/jboss-globus-libs-cagrid1_1.zip
+===================================================================
+Cannot display: file marked as a binary type.
+svn:mime-type = application/octet-stream
+Index: build.xml
+===================================================================
+--- build.xml	(revision 7040)
++++ build.xml	(revision 7192)
+@@ -204,6 +204,14 @@
+&lt;/default&gt;
+&lt;/switch&gt;
+
++  &lt;if&gt;
++	  &lt;not&gt;
++		  &lt;isset property=&#34;env.ANT_OPTS&#34;/&gt;
++	  &lt;/not&gt;
++	  &lt;then&gt;
++		  &lt;fail message=&#34;To build this project you need to specify a increased java memory settings.&#34;/&gt;
++	  &lt;/then&gt;
++  &lt;/if&gt;
+&lt;!-- Targets --&gt;
+&lt;target name=&#34;diagnostics&#34; description=&#34;diagnostics&#34;&gt;
+&lt;echoproperties/&gt;
+@@ -447,9 +455,44 @@
+depends=&#34;
+init,
+dist:tools:retrieve:jboss,
+-    dist:tools:retrieve:jboss-bindings
++    dist:tools:retrieve:jboss-bindings,
++    dist:tools:retrieve:sync-gts
+&#34; /&gt;
++	&lt;!--
++	   See https://wiki.nci.nih.gov/display/BuildandDeploymentAutomation/How+to+configure+a+Secure+Grid+Listener for more details
++	--&gt;
++    &lt;target name=&#34;dist:tools:retrieve:sync-gts&#34;  description=&#34;Downloads caGrid SyncGTS service file from binary repository and verifies checksum&#34;&gt;
++	    &lt;if&gt;
++		    &lt;not&gt;
++			    &lt;available file=&#34;${download.dir}/${sync-gts.binaries.file}&#34;/&gt;
++		    &lt;/not&gt;
++		    &lt;then&gt;
++			    &lt;get src=&#34;${sync-gts.src.url}&#34;     dest=&#34;${download.dir}/${sync-gts.binaries.file}&#34; /&gt;
++		    &lt;/then&gt;
++	    &lt;/if&gt;
++	    &lt;property name=&#34;sync-gts.dist.dir&#34; location=&#34;${dist.exploded.dir}/${sync-gts.dist.relative.dir}&#34;/&gt;
++	    &lt;unzip src=&#34;${download.dir}/${sync-gts.binaries.file}&#34;     dest=&#34;${sync-gts.dist.dir}&#34;/&gt;
++	    &lt;property name=&#34;cagrid.target.co.dir&#34; location=&#34;${target.dir}/cagrid-target&#34;/&gt;
++	    &lt;mkdir dir=&#34;${cagrid.target.co.dir}&#34;/&gt;
++	    &lt;if&gt;
++		    &lt;not&gt;
++			    &lt;available file=&#34;${cagrid-target.src.url}&#34;/&gt;
++		    &lt;/not&gt;
++		    &lt;then&gt;
++			    &lt;mkdir dir=&#34;${cagrid.target.co.dir}&#34;/&gt;
++			    &lt;svn-co
++				    svn.checkout.url=&#34;${cagrid-target.src.url}&#34;
++				    svn.checkout.dir=&#34;${cagrid.target.co.dir}&#34;
++				    delete=&#34;false&#34;
++				    /&gt;
++		    &lt;/then&gt;
++	    &lt;/if&gt;
++	    &lt;copy todir=&#34;${sync-gts.dist.dir}/cagrid-target&#34;&gt;
++		    &lt;fileset dir=&#34;${cagrid.target.co.dir}&#34;/&gt;
++	    &lt;/copy&gt;
++    &lt;/target&gt;
+
++
+&lt;target name=&#34;dist:tools:retrieve:jboss-bindings&#34;  description=&#34;Downloads JBOSS bindings filefrom binary repository and verifies checksum&#34;&gt;
+&lt;get src=&#34;${jboss-bindings.src.url}&#34;     dest=&#34;${dist.exploded.dir}/${jboss-bindings.file}&#34; /&gt;
+&lt;/target&gt;
+@@ -513,7 +556,7 @@
+&lt;/target&gt;
+
+&lt;!-- Copies install time resources into distribution tree --&gt;
+-  &lt;target name=&#34;dist:upgrader:prep&#34;&gt;
++  &lt;target name=&#34;dist:upgrader:prep&#34; depends=&#34;dist:tools:retrieve:sync-gts&#34;&gt;
+&lt;!-- Copy po database scripts --&gt;
+&lt;copy todir=&#34;${dist.exploded.dir}/${db.dist.relative.dir}&#34; overwrite=&#34;true&#34;&gt;
+&lt;fileset dir=&#34;${db.src.dir}&#34;&gt;
+
+
+It is important that the updated version of the cog-jglobus.jar is used. It is located within
+<a href="https://ncisvn.nci.nih.gov/svn/coppa/trunk/code/build-po/common/resources/grid/jboss-globus-libs-cagrid1_1.zip" rel="nofollow">
+  https://ncisvn.nci.nih.gov/svn/coppa/trunk/code/build-po/common/resources/grid/jboss-globus-libs-cagrid1_1.zip
+</a>
+. Ideally these prepackaged WSRF &amp; Globus archives should be within the IVY Repo or elsewhere within the BDA Repositories.
+$ md5 cog-jglobus.jar
+MD5 (cog-jglobus.jar) = ff78337a0af216fc946ad81fde1d0961
+
+
+$ svn log  https://ncisvn.nci.nih.gov/svn/coppa/trunk/code/build-po/common/resources/grid/jboss-globus-libs-cagrid1_1.zip
+------------------------------------------------------------------------
+r7183 | smatyas | 2009-10-19 17:14:37 -0400 (Mon, 19 Oct 2009) | 1 line
+
+PO-1292: adding security to po-grid; updates to bda-based builds; updates to poear security on remote endpoints; -pr slustbader
+------------------------------------------------------------------------
+r4198 | saksass | 2009-01-16 16:20:23 -0500 (Fri, 16 Jan 2009) | 1 line
+
+Upgrade to bda-utils-0.10.0-beta with smatyas, plan to change to 0.9.1 when released shortly
+------------------------------------------------------------------------
+
+You should see the following changes within your grid instance&#39;s lib directory. Your local directory will be different than ours, &#39;po-grid&#39;.
+A /trunk/code/po-grid/lib/antlr-2.7.6rc1.jar
+M /trunk/code/po-grid/lib/caGrid-core-1.3.jar
+A /trunk/code/po-grid/lib/caGrid-enforce-auth-extension-Service-1.3.jar
+M /trunk/code/po-grid/lib/caGrid-metadata-security-1.3.jar
+A /trunk/code/po-grid/lib/jaxen-1.1.jar
+A /trunk/code/po-grid/lib/jaxmejs-0.5.2.jar
+A /trunk/code/po-grid/lib/relaxngDatatype.jar
+A /trunk/code/po-grid/lib/xsom14.jar
+<h3 id="AddingGridSecurity-ChangestoPromotionTiers(involvesSystemsTeam)">
+  Changes to Promotion Tiers (involves Systems Team)
+</h3>
+<ul>
+  <li>
+    See Deployment Request for COPPA-PO 3.1 for more information to guide the discussion,
+    <a href="https://ncisvn.nci.nih.gov/svn/coppa/trunk/documents/environment/3.1.0/COPPA-PO_DeploymentRequest.doc" rel="nofollow">
+      https://ncisvn.nci.nih.gov/svn/coppa/trunk/documents/environment/3.1.0/COPPA-PO_DeploymentRequest.doc
+    </a>
+  </li>
+</ul>
+<h4 id="AddingGridSecurity-BusinessApplicationUpdates">
+  Business Application Updates
+</h4>
+None.
+<h4 id="AddingGridSecurity-GridInstanceUpdates">
+  Grid Instance Updates
+</h4>
+Warning: These updates only apply to the JBoss server instance that hosts new secure grid servicesOverview of Updates
+<ol>
+  <li>
+    Request Host Certificates for each grid-related server instance that is to become secured.
+  </li>
+  <li>
+    Make updates to the various jboss-4.0.5.GA-jems-ejb3/server/&lt;serverinstance&gt;/deploy/jbossweb-tomcat55.sar/server.xml files for the JBoss server instances requiring a secure grid listener.
+  </li>
+  <li>
+    Make updates to server instance&#39;s bindings configuration (bindings.xml)
+  </li>
+  <li>
+    Ensure that OS user account has Globus available on the file system with a environment variable exported (export GLOBUS_LOCATION=&lt;path&gt;)
+  </li>
+</ol>
+<h5 id="AddingGridSecurity-RequestHostCertificatesforeachgrid-relatedserverinstancethatistobecomesecured.">
+  Request Host Certificates for each grid-related server instance that is to become secured.
+</h5>
+Systems will need to request the host certificates for the various promotion tiers and place the generated pair of files (*-cert.pem and *-key.pem) in a location accessible to each of the various user accounts responsible for running each JBoss server instance by following the instructions here,
+<a href="http://cagrid.org/display/knowledgebase/Request+a+Host+Certificate" rel="nofollow">
+  http://cagrid.org/display/knowledgebase/Request+a+Host+Certificate
+</a>
+.When this is done a hostname will need to be specified which will be used by all server instances that resolve to this grid service hostname.
+<h5 id="AddingGridSecurity-Makeupdatestothevariousjboss-4.0.5.GA-jems-ejb3/server/&lt;serverinstance&gt;/deploy/jbossweb-tomcat55.sar/server.xmlfilesfortheJBossserverinstancesrequiringasecuregridlistener.">
+  Make updates to the various jboss-4.0.5.GA-jems-ejb3/server/&lt;serverinstance&gt;/deploy/jbossweb-tomcat55.sar/server.xml files for the JBoss server instances requiring a secure grid listener.
+</h5>
+Information on how to update jboss-4.0.5.GA-jems-ejb3/server/&lt;serverinstance&gt;/deploy/jbossweb-tomcat55.sar/server.xml filesThe Grid uses it&#39;s own Trust Fabric and does not require certificates from an external Certificate Authority (CA) vendor, it includes it&#39;s own local CA and knows how to trust these certificates. This is not a standard SSL configuration.Basically, in this step you&#39;ll be adding a HTTPS &lt;Connector&gt; and removing any existing HTTP &amp; HTTPS &lt;Connector&gt;(s) for the &lt;Service&gt; definition within the bundled Tomcat servlet container inside JBoss.In the original file you&#39;ll notice the proxyPort is set to the HTTPPort defined for the instance&#39;s specific binding configuration (see your bindings.xml) - 29080 in the example belowBefore: jboss-4.0.5.GA-jems-ejb3/server/&lt;serverinstance&gt;/deploy/jbossweb-tomcat55.sar/server.xml
+&lt;Server&gt;
+&lt;Service&gt;
+...
+&lt;Connector acceptCount=&#34;100&#34;
+address=&#34;$\{jboss.bind.address\}&#34;
+connectionTimeout=&#34;20000&#34;
+disableUploadTimeout=&#34;true&#34;
+emptySessionPath=&#34;true&#34;
+enableLookups=&#34;false&#34;
+maxHttpHeaderSize=&#34;8192&#34;
+maxThreads=&#34;250&#34;
+port=&#34;8080&#34;
+proxyName=&#34;localhost&#34;
+proxyPort=&#34;29080&#34;
+redirectPort=&#34;8443&#34;
+strategy=&#34;ms&#34;/&gt;
+...
+&lt;Engine&gt;
+&lt;Host&gt;
+...
+&lt;/Host&gt;
+&lt;/Engine&gt;
+&lt;/Service&gt;
+&lt;/Server&gt;
+
+Now, here is where things may get somewhat tricky (or not). To add the new Connector you&#39;ll need to remove the existing and add (define) a new &lt;Connector&gt;. Below is an example:After: jboss-4.0.5.GA-jems-ejb3/server/&lt;serverinstance&gt;/deploy/jbossweb-tomcat55.sar/server.xml
+&lt;Server&gt;
+&lt;Service&gt;
+...
+&lt;Connector acceptCount=&#34;10&#34;
+autoFlush=&#34;true&#34;
+cert=&#34;/Users/smatyas/apps/po/jboss-4.0.5.GA-jems-ejb3/server/&lt;serverinstance&gt;/conf/&lt;serverinstancehostname&gt;-cert.pem&#34;
+className=&#34;org.globus.tomcat.coyote.net.HTTPSConnector&#34;
+debug=&#34;0&#34;
+disableUploadTimeout=&#34;true&#34;
+enableLookups=&#34;true&#34;
+key=&#34;/Users/smatyas/apps/po/jboss-4.0.5.GA-jems-ejb3/server/&lt;serverinstance&gt;/conf/&lt;serverinstancehostname&gt;-key.pem&#34;
+maxSpareThreads=&#34;75&#34;
+maxThreads=&#34;150&#34;
+minSpareThreads=&#34;25&#34;
+port=&#34;&lt;DesiredPortForHTTPS&gt;&#34;
+protocolHandlerClassName=&#34;org.apache.coyote.http11.Http11Protocol&#34;
+proxyName=&#34;&lt;serverinstancehostname&gt;&#34;
+proxyPort=&#34;&lt;DesiredPortForHTTPS&gt;&#34;
+scheme=&#34;https&#34;
+socketFactory=&#34;org.globus.tomcat.catalina.net.BaseHTTPSServerSocketFactory&#34;/&gt;
+...
+&lt;Engine&gt;
+&lt;Host&gt;
+...
+&lt;/Host&gt;
+&lt;Valve className=&#34;org.globus.tomcat.coyote.valves.HTTPSValve55&#34;/&gt;
+&lt;/Engine&gt;
+&lt;/Service&gt;
+&lt;/Server&gt;
+
+In the above example, you&#39;ll notice the absolute path to Host Cert files for the cert and key attributes. Again, these files can be anywhere on the filesystem so long as they are both accessible to the user account tied to the particular jboss server instance (jboss-4.0.5.GA-jems-ejb3/server/&lt;serverinstance&gt;/). Next, you&#39;ll need to make sure you choose a &lt;DesiredPortForHTTPS&gt; for both the port and proxyPort attributes and that they are the same.
+<h5 id="AddingGridSecurity-Makeupdatestoserverinstance&#39;sbindingsconfiguration(bindings.xml)">
+  Make updates to server instance&#39;s bindings configuration (bindings.xml)
+</h5>
+Lastly, some changes will need to be made to the server instance bindings configuration for our instance&#39;s configuration. In short, since we&#39;ve removed the existing HTTP-based &lt;Connector&gt; and replaced it with a HTTPS-based &lt;Connector&gt; we&#39;ll need to update the references to the previously defined HTTP-based port within the bindings.xml. Attached is an example bindings.xml that we&#39;ve generated. You&#39;ll notice that we use 29443 throughout for our HTTPS port.It may be easiest, though somewhat confusing, to simply repurpose the existing HTTP port to become the HTTPS port. We choose not to do that however, that appears to be a viable option too. If you do this the AJP port will change make sure to adjust the ports to exactly how you want them.
+<h5 id="AddingGridSecurity-EnsurethatOSuseraccounthasGlobusavailableonthefilesystemwithaenvironmentvariableexported(exportGLOBUS_LOCATION=&lt;path&gt;)">
+  Ensure that OS user account has Globus available on the file system with a environment variable exported (export GLOBUS_LOCATION=&lt;path&gt;)
+</h5>
+The binary can be found here,
+<a href="http://gforge.nci.nih.gov/svnroot/commonlibrary/trunk/techstack-2006/os-independent/ws-core-enum-4.0.3.zip" rel="nofollow">
+  http://gforge.nci.nih.gov/svnroot/commonlibrary/trunk/techstack-2006/os-independent/ws-core-enum-4.0.3.zip
+</a>
+We recommend that the WS-CORE-4.0.3 be unpacked into a shared directory, say /usr/local/ws-core-4.0.3. Then, update the user&#39;s bash profile (~/.bash_profile) to define and export GLOBUS_LOCATION.After: ~/.bash_profile
+ANT_HOME=/local/home/jboss45e/apache-ant-1.7.0
+JAVA_HOME=/usr/jdk1.5.0_10
+GLOBUS_LOCATION=/usr/local/ws-core-4.0.3
+
+export ANT_HOME JAVA_HOME GLOBUS_LOCATION
+export PATH=$ANT_HOME/bin:$JAVA_HOME/bin:$PATH
+<h5 id="AddingGridSecurity-EnsureGlobuslibsareinplace">
+  Ensure Globus libs are in place
+</h5>
+If all the changes have been made but there is an issue with the globus class path. The libs are not available for the jboss server. The following libs must be available. Move the following files into the base /usr/local/jboss405/server/&lt;app name&gt;/librw-r-r 1 jboss45 jboss45 23686 Dec 10 15:39 cog-tomcat.jar rw-r-r 1 jboss45 jboss45 659777 Dec 10 15:39 cog-jglobus.jar

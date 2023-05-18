@@ -1,0 +1,114 @@
+<h1 id="caArray090Changingtheinactivitysessiontimeoutdelay-Problem:MycaArrayinactivitytimeoutdelaystaysstuckat30minutesnomatterwhatIsetthedelaysettingtoinJBoss.">
+  Problem: My caArray inactivity timeout delay stays stuck at 30 minutes no matter what I set the delay setting to in JBoss.
+</h1>
+Topic: caArray Usage
+
+Release: caArray 2.0 and above
+
+
+Date entered: 10/27/2011
+<h2 id="caArray090Changingtheinactivitysessiontimeoutdelay-Solution">
+  Solution
+</h2>
+caArray has its own internal mechanism for setting the timeout delay; this mechanism overrides any timeout setting specified by your JBoss installation. This article explains how to change caArray&#39;s timeout delay by editing a setting in the &#39;web.XML&#39; file found in the &#39;caarray.EAR&#39; application archive.
+<h2 id="caArray090Changingtheinactivitysessiontimeoutdelay-Overview">
+  Overview
+</h2>
+The timeout delay, defined as the duration of inactivity before the session times out and the user is logged out, is specified by the value of the &lt;session-timeout&gt; tag in the &#39;web.XML&#39; file. The default value, in minutes, is &#39;30&#39;, as shown below:
+
+
+&lt;session-timeout&gt;30&lt;/session-timeout&gt;
+
+
+This value can be changed to any positive integer.
+
+
+The &#39;web.XML&#39; file must be extracted from the &#39;caarray.EAR&#39; archive before it can be edited. Once it has been edited, the file must be re-packaged into &#39;caarray.EAR&#39;, and the original &#39;caarray.EAR&#39; in your caArray installation folder must be overwritten with the modified version.
+<h2 id="caArray090Changingtheinactivitysessiontimeoutdelay-Prerequisites">
+  Prerequisites
+</h2>
+In order to manage EAR and WAR archives, you will need an archive utility with support for the ZIP format. The utility used in this article is WinZip (
+<a href="http://www.winzip.com" rel="nofollow">
+  www.winzip.com
+</a>
+), which is freely available.
+<h2 id="caArray090Changingtheinactivitysessiontimeoutdelay-CaveatsandWarnings">
+  Caveats and Warnings
+</h2>
+JBoss provides its own mechanism for altering the session timeout delay for applications running within a JBoss instance. However, the caArray-specific timeout setting as specified in &#39;web.XML&#39; overrides the JBoss-general setting. In other words, the JBoss timeout setting is irrelevant in caArray; in order to change the caArray timeout delay, you must follow the procedure outlined in this article. If you do not follow this procedure, your caArray timeout delay will remain at the application&#39;s default of 30 minutes regardless of what your JBoss timeout is set to.
+<h2 id="caArray090Changingtheinactivitysessiontimeoutdelay-ReferenceInformation">
+  Reference Information
+</h2>
+<ul>
+  <li>
+    The &#39;caarray.EAR&#39; archive is located at the following path:
+  </li>
+</ul>
+[MATKC:caArray installation folder]{}[MATKC:JBoss installation folder]\server\deploy
+
+
+In our example, the caArray installation folder is named &#39;caarray&#39; and the JBoss installation folder is named &#39;jboss-4.0.5.GA&#39;, so the fully qualified path of the EAR archive is:
+
+
+caarray\jboss-4.0.5.GA\server\deploy\caarray.ear
+<ul>
+  <li>
+    The &#39;caarray.WAR&#39; archive which directly contains the &#39;web.xml&#39; file is contained within the &#39;caarray.EAR&#39; archive and is located at the root level of the extracted &#39;caArray.EAR&#39; folder.
+  </li>
+</ul>
+<ul>
+  <li>
+    The &#39;web.XML&#39; file is contained within the &#39;caarray.WAR&#39; archive and is located at the following path within the extracted &#39;caarray.WAR&#39; folder:
+  </li>
+</ul>
+[MATKC:WAR folder path]\WEB-INF
+<h2 id="caArray090Changingtheinactivitysessiontimeoutdelay-SummaryandReviewofProcedure">
+  Summary and Review of Procedure
+</h2>
+In summary, to change the session timeout delay:
+<ol>
+  <li>
+    Log out of any existing caArray session and shut down any running JBoss instance
+  </li>
+  <li>
+    Extract the &#39;caarray.EAR&#39; archive using WinZip or your archive utility of choice.
+  </li>
+  <li>
+    Locate the &#39;caarray.WAR&#39; archive found in the extracted EAR folder, then extract this archive.
+  </li>
+  <li>
+    Locate the &#39;web.XML&#39; file found in the &#39;WEB-INF&#39; folder within the extracted WAR folder and open it in a text editor like Windows Notepad.
+  </li>
+  <li>
+    Find the &lt;session-timeout&gt; tag in &#39;web.XML&#39; and change the corresponding value to a positive integer representing the number of minutes before the session will time out due to user inactivity.
+  </li>
+  <li>
+    Save your changes to &#39;web.XML&#39;.
+  </li>
+  <li>
+    Use your archive utility to re-create the &#39;caarray.WAR&#39; archive, incorporating the modified &#39;web.XML&#39; file. (You can create the archive as a ZIP file, then rename the ZIP extension to WAR, so long as you do not alter the structure of the WAR folder hierarchy.)
+  </li>
+  <li>
+    Use your archive utility to re-create the &#39;caarray.EAR&#39; archive, incorporating the re-created &#39;caarray.WAR&#39; file from the previous step. (You can create the archive as a ZIP file, then rename the ZIP extension to EAR, so long as you do not alter the structure of the EAR folder hierarchy.)
+  </li>
+  <li>
+    Copy the re-created &#39;caarray.EAR&#39; file to the path [MATKC:caArray installation folder]{}[MATKC:JBoss installation folder]\server\deploy, overwriting the existing &#39;caarray.EAR&#39;.
+  </li>
+  <li>
+    Re-launch JBoss and log back into caArray.
+  </li>
+  <li>
+    To test the new timeout delay, perform any function in your caArray session, then refrain from using the program for at least the number of minutes you specified in &#39;web.XML&#39;. Make sure not to move your mouse arrow or press any keys on the keyboard during this time.
+  </li>
+  <li>
+    To verify that your session has timed out, try to perform another function in caArray. If the session has indeed timed out, you should be re-directed to the login screen.
+  </li>
+</ol>
+<h2 id="caArray090Changingtheinactivitysessiontimeoutdelay-Haveacomment?">
+  Have a comment?
+</h2>
+Please leave your comment in the
+<a href="https://cabig-kc.nci.nih.gov/Molecular/forums/viewforum.php?f=6&amp;sid=d297ed62850db647e795b9aa1d18cb7f" rel="nofollow">
+  caArray End User Forum
+</a>
+. 

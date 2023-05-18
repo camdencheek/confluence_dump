@@ -1,0 +1,89 @@
+Transform defines profiles for management and application of transformations to support multiple views, serialization formats, inter-operability, semantic convergence, model migration, model merge and compare, and provisioning of target artifacts.
+
+The semantic infrastructure will support multiple views, and serialization formats, for accessible artifacts. These projections of underlying models will be realized through appropriate transforms. Applications for the semantic infrastructure transform capabilities include:
+<ul>
+  <li>
+    Data element alignment and inter-operability across metadata models and vocabularies
+  </li>
+  <li>
+    Semantic convergence, datatype and unit of measure convergence, context and scope convergence
+  </li>
+  <li>
+    Model migration, including hl7 to/from UML, version migration
+  </li>
+  <li>
+    Tool-specific projections
+  </li>
+  <li>
+    Model merge, compare
+  </li>
+  <li>
+    Model documentation, reports, and other provisioned artifacts
+  </li>
+  <li>
+    Reuse and composition of transforms from transform model artifacts
+  </li>
+</ul>
+Within the Semantic Infrastructure, the notion of transformation is defined in terms of mediation: the resolution of incongruities occurring across heterogeneous data sources, where the data source may be any kind of artifact or model instance.
+
+A range of different models describing the same or related problem domains could be created by different entities throughout the world. This implies that more and more systems and applications require mediation in order to be able to integrate and use heterogeneous data sources. Mapping between models is required in several classes of application, such as Information Integration and Semantic Web, Data Migration or Ontology Merging.
+
+There are four types of heterogeneities that can occur within Service-Aware Architecture (SOA). Each heterogeneity type requires a specific technique for mismatch resolution, referred to as levels of mediation:
+<ul>
+  <li>
+    Terminology: Services or other resources use different terminologies; for example, one entity understands name to be the full name of a person, and another one defines name to only denote the family name. This can hamper successful interoperability on the semantic level, that is, concerning the meaning of information.
+  </li>
+  <li>
+    Representation Format and Transfer Protocol: resources that interact use different formats or languages for information representation (for example, HTML, XML, RDF, OWL), or different protocols for information transfer (for example, HTTP, RPC); incompatibilities on this level obviously can hamper information interchange.
+  </li>
+  <li>
+    Functionality: specific to services, this refers to functionalities of a provider and a requester that do not match exactly. This enforces complex and thus expensive reasoning procedures for detecting services usable for a given request; the need for such expensive operations can be reduced by gaining and utilizing knowledge on the functional heterogeneities.
+  </li>
+  <li>
+    Business Process: also specific to services, this denotes mismatches in the supported interaction behavior of services and clients. This can hamper successful interaction on a behavioral level for consumption or interaction of  services.
+  </li>
+</ul>
+The process of mediation generally consists of three main steps:
+<ul>
+  <li>
+    the creation of mappings, based on model artifacts.
+  </li>
+  <li>
+    the creation of appropriate mapping rules, based on model artifacts in conjunction with references to instances. Since the execution environment includes the Semantic Infrastructure, all mediated models conform to the SI meta-meta-model.
+  </li>
+  <li>
+    the execution of the mapping rules, which acts on the instance data taking as input source instances and having as output the target, mediated, instances
+  </li>
+</ul>
+Service message exchanges are represented in terms of the sender&#39;s models, and each of the business partners (for example, enterprises) understands only messages expressed in terms of its own model. One of the roles of the execution environment (by mean of mediation), is to transform, if necessary, the received message from the terms of sender&#39;s model into the terms of the receiver&#39;s model, before sending it further. From the perspective of the models, each message contains instances of the source model that have to be transformed into instances of the target model.
+
+The Semantic Infrastructure distinguishes four different types of mediators:
+<ul>
+  <li>
+    mediators that link two goals. This link represents the refinement of the source goal into the target goal
+  </li>
+  <li>
+    data mediators that import models and resolve possible representation mismatches between models.
+  </li>
+  <li>
+    mediators that link a web service to goals, meaning that the web service (totally or partially) fulfills the goal to which it is linked. The mediators may explicitly state the difference between the two entities and map different vocabularies (through the use of  data mediators).
+  </li>
+  <li>
+    mediators linking two web services.
+  </li>
+</ul>
+Functional Profile
+<ul>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=32769381" rel="nofollow">
+      1.6.1 - Associate Transforms
+    </a>
+    Integration with the Semantic Infrastructure will enable reasoning, semantic query, data mediation (for example, ad hoc data transformation).
+  </li>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=32769383" rel="nofollow">
+      1.6.2 - Transform
+    </a>
+    Create representation and views of the information, realized through the appropriate transforms.
+  </li>
+</ul>
