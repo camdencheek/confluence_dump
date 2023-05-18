@@ -1,0 +1,53 @@
+Below are the two approaches available to archive bulk data to DME.
+<h2 id="ArchivalofDatatoDME-Command-LineUtilities(CLU)">
+  Command-Line Utilities (CLU)
+</h2>
+The DME command-line utilities (CLU) provide shell commands for programmatic access from bioinformatics pipe-lines and workflows. If you want to register your data via the CLU, you can integrate the upload process into your workflow. You would supply metadata in JSON files and upload those files through the CLU commands. You can obtain the CLU package from the following GitHub repository:
+<a href="https://github.com/CBIIT/HPC_DME_APIs" rel="nofollow">
+  https://github.com/CBIIT/HPC_DME_APIs
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/DMEdoc/Archival%20of%20Data%20to%20DME/exit_small.png?api=v2">
+</a>
+You would need to install and run the CLU commands on the server where the data is located or mounted. For installation instructions, refer to
+<a href="https://wiki.nci.nih.gov/display/DMEdoc/Getting+Started+with+DME+CLU" rel="nofollow">
+  Getting Started with DME CLU
+</a>
+.Recommended commands for registration are dm_register_dataobject_multipart (for single file) and dm_register_directory (for bulk uploads). For details, refer to the following pages:
+<ul>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=436536044" rel="nofollow">
+      Using dm_register_dataobject_multipart
+    </a>
+  </li>
+  <li>
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=390470399" rel="nofollow">
+      Registering Directory Contents from Your Local System via the CLU
+    </a>
+  </li>
+</ul>
+<h2 id="ArchivalofDatatoDME-AutomatedArchivalWorkflow">
+  Automated Archival Workflow
+</h2>
+The DME Archival workflow supports users requiring recurring bulk uploads. It enables fully automated archival of datasets on a pre-configured schedule. The system locates the files to archive by scanning source directories that you specify. Fault tolerance and multi-threading capabilities are built-in to achieve reliability and high throughput. The system extracts metadata from metadata input files based on the rules that you can configure in a customer user module. Supported input file formats are JSON, XML, and CSV/Excel. You can customize the workflow using flexible configuration options available. These options include:
+<ul>
+  <li>
+    The source path where you want the system to pick up the data.
+  </li>
+  <li>
+    Whether you want the system to perform any pre-processing such as tarring the folder.
+  </li>
+  <li>
+    Whether you want the system to apply any patterns to include and exclude some files/folders.
+  </li>
+  <li>
+    Whether you want the system to look for a specific file to indicate it is ready for the system to pick it up.
+  </li>
+</ul>
+For details on configuration options, refer to the following page:
+<a href="https://github.com/CBIIT/dme-archival-workflow/blob/master/workflow_config.md" rel="nofollow">
+  https://github.com/CBIIT/dme-archival-workflow/blob/master/workflow_config.md
+</a>
+<a href="http://www.cancer.gov/policies/linking" rel="nofollow">
+  <img alt="Exit Disclaimer logo" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/DMEdoc/Archival%20of%20Data%20to%20DME/exit_small.png?api=v2">
+</a>

@@ -1,0 +1,2080 @@
+Information on this page is based on the install.properties file. All releases are on the
+<a href="https://wiki.nci.nih.gov/display/NBIA/National+Biomedical+Imaging+Archive+-+NBIA#NationalBiomedicalImagingArchive-NBIA-InstallationandDownloads" rel="nofollow">
+  Installation and Downloads
+</a>
+page.
+<ul>
+  <li>
+    <a href="#NBIAatTCIA7.8Properties-ApplicationSettings" rel="nofollow">
+      Application Settings
+    </a>
+  </li>
+  <li>
+    <a href="#NBIAatTCIA7.8Properties-DatabaseSettings" rel="nofollow">
+      Database Settings
+    </a>
+  </li>
+  <li>
+    <a href="#NBIAatTCIA7.8Properties-TCIALDAPSettings" rel="nofollow">
+      TCIA LDAP Settings
+    </a>
+  </li>
+  <li>
+    <a href="#NBIAatTCIA7.8Properties-LDAPSettings" rel="nofollow">
+      LDAP Settings
+    </a>
+  </li>
+  <li>
+    <a href="#NBIAatTCIA7.8Properties-CTPSettings" rel="nofollow">
+      CTP Settings
+    </a>
+  </li>
+  <li>
+    <a href="#NBIAatTCIA7.8Properties-NBIAApplicationProperties" rel="nofollow">
+      NBIA Application Properties
+    </a>
+  </li>
+  <li>
+    <a href="#NBIAatTCIA7.8Properties-Log4JSettings" rel="nofollow">
+      Log4J Settings
+    </a>
+  </li>
+  <li>
+    <a href="#NBIAatTCIA7.8Properties-MailSettings" rel="nofollow">
+      Mail Settings
+    </a>
+  </li>
+  <li>
+    <a href="#NBIAatTCIA7.8Properties-DownloadManagerDigitalSignatureSettings" rel="nofollow">
+      Download Manager Digital Signature Settings
+    </a>
+  </li>
+  <li>
+    <a href="#NBIAatTCIA7.8Properties-Exclusions" rel="nofollow">
+      Exclusions
+    </a>
+  </li>
+  <li>
+    <a href="#NBIAatTCIA7.8Properties-UserGuideSettings" rel="nofollow">
+      UserGuide Settings
+    </a>
+  </li>
+  <li>
+    <a href="#NBIAatTCIA7.8Properties-SOLRSettings" rel="nofollow">
+      SOLR Settings
+    </a>
+  </li>
+  <li>
+    <a href="#NBIAatTCIA7.8Properties-WorkflowSettings" rel="nofollow">
+      Workflow Settings
+    </a>
+  </li>
+  <li>
+    <a href="#NBIAatTCIA7.8Properties-RESTAPISettings" rel="nofollow">
+      REST API Settings
+    </a>
+  </li>
+  <li>
+    <a href="#NBIAatTCIA7.8Properties-TomcatConfigurationProperties" rel="nofollow">
+      Tomcat Configuration Properties
+    </a>
+  </li>
+  <li>
+    <a href="#NBIAatTCIA7.8Properties-GUILinkProperties" rel="nofollow">
+      GUI Link Properties
+    </a>
+  </li>
+  <li>
+    <a href="#NBIAatTCIA7.8Properties-NBIADataRetrieverProperties" rel="nofollow">
+      NBIA Data Retriever Properties
+    </a>
+  </li>
+  <li>
+    <a href="#NBIAatTCIA7.8Properties-SpeciesProperties" rel="nofollow">
+      Species Properties
+    </a>
+  </li>
+  <li>
+    <a href="#NBIAatTCIA7.8Properties-UserAuthenticationTool(UAT)Properties" rel="nofollow">
+      User Authentication Tool (UAT) Properties
+    </a>
+  </li>
+  <li>
+    <a href="#NBIAatTCIA7.8Properties-NBIAClassicHelpTopicMapping" rel="nofollow">
+      NBIA Classic Help Topic Mapping
+    </a>
+  </li>
+</ul>
+<h2 id="NBIAatTCIA7.8Properties-ApplicationSettings">
+  Application Settings
+</h2>
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        Property Name
+      </th>
+      <th>
+        Description
+      </th>
+      <th>
+        Example
+      </th>
+    </tr>
+    <tr>
+      <td>
+        application.base.path.linux
+      </td>
+      <td>
+        Location where user is installing software on Linux
+      </td>
+      <td>
+        ${user.home}/apps/nbia
+      </td>
+    </tr>
+    <tr>
+      <td>
+        application.base.path.windows
+      </td>
+      <td>
+        Location where user is installing software on Windows
+      </td>
+      <td>
+        c:/apps/nbia
+      </td>
+    </tr>
+    <tr>
+      <td>
+        authentication.type
+      </td>
+      <td>
+        CSM authentication type; the value should be &#34;ldap&#34; or &#34;ldap-auth&#34;
+      </td>
+      <td>
+        ldap
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="NBIAatTCIA7.8Properties-DatabaseSettings">
+  Database Settings
+</h2>
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        Property Name
+      </th>
+      <th>
+        Description
+      </th>
+      <th>
+        Example
+      </th>
+    </tr>
+    <tr>
+      <td>
+        database.type
+      </td>
+      <td>
+        This value specifies whether a MySQL or an Oracle database is being used. Currently only MySQL is supported.
+      </td>
+      <td>
+        mysql
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        database.re-createdatabase.drop-schema
+      </td>
+      <td colspan="1">
+        One of these properties must be set to true. If re-create is true then the
+        <a href="http://installdatabase" rel="nofollow">
+          install:database
+        </a>
+        target will wipe out the database instance completely and start from scratch.  If drop-schema is true, then all the schema and data will be wiped out but the database itself will not be removed.
+      </td>
+      <td colspan="1">
+        true or false
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        database.system.user
+      </td>
+      <td colspan="1">
+        The username for an administrator of this database.  This value should correspond to a MySQL username that has full system privileges. This must correspond to the administrator account defined when MySQL was configured. For Oracle, this value will be ignored, but the value must be different than the value of database.user. Depending on how the install is done, or the value of database.re-create this may not be necessary.  If re-create=true, then this is necessary, otherwise it isn&#39;t.
+      </td>
+      <td colspan="1">
+        root
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        database.system.password
+      </td>
+      <td colspan="1">
+        The password for an administrator of this database that correlates with the value in database.system.user. For Oracle, this value will be ignored. Depending on how the install is done, or the value of database.re-create this may not be necessary.  If re-create=true, then this is necessary, otherwise it isn&#39;t.
+      </td>
+      <td colspan="1">
+        Someth!ngSecure
+      </td>
+    </tr>
+    <tr>
+      <td>
+        database.server
+      </td>
+      <td>
+        This value must correspond to the domain name of machine that hosts the Oracle/MySQL database server. Talk to your database administrator to learn the server name and port.
+      </td>
+      <td>
+        remotehost.org
+      </td>
+    </tr>
+    <tr>
+      <td>
+        database.port
+      </td>
+      <td>
+        This value must correspond to the port for the database.server. 3306 is the default port, but check with your database administrator to be certain.
+      </td>
+      <td>
+        3306
+      </td>
+    </tr>
+    <tr>
+      <td>
+        database.name
+      </td>
+      <td>
+        Choose a name for the NCIA MySQL database. This must be different than the UPT database name.
+      </td>
+      <td>
+        nciadb
+      </td>
+    </tr>
+    <tr>
+      <td>
+        database.user
+      </td>
+      <td>
+        Give the username to access database.name.
+      </td>
+      <td>
+        nciaop
+      </td>
+    </tr>
+    <tr>
+      <td>
+        database.password
+      </td>
+      <td>
+        Use a password to access database.name for the username identified in database.user
+      </td>
+      <td>
+        Someth!ngSecure
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        database.url
+      </td>
+      <td colspan="1">
+        URL for connection to a database. This is the standard implementation style. This if fixed. No change required.
+      </td>
+      <td colspan="1">
+        jdbc:mysql://${database.server}:${database.port}/${database.name}
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        database.system.url
+      </td>
+      <td colspan="1">
+        URL for connection to a database. This is the standard implementation style.This if fixed. No change required.
+      </td>
+      <td colspan="1">
+        jdbc:mysql://${database.server}:${database.port}/
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        database.schema
+      </td>
+      <td colspan="1">
+        Database schema for Oracle
+      </td>
+      <td colspan="1">
+        nciadev
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="NBIAatTCIA7.8Properties-TCIALDAPSettings">
+  TCIA LDAP Settings
+</h2>
+These can be ignored for the community version. The property names in this category include
+<a href="http://ldap.memberOf.attribute.name" rel="nofollow">
+  ldap.memberOf.attribute.name
+</a>
+,
+<a href="http://ldap.mail.attribute.name" rel="nofollow">
+  ldap.mail.attribute.name
+</a>
+, ldap.group.ignore.list,
+<a href="http://public.collection.access.group.name" rel="nofollow">
+  public.collection.access.group.name
+</a>
+ and product.variation.
+<h2 id="NBIAatTCIA7.8Properties-LDAPSettings">
+  LDAP Settings
+</h2>
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        Property Name
+      </th>
+      <th>
+        Description
+      </th>
+      <th>
+        Example
+      </th>
+    </tr>
+    <tr>
+      <td>
+        ldap.url
+      </td>
+      <td>
+        Universal Resource Locator address for LightWeight Directory Access Protocol server.
+      </td>
+      <td>
+        ldaps://university.edu:636
+      </td>
+    </tr>
+    <tr>
+      <td>
+        ldap.basedn
+      </td>
+      <td>
+        LDAP server holding referrals to other server holding a given distinguished name (DN).
+      </td>
+      <td>
+        u=nci,o=nih
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        ldap.user
+      </td>
+      <td colspan="1">
+        Used only under ldap-auth, otherwise comment out.
+      </td>
+      <td colspan="1">
+        cn=NCILDAP,ou=nci,o=nih
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        ldap.pass
+      </td>
+      <td colspan="1">
+        Password for the authenticated user under ldap-auth, otherwise comment out.
+      </td>
+      <td colspan="1">
+        somepass
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="NBIAatTCIA7.8Properties-CTPSettings">
+  CTP Settings
+</h2>
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        Property Name
+      </th>
+      <th>
+        Description
+      </th>
+      <th>
+        Example
+      </th>
+    </tr>
+    <tr>
+      <td>
+        ctp.server.port
+      </td>
+      <td>
+        The port that the CTP administration console will run on
+      </td>
+      <td>
+        23080
+      </td>
+    </tr>
+    <tr>
+      <td>
+        ctp.server.http_import_service.port
+      </td>
+      <td>
+        The port that CTP will accept submissions on.  This port should be configured as the port to export to in the CTP client configuration.
+      </td>
+      <td>
+        23104
+      </td>
+    </tr>
+    <tr>
+      <td>
+        ctp.server.admin.password
+      </td>
+      <td>
+        The password for the CTP server administrator
+      </td>
+      <td>
+        S0meth!ngSecurE
+      </td>
+    </tr>
+    <tr>
+      <td>
+        ctp.server.king.password
+      </td>
+      <td>
+        The password for the CTP server super administrator who has privilege to shutdown the server
+      </td>
+      <td>
+        S0meth!ngSecurE
+      </td>
+    </tr>
+    <tr>
+      <td>
+        ctp.server.storage_service.root
+      </td>
+      <td>
+        The directory where the CTP will store submitted files
+      </td>
+      <td>
+        storage/root
+      </td>
+    </tr>
+    <tr>
+      <td>
+        ctp.server.storage_service.index
+      </td>
+      <td>
+        The directory where the CTP will store the index for submitted files.  This directory must be the direct parent of ctp.storage_service.root.
+      </td>
+      <td>
+        storage
+      </td>
+    </tr>
+    <tr>
+      <td>
+        ctp.server.require_authentication
+      </td>
+      <td>
+        Whether or not the authentication is required for data submission (HttpImportService)
+      </td>
+      <td>
+        yes
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        ctp.server.verifier.port
+      </td>
+      <td colspan="1">
+        The port that CTP will listen for verification requests on.  Verification requests are queries to the (NBIA) database adapter to confirm that a given image was submitted successfully.
+      </td>
+      <td colspan="1">
+         23304
+      </td>
+    </tr>
+    <tr>
+      <td>
+        ctp.client.port
+      </td>
+      <td>
+        The port that the CTP administration console will run on (for the client)
+      </td>
+      <td>
+        24080
+      </td>
+    </tr>
+    <tr>
+      <td>
+        ctp.client.http_import_service.port
+      </td>
+      <td>
+        The port that CTP will accept submissions on.  This port should be configured as the port to send to in the FileSender.
+      </td>
+      <td>
+        24104
+      </td>
+    </tr>
+    <tr>
+      <td>
+        ctp.client.dicom_import_service.port
+      </td>
+      <td>
+        The port that CTP will accept submissions on.  This port should be configured as the port to send to in the FileSender.
+      </td>
+      <td>
+        24304
+      </td>
+    </tr>
+    <tr>
+      <td>
+        ctp.client.export_service.port
+      </td>
+      <td>
+        The port that CTP will export submissions to (to the server).  This should match up with the import service port on the server side.
+      </td>
+      <td>
+        24204
+      </td>
+    </tr>
+    <tr>
+      <td>
+        ctp.client.admin.password
+      </td>
+      <td>
+        The password for the CTP client administrator
+      </td>
+      <td>
+        S0meth!ngSecurE
+      </td>
+    </tr>
+    <tr>
+      <td>
+        ctp.client.king.password
+      </td>
+      <td>
+        The password for the CTP client super administrator who has privilege to shutdown the server
+      </td>
+      <td>
+        S0meth!ngSecurE
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        ctp.client.exportService.username
+      </td>
+      <td colspan="1">
+        Specifies the user name    at the submitting site to ensure that all transmitted data made it into the NBIA database
+      </td>
+      <td colspan="1">
+        S0meth!ngSecurE
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        ctp.client.exportService.password
+      </td>
+      <td colspan="1">
+        Specifies the password    at the submitting site to ensure that all transmitted data made it into the NBIA database
+      </td>
+      <td colspan="1">
+        S0meth!ngSecurE
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="NBIAatTCIA7.8Properties-NBIAApplicationProperties">
+  NBIA Application Properties
+</h2>
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        Property Name
+      </th>
+      <th>
+        Description
+      </th>
+      <th>
+        Example
+      </th>
+    </tr>
+    <tr>
+      <td>
+        gov.nih.nci.ncia.imaging.server.url
+      </td>
+      <td>
+        Publicly visible URL for the Tomcat container hosting NBIA. This URL should contain the proxy name instead of the host name if there is a proxy. If this property is not configured properly, then thumbnails images may not appear in the web application search results.
+      </td>
+      <td>
+        <a href="http://locahost:45210" rel="nofollow">
+          http://locahost:45210
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        gov.nih.nci.ncia.mapped.image.path.head
+      </td>
+      <td colspan="1"></td>
+      <td colspan="1">
+        \\\\\\\\cbiofs502.nci.nih.gov\\\\nciaimages\\\\,\\\\\\\\cbiofs502.nci.nih.gov\\\\nciaproddataset\\\\dataset_p01\\\\,\\\\\\\\nfs-ncia-d.nci.nih.gov\\\\nciadevdataset\\\\dataset_d01\\\\
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        gov.nih.nci.ncia.image.path.pattern
+      </td>
+      <td colspan="1"></td>
+      <td colspan="1">
+        NCICBIMAGE/documents/,data/dataset_p01/,data/dataset_d01/
+      </td>
+    </tr>
+    <tr>
+      <td>
+        gov.nih.nci.ncia.zip.location
+      </td>
+      <td>
+        Location to place zipped files created by the NBIA web application for download.
+      </td>
+      <td>
+        /data/ncia_data/ncia_ftp
+      </td>
+    </tr>
+    <tr>
+      <td>
+        gov.nih.nci.ncia.ftp.location
+      </td>
+      <td>
+        Location to place files for download through an external FTP server.
+      </td>
+      <td>
+        /data/ncia_data/ncia_ftp
+      </td>
+    </tr>
+    <tr>
+      <td>
+        gov.nih.nci.ncia.grid.local.node.name
+      </td>
+      <td>
+        If remote search is enabled, this is the name that will be used in the search form to search THIS node. There is a separate property that governs the name of this node but as  viewed from other instances of NBIA.  It is likely that these two properties should agree, but it isn&#39;t mandatory. See: grid.poc.tech.researchCenter.displayname
+      </td>
+      <td>
+        NCI-1
+      </td>
+    </tr>
+    <tr>
+      <td>
+        gov.nih.nci.ncia.ui.uid.display.length
+      </td>
+      <td>
+        Determines the max character length of data representation in the UI tier
+      </td>
+      <td>
+        100
+      </td>
+    </tr>
+    <tr>
+      <td>
+        gov.nih.nci.ncia.ftp.url
+      </td>
+      <td>
+        FTP server URL used for informing users about where to download the larger size files
+      </td>
+      <td>
+        localhost
+      </td>
+    </tr>
+    <tr>
+      <td>
+        gov.nih.nci.ncia.installationSite
+      </td>
+      <td>
+        This property determines whether the installation is at ncicb or somewhere else (other).  This governs certain aspects of the UI such as where the link to reset a password will point to.
+      </td>
+      <td>
+        ncicb, other
+      </td>
+    </tr>
+    <tr>
+      <td>
+        gov.nih.nci.ncia.admin.email
+      </td>
+      <td>
+        The email address of the user administrator
+      </td>
+      <td>
+        <a href="mailto:ncicbmb@mail.nih.gov" rel="nofollow">
+          ncicbmb@mail.nih.gov
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        gov.nih.nci.ncia.jboss.public.url
+      </td>
+      <td colspan="1">
+        NBIA&#39;s URL for the portal
+      </td>
+      <td colspan="1">
+        <a href="http://localhost:45210/ncia/" rel="nofollow">
+          http://localhost:45210/ncia/
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        gov.nih.nci.ncia.download.server.url
+      </td>
+      <td colspan="1">
+        This is the URL that the Download Manager will use to retrieve DICOM images from.  This should typically be the same host and port of the Tomcat server.  The webapp context and file path should always be the same unless deployment has been customized.
+      </td>
+      <td colspan="1">
+        <a href="http://localhost:45210/nbia-download/servlet/DownloadServlet" rel="nofollow">
+          http://localhost:45210/nbia-download/servlet/DownloadServlet
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        enabled_guest_account
+      </td>
+      <td>
+        Whether or not public search will be enabled for this instance.
+      </td>
+      <td>
+        yes or no
+      </td>
+    </tr>
+    <tr>
+      <td>
+        guest_username
+      </td>
+      <td>
+        If enabled_guest_account=yes then this is the name of the CSM user that will blessed as the user for all public searches.   This user should likely only be provisioned to be associated with PUBLIC protection elements.
+      </td>
+      <td>
+        nbia_guest
+      </td>
+    </tr>
+    <tr>
+      <td>
+        enable_classic_download
+      </td>
+      <td>
+        If this is set to no, then only the WebStart based Download Manager will be available to all users.   If this is set to yes, then the &#34;classic&#34; download feature will still be available that allows downloading zip   files of DICOM images through HTTP and/or HTTP
+      </td>
+      <td>
+        yes or no
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        registration.email.subject
+      </td>
+      <td colspan="1">
+        Subject for the email sent to CBIIT
+      </td>
+      <td colspan="1">
+        User registration to LDAP to access the National Biomedical Imaging Archive (NBIA)
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        show.collection.search.criteria
+      </td>
+      <td colspan="1">
+        If User wants to see Collections such as MR, CT, US etc in the Simple Search Page. By default it&#39;s set to false.
+      </td>
+      <td colspan="1">
+        true or false
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        discover.remote.nodes
+      </td>
+      <td colspan="1">
+        What remote nodes the user want to see i.e., Dev, Stage, Prod etc. Deprecated after NBIA 5.2 Version.
+      </td>
+      <td colspan="1">
+        true or false
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        show.anatomical.search.criteria
+      </td>
+      <td colspan="1">
+        Various body parts the User wants to Search for such as Abdomen, Brain, Chest etc.
+      </td>
+      <td colspan="1">
+        true or false
+      </td>
+    </tr>
+    <tr>
+      <td>
+        local.grid.uri
+      </td>
+      <td>
+        For a given installation, this is the URL to the grid service FOR THAT INSTALLATION itself.     If this is not set properly, and remote search is enabled, then the local node will appear twice in the   list of searchable nodes.   Once for the &#34;local&#34; search, and additionally for its grid interface (if it is registered with the index service).
+      </td>
+      <td>
+        <a href="http://imaging.company.com:45210/wsrf/services/cagrid/NBIAService" rel="nofollow">
+          http://imaging.company.com:45210/wsrf/services/cagrid/NBIAService
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        show.collection.search.criteria
+      </td>
+      <td>
+        If set to false, the collection criteria selection control will not appear in the classic search UI.  This should only be set to false if a given instance of NBIA has, and only will ever have,  only one collection/project to search through.
+      </td>
+      <td>
+        true or false
+      </td>
+    </tr>
+    <tr>
+      <td>
+        discover.remote.nodes
+      </td>
+      <td>
+        If set to false, the NBIA web application will not attempt to discover other instances of NBIA to search through the caGrid Index Service. In other words, no remote nodes will appear at the top of the classic search page if this is set to false.
+      </td>
+      <td>
+        true or false
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        gov.nih.nci.ncia.download.no.retry
+      </td>
+      <td colspan="1">
+        Maximum number of retry to download images for NBIA Download Manager
+      </td>
+      <td colspan="1">
+        4
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="NBIAatTCIA7.8Properties-Log4JSettings">
+  Log4J Settings
+</h2>
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        Property Name
+      </th>
+      <th>
+        Description
+      </th>
+      <th>
+        Example
+      </th>
+    </tr>
+    <tr>
+      <td>
+        log4j.maxFileSize
+      </td>
+      <td></td>
+      <td>
+        100MB
+      </td>
+    </tr>
+    <tr>
+      <td>
+        log4j.maxDays
+      </td>
+      <td></td>
+      <td>
+        7
+      </td>
+    </tr>
+    <tr>
+      <td>
+        log4j.level
+      </td>
+      <td></td>
+      <td>
+        WARN
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="NBIAatTCIA7.8Properties-MailSettings">
+  Mail Settings
+</h2>
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        Property Name
+      </th>
+      <th>
+        Description
+      </th>
+      <th>
+        Example
+      </th>
+    </tr>
+    <tr>
+      <td>
+        mail.smtp.server
+      </td>
+      <td>
+        Location of mail server to send emails for application to forward emails to users, notify users of the location of the download files
+      </td>
+      <td>
+        mail.university.edu
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="NBIAatTCIA7.8Properties-DownloadManagerDigitalSignatureSettings">
+  Download Manager Digital Signature Settings
+</h2>
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        Property Name
+      </th>
+      <th>
+        Description
+      </th>
+      <th>
+        Example
+      </th>
+    </tr>
+    <tr>
+      <td>
+        jar-signing.keystore.location
+      </td>
+      <td>
+        The location of the keystore to find a key to sign the download manager jars with.  If (file://\\If) generate-selfsigned is set to true, then this location will be where the installation process CREATES the keystore.  Otherwise (file://\\Otherwise), the keystore should already exist at this location.
+      </td>
+      <td>
+        c:/keystores/nbia_keystore
+      </td>
+    </tr>
+    <tr>
+      <td>
+        jar-signing.keystore.password
+      </td>
+      <td>
+        The password for the keystore pointed to by keystore.location. If (file://\\If) generate-selfsigned is set to true, then this password will be set when the installation process CREATES the keystore.  \ (file://\\Otherwise)Otherwise, the password should apply to the existing keystore.
+      </td>
+      <td>
+        something_secure
+      </td>
+    </tr>
+    <tr>
+      <td>
+        jar-signing.keystore.alias
+      </td>
+      <td>
+        The alias for the key to use when signing the download manager jars. If (file://\\If) generate-selfsigned is set to true, then this alias will be set when the installation process CREATES the key and keystore.  Otherwise (file://\\Otherwise), the alias should exist in the existing keystore.
+      </td>
+      <td>
+        alias1
+      </td>
+    </tr>
+    <tr>
+      <td>
+        jar-signing.execution.time
+      </td>
+      <td>
+        Whether to sign the jars at build time or install time.  If not at NCICB, this value should always be install.
+      </td>
+      <td>
+        build or install
+      </td>
+    </tr>
+    <tr>
+      <td>
+        jar-signing.generate-selfsigned
+      </td>
+      <td>
+        If set to true, the install process will generate a self-signed certificate to sign the jars with.  If (file://\\If) false, there must be an existing certificate to use when signing.
+      </td>
+      <td>
+        true or false
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        gov.nih.nci.ncia.encrypt.key
+      </td>
+      <td colspan="1">
+        Alphanumeric key for password encryption
+      </td>
+      <td colspan="1">
+        ABCD12346598AYE2
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="NBIAatTCIA7.8Properties-Exclusions">
+  Exclusions
+</h2>
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        Property Name
+      </th>
+      <th>
+        Description
+      </th>
+      <th>
+        Example
+      </th>
+    </tr>
+    <tr>
+      <td>
+        exclude.start.servers
+      </td>
+      <td>
+        If you want to exclude starting server after the completion of installation. Default is set to false.
+      </td>
+      <td>
+        true or false
+      </td>
+    </tr>
+    <tr>
+      <td>
+        exclude.ctp
+      </td>
+      <td>
+        If you want to exclude CTP. Default is set to false.
+      </td>
+      <td>
+        true or false
+      </td>
+    </tr>
+    <tr>
+      <td>
+        exclude.ctp-client
+      </td>
+      <td>
+        If ctp-client should be excluded or not. Default is set to false.
+      </td>
+      <td>
+        true or false
+      </td>
+    </tr>
+    <tr>
+      <td>
+        exclude.database
+      </td>
+      <td>
+        If you want to exclude database or not. Default is set to false.  For the first time installation, please leave this property commented out so that database schema can be created.
+      </td>
+      <td>
+        true or false
+      </td>
+    </tr>
+    <tr>
+      <td>
+        exclude.ctp.client.backup
+      </td>
+      <td>
+        If CTP Client backup is excluded. Default is set to false.
+      </td>
+      <td>
+        true or false
+      </td>
+    </tr>
+    <tr>
+      <td>
+        exclude.ctp.server.backup
+      </td>
+      <td>
+        If CTP server backup should be excluded. Default is set to false.
+      </td>
+      <td>
+        true or false
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        exclude.nbia-api
+      </td>
+      <td colspan="1">
+        Exclude NBIA API or not. Default is false.
+      </td>
+      <td colspan="1">
+        true or false
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="NBIAatTCIA7.8Properties-UserGuideSettings">
+  UserGuide Settings
+</h2>
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        Property Name
+      </th>
+      <th>
+        Description
+      </th>
+      <th>
+        Example
+      </th>
+    </tr>
+    <tr>
+      <td>
+        gov.nih.nci.ncia.wiki.context.sensitive.help.url
+      </td>
+      <td>
+        wiki tiny URL for context sensitive help
+      </td>
+      <td>
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=271515731" rel="nofollow">
+          https://wiki.nci.nih.gov/display/NBIA/NBIA+Help+Topics#NBIAHelpTopics
+        </a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="NBIAatTCIA7.8Properties-SOLRSettings">
+  SOLR Settings
+</h2>
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        Property Name
+      </th>
+      <th>
+        Description
+      </th>
+      <th>
+        Example
+      </th>
+    </tr>
+    <tr>
+      <td>
+        gov.nih.nci.ncia.solr.home
+      </td>
+      <td>
+        Location to keep Solr indexes
+      </td>
+      <td>
+        c:/apps/nbia/solr-home/
+      </td>
+    </tr>
+    <tr>
+      <td>
+        gov.nih.nci.ncia.solr.updateinterval
+      </td>
+      <td>
+        This will defines how often in minutes Solr will update indexes
+      </td>
+      <td>
+        60
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="NBIAatTCIA7.8Properties-WorkflowSettings">
+  Workflow Settings
+</h2>
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        Property Name
+      </th>
+      <th>
+        Description
+      </th>
+      <th>
+        Example
+      </th>
+    </tr>
+    <tr>
+      <td>
+        gov.nih.nci.ncia.workflow.updateinterval
+      </td>
+      <td>
+        This will defines how often in minutes the workflow will be updated
+      </td>
+      <td>
+        60
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="NBIAatTCIA7.8Properties-RESTAPISettings">
+  REST API Settings
+</h2>
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        Property Name
+      </th>
+      <th>
+        Description
+      </th>
+      <th>
+        Example
+      </th>
+    </tr>
+    <tr>
+      <td>
+        nbia.api.oauth2.client.id
+      </td>
+      <td>
+        Unique ID given by authorization server during registration to the client application
+      </td>
+      <td>
+        Contact
+      </td>
+    </tr>
+    <tr>
+      <td>
+        nbia.api.oauth2.client.secret
+      </td>
+      <td>
+        The password supplied to identify the client
+      </td>
+      <td>
+        Contact
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        nbia.api.oauth2.token.validity.in.seconds
+      </td>
+      <td colspan="1">
+        The expiration time in seconds before which the transaction has to be performed
+      </td>
+      <td colspan="1">
+        7200
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="NBIAatTCIA7.8Properties-TomcatConfigurationProperties">
+  Tomcat Configuration Properties
+</h2>
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        Property Name
+      </th>
+      <th>
+        Description
+      </th>
+      <th>
+        example
+      </th>
+    </tr>
+    <tr>
+      <td colspan="1">
+        gov.nih.nci.ncia.tomcat.home
+      </td>
+      <td colspan="1">
+        Where tomcat is installed
+      </td>
+      <td colspan="1">
+        /local/content/apache-tomcat-7.0.68
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        database.driver
+      </td>
+      <td colspan="1">
+        The database driver. Please do not change the value of the property. If the database used is MySQL, just comment out the same property for Oracle and un-comment out the property for MySQL.  Vise versa for Oracle database.
+      </td>
+      <td colspan="1">
+        For MySQL database:com.mysql.jdbc.DriverFor Oracle database:oracle.jdbc.driver.OracleDriver
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        database.driver.jar
+      </td>
+      <td colspan="1">
+        The jar name of database driver. Please do not change the value of the property.  If the database used is MySQL, just comment out the same property for Oracle and un-comment out the property for MySQL. Vise versa for Oracle database.
+      </td>
+      <td colspan="1">
+        For MySQL database:${mysql.driver.jar}For Oracle database:${oracle.driver.jar}
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        database.driver.jar.src.url
+      </td>
+      <td colspan="1">
+        The URL for downloading database driver library. Please do not change the value of the property. If the database used is MySQL, just comment out the same property for Oracle and un-comment out the property for MySQL. Do the same for the Oracle database.
+      </td>
+      <td colspan="1">
+        For MySQL database:${mysql.driver.jar.src.url}For Oracle database:${oracle.driver.jar.src.url}
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        csm.api.jar
+      </td>
+      <td colspan="1">
+        The name of CSM API jar. Do not change the value of the property.
+      </td>
+      <td colspan="1">
+        csmapi-5.2.jar
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        csm.api.jar.src.url
+      </td>
+      <td colspan="1">
+        The source URL for CSM API jar. Do not change the value of the property.
+      </td>
+      <td colspan="1">
+        https://ncimvn.nci.nih.gov/nexus/service/local/repositories/thirdparty/content/gov/nih/nci/csm/csmapi/5.2/${csm.api.jar}
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        bouncy.castle.jar
+      </td>
+      <td colspan="1">
+        The name of bouncy castle jar. Do not change the value of the property.
+      </td>
+      <td colspan="1">
+        bcprov-jdk15on-1.51.jar
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        bouncy.castle.jar.src.url
+      </td>
+      <td colspan="1">
+        The source URL for bouncy.castle.jar. Do not change the value of the property.
+      </td>
+      <td colspan="1">
+        https://ncimvn.nci.nih.gov/nexus/service/local/repositories/central/content/org/bouncycastle/bcprov-jdk15on/1.51/${bouncy.castle.jar}
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        mysql.driver.jar
+      </td>
+      <td colspan="1">
+        The jar name of MySQL Driver. Do not change the value of the property.
+      </td>
+      <td colspan="1">
+        mysql-connector-java-5.1.34.jar
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        mysql.driver.jar.src.url
+      </td>
+      <td colspan="1">
+        The source URL for MySQL driver.  Do not change the value of the property.
+      </td>
+      <td colspan="1">
+        https://ncimvn.nci.nih.gov/nexus/service/local/repositories/central/content/mysql/mysql-connector-java/5.1.34/${mysql.driver.jar}
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        oracle.driver.jar
+      </td>
+      <td colspan="1">
+        The jar name of Oracle driver. Do not change the value of the property.
+      </td>
+      <td colspan="1">
+        ojdbc14-10.2.0.3.0.jar
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        oracle.driver.jar.src.url
+      </td>
+      <td colspan="1">
+        The source URL for Oracle driver. Do not change the value of the property.
+      </td>
+      <td colspan="1">
+        https://ncimvn.nci.nih.gov/nexus/service/local/repositories/thirdparty/content/oracle/ojdbc14/10.2.0.3.0/${oracle.driver.jar}
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="NBIAatTCIA7.8Properties-GUILinkProperties">
+  GUI Link Properties
+</h2>
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        Property Name
+      </th>
+      <th>
+        Description
+      </th>
+      <th>
+        Example
+      </th>
+    </tr>
+    <tr>
+      <td>
+        gui.text
+      </td>
+      <td>
+        Text for button linking out to beta search application
+      </td>
+      <td>
+        Leave blank in community version
+      </td>
+    </tr>
+    <tr>
+      <td>
+        gui.link
+      </td>
+      <td>
+        URL for beta application, ignored in community version
+      </td>
+      <td>
+        gui.link=http//
+        <a href="http://google.com?faces-redirect=true" rel="nofollow">
+          google.com
+        </a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="NBIAatTCIA7.8Properties-NBIADataRetrieverProperties">
+  NBIA Data Retriever Properties
+</h2>
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        Property Name
+      </th>
+      <th>
+        Description
+      </th>
+      <th>
+        Example
+      </th>
+    </tr>
+    <tr>
+      <td>
+        win.downloader.installer.path
+      </td>
+      <td>
+        The URL for downloading NBIA Data Retriever Installer for Windows 7 and 10
+      </td>
+      <td>
+        <a href="https://cbiit-download.nci.nih.gov/nbia/releases/NBIADataRetriever_3.3/NBIA%20Data%20Retriever-3.3.msi" rel="nofollow">
+          https://cbiit-download.nci.nih.gov/nbia/releases/NBIADataRetriever_3.3/NBIA%20Data%20Retriever-3.3.msi
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        mac.downloader.installer.path
+      </td>
+      <td colspan="1">
+        The URL for downloading/installing NBIA Data Retriever Installer from Mac App Store
+      </td>
+      <td colspan="1">
+        <a href="https://itunes.apple.com/us/app/downloader-app/id1399207860?mt=12" rel="nofollow">
+          https://itunes.apple.com/us/app/downloader-app/id1399207860?mt=12
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        centos.downloader.installer.path
+      </td>
+      <td colspan="1">
+        The URL for downloading NBIA Data Retriever Installer for CentOS and RedHat
+      </td>
+      <td colspan="1">
+        <a href="https://cbiit-download.nci.nih.gov/nbia/releases/ForTCIA/NBIADataRetriever_4.0/NBIADataRetriever-4.0-1.x86_64.rpm" rel="nofollow">
+          https://cbiit-download.nci.nih.gov/nbia/releases/ForTCIA/NBIADataRetriever_4.0/NBIADataRetriever-4.0-1.x86_64.rpm
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        ubuntu.downloader.installer.path
+      </td>
+      <td colspan="1">
+        The URL for downloading NBIA Data Retriever Installer for Ubuntu
+      </td>
+      <td colspan="1">
+        <a href="https://cbiit-download.nci.nih.gov/nbia/releases/ForTCIA/NBIADataRetriever_4.0/nbia-data-retriever-4.0.deb" rel="nofollow">
+          https://cbiit-download.nci.nih.gov/nbia/releases/ForTCIA/NBIADataRetriever_4.0/nbia-data-retriever-4.0.deb
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        latest.TCIA.downloader.version
+      </td>
+      <td colspan="1">
+        The latest version of NBIA Data Retriever supported by the download server
+      </td>
+      <td colspan="1">
+        4.0
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        latest.manifest.version
+      </td>
+      <td colspan="1">
+        The latest version of manifest file supported by the download server
+      </td>
+      <td colspan="1">
+        3.0
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        force.downloader.upgrade
+      </td>
+      <td colspan="1">
+        A flag to send to NBIA Data Retriever for disabling &#34;Remind me later&#34; button
+      </td>
+      <td colspan="1">
+        false
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        help.desk.url
+      </td>
+      <td colspan="1">
+        URL to access help desk page from NBIA Data Retriever
+      </td>
+      <td colspan="1">
+        <a href="https://cbiit.cancer.gov/application-support" rel="nofollow">
+          https://cbiit.cancer.gov/application-support
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        online.help.url
+      </td>
+      <td>
+        URL to access online help wiki page from NBIA Data Retriever
+      </td>
+      <td>
+        <a href="https://wiki.cancerimagingarchive.net/display/NBIA/TCIA+Current+Help+Topics#TCIACurrentHelpTopics-DownloadingTCIAImages" rel="nofollow">
+          https://wiki.cancerimagingarchive.net/display/NBIA/TCIA+Current+Help+Topics#TCIACurrentHelpTopics-DownloadingTCIAImages
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        user.agreement.file.location
+      </td>
+      <td colspan="1">
+        The file path including file name of the user agreement
+      </td>
+      <td colspan="1">
+        <a href="http://Example/usr/local/tomcat/lib/" rel="nofollow">
+          /usr/local/tomcat/lib/
+        </a>
+        userAgreement.txt
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="NBIAatTCIA7.8Properties-SpeciesProperties">
+  Species Properties
+</h2>
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+    <col/>
+  </colgroup>
+  <thead>
+    <tr>
+      <th>
+        Property Name
+      </th>
+      <th>
+        Description
+      </th>
+      <th>
+        Example
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        species.description
+      </td>
+      <td>
+        The species description for human in DICOM
+      </td>
+      <td>
+        Homo sapiens
+      </td>
+    </tr>
+    <tr>
+      <td>
+        species.code
+      </td>
+      <td>
+        The species code for human in DICOM
+      </td>
+      <td>
+        337915000
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="NBIAatTCIA7.8Properties-UserAuthenticationTool(UAT)Properties">
+  User Authentication Tool (UAT) Properties
+</h2>
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        Property Name
+      </th>
+      <th>
+        Description
+      </th>
+    </tr>
+    <tr>
+      <td>
+        uat.enable.creating.newCollectionSite
+      </td>
+      <td>
+        If set to True, this property shows the Protection Element tab in UAT. If this property is set to True, it is recommended that ctp.block.creating.newCollectionSite should also be set to true. This requires that a new collection and site must be created first before managing these elements in UAT.If set to False, this property hides the Protection Element tab in UAT. An NBIA hosting site may chose to set this property to False if the are generating the Protection Element  automatically during the DICOM submission process.Note: Configure the properties uat.enable.creating.newCollectionSite and ctp.block.creating.newCollectionSite together using one of the following two scenarios.
+        <ol>
+          <li>
+            Set both uat.enable.creating.newCollectionSite and ctp.block.creating.newCollectionSite to False if you want users to submit DICOM data and then let the User Authentication Tool (UAT) create the Protection Element automatically, based on the collection and site in the submission.
+          </li>
+          <li>
+            Set both uat.enable.creating.newCollectionSite and ctp.block.creating.newCollectionSite to True if you want to create a new collection and site using UAT before users submit DICOM data for that collection and site. This bypasses the NBIA database adapter that would have normally created a new collection and site in the database based on the submission.
+          </li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        ctp.block.creating.newCollectionSite
+      </td>
+      <td colspan="1">
+        If set to True, this property prevents a new collection and site from being created automatically when DICOM data is submitted.If set to False, this property creates a new collection and site when DICOM data is submitted.See note above for more information.
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        uat.enable.assign.user.to.userGroup
+      </td>
+      <td colspan="1">
+        If set to True, this property allows a user to be assigned to a user group.
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        uat.enable.assign.user.to.protectionGroup
+      </td>
+      <td colspan="1">
+        If set to True, this property allows a user to be assigned to a protection group.
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="NBIAatTCIA7.8Properties-NBIAClassicHelpTopicMapping">
+  NBIA Classic Help Topic Mapping
+</h2>
+The following are the anchors for the context-sensitive help for the NBIA Classic UI. The NBIA Data Portal does not have context-sensitive help.
+Base URL=https://wiki.nci.nih.gov/display/NBIA/NBIA+Help+Topics
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        NBIA Help Topic Name
+      </th>
+      <th>
+        Anchor
+      </th>
+    </tr>
+    <tr>
+      <td>
+        Registering a New User
+      </td>
+      <td>
+        #NBIAHelpTopics-RegisteringaNewUser
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Logging into NBIA
+      </td>
+      <td>
+        #NBIAHelpTopics-LoggingintoNBIA
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Using the NBIA Home Page
+      </td>
+      <td>
+        #NBIAHelpTopics-UsingtheNBIAHomePage
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Using NBIA Online Help
+      </td>
+      <td>
+        #NBIAHelpTopics-UsingNBIAOnlineHelp
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Performing a Simple Search
+      </td>
+      <td>
+        #NBIAHelpTopics-PerformingaSimpleSearch
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Performing a Text Search
+      </td>
+      <td>
+        #NBIAHelpTopics-PerformingaTextSearch
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Performing an Advanced Search
+      </td>
+      <td>
+        #NBIAHelpTopics-PerforminganAdvancedSearch
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Creating Saved Queries
+      </td>
+      <td>
+        #NBIAHelpTopics-CreatingSavedQueries
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Working with Saved Queries
+      </td>
+      <td>
+        #NBIAHelpTopics-WorkingwithSavedQueries
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Editing Saved Queries
+      </td>
+      <td>
+        #NBIAHelpTopics-EditingSavedQueries
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Viewing a Query History
+      </td>
+      <td>
+        #NBIAHelpTopics-ViewingQueryHistory
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Search Results by Subject
+      </td>
+      <td>
+        #NBIAHelpTopics-SearchResultsStudiesforSubject
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Managing a Shared List
+      </td>
+      <td>
+        #NBIAHelpTopics-ManagingaSharedList
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Creating a Shared List
+      </td>
+      <td>
+        #NBIAHelpTopics-CreatingaSharedList
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Searching a Shared List
+      </td>
+      <td>
+        #NBIAHelpTopics-SearchingaSharedList
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Editing a Shared List
+      </td>
+      <td>
+        #NBIAHelpTopics-EditingaSharedList
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Managing the Data Basket
+      </td>
+      <td>
+        #NBIAHelpTopics-ManagingtheDataBasket
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Download Manager
+      </td>
+      <td>
+        #NBIAHelpTopics-DownloadManager
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Viewing Submission Reports
+      </td>
+      <td>
+        #NBIAHelpTopics-ViewingSubmissionReports
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Accrual Report
+      </td>
+      <td>
+        #NBIAHelpTopics-AccrualReport
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Image Submission Report
+      </td>
+      <td>
+        #NBIAHelpTopics-ImageSubmissionReport
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Annotation Submission Report
+      </td>
+      <td>
+        #NBIAHelpTopics-AnnotationSubmissionReport
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Using the Quality Control Tool
+      </td>
+      <td>
+        #NBIAHelpTopics-UsingtheQualityControlTool
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Generating a QC Status Report
+      </td>
+      <td>
+        #NBIAHelpTopics-GeneratingaQCStatusReport
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Approving Image Deletions
+      </td>
+      <td>
+        #NBIAHelpTopics-ApprovingImageDeletions
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Manually Deleting Image Series
+      </td>
+      <td>
+        #NBIAHelpTopics-ManuallyDeletingImageSeries
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Editing a Collection Description
+      </td>
+      <td>
+        #NBIAHelpTopics-EditingaCollectionDescription
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Managing Workflow Items
+      </td>
+      <td>
+        #NBIAHelpTopics-ManagingWorkflowItems
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Creating Workflow Items
+      </td>
+      <td>
+        #NBIAHelpTopics-CreatingWorkflowitems
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Managing Saved Queries
+      </td>
+      <td>
+        #NBIAHelpTopics-ManagingSavedQueries
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Managing Users
+      </td>
+      <td>
+        #NBIAHelpTopics-ManagingUsers
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Managing Protection Groups
+      </td>
+      <td>
+        #NBIAHelpTopics-ManagingProtectionGroups
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Adding Protection Groups and Assigning Roles
+      </td>
+      <td>
+        #NBIAHelpTopics-AddingProtectionGroupsandAssigningRoles
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Managing Protection Elements
+      </td>
+      <td>
+        #NBIAHelpTopics-ManagingProtectionElements
+      </td>
+    </tr>
+  </tbody>
+</table>

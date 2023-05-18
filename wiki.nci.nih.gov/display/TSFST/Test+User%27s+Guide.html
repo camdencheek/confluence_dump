@@ -1,0 +1,923 @@
+This guide explains how to use the features on the Data Admin tab of the TCIA Radiology Portal. Curators use the Perform Quality Control feature to work with images that are not yet available to the public.
+<ul>
+  <li>
+    <a href="#TestUser&#39;sGuide-What&#39;sNewintheDataAdministrationTool(April2022)" rel="nofollow">
+      What&#39;s New in the Data Administration Tool (April 2022)
+    </a>
+  </li>
+  <li>
+    <a href="#TestUser&#39;sGuide-PerformQualityControl" rel="nofollow">
+      Perform Quality Control
+    </a>
+    <ul>
+      <li>
+        <a href="#TestUser&#39;sGuide-SearchfortheSeriestoQC" rel="nofollow">
+          Search for the Series to QC
+        </a>
+        <ul>
+          <li>
+            <a href="#TestUser&#39;sGuide-SearchingbyQCCriteria" rel="nofollow">
+              Searching by QC Criteria
+            </a>
+          </li>
+          <li>
+            <a href="#TestUser&#39;sGuide-UsingtheDynamicSearch" rel="nofollow">
+              Using the Dynamic Search
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#TestUser&#39;sGuide-UnderstandQCSearchResults" rel="nofollow">
+          Understand QC Search Results
+        </a>
+        <ul>
+          <li>
+            <a href="#TestUser&#39;sGuide-ViewImageSeries" rel="nofollow">
+              View Image Series
+            </a>
+          </li>
+          <li>
+            <a href="#TestUser&#39;sGuide-ViewingThumbnails" rel="nofollow">
+              Viewing Thumbnails
+            </a>
+          </li>
+          <li>
+            <a href="#TestUser&#39;sGuide-ViewingintheOHIFViewer" rel="nofollow">
+              Viewing in the OHIF Viewer
+            </a>
+          </li>
+          <li>
+            <a href="#TestUser&#39;sGuide-ViewinginCineMode" rel="nofollow">
+              Viewing in Cine Mode
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#TestUser&#39;sGuide-AssignaNewQCStatus" rel="nofollow">
+          Assign a New QC Status
+        </a>
+      </li>
+      <li>
+        <a href="#TestUser&#39;sGuide-ChangeQCStatus" rel="nofollow">
+          Change QC Status
+        </a>
+      </li>
+      <li>
+        <a href="#TestUser&#39;sGuide-GenerateaQCStatusHistoryReport" rel="nofollow">
+          Generate a QC Status History Report
+        </a>
+      </li>
+      <li>
+        <a href="#TestUser&#39;sGuide-DownloadQCData" rel="nofollow">
+          Download QC Data
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#TestUser&#39;sGuide-ApproveDeletions" rel="nofollow">
+      Approve Deletions
+    </a>
+  </li>
+  <li>
+    <a href="#TestUser&#39;sGuide-PerformOnlineDeletions" rel="nofollow">
+      Perform Online Deletions
+    </a>
+  </li>
+  <li>
+    <a href="#TestUser&#39;sGuide-EditCollectionDescriptions" rel="nofollow">
+      Edit Collection Descriptions
+    </a>
+  </li>
+  <li>
+    <a href="#TestUser&#39;sGuide-EditCollectionLicense" rel="nofollow">
+      Edit Collection License
+    </a>
+  </li>
+</ul>
+<h1 id="TestUser&#39;sGuide-What&#39;sNewintheDataAdministrationTool(April2022)">
+  What&#39;s New in the Data Administration Tool (April 2022)
+</h1>
+While using the Perform QC feature, you can now
+<ul>
+  <li>
+    <ul>
+      <li>
+        assign or change the Data Released,
+      </li>
+      <li>
+        assign or change the site of the selected series from a list of existing sites, and
+      </li>
+      <li>
+        assign or change the Description URI of the selected series.
+      </li>
+    </ul>
+  </li>
+</ul>
+<h1 id="TestUser&#39;sGuide-PerformQualityControl">
+  Perform Quality Control
+</h1>
+TCIA role required to use this feature: NCIA.MANAGE_VISIBILITY_STATUSFor more information about roles, see
+<a href="https://wiki.nci.nih.gov/display/NBIA/National+Biomedical+Imaging+Archive+Administrator%27s+Guide#NationalBiomedicalImagingArchiveAdministrator%27sGuide-CreatingaNewNBIAUser" rel="nofollow">
+  Creating a New NBIA User
+</a>
+.When an image is uploaded to TCIA, it is not made public immediately. A curator takes it through a quality control process to ensure that no private patient data is available, the image is of good quality, and so forth. Using the Perform Quality Control tool as a curator, you can define search criteria to locate image series for you to evaluate. You can then evaluate the submission and assign the QC (quality control) status to an image or image series.
+
+
+
+
+Visibility of Image Series
+
+The Perform Quality Control tool allows a curator to search &#34;non-visible&#34; or &#34;not reviewed&#34; image series, whereas a regular user using the search tool can only see approved public image series.
+<h2 id="TestUser&#39;sGuide-SearchfortheSeriestoQC">
+  Search for the Series to QC
+</h2>
+You can
+<a href="#PerformQualityControl7.8-SearchingbyQCCriteria" rel="nofollow">
+  search by QC criteria
+</a>
+, which include basic filter options, or
+<a href="#PerformQualityControl7.8-UsingtheDynamicSearch" rel="nofollow">
+  use a dynamic search
+</a>
+, which allows you to filter the data by DICOM tags using Boolean (and/or/omit) operators. Configurable Limit on Number of Returned SeriesThe number of series returned by this search has a configurable limit. You can modify the parameter. By default, the limit is 100,000 series.
+<h3 id="TestUser&#39;sGuide-SearchingbyQCCriteria">
+  Searching by QC Criteria
+</h3>
+The criteria along the left side of the Perform Quality Control page are the basic filter options and these are always available. If these filters are not sufficient for you to find the image series you want to QC, you can use
+<a href="#DataAdministrationToolGuide-UsingtheDynamicSearch" rel="nofollow">
+  dynamic search criteria
+</a>
+in combination with these basic filter options.It is highly recommended to select a collection first before further filtering QC search criteria.
+<ol>
+  <li>
+    Click Data Admin &gt; Perform Quality Control.
+  </li>
+  <li>
+    From the Collection list, select the collection(s) in which the image series you would like to perform QC on reside(s). You can search on one or more collection (site) at a time.
+    <img alt="Collection list" height="250" width="298" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/TSFST/Test%20User&#39;s%20Guide/CollectionList.png?api=v2">
+  </li>
+  <li>
+    Select filters to further narrow down the available image series to find the one you want to update. Ways to do this follow.
+    <ul>
+      <li>
+        In the Criteria Search, filter by the QC status of the submitted object.
+        <img alt="QC Status criteria options, which include checkboxes for Not Visible, Not Yet Reviewed, First Review to Seventh, To Be Deleted, Visible, and Downloadable." height="250" width="291" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/TSFST/Test%20User&#39;s%20Guide/QCStatus.png?api=v2">
+        <table>
+          <colgroup>
+            <col/>
+            <col/>
+          </colgroup>
+          <tbody>
+            <tr>
+              <th>
+                QC Status
+              </th>
+              <th>
+                Description
+              </th>
+            </tr>
+            <tr>
+              <td colspan="1">
+                Not Visible
+              </td>
+              <td colspan="1">
+                No images in the series are visible.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Not Yet Reviewed
+              </td>
+              <td>
+                This status (selected by default) is automatically assigned to an image upon submission to the TCIA database.
+              </td>
+            </tr>
+            <tr>
+              <td colspan="1">
+                First Review to Seventh
+              </td>
+              <td colspan="1">
+                A configurable user-defined stage in the workflow of an image series.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                To Be Deleted
+              </td>
+              <td>
+                Selected image series are to be deleted from the system.
+              </td>
+            </tr>
+            <tr>
+              <td colspan="1">
+                Visible
+              </td>
+              <td colspan="1">
+                All images in the series are visible.
+              </td>
+            </tr>
+            <tr>
+              <td colspan="1">
+                Downloadable
+              </td>
+              <td colspan="1">
+                All images in the series are downloadable. You can apply this status to a series to test the visibility of images in it. You can also use it to separate test cases from released cases.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </li>
+    </ul>
+  </li>
+</ol>
+<ul>
+  <li>
+    <ul>
+      <li>
+        Filter by other criteria.
+        <img alt="Criteria Search options, including Released, Batch Number, Confirmed as Complete, Subject IDs, and Most Recent Submission" width="200" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/TSFST/Test%20User&#39;s%20Guide/QCFilterOptions.png?api=v2">
+        <table>
+          <colgroup>
+            <col/>
+            <col/>
+          </colgroup>
+          <tbody>
+            <tr>
+              <th>
+                Criteria
+              </th>
+              <th>
+                Description
+              </th>
+            </tr>
+            <tr>
+              <td>
+                Released
+              </td>
+              <td>
+                Limit your search to image series that have either been released or not. Click Ignore not to consider Released status at all in your search.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Batch Number
+              </td>
+              <td>
+                In the Batch Number box, enter the batch number of the images/series you want to find.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Confirmed as Complete
+              </td>
+              <td>
+                Select Yes to search for a set of images/series that has been confirmed as complete, No to search for a set of images/series that is ongoing, or No Change to not consider this field when searching.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Subject ID
+              </td>
+              <td>
+                Separate multiple Subject IDs with commas and then select
+                <img alt="Apply Subject IDs button" width="100" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/TSFST/Test%20User&#39;s%20Guide/ApplySubjectIDs.png?api=v2">
+                to perform the search.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Most Recent Submission
+              </td>
+              <td>
+                In the From and To boxes, enter a submission date range by selecting a date in the calendar or by using the format mm/dd/yyyy. Click Apply &#34;Most recent&#34; date range to have the portal enter the date range of the most recent submission for you.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        TCIA searches for image series that match the criteria you define. The page refreshes to show those series. You can page through the results and choose how many entries to view per page.
+      </li>
+    </ul>
+  </li>
+</ul>
+Expand the Results Table
+
+Expand the table to see more rows. To do so, scroll horizontally until you see the two diagonal lines in the lower-right corner. Click and drag that corner until the table expands to your desired height.
+<img alt="The search results table on the Perform QC page, extended horizontally to show the corner you can click and drag to expand the height of the table." width="125" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/TSFST/Test%20User&#39;s%20Guide/PerformQCExpand.png?api=v2">
+<h3 id="TestUser&#39;sGuide-UsingtheDynamicSearch">
+  Using the Dynamic Search
+</h3>
+The dynamic search adds all of the available DICOM fields to your search query options. The dynamic search filters available to you are divided into those you can&#39;t select (because they are already part of the basic search filters) and those you can select to add to your search. The first subset of filters, with the blue headers, are selectable. The second subset of filters, with the green headers, are not selectable because they are already part of the basic search criteria along the left side of the window. You can combine dynamic search filters with basic search filters to create a more specific query. Each dynamic search filter can be made even more specific with your selection of a Boolean operator. These operators are And, Or, and Omit. These operators determine the logic of the combination of a dynamic filter with the basic filters.
+
+
+
+
+Example
+
+If you wanted to find the image series that have been confirmed as complete for a patient ID for which you only want to enter the first few characters, you would select Yes in the Confirmed as Complete basic search filter on the left, then click
+<img alt="Dynamic Search tab" width="125" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/TSFST/Test%20User&#39;s%20Guide/DynamicSearchButton.png?api=v2">
+, and select And and Starts With in the Patient ID dynamic search filter. This opens the Patient ID box on the left, where you would enter the first few characters of the patient ID and click Apply. The search results combining these two filters appear immediately in the main window.
+<ol>
+  <li>
+    Click Data Admin &gt; Perform Quality Control. Click the
+    <img alt="Dynamic Search tab" width="125" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/TSFST/Test%20User&#39;s%20Guide/DynamicSearchButton.png?api=v2">
+    tab above the QC criteria.The Dynamic Search filter options appear.
+    <img alt="Dynamic search criteria" height="739" width="300" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/TSFST/Test%20User&#39;s%20Guide/DynamicSearchCriteria.png?api=v2">
+  </li>
+  <li>
+    Select dynamic search filters to add to the basic search filters. Some filters have List or Starts With options, and all filters require a Boolean operator choice. Read the following table for more information about the impact of these options.
+    <table>
+      <colgroup>
+        <col/>
+        <col/>
+      </colgroup>
+      <tbody>
+        <tr>
+          <th>
+            Option
+          </th>
+          <th>
+            What it means
+          </th>
+        </tr>
+        <tr>
+          <td>
+            List
+          </td>
+          <td>
+            You can enter a list of specific values, separated by commas, of this field to search for. These values must be full entries, such as the full patient name.Note: For lists, the Boolean operator selection is between criteria and not within them.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Starts With
+          </td>
+          <td>
+            You can enter a single value of this field that is included in an image series.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            And
+          </td>
+          <td>
+            Both operands (on either side of the operator) have to be true to produce a true result.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Or
+          </td>
+          <td>
+            One or the other of its operands must be true to produce a true result.
+          </td>
+        </tr>
+        <tr>
+          <td colspan="1">
+            Omit
+          </td>
+          <td colspan="1">
+            Do not include this query option in the list of search criteria. This is the default option for all of the dynamic search filters.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    Click Okay.The dynamic filter options you selected appear above the basic search filters.
+
+
+
+
+    Tip
+
+    Note that the dynamic filter options have an X in the upper-right corner. Clicking this X removes the filter from your search criteria.
+  </li>
+  <li>
+    Click Apply in the new dynamic search filters you added to immediately add that value to the search.The results of your search refresh immediately.
+  </li>
+</ol>
+See also
+<a href="#UsingtheQualityControlTool6.5-UnderstandingQCToolSearchResults" rel="nofollow">
+  Understand QC Search Results
+</a>
+.
+<h2 id="TestUser&#39;sGuide-UnderstandQCSearchResults">
+  Understand QC Search Results
+</h2>
+After you
+<a href="https://wiki.cancerimagingarchive.net/display/NBIA/Data+Administration+Tool+Guide#DataAdministrationToolGuide-SearchingfortheSeriestoQC" rel="nofollow">
+  search for the series to QC
+</a>
+, you can do the following on the search results page.
+<ul>
+  <li>
+    <a href="https://wiki.cancerimagingarchive.net/display/NBIA/Data+Administration+Tool+Guide#DataAdministrationToolGuide-ViewImageSeries" rel="nofollow">
+      View
+    </a>
+     the image series in thumbnails, in the OHIF viewer, or in cine mode.
+  </li>
+  <li>
+    <a href="https://wiki.cancerimagingarchive.net/display/NBIA/Data+Administration+Tool+Guide#DataAdministrationToolGuide-AssignaNewQCStatus" rel="nofollow">
+      Assign
+    </a>
+     a new QC status to one or more image series in your search results.
+  </li>
+  <li>
+    <a href="https://wiki.cancerimagingarchive.net/display/NBIA/Data+Administration+Tool+Guide#DataAdministrationToolGuide-GenerateaQCStatusHistoryReport" rel="nofollow">
+      Generate
+    </a>
+    a QC Status History report.
+  </li>
+  <li>
+    <a href="https://wiki.cancerimagingarchive.net/display/NBIA/Data+Administration+Tool+Guide#DataAdministrationToolGuide-DownloadQCData" rel="nofollow">
+      Download
+    </a>
+    QC data.
+  </li>
+</ul>
+<h3 id="TestUser&#39;sGuide-ViewImageSeries">
+  View Image Series
+</h3>
+Your search results appear in a table at the top of the page. You can view a selected image series in thumbnails, in the OHIF viewer, or in cine mode.
+<img alt="Perform Quality Control page with the first page of series found in the search results" width="1100" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/TSFST/Test%20User&#39;s%20Guide/ViewImageSeries.png?api=v2">
+<h3 id="TestUser&#39;sGuide-ViewingThumbnails">
+  Viewing Thumbnails
+</h3>
+In the View column, click the magnifying glass icon
+<img alt="Magnifier button" width="25" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/TSFST/Test%20User&#39;s%20Guide/PerformQCMagnifier.png?api=v2">
+to view thumbnails of each image in the series.
+<img alt="23 brain images in thumbnail view" width="900" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/TSFST/Test%20User&#39;s%20Guide/ThumbnailsofImages.png?api=v2">
+<h3 id="TestUser&#39;sGuide-ViewingintheOHIFViewer">
+  Viewing in the OHIF Viewer
+</h3>
+In the View column, click the movie camera icon
+<img alt="Movie camera icon" width="24" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/TSFST/Test%20User&#39;s%20Guide/MovieCameraIcon.png?api=v2">
+ to view the series in the
+<a href="https://ohif.org/" rel="nofollow">
+  Open Health Imaging Foundation
+</a>
+ (OHIF) Viewer.
+<img alt="OHIF Viewer TCIA Alpha showing a toolbar, an overview image, and a large, main image window" width="700" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/TSFST/Test%20User&#39;s%20Guide/OHIFViewer.png?api=v2">
+Click
+<img alt="OHIF play button" width="25" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/TSFST/Test%20User&#39;s%20Guide/OHIFPlay.png?api=v2">
+to display the images in the series sequentially.Note that ultrasound images can only be viewed as thumbnails or in cine mode.
+<h3 id="TestUser&#39;sGuide-ViewinginCineMode">
+  Viewing in Cine Mode
+</h3>
+In the view column, click the eye icon
+<img alt="OHIF cine mode button" width="25" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/TSFST/Test%20User&#39;s%20Guide/OHIFEye.png?api=v2">
+ to view the series in cine mode, which provides an animated slideshow of the images in the series. The DICOM tags are unique for each image in the series. Cine mode is available when the series has more than one image and DICOM tags are available for each image.As soon as one series plays in cine mode, the first image in the next series loads immediately so that you can review series in sequence more easily.
+<img alt="An image series in cine mode showing a single image in the main content area with controls below. The controls include the number of the image and the total number of images in the series (such as 1 of 60), various arrow controls (double and single right and left arrows and a pause button), and the frames per second of the animation, which can be edited" width="400" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/TSFST/Test%20User&#39;s%20Guide/OHIFImage.png?api=v2">
+On the Perform Quality Control page, the series row that is currently playing in the slideshow is highlighted in yellow.Cine Mode Tips
+<ul>
+  <li>
+    You can collapse the Change QC Status section to the right of the slideshow to see more DICOM tags.
+    <img alt="Change QC Status is collapsed above the DICOM table" width="700" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/TSFST/Test%20User&#39;s%20Guide/ChangeQCStatus.png?api=v2">
+  </li>
+  <li>
+    The box on the right shows the frames per second, which is the speed in which the images progress during the animation. The default is 15 frames per second and you can enter another number in this box to change the speed.
+  </li>
+  <li>
+    Left-click an image in cine mode to download the DICOM file for the image.
+  </li>
+  <li>
+    Select Ctrl-1 to toggle between cine mode and the Perform Quality Control page.
+  </li>
+</ul>
+Below the image are the image controls. You can enter an image number in the first box to view a specific image, or you can view the images in a series by pressing the play button, which is the single right arrow. Use the other arrows as follows.
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+  </colgroup>
+  <thead>
+    <tr>
+      <th>
+        Animation Control
+      </th>
+      <th>
+        Action
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <img alt="Vertical line and double arrow left icon" width="30" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/TSFST/Test%20User&#39;s%20Guide/ReturnArrow.png?api=v2">
+      </td>
+      <td>
+        Return to the first image in the series
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <img alt="Vertical line and single arrow left icon" width="30" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/TSFST/Test%20User&#39;s%20Guide/ReturnImage.png?api=v2">
+      </td>
+      <td>
+        Return to the previous image in the series
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <img alt="Single arrow left icon" width="30" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/TSFST/Test%20User&#39;s%20Guide/Backwards.png?api=v2">
+      </td>
+      <td>
+        Play animation backwards
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <img alt="Pause button with two vertical lines" width="30" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/TSFST/Test%20User&#39;s%20Guide/Pause.png?api=v2">
+      </td>
+      <td>
+        Pause
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        <img alt="Single arrow right icon" width="30" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/TSFST/Test%20User&#39;s%20Guide/Forwards.png?api=v2">
+      </td>
+      <td colspan="1">
+        Play animation forwards
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        <img alt="Single arrow right icon followed by a vertical line icon" width="30" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/TSFST/Test%20User&#39;s%20Guide/ForwardImage.png?api=v2">
+      </td>
+      <td colspan="1">
+        Progress forwards to the next image in the series
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        <img alt="Double arrow right followed by vertical line icon" width="30" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/TSFST/Test%20User&#39;s%20Guide/ForwardLast.png?api=v2">
+      </td>
+      <td colspan="1">
+        Progress forwards to the last image in the series
+      </td>
+    </tr>
+  </tbody>
+</table>
+The box on the right shows the frames per second, which is the speed in which the images progress during the animation. The default is 15 frames per second and you can enter another number in this box to change the speed.
+<h2 id="TestUser&#39;sGuide-AssignaNewQCStatus">
+  Assign a New QC Status
+</h2>
+As a curator, you may need to assign a new QC status of one or more images or image series. You can assign the status of one or more selected images or image series individually or as a batch update.
+<ol>
+  <li>
+    <a href="https://wiki.cancerimagingarchive.net/display/NBIA/Data+Administration+Tool+Guide#DataAdministrationToolGuide-SearchingfortheSeriestoQC" rel="nofollow">
+      Search for the series to QC
+    </a>
+    . For example, search on Not Yet Reviewed to find series without a QC status.
+  </li>
+  <li>
+    Select the series for which you want to assign the status by clicking the box to the left of its row in the search results. You can select more than one if you want to apply the same change to each series you select. To select all series for the selected collection(s), click the box in the top left.
+    <img alt="Two selected series in TCIA" width="400" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/TSFST/Test%20User&#39;s%20Guide/SelectSeries.png?api=v2">
+  </li>
+  <li>
+    In the New Status section, select the status options you want to apply to this series. Refer to the descriptions of the
+    <a href="https://wiki.cancerimagingarchive.net/display/NBIA/Data+Administration+Tool+Guide#DataAdministrationToolGuide-filters" rel="nofollow">
+      search filters
+    </a>
+    .
+    <img alt="New Status section of the Perform Quality Control page. Options exist for selecting the specific status, batch number, confirmed as complete, released, and change log. Buttons below include Update, QC Status History Report, and Download." width="1000" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/TSFST/Test%20User&#39;s%20Guide/NewStatus.png?api=v2">
+    <ul>
+      <li>
+        To assign a Date Released, in the Released section, click Yes and then select a date.
+      </li>
+      <li>
+        To assign a site to the selected series, select Update Site and then select a site from the list in the box.
+        <img alt="Update Site checkbox is selected and a blank box is below it. The blank box has an up and down arrow icon." height="54" width="110" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/TSFST/Test%20User&#39;s%20Guide/UpdateSite.png?api=v2">
+      </li>
+      <li>
+        To assign a Description URI to the selected series, select Update Desc. URI and then enter a new Description URI in the box.
+        <img alt="Update Desc URI checkbox is selected and a blank box is below it." width="140" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/TSFST/Test%20User&#39;s%20Guide/UpdateDescURI.png?api=v2">
+      </li>
+    </ul>
+  </li>
+  <li>
+    Enter text into the change log box to track why you made the change.  This text will be part of the
+    <a href="https://wiki.cancerimagingarchive.net/display/NBIA/Data+Administration+Tool+Guide#DataAdministrationToolGuide-GenerateaQCStatusHistoryReport" rel="nofollow">
+      QC Status History Report
+    </a>
+     that you can generate to track changes in visibility.
+  </li>
+  <li>
+    Click
+    <img alt="Update button" width="65" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/TSFST/Test%20User&#39;s%20Guide/Update.png?api=v2">
+    .
+  </li>
+</ol>
+<h2 id="TestUser&#39;sGuide-ChangeQCStatus">
+  Change QC Status
+</h2>
+You can also change the QC status of one or more images or image series.
+<ol>
+  <li>
+    <a href="https://wiki.cancerimagingarchive.net/display/NBIA/Data+Administration+Tool+Guide#DataAdministrationToolGuide-SearchingfortheSeriestoQC" rel="nofollow">
+      Search for the series to QC
+    </a>
+    .
+  </li>
+  <li>
+    <a href="https://wiki.cancerimagingarchive.net/display/NBIA/Data+Administration+Tool+Guide#DataAdministrationToolGuide-ViewinginCineMode" rel="nofollow">
+      View the series in cine mode
+    </a>
+    .
+  </li>
+  <li>
+    In the Change QC Status section, select the status options you want to apply to this series. Refer to the descriptions of the
+    <a href="https://wiki.cancerimagingarchive.net/display/NBIA/Data+Administration+Tool+Guide#DataAdministrationToolGuide-filters" rel="nofollow">
+      search filters
+    </a>
+    . You can also assign a Date Released, update the Site, and update the Description URI for the selected series.
+    <img alt="Change QC Status section of the Perform Quality Control window" width="1400" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/TSFST/Test%20User&#39;s%20Guide/ChangeQCStatus.png?api=v2">
+    <ul>
+      <li>
+        To change the Date Released, in the Released section, click Yes and then select a date.
+      </li>
+      <li>
+        To change the site to the selected series, select Update Site and then select a site from the list in the box.
+        <img alt="Update Site checkbox is selected and a blank box is below it. The blank box has an up and down arrow icon." height="54" width="110" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/TSFST/Test%20User&#39;s%20Guide/UpdateSite.png?api=v2">
+      </li>
+      <li>
+        To assign the Description URI to the selected series, select Update Desc. URI and then enter a new Description URI in the box.
+        <img alt="Update Desc URI checkbox is selected and a blank box is below it." width="140" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/TSFST/Test%20User&#39;s%20Guide/UpdateDescURI.png?api=v2">
+      </li>
+    </ul>
+  </li>
+  <li>
+    Enter text into the change log box to track why you made the change.  This text will be part of the
+    <a href="https://wiki.cancerimagingarchive.net/display/NBIA/Data+Administration+Tool+Guide#DataAdministrationToolGuide-GenerateaQCStatusHistoryReport" rel="nofollow">
+      QC Status History Report
+    </a>
+     that you can generate to track changes in visibility.
+  </li>
+  <li>
+    To save the update and move to the next series, click
+    <img width="150" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/TSFST/Test%20User&#39;s%20Guide/UpdateNextSeries.png?api=v2">
+    . Or to skip this series without making an update and move to the next series, click
+    <img width="150" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/TSFST/Test%20User&#39;s%20Guide/SkipNextSeries.png?api=v2">
+    .
+  </li>
+</ol>
+<h2 id="TestUser&#39;sGuide-GenerateaQCStatusHistoryReport">
+  Generate a QC Status History Report
+</h2>
+To view the status change log,
+<a href="https://wiki.cancerimagingarchive.net/display/NBIA/Data+Administration+Tool+Guide#DataAdministrationToolGuide-SearchfortheSeriestoQC" rel="nofollow">
+  search for the series
+</a>
+ you want to appear in the report, click the box to the left of that/those series, and then click
+<img alt="QC Status History Report button" width="175" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/TSFST/Test%20User&#39;s%20Guide/image2021-7-23_17-3-50.png?api=v2">
+.The QC Status History report appears, displaying all changes that have been made to the status of the series you selected.
+<h2 id="TestUser&#39;sGuide-DownloadQCData">
+  Download QC Data
+</h2>
+To download data,
+<a href="https://wiki.cancerimagingarchive.net/display/NBIA/Data+Administration+Tool+Guide#DataAdministrationToolGuide-SearchfortheSeriestoQC" rel="nofollow">
+  search for the series
+</a>
+ you want to download, click the box(es) to the left of that/those series, and then click
+<img alt="Download button" width="85" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/TSFST/Test%20User&#39;s%20Guide/PerformQCDownloadButton.png?api=v2">
+.A file appears in your browser that you can download to your computer.
+<h1 id="TestUser&#39;sGuide-ApproveDeletions">
+  Approve Deletions
+</h1>
+TCIA role required to use this feature: NCIA.SUPER_CURATORFor more information about roles, see
+<a href="https://wiki.nci.nih.gov/display/NBIA/National+Biomedical+Imaging+Archive+Administrator%27s+Guide#NationalBiomedicalImagingArchiveAdministrator%27sGuide-CreatingaNewNBIAUser" rel="nofollow">
+  Creating a New NBIA User
+</a>
+.This function is part of a two-tier deletion process. A super-curator can approve the deletion of image series that have been identified as &#34;To be deleted&#34; in the Perform Quality Control tool. After you approve an image series for deletion, you can either wait for the next scheduled system-wide deletion job or you can
+<a href="https://wiki.cancerimagingarchive.net/display/NBIA/Data+Administration+Tool+Guide#DataAdministrationToolGuide-PerformOnlineDeletions" rel="nofollow">
+  immediately remove
+</a>
+ image series that are approved for deletion.To approve series deletions, follow these steps. Prior to approving deletions, you must
+<a href="https://wiki.cancerimagingarchive.net/display/NBIA/Data+Administration+Tool+Guide#DataAdministrationToolGuide-AssignaNewQCStatus" rel="nofollow">
+  assign the QC status
+</a>
+ of &#34;To be deleted&#34; to one or more series in the Perform Quality Control tool.
+<ol>
+  <li>
+    Click Admin &gt; Approve Deletions.The Approve Deletions page appears.
+  </li>
+  <li>
+    Select filters to help you locate the series you have previously marked for deletion. Options for doing this follow.
+    <table>
+      <colgroup>
+        <col/>
+        <col/>
+      </colgroup>
+      <thead>
+        <tr>
+          <th>
+            Criteria
+          </th>
+          <th>
+            Description
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            Collection
+          </td>
+          <td>
+            You can only search on one collection (site) at a time.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Released
+          </td>
+          <td>
+            Limit your search to image series that have either been released or not. Click Ignore not to consider Released status at all in your search.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Batch Number
+          </td>
+          <td>
+            In the Batch Number box, enter the batch number of the images/series you want to find.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Confirmed as Complete
+          </td>
+          <td>
+            Select Yes to search for a set of images/series that has been confirmed as complete, No to search for a set of images/series that is ongoing, or No Change to not consider this field when searching.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Subject ID
+          </td>
+          <td>
+            Separate multiple Subject IDs with commas and then select
+            <img alt="Apply Subject IDs button" width="125" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/TSFST/Test%20User&#39;s%20Guide/ApplySubjectIDs.png?api=v2">
+             to perform the search.
+          </td>
+        </tr>
+        <tr>
+          <td colspan="1">
+            Most Recent Submission
+          </td>
+          <td colspan="1">
+            In the From and To boxes, enter the most recent series submission date range by selecting a date in the calendar or by using the format mm/dd/yyyy.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    Using your filter selections, TCIA searches for image series that you have marked for deletion and refreshes the page to show those series. You may have to scroll both horizontally and vertically to view all series information and options.
+    <img alt="Approve Deletions page with one series available to approve for deletion" height="250" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/TSFST/Test%20User&#39;s%20Guide/ApproveDeletions.png?api=v2">
+    Expand the table to see more rows. To do so, scroll horizontally until you see the two diagonal lines in the lower-right corner. Click and drag that corner until the table expands to your desired height.
+    <img alt="The search results table on the Perform QC page, extended horizontally to show the corner you can click and drag to expand the height of the table." height="108" width="125" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/TSFST/Test%20User&#39;s%20Guide/PerformQCExpand.png?api=v2">
+  </li>
+  <li>
+    Select the box in the row of the series you want to delete. You may select more than one.
+  </li>
+  <li>
+    Optionally, add text to the change log to explain why you are deleting the series. This text appears in your
+    <a href="https://wiki.cancerimagingarchive.net/display/NBIA/Data+Administration+Tool+Guide#DataAdministrationToolGuide-GenerateaQCStatusHistoryReport" rel="nofollow">
+      QC Status History Report
+    </a>
+    .
+  </li>
+  <li>
+    Click
+    <img alt="Delete button" width="65" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/TSFST/Test%20User&#39;s%20Guide/DeleteDeletions.png?api=v2">
+    to approve the deletion.
+  </li>
+</ol>
+Image series you approve for deletion are still visible in the system and identified as &#34;To Be Deleted&#34;. They are removed from the system at a system-configured time, such as at midnight (called an &#34;offline deletion&#34;), unless you perform a manual deletion (called an &#34;
+<a href="https://wiki.cancerimagingarchive.net/display/NBIA/Data+Administration+Tool+Guide#DataAdministrationToolGuide-PerformOnlineDeletions" rel="nofollow">
+  online deletion
+</a>
+&#34;).About deletions
+<ul>
+  <li>
+    After an image series is approved for deletion, the action cannot be reversed.
+  </li>
+  <li>
+    Any new image submissions to a series identified &#34;To be deleted&#34; will be successful, but the status of the series does not change.
+  </li>
+  <li>
+    Images submitted to files that are identified as &#34;Deleted&#34; are quarantined.
+  </li>
+</ul>
+<h1 id="TestUser&#39;sGuide-PerformOnlineDeletions">
+  Perform Online Deletions
+</h1>
+TCIA role required to use this feature: NCIA.DELETE_ADMINFor more information about roles, see
+<a href="https://wiki.nci.nih.gov/display/NBIA/National+Biomedical+Imaging+Archive+Administrator%27s+Guide#NationalBiomedicalImagingArchiveAdministrator%27sGuide-CreatingaNewNBIAUser" rel="nofollow">
+  Creating a New NBIA User
+</a>
+.This function is part of a two-tier deletion process. Using the Online Deletion feature, an administrator can delete image series that have been approved for deletion. This immediately removes images that are approved for deletion, rather than requiring the administrator to wait for the next scheduled system-wide deletion job.Before you can use the Online Deletion feature, you must first
+<a href="https://wiki.cancerimagingarchive.net/display/NBIA/Data+Administration+Tool+Guide#DataAdministrationToolGuide-ApproveDeletions" rel="nofollow">
+  approve image series for deletion
+</a>
+.To manually delete series, follow these steps:
+<ol>
+  <li>
+    Click Admin &gt; Perform Online Deletion.A list of image series that have been approved for deletion appears.
+    <img alt="Perform Online Deletion page showing one series that has been approved for deletion and a Delete button" height="130" width="600" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/TSFST/Test%20User&#39;s%20Guide/PerformOnlineDeletion.png?api=v2">
+  </li>
+  <li>
+    Click
+    <img alt="Delete button" width="60" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/TSFST/Test%20User&#39;s%20Guide/DeletePerform.png?api=v2">
+    to delete the series immediately.Deleting an individual series?All series listed in this page are deleted. You cannot select one series on the page for online deletion and not the others.
+  </li>
+</ol>
+<h1 id="TestUser&#39;sGuide-EditCollectionDescriptions">
+  Edit Collection Descriptions
+</h1>
+TCIA role required to use this feature: NCIA.MANAGE_COLLECTION_DESCRIPTIONFor more information about roles, see
+<a href="https://wiki.nci.nih.gov/display/NBIA/National+Biomedical+Imaging+Archive+Administrator%27s+Guide#NationalBiomedicalImagingArchiveAdministrator%27sGuide-CreatingaNewNBIAUser" rel="nofollow">
+  Creating a New NBIA User
+</a>
+.Collection descriptions are uploaded along with image data. An administrator can edit these descriptions and change the license applied to the collection. Users view descriptions and license information when they hover over a collection name in the Simple Search area of the TCIA Radiology Portal.To edit a collection description:
+<ol>
+  <li>
+    Click Admin &gt; Edit Collection Description.The Edit Collection Descriptions page appears.
+    <img alt="Edit Collection Descriptions page showing and editable description in both text and HTML, a license dropdown list, and a Save button." height="392" width="700" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/TSFST/Test%20User&#39;s%20Guide/EditCollectionDescriptions.png?api=v2">
+  </li>
+  <li>
+    Select a collection name.The current collection description appears on the right in two editor options, text and HTML.
+  </li>
+  <li>
+    Edit the collection description. The top editing window allows you to use familiar point-and-click text formatting options, while the bottom editing window allows you to edit using HTML.
+  </li>
+  <li>
+    Change the license selection if needed.
+  </li>
+  <li>
+    Click
+    <img alt="Save button" width="60" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/TSFST/Test%20User&#39;s%20Guide/DataAdminSaveButton.png?api=v2">
+    .
+  </li>
+</ol>
+<h1 id="TestUser&#39;sGuide-EditCollectionLicense">
+  Edit Collection License
+</h1>
+TCIA role required to use this feature: NCIA.MANAGE_COLLECTION_DESCRIPTIONFor more information about roles, see
+<a href="https://wiki.nci.nih.gov/display/NBIA/National+Biomedical+Imaging+Archive+Administrator%27s+Guide#NationalBiomedicalImagingArchiveAdministrator%27sGuide-CreatingaNewNBIAUser" rel="nofollow">
+  Creating a New NBIA User
+</a>
+.You can add or edit a collection license to your installation of the TCIA Radiology Portal. This license then becomes available to select while
+<a href="https://wiki.cancerimagingarchive.net/display/NBIA/Data+Administration+Tool+Guide#DataAdministrationToolGuide-EditCollectionDescriptions" rel="nofollow">
+  editing a collection description
+</a>
+. Users view descriptions and license information when they hover over a collection name in the Simple Search area of the TCIA Radiology Portal.To add a collection license:
+<ol>
+  <li>
+    Click Admin &gt; Edit Collection License.The Edit Collection Descriptions page appears.
+    <img width="1000" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/TSFST/Test%20User&#39;s%20Guide/AddEditLicense.png?api=v2">
+  </li>
+  <li>
+    Click
+    <img alt="New button" width="60" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/TSFST/Test%20User&#39;s%20Guide/NewLicenseButton.png?api=v2">
+    .
+    <img width="1000" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/TSFST/Test%20User&#39;s%20Guide/AddEditLicenseNew.png?api=v2">
+  </li>
+  <li>
+    Enter the long name, short name, and license URL for the new license.
+  </li>
+  <li>
+    Select the appropriate button indicating that commercial use is or is not allowed for the new license.
+  </li>
+  <li>
+    Click
+    <img alt="Add button" width="60" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/TSFST/Test%20User&#39;s%20Guide/AddLicenseButton.png?api=v2">
+    .
+  </li>
+</ol>
+To edit a collection license:
+<ol>
+  <li>
+    Click Admin &gt; Edit Collection License.The Edit Collection Descriptions page appears.
+    <img width="1000" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/TSFST/Test%20User&#39;s%20Guide/AddEditLicense.png?api=v2">
+  </li>
+  <li>
+    Click the arrow next to the first license name on the left to open the list of licenses.
+  </li>
+  <li>
+    Select the license you want to edit. The names, URL, and commercial use selection appear on the right.
+  </li>
+  <li>
+    Edit the information as needed and click
+    <img alt="Save button" width="60" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/TSFST/Test%20User&#39;s%20Guide/SaveLicenseButton.png?api=v2">
+    .orDelete the license from this installation by clicking
+    <img alt="Delete button" width="60" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/TSFST/Test%20User&#39;s%20Guide/DeleteLicenseButton.png?api=v2">
+    .As soon as you make any changes to the collection license, a message appears at the bottom of the window that says &#34;There are unsaved changes!&#34;
+    <img width="500" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/TSFST/Test%20User&#39;s%20Guide/SaveLicenseButtonUnsavedChanges.jpg?api=v2">
+    Any changes you make are immediately visible in the window as you make them. Once you have clicked Save, you cannot click that button again until you make additional text changes in this window. The cursor changes to a circle with a line through it to show that the Save button is not available.
+    <img alt="Edit Collection License page showing a cursor over the Save button that is a circle with a line through it." width="500" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/TSFST/Test%20User&#39;s%20Guide/EditCollectionDescriptions-not%20allowed.jpg?api=v2">
+  </li>
+</ol>

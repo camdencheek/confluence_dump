@@ -1,0 +1,192 @@
+You can try the caDSR APIs to search for caDSR data by entering a URL in the address bar of a browser and passing parameters in that URL. This page provides examples to get you started, in legacy and caDSR II format:
+<ul>
+  <li>
+    A URL in legacy REST-like (XML-HTTP) format returns only HTML or XML. The
+    <a href="https://cadsrapi.nci.nih.gov/cadsrapi4/ShowDynamicTree.action" rel="nofollow">
+      Legacy caDSR Domain Class Browser
+    </a>
+    page is a web browser interface that allows you to test the legacy caDSR API. This page also has links to the Legacy Java Docs.
+  </li>
+  <li>
+    A URL in caDSR II format returns HTML, XML, or JSON. Using the API, you can allow an application to connect to caDSR and search the database. The
+    <a href="https://cadsrapi.cancer.gov/caDSR/domain/browser.dsp" rel="nofollow">
+      caDSR II Domain Class Browser
+    </a>
+    page is a web browser interface that allows you to test the caDSR II API.
+  </li>
+</ul>
+You can display any of these formats (HTML, XML, or JSON) in an Internet browser by changing the parameter (GetHTML, GetXML, or GetJSON). Multiple AND IN NoteYou cannot enter multiple &#34;and&#34; or &#34;in&#34; values for search criteria when using the REST (XML-HTTP) API.If you have trouble using any URL on this page in your Internet browser, copy and paste it into a Google Chrome browser before contacting Application Support (
+<a href="mailto:NCIAppSupport@mail.nih.gov" rel="nofollow">
+  NCIAppSupport@mail.nih.gov
+</a>
+).Headings on this page marked with two asterisks (**) reflect functionality available in caDSR II but not in legacy caDSR. This page includes the following topics.The meaning of content in the caDSR Repository is based on linkages to concept from curated concept systems.  Mostly, NCI prefers the use of the NCI Thesaurus (NCIt) for these annotations due to the breadth of concepts in NCIt, the ability to get new concepts added to meet the needs of NCI clinical trials.Concepts can be linked directly to the following types of Administered Items:
+<ul>
+  <li>
+    Property
+  </li>
+  <li>
+    Object Class
+  </li>
+  <li>
+    Value Meaning
+  </li>
+  <li>
+    Value Domain
+  </li>
+</ul>
+These items are used in the construction of CDEs based on the ISO/IEC 11179 Metamodel for data specification. The structure of these linkages are as follows: A Data Element is composed of a Data Element Concept (DEC) and a Value Domain (VD).
+<ul>
+  <li>
+    A DEC is composed of an Object Class and a Property.
+  </li>
+  <li>
+    A VD can be enumerated or enumerated. When enumerated it is composed of one or more sets/pairs of Permissible Values (PV) and Value Meanings (VM).
+  </li>
+</ul>
+Since Concept linkages can be found in the Property, Object Class or Value Meanings, it is possible to retrieve all caDSR content based on Concept information, most typically the concept unique identifier, which is stored in the Concept Preferred Name, or the Concept Name, stored in the Concept Long Name.To find any content in caDSR based on a related concept, it is necessary to find the concept of interest and navigate the path to all its related caDSR items.RUTH: Please research how this was done in legacy - if you can post the query here I can explain it in words
+<ul>
+  <li>
+    Concept&gt;&gt;getComponentConceptCollection&gt;&gt;where PrimaryFlag = Yes&gt;&gt; getConceptDerivationRule &gt;&gt; Once the ConceptDerivationRule has been retrieved, you can get the ObjectClassCollection, PropertyCollection, ValueMeaningCollection.  There could be more than one of any of these collections.
+  </li>
+</ul>
+NOTE: A deeper level query could query to find the caDSR item related to the directly annotated item. For example from a Value Meaning it is possible to find out what Value Domains the VM is included and then retrieve all the Data Elements that use the VD. See the Examples based on Data Elements.Contents of This Page
+<ul>
+  <li>
+    <a href="#id-3.ExamplesUsingConcepts-RetrievingtheValueMeaningConceptCodesforaDataElementThatHasanEnumeratedValueDomain" rel="nofollow">
+      3.1. Retrieving the Value Meaning Concept Codes for a Data Element That Has an Enumerated Value Domain
+    </a>
+  </li>
+  <li>
+    <a href="#id-3.ExamplesUsingConcepts-RetrievingacaDSRItemThatHasConceptUsingtheConceptCodeorName,butRestrictingtheSearchtoOnlyRetrievingItemsiftheConceptisthePrimaryConcept" rel="nofollow">
+      3.2. Retrieving a caDSR Item That Has Concept Using the Concept Code or Name, but Restricting the Search to Only Retrieving Items if the Concept is the Primary Concept
+    </a>
+  </li>
+  <li>
+    <a href="#id-3.ExamplesUsingConcepts-FindaConceptbyConceptCode" rel="nofollow">
+      3.3. Find a Concept by Concept Code
+    </a>
+  </li>
+  <li>
+    <a href="#id-3.ExamplesUsingConcepts-**ReturnPermissibleValueInfoIncludingAssociatedConceptsforaCDE" rel="nofollow">
+      3.4. **Return Permissible Value Info Including Associated Concepts for a CDE
+    </a>
+  </li>
+  <li>
+    <a href="#id-3.ExamplesUsingConcepts-RetrieveallDataElementsUsinganEVSConceptCodeorName,butRestrictResultstoOnlyThoseWheretheConceptis%E2%80%9CPrimaryConcept%E2%80%9DintheCDE%27sDataElementConcept%27sPropertyConceptrule" rel="nofollow">
+      3.5. Retrieve all Data Elements Using an EVS Concept Code or Name, but Restrict Results to Only Those Where the Concept is “Primary Concept” in the CDE&#39;s Data Element Concept&#39;s Property Concept rule
+    </a>
+  </li>
+</ul>
+Legacy component retirement planned for May 1, 2023.
+<h3 id="id-3.ExamplesUsingConcepts-RetrievingtheValueMeaningConceptCodesforaDataElementThatHasanEnumeratedValueDomain">
+  3.1. Retrieving the Value Meaning Concept Codes for a Data Element That Has an Enumerated Value Domain
+</h3>
+Given a data element, you can retrieve the corresponding concept codes for the permissible values in a Value Domain. If there is a data element with longName My DE and the permissible values are N=Never, F=Former, C=Current, and so on, and if OneData shows the concept code for Never as C70543, Former as C0750523, and Current as C25471, your application can navigate the objects starting at the value domain and work to the corresponding concept code.For example
+<ul>
+  <li>
+    Each Data Element (My DE) that is enumerated has an EnumeratedValueDomain that can be retrieved using getValueDomain.
+  </li>
+  <li>
+    Each EnumeratedValueDomain has a permissible value list that can be retrieved using getValueDomainPermissibleValueCollection.
+  </li>
+  <li>
+    Each ValueDomainPermissibleValue in the collection has a getPermissibleValue, in this example (F).
+  </li>
+  <li>
+    Each permissibleValue has a getValueMeaning (Former).
+  </li>
+  <li>
+    Each valueMeaning has a getConceptDerivationRule which stores the list of concepts and their ordering.
+  </li>
+  <li>
+    Each conceptDerivationRule has a getComponentConceptCollection (the primary concept and any qualifier concepts, in this case Former has only a Primary Concept).
+  </li>
+  <li>
+    Each componentConcept in the collection has a getConcept (returns the Concept Object).
+  </li>
+  <li>
+    Each concept has an attribute, preferredName which stores the corresponding concept code (C0750523).
+  </li>
+</ul>
+<h3 id="id-3.ExamplesUsingConcepts-RetrievingacaDSRItemThatHasConceptUsingtheConceptCodeorName,butRestrictingtheSearchtoOnlyRetrievingItemsiftheConceptisthePrimaryConcept">
+  3.2. Retrieving a caDSR Item That Has Concept Using the Concept Code or Name, but Restricting the Search to Only Retrieving Items if the Concept is the Primary Concept
+</h3>
+To search for data elements using a concept code or name, but restrict the results to only Primary concepts in the Object Class, refer to the following examples.
+<h4 id="id-3.ExamplesUsingConcepts-Legacy">
+  3.2.1. Legacy
+</h4>
+Retrieve data elements with Object Class Concept &#34;C19448&#34; (result in XML) but only if the Concept is indicated as the Primary concept. This is done using the Concept&#39;s primaryFlag indicator = &#34;Yes&#34;.
+https://cadsrapi.nci.nih.gov/cadsrapi4/GetXML?query=DataElement,DataElementConcept,ObjectClass,ConceptDerivationRule&amp;ComponentConcept[Concept[@preferredName=C19448]][@primaryFlag=Yes]
+<h4 id="id-3.ExamplesUsingConcepts-caDSRII">
+  3.2.2. caDSR II
+</h4>
+https://cadsrapi.cancer.gov/caDSR5.0/GetXML?query=DataElement,DataElementConcept,ObjectClass,ConceptDerivationRule&amp;ComponentConcept[Concept[@preferredName=C19448],@primaryFlag=Yes]
+<h4 id="id-3.ExamplesUsingConcepts-BothLegacyandcaDSRII">
+  3.2.3. Both Legacy and caDSR II
+</h4>
+Additionally, you can find all Data Elements where the concept is used either as a primary OR qualifier concept. This is accomplished by removing the last qualifier in the query. Removing this criteria returns 104 results instead of 88.
+[@primaryFlag=Yes]
+<h4 id="id-3.ExamplesUsingConcepts-caDSRII.1">
+  3.2.4. caDSR II
+</h4>
+https://cadsrapi.cancer.gov/caDSR5.0/GetXML?query=DataElement,DataElementConcept,Property,ConceptDerivationRule&amp;ComponentConcept[Concept[@longName=E-mail%20Address],@primaryFlag=Yes]
+<h4 id="id-3.ExamplesUsingConcepts-Legacy.1">
+  3.2.5. Legacy
+</h4>
+To retrieve the next higher order &#34;type&#34; administered items, remove the name of the item(s) before it in the query argument list. For example, to get Data Element Concepts (DECs) with its Property Primary Concept longName E-Mail Address, remove DataElement (the first item in the query argument list):Retrieve DECs with Property Primary Concept name E-Mail Address.
+https://cadsrapi.nci.nih.gov/cadsrapi4/GetXML?query=DataElementConcept,Property,ConceptDerivationRule&amp;ComponentConcept[Concept[@longName=E-mail%20Address]][@primaryFlag=Yes]
+<h4 id="id-3.ExamplesUsingConcepts-caDSRII.2">
+  3.2.6. caDSR II
+</h4>
+https://cadsrapi.cancer.gov/caDSR5.0/GetXML?query=DataElementConcept,Property,ConceptDerivationRule&amp;ComponentConcept[Concept[@longName=E-mail%20Address],@primaryFlag=Yes]
+<h4 id="id-3.ExamplesUsingConcepts-Legacy.2">
+  3.2.7. Legacy
+</h4>
+Retrieve Data Elements with its ValueDomain having a ValueMeaning with a Primary Concept longName Blood and Blood Products (result in XML).
+https://cadsrapi.nci.nih.gov/cadsrapi4/GetXML?query=DataElement,EnumeratedValueDomain,ValueDomainPermissibleValue,PermissibleValue,ValueMeaning,ConceptDerivationRule&amp;ComponentConcept[Concept[@longName=Blood and Blood Products]][@primaryFlag=Yes]
+<h4 id="id-3.ExamplesUsingConcepts-caDSRII.3">
+  3.2.8. caDSR II
+</h4>
+https://cadsrapi.cancer.gov/caDSR5.0/GetXML?query=DataElement,EnumeratedValueDomain,ValueDomainPermissibleValue,PermissibleValue,ValueMeaning,ConceptDerivationRule&amp;ComponentConcept[Concept[@longName=Blood and Blood Products],@primaryFlag=Yes]
+<h3 id="id-3.ExamplesUsingConcepts-FindaConceptbyConceptCode">
+  3.3. Find a Concept by Concept Code
+</h3>
+The following examples find a concept with the concept code.
+<h4 id="id-3.ExamplesUsingConcepts-Legacy.3">
+  3.3.1. Legacy
+</h4>
+https://cadsrapi.nci.nih.gov/cadsrapi4/GetXML?query=Concept[@preferredName=C42614]
+<h4 id="id-3.ExamplesUsingConcepts-caDSRII.4">
+  3.3.2. caDSR II
+</h4>
+The URL for the results from the caDSR II REST API is
+https://cadsrapi.cancer.gov/invoke/caDSR/GetXML?query=Concept[@preferredName=C42614]
+<h3 id="id-3.ExamplesUsingConcepts-**ReturnPermissibleValueInfoIncludingAssociatedConceptsforaCDE">
+  3.4. **Return Permissible Value Info Including Associated Concepts for a CDE
+</h3>
+The following caDSR II example returns the Permissible Value information for a given CDE. If you do not specify the version, the query returns the latest version.
+https://cadsrapi.cancer.gov/caDSR/GetPVXML01?query=PermissibleValue&amp;DataElement[@publicId=62,@version=6]
+<h3 id="id-3.ExamplesUsingConcepts-RetrieveallDataElementsUsinganEVSConceptCodeorName,butRestrictResultstoOnlyThoseWheretheConceptis“PrimaryConcept”intheCDE&#39;sDataElementConcept&#39;sPropertyConceptrule">
+  3.5. Retrieve all Data Elements Using an EVS Concept Code or Name, but Restrict Results to Only Those Where the Concept is “Primary Concept” in the CDE&#39;s Data Element Concept&#39;s Property Concept rule
+</h3>
+This can be done through any of the caDSR APIs, as well as for restricting to Property or a Value Meaning in the CDEs Enumerated Value Domain.
+<h4 id="id-3.ExamplesUsingConcepts-Legacy:RetrievedataelementswithProperty“Primary”conceptwithconceptcode&#34;C19448&#34;(resultinXML).">
+  3.5.1. Legacy: Retrieve data elements with Property “Primary” concept with concept code &#34;C19448&#34; (result in XML).
+</h4>
+https://cadsrapi.nci.nih.gov/cadsrapi4/GetXML?query=DataElement,DataElementConcept,Property,ConceptDerivationRule&amp;ComponentConcept[Concept[@preferredName=C19448]][@primaryFlag=Yes]
+
+To find all data elements where the concept is used either as a primary OR qualifier concept, remove last qualifier in the query.
+[@primaryFlag=Yes]
+Removing this criteria returns 104 results instead of 88.
+<h4 id="id-3.ExamplesUsingConcepts-Legacy:RetrieveDECswithProperty“Primary”conceptnamed“E-MailAddress”.">
+  3.5.2. Legacy: Retrieve DECs with Property “Primary” concept named “E-Mail Address”.
+</h4>
+https://cadsrapi.nci.nih.gov/cadsrapi4/GetXML?query=DataElementConcept,Property,ConceptDerivationRule&amp;ComponentConcept[Concept[@longName=E-mail%20Address]][@primaryFlag=Yes]
+<h4 id="id-3.ExamplesUsingConcepts-Legacy:RetrievedataelementswithValueDomain&#39;sValueMeaning&#34;Primary&#34;conceptcode=C19448(BloodandBloodProducts”)(resultinXML).">
+  3.5.3. Legacy: Retrieve data elements with Value Domain&#39;s Value Meaning &#34;Primary&#34; concept code= C19448 (Blood and Blood Products”) (result in XML).
+</h4>
+https://cadsrapi.nci.nih.gov/cadsrapi4/GetXML?query=DataElement,EnumeratedValueDomain,ValueDomainPermissibleValue,PermissibleValue,ValueMeaning,ConceptDerivationRule&amp;ComponentConcept[Concept[@longName=Blood and Blood Products]][@primaryFlag=Yes]
+<h4 id="id-3.ExamplesUsingConcepts-caDSRII:RetrieveallDataElementswheretheProperty&#39;s“Primary”conceptisconceptname&#34;E-mailAddress&#34;(resultinXML).">
+  3.5.4. caDSR II: Retrieve all Data Elements where the Property&#39;s “Primary” concept is concept name &#34;E-mail Address&#34; (result in XML).
+</h4>
+https://cadsrapi.cancer.gov/invoke/caDSR/GetXML?query=DataElement,DataElementConcept,Property&amp;ComponentConcept[Concept[@longName=E-mail%20Address],@primaryFlag=Yes] 

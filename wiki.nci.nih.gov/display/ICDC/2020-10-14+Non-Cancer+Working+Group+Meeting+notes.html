@@ -1,0 +1,117 @@
+<h2 id="id-20201014NonCancerWorkingGroupMeetingnotes-Date">
+  Date
+</h2>
+14 Oct 2020
+<h2 id="id-20201014NonCancerWorkingGroupMeetingnotes-Attendees">
+  Attendees
+</h2>
+<ul>
+  <li>
+    <a href="https://wiki.nci.nih.gov/display/~beyersm" rel="nofollow">
+      Beyers, Matthew (NIH/NCI) [C]
+    </a>
+  </li>
+  <li>
+    Alex Harris, Dawn Duval, Erika Kim, Debbie Knapp, Elaine Ostrander
+  </li>
+</ul>
+<h2 id="id-20201014NonCancerWorkingGroupMeetingnotes-Agenda">
+  Agenda
+</h2>
+<ol>
+  <li>
+    Alex – present pipelines used in NHGRI paper
+  </li>
+  <li>
+    Discuss use cases for analysis and what tools might be needed in Cloud Resources
+  </li>
+  <li>
+    What data should we store/share?  Raw vs. processed?
+  </li>
+  <li>
+    Next steps?
+  </li>
+</ol>
+<h2 id="id-20201014NonCancerWorkingGroupMeetingnotes-Discussionitems">
+  Discussion items
+</h2>
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        Time
+      </th>
+      <th>
+        Item
+      </th>
+      <th>
+        Who
+      </th>
+      <th>
+        Notes
+      </th>
+    </tr>
+    <tr>
+      <td></td>
+      <td>
+        Pipeline
+      </td>
+      <td></td>
+      <td>
+        Raw data is not user-friendly. Takes up less database space.Processed data is more user-friendly. BAM files are large and take up a lot of database space.Pipeline: preprocessing: take raw reads (uBAM or FASTQ), concatenate to proper paired-end reads suitable for BWA-MEM.  Map to reference (aligned to CanFam3.1). Raw mapped reads (BAM). Mark duplicates (Picard tools) - deduplicated BAM. Recalibrate Base Quality Scores. Analysis-Ready Reads (BAM) - uses GATK 4.0+ suite to perform BaseRecalibrator and ApplyBQSR tools. Uses CanFam3.1 as a reference.Main pipeline: take analysis read BAMs, look for variation within BAM (Haplotype Caller in GATK 4+). Determines haplotypes, determines likelihoods, assigns sample genotype based fro the read data. Use GenomicsDBImport to gather the experimental gVCFs to create an object-oriented database. Most computing intensive part. Can get user unfriendly.  Use GenotypeGVCFs to perform joint genotyping. GatherVCFs to create final VCF. VariantRecalibrator to create a recalibration table to be used in the ApplyVQSR tool and a tranches (100, 99.9, 99.0, 90.0) files that shows various metrics of the callset for slices of the data. Put indels in confidence intervals (tranches).Upfront decisions about reference datasets is very important. Filter settings also very important. ICDC could host dbSNP dataset which is hard to find elsewhere. Dawn would prefer to move away from this. Elaine&#39;s dataset is germline only - no somatic data.
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>
+        To potential next steps: look into Alex&#39;s pipeline and compare to Genomics WG best practices and see if there is an interest in bringing some of this analysis to SBG; making germline dataset available to ICDC and SBG to have normal germline data available to filter against.Elaine - really interested, but Alex is deployed for Dog10K (18 Countries, 10 sites) which is making a robust dataset. Erika asked Alex to share his slides to share with SBG because they may have most of these tools already and stitching them together with the right filters and settings.Dawn suggests that if we could get the 722 dog dataset, that would be a great place to start. Alex has 1399 dog dataset he can publicly release. Alex has already done the hard work on this. What would be the process to release this dataset?  Send the VCF to ICDC or deposit in SRA? Elaine says sequences are at NCBI (SRA). Point from SBG/ICDC to SRA sequences. 1399 VCF file can be hosted in ICDC. 722 doesn&#39;t include Dog10K.
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1"></td>
+      <td colspan="1">
+        Next Steps
+      </td>
+      <td colspan="1"></td>
+      <td colspan="1">
+        Get 722 going now and add 1399 when available.
+        <a href="https://trace.ncbi.nlm.nih.gov/Traces/sra/sra.cgi?analysis=SRZ189891" rel="nofollow">
+          https://trace.ncbi.nlm.nih.gov/Traces/sra/sra.cgi?analysis=SRZ189891
+        </a>
+         (link to 722).Erika and Matt to talk to ICDC data team about how to put it in.
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1"></td>
+      <td colspan="1">
+        Use Cases
+      </td>
+      <td colspan="1"></td>
+      <td colspan="1">
+        How to use non-cancer data as reference data?
+        <ol>
+          <li>
+            Dawn - need this germline dataset to screen somatic variants.  Humans use dbSNP database.  Have tried with Match normals, but not as efficient as hoped.
+          </li>
+          <li>
+            Dawn - for gene expression analysis.  Have collected tumor and run RNAseq, but don&#39;t have available good normal matching tissues for analysis. Good to find normal tissues matching anatomical area.  Barkbase (Elinor Karrlson) may have most of normal organs. Debbie may have a company with RNAseq with normal sequences. Barkbase is epigenomic with 27 adult tissues (2019) from each of 5 dogs diverse in age and breed. Elaine can ask Elinor about where it stands - sample collection was pretty small.
+          </li>
+        </ol>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="id-20201014NonCancerWorkingGroupMeetingnotes-Actionitems">
+  Action items
+</h2>
+<ul>
+  <li></li>
+</ul>

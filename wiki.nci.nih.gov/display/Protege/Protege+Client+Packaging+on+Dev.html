@@ -1,0 +1,85 @@
+<h2 id="ProtegeClientPackagingonDev-ProtegeClientPackagingonDev">
+  Protege Client Packaging on Dev
+</h2>
+<h3 id="ProtegeClientPackagingonDev-Precondition:">
+  Precondition:
+</h3>
+You have already built protege and the new version of the client is in /local/content/protege/protegedesktop
+<h3 id="ProtegeClientPackagingonDev-Overview">
+  Overview
+</h3>
+There are a number of extra files and folders that need to be added to the protege client before it is distributed to the editors.  The most recent copy of these can be found in the /local/project/protegeClientPackage folder.  A script in this folder will copy the protegedesktop folder into protegeClientPackage, name it with the appropriate tag, copy in the extra files, then zip the package.
+<h3 id="ProtegeClientPackagingonDev-Filesandfoldersaddedtoclientpackage:">
+  Files and folders added to client package:
+</h3>
+<ul>
+  <li>
+    bookmark : this folder contains SPARQL query text files for use in the SPARQL query tab.  New queries are usually sent over email and should be copied to this folder and checked into github at
+    <a href="https://github.com/NCIEVS/sparql-query-plugin/tree/master/bookmark" rel="nofollow">
+      https://github.com/NCIEVS/sparql-query-plugin/tree/master/bookmark
+    </a>
+    .  NOTE: Anything we check into github should NOT have any service or server names, or login credentials.
+  </li>
+  <li>
+    Protege Logs Email - Macro.xlsm : This is an Excel macro that allows users to send logs and error reports to the Protege admins.  Updates to this file are normally sent by email and should be copied to this folder
+  </li>
+  <li>
+    removeOldPlugins.bat : Removes outdated plugins from Windows
+  </li>
+  <li>
+    run.bat : Runs the protege client on Windows.  Overwrites the run.bat provided in the protegedesktop build. This differs from the provided run.bat in that it:
+    <ul>
+      <li>
+        Calls the removeOldPlugins.bat
+      </li>
+      <li>
+        Increases the memory Xmx to 12000M
+      </li>
+      <li>
+        Calls the zulu jre
+      </li>
+    </ul>
+  </li>
+  <li>
+    run.bat.admin
+  </li>
+  <li>
+    run.command : For running the Protege client on Mac
+  </li>
+  <li>
+    runLowerMemory.bat : For running Protege client on Windows with a lower memory setting, for machines with resource constraints
+  </li>
+  <li>
+    run.sh : For running the Protege client on Linux or from shell in Mac
+  </li>
+  <li>
+    zulu8.38.0.13-ca-jre8.0.212-win_x64 : JRE for use in Windows
+  </li>
+</ul>
+<h3 id="ProtegeClientPackagingonDev-Runningthepackagingscript">
+  Running the packaging script
+</h3>
+The main package script is package.sh. It is run by passing in the name of the new package &#34;./package.sh nci-protege-V###&#34;This script will:
+<ul>
+  <li>
+    Remove all existing nci-protege folders or zips
+  </li>
+  <li>
+    Copy the /local/content/protege/protegedesktop folder into the current folder and rename it with the version
+  </li>
+  <li>
+    Copy in the files and folders needed from the local directory into the nci-protege-V### directory
+  </li>
+  <li>
+    zip the nci-protege-V###
+  </li>
+</ul>
+This packaged protege client is not yet configured.  It is zipped up for convenience in copying to your local environment for further configuration.There is a second script called localPackage.sh that does all the same functions except copying from the /local/content/protege/protegedesktop directory. This is useful for when you are doing manual builds or testing of the packaging process itself.
+<h3 id="ProtegeClientPackagingonDev-Distributingtheclient">
+  Distributing the client
+</h3>
+Due to limitations in X-windows, it is likely that you will need to copy the zip package down to your local machine in order to do the client configuration steps.  Configuration details can be found at
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=347473017" rel="nofollow">
+  NCI Protege 5 desktop set up
+</a>
+.Once the client is configured you will want to zip it back up.  If working on a Mac you will want to make sure to exclude the .DS_Store hidden files : zip -r nci-protege-V3.9.0-dev2.zip nci-protege-V### -x &#34;*.DS_Store&#34;Copy the package to the secure FTP at caftps2.nci.nih.gov.  You will need to use SFTP and log in using your NIH username and password. The client distribution for testing on Dev and QA should go into the /evs/Protege/Protege-5-Snapshots folderThe client distribution for stage and production release should go into the /evs/Protege/Protege-3.x folder

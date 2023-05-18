@@ -1,0 +1,169 @@
+This document describes the Application Development, Release, and Deployment Management Standard Operating Procedure for the National Biomedical Imaging Archive (NBIA), and includes the following sections.
+<ul>
+  <li>
+    <a href="#NBIAReleaseSOP-Description" rel="nofollow">
+      Description
+    </a>
+  </li>
+  <li>
+    <a href="#NBIAReleaseSOP-Objectives" rel="nofollow">
+      Objectives
+    </a>
+  </li>
+  <li>
+    <a href="#NBIAReleaseSOP-Actors" rel="nofollow">
+      Actors
+    </a>
+  </li>
+  <li>
+    <a href="#NBIAReleaseSOP-StandardOperatingProcedure" rel="nofollow">
+      Standard Operating Procedure
+    </a>
+  </li>
+</ul>
+<h1 id="NBIAReleaseSOP-Description">
+  Description
+</h1>
+The NBIA Application, Releaseand Deployment Management is the process responsible for planning, scheduling, and controlling the development, build, testing, and deploying application releases. This procedure ensures that the software development team delivers new and enhanced information technologies required by NCI and its collaborators while protecting the integrity of existing services. With the risk-based approach, a project team assesses the risk of the application release to guide the testing and deployment efforts. The risk level assessment should be based on the probability and severity of the likely occurrence of security vulnerabilities, issues with regulatory compliance, the complexity level of the release, and functional and non-functional quality impact of the application.
+<h1 id="NBIAReleaseSOP-Objectives">
+  Objectives
+</h1>
+<ul>
+  <li>
+    Do the right level of testing and review of release based on a risk assessment.
+  </li>
+  <li>
+    Reduce the time and effort it takes to complete a release.
+  </li>
+  <li>
+    Improve coordination throughout the application release and deployment process.
+  </li>
+  <li>
+    Improve productivity by establishing standard release process and tooling.
+  </li>
+  <li>
+    Support iterative development, active user involvement, and incremental release.
+  </li>
+  <li>
+    Communicate the releases to the stakeholders and the user community.
+  </li>
+</ul>
+<h1 id="NBIAReleaseSOP-Actors">
+  Actors
+</h1>
+<ol>
+  <li>
+    Project Sponsor (PS) –Business owner of the project. Responsible for the requirements of the project.
+  </li>
+  <li>
+    Technical project manager (TPM) – Project manager for the development effort
+  </li>
+  <li>
+    Development team (DEV)
+  </li>
+  <li>
+    Quality Assurance team (QA)
+  </li>
+  <li>
+    Systems Team Representative (STR) – Members of the Systems Team responsible for provisioning DEV, QA, Stage, and Production tiers
+  </li>
+  <li>
+    Security Representative (SR) – Member of the Security Team and responsible for performing security application scans
+  </li>
+</ol>
+<h1 id="NBIAReleaseSOP-StandardOperatingProcedure">
+  Standard Operating Procedure
+</h1>
+<ol>
+  <li>
+    The project sponsor proposes a new release.
+  </li>
+  <li>
+    The TPM works with the key project stakeholders to determine the project needs and the content of the release.
+  </li>
+  <li>
+    The DEV team tracks all feature requests and bug fixes in an issue tracking system e.g. JIRA.
+  </li>
+  <li>
+    The DEV team develops the release. Depending on the complexity of the release, the DEV team under the guidance of the technical lead decides to create milestone releases before creating the final release tag.
+  </li>
+  <li>
+    The DEV team deploys the software on the DEV tier.
+  </li>
+  <li>
+    The DEV team completes development testing on the DEV tier.
+  </li>
+  <li>
+    The milestone and/or final release tags are sent to the QA team for verification.
+  </li>
+  <li>
+    QA tier
+    <ul>
+      <li>
+        The QA team deploys the software to the QA tier.
+      </li>
+      <li>
+        The QA team performs quality assurance and compliance testing on the release candidates.
+      </li>
+      <li>
+        The QA team submits an AppScan request ticket to the SR team.
+      </li>
+      <li>
+        The QA team provides the SR team a list of test cases that are related to exercising functions that could be affected by security vulnerabilities.
+      </li>
+      <li>
+        The QA team provides the SR team access to all test cases for the application.
+      </li>
+      <li>
+        The SR team runs the Security App Scan on the QA tier and returns results to the QA team and the DEV team.
+        <ul>
+          <li>
+            Any high and medium-level vulnerabilities found during the AppScan need to be mitigated by the DEV team and the QA process restarted.
+          </li>
+        </ul>
+      </li>
+      <li>
+        The QA team performs a 508 Scan on the QA tier and returns results to the DEV team.
+        <ul>
+          <li>
+            Any non-compliance issues found during the scan need to be mitigated by the DEV team.
+          </li>
+        </ul>
+      </li>
+      <li>
+        The QA team provides a QA Test Report on the QA tier to the PS for review and approval.
+      </li>
+    </ul>
+  </li>
+  <li>
+    Stage tier deployment
+    <ul>
+      <li>
+        The DEV team deploys the release to the Stage tier.
+      </li>
+      <li>
+        The QA team performs smoke testing.
+      </li>
+      <li>
+        The TPM coordinates and facilitates user acceptance testing if an UAT is planned.
+      </li>
+    </ul>
+  </li>
+  <li>
+    Production tier deployment
+    <ul>
+      <li>
+        The DEV team deploys the release to the production tier.
+      </li>
+      <li>
+        The QA team performs smoke testing.
+      </li>
+    </ul>
+  </li>
+  <li>
+    The TPM ensures all required documentation and artifacts related to the release exist.
+  </li>
+  <li>
+    The PS informs the stakeholders and user community of the release as needed.
+  </li>
+</ol>

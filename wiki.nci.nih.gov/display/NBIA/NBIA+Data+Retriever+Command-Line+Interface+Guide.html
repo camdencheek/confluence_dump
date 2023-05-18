@@ -1,0 +1,173 @@
+<ul>
+  <li>
+    <a href="#NBIADataRetrieverCommandLineInterfaceGuide-InstallingtheNBIADataRetrieveronLinux" rel="nofollow">
+      Installing the NBIA Data Retriever on Linux
+    </a>
+  </li>
+  <li>
+    <a href="#NBIADataRetrieverCommandLineInterfaceGuide-RunningtheNBIADataRetrieveronLinux" rel="nofollow">
+      Running the NBIA Data Retriever on Linux
+    </a>
+  </li>
+  <li>
+    <a href="#NBIADataRetrieverCommandLineInterfaceGuide-CLIParameters" rel="nofollow">
+      CLI Parameters
+    </a>
+  </li>
+  <li>
+    <a href="#NBIADataRetrieverCommandLineInterfaceGuide-ResuminganInterruptedDownloadUsingtheCLI" rel="nofollow">
+      Resuming an Interrupted Download Using the CLI
+    </a>
+  </li>
+</ul>
+The NBIA Data Retriever is a software product you can
+<a href="https://wiki.cancerimagingarchive.net/display/NBIA/Cancer+Imaging+Archive+User%27s+Guide#CancerImagingArchiveUser%27sGuide-DownloadingtheNBIADataRetriever" rel="nofollow">
+  download
+</a>
+and
+<a href="https://wiki.cancerimagingarchive.net/display/NBIA/Cancer+Imaging+Archive+User%27s+Guide#CancerImagingArchiveUser%27sGuide-InstallingtheNBIADataRetriever" rel="nofollow">
+  install
+</a>
+so that you can download radiology images from from the
+<a href="https://public.cancerimagingarchive.net/nbia-search/" rel="nofollow">
+  TCIA Radiology Portal
+</a>
+. This guide documents the command-line interface (CLI) of the NBIA Data Retriever. See the
+<a href="https://wiki.cancerimagingarchive.net/display/NBIA/Cancer+Imaging+Archive+User%27s+Guide" rel="nofollow">
+  Cancer Imaging Archive User&#39;s Guide
+</a>
+to learn how to use the Graphical User Interface (GUI) of the TCIA Radiology Portal.
+<h2 id="NBIADataRetrieverCommandLineInterfaceGuide-InstallingtheNBIADataRetrieveronLinux">
+  Installing the NBIA Data Retriever on Linux
+</h2>
+If you are using Linux, you can access NBIA Data Retriever&#39;s command-line interface, which does not require the desktop environment.If you do not already have the NBIA Data Retriever installed on your Linux machine, refer to the following commands.Installing the NBIA Data Retriever DEB package
+mkdir /usr/share/desktop-directories/
+wget -P ~/NBIA-Data-Retriever https://cbiit-download.nci.nih.gov/nbia/releases/ForTCIA/NBIADataRetriever_4.2/nbia-data-retriever-4.2.deb
+dpkg -i ~/NBIA-Data-Retriever/nbia-data-retriever-4.2.deb
+Note that an
+<a href="https://cbiit-download.nci.nih.gov/nbia/releases/ForTCIA/NBIADataRetriever_4.2/NBIADataRetriever-4.2-1.x86_64.rpm" rel="nofollow">
+  RPM package
+</a>
+is also available for operating systems that don&#39;t support *.deb packages.
+<h2 id="NBIADataRetrieverCommandLineInterfaceGuide-RunningtheNBIADataRetrieveronLinux">
+  Running the NBIA Data Retriever on Linux
+</h2>
+In the two sample commands that follow, the -l &lt;credential file&gt; option is only required when the manifest file contains series from restricted collections. It is unnecessary when the manifest file only contains series from public collections.
+<ul>
+  <li>
+    To run the NBIA Data Retriever on CentOS, run the following sample command.
+    /opt/NBIADataRetriever/NBIADataRetriever --cli &lt;location&gt;/&lt;manifest file name&gt;.tcia -d &lt;parent location&gt;/&lt;download directory&gt; -l &lt;location&gt;/&lt;credential file&gt; -v –f
+  </li>
+  <li>
+    To run the NBIA Data Retriever on Ubuntu, run the following sample command.
+    /opt/nbia-data-retriever/nbia-data-retriever --cli &lt;location&gt;/&lt;manifest file name&gt;.tcia -d &lt;parent location&gt;/&lt;download directory&gt; -l &lt;location&gt;/&lt;credential file&gt; -v –f
+    A credential file is a text file that passes the user&#39;s credentials in the following format:
+    userName=YourUserName
+    passWord=YourPassword
+    The parameters &#34;userName&#34; and &#34;passWord&#34; are case-sensitive.
+  </li>
+</ul>
+<h2 id="NBIADataRetrieverCommandLineInterfaceGuide-CLIParameters">
+  CLI Parameters
+</h2>
+The options available for the command line interface are described in the following table.If you use the NBIA Data Retriever CLI with the -v, -f, or -q options, and want to access restricted collection(s), put these options after the user credential parameters.
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        Option
+      </th>
+      <th>
+        Description
+      </th>
+    </tr>
+    <tr>
+      <td>
+        -c, -C, --cli, --CLI
+      </td>
+      <td>
+        Indicates running as a CLI app
+      </td>
+    </tr>
+    <tr>
+      <td>
+        -d, -D &lt;download directory&gt;
+      </td>
+      <td>
+        Required. The user must have write permission for the directory specified with this option.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        -f, -F
+      </td>
+      <td>
+        Skip the series the user does not have access to. Force the user to download the series if the user has access. Default is false.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        -l &lt;credential file&gt;
+      </td>
+      <td>
+        Required when the manifest file has series from restricted collections.Optional when the manifest file has series from public collections only.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        -m, -M, --md5, –MD5
+      </td>
+      <td>
+        Enable validation of the checksums of the downloaded files. Default is that checksums will not be validated.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        -p, -P &lt;password&gt;
+      </td>
+      <td>
+        Optional
+      </td>
+    </tr>
+    <tr>
+      <td>
+        -q, -Q
+      </td>
+      <td>
+        Quiet. Default is false.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        -u, -U &lt;user name&gt;
+      </td>
+      <td>
+        Optional
+      </td>
+    </tr>
+    <tr>
+      <td>
+        -v, -V
+      </td>
+      <td>
+        Verbose. Default is false.
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="NBIADataRetrieverCommandLineInterfaceGuide-ResuminganInterruptedDownloadUsingtheCLI">
+  Resuming an Interrupted Download Using the CLI
+</h2>
+If your download is interrupted, you can resume it using the CLI in the following way.
+<ol>
+  <li>
+    At the command-line prompt and from the same directory that you initially used to invoke NBIA Data Retriever, type the same CLI command again. Alternately, you can run the CLI command from a directory other than the original directory by adding the “-d” option followed by the original directory. The NBIA Data Retriever reviews what has already been downloaded, then asks “Do you want to download all or download only missing series?&#34;
+  </li>
+  <li>
+    Enter A to download all, M to download missing series, or E to exit the program.
+  </li>
+</ol>

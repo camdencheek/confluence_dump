@@ -1,0 +1,146 @@
+If the following criteria are all true, you can upload one or more folders from a Globus endpoint to a study in MoDaC:
+<ul>
+  <li>
+    You have a MoDaC user account with upload permission.
+  </li>
+  <li>
+    You are member of a group that has permission to edit that study (or you created that study).
+  </li>
+  <li>
+    You have prepared a Globus endpoint for use with MoDaC. For details, refer to
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=434111134" rel="nofollow">
+      Preparing to Use Globus
+    </a>
+    .
+  </li>
+</ul>
+When you upload data, you become the owner of that data. (Ownership cannot be changed.) Each folder from Globus becomes an asset in that study.
+<ol>
+  <li>
+    If you want to provide metadata separately for each asset (or each file), prepare that metadata in a Microsoft Excel XLSX file.
+    Instructions to prepare metadata file
+    <ol>
+      <li>
+        Download the example metadata file from the following GitHub location:
+        <a href="https://github.com/CBIIT/nci-doe-data-sharing/blob/master/doc/training/samples/example_MoDaC_bulk_metadata.xlsx" rel="nofollow">
+          https://github.com/CBIIT/nci-doe-data-sharing/blob/master/doc/training/samples/example_MoDaC_bulk_metadata.xlsx
+        </a>
+      </li>
+      <li>
+        Revise the file to reflect the assets (and files) you intend to specify for registration:
+        <ul>
+          <li>
+            Specify a row for each of your assets and each of your files.
+          </li>
+          <li>
+            In the path column, specify the location of each asset and each file within your Globus endpoint.
+          </li>
+          <li>
+            Specify required metadata for each asset:
+            <ul>
+              <li>
+                The character limit for each metadata value is 2700.
+              </li>
+              <li>
+                In the collection_type column, always specify Asset as the collection type.
+              </li>
+              <li>
+                In the asset_type column, specify either Model or Dataset.
+              </li>
+              <li>
+                If Model is the asset type, the system requires platform_name, framework, and domain.
+                <ul>
+                  <li>
+                    Valid values for platform name are AMPL, Candle, None, or Other.
+                  </li>
+                  <li>
+                    Valid values for framework are Tensorflow, TensorRT, PyTorch, Caffe, Caffe2, Scikit-learn, Keras, DALI, ONNX, or Other.
+                  </li>
+                </ul>
+              </li>
+              <li>
+                For both asset types, the system requires asset_identifier, asset_name, and description.
+              </li>
+            </ul>
+          </li>
+          <li>
+            (Optional) In additional columns, specify user-defined attributes for each asset and each file.
+          </li>
+          <li>
+            Each file can be any file type.
+          </li>
+        </ul>
+      </li>
+    </ol>
+    For questions, select About &gt; Contact. For details, refer to
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=477496202" rel="nofollow">
+      Contacting Us
+    </a>
+    .
+  </li>
+  <li>
+    Log in, as described in
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=432768260" rel="nofollow">
+      Logging In
+    </a>
+    .
+  </li>
+  <li>
+    Click Upload in the header. The upload page appears. Navigate to the study in which you intend to create new assets:
+    <ol>
+      <li>
+        Select an existing program or add a new one.
+      </li>
+      <li>
+        Select an existing study or add a new one.
+      </li>
+    </ol>
+    For instructions, refer to
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=434111512" rel="nofollow">
+      Adding a Collection
+    </a>
+    .
+  </li>
+  <li>
+    Click Register Asset. Click Upload Asset(s) from Globus Endpoint. Click Select Assets from Globus Endpoint. A Globus page appears.
+  </li>
+  <li>
+    In Globus, select an endpoint. Select the folders that you want to upload. Click Submit. The upload page reappears with the Globus endpoint ID, path, and selected folders.
+  </li>
+  <li>
+    (Optional) Specify include criteria. Use patterns to specify the source files to include. If you specify more than one pattern, the system considers a union of all patterns. For details, refer to
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=464717284" rel="nofollow">
+      Specifying Include Criteria
+    </a>
+    .
+  </li>
+  <li>
+    Specify whether you want to upload a bulk metadata file:
+    <ul>
+      <li>
+        If you select Yes, then click Choose File. Navigate to and select your file. The filename appears next to the Choose File button.
+      </li>
+      <li>
+        If you select No, then select the asset type and specify all required metadata. If you want to add metadata, click Add Metadata. The system adds a row to the metadata table. Specify an attribute name and an attribute value. (Repeat for additional attributes. To delete an attribute, click the X.) Keep in mind the following points:
+        <ul>
+          <li>
+            The character limit for each metadata value is 2700.
+          </li>
+          <li>
+            If an attribute value begins with http or https, MoDaC displays it as a hyperlink in read-only fields.
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    Click Upload. The system transfers the data based on your selections.
+  </li>
+  <li>
+    When the system displays the task ID, consider clicking that link to view the progress of the upload. For instructions, refer to
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=434111160" rel="nofollow">
+      Viewing Status
+    </a>
+    .
+  </li>
+</ol>

@@ -1,0 +1,431 @@
+Welcome to the caNanoLab 3.0 Release Note, July 19, 2022. Topics in this Release Note include the following.
+<ul>
+  <li>
+    <a href="#caNanoLab3.0ReleaseNote-Improvements" rel="nofollow">
+      Improvements
+    </a>
+  </li>
+  <li>
+    <a href="#caNanoLab3.0ReleaseNote-FixedBugs" rel="nofollow">
+      Fixed Bugs
+    </a>
+  </li>
+  <li>
+    <a href="#caNanoLab3.0ReleaseNote-KnownIssuesandWorkarounds" rel="nofollow">
+      Known Issues and Workarounds
+    </a>
+  </li>
+  <li>
+    <a href="#caNanoLab3.0ReleaseNote-ReleaseHistory" rel="nofollow">
+      Release History
+    </a>
+  </li>
+</ul>
+JIRAIf you have access to the JIRA Tracking System, click a JIRA link to review additional development details.
+<h2 id="caNanoLab3.0ReleaseNote-Improvements">
+  Improvements
+</h2>
+The improvement in this caNanoLab release is a user interface upgrade to Angular v.11.
+<h2 id="caNanoLab3.0ReleaseNote-FixedBugs">
+  Fixed Bugs
+</h2>
+The following table lists and describes the bug(s) resolved in this caNanoLab release.
+<table id="TBL1683165902491">
+  <colgroup>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+         Description
+      </th>
+      <th>
+        JIRA issue link
+      </th>
+    </tr>
+    <tr>
+      <td>
+        New Client: Samples: Characterization: Missing Ex Vivo and Other Ex Vivo Characterization Type when on the Characterization Main Page.
+      </td>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/CANANOLAB-888" rel="nofollow">
+          CANANOLAB-888
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        New Client: When logged in as Researcher, &#34;Submit for Review&#34; button is not available for Samples, Protocols, and Publications needing to be Curated.When a Researcher wants to submit a database item for review (Samples, Protocols, Publications), at the bottom of the Create or Update page for the item, the Researcher clicks on the “Submit for Review” button. The “Submit for Review” button was hidden from the end user and was unhidden in this patch.
+      </td>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/CANANOLAB-901" rel="nofollow">
+          CANANOLAB-901
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        New Client: Groups: When Expanding a Collaboration Group, Samples listed are not hyperlinked. When the end user selects Groups &gt; Manage Collaboration Groups, they can view the Samples assigned to a collaboration group by clicking on the Collaboration Group Name to expand. Once expanded, the column “Sample Name” lists all the samples assigned to the Collaboration Group. The issue was that the Sample Names were not hyperlinked so the end user can navigate directly to the Sample to view. This patch release made the Sample Names hyperlinked.
+      </td>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/CANANOLAB-902" rel="nofollow">
+          CANANOLAB-902
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        New Client: My Workspace: My Publications: Incorrect Column Label.Under my Workspace is the “My Publications “ section. The last column label was incorrectly labeled as “Protocol Access” and should be labeled as “Publication Access”.  This patch release corrects the column label.
+      </td>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/CANANOLAB-903" rel="nofollow">
+          CANANOLAB-903
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        New Client: Action\View Issues for Publication and Protocols Search Results when not logged in.On the Home page, under Public Results, the user can click on the results number to bring up public Protocols, Samples, and Publications.  The Actions column was removed from the Protocols search results page since there are no Actions available. The Publications search results page had View links listed under an Actions column that lead to Page Not Found. These links have been removed.
+      </td>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/CANANOLAB-904" rel="nofollow">
+          CANANOLAB-904
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        New Client: Add Banner to notify end user of upcoming outage \ cut-over activities.Added banner to caNanoLab Home page to notify end user of upcoming cutover activities.  The banner is to be activated after midnight of July 31st.  Proposed schedule:
+        <ul>
+          <li>
+            Week of Aug 1-5:  Display warning banner. Have the banner posted for August 1st.
+          </li>
+          <li>
+            Monday Aug 8:  Shut down legacy system. Export database and file repository.
+          </li>
+          <li>
+            Tuesday Aug 9:  Final site preparation with imported database and files.
+          </li>
+          <li>
+            Wednesday Aug 10: Go live. Redirect from old site to new site.
+          </li>
+        </ul>
+      </td>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/CANANOLAB-905" rel="nofollow">
+          CANANOLAB-905
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        New Client: Groups: Researcher role is prevented from Expanding a Collaboration Group: Post 403 Error.Researcher should not have the Collaboration Groups expand button.  That has been removed.
+      </td>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/CANANOLAB-906" rel="nofollow">
+          CANANOLAB-906
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        New Client: Composition: When editing Composition Element File, the original uploaded file is not saved and has to be uploaded again. When editing an uploaded file (such as Changing Keywords, Tile, Description) in Characterization Findings File, the user has to download and Browse to the file and upload it again to have the File Edit changes implemented.
+      </td>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/CANANOLAB-907" rel="nofollow">
+          CANANOLAB-907
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        New Client: Sample Characterization element has a default date of Dec 31, 1969: Change default date to today&#39;s date. For New Characterization Element or elements not having a date previously selected, the default date was set to Dec 31, 1969. Update default date to today&#39;s date.
+      </td>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/CANANOLAB-909" rel="nofollow">
+          CANANOLAB-909
+        </a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="caNanoLab3.0ReleaseNote-KnownIssuesandWorkarounds">
+  Known Issues and Workarounds
+</h2>
+The following table lists and describes how to work around the following remaining issues in caNanoLab.
+<table id="TBL1683165902492">
+  <colgroup>
+    <col/>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        Known Issue
+      </th>
+      <th>
+        Workaround
+      </th>
+      <th>
+        JIRA issue link
+      </th>
+    </tr>
+    <tr>
+      <td>
+        Findings: Import: Error when importing csv file with large number of columns:  CSV import parse error
+      </td>
+      <td>
+        No workaround.
+      </td>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/CANANOLAB-802" rel="nofollow">
+          CANANOLAB-802
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        New Client: Publications: Report: Unable to create a new Report publication when adding more than one Sample Names
+      </td>
+      <td>
+        No workaround.
+      </td>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/CANANOLAB-847" rel="nofollow">
+          CANANOLAB-847
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        New Client: Characterization Findings: Files: Unable to Delete Files, Findings, Sample as a result of value input entered into the File Keyword field.
+      </td>
+      <td>
+        Remove the Keyword value and then save.
+      </td>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/CANANOLAB-908" rel="nofollow">
+          CANANOLAB-908
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        New Client: Sample Search Results Table: Data Availability Link does not bring up Data Availability Metrics
+      </td>
+      <td>
+        In the Actions column, click Edit. In the Data Availability Metrics section, click Edit.
+      </td>
+      <td>
+        <a href="https://tracker.nci.nih.gov/browse/CANANOLAB-910" rel="nofollow">
+          CANANOLAB-910
+        </a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="caNanoLab3.0ReleaseNote-ReleaseHistory">
+  Release History
+</h2>
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        Release
+      </th>
+      <th>
+        Date
+      </th>
+    </tr>
+    <tr>
+      <td>
+        3.0
+      </td>
+      <td>
+        19 July 2022
+      </td>
+    </tr>
+    <tr>
+      <td>
+        2.4.1
+      </td>
+      <td>
+        29 April 2022
+      </td>
+    </tr>
+    <tr>
+      <td>
+        2.4
+      </td>
+      <td>
+        22 December 2021
+      </td>
+    </tr>
+    <tr>
+      <td>
+        2.3.12
+      </td>
+      <td>
+        28 September 2021
+      </td>
+    </tr>
+    <tr>
+      <td>
+        2.3.11
+      </td>
+      <td>
+        21 May 2021
+      </td>
+    </tr>
+    <tr>
+      <td>
+        2.3.10
+      </td>
+      <td>
+        30 October 2020
+      </td>
+    </tr>
+    <tr>
+      <td>
+        2.3.8
+      </td>
+      <td>
+        19 September 2019
+      </td>
+    </tr>
+    <tr>
+      <td>
+        2.3.7
+      </td>
+      <td>
+        11 June 2019
+      </td>
+    </tr>
+    <tr>
+      <td>
+        2.3.6
+      </td>
+      <td>
+        7 January 2019
+      </td>
+    </tr>
+    <tr>
+      <td>
+        2.3.5.1
+      </td>
+      <td>
+        15 November 2018
+      </td>
+    </tr>
+    <tr>
+      <td>
+        2.3.5
+      </td>
+      <td>
+        2 October 2018
+      </td>
+    </tr>
+    <tr>
+      <td>
+        2.3.4
+      </td>
+      <td>
+        13 July 2018
+      </td>
+    </tr>
+    <tr>
+      <td>
+        2.3.3
+      </td>
+      <td>
+        25 January 2018
+      </td>
+    </tr>
+    <tr>
+      <td>
+        2.3.2
+      </td>
+      <td>
+        October 2017
+      </td>
+    </tr>
+    <tr>
+      <td>
+        2.3
+      </td>
+      <td>
+        April 2017
+      </td>
+    </tr>
+    <tr>
+      <td>
+        2.2
+      </td>
+      <td>
+        January 2017
+      </td>
+    </tr>
+    <tr>
+      <td>
+        2.1.1
+      </td>
+      <td>
+        February 2016
+      </td>
+    </tr>
+    <tr>
+      <td>
+        2.1
+      </td>
+      <td>
+        November 2015
+      </td>
+    </tr>
+    <tr>
+      <td>
+        2.0
+      </td>
+      <td>
+        December 2014
+      </td>
+    </tr>
+    <tr>
+      <td>
+        1.5.5
+      </td>
+      <td>
+        May 2013
+      </td>
+    </tr>
+    <tr>
+      <td>
+        1.5.4
+      </td>
+      <td>
+        August 2012
+      </td>
+    </tr>
+    <tr>
+      <td>
+        1.5.3
+      </td>
+      <td>
+        May 2012
+      </td>
+    </tr>
+    <tr>
+      <td>
+        1.5.2
+      </td>
+      <td>
+        October 2010
+      </td>
+    </tr>
+  </tbody>
+</table>

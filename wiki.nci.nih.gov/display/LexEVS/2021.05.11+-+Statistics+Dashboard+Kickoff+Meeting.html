@@ -1,0 +1,339 @@
+<h2 id="id-2021.05.11StatisticsDashboardKickoffMeeting-StatisticsDashboardKickoffMeeting">
+  Statistics Dashboard Kickoff Meeting
+</h2>
+<h2 id="id-2021.05.11StatisticsDashboardKickoffMeeting-Attendees">
+  Attendees
+</h2>
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        Name
+      </th>
+      <th>
+        Role
+      </th>
+      <th colspan="1">
+        Present
+      </th>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Remennik, Lyubov
+      </td>
+      <td colspan="1">
+        NIH/NCI
+      </td>
+      <td colspan="1">
+        x
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Safran, Tracy
+      </td>
+      <td colspan="1">
+        NIH/NCI [C]
+      </td>
+      <td colspan="1">
+        x
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Lucas, Jason R
+      </td>
+      <td colspan="1">
+        IS
+      </td>
+      <td colspan="1">
+        x
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Bauer, Scott
+      </td>
+      <td colspan="1">
+        Mayo
+      </td>
+      <td colspan="1">
+        x
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Stancl, Craig
+      </td>
+      <td colspan="1">
+        Mayo
+      </td>
+      <td colspan="1">
+        x
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Endle,  Cory
+      </td>
+      <td colspan="1">
+        Mayo
+      </td>
+      <td colspan="1">
+        x
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Trong, Tracy
+      </td>
+      <td colspan="1">
+        NIH/NCI [C]
+      </td>
+      <td colspan="1">
+        x
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Whiteman, Lori
+      </td>
+      <td colspan="1">
+        NIH/NCI [C]
+      </td>
+      <td colspan="1"></td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Cuong, Nguyen
+      </td>
+      <td colspan="1">
+        NIH/NCI [C]
+      </td>
+      <td colspan="1">
+        x
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h1 id="id-2021.05.11StatisticsDashboardKickoffMeeting-Agenda">
+  Agenda
+</h1>
+<h2 id="id-2021.05.11StatisticsDashboardKickoffMeeting-StatisticsDashboardDiscussion">
+  Statistics Dashboard Discussion
+</h2>
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <td colspan="1">
+        Requirements Clarification
+      </td>
+      <td colspan="1">
+        Discussion Points:
+        <ul>
+          <li>
+            Metrics that are not in GA
+            <ul>
+              <li>
+                Retrospective Report
+              </li>
+              <li>
+                Resolving IP - This is possible by the &#34;whois&#34; command.
+                <ul>
+                  <li>
+                    Tracy has a program that does this.
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            User Metrics
+            <ul>
+              <li>
+                Retrospective Report
+              </li>
+            </ul>
+          </li>
+          <li>
+            System Metrics
+            <ul>
+              <li>
+                Static vs Dynamic/Real time?
+              </li>
+              <li>
+                Lyuba would like to know traffic goes up/down and when page load exceeds a set target.
+                <ul>
+                  <li>
+                    This would be real time information that we can respond to.
+                    <ul>
+                      <li>
+                        Error Notifications for the following:
+                        <ul>
+                          <li>
+                            Site is extremely slow
+                          </li>
+                          <li>
+                            Site is down
+                          </li>
+                          <li>
+                            Lots of traffic
+                          </li>
+                        </ul>
+                      </li>
+                      <li>
+                        Tracy suggested the above information is in GA.
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    This may be in the tomcat logs
+                  </li>
+                </ul>
+              </li>
+              <li>
+                Lyuba wanted domain of user
+                <ul>
+                  <li>
+                    edu, com.,etc.
+                  </li>
+                </ul>
+              </li>
+              <li>
+                Coung mentioned that unique URLs have their own logs and config files.
+              </li>
+            </ul>
+          </li>
+        </ul>
+        Decision Points:
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Proposed Architecture
+      </td>
+      <td colspan="1">
+        Discussion Points:
+        <ul>
+          <li>
+            ELK
+            <ul>
+              <li>
+                Cuong - They have some experience with ELK. They can install it on our dev.
+              </li>
+            </ul>
+          </li>
+          <li>
+            Sumo Logic
+          </li>
+          <li>
+            System Admin responsibilities
+          </li>
+          <li>
+            Apache Logs on Prem only store logs for a certain length of time
+            <ul>
+              <li>
+                Site stats pulls logs from apache web servers.
+                <ul>
+                  <li>
+                    These logs are stored on a shared drive for on prem apps. They could be used for our app.
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        Decision Points:
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Status
+      </td>
+      <td colspan="1">
+        Discussion Points:
+        <ul>
+          <li>
+            ATO conversation begun by Cloud Team
+          </li>
+          <li>
+            NIH Web Standards adherence conversation begun by Mayo team
+          </li>
+          <li>
+            Proposed ELK setup in progress with cloud configuration/administration team
+          </li>
+          <li>
+            Real time access to logs is still undetermined
+            <ul>
+              <li>
+                Some realtime status are needed (see above)
+              </li>
+              <li>
+                Cuong mentioned they use Solarwinds for real time status - this is typically for system admins
+              </li>
+              <li>
+                We may still want to do our own real time status.
+                <ul>
+                  <li>
+                    Will need to determine if file beats pulls real time or just every X minutes.
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        Decision Points:
+        <ul>
+          <li>
+            Cuong suggested we make request to AWS for stats dashboard system.
+            <ul>
+              <li>
+                dev, stage, prod  (all inside firewall)
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        UI
+      </td>
+      <td colspan="1">
+        Discussion Points:
+        <ul>
+          <li>
+            What will the UI look like?
+          </li>
+          <li>
+            We will need to know what types of views are required.
+          </li>
+          <li>
+            Lyuba would like it simple yet functional.
+          </li>
+        </ul>
+        Decision Points:
+        <ul>
+          <li>
+            Tracy and Cory should meet to start the UI design.
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h3 id="id-2021.05.11StatisticsDashboardKickoffMeeting-Reference:">
+  Reference:
+</h3>
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=458228674" rel="nofollow">
+  EVS Analytics Dashboard Project Documents
+</a>

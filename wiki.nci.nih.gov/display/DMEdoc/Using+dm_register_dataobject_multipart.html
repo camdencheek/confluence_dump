@@ -1,0 +1,160 @@
+If your user account has the Write or Own permission level on an existing collection in DME, and if that existing collection has been configured to contain data files, you can register a data file into that collection. The character limit for each metadata value is 2700.To register a data file:
+<ol>
+  <li>
+    In your local system, create a JSON file that specifies the metadata for the new data file. Click the following link to view the syntax:
+    Syntax
+    {
+    &#34;metadataEntries&#34;: [
+    {
+    &#34;attribute&#34;: &#34;description&#34;,
+    &#34;value&#34;: &#34;my-dataObject-description&#34;
+    },
+    {
+    &#34;attribute&#34;: &#34;example_date&#34;,
+    &#34;value&#34;: &#34;20201231&#34;,
+    &#34;dateFormat&#34;: &#34;yyyyMMdd&#34;
+    }
+    ]
+    }
+  </li>
+  <li>
+    For each date attribute, specify one of the following date formats, and specify the date value in that format:
+    <ul>
+      <li>
+        yyyyMMdd
+      </li>
+      <li>
+        yyyy.MM.dd
+      </li>
+      <li>
+        yyyy-MM-dd
+      </li>
+      <li>
+        yyyy/MM/dd
+      </li>
+      <li>
+        MM/dd/yyyy
+      </li>
+      <li>
+        MM-dd-yyyy
+      </li>
+      <li>
+        MM.dd.yyyy
+      </li>
+    </ul>
+    The system parses your date using the date format you specify. Then however, if the date attribute has a metadata validation rule in a different format, the system stores the date in the format specified by that rule.
+  </li>
+  <li>
+    In your JSON file, if you want to create a parent collection for the data file you are registering (or update the metadata of a parent collection), also specify the metadata for the parent collection. Click the following link to view the syntax:
+    Syntax
+    {
+    &#34;metadataEntries&#34;: [
+    {
+    &#34;attribute&#34;: &#34;description&#34;,
+    &#34;value&#34;: &#34;my-file-description&#34;
+    },
+    {
+    &#34;attribute&#34;: &#34;my-second-attribute-name&#34;,
+    &#34;value&#34;: &#34;my-second-attribute-description&#34;
+    }
+    ],
+    &#34;createParentCollections&#34;: true,
+    	&#34;parentCollectionsBulkMetadataEntries&#34;: {
+    		&#34;pathsMetadataEntries&#34;: [{
+    			&#34;path&#34;: &#34;/Example_Archive/PI_Lab1/Project_New&#34;,
+    			&#34;pathMetadataEntries&#34;: [{
+    					&#34;attribute&#34;: &#34;collection_type&#34;,
+    					&#34;value&#34;: &#34;Folder&#34;
+    				},
+    				{
+    					&#34;attribute&#34;: &#34;example info&#34;,
+    					&#34;value&#34;: &#34;123456&#34;
+    				}]
+    		}]
+    	}
+    }
+  </li>
+  <li>
+    Run the following command:
+
+
+
+
+
+
+
+
+
+
+
+    dm_register_dataobject_multipart &lt;description.json&gt; &lt;destination-path&gt; &lt;source-file&gt;
+
+
+    The following table describes each parameter:
+    <table>
+      <colgroup>
+        <col/>
+        <col/>
+      </colgroup>
+      <tbody>
+        <tr>
+          <th>
+            Parameter
+          </th>
+          <th>
+            Description
+          </th>
+        </tr>
+        <tr>
+          <td>
+            [-h]
+          </td>
+          <td>
+            If you want to print a usage (help) message for this command, specify this option.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            &lt;description.json&gt;
+          </td>
+          <td>
+            A path to the JSON file that specifies the metadata for the new data file.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            &lt;destination-path&gt;
+          </td>
+          <td>
+            A path within DME, including the name of the file you intend to register. Specify where you want the system to create the new data file. (If you specify an existing data file, this command updates the metadata for that data file. For details, refer to
+            <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=393448022" rel="nofollow">
+              Updating Data File Metadata via the CLU
+            </a>
+            .)
+          </td>
+        </tr>
+        <tr>
+          <td>
+            &lt;source-file&gt;
+          </td>
+          <td>
+            If you are registering from your local system, use this parameter to specify the file that you want to register.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+</ol>
+For example, the following command registers the data.txt file from the JaneDoe folder in the local system to the Project_New collection in DME:
+
+
+
+
+
+
+
+
+
+
+
+dm_register_dataobject_multipart /cygdrive/c/Users/JaneDoe/my-metadata.json /Example_Archive/PI_Lab1/Project_New/Data.txt /cygdrive/c/Users/JaneDoe/data.txt 

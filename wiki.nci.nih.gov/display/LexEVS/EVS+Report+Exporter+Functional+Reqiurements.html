@@ -1,0 +1,574 @@
+Contents of this Page
+<ul>
+  <li>
+    <a href="#EVSReportExporterFunctionalReqiurements-SystemOverview" rel="nofollow">
+      System Overview
+    </a>
+  </li>
+  <li>
+    <a href="#EVSReportExporterFunctionalReqiurements-Services" rel="nofollow">
+      Services
+    </a>
+  </li>
+  <li>
+    <a href="#EVSReportExporterFunctionalReqiurements-UserInterface" rel="nofollow">
+      User Interface
+    </a>
+  </li>
+  <li>
+    <a href="#EVSReportExporterFunctionalReqiurements-FunctionalRequirements" rel="nofollow">
+      Functional Requirements
+    </a>
+  </li>
+</ul>
+<h2 id="EVSReportExporterFunctionalReqiurements-SystemOverview">
+  System Overview
+</h2>
+The EVS Report Exporter is a Spring Boot/Vue.js application that makes EVS REST API calls to generate customizable reports of the EVS terminologies.  This application will allow EVS users to extract data out of the NCI Thesaurus (NCIt) triple store database through the EVS REST API. This application provides users a flexible way to download a selected subset of terminologies from NCI Thesaurus.   It may be required to make deeply recursive method calls requiring plenty of RAM type memory. It is expected to be hosted in a tomcat web application container behind an Apache reverse proxy. The expectation is that an NIH managed Amazon Web Service virtual machine will host the tomcat instance using a war file deployed from a Jenkins track as needed.The architecture will consist of Spring Boot Web Service with a node.js supported Vue.js U.I. The expectation is that this will be hosted on Tomcat with Spring Boot and Vue.js wrapped into the war file. If this isn’t possible we may need to use a node.js server to support the UI. No database will be required. We expect the service to have access the EVS API Rest Services which will provide data and API access for much of the functionality.
+<h2 id="EVSReportExporterFunctionalReqiurements-Services">
+  Services
+</h2>
+The EVS Report Exporter services is a Spring Boot application that makes EVS REST API calls and possibly later make direct EVS Stardog DB SPARQL queries to generate customizable reports of the EVS terminologies.
+<h2 id="EVSReportExporterFunctionalReqiurements-UserInterface">
+  User Interface
+</h2>
+The EVS Report Exporter will have a web user interface to create different formats of reports to export.  These publicly accessed reports will contain user selected selected concepts and concept properties properties as well as the report format type.  Users will be able to select entities from the NCIt by entering entity codes into web page, select which properties of that entity to download, select a file format, and download as a file.  A user will be able to enter a list of entity codes or provide a top node of a hierarchy of nodes to resolve.  Hierarchies may be downloaded to a given depth which will be selected by the user up to and including resolving an entire hierarchy.
+<h2 id="EVSReportExporterFunctionalReqiurements-FunctionalRequirements">
+  Functional Requirements
+</h2>
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+    <col/>
+    <col/>
+    <col/>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        #
+      </th>
+      <th>
+        Functional Requirement
+      </th>
+      <th>
+        Module
+      </th>
+      <th>
+        Notes
+      </th>
+      <th colspan="1">
+        Expected Input
+      </th>
+      <th colspan="1">
+        Expected Output
+      </th>
+      <th>
+        Priority
+      </th>
+    </tr>
+    <tr>
+      <td>
+        1
+      </td>
+      <td>
+        Service shall provide ability to return a attributes for a list of valid concept codes.
+      </td>
+      <td>
+        Service
+      </td>
+      <td></td>
+      <td colspan="1">
+        One or more concept codes
+      </td>
+      <td colspan="1">
+        Concept metadata and properties for each code as limitations of the EVS API allow.  Concept parents will also be expected
+      </td>
+      <td>
+        High
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        2
+      </td>
+      <td colspan="1">
+        Service shall provide ability to return a list of concept properties
+      </td>
+      <td colspan="1">
+        Service
+      </td>
+      <td colspan="1"></td>
+      <td colspan="1">
+        base URL + /properties
+      </td>
+      <td colspan="1">
+        Filtered list of properties as curated by expert users
+      </td>
+      <td colspan="1">
+        High
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        3
+      </td>
+      <td colspan="1">
+        Service shall provide ability to return a list of export formats available (JSON, CSV, Tab Delimited, Excel)
+      </td>
+      <td colspan="1">
+        Service
+      </td>
+      <td colspan="1"></td>
+      <td colspan="1">
+        base URL + /&lt;codes&gt;/properties/&lt;format:JSON,CSV,TABD,EXCEL&gt;/&lt;filename&gt;
+      </td>
+      <td colspan="1">
+        Returns file formatted in value indicated by format string
+      </td>
+      <td colspan="1">
+        High
+      </td>
+    </tr>
+    <tr>
+      <td>
+        4
+      </td>
+      <td>
+        Service for Resolved Branch shall provide ability to return a curated list of NCI Thesaurus branch concept codes
+      </td>
+      <td>
+        Service
+      </td>
+      <td></td>
+      <td colspan="1">
+        We&#39;ll maintain for possible internal use. Not something to be tested
+      </td>
+      <td colspan="1">
+        N/A
+      </td>
+      <td>
+        N/A
+      </td>
+    </tr>
+    <tr>
+      <td>
+        5
+      </td>
+      <td>
+        Service for Resolved Branch shall provide ability to return entire concepts of a select branch given the following input parameters:
+        <ul>
+          <li>
+            NCI Thesaurus branch concept code
+          </li>
+          <li>
+            The number of levels
+          </li>
+          <li>
+            Properties to include
+          </li>
+          <li>
+            Export format (JSON, CSV, Tab Delimited, Excel)
+          </li>
+        </ul>
+      </td>
+      <td>
+        Service
+      </td>
+      <td></td>
+      <td colspan="1">
+        This encompasses and replaces the previous us case.   Expected inputs include base URL /&lt;code&gt;/&lt;properties&gt;/&lt;level&gt;/,&lt;format&gt;/&lt;filename&gt;
+      </td>
+      <td colspan="1">
+        A flattened version of the branch results including concept metadata, properties and parents
+      </td>
+      <td>
+        High
+      </td>
+    </tr>
+    <tr>
+      <td>
+        6
+      </td>
+      <td>
+        Service for Entity Export shall provide ability to return entities for a list of concept codes given the following input parameters:
+        <ul>
+          <li>
+            List of concept codes
+          </li>
+          <li>
+            Properties to include
+          </li>
+          <li>
+            Export format (JSON, CSV, Tab Delimited, Excel)
+          </li>
+        </ul>
+      </td>
+      <td>
+        Service
+      </td>
+      <td></td>
+      <td colspan="1">
+        This is the same requirement and use case as the use case above.  Exception: concept code inputs can be multiple but expected individual outputs are the same.
+      </td>
+      <td colspan="1">
+        See proceeding column
+      </td>
+      <td>
+        High
+      </td>
+    </tr>
+    <tr>
+      <td>
+        7
+      </td>
+      <td>
+        Service for Entity Export shall provide a list of hierarch roots.  These will be the same as those expressed by the EVS API REST service
+      </td>
+      <td>
+        Service
+      </td>
+      <td></td>
+      <td colspan="1">
+        base URL + /concept/&lt;terminology&gt;/roots
+      </td>
+      <td colspan="1">
+        Listing of the terminology root concept code and name which will be the same as that expressed by the EVS API
+      </td>
+      <td>
+        High
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>
+        UI shall be hosted on a public URL available outside the firewall
+      </td>
+      <td>
+        UI
+      </td>
+      <td></td>
+      <td colspan="1"></td>
+      <td colspan="1"></td>
+      <td>
+        High
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1"></td>
+      <td colspan="1">
+        UI shall work in the latest versions of Chrome, FireFox, IE, Safari
+      </td>
+      <td colspan="1">
+        UI
+      </td>
+      <td colspan="1"></td>
+      <td colspan="1"></td>
+      <td colspan="1"></td>
+      <td colspan="1">
+        High
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1"></td>
+      <td colspan="1">
+        UI shall be 508 compliant (
+        <a href="https://www.section508.gov/test/web-software" rel="nofollow">
+          https://www.section508.gov/test/web-software
+        </a>
+        )
+      </td>
+      <td colspan="1">
+        UI
+      </td>
+      <td colspan="1"></td>
+      <td colspan="1"></td>
+      <td colspan="1"></td>
+      <td colspan="1">
+        High
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1"></td>
+      <td colspan="1">
+        UI shall have a header and footer similar to the look and feel and content of the EVS Explorer (
+        <a href="https://evsexplore.nci.nih.gov/evsexplore/welcome" rel="nofollow">
+          https://evsexplore.nci.nih.gov/evsexplore/welcome
+        </a>
+        )
+      </td>
+      <td colspan="1">
+        UI
+      </td>
+      <td colspan="1"></td>
+      <td colspan="1"></td>
+      <td colspan="1"></td>
+      <td colspan="1">
+        Medium
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>
+        UI shall allow the user to select the type of report they want to export
+        <ul>
+          <li>
+            Export Entities Report
+          </li>
+          <li>
+            Export Resolved Branch Report
+          </li>
+        </ul>
+      </td>
+      <td>
+        UI
+      </td>
+      <td></td>
+      <td colspan="1"></td>
+      <td colspan="1"></td>
+      <td>
+        High
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>
+        UI Entity Export will allow a user to enter NCI Thesaurus concept codes either manually or paste in a comma delimited list of concept codes.
+      </td>
+      <td>
+        UI
+      </td>
+      <td></td>
+      <td colspan="1"></td>
+      <td colspan="1"></td>
+      <td>
+        High
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>
+        UI Entity Export shall allow a user to select what properties that they want associated with the export.  These properties will be a filtered list retrieved from the server.
+      </td>
+      <td>
+        UI
+      </td>
+      <td></td>
+      <td colspan="1"></td>
+      <td colspan="1"></td>
+      <td>
+        High
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>
+        UI Entity Export shall allow a user to select the format of the report.  Formats must have a user friendly description. Formats must include:
+        <ul>
+          <li>
+            JSON
+          </li>
+          <li>
+            CSV
+          </li>
+          <li>
+            Tab Delimited
+          </li>
+          <li>
+            Excel
+          </li>
+        </ul>
+      </td>
+      <td>
+        UI
+      </td>
+      <td></td>
+      <td colspan="1"></td>
+      <td colspan="1"></td>
+      <td>
+        High
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>
+        UI Resolved Branch Export will allow a user to select an NCI Thesaurus top node code.  The user must have the following options for selecting a top node:
+        <ul>
+          <li>
+            Enter it manually and have it verified
+          </li>
+          <li>
+            Select it from a curated list of top nodes
+          </li>
+          <li>
+            Present the user with a hierarchical view of the NCI Thesaurus a code to be selected.
+            <ul>
+              <li>
+                Do not allow a user to select a leaf node (a node with no children)
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </td>
+      <td>
+        UI
+      </td>
+      <td></td>
+      <td colspan="1"></td>
+      <td colspan="1"></td>
+      <td>
+        High
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>
+        UI Resolved Branch Export will allow a user to select the number of levels to export.
+      </td>
+      <td>
+        UI
+      </td>
+      <td></td>
+      <td colspan="1"></td>
+      <td colspan="1"></td>
+      <td>
+        High
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>
+        UI Resolved Branch shall allow a user to select what properties that they want associated with the export.  These properties will be a filtered list retrieved from the server.
+      </td>
+      <td>
+        UI
+      </td>
+      <td></td>
+      <td colspan="1"></td>
+      <td colspan="1"></td>
+      <td>
+        High
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>
+        UI Resolved Branch shall allow a user to select the format of the report.  Formats must have a user friendly description. Formats must include:
+        <ul>
+          <li>
+            JSON
+          </li>
+          <li>
+            CSV
+          </li>
+          <li>
+            Tab Delimited
+          </li>
+          <li>
+            Excel
+          </li>
+        </ul>
+      </td>
+      <td>
+        UI
+      </td>
+      <td></td>
+      <td colspan="1"></td>
+      <td colspan="1"></td>
+      <td>
+        High
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>
+        UI Resolved Branch shall allow a user to &#34;Export now&#34; or &#34;Export and download later&#34;.
+        <ul>
+          <li>
+            &#34;Export now&#34; will process the export request and immediately download the file.
+          </li>
+          <li>
+            &#34;Export and download later&#34; will initiate the export process and return a download ID. The user can copy this download ID to retrieve the download later. To retrieve the download, the user will select the Downloads link in the top banner on the right.
+          </li>
+        </ul>
+      </td>
+      <td>
+        UI
+      </td>
+      <td></td>
+      <td colspan="1"></td>
+      <td colspan="1"></td>
+      <td>
+        High
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1"></td>
+      <td colspan="1">
+        The Downloads page allows the user to download resolved branch reports that were exported with the Export and download later option. When the user selects the Export and download later option and exports, the browser stores the download ID locally and will remember it.These downloads shall be available for one hour after they are created.  After that, the server will expire the export and it will be removed.
+      </td>
+      <td colspan="1">
+        UI
+      </td>
+      <td colspan="1"></td>
+      <td colspan="1"></td>
+      <td colspan="1"></td>
+      <td colspan="1">
+        High
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1"></td>
+      <td colspan="1">
+        On the Downloads page, there will be two tabs:The Downloads List Tab contains a table of all known Export and download later exports from the current browser. The browser stores a list of the download IDs to display. The Status column can be one of the following status:
+        <ul>
+          <li>
+            In Process: The requested resolved branch export is still being processed by the server.
+          </li>
+          <li>
+            Complete: The requested resolved branch export is complete and ready to be exported. There will be a download button visible.
+          </li>
+        </ul>
+        The Downloads Search Tab allows a user search for a download ID that they got when they selected Export and download later. The user can search for their download ID. The three possible respones are:
+        <ul>
+          <li>
+            In Process: The requested resolved branch export is still being processed by the server.
+          </li>
+          <li>
+            Complete: The requested resolved branch export is complete and ready to be exported. There will be a download button visible.
+          </li>
+          <li>
+            Expired: The requested resolved branch export has expired and is no longer available.
+          </li>
+        </ul>
+      </td>
+      <td colspan="1">
+        UI
+      </td>
+      <td colspan="1"></td>
+      <td colspan="1"></td>
+      <td colspan="1"></td>
+      <td colspan="1">
+        High
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1"></td>
+      <td colspan="1">
+        Report Exporter Survey/FeedbackThere will be a link in the sub header on the upper right of the page.There will be the following fields:- Rating ease of used: pulldown ( 1 - 10 ) REQUIRED- Additional Features: Comment field - 500 characters max, OPTIONAL- Recommendations: Comment field - 500 characters max, OPTIONAL- Email field: will validate the format - OPTIONALA user can only send feedback once per day. - After submitting feedback, if the user attempts to take the survey again within a 24 hr period, the dialog will pop up and give them a message that they already took the survey.- Note, that is is based on cookies. If the user goes to another browser, they will be allowed to submit the survey from there.
+      </td>
+      <td colspan="1">
+        UI
+      </td>
+      <td colspan="1"></td>
+      <td colspan="1"></td>
+      <td colspan="1"></td>
+      <td colspan="1">
+        High
+      </td>
+    </tr>
+  </tbody>
+</table>

@@ -1,0 +1,63 @@
+<h2 id="GithubPluginStructure-Plugins.repository">
+  Plugins.repository
+</h2>
+The Protege client references a file called &#34;plugins.repository&#34; to determine which plugins should be installed on the client.  The default location for the plugins.repository for the production client is at
+<a href="https://raw.githubusercontent.com/ncievs/autoupdate/master/plugins.repository" rel="nofollow">
+  https://raw.githubusercontent.com/ncievs/autoupdate/master/plugins.repository
+</a>
+. This repository points to the location of the individual plugin configuration files.Example plugins.repository:// ***** CURRENT PLUG-INS (alphabetical ordering) *****// NCI Edit Tab
+<a href="https://raw.githubusercontent.com/ncievs/nci-edit-tab/master/src/main/resources/prod/update.properties" rel="nofollow">
+  https://raw.githubusercontent.com/ncievs/nci-edit-tab/master/src/main/resources/prod/update.properties
+</a>
+// NCI Search Tab
+<a href="https://raw.githubusercontent.com/ncievs/lucene-search-tab/master/src/main/resources/prod/update.properties" rel="nofollow">
+  https://raw.githubusercontent.com/ncievs/lucene-search-tab/master/src/main/resources/prod/update.properties
+</a>
+.....There are currently 7 plugin projects referenced by the plugins.repositoryNCI Edit Tab:
+<a href="https://github.com/ncievs/nci-edit-tab" rel="nofollow">
+  https://github.com/ncievs/nci-edit-tab
+</a>
+NCI Search Tab:
+<a href="https://github.com//ncievs/lucene-search-tab" rel="nofollow">
+  https://github.com//ncievs/lucene-search-tab
+</a>
+Metaproject Admin:
+<a href="https://github.com//ncievs/metaproject-admin" rel="nofollow">
+  https://github.com//ncievs/metaproject-admin
+</a>
+Revision History:
+<a href="https://github.com//ncievs/revision-history" rel="nofollow">
+  https://github.com//ncievs/revision-history
+</a>
+SPARQL Query:
+<a href="https://github.com//ncievs/sparql-query-plugin" rel="nofollow">
+  https://github.com//ncievs/sparql-query-plugin
+</a>
+EVS History:
+<a href="https://github.com//ncievs/evs-history" rel="nofollow">
+  https://github.com//ncievs/evs-history
+</a>
+Curator:
+<a href="https://github.com//ncievs/nci-curator" rel="nofollow">
+  https://github.com//ncievs/nci-curator
+</a>
+<h2 id="GithubPluginStructure-Update.properties">
+  Update.properties
+</h2>
+The individual update.properties files will contain information about each plugin including, name, version and jar location.Example from the NCI Edit Tab update.properties:id=nci-edit-tabversion=1.3.4download=
+<a href="https://github.com/ncievs/nci-edit-tab/releases/download/nci-edit-tab-1.3.4/nci-edit-tab-1.3.4-SNAPSHOT.jar" rel="nofollow">
+  https://github.com/ncievs/nci-edit-tab/releases/download/nci-edit-tab-1.3.4/nci-edit-tab-1.3.4-SNAPSHOT.jar
+</a>
+name=NCI Edit Tabreadme=
+<a href="https://raw.githubusercontent.com/ncievs/nci-edit-tab/master/src/main/resources/readme.html" rel="nofollow">
+  https://raw.githubusercontent.com/ncievs/nci-edit-tab/master/src/main/resources/readme.html
+</a>
+license=
+<a href="https://raw.githubusercontent.com/ncievs/nci-edit-tab/master/LICENSE" rel="nofollow">
+  https://raw.githubusercontent.com/ncievs/nci-edit-tab/master/LICENSE
+</a>
+author=Bob DionneEach individual plugin has this update.properties structure.  It is intended to allow use and testing of plugins on different tiers without cross-interference./src/main/resources/update.properties/src/main/resources/dev-qa/update.properties/src/main/resources/stage/update.properties/src/main/resources/prod/update.properties
+<h2 id="GithubPluginStructure-Plugindeploymentpractices">
+  Plugin deployment practices
+</h2>
+When the developer checks in a new plugin they will update the src/main/resources/update.properties for that individual plugin in github.They will then notify the protege admin when it is ready for testing.  Upon notification, the protege admin will copy the src/main/resources/update.properties into src/main/resources/dev-qa/update.properties.When the project enters User Acceptance testing on the Stage tier, the update.properties should be copied into src/main/resources/stage/update.propertiesWhen the plugin is ready to go into production, the update.properties should be copied into src/main/resources/prod/update.properties

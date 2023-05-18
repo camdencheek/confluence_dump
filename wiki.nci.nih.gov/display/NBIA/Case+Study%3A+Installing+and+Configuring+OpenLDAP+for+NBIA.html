@@ -1,0 +1,189 @@
+The information on this page represents the experience of an NBIA user and is provided as a case study that you may find useful. It not meant to apply to all users.
+<ul>
+  <li>
+    <a href="#CaseStudy:InstallingandConfiguringOpenLDAPforNBIA-InstallOpenLDAP" rel="nofollow">
+      Install OpenLDAP
+    </a>
+  </li>
+  <li>
+    <a href="#CaseStudy:InstallingandConfiguringOpenLDAPforNBIA-ConfiguringtheLDAPAdministratorClient" rel="nofollow">
+      Configuring the LDAP Administrator Client
+    </a>
+  </li>
+  <li>
+    <a href="#CaseStudy:InstallingandConfiguringOpenLDAPforNBIA-TroubleshootingNote" rel="nofollow">
+      Troubleshooting Note
+    </a>
+  </li>
+  <li>
+    <a href="#CaseStudy:InstallingandConfiguringOpenLDAPforNBIA-NBIALDAPSettings" rel="nofollow">
+      NBIA LDAP Settings
+    </a>
+  </li>
+</ul>
+<h1 id="CaseStudy:InstallingandConfiguringOpenLDAPforNBIA-InstallOpenLDAP">
+  Install OpenLDAP
+</h1>
+<ol>
+  <li>
+    Install OpenLDAP on Ubuntu.These instructions are based on Ubuntu 18.04.
+  </li>
+  <li>
+    In a terminal window, issue the following commands:
+    sudo apt-get update
+    sudo apt-get upgrade
+  </li>
+  <li>
+    In a terminal window, then issue the following command.
+    sudo apt install slapd ldap-utils
+  </li>
+  <li>
+    Modify the default Directory Information Tree (DIT) suffix by changing the DIT to fit your company&#39;s network needs. For example,  dc=&lt;org name&gt;, dc=org. To do so, issue the following command.
+    sudo dpkg-reconfigure slapd
+  </li>
+  <li>
+    Enter the administrator&#39;s password.
+  </li>
+  <li>
+    Add initial data to the LDAP database from a file and create a single entry. In a terminal window, issue the following command.
+    vi ldap_data.ldif
+    The following information is returned.
+    dn: ou=People,dc=&lt;org name&gt;,dc=org
+    objectClass: organizationalUnit
+    ou: People
+    dn: ou=Groups,dc=&lt;org name&gt;,dc=org
+    objectClass: organizationalUnit
+    ou: Groups
+
+    dn: cn=DEPARTMENT,ou=Groups,dc=&lt;org name&gt;,dc=org
+    objectClass: posixGroup
+    cn: SUBGROUP
+    gidNumber: 5000
+
+    dn: uid=nciadevtest,ou=People,dc=&lt;org name&gt;,dc=org
+    objectClass: inetOrgPerson
+    objectClass: posixAccount
+    objectClass: shadowAccount
+    uid: nciadevtest
+    sn: Last name
+    givenName: First name
+    cn: nciadevtest
+    displayName: Name
+    uidNumber: 10000
+    gidNumber: 5000
+    userPassword: password
+    gecos: Whole Name
+    loginShell: /bin/bash
+    homeDirectory: USERDIRECTORY
+    In this .ldif file, we created two organizationalUnit values, People and Groups.
+  </li>
+  <li>
+    Add the entities for these OU values. One entity must be nciadevtest for NBIA. The uid and cn must be this name. NBIA uses cn to as the default authentication. Some software applications use uid to authenticate.
+  </li>
+  <li>
+    Add the following entities to the LDAP server.
+    ldapadd -x -D cn=admin,dc=smab,dc=org -W -f ldap_data.ldif
+  </li>
+  <li>
+    Use this command to search the existing records. You can use the network loop IP address to test or use the real IP address.
+    ldapsearch -x -LLL -h 127.0.0.1 -p 389 -D cn=admin,dc=&lt;org name&gt;,dc=org -w &lt;password&gt;-b dc=&lt;org name&gt;,dc=org &#39;uid=nciadevtest&#39; cn givenName gidNumber
+    Result:
+    dn: uid=nciadevtest,ou=People,dc=&lt;org name&gt;,dc=org
+    givenName: First Name
+    cn: nciadevtest
+    gidNumber: 5000
+
+    ldapsearch -x -LLL -h 69.71.4.10 -p 389 -D cn=admin,dc=&lt;org name&gt;,dc=org -w &lt;password&gt; -b dc=&lt;org name&gt;,dc=org &#39;cn=nciadevtest&#39; uid givenName gidNumber
+    Result:
+    dn: uid=nciadevtest,ou=People,dc=&lt;org name&gt;,dc=org
+    uid: nciadevtest
+    givenName: First Name
+    gidNumber: 5000
+  </li>
+  <li>
+    Add the records. The LDAP server configuration looks similar to the following.
+    Title Value
+    Base DN &lt;org name&gt;,dc=org
+    Bind Admin admin,dc=&lt;org name&gt;,dc=org
+    Bind Password &lt;password&gt;
+    User name for NBIA nciadevtest
+  </li>
+</ol>
+After installing the LDAP server, use an LDAP client such as Softerra LDAP administrator to make sure the LDAP server can be accessed. Sometimes the Linux firewall will block the LDAP server by default. If the LDAP can be accessed, it is easy for NBIA to access it.
+<h1 id="CaseStudy:InstallingandConfiguringOpenLDAPforNBIA-ConfiguringtheLDAPAdministratorClient">
+  Configuring the LDAP Administrator Client
+</h1>
+You can add, modify, or remove records to or from the LDAP server in several ways.
+<ul>
+  <li>
+    On a Linux server, use phpldapadmin to maintain the LDAP server. Refer to the following links to install phpldapadmin. (Note that phpldapadmin is not updated. There are some errors with php7.0 +).
+    <ul>
+      <li>
+        <a href="https://www.techrepublic.com/article/how-to-install-phpldapadmin-on-ubuntu-18-04/" rel="nofollow">
+          https://www.techrepublic.com/article/how-to-install-phpldapadmin-on-ubuntu-18-04/
+        </a>
+      </li>
+      <li>
+        <a href="https://www.techrepublic.com/article/how-to-install-and-configure-ldap-and-phpldapadmin/" rel="nofollow">
+          https://www.techrepublic.com/article/how-to-install-and-configure-ldap-and-phpldapadmin/
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    Use a Windows LDAP client such as Softerra LDAP Administrator to access the remote LDAP server.
+  </li>
+</ul>
+To use Softerra LDAP Administrator
+<ol>
+  <li>
+    Create a new profile.
+  </li>
+  <li>
+    Add the server host (IP or domain), Base DN, and port.
+  </li>
+  <li>
+    Add the bind admin information.
+  </li>
+</ol>
+You use the LDAP client to create, delete, and modify entities with this information. Otherwise, you only have the read permission.
+<h1 id="CaseStudy:InstallingandConfiguringOpenLDAPforNBIA-TroubleshootingNote">
+  Troubleshooting Note
+</h1>
+OpenLdap can be installed on an Ubuntu Server. The phpldapadmin can also work. Use ldapsearch to search the user information. You may find that when you try to use the LDAP client to access this LDAP server, the connection times out with no response from the LDAP server even if all ports are enabled. The user did not find any solution for this issue.When installing OpenLDAP on Ubuntu (Desktop version), all LDAP functions worked without any issues. Any LDAP client can access the remote LDAP server.
+<h1 id="CaseStudy:InstallingandConfiguringOpenLDAPforNBIA-NBIALDAPSettings">
+  NBIA LDAP Settings
+</h1>
+<ol>
+  <li>
+    In nbia.properties (Tomcat7.0/lib/nbia.properties), ldap.user and ldap.pass must be the administrator information of LDAP server. Modify nbia.properties as follows.
+    authentication.type=ldap-auth
+
+    ldap.url=ldap://&lt;ip address&gt;&lt;port number&gt;
+    ldap.basedn=dc=&lt;org name&gt;,dc=org
+    ldap.user=CN=admin,dc=&lt;org name&gt;,dc=org
+    ldap.pass=&lt;password&gt;
+
+    ldap.memberOf.attribute.name=isMemberOf
+    ldap.mail.attribute.name=mail
+    ldap.group.ignore.list=PwmAdmins,devTeam,nlst,testGroup
+    public.collection.access.group.name=General User
+    product.variation=NBIA
+  </li>
+  <li>
+    Modify jaas.conf (Tomcat7.0/conf/jaas.conf) as follows:
+    NCIA
+    {
+    gov.nih.nci.security.authentication.loginmodules.LDAPLoginModule Required
+    ldapHost=&#34;ldap://&lt;ip address&gt;&lt;port number&gt;&#34;
+    ldapSearchableBase=&#34;dc=&lt;org name&gt;,dc=org&#34;
+    ldapUserIdLabel=&#34;cn&#34;
+    ldapAdminUserName=&#34;CN=admin,dc=&lt;org name&gt;,dc=org&#34;
+    ldapAdminPassword=&lt;password&gt;;
+    };
+    The jaas.conf is generated during NBIA installation. The default ldapUserIdLabel is cn, which means the LDAP server will search the cn value, then compare it to the login username. If the user name exists in the LDAP server, the LDAP server will authenticate this user.Some LDAP servers may use another field to store the login username, such as uid. In this case, change the username value to uid. For example, ldapUserIdLabel=&#34;cn&#34;
+  </li>
+  <li>
+    Restart Tomcat for the change to take effect.
+  </li>
+</ol>

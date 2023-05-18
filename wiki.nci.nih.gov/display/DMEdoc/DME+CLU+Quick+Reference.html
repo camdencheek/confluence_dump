@@ -1,0 +1,132 @@
+To use DME CLU, refer to the following prerequisites:
+<ul>
+  <li>
+    For all CLU users:
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=382832258" rel="nofollow">
+      Getting Started with DME CLU
+    </a>
+  </li>
+  <li>
+    When using Globus:
+    <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=378145904" rel="nofollow">
+      Preparing to Use Globus
+    </a>
+  </li>
+</ul>
+The character limit for each metadata value is 2700.The following table provides examples for some of the most commonly-used DME CLU commands:
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th scope="col">
+        Detailed Instructions
+      </th>
+      <th scope="col">
+        Example
+      </th>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=392069763" rel="nofollow">
+          Creating an Empty Collection via the CLU
+        </a>
+      </td>
+      <td>
+        The following command creates a Project_New collection within the PI_Lab1 collection and applies to that new collection the metadata in the collection-metadata.json file:
+
+
+
+
+
+
+
+
+
+
+
+        dm_register_collection $HPC_DM_UTILS/templates/collection-metadata.json /Test_Archive/PI_Lab1/Project_New
+
+
+        Replace the DME path (/Test_Archive/PI_Lab1/Project_New) with a DME path to which you have write access. The JSON file must contain metadata for the new collection, Project_New. If the parent collection, PI_Lab1, does not already exist, then the JSON file must also contain metadata for that collection.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=436536092" rel="nofollow">
+          Registering a Data File via the CLU
+        </a>
+      </td>
+      <td>
+        The following command registers the test.txt file from a test folder to the Project_New collection in DME:
+
+
+
+
+
+
+
+
+
+
+
+        dm_register_dataobject $HPC_DM_UTILS/templates/dataobject-sync-metadata.json /Test_Archive/PI_Lab1/Project_New/test.txt $HPC_DM_UTILS/test/test.txt
+
+
+        Replace the DME path (/Test_Archive/PI_Lab1/Project_New/test.txt) with a DME path to which you have write access.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=436536109" rel="nofollow">
+          Downloading One or More Files via the CLU
+        </a>
+      </td>
+      <td>
+        The following command downloads a sample.txt file from the Project_Orig collection in DME to a test folder:
+
+
+
+
+
+
+
+
+
+
+
+        dm_download_dataobject /Test_Archive/PI_Lab1/Project_Orig/sample.txt $HPC_DM_UTILS/test
+
+
+        Replace the DME path (/Test_Archive/PI_Lab1/Project_Orig/sample.txt) with a DME path to which you have read access.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=437683137" rel="nofollow">
+          Downloading One or More Collections via the CLU
+        </a>
+      </td>
+      <td>
+        The following command downloads the Project_Orig collection in DME to a test folder:
+
+
+
+
+
+
+
+
+
+
+
+        dm_download_collection /Test_Archive/PI_Lab1/Project_Orig $HPC_DM_UTILS/test
+
+
+        Replace the DME path (/Test_Archive/PI_Lab1/Project_Orig) with a DME path to which you have read access. The command creates a Project_Orig folder.
+      </td>
+    </tr>
+  </tbody>
+</table>

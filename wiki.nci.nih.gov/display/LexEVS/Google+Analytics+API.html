@@ -1,0 +1,261 @@
+<h2 id="GoogleAnalyticsAPI-AnalyticsDataAPIOverview">
+  Analytics Data API Overview
+</h2>
+The Google Analytics Data API v1 gives you programmatic access to Google Analytics 4 (GA4) report data. Note, this API will not work with the Universal Analytics  (UA)
+<h2 id="GoogleAnalyticsAPI-SampleprogramtorequestdatafromtheGoogleAnalyticsDataAPIv1">
+  Sample program to request data from the Google Analytics Data API v1
+</h2>
+Follow the instructions here to create a sample java program to pull data for your site.  Note, the program below was in Eclipse.
+<ul>
+  <li>
+    <a href="https://developers.google.com/analytics/devguides/reporting/data/v1/quickstart-client-libraries" rel="nofollow">
+      https://developers.google.com/analytics/devguides/reporting/data/v1/quickstart-client-libraries
+    </a>
+  </li>
+  <li>
+    Additionally, the sample program will need to access to the environment variable (GOOGLE_APPLICATION_CREDENTIALS)set from above. In Eclipse, under the run configuration, go to Environment tab and enter the variable and directory.
+  </li>
+</ul>
+QuickstartSample
+package com.example.analytics;
+
+import java.util.Iterator;
+import java.util.List;
+
+import com.google.analytics.data.v1beta.BetaAnalyticsDataClient;
+import com.google.analytics.data.v1beta.DateRange;
+import com.google.analytics.data.v1beta.Dimension;
+import com.google.analytics.data.v1beta.DimensionHeader;
+import com.google.analytics.data.v1beta.Metric;
+import com.google.analytics.data.v1beta.MetricHeader;
+import com.google.analytics.data.v1beta.Row;
+import com.google.analytics.data.v1beta.RunReportRequest;
+import com.google.analytics.data.v1beta.RunReportResponse;
+
+/*
+
+To run this sample using Maven:
+cd java-analytics-data/samples/snippets
+mvn compile
+mvn exec:java -Dexec.mainClass=&#34;com.example.analytics.QuickstartSample&#34;
+
+*/
+
+public class QuickstartSample {
+
+public static void main(String... args) throws Exception {
+/**
+* TODO(developer): Replace this variable with your Google Analytics 4 property ID before
+* running the sample.
+*/
+
+//	    String propertyId = &#34;269896522&#34;;  // dev
+String propertyId = &#34;263363085&#34;;  // prod
+sampleRunReport(propertyId);
+}
+
+// This is an example snippet that calls the Google Analytics Data API and runs a simple report
+// on the provided GA4 property id.
+static void sampleRunReport(String propertyId) throws Exception {
+/**
+* TODO(developer): Uncomment this variable and replace with your
+* Google Analytics 4 property ID before running the sample.
+*/
+//propertyId = &#34;269896522&#34;;
+// propertyId = &#34;263363085&#34;
+
+// Using a default constructor instructs the client to use the credentials
+// specified in GOOGLE_APPLICATION_CREDENTIALS environment variable.
+try (BetaAnalyticsDataClient analyticsData = BetaAnalyticsDataClient.create()) {
+
+RunReportRequest request1 = RunReportRequest.newBuilder()
+.setProperty(&#34;properties/&#34; + propertyId)
+//	          .addDimensions(
+//		              Dimension.newBuilder().setName(&#34;country&#34;))
+.addDimensions(
+Dimension.newBuilder().setName(&#34;city&#34;))
+.addMetrics(Metric.newBuilder().setName(&#34;activeUsers&#34;))
+
+.addDateRanges(
+DateRange.newBuilder().setStartDate(&#34;2020-03-31&#34;).setEndDate(&#34;today&#34;)).build();
+
+RunReportRequest request2 = RunReportRequest.newBuilder()
+.setProperty(&#34;properties/&#34; + propertyId)
+.addDimensions(
+Dimension.newBuilder().setName(&#34;cityId&#34;))
+.addMetrics(Metric.newBuilder().setName(&#34;activeUsers&#34;))
+.addDateRanges(
+DateRange.newBuilder().setStartDate(&#34;2020-04-20&#34;).setEndDate(&#34;today&#34;)).build();
+
+
+RunReportRequest request3 = RunReportRequest.newBuilder()
+.setProperty(&#34;properties/&#34; + propertyId)
+.addDimensions(
+Dimension.newBuilder().setName(&#34;city&#34;))
+
+.addMetrics(Metric.newBuilder().setName(&#34;activeUsers&#34;))
+.addMetrics(Metric.newBuilder().setName(&#34;newUsers&#34;))
+.addMetrics(Metric.newBuilder().setName(&#34;totalUsers&#34;))
+.addMetrics(Metric.newBuilder().setName(&#34;screenPageViews&#34;))
+
+.addDateRanges(
+DateRange.newBuilder().setStartDate(&#34;2020-03-31&#34;).setEndDate(&#34;today&#34;)).build();
+
+
+RunReportRequest request4 = RunReportRequest.newBuilder()
+.setProperty(&#34;properties/&#34; + propertyId)
+.addDimensions(
+Dimension.newBuilder().setName(&#34;streamName&#34;))
+
+.addMetrics(Metric.newBuilder().setName(&#34;totalUsers&#34;))
+.addMetrics(Metric.newBuilder().setName(&#34;screenPageViews&#34;))
+
+.addDateRanges(
+DateRange.newBuilder().setStartDate(&#34;2020-03-31&#34;).setEndDate(&#34;today&#34;)).build();
+
+
+RunReportRequest request5 = RunReportRequest.newBuilder()
+.setProperty(&#34;properties/&#34; + propertyId)
+.addDimensions(
+Dimension.newBuilder().setName(&#34;platform&#34;))
+.addDateRanges(
+DateRange.newBuilder().setStartDate(&#34;2020-03-31&#34;).setEndDate(&#34;today&#34;)).build();
+
+RunReportRequest request6 = RunReportRequest.newBuilder()
+.setProperty(&#34;properties/&#34; + propertyId)
+.addDimensions(
+Dimension.newBuilder().setName(&#34;screenResolution&#34;))
+.addDateRanges(
+DateRange.newBuilder().setStartDate(&#34;2020-03-31&#34;).setEndDate(&#34;today&#34;)).build();
+
+RunReportRequest request7 = RunReportRequest.newBuilder()
+.setProperty(&#34;properties/&#34; + propertyId)
+.addDimensions(
+Dimension.newBuilder().setName(&#34;region&#34;))
+.addDateRanges(
+DateRange.newBuilder().setStartDate(&#34;2020-03-31&#34;).setEndDate(&#34;today&#34;)).build();
+
+RunReportRequest request8 = RunReportRequest.newBuilder()
+.setProperty(&#34;properties/&#34; + propertyId)
+.addDimensions(
+Dimension.newBuilder().setName(&#34;pageTitle&#34;))
+.addDateRanges(
+DateRange.newBuilder().setStartDate(&#34;2020-03-31&#34;).setEndDate(&#34;today&#34;)).build();
+
+RunReportRequest request9 = RunReportRequest.newBuilder()
+.setProperty(&#34;properties/&#34; + propertyId)
+.addDimensions(
+Dimension.newBuilder().setName(&#34;fullPageUrl&#34;))
+.addDateRanges(
+DateRange.newBuilder().setStartDate(&#34;2020-03-31&#34;).setEndDate(&#34;today&#34;)).build();
+
+RunReportRequest request10 = RunReportRequest.newBuilder()
+.setProperty(&#34;properties/&#34; + propertyId)
+.addDimensions(
+Dimension.newBuilder().setName(&#34;eventName&#34;))
+.addMetrics(Metric.newBuilder().setName(&#34;eventCount&#34;))
+.addMetrics(Metric.newBuilder().setName(&#34;eventValue&#34;))
+.addMetrics(Metric.newBuilder().setName(&#34;eventCountPerUser&#34;))
+//.addMetrics(Metric.newBuilder().setName(&#34;eventLabel&#34;))
+.addDateRanges(
+DateRange.newBuilder().setStartDate(&#34;2020-03-31&#34;).setEndDate(&#34;today&#34;)).build();
+
+// RunReportRequest request11 = RunReportRequest.newBuilder()
+			//      .setProperty(&#34;properties/&#34; + propertyId)
+//        .addDimensions(
+//            Dimension.newBuilder().setName(&#34;customEvent:Read Concept Code Download&#34;))
+//       .addDateRanges(
+//            DateRange.newBuilder().setStartDate(&#34;2020-03-31&#34;).setEndDate(&#34;today&#34;)).build();
+
+
+// Make the request.
+RunReportResponse response1 = analyticsData.runReport(request1);
+outputReport(response1);
+
+RunReportResponse response2 = analyticsData.runReport(request2);
+outputReport(response2);
+
+RunReportResponse response3 = analyticsData.runReport(request3);
+outputReport(response3);
+
+RunReportResponse response4 = analyticsData.runReport(request4);
+outputReport(response4);
+
+RunReportResponse response5 = analyticsData.runReport(request5);
+outputReport(response5);
+
+RunReportResponse response6 = analyticsData.runReport(request6);
+outputReport(response6);
+
+RunReportResponse response7 = analyticsData.runReport(request7);
+outputReport(response7);
+
+RunReportResponse response8 = analyticsData.runReport(request8);
+outputReport(response8);
+
+RunReportResponse response9 = analyticsData.runReport(request9);
+outputReport(response9);
+
+RunReportResponse response10 = analyticsData.runReport(request10);
+outputReport(response10);
+
+//RunReportResponse response11 = analyticsData.runReport(request11);
+//outputReport(response11);
+}
+}
+
+public static void outputReport(RunReportResponse response) {
+System.out.println(&#34;\nReport result:\n&#34;);
+
+// Iterate through dimension headers from response.
+List&lt;DimensionHeader&gt; headerList = response.getDimensionHeadersList();
+Iterator&lt;DimensionHeader&gt; headerIterator = headerList.iterator();
+while (headerIterator.hasNext()) {
+System.out.print(headerIterator.next().getName() + &#34;  ##  &#34;);
+}
+
+// Iterate through dimension headers from response.
+List&lt;MetricHeader&gt; headerListMetrics = response.getMetricHeadersList();
+Iterator&lt;MetricHeader&gt; headerIteratorMetrics = headerListMetrics.iterator();
+while (headerIteratorMetrics.hasNext()) {
+System.out.print(headerIteratorMetrics.next().getName() + &#34;  ##  &#34;);
+}
+
+System.out.println(&#34;&#34;);
+
+// Iterate through values for response.
+for (Row row : response.getRowsList()) {
+
+for (int x = 0; x &lt; row.getDimensionValuesCount(); x++) {
+System.out.print(row.getDimensionValues(x).getValue()+ &#34;  ##  &#34;);
+}
+for (int y=0; y &lt; row.getMetricValuesCount(); y++) {
+System.out.print(row.getMetricValues(y).getValue()+ &#34;  ##  &#34;);
+}
+}
+System.out.println(&#34;\n-----&#34;);
+}
+	}
+
+
+Sample OutputSample OutputReport result:city ## activeUsers ## Bethesda ## 8 ## -----Report result:cityId ## activeUsers ## 1018516 ## 8 ## -----Report result:city ## activeUsers ## newUsers ## totalUsers ## screenPageViews ## Bethesda ## 8 ## 8 ## 8 ## 236 ## -----Report result:streamName ## totalUsers ## screenPageViews ## EVS Report Exporter PROD ## 8 ## 236 ## -----Report result:platform ## web ## -----Report result:screenResolution ## 1280x720 ## 1536x864 ## 1920x1080 ## 1920x1200 ## -----Report result:region ## Maryland ## -----Report result:pageTitle ## EVS Report Exporter - Branch Resolve ## EVS Report Exporter - Documentation ## EVS Report Exporter - Downloads ## EVS Report Exporter - Read Code ## EVS Report Exporter - Report Selection ## -----Report result:fullPageUrl ##
+<a href="http://evs.cancer.gov/report-exporter/" rel="nofollow">
+  evs.cancer.gov/report-exporter/
+</a>
+##
+<a href="http://evs.cancer.gov/report-exporter/documentation" rel="nofollow">
+  evs.cancer.gov/report-exporter/documentation
+</a>
+##
+<a href="http://evs.cancer.gov/report-exporter/exports" rel="nofollow">
+  evs.cancer.gov/report-exporter/exports
+</a>
+##
+<a href="http://evs.cancer.gov/report-exporter/readCodeEntry" rel="nofollow">
+  evs.cancer.gov/report-exporter/readCodeEntry
+</a>
+##
+<a href="http://evs.cancer.gov/report-exporter/resolveBranchEntry" rel="nofollow">
+  evs.cancer.gov/report-exporter/resolveBranchEntry
+</a>
+## -----Report result:eventName ## eventCount ## eventValue ## eventCountPerUser ## page_view ## 264 ## 0 ## 33 ## scroll ## 66 ## 0 ## 8.25 ## click ## 40 ## 0 ## 13.333333333333334 ## Read Concept Code Download ## 30 ## 0 ## 7.5 ## user_engagement ## 23 ## 0 ## 3.2857142857142856 ## session_start ## 14 ## 0 ## 1.75 ## Branch Resolve Deferred Download ## 11 ## 0 ## 3.6666666666666665 ## Deferred Download ## 11 ## 0 ## 3.6666666666666665 ## Branch Resolve Download ## 9 ## 0 ## 3 ## first_visit ## 8 ## 0 ## 1 ##

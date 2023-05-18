@@ -1,0 +1,264 @@
+<h2 id="id-2021.06.09SumoLogicOverviewMeeting-SumoLogicforStatisticsDashboardDiscussionMeeting">
+  Sumo Logic for Statistics Dashboard Discussion Meeting
+</h2>
+<h2 id="id-2021.06.09SumoLogicOverviewMeeting-Attendees">
+  Attendees
+</h2>
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        Name
+      </th>
+      <th>
+        Role
+      </th>
+      <th colspan="1">
+        Present
+      </th>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Bauer, Scott
+      </td>
+      <td colspan="1">
+        NIH/NCI [C]
+      </td>
+      <td colspan="1">
+        x
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Endle,  Cory
+      </td>
+      <td colspan="1">
+        NIH/NCI [C]
+      </td>
+      <td colspan="1">
+        x
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Stancl, Craig
+      </td>
+      <td colspan="1">
+        NIH/NCI [C]
+      </td>
+      <td colspan="1">
+        x
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Brem, Larry
+      </td>
+      <td colspan="1">
+        NIH/NCI [C]
+      </td>
+      <td colspan="1">
+        x
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Coleman, Kathy
+      </td>
+      <td colspan="1">
+        NIH/NCI [C]
+      </td>
+      <td colspan="1">
+        x
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Dhulipala, Srinivas
+      </td>
+      <td colspan="1">
+        NIH/NCI [C]
+      </td>
+      <td colspan="1"></td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Pradhan, Manish
+      </td>
+      <td colspan="1">
+        NIH/NCI
+      </td>
+      <td colspan="1">
+        x
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Safran, Tracy
+      </td>
+      <td colspan="1">
+        NIH/NCI [C]
+      </td>
+      <td colspan="1">
+        x
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Kadalli, Shiv
+      </td>
+      <td colspan="1">
+        NIH/NCI [C]
+      </td>
+      <td colspan="1">
+        x
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h1 id="id-2021.06.09SumoLogicOverviewMeeting-Agenda">
+  Agenda
+</h1>
+<h2 id="id-2021.06.09SumoLogicOverviewMeeting-StatisticsDashboardDiscussion">
+  Statistics Dashboard Discussion
+</h2>
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <td colspan="1">
+        Sumo Logic
+      </td>
+      <td colspan="1">
+        Discussion Points:
+        <ul>
+          <li>
+            IP addresses and Domain
+            <ul>
+              <li>
+                NIH is concerned IPs are PII.
+              </li>
+              <li>
+                Not PII if collected in aggregate
+              </li>
+              <li>
+                Is is PII if collected in server logs
+              </li>
+              <li>
+                We will need to get Eric&#39;s opinion on this.  Larry has asked him.
+              </li>
+              <li>
+                If we could drop the last 2 stanzas, there would be no issues.
+                <ul>
+                  <li>
+                    This is a &#34;B&#34; level address.
+                  </li>
+                  <li>
+                    This will allow us to determine domains still.
+                  </li>
+                </ul>
+              </li>
+              <li>
+                Larry - There is a unix call to convert IP to domain.
+                <ul>
+                  <li>
+                    You can input an access file, and it would replace the IP with the domain.
+                  </li>
+                  <li>
+                    You can also filter the access file to just add the first 2 stanzas of the IP.
+                  </li>
+                </ul>
+              </li>
+              <li>
+                Command: logresolve - pass the http.access file through this command before sending the access file around so the IP is filtered.
+                <ul>
+                  <li>
+                    This command could be called just before the aggregator get the log.  This will allow Google API to use the access file with the IP in it.
+                  </li>
+                </ul>
+              </li>
+              <li>
+                Sumo gathers data from websites and APIs.  Google API is just for websites.
+              </li>
+            </ul>
+          </li>
+          <li>
+            Sumo Logic Scheduling will be addressed on Friday
+            <ul>
+              <li>
+                Officially we get a license on June 16th.
+              </li>
+              <li>
+                Potentially, we could have logs a week after that.
+              </li>
+            </ul>
+          </li>
+          <li>
+            Sumo has a SaaS solution
+            <ul>
+              <li>
+                We need a &#34;collector&#34; on each server.
+                <ul>
+                  <li>
+                    One collector can collect files for multiple services on the server.
+                  </li>
+                </ul>
+              </li>
+              <li>
+                Configure the reporting and we are done.
+              </li>
+              <li>
+                Security should be built in.
+                <ul>
+                  <li>
+                    It is a SaaS tool.  Connect to it with Octa.
+                  </li>
+                  <li>
+                    Only EVS users will be able to see EVS logs.
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        Decision Points:
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        Friday 6/11 Sumo Logic Kickoff Meeting
+      </td>
+      <td colspan="1">
+        Discussion Points:
+        <ul>
+          <li>
+            Sumo Logic Kickoff Meeting for NCI - Friday 6/11
+          </li>
+          <li>
+            We are one of 3 projects that want to use Sumo Logic out of the gate
+          </li>
+          <li>
+            Team will be talking with Sumo Logic
+          </li>
+          <li>
+            Scott has invite to the meeting
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h3 id="id-2021.06.09SumoLogicOverviewMeeting-Reference:">
+  Reference:
+</h3>
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=458228674" rel="nofollow">
+  EVS Analytics Dashboard Project Documents
+</a>

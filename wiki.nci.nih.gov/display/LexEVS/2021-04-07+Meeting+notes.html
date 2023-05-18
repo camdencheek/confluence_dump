@@ -1,0 +1,263 @@
+<h2 id="id-20210407Meetingnotes-Date">
+  Date
+</h2>
+07 Apr 2021
+<h2 id="id-20210407Meetingnotes-Attendees">
+  Attendees
+</h2>
+<ul>
+  <li>
+    <a href="https://wiki.nci.nih.gov/display/~safrant" rel="nofollow">
+      Safran, Tracy (NIH/NCI) [C]
+    </a>
+  </li>
+  <li></li>
+</ul>
+<h2 id="id-20210407Meetingnotes-Goals">
+  Goals
+</h2>
+<ul>
+  <li></li>
+</ul>
+<h2 id="id-20210407Meetingnotes-Discussionitems">
+  Discussion items
+</h2>
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        Time
+      </th>
+      <th>
+        Item
+      </th>
+      <th>
+        Who
+      </th>
+      <th>
+        Notes
+      </th>
+    </tr>
+    <tr>
+      <td></td>
+      <td>
+        Value Set QA
+      </td>
+      <td></td>
+      <td>
+        <ul>
+          <li>
+            Lyubov approved moving on Value Set QA items
+            <a href="https://wiki.nci.nih.gov/download/attachments/458228159/Value%20Set%20Configuration%20and%20QA.docx?version=1&amp;modificationDate=1617812737000&amp;api=v2" rel="nofollow">
+              Value Set Configuration and QA.docx
+            </a>
+            <ul>
+              <li>
+                Query LexEVS value sets and compare to value_set_config.txt
+                <ul>
+                  <li>
+                    Options for querying LexEVS
+                    <ul>
+                      <li>
+                        CTS2?
+                        <a href="https://lexevs65cts2.nci.nih.gov/lexevscts2/valuesets?maxtoreturn=2000&amp;format=json" rel="nofollow">
+                          https://lexevs65cts2.nci.nih.gov/lexevscts2/valuesets?maxtoreturn=2000&amp;format=json
+                        </a>
+                      </li>
+                      <li>
+                        database query?
+                      </li>
+                      <li>
+                        API?
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                Scan FTP and compare to value_set_config.txt
+              </li>
+              <li>
+                Expand OWL2 loader to NCIt specific with some processing steps pulled in
+                <ul>
+                  <li>
+                    Scrub private properties - such as editor-note
+                  </li>
+                </ul>
+              </li>
+              <li>
+                How does LexEVS create URI? Uses publish_value_set and Concept_In_Subset to retrieve value sets. Scott will look at code base and tell us the algorithm they use.
+              </li>
+              <li>
+                Local does this : uses hardcoded &#34;http://evs.nci.nih.gov/&#34; + ContributingSource + &#34;/&#34; +code
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>
+        MDR Questions
+      </td>
+      <td></td>
+      <td>
+        <ul>
+          <li>
+            Meeting with Natalia, who is handling caDSR to MDR migration. Any questions I should put to her?
+            <ul>
+              <li>
+                Where is MDR getting its EVS data? the EVS file dump for NCIt
+              </li>
+              <li>
+                What vocabularies does it use?  Just NCIt, for now.
+              </li>
+              <li>
+                Expected lifespan of caDSR?
+                <ul>
+                  <li>
+                    Curation tool will shut down in ~August, when MDR goes up.
+                  </li>
+                  <li>
+                    SIW will stay up and that uses EVS.  That provides files to UML Loader but that has no loader to MDR yet. Still unclear of future or scheduling
+                  </li>
+                </ul>
+              </li>
+              <li>
+                Is query that was breaking working now. Vikram working on it and doesn&#39;t think it has to do with communication with EVS. Not 100% reproducible. Huge biomarker Value Domain with 5000 objects attached to it.
+              </li>
+              <li>
+                Do they want any hands-on help? Not at the moment.
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1"></td>
+      <td colspan="1">
+        EVS Exporter
+      </td>
+      <td colspan="1"></td>
+      <td colspan="1">
+        <ul>
+          <li>
+            Status
+          </li>
+          <li>
+            Ready for links? Not yet
+          </li>
+          <li>
+            Submitted paperwork for clearance of new applications
+            <ul>
+              <li>
+                Will need to change domain to cancer.gov, perhaps
+              </li>
+              <li>
+                Would leave nci.nih.gov on lower tiers?
+              </li>
+            </ul>
+          </li>
+          <li>
+            Is there a way to separate regular roles and inherited roles?
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1"></td>
+      <td colspan="1">
+        EVS Explorer
+      </td>
+      <td colspan="1"></td>
+      <td colspan="1">
+        On QA and validating
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1"></td>
+      <td colspan="1">
+        Metrics dashboard
+      </td>
+      <td colspan="1"></td>
+      <td colspan="1">
+        <ul>
+          <li>
+            I built a power point to show Lyubov what Google Analytics can do and asked her to call out what she wants on a dashboard.  She responded with
+            <a href="https://wiki.nci.nih.gov/download/attachments/458228159/GoogleAnalyticsParameters%20LRW1%2003_11_2021.pptx?version=1&amp;modificationDate=1617813403000&amp;api=v2" rel="nofollow">
+              GoogleAnalyticsParameters LRW1 03_11_2021.pptx
+            </a>
+          </li>
+          <li>
+            She wants several metrics that are not recorded by GA
+            <ul>
+              <li>
+                IP Address of user
+              </li>
+              <li>
+                Resolved IP
+              </li>
+              <li>
+                Domain of user
+              </li>
+            </ul>
+          </li>
+          <li>
+            She wants these user metrics that are in GA
+            <ul>
+              <li>
+                Country of access
+              </li>
+              <li>
+                New or returning users
+              </li>
+              <li>
+                Frequency of return
+              </li>
+              <li>
+                Browser utilized
+              </li>
+            </ul>
+          </li>
+          <li>
+            She wants the following system metrics
+            <ul>
+              <li>
+                When traffic goes up or down dramatically
+              </li>
+              <li>
+                When page loads exceed a set target
+              </li>
+              <li>
+                Average page load times
+              </li>
+            </ul>
+          </li>
+          <li>
+            She suggested further discussion on Google Tag Manager
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1"></td>
+      <td colspan="1"></td>
+      <td colspan="1"></td>
+      <td colspan="1"></td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="id-20210407Meetingnotes-Actionitems">
+  Action items
+</h2>
+<ul>
+  <li></li>
+</ul>

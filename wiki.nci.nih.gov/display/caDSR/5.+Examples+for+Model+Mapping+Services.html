@@ -1,0 +1,568 @@
+The query parameter for the &#34;model&#34; attribute is a &#34;Like&#34; query with a wildcard to the right (as in &#39;&lt;model&gt;%%&#39;). Therefore, &#34;PCOR&#34; finds &#34;PCORNet CDM 4.0&#34; and &#34;CRDC&#34; finds &#34;All CRDC Standard Data Elements&#34;. Models are currently represented in caDSR using a Classification Scheme. The Classification Scheme Name is the Model Name. The Classification Scheme Version represents the specific version of the Model. The Table names in the Model are represented using a Classification Scheme Item Name and Version. CDEs are classified by one or more Classification Scheme/Classification Scheme Item, so the same CDE can be in one or more models.The returned content is our first pass at what end users wanted to know. We can add additional information about the CDEs into the APIs based on customer requirements, as long as the information is registered in caDSR. In these APIs, mappings between CDEs are based on common semantic annotations that are used when creating the CDEs. The annotations are made using NCI Thesaurus Concepts Codes instead of direct model-model, CDE-CDE mappings. For future expansion of these capabilities, we are investigating the addition of more complex mappings that are not solely based on 1-1 semantics.The following topics are included in this page.Contents of This Page
+<ul>
+  <li>
+    <a href="#id-5.ExamplesforModelMappingServices-GetTargetCDMMappedDataElementName" rel="nofollow">
+      5.1. Get Target CDM Mapped Data Element Name
+    </a>
+  </li>
+  <li>
+    <a href="#id-5.ExamplesforModelMappingServices-GetTargetCDMDataElementandPermittedValue" rel="nofollow">
+      5.2. Get Target CDM Data Element and Permitted Value
+    </a>
+  </li>
+  <li>
+    <a href="#id-5.ExamplesforModelMappingServices-GetAllTargetCDMElementsMappedtoSourceCDMTable" rel="nofollow">
+      5.3. Get All Target CDM Elements Mapped to Source CDM Table
+    </a>
+  </li>
+  <li>
+    <a href="#id-5.ExamplesforModelMappingServices-GetAllAttributesinaModel" rel="nofollow">
+      5.4. Get All Attributes in a Model
+    </a>
+  </li>
+</ul>
+Legacy component retirement planned for May 1, 2023.
+<h3 id="id-5.ExamplesforModelMappingServices-GetTargetCDMMappedDataElementName">
+  5.1. Get Target CDM Mapped Data Element Name
+</h3>
+The ModelMappedElements parameter retrieves all the Target data elements that have been mapped between a specific Source table/attribute and the Target model.The following table lists the input components and an example value for each component:
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Input Component
+      </th>
+      <th>
+        Example
+      </th>
+    </tr>
+    <tr>
+      <td>
+        Source Model
+      </td>
+      <td>
+        OMOP
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Source Model Version
+      </td>
+      <td>
+        5.3.1
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Source Table
+      </td>
+      <td>
+        Person
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Source Attribute
+      </td>
+      <td>
+        gender_concept_id
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Target Model
+      </td>
+      <td>
+        PCORnet
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Target Model Version
+      </td>
+      <td>
+        4
+      </td>
+    </tr>
+  </tbody>
+</table>
+The example input requests the table/attribute in PCORnet 4.0 that has been mapped to OMOP 5.3.1 element Person/gender_concept_id. The following table lists the output components and an example value for each component:
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Output Component
+      </th>
+      <th>
+        Example
+      </th>
+    </tr>
+    <tr>
+      <td>
+        SourcePublicID
+      </td>
+      <td>
+        6144640
+      </td>
+    </tr>
+    <tr>
+      <td>
+        SourceVersion
+      </td>
+      <td>
+        1
+      </td>
+    </tr>
+    <tr>
+      <td>
+        TargetPublicID
+      </td>
+      <td>
+        6144639
+      </td>
+    </tr>
+    <tr>
+      <td>
+        TargetVersion
+      </td>
+      <td>
+        1
+      </td>
+    </tr>
+    <tr>
+      <td>
+        TargetTable
+      </td>
+      <td>
+        DEMOGRAPHIC
+      </td>
+    </tr>
+    <tr>
+      <td>
+        TargetAttribute
+      </td>
+      <td>
+        SEX
+      </td>
+    </tr>
+  </tbody>
+</table>
+For this example, the output indicates that the element DEMOGRAPHIC/SEX in PCORnet 4.0 has been mapped to Person/gender_concept_id in OMOP 5.3.1.
+https://cadsrapi.cancer.gov/invoke/caDSRII.ModelApi/GetXML?query=ModelMappedElements[@model=OMOP,@version=5.31,@table=Person,@attributeName=gender_concept_id,@targetModelName=PCORnet,@targetModelVersion=4]
+<h3 id="id-5.ExamplesforModelMappingServices-GetTargetCDMDataElementandPermittedValue">
+  5.2. Get Target CDM Data Element and Permitted Value
+</h3>
+The ModelMappedValues parameter retrieves the mapped permissible value for a particular Data Element between the Source and Target models.The following table lists the input components and an example value for each component:
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Input Component
+      </th>
+      <th>
+        Example
+      </th>
+    </tr>
+    <tr>
+      <td>
+        Source Model
+      </td>
+      <td>
+        OMOP
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Source Model Version
+      </td>
+      <td>
+        5.31
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Source Table
+      </td>
+      <td>
+        Person
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Source Attribute
+      </td>
+      <td>
+        gender_concept_id
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Source Value
+      </td>
+      <td>
+        F
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Target Model
+      </td>
+      <td>
+        PCORnet
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Target Model Version
+      </td>
+      <td>
+        4
+      </td>
+    </tr>
+  </tbody>
+</table>
+The example input requests the equivalent permissible value for a CDE in PCORnet model, version 4 that has been mapped to OMOP Model version 5.31 Table = Person, OMOP Name =gender_concept_id, with permissible value &#34;F&#34;.Representation in caDSR of &#34;model&#34; elements:
+<ul>
+  <li>
+    The commonly-used short model name and version is stored in the CS Preferred Name/short name in the Context for the Project.
+  </li>
+  <li>
+    The table name is stored as the CSI Long Name, and also as an alternate Name for each data element with a name type of the model.
+  </li>
+</ul>
+For example, in Data Element 6144640 version 1:
+<ul>
+  <li>
+    Owning Context = CDMH Phase I
+  </li>
+  <li>
+    DE is classified by CS/CSI &#34;OMOP 5.31/Person&#34;
+  </li>
+  <li>
+    DEC = 3175307
+  </li>
+  <li>
+    DE Short Name/Preferred Name = gender_concept_id, Alternate name type=&#34;OMOP Name&#34;
+  </li>
+  <li>
+    DE Alternate name = PERSON, Alternate name type = &#34;OMOP Table&#34;
+  </li>
+</ul>
+The following table lists the output components and an example value for each component:
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Output Component
+      </th>
+      <th>
+        Example
+      </th>
+    </tr>
+    <tr>
+      <td>
+        PublicID
+      </td>
+      <td>
+        6144639
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Version
+      </td>
+      <td>
+        1
+      </td>
+    </tr>
+    <tr>
+      <td>
+        TargetTable
+      </td>
+      <td>
+        DEMOGRAPHIC
+      </td>
+    </tr>
+    <tr>
+      <td>
+        TargetAttribute
+      </td>
+      <td>
+        SEX
+      </td>
+    </tr>
+    <tr>
+      <td>
+        TargetValue
+      </td>
+      <td>
+        F
+      </td>
+    </tr>
+    <tr>
+      <td>
+        TargetValueConcept
+      </td>
+      <td>
+        C16576
+      </td>
+    </tr>
+  </tbody>
+</table>
+For this example, the output indicates that PCORnet 4.0 table Demographic attribute &#34;sex&#34; with value &#34;F&#34;  has been mapped to OMOP 5.31 table Person attribute gender_concept_id value &#34;F&#34;.
+https://cadsrapi.cancer.gov/invoke/caDSRII.ModelApi/GetXML?query=ModelMappedValues[@model=OMOP,@version=5.31,@table=Person,@attributeName=gender_concept_id,@attributeValue=F,@targetModelName=PCORnet,@targetModelVersion=4]
+<h3 id="id-5.ExamplesforModelMappingServices-GetAllTargetCDMElementsMappedtoSourceCDMTable">
+  5.3. Get All Target CDM Elements Mapped to Source CDM Table
+</h3>
+The ModelMappedTableElements parameter retrieves all the table/attributes in the Source Model table that have been mapped to table/attributes Target Model. The following table lists the input components and an example value for each component:
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Input Component
+      </th>
+      <th>
+        Example
+      </th>
+    </tr>
+    <tr>
+      <td>
+        Source Model
+      </td>
+      <td>
+        OMOP
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Source Model Version
+      </td>
+      <td>
+        5.3.1
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Source Table
+      </td>
+      <td>
+        Person
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Target Model
+      </td>
+      <td>
+        PCORnet
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Target Model Version
+      </td>
+      <td>
+        4
+      </td>
+    </tr>
+  </tbody>
+</table>
+The example input requests all the mapped data elements from PCORnet version 4.0 that have been mapped to the Person table in OMOP 5.3.1The following table lists the output components and an example value for each component:
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Output Component
+      </th>
+      <th>
+        Example
+      </th>
+      <th>
+        Example
+      </th>
+    </tr>
+    <tr>
+      <td>
+        SourcePublicID
+      </td>
+      <td>
+        6144640
+      </td>
+      <td>
+        6093481
+      </td>
+    </tr>
+    <tr>
+      <td>
+        SourceVersion
+      </td>
+      <td>
+        1
+      </td>
+      <td>
+        1
+      </td>
+    </tr>
+    <tr>
+      <td>
+        SourceAttribute
+      </td>
+      <td>
+        gender_concept_id
+      </td>
+      <td>
+        race_concept_id
+      </td>
+    </tr>
+    <tr>
+      <td>
+        SourceTable
+      </td>
+      <td>
+        Person
+      </td>
+      <td>
+        Person
+      </td>
+    </tr>
+    <tr>
+      <td>
+        TargetPublicID
+      </td>
+      <td>
+        6144639
+      </td>
+      <td>
+        6093452
+      </td>
+    </tr>
+    <tr>
+      <td>
+        TargetVersion
+      </td>
+      <td>
+        1
+      </td>
+      <td>
+        1
+      </td>
+    </tr>
+    <tr>
+      <td>
+        TargetTable
+      </td>
+      <td>
+        Demographic
+      </td>
+      <td>
+        Demographic
+      </td>
+    </tr>
+    <tr>
+      <td>
+        TargetAttribute
+      </td>
+      <td>
+        SEX
+      </td>
+      <td>
+        RACE
+      </td>
+    </tr>
+  </tbody>
+</table>
+The API returns all mapped attributes.
+https://cadsrapi.cancer.gov/invoke/caDSRII.ModelApi/GetXML?query=ModelMappedTableElements[@model=OMOP,@version=5.31,@table=Person,@targetModelName=PCORnet,@targetModelVersion=4]
+<h3 id="id-5.ExamplesforModelMappingServices-GetAllAttributesinaModel">
+  5.4. Get All Attributes in a Model
+</h3>
+The ModelAttributes parameter retrieves all the data elements that have been recorded in caDSR for a given version of a model. The following table lists the input components and an example value for each component:
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Input Component
+      </th>
+      <th>
+        Example
+      </th>
+    </tr>
+    <tr>
+      <td>
+        Source Model
+      </td>
+      <td>
+        PCOR
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Source Model Version
+      </td>
+      <td>
+        4.0
+      </td>
+    </tr>
+  </tbody>
+</table>
+The example input retrieves all Data Elements classified by the PCOR 4.0 CS and organized by all of its CSIs.The following table lists the output components and an example value for each component:
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Output Component
+      </th>
+      <th>
+        Example
+      </th>
+      <th>
+        Example
+      </th>
+    </tr>
+    <tr>
+      <td>
+        Table Name
+      </td>
+      <td>
+        Condition
+      </td>
+      <td>
+        Prescribing
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Public ID
+      </td>
+      <td>
+        6365298
+      </td>
+      <td>
+        6421699
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Version
+      </td>
+      <td>
+        1
+      </td>
+      <td>
+        1
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Attribute
+      </td>
+      <td>
+        ONSET_DATE
+      </td>
+      <td>
+        RX_REFILLS
+      </td>
+    </tr>
+  </tbody>
+</table>
+https://cadsrapi.cancer.gov/invoke/caDSRII.ModelApi/GetXML?query=ModelAttributes[@model=PCOR,@version=4.0] 

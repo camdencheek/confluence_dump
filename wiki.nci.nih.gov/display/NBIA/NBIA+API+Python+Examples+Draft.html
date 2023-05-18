@@ -1,0 +1,137 @@
+<ul>
+  <li>
+    <a href="#NBIAAPIPythonExamplesDraft-ExampleCalltoAccessPublicData" rel="nofollow">
+      Example Call to Access Public Data
+    </a>
+  </li>
+  <li>
+    <a href="#NBIAAPIPythonExamplesDraft-ExampleRequestforAccessingaPrivateResource" rel="nofollow">
+      Example Request for Accessing a Private Resource
+    </a>
+  </li>
+  <li>
+    <a href="#NBIAAPIPythonExamplesDraft-UsingtheTokeninanAPICall" rel="nofollow">
+      Using the Token in an API Call
+    </a>
+  </li>
+  <li>
+    <a href="#NBIAAPIPythonExamplesDraft-ExampleRequestforLogout" rel="nofollow">
+      Example Request for Logout
+    </a>
+  </li>
+  <li>
+    <a href="#NBIAAPIPythonExamplesDraft-SamplePythonScriptforRESTSearchAPIs" rel="nofollow">
+      Sample Python Script for REST Search APIs
+    </a>
+    <ul>
+      <li>
+        <a href="#NBIAAPIPythonExamplesDraft-BodyPartValuesandCountsAPI" rel="nofollow">
+          Body Part Values and Counts API
+        </a>
+      </li>
+      <li>
+        <a href="#NBIAAPIPythonExamplesDraft-ExampleBodyPartValuesandCountsQuery" rel="nofollow">
+          Example Body Part Values and Counts Query
+        </a>
+      </li>
+    </ul>
+  </li>
+</ul>
+<h1 id="NBIAAPIPythonExamplesDraft-ExampleCalltoAccessPublicData">
+  Example Call to Access Public Data
+</h1>
+The following is an example call using curl to access public data using an API from the
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=464717063" rel="nofollow">
+  NBIA v1 API Directory
+</a>
+.To come
+<h1 id="NBIAAPIPythonExamplesDraft-ExampleRequestforAccessingaPrivateResource">
+  Example Request for Accessing a Private Resource
+</h1>
+Most data in TCIA are fully public. However, certain collections require special permissions to access them. To access these collections, you must first
+<a href="https://wiki.cancerimagingarchive.net/display/Public/LEGAL+FRAMEWORK+AND+ETHICAL+USE+OF+THIS+RESOURCE" rel="nofollow">
+  register
+</a>
+ for a TCIA account (be sure to scroll down on this page and click &#34;CLICKING HERE&#34; to accept the terms and conditions) and then contact the
+<a href="https://www.cancerimagingarchive.net/support/" rel="nofollow">
+  TCIA Help Desk
+</a>
+ for permission to access the restricted data. The TCIA Help Desk will also give you the client_id and client_secret. An example follows that shows how to request NBIA REST services for restricted data.Python Sample Script
+import requests,json
+
+token_url = &#34;https://services.cancerimagingarchive.net/nbia-api/oauth/token?username=YOUR_NAME&amp;password=YOUR_PASSWORD&amp;grant_type=password&amp;client_id=nbiaRestAPIClient&amp;client_secret=ItsBetweenUAndMe&#34;
+
+access_token = requests.get(token_url).json()[&#34;access_token&#34;]
+
+print (access_token)
+Python Sample Output:
+ae8b76ac-4225-4958-8eba-27ddd4b15411
+<h1 id="NBIAAPIPythonExamplesDraft-UsingtheTokeninanAPICall">
+  Using the Token in an API Call
+</h1>
+Make a note of the access token you received and pass it with the REST service call.Python Sample Script
+import requests,json
+
+token_url = &#34;https://services.cancerimagingarchive.net/nbia-api/oauth/token?username=YOUR_NAME&amp;password=YOUR_PASSWORD&amp;grant_type=password&amp;client_id=nbiaRestAPIClient&amp;client_secret=ItsBetweenUAndMe&#34;
+access_token = requests.get(token_url).json()[&#34;access_token&#34;]
+print (access_token)
+
+api_call_headers = {&#39;Authorization&#39;: &#39;Bearer &#39; + access_token}
+data_url = &#34;https:// services.cancerimagingarchive.net/nbia-api/services/v2/getModalityValues&#34;
+data = requests.get(data_url, headers=api_call_headers).json()
+print (data)
+
+
+Python Sample Output
+[{&#34;Modality&#34;:&#34;CR&#34;},{&#34;Modality&#34;:&#34;CT&#34;},{&#34;Modality&#34;:&#34;CTPT&#34;},{&#34;Modality&#34;:&#34;DX&#34;},{&#34;Modality&#34;:&#34;FUSION&#34;},{&#34;Modality&#34;:&#34;KO&#34;},{&#34;Modality&#34;:&#34;MG&#34;},{&#34;Modality&#34;:&#34;MR&#34;},{&#34;Modality&#34;:&#34;NM&#34;},{&#34;Modality&#34;:&#34;OT&#34;},{&#34;Modality&#34;:&#34;PR&#34;},{&#34;Modality&#34;:&#34;PT&#34;},{&#34;Modality&#34;:&#34;REG&#34;},{&#34;Modality&#34;:&#34;RTDOSE&#34;},{&#34;Modality&#34;:&#34;RTPLAN&#34;},{&#34;Modality&#34;:&#34;RTSTRUCT&#34;},{&#34;Modality&#34;:&#34;RWV&#34;},{&#34;Modality&#34;:&#34;SC&#34;},{&#34;Modality&#34;:&#34;SEG&#34;},{&#34;Modality&#34;:&#34;SR&#34;},{&#34;Modality&#34;:&#34;US&#34;},{&#34;Modality&#34;:&#34;XA&#34;}]
+<h1 id="NBIAAPIPythonExamplesDraft-ExampleRequestforLogout">
+  Example Request for Logout
+</h1>
+Python Sample Script
+import requests,json
+
+token_url = &#34;https://services.cancerimagingarchive.net/nbia-api/oauth/token?username=YOUR_NAME&amp;password=YOUR_PASSWORD&amp;grant_type=password&amp;client_id=nbiaRestAPIClient&amp;client_secret=ItsBetweenUAndMe&#34;
+access_token = requests.get(token_url).json()[&#34;access_token&#34;]
+print (access_token)
+
+api_call_headers = {&#39;Authorization&#39;: &#39;Bearer &#39; + access_token}
+data_url = &#34;https:// services.cancerimagingarchive.net/nbia-api/logout &#34;
+data = requests.get(data_url, headers=api_call_headers).json()
+print (data)
+
+
+Python Sample Result
+You Have Logged Out successfully.
+<h1 id="NBIAAPIPythonExamplesDraft-SamplePythonScriptforRESTSearchAPIs">
+  Sample Python Script for REST Search APIs
+</h1>
+<h2 id="NBIAAPIPythonExamplesDraft-BodyPartValuesandCountsAPI">
+  Body Part Values and Counts API
+</h2>
+The Body Part Values and Counts API returns the modality values and body part count for the modality. It optionally takes the following parameters.
+<ul>
+  <li>
+    Collection
+  </li>
+  <li>
+    Modality
+  </li>
+</ul>
+<h2 id="NBIAAPIPythonExamplesDraft-ExampleBodyPartValuesandCountsQuery">
+  Example Body Part Values and Counts Query
+</h2>
+Python Sample Script
+import requests,json
+
+token_url = &#34;https://services.cancerimagingarchive.net/nbia-api/oauth/token?username=YOUR_NAME&amp;password=YOUR_PASSWORD&amp;grant_type=password&amp;client_id=nbiaRestAPIClient&amp;client_secret=ItsBetweenUAndMe&#34;
+access_token = requests.get(token_url).json()[&#34;access_token&#34;]
+print (access_token)
+
+api_call_headers = {&#39;Authorization&#39;: &#39;Bearer &#39; + access_token}
+data_url = &#34;https:// services.cancerimagingarchive.net/nbia-api/services/getBodyPartValuesAndCounts?Modality=PT &#34;
+data = requests.get(data_url, headers=api_call_headers).json()
+print (data)
+
+
+Python Sample Results
+[{&#34;criteria&#34;:&#34;ABDOMEN&#34;,&#34;count&#34;:&#34;145&#34;},{&#34;criteria&#34;:&#34;BLADDER&#34;,&#34;count&#34;:&#34;6&#34;},{&#34;criteria&#34;:&#34;BRAIN&#34;,&#34;count&#34;:&#34;42&#34;},{&#34;criteria&#34;:&#34;BREAST&#34;,&#34;count&#34;:&#34;125&#34;},{&#34;criteria&#34;:&#34;CHEST&#34;,&#34;count&#34;:&#34;232&#34;},{&#34;criteria&#34;:&#34;EXTREMITY&#34;,&#34;count&#34;:&#34;51&#34;},{&#34;criteria&#34;:&#34;HEADNECK&#34;,&#34;count&#34;:&#34;395&#34;},{&#34;criteria&#34;:&#34;KIDNEY&#34;,&#34;count&#34;:&#34;1&#34;},{&#34;criteria&#34;:&#34;LIVER&#34;,&#34;count&#34;:&#34;1&#34;},{&#34;criteria&#34;:&#34;LUNG&#34;,&#34;count&#34;:&#34;40&#34;},{&#34;criteria&#34;:&#34;PHANTOM&#34;,&#34;count&#34;:&#34;22&#34;},{&#34;criteria&#34;:&#34;PROSTATE&#34;,&#34;count&#34;:&#34;12&#34;},{&#34;criteria&#34;:&#34;THORAX_1HEAD_NE&#34;,&#34;count&#34;:&#34;4&#34;},{&#34;criteria&#34;:&#34;THYROID&#34;,&#34;count&#34;:&#34;1&#34;},{&#34;criteria&#34;:&#34;UNDEFINED&#34;,&#34;count&#34;:&#34;2&#34;},{&#34;criteria&#34;:&#34;UTERUS&#34;,&#34;count&#34;:&#34;5&#34;},{&#34;criteria&#34;:&#34;WHOLEBODY&#34;,&#34;count&#34;:&#34;5&#34;}] 

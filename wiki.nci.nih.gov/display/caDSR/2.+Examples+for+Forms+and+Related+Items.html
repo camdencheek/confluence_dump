@@ -1,0 +1,187 @@
+You can try the caDSR APIs to search for caDSR data by entering a URL in the address bar of a browser and passing parameters in that URL. This page provides examples to get you started, in legacy and caDSR II format:
+<ul>
+  <li>
+    A URL in legacy REST-like (XML-HTTP) format returns only HTML or XML. The
+    <a href="https://cadsrapi.nci.nih.gov/cadsrapi4/ShowDynamicTree.action" rel="nofollow">
+      Legacy caDSR Domain Class Browser
+    </a>
+    page is a web browser interface that allows you to test the legacy caDSR API. This page also has links to the Legacy Java Docs.
+  </li>
+  <li>
+    A URL in caDSR II format returns HTML, XML, or JSON. Using the API, you can allow an application to connect to caDSR and search the database. The
+    <a href="https://cadsrapi.cancer.gov/caDSR/domain/browser.dsp" rel="nofollow">
+      caDSR II Domain Class Browser
+    </a>
+    page is a web browser interface that allows you to test the caDSR II API.
+  </li>
+</ul>
+You can display any of these formats (HTML, XML, or JSON) in an Internet browser by changing the parameter (GetHTML, GetXML, or GetJSON). Multiple AND IN NoteYou cannot enter multiple &#34;and&#34; or &#34;in&#34; values for search criteria when using the REST (XML-HTTP) API.If you have trouble using any URL on this page in your Internet browser, copy and paste it into a Google Chrome browser before contacting Application Support (
+<a href="mailto:NCIAppSupport@mail.nih.gov" rel="nofollow">
+  NCIAppSupport@mail.nih.gov
+</a>
+).Headings on this page marked with two asterisks (**) reflect functionality available in caDSR II but not in legacy caDSR. This page includes the following topics.Contents of This Page
+<ul>
+  <li>
+    <a href="#id-2.ExamplesforFormsandRelatedItems-FindaFormUsingFormPublicIDandVersion,DisplayBasicMetadataAttributes" rel="nofollow">
+      2.1. Find a Form Using Form Public ID and Version, Display Basic Metadata Attributes
+    </a>
+  </li>
+  <li>
+    <a href="#id-2.ExamplesforFormsandRelatedItems-FindaFormUsingOnlyPublicID" rel="nofollow">
+      2.2. Find a Form Using Only Public ID
+    </a>
+  </li>
+  <li>
+    <a href="#id-2.ExamplesforFormsandRelatedItems-FindaFormUsingPublicID,DisplayAllMetadataAssociatedwithDataElements" rel="nofollow">
+      2.3. Find a Form Using Public ID, Display All Metadata Associated with Data Elements
+    </a>
+  </li>
+  <li>
+    <a href="#id-2.ExamplesforFormsandRelatedItems-FindAllFormsAssociatedwithParticularDataElementPublicIDandVersion" rel="nofollow">
+      2.4. Find All Forms Associated with Particular Data Element Public ID and Version
+    </a>
+  </li>
+  <li>
+    <a href="#id-2.ExamplesforFormsandRelatedItems-GetallModulesAssociatedwithaFormUsingFormPublicID" rel="nofollow">
+      2.5. Get all Modules Associated with a Form Using Form Public ID
+    </a>
+  </li>
+  <li>
+    <a href="#id-2.ExamplesforFormsandRelatedItems-GetAlltheQuestionsforaModuleUsingModulePublicIDandVersion" rel="nofollow">
+      2.6. Get All the Questions for a Module Using Module Public ID and Version
+    </a>
+  </li>
+  <li>
+    <a href="#id-2.ExamplesforFormsandRelatedItems-GetAlltheDataElementsforQuestionUsingQuestionPublicIDandVersion" rel="nofollow">
+      2.7. Get All the Data Elements for Question Using Question Public ID and Version
+    </a>
+  </li>
+  <li>
+    <a href="#id-2.ExamplesforFormsandRelatedItems-**RetrieveacaDSRFormwithAllItsCollections(%22Flattened%22)" rel="nofollow">
+      2.8. **Retrieve a caDSR Form with All Its Collections (&#34;Flattened&#34;)
+    </a>
+  </li>
+  <li>
+    <a href="#id-2.ExamplesforFormsandRelatedItems-**ReturnFormbyPublicIDandProtocol" rel="nofollow">
+      2.9. **Return Form by Public ID and Protocol
+    </a>
+  </li>
+</ul>
+Legacy component retirement planned for May 1, 2023.
+<h3 id="id-2.ExamplesforFormsandRelatedItems-FindaFormUsingFormPublicIDandVersion,DisplayBasicMetadataAttributes">
+  2.1. Find a Form Using Form Public ID and Version, Display Basic Metadata Attributes
+</h3>
+The following examples find a Form where Public ID = 2392775 and Version=1.0, displaying the basic metadata attributes.
+<h4 id="id-2.ExamplesforFormsandRelatedItems-Legacy:ResultsDisplayedintheFormBuilder">
+  2.1.1. Legacy: Results Displayed in the Form Builder
+</h4>
+This method can be used to retrieve Forms only when you know both the Public ID and Version number.
+<a href="https://formbuilder.nci.nih.gov/FormBuilder/formDetailsAction.do?method=getFormDetails&amp;formIdSeq=FF04F699-FE6A-56AA-E034-0003BA3F9857" rel="nofollow">
+  https://formbuilder.nci.nih.gov/FormBuilder/formDetailsAction.do?method=getFormDetails&amp;formIdSeq=FF04F699-FE6A-56AA-E034-0003BA3F9857
+</a>
+<h4 id="id-2.ExamplesforFormsandRelatedItems-Legacy:ResultsDisplayedinXML">
+  2.1.2. Legacy: Results Displayed in XML
+</h4>
+The URL for the results from the caDSR 4.1.x REST API is
+https://cadsrapi.nci.nih.gov/cadsrapi4/GetXML?query=Form[@publicId=2392775][@version=1.0]
+<h4 id="id-2.ExamplesforFormsandRelatedItems-caDSRII">
+  2.1.3. caDSR II
+</h4>
+The URL for the results from the caDSR II REST API is
+https://cadsrapi.cancer.gov/invoke/caDSR/GetXML?query=Form[@publicId=2392775,@version=1]
+<h3 id="id-2.ExamplesforFormsandRelatedItems-FindaFormUsingOnlyPublicID">
+  2.2. Find a Form Using Only Public ID
+</h3>
+The following example finds a Form with Public ID = 2392775, displaying the basic metadata attributes. Since the version is not known, this query can only be handled via a caDSR REST API query.
+<h4 id="id-2.ExamplesforFormsandRelatedItems-Legacy">
+  2.2.1. Legacy
+</h4>
+The URL for the results from the caDSR 4.1.x REST API is
+https://cadsrapi.nci.nih.gov/cadsrapi4/GetXML?query=Form[@publicId=2392775]
+<h4 id="id-2.ExamplesforFormsandRelatedItems-caDSRII.1">
+  2.2.2. caDSR II
+</h4>
+The URL for the results from the caDSR II REST API is
+https://cadsrapi.cancer.gov/invoke/caDSR/GetXML?query=Form[@publicId=2392775]
+<h3 id="id-2.ExamplesforFormsandRelatedItems-FindaFormUsingPublicID,DisplayAllMetadataAssociatedwithDataElements">
+  2.3. Find a Form Using Public ID, Display All Metadata Associated with Data Elements
+</h3>
+The following example finds a Form with Public ID = 2392775, displaying all the metadata associated with the data element&#39;s related components, not just the basic attributes. This is handled in the caDSR REST API using a parameter that produces expanded (&#34;heavy&#34;) XML.
+<h4 id="id-2.ExamplesforFormsandRelatedItems-Legacy.1">
+  2.3.1. Legacy
+</h4>
+The URL for the results from the caDSR 4.1.x REST API is
+https://cadsrapi.nci.nih.gov/cadsrapi4/GetXML?query=Form&amp;Form[@publicId=2392775]&amp;returnHeavyXML=true
+<h4 id="id-2.ExamplesforFormsandRelatedItems-caDSRII.2">
+  2.3.2. caDSR II
+</h4>
+The URL for the results from the caDSR II REST API is
+https://cadsrapi.cancer.gov/invoke/caDSR/GetXML?query=Form[@publicId=2392775]&amp;returnHeavyXML=true
+<h3 id="id-2.ExamplesforFormsandRelatedItems-FindAllFormsAssociatedwithParticularDataElementPublicIDandVersion">
+  2.4. Find All Forms Associated with Particular Data Element Public ID and Version
+</h3>
+The following example finds all the Forms associated with the CDE with Public ID = 2183364, Version 1.0, displaying the basic metadata of the Form.
+<h4 id="id-2.ExamplesforFormsandRelatedItems-Legacy.2">
+  2.4.1. Legacy
+</h4>
+The URL for the results from the caDSR 4.1.x REST API is
+https://cadsrapi.nci.nih.gov/cadsrapi4/GetXML?query=Form&amp;Module&amp;Question&amp;DataElement[@publicId=2183364][@version=1.0]
+<h4 id="id-2.ExamplesforFormsandRelatedItems-caDSRII.3">
+  2.4.2. caDSR II
+</h4>
+The URL for the results from the caDSR II REST API is
+https://cadsrapi.cancer.gov/invoke/caDSR/GetXML?query=Form,Module,Question&amp;DataElement[@publicId=2183364,@version=1.0]
+<h3 id="id-2.ExamplesforFormsandRelatedItems-GetallModulesAssociatedwithaFormUsingFormPublicID">
+  2.5. Get all Modules Associated with a Form Using Form Public ID
+</h3>
+The following example gets all the modules for a form with Public ID = 2392775.
+<h4 id="id-2.ExamplesforFormsandRelatedItems-Legacy.3">
+  2.5.1. Legacy
+</h4>
+The URL for the results from the caDSR 4.1.x REST API is
+https://cadsrapi.nci.nih.gov/cadsrapi4/GetXML?query=gov.nih.nci.cadsr.domain.Module&amp;gov.nih.nci.cadsr.domain.Form[@version=1.0][@publicId=2392775]
+<h4 id="id-2.ExamplesforFormsandRelatedItems-caDSRII.4">
+  2.5.2. caDSR II
+</h4>
+The URL for the results from the caDSR II REST API is
+https://cadsrapi.cancer.gov/invoke/caDSR/GetXML?query=Module&amp;Form[@publicId=2392775,@version=1.0]
+<h3 id="id-2.ExamplesforFormsandRelatedItems-GetAlltheQuestionsforaModuleUsingModulePublicIDandVersion">
+  2.6. Get All the Questions for a Module Using Module Public ID and Version
+</h3>
+The following example gets all the questions for a module with Public ID = 2392777 and version = 1.0.
+<h4 id="id-2.ExamplesforFormsandRelatedItems-Legacy.4">
+  2.6.1. Legacy
+</h4>
+The URL for the results from the caDSR 4.1.x REST API is
+https://cadsrapi.nci.nih.gov/cadsrapi4/GetXML?query=gov.nih.nci.cadsr.domain.Question&amp;gov.nih.nci.cadsr.domain.Module[@version=1.0][@publicId=2392777]
+<h4 id="id-2.ExamplesforFormsandRelatedItems-caDSRII.5">
+  2.6.2. caDSR II
+</h4>
+The URL for the results from the caDSR II REST API is
+https://cadsrapi.cancer.gov/invoke/caDSR/GetXML?query=Question&amp;Module[@publicId=2392777,@version=1.0]
+<h3 id="id-2.ExamplesforFormsandRelatedItems-GetAlltheDataElementsforQuestionUsingQuestionPublicIDandVersion">
+  2.7. Get All the Data Elements for Question Using Question Public ID and Version
+</h3>
+The following example gets all the data elements for a question with Public ID = 2392779 and version = 1.0.
+<h4 id="id-2.ExamplesforFormsandRelatedItems-Legacy.5">
+  2.7.1. Legacy
+</h4>
+The URL for the results from the caDSR 4.1.x REST API is
+https://cadsrapi.nci.nih.gov/cadsrapi4/GetXML?query=gov.nih.nci.cadsr.domain.DataElement&amp;gov.nih.nci.cadsr.domain.Question[@version=1.0][@publicId=2392779]
+<h4 id="id-2.ExamplesforFormsandRelatedItems-caDSRII.6">
+  2.7.2. caDSR II
+</h4>
+The URL for the results from the caDSR II REST API is
+https://cadsrapi.cancer.gov/invoke/caDSR/GetXML?query=DataElement&amp;Question[@publicId=2392779,@version=1.0]
+<h3 id="id-2.ExamplesforFormsandRelatedItems-**RetrieveacaDSRFormwithAllItsCollections(&#34;Flattened&#34;)">
+  2.8. **Retrieve a caDSR Form with All Its Collections (&#34;Flattened&#34;)
+</h3>
+The following caDSR II examples retrieve a caDSR form with all its collections, or &#34;flattened&#34;. This means for a given form, the system returns all Modules, Questions, Valid Values and related instructions in one call. The system returns results as a JSON file. XML and HTML formats are not available for this query. You must specify a version. The following example retrieves a form without specifying a protocol:
+https://cadsrapi.cancer.gov/invoke/form.test/getJSON?query=Form[@publicId=7203785,@version=1]
+The following example specifies a protocol:
+https://cadsrapi.cancer.gov/invoke/form.test/getJSON?query=Form[Protocol[@preferredName=C3D%20ADOPTER%20TEMPLATES],@publicId=2392775,@version=1]
+<h3 id="id-2.ExamplesforFormsandRelatedItems-**ReturnFormbyPublicIDandProtocol">
+  2.9. **Return Form by Public ID and Protocol
+</h3>
+The following caDSR II example retrieves forms with protocol by public ID.
+https://cadsrapi.cancer.gov/invoke/caDSR/GetXML?query=Form[Protocol[@preferredName=C3D ADOPTER TEMPLATES],@publicId=2392775] 

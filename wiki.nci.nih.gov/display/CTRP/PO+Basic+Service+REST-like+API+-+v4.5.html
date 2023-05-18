@@ -1,0 +1,3278 @@
+Contents of this Page
+<ul>
+  <li>
+    <a href="#POBasicServiceRESTlikeAPIv4.5-AccessRequirements" rel="nofollow">
+      Access Requirements
+    </a>
+  </li>
+  <li>
+    <a href="#POBasicServiceRESTlikeAPIv4.5-PersonService" rel="nofollow">
+      Person Service
+    </a>
+    <ul>
+      <li>
+        <a href="#POBasicServiceRESTlikeAPIv4.5-OperationcreatePerson" rel="nofollow">
+          Operation createPerson
+        </a>
+      </li>
+      <li>
+        <a href="#POBasicServiceRESTlikeAPIv4.5-OperationupdatePerson" rel="nofollow">
+          Operation updatePerson
+        </a>
+      </li>
+      <li>
+        <a href="#POBasicServiceRESTlikeAPIv4.5-OperationchangePersonStatus" rel="nofollow">
+          Operation changePersonStatus
+        </a>
+      </li>
+      <li>
+        <a href="#POBasicServiceRESTlikeAPIv4.5-OperationgetPerson" rel="nofollow">
+          Operation getPerson
+        </a>
+      </li>
+      <li>
+        <a href="#POBasicServiceRESTlikeAPIv4.5-OperationgetPersonsByCTEPId" rel="nofollow">
+          Operation getPersonsByCTEPId
+        </a>
+      </li>
+      <li>
+        <a href="#POBasicServiceRESTlikeAPIv4.5-OperationsearchPersons" rel="nofollow">
+          Operation searchPersons
+        </a>
+      </li>
+      <li>
+        <a href="#POBasicServiceRESTlikeAPIv4.5-OperationcreatePersonRole" rel="nofollow">
+          Operation createPersonRole
+        </a>
+      </li>
+      <li>
+        <a href="#POBasicServiceRESTlikeAPIv4.5-OperationupdatePersonRole" rel="nofollow">
+          Operation updatePersonRole
+        </a>
+      </li>
+      <li>
+        <a href="#POBasicServiceRESTlikeAPIv4.5-OperationchangePersonRoleStatus" rel="nofollow">
+          Operation changePersonRoleStatus
+        </a>
+      </li>
+      <li>
+        <a href="#POBasicServiceRESTlikeAPIv4.5-OperationgetPersonRolesByPersonId" rel="nofollow">
+          Operation getPersonRolesByPersonId
+        </a>
+      </li>
+      <li>
+        <a href="#POBasicServiceRESTlikeAPIv4.5-OperationgetPersonRoleById" rel="nofollow">
+          Operation getPersonRoleById
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#POBasicServiceRESTlikeAPIv4.5-OrganizationService" rel="nofollow">
+      Organization Service
+    </a>
+    <ul>
+      <li>
+        <a href="#POBasicServiceRESTlikeAPIv4.5-OperationcreateOrganization" rel="nofollow">
+          Operation createOrganization
+        </a>
+      </li>
+      <li>
+        <a href="#POBasicServiceRESTlikeAPIv4.5-OperationupdateOrganization" rel="nofollow">
+          Operation updateOrganization
+        </a>
+      </li>
+      <li>
+        <a href="#POBasicServiceRESTlikeAPIv4.5-OperationgetOrganization" rel="nofollow">
+          Operation getOrganization
+        </a>
+      </li>
+      <li>
+        <a href="#POBasicServiceRESTlikeAPIv4.5-OperationsearchOrganizations" rel="nofollow">
+          Operation searchOrganizations
+        </a>
+      </li>
+      <li>
+        <a href="#POBasicServiceRESTlikeAPIv4.5-OperationcreateOrganizationRole" rel="nofollow">
+          Operation createOrganizationRole
+        </a>
+      </li>
+      <li>
+        <a href="#POBasicServiceRESTlikeAPIv4.5-OperationupdateOrganizationRole" rel="nofollow">
+          Operation updateOrganizationRole
+        </a>
+      </li>
+      <li>
+        <a href="#POBasicServiceRESTlikeAPIv4.5-OperationchangeOrganizationRoleStatus" rel="nofollow">
+          Operation changeOrganizationRoleStatus
+        </a>
+      </li>
+      <li>
+        <a href="#POBasicServiceRESTlikeAPIv4.5-OperationgetOrganizationRolesByOrgId" rel="nofollow">
+          Operation getOrganizationRolesByOrgId
+        </a>
+      </li>
+      <li>
+        <a href="#POBasicServiceRESTlikeAPIv4.5-OperationgetOrganizationRolesByCTEPId" rel="nofollow">
+          Operation getOrganizationRolesByCTEPId
+        </a>
+      </li>
+      <li>
+        <a href="#POBasicServiceRESTlikeAPIv4.5-OperationgetOrganizationRoleById" rel="nofollow">
+          Operation getOrganizationRoleById
+        </a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#POBasicServiceRESTlikeAPIv4.5-FamilyService" rel="nofollow">
+      Family Service
+    </a>
+    <ul>
+      <li>
+        <a href="#POBasicServiceRESTlikeAPIv4.5-OperationsearchFamilies" rel="nofollow">
+          Operation searchFamilies
+        </a>
+      </li>
+      <li>
+        <a href="#POBasicServiceRESTlikeAPIv4.5-OperationgetFamilyMemberRelationshipsByFamilyId" rel="nofollow">
+          Operation getFamilyMemberRelationshipsByFamilyId
+        </a>
+      </li>
+      <li>
+        <a href="#POBasicServiceRESTlikeAPIv4.5-OperationgetFamily" rel="nofollow">
+          Operation getFamily
+        </a>
+      </li>
+      <li>
+        <a href="#POBasicServiceRESTlikeAPIv4.5-OperationgetFamilyMember" rel="nofollow">
+          Operation getFamilyMember
+        </a>
+      </li>
+    </ul>
+  </li>
+</ul>
+<h4 id="POBasicServiceRESTlikeAPIv4.5-AccessRequirements">
+  Access Requirements
+</h4>
+To use the service, you must have a valid NCI CTRP account. For instructions, refer to
+<a href="https://wiki.nci.nih.gov/display/CTRP/Creating+New+NCI+CTRP+User+Accounts" rel="nofollow">
+  Creating New NCI CTRP User Accounts
+</a>
+. All service endpoints require Okta token authentication with your NCI CTRP Client ID and Client Secret. Contact
+<a href="mailto:CTRP_support@nih.gov" rel="nofollow">
+  CTRP_support@nih.gov
+</a>
+ to have a NCI CTRP Client ID and Client secret generated for your CTRP REST account. See the following document for generating an Okta access token using your CTRP Client ID and Client Secret:
+<a href="https://wiki.nci.nih.gov/display/CTRP/NCI+CTRP+API+Authentication+Guide" rel="nofollow">
+  NCI CTRP API Authentication Guide
+</a>
+<h4 id="POBasicServiceRESTlikeAPIv4.5-PersonService">
+  Person Service
+</h4>
+The following sections describe operations provided by the Person web service. The service supports both JSON and XML formats.
+<h5 id="POBasicServiceRESTlikeAPIv4.5-OperationcreatePerson">
+  Operation createPerson
+</h5>
+Creates a person in PO database.
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        HTTP Method
+      </th>
+      <td>
+        POST
+      </td>
+    </tr>
+    <tr>
+      <th>
+        URL
+      </th>
+      <td>
+        /person
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Request Body
+      </th>
+      <td>
+        XML/JSON Person
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Response Body
+      </th>
+      <td>
+        XML/JSON Person
+      </td>
+    </tr>
+    <tr>
+      <th>
+        HTTP Response Code
+      </th>
+      <td>
+        Success:201
+        <ul>
+          <li>
+            Response data: person element
+          </li>
+          <li>
+            Description: Details of the created person, along with uri.
+          </li>
+        </ul>
+        Errors:
+        <ul>
+          <li>
+            500. Internal Server Error
+            <ul>
+              <li>
+                Description: An exception occurred at the backend.
+              </li>
+              <li>
+                Response Message: Error message in text/plain format.
+              </li>
+            </ul>
+          </li>
+          <li>
+            400. Bad Request
+            <ul>
+              <li>
+                Response Message: Error message in text/plain format.
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Sample URL and Request Body
+      </th>
+      <td>
+        URL:
+        <a href="https://trials.nci.nih.gov/po-webservices/services/person-rest-service/person" rel="nofollow">
+          https://trials.nci.nih.gov/po-webservices/services/person-rest-service/person
+        </a>
+        Request Header (for JSON Request):
+        Content-Type  application/json
+        Accept        application/json
+        Body (for JSON Request):
+
+         Expand source
+
+
+        {
+        &#34;prefix&#34;:&#34;Dr.&#34;,
+        &#34;firstName&#34;:&#34;John&#34;,
+        &#34;middleName&#34;:&#34;M&#34;,
+        &#34;lastName&#34;:&#34;Phillips&#34;,
+        &#34;suffix&#34;:null,
+        &#34;address&#34;:{
+        &#34;line1&#34;:&#34;4100 John R Street&#34;,
+        &#34;line2&#34;:&#34;Division of Hematology&#34;,
+        &#34;city&#34;:&#34;Detroit&#34;,
+        &#34;stateOrProvince&#34;:&#34;MI&#34;,
+        &#34;country&#34;:&#34;USA&#34;,
+        &#34;postalcode&#34;:&#34;48201&#34;
+        },
+        &#34;contact&#34;:[
+        {
+        &#34;value&#34;:&#34;philipp@karmanos.org&#34;,
+        &#34;type&#34;:&#34;EMAIL&#34;
+        },
+        {
+        &#34;value&#34;:&#34;philipp222@karmanos.org&#34;,
+        &#34;type&#34;:&#34;EMAIL&#34;
+        },
+        {
+        &#34;value&#34;:&#34;313-576-9363&#34;,
+        &#34;type&#34;:&#34;PHONE&#34;
+        },
+        {
+        &#34;value&#34;:&#34;313-576-8729&#34;,
+        &#34;type&#34;:&#34;FAX&#34;
+        }
+        ],
+        &#34;status&#34;:&#34;ACTIVE&#34;
+        }
+
+        Request Header (for XML Request):
+        Content-Type  application/xml
+        Accept        application/xml
+        Body (for XML Request):
+
+         Expand source
+
+
+        &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34; standalone=&#34;yes&#34;?&gt;
+        &lt;person xmlns=&#34;gov.nih.nci.po.webservices.types&#34;&gt;
+        &lt;status&gt;ACTIVE&lt;/status&gt;
+        &lt;prefix&gt;Dr.&lt;/prefix&gt;
+        &lt;firstName&gt;John&lt;/firstName&gt;
+        &lt;middleName&gt;M&lt;/middleName&gt;
+        &lt;lastName&gt;Phillips&lt;/lastName&gt;
+        &lt;address&gt;
+        &lt;line1&gt;4100 John R Street&lt;/line1&gt;
+        &lt;line2&gt;Division of Hematology&lt;/line2&gt;
+        &lt;city&gt;Detroit&lt;/city&gt;
+        &lt;stateOrProvince&gt;MI&lt;/stateOrProvince&gt;
+        &lt;country&gt;USA&lt;/country&gt;
+        &lt;postalcode&gt;48201&lt;/postalcode&gt;
+        &lt;/address&gt;
+        &lt;contact type=&#34;EMAIL&#34;&gt;philipp@karmanos.org&lt;/contact&gt;
+        &lt;contact type=&#34;EMAIL&#34;&gt;philipp222@karmanos.org&lt;/contact&gt;
+        &lt;contact type=&#34;PHONE&#34;&gt;313-576-9363&lt;/contact&gt;
+        &lt;contact type=&#34;FAX&#34;&gt;313-576-8729&lt;/contact&gt;
+        &lt;/person&gt;
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h5 id="POBasicServiceRESTlikeAPIv4.5-OperationupdatePerson">
+  Operation updatePerson
+</h5>
+Updates an existing person (for given ID) in PO database.
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        HTTP Method
+      </th>
+      <td>
+        PUT
+      </td>
+    </tr>
+    <tr>
+      <th>
+        URL
+      </th>
+      <td>
+        /person/{id}
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Request Body
+      </th>
+      <td>
+        XML/JSON Person
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Response Body
+      </th>
+      <td>
+        XML/JSON Person
+      </td>
+    </tr>
+    <tr>
+      <th>
+        HTTP Response Code
+      </th>
+      <td>
+        Success:
+        <ul>
+          <li>
+            200
+            <ul>
+              <li>
+                Response data: person element
+              </li>
+              <li>
+                Description: Person details after update.
+              </li>
+            </ul>
+          </li>
+          <li>
+            Errors:
+          </li>
+          <li>
+            500. Internal Server Error
+            <ul>
+              <li>
+                Description : Exception occured at the backend (except EntityNotFoundException).
+              </li>
+              <li>
+                Response Message: Error message in text/plain format.
+              </li>
+            </ul>
+          </li>
+          <li>
+            400. Bad Request
+            <ul>
+              <li>
+                Response Message: Error message in text/plain format.
+              </li>
+            </ul>
+          </li>
+          <li>
+            404.Not Found
+            <ul>
+              <li>
+                Description : Person for the given person ID is not found in the database.
+              </li>
+              <li>
+                Response Message: Error message in text/plain format (Person is not found in the database).
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Sample URL and Request Body
+      </th>
+      <td>
+        URL–&gt;
+        <a href="https://trials.nci.nih.gov/po-webservices/services/person-rest-service/person/30428" rel="nofollow">
+          https://trials.nci.nih.gov/po-webservices/services/person-rest-service/person/30428
+        </a>
+        Request Header (for JSON Request):
+        Content-Type  application/json
+        Accept        application/json
+        Body (for JSON Request):
+
+         Expand source
+
+
+        {
+        &#34;prefix&#34;:&#34;Dr.&#34;,
+        &#34;firstName&#34;:&#34;John&#34;,
+        &#34;middleName&#34;:&#34;M&#34;,
+        &#34;lastName&#34;:&#34;Phillips&#34;,
+        &#34;suffix&#34;:null,
+        &#34;address&#34;:{
+        &#34;line1&#34;:&#34;4100 John R Street&#34;,
+        &#34;line2&#34;:&#34;Division of Hematology&#34;,
+        &#34;city&#34;:&#34;Detroit&#34;,
+        &#34;stateOrProvince&#34;:&#34;MI&#34;,
+        &#34;country&#34;:&#34;USA&#34;,
+        &#34;postalcode&#34;:&#34;48201&#34;
+        },
+        &#34;contact&#34;:[
+        {
+        &#34;value&#34;:&#34;philipp@karmanos.org&#34;,
+        &#34;type&#34;:&#34;EMAIL&#34;
+        },
+        {
+        &#34;value&#34;:&#34;313-576-9363&#34;,
+        &#34;type&#34;:&#34;PHONE&#34;
+        },
+        {
+        &#34;value&#34;:&#34;313-576-8729&#34;,
+        &#34;type&#34;:&#34;FAX&#34;
+        }
+        ],
+        &#34;id&#34;:30428,
+        &#34;status&#34;:&#34;ACTIVE&#34;
+        }
+
+        Request Header (for XML Request):
+        Content-Type  application/xml
+        Accept        application/xml
+        Body (for XML Request):
+
+         Expand source
+
+
+        &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34; standalone=&#34;yes&#34;?&gt;
+        &lt;person xmlns=&#34;gov.nih.nci.po.webservices.types&#34;&gt;
+        &lt;id&gt;28211183&lt;/id&gt;
+        &lt;status&gt;ACTIVE&lt;/status&gt;
+        &lt;prefix&gt;Dr.&lt;/prefix&gt;
+        &lt;firstName&gt;Josh&lt;/firstName&gt;
+        &lt;middleName&gt;abc&lt;/middleName&gt;
+        &lt;lastName&gt;Philip&lt;/lastName&gt;
+        &lt;address&gt;
+        &lt;line1&gt;4100 John R Street&lt;/line1&gt;
+        &lt;line2&gt;Division of Hematology&lt;/line2&gt;
+        &lt;city&gt;Detroit&lt;/city&gt;
+        &lt;stateOrProvince&gt;MI&lt;/stateOrProvince&gt;
+        &lt;country&gt;USA&lt;/country&gt;
+        &lt;postalcode&gt;48201&lt;/postalcode&gt;
+        &lt;/address&gt;
+        &lt;contact type=&#34;EMAIL&#34;&gt;philipp@karmanos.org&lt;/contact&gt;
+        &lt;contact type=&#34;EMAIL&#34;&gt;philipp222@karmanos.org&lt;/contact&gt;
+        &lt;contact type=&#34;PHONE&#34;&gt;313-576-9363&lt;/contact&gt;
+        &lt;contact type=&#34;FAX&#34;&gt;313-576-8729&lt;/contact&gt;
+        &lt;/person&gt;
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h5 id="POBasicServiceRESTlikeAPIv4.5-OperationchangePersonStatus">
+  Operation changePersonStatus
+</h5>
+Changes the status of an existing person (for given ID).
+<table>
+  <tbody>
+    <tr>
+      <th>
+        HTTP Method
+      </th>
+      <td>
+        PUT
+      </td>
+    </tr>
+    <tr>
+      <th>
+        URL
+      </th>
+      <td>
+        /person/{id}/status
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Request Body
+      </th>
+      <td>
+        New status string(text/plain)
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Response Body
+      </th>
+      <td>
+        New status string(text/plain)
+      </td>
+    </tr>
+    <tr>
+      <th>
+        HTTP Response Code
+      </th>
+      <td>
+        Success:200
+        <ul>
+          <li>
+            Response data: person status string (text/plain).
+          </li>
+          <li>
+            Description: New status of the person (after update).
+          </li>
+        </ul>
+        Errors:
+        <ul>
+          <li>
+            500. Internal Server Error
+            <ul>
+              <li>
+                Description: Exception occured at the backend (except EntityNotFoundException).
+              </li>
+              <li>
+                Response Message: Error message in text/plain format.
+              </li>
+            </ul>
+          </li>
+          <li>
+            404. Not Found
+            <ul>
+              <li>
+                Description: When the person for given person ID is not found in the database.
+              </li>
+              <li>
+                Response Message: Error message in text/plain format (Person is not found in the database).
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Sample URL and Request Body
+      </th>
+      <td>
+        URL:
+        <a href="https://trials.nci.nih.gov/po-webservices/services/person-rest-service/person/30428/status" rel="nofollow">
+          https://trials.nci.nih.gov/po-webservices/services/person-rest-service/person/30428/status
+        </a>
+        Request Header:
+        Content-Type  text/plain
+        Accept        text/plain
+        Body:
+        ACTIVE
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h5 id="POBasicServiceRESTlikeAPIv4.5-OperationgetPerson">
+  Operation getPerson
+</h5>
+Gets the person by its database ID.
+<table>
+  <tbody>
+    <tr>
+      <th>
+        HTTP Method
+      </th>
+      <td>
+        GET
+      </td>
+    </tr>
+    <tr>
+      <th>
+        URL
+      </th>
+      <td>
+        /person/{id}
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Request Body
+      </th>
+      <td>
+        N/A
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Response Body
+      </th>
+      <td>
+        Non-empty XML/JSON Person
+      </td>
+    </tr>
+    <tr>
+      <th>
+        HTTP Response Code
+      </th>
+      <td>
+        Success:200
+        <ul>
+          <li>
+            Response data: person element
+          </li>
+          <li>
+            Description: Person details for the given person ID.
+          </li>
+        </ul>
+        Errors:
+        <ul>
+          <li>
+            500. Internal Server Error
+            <ul>
+              <li>
+                Description: Exception occured at the backend.
+              </li>
+              <li>
+                Response Message: Error message in text/plain format.
+              </li>
+            </ul>
+          </li>
+          <li>
+            404. Not Found
+            <ul>
+              <li>
+                Description: Person for the given person id is not found in the database.
+              </li>
+              <li>
+                Response Message: Error message in text/plain format (Person is not found in the database).
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Sample URL and Request Body
+      </th>
+      <td>
+        URL:
+        <a href="https://trials.nci.nih.gov/po-webservices/services/person-rest-service/person/30428" rel="nofollow">
+          https://trials.nci.nih.gov/po-webservices/services/person-rest-service/person/30428
+        </a>
+        Request Header (for JSON Request):
+        Accept    application/json
+        Request Header (for XML Request):
+        Accept     application/xml
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h5 id="POBasicServiceRESTlikeAPIv4.5-OperationgetPersonsByCTEPId">
+  Operation getPersonsByCTEPId
+</h5>
+Gets the Persons for the given CTEP id.
+<table>
+  <tbody>
+    <tr>
+      <th>
+        HTTP Method
+      </th>
+      <td>
+        GET
+      </td>
+    </tr>
+    <tr>
+      <th>
+        URL
+      </th>
+      <td>
+        /person/ctep/{id}
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Request Body
+      </th>
+      <td>
+        N/A
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Response Body
+      </th>
+      <td>
+        Non-empty XML/JSON Persons
+      </td>
+    </tr>
+    <tr>
+      <th>
+        HTTP Response Code
+      </th>
+      <td>
+        Success:200
+        <ul>
+          <li>
+            Response data: personList element
+          </li>
+          <li>
+            Description: List of the person having given CTEP id.
+          </li>
+        </ul>
+        Errors:
+        <ul>
+          <li>
+            500. Internal Server Error
+            <ul>
+              <li>
+                Description: Exception occured at the backend.
+              </li>
+              <li>
+                Response Message: Error message in text/plain format.
+              </li>
+            </ul>
+          </li>
+        </ul>
+        404. Not Found
+        <ul>
+          <li>
+            Description: No person in the database for given CTEP id.
+          </li>
+          <li>
+            Response Message: Error message in text/plain format (Person is not found in the database).
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Sample URL and Request Body
+      </th>
+      <td>
+        URL:
+        <a href="https://trials.nci.nih.gov/po-webservices/services/person-rest-service/person/ctep/24561" rel="nofollow">
+          https://trials.nci.nih.gov/po-webservices/services/person-rest-service/person/ctep/24561
+        </a>
+        Request Header (for JSON Request):
+        Accept     application/json
+        Request Header (for XML Request):
+        Accept     application/xml
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h5 id="POBasicServiceRESTlikeAPIv4.5-OperationsearchPersons">
+  Operation searchPersons
+</h5>
+Searches the persons.
+<table>
+  <tbody>
+    <tr>
+      <th>
+        HTTP Method
+      </th>
+      <td>
+        GET
+      </td>
+    </tr>
+    <tr>
+      <th>
+        URL
+      </th>
+      <td>
+        /persons
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Request Body
+      </th>
+      <td>
+        N/A
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Response Body
+      </th>
+      <td>
+        XML/JSON PersonSearchResultListor empty collection if no person found matching the criteria.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        HTTP Response Code
+      </th>
+      <td>
+        Success:200
+        <ul>
+          <li>
+            Response data: personSearchResultList element
+          </li>
+          <li>
+            Description: The list having personSearchResult matching given search criteria.
+          </li>
+        </ul>
+        Errors: 500. Internal Server Error
+        <ul>
+          <li>
+            Description: Exception occured at the backend.
+          </li>
+          <li>
+            Response Message: Error message in text/plain format.
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Sample URL and Request Body
+      </th>
+      <td>
+        Sample URLs:The URL can have one or more search criteria. The different search criteria are:
+        <a href="https://trials.nci.nih.gov/po-webservices/services/person-rest-service/persons?firstName=Rohit&amp;city=Herndon&amp;state=VA" rel="nofollow">
+          https://trials.nci.nih.gov/po-webservices/services/person-rest-service/persons?firstName=Rohit&amp;city=Herndon
+        </a>
+        <a href="https://trials.nci.nih.gov/po-webservices/services/person-rest-service/persons?lastName=Rohit&amp;offset=2&amp;limit=3" rel="nofollow">
+          https://trials.nci.nih.gov/po-webservices/services/person-rest-service/persons?lastName=Rohit&amp;offset=2&amp;limit=3
+        </a>
+        <a href="https://trials.nci.nih.gov/po-webservices/services/person-rest-service/persons?email=sconcology.net&amp;statusCode=ACTIVE" rel="nofollow">
+          https://trials.nci.nih.gov/po-webservices/services/person-rest-service/persons?email=sconcology.net&amp;statusCode=ACTIVE
+        </a>
+        <a href="https://trials.nci.nih.gov/po-webservices/services/person-rest-service/persons?affiliation=Cancer" rel="nofollow">
+          https://trials.nci.nih.gov/po-webservices/services/person-rest-service/persons?affiliation=Cancer
+        </a>
+        <a href="https://trials.nci.nih.gov/po-webservices/services/person-rest-service/persons?ctepID=25879" rel="nofollow">
+          https://trials.nci.nih.gov/po-webservices/services/person-rest-service/persons?CTEPID=25879
+        </a>
+        <a href="https://trials.nci.nih.gov/po-webservices/services/person-rest-service/persons?id=28228758" rel="nofollow">
+          https://trials.nci.nih.gov/po-webservices/services/person-rest-service/persons?id=28228758
+        </a>
+        <a href="https://trials.nci.nih.gov/po-webservices/services/person-rest-service/persons?countryCode=USA&amp;hasPendingCrsRoles=true&amp;hasPendingHcpRoles=true&amp;hasPendingOcRoles=false" rel="nofollow">
+          https://trials.nci.nih.gov/po-webservices/services/person-rest-service/persons?countryCode=USA&amp;hasPendingCrsRoles=true&amp;hasPendingHcpRoles=true&amp;hasPendingOcRoles=false
+        </a>
+        <a href="https://trials.nci.nih.gov/po-webservices/services/person-rest-service/persons?countryCode=USA" rel="nofollow">
+          https://trials.nci.nih.gov/po-webservices/services/person-rest-service/persons?countryCode=USA
+        </a>
+        <a href="https://trials.nci.nih.gov/po-webservices/services/person-rest-service/persons?line1=Avenue&amp;line2=2115" rel="nofollow">
+          https://trials.nci.nih.gov/po-webservices/services/person-rest-service/persons?line1=Avenue&amp;line2=2115
+        </a>
+        <a href="https://trials.nci.nih.gov/po-webservices/services/person-rest-service/persons?city=Chicago&amp;stateOrProvince=IL&amp;postalcode=60637" rel="nofollow">
+          https://trials.nci.nih.gov/po-webservices/services/person-rest-service/persons?city=Chicago&amp;stateOrProvince=IL&amp;postalcode=60637
+        </a>
+        Request Header (for JSON Request):
+        Accept     application/json
+        Request Header (for XML Request):
+        Accept     application/xml
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h5 id="POBasicServiceRESTlikeAPIv4.5-OperationcreatePersonRole">
+  Operation createPersonRole
+</h5>
+Creates a personRole.
+<table>
+  <tbody>
+    <tr>
+      <th>
+        HTTP Method
+      </th>
+      <td>
+        POST
+      </td>
+    </tr>
+    <tr>
+      <th>
+        URL
+      </th>
+      <td>
+        /role
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Request Body
+      </th>
+      <td>
+        XML/JSON Person Role
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Response Body
+      </th>
+      <td>
+        XML/JSON Person Role
+      </td>
+    </tr>
+    <tr>
+      <th>
+        HTTP Response Code
+      </th>
+      <td>
+        Success:200
+        <ul>
+          <li>
+            Response data: personRole element
+          </li>
+          <li>
+            Description: Details of the created personRole, along with uri.
+          </li>
+        </ul>
+        Errors:
+        <ul>
+          <li>
+            500. Internal Server Error
+            <ul>
+              <li>
+                Description: Exception occured at the backend.
+              </li>
+              <li>
+                Response Message: Error message in text/plain format.
+              </li>
+            </ul>
+          </li>
+          <li>
+            400. Bad Request
+            <ul>
+              <li>
+                Response Message: Error message in text/plain format.
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Sample URL and Request Body
+      </th>
+      <td>
+        URL:
+        <a href="https://trials.nci.nih.gov/po-webservices/services/person-rest-service/role" rel="nofollow">
+          https://trials.nci.nih.gov/po-webservices/services/person-rest-service/role
+        </a>
+        Request Header (for JSON Request):
+        Content-Type  application/json
+        Accept        application/json
+        Body (for JSON Request - HealthCareProvider):
+
+         Expand source
+
+
+        {
+        &#34;@class&#34;:&#34;gov.nih.nci.po.webservices.types.HealthCareProvider&#34;,
+        &#34;license&#34;:null,
+        &#34;status&#34;:&#34;PENDING&#34;,
+        &#34;organizationId&#34;:120807,
+        &#34;address&#34;:[
+        {
+        &#34;line1&#34;:&#34;330 Brookline Avenue&#34;,
+        &#34;line2&#34;:&#34;Division East Campus KS 121&#34;,
+        &#34;city&#34;:&#34;Boston&#34;,
+        &#34;stateOrProvince&#34;:&#34;MA&#34;,
+        &#34;country&#34;:&#34;USA&#34;,
+        &#34;postalcode&#34;:&#34;02215&#34;
+        }
+        ],
+        &#34;contact&#34;:[
+        {
+        &#34;value&#34;:&#34;davigan@bidmc.harvard.edu&#34;,
+        &#34;type&#34;:&#34;EMAIL&#34;
+        },
+        {
+        &#34;value&#34;:&#34;617-667-9925&#34;,
+        &#34;type&#34;:&#34;PHONE&#34;
+        },
+        {
+        &#34;value&#34;:&#34;617-667-9922&#34;,
+        &#34;type&#34;:&#34;FAX&#34;
+        }
+        ],
+        &#34;personId&#34;:28273761
+        }
+
+        Note-&gt; The body for ClinicalResearchStaff and OrganizationalContact will have respective @Class and other attributes.Request Header (for XML Request):
+        Content-Type  application/xml
+        Accept        application/xml
+        Body (for XML Request):1) Sample request for Create OrganizationalContact:
+
+         Expand source
+
+
+        &lt;personRole xmlns=&#34;gov.nih.nci.po.webservices.types&#34;
+        xmlns:xsi=&#34;http://www.w3.org/2001/XMLSchema-instance&#34; xsi:type=&#34;OrganizationalContact&#34;&gt;
+        &lt;status&gt;PENDING&lt;/status&gt;
+        &lt;organizationId&gt;55334&lt;/organizationId&gt;
+        &lt;address&gt;
+        &lt;line1&gt;330 Brookline Avenue&lt;/line1&gt;
+        &lt;line2&gt;
+        Hematology and Oncology Division East Campus KS 121
+        &lt;/line2&gt;
+        &lt;city&gt;Boston&lt;/city&gt;
+        &lt;stateOrProvince&gt;MA&lt;/stateOrProvince&gt;
+        &lt;country&gt;USA&lt;/country&gt;
+        &lt;postalcode&gt;02215&lt;/postalcode&gt;
+        &lt;/address&gt;
+        &lt;contact type=&#34;EMAIL&#34;&gt;davigan@bidmc.harvard.edu&lt;/contact&gt;
+        &lt;contact type=&#34;PHONE&#34;&gt;617-667-9925&lt;/contact&gt;
+        &lt;contact type=&#34;FAX&#34;&gt;617-667-9922&lt;/contact&gt;
+        &lt;personId&gt;55295&lt;/personId&gt;
+        &lt;title&gt;some title&lt;/title&gt;
+        &lt;type&gt;IRB&lt;/type&gt;
+        &lt;/personRole&gt;
+
+        2) Sample request for Create HealthCareProvider:
+
+         Expand source
+
+
+        &lt;personRole xmlns=&#34;gov.nih.nci.po.webservices.types&#34;
+        xmlns:xsi=&#34;http://www.w3.org/2001/XMLSchema-instance&#34; xsi:type=&#34;HealthCareProvider&#34;&gt;
+        &lt;status&gt;ACTIVE&lt;/status&gt;
+        &lt;organizationId&gt;120807&lt;/organizationId&gt;
+        &lt;address&gt;
+        &lt;line1&gt;330 Brookline Avenue&lt;/line1&gt;
+        &lt;line2&gt;
+        Hematology and Oncology Division East Campus KS 121
+        &lt;/line2&gt;
+        &lt;city&gt;Boston&lt;/city&gt;
+        &lt;stateOrProvince&gt;MA&lt;/stateOrProvince&gt;
+        &lt;country&gt;USA&lt;/country&gt;
+        &lt;postalcode&gt;02215&lt;/postalcode&gt;
+        &lt;/address&gt;
+        &lt;contact type=&#34;EMAIL&#34;&gt;davigan@bidmc.harvard.edu&lt;/contact&gt;
+        &lt;contact type=&#34;PHONE&#34;&gt;617-667-9925&lt;/contact&gt;
+        &lt;contact type=&#34;FAX&#34;&gt;617-667-9922&lt;/contact&gt;
+        &lt;personId&gt;28260719&lt;/personId&gt;
+        &lt;/personRole&gt;
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h5 id="POBasicServiceRESTlikeAPIv4.5-OperationupdatePersonRole">
+  Operation updatePersonRole
+</h5>
+Updates an existing personRole for given type and id.
+<table>
+  <tbody>
+    <tr>
+      <th>
+        HTTP Method
+      </th>
+      <td>
+        PUT
+      </td>
+    </tr>
+    <tr>
+      <th>
+        URL
+      </th>
+      <td>
+        /role/{type}/{id}
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Request Body
+      </th>
+      <td>
+        XML/JSON Person Role
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Response Body
+      </th>
+      <td>
+        XML/JSON Person Role
+      </td>
+    </tr>
+    <tr>
+      <th>
+        HTTP Response Code
+      </th>
+      <td>
+        Success:200
+        <ul>
+          <li>
+            Response data : personRole element
+          </li>
+          <li>
+            Description: PersonRole details after update.
+          </li>
+        </ul>
+        Errors:
+        <ul>
+          <li>
+            500. Internal Server Error
+            <ul>
+              <li>
+                Description: Exception occured at the backend.
+              </li>
+              <li>
+                Response Message: Error message in text/plain format.
+              </li>
+            </ul>
+          </li>
+          <li>
+            400. Bad Request
+            <ul>
+              <li>
+                Response Message: Error message in text/plain format.
+              </li>
+            </ul>
+          </li>
+          <li>
+            404. Not Found
+            <ul>
+              <li>
+                Description: personRole for the given personrole type and id is not found in the database.
+              </li>
+              <li>
+                Response Message: Error message in text/plain format((PersonRole is not found in the database).
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Sample URL and Request Body
+      </th>
+      <td>
+        URL (for updating OrganizationalContact):
+        <a href="https://trials.nci.nih.gov/po-webservices/services/person-rest-service/role/OrganizationalContact/28210749" rel="nofollow">
+          https://trials.nci.nih.gov/po-webservices/services/person-rest-service/role/OrganizationalContact/28210749
+        </a>
+        Request Header (for JSON Request):
+        Content-Type  application/json
+        Accept        application/json
+        Body (for JSON Request - OrganizationalContact):
+
+         Expand source
+
+
+        {
+        &#34;@class&#34;:&#34;gov.nih.nci.po.webservices.types.OrganizationalContact&#34;,
+        &#34;title&#34;:&#34;some title&#34;,
+        &#34;type&#34;:&#34;IRB&#34;,
+        &#34;id&#34;:28210749,
+        &#34;status&#34;:&#34;PENDING&#34;,
+        &#34;organizationId&#34;:28210712,
+        &#34;address&#34;:[
+        {
+        &#34;line1&#34;:&#34;330 Brookline Avenue&#34;,
+        &#34;line2&#34;:null,
+        &#34;city&#34;:&#34;Boston&#34;,
+        &#34;stateOrProvince&#34;:&#34;MA&#34;,
+        &#34;country&#34;:&#34;USA&#34;,
+        &#34;postalcode&#34;:&#34;02215&#34;
+        }
+        ],
+        &#34;contact&#34;:[
+        {
+        &#34;value&#34;:&#34;wstock@medicine.bsd.uchicago.edu&#34;,
+        &#34;type&#34;:&#34;EMAIL&#34;
+        },
+        {
+        &#34;value&#34;:&#34;773-834-7425&#34;,
+        &#34;type&#34;:&#34;PHONE&#34;
+        },
+        {
+        &#34;value&#34;:&#34;773-702-0963&#34;,
+        &#34;type&#34;:&#34;FAX&#34;
+        }
+        ],
+        &#34;personId&#34;:28210667
+        }
+
+        URL (for updating ClinicalResearchStaff):
+        <a href="https://trials.nci.nih.gov/po-webservices/services/person-rest-service/role/ClinicalResearchStaff/28211370" rel="nofollow">
+          https://trials.nci.nih.gov/po-webservices/services/person-rest-service/role/ClinicalResearchStaff/28211370
+        </a>
+        URL (for updating HealthCareProvider):
+        <a href="https://trials.nci.nih.gov/po-webservices/services/person-rest-service/role/HealthCareProvider/28211370" rel="nofollow">
+          https://trials.nci.nih.gov/po-webservices/services/person-rest-service/role/HealthCareProvider/28211370
+        </a>
+        Note-&gt; The body for ClinicalResearchStaff and HealthCareProvider will have respective @Class and other attributes.Request Header (for XML Request):
+        Content-Type  application/xml
+        Accept        application/xml
+        Body (for XML Request - HealthCareProvider):
+
+         Expand source
+
+
+        &lt;personRole xmlns=&#34;gov.nih.nci.po.webservices.types&#34;
+        xmlns:xsi=&#34;http://www.w3.org/2001/XMLSchema-instance&#34; xsi:type=&#34;HealthCareProvider&#34;&gt;
+        &lt;id&gt;28211370&lt;/id&gt;
+        &lt;status&gt;PENDING&lt;/status&gt;
+        &lt;organizationId&gt;120807&lt;/organizationId&gt;
+        &lt;address&gt;
+        &lt;line1&gt;330 Brookline Avenue&lt;/line1&gt;
+        &lt;line2&gt;
+        Hematology and Oncology Division East Campus KS 121
+        &lt;/line2&gt;
+        &lt;city&gt;Boston&lt;/city&gt;
+        &lt;stateOrProvince&gt;MA&lt;/stateOrProvince&gt;
+        &lt;country&gt;USA&lt;/country&gt;
+        &lt;postalcode&gt;02215&lt;/postalcode&gt;
+        &lt;/address&gt;
+        &lt;contact type=&#34;EMAIL&#34;&gt;davigan@bidmc.harvard.edu&lt;/contact&gt;
+        &lt;contact type=&#34;PHONE&#34;&gt;617-667-9925&lt;/contact&gt;
+        &lt;contact type=&#34;FAX&#34;&gt;617-667-9922&lt;/contact&gt;
+        &lt;personId&gt;28211331&lt;/personId&gt;
+        &lt;/personRole&gt;
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h5 id="POBasicServiceRESTlikeAPIv4.5-OperationchangePersonRoleStatus">
+  Operation changePersonRoleStatus
+</h5>
+Changes the status of an existing personrole for given type and id.
+<table>
+  <tbody>
+    <tr>
+      <th>
+        HTTP Method
+      </th>
+      <td>
+        PUT
+      </td>
+    </tr>
+    <tr>
+      <th>
+        URL
+      </th>
+      <td>
+        /role/{type}/{id}/status
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Request Body
+      </th>
+      <td>
+        New status string(text/plain)
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Response Body
+      </th>
+      <td>
+        New status string(text/plain)
+      </td>
+    </tr>
+    <tr>
+      <th>
+        HTTP Response Code
+      </th>
+      <td>
+        Success:200
+        <ul>
+          <li>
+            Response data: personRole status string (text/plain)
+          </li>
+          <li>
+            Description: New status of the personRole (after update).
+          </li>
+        </ul>
+        Errors:
+        <ul>
+          <li>
+            500. Internal Server Error
+            <ul>
+              <li>
+                Description: Exception occured at the backend.
+              </li>
+              <li>
+                Response Message: Error message in text/plain format.
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul>
+          <li>
+            404. Not Found
+            <ul>
+              <li>
+                Description: When the personRole for given personRole type and id is not found in the database.
+              </li>
+              <li>
+                Response Message: Error message in text/plain format (PersonRole is not found in the database).
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Sample URL and Request Body
+      </th>
+      <td>
+        URL (for changing OrganizationalContact status):
+        <a href="https://trials.nci.nih.gov/po-webservices/services/person-rest-service/role/ClinicalResearchStaff/9558371/status" rel="nofollow">
+          https://trials.nci.nih.gov/po-webservices/services/person-rest-service/role/ClinicalResearchStaff/9558371/status
+        </a>
+        Request Header:
+        Content-Type  text/plain
+        Accept        text/plain
+        Body:
+        INACTIVE
+        URL (for changing HealthCareProvider status):
+        <a href="https://trials.nci.nih.gov/po-webservices/services/person-rest-service/role/HealthCareProvider/269797/status" rel="nofollow">
+          https://trials.nci.nih.gov/po-webservices/services/person-rest-service/role/HealthCareProvider/269797/status
+        </a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h5 id="POBasicServiceRESTlikeAPIv4.5-OperationgetPersonRolesByPersonId">
+  Operation getPersonRolesByPersonId
+</h5>
+Gets the personRoles for given person id.
+<table>
+  <tbody>
+    <tr>
+      <th>
+        HTTP Method
+      </th>
+      <td>
+        GET
+      </td>
+    </tr>
+    <tr>
+      <th>
+        URL
+      </th>
+      <td>
+        /person/{id}/roles
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Request Body
+      </th>
+      <td>
+        N/A
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Response Body
+      </th>
+      <td>
+        XML/JSON PersonRoles or empty collection if no roles for the person id
+      </td>
+    </tr>
+    <tr>
+      <th>
+        HTTP Response Code
+      </th>
+      <td>
+        Success:200Response data: personRoleList elementDescription: List of personRole for given Person id.Errors:
+        <ul>
+          <li>
+            500. Internal Server Error
+            <ul>
+              <li>
+                Description: Exception occured at the backend.
+              </li>
+              <li>
+                Response Message: Error message in text/plain format.
+              </li>
+            </ul>
+          </li>
+          <li>
+            404. Not Found
+            <ul>
+              <li>
+                Description: When a person for the given person id is not found in the database.
+              </li>
+              <li>
+                Response Message: Error message in text/plain format(Person is not found in the database).
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Sample URL and Request Body
+      </th>
+      <td>
+        URL:
+        <a href="https://trials.nci.nih.gov/po-webservices/services/person-rest-service/person/269790/roles" rel="nofollow">
+          https://trials.nci.nih.gov/po-webservices/services/person-rest-service/person/269790/roles
+        </a>
+        Request Header (for JSON Request):
+        Accept     application/json
+        Request Header (for XML Request):
+        Accept     application/xml
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h5 id="POBasicServiceRESTlikeAPIv4.5-OperationgetPersonRoleById">
+  Operation getPersonRoleById
+</h5>
+Gets the personRole for given role type and id.
+<table>
+  <tbody>
+    <tr>
+      <th>
+        HTTP Method
+      </th>
+      <td>
+        GET
+      </td>
+    </tr>
+    <tr>
+      <th>
+        URL
+      </th>
+      <td>
+        /role/{type}/{id}
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Request Body
+      </th>
+      <td>
+        N/A
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Response Body
+      </th>
+      <td>
+        Non-empty XML/JSON PersonRole
+      </td>
+    </tr>
+    <tr>
+      <th>
+        HTTP Response Code
+      </th>
+      <td>
+        Success:200Response data: personRole elementDescription: PersonRole details for the given personRole type and id.Errors:
+        <ul>
+          <li>
+            500. Internal Server Error
+            <ul>
+              <li>
+                Description: Exception occured at the backend.
+              </li>
+              <li>
+                Response Message: Error message in text/plain format.
+              </li>
+            </ul>
+          </li>
+          <li>
+            404. Not Found
+            <ul>
+              <li>
+                Description: When the personRole for the given personRole type and id is not found in the database.
+              </li>
+              <li>
+                Response Message: Error message in text/plain format (PersonRole is not found in the database).
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Sample URL and Request Body
+      </th>
+      <td>
+        Sample URLs:For HealthCareProvider-&gt;
+        <a href="https://trials.nci.nih.gov/po-webservices/services/person-rest-service/role/HealthCareProvider/269797" rel="nofollow">
+          https://trials.nci.nih.gov/po-webservices/services/person-rest-service/role/HealthCareProvider/269797
+        </a>
+        For ClinicalResearchStaff:
+        <a href="https://trials.nci.nih.gov/po-webservices/services/person-rest-service/role/ClinicalResearchStaff/9558371" rel="nofollow">
+          https://trials.nci.nih.gov/po-webservices/services/person-rest-service/role/ClinicalResearchStaff/9558371
+        </a>
+        For OrganizationalContact:
+        <a href="https://trials.nci.nih.gov/po-webservices/services/person-rest-service/role/OrganizationalContact/9558371" rel="nofollow">
+          https://trials.nci.nih.gov/po-webservices/services/person-rest-service/role/OrganizationalContact/9558371
+        </a>
+        Request Header (for JSON Request):
+        Accept     application/json
+        Request Header (for XML Request):
+        Accept      application/xml
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h4 id="POBasicServiceRESTlikeAPIv4.5-OrganizationService">
+  Organization Service
+</h4>
+The following sections describe operations provided by the Organization web service.
+<h5 id="POBasicServiceRESTlikeAPIv4.5-OperationcreateOrganization">
+  Operation createOrganization
+</h5>
+Creates an Organization in PO database.
+<table>
+  <tbody>
+    <tr>
+      <th>
+        HTTP Method
+      </th>
+      <td>
+        POST
+      </td>
+    </tr>
+    <tr>
+      <th>
+        URL
+      </th>
+      <td>
+        /organization
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Request Body
+      </th>
+      <td>
+        XML/JSON Organization
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Response Body
+      </th>
+      <td>
+        XML/JSON Organization
+      </td>
+    </tr>
+    <tr>
+      <th>
+        HTTP Response Code
+      </th>
+      <td>
+        Success:HTTP Response : 201Response data : organization elementDescription: Details of the created Organization, along with uri.Errors:
+        <ul>
+          <li>
+            500. Internal Server Error
+            <ul>
+              <li>
+                Description: Exception occured at the backend.
+              </li>
+              <li>
+                Response Message: Error message in text/plain format.
+              </li>
+            </ul>
+          </li>
+          <li>
+            400. Bad Request
+            <ul>
+              <li>
+                Response Message: Error message in text/plain format.
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Sample URL and Request Body (XML Format)
+      </th>
+      <td>
+        URL:
+        <a href="https://trials.nci.nih.gov/po-webservices/services/organization-rest-service/organization" rel="nofollow">
+          https://trials.nci.nih.gov/po-webservices/services/organization-rest-service/organization
+        </a>
+        Request Header (for JSON Request):
+        Content-Type  application/json
+        Accept        application/json
+        Body (for JSON Request):
+
+         Expand source
+
+
+        {
+        &#34;name&#34;:&#34;Mayo Clinic Test&#34;,
+        &#34;address&#34;:{
+        &#34;line1&#34;:&#34;200 First Street Southwest&#34;,
+        &#34;line2&#34;:&#34;Test&#34;,
+        &#34;city&#34;:&#34;Rochester&#34;,
+        &#34;stateOrProvince&#34;:&#34;MN&#34;,
+        &#34;country&#34;:&#34;USA&#34;,
+        &#34;postalcode&#34;:&#34;55905&#34;
+        },
+        &#34;contact&#34;:[
+        {
+        &#34;value&#34;:&#34;mayo.test@mail.nih.gov&#34;,
+        &#34;type&#34;:&#34;EMAIL&#34;
+        },
+        {
+        &#34;value&#34;:&#34;111-222-3333&#34;,
+        &#34;type&#34;:&#34;PHONE&#34;
+        },
+        {
+        &#34;value&#34;:&#34;111-222-3344&#34;,
+        &#34;type&#34;:&#34;FAX&#34;
+        },
+        {
+        &#34;value&#34;:&#34;111-222-3355&#34;,
+        &#34;type&#34;:&#34;TTY&#34;
+        },
+        {
+        &#34;value&#34;:&#34;http://www.mayoclinic.org&#34;,
+        &#34;type&#34;:&#34;URL&#34;
+        }
+        ],
+        &#34;status&#34;:&#34;PENDING&#34;
+        }
+
+        Request Header (for XML Request):
+        Content-Type  application/xml
+        Accept        application/xml
+        Body (for XML Request):
+
+         Expand source
+
+
+        &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34; standalone=&#34;yes&#34;?&gt;
+        &lt;organization xmlns=&#34;gov.nih.nci.po.webservices.types&#34;&gt;
+        &lt;status&gt;PENDING&lt;/status&gt;
+        &lt;name&gt;Mayo Clinic Test&lt;/name&gt;
+        &lt;address&gt;
+        &lt;line1&gt;200 First Street Southwest&lt;/line1&gt;
+        &lt;line2&gt;Test&lt;/line2&gt;
+        &lt;city&gt;Rochester&lt;/city&gt;
+        &lt;stateOrProvince&gt;MN&lt;/stateOrProvince&gt;
+        &lt;country&gt;USA&lt;/country&gt;
+        &lt;postalcode&gt;55905&lt;/postalcode&gt;
+        &lt;/address&gt;
+        &lt;contact type=&#34;EMAIL&#34;&gt;mayo.test@mail.nih.gov&lt;/contact&gt;
+        &lt;contact type=&#34;PHONE&#34;&gt;111-222-3333&lt;/contact&gt;
+        &lt;contact type=&#34;FAX&#34;&gt;111-222-3344&lt;/contact&gt;
+        &lt;contact type=&#34;TTY&#34;&gt;111-222-3355&lt;/contact&gt;
+        &lt;contact type=&#34;URL&#34;&gt;http://www.mayoclinic.org&lt;/contact&gt;
+        &lt;/organization&gt;
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h5 id="POBasicServiceRESTlikeAPIv4.5-OperationupdateOrganization">
+  Operation updateOrganization
+</h5>
+Updates an existing Organization for given organization id.
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        HTTP Method
+      </th>
+      <td>
+        PUT
+      </td>
+    </tr>
+    <tr>
+      <th>
+        URL
+      </th>
+      <td>
+        /organization/{id}
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Request Body
+      </th>
+      <td>
+        XML/JSON Organization
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Response Body
+      </th>
+      <td>
+        XML/JSON Organization
+      </td>
+    </tr>
+    <tr>
+      <th>
+        HTTP Response Code
+      </th>
+      <td>
+        Success:200
+        <ul>
+          <li>
+            Response data: organization element
+          </li>
+          <li>
+            Description: Organization details after update.
+          </li>
+        </ul>
+        Errors:
+        <ul>
+          <li>
+            500. Internal Server Error
+            <ul>
+              <li>
+                Description: Exception occured at the backend.
+              </li>
+              <li>
+                Response Message: Error message in text/plain format.
+              </li>
+            </ul>
+          </li>
+          <li>
+            400. Bad Request
+            <ul>
+              <li>
+                Response Message: Error message in text/plain format.
+              </li>
+            </ul>
+          </li>
+          <li>
+            404. Not Found
+            <ul>
+              <li>
+                Description: Organization for the given organization id is not found in the database.
+              </li>
+              <li>
+                Response Message: Error message in text/plain format (Organization is not found in the database).
+              </li>
+            </ul>
+          </li>
+        </ul>
+        NOTE : The updated organization name is added as an alias (not part of response). However a search will return this alias.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Sample URL and Request Body (XML Format)
+      </th>
+      <td>
+        URL:
+        <a href="https://trials.nci.nih.gov/po-webservices/services/organization-rest-service/organization/28227601" rel="nofollow">
+          https://trials.nci.nih.gov/po-webservices/services/organization-rest-service/organization/28227601
+        </a>
+        Request Header (for JSON Request):
+        Content-Type  application/json
+        Accept        application/json
+        Body (for JSON Request):
+
+         Expand source
+
+
+        {
+        &#34;name&#34;:&#34;Mayo Clinic Test&#34;,
+        &#34;address&#34;:{
+        &#34;line1&#34;:&#34;200 First Street Southwest&#34;,
+        &#34;line2&#34;:&#34;Test updated line&#34;,
+        &#34;city&#34;:&#34;Rochester&#34;,
+        &#34;stateOrProvince&#34;:&#34;MN&#34;,
+        &#34;country&#34;:&#34;USA&#34;,
+        &#34;postalcode&#34;:&#34;55905&#34;
+        },
+        &#34;contact&#34;:[
+        {
+        &#34;value&#34;:&#34;mayo.test@mail.nih.gov&#34;,
+        &#34;type&#34;:&#34;EMAIL&#34;
+        },
+        {
+        &#34;value&#34;:&#34;111-222-3333&#34;,
+        &#34;type&#34;:&#34;PHONE&#34;
+        },
+        {
+        &#34;value&#34;:&#34;111-222-3344&#34;,
+        &#34;type&#34;:&#34;FAX&#34;
+        },
+        {
+        &#34;value&#34;:&#34;111-222-3355&#34;,
+        &#34;type&#34;:&#34;TTY&#34;
+        },
+        {
+        &#34;value&#34;:&#34;http://www.mayoclinic.org&#34;,
+        &#34;type&#34;:&#34;URL&#34;
+        }
+        ],
+        &#34;id&#34;:28210629,
+        &#34;status&#34;:&#34;PENDING&#34;
+        }
+
+        Request Header (for XML Request):
+        Content-Type  application/xml
+        Accept        application/xml
+        Body (for XML Request):
+
+         Expand source
+
+
+        &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34; standalone=&#34;yes&#34;?&gt;
+        &lt;organization xmlns=&#34;gov.nih.nci.po.webservices.types&#34;&gt;
+        &lt;id&gt;28227601&lt;/id&gt;
+        &lt;status&gt;PENDING&lt;/status&gt;
+        &lt;name&gt;Mayo Clinic Test2&lt;/name&gt;
+        	&lt;address&gt;
+        &lt;line1&gt;200 First Street Southwest&lt;/line1&gt;
+        &lt;line2&gt;Test&lt;/line2&gt;
+        &lt;city&gt;Rochester&lt;/city&gt;
+        &lt;stateOrProvince&gt;MN&lt;/stateOrProvince&gt;
+        &lt;country&gt;USA&lt;/country&gt;
+        &lt;postalcode&gt;55905&lt;/postalcode&gt;
+        &lt;/address&gt;
+        &lt;contact type=&#34;EMAIL&#34;&gt;mayo.test@mail.nih.gov&lt;/contact&gt;
+        &lt;contact type=&#34;PHONE&#34;&gt;111-222-3333&lt;/contact&gt;
+        &lt;contact type=&#34;FAX&#34;&gt;111-222-3344&lt;/contact&gt;
+        &lt;contact type=&#34;TTY&#34;&gt;111-222-3355&lt;/contact&gt;
+        &lt;contact type=&#34;URL&#34;&gt;http://www.mayoclinic.org&lt;/contact&gt;
+        &lt;/organization&gt;
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h5 id="POBasicServiceRESTlikeAPIv4.5-OperationgetOrganization">
+  Operation getOrganization
+</h5>
+Gets the Organization on the basis of organization (database) id.
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        HTTP Method
+      </th>
+      <td>
+        GET
+      </td>
+    </tr>
+    <tr>
+      <th>
+        URL
+      </th>
+      <td>
+        /organization/{id}
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Request Body
+      </th>
+      <td>
+        N/A
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Response Body
+      </th>
+      <td>
+        Non-empty XML/JSON Organization
+      </td>
+    </tr>
+    <tr>
+      <th>
+        HTTP Response Code
+      </th>
+      <td>
+        Success:200
+        <ul>
+          <li>
+            Response data: organization element
+          </li>
+          <li>
+            Description: Organization details for the given organization id.
+          </li>
+        </ul>
+        Errors:
+        <ul>
+          <li>
+            500. Internal Server Error
+            <ul>
+              <li>
+                Description: Exception occured at the backend.
+              </li>
+              <li>
+                Response Message: Error message in text/plain format.
+              </li>
+            </ul>
+          </li>
+          <li>
+            404. Not Found
+            <ul>
+              <li>
+                Description: Organization for the given organization id is not found in the database.
+              </li>
+              <li>
+                Response Message: Error message in text/plain format (Organization is not found in the database).
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Sample URL and Request Body (XML Format)
+      </th>
+      <td>
+        URL:
+        <a href="https://trials.nci.nih.gov/po-webservices/services/organization-rest-service/organization/28227567" rel="nofollow">
+          https://trials.nci.nih.gov/po-webservices/services/organization-rest-service/organization/28227567
+        </a>
+        Request Header (for JSON Request):
+        Accept     application/json
+        Request Header (for XML Request):
+        Accept     application/xml
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h5 id="POBasicServiceRESTlikeAPIv4.5-OperationsearchOrganizations">
+  Operation searchOrganizations
+</h5>
+Searches the Organizations.
+<table>
+  <tbody>
+    <tr>
+      <th>
+        HTTP Method
+      </th>
+      <td>
+        GET
+      </td>
+    </tr>
+    <tr>
+      <th>
+        URL
+      </th>
+      <td>
+        /organizations
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Request Body
+      </th>
+      <td>
+        N/A
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Response Body
+      </th>
+      <td>
+        Success:200
+        <ul>
+          <li>
+            Response data: organizationSearchResultList element
+          </li>
+          <li>
+            Description: List of organizationSearchResult matching given search criteria.
+          </li>
+        </ul>
+        Errors: 500. Internal Server Error
+        <ul>
+          <li>
+            Description: Exception occured at the backend.
+          </li>
+          <li>
+            Response Message: Error message in text/plain format.
+          </li>
+        </ul>
+        **Note
+        <ul>
+          <li>
+            When specifying boolean fields like hasPendingRoRoles, the value true is accepted while false is ignored during search. This is similar to the behavior is UI where false/0 is equal to not specifying/selecting that field.
+          </li>
+          <li>
+            When searching Organizations using CTEP ID, search for the IO CTEP IDs separately from HCF and RO CTEP IDs.
+          </li>
+          <li>
+            The searchResult contains aliases in the response. They are NOT part of create/update or request/response.
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        HTTP Response Code
+      </th>
+      <td>
+        Sample URLs:The URL can have one or more search criteria. The different search criteria are:
+        <a href="https://trials.nci.nih.gov/po-webservices/services/organization-rest-service/organizations?organizationName=Mayo&amp;statusCode=ACTIVE" rel="nofollow">
+          https://trials.nci.nih.gov/po-webservices/services/organization-rest-service/organizations?organizationName=Mayo&amp;statusCode=ACTIVE
+        </a>
+        <a href="https://trials.nci.nih.gov/po-webservices/services/organization-rest-service/organizations?ctepID=AZ020" rel="nofollow">
+          https://trials.nci.nih.gov/po-webservices/services/organization-rest-service/organizations?CTEPID=AZ020
+        </a>
+        <a href="https://trials.nci.nih.gov/po-webservices/services/organization-rest-service/organizations?id=140392" rel="nofollow">
+          https://trials.nci.nih.gov/po-webservices/services/organization-rest-service/organizations?id=140392
+        </a>
+        <a href="https://trials.nci.nih.gov/po-webservices/services/organization-rest-service/organizations?familyName=cancer&amp;hasChangeRequest=true" rel="nofollow">
+          https://trials.nci.nih.gov/po-webservices/services/organization-rest-service/organizations?familyName=cancer&amp;hasChangeRequest=true
+        </a>
+        <a href="https://trials.nci.nih.gov/po-webservices/services/organization-rest-service/organizations?hasPendingHcfRoles=true&amp;hasPendingRoRoles=false" rel="nofollow">
+          https://trials.nci.nih.gov/po-webservices/services/organization-rest-service/organizations?hasPendingHcfRoles=true&amp;searchAliases=true
+        </a>
+        <a href="https://trials.nci.nih.gov/po-webservices/services/organization-rest-service/organizations?line1=Avenue&amp;city=Birmingham&amp;stateOrProvince=AL&amp;countryCode=USA" rel="nofollow">
+          https://trials.nci.nih.gov/po-webservices/services/organization-rest-service/organizations?line1=Avenue&amp;city=Birmingham&amp;stateOrProvince=AL&amp;countryCode=USA
+        </a>
+        <a href="https://trials.nci.nih.gov/po-webservices/services/organization-rest-service/organizations?line2=Floor&amp;postalcode=10010" rel="nofollow">
+          https://trials.nci.nih.gov/po-webservices/services/organization-rest-service/organizations?line2=Floor&amp;postalcode=10010
+        </a>
+        <a href="https://trials.nci.nih.gov/po-webservices/services/organization-rest-service/organizations?organizationName=Mayo&amp;offset=10&amp;limit=4" rel="nofollow">
+          https://trials.nci.nih.gov/po-webservices/services/organization-rest-service/organizations?organizationName=Mayo&amp;offset=10&amp;limit=4
+        </a>
+        Request Header (for JSON Request):
+        Accept     application/json
+        Request Header (for XML Request):
+        Accept     application/xml
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Sample URL and Request Body (XML Format)
+      </th>
+      <td>
+        Sample URLs:The URL can have one or more search criteria. The different search criteria are:
+        <a href="https://trials.nci.nih.gov/po-webservices/services/organization-rest-service/organizations?organizationName=Mayo&amp;statusCode=ACTIVE" rel="nofollow">
+          https://trials.nci.nih.gov/po-webservices/services/organization-rest-service/organizations?organizationName=Mayo&amp;statusCode=ACTIVE
+        </a>
+        <a href="https://trials.nci.nih.gov/po-webservices/services/organization-rest-service/organizations?ctepID=AZ020" rel="nofollow">
+          https://trials.nci.nih.gov/po-webservices/services/organization-rest-service/organizations?CTEPID=AZ020
+        </a>
+        <a href="https://trials.nci.nih.gov/po-webservices/services/organization-rest-service/organizations?id=140392" rel="nofollow">
+          https://trials.nci.nih.gov/po-webservices/services/organization-rest-service/organizations?id=140392
+        </a>
+        <a href="https://trials.nci.nih.gov/po-webservices/services/organization-rest-service/organizations?familyName=cancer&amp;hasChangeRequest=true" rel="nofollow">
+          https://trials.nci.nih.gov/po-webservices/services/organization-rest-service/organizations?familyName=cancer&amp;hasChangeRequest=true
+        </a>
+        <a href="https://trials.nci.nih.gov/po-webservices/services/organization-rest-service/organizations?hasPendingHcfRoles=true&amp;hasPendingRoRoles=false" rel="nofollow">
+          https://trials.nci.nih.gov/po-webservices/services/organization-rest-service/organizations?hasPendingHcfRoles=true&amp;searchAliases=true
+        </a>
+        <a href="https://trials.nci.nih.gov/po-webservices/services/organization-rest-service/organizations?line1=Avenue&amp;city=Birmingham&amp;stateOrProvince=AL&amp;countryCode=USA" rel="nofollow">
+          https://trials.nci.nih.gov/po-webservices/services/organization-rest-service/organizations?line1=Avenue&amp;city=Birmingham&amp;stateOrProvince=AL&amp;countryCode=USA
+        </a>
+        <a href="https://trials.nci.nih.gov/po-webservices/services/organization-rest-service/organizations?line2=Floor&amp;postalcode=10010" rel="nofollow">
+          https://trials.nci.nih.gov/po-webservices/services/organization-rest-service/organizations?line2=Floor&amp;postalcode=10010
+        </a>
+        <a href="https://trials.nci.nih.gov/po-webservices/services/organization-rest-service/organizations?organizationName=Mayo&amp;offset=10&amp;limit=4" rel="nofollow">
+          https://trials.nci.nih.gov/po-webservices/services/organization-rest-service/organizations?organizationName=Mayo&amp;offset=10&amp;limit=4
+        </a>
+        Request Header (for JSON Request):
+        Accept     application/json
+        Request Header (for XML Request):
+        Accept     application/xml
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h5 id="POBasicServiceRESTlikeAPIv4.5-OperationcreateOrganizationRole">
+  Operation createOrganizationRole
+</h5>
+Creates an OrganizationRole.
+<table>
+  <tbody>
+    <tr>
+      <th>
+        HTTP Method
+      </th>
+      <td>
+        POST
+      </td>
+    </tr>
+    <tr>
+      <th>
+        URL
+      </th>
+      <td>
+        /role
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Request Body
+      </th>
+      <td>
+        XML/JSON OrganizationRole
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Response Body
+      </th>
+      <td>
+        XML/JSON OrganizationRole
+      </td>
+    </tr>
+    <tr>
+      <th>
+        HTTP Response Code
+      </th>
+      <td>
+        Success:201
+        <ul>
+          <li>
+            Response data: organizationRole element
+          </li>
+          <li>
+            Description: Details of the created organizationRole, along with uri.
+          </li>
+        </ul>
+        Errors:
+        <ul>
+          <li>
+            500. Internal Server Error
+            <ul>
+              <li>
+                Description: Exception occured at the backend.
+              </li>
+              <li>
+                Response Message: Error message in text/plain format.
+              </li>
+            </ul>
+          </li>
+          <li>
+            400. Bad Request
+            <ul>
+              <li>
+                Response Message: Error message in text/plain format.
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Sample URL and Request Body (XML Format)
+      </th>
+      <td>
+        URL:
+        <a href="https://trials.nci.nih.gov/po-webservices/services/organization-rest-service/role" rel="nofollow">
+          https://trials.nci.nih.gov/po-webservices/services/organization-rest-service/role
+        </a>
+        Request Header (for JSON Request):
+        Content-Type  application/json
+        Accept        application/json
+        Body (for JSON Request - HealthCareFacility):
+
+         Expand source
+
+
+        {
+        &#34;@class&#34;:&#34;gov.nih.nci.po.webservices.types.HealthCareFacility&#34;,
+        &#34;name&#34;:&#34;University of Toronto&#34;,
+        &#34;status&#34;:&#34;PENDING&#34;,
+        &#34;organizationId&#34;:28210705,
+        &#34;address&#34;:[
+        {
+        &#34;line1&#34;:&#34;University of Toronto&#34;,
+        &#34;line2&#34;:null,
+        &#34;city&#34;:&#34;Toronto&#34;,
+        &#34;stateOrProvince&#34;:&#34;Ontario&#34;,
+        &#34;country&#34;:&#34;CAN&#34;,
+        &#34;postalcode&#34;:&#34;M5S 1A1&#34;
+        }
+        ],
+        &#34;contact&#34;:[
+        ]
+        }
+
+        Request Header (for XML Request):
+        Content-Type  application/xml
+        Accept 	      application/xml
+        Body (for XML Request):For creating a HealthCareFacility:
+
+         Expand source
+
+
+        &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34; standalone=&#34;yes&#34;?&gt;
+        &lt;organizationRole xmlns=&#34;gov.nih.nci.po.webservices.types&#34;
+        xmlns:xsi=&#34;http://www.w3.org/2001/XMLSchema-instance&#34; xsi:type=&#34;HealthCareFacility&#34;&gt;
+        &lt;status&gt;PENDING&lt;/status&gt;
+        &lt;organizationId&gt;28210543&lt;/organizationId&gt;
+        &lt;address&gt;
+        &lt;line1&gt;University of Toronto&lt;/line1&gt;
+        &lt;city&gt;Toronto&lt;/city&gt;
+        &lt;stateOrProvince&gt;Ontario&lt;/stateOrProvince&gt;
+        &lt;country&gt;CAN&lt;/country&gt;
+        &lt;postalcode&gt;M5S 1A1&lt;/postalcode&gt;
+        &lt;/address&gt;
+        &lt;name&gt;University of Toronto&lt;/name&gt;
+        &lt;/organizationRole&gt;
+
+        For creating a OversightCommittee:
+
+         Expand source
+
+
+        &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34; standalone=&#34;yes&#34;?&gt;
+        &lt;organizationRole xmlns=&#34;gov.nih.nci.po.webservices.types&#34;
+        xmlns:xsi=&#34;http://www.w3.org/2001/XMLSchema-instance&#34; xsi:type=&#34;OversightCommittee&#34;&gt;
+        &lt;status&gt;ACTIVE&lt;/status&gt;
+        &lt;organizationId&gt;28210543&lt;/organizationId&gt;
+        &lt;address&gt;
+        &lt;line1&gt;University of Toronto&lt;/line1&gt;
+        &lt;city&gt;Toronto&lt;/city&gt;
+        &lt;stateOrProvince&gt;Ontario&lt;/stateOrProvince&gt;
+        &lt;country&gt;CAN&lt;/country&gt;
+        &lt;postalcode&gt;M5S 1A1&lt;/postalcode&gt;
+        &lt;/address&gt;
+        &lt;contact type=&#34;EMAIL&#34;&gt;mayo.test@mail.nih.gov&lt;/contact&gt;
+        &lt;type&gt;Research Ethics Board&lt;/type&gt;
+        &lt;/organizationRole&gt;
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h5 id="POBasicServiceRESTlikeAPIv4.5-OperationupdateOrganizationRole">
+  Operation updateOrganizationRole
+</h5>
+Updates an existing OrganizationRole (for given type and id).
+<table>
+  <tbody>
+    <tr>
+      <th>
+        HTTP Method
+      </th>
+      <td>
+        PUT
+      </td>
+    </tr>
+    <tr>
+      <th>
+        URL
+      </th>
+      <td>
+        /role/{type}/{id}
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Request Body
+      </th>
+      <td>
+        XML/JSON OrganizationRole
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Response Body
+      </th>
+      <td>
+        XML/JSON OrganizationRole
+      </td>
+    </tr>
+    <tr>
+      <th>
+        HTTP Response Code
+      </th>
+      <td>
+        Success:200
+        <ul>
+          <li>
+            Response data: organizationRole element
+          </li>
+          <li>
+            Description: organizationRole details after update.
+          </li>
+        </ul>
+        Errors:
+        <ul>
+          <li>
+            500. Internal Server Error
+            <ul>
+              <li>
+                Description: Exception occured at the backend.
+              </li>
+              <li>
+                Response Message: Error message in text/plain format.
+              </li>
+            </ul>
+          </li>
+          <li>
+            400. Bad Request
+            <ul>
+              <li>
+                Response Message: Error message in text/plain format.
+              </li>
+            </ul>
+          </li>
+          <li>
+            404. Not Found
+            <ul>
+              <li>
+                Description: Organization for the given organization id is not found in the database.
+              </li>
+              <li>
+                Response Message: Error message in text/plain format (Organization is not found in the database).
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Sample URL and Request Body (XML Format)
+      </th>
+      <td>
+        URL for updating a HealthCareFacility–&gt;
+        <a href="https://trials.nci.nih.gov/po-webservices/services/organization-rest-service/role/HealthCareFacility/28211370" rel="nofollow">
+          https://trials.nci.nih.gov/po-webservices/services/organization-rest-service/role/HealthCareFacility/28211370
+        </a>
+        Request Header (for JSON Request):
+        Content-Type  application/json
+        Accept        application/json
+        Body (for JSON Request):
+
+         Expand source
+
+
+        {
+        &#34;@class&#34;: &#34;gov.nih.nci.po.webservices.types.HealthCareFacility&#34;,
+        &#34;name&#34;: &#34;University of Toronto&#34;,
+        &#34;id&#34;: 28210742,
+        &#34;status&#34;: &#34;PENDING&#34;,
+        &#34;organizationId&#34;: 28210705,
+        &#34;address&#34;:
+        [
+        {
+        &#34;line1&#34;: &#34;University of Toronto&#34;,
+        &#34;line2&#34;: null,
+        &#34;city&#34;: &#34;Toronto&#34;,
+        &#34;stateOrProvince&#34;: &#34;Ontario&#34;,
+        &#34;country&#34;: &#34;CAN&#34;,
+        &#34;postalcode&#34;: &#34;M5S 1A1&#34;
+        }
+        ],
+        &#34;contact&#34;:
+        [
+        ]
+        }
+
+        Request Header (for XML Request):
+        Content-Type  application/xml
+        Accept 	      application/xml
+        Body (for XML Request)–&gt;
+
+         Expand source
+
+
+        &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34; standalone=&#34;yes&#34;?&gt;
+        &lt;organizationRole xmlns=&#34;gov.nih.nci.po.webservices.types&#34;
+        xmlns:xsi=&#34;http://www.w3.org/2001/XMLSchema-instance&#34; xsi:type=&#34;HealthCareFacility&#34;&gt;
+        &lt;id&gt;28227678&lt;/id&gt;
+        &lt;status&gt;PENDING&lt;/status&gt;
+        &lt;organizationId&gt;7331&lt;/organizationId&gt;
+        &lt;address&gt;
+        &lt;line1&gt;University of Toronto&lt;/line1&gt;
+        &lt;city&gt;Toronto&lt;/city&gt;
+        &lt;stateOrProvince&gt;Ontario&lt;/stateOrProvince&gt;
+        &lt;country&gt;CAN&lt;/country&gt;
+        &lt;postalcode&gt;M5S 1A1&lt;/postalcode&gt;
+        &lt;/address&gt;
+        &lt;name&gt;University of Toronto&lt;/name&gt;
+        &lt;/organizationRole&gt;
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h5 id="POBasicServiceRESTlikeAPIv4.5-OperationchangeOrganizationRoleStatus">
+  Operation changeOrganizationRoleStatus
+</h5>
+Changes the status of an existing OrganizationRole (for given type and id).
+<table>
+  <tbody>
+    <tr>
+      <th>
+        HTTP Method
+      </th>
+      <td>
+        PUT
+      </td>
+    </tr>
+    <tr>
+      <th>
+        URL
+      </th>
+      <td>
+        /role/{type}/{id}/status
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Request Body
+      </th>
+      <td>
+        New status string(text/plain)
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Response Body
+      </th>
+      <td>
+        New status string(text/plain)
+      </td>
+    </tr>
+    <tr>
+      <th>
+        HTTP Response Code
+      </th>
+      <td>
+        Success:200
+        <ul>
+          <li>
+            Response data: organizationRole status string (text/plain)
+          </li>
+          <li>
+            Description: New status of the organizationRole (after update).
+          </li>
+        </ul>
+        Errors:
+        <ul>
+          <li>
+            500. Internal Server Error
+            <ul>
+              <li>
+                Description: Exception occured at the backend.
+              </li>
+              <li>
+                Response Message: Error message in text/plain format.
+              </li>
+            </ul>
+          </li>
+          <li>
+            404
+            <ul>
+              <li>
+                Description: organizationRole for given organizationRole type and id is not found in the database.
+              </li>
+              <li>
+                Response Message: Error message in text/plain format (OrganizationRole is not found in the database).
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Sample URL and Request Body (XML Format)
+      </th>
+      <td>
+        URL for changing HealthCareFacility status:
+        <a href="https://trials.nci.nih.gov/po-webservices/services/organization-rest-service/role/HealthCareFacility/7335/status" rel="nofollow">
+          https://trials.nci.nih.gov/po-webservices/services/organization-rest-service/role/HealthCareFacility/7335/status
+        </a>
+        Request Header:
+        Content-Type  text/plain
+        Accept 	      text/plain
+        Body:
+        INACTIVE
+        URL for changing ResearchOrganization status:
+        <a href="https://trials.nci.nih.gov/po-webservices/services/organization-rest-service/role/ResearchOrganization/24108193/status" rel="nofollow">
+          https://trials.nci.nih.gov/po-webservices/services/organization-rest-service/role/ResearchOrganization/24108193/status
+        </a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h5 id="POBasicServiceRESTlikeAPIv4.5-OperationgetOrganizationRolesByOrgId">
+  Operation getOrganizationRolesByOrgId
+</h5>
+Gets the OrganizationRole for the given organization database id.
+<table>
+  <tbody>
+    <tr>
+      <th>
+        HTTP Method
+      </th>
+      <td>
+        GET
+      </td>
+    </tr>
+    <tr>
+      <th>
+        URL
+      </th>
+      <td>
+        /organization/{id}/roles
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Request Body
+      </th>
+      <td>
+        N/A
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Response Body
+      </th>
+      <td>
+        XML/JSON OrganizationRoles or empty collection if no roles for the organization
+      </td>
+    </tr>
+    <tr>
+      <th>
+        HTTP Response Code
+      </th>
+      <td>
+        Success:200
+        <ul>
+          <li>
+            Response data: organizationRoleList element.
+          </li>
+          <li>
+            Description: List of organizationRole for given Organization id.
+          </li>
+        </ul>
+        Errors:
+        <ul>
+          <li>
+            500. Internal Server Error
+            <ul>
+              <li>
+                Description: Exception occured at the backend.
+              </li>
+              <li>
+                Response Message: Error message in text/plain format.
+              </li>
+            </ul>
+          </li>
+          <li>
+            404. Not Found
+            <ul>
+              <li>
+                Description: Organization for the given organization id is not found in the database.
+              </li>
+              <li>
+                Response Message: Error message in text/plain format (Organization is not found in the database).
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Sample URL and Request Body (XML Format)
+      </th>
+      <td>
+        URL:
+        <a href="https://trials.nci.nih.gov/po-webservices/services/organization-rest-service/organization/269790/roles" rel="nofollow">
+          https://trials.nci.nih.gov/po-webservices/services/organization-rest-service/organization/269790/roles
+        </a>
+        Request Header (for JSON Request):
+        Accept     application/json
+        Request Header (for XML Request):
+        Accept 	 application/xml
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h5 id="POBasicServiceRESTlikeAPIv4.5-OperationgetOrganizationRolesByCTEPId">
+  Operation getOrganizationRolesByCTEPId
+</h5>
+Gets the OrganizationRoles for the given CTEP id.
+<table>
+  <tbody>
+    <tr>
+      <th>
+        HTTP Method
+      </th>
+      <td>
+        GET
+      </td>
+    </tr>
+    <tr>
+      <th>
+        URL
+      </th>
+      <td>
+        /organization/ctep/{id}
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Request Body
+      </th>
+      <td>
+        N/A
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Response Body
+      </th>
+      <td>
+        Non-empty XML/JSON OrganizationRoles
+      </td>
+    </tr>
+    <tr>
+      <th>
+        HTTP Response Code
+      </th>
+      <td>
+        Success:200
+        <ul>
+          <li>
+            Response data: organizationRoleList element
+          </li>
+          <li>
+            Description: List of organizationRole for given CTEP ID.
+          </li>
+        </ul>
+        Errors: 200
+        <ul>
+          <li>
+            Response data: organization element
+          </li>
+          <li>
+            Description: Organization details after update.
+          </li>
+        </ul>
+        Errors:
+        <ul>
+          <li>
+            500. Internal Server Error
+            <ul>
+              <li>
+                Description: Exception occured at the backend.
+              </li>
+              <li>
+                Response Message: Error message in text/plain format.
+              </li>
+            </ul>
+          </li>
+          <li>
+            404. Not Found
+            <ul>
+              <li>
+                Description: Organization for the given organization id is not found in the database.
+              </li>
+              <li>
+                Response Message: Error message in text/plain format (Organization is not found in the database).
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Sample URL and Request Body (XML Format)
+      </th>
+      <td>
+        URL:
+        <a href="https://trials.nci.nih.gov/po-webservices/services/organization-rest-service/organization/ctep/11030" rel="nofollow">
+          https://trials.nci.nih.gov/po-webservices/services/organization-rest-service/organization/ctep/11030
+        </a>
+        Request Header (for JSON Request):
+        Accept     application/json
+        Request Header (for XML Request):
+        Accept 	  application/xml
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h5 id="POBasicServiceRESTlikeAPIv4.5-OperationgetOrganizationRoleById">
+  Operation getOrganizationRoleById
+</h5>
+Gets the OrganizationRole (for given organization role type and id).
+<table>
+  <tbody>
+    <tr>
+      <th>
+        HTTP Method
+      </th>
+      <td>
+        GET
+      </td>
+    </tr>
+    <tr>
+      <th>
+        URL
+      </th>
+      <td>
+        /role/{type}/{id}
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Request Body
+      </th>
+      <td>
+        N/A
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Response Body
+      </th>
+      <td>
+        Non-empty XML/JSON OrganizationRole
+      </td>
+    </tr>
+    <tr>
+      <th>
+        HTTP Response Code
+      </th>
+      <td>
+        Success:200
+        <ul>
+          <li>
+            Response data: organizationRole element
+          </li>
+          <li>
+            Description: organizationRole details for the given organizationRole type and id.
+          </li>
+        </ul>
+        Errors: 200
+        <ul>
+          <li>
+            Response data: organization element
+          </li>
+          <li>
+            Description: Organization details after update.
+          </li>
+        </ul>
+        Errors:
+        <ul>
+          <li>
+            500. Internal Server Error
+            <ul>
+              <li>
+                Description: Exception occured at the backend.
+              </li>
+              <li>
+                Response Message: Error message in text/plain format.
+              </li>
+            </ul>
+          </li>
+          <li>
+            404. Not Found
+            <ul>
+              <li>
+                Description: organizationRole for the given organizationRole type and id is not found in the database.
+              </li>
+              <li>
+                Response Message: Error message in text/plain format (OrganizationRole is not found in the database).
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Sample URL and Request Body (XML Format)
+      </th>
+      <td>
+        Sample URLs:For HealthCareFacility:
+        <a href="https://trials.nci.nih.gov/po-webservices/services/organization-rest-service/role/HealthCareFacility/7335" rel="nofollow">
+          https://trials.nci.nih.gov/po-webservices/services/organization-rest-service/role/HealthCareFacility/7335
+        </a>
+        For ResearchOrganization:
+        <a href="https://trials.nci.nih.gov/po-webservices/services/organization-rest-service/role/ResearchOrganization/24108193" rel="nofollow">
+          https://trials.nci.nih.gov/po-webservices/services/organization-rest-service/role/ResearchOrganization/24108193
+        </a>
+        For OversightCommittee:
+        <a href="https://trials.nci.nih.gov/po-webservices/services/organization-rest-service/role/OversightCommittee/25124222" rel="nofollow">
+          https://trials.nci.nih.gov/po-webservices/services/organization-rest-service/role/OversightCommittee/25124222
+        </a>
+        Request Header (for JSON Request):
+        Accept     application/json
+        Request Header (for XML Request):
+        Accept 	  application/xml
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h4 id="POBasicServiceRESTlikeAPIv4.5-FamilyService">
+  Family Service
+</h4>
+The following sections describe operations provided by the Family web service.
+<h5 id="POBasicServiceRESTlikeAPIv4.5-OperationsearchFamilies">
+  Operation searchFamilies
+</h5>
+Searches the families on the basis of Family name and/or organizationId. If URL has both family name and organizationId, then the result will be the intersection of the two search results.
+<table>
+  <tbody>
+    <tr>
+      <th>
+        HTTP Method
+      </th>
+      <td>
+        GET
+      </td>
+    </tr>
+    <tr>
+      <th>
+        URL
+      </th>
+      <td>
+        /families
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Request Body
+      </th>
+      <td>
+        N/A
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Response Body
+      </th>
+      <td>
+        XML/JSON FamilyListor empty collection if no family found for the given name(if specified) or organizationId(if specified).or exception if organizationId is specified but no organization found of the given organizationId.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        HTTP Response Code
+      </th>
+      <td>
+        Success:HTTP Response : 200Response data : familyList elementDescription: The list having family matching given search criteria.Errors:
+        <ul>
+          <li>
+            500. Internal Server Error
+            <ul>
+              <li>
+                Description: Exception occurred at the backend (except EntityNotFoundException).
+              </li>
+              <li>
+                Response Message: Error message in text/plain format.
+              </li>
+            </ul>
+          </li>
+          <li>
+            404. Not Found
+            <ul>
+              <li>
+                Description: Organization for the given  organizationId is not found in the database.
+              </li>
+              <li>
+                Response Message: Error message in text/plain format.
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Sample URL
+      </th>
+      <td>
+        Sample URLs–&gt;
+        <a href="https://trials.nci.nih.gov/po-webservices/services/family-rest-service/families?name=cancer" rel="nofollow">
+          https://trials.nci.nih.gov/po-webservices/services/family-rest-service/families?name=cancer
+        </a>
+        <a href="https://trials.nci.nih.gov/po-webservices/services/family-rest-service/families?organizationId=213820" rel="nofollow">
+          https://trials.nci.nih.gov/po-webservices/services/family-rest-service/families?organizationId=213820
+        </a>
+        <a href="https://trials.nci.nih.gov/po-webservices/services/family-rest-service/families?name=cancer&amp;organizationId=149221" rel="nofollow">
+          https://trials.nci.nih.gov/po-webservices/services/family-rest-service/families?name=cancer&amp;organizationId=149221
+        </a>
+        (both present in search criteria)
+        <a href="https://trials.nci.nih.gov/po-webservices/services/family-rest-service/families" rel="nofollow">
+          https://trials.nci.nih.gov/po-webservices/services/family-rest-service/families
+        </a>
+        (search criteria blank)Request Header (for JSON Request):
+        Accept     application/json
+        Request Header (for XML Request):
+        Accept        application/xml
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h5 id="POBasicServiceRESTlikeAPIv4.5-OperationgetFamilyMemberRelationshipsByFamilyId">
+  Operation getFamilyMemberRelationshipsByFamilyId
+</h5>
+Gets the FamilyMemberRelationships on the basis of familyId.
+<table>
+  <tbody>
+    <tr>
+      <th>
+        HTTP Method
+      </th>
+      <td>
+        GET
+      </td>
+    </tr>
+    <tr>
+      <th>
+        URL
+      </th>
+      <td>
+        /familyMemberRelationships
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Request Body
+      </th>
+      <td>
+        N/A
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Response Body
+      </th>
+      <td>
+        XML/JSON FamilyMemberRelationshipListor empty collection if no familyMemberRelationship found for given familyId.or exception if family for the given familyId is not found in the database
+      </td>
+    </tr>
+    <tr>
+      <th>
+        HTTP Response Code
+      </th>
+      <td>
+        Success:HTTP Response : 200Response data : familyMemberRelationshipList elementDescription: The list having familyMemberRelationship matching given search criteria.Errors: 1. HTTP Response : 500 (Internal Server Error)Description : When an exception occurs at the backend(except EntityNotFoundException).Response Message: Error message in text/plain format.2. HTTP Response : 404 (Not Found)Description : When the family for the given familyId is not found in the database.Response Message: Error message in text/plain format.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Sample URL
+      </th>
+      <td>
+        URL:
+        <a href="https://trials.nci.nih.gov/po-webservices/services/family-rest-service/familyMemberRelationships?familyId=16157293" rel="nofollow">
+          https://trials.nci.nih.gov/po-webservices/services/family-rest-service/familyMemberRelationships?familyId=16157293
+        </a>
+        Request Header (for JSON Request):
+        Accept     application/json
+        Request Header (for XML Request):
+        Accept        application/xml
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h5 id="POBasicServiceRESTlikeAPIv4.5-OperationgetFamily">
+  Operation getFamily
+</h5>
+Gets the Family by its ID.
+<table>
+  <tbody>
+    <tr>
+      <th>
+        HTTP Method
+      </th>
+      <td>
+        GET
+      </td>
+    </tr>
+    <tr>
+      <th>
+        URL
+      </th>
+      <td>
+        /family/{id}
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Request Body
+      </th>
+      <td>
+        N/A
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Response Body
+      </th>
+      <td>
+        Success:HTTP Response : 200Response data : family elementDescription: Family for given ID200
+        <ul>
+          <li>
+            Response data: organization element
+          </li>
+          <li>
+            Description: Organization details after update.
+          </li>
+        </ul>
+        Errors:
+        <ul>
+          <li>
+            500. Internal Server Error
+            <ul>
+              <li>
+                Description: Exception occured at the backend.
+              </li>
+              <li>
+                Response Message: Error message in text/plain format.
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul>
+          <li>
+            404. Not Found
+            <ul>
+              <li>
+                Description: Family for the given familyId is not found in the database.
+              </li>
+              <li>
+                Response Message: Error message in text/plain format.
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        HTTP Response Code
+      </th>
+      <td>
+        Success:HTTP Response : 200Response data : family elementDescription: Family for given ID200
+        <ul>
+          <li>
+            Response data: organization element
+          </li>
+          <li>
+            Description: Organization details after update.
+          </li>
+        </ul>
+        Errors:
+        <ul>
+          <li>
+            500. Internal Server Error
+            <ul>
+              <li>
+                Description: Exception occured at the backend.
+              </li>
+              <li>
+                Response Message: Error message in text/plain format.
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul>
+          <li>
+            404. Not Found
+            <ul>
+              <li>
+                Description: Family for the given familyId is not found in the database.
+              </li>
+              <li>
+                Response Message: Error message in text/plain format.
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Sample URL
+      </th>
+      <td>
+        URL:
+        <a href="https://trials.nci.nih.gov/po-webservices/services/family-rest-service/family/33217" rel="nofollow">
+          https://trials.nci.nih.gov/po-webservices/services/family-rest-service/family/33217
+        </a>
+        Request Header (for JSON Request):
+        Accept     application/json
+        Request Header (for XML Request):
+        Accept        application/xml
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h5 id="POBasicServiceRESTlikeAPIv4.5-OperationgetFamilyMember">
+  Operation getFamilyMember
+</h5>
+Gets the FamilyMember by its ID.
+<table>
+  <tbody>
+    <tr>
+      <th>
+        HTTP Method
+      </th>
+      <td>
+        GET
+      </td>
+    </tr>
+    <tr>
+      <th>
+        URL
+      </th>
+      <td>
+        /familymember/{id}
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Request Body
+      </th>
+      <td>
+        NA
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Response Body
+      </th>
+      <td>
+        Success: 200
+        <ul>
+          <li>
+            Response data: familyMember element
+          </li>
+          <li>
+            Description: FamilyMember for given id
+          </li>
+        </ul>
+        Errors:
+        <ul>
+          <li>
+            500. Internal Server Error
+            <ul>
+              <li>
+                Description: Exception occured at the backend.
+              </li>
+              <li>
+                Response Message: Error message in text/plain format.
+              </li>
+            </ul>
+          </li>
+          <li>
+            404. Not Found
+            <ul>
+              <li>
+                Description: Family member for the given ID is not found in the database.
+              </li>
+              <li>
+                Response Message: Error message in text/plain format.
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        HTTP Response Code
+      </th>
+      <td>
+        Success: 200
+        <ul>
+          <li>
+            Response data: familyMember element
+          </li>
+          <li>
+            Description: FamilyMember for given id
+          </li>
+        </ul>
+        Errors:
+        <ul>
+          <li>
+            500. Internal Server Error
+            <ul>
+              <li>
+                Description: Exception occured at the backend.
+              </li>
+              <li>
+                Response Message: Error message in text/plain format.
+              </li>
+            </ul>
+          </li>
+          <li>
+            404. Not Found
+            <ul>
+              <li>
+                Description: Family member for the given ID is not found in the database.
+              </li>
+              <li>
+                Response Message: Error message in text/plain format.
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Sample URL
+      </th>
+      <td>
+        URL:
+        <a href="https://trials.nci.nih.gov/po-webservices/services/family-rest-service/familymember/13334" rel="nofollow">
+          https://trials.nci.nih.gov/po-webservices/services/family-rest-service/familymember/13334
+        </a>
+        Request Header (for JSON Request):
+        Accept     application/json
+        Request Header (for XML Request):
+        Accept        application/xml
+      </td>
+    </tr>
+  </tbody>
+</table>

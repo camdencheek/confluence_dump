@@ -1,0 +1,273 @@
+<h2 id="id-20200826Meetingnotes-Date">
+  Date
+</h2>
+26 Aug 2020
+<h2 id="id-20200826Meetingnotes-Attendees">
+  Attendees
+</h2>
+<ul>
+  <li>
+    <a href="https://wiki.nci.nih.gov/display/~safrant" rel="nofollow">
+      Safran, Tracy (NIH/NCI) [C]
+    </a>
+  </li>
+  <li></li>
+</ul>
+<h2 id="id-20200826Meetingnotes-Goals">
+  Goals
+</h2>
+<ul>
+  <li></li>
+</ul>
+<h2 id="id-20200826Meetingnotes-Discussionitems">
+  Discussion items
+</h2>
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        Time
+      </th>
+      <th>
+        Item
+      </th>
+      <th>
+        Who
+      </th>
+      <th>
+        Notes
+      </th>
+    </tr>
+    <tr>
+      <td></td>
+      <td>
+        datascience.cancer.gov
+      </td>
+      <td></td>
+      <td>
+        <ul>
+          <li>
+            See Notes below - copied from email
+          </li>
+          <li>
+            Website very outdated, but not part of navigation
+          </li>
+          <li>
+            Possibly create new evs.nci.nih.gov page with general LexEVS info.  Link to wiki for additional technical info.
+          </li>
+          <li>
+            Possibly look at github io page or wiki for that tech info?
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>
+        CentOS 7 / MySQL Migration
+      </td>
+      <td></td>
+      <td>
+        Anyone heard anything? No contact yet.  Will ask again today
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1"></td>
+      <td colspan="1">
+        Disjoint added to MasterScript
+      </td>
+      <td colspan="1"></td>
+      <td colspan="1">
+        Any issues on Monday for AWS?  Yang not present to answer
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1"></td>
+      <td colspan="1">
+        Metathesaurus
+      </td>
+      <td colspan="1"></td>
+      <td colspan="1">
+        <ul>
+          <li>
+            Loaded successfully
+          </li>
+          <li>
+            All extracts loaded successfully
+          </li>
+          <li>
+            Still need to look at memory issues
+            <ul>
+              <li>
+                Ran a profiler and java calls seemed reasonable
+                <ul>
+                  <li>
+                    May need to bank 3-4 days of profiling to diagnose
+                  </li>
+                  <li>
+                    Very high CPU on MRSAT association quals - 12 cores.
+                  </li>
+                  <li>
+                    MySQL settings unlikely to be an issue.
+                  </li>
+                </ul>
+              </li>
+              <li>
+                top reserves a huge amount of memory.
+                <ul>
+                  <li>
+                    Possibly lucene was reserving virtual memory
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            New feature - script to clear all malingering execution tables
+          </li>
+          <li>
+            New feature - parameter to keep execution tables
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1"></td>
+      <td colspan="1">
+        EVS Exporter
+      </td>
+      <td colspan="1"></td>
+      <td colspan="1">
+        <ul>
+          <li>
+            Demo for editors last Friday - made them happy
+          </li>
+          <li>
+            Some concerns
+            <ul>
+              <li>
+                508 compliance - ANDI compliance tool
+                <a href="https://www.section508.gov/test/web-software" rel="nofollow">
+                  https://www.section508.gov/test/web-software
+                </a>
+                <ul>
+                  <li>
+                    some underlying elements can&#39;t accept labels directly, would need context text.  Need to know more about accessibility requirements
+                  </li>
+                  <li>
+                    I can take a look to assess.
+                  </li>
+                  <li>
+                    Some imported third party libraries having issues.  Need to look at how to adjust
+                    <ul>
+                      <li>
+                        themify
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                Performance -
+                <ul>
+                  <li>
+                    C1909 resolution takes a long time - possibly might get end user to agree to incompletely resolved entities
+                    <ul>
+                      <li>
+                        Can take several hours (compared to about an hour for LexEVS)
+                      </li>
+                      <li>
+                        Might restrict how many levels? Unlikely to be accepted
+                      </li>
+                      <li>
+                        Most all queries run against elastic search rather than stardog. New release on dev might help
+                        <ul>
+                          <li>
+                            Kim believes indexes should not make a difference since it is a direct retrieval
+                          </li>
+                        </ul>
+                      </li>
+                      <li>
+                        Mayo would like more information about how EVSRestAPI descendence call works
+                      </li>
+                      <li>
+                        Scott to look at instrumenting his own code to try and find inefficiencies there
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                Build scripts being worked on for tiers.  Been working with TT for setting up Jenkins
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1"></td>
+      <td colspan="1">
+        EVS Explore
+      </td>
+      <td colspan="1"></td>
+      <td colspan="1">
+        Some new tickets about multiple vocabularies? Currently need to stop, do indexing, and bring up to notice a new version of NCIt.  Would like to update live. Possibly have a monthly and weekly version up at same time?
+        <a href="https://tracker.nci.nih.gov/browse/EVSRESTAPI-120?src=confmacro" rel="nofollow">
+          <img src="$iconUrl"/>
+          EVSRESTAPI-120
+        </a>
+        -
+
+
+        (
+        <img src="$statusIcon"/>
+        )
+
+
+        Ticket about metadata
+        <a href="https://tracker.nci.nih.gov/browse/EVSRESTAPI-119?src=confmacro" rel="nofollow">
+          <img src="$iconUrl"/>
+          EVSRESTAPI-119
+        </a>
+        -
+
+
+        (
+        <img src="$statusIcon"/>
+        )
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="id-20200826Meetingnotes-Notes">
+  Notes
+</h2>
+<a href="https://datascience.cancer.gov/resources/evs-downloads" rel="nofollow">
+  EVS Downloads
+</a>
+is not accessible, so we can’t review it.The
+<a href="https://datascience.cancer.gov/resources/evs-downloads/thesaurus" rel="nofollow">
+  NCI Thesaurus Downloads and License
+</a>
+still has links to NCIt 18.12e as the “current” release, so this page has some work to do.
+<a href="https://datascience.cancer.gov/resources/evs-downloads/lexevs" rel="nofollow">
+  LexEVS Downloads and License
+</a>
+still has LexEVS 6.2 as the “current” release, so this page is also not ready.
+<a href="https://datascience.cancer.gov/resources/evs-downloads/evs-archives" rel="nofollow">
+  EVS Archives
+</a>
+is also out of date because the LexEVS Downloads is out of date.
+<h2 id="id-20200826Meetingnotes-Actionitems">
+  Action items
+</h2>
+<ul>
+  <li></li>
+</ul>

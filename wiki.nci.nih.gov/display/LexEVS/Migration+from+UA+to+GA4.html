@@ -1,0 +1,71 @@
+Contents of this Page
+<ul>
+  <li>
+    <a href="#MigrationfromUAtoGA4-EVSSpecific" rel="nofollow">
+      EVS Specific
+    </a>
+  </li>
+  <li>
+    <a href="#MigrationfromUAtoGA4-GoogleSide" rel="nofollow">
+      Google Side
+    </a>
+  </li>
+  <li>
+    <a href="#MigrationfromUAtoGA4-ApplicationSide" rel="nofollow">
+      Application Side
+    </a>
+  </li>
+</ul>
+<h2 id="MigrationfromUAtoGA4-EVSSpecific">
+  EVS Specific
+</h2>
+EVS has a shared Google account called ncievsanalytics.  The following applications are being tracked under this account using Universal Analytics (UA).  For EVS, all applications have a connected GA4 property created.
+<ul>
+  <li>
+    EVSExplore
+  </li>
+  <li>
+    NCI Metathesaurus Browser
+  </li>
+  <li>
+    NCI Terms Browser
+  </li>
+</ul>
+The EVS Exporter is also located under ncievsanalytics but already uses GA4.
+<h2 id="MigrationfromUAtoGA4-GoogleSide">
+  Google Side
+</h2>
+Google will automatically create new GA4 properties for all existing UA properties in March 2023. The settings for the UA properties will be copied to the GA4 properties.  If you already created a GA4 property connected to your UA property then nothing will be created by Google. If you have created a GA4 property and discover Google has created another one, it is likely that the previously created GA4 property was never connected to the UA property and it should be deleted.To check connection go to “Admin” &gt; “Setup Assistant” on the GA4 property.  At the top you should see “Open connected property.”  If this is not present then the GA4 property is not connected to a UA property.
+<img height="250" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/Migration%20from%20UA%20to%20GA4/Screenshot%202023-03-27%20at%209.19.51%20AM.png?api=v2">
+The “Setup Assistant” page should have a progress bar at the top saying “0/12” setup tasks completed. Much of the tasks deal with advertising and monetization so will be skipped.  Go to the first task “Data collection” and “manage data streams.”  This should show you the application data stream name and code number.
+<img height="250" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/Migration%20from%20UA%20to%20GA4/Screenshot%202023-03-27%20at%209.59.27%20AM.png?api=v2">
+If these are in place, you can go back to the Setup Assistant and mark the Data collection as complete.  If it tells you “Data Not Flowing”, then you need to check the application and make sure that the analytics header is configured – see Application Side.
+<ul>
+  <li>
+    Further down on the page look at “Define audiences” and make sure there is at least 1.  Review it and see if “All users” is present.
+  </li>
+  <li>
+    Check “Manage users” and see if all appropriate users are listed with the correct level of review – typically “Analyst.”
+  </li>
+</ul>
+Now that the Google Analytics web data stream is set up, the app data stream needs to be configured in the application.
+<h2 id="MigrationfromUAtoGA4-ApplicationSide">
+  Application Side
+</h2>
+Many older applications were coded using analytics.js.  GA4, and newer implementations of UA, use gtag.js.  Pages will need to be updated to gtag to enable migration, if they don&#39;t use it already.  Once gtag is present, Google should be able to receive data to both UA and GA4, up until UA cutoff date in July. This will allow users to configure GA4 data and reports to match what was received in UA. The old analytics.js scripting will look like this and should be replaced by gtag.js text. The proper gtag text can be generated in Google Analytics.application.js
+&lt;head&gt;
+…other stuff…
+
+&lt;script&gt;(function(i,s,o,g,r,a,m){i[&#34;GoogleAnalyticsObject&#34;]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,&#34;script&#34;,&#34;//www.google-analytics.com/analytics.js&#34;,&#34;ga&#34;);ga(&#34;create&#34;, &#34;UA-#########&#34;, {&#34;cookieDomain&#34;:&#34;auto&#34;});ga(&#34;send&#34;, &#34;pageview&#34;);&lt;/script&gt;
+
+…other stuff…
+&lt;/head&gt;
+
+
+On Google Analytics go to Admin and click the GA4 property for the application that you want to configure. Then click “Data Streams”.  Click the &#34;&gt;&#34; to open the next page.
+<img height="250" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/Migration%20from%20UA%20to%20GA4/Screenshot%202023-03-27%20at%209.34.41%20AM.png?api=v2">
+On the next page, at the top, click “View tag instructions”.
+<img height="250" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/Migration%20from%20UA%20to%20GA4/Screenshot%202023-03-27%20at%209.34.57%20AM.png?api=v2">
+On the “Installation Instructions” page click “Install Manually”.  The page should then display the text that you need to add to each HTML page in your application. The correct tag ID will already be in the text. You can copy this text and paste it into the web page at the appropriate location, replacing the analytics.js text.
+<img height="400" src="https://wiki.nci.nih.gov/download/attachments/embedded-page/LexEVS/Migration%20from%20UA%20to%20GA4/Screenshot%202023-03-27%20at%209.35.21%20AM.png?api=v2">
+ Once the gtag.js tagged page is deployed to production, data should be visible in GA4 and UA in around 30 minutes.  The UA data will cease collection on July 1, 2023.

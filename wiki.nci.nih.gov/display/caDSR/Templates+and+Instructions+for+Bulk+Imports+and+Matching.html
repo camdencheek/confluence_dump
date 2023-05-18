@@ -1,0 +1,934 @@
+Some of the features in caDSR II allow you to process content from a CSV file for bulk/batch importing to create new content. To view or use these features, log in as described in
+<a href="https://wiki.nci.nih.gov/pages/viewpage.action?pageId=463045371" rel="nofollow">
+  Logging In
+</a>
+. These features need specially formatted templates. Contents of This Page
+<ul>
+  <li>
+    <a href="#TemplatesandInstructionsforBulkImportsandMatching-Conventions" rel="nofollow">
+      Conventions
+    </a>
+  </li>
+  <li>
+    <a href="#TemplatesandInstructionsforBulkImportsandMatching-Templates" rel="nofollow">
+      Templates
+    </a>
+  </li>
+  <li>
+    <a href="#TemplatesandInstructionsforBulkImportsandMatching-Tips" rel="nofollow">
+      Tips
+    </a>
+    <ul>
+      <li>
+        <a href="#TemplatesandInstructionsforBulkImportsandMatching-TipsforAllImports" rel="nofollow">
+          Tips for All Imports
+        </a>
+      </li>
+      <li>
+        <a href="#TemplatesandInstructionsforBulkImportsandMatching-TipsforCDEImports" rel="nofollow">
+          Tips for CDE Imports
+        </a>
+      </li>
+      <li>
+        <a href="#TemplatesandInstructionsforBulkImportsandMatching-TipsforCDEMatch" rel="nofollow">
+          Tips for CDE Match
+        </a>
+      </li>
+      <li>
+        <a href="#TemplatesandInstructionsforBulkImportsandMatching-TipsforDECImports" rel="nofollow">
+          Tips for DEC Imports
+        </a>
+      </li>
+      <li>
+        <a href="#TemplatesandInstructionsforBulkImportsandMatching-TipsforVDImports" rel="nofollow">
+          Tips for VD Imports
+        </a>
+      </li>
+      <li>
+        <a href="#TemplatesandInstructionsforBulkImportsandMatching-TipsforPVVMImports" rel="nofollow">
+          Tips for PV VM Imports
+        </a>
+      </li>
+      <li>
+        <a href="#TemplatesandInstructionsforBulkImportsandMatching-TipsforVMMatch" rel="nofollow">
+          Tips for VM Match
+        </a>
+      </li>
+      <li>
+        <a href="#TemplatesandInstructionsforBulkImportsandMatching-TipsforFormImports" rel="nofollow">
+          Tips for Form Imports
+        </a>
+      </li>
+      <li>
+        <a href="#TemplatesandInstructionsforBulkImportsandMatching-TipsforDesignationImports" rel="nofollow">
+          Tips for Designation Imports
+        </a>
+      </li>
+    </ul>
+  </li>
+</ul>
+<h1 id="TemplatesandInstructionsforBulkImportsandMatching-Conventions">
+  Conventions
+</h1>
+Common usage details for the templates are that due to inclusion of the following Data Validations please follow these conventions:
+<ul>
+  <li>
+    Basics
+    <ul>
+      <li>
+        When the provided Template has .xls or .xlsx file extension, always start with a fresh Template for each import
+        <ul>
+          <li>
+            This insures that the Data Validation and Formulas that are embedded in the template for drop-downs and auto-populate are correct for each Import and rows/valid choices have not been inadvertently deleted.
+          </li>
+        </ul>
+      </li>
+      <li>
+        Save-As the completed Template as .cvs before importing
+        <ul>
+          <li>
+            NOTE: This is a common step to forget and if you try to import a .xsl or .xslx file it will cause an immediate exception &#34;error&#34; when clicking &#34;Import&#34;, so check the file extension if you have a problem
+          </li>
+        </ul>
+      </li>
+      <li>
+        While editing the Template do not delete entire Rows or Columns
+        <ul>
+          <li>
+            This is due to the Data Validation, if you delete rows some of the valid choices will be deleted
+          </li>
+          <li>
+            If you delete an entry in a cell that was auto-populated, you may lose the formula. These formulas are not essential for importing, but are helpful to avoid typos or other errors
+          </li>
+          <li>
+            You can use the Delete Key to clear the contents of individuals cell or cells but do not delete entire rows or columns
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+<ul>
+  <li>
+    Templates contain Data Validation for several columns that are found on several of the templates end users avoid errors and streamline completing the spreadsheets.
+    <ul>
+      <li>
+        All templates - Context
+        <ul>
+          <li>
+            <ul>
+              <li>
+                Drop down of all valid Contexts
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        Templates with Macros
+        <ul>
+          <li>
+            CDE Match: &#34;Opt&#34;+&#34;CMD&#34;+&#34;t&#34; to transform content into the correct format for CDE Match. After filling in your column headings and permissible values, the macro will take each column heading and permissible values and create a new &#34;Transform&#34; sheet containing one row per heading/unique permissible value combination. For example, if the column has 5 permissible values, there will be 5 rows in the transformed sheet. Please remember to save as cvs before running CDE Match.
+          </li>
+          <li>
+            Form Import: &#34;Shift&#34; + &#34;CMD&#34; + &#34;t&#34; to transform content into the correct format for importing. If you are using a REDCap data dictionary csv file, cut and paste your content into the template starting on Row 3, Column E &#34;Variable / Field Name&#34;.
+            <ul>
+              <li>
+                The macro will:
+                <ul>
+                  <li>
+                    Add 4 columns to the worksheet. (Leave &#34;DO NOT USE&#34; empty, enter your &#34;Batch User Name&#34;, a &#34;Batch Name&#34; on each Row. The combination of &#34;Batch User Name&#34; AND &#34;Batch Name&#34; must be unique for each imported template.)
+                  </li>
+                  <li>
+                    Generate a unique &#34;Seq ID&#34; for each row
+                  </li>
+                  <li>
+                    Copy &#34;Form Name&#34; into Column G, Section Header for each row since this is a required field in caDSR.
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <td>
+        DO NOT USE
+      </td>
+      <td>
+        Batch User
+      </td>
+      <td>
+        Batch Name
+      </td>
+      <td>
+        Seq ID
+      </td>
+    </tr>
+  </tbody>
+</table>
+<ul>
+  <li>
+    <ul>
+      <li>
+        Import DEC and Import VD
+        <ul>
+          <li>
+            <ul>
+              <li>
+                Drop Down of the Standard Conceptual Domain Names, the CD ID will automatically populate
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        Import Value Domain
+        <ul>
+          <li>
+            Drop Downs for Context, Format, UoM, Datatype, and Type (Enumerated/NonEnumerated)
+          </li>
+        </ul>
+      </li>
+      <li>
+        Import Designations - this is used to import the &#34;USED_BY&#34; designation as well as all AI types for Data Elements, Data Element Concepts, Value Meanings and Value Domains
+        <ul>
+          <li>
+            Drop Downs for AI type, Alternate Name, Alternate Name Type, Alternate Name Context
+          </li>
+          <li>
+            For Alternate Name, when the Alternate Name Type is &#34;USED_BY&#34; the Alternate Name must be the same as the Alternate Name Context
+          </li>
+        </ul>
+      </li>
+      <li>
+        Import PV/VM
+        <ul>
+          <li>
+            Drop Down for VM String Type
+          </li>
+          <li>
+            Drop Down for optional VM Alternate Name Type
+          </li>
+        </ul>
+      </li>
+      <li>
+        VM Match
+        <ul>
+          <li>
+            No drop downs.
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+The Batch Owner and Batch User columns can be any text that you provide. The system does not validate these columns.
+<h1 id="TemplatesandInstructionsforBulkImportsandMatching-Templates">
+  Templates
+</h1>
+The following table lists the latest templates.
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th>
+        <a href="/display/caDSR/Templates+and+Instructions+for+Bulk+Imports+and+Matching?sortBy=name&amp;sortOrder=ascending" rel="nofollow">
+          File
+        </a>
+      </th>
+      <th>
+        <a href="/display/caDSR/Templates+and+Instructions+for+Bulk+Imports+and+Matching?sortBy=date&amp;sortOrder=descending" rel="nofollow">
+          Modified
+        </a>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr id="attachment-477497648">
+      <td></td>
+      <td>
+        Microsoft Word Document
+        <a href="/download/attachments/477497179/DEC%20Bulk%20Load%20Instructions%20Sprint23%20v1.docx?api=v2" title="Download" rel="nofollow">
+          DEC Bulk Load Instructions Sprint23 v1.docx
+        </a>
+        Initial instructions for running DEC Import in Sprint 23
+      </td>
+      <td>
+        Jan 17, 2022
+        by
+        <a href="/display/~warzeld" rel="nofollow">
+          Warzel, Denise (NIH/NCI) [E]
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td colspan="2">
+        Labels
+        <ul>
+          <li>
+            No labels
+          </li>
+        </ul>
+        Preview
+        <a href="/pages/worddav/preview.action?fileName=DEC+Bulk+Load+Instructions+Sprint23+v1.docx&amp;pageId=477497179" rel="nofollow">
+          View
+        </a>
+      </td>
+    </tr>
+    <tr id="attachment-506626623">
+      <td></td>
+      <td>
+        File
+        <a href="/download/attachments/477497179/S36%20VM%20Match%20Import.csv?api=v2" title="Download" rel="nofollow">
+          S36 VM Match Import.csv
+        </a>
+        S36 VM Match Templates - No changes were made in S36
+      </td>
+      <td>
+        Sep 21, 2022
+        by
+        <a href="/display/~warzeld" rel="nofollow">
+          Warzel, Denise (NIH/NCI) [E]
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td colspan="2">
+        Labels
+        <ul>
+          <li>
+            No labels
+          </li>
+        </ul>
+        Preview
+      </td>
+    </tr>
+    <tr id="attachment-517408468">
+      <td></td>
+      <td>
+        Microsoft Excel Sheet
+        <a href="/download/attachments/477497179/S40%20DEC%20Import%20Template-with%20Data%20Validation-20221214_FINAL.xls?api=v2" title="Download" rel="nofollow">
+          S40 DEC Import Template-with Data Validation-20221214_FINAL.xls
+        </a>
+        S40 DEC Import Template with Data Validations Pediatric Context Added
+      </td>
+      <td>
+        Jan 17, 2023
+        by
+        <a href="/display/~warzeld" rel="nofollow">
+          Warzel, Denise (NIH/NCI) [E]
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td colspan="2">
+        Labels
+        <ul>
+          <li>
+            No labels
+          </li>
+        </ul>
+        Preview
+        <a href="/pages/worddav/preview.action?fileName=S40+DEC+Import+Template-with+Data+Validation-20221214_FINAL.xls&amp;pageId=477497179" rel="nofollow">
+          View
+        </a>
+      </td>
+    </tr>
+    <tr id="attachment-517408469">
+      <td></td>
+      <td>
+        Microsoft Excel Sheet
+        <a href="/download/attachments/477497179/S40-2%20Designation%20Import%20Template-with%20Data%20Validation-20230117_FINAL.xls?api=v2" title="Download" rel="nofollow">
+          S40-2 Designation Import Template-with Data Validation-20230117_FINAL.xls
+        </a>
+        S40-2 Designations Template with Validations, Pediatric Context Added and Formula for Alternate Name removed
+      </td>
+      <td>
+        Jan 17, 2023
+        by
+        <a href="/display/~warzeld" rel="nofollow">
+          Warzel, Denise (NIH/NCI) [E]
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td colspan="2">
+        Labels
+        <ul>
+          <li>
+            No labels
+          </li>
+        </ul>
+        Preview
+        <a href="/pages/worddav/preview.action?fileName=S40-2+Designation+Import+Template-with+Data+Validation-20230117_FINAL.xls&amp;pageId=477497179" rel="nofollow">
+          View
+        </a>
+      </td>
+    </tr>
+    <tr id="attachment-517408471">
+      <td></td>
+      <td>
+        Microsoft Excel Sheet
+        <a href="/download/attachments/477497179/S40%20CDE%20Import%20Template-with%20Data%20Validation-20221214_FINAL.xls?api=v2" title="Download" rel="nofollow">
+          S40 CDE Import Template-with Data Validation-20221214_FINAL.xls
+        </a>
+        S40 CDE Template with Validations, Pediatric Context Added
+      </td>
+      <td>
+        Jan 17, 2023
+        by
+        <a href="/display/~warzeld" rel="nofollow">
+          Warzel, Denise (NIH/NCI) [E]
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td colspan="2">
+        Labels
+        <ul>
+          <li>
+            No labels
+          </li>
+        </ul>
+        Preview
+        <a href="/pages/worddav/preview.action?fileName=S40+CDE+Import+Template-with+Data+Validation-20221214_FINAL.xls&amp;pageId=477497179" rel="nofollow">
+          View
+        </a>
+      </td>
+    </tr>
+    <tr id="attachment-517408472">
+      <td></td>
+      <td>
+        Microsoft Excel Sheet
+        <a href="/download/attachments/477497179/S40%20PV%20VM%20Import%20Template-with%20Data%20Validation-20221214_FINAL.xls?api=v2" title="Download" rel="nofollow">
+          S40 PV VM Import Template-with Data Validation-20221214_FINAL.xls
+        </a>
+        S40 PV VM Import Template with Validations, Pediatric Context Added
+      </td>
+      <td>
+        Jan 17, 2023
+        by
+        <a href="/display/~warzeld" rel="nofollow">
+          Warzel, Denise (NIH/NCI) [E]
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td colspan="2">
+        Labels
+        <ul>
+          <li>
+            No labels
+          </li>
+        </ul>
+        Preview
+        <a href="/pages/worddav/preview.action?fileName=S40+PV+VM+Import+Template-with+Data+Validation-20221214_FINAL.xls&amp;pageId=477497179" rel="nofollow">
+          View
+        </a>
+      </td>
+    </tr>
+    <tr id="attachment-517408582">
+      <td></td>
+      <td>
+        Microsoft Excel Sheet
+        <a href="/download/attachments/477497179/S40%20CDE%20Match%20Template.xlsm?api=v2" title="Download" rel="nofollow">
+          S40 CDE Match Template.xlsm
+        </a>
+        S40 CDE Match Template with Macro
+      </td>
+      <td>
+        Jan 17, 2023
+        by
+        <a href="/display/~warzeld" rel="nofollow">
+          Warzel, Denise (NIH/NCI) [E]
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td colspan="2">
+        Labels
+        <ul>
+          <li>
+            No labels
+          </li>
+        </ul>
+        Preview
+      </td>
+    </tr>
+    <tr id="attachment-520357449">
+      <td></td>
+      <td>
+        Microsoft Excel Sheet
+        <a href="/download/attachments/477497179/S40%20Form%20Template%20With%20Macro-FINAL-20221215.xlsm?api=v2" title="Download" rel="nofollow">
+          S40 Form Template With Macro-FINAL-20221215.xlsm
+        </a>
+        S40 Form Import Template with MACRO
+      </td>
+      <td>
+        Feb 08, 2023
+        by
+        <a href="/display/~warzeld" rel="nofollow">
+          Warzel, Denise (NIH/NCI) [E]
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td colspan="2">
+        Labels
+        <ul>
+          <li>
+            No labels
+          </li>
+        </ul>
+        Preview
+      </td>
+    </tr>
+    <tr id="attachment-520357929">
+      <td></td>
+      <td>
+        Microsoft Excel Sheet
+        <a href="/download/attachments/477497179/CDE%20Match%20Data%20Standardization%20Template%20Sprint%2041v1-01272023%20FINAL.xlsm?api=v2" title="Download" rel="nofollow">
+          CDE Match Data Standardization Template Sprint 41v1-01272023 FINAL.xlsm
+        </a>
+        CDE Match Template Sprint 41 with Macros
+      </td>
+      <td>
+        Feb 16, 2023
+        by
+        <a href="/display/~warzeld" rel="nofollow">
+          Warzel, Denise (NIH/NCI) [E]
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td colspan="2">
+        Labels
+        <ul>
+          <li>
+            No labels
+          </li>
+        </ul>
+        Preview
+      </td>
+    </tr>
+    <tr id="attachment-523567682">
+      <td></td>
+      <td>
+        Microsoft Excel Sheet
+        <a href="/download/attachments/477497179/S40%20VD%20Import%20Template-with%20Data%20Validation-20230104_FINAL.xls?api=v2" title="Download" rel="nofollow">
+          S40 VD Import Template-with Data Validation-20230104_FINAL.xls
+        </a>
+        VD Import Sprint 40-with Validation added in upload code in addition to within the template - Template was not changed in Sprint 41, Sprint 40 include Pediatric Cancer Context, 41 did not.
+      </td>
+      <td>
+        Mar 03, 2023
+        by
+        <a href="/display/~warzeld" rel="nofollow">
+          Warzel, Denise (NIH/NCI) [E]
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td colspan="2">
+        Labels
+        <ul>
+          <li>
+            No labels
+          </li>
+        </ul>
+        Preview
+        <a href="/pages/worddav/preview.action?fileName=S40+VD+Import+Template-with+Data+Validation-20230104_FINAL.xls&amp;pageId=477497179" rel="nofollow">
+          View
+        </a>
+      </td>
+    </tr>
+    <tr id="attachment-526189846">
+      <td></td>
+      <td>
+        Microsoft Powerpoint Presentation
+        <a href="/download/attachments/477497179/Jira-2236-CDEMatchLogicv4.pptx?api=v2" title="Download" rel="nofollow">
+          Jira-2236-CDEMatchLogicv4.pptx
+        </a>
+        Current CDE Match Logic as of Nov. 2022
+      </td>
+      <td>
+        Apr 06, 2023
+        by
+        <a href="/display/~warzeld" rel="nofollow">
+          Warzel, Denise (NIH/NCI) [E]
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td colspan="2">
+        Labels
+        <ul>
+          <li>
+            No labels
+          </li>
+        </ul>
+        Preview
+        <a href="/pages/worddav/preview.action?fileName=Jira-2236-CDEMatchLogicv4.pptx&amp;pageId=477497179" rel="nofollow">
+          View
+        </a>
+      </td>
+    </tr>
+    <tr id="attachment-526189847">
+      <td></td>
+      <td>
+        Microsoft Word Document
+        <a href="/download/attachments/477497179/Jira-2236-CDEMatchInstructionsSprint42.docx?api=v2" title="Download" rel="nofollow">
+          Jira-2236-CDEMatchInstructionsSprint42.docx
+        </a>
+        CDE Match Instructions, Notes and Tips
+      </td>
+      <td>
+        Apr 06, 2023
+        by
+        <a href="/display/~warzeld" rel="nofollow">
+          Warzel, Denise (NIH/NCI) [E]
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td colspan="2">
+        Labels
+        <ul>
+          <li>
+            No labels
+          </li>
+        </ul>
+        Preview
+        <a href="/pages/worddav/preview.action?fileName=Jira-2236-CDEMatchInstructionsSprint42.docx&amp;pageId=477497179" rel="nofollow">
+          View
+        </a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<a href="/pages/downloadallattachments.action?pageId=477497179" title="Download all the latest versions of attachments on this page as single zip file." rel="nofollow">
+  Download All
+</a>
+<h1 id="TemplatesandInstructionsforBulkImportsandMatching-Tips">
+  Tips
+</h1>
+<h2 id="TemplatesandInstructionsforBulkImportsandMatching-TipsforAllImports">
+  Tips for All Imports
+</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Use Data Validation
+      </th>
+      <td>
+        Always start with a fresh Template with Data Validation to help avoid uncaught errors due to invalid manually entered data. We have added a lot more error handling in this release, but it&#39;s not perfect yet, in particular when invalid or retired concepts are used.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Required Columns
+      </th>
+      <td>
+        All templates require a BATCH USER, BATCH NAME, and SEQ ID on each row.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Delete/Purge
+      </th>
+      <td>
+        When reimporting, it is safest to select all the rows and &#34;Delete&#34;, then select &#34;Purge&#34;, then select all rows and “Purge Records&#34;.For Forms, select &#34;Delete Hierarchies&#34;, then select &#34;Purge&#34;, then select the rows and &#34;Purge Hierarchies&#34;.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Unique Column Names
+      </th>
+      <td>
+        You may add additional columns to the template for taking/keeping notes after the last template column, but the column names must be unique.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Invalid or Retired Concepts
+      </th>
+      <td>
+        Invalid VM Concepts on import are not saved in the system and can create a GAP in the concept drop down. If the invalid or missing concepts are found, the system will display and error. Curators should fix all Concept Errors reported on Import BEFORE Validating.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Concept Formatting
+      </th>
+      <td>
+        Concept String should not contain commas, tabs, or or other hidden characters. Always &#34;Paste Values&#34; in order to avoid issues.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        CSV Files!!
+      </th>
+      <td>
+        Template must be saved as CSV for importing. Other file types will cause an error.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Seq ID Rules
+      </th>
+      <td>
+        Seq ID must be a unique integer.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Import Exceptions
+      </th>
+      <td>
+        Missing Batch User, Batch Name, or Seq ID will cause Exception.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Selecting the &#34;Import&#34; Command
+      </th>
+      <td>
+        For imports and matching, select the type of import/match item from the &#34;Favorites&#34; list, then select the &#34;Import&#34; command. For most imports there will be a dropdown with either one or two of the following choices: &#34;Conceptual Object Import&#34; and &#34;Data Object Import&#34;.  For most imports choose the first choice in the list.For VM Match both choices are presented, choose the second one, &#34;Data Object Import&#34;.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Exception on SEQ/Row Number
+      </th>
+      <td>
+        Multiple missing required fields may not report the correct row number in the Exception Message. Inspect the template for empty cells.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Save / Revalidate
+      </th>
+      <td>
+        If making changes through front-end, Save and Revalidate. This will refresh the messages.
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="TemplatesandInstructionsforBulkImportsandMatching-TipsforCDEImports">
+  Tips for CDE Imports
+</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Duplicates in File
+      </th>
+      <td>
+        Duplicate rows within the imported file are not caught on Import, but duplicate CDEs will not be created.
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="TemplatesandInstructionsforBulkImportsandMatching-TipsforCDEMatch">
+  Tips for CDE Match
+</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Run Transform
+      </th>
+      <td>
+        CDE Match transforms the Source input into one row per column and permissible value. The command to transform the Source input details is &#34;opt&#34;+&#34;cmd&#34;+&#34;t&#34;.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        See Instructions
+      </th>
+      <td>
+        Please see the CDE Match Instructions document attached to this page.
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="TemplatesandInstructionsforBulkImportsandMatching-TipsforDECImports">
+  Tips for DEC Imports
+</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Validating Lots of Rows
+      </th>
+      <td>
+        Sometimes, the system throws an error when attempting to validate more than 4 rows at a time. If that happens, try validating a few rows at a time.
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="TemplatesandInstructionsforBulkImportsandMatching-TipsforVDImports">
+  Tips for VD Imports
+</h2>
+None at this time.
+<h2 id="TemplatesandInstructionsforBulkImportsandMatching-TipsforPVVMImports">
+  Tips for PV VM Imports
+</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Import into Existing VD
+      </th>
+      <td>
+        The PV VM import is designed to import an enumeration into an existing Value Domain. PV/VMs can be created using existing VMs, or you can specify a new VM either with or without concept codes.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Specified VM Definition
+      </th>
+      <td>
+        Optional Specified VM Definition is only used if the VM Type is &#34;TEXT&#34;. The system will not throw an error but it won&#39;t be added to the VM.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Possible Timeout
+      </th>
+      <td>
+        Validate/Create will timeout if more than 5 minutes. Try batches of 100 until we can redesign the code. Watch.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        VM Reuse
+      </th>
+      <td>
+        In a Text VM is specified and an existing VM with the exact name is found, it will be reused, even if it has concepts. The Validation message will indicate that existing VM is being used (need to fix spacing).
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="TemplatesandInstructionsforBulkImportsandMatching-TipsforVMMatch">
+  Tips for VM Match
+</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        After Importing
+      </th>
+      <td>
+        The results after importing are displayed one row per Value Meaning. All VM Match user results are kept in one database table, and without filtering results, they are all displayed in the same grid. So, after selecting &#34;Go to Data Manager&#34; enter your batch name and click &#34;Apply Filter&#34; to see just your results.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        User Tips
+      </th>
+      <td>
+        The User Tips column is used to replace the VM Name. Sometimes the VM Name from your form or data is not very representative of the its meaning, or consists of too many terms IF A &#34;User Tip&#34; is entered it is used Instead of the VM Name.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        &#34;Run Match&#34; Command
+      </th>
+      <td>
+        Select the rows to run the match algorithm against and select the &#34;RUN MATCH&#34; Command.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Column Order
+      </th>
+      <td>
+        The main column in VM Match is the VM Name. The processing is designed to find matching concepts based on the name and insert the Concept Name and Concept Code into the table next to the VM NAME. This order of the columns makes it easier to populate the PV/VM Template With cut and paste. You can use &#34;Delivery Options&#34; command to export the VM Match results into and Excel file. This simplifies creating the list of PV/VMs to import into a Value Domain.
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="TemplatesandInstructionsforBulkImportsandMatching-TipsforFormImports">
+  Tips for Form Imports
+</h2>
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <td>
+        Import from REDCap Data Dictionary Format
+      </td>
+      <td>
+        Form import uses a csv file format which is one row per Question. The template contains an Excel Macro so when opening the template to paste your content into, select &#34;Enable Macros&#34;.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Running the Macro
+      </td>
+      <td>
+        Choose &#34;Shift&#34; + &#34;CMD&#34; + &#34;t&#34;
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Filling the template with form data
+      </td>
+      <td>
+        The 1st row of headings are the REDCap DD headings. The 2nd row of headings match caDSR headings. Enter a short name in the Variable / Field Name, this can be used for matching to an existing CDE. In future release it will be added as a Question Short Name.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Form Context
+      </td>
+      <td>
+        REDCap does not have a column for Context. In Sprint 41 Context for the form is selected after importing the template into caDSR.
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="TemplatesandInstructionsforBulkImportsandMatching-TipsforDesignationImports">
+  Tips for Designation Imports
+</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>
+        Consistency Checking
+      </th>
+      <td>
+        If AI Long Name does not match the specified AI Public ID Long Name, the system will show an error. We are requesting AI Long Name and AI Type to ensure Alt names are not inadvertently added to the wrong AI. Public IDs are very similar, typos are easy to make. If this becomes onerous, we could add a Validate Step to display the AI Long Name and AI Type for curator to see and visually verify before selecting Create.
+      </td>
+    </tr>
+  </tbody>
+</table>
