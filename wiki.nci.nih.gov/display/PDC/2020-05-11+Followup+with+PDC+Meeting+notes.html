@@ -1,0 +1,241 @@
+<h2 id="id-20200511FollowupwithPDCMeetingnotes-Date">
+  Date
+</h2>
+11 May 2020
+<h2 id="id-20200511FollowupwithPDCMeetingnotes-Attendees">
+  Attendees
+</h2>
+<ul>
+  <li>
+    <a href="https://wiki.nci.nih.gov/display/~beyersm" rel="nofollow">
+      Beyers, Matthew (NIH/NCI) [C]
+    </a>
+  </li>
+  <li>
+    Rajesh Thangudu, Michael Holck, Barry Alkis, Amit Mukherjee
+  </li>
+</ul>
+<h2 id="id-20200511FollowupwithPDCMeetingnotes-Agenda">
+  Agenda
+</h2>
+*** Architecture *****What is your scaling model/strategy? For API/Portal, PepQuery Tools etc.?What is the patching/update strategy? For Updates? For Security? For OS, Application and App Libraries?What is your Backup Strategy and Data Lifecycle policy (S3 and MySQL) for different tiers?How are Infra Best Practices adopted? What is the framework that&#39;s followed (e.g Well-Architected)? Any Specific tools (e.g. Trusted Advisor, etc.)?***** Process *****How do you get User feedback (Portal/API)?How do you handle Submitter feedback (Data)?How do you handle Data Submitter Updates?How are Data Model Changes handled?What is your Logging strategy?Do you advertise any kind of SLA and track it?What does a typical production troubleshooting process look like?  ***** Testing *****How do you test for functionality? Any automation framework, Mostly Manual or partly Manual?How do you test for Load/Performance? What kind of tools if any and how frequently?What kind of system metrics do you track for performance and how do you track them?What kind of Alerting and Notification System is set up? For Security, Performance, Billing?In JIRA, the test results section of an item has testing information and results for peer testing.  Is the QA team writing additional test cases and if so, where are they stored?During system testing, how is the QA team tracking the status of testing for each sprint and any additional regression testing?
+<h2 id="id-20200511FollowupwithPDCMeetingnotes-Discussionitems">
+  Discussion items
+</h2>
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        Time
+      </th>
+      <th>
+        Item
+      </th>
+      <th>
+        Who
+      </th>
+      <th>
+        Notes
+      </th>
+    </tr>
+    <tr>
+      <td></td>
+      <td>
+        <ul>
+          <li>
+            Architecture
+          </li>
+        </ul>
+      </td>
+      <td></td>
+      <td>
+        <ul>
+          <li>
+            What is your scaling model/strategy? For API/Portal, PepQuery Tools etc.?
+            <ul>
+              <li>
+                Frequency of autoscaling, max/min.  Web servers in autoscaling groups - default of 1 instance.  Increase if CPU &gt;80% for 5 minutes.  If CPU drops below 40% for 15 minutes, descaled.  US East 1.  Data Portal, webspace and APIs are on same server at the moment.  Could do different servers if needed.  Feasible to make API serverless.  Separating servers - NodeJS, PM2. URLs to APIs is just an environment variable.  Vertical scalability available as well (T2 large, can go larger).  Aurora Databases - RDS setup with master and replica (T2 mediums).  Can add up to 15 read replicas if needed.
+              </li>
+            </ul>
+          </li>
+          <li>
+            What is the patching/update strategy? For Updates? For Security? For OS, Application and App Libraries?
+            <ul>
+              <li>
+                How many instances?  1 web server in stage and another in production.  1 in Dev.  Stage and production in autoscaling groups.  1 RDS in Dev.  Master and read-replica in Stage and same in Prod.  Updates: frequency (AWS systems manager - every weekend).  Continuous monitoring checks monthly that updates occurred.  Monitoring tools?  Trusted Advisor.  Systems Manager for patching.  Manually shell into instances to ensure patches occurred.  RDS updates itself, if manual updates required, they are done on a schedule.
+              </li>
+            </ul>
+          </li>
+          <li>
+            What is your Backup Strategy and Data Lifecycle policy (S3 and MySQL) for different tiers?
+            <ul>
+              <li>
+                RDS instances are backed up nightly and retains last 7 days.  Can restore to any of those as needed.  Not longer due to assumption that it would be noticed quickly if something went wrong.  DB size: 24 GB disk storage.  Raw data files and metadata files in S3: 12 TB.
+              </li>
+            </ul>
+          </li>
+          <li>
+            How are Infra Best Practices adopted? What is the framework that&#39;s followed (e.g Well-Architected)? Any Specific tools (e.g. Trusted Advisor, etc.)?
+            <ul>
+              <li>
+                AWS reference architecture for NIST-based infrastructure.  Security Groups, network access control groups, logging on cloud trail.  With transition to STRIDES, enterprise level support is available.  Well-architected review with Technical Account Managers from AWS.  If changes to architecture, done in stage first with security impact assessment.  Then deployment document updated and reviewed.  Then notify NIH&#39;s ISSH office before deploying.  No infrastructure as code.
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>
+        <ul>
+          <li>
+            Process
+          </li>
+        </ul>
+      </td>
+      <td></td>
+      <td>
+        <ul>
+          <li>
+            How do you get User feedback (Portal/API)?
+            <ul>
+              <li>
+                Number of unique users? Due to being an open access portal, do not track users.  Google analytics: ESAC and CBIIT have their own.  Average 30-40 users per day (unique based on session) - might take into account IP address in uniquing.
+              </li>
+              <li>
+                Help email address to accept user feedback.
+              </li>
+            </ul>
+          </li>
+          <li>
+            How do you handle Submitter feedback (Data)?
+            <ul>
+              <li>
+                Issues are created as bug reports or improvements as needed in JIRA.  Email communication with users.  HotJar - built-in feedback mechanism.  Is there a process to handle user feedback?  Meet several times a week and use Slack.  Easy to manage right now - no specific process at this time.  Kinds of feedback: question about API, finding a dataset.
+              </li>
+            </ul>
+          </li>
+          <li>
+            How do you handle Data Submitter Updates?
+            <ul>
+              <li>
+                Submission pipeline - how many people have used it and what was their feedback?  Major chunk of data comes from CPTAC data coordinating center (managed by ESAC) at this time.  External users: Georgetown University, ICPC (Mike MacCoss).  Do these external users use the data submission portal?  Yes, data ETL&#39;d from data submission portal to data access portal.  Data coordinating center goes through data submission portal process. Once data validated, it goes to Dev and then is verified and then goes to stage and then to production.  Production database dumped to Dev to do QC during validation process.  Progress feedback to user?  Creation of study is the end of the submission process.  Can user see data before production?  Can view in workspace.  Staging environment can be used by the user if needed - temporary login created to view the data prior to production.  Can use &#34;soft delete&#34; functionality to tag data not to be released (can adjust granularity).  With soft delete, is regression testing done?  Done on Dev and then pushed to Stage where soft delete verified.
+              </li>
+            </ul>
+          </li>
+          <li>
+            How are Data Model Changes handled?
+            <ul>
+              <li>
+                Changes done on Dev and done with a SQL script.  One person manages data model.  Scripts checked into GitHub.  When moved from Dev-to-Stage, scripts done first, then dump the data, then QA.  If structural change to API needed, they are adjusted.  APIs have unit tests built into them to detect structural changes (should happen on Dev).
+              </li>
+            </ul>
+          </li>
+          <li>
+            What is your Logging strategy?
+            <ul>
+              <li>
+                Splunk. Can do analysis and create dashboards.  Logs from instances, Cloud Trail, CloudWatch and VPC flow logs are pushed into S3 bucket.  Splunk does automated analysis for errors - shown on Dashboard.
+              </li>
+            </ul>
+          </li>
+          <li>
+            Do you advertise any kind of SLA and track it?
+            <ul>
+              <li>
+                Don&#39;t commit to specific SLA at the moment. ATO process defines return to operations within 24 hours.  Anything higher than that would convert from FISMA Low to FISMA Moderate.
+              </li>
+            </ul>
+          </li>
+          <li>
+            What does a typical production troubleshooting process look like?
+            <ul>
+              <li>
+                Incident response plan and training (required) to respond to common issues - on Wiki.
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1"></td>
+      <td colspan="1">
+        <ul>
+          <li>
+            Testing
+          </li>
+        </ul>
+      </td>
+      <td colspan="1"></td>
+      <td colspan="1">
+        <ul>
+          <li>
+            How do you test for functionality? Any automation framework, Mostly Manual or partly Manual?
+            <ul>
+              <li>
+                Unit tests written for all the code executed as part of build process.  User defines usability acceptance.  Peer testing.  QA team goes through full testing of JIRA issues.  Had previously implemented Catalan - too difficult to maintain with continuous changes and number of permutations.  When stabilized, could consider going back to automation, but question remains what do you test, especially with ever increasing data.  Mostly manual testing for validation of last sprint and regression.
+              </li>
+            </ul>
+          </li>
+          <li>
+            How do you test for Load/Performance? What kind of tools if any and how frequently?
+            <ul>
+              <li>
+                Jmeter used for load testing.  Can scale to as many simultaneous users/API requests as desired.  50 users set as original target, then went to 100.  100 is used to size and auto load balance benchmark.  Hard to stress APIs using Jmeter and Elasticache (can be turned off).  Results of any API query are stored in Elasticache.  Cache can be cleared at any point.
+              </li>
+            </ul>
+          </li>
+          <li>
+            What kind of system metrics do you track for performance and how do you track them?
+            <ul>
+              <li>
+                (see above).  Operational review conducted every couple of sprints to inform need for proactive scaling.
+              </li>
+            </ul>
+          </li>
+          <li>
+            What kind of Alerting and Notification System is set up? For Security, Performance, Billing?
+            <ul>
+              <li>
+                billing alert setup.  If forecast exceeds normal monthly billing, at notification is received.  If new users are created, deleted, updated, notifications are made.  Deployments fire notifications.
+              </li>
+            </ul>
+          </li>
+          <li>
+            In JIRA, the test results section of an item has testing information and results for peer testing.  Is the QA team writing additional test cases and if so, where are they stored?
+            <ul>
+              <li>
+                For QA team - are there manual test cases in a repository?  Start with doing tests listed in peer testing.  In wiki, there are User Acceptance Test Cases.  Tool used to track status of testing?  Not at this time.  Build announced in Slack and testing commenced - leads to bug reports as needed.
+              </li>
+            </ul>
+          </li>
+          <li>
+            During system testing, how is the QA team tracking the status of testing for each sprint and any additional regression testing?
+            <ul>
+              <li>
+                (see above).
+              </li>
+            </ul>
+          </li>
+          <li>
+            Does QA team do API testing?  Some, especially if new API or changed API.
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="id-20200511FollowupwithPDCMeetingnotes-Actionitems">
+  Action items
+</h2>
+<ul>
+  <li></li>
+</ul>

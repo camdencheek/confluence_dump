@@ -1,0 +1,105 @@
+<h2 id="id-20200508ICDCNCBIDataHandlingMeetingnotes-Date">
+  Date
+</h2>
+08 May 2020
+<h2 id="id-20200508ICDCNCBIDataHandlingMeetingnotes-Attendees">
+  Attendees
+</h2>
+<ul>
+  <li>
+    <a href="https://wiki.nci.nih.gov/display/~beyersm" rel="nofollow">
+      Beyers, Matthew (NIH/NCI) [C]
+    </a>
+  </li>
+  <li>
+    Amit, Adam Stine, Durga, Erika, Phil, Rick Lapoint
+  </li>
+</ul>
+<h2 id="id-20200508ICDCNCBIDataHandlingMeetingnotes-Goals">
+  Goals
+</h2>
+1. Review plan for overall access.
+<a href="https://wiki.nci.nih.gov/download/attachments/430606141/NCBI-ICDC-DCF_agreedplan.pptx?version=1&amp;modificationDate=1588957135000&amp;api=v2" rel="nofollow">
+  NCBI-ICDC-DCF_agreedplan.pptx
+</a>
+2. Decide on transfer plan3. Decide who (or team) will write SOP
+<h2 id="id-20200508ICDCNCBIDataHandlingMeetingnotes-Discussionitems">
+  Discussion items
+</h2>
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        Time
+      </th>
+      <th>
+        Item
+      </th>
+      <th>
+        Who
+      </th>
+      <th>
+        Notes
+      </th>
+    </tr>
+    <tr>
+      <td></td>
+      <td>
+        review plan
+      </td>
+      <td>
+        Matt
+      </td>
+      <td>
+        reviewed plan.  Question: do we want to include BAM indexes and BAMs, or just BAMs?  Erika says we should include indexes as well.  Adam says we will include BAM index as well (separate from SRA proprietary format). Amit wants to rename files to eliminate prefix and replace _ with -.  Adam agrees.  BAM indexes allow users to read through BAM files faster. .BAI files.  BAM and CRAM files should include generated indexes.  BAM indexes would have to be acquired (from submitter) or generated.  Do not currently exist in SRA.  NCBI will want index files listed in metadata if they exist.  NCBI is ok with us just taking AWS format uncompressed data.
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>
+        transfer plan
+      </td>
+      <td>
+        All
+      </td>
+      <td>
+        NCBI is happy to transfer files - need to grant write access to the ICDC bucket.  Amit is imagining an S3 sync process, from within an EC2 instance within NCBI.  NCBI agrees with S3 sync.  ICDC creates bucket for Glioma study.  Create IAM user and give writes to NCBI and then NCBI transfers data.  Maybe with file ownership issues, NCI should do transfer.  AWS S3 copy should move file.
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1"></td>
+      <td colspan="1">
+        SOP
+      </td>
+      <td colspan="1">
+        All
+      </td>
+      <td colspan="1">
+        Amit, Adam
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="id-20200508ICDCNCBIDataHandlingMeetingnotes-Actionitems">
+  Action items
+</h2>
+<ul>
+  <li>
+    Adam and Amit to setup meeting to sort out the last details.
+  </li>
+  <li>
+    After data transfer is done, setup meeting to discuss additional studies and how the flow will work.
+  </li>
+  <li>
+    Phil will check with Samir to see if he can find the original index files.  File names for indexes will need to match BAMs.
+  </li>
+  <li>
+    Checkin as a group in 2-3 weeks.
+  </li>
+</ul>

@@ -1,0 +1,184 @@
+Project Decision Log
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+    <col/>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th></th>
+      <th>
+        Question/Description
+      </th>
+      <th>
+        Decision
+      </th>
+      <th>
+        Entry Date
+      </th>
+      <th>
+        Decision Date
+      </th>
+    </tr>
+    <tr>
+      <td>
+        1
+      </td>
+      <td>
+        What does the prototype look like and what is its schedule?
+      </td>
+      <td>
+        Prototype will be developed using basic Gen3 technology (including existing stack of database and Windmill portal) by January 31, 2019. The system will incorporate data from a cohort of 3 canines as provided by COP. This will allow us to test and understand basic functionality of Gen3.
+      </td>
+      <td>
+        10/19/18
+      </td>
+      <td>
+        10/22/18
+      </td>
+    </tr>
+    <tr>
+      <td>
+        2
+      </td>
+      <td>
+        What type of underlying data should we use? Graph/RDBMS/Postgres-Graph model used by UChicago?
+      </td>
+      <td>
+        Will explore using an experimental model, testing for speed and ease of use, after deployment of prototype. Decision is still in flux. In discussions on 12/13/18, it was decided that this will be simplified down to just Graph/Postgres-Graph because the RDBMS model is known to be too inflexible and slow. A new decision will be entered in the log to decide between the two.
+      </td>
+      <td>
+        10/18/18
+      </td>
+      <td>
+        12/13/18
+      </td>
+    </tr>
+    <tr>
+      <td>
+        3
+      </td>
+      <td>
+        What should we use to Extract, Transform and Load the data?
+      </td>
+      <td>
+        Several choices have been suggested including KNIME and Pentaho. Creating our own system has not be excluded. Will explore this after deployment of prototype.Initial decision is to use Pentaho and link this using a plug-in to Neo4j. Phil has become familiar with the mechanism for transforming the data in Pentaho and has taught this to Kevin. We continue to examine NiFi to see if it is relevant on a higher level and have contracted with Asymmetrik to demonstrate how to use it.
+      </td>
+      <td>
+        10/12/18
+      </td>
+      <td>
+        6/1/19
+      </td>
+    </tr>
+    <tr>
+      <td>
+        4
+      </td>
+      <td>
+        For the underlying database, should we use a Graph database (like Neo4J or Neptune) or stick with the Postgres-Graph database that came with the system?
+      </td>
+      <td>
+        We decided to move to a graph database and the consequent changes to the software as required.
+      </td>
+      <td>
+        12/13/18
+      </td>
+      <td>
+        3/26/19
+      </td>
+    </tr>
+    <tr>
+      <td>
+        5
+      </td>
+      <td colspan="1">
+        (predicated by Decision 4) If we decide to go with a Graph database, should we utilize Neo4J or Neptune? TigerGraph is excluded from this decision based on their initial cost ($40K for a 1 year license when only a trial version was desired).
+      </td>
+      <td colspan="1">
+        Neo4J was decided upon. We will begin with the community edition and upgrade to the enterprise edition. This was decided upon in conjunction with considerations with the Clinical Trials Data Commons which is being co-developed with ICDC.
+      </td>
+      <td colspan="1">
+        12/13/18
+      </td>
+      <td colspan="1">
+        5/15/19
+      </td>
+    </tr>
+    <tr>
+      <td>
+        6
+      </td>
+      <td colspan="1">
+        Should we utilize the full-fledged version of Gen3 as provided by UChicago, or should we utilize a dockerized version that is simpler in nature by maybe easier to deploy?
+      </td>
+      <td colspan="1">
+        We will go with the dockerized version at this time. See attached documentation.
+        <a href="https://wiki.nci.nih.gov/download/attachments/380866682/EKS%20or%20ECS%20Decision%20for%20ICDC.docx?version=1&amp;modificationDate=1546033400000&amp;api=v2" rel="nofollow">
+          EKS or ECS Decision for ICDC.docx
+        </a>
+      </td>
+      <td colspan="1">
+        12/13/18
+      </td>
+      <td colspan="1">
+        12/28/18
+      </td>
+    </tr>
+    <tr>
+      <td>
+        7
+      </td>
+      <td colspan="1">
+        Cypher vs. Gremlin? Which language should communicate with the underlying database? Gremlin is more universal, Cypher is much faster.
+      </td>
+      <td colspan="1">
+        After looking into this a bit more, Gremlin&#39;s last update to Neo4J was in 2017 and does not appear to be further supported, including in the current version of Neo4J. Cypher is to be supported more universally in the next version of Apache and so the decision was made to go with Cypher.
+        <img src="/plugins/servlet/confluence/placeholder/unknown-attachment?locale=en_US"/>
+      </td>
+      <td colspan="1">
+        5/15/19
+      </td>
+      <td colspan="1">
+        5/30/19
+      </td>
+    </tr>
+    <tr>
+      <td>
+        8
+      </td>
+      <td colspan="1">
+        Project will NOT support Internet Explorer (IE).
+      </td>
+      <td colspan="1">
+        Since Microsoft has stopped supporting IE, the browser is essentially defunct and we will not support it. Per discussion with Todd.
+      </td>
+      <td colspan="1">
+        12/3/19
+      </td>
+      <td colspan="1">
+        12/3/19
+      </td>
+    </tr>
+    <tr>
+      <td>
+        9
+      </td>
+      <td colspan="1">
+        Project team will fully develop user stories before any QA testing or Test Case development occurs
+      </td>
+      <td colspan="1">
+        As part of our Post-MVP sprint process, it has become clear to the team that user stories are critical to the design, development and testing of the system and that short-cuts to write those user stories result in an unacceptable amount of rework and angst amongst the team.  From now on, before any tickets are sent to QA or test cases developed, a finalized user story must be approved by the Business Analyst in consult with the rest of the team.  Development and testing tickets can then be linked to this user story for a complete story.  As a result, it is expected that user story development will occur in one sprint and the QA/testing of that user story will occur in a lagging sprint.  Some development may occur in concert with developing the user story but the ticket will not be sent to QA until the user story is completed.
+      </td>
+      <td colspan="1">
+        5/22/2020
+      </td>
+      <td colspan="1">
+        5/22/2020
+      </td>
+    </tr>
+  </tbody>
+</table>

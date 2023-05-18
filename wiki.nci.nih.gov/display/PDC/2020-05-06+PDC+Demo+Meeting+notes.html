@@ -1,0 +1,202 @@
+<h2 id="id-20200506PDCDemoMeetingnotes-Date">
+  Date
+</h2>
+06 May 2020
+<h2 id="id-20200506PDCDemoMeetingnotes-Attendees">
+  Attendees
+</h2>
+<ul>
+  <li>
+    <a href="https://wiki.nci.nih.gov/display/~beyersm" rel="nofollow">
+      Beyers, Matthew (NIH/NCI) [C]
+    </a>
+  </li>
+  <li>
+    Rajesh Thangudu, Amit Mukherjee, Anand Basu, Barry Alkis, Erika Kim, John Otridge, Chris Kinsinger, Mark Jensen
+  </li>
+</ul>
+<h2 id="id-20200506PDCDemoMeetingnotes-Goals">
+  Goals
+</h2>
+<ul>
+  <li>
+    Get demonstration of existing PDC website.
+  </li>
+</ul>
+<h2 id="id-20200506PDCDemoMeetingnotes-Discussionitems">
+  Discussion items
+</h2>
+<table>
+  <colgroup>
+    <col/>
+    <col/>
+    <col/>
+    <col/>
+  </colgroup>
+  <tbody>
+    <tr>
+      <th>
+        Time
+      </th>
+      <th>
+        Item
+      </th>
+      <th>
+        Who
+      </th>
+      <th>
+        Notes
+      </th>
+    </tr>
+    <tr>
+      <td></td>
+      <td>
+        Demo
+      </td>
+      <td>
+        Rajesh Thangudu
+      </td>
+      <td>
+        <ul>
+          <li>
+            Home page: all numbers are cases.
+            <ul>
+              <li>
+                Links to Browse, Analysis, Submit Data, About, Help
+              </li>
+            </ul>
+          </li>
+          <li>
+            Browse page:
+            <ul>
+              <li>
+                Chart gives overview and can be collapsed
+              </li>
+              <li>
+                Study-centric portal
+              </li>
+              <li>
+                Project/programs are de-emphasized and study/cases is emphasized
+              </li>
+              <li>
+                Filters are grouped: General, biospecimen, Clinical, Files, Genes
+                <ul>
+                  <li>
+                    General: Primary site, Program, Disease Type, Analytical Fraction, Experiment Type, Acquisition Type
+                  </li>
+                  <li>
+                    Biospecimen: Study, Sample Type, Biospecimen Status
+                  </li>
+                  <li>
+                    Clinical: Ethnicity, Race, Gender, Tumor Grade, Case Status
+                  </li>
+                  <li>
+                    Files: Study, Data Category, File Type, Access (open/closed), Downloadable
+                  </li>
+                  <li>
+                    Genes: enter gene list to filter to specific genes, or can use prebuilt list.
+                  </li>
+                </ul>
+              </li>
+              <li>
+                Biospecimen status allows filtering for those studies that are not qualified (for whatever reason) - Question: of what use are unqualified samples to a researcher?  Qualified and Disqualified status are confusing (John).  Individual disqualified biospecimens are highlighted.
+              </li>
+              <li>
+                Files: raw data and processed data are all available to the user
+              </li>
+              <li>
+                Filter choice results are grouped of studies, biospecimens, clinical, files and genes (similar to how ICDC use stats bar at the top).
+              </li>
+              <li>
+                Show Query shows the REST API endpoint for the results shown.
+              </li>
+              <li>
+                Study summary page shown if a particular study is selected.  Shows data use agreement.  PDC will use CCBY license. Won&#39;t have program specific data agreements in future.  Description, Protocol, Experimental Design, Clinical, Biospecimens, Workflow and Data Use Agreement (DUA).  Heat maps for a particular study are available if submitted - user can cluster and filter the heatmap.  Broad institute Morpheus opensource heatmap software.
+              </li>
+              <li>
+                Selecting a particular study requires using the study filter.
+              </li>
+              <li>
+                Data files can be directly downloaded using signed urls.  Can be generated through API or UI.
+              </li>
+              <li>
+                pdc.cancer.gov/graphiql for queries
+              </li>
+              <li>
+                all the metadata is open - nothing controlled access.  File data also open access.
+              </li>
+              <li>
+                login exists, but not implemented as required since there is no controlled access at this time.  No user level activity tracked - all activity is anonymous.
+              </li>
+              <li>
+                Links to GDC data where relevant.  Need to know where GDC data is, cannot pull linked data directly through filters.  Will have links to other resources in future.  Links are at sample level.  No direct mapping between PDC and GDC studies.  If GDC develops study page, PDC could link there.  CDA may help us see these connections in the future.  Chris said that NCI is very interested in enhancing connections. Filter suggestion: CRDC interoperability (like general, biospecimen, clinical, files, genes on left side).
+              </li>
+              <li>
+                Filters on left say &#34;General&#34;, grouped columns in results say &#34;Study&#34;.  This differs from rest where filter says &#34;Biospecimen&#34; and grouped columns say &#34;Biospecimen&#34;, etc.
+              </li>
+            </ul>
+          </li>
+          <li>
+            Workspace:
+            <ul>
+              <li>
+                User accounts needed.
+              </li>
+              <li>
+                User can link instruments directly into workspace (can create own instruments).
+              </li>
+              <li>
+                Can load files from instrument directly or through S3 buckets (doesn&#39;t require a lot of metadata).  Can keep files here until ready to create a study.
+              </li>
+              <li>
+                Study requires additional metadata (user entered).  Makes a group of files analyzable by a bioinformatician.  UI driven metadata entry.  Can link as many or as few files from the instrument as desired.  Metadata for each file must be entered.
+              </li>
+              <li>
+                Protocol created separately and linked to study.
+              </li>
+              <li>
+                Clinical and biospeciment data submitted via tsv format and loaded to workspace and then linked to study.  Data is validated against experimental design and then loaded and then released to the data portal.
+              </li>
+              <li>
+                Validation: Errors are thrown in the UI.  Not sure if errors are shown compiled (all at once), or stop at the first error.  Data that is not validated - thrown away or kept? (Rajesh will check).
+              </li>
+            </ul>
+          </li>
+          <li>
+            No analysis yet about how system is being used.
+          </li>
+          <li>
+            Search bar is more extensive than indicated (Gene/CaseID).  These were anticipated as most common search filters and so they were highlighted, but it does more than just that.
+          </li>
+          <li>
+            Documentation/User Guides:  FAQs, help section has video tutorials and descriptive page with screenshots.  API documentation is extensive.
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="id-20200506PDCDemoMeetingnotes-Recording:">
+  Recording:
+</h2>
+<a href="/display/PDC/2020-05-06+PDC+Demo+Meeting+notes?preview=%2F430605707%2F430605838%2FMatthew+Beyers%27s+Personal+Room-20200506+1502-1.mp4" rel="nofollow">
+  Matthew Beyers&#39;s Persona…
+</a>
+<h2 id="id-20200506PDCDemoMeetingnotes-Actionitems">
+  Action items
+</h2>
+<ul>
+  <li>
+    setup call for Amit to ask system architecture questions.
+  </li>
+  <li>
+     Rajesh will check on validation: errors all at once or stop at first?  Keep unvalidated data or discard and try again?
+  </li>
+  <li></li>
+</ul>
